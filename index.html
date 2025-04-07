@@ -73,7 +73,19 @@
 </head>
 <body>
   <h2>Order Pure Honey</h2>
-  <form id="honeyForm">
+
+  <div id="g_id_onload"
+     data-client_id="492781113865-4tj6p00s7kbhe8qagv66o8gbsc9ejl59.apps.googleusercontent.com"
+     data-callback="onLogin"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin" 
+     data-type="standard" 
+     data-size="large">
+</div>
+
+  <form id="honeyForm" style="display: none;">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
     <textarea name="address" placeholder="Delivery Address" required></textarea>
@@ -84,6 +96,29 @@
   </form>
 
   <script src="jquery-3.6.1.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+  <script>
+  function onLogin(response) {
+    const id_token = response.credential;
+
+    // Decode token to get user info
+    const payload = JSON.parse(atob(id_token.split('.')[1]));
+    const userName = payload.name;
+    const userEmail = payload.email;
+
+    // Show form
+    document.querySelector('#honeyForm').style.display = 'block';
+    document.querySelector('.g_id_signin').style.display = 'none';
+
+    // Optional: Save to use in form submission
+    window.loggedInEmail = userEmail;
+
+    document.getElementById('userInfo').innerText = `Welcome, ${userName}`;
+  }
+</script>
+
 
   <script>
   const form = document.getElementById('honeyForm');
