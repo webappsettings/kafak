@@ -72,24 +72,22 @@
     finalData = JSON.stringify(data);
     console.log('finalData=', finalData)
 
-    $.ajax({
-         method: 'POST',
-         url: 'https://script.google.com/macros/s/AKfycbwELkJR1R5D7cfD-tJPGc9GZFM_fmvIqF3YKPMqK3H1ZQRgfEh9DaaZXo-PHOJOSyHW7w/exec',
-         data: finalData,
-         dataType: 'json',
-         contentType: false,
-         processData: false,
-         beforeSend: function(){
-          // $('.loader-bg').fadeIn();
-          }
-        })
-        .done(function(callback){
-          console.log(callback)
-        })
-        .fail(function(callback) {
-        })
-       .always(function(){
-        });
+    fetch("https://script.google.com/macros/s/AKfycbx2Rz0nqhGRci_K50XxqNcJ2g2FoQshh8uEHfIQc5YzvKLoSuO7nzIOfre4v2_OhFhSbw/exec", {
+      method: "POST",
+      body: finalData,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("response").innerText = "Order submitted successfully!";
+      form.reset();
+    })
+    .catch(error => {
+      document.getElementById("response").innerText = "Something went wrong. Try again!";
+      console.error("Error:", error);
+    });
   });
 </script>
 
