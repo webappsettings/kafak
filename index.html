@@ -85,6 +85,10 @@
      data-size="large">
 </div>
 
+<div id="userInfo" style="display:none;">
+  <p>Welcome, <span id="userName"></span></p>
+</div>
+
   <form id="honeyForm" style="display: none;">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
@@ -97,16 +101,43 @@
 
   <script src="jquery-3.6.1.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
 
   <script>
+
+    window.onload = function() {
+  google.accounts.id.prompt((notification) => {
+    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+      console.log("User is not signed in.");
+    }
+    if (notification.isDisplayed()) {
+      console.log("One Tap UI displayed.");
+    }
+    if (notification.getMomentType() === 'display') {
+      console.log("Checking auto sign-in...");
+    }
+  });
+};
+
+    var userData;
   function onLogin(response) {
     const id_token = response.credential;
 
     // Decode token to get user info
-    const payload = JSON.parse(atob(id_token.split('.')[1]));
-    const userName = payload.name;
-    const userEmail = payload.email;
+    var payload = JSON.parse(atob(id_token.split('.')[1]));
+    var userName = payload.name;
+    var userEmail = payload.email;
+
+    var user = jwt_decode(response.credential);
+    userData = {
+      name: user.name,
+      email: user.email,
+    };
+
+    document.getElementById('userInfo').style.display = 'block';
+    document.getElementById('userName').textContent = userName;
+
+    console.log('payload',payload)
 
     // Show form
     document.querySelector('#honeyForm').style.display = 'block';
@@ -115,25 +146,30 @@
     // Optional: Save to use in form submission
     window.loggedInEmail = userEmail;
 
+    document.getElementById('userInfo').style.display = 'block';
     document.getElementById('userInfo').innerText = `Welcome, ${userName}`;
   }
-</script>
 
+// ------------login----end
 
-  <script>
   const form = document.getElementById('honeyForm');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => data[key] = value);
-    finalData = JSON.stringify(data);
+    const orderData = {};
+    const fullData = {};
+    formData.forEach((value, key) => orderData[key] = value);
+
+    fullData['userData'] = userData;
+    fullData['orderData'] = orderData;
+
+    finalData = JSON.stringify(fullData);
     console.log('finalData=', finalData)
 
     $.ajax({
          method: 'POST',
-         url: 'https://script.google.com/macros/s/AKfycbwELkJR1R5D7cfD-tJPGc9GZFM_fmvIqF3YKPMqK3H1ZQRgfEh9DaaZXo-PHOJOSyHW7w/exec',
+         url: 'https://script.google.com/macros/s/AKfycby3WekWCBirs2Si0uUQszGXCm6FDQdw5A4wfPbXPNrN_EtkX8vh6-lU6umz6eIVaNqS/exec',
          data: finalData,
          dataType: 'json',
          contentType: false,
