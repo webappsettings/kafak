@@ -4,7 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Honey Order Form</title>
   <style>
-
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -79,14 +78,12 @@
     <textarea name="address" placeholder="Delivery Address" required></textarea>
     <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
     <textarea name="message" placeholder="Any special instructions?"></textarea>
-    <div class="g-recaptcha" data-sitekey="6Lcp0w0rAAAAAHy_8FDiyiM1l_3cszrBPG0HGJ3C"></div>
+    <div class="g-recaptcha" data-sitekey="6Lc7mg0rAAAAAGxIhH2R6qGIoyHHl7KNLnB5yvR8"></div>
     <button type="submit">Place Order</button>
     <p id="response"></p>
-
   </form>
 
   <script src="jquery-3.6.1.min.js"></script>
-  <!-- Include this in <head> -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script>
@@ -95,12 +92,10 @@
       e.preventDefault();
 
       const captchaResponse = grecaptcha.getResponse();
-        if (!captchaResponse) {
-          alert('Please verify you are human.');
-          return;
-        }
-        formData.append('g-recaptcha-response', captchaResponse);
-
+      if (!captchaResponse) {
+        alert('Please complete the CAPTCHA.');
+        return;
+      }
 
       const formData = new FormData(form);
       const orderData = {};
@@ -108,7 +103,8 @@
 
       const fullData = {
         userData: {},
-        orderData: orderData
+        orderData: orderData,
+        'g-recaptcha-response': captchaResponse
       };
 
       const finalData = JSON.stringify(fullData);
