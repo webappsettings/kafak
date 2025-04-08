@@ -6,26 +6,25 @@
   <style>
 
     @media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
+      body {
+        padding: 10px;
+      }
 
-  form {
-    width: 100%;
-    padding: 15px;
-    border-width: 1px;
-  }
+      form {
+        width: 100%;
+        padding: 15px;
+        border-width: 1px;
+      }
 
-  input, textarea, button {
-    font-size: 1em;
-    padding: 8px;
-  }
+      input, textarea, button {
+        font-size: 1em;
+        padding: 8px;
+      }
 
-  h2 {
-    font-size: 1.2em;
-  }
-}
-
+      h2 {
+        font-size: 1.2em;
+      }
+    }
 
     * {
       box-sizing: border-box;
@@ -74,119 +73,67 @@
 <body>
   <h2>Order Pure Honey</h2>
 
-  <div id="g_id_onload"
-     data-client_id="492781113865-4tj6p00s7kbhe8qagv66o8gbsc9ejl59.apps.googleusercontent.com"
-     data-callback="onLogin"
-     data-auto_prompt="false">
-</div>
-
-<div class="g_id_signin" 
-     data-type="standard" 
-     data-size="large">
-</div>
-
-<div id="userInfo" style="display:none;">
-  <p>Welcome, <span id="userName"></span></p>
-</div>
-
-  <form id="honeyForm" style="display: none;">
+  <form id="honeyForm">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
     <textarea name="address" placeholder="Delivery Address" required></textarea>
     <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
     <textarea name="message" placeholder="Any special instructions?"></textarea>
+    <div class="g-recaptcha" data-sitekey="6Lcp0w0rAAAAAHy_8FDiyiM1l_3cszrBPG0HGJ3C"></div>
     <button type="submit">Place Order</button>
     <p id="response"></p>
+
   </form>
 
   <script src="jquery-3.6.1.min.js"></script>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <!-- Include this in <head> -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script>
+    const form = document.getElementById('honeyForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    window.onload = function() {
-  google.accounts.id.prompt((notification) => {
-    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-      console.log("User is not signed in.");
-    }
-    if (notification.isDisplayed()) {
-      console.log("One Tap UI displayed.");
-    }
-    if (notification.getMomentType() === 'display') {
-      console.log("Checking auto sign-in...");
-    }
-  });
-};
+      const captchaResponse = grecaptcha.getResponse();
+        if (!captchaResponse) {
+          alert('Please verify you are human.');
+          return;
+        }
+        formData.append('g-recaptcha-response', captchaResponse);
 
-    var userData;
-  function onLogin(response) {
-    const id_token = response.credential;
 
-    // Decode token to get user info
-    var payload = JSON.parse(atob(id_token.split('.')[1]));
-    var userName = payload.name;
-    var userEmail = payload.email;
+      const formData = new FormData(form);
+      const orderData = {};
+      formData.forEach((value, key) => orderData[key] = value);
 
-    var user = jwt_decode(response.credential);
-    userData = {
-      name: user.name,
-      email: user.email,
-    };
+      const fullData = {
+        userData: {},
+        orderData: orderData
+      };
 
-    document.getElementById('userInfo').style.display = 'block';
-    document.getElementById('userName').textContent = userName;
+      const finalData = JSON.stringify(fullData);
+      console.log('finalData=', finalData);
 
-    console.log('payload',payload)
-
-    // Show form
-    document.querySelector('#honeyForm').style.display = 'block';
-    document.querySelector('.g_id_signin').style.display = 'none';
-
-    // Optional: Save to use in form submission
-    window.loggedInEmail = userEmail;
-
-    document.getElementById('userInfo').style.display = 'block';
-    document.getElementById('userInfo').innerText = `Welcome, ${userName}`;
-  }
-
-// ------------login----end
-
-  const form = document.getElementById('honeyForm');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const orderData = {};
-    const fullData = {};
-    formData.forEach((value, key) => orderData[key] = value);
-
-    fullData['userData'] = userData;
-    fullData['orderData'] = orderData;
-
-    finalData = JSON.stringify(fullData);
-    console.log('finalData=', finalData)
-
-    $.ajax({
-         method: 'POST',
-         url: 'https://script.google.com/macros/s/AKfycbzQmlo_P0NfPPbmROCOYkBv8w8u3P828YWl1edubBKt1q11smtfocdJfQXQvGGPUOD3fg/exec',
-         data: finalData,
-         dataType: 'json',
-         contentType: false,
-         processData: false,
-         beforeSend: function(){
-          // $('.loader-bg').fadeIn();
-          }
-        })
-        .done(function(callback){
-          console.log(callback)
-        })
-        .fail(function(callback) {
-        })
-       .always(function(){
-        });
-  });
-</script>
-
+      $.ajax({
+        method: 'POST',
+        url: 'https://script.google.com/macros/s/AKfycbzQmlo_P0NfPPbmROCOYkBv8w8u3P828YWl1edubBKt1q11smtfocdJfQXQvGGPUOD3fg/exec',
+        data: finalData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        beforeSend: function() {
+          // Loading indicator can go here
+        }
+      })
+      .done(function(callback) {
+        console.log(callback);
+        document.getElementById('response').textContent = 'Order submitted successfully!';
+      })
+      .fail(function(callback) {
+        console.error(callback);
+        document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
+      });
+    });
+  </script>
 </body>
 </html>
