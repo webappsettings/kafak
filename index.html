@@ -89,6 +89,7 @@
 
   <script>
     const form = document.getElementById('honeyForm');
+    var LOCAL_KEY = 'honey_order_code';
 
     window.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('honey_name')) {
@@ -100,14 +101,43 @@
       if (localStorage.getItem('honey_address')) {
         form.address.value = localStorage.getItem('honey_address');
       }
+
+
+      const code = localStorage.getItem(LOCAL_KEY);
+            if (code) {
+              // Try fetch existing order details by code using createTextFinder
+              fetch(`https://script.google.com/macros/s/AKfycbxESYwK1mnZzCTwHE-YTvSosLG9MQ2iLW2ShHxVwoClhiHOCA40dSn2xc-QPjWA36MrOQ/exec?action=get&code=${code}`)
+                .then(res => res.json())
+                .then(data => {
+                  console.log("Fetched data:", data);
+                  if (data.result === 'success') {
+                    const d = data.data;
+                    form.name.value = d.name;
+                    form.phone.value = d.phone;
+                    form.address.value = d.address;
+                    form.quantity.value = d.quantity;
+                    form.message.value = d.message;
+                  }
+                })
+                .catch(err => {
+                  console.error("Error fetching order:", err);
+                });
+            }
     });
+
+    
+
+    function generateCode() {
+      return 'HNY-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    }
+
     function onSubmit(token1) {
       if (typeof grecaptcha === 'undefined') {
           alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
           return;
         }
 
-
+        
         // Load saved user details if available
     
 
@@ -129,6 +159,11 @@
               localStorage.setItem('honey_phone', orderData.phone || '');
               localStorage.setItem('honey_address', orderData.address || '');
 
+              const orderCode = localStorage.getItem(LOCAL_KEY) || generateCode();
+              localStorage.setItem(LOCAL_KEY, orderCode);
+
+              orderData.code = orderCode;
+
             const fullData = {
               userData: {},
               orderData: orderData,
@@ -140,7 +175,7 @@
 
             $.ajax({
               method: 'POST',
-              url: 'https://script.google.com/macros/s/AKfycbzkaDpXgzdZ5kaZZrwam40Qdf28paeVccopAzPASy8X3sqz0Pv1gfT4e7mL5aFQ2Qbv4g/exec',
+              url: 'https://script.google.com/macros/s/AKfycbxESYwK1mnZzCTwHE-YTvSosLG9MQ2iLW2ShHxVwoClhiHOCA40dSn2xc-QPjWA36MrOQ/exec',
               data: finalData,
               dataType: 'json',
               contentType: false,
