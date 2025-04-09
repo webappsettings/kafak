@@ -89,11 +89,30 @@
 
   <script>
     const form = document.getElementById('honeyForm');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('honey_name')) {
+        form.name.value = localStorage.getItem('honey_name');
+      }
+      if (localStorage.getItem('honey_phone')) {
+        form.phone.value = localStorage.getItem('honey_phone');
+      }
+      if (localStorage.getItem('honey_address')) {
+        form.address.value = localStorage.getItem('honey_address');
+      }
+    });
     function onSubmit(token1) {
       if (typeof grecaptcha === 'undefined') {
           alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
           return;
         }
+
+
+        // Load saved user details if available
+    
+
+
+     
 
         grecaptcha.ready(function () {
           grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
@@ -104,6 +123,11 @@
                 orderData[key] = value;
               }
             });
+
+               // Save name, phone, and address to localStorage
+              localStorage.setItem('honey_name', orderData.name || '');
+              localStorage.setItem('honey_phone', orderData.phone || '');
+              localStorage.setItem('honey_address', orderData.address || '');
 
             const fullData = {
               userData: {},
