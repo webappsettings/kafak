@@ -72,13 +72,15 @@
 <body>
   <h2>Order Pure Honey</h2>
 
-  <form id="honeyForm">
+  <form id="honeyForm" action="?" method="POST">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
     <textarea name="address" placeholder="Delivery Address" required></textarea>
     <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
     <textarea name="message" placeholder="Any special instructions?"></textarea>
-    <button type="submit">Place Order</button>
+
+    <!-- <button type="submit">Place Order</button> -->
+    <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
     <p id="response"></p>
   </form>
 
@@ -87,31 +89,26 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-
-    window.onload = function () {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (typeof grecaptcha === 'undefined') {
+    function onSubmit(token1) {
+      if (typeof grecaptcha === 'undefined') {
           alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
           return;
         }
 
         grecaptcha.ready(function () {
           grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
-            if (!token) {
-              alert('reCAPTCHA verification failed. Please try again.');
-              return;
-            }
-
             const formData = new FormData(form);
             const orderData = {};
-            formData.forEach((value, key) => orderData[key] = value);
+            formData.forEach((value, key) => {
+              if (key !== 'g-recaptcha-response') {
+                orderData[key] = value;
+              }
+            });
 
             const fullData = {
               userData: {},
               orderData: orderData,
-              "g-recaptcha-response": token
+              'g-recaptcha-response': token1
             };
 
             const finalData = JSON.stringify(fullData);
@@ -119,23 +116,29 @@
 
             $.ajax({
               method: 'POST',
-              url: 'https://script.google.com/macros/s/AKfycbzQmlo_P0NfPPbmROCOYkBv8w8u3P828YWl1edubBKt1q11smtfocdJfQXQvGGPUOD3fg/exec',
+              url: 'https://script.google.com/macros/s/AKfycbzkaDpXgzdZ5kaZZrwam40Qdf28paeVccopAzPASy8X3sqz0Pv1gfT4e7mL5aFQ2Qbv4g/exec',
               data: finalData,
-              contentType: 'application/json; charset=utf-8',
               dataType: 'json',
-              success: function (response) {
-                console.log(response);
-                document.getElementById('response').textContent = 'Order submitted successfully!';
-              },
-              error: function (xhr, status, error) {
-                console.error(error);
-                document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
+              contentType: false,
+              processData: false,
+              beforeSend: function () {
+                // Optional: Add loader here
               }
-            });
+            })
+              .done(function (callback) {
+                console.log(callback);
+                document.getElementById('response').textContent = 'Order submitted successfully!';
+              })
+              .fail(function (callback) {
+                console.error(callback);
+                document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
+              });
+            
           });
         });
-      });
+
     }
+
   </script>
 </body>
 </html>
