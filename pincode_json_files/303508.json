@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Heengwa BO",
+    "pincode": "303508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Namner BO",
+    "pincode": "303508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0140000",
+    "longitude": "75.1010000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Sikrai SO",
+    "pincode": "303508",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9161389",
+    "longitude": "76.6933333"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Kundera Doongar BO",
+    "pincode": "303508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0140000",
+    "longitude": "75.1010000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Kalwan BO",
+    "pincode": "303508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

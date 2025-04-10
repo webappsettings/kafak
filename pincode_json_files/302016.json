@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Bani Park S.O",
+    "pincode": "302016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.4096944",
+    "longitude": "71.5566111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Sindhi Colony S.O",
+    "pincode": "302016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9363889",
+    "longitude": "75.7900833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Collectorate S.O (Jaipur)",
+    "pincode": "302016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9254850",
+    "longitude": "75.7927140"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Dwarikapuri S.O",
+    "pincode": "302016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9493611",
+    "longitude": "75.8027222"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Shastri Nagar H.O",
+    "pincode": "302016",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9402778",
+    "longitude": "75.8005556"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Bharowal BO",
+    "pincode": "142025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "31.3941280",
+    "longitude": "75.0742560"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Khanjarwal BO",
+    "pincode": "142025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8793310",
+    "longitude": "75.6302650"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Majri BO",
+    "pincode": "142025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "21.2062530",
+    "longitude": "75.2872790"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Talwandi Kalan BO",
+    "pincode": "142025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8519610",
+    "longitude": "75.5931640"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Talwandi Khurd BO",
+    "pincode": "142025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.9650020",
+    "longitude": "75.7865650"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Sowaddi SO",
+    "pincode": "142025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8680861",
+    "longitude": "75.5842694"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Bhundri BO",
+    "pincode": "142025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.9426650",
+    "longitude": "75.5757020"
+  }
+]

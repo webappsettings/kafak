@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Ettimangalam BO",
+    "pincode": "625105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0600000",
+    "longitude": "78.3200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Melavlavu SO",
+    "pincode": "625105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1007778",
+    "longitude": "78.3210833"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Arukkampatti BO",
+    "pincode": "625105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1700000",
+    "longitude": "78.2900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Sennagarampatti BO",
+    "pincode": "625105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0800000",
+    "longitude": "78.3200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Kesampatti BO",
+    "pincode": "625105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1504960",
+    "longitude": "78.3043420"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Pattur BO",
+    "pincode": "625105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1229450",
+    "longitude": "78.3069880"
+  }
+]

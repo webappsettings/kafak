@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Krishna Rajendra Circle S.O",
+    "pincode": "570001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.31380556",
+    "longitude": "76.656722220000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Mandimohalla S.O",
+    "pincode": "570001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.31733333",
+    "longitude": "76.647694439999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Mysuru H.O",
+    "pincode": "570001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.314166670000001",
+    "longitude": "76.656555560000001"
+  }
+]

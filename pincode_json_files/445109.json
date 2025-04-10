@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Pardi Naskari B.O",
+    "pincode": "445109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1666388",
+    "longitude": "78.1498055"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Talni B.O",
+    "pincode": "445109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1666388",
+    "longitude": "78.1498055"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Pimpri Buti B.O",
+    "pincode": "445109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1666388",
+    "longitude": "78.1498055"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Kolambi B.O",
+    "pincode": "445109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1666388",
+    "longitude": "78.1498055"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Pahur Naskari B.O",
+    "pincode": "445109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1666388",
+    "longitude": "78.1498055"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Salod B.O",
+    "pincode": "445109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1666388",
+    "longitude": "78.1498055"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Akola Bazar S.O",
+    "pincode": "445109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.16663889",
+    "longitude": "78.14980556"
+  }
+]

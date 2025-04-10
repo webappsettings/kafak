@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Vilangudi BO",
+    "pincode": "625018",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9476140",
+    "longitude": "78.9086500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Shanthi Nagar SO",
+    "pincode": "625018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9546389",
+    "longitude": "78.0980278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Thathaneri SO",
+    "pincode": "625018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9413333",
+    "longitude": "78.1007778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Kumaram BO",
+    "pincode": "625018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0098180",
+    "longitude": "78.0933610"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Podumbu BO",
+    "pincode": "625018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9851260",
+    "longitude": "78.0844480"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Visalakshi Nagar SO",
+    "pincode": "625018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9561944",
+    "longitude": "78.0838611"
+  }
+]

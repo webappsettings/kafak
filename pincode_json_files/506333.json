@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Kammepalli B.O",
+    "pincode": "506333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.9875857",
+    "longitude": "79.8569048"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Mohammadapur B.O",
+    "pincode": "506333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.98001",
+    "longitude": "79.81926"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Venkatapuram B.O",
+    "pincode": "506333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.9875475",
+    "longitude": "79.7999204"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Duggondi S.O",
+    "pincode": "506333",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.97765",
+    "longitude": "79.77415"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Mallampalli B.O",
+    "pincode": "506333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "18.009795",
+    "longitude": "79.8204153"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Timmapet B.O",
+    "pincode": "506333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.967844",
+    "longitude": "79.832175"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "DESHAIPALLY",
+    "pincode": "506333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Anangur B.O",
+    "pincode": "637304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3949906",
+    "longitude": "77.8287355"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Karuveppampatti B.O",
+    "pincode": "637304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3989410",
+    "longitude": "77.8746864"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Vengipalayam B.O",
+    "pincode": "637304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4235160",
+    "longitude": "77.8424400"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Modamangalam B.O",
+    "pincode": "637304",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4251880",
+    "longitude": "77.8256550"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Morur B.O",
+    "pincode": "637304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4100820",
+    "longitude": "77.8641080"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Thannirpandalpalayam S.O",
+    "pincode": "637304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4180278",
+    "longitude": "75.8405833"
+  }
+]

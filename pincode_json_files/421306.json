@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Wadi B.O",
+    "pincode": "421306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4131350",
+    "longitude": "73.3649750"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Pisavli B.O",
+    "pincode": "421306",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4131350",
+    "longitude": "73.3649750"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Dwarli B.O",
+    "pincode": "421306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1703000",
+    "longitude": "73.1563000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Ganeshwadi S.O (Thane)",
+    "pincode": "421306",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2072777",
+    "longitude": "73.1827500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Katemanivali S.O",
+    "pincode": "421306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2276667",
+    "longitude": "73.1412500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Mangrul B.O",
+    "pincode": "421306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1703000",
+    "longitude": "73.1563000"
+  }
+]

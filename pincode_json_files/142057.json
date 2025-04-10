@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Maur Nau Abad BO",
+    "pincode": "142057",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.577190000000002",
+    "longitude": "75.078639999999993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Tharaj BO",
+    "pincode": "142057",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.542955800000001",
+    "longitude": "75.107005999999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Sangatpura BO",
+    "pincode": "142057",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.598675400000001",
+    "longitude": "75.100524399999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Samadh Bhai SO",
+    "pincode": "142057",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.598998000000002",
+    "longitude": "75.150026999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Ganji Gulab Singh BO",
+    "pincode": "142057",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.577190000000002",
+    "longitude": "75.078639999999993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Jita Singh Wala BO",
+    "pincode": "142057",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.577190000000002",
+    "longitude": "75.078639999999993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Kotla Rai Ka BO",
+    "pincode": "142057",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.545004800000001",
+    "longitude": "76.598654699999997"
+  }
+]

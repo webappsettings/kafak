@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Malpur BO",
+    "pincode": "803301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.344282",
+    "longitude": "86.001855000000006"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Rampur Dumra BO",
+    "pincode": "803301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.319582",
+    "longitude": "86.015105000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Maranchi BO",
+    "pincode": "803301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.352544999999999",
+    "longitude": "85.995625000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Hathidah S.O",
+    "pincode": "803301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5914",
+    "longitude": "85.17572"
+  }
+]

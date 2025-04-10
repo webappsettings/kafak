@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Dharoon BO",
+    "pincode": "176205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.3128540",
+    "longitude": "76.0348390"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Kotla SO Kangra",
+    "pincode": "176205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.23796",
+    "longitude": "76.04405"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Bahi Pathiar BO",
+    "pincode": "176205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0738450",
+    "longitude": "76.2116990"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Jaunta BO",
+    "pincode": "176205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.2364460",
+    "longitude": "76.2725310"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Mastgarh BO",
+    "pincode": "176205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.2190300",
+    "longitude": "75.9913140"
+  }
+]

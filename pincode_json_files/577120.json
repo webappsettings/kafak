@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Bomlapura B.O",
+    "pincode": "577120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.5485655",
+    "longitude": "75.3058244"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Hariharapura S.O",
+    "pincode": "577120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.5198122",
+    "longitude": "75.2998270"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Niluvagilu B.O",
+    "pincode": "577120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.5203486",
+    "longitude": "75.2588106"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Shanuvalli B.O",
+    "pincode": "577120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.5118728",
+    "longitude": "75.2388443"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Bilagadde B.O",
+    "pincode": "577120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4939664",
+    "longitude": "75.2506353"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Begar B.O",
+    "pincode": "577120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.5041374",
+    "longitude": "75.1938368"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Melubelare B.O",
+    "pincode": "577120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4921747",
+    "longitude": "75.2703119"
+  }
+]

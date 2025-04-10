@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Mhaisal S.O",
+    "pincode": "416409",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.7470076",
+    "longitude": "74.7029449"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Narwad B.O",
+    "pincode": "416409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.8200000",
+    "longitude": "74.6400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Vaddi B.O",
+    "pincode": "416409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Dhavali B.O",
+    "pincode": "416409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

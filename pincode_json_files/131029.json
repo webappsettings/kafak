@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Rai BO",
+    "pincode": "131029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9800000",
+    "longitude": "77.1000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "PSRai SO",
+    "pincode": "131029",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9253611",
+    "longitude": "77.1035833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Jatheri BO",
+    "pincode": "131029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9800000",
+    "longitude": "77.1000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Nathupur BO",
+    "pincode": "131029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9800000",
+    "longitude": "77.1000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Pritampura BO",
+    "pincode": "131029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9800000",
+    "longitude": "77.1000000"
+  }
+]

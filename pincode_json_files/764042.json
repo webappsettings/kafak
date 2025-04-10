@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Upperdural B.O",
+    "pincode": "764042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.752653299999999",
+    "longitude": "82.434378300000006"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Ondrahal B.O",
+    "pincode": "764042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.752653299999999",
+    "longitude": "82.434378300000006"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Onukadeli S.O",
+    "pincode": "764042",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.4404125",
+    "longitude": "82.6828020"
+  }
+]

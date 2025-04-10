@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Guruvareddiyur SO",
+    "pincode": "638504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6525100",
+    "longitude": "77.6836720"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Murali BO",
+    "pincode": "638504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3422410",
+    "longitude": "77.7274709"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Reddipalayam BO",
+    "pincode": "638504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6566290",
+    "longitude": "77.6472690"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Palakuttaipattipudur BO",
+    "pincode": "638504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6415220",
+    "longitude": "77.6939600"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Chennampatti BO",
+    "pincode": "638504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7015090",
+    "longitude": "77.6783330"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Komarayanur BO",
+    "pincode": "638504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7299220",
+    "longitude": "77.6935120"
+  }
+]

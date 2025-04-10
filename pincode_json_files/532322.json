@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Kaviti S.O",
+    "pincode": "532322",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.0113611",
+    "longitude": "84.6902500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Rajapuram B.O",
+    "pincode": "532322",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.0113611",
+    "longitude": "84.6902500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Kapaskudda B.O",
+    "pincode": "532322",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.0113611",
+    "longitude": "84.6902500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Beejiputti B.O",
+    "pincode": "532322",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.0113611",
+    "longitude": "84.6902500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Jagathi B.O",
+    "pincode": "532322",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.0113611",
+    "longitude": "84.6902500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Silagam B.O",
+    "pincode": "532322",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.0113611",
+    "longitude": "84.6902500"
+  }
+]

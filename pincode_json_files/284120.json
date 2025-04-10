@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Khajraha Buzurg BO",
+    "pincode": "284120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Khajraha Khurd BO",
+    "pincode": "284120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Chamrauwa BO",
+    "pincode": "284120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Khailar BO",
+    "pincode": "284120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Mathurapura BO",
+    "pincode": "284120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "BHEL SO Jhansi",
+    "pincode": "284120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4407778",
+    "longitude": "78.5765556"
+  }
+]

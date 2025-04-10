@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Carambolim B.O",
+    "pincode": "403110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "72.0700000",
+    "longitude": "16.1900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Corlim IE S.O",
+    "pincode": "403110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.4999167",
+    "longitude": "73.9330833"
+  }
+]

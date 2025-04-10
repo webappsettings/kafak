@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Hallomajra BO",
+    "pincode": "160002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Ram Darbar SO",
+    "pincode": "160002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.6923611",
+    "longitude": "76.7909167"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Ind Area Chandigarh SO",
+    "pincode": "160002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.6903611",
+    "longitude": "76.7942222"
+  }
+]

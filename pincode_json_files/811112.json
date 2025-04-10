@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Loshghani BO",
+    "pincode": "811112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "25.2173878",
+    "longitude": "86.312099"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Abhaypur BO",
+    "pincode": "811112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "25.229086",
+    "longitude": "86.347196"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Piri Bazar SO",
+    "pincode": "811112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "25.1678400",
+    "longitude": "86.1139260"
+  }
+]

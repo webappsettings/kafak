@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Peringilipuram BO",
+    "pincode": "689624",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.277269",
+    "longitude": "76.561160"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Ennakkad SO",
+    "pincode": "689624",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.291164",
+    "longitude": "76.552726"
+  }
+]

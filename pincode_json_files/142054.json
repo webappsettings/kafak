@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Chugawan BO",
+    "pincode": "142054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.853549999999998",
+    "longitude": "75.323049999999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Kokri Heron BO",
+    "pincode": "142054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.853549999999998",
+    "longitude": "75.323049999999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Kokri Kalan SO",
+    "pincode": "142054",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.845424999999999",
+    "longitude": "75.329892999999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Kapure BO",
+    "pincode": "142054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.812724800000002",
+    "longitude": "75.166479699999996"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Kokri Khurd BO",
+    "pincode": "142054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.853549999999998",
+    "longitude": "75.323049999999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Purane Wala BO",
+    "pincode": "142054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.853549999999998",
+    "longitude": "75.323049999999995"
+  }
+]

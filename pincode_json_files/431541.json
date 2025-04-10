@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Hamdapur B.O",
+    "pincode": "431541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.137057",
+    "longitude": "76.53656"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Rametakli B.O",
+    "pincode": "431541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.17935",
+    "longitude": "76.535682"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Kekar Jawala B.O",
+    "pincode": "431541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.189769",
+    "longitude": "76.50311"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Kinhola B.O RAMPURI BK SO",
+    "pincode": "431541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.218781",
+    "longitude": "76.548812"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Rampuri BK S.O",
+    "pincode": "431541",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.115697",
+    "longitude": "76.579116"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Waghala B.O",
+    "pincode": "431541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.146441",
+    "longitude": "76.479896"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Mangrul B.O",
+    "pincode": "431541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.167234",
+    "longitude": "76.58598"
+  }
+]

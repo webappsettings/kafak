@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Kalu Chak BO",
+    "pincode": "180010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6682910",
+    "longitude": "74.8667950"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Gangyal SO",
+    "pincode": "180010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6682910",
+    "longitude": "74.8667950"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Badchi B.O",
+    "pincode": "591230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.7349627",
+    "longitude": "75.1575621"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Suttatti B.O",
+    "pincode": "591230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.6606183",
+    "longitude": "75.2420164"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Zunzurwad B.O",
+    "pincode": "591230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.6027566",
+    "longitude": "75.2434145"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Desairhatti B.O",
+    "pincode": "591230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.7323029",
+    "longitude": "75.1941338"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Kokatnur S.O",
+    "pincode": "591230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.690151",
+    "longitude": "75.215763"
+  }
+]

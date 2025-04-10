@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gumla Division",
+    "officename": "BEHRATOLI BO",
+    "pincode": "835207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUMLA",
+    "statename": "JHARKHAND",
+    "latitude": "23.033829999999998",
+    "longitude": "84.561589999999995"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gumla Division",
+    "officename": "Kartick Oraon College SO",
+    "pincode": "835207",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUMLA",
+    "statename": "JHARKHAND",
+    "latitude": "23.0355940",
+    "longitude": "84.5558560"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gumla Division",
+    "officename": "Gumla Bazar SO",
+    "pincode": "835207",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUMLA",
+    "statename": "JHARKHAND",
+    "latitude": "23.0432310",
+    "longitude": "84.5514580"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gumla Division",
+    "officename": "Gumla HO",
+    "pincode": "835207",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GUMLA",
+    "statename": "JHARKHAND",
+    "latitude": "23.0441389",
+    "longitude": "84.5413889"
+  }
+]

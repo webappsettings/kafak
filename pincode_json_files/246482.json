@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Talwari SO",
+    "pincode": "246482",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0504444",
+    "longitude": "79.5101389"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Sunaonbhenta BO",
+    "pincode": "246482",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0306670",
+    "longitude": "79.5382680"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Burjola BO",
+    "pincode": "246482",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0280650",
+    "longitude": "79.5392690"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Tungeshwar BO",
+    "pincode": "246482",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0607450",
+    "longitude": "79.5104580"
+  }
+]

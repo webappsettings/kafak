@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Marru BO",
+    "pincode": "140702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3400000",
+    "longitude": "76.4300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Ghanaur SO",
+    "pincode": "140702",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.332947",
+    "longitude": "76.610402"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Lohsimbly BO",
+    "pincode": "140702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3600000",
+    "longitude": "76.3600000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Lachru Kalan BO",
+    "pincode": "140702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.1500000",
+    "longitude": "76.6300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Sarala Kalan BO",
+    "pincode": "140702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3000000",
+    "longitude": "76.6400000"
+  }
+]

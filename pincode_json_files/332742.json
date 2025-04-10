@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Rajpura Nosal BO",
+    "pincode": "332742",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1582950",
+    "longitude": "75.2511978"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Surera BO",
+    "pincode": "332742",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1834750",
+    "longitude": "75.1319171"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Dansroli BO",
+    "pincode": "332742",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1633693",
+    "longitude": "75.2187346"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Mandha Surera SO",
+    "pincode": "332742",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3965278",
+    "longitude": "75.0185556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Bharija BO",
+    "pincode": "332742",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2337333",
+    "longitude": "75.1253492"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Kankra BO",
+    "pincode": "332742",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1515938",
+    "longitude": "75.2026879"
+  }
+]

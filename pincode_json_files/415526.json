@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Loni B.O",
+    "pincode": "415526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1161690",
+    "longitude": "74.0439660"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Bholi B.O",
+    "pincode": "415526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1148030",
+    "longitude": "74.0278090"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Vathar BK S.O",
+    "pincode": "415526",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1166944",
+    "longitude": "74.1044167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Bhade B.O",
+    "pincode": "415526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0952530",
+    "longitude": "74.0946310"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Mamangam B.O",
+    "pincode": "636302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6859280",
+    "longitude": "78.1138350"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Dalavaipatti B.O",
+    "pincode": "636302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6652540",
+    "longitude": "78.0837410"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Jagir Kamanaickenpatti B.O",
+    "pincode": "636302",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6935240",
+    "longitude": "78.1001130"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Ayyamperumalpatti B.O",
+    "pincode": "636302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6798020",
+    "longitude": "78.0825710"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Jagir Ammapalayam S.O",
+    "pincode": "636302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6791480",
+    "longitude": "78.1177190"
+  }
+]

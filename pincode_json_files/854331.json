@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Chiknihat BO",
+    "pincode": "854331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.356829000000001",
+    "longitude": "87.439787999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Sohagmare BO",
+    "pincode": "854331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.301767999999999",
+    "longitude": "87.498771000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Tirakhardah BO",
+    "pincode": "854331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.110814000000001",
+    "longitude": "87.301613000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Kursakanta SO",
+    "pincode": "854331",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.3258220",
+    "longitude": "87.4405790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Haldharahat BO",
+    "pincode": "854331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.110814000000001",
+    "longitude": "87.301613000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Jamua BO",
+    "pincode": "854331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.296932999999999",
+    "longitude": "87.475255000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Megra Mehndipur BO",
+    "pincode": "854331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.110814000000001",
+    "longitude": "87.301613000000003"
+  }
+]

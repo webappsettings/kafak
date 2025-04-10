@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Betabar Kalan BO",
+    "pincode": "232340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Deoria SO Ghazipur",
+    "pincode": "232340",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5765000",
+    "longitude": "83.5731944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Jeevpur BO",
+    "pincode": "232340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Tisaura BO",
+    "pincode": "232340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Sabbalpur Kalan BO",
+    "pincode": "232340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Saidabad BO",
+    "pincode": "232340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Tajpur Majnha BO",
+    "pincode": "232340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

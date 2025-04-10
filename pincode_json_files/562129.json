@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Ibasapura B.O",
+    "pincode": "562129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2400000",
+    "longitude": "77.8200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Reddihalli B.O",
+    "pincode": "562129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.1500000",
+    "longitude": "77.8100000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Bendiganahalli B.O",
+    "pincode": "562129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2200000",
+    "longitude": "77.8300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Sulebele S.O",
+    "pincode": "562129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.1854722",
+    "longitude": "77.8023889"
+  }
+]

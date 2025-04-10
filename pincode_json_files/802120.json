@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Barka Singhanpura BO",
+    "pincode": "802120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6358080",
+    "longitude": "84.1578650"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Dumari SO Buxar",
+    "pincode": "802120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5784167",
+    "longitude": "83.9789722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Chakki BO",
+    "pincode": "802120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6426360",
+    "longitude": "84.2103780"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Rani Singhanpura BO",
+    "pincode": "802120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6390190",
+    "longitude": "84.1565260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Kharahatand BO",
+    "pincode": "802120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6165800",
+    "longitude": "84.1623340"
+  }
+]

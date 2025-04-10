@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Sulikere B.O",
+    "pincode": "560060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "12.940326600000001",
+    "longitude": "77.448119000000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Kengeri S.O",
+    "pincode": "560060",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.915575199999999",
+    "longitude": "77.481582299999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Chudenapura B.O",
+    "pincode": "560060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.899117199999999",
+    "longitude": "77.487332899999998"
+  }
+]

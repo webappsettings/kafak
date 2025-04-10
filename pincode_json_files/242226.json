@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "M Ashram SO",
+    "pincode": "242226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8923889",
+    "longitude": "79.9173056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Raikhera BO",
+    "pincode": "242226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Azizganj BO",
+    "pincode": "242226",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.883700000000001",
+    "longitude": "79.912199999999999"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Jamaur BO",
+    "pincode": "242226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Dadraul BO",
+    "pincode": "242226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  }
+]

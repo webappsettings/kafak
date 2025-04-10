@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Kanjirathanam BO",
+    "pincode": "686603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7499000",
+    "longitude": "76.4428000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Kuruppamthara BO",
+    "pincode": "686603",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7499000",
+    "longitude": "76.4428000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Manjoor South BO",
+    "pincode": "686603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7499000",
+    "longitude": "76.4428000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Chamakala BO",
+    "pincode": "686603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7499000",
+    "longitude": "76.4428000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Manjoor SO",
+    "pincode": "686603",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.737421",
+    "longitude": "76.516314"
+  }
+]

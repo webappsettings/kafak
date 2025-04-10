@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Pharat B.O",
+    "pincode": "333030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3550770",
+    "longitude": "75.7316270"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Jeeni B.O",
+    "pincode": "333030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3218390",
+    "longitude": "75.6821380"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Bhobia B.O",
+    "pincode": "333030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3095980",
+    "longitude": "75.6589640"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Dhindawa Aguna B.O",
+    "pincode": "333030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3482050",
+    "longitude": "75.6588780"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Kajara S.O",
+    "pincode": "333030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3455556",
+    "longitude": "75.6974167"
+  }
+]

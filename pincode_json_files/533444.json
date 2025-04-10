@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Vazrakutam B.O",
+    "pincode": "533444",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.239999999999998",
+    "longitude": "82.290000000000006"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Kathipudi S.O",
+    "pincode": "533444",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.241073",
+    "longitude": "82.329012"
+  }
+]

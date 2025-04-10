@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Maldad B.O",
+    "pincode": "422608",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Sangamner SK S.O",
+    "pincode": "422608",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.60798029755143",
+    "longitude": "74.19011315020444"
+  }
+]

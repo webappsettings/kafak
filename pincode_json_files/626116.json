@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Seshapuram BO",
+    "pincode": "626116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.6000000",
+    "longitude": "77.6600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "W Pudupatti SO",
+    "pincode": "626116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.6160833",
+    "longitude": "77.6366389"
+  }
+]

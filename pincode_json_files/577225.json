@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Joga B.O",
+    "pincode": "577225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1300000",
+    "longitude": "75.4500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kommanahalu B.O",
+    "pincode": "577225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.1000000",
+    "longitude": "75.4500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Chinnikatte B.O",
+    "pincode": "577225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1300000",
+    "longitude": "75.4900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kunchenahalli B.O",
+    "pincode": "577225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.0500000",
+    "longitude": "75.5500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Chattanahalli B.O",
+    "pincode": "577225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1000000",
+    "longitude": "75.5700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Saualanga S.O",
+    "pincode": "577225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "13.9484167",
+    "longitude": "75.5807778"
+  }
+]

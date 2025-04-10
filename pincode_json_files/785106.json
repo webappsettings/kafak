@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Botiamari B.O",
+    "pincode": "785106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445555",
+    "longitude": "94.1636666"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Morituni B.O",
+    "pincode": "785106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445555",
+    "longitude": "94.1636666"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Totoya B.O",
+    "pincode": "785106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445555",
+    "longitude": "94.1636666"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Auniati Satra B.O",
+    "pincode": "785106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445555",
+    "longitude": "94.1636666"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Potiagaon B.O",
+    "pincode": "785106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445555",
+    "longitude": "94.1636666"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Kamalabari S.O",
+    "pincode": "785106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445556",
+    "longitude": "94.1636667"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bengenati Satra B.O",
+    "pincode": "785106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAJULI",
+    "statename": "ASSAM",
+    "latitude": "26.9445555",
+    "longitude": "94.1636666"
+  }
+]

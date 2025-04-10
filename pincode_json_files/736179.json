@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Khagrabari BO",
+    "pincode": "736179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3500000",
+    "longitude": "89.4400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Mahish Bathan BO",
+    "pincode": "736179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9400000",
+    "longitude": "88.6100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Takagachh BO",
+    "pincode": "736179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3300000",
+    "longitude": "89.4300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Kharija Kakribari BO",
+    "pincode": "736179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5400000",
+    "longitude": "89.3500000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "New Cooch Behar SO",
+    "pincode": "736179",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3516700",
+    "longitude": "89.4686100"
+  }
+]

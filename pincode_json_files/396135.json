@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Nargol SO",
+    "pincode": "396135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2208960",
+    "longitude": "72.7540470"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Tadgam BO",
+    "pincode": "396135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2803740",
+    "longitude": "72.7584800"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Saronda BO",
+    "pincode": "396135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2560460",
+    "longitude": "72.7599570"
+  }
+]

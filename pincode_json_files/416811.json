@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Phanasgaon S.O",
+    "pincode": "416811",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.4665278",
+    "longitude": "73.9305000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Burambavade B.O",
+    "pincode": "416811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.496053700000001",
+    "longitude": "73.533340499999994"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Mahalunge B.O",
+    "pincode": "416811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.4269877",
+    "longitude": "73.5479092"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Manche B.O",
+    "pincode": "416811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.5039804",
+    "longitude": "73.495823000000001"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Patgaon B.O",
+    "pincode": "416811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.4837592",
+    "longitude": "73.5209653"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Pendhari B.O",
+    "pincode": "416811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.468234299999999",
+    "longitude": "73.499955299999996"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Pomburla B.O",
+    "pincode": "416811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.5039793",
+    "longitude": "73.5393004"
+  }
+]

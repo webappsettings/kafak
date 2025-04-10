@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Bati BO",
+    "pincode": "281004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Usfar BO",
+    "pincode": "281004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Satoha BO",
+    "pincode": "281004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Krishna Nagar SO Mathura",
+    "pincode": "281004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4761944",
+    "longitude": "77.6969444"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Maholi Road SO",
+    "pincode": "281004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4761944",
+    "longitude": "77.6969444"
+  }
+]

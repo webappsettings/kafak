@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Dabholi BO",
+    "pincode": "395004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2314410",
+    "longitude": "72.8159570"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Katargam SO",
+    "pincode": "395004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2216944",
+    "longitude": "72.8348056"
+  }
+]

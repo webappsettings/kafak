@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Malayinkil SO",
+    "pincode": "695571",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.49106",
+    "longitude": "77.03445"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Malayam BO",
+    "pincode": "695571",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.4800000",
+    "longitude": "77.0200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Kollode BO",
+    "pincode": "695571",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.4900000",
+    "longitude": "77.0600000"
+  }
+]

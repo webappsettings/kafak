@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Ballavpur SO",
+    "pincode": "713323",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5865697",
+    "longitude": "87.1197940"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Egara BO",
+    "pincode": "713323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5917530",
+    "longitude": "87.1162680"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Nupur BO",
+    "pincode": "713323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9075430",
+    "longitude": "87.8816650"
+  }
+]

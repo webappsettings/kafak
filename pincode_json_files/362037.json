@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Khamdhrol BO",
+    "pincode": "362037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5499603",
+    "longitude": "70.4500135"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Dolatpara SO",
+    "pincode": "362037",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.548245",
+    "longitude": "70.467756"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Galiavad BO",
+    "pincode": "362037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5747246",
+    "longitude": "70.4307230"
+  }
+]

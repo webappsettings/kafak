@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Manappuram BO",
+    "pincode": "688526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.7830000",
+    "longitude": "76.3640000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Olavaipu BO",
+    "pincode": "688526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.7963200",
+    "longitude": "76.3381400"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Panavally BO",
+    "pincode": "688526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.8160000",
+    "longitude": "76.3350000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Trichattukulam BO",
+    "pincode": "688526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.8350000",
+    "longitude": "76.3330000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Poochackal SO",
+    "pincode": "688526",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.7948800",
+    "longitude": "76.3548600"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Naduvathunagar BO",
+    "pincode": "688526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.7810000",
+    "longitude": "76.3580000"
+  }
+]

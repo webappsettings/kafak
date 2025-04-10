@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Baburajapuram B.O",
+    "pincode": "612302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "79.3400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Swamimalai East B.O",
+    "pincode": "612302",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "79.3300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Swamimalai S.O",
+    "pincode": "612302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9570500",
+    "longitude": "79.3277990"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Kottaiyur B.O",
+    "pincode": "612302",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9700000",
+    "longitude": "79.3600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Gangadarapuram B.O",
+    "pincode": "612302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3300000",
+    "longitude": "79.2600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Tiruvalanjuli B.O",
+    "pincode": "612302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9300000",
+    "longitude": "79.3300000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "H B Colony S.O",
+    "pincode": "530022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7449167",
+    "longitude": "83.3228611"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Isakathota S.O",
+    "pincode": "530022",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7412620",
+    "longitude": "83.3248270"
+  }
+]

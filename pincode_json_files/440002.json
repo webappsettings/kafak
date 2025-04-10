@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Nayapura S.O",
+    "pincode": "440002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.15808333",
+    "longitude": "79.11886111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Nagpur City H.O",
+    "pincode": "440002",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.15271940",
+    "longitude": "79.10926740"
+  }
+]

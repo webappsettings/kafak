@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Port Blair H.O",
+    "pincode": "744101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "11.66583333",
+    "longitude": "92.74111111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Marine Jetty S.O",
+    "pincode": "744101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "N.S.Building S.O",
+    "pincode": "744101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

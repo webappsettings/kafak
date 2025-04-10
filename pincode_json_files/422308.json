@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "K.K.Nagar S.O (Nashik)",
+    "pincode": "422308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5544310",
+    "longitude": "74.5120240"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Ranwad B.O",
+    "pincode": "422308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.96224",
+    "longitude": "73.86842"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Deopur B.O",
+    "pincode": "422308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.96224",
+    "longitude": "73.86842"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Kumbhardi B.O",
+    "pincode": "422308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.96224",
+    "longitude": "73.86842"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Nandurdi B.O",
+    "pincode": "422308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.96224",
+    "longitude": "73.86842"
+  }
+]

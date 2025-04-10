@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Rosvad BO",
+    "pincode": "394170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2541727",
+    "longitude": "73.3022162"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Antroli BO",
+    "pincode": "394170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.3717419",
+    "longitude": "73.0557774"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Nogama BO",
+    "pincode": "394170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.3717419",
+    "longitude": "73.0557774"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Tadkeshwar SO",
+    "pincode": "394170",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2208350",
+    "longitude": "73.0336420"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Areth BO",
+    "pincode": "394170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.3717419",
+    "longitude": "73.0557774"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Vegi BO",
+    "pincode": "394170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.3717419",
+    "longitude": "73.0557774"
+  }
+]

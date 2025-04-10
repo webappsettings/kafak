@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Viyyur SO",
+    "pincode": "680010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.548553",
+    "longitude": "76.212405"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Kolazhi RM BO",
+    "pincode": "680010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

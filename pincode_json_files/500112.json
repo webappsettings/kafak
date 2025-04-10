@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Almasguda B.O",
+    "pincode": "500112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Badangpet S.O",
+    "pincode": "500112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.305050",
+    "longitude": "78.525178"
+  }
+]

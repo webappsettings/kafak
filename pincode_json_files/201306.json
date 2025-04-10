@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "IA Surajpur SO",
+    "pincode": "201306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5134247639601",
+    "longitude": "77.4779033644153"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Kulesra BO",
+    "pincode": "201306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5317670",
+    "longitude": "77.4342270"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "CRPF Greater Noida SO",
+    "pincode": "201306",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.530827",
+    "longitude": "77.459925"
+  }
+]

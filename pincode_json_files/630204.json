@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Pattamangalam BO",
+    "pincode": "630204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0500000",
+    "longitude": "78.6100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Kandramanickam SO",
+    "pincode": "630204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.152969",
+    "longitude": "78.629786"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Naduvikottai BO",
+    "pincode": "630204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0500000",
+    "longitude": "78.6500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "PKarungulam BO",
+    "pincode": "630204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0400000",
+    "longitude": "78.5900000"
+  }
+]

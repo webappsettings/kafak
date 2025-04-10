@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Shivane B.O",
+    "pincode": "411023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4418130",
+    "longitude": "73.7877420"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Uttamnagar B.O",
+    "pincode": "411023",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5222230",
+    "longitude": "73.7626150"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "N.D.A. Khadakwasla S.O",
+    "pincode": "411023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4856667",
+    "longitude": "73.7779444"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Kudje B.O",
+    "pincode": "411023",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4256530",
+    "longitude": "73.7675930"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Mandvi BK B.O",
+    "pincode": "411023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4693550",
+    "longitude": "73.8354660"
+  }
+]

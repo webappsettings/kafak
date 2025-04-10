@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Laban S.O",
+    "pincode": "793004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.56430556",
+    "longitude": "91.87286111"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Bishnupur B.O",
+    "pincode": "793004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Lawsohtun B.O",
+    "pincode": "793004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Rilbong S.O",
+    "pincode": "793004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

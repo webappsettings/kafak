@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Zamistanpur S.O",
+    "pincode": "500020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.41355556",
+    "longitude": "78.50508333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Musheerabad (D) S.O",
+    "pincode": "500020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.4223522",
+    "longitude": "78.5056434"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Ashoknagar S.O",
+    "pincode": "500020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.407",
+    "longitude": "78.4887"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Golconda Chowrastha S.O",
+    "pincode": "500020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.68647222",
+    "longitude": "78.83097222"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Losami B.O",
+    "pincode": "797108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.617900500000001",
+    "longitude": "94.441546000000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Luzaphuhu B.O",
+    "pincode": "797108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.634650000000001",
+    "longitude": "94.486810000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Phek S.O",
+    "pincode": "797108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.7077",
+    "longitude": "94.4616"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Khuzami B.O",
+    "pincode": "797108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.769706599999999",
+    "longitude": "94.475306599999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Ketsapo B.O",
+    "pincode": "797108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.727149900000001",
+    "longitude": "94.446698299999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Old Phek B.O",
+    "pincode": "797108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.665884999999999",
+    "longitude": "94.468414999999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Middle Khomi B.O",
+    "pincode": "797108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PHEK",
+    "statename": "NAGALAND",
+    "latitude": "25.657148299999999",
+    "longitude": "94.400006599999998"
+  }
+]

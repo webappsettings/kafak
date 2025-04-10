@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Ghoshpara SO Howrah",
+    "pincode": "711227",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5816944",
+    "longitude": "88.3371944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Anandanagar BO",
+    "pincode": "711227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7271000",
+    "longitude": "91.3177000"
+  }
+]

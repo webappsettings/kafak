@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Enayetpur BO",
+    "pincode": "743351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2490000",
+    "longitude": "88.3320000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Shyambasurchak BO",
+    "pincode": "743351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.1060000",
+    "longitude": "88.2450000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Paschim Gopalnagar BO",
+    "pincode": "743351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0940000",
+    "longitude": "88.2380000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Kulpi SO",
+    "pincode": "743351",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0816389",
+    "longitude": "88.2459444"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Sitarampur BO",
+    "pincode": "743351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0880000",
+    "longitude": "88.2710000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Ramkrishnapur BO",
+    "pincode": "743351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7270000",
+    "longitude": "88.4920000"
+  }
+]

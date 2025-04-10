@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Mustabad S.O (Krishna)",
+    "pincode": "521107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5549",
+    "longitude": "80.7298"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Savaragudem B.O",
+    "pincode": "521107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5361960",
+    "longitude": "80.7275690"
+  }
+]

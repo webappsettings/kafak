@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Kalpana Square S.O",
+    "pincode": "751006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2591666",
+    "longitude": "85.8455555"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Laxmisagar S.O (Khorda)",
+    "pincode": "751006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2714654",
+    "longitude": "85.8580854"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Budheswari Colony S.O",
+    "pincode": "751006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2565278",
+    "longitude": "85.846"
+  }
+]

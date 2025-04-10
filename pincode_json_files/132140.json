@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dadlana B.O",
+    "pincode": "132140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "25.6000000",
+    "longitude": "25.6000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Babarpur B.O",
+    "pincode": "132140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "25.6000000",
+    "longitude": "25.6000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Kabri B.O",
+    "pincode": "132140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "25.6000000",
+    "longitude": "25.6000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Rair Kalan B.O",
+    "pincode": "132140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Ganjbarh B.O",
+    "pincode": "132140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "23.5000000",
+    "longitude": "23.5000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Panipat Refinary S.O",
+    "pincode": "132140",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.4886111",
+    "longitude": "76.8806667"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Refinery Township Panipat SO",
+    "pincode": "132140",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.4730800",
+    "longitude": "76.8783100"
+  }
+]

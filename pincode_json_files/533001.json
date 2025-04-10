@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "KD collectorate S.O",
+    "pincode": "533001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9575556",
+    "longitude": "82.2258056"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Suryaraopeta S.O",
+    "pincode": "533001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.953915",
+    "longitude": "82.230024"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Kakinada H.O",
+    "pincode": "533001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9550556",
+    "longitude": "82.2354722"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Govt.Gen Hospital S.O",
+    "pincode": "533001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9565833",
+    "longitude": "82.2274167"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Kakinada Bazar S.O",
+    "pincode": "533001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.943516",
+    "longitude": "82.235191"
+  }
+]

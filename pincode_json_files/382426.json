@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Randesan B.O",
+    "pincode": "382426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.1763",
+    "longitude": "72.6543"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Kasturba Vidyalaya B.O",
+    "pincode": "382426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.1500",
+    "longitude": "72.6400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Koba SO",
+    "pincode": "382426",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.1502840",
+    "longitude": "72.6409870"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Raysan B.O",
+    "pincode": "382426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.4200",
+    "longitude": "72.5500"
+  }
+]

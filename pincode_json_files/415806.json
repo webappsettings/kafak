@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Ambolgad B.O",
+    "pincode": "415806",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.656047999999998",
+    "longitude": "73.517768000000004"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Nata S.O",
+    "pincode": "415806",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.63502",
+    "longitude": "73.359667"
+  }
+]

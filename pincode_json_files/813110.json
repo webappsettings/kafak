@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Pair BO",
+    "pincode": "813110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.85533",
+    "longitude": "87.0948"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Panjwara SO",
+    "pincode": "813110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.8764160",
+    "longitude": "87.0136230"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Sadpur BO",
+    "pincode": "813110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.3070000",
+    "longitude": "86.0328000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Ahiro BO",
+    "pincode": "813110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.7553",
+    "longitude": "86.26455"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Chalna BO",
+    "pincode": "813110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.75533",
+    "longitude": "86.26455"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Motanga BO",
+    "pincode": "813110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.85533",
+    "longitude": "87.09488"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Raugaon BO",
+    "pincode": "813110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "25.3580000",
+    "longitude": "86.2390000"
+  }
+]

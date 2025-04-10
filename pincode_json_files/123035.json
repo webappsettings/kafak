@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Karawara BO",
+    "pincode": "123035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Palhawas SO",
+    "pincode": "123035",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "28.3561667",
+    "longitude": "76.6217500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Asiaki Gorawas BO",
+    "pincode": "123035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Kannaura BO",
+    "pincode": "123035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Guraora BO",
+    "pincode": "123035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

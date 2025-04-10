@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Nagra BO",
+    "pincode": "144037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.0847815",
+    "longitude": "75.6909651"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Pasla SO",
+    "pincode": "144037",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.099467",
+    "longitude": "75.683921"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Pharwala BO",
+    "pincode": "144037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5274700",
+    "longitude": "75.8066000"
+  }
+]

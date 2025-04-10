@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Kukkuje B.O",
+    "pincode": "574108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3534196",
+    "longitude": "74.9530455"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Muniyal S.O",
+    "pincode": "574108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3405000",
+    "longitude": "74.7488333"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Ellare B.O",
+    "pincode": "574108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3762935",
+    "longitude": "74.9766274"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Varanga B.O",
+    "pincode": "574108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3875802",
+    "longitude": "75.0091680"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Kadthala B.O",
+    "pincode": "574108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3558229",
+    "longitude": "74.9781188"
+  }
+]

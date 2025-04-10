@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Hadavu BO",
+    "pincode": "576235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.7104126",
+    "longitude": "74.6531054"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Hakladi BO",
+    "pincode": "576235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.7050589",
+    "longitude": "74.7072217"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Kundabarandadi BO",
+    "pincode": "576235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.6995550",
+    "longitude": "74.7135302"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Shenapura BO",
+    "pincode": "576235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.7006493",
+    "longitude": "74.6848413"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Trasi SO",
+    "pincode": "576235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.6874610",
+    "longitude": "74.6566850"
+  }
+]

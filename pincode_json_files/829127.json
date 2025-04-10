@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Kurpania B.O",
+    "pincode": "829127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.77",
+    "longitude": "85.890000000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Sunday Bazar SO",
+    "pincode": "829127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.7669310",
+    "longitude": "85.9333660"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Bedkaro BO",
+    "pincode": "829127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "24.46",
+    "longitude": "85.56"
+  }
+]

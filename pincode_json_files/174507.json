@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Bathri BO",
+    "pincode": "174507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3492000",
+    "longitude": "76.2682000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Bathu BO",
+    "pincode": "174507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3492000",
+    "longitude": "76.2682000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Butt Kalan BO",
+    "pincode": "174507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3492000",
+    "longitude": "76.2682000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Nangal Khurd BO",
+    "pincode": "174507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3492000",
+    "longitude": "76.2682000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Lalri BO",
+    "pincode": "174507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3492000",
+    "longitude": "76.2682000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Tahliwal SO",
+    "pincode": "174507",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4895460",
+    "longitude": "76.2727950"
+  }
+]

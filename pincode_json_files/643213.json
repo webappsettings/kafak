@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Kilinjada B.O",
+    "pincode": "643213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3147540",
+    "longitude": "76.7372590"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Koderi B.O",
+    "pincode": "643213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3100000",
+    "longitude": "76.7400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Katary Dam B.O",
+    "pincode": "643213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3380320",
+    "longitude": "76.7367770"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Katary S.O",
+    "pincode": "643213",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.32772",
+    "longitude": "76.747191"
+  }
+]

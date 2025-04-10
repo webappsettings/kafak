@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Akheti B.O",
+    "pincode": "581453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Tinaighat B.O",
+    "pincode": "581453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Anmod B.O",
+    "pincode": "581453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Ramnagar S.O (Uttara Kannada)",
+    "pincode": "581453",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6155000",
+    "longitude": "74.8345000"
+  }
+]

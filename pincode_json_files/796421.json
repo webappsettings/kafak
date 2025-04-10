@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Hmunpui B.O",
+    "pincode": "796421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAMIT",
+    "statename": "MIZORAM",
+    "latitude": "23.8619971",
+    "longitude": "92.581400900000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Lengpui Airport S.O",
+    "pincode": "796421",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.7258333",
+    "longitude": "92.7190278"
+  }
+]

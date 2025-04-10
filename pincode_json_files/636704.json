@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "A.Gollahalli B.O",
+    "pincode": "636704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1274185",
+    "longitude": "78.1580215"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Kuppur B.O",
+    "pincode": "636704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1725536",
+    "longitude": "78.1948193"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Settikarai B.O",
+    "pincode": "636704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1274165",
+    "longitude": "78.1580235"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Akkamanahalli B.O",
+    "pincode": "636704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1274195",
+    "longitude": "78.1580205"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Mittanoolahalli B.O",
+    "pincode": "636704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0800000",
+    "longitude": "78.1700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Solaikottai B.O",
+    "pincode": "636704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1200000",
+    "longitude": "78.1500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Annasagaram S.O",
+    "pincode": "636704",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1195833",
+    "longitude": "78.1644444"
+  }
+]

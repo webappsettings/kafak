@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Malaipattu BO",
+    "pincode": "601301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9130000",
+    "longitude": "79.9810000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Padappai SO",
+    "pincode": "601301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1351389",
+    "longitude": "80.0350556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Manimangalam BO",
+    "pincode": "601301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9040000",
+    "longitude": "80.1200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Serpananchery BO",
+    "pincode": "601301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8580000",
+    "longitude": "79.9570000"
+  }
+]

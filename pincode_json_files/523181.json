@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Gonasapudu B.O",
+    "pincode": "523181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7476030",
+    "longitude": "80.2243140"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Maddirallamuppalla B.O",
+    "pincode": "523181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7400300",
+    "longitude": "80.3023410"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Chinagumpalle B.O",
+    "pincode": "523181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7296190",
+    "longitude": "80.2260050"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Kadavakuduru S.O",
+    "pincode": "523181",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7264167",
+    "longitude": "80.2558056"
+  }
+]

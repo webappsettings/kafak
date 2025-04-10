@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Malkera SO",
+    "pincode": "828304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.7825640",
+    "longitude": "86.2934640"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Rampur BO",
+    "pincode": "828304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.7956590",
+    "longitude": "86.4303790"
+  }
+]

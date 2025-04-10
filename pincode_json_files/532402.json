@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "S.M.Puram S.O",
+    "pincode": "532402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3414444",
+    "longitude": "83.8172222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Kotipalli BO",
+    "pincode": "532402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.344283999999998",
+    "longitude": "83.813916000000006"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Dallavalasa B.O",
+    "pincode": "532402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3414411",
+    "longitude": "83.8172211"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Kanimetta B.O",
+    "pincode": "532402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3414411",
+    "longitude": "83.8172211"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Tholapi B.O",
+    "pincode": "532402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3414411",
+    "longitude": "83.8172211"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Dharmapuram B.O",
+    "pincode": "532402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3414411",
+    "longitude": "83.8172211"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Kinthali B.O",
+    "pincode": "532402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3414411",
+    "longitude": "83.8172211"
+  }
+]

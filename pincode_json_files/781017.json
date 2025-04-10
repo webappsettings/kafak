@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Bhattaparagaral B.O",
+    "pincode": "781017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1373000",
+    "longitude": "91.6278000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Dharapur B.O",
+    "pincode": "781017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1370000",
+    "longitude": "91.6270000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Azara S.O",
+    "pincode": "781017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1145300",
+    "longitude": "91.6129300"
+  }
+]

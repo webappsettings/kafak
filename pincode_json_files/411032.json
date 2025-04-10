@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "Airport S.O (Pune)",
+    "pincode": "411032",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "Iaf Station S.O",
+    "pincode": "411032",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.589195",
+    "longitude": "73.92"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "Vidyanagar S.O (Pune)",
+    "pincode": "411032",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

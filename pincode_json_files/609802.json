@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Sathanur B.O",
+    "pincode": "609802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0500000",
+    "longitude": "79.5000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Tiyagarajapuram B.O",
+    "pincode": "609802",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0300000",
+    "longitude": "79.4800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Narasinganpettai S.O",
+    "pincode": "609802",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0303230",
+    "longitude": "79.5047300"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Tirukodikaval B.O",
+    "pincode": "609802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0500000",
+    "longitude": "79.5100000"
+  }
+]

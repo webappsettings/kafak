@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Alod B.O",
+    "pincode": "312404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.4568870",
+    "longitude": "74.5827487"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Binayaka B.O",
+    "pincode": "312404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.4214530",
+    "longitude": "74.3880700"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Delwas B.O",
+    "pincode": "312404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.4408800",
+    "longitude": "74.3528820"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Sangria B.O",
+    "pincode": "312404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.4630640",
+    "longitude": "74.4261820"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Bohera S.O",
+    "pincode": "312404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6534167",
+    "longitude": "74.4761111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Karsana B.O",
+    "pincode": "312404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.4730580",
+    "longitude": "74.3426180"
+  }
+]

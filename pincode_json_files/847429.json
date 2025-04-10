@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Sinuar Gopal BO",
+    "pincode": "847429",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "15.593400000000001",
+    "longitude": "86.227699999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Kusothar SO",
+    "pincode": "847429",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1191780",
+    "longitude": "85.9047150"
+  }
+]

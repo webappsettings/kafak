@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Guntakal H.O",
+    "pincode": "515801",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.1714167",
+    "longitude": "77.3721389"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Hanumesh Nagar S.O",
+    "pincode": "515801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.1593333",
+    "longitude": "77.3758889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Rajendra Nagar S.O (Ananthapur)",
+    "pincode": "515801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.2400000",
+    "longitude": "77.2100000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Timmanacharla S.O",
+    "pincode": "515801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.1677500",
+    "longitude": "77.3738333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Modinabad S.O",
+    "pincode": "515801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.1773611",
+    "longitude": "77.3687778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Guntakal Market S.O",
+    "pincode": "515801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.1676111",
+    "longitude": "77.3776944"
+  }
+]

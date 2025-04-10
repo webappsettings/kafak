@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Vivekananda Nagar Colony S.O",
+    "pincode": "500018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.459272",
+    "longitude": "78.399414"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Fathenagar Colony S.O",
+    "pincode": "500018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.75227778",
+    "longitude": "78.70213889"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Bharat Nagar Colony S.O",
+    "pincode": "500018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.75258333",
+    "longitude": "78.74219444"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Sanathnagar I E S.O",
+    "pincode": "500018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.459044",
+    "longitude": "78.443597"
+  }
+]

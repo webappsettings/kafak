@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Netajinagar B.O",
+    "pincode": "744207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Ramakrishnapur B.O",
+    "pincode": "744207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Vivekandapur B.O",
+    "pincode": "744207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Hut  Bay S.O",
+    "pincode": "744207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "10.59138889",
+    "longitude": "92.53833333"
+  }
+]

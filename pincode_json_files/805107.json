@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Bhattagarh BO",
+    "pincode": "805107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8386410",
+    "longitude": "85.7333470"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Kundabhalua BO",
+    "pincode": "805107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8386410",
+    "longitude": "85.7333470"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Baghor B.O.",
+    "pincode": "805107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.808599999999998",
+    "longitude": "85.644900000000007"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Kosi SO Nawada",
+    "pincode": "805107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8870000",
+    "longitude": "85.5350278"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Mahrawan BO",
+    "pincode": "805107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8386410",
+    "longitude": "85.7333470"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Siur BO",
+    "pincode": "805107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8386410",
+    "longitude": "85.7333470"
+  }
+]

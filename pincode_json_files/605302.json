@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Teli BO",
+    "pincode": "605302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9200000",
+    "longitude": "79.3900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kalpattu BO",
+    "pincode": "605302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9300000",
+    "longitude": "79.3700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kangiyanur BO",
+    "pincode": "605302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8000000",
+    "longitude": "79.3500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Mambazhapattu SO",
+    "pincode": "605302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9570833",
+    "longitude": "79.3717778"
+  }
+]

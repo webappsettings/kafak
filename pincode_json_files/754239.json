@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Kalaspur B.O",
+    "pincode": "754239",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.662466599999998",
+    "longitude": "86.565290000000005"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Bhuinpur S.O",
+    "pincode": "754239",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.68125",
+    "longitude": "86.5863"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Padanipal B.O",
+    "pincode": "754239",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.676458199999999",
+    "longitude": "86.585738599999999"
+  }
+]

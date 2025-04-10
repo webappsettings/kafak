@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Auroville SO",
+    "pincode": "605101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0037500",
+    "longitude": "79.8006944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Morattandi BO",
+    "pincode": "605101",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9800000",
+    "longitude": "79.7900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kuilapalayam BO",
+    "pincode": "605101",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9921110",
+    "longitude": "79.8380780"
+  }
+]

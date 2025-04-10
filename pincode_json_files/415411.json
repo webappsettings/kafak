@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Bahadurwadi B.O",
+    "pincode": "415411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.9100000",
+    "longitude": "74.3000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Kanegaon B.O",
+    "pincode": "415411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.9400000",
+    "longitude": "74.2900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Yelur S.O",
+    "pincode": "415411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.9399196",
+    "longitude": "74.2636232"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Kundalwadi B.O",
+    "pincode": "415411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.9400000",
+    "longitude": "74.2900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Kurlap B.O",
+    "pincode": "415411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.9400000",
+    "longitude": "74.2900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Tandulwadi B.O",
+    "pincode": "415411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.9400000",
+    "longitude": "74.2900000"
+  }
+]

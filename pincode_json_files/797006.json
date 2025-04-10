@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Jakhama S.O",
+    "pincode": "797006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.5911405",
+    "longitude": "94.1239288"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Khuzama B.O",
+    "pincode": "797006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.5347717",
+    "longitude": "94.135383500000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kigwema B.O",
+    "pincode": "797006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.607969300000001",
+    "longitude": "94.128234000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Mima B.O",
+    "pincode": "797006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.609945",
+    "longitude": "94.143041600000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Viswema B.O",
+    "pincode": "797006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.559217799999999",
+    "longitude": "94.142570599999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kedima B.O",
+    "pincode": "797006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.557185",
+    "longitude": "94.178556599999993"
+  }
+]

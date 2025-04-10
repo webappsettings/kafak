@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Perecherla Junction S.O",
+    "pincode": "522009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3195266",
+    "longitude": "80.3415233"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Perecherla B.O",
+    "pincode": "522009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3307380",
+    "longitude": "80.3515810"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Pedapalakaluru B.O",
+    "pincode": "522009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3329850",
+    "longitude": "80.3804790"
+  }
+]

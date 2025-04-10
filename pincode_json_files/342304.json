@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Surpura BO",
+    "pincode": "342304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3526170",
+    "longitude": "73.0548860"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Paldi Khichiyan",
+    "pincode": "342304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.405836999999998",
+    "longitude": "73.010046000000003"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Mandore SO",
+    "pincode": "342304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3508333",
+    "longitude": "73.0410000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Punjla BO",
+    "pincode": "342304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3289426",
+    "longitude": "73.0650091"
+  }
+]

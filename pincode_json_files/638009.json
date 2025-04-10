@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Surampatti SO",
+    "pincode": "638009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3298335",
+    "longitude": "77.7167092"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Kasipalayam BO",
+    "pincode": "638009",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3186350",
+    "longitude": "77.7092100"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Rangampalayam BO",
+    "pincode": "638009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3028420",
+    "longitude": "77.6989100"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Kayalpuram BO",
+    "pincode": "688504",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4533700",
+    "longitude": "76.4314600"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Kannady BO",
+    "pincode": "688504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4630000",
+    "longitude": "76.4430000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Pulincunnu SO",
+    "pincode": "688504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4356944",
+    "longitude": "76.4422222"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Kannady West BO",
+    "pincode": "688504",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4635200",
+    "longitude": "76.4435300"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Punnakunnathussery South BO",
+    "pincode": "688504",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4490000",
+    "longitude": "76.4430000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Punnakunnathussery BO",
+    "pincode": "688504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4480000",
+    "longitude": "76.4420000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Chatlapally B.O",
+    "pincode": "502301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.844156",
+    "longitude": "78.857941"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Chinna Kistapur B.O",
+    "pincode": "502301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.860287",
+    "longitude": "78.810023"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Tipparam B.O",
+    "pincode": "502301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.908292",
+    "longitude": "78.75267"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Teegul Narsapur B.O",
+    "pincode": "502301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.860125",
+    "longitude": "78.857432"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Kuknoorpally S.O",
+    "pincode": "502301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.890673",
+    "longitude": "78.796196"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Mangole B.O",
+    "pincode": "502301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.911481",
+    "longitude": "78.786903"
+  }
+]

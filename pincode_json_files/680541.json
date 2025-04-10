@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Choolissery BO",
+    "pincode": "680541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Avanur BO",
+    "pincode": "680541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "MundurTC SO",
+    "pincode": "680541",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.592301",
+    "longitude": "76.154432"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Anjur Mundur BO",
+    "pincode": "680541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Rayate B.O",
+    "pincode": "421103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2268000",
+    "longitude": "73.1054500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Vaholi B.O",
+    "pincode": "421103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2412071",
+    "longitude": "73.1290536"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Varap B.O",
+    "pincode": "421103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2412061",
+    "longitude": "73.1290546"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Shahad S.O",
+    "pincode": "421103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2451944",
+    "longitude": "73.1632778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Mamnoli B.O",
+    "pincode": "421103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2748239",
+    "longitude": "73.2909451"
+  }
+]

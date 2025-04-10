@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Vangara B.O",
+    "pincode": "532461",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.6082000",
+    "longitude": "18.6185000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Seetharampuram Inam S.O",
+    "pincode": "532461",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6327222",
+    "longitude": "83.5971944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Rajulagumada B.O",
+    "pincode": "532461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.5782000",
+    "longitude": "18.6337000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Kottisa B.O",
+    "pincode": "532461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.5782000",
+    "longitude": "18.6337000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Sivvam B.O",
+    "pincode": "532461",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.6200000",
+    "longitude": "18.6274000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Talagam B.O",
+    "pincode": "532461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.6011000",
+    "longitude": "18.6475000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Rushingi B.O",
+    "pincode": "532461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.5860000",
+    "longitude": "18.6592000"
+  }
+]

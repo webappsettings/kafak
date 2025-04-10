@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Chapri BO",
+    "pincode": "741151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3544150",
+    "longitude": "88.5679980"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Dhakshinpara SO",
+    "pincode": "741151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2227650",
+    "longitude": "88.3436830"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Chitrasali BO",
+    "pincode": "741151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3756710",
+    "longitude": "88.5600660"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Itaberia BO",
+    "pincode": "741151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3736800",
+    "longitude": "88.5764610"
+  }
+]

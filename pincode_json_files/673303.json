@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Vengalam BO",
+    "pincode": "673303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3500000",
+    "longitude": "75.7400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Elathur SO Kozhikode",
+    "pincode": "673303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3431182",
+    "longitude": "75.740236"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Eranhikkal BO",
+    "pincode": "673303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3200000",
+    "longitude": "75.7800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Puthiya Nirathu BO",
+    "pincode": "673303",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2500000",
+    "longitude": "75.8200000"
+  }
+]

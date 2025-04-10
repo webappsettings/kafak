@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Rampur Pawara BO",
+    "pincode": "229126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6500000",
+    "longitude": "77.1000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Semrauta SO",
+    "pincode": "229126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2719167",
+    "longitude": "81.2457500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Khekharua BO",
+    "pincode": "229126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4500000",
+    "longitude": "81.4000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Kotwa Mohammadabad BO",
+    "pincode": "229126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4300000",
+    "longitude": "81.4300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Sikandarpur BO",
+    "pincode": "229126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0300000",
+    "longitude": "84.3000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Siwan BO",
+    "pincode": "229126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "84.3500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Akbarpur Pharsi BO",
+    "pincode": "229126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4700000",
+    "longitude": "81.4000000"
+  }
+]

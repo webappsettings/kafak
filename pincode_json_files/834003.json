@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Hundru BO",
+    "pincode": "834003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3211899",
+    "longitude": "85.3297752"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Hatia SO Ranchi",
+    "pincode": "834003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4511000",
+    "longitude": "84.9511000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Railway Colony Hatia SO",
+    "pincode": "834003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3132500",
+    "longitude": "85.3110556"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Maneguntapadu B.O",
+    "pincode": "524366",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5395350",
+    "longitude": "80.0129680"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Northrajupalem S.O",
+    "pincode": "524366",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5514444",
+    "longitude": "79.9891944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Ramannapalem B.O",
+    "pincode": "524366",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5325080",
+    "longitude": "79.9909390"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Tatakaladinne B.O",
+    "pincode": "524366",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.5138700",
+    "longitude": "80.0919080"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Yellayapalem B.O",
+    "pincode": "524366",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5368940",
+    "longitude": "79.9514460"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Mikkilimpeta B.O",
+    "pincode": "524366",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5564540",
+    "longitude": "79.9462010"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Ramapuram B.O",
+    "pincode": "524366",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.5138740",
+    "longitude": "80.0919030"
+  }
+]

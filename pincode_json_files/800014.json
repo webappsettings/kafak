@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "Patna Aerodrome SO",
+    "pincode": "800014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5944330",
+    "longitude": "85.0908060"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "BV College SO",
+    "pincode": "800014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5940950",
+    "longitude": "85.1375650"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "Sheikhpura SO Patna",
+    "pincode": "800014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.6058080",
+    "longitude": "85.0967450"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Bewan BO",
+    "pincode": "122104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Doha BO",
+    "pincode": "122104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Hirwari BO",
+    "pincode": "122104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Ferozepur Jhirka SO",
+    "pincode": "122104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "27.7781944",
+    "longitude": "76.9451944"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Agon BO",
+    "pincode": "122104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Rawli BO",
+    "pincode": "122104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Agrahara Kannadiputhur B.O",
+    "pincode": "642111",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6353500",
+    "longitude": "77.2986000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Krishnapuram S.O (Coimbatore)",
+    "pincode": "642111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.5593",
+    "longitude": "77.3375"
+  }
+]

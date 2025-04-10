@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Ganugwal SO",
+    "pincode": "140123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "31.2709167",
+    "longitude": "76.4869722"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Mangewal BO",
+    "pincode": "140123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Thaluh BO",
+    "pincode": "140123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  }
+]

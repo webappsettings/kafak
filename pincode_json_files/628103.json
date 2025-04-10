@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Kulayankarisal B.O",
+    "pincode": "628103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7183980",
+    "longitude": "78.0597010"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Melakootudankadu B.O",
+    "pincode": "628103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7527290",
+    "longitude": "78.0395150"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Servaikaranmadam B.O",
+    "pincode": "628103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6969970",
+    "longitude": "78.0502150"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Therkusilukkanpatti B.O",
+    "pincode": "628103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7641851",
+    "longitude": "78.1348171"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Kootampuli B.O",
+    "pincode": "628103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7225080",
+    "longitude": "78.0666200"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Mangalagiri B.O",
+    "pincode": "628103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7641771",
+    "longitude": "78.1348251"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Pudukottai S.O",
+    "pincode": "628103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7466111",
+    "longitude": "78.0514444"
+  }
+]

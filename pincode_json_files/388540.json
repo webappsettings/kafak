@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Bodal BO",
+    "pincode": "388540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4230000",
+    "longitude": "72.9667000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Borsad SO",
+    "pincode": "388540",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4115833",
+    "longitude": "72.8980278"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Davol BO",
+    "pincode": "388540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4137000",
+    "longitude": "72.9475000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Kasumbad BO",
+    "pincode": "388540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4544000",
+    "longitude": "72.9704000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Vera BO",
+    "pincode": "388540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3984470",
+    "longitude": "72.8993100"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Nisraya BO",
+    "pincode": "388540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3964000",
+    "longitude": "72.9276000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Vasna BO",
+    "pincode": "388540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3114000",
+    "longitude": "72.6831000"
+  }
+]

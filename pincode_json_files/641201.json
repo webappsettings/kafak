@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Kallapalayam BO",
+    "pincode": "641201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0564597",
+    "longitude": "77.0672483"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Panapatti BO",
+    "pincode": "641201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8772266",
+    "longitude": "77.1000700"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Chettipalayam SO",
+    "pincode": "641201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9142000",
+    "longitude": "77.0362200"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Periyakuyilai BO",
+    "pincode": "641201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9001633",
+    "longitude": "77.0738033"
+  }
+]

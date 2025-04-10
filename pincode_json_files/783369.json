@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Salakati Project S.O",
+    "pincode": "783369",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4014000",
+    "longitude": "90.2667000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kalipukhuri B.O",
+    "pincode": "783369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4255460",
+    "longitude": "90.3503000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Salakati B.O",
+    "pincode": "783369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4400800",
+    "longitude": "90.3642440"
+  }
+]

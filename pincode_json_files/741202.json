@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Dhantala BO",
+    "pincode": "741202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1947750",
+    "longitude": "88.6265480"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Jm Nokari BO",
+    "pincode": "741202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1766580",
+    "longitude": "88.5975890"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Chapra BO",
+    "pincode": "741202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "25.7795650",
+    "longitude": "84.7498890"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Halalpurkrishnapur BO",
+    "pincode": "741202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2018880",
+    "longitude": "88.5891390"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Hijuli BO",
+    "pincode": "741202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1884620",
+    "longitude": "88.5754800"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Matikumra Kutirpara BO",
+    "pincode": "741202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1708730",
+    "longitude": "88.6168970"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Nasra SO",
+    "pincode": "741202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1706111",
+    "longitude": "88.5753056"
+  }
+]

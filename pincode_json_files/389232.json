@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Bablia BO",
+    "pincode": "389232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.3435000",
+    "longitude": "73.6061000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Limdi Timba BO",
+    "pincode": "389232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.3435250",
+    "longitude": "73.6061550"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Pandaravada BO",
+    "pincode": "389232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.3644110",
+    "longitude": "73.6309000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Borvai BO",
+    "pincode": "389232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.3918266",
+    "longitude": "73.6467600"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Bakor SO",
+    "pincode": "389232",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "22.7767500",
+    "longitude": "73.6061550"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Khadodi BO",
+    "pincode": "389232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.3808000",
+    "longitude": "73.6162440"
+  }
+]

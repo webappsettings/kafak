@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Kummaripalem B.O",
+    "pincode": "521130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Venaktapuram B.O",
+    "pincode": "521130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Pedakallepalli S.O",
+    "pincode": "521130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.08227778",
+    "longitude": "80.98855556"
+  }
+]

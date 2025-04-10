@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Manivali B.O",
+    "pincode": "421102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2740500",
+    "longitude": "19.2531659"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Atali B.O",
+    "pincode": "421102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2740500",
+    "longitude": "73.2195000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Mohone S.O",
+    "pincode": "421102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2654722",
+    "longitude": "73.1730000"
+  }
+]

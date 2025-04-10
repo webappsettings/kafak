@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Chabhara B.O",
+    "pincode": "431704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.317632",
+    "longitude": "77.446712"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Lahan B.O",
+    "pincode": "431704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.280994",
+    "longitude": "77.46395"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Loni B.O",
+    "pincode": "431704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.274922",
+    "longitude": "77.420531"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Nimgaon B.O",
+    "pincode": "431704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3376917",
+    "longitude": "77.41609"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Pardi Makta B.O",
+    "pincode": "431704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.326795",
+    "longitude": "77.38474"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Dabhad B.O",
+    "pincode": "431704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.231973",
+    "longitude": "77.354157"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Ardhapur S.O",
+    "pincode": "431704",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.287193",
+    "longitude": "77.374393"
+  }
+]

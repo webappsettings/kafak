@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Siddavaram B.O",
+    "pincode": "516505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.9400000",
+    "longitude": "79.0300000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Thokalapalli B.O",
+    "pincode": "516505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0300000",
+    "longitude": "79.0300000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Rajasahebpet B.O",
+    "pincode": "516505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.9800000",
+    "longitude": "79.0300000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Kalavakunta B.O",
+    "pincode": "516505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0500000",
+    "longitude": "79.0300000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "T.Sallagarigela B.O",
+    "pincode": "516505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0300000",
+    "longitude": "79.0200000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Tekurpet S.O",
+    "pincode": "516505",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5190000",
+    "longitude": "78.8416000"
+  }
+]

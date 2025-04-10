@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Ayanthiruvaleeswaram BO",
+    "pincode": "627418",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.8407570",
+    "longitude": "77.4060100"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Karuthapillaiyur BO",
+    "pincode": "627418",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7693480",
+    "longitude": "77.3606580"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Kila Ambur SO",
+    "pincode": "627418",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7627222",
+    "longitude": "77.4040278"
+  }
+]

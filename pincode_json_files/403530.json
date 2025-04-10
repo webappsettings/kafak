@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Onda B.O",
+    "pincode": "403530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "74.1100000",
+    "longitude": "15.9000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Advoi B.O",
+    "pincode": "403530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "73.1600000",
+    "longitude": "15.5900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Pissurlem B.O",
+    "pincode": "403530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "74.4500000",
+    "longitude": "16.2400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Onda I.E. S.O",
+    "pincode": "403530",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.54892530",
+    "longitude": "74.06534190"
+  }
+]

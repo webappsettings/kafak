@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bindra Bazar BO",
+    "pincode": "276205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "77.1065600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Jamalpur BO",
+    "pincode": "276205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "77.1065600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Abusaidpur BO",
+    "pincode": "276205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "60.1000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bisham BO",
+    "pincode": "276205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "77.1065600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "MOHAMMADPUR SO",
+    "pincode": "276205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9600000",
+    "longitude": "83.0200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mangrawa BO",
+    "pincode": "276205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "77.1065600"
+  }
+]

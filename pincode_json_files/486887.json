@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Kachnimamla B.O",
+    "pincode": "486887",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINGRAULI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Amlori Project S.O",
+    "pincode": "486887",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINGRAULI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.1595556",
+    "longitude": "82.4900278"
+  }
+]

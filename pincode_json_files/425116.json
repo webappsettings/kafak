@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Dahigaon B.O",
+    "pincode": "425116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.828711",
+    "longitude": "75.427324"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Mhasawad S.O (Jalgaon)",
+    "pincode": "425116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8702815",
+    "longitude": "75.4578345"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Vitner B.O",
+    "pincode": "425116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.844482",
+    "longitude": "75.551245"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Vavadade B.O",
+    "pincode": "425116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.856941",
+    "longitude": "75.499762"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Bornar B.O",
+    "pincode": "425116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.845853",
+    "longitude": "75.437441"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Jalke B.O",
+    "pincode": "425116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.851762",
+    "longitude": "75.530147"
+  }
+]

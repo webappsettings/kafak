@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Thrickodithanam SO",
+    "pincode": "686105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.437796",
+    "longitude": "76.568053"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Kottamurickal BO",
+    "pincode": "686105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.443455",
+    "longitude": "76.582825"
+  }
+]

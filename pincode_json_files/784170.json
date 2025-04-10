@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Amlakhi Dalani B.O",
+    "pincode": "784170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Ghahigaon Chariali B.O",
+    "pincode": "784170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Mail Bazar B.O",
+    "pincode": "784170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Mukoli Gaon B.O",
+    "pincode": "784170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Halem S.O",
+    "pincode": "784170",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Karibil Bangali B.O",
+    "pincode": "784170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kauri Pathar B.O",
+    "pincode": "784170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6542500",
+    "longitude": "92.8011500"
+  }
+]

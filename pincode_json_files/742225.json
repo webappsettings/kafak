@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Raghunathganj Bazar SO",
+    "pincode": "742225",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.4511111",
+    "longitude": "88.0713888"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Fultala SO",
+    "pincode": "742225",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.4666670",
+    "longitude": "88.0666670"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Raghunathganj HO",
+    "pincode": "742225",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.4655833",
+    "longitude": "88.0604167"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Mackenzi Park SO",
+    "pincode": "742225",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.7197222",
+    "longitude": "80.6677777"
+  }
+]

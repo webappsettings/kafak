@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Siruvallur BO",
+    "pincode": "606906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4636000",
+    "longitude": "79.0206000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Elathur BO",
+    "pincode": "606906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4636000",
+    "longitude": "79.0206000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Vilvarani SO",
+    "pincode": "606906",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2351944",
+    "longitude": "79.0765833"
+  }
+]

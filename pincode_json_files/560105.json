@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Haragadde B.O",
+    "pincode": "560105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.7630693",
+    "longitude": "77.656485200000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Jigani S.O",
+    "pincode": "560105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.786833700000001",
+    "longitude": "77.637752599999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Kallubalu B.O",
+    "pincode": "560105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.7704293",
+    "longitude": "77.622517700000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Hennagara B.O",
+    "pincode": "560105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.7885718",
+    "longitude": "77.672878800000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Hulimangala B.O",
+    "pincode": "560105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.81887",
+    "longitude": "77.637892100000002"
+  }
+]

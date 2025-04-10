@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Baghpat Sugar Mill BO",
+    "pincode": "250609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.960000000000001",
+    "longitude": "77.230000000000004"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Khatta BO",
+    "pincode": "250609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.898869999999999",
+    "longitude": "77.241500000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Sisana BO",
+    "pincode": "250609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.940000000000001",
+    "longitude": "77.219999999999999"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Ahera BO",
+    "pincode": "250609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.93",
+    "longitude": "77.269999999999996"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Court Compound Baghpat B.O",
+    "pincode": "250609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.976661",
+    "longitude": "77.211931000000007"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Baghpat SO",
+    "pincode": "250609",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9446667",
+    "longitude": "77.2148611"
+  }
+]

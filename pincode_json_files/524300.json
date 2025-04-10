@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Manchalapalli B.O",
+    "pincode": "524300",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Pathapalli B.O",
+    "pincode": "524300",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5251080",
+    "longitude": "79.3296510"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Somasila Hill Colony S.O",
+    "pincode": "524300",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4948518",
+    "longitude": "79.3110859"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Padamatikhambampadu B.O",
+    "pincode": "524300",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5251020",
+    "longitude": "79.3296570"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Somasila B.O",
+    "pincode": "524300",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4993390",
+    "longitude": "79.3063470"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Upplapadu B.O",
+    "pincode": "524300",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5325760",
+    "longitude": "79.3595800"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Paral SO",
+    "pincode": "670671",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7533680",
+    "longitude": "75.4909120"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Vayalalam BO",
+    "pincode": "670671",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7400000",
+    "longitude": "75.5300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Panniyannur BO",
+    "pincode": "670671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.74",
+    "longitude": "75.56"
+  }
+]

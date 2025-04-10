@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Jankikund BO",
+    "pincode": "210204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRAKOOT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1655850",
+    "longitude": "80.8639990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Khohi BO",
+    "pincode": "210204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRAKOOT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1691820",
+    "longitude": "80.8369830"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Bhaisaundha BO",
+    "pincode": "210204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRAKOOT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2949080",
+    "longitude": "80.8006340"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Semaria Jagannath basi BO",
+    "pincode": "210204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRAKOOT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1995500",
+    "longitude": "80.7991350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Chitrakot SO",
+    "pincode": "210204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITRAKOOT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1843889",
+    "longitude": "80.8721389"
+  }
+]

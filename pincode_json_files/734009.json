@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Gulma BO",
+    "pincode": "734009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8031969",
+    "longitude": "88.4041396"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "New Chumta BO",
+    "pincode": "734009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8495200",
+    "longitude": "88.4408100"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Simulbari BO",
+    "pincode": "734009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9325000",
+    "longitude": "87.7505000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Sukna SO",
+    "pincode": "734009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7894830",
+    "longitude": "88.3637140"
+  }
+]

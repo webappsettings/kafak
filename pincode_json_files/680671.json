@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Edavilangu SO",
+    "pincode": "680671",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.2451667",
+    "longitude": "76.1715000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Kara BO",
+    "pincode": "680671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.2400000",
+    "longitude": "76.1600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Padinjare Vemballur BO",
+    "pincode": "680671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.6700000",
+    "longitude": "76.5900000"
+  }
+]

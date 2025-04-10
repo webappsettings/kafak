@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Kupwad MIDC Area S.O",
+    "pincode": "416436",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.8811013",
+    "longitude": "74.6311171"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Bamnoli B.O",
+    "pincode": "416436",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.8700000",
+    "longitude": "74.6200000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Kupwad B.O",
+    "pincode": "416436",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.8200000",
+    "longitude": "74.6000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Savali B.O.",
+    "pincode": "416436",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

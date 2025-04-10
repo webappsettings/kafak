@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "NSubbiahpuram BO",
+    "pincode": "626205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.2600000",
+    "longitude": "77.9000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Odaipatti BO",
+    "pincode": "626205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.2900000",
+    "longitude": "77.9200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Karuppur BO",
+    "pincode": "626205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.2400000",
+    "longitude": "78.0000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Uppathur SO",
+    "pincode": "626205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.2548333",
+    "longitude": "77.9870556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Mulliseval BO",
+    "pincode": "626205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.2500000",
+    "longitude": "77.9800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Nalli BO",
+    "pincode": "626205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.2400000",
+    "longitude": "77.9100000"
+  }
+]

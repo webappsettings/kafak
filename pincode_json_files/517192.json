@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Jangavandlapalle B.O",
+    "pincode": "517192",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Motumallela B.O",
+    "pincode": "517192",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.7058670",
+    "longitude": "79.0569020"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Rompicherla S.O (Chittoor)",
+    "pincode": "517192",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.67072",
+    "longitude": "79.04539"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Challavaripalle B.O",
+    "pincode": "517192",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6444760",
+    "longitude": "79.0450100"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Peddamallela B.O",
+    "pincode": "517192",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6994220",
+    "longitude": "79.0233970"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Peddagottigallu B.O",
+    "pincode": "517192",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6490660",
+    "longitude": "79.0219590"
+  }
+]

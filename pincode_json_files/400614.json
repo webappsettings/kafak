@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Belapur Node  V S.O",
+    "pincode": "400614",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0739722",
+    "longitude": "73.0611389"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Konkan Bhavan S.O",
+    "pincode": "400614",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0216111",
+    "longitude": "73.0401389"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Belapur Node   III S.O",
+    "pincode": "400614",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0245556",
+    "longitude": "73.0449444"
+  }
+]

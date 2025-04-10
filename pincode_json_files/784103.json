@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Chengelimara B.O",
+    "pincode": "784103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8667727",
+    "longitude": "92.7804588"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Gamani B.O",
+    "pincode": "784103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.7882200",
+    "longitude": "92.3382600"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Aujuli Rangagora B.O",
+    "pincode": "784103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8650579",
+    "longitude": "92.7837887"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Chariduar S.O",
+    "pincode": "784103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.6208280",
+    "longitude": "92.7990140"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Uttar Amloga B.O",
+    "pincode": "784103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.6208280",
+    "longitude": "92.7990140"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bhalukpong B.O",
+    "pincode": "784103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.7882200",
+    "longitude": "92.3382600"
+  }
+]

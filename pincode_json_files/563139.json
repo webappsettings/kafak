@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Dadinayakanadoddi B.O",
+    "pincode": "563139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.856911800000001",
+    "longitude": "77.941388000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Suggondahalli B.O",
+    "pincode": "563139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.8308407",
+    "longitude": "77.989517599999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Baliganahalli B.O",
+    "pincode": "563139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.8923062",
+    "longitude": "77.963231899999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Dinnahalli B.O",
+    "pincode": "563139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.8705911",
+    "longitude": "78.059523200000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Masthi S.O",
+    "pincode": "563139",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.869388900000001",
+    "longitude": "77.997500000000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Hassandahalli B.O",
+    "pincode": "563139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.889184200000001",
+    "longitude": "78.024987100000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Gundlapalya BO",
+    "pincode": "563139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.887136699999999",
+    "longitude": "18.0869699"
+  }
+]

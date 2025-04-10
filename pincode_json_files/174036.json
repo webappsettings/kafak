@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Harnora BO",
+    "pincode": "174036",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3855000",
+    "longitude": "76.8749000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Bauhat Kasol BO",
+    "pincode": "174036",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "NTPC Jamthal SO",
+    "pincode": "174036",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3830000",
+    "longitude": "76.8711000"
+  }
+]

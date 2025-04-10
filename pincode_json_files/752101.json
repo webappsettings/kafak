@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Benupur B.O",
+    "pincode": "752101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2791150",
+    "longitude": "85.9019850"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Jagannathpur B.O",
+    "pincode": "752101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2995820",
+    "longitude": "85.8970840"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Jayapur B.O",
+    "pincode": "752101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2995830",
+    "longitude": "85.8970850"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Balianta S.O",
+    "pincode": "752101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.299",
+    "longitude": "85.896"
+  }
+]

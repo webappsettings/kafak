@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Pale S.O",
+    "pincode": "403105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.4780833",
+    "longitude": "74.0603611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Velguem B.O",
+    "pincode": "403105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "72.2900000",
+    "longitude": "15.9900000"
+  }
+]

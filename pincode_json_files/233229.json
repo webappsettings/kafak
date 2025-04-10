@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Bhikham Amhat BO",
+    "pincode": "233229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Kamupur BO",
+    "pincode": "233229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Banki Khurd BO",
+    "pincode": "233229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Narainpur BO",
+    "pincode": "233229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Mata BO",
+    "pincode": "233229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "BARACHAWAR SO",
+    "pincode": "233229",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.76269444",
+    "longitude": "83.69058333"
+  }
+]

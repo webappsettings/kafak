@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Nellore H.O",
+    "pincode": "524001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.451895",
+    "longitude": "79.980856"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Trunk Road S.O (Nellore)",
+    "pincode": "524001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4540030",
+    "longitude": "79.9838020"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Pogathota S.O",
+    "pincode": "524001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4501944",
+    "longitude": "79.9846389"
+  }
+]

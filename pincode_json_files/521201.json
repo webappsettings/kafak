@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Dum Dum Gardens S.O",
+    "pincode": "521201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7803611",
+    "longitude": "80.8765000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Vidyanagar S.O (Krishna)",
+    "pincode": "521201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7900000",
+    "longitude": "80.8500000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Nuzvid Bazar S.O",
+    "pincode": "521201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.785638",
+    "longitude": "80.848665"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Nuzvid SO",
+    "pincode": "521201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.79247222",
+    "longitude": "80.84727778"
+  }
+]

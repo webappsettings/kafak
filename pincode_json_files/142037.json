@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Bir Raoke BO",
+    "pincode": "142037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.687149999999999",
+    "longitude": "75.306299999999993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Badhni Khurd BO",
+    "pincode": "142037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.687149999999999",
+    "longitude": "75.306299999999993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Raoke Kalan BO",
+    "pincode": "142037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.687149999999999",
+    "longitude": "75.306299999999993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Badhni Kalan SO",
+    "pincode": "142037",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.683630999999998",
+    "longitude": "75.291267000000005"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Lopon BO",
+    "pincode": "142037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.816467299999999",
+    "longitude": "75.171702300000007"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Malliana BO",
+    "pincode": "142037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.743574500000001",
+    "longitude": "75.203012900000004"
+  }
+]

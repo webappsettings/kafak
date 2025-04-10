@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Akkammapettai B.O",
+    "pincode": "637301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4788383",
+    "longitude": "77.8841883"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Vadugapatti B.O",
+    "pincode": "637301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4653283",
+    "longitude": "77.9263850"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Sankaridrug S.O",
+    "pincode": "637301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4750280",
+    "longitude": "77.8688890"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Manjakalpatti B.O",
+    "pincode": "637301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5052216",
+    "longitude": "77.8645516"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Kuppanur B.O",
+    "pincode": "637301",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4962783",
+    "longitude": "77.8651883"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Mavelipalayam B.O",
+    "pincode": "637301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4786500",
+    "longitude": "77.9016383"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Devannacoundanur B.O",
+    "pincode": "637301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5140370",
+    "longitude": "77.8348150"
+  }
+]

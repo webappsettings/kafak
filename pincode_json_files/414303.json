@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Karandi B.O",
+    "pincode": "414303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0500000",
+    "longitude": "74.4100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Gargundi B.O",
+    "pincode": "414303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0800000",
+    "longitude": "74.4000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Pimpalgaon Rotha B.O",
+    "pincode": "414303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0200000",
+    "longitude": "74.4500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Kinhi B.O",
+    "pincode": "414303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0400000",
+    "longitude": "74.4300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Kanhur S.O",
+    "pincode": "414303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0961944",
+    "longitude": "74.3870556"
+  }
+]

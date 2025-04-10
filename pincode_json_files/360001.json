@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot Popatpara SO",
+    "pincode": "360001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.327295",
+    "longitude": "70.787529"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot HO",
+    "pincode": "360001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2986997",
+    "longitude": "70.7996256"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot City SO",
+    "pincode": "360001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2953889",
+    "longitude": "70.8065000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot Mochi Bazar SO",
+    "pincode": "360001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.3026111",
+    "longitude": "70.8034722"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot Jn Plot SO",
+    "pincode": "360001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.3092500",
+    "longitude": "70.7993333"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot Seva Sadan SO",
+    "pincode": "360001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.3032222",
+    "longitude": "70.7927778"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot D H College SO",
+    "pincode": "360001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2909444",
+    "longitude": "70.7930000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "INC SO",
+    "pincode": "248006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3271667",
+    "longitude": "77.9948611"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Newforest SO",
+    "pincode": "248006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3383056",
+    "longitude": "77.9933889"
+  }
+]

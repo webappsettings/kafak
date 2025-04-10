@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Thapovanam S.O",
+    "pincode": "605756",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9763056",
+    "longitude": "79.1823611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Kottamarudur B.O",
+    "pincode": "605756",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9800000",
+    "longitude": "79.2000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Kuladeepamangalam B.O",
+    "pincode": "605756",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9800000",
+    "longitude": "79.1700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Vilandai B.O",
+    "pincode": "605756",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9700000",
+    "longitude": "79.1500000"
+  }
+]

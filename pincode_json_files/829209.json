@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Hindgir BO",
+    "pincode": "829209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.6919309",
+    "longitude": "85.0759386"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Patal B.O",
+    "pincode": "829209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.677299999999999",
+    "longitude": "85.061899999999994"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Bamne B.O",
+    "pincode": "829209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.683160000000001",
+    "longitude": "85.053539999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Ray SO",
+    "pincode": "829209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.677299999999999",
+    "longitude": "85.061899999999994"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Churi East B.O",
+    "pincode": "829209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.679069999999999",
+    "longitude": "85.044780000000003"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Churi North B.O",
+    "pincode": "829209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.679069999999999",
+    "longitude": "85.044780000000003"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Jangiana BO",
+    "pincode": "148102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4678010",
+    "longitude": "75.2763430"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Nainewal BO",
+    "pincode": "148102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4273710",
+    "longitude": "75.3267070"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Talwandi BO",
+    "pincode": "148102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "25.1502110",
+    "longitude": "75.8424960"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Sandhu Kalan BO",
+    "pincode": "148102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4044370",
+    "longitude": "75.3193530"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhadaur SO Sangrur",
+    "pincode": "148102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3236388",
+    "longitude": "75.9453611"
+  }
+]

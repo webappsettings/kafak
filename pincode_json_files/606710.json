@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Paramanandal SO",
+    "pincode": "606710",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3566389",
+    "longitude": "78.7678056"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kallathur BO",
+    "pincode": "606710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7517000",
+    "longitude": "79.3040000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kuyilam BO",
+    "pincode": "606710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7517000",
+    "longitude": "79.3040000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Oorgoundanur BO",
+    "pincode": "606710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7517000",
+    "longitude": "79.3040000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Pudupattu BO",
+    "pincode": "606710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7517000",
+    "longitude": "79.3040000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kilaiyur BO",
+    "pincode": "606710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1448000",
+    "longitude": "79.8417000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kuppanatham BO",
+    "pincode": "606710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7817000",
+    "longitude": "79.3040000"
+  }
+]

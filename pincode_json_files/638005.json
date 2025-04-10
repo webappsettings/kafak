@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Ramanathapuram Pudur BO",
+    "pincode": "638005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3987025",
+    "longitude": "77.6912756"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Peria Agraharam SO",
+    "pincode": "638005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3721930",
+    "longitude": "77.7050900"
+  }
+]

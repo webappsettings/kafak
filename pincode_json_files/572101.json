@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Tumakuru City S.O",
+    "pincode": "572101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.5824167",
+    "longitude": "74.933972199999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Western Extn S.O",
+    "pincode": "572101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.340388900000001",
+    "longitude": "77.1081389"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Tumakuru H.O",
+    "pincode": "572101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.316861100000001",
+    "longitude": "77.108638900000003"
+  }
+]

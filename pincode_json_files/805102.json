@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Tetariya BO",
+    "pincode": "805102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.7820150",
+    "longitude": "85.6911940"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Madhopur B.O.",
+    "pincode": "805102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.782015000000001",
+    "longitude": "85.691193999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Bisunpur BO",
+    "pincode": "805102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.7820150",
+    "longitude": "85.6911940"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Sarkanda BO",
+    "pincode": "805102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.782015000000001",
+    "longitude": "85.691193999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Govindpur SO Nawada",
+    "pincode": "805102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8870000",
+    "longitude": "85.5350278"
+  }
+]

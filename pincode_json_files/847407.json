@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Naruar BO",
+    "pincode": "847407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.238800000000001",
+    "longitude": "86.239599999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Lohna Road SO",
+    "pincode": "847407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1491790",
+    "longitude": "85.8905870"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "LAGMA Rambhadrapur BO",
+    "pincode": "847407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.3353",
+    "longitude": "85.583399999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Gangauli BO",
+    "pincode": "847407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.228200000000001",
+    "longitude": "86.158299999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Pokhar Bhinda BO",
+    "pincode": "847407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.538900000000002",
+    "longitude": "84.3523"
+  }
+]

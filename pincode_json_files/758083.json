@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Badarampas B.O",
+    "pincode": "758083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.1354333",
+    "longitude": "86.2401883"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Orali B.O",
+    "pincode": "758083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.1315066",
+    "longitude": "86.2802316"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Hatadihi S.O",
+    "pincode": "758083",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.1701735",
+    "longitude": "86.2457773"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Chhenapadi B.O",
+    "pincode": "758083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.1687400",
+    "longitude": "86.2459683"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Inchola B.O",
+    "pincode": "758083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.1129316",
+    "longitude": "86.2504633"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Mareigaon B.O",
+    "pincode": "758083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.1568366",
+    "longitude": "86.2620216"
+  }
+]

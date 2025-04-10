@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Berua BO",
+    "pincode": "843122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.147139200000002",
+    "longitude": "85.136262900000006"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Chochahi Chapra BO",
+    "pincode": "843122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.162420999999998",
+    "longitude": "85.109031999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Rampur Bheriahi BO",
+    "pincode": "843122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.162420999999998",
+    "longitude": "85.109031999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Pagahia Aima BO",
+    "pincode": "843122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.126042000000002",
+    "longitude": "85.141453999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Parsauni Pagahia BO",
+    "pincode": "843122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.393840999999998",
+    "longitude": "85.917676999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Hardi SO Muzaffarpur",
+    "pincode": "843122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1264167",
+    "longitude": "85.3818056"
+  }
+]

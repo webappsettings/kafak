@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Memadangu BO",
+    "pincode": "686672",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.92294",
+    "longitude": "76.623852"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Meenkunnam BO",
+    "pincode": "686672",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.928892",
+    "longitude": "76.577814"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Pandappily BO",
+    "pincode": "686672",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.907739",
+    "longitude": "76.606439"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Arakuzha SO",
+    "pincode": "686672",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.931462",
+    "longitude": "76.599138"
+  }
+]

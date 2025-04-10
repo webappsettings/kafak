@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Jandi BO",
+    "pincode": "184142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4299130",
+    "longitude": "75.2260280"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Garha Satura BO",
+    "pincode": "184142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.0298720",
+    "longitude": "74.0692010"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Gurah Mundian BO",
+    "pincode": "184142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.9602510",
+    "longitude": "75.3692100"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Sherpur BO",
+    "pincode": "184142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4454350",
+    "longitude": "75.2198290"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Hiranagar SO",
+    "pincode": "184142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4556370",
+    "longitude": "75.2727650"
+  }
+]

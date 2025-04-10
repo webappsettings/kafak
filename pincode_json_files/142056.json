@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Phulewala BO",
+    "pincode": "142056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.644141099999999",
+    "longitude": "75.153069799999997"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Gholia Khurd SO",
+    "pincode": "142056",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.813369999999999",
+    "longitude": "75.175565000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Gholia Kalan BO",
+    "pincode": "142056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.665381",
+    "longitude": "75.202382"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Ranian BO",
+    "pincode": "142056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.682649999999999",
+    "longitude": "75.204999999999998"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Rohila Khurd",
+    "pincode": "342017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.328510999999999",
+    "longitude": "73.080251000000004"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "JHANWAR SO",
+    "pincode": "342017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1973517",
+    "longitude": "72.8507913"
+  }
+]

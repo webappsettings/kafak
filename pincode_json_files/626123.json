@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Sivakasi R S SO",
+    "pincode": "626123",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4623333",
+    "longitude": "77.7907778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Sivakasi HO",
+    "pincode": "626123",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4532500",
+    "longitude": "77.7941389"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Sivakasi Bazzar SO",
+    "pincode": "626123",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4448333",
+    "longitude": "77.7986389"
+  }
+]

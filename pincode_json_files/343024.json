@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Bhetala B.O",
+    "pincode": "343024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1764500",
+    "longitude": "72.7111940"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Siana S.O",
+    "pincode": "343024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1413680",
+    "longitude": "72.6816770"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Chandana B.O",
+    "pincode": "343024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1392940",
+    "longitude": "72.7034350"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Raipuria B.O",
+    "pincode": "343024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.0648610",
+    "longitude": "72.6731870"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Sawna B.O",
+    "pincode": "343024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.0569520",
+    "longitude": "72.6549670"
+  }
+]

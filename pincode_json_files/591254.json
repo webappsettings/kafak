@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Naganur KM B.O",
+    "pincode": "591254",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0690517",
+    "longitude": "74.4830282"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Daddi S.O",
+    "pincode": "591254",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0636444",
+    "longitude": "74.4369371"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Salamwadi B.O",
+    "pincode": "591254",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0687093",
+    "longitude": "74.4036295"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Kot B.O",
+    "pincode": "591254",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0948768",
+    "longitude": "74.4229952"
+  }
+]

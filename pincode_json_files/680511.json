@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Chittattukara SO",
+    "pincode": "680511",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.572847",
+    "longitude": "76.072359"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Elavally South BO",
+    "pincode": "680511",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Kakkassery BO",
+    "pincode": "680511",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Trichur Division",
+    "officename": "Elavally BO",
+    "pincode": "680511",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

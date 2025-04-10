@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Chempilavu BO",
+    "pincode": "686584",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "10.3473000",
+    "longitude": "76.3741000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Cherpunkal SO",
+    "pincode": "686584",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.692483",
+    "longitude": "76.639399"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Kezhuvankulam BO",
+    "pincode": "686584",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "10.3473000",
+    "longitude": "76.3741000"
+  }
+]

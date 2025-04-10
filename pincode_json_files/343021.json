@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Nimblana B.O",
+    "pincode": "343021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4429630",
+    "longitude": "72.4561420"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Ummedabad S.O",
+    "pincode": "343021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.3765990",
+    "longitude": "72.4346910"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Dangra B.O",
+    "pincode": "343021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8259550",
+    "longitude": "71.8037640"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Elana B.O",
+    "pincode": "343021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.3969360",
+    "longitude": "72.3902890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Othwala B.O",
+    "pincode": "343021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.3476620",
+    "longitude": "72.3981790"
+  }
+]

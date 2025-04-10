@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Chiringa BO",
+    "pincode": "246441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0063350",
+    "longitude": "79.3568573"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Devsari BO",
+    "pincode": "246441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0063780",
+    "longitude": "79.5685700"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Gwaldam SO",
+    "pincode": "246441",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0045556",
+    "longitude": "79.5700556"
+  }
+]

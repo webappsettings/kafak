@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Krishnapuram BO",
+    "pincode": "626142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4300000",
+    "longitude": "77.4900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Therkuvenganallur BO",
+    "pincode": "626142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4000000",
+    "longitude": "77.5300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Zaminkollangondan BO",
+    "pincode": "626142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4000000",
+    "longitude": "77.5200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Sundaranachiarpuram SO",
+    "pincode": "626142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4225278",
+    "longitude": "77.5091667"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Ayankollangondan BO",
+    "pincode": "626142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4000000",
+    "longitude": "77.5100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Sundararajapuram BO",
+    "pincode": "626142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4200000",
+    "longitude": "77.4800000"
+  }
+]

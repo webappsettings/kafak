@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Alambadi B.O",
+    "pincode": "606108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4600000",
+    "longitude": "79.6100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Poynapadi B.O",
+    "pincode": "606108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5300000",
+    "longitude": "79.0500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Mangalur S.O",
+    "pincode": "606108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5153889",
+    "longitude": "79.0109722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Avatti B.O",
+    "pincode": "606108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4800000",
+    "longitude": "79.0800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Ma Podaiyur B.O",
+    "pincode": "606108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4800000",
+    "longitude": "79.0400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Malayanur B.O",
+    "pincode": "606108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5100000",
+    "longitude": "78.9900000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Umbare (Karkam ) B.O",
+    "pincode": "413302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.9309860",
+    "longitude": "74.8711810"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Bardi B.O",
+    "pincode": "413302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8611630",
+    "longitude": "75.3470480"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Karkam S.O",
+    "pincode": "413302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8575970",
+    "longitude": "75.3004010"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Tulshi B.O",
+    "pincode": "413302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.9233930",
+    "longitude": "75.3295570"
+  }
+]

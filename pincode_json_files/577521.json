@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Bistuvalli B.O",
+    "pincode": "577521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.4694640",
+    "longitude": "76.3000420"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Yelagodu B.O",
+    "pincode": "577521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3777210",
+    "longitude": "76.2884590"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Bidarakere S.O",
+    "pincode": "577521",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.2215833",
+    "longitude": "76.3974167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Toranaghatta B.O",
+    "pincode": "577521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.4470790",
+    "longitude": "76.3550460"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Hullehal B.O",
+    "pincode": "577521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3955150",
+    "longitude": "76.3030510"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Muddapura B.O",
+    "pincode": "577521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3596750",
+    "longitude": "76.3203090"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Kattigehally B.O",
+    "pincode": "577521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "13.1215610",
+    "longitude": "77.6211890"
+  }
+]

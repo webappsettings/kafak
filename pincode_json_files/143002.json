@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "JFMill SO",
+    "pincode": "143002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.626",
+    "longitude": "74.84"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Khalsa College SO",
+    "pincode": "143002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6300000",
+    "longitude": "74.8400000"
+  }
+]

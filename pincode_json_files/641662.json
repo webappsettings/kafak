@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "KAyyampalayam BO",
+    "pincode": "641662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9827240",
+    "longitude": "77.2239900"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kalivelampatti BO",
+    "pincode": "641662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0091730",
+    "longitude": "77.2599120"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kuppusamynaidupuram SO",
+    "pincode": "641662",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0017970",
+    "longitude": "77.2218840"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Sukkampalayam BO",
+    "pincode": "641662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0159730",
+    "longitude": "77.2346000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kodangipalayam BO",
+    "pincode": "641662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0211400",
+    "longitude": "77.2097480"
+  }
+]

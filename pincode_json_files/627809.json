@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "PERIAPILLAIVALASAI B.O",
+    "pincode": "627809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9770000000000003",
+    "longitude": "77.232600000000005"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Piranur B.O",
+    "pincode": "627809",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9577000",
+    "longitude": "77.2425000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Thenpothai B.O",
+    "pincode": "627809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9921000",
+    "longitude": "77.2273000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Sengottai RS S.O",
+    "pincode": "627809",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9811000",
+    "longitude": "77.2334000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Sengottai S.O",
+    "pincode": "627809",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9693000",
+    "longitude": "77.2398000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Melur B.O",
+    "pincode": "627809",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9559000",
+    "longitude": "77.2241000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Vallam B.O",
+    "pincode": "627809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9471000",
+    "longitude": "77.2353000"
+  }
+]

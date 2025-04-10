@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Bhatlapenumarru B.O",
+    "pincode": "521138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Pedasanagallu S.O",
+    "pincode": "521138",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2704109083574",
+    "longitude": "80.9243238951651"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Ayyanki B.O",
+    "pincode": "521138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Inampudi B.O",
+    "pincode": "521138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

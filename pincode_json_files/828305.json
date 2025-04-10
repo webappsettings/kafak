@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Pathergoria BO",
+    "pincode": "828305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.724062",
+    "longitude": "86.281332000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "KANDRA",
+    "pincode": "828305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.649999999999999",
+    "longitude": "86.489999999999995"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Ramnagar Garh BO",
+    "pincode": "828305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.737279999999998",
+    "longitude": "86.2898"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "SINGRA",
+    "pincode": "828305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.73",
+    "longitude": "86.299999999999997"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Mohuda SO",
+    "pincode": "828305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.7966944",
+    "longitude": "86.4339167"
+  }
+]

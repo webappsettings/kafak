@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Chandrapadi B.O",
+    "pincode": "609307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0000000",
+    "longitude": "79.8500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Erukkattanchery B.O",
+    "pincode": "609307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0400000",
+    "longitude": "79.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Kaliyappanallur B.O",
+    "pincode": "609307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0500000",
+    "longitude": "79.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Porayar Market B.O",
+    "pincode": "609307",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0200000",
+    "longitude": "79.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Porayar R.S. B.O",
+    "pincode": "609307",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0200000",
+    "longitude": "79.8400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Porayar S.O",
+    "pincode": "609307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0196944",
+    "longitude": "79.8334722"
+  }
+]

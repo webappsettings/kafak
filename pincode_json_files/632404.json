@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Karai SO",
+    "pincode": "632404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9155833",
+    "longitude": "79.1320278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Vanapadi BO",
+    "pincode": "632404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9617734",
+    "longitude": "79.3289443"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Puliyankannu BO",
+    "pincode": "632404",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249666",
+    "longitude": "79.3668445"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Manthangal BO",
+    "pincode": "632404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9269342",
+    "longitude": "79.3532341"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Thengal BO",
+    "pincode": "632404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1381300",
+    "longitude": "79.2523600"
+  }
+]

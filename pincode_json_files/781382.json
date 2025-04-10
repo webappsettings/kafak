@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Bardekpar B.O",
+    "pincode": "781382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.4223000",
+    "longitude": "91.7313000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Japia B.O",
+    "pincode": "781382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.4223000",
+    "longitude": "91.7313000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Soneswar S.O",
+    "pincode": "781382",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.4223000",
+    "longitude": "91.7313000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Helecha B.O",
+    "pincode": "781382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.4223000",
+    "longitude": "91.7313000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Dihina B.O",
+    "pincode": "781382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.4223000",
+    "longitude": "91.7313000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Khudradimu B.O",
+    "pincode": "781382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.4223000",
+    "longitude": "91.7313000"
+  }
+]

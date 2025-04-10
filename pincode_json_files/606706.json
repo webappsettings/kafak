@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Sathanur BO",
+    "pincode": "606706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0092000",
+    "longitude": "78.4334000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kolundampattu BO",
+    "pincode": "606706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0092000",
+    "longitude": "78.4334000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "S Sorpanandal BO",
+    "pincode": "606706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0092000",
+    "longitude": "78.4334000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Veppurchekkadi BO",
+    "pincode": "606706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0092000",
+    "longitude": "78.4334000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Sathanurdam SO",
+    "pincode": "606706",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1784444",
+    "longitude": "78.8601944"
+  }
+]

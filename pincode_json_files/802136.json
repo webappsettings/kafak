@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Khirauli BO",
+    "pincode": "802136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5270390",
+    "longitude": "84.1351550"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Dumraon Textiles SO",
+    "pincode": "802136",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5697222",
+    "longitude": "84.1430555"
+  }
+]

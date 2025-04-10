@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Azad Nagar SO East Delhi",
+    "pincode": "110051",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHAHDARA",
+    "statename": "DELHI",
+    "latitude": "28.6922500",
+    "longitude": "77.3042222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Krishna Nagar HO",
+    "pincode": "110051",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SHAHDARA",
+    "statename": "DELHI",
+    "latitude": "28.645733",
+    "longitude": "77.299773700000003"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Govind Pura SO",
+    "pincode": "110051",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6453611",
+    "longitude": "77.2871111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Ram Nagar SO East Delhi",
+    "pincode": "110051",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6592500",
+    "longitude": "77.2742222"
+  }
+]

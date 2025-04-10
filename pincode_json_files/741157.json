@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia North Division",
+    "officename": "Plassey Sugar Mill SO",
+    "pincode": "741157",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7733900",
+    "longitude": "88.2876100"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia North Division",
+    "officename": "Bhurulia BO",
+    "pincode": "741157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7600000",
+    "longitude": "88.2700000"
+  }
+]

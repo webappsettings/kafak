@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Ghar Majoor BO",
+    "pincode": "185154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.899524",
+    "longitude": "74.742485000000002"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Kanheri BO",
+    "pincode": "185154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7426720",
+    "longitude": "74.8465910"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Dhana Dhanean BO",
+    "pincode": "185154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6954230",
+    "longitude": "74.2546050"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Doori Dugar BO",
+    "pincode": "185154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.9862320",
+    "longitude": "74.3527300"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Sadhoti BO",
+    "pincode": "185154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.0271120",
+    "longitude": "74.6496500"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Chowki Choura SO",
+    "pincode": "185154",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7426700",
+    "longitude": "74.8465910"
+  }
+]

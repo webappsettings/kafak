@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Bara Koriun B.O",
+    "pincode": "804402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.30",
+    "longitude": "84.8"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Fatehpur Sanda B.O",
+    "pincode": "804402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.3",
+    "longitude": "84.63"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Abgila B.O",
+    "pincode": "804402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.207799999999999",
+    "longitude": "84.628799999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Sarouti B.O",
+    "pincode": "804402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.226990000000001",
+    "longitude": "84.644289999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Baidrabad S.O",
+    "pincode": "804402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.606039",
+    "longitude": "85.096863"
+  }
+]

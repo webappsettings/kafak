@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Hathnoli BO",
+    "pincode": "387110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Modaj BO",
+    "pincode": "387110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "72.9882000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Jaravat BO",
+    "pincode": "387110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Kuna BO",
+    "pincode": "387110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "72.9882000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Ghodasar SO Kheda",
+    "pincode": "387110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.7525000",
+    "longitude": "72.6844722"
+  }
+]

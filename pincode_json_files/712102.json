@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Katsara BO",
+    "pincode": "712102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8500000",
+    "longitude": "88.5600000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Kamdebpur BO",
+    "pincode": "712102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5400000",
+    "longitude": "88.5600000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Sogandha BO",
+    "pincode": "712102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9200000",
+    "longitude": "88.3300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Chinsurah RS SO",
+    "pincode": "712102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8880833",
+    "longitude": "88.3725278"
+  }
+]

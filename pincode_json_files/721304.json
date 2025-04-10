@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Hariatara BO",
+    "pincode": "721304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3377000",
+    "longitude": "87.2693000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Dhekia SO",
+    "pincode": "721304",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6530083",
+    "longitude": "88.2227972"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Nimpura SO",
+    "pincode": "721304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3379167",
+    "longitude": "87.2790278"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Dharenda BO",
+    "pincode": "721304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3377000",
+    "longitude": "87.2693000"
+  }
+]

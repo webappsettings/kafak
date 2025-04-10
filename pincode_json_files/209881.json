@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Mohan SO",
+    "pincode": "209881",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4825000",
+    "longitude": "80.3340000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Rasulpur Bakiya BO",
+    "pincode": "209881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8284660",
+    "longitude": "80.5835040"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Dhaura BO",
+    "pincode": "209881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7857960",
+    "longitude": "80.6734830"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Nevalganj BO",
+    "pincode": "209881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2007810",
+    "longitude": "80.5835040"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Samadpur Hardas BO",
+    "pincode": "209881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8366240",
+    "longitude": "80.6212070"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Shahpur Tonda BO",
+    "pincode": "209881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8670930",
+    "longitude": "80.5891740"
+  }
+]

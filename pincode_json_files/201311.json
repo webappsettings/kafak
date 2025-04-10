@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Kheri Bhanota BO",
+    "pincode": "201311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5355160",
+    "longitude": "77.3910260"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Container Depot SO",
+    "pincode": "201311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5308833954802",
+    "longitude": "77.5326151613065"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Tilapta Karanwas BO",
+    "pincode": "201311",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Pali BO",
+    "pincode": "201311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5766790",
+    "longitude": "77.3271690"
+  }
+]

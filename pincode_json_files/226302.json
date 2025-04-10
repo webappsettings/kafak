@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Dayalpur BO",
+    "pincode": "226302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7482590",
+    "longitude": "80.6299170"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Meerak Nagar BO",
+    "pincode": "226302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5623390",
+    "longitude": "81.0299180"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Nigohan SO",
+    "pincode": "226302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8684790",
+    "longitude": "80.9079410"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Mastipur BO",
+    "pincode": "226302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7772290",
+    "longitude": "81.1694370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Utrawan BO",
+    "pincode": "226302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5623470",
+    "longitude": "81.0299180"
+  }
+]

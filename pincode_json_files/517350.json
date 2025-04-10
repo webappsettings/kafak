@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Matluvaripalle B.O",
+    "pincode": "517350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6522",
+    "longitude": "78.4817"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Mudivedu B.O",
+    "pincode": "517350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kurabalakota S.O",
+    "pincode": "517350",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6522",
+    "longitude": "78.4817"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Pitchalvandlapalle B.O",
+    "pincode": "517350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6522",
+    "longitude": "78.4817"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kosuvaripalle B.O",
+    "pincode": "517350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.6522",
+    "longitude": "78.4817"
+  }
+]

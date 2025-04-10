@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Lawa BO",
+    "pincode": "233303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Bauri BO",
+    "pincode": "233303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Miranpur BO",
+    "pincode": "233303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Nonhara SO",
+    "pincode": "233303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6145000",
+    "longitude": "83.6095000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Para BO",
+    "pincode": "233303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Bhala BO",
+    "pincode": "233303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

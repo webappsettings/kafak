@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Siddamalli B.O",
+    "pincode": "609205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2500000",
+    "longitude": "79.6200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Pulavanur B.O",
+    "pincode": "609205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2300000",
+    "longitude": "79.6300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Tiruvalaputhur S.O",
+    "pincode": "609205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7603056",
+    "longitude": "79.8465278"
+  }
+]

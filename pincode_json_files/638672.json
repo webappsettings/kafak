@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Selampalayam BO",
+    "pincode": "638672",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6835500",
+    "longitude": "77.4702500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Dalavoipatnam SO",
+    "pincode": "638672",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6756667",
+    "longitude": "77.4842778"
+  }
+]

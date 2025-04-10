@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Sri Venkateswara Puram S.O",
+    "pincode": "515003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6358333",
+    "longitude": "77.6166389"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "AKUTHOTAPALLI B.O",
+    "pincode": "515003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.61825",
+    "longitude": "77.63222"
+  }
+]

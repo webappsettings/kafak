@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Kittiadgaon B.O",
+    "pincode": "431142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.220023",
+    "longitude": "76.147847"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Phulepimpalgoan B.O",
+    "pincode": "431142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.187505",
+    "longitude": "76.179059"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Kesapuri Camp S.O",
+    "pincode": "431142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1757646",
+    "longitude": "76.1885591"
+  }
+]

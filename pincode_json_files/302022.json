@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Bilwa B.O",
+    "pincode": "302022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7300410",
+    "longitude": "75.8388700"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Goner BO",
+    "pincode": "302022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8864630",
+    "longitude": "75.8341220"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Vidhani BO",
+    "pincode": "302022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7745350",
+    "longitude": "75.8795380"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Sitapura Industrial Area S.O",
+    "pincode": "302022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7791667",
+    "longitude": "75.8383333"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kizhunna BO",
+    "pincode": "670007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8269037",
+    "longitude": "75.4188036"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Thottada SO",
+    "pincode": "670007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8745350",
+    "longitude": "75.3701900"
+  }
+]

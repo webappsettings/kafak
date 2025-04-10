@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Ponda Solding BO",
+    "pincode": "172115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7064500",
+    "longitude": "78.1970500"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Bhaba Nagar SO",
+    "pincode": "172115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.566035",
+    "longitude": "77.934873"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Bari BO",
+    "pincode": "172115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5581455",
+    "longitude": "77.9467331"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Sungra BO",
+    "pincode": "172115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7064500",
+    "longitude": "78.1970500"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Nathpa BO",
+    "pincode": "172115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7064500",
+    "longitude": "78.1970500"
+  }
+]

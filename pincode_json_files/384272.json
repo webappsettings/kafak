@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Goliwada BO",
+    "pincode": "384272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "72.7262000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Sampra BO",
+    "pincode": "384272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "71.9707000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Bepadar BO",
+    "pincode": "384272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.5544000",
+    "longitude": "72.7262000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Veloda BO",
+    "pincode": "384272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "72.7262000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Sariyad SO",
+    "pincode": "384272",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.9920500",
+    "longitude": "72.1656990"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Undra BO",
+    "pincode": "384272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "73.4817000"
+  }
+]

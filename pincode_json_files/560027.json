@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Shanthinagar S.O",
+    "pincode": "560027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.961692299999999",
+    "longitude": "77.597723299999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Sampangiramnagar S.O",
+    "pincode": "560027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.967679",
+    "longitude": "77.592219499999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Wilson Garden S.O",
+    "pincode": "560027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9486782",
+    "longitude": "77.597766300000004"
+  }
+]

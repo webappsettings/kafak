@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Champakara BO",
+    "pincode": "686540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.516799",
+    "longitude": "76.6299"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Chelacompu BO",
+    "pincode": "686540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.485793",
+    "longitude": "76.659381"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Koothrappally BO",
+    "pincode": "686540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.494094",
+    "longitude": "76.625411"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Karukachal SO",
+    "pincode": "686540",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.500594",
+    "longitude": "76.63878"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Pemmaraju Polavaram B.O",
+    "pincode": "534338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.583950",
+    "longitude": "81.711000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Kavitam S.O",
+    "pincode": "534338",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.59613889",
+    "longitude": "81.72430556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Kommuchikkala B.O",
+    "pincode": "534338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.578153",
+    "longitude": "81.693893"
+  }
+]

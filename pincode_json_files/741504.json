@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Baranberia BO",
+    "pincode": "741504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2737810",
+    "longitude": "88.7115950"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Daluabari BO",
+    "pincode": "741504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2584060",
+    "longitude": "88.6659040"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia South Division",
+    "officename": "Duttapulia SO",
+    "pincode": "741504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1716666",
+    "longitude": "88.5761111"
+  }
+]

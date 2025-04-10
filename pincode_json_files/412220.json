@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Karegaon B.O",
+    "pincode": "412220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.649999999999999",
+    "longitude": "74.150000000000006"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Midc Ranjangaon Ganpati S.O",
+    "pincode": "412220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.785132000000001",
+    "longitude": "74.284655000000001"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Nimgaon Bhogi B.O",
+    "pincode": "412220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.577179999999998",
+    "longitude": "74.234449999999995"
+  }
+]

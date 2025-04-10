@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Manapet BO",
+    "pincode": "607402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.8002880",
+    "longitude": "79.7890460"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Bahoor SO",
+    "pincode": "607402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.8092778",
+    "longitude": "79.7379722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Courouvinatham BO",
+    "pincode": "607402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.7954490",
+    "longitude": "79.7329770"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Manamedu BO",
+    "pincode": "607402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.8100000",
+    "longitude": "79.6800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Thookkanambakkam BO",
+    "pincode": "607402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.8418710",
+    "longitude": "79.7041890"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Seliyamedu BO",
+    "pincode": "607402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.8273030",
+    "longitude": "79.7582130"
+  }
+]

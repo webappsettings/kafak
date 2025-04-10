@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Balepuni B.O",
+    "pincode": "574153",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7922320",
+    "longitude": "74.9811631"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Kairangala B.O",
+    "pincode": "574153",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7916634",
+    "longitude": "74.9481612"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Kurnad S.O",
+    "pincode": "574153",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.803849",
+    "longitude": "74.962455"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Boliyar B.O",
+    "pincode": "574153",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8339779",
+    "longitude": "74.9713462"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Chelur B.O",
+    "pincode": "574153",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8408980",
+    "longitude": "74.9809700"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Montepadavu B.O",
+    "pincode": "574153",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7937662",
+    "longitude": "74.9268430"
+  }
+]

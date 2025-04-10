@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Basantpur BO",
+    "pincode": "175042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6900000",
+    "longitude": "76.7000000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Jandhrukalan BO",
+    "pincode": "175042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7900000",
+    "longitude": "76.6800000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Darpa BO",
+    "pincode": "175042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6700000",
+    "longitude": "76.7100000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Rakhoh SO",
+    "pincode": "175042",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6889167",
+    "longitude": "76.7107500"
+  }
+]

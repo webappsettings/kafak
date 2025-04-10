@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Gobindapur B.O",
+    "pincode": "781326",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3024000",
+    "longitude": "91.1412000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Patacharkuchi S.O",
+    "pincode": "781326",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3024000",
+    "longitude": "91.1412000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barbatabari B.O",
+    "pincode": "781326",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3024000",
+    "longitude": "91.1412000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bamunkuchi B.O",
+    "pincode": "781326",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3024000",
+    "longitude": "91.1412000"
+  }
+]

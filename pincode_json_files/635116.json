@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Koppakarai B.O",
+    "pincode": "635116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5120500",
+    "longitude": "78.0265000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Gummanur B.O",
+    "pincode": "635116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5120500",
+    "longitude": "78.0265000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Doddathimmanahalli B.O",
+    "pincode": "635116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5120500",
+    "longitude": "78.0265000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Baliganur B.O",
+    "pincode": "635116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5120500",
+    "longitude": "78.0265000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Odayandahalli B.O",
+    "pincode": "635116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5120500",
+    "longitude": "78.0265000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Royakottah S.O",
+    "pincode": "635116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5275000",
+    "longitude": "78.2161944"
+  }
+]

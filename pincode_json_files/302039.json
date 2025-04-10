@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Murlipura S.O",
+    "pincode": "302039",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9758333",
+    "longitude": "75.7400000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Amba Bari S.O",
+    "pincode": "302039",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9431940",
+    "longitude": "75.7738890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Vidhyadhar Nagar S.O",
+    "pincode": "302039",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9653611",
+    "longitude": "75.7727778"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Mannady S.O (Chennai)",
+    "pincode": "600001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.096617",
+    "longitude": "80.287884"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai GPO Division",
+    "officename": "Chennai G.P.O.",
+    "pincode": "600001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0929722",
+    "longitude": "80.2915000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Flower Bazaar",
+    "pincode": "600001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.088093",
+    "longitude": "80.281965"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Govt Stanley Hospital S.O",
+    "pincode": "600001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.105137",
+    "longitude": "80.284371"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Mint Building S.O",
+    "pincode": "600001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.103702",
+    "longitude": "80.277675"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Sowcarpet NDSO",
+    "pincode": "600001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.088093",
+    "longitude": "80.281965"
+  }
+]

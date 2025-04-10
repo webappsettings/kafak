@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Vayyattupuzha BO",
+    "pincode": "689663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3100000",
+    "longitude": "76.9600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Pampini BO",
+    "pincode": "689663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3400000",
+    "longitude": "76.9100000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Chittar SO",
+    "pincode": "689663",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.5200000",
+    "longitude": "76.9400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Karikayam BO",
+    "pincode": "689663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3300000",
+    "longitude": "76.9100000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Neeliplavu BO",
+    "pincode": "689663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3100000",
+    "longitude": "76.9300000"
+  }
+]

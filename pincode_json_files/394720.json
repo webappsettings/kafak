@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Saputara SO",
+    "pincode": "394720",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DANG",
+    "statename": "GUJARAT",
+    "latitude": "20.8096130",
+    "longitude": "73.7080530"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Malegaon BO",
+    "pincode": "394720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DANG",
+    "statename": "GUJARAT",
+    "latitude": "20.5499439",
+    "longitude": "74.5287430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Gotiamal BO",
+    "pincode": "394720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DANG",
+    "statename": "GUJARAT",
+    "latitude": "20.6258200",
+    "longitude": "73.7023000"
+  }
+]

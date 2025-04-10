@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Bhooma Bada BO",
+    "pincode": "332318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7839436",
+    "longitude": "74.9281842"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Juliasar BO",
+    "pincode": "332318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7404765",
+    "longitude": "74.7439482"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Jajod SO Lachhmangarh",
+    "pincode": "332318",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.841090",
+    "longitude": "74.814800"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Dhanani BO",
+    "pincode": "332318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7769527",
+    "longitude": "74.8141575"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Mangloona BO",
+    "pincode": "332318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7454003",
+    "longitude": "74.7878325"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Narsas BO",
+    "pincode": "332318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7456748",
+    "longitude": "74.8799518"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Thimmapur B.O",
+    "pincode": "505527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.3720610",
+    "longitude": "79.1724890"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Lower Manair Dam Colony S.O",
+    "pincode": "505527",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.374613",
+    "longitude": "79.15626"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Algunur B.O",
+    "pincode": "505527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.4016640",
+    "longitude": "79.1458940"
+  }
+]

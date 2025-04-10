@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Pirandavane B.O",
+    "pincode": "415617",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.0864000",
+    "longitude": "73.3510000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Kotawada S.O",
+    "pincode": "415617",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.089099",
+    "longitude": "73.315746"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Vetoshi B.O",
+    "pincode": "415617",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.0864000",
+    "longitude": "73.3510000"
+  }
+]

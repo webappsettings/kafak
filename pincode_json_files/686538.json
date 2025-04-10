@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Puthenchantha BO",
+    "pincode": "686538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.445397",
+    "longitude": "76.56272"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Ponganthanam BO",
+    "pincode": "686538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.51278",
+    "longitude": "76.592567"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Vakathanam South BO",
+    "pincode": "686538",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.5125013",
+    "longitude": "76.5690087"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Vakathanam SO",
+    "pincode": "686538",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.523035",
+    "longitude": "76.573092"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Nalunnackal BO",
+    "pincode": "686538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.444068",
+    "longitude": "76.542306"
+  }
+]

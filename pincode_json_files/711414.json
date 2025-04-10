@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Gobindapur Shibtala BO",
+    "pincode": "711414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4652000",
+    "longitude": "88.0574000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Siddheswar BO",
+    "pincode": "711414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5924820",
+    "longitude": "88.1157150"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Maju SO",
+    "pincode": "711414",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6173130",
+    "longitude": "88.0884270"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Naskarpur BO",
+    "pincode": "711414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5887260",
+    "longitude": "88.0975980"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Polgustia BO",
+    "pincode": "711414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5932920",
+    "longitude": "88.0583120"
+  }
+]

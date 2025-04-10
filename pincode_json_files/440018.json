@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Ganjipeth S.O",
+    "pincode": "440018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1513175",
+    "longitude": "79.0991502"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Mahatma Fule Bazar S.O",
+    "pincode": "440018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.14566667",
+    "longitude": "79.0905"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Mominpura S.O",
+    "pincode": "440018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.15736111",
+    "longitude": "79.09708333"
+  }
+]

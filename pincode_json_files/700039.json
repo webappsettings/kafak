@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Picnic Garden SO",
+    "pincode": "700039",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5291111",
+    "longitude": "88.3882778"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Tiljala SO",
+    "pincode": "700039",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5284465",
+    "longitude": "88.3765561"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Tiljala Bazar SO",
+    "pincode": "700039",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3144206",
+    "longitude": "88.2313330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Bediadanga SO",
+    "pincode": "700039",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5221944",
+    "longitude": "88.3821667"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Topsia SO",
+    "pincode": "700039",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3234740",
+    "longitude": "88.2394130"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Sathankuppam B.O",
+    "pincode": "607004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7000000",
+    "longitude": "79.7800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "M.Pudur B.O",
+    "pincode": "607004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7300000",
+    "longitude": "79.7500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Vandipalayam S.O",
+    "pincode": "607004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7300000",
+    "longitude": "79.7500000"
+  }
+]

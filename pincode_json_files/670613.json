@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Mowancheri SO",
+    "pincode": "670613",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8745350",
+    "longitude": "75.3701900"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Iriveri BO",
+    "pincode": "670613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8707352",
+    "longitude": "75.4813530"
+  }
+]

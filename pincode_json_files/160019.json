@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sector 19 Chandigarh SO",
+    "pincode": "160019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7263611",
+    "longitude": "76.7961944"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sector 26 Chandigarh SO",
+    "pincode": "160019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7237500",
+    "longitude": "76.8103056"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Raj Bhawan SO Chandigarh",
+    "pincode": "160019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7389000",
+    "longitude": "76.8106000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sector 27ChandigarhSO",
+    "pincode": "160019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7226700",
+    "longitude": "76.7982500"
+  }
+]

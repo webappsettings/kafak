@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Dudsar BO",
+    "pincode": "742174",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6209000",
+    "longitude": "87.9139000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Jhikra BO",
+    "pincode": "742174",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6209000",
+    "longitude": "87.9139000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Sarbangapur SO",
+    "pincode": "742174",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5333000",
+    "longitude": "88.2308880"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Dakatiapota BO",
+    "pincode": "742174",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6209000",
+    "longitude": "87.9139000"
+  }
+]

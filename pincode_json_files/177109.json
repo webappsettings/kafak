@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Arn Behal BO",
+    "pincode": "177109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7707180",
+    "longitude": "76.2024510"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Jajjar BO",
+    "pincode": "177109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7567130",
+    "longitude": "76.2033730"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Bharwain SO",
+    "pincode": "177109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7995000",
+    "longitude": "76.1254444"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Lohara BO",
+    "pincode": "177109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7713360",
+    "longitude": "76.1977280"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Suhin BO",
+    "pincode": "177109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7513600",
+    "longitude": "76.1133360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Kinoo BO",
+    "pincode": "177109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7624240",
+    "longitude": "76.1843340"
+  }
+]

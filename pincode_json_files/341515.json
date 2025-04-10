@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Morikhurd B.O",
+    "pincode": "341515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "28.975999999999999",
+    "longitude": "77.710144"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Peelwa B.O",
+    "pincode": "341515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.686",
+    "longitude": "74.634100000000004"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Rid B.O",
+    "pincode": "341515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7943",
+    "longitude": "74.338800000000006"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Bajwas B.O",
+    "pincode": "341515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.719899999999999",
+    "longitude": "74.602000000000004"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Moriallan B.O",
+    "pincode": "341515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6691807",
+    "longitude": "74.4818698"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Thata B.O",
+    "pincode": "341515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "31.7105154",
+    "longitude": "76.9403565"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Harsore S.O",
+    "pincode": "341515",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7363333",
+    "longitude": "74.4766667"
+  }
+]

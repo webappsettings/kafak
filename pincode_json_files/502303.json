@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Mallampet BO",
+    "pincode": "502303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.062425",
+    "longitude": "78.046482"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Lingaipally B.O",
+    "pincode": "502303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.076462",
+    "longitude": "78.026724"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Papannapet S.O",
+    "pincode": "502303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.038219",
+    "longitude": "78.087023"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Gullana BO",
+    "pincode": "303327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Keshrisinghpura B.O",
+    "pincode": "303327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "27.084515",
+    "longitude": "76.576517199999998"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Jhajhirampura BO",
+    "pincode": "303327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Karnawar BO",
+    "pincode": "303327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Shabdawali BO",
+    "pincode": "303327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Baswa SO Dausa",
+    "pincode": "303327",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8908889",
+    "longitude": "76.3378889"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Ankupa BO",
+    "pincode": "824123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Khaira Rajpur BO",
+    "pincode": "824123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "K P Tendua BO",
+    "pincode": "824123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Narendra Khap BO",
+    "pincode": "824123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Turta BO",
+    "pincode": "824123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Kutumba SO",
+    "pincode": "824123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.8761700",
+    "longitude": "75.3433130"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Pipra Bagahi BO",
+    "pincode": "824123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Oorupoika BO",
+    "pincode": "695104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.68",
+    "longitude": "76.85"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Parayathukonam BO",
+    "pincode": "695104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.67",
+    "longitude": "76.81"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Edakode BO",
+    "pincode": "695104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.6717570",
+    "longitude": "76.8356970"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Kizhuvalam SO",
+    "pincode": "695104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.679293",
+    "longitude": "76.8249"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Kurakkada BO",
+    "pincode": "695104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.66",
+    "longitude": "76.83"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Kandukrishi BO",
+    "pincode": "695104",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.6621690",
+    "longitude": "76.8105480"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Hathuka BO",
+    "pincode": "394640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0491234",
+    "longitude": "73.2603125"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Kanjod BO",
+    "pincode": "394640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0491234",
+    "longitude": "73.2603125"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Navafalia BO",
+    "pincode": "394640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0491264",
+    "longitude": "73.2603095"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Ranveri BO",
+    "pincode": "394640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0276070",
+    "longitude": "73.2617930"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Valod SO",
+    "pincode": "394640",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0322000",
+    "longitude": "73.2277980"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Bhimpor BO",
+    "pincode": "394640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0491244",
+    "longitude": "73.2603115"
+  }
+]

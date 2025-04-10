@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Baxar BO",
+    "pincode": "824129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Dadar BO",
+    "pincode": "824129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Karma Pandey BO",
+    "pincode": "824129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Sandya BO",
+    "pincode": "824129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Jaitiya BO",
+    "pincode": "824129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Rukundi Jhikatia SO",
+    "pincode": "824129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.8761700",
+    "longitude": "75.3433130"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Dihuri Ekauni BO",
+    "pincode": "824129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  }
+]

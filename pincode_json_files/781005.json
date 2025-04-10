@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Japorigog B.O",
+    "pincode": "781005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1505800",
+    "longitude": "91.7848000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Dispur S.O",
+    "pincode": "781005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1505833",
+    "longitude": "91.7848056"
+  }
+]

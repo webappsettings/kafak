@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Rasipalayam BO",
+    "pincode": "641402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0613140",
+    "longitude": "77.1324040"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kannampalayam BO",
+    "pincode": "641402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9930500",
+    "longitude": "77.0974833"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Sulur SO",
+    "pincode": "641402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0252970",
+    "longitude": "77.1258500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Appanaickenpatti BO",
+    "pincode": "641402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9749010",
+    "longitude": "77.1564230"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Muthugoundenpudur BO",
+    "pincode": "641402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0503850",
+    "longitude": "77.1180760"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kalingal BO",
+    "pincode": "641402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9910950",
+    "longitude": "77.1364616"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "West Kadungalloor BO",
+    "pincode": "683110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.106025",
+    "longitude": "76.318613"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Muppathadam SO",
+    "pincode": "683110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.090574",
+    "longitude": "76.31829"
+  }
+]

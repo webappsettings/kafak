@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Dibbapalem B.O",
+    "pincode": "530044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6322410",
+    "longitude": "83.2365480"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Pedagantyada S.O",
+    "pincode": "530044",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6715833",
+    "longitude": "83.2026111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Balacheruvu B.O",
+    "pincode": "530044",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6543650",
+    "longitude": "83.1961380"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Nadupuru B.O",
+    "pincode": "530044",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6714110",
+    "longitude": "83.1983900"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Gangavaram B.O",
+    "pincode": "530044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6214620",
+    "longitude": "83.2297930"
+  }
+]

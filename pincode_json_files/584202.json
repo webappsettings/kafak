@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Hirapur B.O",
+    "pincode": "584202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0000000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Turkondana B.O",
+    "pincode": "584202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0000000",
+    "longitude": "77.3200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Rajoli B.O",
+    "pincode": "584202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9700000",
+    "longitude": "77.2400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Hanamapur B.O",
+    "pincode": "584202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9700000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Jookur B.O",
+    "pincode": "584202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9600000",
+    "longitude": "77.2200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Matmari S.O",
+    "pincode": "584202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2032778",
+    "longitude": "77.3487778"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Purtipli B.O",
+    "pincode": "584202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0400000",
+    "longitude": "77.3100000"
+  }
+]

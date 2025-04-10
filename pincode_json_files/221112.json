@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Umrahan BO",
+    "pincode": "221112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Kamauli BO",
+    "pincode": "221112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Barain BO",
+    "pincode": "221112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "CHIRAIGAON SO",
+    "pincode": "221112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Bariyasanpur BO",
+    "pincode": "221112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Saraimohana BO",
+    "pincode": "221112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Shankerpur BO",
+    "pincode": "221112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4939100",
+    "longitude": "83.0128500"
+  }
+]

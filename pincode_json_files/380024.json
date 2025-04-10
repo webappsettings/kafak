@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Asarwa Ext South SO",
+    "pincode": "380024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.038923",
+    "longitude": "72.625650"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "I E Bapunagar SO",
+    "pincode": "380024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.025837",
+    "longitude": "72.624541"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Bapunagar SO",
+    "pincode": "380024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.029718",
+    "longitude": "72.626586"
+  }
+]

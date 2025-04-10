@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Badakharida S.O",
+    "pincode": "761041",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5512983",
+    "longitude": "84.8349433"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Arakhapur B.O",
+    "pincode": "761041",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5793083",
+    "longitude": "84.8936933"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Badamahuri B.O",
+    "pincode": "761041",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.6068016",
+    "longitude": "84.8654266"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Bhutsarasingi B.O",
+    "pincode": "761041",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5391283",
+    "longitude": "84.8604166"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Rama Sanarayanpur B.O",
+    "pincode": "761041",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5905999",
+    "longitude": "84.8629316"
+  }
+]

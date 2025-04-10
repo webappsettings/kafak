@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bagalsroad Chowk B.O",
+    "pincode": "781348",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2202000",
+    "longitude": "91.2636000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Pubkalakuchi B.O",
+    "pincode": "781348",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2202000",
+    "longitude": "91.2636000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barkuriha B.O",
+    "pincode": "781348",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2202000",
+    "longitude": "91.2636000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Marowa S.O",
+    "pincode": "781348",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2202000",
+    "longitude": "91.2636000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Budrukuchi B.O",
+    "pincode": "781348",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2202000",
+    "longitude": "91.2636000"
+  }
+]

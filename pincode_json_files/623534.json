@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Nagachi BO",
+    "pincode": "623534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.3200000",
+    "longitude": "78.9900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Rettaiyurani BO",
+    "pincode": "623534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.3000000",
+    "longitude": "78.9700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Mangundu BO",
+    "pincode": "623534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.3000000",
+    "longitude": "78.9900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Uchipuli SO",
+    "pincode": "623534",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.310994",
+    "longitude": "79.014712"
+  }
+]

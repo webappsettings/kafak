@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Bhangaon B.O",
+    "pincode": "833222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.033833000000001",
+    "longitude": "85.234615000000005"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Kiriburu Base Camp SO",
+    "pincode": "833222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.10958",
+    "longitude": "85.29733"
+  }
+]

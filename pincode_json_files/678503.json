@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Karippode BO",
+    "pincode": "678503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.6802",
+    "longitude": "76.6836"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Pudunagaram SO",
+    "pincode": "678503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7995710",
+    "longitude": "76.6423180"
+  }
+]

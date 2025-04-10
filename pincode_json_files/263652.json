@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Bhainsoli BO",
+    "pincode": "263652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433705",
+    "longitude": "79.4321735"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kulsibi BO",
+    "pincode": "263652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433685",
+    "longitude": "79.4321755"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Aina BO",
+    "pincode": "263652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433655",
+    "longitude": "79.4321785"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Majkhali SO",
+    "pincode": "263652",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6790000",
+    "longitude": "79.5156000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Dwarson BO",
+    "pincode": "263652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433685",
+    "longitude": "79.4321755"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Ratgal BO",
+    "pincode": "263652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433675",
+    "longitude": "79.4321765"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kuwali BO",
+    "pincode": "263652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433675",
+    "longitude": "79.4321765"
+  }
+]

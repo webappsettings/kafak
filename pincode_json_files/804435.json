@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "KORIYAWAN B.O",
+    "pincode": "804435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "25.050000000000001",
+    "longitude": "84.890000000000001"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Main SO",
+    "pincode": "804435",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.7938333",
+    "longitude": "85.0080833"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Nimsar BO",
+    "pincode": "804435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.9707440",
+    "longitude": "84.9687502"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "PANDABIGHA",
+    "pincode": "804435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.7938333",
+    "longitude": "85.0080833"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "NONI B.O",
+    "pincode": "804435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.98",
+    "longitude": "84.870000000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Sadopur BO",
+    "pincode": "804435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "25.2139290",
+    "longitude": "84.9895550"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Turi BO",
+    "pincode": "804435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.9707440",
+    "longitude": "84.9687502"
+  }
+]

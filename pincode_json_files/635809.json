@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Tippasamudram B.O",
+    "pincode": "635809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8685620",
+    "longitude": "78.9125500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Vettuvanam B.O",
+    "pincode": "635809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9035810",
+    "longitude": "78.9214760"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Pallikonda S.O",
+    "pincode": "635809",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9129880",
+    "longitude": "78.9404230"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Gollamangalam B.O",
+    "pincode": "635809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8795480",
+    "longitude": "78.8981310"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Kandaneri B.O",
+    "pincode": "635809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9152540",
+    "longitude": "78.9736620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Odiyathur B.O",
+    "pincode": "635809",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8678750",
+    "longitude": "78.9283430"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Pallikonda Bazaar B.O",
+    "pincode": "635809",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9035810",
+    "longitude": "78.9400160"
+  }
+]

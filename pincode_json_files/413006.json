@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Midc Solapur S.O",
+    "pincode": "413006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6709444",
+    "longitude": "75.9363611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Kumbhari B.O",
+    "pincode": "413006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6500057",
+    "longitude": "75.9884040"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Kardehalli B.O",
+    "pincode": "413006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.7776000",
+    "longitude": "75.8618000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Mulegaon B.O",
+    "pincode": "413006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6839280",
+    "longitude": "75.9681270"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Ashok Chowk S.O",
+    "pincode": "413006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6571944",
+    "longitude": "75.9212500"
+  }
+]

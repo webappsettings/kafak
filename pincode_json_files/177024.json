@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Amroh BO",
+    "pincode": "177024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6429000",
+    "longitude": "76.6413000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Baroh BO",
+    "pincode": "177024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6501000",
+    "longitude": "76.6878000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Bhukkar BO",
+    "pincode": "177024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6598000",
+    "longitude": "76.7147000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Bhareri SO",
+    "pincode": "177024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6518056",
+    "longitude": "76.6878000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Chanruhi BO",
+    "pincode": "177024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6459000",
+    "longitude": "76.7147000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Dhamrol BO",
+    "pincode": "177024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6335000",
+    "longitude": "76.6925000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Hanoh BO",
+    "pincode": "177024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6693000",
+    "longitude": "76.6867000"
+  }
+]

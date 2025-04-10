@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Bandaruvanipeta B.O",
+    "pincode": "532406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3415277",
+    "longitude": "84.1184444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Calingapatnam S.O",
+    "pincode": "532406",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3415278",
+    "longitude": "84.1184444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Vommaravilli B.O",
+    "pincode": "532406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3415277",
+    "longitude": "84.1184454"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Tonangi B.O",
+    "pincode": "532406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3415277",
+    "longitude": "84.1184445"
+  }
+]

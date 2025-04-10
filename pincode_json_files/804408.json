@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Jehanabad HO",
+    "pincode": "804408",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JEHANABAD",
+    "statename": "BIHAR",
+    "latitude": "25.2376944",
+    "longitude": "85.0010833"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Jehanabad Kutchary SO",
+    "pincode": "804408",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JEHANABAD",
+    "statename": "BIHAR",
+    "latitude": "25.2191103",
+    "longitude": "84.9888825"
+  }
+]

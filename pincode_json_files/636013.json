@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Karukkalvadi B.O",
+    "pincode": "636013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6736660",
+    "longitude": "78.0246760"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Salem Steel Plant S.O",
+    "pincode": "636013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6660810",
+    "longitude": "78.0350290"
+  }
+]

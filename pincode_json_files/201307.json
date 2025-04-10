@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Sec55 Noida SO",
+    "pincode": "201307",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Sec 12 Noida SO",
+    "pincode": "201307",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "23.1568400",
+    "longitude": "78.5942640"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Sec34 Noida SO",
+    "pincode": "201307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5882783567219",
+    "longitude": "77.3510607100337"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Sarfabad BO",
+    "pincode": "201307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5849320",
+    "longitude": "77.3869900"
+  }
+]

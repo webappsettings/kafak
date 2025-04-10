@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Tiruchirappalli Townhall SO",
+    "pincode": "620002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8246710",
+    "longitude": "78.6959200"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Teppakulam SO",
+    "pincode": "620002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8263333",
+    "longitude": "78.6929444"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Rock Fort SO",
+    "pincode": "620002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8271970",
+    "longitude": "78.6974420"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Cherooppa BO",
+    "pincode": "673661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2700000",
+    "longitude": "75.9500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Cheruvadi BO",
+    "pincode": "673661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2700000",
+    "longitude": "75.9700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Pazhur BO",
+    "pincode": "673661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2800000",
+    "longitude": "76.0000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Kanni Paramba BO",
+    "pincode": "673661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2600000",
+    "longitude": "75.9600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Mavoor SO Kozhikode",
+    "pincode": "673661",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.261594",
+    "longitude": "75.953879"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Kayal BO",
+    "pincode": "673661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2400000",
+    "longitude": "75.9400000"
+  }
+]

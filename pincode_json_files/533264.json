@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Ramavaram B.O",
+    "pincode": "533264",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6798000",
+    "longitude": "81.9569000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Kutukuluru S.O",
+    "pincode": "533264",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8775000",
+    "longitude": "81.9766389"
+  }
+]

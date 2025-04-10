@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Sigao B.O",
+    "pincode": "403410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.2000000",
+    "longitude": "15.5500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Collem S.O",
+    "pincode": "403410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.3375833",
+    "longitude": "74.2428611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Mollem B.O",
+    "pincode": "403410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.2000000",
+    "longitude": "15.5500000"
+  }
+]

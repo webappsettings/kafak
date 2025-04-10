@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Vaithiswarankoil West B.O",
+    "pincode": "609117",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2000000",
+    "longitude": "79.7100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Athukudi B.O",
+    "pincode": "609117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1700000",
+    "longitude": "79.7100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Kondathur B.O",
+    "pincode": "609117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1700000",
+    "longitude": "79.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Pagasalai B.O",
+    "pincode": "609117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1800000",
+    "longitude": "79.7400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Punganur B.O",
+    "pincode": "609117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2100000",
+    "longitude": "79.7000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Idaikudi vadapathy B.O",
+    "pincode": "609117",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1900000",
+    "longitude": "79.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Vaithiswarankoil S.O",
+    "pincode": "609117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7603056",
+    "longitude": "79.8465278"
+  }
+]

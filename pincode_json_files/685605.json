@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Ezhumuttom BO",
+    "pincode": "685605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.92118",
+    "longitude": "76.75704"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Perumpillichira BO",
+    "pincode": "685605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.92158",
+    "longitude": "76.71844"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Ezhallur BO",
+    "pincode": "685605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.94606",
+    "longitude": "76.72638"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Muthalakodam SO",
+    "pincode": "685605",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.91113",
+    "longitude": "76.73243"
+  }
+]

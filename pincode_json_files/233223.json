@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Bahediya BO",
+    "pincode": "233223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Baheri BO",
+    "pincode": "233223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Newada BO",
+    "pincode": "233223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Gauri BO",
+    "pincode": "233223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Khanpur BO",
+    "pincode": "233223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Rampur SO Ghazipur",
+    "pincode": "233223",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5765000",
+    "longitude": "83.5731944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Amehta BO",
+    "pincode": "233223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

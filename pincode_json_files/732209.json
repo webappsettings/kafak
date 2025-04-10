@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Pirpur BO",
+    "pincode": "732209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Sahabattola BO",
+    "pincode": "732209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Gopalpur BO",
+    "pincode": "732209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Milki BO",
+    "pincode": "732209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0183881",
+    "longitude": "87.9996065"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Bhabanipur BO",
+    "pincode": "732209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "KB Jhowbona BO",
+    "pincode": "732209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Sovanagar SO",
+    "pincode": "732209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2091666",
+    "longitude": "87.9769444"
+  }
+]

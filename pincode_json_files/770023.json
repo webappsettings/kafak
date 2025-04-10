@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Gyanpali B.O",
+    "pincode": "770023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.287996499999998",
+    "longitude": "84.510827800000001"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "R.Kukuda B.O",
+    "pincode": "770023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.272612500000001",
+    "longitude": "84.548606100000001"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Lanjiberna S.O",
+    "pincode": "770023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2504770",
+    "longitude": "84.5187211"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Katang B.O",
+    "pincode": "770023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.241425400000001",
+    "longitude": "84.489604900000003"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Dawanewadi B.O",
+    "pincode": "412311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2468975",
+    "longitude": "74.0153131"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Mahur B.O",
+    "pincode": "412311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1854773",
+    "longitude": "74.0549762"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Kaldari B.O",
+    "pincode": "412311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2481764",
+    "longitude": "73.9881381"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Hargude B.O",
+    "pincode": "412311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2134500",
+    "longitude": "74.1043000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Mandhar B.O",
+    "pincode": "412311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2156438",
+    "longitude": "74.0244969"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Parinche S.O",
+    "pincode": "412311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.192048",
+    "longitude": "74.083664999999996"
+  }
+]

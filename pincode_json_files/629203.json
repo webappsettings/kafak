@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Friday Market S.O",
+    "pincode": "629203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1516389",
+    "longitude": "77.3367778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Saral Agasteeswaram B.O",
+    "pincode": "629203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1700000",
+    "longitude": "77.3500000"
+  }
+]

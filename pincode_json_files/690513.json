@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Akamkudy BO",
+    "pincode": "690513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.2739561",
+    "longitude": "76.4658556"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Nangiarkulangara SO",
+    "pincode": "690513",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.2561629",
+    "longitude": "76.4669728"
+  }
+]

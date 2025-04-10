@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Gurjal B.O",
+    "pincode": "503114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.3577100",
+    "longitude": "78.1409383"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Methusangam B.O",
+    "pincode": "503114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.3356266",
+    "longitude": "78.1053466"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Durgam B.O",
+    "pincode": "503114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.461670000000002",
+    "longitude": "78.120429999999999"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Neeral B.O",
+    "pincode": "503114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4622577",
+    "longitude": "78.0845801"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Gandhari S.O",
+    "pincode": "503114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.39487",
+    "longitude": "78.117055"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Pothangalkalan B.O",
+    "pincode": "503114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.3828083",
+    "longitude": "78.0669250"
+  }
+]

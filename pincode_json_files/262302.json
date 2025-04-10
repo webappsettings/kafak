@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Hardaspur BO",
+    "pincode": "262302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8710077",
+    "longitude": "79.804450000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Majhola SO Bareilly",
+    "pincode": "262302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3387778",
+    "longitude": "79.4212778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Dunidam BO",
+    "pincode": "262302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2855000",
+    "longitude": "80.6270500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Sunpahar BO",
+    "pincode": "262302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6321860",
+    "longitude": "79.8029790"
+  }
+]

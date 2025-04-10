@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Bilinele B.O",
+    "pincode": "574238",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7018062",
+    "longitude": "75.5992020"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Yenekal B.O",
+    "pincode": "574238",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6542989",
+    "longitude": "75.5835593"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Devarahalli B.O",
+    "pincode": "574238",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6542989",
+    "longitude": "75.5835593"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Subramanya S.O",
+    "pincode": "574238",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6658889",
+    "longitude": "75.6130278"
+  }
+]

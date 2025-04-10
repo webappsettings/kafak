@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Sohagi BO",
+    "pincode": "821306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.015536999999998",
+    "longitude": "84.264094"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Darihat SO",
+    "pincode": "821306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9652450",
+    "longitude": "84.2636850"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Paruhar BO",
+    "pincode": "821306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.990365000000001",
+    "longitude": "84.262777"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Baraon Kala BO",
+    "pincode": "821306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.628740000000001",
+    "longitude": "83.920165999999995"
+  }
+]

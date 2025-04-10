@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Kurangani B.O",
+    "pincode": "628623",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4955940",
+    "longitude": "78.1191780"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Kurukattur B.O",
+    "pincode": "628623",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4955950",
+    "longitude": "78.1191770"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Thenthiruperai S.O",
+    "pincode": "628623",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6036700",
+    "longitude": "77.9854700"
+  }
+]

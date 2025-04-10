@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "N C Market SO",
+    "pincode": "380002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.018464",
+    "longitude": "72.598780"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Railwaypura SO",
+    "pincode": "380002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.082874",
+    "longitude": "72.667409"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Revdibazar HO",
+    "pincode": "380002",
+    "officetype": "HO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.028048",
+    "longitude": "72.598523"
+  }
+]

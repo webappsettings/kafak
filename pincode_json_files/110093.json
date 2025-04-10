@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Harsh Vihar SO",
+    "pincode": "110093",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.7021944",
+    "longitude": "77.3236389"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Housing Complex Loni Road SO",
+    "pincode": "110093",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6952500",
+    "longitude": "77.2953333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Nand Nagri C SO",
+    "pincode": "110093",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6921111",
+    "longitude": "77.3042222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Mandoli Saboli BO",
+    "pincode": "110093",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.7021850",
+    "longitude": "77.3050100"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Koottanad",
+    "pincode": "679533",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.76151409",
+    "longitude": "76.12019893"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Nellikattiri BO",
+    "pincode": "679533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.1166000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Thirumittakode BO",
+    "pincode": "679533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.1166000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Thekke Vavanoor BO",
+    "pincode": "679533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.1166000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Nagalassery BO",
+    "pincode": "679533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.1166000"
+  }
+]

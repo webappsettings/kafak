@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Halligudi B.O",
+    "pincode": "582115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4018540",
+    "longitude": "75.8337913"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Hallikeri B.O",
+    "pincode": "582115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.3887112",
+    "longitude": "75.7191859"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Harlapur B.O",
+    "pincode": "582115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4220993",
+    "longitude": "75.7749115"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Hatalgeri B.O",
+    "pincode": "582115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4176576",
+    "longitude": "75.6878148"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Timmapur B.O",
+    "pincode": "582115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4337294",
+    "longitude": "75.8330725"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Lakkundi S.O",
+    "pincode": "582115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.3887112",
+    "longitude": "75.7191859"
+  }
+]

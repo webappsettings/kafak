@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Balowa B.O",
+    "pincode": "781310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2053000",
+    "longitude": "91.2020000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Deharkalakuchi B.O",
+    "pincode": "781310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2053000",
+    "longitude": "91.2020000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Jagra S.O",
+    "pincode": "781310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2053000",
+    "longitude": "91.2020000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bagurihati B.O",
+    "pincode": "781310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2053000",
+    "longitude": "91.2020000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Khakharisal B.O",
+    "pincode": "781310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2053000",
+    "longitude": "91.2020000"
+  }
+]

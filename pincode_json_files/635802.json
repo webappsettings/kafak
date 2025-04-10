@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Gangapuram B.O",
+    "pincode": "635802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8002070",
+    "longitude": "78.7317220"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Kumaramangalam B.O",
+    "pincode": "635802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7671190",
+    "longitude": "78.6809060"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Naickaneri B.O",
+    "pincode": "635802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7622690",
+    "longitude": "78.7946850"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Devalapuram B.O",
+    "pincode": "635802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7855720",
+    "longitude": "78.7064520"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Somalapuram B.O",
+    "pincode": "635802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8095620",
+    "longitude": "78.7265900"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Ambur S.O",
+    "pincode": "635802",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7860770",
+    "longitude": "78.7213970"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Thennambattu B.O",
+    "pincode": "635802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7525380",
+    "longitude": "78.6640730"
+  }
+]

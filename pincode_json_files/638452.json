@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Gobichettipalayam HO",
+    "pincode": "638452",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4557200",
+    "longitude": "77.4208580"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Gobichettipalayam East SO",
+    "pincode": "638452",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4580760",
+    "longitude": "77.4353630"
+  }
+]

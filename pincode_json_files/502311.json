@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Sirigiripally B.O",
+    "pincode": "502311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.819569",
+    "longitude": "78.720552"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Teegul B.O",
+    "pincode": "502311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.820858",
+    "longitude": "78.767937"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Yerraballi B.O",
+    "pincode": "502311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Pregnapur S.O",
+    "pincode": "502311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.833374",
+    "longitude": "78.705389"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Akkaram B.O",
+    "pincode": "502311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "17.82222",
+    "longitude": "78.739671"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Etigadda Kistapur B.O",
+    "pincode": "502311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Pallepahad B.O",
+    "pincode": "502311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

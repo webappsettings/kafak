@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Ravlapura BO",
+    "pincode": "388360",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5982000",
+    "longitude": "72.9602000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Ajupura BO",
+    "pincode": "388360",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.6038420",
+    "longitude": "72.9844401"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Samarkha SO",
+    "pincode": "388360",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5591944",
+    "longitude": "72.9641389"
+  }
+]

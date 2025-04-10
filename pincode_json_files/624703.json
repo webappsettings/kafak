@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Thozhipatti BO",
+    "pincode": "624703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7200000",
+    "longitude": "78.1000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Ulliyakottai BO",
+    "pincode": "624703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6600000",
+    "longitude": "78.0700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Karikali BO",
+    "pincode": "624703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7100000",
+    "longitude": "78.1000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Guziliamparai SO",
+    "pincode": "624703",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6798904",
+    "longitude": "78.1106723"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Alambadimines BO",
+    "pincode": "624703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7200000",
+    "longitude": "78.0600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Ramagiri BO",
+    "pincode": "624703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6600000",
+    "longitude": "78.1200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Mallapuram BO",
+    "pincode": "624703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6800000",
+    "longitude": "78.0400000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Malipada B.O",
+    "pincode": "752018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.0783124",
+    "longitude": "85.5606060"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Ramchandi B.O",
+    "pincode": "752018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.0481513",
+    "longitude": "85.5813038"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Brajamohanpur B.O",
+    "pincode": "752018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.0617488",
+    "longitude": "85.6101405"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Hadapada B.O",
+    "pincode": "752018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.0388709",
+    "longitude": "85.5856253"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Nijigarhtapang B.O",
+    "pincode": "752018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.0920356",
+    "longitude": "85.5943012"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Narangarh S.O",
+    "pincode": "752018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.0481513",
+    "longitude": "85.5813038"
+  }
+]

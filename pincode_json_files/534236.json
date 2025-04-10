@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Yelurupadu S.O",
+    "pincode": "534236",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.51988889",
+    "longitude": "81.348"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Juvvalapalem B.O",
+    "pincode": "534236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.537552",
+    "longitude": "81.444932"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Prathalameraka B.O",
+    "pincode": "534236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.481088",
+    "longitude": "81.378694"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Kalavapudi B.O",
+    "pincode": "534236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.470666",
+    "longitude": "81.382215"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Military Colony B.O",
+    "pincode": "534236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.470717",
+    "longitude": "81.406331"
+  }
+]

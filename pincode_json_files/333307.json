@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Bagora B.O",
+    "pincode": "333307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7035190",
+    "longitude": "75.4927100"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Kot B.O",
+    "pincode": "333307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6689380",
+    "longitude": "75.4293670"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Girdharpura Shahpura B.O",
+    "pincode": "333307",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7795390",
+    "longitude": "75.4257320"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Inderpura B.O",
+    "pincode": "333307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7616290",
+    "longitude": "75.4592340"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Dholekhera B.O",
+    "pincode": "333307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7897320",
+    "longitude": "75.4586510"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Udaipurwati S.O",
+    "pincode": "333307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7287778",
+    "longitude": "75.4740278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Nangal B.O",
+    "pincode": "333307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7291290",
+    "longitude": "75.4532120"
+  }
+]

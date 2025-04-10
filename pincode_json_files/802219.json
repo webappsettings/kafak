@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Siyawak BO",
+    "pincode": "802219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.6287400",
+    "longitude": "83.9201660"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Suara BO",
+    "pincode": "802219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9228220",
+    "longitude": "84.1408750"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Rajpur SO Rohtas",
+    "pincode": "802219",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.0791690",
+    "longitude": "84.2094350"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Bishunpur BO",
+    "pincode": "802219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9730350",
+    "longitude": "84.1026060"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Bisheni Kala BO",
+    "pincode": "802219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.6287400",
+    "longitude": "83.9201660"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Sokhara BO",
+    "pincode": "802219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9116190",
+    "longitude": "84.1567040"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Rajandih BO",
+    "pincode": "802219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.0612410",
+    "longitude": "84.2423680"
+  }
+]

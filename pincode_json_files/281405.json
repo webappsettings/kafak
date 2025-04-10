@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Hathia BO",
+    "pincode": "281405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Maharana BO",
+    "pincode": "281405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Barsana SO",
+    "pincode": "281405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6230600",
+    "longitude": "77.5827800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Kamai BO",
+    "pincode": "281405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  }
+]

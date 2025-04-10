@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Anakkayam BO",
+    "pincode": "676509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0834960",
+    "longitude": "76.1174990"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Irumbuzhi BO",
+    "pincode": "676509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0786100",
+    "longitude": "76.1015510"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Munduparmba SO",
+    "pincode": "676509",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0670250",
+    "longitude": "76.0899510"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Perimbalam BO",
+    "pincode": "676509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0779730",
+    "longitude": "76.1174990"
+  }
+]

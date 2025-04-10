@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Iringath BO",
+    "pincode": "673523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5300000",
+    "longitude": "75.6600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Muthuuvana BO",
+    "pincode": "673523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5400000",
+    "longitude": "75.6500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Maniyur BO",
+    "pincode": "673523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5400000",
+    "longitude": "75.6500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Payyoli Angadi SO",
+    "pincode": "673523",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5271875",
+    "longitude": "75.6566875"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Kiliyur B.O",
+    "pincode": "630312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.823536",
+    "longitude": "78.854233"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Neivayal B.O",
+    "pincode": "630312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.867983",
+    "longitude": "78.889566"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Thidakottai B.O",
+    "pincode": "630312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8500000",
+    "longitude": "76.10171"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Puliyal S.O",
+    "pincode": "630312",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8469167",
+    "longitude": "78.8633889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "T.Nagani B.O",
+    "pincode": "630312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.835431",
+    "longitude": "78.902753"
+  }
+]

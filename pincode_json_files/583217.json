@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kuruvathi B.O",
+    "pincode": "583217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.7840772",
+    "longitude": "75.7010813"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Mylar B.O",
+    "pincode": "583217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.8091505",
+    "longitude": "75.6910499"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Holalu S.O",
+    "pincode": "583217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.8407205",
+    "longitude": "75.7128570"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Dasanahalli B.O",
+    "pincode": "583217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.8466049",
+    "longitude": "75.7745309"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Harvi B.O",
+    "pincode": "583217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.7332869",
+    "longitude": "75.7113274"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Budanur B.O",
+    "pincode": "583217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.8448430",
+    "longitude": "75.7313340"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hyarada B.O",
+    "pincode": "583217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "14.8206840",
+    "longitude": "75.7795735"
+  }
+]

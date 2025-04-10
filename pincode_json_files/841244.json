@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Bhikha Bandh Satjora BO",
+    "pincode": "841244",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219621",
+    "longitude": "84.356658999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Takipur SO",
+    "pincode": "841244",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.2196210",
+    "longitude": "84.3566590"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Rasulpur Chakri BO",
+    "pincode": "841244",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219621",
+    "longitude": "84.356658999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Siktia BO",
+    "pincode": "841244",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219621",
+    "longitude": "84.356658999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Ramgarh BO",
+    "pincode": "841244",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219621",
+    "longitude": "84.356658999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Balaun BO",
+    "pincode": "841244",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219621",
+    "longitude": "84.356658999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Pipra BO",
+    "pincode": "841244",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219621",
+    "longitude": "84.356658999999993"
+  }
+]

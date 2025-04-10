@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Shiroli B K S.O",
+    "pincode": "410511",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.198702",
+    "longitude": "73.926532"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Kuran B.O",
+    "pincode": "410511",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1693560",
+    "longitude": "73.9275320"
+  }
+]

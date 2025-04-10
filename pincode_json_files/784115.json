@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kharupetiaghat Bazar B.O",
+    "pincode": "784115",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5370400",
+    "longitude": "92.2024300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kunwari Pukhuri B.O",
+    "pincode": "784115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.6547373",
+    "longitude": "78.6377775"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Ghansimali B.O",
+    "pincode": "784115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5370400",
+    "longitude": "92.2024300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Niz Kharupetia B.O",
+    "pincode": "784115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5370400",
+    "longitude": "92.2024300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kharupetiaghat S.O",
+    "pincode": "784115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5370400",
+    "longitude": "92.2024300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Punia No.1 B.O",
+    "pincode": "784115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5370400",
+    "longitude": "92.2024300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Galandi B.O",
+    "pincode": "784115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5370400",
+    "longitude": "92.2024300"
+  }
+]

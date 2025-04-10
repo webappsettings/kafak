@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Chikamberpur SO",
+    "pincode": "201006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6774120",
+    "longitude": "77.3259810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Bhopura SO",
+    "pincode": "201006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7006200",
+    "longitude": "77.3288530"
+  }
+]

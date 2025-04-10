@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Guriahati BO",
+    "pincode": "736170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3000000",
+    "longitude": "89.4600000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Tapurhat BO",
+    "pincode": "736170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2400000",
+    "longitude": "89.4000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Ghughumari SO",
+    "pincode": "736170",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2827777",
+    "longitude": "89.4605555"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Rashidanga BO",
+    "pincode": "736170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2500000",
+    "longitude": "89.4100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Dudherkuthi Dewanbash BO",
+    "pincode": "736170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2300000",
+    "longitude": "89.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Kalika Bazar BO",
+    "pincode": "736170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2600000",
+    "longitude": "89.4200000"
+  }
+]

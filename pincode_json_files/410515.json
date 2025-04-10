@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Kalamb S.O (Pune)",
+    "pincode": "410515",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0416799",
+    "longitude": "73.9541673"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Mahalunge Padwal B.O",
+    "pincode": "410515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.7496572",
+    "longitude": "73.8007180"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Chas B.O",
+    "pincode": "410515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0412940",
+    "longitude": "73.9147590"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Sakore B.O",
+    "pincode": "410515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0360900",
+    "longitude": "73.9176120"
+  }
+]

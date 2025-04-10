@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Tikirapal B.O",
+    "pincode": "756089",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.5781633",
+    "longitude": "86.8245983"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Rasaslpur B.O",
+    "pincode": "756089",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.5245683",
+    "longitude": "86.8211033"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "VYASAVIHAR S.O",
+    "pincode": "756089",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.544055",
+    "longitude": "86.8151754"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Dharaganj B.O",
+    "pincode": "756089",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.5744500",
+    "longitude": "86.8280833"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Durgadevi B.O",
+    "pincode": "756089",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6036950",
+    "longitude": "86.8204716"
+  }
+]

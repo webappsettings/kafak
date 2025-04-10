@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Bageri B.O",
+    "pincode": "314031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6395490",
+    "longitude": "74.1195920"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Diwda Bada B.O",
+    "pincode": "314031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6070820",
+    "longitude": "74.0447400"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Jethana B.O",
+    "pincode": "314031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6496130",
+    "longitude": "74.0506410"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Bhiluda S.O",
+    "pincode": "314031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6268889",
+    "longitude": "74.0749167"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Semalia Pandya B.O",
+    "pincode": "314031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6692940",
+    "longitude": "74.0858210"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Vandarved B.O",
+    "pincode": "314031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.5880480",
+    "longitude": "74.0593310"
+  }
+]

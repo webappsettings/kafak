@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Kharsuli Bazar SO",
+    "pincode": "713347",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6179770",
+    "longitude": "87.1161530"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Raniganj HO",
+    "pincode": "713347",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6072500",
+    "longitude": "87.1153611"
+  }
+]

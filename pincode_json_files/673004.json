@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Calicut City SO",
+    "pincode": "673004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.257207",
+    "longitude": "75.786375"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Puthiyara SO",
+    "pincode": "673004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2535027",
+    "longitude": "75.7904121"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Thiruthiyad BO",
+    "pincode": "673004",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2220000",
+    "longitude": "75.8200000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Kuttur SO Pathanamthitta",
+    "pincode": "689106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.2642778",
+    "longitude": "76.7872500"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Thengeli BO",
+    "pincode": "689106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

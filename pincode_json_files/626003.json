@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Soolakkarai BO",
+    "pincode": "626003",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5600000",
+    "longitude": "77.9500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Pattampudur BO",
+    "pincode": "626003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4900000",
+    "longitude": "77.9500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Virudhunagar Industrial Estate SO",
+    "pincode": "626003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5398056",
+    "longitude": "77.9429722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Inamreddiapatti BO",
+    "pincode": "626003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5100000",
+    "longitude": "77.9300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Meesalur BO",
+    "pincode": "626003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5600000",
+    "longitude": "77.9200000"
+  }
+]

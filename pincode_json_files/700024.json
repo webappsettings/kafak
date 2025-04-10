@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Garden Reach SO",
+    "pincode": "700024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5481111",
+    "longitude": "88.2879166"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "PGReach SO",
+    "pincode": "700024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5388888",
+    "longitude": "88.2848611"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "TGRoad SO",
+    "pincode": "700024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5422222",
+    "longitude": "88.2916111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "KCMills SO",
+    "pincode": "700024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5340833",
+    "longitude": "88.2763055"
+  }
+]

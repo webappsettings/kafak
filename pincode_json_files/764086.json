@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Chitrangpali B.O",
+    "pincode": "764086",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.2380166",
+    "longitude": "81.8032800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Sikhapali B.O",
+    "pincode": "764086",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.2380166",
+    "longitude": "81.8032800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Saradhapalli S.O",
+    "pincode": "764086",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.2380261",
+    "longitude": "81.80844"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Bodili B.O",
+    "pincode": "764086",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.2380166",
+    "longitude": "81.8032800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Gurakhunta B.O",
+    "pincode": "764086",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.2380166",
+    "longitude": "81.8032800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Gumuka B.O",
+    "pincode": "764086",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.34",
+    "longitude": "81.879999999999995"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Metapoka B.O",
+    "pincode": "764086",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALKANGIRI",
+    "statename": "ODISHA",
+    "latitude": "18.2380166",
+    "longitude": "81.8032800"
+  }
+]

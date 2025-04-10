@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Alamelumangapuram B.O",
+    "pincode": "632009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "13.2281000",
+    "longitude": "79.5846000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Perumugai B.O",
+    "pincode": "632009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9462000",
+    "longitude": "79.2028000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Sathuvachari S.O",
+    "pincode": "632009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9156111",
+    "longitude": "79.7650556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Vellore Collectorate S.O",
+    "pincode": "632009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9201111",
+    "longitude": "79.1280556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Rangapuram B.O",
+    "pincode": "632009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9451000",
+    "longitude": "79.1714000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Sathuvachari Extension S.O",
+    "pincode": "632009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9156111",
+    "longitude": "79.2625833"
+  }
+]

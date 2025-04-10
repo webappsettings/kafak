@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Vazhoor East BO",
+    "pincode": "686504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.566169",
+    "longitude": "76.729926"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Changanacherry Division",
+    "officename": "Vazhoor SO",
+    "pincode": "686504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.566393",
+    "longitude": "76.706437"
+  }
+]

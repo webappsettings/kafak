@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Kankatapalem B.O",
+    "pincode": "522317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Stuvartpuram S.O",
+    "pincode": "522317",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.86983333",
+    "longitude": "80.40497222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Stuvartpuram Colony B.O",
+    "pincode": "522317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Murukondapadu B.O",
+    "pincode": "522317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Chavatabheemavaram B.O",
+    "pincode": "524304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.7007420",
+    "longitude": "79.6075700"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Anumasamudram B.O",
+    "pincode": "524304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6576270",
+    "longitude": "79.6530170"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Panugodu B.O",
+    "pincode": "524304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6879040",
+    "longitude": "79.6221370"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Peddabbipuram B.O",
+    "pincode": "524304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.7322230",
+    "longitude": "79.6474040"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Pandipadu B.O",
+    "pincode": "524304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.7258460",
+    "longitude": "79.6817830"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Anumasamudrampeta S.O",
+    "pincode": "524304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6887778",
+    "longitude": "79.6740556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Tellapadu B.O-A",
+    "pincode": "524304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

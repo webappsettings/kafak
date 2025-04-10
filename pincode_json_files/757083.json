@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Patisari B.O",
+    "pincode": "757083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.6466066",
+    "longitude": "86.7591050"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "C.Mangalpur B.O",
+    "pincode": "757083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.6220403",
+    "longitude": "86.8107271"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Tentuligaon B.O",
+    "pincode": "757083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.6422466",
+    "longitude": "86.7734983"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Arpata B.O",
+    "pincode": "757083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.6151133",
+    "longitude": "86.7711933"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Bhimda S.O",
+    "pincode": "757083",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.63824",
+    "longitude": "86.7915"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Daundia B.O",
+    "pincode": "757083",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.6063533",
+    "longitude": "86.7878666"
+  }
+]

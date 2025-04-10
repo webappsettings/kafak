@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Sircarperiapalayam BO",
+    "pincode": "641607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3104610",
+    "longitude": "80.0470330"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Tiruneelakandapuram BO",
+    "pincode": "641607",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.2864610",
+    "longitude": "79.2007960"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Tirupur East SO",
+    "pincode": "641607",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1250490",
+    "longitude": "77.3611550"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Mannarai BO",
+    "pincode": "641607",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1186610",
+    "longitude": "77.3740730"
+  }
+]

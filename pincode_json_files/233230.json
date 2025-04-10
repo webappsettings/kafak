@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Khajurgaon BO",
+    "pincode": "233230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Rajapur Katya BO",
+    "pincode": "233230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Sidhaut BO",
+    "pincode": "233230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Maharaur BO",
+    "pincode": "233230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Kasimabad SO",
+    "pincode": "233230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8091389",
+    "longitude": "83.6485278"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Shekhanpur BO",
+    "pincode": "233230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ghazipur Division",
+    "officename": "Khetabpur BO",
+    "pincode": "233230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Dholai Falia BO",
+    "pincode": "396110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.7400000",
+    "longitude": "72.9000000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Khaparvada BO",
+    "pincode": "396110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.7400000",
+    "longitude": "72.9600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Vaghrech BO",
+    "pincode": "396110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.7500000",
+    "longitude": "73.0100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Bigri SO",
+    "pincode": "396110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.7500000",
+    "longitude": "72.9300000"
+  }
+]

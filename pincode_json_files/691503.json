@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Padappakara BO",
+    "pincode": "691503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.9800000",
+    "longitude": "76.6500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Mukkoodu BO",
+    "pincode": "691503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.9800000",
+    "longitude": "76.7000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kumbalam BO",
+    "pincode": "691503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.9900000",
+    "longitude": "76.6600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Mulavana SO",
+    "pincode": "691503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.9900000",
+    "longitude": "76.6800000"
+  }
+]

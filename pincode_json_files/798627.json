@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Akuluto B.O",
+    "pincode": "798627",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ZUNHEBOTO",
+    "statename": "NAGALAND",
+    "latitude": "26.166711599999999",
+    "longitude": "94.488137199999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Lumami S.O",
+    "pincode": "798627",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ZUNHEBOTO",
+    "statename": "NAGALAND",
+    "latitude": "26.1630160",
+    "longitude": "94.5416790"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Aizuto B.O",
+    "pincode": "798627",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ZUNHEBOTO",
+    "statename": "NAGALAND",
+    "latitude": "26.148995299999999",
+    "longitude": "94.525448499999996"
+  }
+]

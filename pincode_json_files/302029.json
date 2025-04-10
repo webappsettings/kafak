@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Sanganer Bazar S.O",
+    "pincode": "302029",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8111111",
+    "longitude": "75.7833333"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Airport Sanganer S.O",
+    "pincode": "302029",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8275000",
+    "longitude": "75.8055556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Muhana S.O",
+    "pincode": "302029",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8068610",
+    "longitude": "75.7496810"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Dadiya BO",
+    "pincode": "302029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7259460",
+    "longitude": "75.2139080"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "Makhdumpur Digha SO",
+    "pincode": "800011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "24.2122460",
+    "longitude": "90.9629520"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "Dighaghat SO",
+    "pincode": "800011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.6370860",
+    "longitude": "85.0986530"
+  }
+]

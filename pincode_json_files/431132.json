@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Walsawangi B.O",
+    "pincode": "431132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5307000",
+    "longitude": "75.8253300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Shivna S.O",
+    "pincode": "431132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.475802",
+    "longitude": "75.80116"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Adgaon B.O",
+    "pincode": "431132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2540970",
+    "longitude": "75.7689890"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Shelud B.O",
+    "pincode": "431132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5307000",
+    "longitude": "75.8253300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Madni B.O",
+    "pincode": "431132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5307000",
+    "longitude": "75.8253300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Warud Tangde B.O",
+    "pincode": "431132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5307000",
+    "longitude": "75.8253300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Dhavda B.O",
+    "pincode": "431132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2540970",
+    "longitude": "75.7689890"
+  }
+]

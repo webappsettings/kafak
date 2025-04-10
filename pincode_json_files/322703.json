@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Ancher BO",
+    "pincode": "322703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1648080",
+    "longitude": "76.1167740"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Sarsop BO",
+    "pincode": "322703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1781840",
+    "longitude": "76.0656440"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Isharda SO",
+    "pincode": "322703",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1706944",
+    "longitude": "76.0297778"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Tapur BO",
+    "pincode": "322703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2083860",
+    "longitude": "76.1034560"
+  }
+]

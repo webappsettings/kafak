@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Indroda BO",
+    "pincode": "382007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2100000",
+    "longitude": "72.6600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 8 SO",
+    "pincode": "382007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2091180",
+    "longitude": "72.6491840"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 9 SO",
+    "pincode": "382007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2103650",
+    "longitude": "72.6584240"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 7 SO",
+    "pincode": "382007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2089550",
+    "longitude": "72.6417330"
+  }
+]

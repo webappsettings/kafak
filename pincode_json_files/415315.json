@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Awalai B.O",
+    "pincode": "415315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.5100000",
+    "longitude": "74.9300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Lingiware B.O",
+    "pincode": "415315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.4200000",
+    "longitude": "74.9400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Dighanchi S.O",
+    "pincode": "415315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.5292575",
+    "longitude": "74.92105980"
+  }
+]

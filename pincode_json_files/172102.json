@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Sarahan BSR SO",
+    "pincode": "172102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.51182",
+    "longitude": "77.796148"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Kinnu BO",
+    "pincode": "172102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5048000",
+    "longitude": "77.8072400"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Mashnoo BO",
+    "pincode": "172102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4953844",
+    "longitude": "77.7323250"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Dofda BO",
+    "pincode": "172102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5048000",
+    "longitude": "77.8072400"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Majauli BO",
+    "pincode": "172102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5048000",
+    "longitude": "77.8072400"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Shahdhar BO",
+    "pincode": "172102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5048000",
+    "longitude": "77.8072400"
+  }
+]

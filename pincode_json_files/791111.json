@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Itanagar H.O",
+    "pincode": "791111",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PAPUM PARE",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.09902778",
+    "longitude": "93.62633333"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Arunachal Pradesh Secretariat S.O",
+    "pincode": "791111",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PAPUM PARE",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

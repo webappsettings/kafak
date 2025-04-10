@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Hatikhera B.O",
+    "pincode": "305005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4496000",
+    "longitude": "74.5756000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Ajaiser B.O",
+    "pincode": "305005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4151000",
+    "longitude": "74.5756000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Kharkheri B.O",
+    "pincode": "305005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4343000",
+    "longitude": "74.5405000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Crpf Ajmer S.O",
+    "pincode": "305005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4533611",
+    "longitude": "74.5851111"
+  }
+]

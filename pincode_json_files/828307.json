@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Karmatand BO",
+    "pincode": "828307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.795663000000001",
+    "longitude": "86.430374999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "MADHUBAN",
+    "pincode": "828307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "26.41",
+    "longitude": "86.109999999999999"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Nudkhurkee SO",
+    "pincode": "828307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.6913500",
+    "longitude": "85.2722500"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Khanoodih BO",
+    "pincode": "828307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.575150000000001",
+    "longitude": "86.257450000000006"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Cumballa Hill S.O",
+    "pincode": "400026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9675836",
+    "longitude": "72.80398294"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Gowalia Tank S.O",
+    "pincode": "400026",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9869722",
+    "longitude": "72.8421944"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Cumballa Sea Face S.O",
+    "pincode": "400026",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9672500",
+    "longitude": "72.8037500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Dr Deshmukh Marg S.O",
+    "pincode": "400026",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9708333",
+    "longitude": "72.8090833"
+  }
+]

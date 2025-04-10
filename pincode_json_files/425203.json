@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Bhusawal Ordnance Factory S.O",
+    "pincode": "425203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.050554",
+    "longitude": "75.819568"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Kandari B.O",
+    "pincode": "425203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Sakegaon B.O",
+    "pincode": "425203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Duskheda B.O",
+    "pincode": "425203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Raipur B.O",
+    "pincode": "425203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

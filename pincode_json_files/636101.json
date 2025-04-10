@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Govindampalayam B.O",
+    "pincode": "636101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5315183",
+    "longitude": "78.8292029"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Thiaganur B.O",
+    "pincode": "636101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5601857",
+    "longitude": "78.7804510"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Veppampoondi B.O",
+    "pincode": "636101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5323766",
+    "longitude": "78.7732413"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Sitheri B.O",
+    "pincode": "636101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5466245",
+    "longitude": "78.8001921"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Periyeri B.O",
+    "pincode": "636101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5694554",
+    "longitude": "78.7969305"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Aragalur S.O",
+    "pincode": "636101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5606060",
+    "longitude": "78.7902220"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Puliyankurichi B.O",
+    "pincode": "636101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5071423",
+    "longitude": "78.7974455"
+  }
+]

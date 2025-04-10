@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Fatehpur Chain BO",
+    "pincode": "841202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.798863000000001",
+    "longitude": "84.946409000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Itawa BO",
+    "pincode": "841202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.798863000000001",
+    "longitude": "84.946409000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Ramgarha BO",
+    "pincode": "841202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.798863000000001",
+    "longitude": "84.946409000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "DSultanpur BO",
+    "pincode": "841202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.798863000000001",
+    "longitude": "84.946409000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Kudarbadha BO",
+    "pincode": "841202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.798863000000001",
+    "longitude": "84.946409000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Basant SO",
+    "pincode": "841202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7988630",
+    "longitude": "84.9464090"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Rahampur BO",
+    "pincode": "841202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.798863000000001",
+    "longitude": "84.946409000000003"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Mushkoo B.O",
+    "pincode": "194102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.13288",
+    "longitude": "77.633560000000003"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Drass S.O",
+    "pincode": "194102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.5535060",
+    "longitude": "76.1350430"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Bhimbat B.O",
+    "pincode": "194102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.432011799999998",
+    "longitude": "75.817805000000007"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Pandrass B.O",
+    "pincode": "194102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Matayan B.O",
+    "pincode": "194102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Chokiyal B.O",
+    "pincode": "194102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Gura Manhasan BO",
+    "pincode": "181207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7982080",
+    "longitude": "74.6034420"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Pargwal SO",
+    "pincode": "181207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7989444",
+    "longitude": "74.6049167"
+  }
+]

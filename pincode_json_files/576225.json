@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Bannadi BO",
+    "pincode": "576225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.5113219",
+    "longitude": "74.7298689"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Karkada BO",
+    "pincode": "576225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.4955719",
+    "longitude": "74.7177454"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Parampalli BO",
+    "pincode": "576225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.4943596",
+    "longitude": "74.7034867"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Achladi BO",
+    "pincode": "576225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.5155383",
+    "longitude": "74.7483547"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Saligrama SO Udupi",
+    "pincode": "576225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.4990760",
+    "longitude": "74.7108160"
+  }
+]

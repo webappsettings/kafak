@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "NEWRAS BO",
+    "pincode": "821114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.565000000000001",
+    "longitude": "83.470699999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "DEORAKH KALA KHURD BO",
+    "pincode": "821114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.565000000000001",
+    "longitude": "83.470699999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Kudra RS (Lalapur) S.O",
+    "pincode": "821114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.0461",
+    "longitude": "83.7935"
+  }
+]

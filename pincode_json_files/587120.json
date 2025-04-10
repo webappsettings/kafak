@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Muganur B.O",
+    "pincode": "587120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.0611780",
+    "longitude": "76.0546500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Ramthal B.O",
+    "pincode": "587120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.0611780",
+    "longitude": "76.0546500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Chikmagi B.O",
+    "pincode": "587120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.0611790",
+    "longitude": "76.0546490"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Kadiwal Kallapur B.O",
+    "pincode": "587120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1050460",
+    "longitude": "76.1339839"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Surlikal B.O",
+    "pincode": "587120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1081000",
+    "longitude": "75.8616500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Kamatgi S.O",
+    "pincode": "587120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.6000000",
+    "longitude": "75.6100000"
+  }
+]

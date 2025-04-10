@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Tarvalem B.O",
+    "pincode": "403103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "74.3500000",
+    "longitude": "16.2500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Shiroda S.O (South Goa)",
+    "pincode": "403103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.31996580",
+    "longitude": "74.02899310"
+  }
+]

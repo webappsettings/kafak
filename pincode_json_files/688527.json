@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Kannankara BO",
+    "pincode": "688527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.6517500",
+    "longitude": "76.3796500"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Karikkad BO",
+    "pincode": "688527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.6280000",
+    "longitude": "76.3710000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Thanneermukkom SO",
+    "pincode": "688527",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.6829400",
+    "longitude": "76.3988300"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Kokkothamangalam BO",
+    "pincode": "688527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.6814500",
+    "longitude": "76.3745400"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Muttathiparambu BO",
+    "pincode": "688527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.6625300",
+    "longitude": "76.3434700"
+  }
+]

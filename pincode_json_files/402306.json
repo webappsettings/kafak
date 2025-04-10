@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Kumbheshivthar BO",
+    "pincode": "402306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.152155",
+    "longitude": "73.591170399999996"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Barasgaon BO",
+    "pincode": "402306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1164000",
+    "longitude": "73.5367153"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Mazeri BO",
+    "pincode": "402306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1271557",
+    "longitude": "73.5945280"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Taliye BO",
+    "pincode": "402306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1054800",
+    "longitude": "73.5618103"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Varandh SO",
+    "pincode": "402306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1325000",
+    "longitude": "73.5728333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Padvi BO",
+    "pincode": "402306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1484134",
+    "longitude": "73.5186852"
+  }
+]

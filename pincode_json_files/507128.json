@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Mothipattinagar B.O",
+    "pincode": "507128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.699850000000001",
+    "longitude": "80.827550000000002"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Nellipaka B.O",
+    "pincode": "507128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.699850000000001",
+    "longitude": "80.827550000000002"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Ramachandrapuram B.O",
+    "pincode": "507128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.747240000000001",
+    "longitude": "80.862513000000007"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Sarapaka S.O",
+    "pincode": "507128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.6942778",
+    "longitude": "80.8628333"
+  }
+]

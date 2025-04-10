@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Bhatlai BO",
+    "pincode": "394517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1872430",
+    "longitude": "72.6618390"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Mora SO Surat",
+    "pincode": "394517",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1984722",
+    "longitude": "72.8342778"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Damka BO",
+    "pincode": "394517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1963550",
+    "longitude": "72.6594650"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Vansva BO",
+    "pincode": "394517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2152410",
+    "longitude": "72.6609430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Rajgari B.O",
+    "pincode": "394517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.182211",
+    "longitude": "72.6423"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Suvali BO",
+    "pincode": "394517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2744920",
+    "longitude": "72.7584800"
+  }
+]

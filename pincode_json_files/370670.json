@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Kadia Mota BO",
+    "pincode": "370670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.3849517",
+    "longitude": "23.3849517"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Rasalia BO",
+    "pincode": "370670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.3893370",
+    "longitude": "69.0985130"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Kadia Nana BO",
+    "pincode": "370670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.3850330",
+    "longitude": "69.1491790"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Todiya BO",
+    "pincode": "370670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.4054930",
+    "longitude": "69.1484330"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Ukheda BO",
+    "pincode": "370670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.3499695",
+    "longitude": "69.1212777"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Khombhadi SO",
+    "pincode": "370670",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.4076300",
+    "longitude": "69.1178850"
+  }
+]

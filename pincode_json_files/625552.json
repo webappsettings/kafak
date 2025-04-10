@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Koolayanur B.O",
+    "pincode": "625552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9107",
+    "longitude": "77.3902"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Kujjanur B.O",
+    "pincode": "625552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.87739",
+    "longitude": "77.3755"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Markayankottai S.O",
+    "pincode": "625552",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.853715",
+    "longitude": "77.359367"
+  }
+]

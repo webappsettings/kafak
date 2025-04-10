@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Godhra HO",
+    "pincode": "389001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7767500",
+    "longitude": "73.6124444"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Godhra Civil Lines SO",
+    "pincode": "389001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7680000",
+    "longitude": "73.6217000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Bamroli Road SO",
+    "pincode": "389001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.767442",
+    "longitude": "73.637297"
+  }
+]

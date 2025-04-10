@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Salmara North S.O",
+    "pincode": "783383",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2618000",
+    "longitude": "90.3413000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kakaijana B.O",
+    "pincode": "783383",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Bhotguti Huramara B.O",
+    "pincode": "783383",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Sidalsati B.O",
+    "pincode": "783383",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Khagarpur B.O",
+    "pincode": "783383",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Garugaon B.O",
+    "pincode": "783383",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Ghilaguri B.O",
+    "pincode": "783383",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

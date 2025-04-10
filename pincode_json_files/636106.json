@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Agrahara Nattamangalam B.O",
+    "pincode": "636106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6821025",
+    "longitude": "78.2796260"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Sarkar Nattamanagalam B.O",
+    "pincode": "636106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6860994",
+    "longitude": "78.2991883"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Minnampalli B.O",
+    "pincode": "636106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6766094",
+    "longitude": "78.2677814"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Periyagoundapuram B.O",
+    "pincode": "636106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6400937",
+    "longitude": "78.2658025"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Karumapuram B.O",
+    "pincode": "636106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6740392",
+    "longitude": "78.2948157"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Ramalingapuram B.O",
+    "pincode": "636106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6646121",
+    "longitude": "78.2610771"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Karipatti S.O",
+    "pincode": "636106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6668247",
+    "longitude": "78.2847759"
+  }
+]

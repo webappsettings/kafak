@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Agaramangudi B.O",
+    "pincode": "614303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8800000",
+    "longitude": "79.2300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Kavalur B.O",
+    "pincode": "614303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8600000",
+    "longitude": "79.2200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Vembakudi B.O",
+    "pincode": "614303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8800000",
+    "longitude": "79.2200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Vadakkumangudi S.O",
+    "pincode": "614303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7789167",
+    "longitude": "79.1400556"
+  }
+]

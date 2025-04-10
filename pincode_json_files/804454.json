@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Tineri BO",
+    "pincode": "804454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "25.31242",
+    "longitude": "85.02873"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Jamalpur BO",
+    "pincode": "804454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "25.309672",
+    "longitude": "85.021352"
+  }
+]

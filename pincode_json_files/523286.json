@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Padarthi B.O",
+    "pincode": "523286",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.4686540",
+    "longitude": "80.1847460"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Kothapatnam S.O",
+    "pincode": "523286",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.4525000",
+    "longitude": "80.1432778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Koppole B.O",
+    "pincode": "523286",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.4871590",
+    "longitude": "80.0845380"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Alluru B.O",
+    "pincode": "523286",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.5024630",
+    "longitude": "80.1298140"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Motumala B.O",
+    "pincode": "523286",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.4894450",
+    "longitude": "80.1903030"
+  }
+]

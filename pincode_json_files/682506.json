@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Kumbalam BO",
+    "pincode": "682506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.90719779",
+    "longitude": "76.3058151"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Panangad SO Ernakulam",
+    "pincode": "682506",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.1102222",
+    "longitude": "76.3595833"
+  }
+]

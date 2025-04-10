@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Chellakkad SO",
+    "pincode": "689677",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.40749410",
+    "longitude": "76.79608430"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Chethackal BO",
+    "pincode": "689677",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.4300000",
+    "longitude": "76.8100000"
+  }
+]

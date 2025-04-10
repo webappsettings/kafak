@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Thuvakkode BO",
+    "pincode": "673304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4200000",
+    "longitude": "75.7500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Tiruvangoor BO",
+    "pincode": "673304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3800000",
+    "longitude": "75.7400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Kappad BO",
+    "pincode": "673304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3800000",
+    "longitude": "75.7300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Chemancheri SO",
+    "pincode": "673304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3943125",
+    "longitude": "75.7269375"
+  }
+]

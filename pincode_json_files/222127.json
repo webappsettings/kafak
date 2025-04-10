@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Nizamuddinpur BO",
+    "pincode": "222127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.739999999999998",
+    "longitude": "80.790000000000006"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Shahopatti BO",
+    "pincode": "222127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.154199999999999",
+    "longitude": "84.619600000000005"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Baderi SO",
+    "pincode": "222127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6420000",
+    "longitude": "82.4910833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Mujar BO",
+    "pincode": "222127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.18",
+    "longitude": "81.049999999999997"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Jamua BO",
+    "pincode": "222127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.890000000000001",
+    "longitude": "82.590000000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Kanhabanshipur BO",
+    "pincode": "222127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.59",
+    "longitude": "82.439999999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Gokha BO",
+    "pincode": "222127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.690000000000001",
+    "longitude": "82.329999999999998"
+  }
+]

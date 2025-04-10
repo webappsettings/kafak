@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Mela Autoor B.O",
+    "pincode": "628151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6156428",
+    "longitude": "78.0598530"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Mukkani B.O",
+    "pincode": "628151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6343450",
+    "longitude": "78.0744670"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Keeranur B.O",
+    "pincode": "628151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3205894",
+    "longitude": "77.9340670"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Sendamangalam B.O",
+    "pincode": "628151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6203500",
+    "longitude": "77.9773200"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Autoor S.O",
+    "pincode": "628151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6222778",
+    "longitude": "78.0704444"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Omarikadu B.O",
+    "pincode": "628151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6271090",
+    "longitude": "78.0602010"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Therku Autoor B.O",
+    "pincode": "628151",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6152780",
+    "longitude": "78.0701850"
+  }
+]

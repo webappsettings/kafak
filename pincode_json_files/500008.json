@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Golconda S.O",
+    "pincode": "500008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.63905556",
+    "longitude": "78.66866667"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Lunger House S.O",
+    "pincode": "500008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.37586111",
+    "longitude": "78.42025"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Kakatiya Nagar S.O",
+    "pincode": "500008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.39283333",
+    "longitude": "78.42461111"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Toli Chowki S.O",
+    "pincode": "500008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.65252778",
+    "longitude": "78.68886111"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Nanakramguda B.O",
+    "pincode": "500008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.419626000000001",
+    "longitude": "78.350852000000003"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Siyada BO",
+    "pincode": "342028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4355000",
+    "longitude": "72.3449000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Khirja Ashan BO",
+    "pincode": "342028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4355000",
+    "longitude": "72.3449000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Khirja Khas BO",
+    "pincode": "342028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4355000",
+    "longitude": "72.3449000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Khirja Tibna BO",
+    "pincode": "342028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4355000",
+    "longitude": "72.3449000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Tena SO",
+    "pincode": "342028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3855833",
+    "longitude": "72.3365833"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Kayangulam HO",
+    "pincode": "690502",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.175452",
+    "longitude": "76.504582"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Kayangulam College SO",
+    "pincode": "690502",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.185888",
+    "longitude": "76.488950"
+  }
+]

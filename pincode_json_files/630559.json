@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Vembattur BO",
+    "pincode": "630559",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8000000",
+    "longitude": "78.3900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Periakottai SO",
+    "pincode": "630559",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.788589",
+    "longitude": "78.415088"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Kallurani BO",
+    "pincode": "630559",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8100000",
+    "longitude": "78.3700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Mutharasan BO",
+    "pincode": "630559",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7700000",
+    "longitude": "78.4300000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Barodia B.O",
+    "pincode": "312021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8425650",
+    "longitude": "75.1019940"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Putholi B.O",
+    "pincode": "312021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9553210",
+    "longitude": "74.6385790"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Sainik School B.O",
+    "pincode": "312021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9069080",
+    "longitude": "74.6180830"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Cement Factory S.O",
+    "pincode": "312021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9211111",
+    "longitude": "74.6280556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Rolahera B.O",
+    "pincode": "312021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9342790",
+    "longitude": "74.6034420"
+  }
+]

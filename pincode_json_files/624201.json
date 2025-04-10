@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Malayagondanpatti BO",
+    "pincode": "624201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1600000",
+    "longitude": "77.9000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Ammayanaickanur SO",
+    "pincode": "624201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1841900",
+    "longitude": "77.9087500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Kalladipatti BO",
+    "pincode": "624201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1100000",
+    "longitude": "77.9200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Kullalagundu BO",
+    "pincode": "624201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1400000",
+    "longitude": "77.9100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Pallapatti BO",
+    "pincode": "624201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1400000",
+    "longitude": "77.9100000"
+  }
+]

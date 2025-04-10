@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Sectorn 21 B.O",
+    "pincode": "754142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.32077778",
+    "longitude": "86.519638889999996"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Paradip S.O",
+    "pincode": "754142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.2659444",
+    "longitude": "86.659"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Barakolikhala B.O",
+    "pincode": "754142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.3388610",
+    "longitude": "86.7139700"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Madhuban S.O (Jagatsinghapur)",
+    "pincode": "754142",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

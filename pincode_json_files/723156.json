@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Murardih SO",
+    "pincode": "723156",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3506210",
+    "longitude": "86.4915380"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Talberia BO",
+    "pincode": "723156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5558675",
+    "longitude": "86.8446218"
+  }
+]

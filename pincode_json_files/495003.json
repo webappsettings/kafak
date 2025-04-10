@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Mochh BO",
+    "pincode": "495003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1068160",
+    "longitude": "81.9686510"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Saida BO",
+    "pincode": "495003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0719920",
+    "longitude": "82.0829290"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bahatarai BO",
+    "pincode": "495003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1117560",
+    "longitude": "82.0788450"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Girdhauna BO",
+    "pincode": "495003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0729370",
+    "longitude": "81.9507540"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Sakri",
+    "pincode": "495003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.107335200000001",
+    "longitude": "82.083929670000003"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Kathakoni BO",
+    "pincode": "495003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1235030",
+    "longitude": "82.0161900"
+  }
+]

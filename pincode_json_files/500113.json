@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Jaitwaram B.O",
+    "pincode": "500113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.0703371",
+    "longitude": "78.4397739"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Dabbediguda B.O",
+    "pincode": "500113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.047784",
+    "longitude": "78.49559501"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Nednur B.O",
+    "pincode": "500113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.0385",
+    "longitude": "78.45327"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Kandukur S.O",
+    "pincode": "500113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.0655490",
+    "longitude": "78.4864550"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Chippalapalli B.O",
+    "pincode": "500113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.06233",
+    "longitude": "78.65423"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Gudur B.O",
+    "pincode": "500113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.06662",
+    "longitude": "78.51799"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Pulmamdi B.O",
+    "pincode": "500113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.0653225",
+    "longitude": "78.4197415"
+  }
+]

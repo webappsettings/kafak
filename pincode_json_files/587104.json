@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Murnal B.O",
+    "pincode": "587104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1809979",
+    "longitude": "75.6487541"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Simikeri B.O",
+    "pincode": "587104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1850190",
+    "longitude": "75.6962350"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Bagalkot UHS Campus S.O",
+    "pincode": "587104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1812500",
+    "longitude": "75.6991667"
+  }
+]

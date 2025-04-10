@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "APHB Colony B.O",
+    "pincode": "533106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0321000",
+    "longitude": "81.8088000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Prakasamnagar S.O",
+    "pincode": "533106",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0132222",
+    "longitude": "81.8169722"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Spinning Mills Centre S.O",
+    "pincode": "533106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0291111",
+    "longitude": "81.8098056"
+  }
+]

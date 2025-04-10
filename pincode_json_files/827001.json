@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Civil Court Area Bokaro SO",
+    "pincode": "827001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.6334790",
+    "longitude": "86.1501250"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Bokaro Steel City HO",
+    "pincode": "827001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.6575556",
+    "longitude": "86.1393333"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "SectorI SO",
+    "pincode": "827001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.6698250",
+    "longitude": "86.4229000"
+  }
+]

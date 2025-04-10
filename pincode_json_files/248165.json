@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Ubhreau BO",
+    "pincode": "248165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7947500",
+    "longitude": "77.8480700"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Koti SO",
+    "pincode": "248165",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.6093611",
+    "longitude": "77.7809167"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Dimau BO",
+    "pincode": "248165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.6082000",
+    "longitude": "77.7809000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Dessau BO",
+    "pincode": "248165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.6082800",
+    "longitude": "77.7809672"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Jissau BO",
+    "pincode": "248165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5600000",
+    "longitude": "77.7509000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Sainj BO",
+    "pincode": "248165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3164900",
+    "longitude": "78.0321000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Bhanjra B.O.",
+    "pincode": "248165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "30.599113",
+    "longitude": "NA"
+  }
+]

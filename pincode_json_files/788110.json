@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Borkhola S.O",
+    "pincode": "788110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8236370",
+    "longitude": "92.8018270"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chandpur B.O",
+    "pincode": "788110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8100000",
+    "longitude": "92.9710000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Naraincherra B.O",
+    "pincode": "788110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8120000",
+    "longitude": "92.9712000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Purandarpur B.O",
+    "pincode": "788110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8123000",
+    "longitude": "92.9715000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Balacherra T E B.O",
+    "pincode": "788110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8710000",
+    "longitude": "92.4514000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Barjatrapur B.O",
+    "pincode": "788110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8000000",
+    "longitude": "92.9710000"
+  }
+]

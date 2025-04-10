@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Gundurchengalpattu SO",
+    "pincode": "603002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7074000",
+    "longitude": "79.9393000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Nathamchengalpattu SO",
+    "pincode": "603002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0101944",
+    "longitude": "79.6262222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Pulipakkam BO",
+    "pincode": "603002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7074000",
+    "longitude": "79.9393000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Kunnavakkam BO",
+    "pincode": "603002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7012787",
+    "longitude": "80.0101614"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Paranur BO",
+    "pincode": "603002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7055737",
+    "longitude": "79.9738159"
+  }
+]

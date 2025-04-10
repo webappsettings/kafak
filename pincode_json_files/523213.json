@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Paidipadu B.O",
+    "pincode": "523213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.3164130",
+    "longitude": "79.8513820"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Kopperapadu B.O",
+    "pincode": "523213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.9362110",
+    "longitude": "79.9570410"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Ravinuthala S.O",
+    "pincode": "523213",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7387778",
+    "longitude": "80.0800278"
+  }
+]

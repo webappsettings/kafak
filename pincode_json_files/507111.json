@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "B.R.Colony S.O",
+    "pincode": "507111",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Bhadrachalam H.O",
+    "pincode": "507111",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.6666389",
+    "longitude": "80.8870833"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Ramalayam S.O",
+    "pincode": "507111",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

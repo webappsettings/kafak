@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Nerla S.O",
+    "pincode": "415406",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.0917038",
+    "longitude": "74.2221237"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SANGLI DIVISION",
+    "officename": "Kalamwadi B.O",
+    "pincode": "415406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.0900000",
+    "longitude": "74.1900000"
+  }
+]

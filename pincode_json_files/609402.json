@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Kiliyanur S.O (Nagapattinam)",
+    "pincode": "609402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7603056",
+    "longitude": "79.8465278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Perambur B.O",
+    "pincode": "609402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0300000",
+    "longitude": "79.7000000"
+  }
+]

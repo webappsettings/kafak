@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Ujara B.O",
+    "pincode": "471411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHATARPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.0544000",
+    "longitude": "79.6247000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Nuna B.O",
+    "pincode": "471411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHATARPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.0544000",
+    "longitude": "79.6247000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Urdmau B.O",
+    "pincode": "471411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHATARPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.0544000",
+    "longitude": "79.6247000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Bari B.O",
+    "pincode": "471411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHATARPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.0228937",
+    "longitude": "79.7191823"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Gadimalehara S.O",
+    "pincode": "471411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHHATARPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.9175400",
+    "longitude": "79.5880000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Kurraha B.O",
+    "pincode": "471411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHATARPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.0544000",
+    "longitude": "79.6247000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North Division",
+    "officename": "Hanuman Road S.O",
+    "pincode": "400057",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1034444",
+    "longitude": "72.8516111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North Division",
+    "officename": "Vileeparle (East) S.O",
+    "pincode": "400057",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1054162542121",
+    "longitude": "72.8470958602798"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North Division",
+    "officename": "Vileparle Railway Station S.O",
+    "pincode": "400057",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0986667",
+    "longitude": "72.8471667"
+  }
+]

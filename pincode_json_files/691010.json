@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Mundakkal BO",
+    "pincode": "691010",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8700000",
+    "longitude": "76.6000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Vadakkevila SO",
+    "pincode": "691010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8800000",
+    "longitude": "76.6200000"
+  }
+]

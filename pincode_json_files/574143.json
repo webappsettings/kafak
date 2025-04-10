@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Mermajal B.O",
+    "pincode": "574143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8889248",
+    "longitude": "74.9508750"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Pudu B.O",
+    "pincode": "574143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8695163",
+    "longitude": "74.9744248"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Thumbe B.O",
+    "pincode": "574143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8702673",
+    "longitude": "74.9815165"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Farangipet S.O",
+    "pincode": "574143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.874522",
+    "longitude": "74.957794"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Valachil B.O",
+    "pincode": "574143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8741726",
+    "longitude": "74.9403714"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Kodmannu B.O",
+    "pincode": "574143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8822085",
+    "longitude": "74.9745535"
+  }
+]

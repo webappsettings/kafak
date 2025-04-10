@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Singot Kalan BO",
+    "pincode": "303803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3136300",
+    "longitude": "75.6615380"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Khejroli SO",
+    "pincode": "303803",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1222778",
+    "longitude": "75.1398611"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Kariri BO",
+    "pincode": "303803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8859540",
+    "longitude": "76.9038010"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Bilanderpur BO",
+    "pincode": "303803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3578790",
+    "longitude": "75.7415100"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Govindpura Baseri BO",
+    "pincode": "303803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3615770",
+    "longitude": "75.7633130"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Singot Khurd BO",
+    "pincode": "303803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3046280",
+    "longitude": "75.6717190"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Vaippar B.O",
+    "pincode": "628903",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0105000",
+    "longitude": "78.2259000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kilavaippar B.O",
+    "pincode": "628903",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9942000",
+    "longitude": "78.2415000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Sippikulam B.O",
+    "pincode": "628903",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9845000",
+    "longitude": "78.2296000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Veppalodai B.O",
+    "pincode": "628903",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9576000",
+    "longitude": "78.1594000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kulathur (TVL) S.O",
+    "pincode": "628903",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0007000",
+    "longitude": "78.1854000"
+  }
+]

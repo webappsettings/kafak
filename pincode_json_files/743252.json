@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Gobardanga SO",
+    "pincode": "743252",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8727222",
+    "longitude": "88.7507222"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Nakpul Kuchlia BO",
+    "pincode": "743252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1187338",
+    "longitude": "88.7950767"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Gaipur BO",
+    "pincode": "743252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8795295",
+    "longitude": "88.7478999"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Gobardanga Ichapur BO",
+    "pincode": "743252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8979519",
+    "longitude": "88.7421831"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Sarkarpara Kuthipara BO",
+    "pincode": "743252",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8652834",
+    "longitude": "88.7637376"
+  }
+]

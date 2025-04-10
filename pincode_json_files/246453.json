@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Gabani BO",
+    "pincode": "246453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1762250",
+    "longitude": "79.3592280"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Jakhapatiyun BO",
+    "pincode": "246453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1722210",
+    "longitude": "79.3602710"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Lodla BO",
+    "pincode": "246453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2375180",
+    "longitude": "79.3667710"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Chopta BO",
+    "pincode": "246453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1778320",
+    "longitude": "79.3789370"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Kothuli BO",
+    "pincode": "246453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2223160",
+    "longitude": "79.3648600"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Nalgaun SO",
+    "pincode": "246453",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1703889",
+    "longitude": "79.3461944"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Kafoli Malli BO",
+    "pincode": "246453",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1620520",
+    "longitude": "79.3254310"
+  }
+]

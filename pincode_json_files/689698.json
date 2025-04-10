@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Muthupezhumkal BO",
+    "pincode": "689698",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1900000",
+    "longitude": "76.8700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Vakayar SO",
+    "pincode": "689698",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.6800000",
+    "longitude": "76.7100000"
+  }
+]

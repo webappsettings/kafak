@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Paura BO",
+    "pincode": "844117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6916389",
+    "longitude": "85.2113333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Dharhara SO Vaishali",
+    "pincode": "844117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6916389",
+    "longitude": "85.2113333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Gurmia BO",
+    "pincode": "844117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6916389",
+    "longitude": "85.2113333"
+  }
+]

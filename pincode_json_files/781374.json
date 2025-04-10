@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Jalkhana B.O",
+    "pincode": "781374",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.4198000",
+    "longitude": "91.2554000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Makhibaha S.O",
+    "pincode": "781374",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2621000",
+    "longitude": "91.1551000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bhojkuchi B.O",
+    "pincode": "781374",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.4198000",
+    "longitude": "91.2554000"
+  }
+]

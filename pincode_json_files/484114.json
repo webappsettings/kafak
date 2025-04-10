@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Dhanpuri S.O",
+    "pincode": "484114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAHDOL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1881111",
+    "longitude": "81.5536389"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Dhanpuri Colliery S.O",
+    "pincode": "484114",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHAHDOL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6900000",
+    "longitude": "81.4600000"
+  }
+]

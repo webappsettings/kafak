@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Kallayam BO",
+    "pincode": "695043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.5700000",
+    "longitude": "76.9700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Mukkolackal BO",
+    "pincode": "695043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.5600000",
+    "longitude": "76.9600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Kudappanakunnu SO",
+    "pincode": "695043",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.55072810",
+    "longitude": "76.96103580"
+  }
+]

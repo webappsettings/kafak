@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Kherala B.O",
+    "pincode": "333035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3398990",
+    "longitude": "75.6029010"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Badangarh B.O",
+    "pincode": "333035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2915400",
+    "longitude": "75.5599850"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Deoroad B.O",
+    "pincode": "333035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3066550",
+    "longitude": "75.6307100"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Narhar S.O",
+    "pincode": "333035",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2973611",
+    "longitude": "75.6001111"
+  }
+]

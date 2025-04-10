@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Samthar SO",
+    "pincode": "284304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8463889",
+    "longitude": "78.9065833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Chirgaon Khurd BO",
+    "pincode": "284304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8361200",
+    "longitude": "79.9769000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Chheonta BO",
+    "pincode": "284304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8421600",
+    "longitude": "78.9033600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Sakin BO",
+    "pincode": "284304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8421700",
+    "longitude": "78.9033700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Badokhari BO",
+    "pincode": "284304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8523400",
+    "longitude": "79.9599300"
+  }
+]

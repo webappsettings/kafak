@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Champakulam SO",
+    "pincode": "688505",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4157500",
+    "longitude": "76.4018611"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Pullangadi BO",
+    "pincode": "688505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.3951900",
+    "longitude": "76.4227900"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Champakulam East BO",
+    "pincode": "688505",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4109500",
+    "longitude": "76.4102500"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alleppey Division",
+    "officename": "Chempumpuram BO",
+    "pincode": "688505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4264200",
+    "longitude": "76.3826000"
+  }
+]

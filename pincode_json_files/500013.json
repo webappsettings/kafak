@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Ramanthapur S.O",
+    "pincode": "500013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.3992500",
+    "longitude": "78.5364722"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Amberpet S.O",
+    "pincode": "500013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.392148",
+    "longitude": "78.5196360"
+  }
+]

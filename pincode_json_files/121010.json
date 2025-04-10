@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Nhpc Colony Faridabad SO",
+    "pincode": "121010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.5821389",
+    "longitude": "77.9790278"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "SECTOR46",
+    "pincode": "121010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.4391000",
+    "longitude": "77.3009000"
+  }
+]

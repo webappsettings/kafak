@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Veer BO",
+    "pincode": "402102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1257200",
+    "longitude": "73.3250500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Dasgaon SO",
+    "pincode": "402102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0968401",
+    "longitude": "73.3530170"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Dabhol BO",
+    "pincode": "402102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0790651",
+    "longitude": "73.2948603"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "TolBudruk BO",
+    "pincode": "402102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1004001",
+    "longitude": "73.3154953"
+  }
+]

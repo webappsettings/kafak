@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Sindalacherry B.O",
+    "pincode": "625530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8320100",
+    "longitude": "77.2835670"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "T.Meenatchipuram B.O",
+    "pincode": "625530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8814250",
+    "longitude": "77.2746370"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Thamminayakanpatti B.O",
+    "pincode": "625530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9000000",
+    "longitude": "77.3000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Lakshminayakanpatti B.O",
+    "pincode": "625530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9040250",
+    "longitude": "77.3110000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Sankarapuram B.O",
+    "pincode": "625530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9100000",
+    "longitude": "77.3300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Thevaram S.O",
+    "pincode": "625530",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8962010",
+    "longitude": "77.2835670"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Krishnampatti B.O",
+    "pincode": "625530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9014110",
+    "longitude": "77.3010300"
+  }
+]

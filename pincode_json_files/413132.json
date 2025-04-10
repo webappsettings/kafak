@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Nhavi B.O",
+    "pincode": "413132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1673462",
+    "longitude": "74.0109111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Palasdeo S.O",
+    "pincode": "413132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.217122",
+    "longitude": "74.883264"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Agoti B.O",
+    "pincode": "413132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2099400",
+    "longitude": "74.9269300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Dalaj B.O",
+    "pincode": "413132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1544441",
+    "longitude": "74.9716275"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Loni Deokar B.O",
+    "pincode": "413132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2099400",
+    "longitude": "74.9269300"
+  }
+]

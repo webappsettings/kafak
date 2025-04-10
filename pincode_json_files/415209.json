@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Garwade B.O",
+    "pincode": "415209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3056980",
+    "longitude": "74.0263400"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Koriwale B.O",
+    "pincode": "415209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.2814280",
+    "longitude": "74.0005800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Sajur B.O",
+    "pincode": "415209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3269750",
+    "longitude": "74.0728480"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Divashi BK B.O",
+    "pincode": "415209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.2909870",
+    "longitude": "73.9804320"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Sonaichi Wadi B.O",
+    "pincode": "415209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3275170",
+    "longitude": "74.0211990"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Navadi B.O",
+    "pincode": "415209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3409520",
+    "longitude": "74.0468130"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Bahule S.O",
+    "pincode": "415209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3002621",
+    "longitude": "74.0207483"
+  }
+]

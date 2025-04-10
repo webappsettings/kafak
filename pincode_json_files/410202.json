@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Savroli B.O",
+    "pincode": "410202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8084620",
+    "longitude": "73.2868560"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Khalapur S.O",
+    "pincode": "410202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8300556",
+    "longitude": "73.2835278"
+  }
+]

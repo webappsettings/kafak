@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Nityanandapur B.O",
+    "pincode": "788168",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.6100000",
+    "longitude": "92.6100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Katagaon B.O",
+    "pincode": "788168",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.6100000",
+    "longitude": "92.6100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Mirirgool B.O",
+    "pincode": "788168",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.6100000",
+    "longitude": "92.6100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Rajyeswarpur S.O",
+    "pincode": "788168",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.6100000",
+    "longitude": "92.6100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Nimaichandpur PT II B.O",
+    "pincode": "788168",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.6100000",
+    "longitude": "92.6100000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Subhashnagar S.O",
+    "pincode": "503002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.682979",
+    "longitude": "78.10737"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Kanteshwar S.O",
+    "pincode": "503002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Gurbabadi S.O",
+    "pincode": "503002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

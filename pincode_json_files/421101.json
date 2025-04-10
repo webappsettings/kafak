@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Mohandul B.O",
+    "pincode": "421101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.429763000000001",
+    "longitude": "73.190460000000002"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Padgha S.O",
+    "pincode": "421101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3665278",
+    "longitude": "73.1746389"
+  }
+]

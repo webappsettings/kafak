@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Hadav B.O",
+    "pincode": "581353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.6195022",
+    "longitude": "74.3183453"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Hichkad B.O",
+    "pincode": "581353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.6140412",
+    "longitude": "74.3365843"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Manjuguni B.O",
+    "pincode": "581353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.6014777",
+    "longitude": "74.3045695"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Basgod B.O",
+    "pincode": "581353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.6337608",
+    "longitude": "74.3035824"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Belambar B.O",
+    "pincode": "581353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.6342221",
+    "longitude": "74.2867596"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Shetgeri S.O",
+    "pincode": "581353",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.6264974",
+    "longitude": "74.3248577"
+  }
+]

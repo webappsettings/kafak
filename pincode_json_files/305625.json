@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Hanutia B.O",
+    "pincode": "305625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9400000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Kaniya B.O",
+    "pincode": "305625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9400000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Lodiyana B.O",
+    "pincode": "305625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9400000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Jalia  II S.O",
+    "pincode": "305625",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9221667",
+    "longitude": "74.6278056"
+  }
+]

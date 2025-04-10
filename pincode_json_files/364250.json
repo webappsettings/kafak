@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Panchvada BO",
+    "pincode": "364250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6870510",
+    "longitude": "71.8902940"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Songadh SO",
+    "pincode": "364250",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7140833",
+    "longitude": "71.8889722"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Nana Surka BO",
+    "pincode": "364250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7508700",
+    "longitude": "71.8955200"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Kumbhan BO",
+    "pincode": "364250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6354020",
+    "longitude": "71.8230300"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Navagam BO",
+    "pincode": "364250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6400000",
+    "longitude": "71.7800000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Paldi BO",
+    "pincode": "364250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7701720",
+    "longitude": "71.8992930"
+  }
+]

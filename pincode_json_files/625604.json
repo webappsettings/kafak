@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Endapuli B.O",
+    "pincode": "625604",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1252420",
+    "longitude": "77.5464820"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Periyakulam East S.O",
+    "pincode": "625604",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1297750",
+    "longitude": "77.6021970"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Nallakaruppanpatti B.O",
+    "pincode": "625604",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.2216100",
+    "longitude": "77.6000830"
+  }
+]

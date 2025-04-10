@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Zote S B.O",
+    "pincode": "796186",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.2166289",
+    "longitude": "92.795462499999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "BUANGPUI",
+    "pincode": "796186",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Chhipphir B.O",
+    "pincode": "796186",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "22.430247300000001",
+    "longitude": "93.093944899999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Kanghmun S B.O",
+    "pincode": "796186",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.2187953",
+    "longitude": "92.728003900000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "NEIHLOH",
+    "pincode": "796186",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Thenzawl S.O",
+    "pincode": "796186",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.3414570",
+    "longitude": "92.8501800"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Ramlaitui B.O",
+    "pincode": "796186",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "23.182095",
+    "longitude": "92.737033299999993"
+  }
+]

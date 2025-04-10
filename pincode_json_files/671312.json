@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Mavilakadapuram BO",
+    "pincode": "671312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.1907786",
+    "longitude": "75.1268087"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Valiyaparamba BO",
+    "pincode": "671312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.1510000",
+    "longitude": "75.1420000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Padnekadapuram BO",
+    "pincode": "671312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.1676383",
+    "longitude": "75.1446390"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Padne SO",
+    "pincode": "671312",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.17574776",
+    "longitude": "75.14820501"
+  }
+]

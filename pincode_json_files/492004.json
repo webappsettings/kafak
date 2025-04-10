@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Shanker Nagar SO",
+    "pincode": "492004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2539444",
+    "longitude": "81.6617778"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Pandri SO",
+    "pincode": "492004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2551944",
+    "longitude": "81.6523889"
+  }
+]

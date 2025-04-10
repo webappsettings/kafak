@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Periyathalai B.O",
+    "pincode": "628703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3368920",
+    "longitude": "77.9724370"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Alagappapuram B.O",
+    "pincode": "628703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3633500",
+    "longitude": "78.0017760"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Sundankottai B.O",
+    "pincode": "628703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3816400",
+    "longitude": "77.9742220"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Uyarathukudiyiruppu B.O",
+    "pincode": "628703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3673400",
+    "longitude": "77.9879000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Padukkapathu S.O",
+    "pincode": "628703",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3641389",
+    "longitude": "77.9822500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Pitchivilai B.O",
+    "pincode": "628703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4749560",
+    "longitude": "78.0659060"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Pallakurichi B.O",
+    "pincode": "628703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3913680",
+    "longitude": "77.9775240"
+  }
+]

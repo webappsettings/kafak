@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Alanahat S.O",
+    "pincode": "754107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1473",
+    "longitude": "86.2176"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Chanarpur B.O",
+    "pincode": "754107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.4019310",
+    "longitude": "86.5135500"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Ghodansa B.O",
+    "pincode": "754107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1360618",
+    "longitude": "86.1987532"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Goudunipadia B.O",
+    "pincode": "754107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1803959",
+    "longitude": "86.2064908"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Jamugaon B.O",
+    "pincode": "754107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1109050",
+    "longitude": "86.1932920"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Kundeswar B.O",
+    "pincode": "754107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1579270",
+    "longitude": "86.2196610"
+  }
+]

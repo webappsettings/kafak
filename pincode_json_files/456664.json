@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Bolasa B.O",
+    "pincode": "456664",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0523940",
+    "longitude": "75.8989040"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Matana  Kalan B.O",
+    "pincode": "456664",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "28.7156440",
+    "longitude": "76.6448810"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Chandesara B.O",
+    "pincode": "456664",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1103250",
+    "longitude": "75.8504900"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Narwar S.O (Ujjain)",
+    "pincode": "456664",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.067386",
+    "longitude": "75.912118"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Kachnariya B.O",
+    "pincode": "456664",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3328410",
+    "longitude": "77.0276600"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Nauganwa B.O",
+    "pincode": "456664",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.8893570",
+    "longitude": "84.3660340"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Piploda  Dwarkadhish B.O",
+    "pincode": "456664",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0694440",
+    "longitude": "75.9782540"
+  }
+]

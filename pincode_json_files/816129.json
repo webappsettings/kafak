@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Karanpura BO",
+    "pincode": "816129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.1020228",
+    "longitude": "87.733258800000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Mangalhat English BO",
+    "pincode": "816129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.1143",
+    "longitude": "87.594130000000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Salgachi (Sarki)",
+    "pincode": "816129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.943117000000001",
+    "longitude": "87.709925999999996"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Sarkanda BO",
+    "pincode": "816129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.102021799999999",
+    "longitude": "87.733259799999999"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Taljhari SO",
+    "pincode": "816129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.2445020",
+    "longitude": "87.2417440"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Banapara",
+    "pincode": "816129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.958942",
+    "longitude": "87.676631"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Bekchuri (Bhelwatok)",
+    "pincode": "816129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.051389",
+    "longitude": "87.708652999999998"
+  }
+]

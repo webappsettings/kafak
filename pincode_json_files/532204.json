@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "NARSIPURAM",
+    "pincode": "532204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6068337",
+    "longitude": "84.2365558"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Pedalavunipalli B.O",
+    "pincode": "532204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6068333",
+    "longitude": "84.2365550"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Nandigam SO",
+    "pincode": "532204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6068337",
+    "longitude": "84.2365562"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Dimidijola B.O",
+    "pincode": "532204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6068333",
+    "longitude": "84.2365550"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Nowgam B.O",
+    "pincode": "532204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6068333",
+    "longitude": "84.2365550"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Sasanam B.O",
+    "pincode": "532204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.6068333",
+    "longitude": "84.2365550"
+  }
+]

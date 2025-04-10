@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Shirasgaon B.O",
+    "pincode": "413739",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.627859",
+    "longitude": "74.67622"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Bhokar B.O",
+    "pincode": "413739",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.622903",
+    "longitude": "74.765892"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Khokar B.O",
+    "pincode": "413739",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.597703",
+    "longitude": "74.742485"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Nipani Vadgaon B.O",
+    "pincode": "413739",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.601634",
+    "longitude": "74.712491"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Vadala Mahadeo S.O",
+    "pincode": "413739",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.62027869333277",
+    "longitude": "74.71014864449249"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Bhamathan B.O",
+    "pincode": "413739",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.6826772",
+    "longitude": "74.8057365"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Malvadgaon B.O",
+    "pincode": "413739",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.65875",
+    "longitude": "74.761503"
+  }
+]

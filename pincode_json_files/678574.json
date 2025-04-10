@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Naduvathupara BO",
+    "pincode": "678574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.4722"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Peringottukurussi SO",
+    "pincode": "678574",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.6421850",
+    "longitude": "76.5448260"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Chulanur BO",
+    "pincode": "678574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7085",
+    "longitude": "76.4722"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Kutra B.O",
+    "pincode": "415607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.357050000000001",
+    "longitude": "73.588970000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Pachambe B.O",
+    "pincode": "415607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3570500",
+    "longitude": "73.5889700"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Talavade B.O",
+    "pincode": "415607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.533308000000002",
+    "longitude": "73.516692000000006"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Yegaon B.O",
+    "pincode": "415607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.533306",
+    "longitude": "73.516694000000001"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Kumbharkhani B.O",
+    "pincode": "415607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.357050000000001",
+    "longitude": "73.588970000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Rajivili B.O",
+    "pincode": "415607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.357050000000001",
+    "longitude": "73.588970000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Nandgaon (CPN) S.O",
+    "pincode": "415607",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.343804",
+    "longitude": "73.569282"
+  }
+]

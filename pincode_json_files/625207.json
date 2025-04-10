@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Ayyankuruvithurai BO",
+    "pincode": "625207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0575970",
+    "longitude": "77.9067470"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Mannadimangalam BO",
+    "pincode": "625207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0370760",
+    "longitude": "77.9274580"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Kadupatti BO",
+    "pincode": "625207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0243750",
+    "longitude": "77.9204040"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Mullipallam SO",
+    "pincode": "625207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0222500",
+    "longitude": "77.9528889"
+  }
+]

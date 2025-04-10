@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Annasseri BO",
+    "pincode": "673317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3700000",
+    "longitude": "75.7700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Thalakolathur SO",
+    "pincode": "673317",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.3546528",
+    "longitude": "75.7587141"
+  }
+]

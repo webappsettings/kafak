@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Rajpura BO",
+    "pincode": "828203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "22.2616300",
+    "longitude": "86.8101090"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Kumardhubi SO",
+    "pincode": "828203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.7458056",
+    "longitude": "86.7920000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Silibari BO",
+    "pincode": "828203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.7956530",
+    "longitude": "86.4303850"
+  }
+]

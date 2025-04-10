@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Moolakkadu B.O",
+    "pincode": "636352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9353400",
+    "longitude": "78.4897600"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "T.Ganikarahalli B.O",
+    "pincode": "636352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9353400",
+    "longitude": "78.4897600"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Thoppur S.O",
+    "pincode": "636352",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.940396",
+    "longitude": "78.056602"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Kammampatti B.O",
+    "pincode": "636352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9353400",
+    "longitude": "78.4897600"
+  }
+]

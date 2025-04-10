@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Karungalpalayam SO",
+    "pincode": "638003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3513998",
+    "longitude": "77.7260582"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Erode Division",
+    "officename": "Vairapalayam BO",
+    "pincode": "638003",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ERODE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3609487",
+    "longitude": "77.7211948"
+  }
+]

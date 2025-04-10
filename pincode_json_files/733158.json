@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Baul BO",
+    "pincode": "733158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2600000",
+    "longitude": "88.1900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Bolla BO",
+    "pincode": "733158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2600000",
+    "longitude": "88.1900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Atrai SO",
+    "pincode": "733158",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2618210",
+    "longitude": "88.1905760"
+  }
+]

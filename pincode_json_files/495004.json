@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bilaspur RS SO",
+    "pincode": "495004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0594300",
+    "longitude": "82.1702900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Ramdas Nagar SO",
+    "pincode": "495004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0711300",
+    "longitude": "82.1682800"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Sirgitti BO",
+    "pincode": "495004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0417710",
+    "longitude": "82.1529180"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Dhuma BO",
+    "pincode": "495004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0204620",
+    "longitude": "82.2121420"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Harditonakala BO",
+    "pincode": "495004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0065460",
+    "longitude": "82.1686440"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Cmd College Bilaspur SO",
+    "pincode": "495004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0668000",
+    "longitude": "82.1572400"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Deorikhurd BO",
+    "pincode": "495004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1286210",
+    "longitude": "81.9998370"
+  }
+]

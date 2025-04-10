@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Kuthirakulam BO",
+    "pincode": "695615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.6",
+    "longitude": "76.94"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Moonnanakuzhy BO",
+    "pincode": "695615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.66",
+    "longitude": "76.97"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Cheeranikkara BO",
+    "pincode": "695615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.64",
+    "longitude": "76.96"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Konchira BO",
+    "pincode": "695615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.63",
+    "longitude": "76.93"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Vembayam SO",
+    "pincode": "695615",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.631149",
+    "longitude": "76.93699"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Satpura S.O",
+    "pincode": "462004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2349444",
+    "longitude": "77.4212778"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Vallabh Bhawan S.O",
+    "pincode": "462004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2372778",
+    "longitude": "77.4195000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "M.P. Vidhan Sabha S.O",
+    "pincode": "462004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2389722",
+    "longitude": "77.4141389"
+  }
+]

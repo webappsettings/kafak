@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Kandadevi B.O",
+    "pincode": "630314",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.975468",
+    "longitude": "78.82556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Shanmuganathapuram S.O",
+    "pincode": "630314",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9956667",
+    "longitude": "78.8188333"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Annappanpettai B.O",
+    "pincode": "613003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8400000",
+    "longitude": "79.2000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Tittai B.O",
+    "pincode": "613003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8200000",
+    "longitude": "79.1700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Gudalur B.O",
+    "pincode": "613003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8100000",
+    "longitude": "79.1700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Kadakadappai B.O",
+    "pincode": "613003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8100000",
+    "longitude": "79.1800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Vennar Bank S.O",
+    "pincode": "613003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8162778",
+    "longitude": "79.1384722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Ramapuram B.O",
+    "pincode": "613003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8400000",
+    "longitude": "79.1600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Palliagraharam B.O",
+    "pincode": "613003",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8200000",
+    "longitude": "79.1400000"
+  }
+]

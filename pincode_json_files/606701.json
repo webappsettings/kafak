@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Chennasamudram BO",
+    "pincode": "606701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3089000",
+    "longitude": "78.7914000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Thithandapattu BO",
+    "pincode": "606701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3089000",
+    "longitude": "78.7914000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Valayampattu BO",
+    "pincode": "606701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3089000",
+    "longitude": "78.7914000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Chengam SO",
+    "pincode": "606701",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3104722",
+    "longitude": "78.7924722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kayambattu BO",
+    "pincode": "606701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3089000",
+    "longitude": "78.7914000"
+  }
+]

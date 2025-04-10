@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kalitaladiar BO",
+    "pincode": "742165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.5272000",
+    "longitude": "87.9291000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Nischintapur BO",
+    "pincode": "742165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2199000",
+    "longitude": "87.9537000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Jagannathpur BO",
+    "pincode": "742165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.8345000",
+    "longitude": "87.9044000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Nutanpararaipur BO",
+    "pincode": "742165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.5272000",
+    "longitude": "87.9291000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Rajdharpara BO",
+    "pincode": "742165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.5272000",
+    "longitude": "87.9291000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Balarampore Colony BO",
+    "pincode": "742165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.5272000",
+    "longitude": "87.9291000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Baruipara SO Murshidabad",
+    "pincode": "742165",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9542500",
+    "longitude": "88.0372500"
+  }
+]

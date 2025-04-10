@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Surianalle SO",
+    "pincode": "685618",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "10.05182",
+    "longitude": "77.19644"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Sinkukandam BO",
+    "pincode": "685618",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "10.03644",
+    "longitude": "77.20048"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Chinnakanal BO",
+    "pincode": "685618",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "10.03881",
+    "longitude": "77.16697"
+  }
+]

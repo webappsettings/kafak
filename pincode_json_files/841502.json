@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Santhi BO",
+    "pincode": "841502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.072444399999998",
+    "longitude": "84.258916600000006"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Khujhwa SO",
+    "pincode": "841502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.0724444",
+    "longitude": "84.2589167"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Patar BO",
+    "pincode": "841502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.072444399999998",
+    "longitude": "84.258916600000006"
+  }
+]

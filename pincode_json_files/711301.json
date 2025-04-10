@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Jhumjhumi BO",
+    "pincode": "711301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4971000",
+    "longitude": "88.2851000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Dakhin Durgapur BO",
+    "pincode": "711301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.1125000",
+    "longitude": "88.4393000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Deoly BO",
+    "pincode": "711301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4971000",
+    "longitude": "88.2851000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Dihimandal Ghat BO",
+    "pincode": "711301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4971000",
+    "longitude": "88.2851000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Kotra BO",
+    "pincode": "711301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5816944",
+    "longitude": "88.3371944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Anantapur SO Howrah",
+    "pincode": "711301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5816944",
+    "longitude": "88.3371944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Radhapur BO",
+    "pincode": "711301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "15.5934000",
+    "longitude": "92.1314000"
+  }
+]

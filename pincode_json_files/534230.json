@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Aravalli S.O",
+    "pincode": "534230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.62955556",
+    "longitude": "81.60391667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Kanchumarru B.O",
+    "pincode": "534230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.639141",
+    "longitude": "81.593228"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Skinnerapuram B.O",
+    "pincode": "534230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.620288",
+    "longitude": "81.578836"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Unikili B.O",
+    "pincode": "534230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.526934",
+    "longitude": "81.107885"
+  }
+]

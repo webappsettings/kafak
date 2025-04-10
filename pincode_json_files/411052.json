@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Navsahyadri S.O",
+    "pincode": "411052",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4943889",
+    "longitude": "73.8300556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Karvenagar S.O",
+    "pincode": "411052",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4876944",
+    "longitude": "73.8163056"
+  }
+]

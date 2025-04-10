@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Bellevue B.O",
+    "pincode": "643224",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3700000",
+    "longitude": "76.8600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Naduvattam S.O",
+    "pincode": "643224",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3494500",
+    "longitude": "76.8028580"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "T R Bazaar B.O",
+    "pincode": "643224",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4646670",
+    "longitude": "76.5580950"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Prospect B.O",
+    "pincode": "643224",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4400000",
+    "longitude": "76.4600000"
+  }
+]

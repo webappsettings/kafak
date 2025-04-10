@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Isnapur B.O",
+    "pincode": "502307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.544748",
+    "longitude": "78.197555"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Lakdaram B.O",
+    "pincode": "502307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.584966",
+    "longitude": "78.201686"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "IDA Pashamailaram S.O",
+    "pincode": "502307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.5342778",
+    "longitude": "78.1943333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Chitkul B.O",
+    "pincode": "502307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.55909",
+    "longitude": "78.223165"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Pashamailaram B.O",
+    "pincode": "502307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.52769",
+    "longitude": "78.191163"
+  }
+]

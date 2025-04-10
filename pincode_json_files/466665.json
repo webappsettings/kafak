@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Charnal B.O",
+    "pincode": "466665",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5197480",
+    "longitude": "77.1657720"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Hathiya Kheda",
+    "pincode": "466665",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6585",
+    "longitude": "77.215400000000002"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Barkheda Hasan B.O",
+    "pincode": "466665",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5400340",
+    "longitude": "77.2692500"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Chandbad  Jageer B.O",
+    "pincode": "466665",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5909780",
+    "longitude": "77.1573200"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Magarda B.O",
+    "pincode": "466665",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5693890",
+    "longitude": "77.2002740"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Badarkasani",
+    "pincode": "466665",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5824",
+    "longitude": "77.225499999999997"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Ahmedpur S.O (Sehore)",
+    "pincode": "466665",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.508349",
+    "longitude": "77.213547"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Bel BO",
+    "pincode": "263128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3127009",
+    "longitude": "79.4746071"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Patwadanger SO",
+    "pincode": "263128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3376000",
+    "longitude": "79.4437000"
+  }
+]

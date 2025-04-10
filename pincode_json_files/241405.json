@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Uchawal BO",
+    "pincode": "241405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5655073",
+    "longitude": "80.1161411"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Hariyawan SO",
+    "pincode": "241405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5276667",
+    "longitude": "80.1705556"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Bhadeora BO",
+    "pincode": "241405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5051616",
+    "longitude": "80.2019755"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Chandeli BO",
+    "pincode": "241405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5968061",
+    "longitude": "80.1183856"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Kurseli BO",
+    "pincode": "241405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5335761",
+    "longitude": "80.1372923"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Mansoor Nagar BO",
+    "pincode": "241405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5734539",
+    "longitude": "80.1494890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Hardoi Division",
+    "officename": "Pila Mahuwa BO",
+    "pincode": "241405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3952361",
+    "longitude": "80.1347065"
+  }
+]

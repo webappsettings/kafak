@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Chiruli B.O",
+    "pincode": "477446",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1083450",
+    "longitude": "78.8750640"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Rurai B.O",
+    "pincode": "477446",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.0843120",
+    "longitude": "78.8209260"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Akhdewa B.O",
+    "pincode": "477446",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1143970",
+    "longitude": "78.9078070"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Jalalpura (Aswar So)B.O",
+    "pincode": "477446",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1343440",
+    "longitude": "78.8358750"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Girwasa B.O",
+    "pincode": "477446",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1579920",
+    "longitude": "78.8294580"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Aswar S.O",
+    "pincode": "477446",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1337680",
+    "longitude": "78.8612580"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Dhonewadi B.O",
+    "pincode": "591263",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5904498",
+    "longitude": "74.4581858"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Barwad B.O",
+    "pincode": "591263",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5589642",
+    "longitude": "74.4358637"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Karadaga B.O",
+    "pincode": "591263",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5653811",
+    "longitude": "74.4511766"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Bhoj S.O",
+    "pincode": "591263",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.537835",
+    "longitude": "74.440257"
+  }
+]

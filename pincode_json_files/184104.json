@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Kothera BO",
+    "pincode": "184104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5420960",
+    "longitude": "75.0842760"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Jakhbar BO",
+    "pincode": "184104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3819750",
+    "longitude": "75.4565550"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Janglote BO",
+    "pincode": "184104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4325660",
+    "longitude": "75.5256390"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Logate BO",
+    "pincode": "184104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "42.4445490",
+    "longitude": "19.2465210"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Mini Sectt Kathua SO",
+    "pincode": "184104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3872222",
+    "longitude": "75.5168611"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Changran BO",
+    "pincode": "184104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3694090",
+    "longitude": "75.4934560"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Rakh Lachhipura BO",
+    "pincode": "184104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3765540",
+    "longitude": "75.4821190"
+  }
+]

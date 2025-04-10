@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Andhra University S.O",
+    "pincode": "530003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7248889",
+    "longitude": "83.3240833"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Ghandhi Place S.O",
+    "pincode": "530003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7203720",
+    "longitude": "83.3168070"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Chinawaltair S.O",
+    "pincode": "530003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7257640",
+    "longitude": "83.3361330"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Pithapuram Colony S.O",
+    "pincode": "530003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7357250",
+    "longitude": "83.3225710"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Vidya Bhavan S.O",
+    "pincode": "530003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7219060",
+    "longitude": "83.3286020"
+  }
+]

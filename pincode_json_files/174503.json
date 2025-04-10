@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Kuthar Beet BO",
+    "pincode": "174503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3793430",
+    "longitude": "76.1900670"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Polian Beet BO",
+    "pincode": "174503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3514920",
+    "longitude": "76.2015710"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Pubowal SO",
+    "pincode": "174503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3846667",
+    "longitude": "76.1967500"
+  }
+]

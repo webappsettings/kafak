@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Choria BO",
+    "pincode": "495686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9619730",
+    "longitude": "82.7792060"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Saragaon SO",
+    "pincode": "495686",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9826080",
+    "longitude": "82.7532900"
+  }
+]

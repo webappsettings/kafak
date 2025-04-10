@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Tondiarpet West S.O",
+    "pincode": "600081",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.129938",
+    "longitude": "80.279685"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Tondiarpet Bazaar S.O",
+    "pincode": "600081",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1380835",
+    "longitude": "80.2946712"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Tondiarpet S.O",
+    "pincode": "600081",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.142477",
+    "longitude": "80.296466"
+  }
+]

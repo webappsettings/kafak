@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Kulgod S.O",
+    "pincode": "591310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3219172",
+    "longitude": "74.0441136"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Avaradi B.O",
+    "pincode": "591310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3219172",
+    "longitude": "75.1174341"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Dhavaleshwar B.O",
+    "pincode": "591310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3283894",
+    "longitude": "75.0734098"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Hunshyal P.Y B.O",
+    "pincode": "591310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3101410",
+    "longitude": "75.0347609"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Sunadholi B.O",
+    "pincode": "591310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.2750568",
+    "longitude": "74.9884735"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Bhairnatti B.O",
+    "pincode": "591310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.2883268",
+    "longitude": "75.0067328"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Venkatapur B.O",
+    "pincode": "591310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.2852455",
+    "longitude": "75.0917674"
+  }
+]

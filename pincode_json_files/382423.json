@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Jamiyatpura BO",
+    "pincode": "382423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.1800000",
+    "longitude": "72.5500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Shertha BO",
+    "pincode": "382423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.9800000",
+    "longitude": "72.2500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Kasturinagar SO",
+    "pincode": "382423",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2428600",
+    "longitude": "72.5030510"
+  }
+]

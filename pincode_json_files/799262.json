@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Churaibari S.O",
+    "pincode": "799262",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "24.437103",
+    "longitude": "92.242231"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Fulbari B.O",
+    "pincode": "799262",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Sanicherra B.O",
+    "pincode": "799262",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Balicherra B.O",
+    "pincode": "799262",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Kheranjuri B.O",
+    "pincode": "799262",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

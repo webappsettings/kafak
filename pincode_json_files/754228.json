@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Akhua Dakhini B.O",
+    "pincode": "754228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.39423",
+    "longitude": "86.407753999999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Pundalo B.O",
+    "pincode": "754228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.40971",
+    "longitude": "86.390514999999994"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Patakura S.O (Kendrapara)",
+    "pincode": "754228",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5041667",
+    "longitude": "86.4188889"
+  }
+]

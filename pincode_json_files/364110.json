@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Gogha SO",
+    "pincode": "364110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6787110",
+    "longitude": "72.2533040"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhumbhli BO",
+    "pincode": "364110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6689240",
+    "longitude": "72.2311780"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Thordi BO",
+    "pincode": "364110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6465450",
+    "longitude": "72.1917640"
+  }
+]

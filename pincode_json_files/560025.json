@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "CMP Centre And School S.O",
+    "pincode": "560025",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9548056",
+    "longitude": "77.608638900000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Museum Road S.O",
+    "pincode": "560025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9748333",
+    "longitude": "77.603999999999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Richmond Town S.O",
+    "pincode": "560025",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.16325",
+    "longitude": "78.013416699999993"
+  }
+]

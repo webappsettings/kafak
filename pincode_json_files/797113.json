@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Duncan Basti B.O",
+    "pincode": "797113",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Industrial Estate B.O",
+    "pincode": "797113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.901890000000002",
+    "longitude": "93.694204999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kacharigaon",
+    "pincode": "797113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.895767110000001",
+    "longitude": "93.692203070000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "D. C. Complex B.O",
+    "pincode": "797113",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Lengrijan B.O",
+    "pincode": "797113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.909916599999999",
+    "longitude": "93.693886599999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "New Nepaligaon S.O",
+    "pincode": "797113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.8632160",
+    "longitude": "93.7543150"
+  }
+]

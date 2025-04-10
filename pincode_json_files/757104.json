@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Bholagadia B.O",
+    "pincode": "757104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.7346516",
+    "longitude": "86.5637329"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Nuagaon B.O",
+    "pincode": "757104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.7504810",
+    "longitude": "86.5446152"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Bahanada S.O",
+    "pincode": "757104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.70115",
+    "longitude": "86.5684"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Dengam B.O",
+    "pincode": "757104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.7390876",
+    "longitude": "86.5190572"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Gayalmara B.O",
+    "pincode": "757104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.7027484",
+    "longitude": "86.6114452"
+  }
+]

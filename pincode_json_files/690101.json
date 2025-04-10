@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Mavelikara Cutcherry SO",
+    "pincode": "690101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.235050",
+    "longitude": "76.537313"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Mavelikara HO",
+    "pincode": "690101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.245785",
+    "longitude": "76.540616"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Punnamoodu BO",
+    "pincode": "690101",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.229223",
+    "longitude": "76.537157"
+  }
+]

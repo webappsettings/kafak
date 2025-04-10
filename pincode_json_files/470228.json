@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Tinsi B.O",
+    "pincode": "470228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7241670",
+    "longitude": "79.0108210"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Dhana S.O",
+    "pincode": "470228",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1758920",
+    "longitude": "79.0673300"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Baroda Rehli B.O",
+    "pincode": "470228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7149370",
+    "longitude": "78.9231670"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Hilgan B.O",
+    "pincode": "470228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7728280",
+    "longitude": "78.9118510"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Patna Buzurg B.O",
+    "pincode": "470228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5834320",
+    "longitude": "78.9316530"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Bamori Bika B.O",
+    "pincode": "470228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7861740",
+    "longitude": "78.8127790"
+  }
+]

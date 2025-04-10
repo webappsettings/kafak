@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Mirapur BO",
+    "pincode": "843121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.995563000000001",
+    "longitude": "85.594042999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "BBakhari BO",
+    "pincode": "843121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.995563000000001",
+    "longitude": "85.594042999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Pilkhi Gajpatti BO",
+    "pincode": "843121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.995563000000001",
+    "longitude": "85.594042999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "IRNagar BO",
+    "pincode": "843121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.995563000000001",
+    "longitude": "85.594042999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Raini BO",
+    "pincode": "843121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.995563000000001",
+    "longitude": "85.594042999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "SMuraul BO",
+    "pincode": "843121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.995563000000001",
+    "longitude": "85.594042999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "DACollege SO",
+    "pincode": "843121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1264167",
+    "longitude": "85.3818056"
+  }
+]

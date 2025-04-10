@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Khadri Khadakmaf BO",
+    "pincode": "249204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "30.05007",
+    "longitude": "78.242971"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Gumaniwala BO",
+    "pincode": "249204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0700000",
+    "longitude": "78.2400000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "SN Temple SO",
+    "pincode": "249204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0588333",
+    "longitude": "78.2115278"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Dhamodi BO",
+    "pincode": "394652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1663660",
+    "longitude": "73.5644984"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Moghvan BO",
+    "pincode": "394652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1171500",
+    "longitude": "73.4038500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Mota Bandharpada BO",
+    "pincode": "394652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1171500",
+    "longitude": "73.4038500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Panwadi SO",
+    "pincode": "394652",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1261979",
+    "longitude": "73.3926141"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Galkuva BO",
+    "pincode": "394652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1171500",
+    "longitude": "73.4038500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Chikhalda BO",
+    "pincode": "394652",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1262000",
+    "longitude": "73.3926100"
+  }
+]

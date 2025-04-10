@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Punnamchatram B.O",
+    "pincode": "639136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0100000",
+    "longitude": "77.9800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Kagtithapuram S.O",
+    "pincode": "639136",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9602222",
+    "longitude": "78.0827222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Moolimangalam B.O",
+    "pincode": "639136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0400000",
+    "longitude": "78.0000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Punnam B.O",
+    "pincode": "639136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9900000",
+    "longitude": "78.0000000"
+  }
+]

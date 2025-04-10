@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Ramol B.O",
+    "pincode": "382449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "22.978559099999998",
+    "longitude": "72.654658900000001"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Jantanagar S.O",
+    "pincode": "382449",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.005161",
+    "longitude": "72.653415"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Gatrad B.O",
+    "pincode": "382449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "22.978521000000001",
+    "longitude": "72.709901000000002"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Vanch B.O",
+    "pincode": "382449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "22.951371999999999",
+    "longitude": "72.679619000000002"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Narayanpur BO",
+    "pincode": "713127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4100000",
+    "longitude": "87.8300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Gramdighi BO",
+    "pincode": "713127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4100000",
+    "longitude": "87.7900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Mandarbati BO",
+    "pincode": "713127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4200000",
+    "longitude": "87.8000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Khurul BO",
+    "pincode": "713127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3900000",
+    "longitude": "87.8400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Mohanpur BO",
+    "pincode": "713127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3800000",
+    "longitude": "87.7900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Bonpas SO",
+    "pincode": "713127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8371222",
+    "longitude": "86.9099730"
+  }
+]

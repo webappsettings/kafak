@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Tizit S.O",
+    "pincode": "798602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.4815740",
+    "longitude": "94.9926490"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Yannu B.O",
+    "pincode": "798602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.874557800000002",
+    "longitude": "95.170854800000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Namsa B.O",
+    "pincode": "798602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.903286999999999",
+    "longitude": "95.0826292"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Zaboka B.O",
+    "pincode": "798602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.933350399999998",
+    "longitude": "95.143238199999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Zangkham B.O",
+    "pincode": "798602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.804196399999999",
+    "longitude": "95.158570499999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Tiru Upper",
+    "pincode": "798602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.722075799999999",
+    "longitude": "95.029206299999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Oting",
+    "pincode": "798602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.845901019999999",
+    "longitude": "94.957342879999999"
+  }
+]

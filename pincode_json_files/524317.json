@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Kothavangallu B.O",
+    "pincode": "524317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5652130",
+    "longitude": "79.9273140"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Turimerla B.O",
+    "pincode": "524317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5730250",
+    "longitude": "79.9717240"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Peddaputtedu B.O",
+    "pincode": "524317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5652140",
+    "longitude": "79.9273130"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Elamanchipadu B.O",
+    "pincode": "524317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5730260",
+    "longitude": "79.9717250"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Uppalapadu B.O",
+    "pincode": "524317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5730220",
+    "longitude": "79.9717220"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Nellore Division",
+    "officename": "Gandavaram S.O",
+    "pincode": "524317",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5764722",
+    "longitude": "79.9673056"
+  }
+]

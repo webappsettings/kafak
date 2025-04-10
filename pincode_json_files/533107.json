@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Satellite City B.O",
+    "pincode": "533107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.98166",
+    "longitude": "81.83891"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Hukumpeta S.O",
+    "pincode": "533107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.986235",
+    "longitude": "81.8008411"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Pidimgoyya B.O",
+    "pincode": "533107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0064000",
+    "longitude": "81.8293000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Punyakshetram B.O",
+    "pincode": "533107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9766000",
+    "longitude": "81.8525000"
+  }
+]

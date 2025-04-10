@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Cheful BO",
+    "pincode": "841209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.892790000000002",
+    "longitude": "84.493375999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Khajuhatti BO",
+    "pincode": "841209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.892790000000002",
+    "longitude": "84.493375999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Matiyar BO",
+    "pincode": "841209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.892790000000002",
+    "longitude": "84.493375999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Dumaigarh BO",
+    "pincode": "841209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.892790000000002",
+    "longitude": "84.493375999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Gola Mubarkpur BO",
+    "pincode": "841209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.892790000000002",
+    "longitude": "84.493375999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Fulwaria Tajpur SO",
+    "pincode": "841209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.9023740",
+    "longitude": "84.5057540"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Jayee Chapra BO",
+    "pincode": "841209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.892790000000002",
+    "longitude": "84.493375999999998"
+  }
+]

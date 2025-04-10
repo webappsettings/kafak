@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Bhatapada [r] B.O",
+    "pincode": "754246",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.593236600000001",
+    "longitude": "86.703573300000002"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Jagannathpur Sasan B.O",
+    "pincode": "754246",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.6173866",
+    "longitude": "86.704811599999999"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Bandhapatna B.O",
+    "pincode": "754246",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.624591599999999",
+    "longitude": "86.689968300000004"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Keradagada B.O",
+    "pincode": "754246",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.6267116",
+    "longitude": "86.722861600000002"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Koilipur B.O",
+    "pincode": "754246",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.6234833",
+    "longitude": "86.527911599999996"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Madanpur S.O (Kendrapara)",
+    "pincode": "754246",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5846366",
+    "longitude": "86.6797566"
+  }
+]

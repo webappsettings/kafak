@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Aslali SO",
+    "pincode": "382427",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "22.915218",
+    "longitude": "72.593060"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Ode BO",
+    "pincode": "382427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Jetalpur BO",
+    "pincode": "382427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "22.890486",
+    "longitude": "72.597387"
+  }
+]

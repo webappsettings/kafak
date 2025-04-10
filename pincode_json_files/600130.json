@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Thazambur",
+    "pincode": "600130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9333611",
+    "longitude": "80.1183056"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Navalur BO",
+    "pincode": "600130",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5920000",
+    "longitude": "80.0260000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Ottiyambakkam BO",
+    "pincode": "600130",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.592000000000001",
+    "longitude": "80.025999999999996"
+  }
+]

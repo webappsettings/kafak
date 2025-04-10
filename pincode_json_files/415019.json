@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Varne B.O",
+    "pincode": "415019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.5898259",
+    "longitude": "74.1095159"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Angapur Vandan S.O",
+    "pincode": "415019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.5903611",
+    "longitude": "74.134666"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Kameri B.O",
+    "pincode": "415019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6914070",
+    "longitude": "74.0009320"
+  }
+]

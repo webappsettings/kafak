@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Jantral BO",
+    "pincode": "388580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3984500",
+    "longitude": "72.8993070"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Vatadara BO",
+    "pincode": "388580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3131220",
+    "longitude": "72.6194000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Finav BO",
+    "pincode": "388580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3131190",
+    "longitude": "72.6194030"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Bamanva BO",
+    "pincode": "388580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3131210",
+    "longitude": "72.6194010"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Banejada BO",
+    "pincode": "388580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3984510",
+    "longitude": "72.8993060"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Jalsan BO",
+    "pincode": "388580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3131200",
+    "longitude": "72.6194020"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Virsad SO",
+    "pincode": "388580",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5591944",
+    "longitude": "72.9641389"
+  }
+]

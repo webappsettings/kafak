@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Kurumilangudi BO",
+    "pincode": "623409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7800000",
+    "longitude": "79.0000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Pasipattinam BO",
+    "pincode": "623409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8200000",
+    "longitude": "79.0800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Tondi SO",
+    "pincode": "623409",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7439",
+    "longitude": "79.01755588"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Vattanam BO",
+    "pincode": "623409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7900000",
+    "longitude": "79.0500000"
+  }
+]

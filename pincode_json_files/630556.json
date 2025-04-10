@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Muthur BO",
+    "pincode": "630556",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8800000",
+    "longitude": "78.5900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Panangadi BO",
+    "pincode": "630556",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8400000",
+    "longitude": "78.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Vittaneri BO",
+    "pincode": "630556",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8400000",
+    "longitude": "78.5900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Nattarasankottai SO",
+    "pincode": "630556",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8713371",
+    "longitude": "78.557009"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Sivaganga Division",
+    "officename": "Alagapuri BO",
+    "pincode": "630556",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8200000",
+    "longitude": "78.7200000"
+  }
+]

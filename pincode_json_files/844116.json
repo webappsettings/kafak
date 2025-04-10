@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Bishanpur Bejha BO",
+    "pincode": "844116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Rampur Ratnakar BO",
+    "pincode": "844116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Fatehpur Fulwaria BO",
+    "pincode": "844116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Dumari SO Vaishali",
+    "pincode": "844116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6916389",
+    "longitude": "85.2113333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Bilandpur BO",
+    "pincode": "844116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  }
+]

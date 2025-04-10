@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Patharquerry S.O",
+    "pincode": "781171",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1693500",
+    "longitude": "91.8266800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Udayan Vihar S.O",
+    "pincode": "781171",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1649600",
+    "longitude": "91.8354700"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Nallakunta S.O",
+    "pincode": "500044",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.398312",
+    "longitude": "78.505247"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Vidyanagar S.O",
+    "pincode": "500044",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.4077",
+    "longitude": "78.51094"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "New Nallakunta S.O",
+    "pincode": "500044",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.397669",
+    "longitude": "78.509580"
+  }
+]

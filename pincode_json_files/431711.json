@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Pimpalgaon B.O",
+    "pincode": "431711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.729637",
+    "longitude": "78.309358"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Kundalwadi S.O",
+    "pincode": "431711",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.804905",
+    "longitude": "77.768264"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Hungunda B.O",
+    "pincode": "431711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.807798",
+    "longitude": "77.81867"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Arjapur B.O",
+    "pincode": "431711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.788518",
+    "longitude": "77.747493"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Machnur B.O",
+    "pincode": "431711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.762596",
+    "longitude": "77.80617"
+  }
+]

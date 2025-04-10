@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Pallanchathanur BO",
+    "pincode": "678571",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.4722"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Mathur PG SO",
+    "pincode": "678571",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.6421850",
+    "longitude": "76.5448260"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Thachangad BO",
+    "pincode": "678571",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.4722"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Mathur Agraharam BO",
+    "pincode": "678571",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.4722"
+  }
+]

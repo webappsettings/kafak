@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Bonhooghly BO",
+    "pincode": "700103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4290000",
+    "longitude": "88.3652000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Nepalganj BO",
+    "pincode": "700103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3900000",
+    "longitude": "88.3380000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Narendrapur SO",
+    "pincode": "700103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.44489",
+    "longitude": "88.39346"
+  }
+]

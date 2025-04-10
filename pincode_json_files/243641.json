@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Katra Sadatganj BO",
+    "pincode": "243641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7099196",
+    "longitude": "79.3028998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Bhundi BO",
+    "pincode": "243641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7467209",
+    "longitude": "79.2311883"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Usehat SO",
+    "pincode": "243641",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0232778",
+    "longitude": "79.1287778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Khera Jalalpur BO",
+    "pincode": "243641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8035809",
+    "longitude": "79.2831802"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Lilwan BO",
+    "pincode": "243641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7638362",
+    "longitude": "79.2675125"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Rijola BO",
+    "pincode": "243641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8230069",
+    "longitude": "79.2790736"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Sareli Pukhta BO",
+    "pincode": "243641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7904036",
+    "longitude": "79.2028155"
+  }
+]

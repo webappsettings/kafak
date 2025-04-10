@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Pelkhu BO",
+    "pincode": "281504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Badhauta BO",
+    "pincode": "281504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Ral BO",
+    "pincode": "281504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Radhakund SO",
+    "pincode": "281504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5244400",
+    "longitude": "77.4908300"
+  }
+]

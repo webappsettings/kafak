@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "5 Star MIDC Kagal S.O",
+    "pincode": "416236",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.6088574",
+    "longitude": "74.3604169"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Yalgud B.O",
+    "pincode": "416236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Talandage B.O",
+    "pincode": "416236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Khalisani BO",
+    "pincode": "711307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5102770",
+    "longitude": "88.1311650"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Chackasi SO",
+    "pincode": "711307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8113888",
+    "longitude": "88.2533333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Dasbhaga BO",
+    "pincode": "711307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5167000",
+    "longitude": "88.0828000"
+  }
+]

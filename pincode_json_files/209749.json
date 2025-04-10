@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Bhojpur BO",
+    "pincode": "209749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3208150",
+    "longitude": "79.6221370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Yaqutganj SO",
+    "pincode": "209749",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3268611",
+    "longitude": "79.6138056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sitauli BO",
+    "pincode": "209749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3208150",
+    "longitude": "79.6221370"
+  }
+]

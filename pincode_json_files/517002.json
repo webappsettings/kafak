@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kajoor B.O",
+    "pincode": "517002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.1925",
+    "longitude": "79.12315"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Ctr Collectorate S.O",
+    "pincode": "517002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.81905556",
+    "longitude": "78.07683333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Chennamagudipalle B.O",
+    "pincode": "517002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.1925",
+    "longitude": "79.12315"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Lalugardens S.O",
+    "pincode": "517002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.22272222",
+    "longitude": "79.09991667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Mapakshi B.O",
+    "pincode": "517002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.1925",
+    "longitude": "79.12315"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Narigapalle B.O",
+    "pincode": "517002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Reddigunta B.O",
+    "pincode": "517002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.1925",
+    "longitude": "79.12315"
+  }
+]

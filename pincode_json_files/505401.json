@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Elgandal S.O",
+    "pincode": "505401",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.42918",
+    "longitude": "79.039201"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "MallapurB.O",
+    "pincode": "505401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.4021850",
+    "longitude": "78.9846750"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Manwada B.O",
+    "pincode": "505401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3994650",
+    "longitude": "78.9667650"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Nagulamallial B.O",
+    "pincode": "505401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.4528190",
+    "longitude": "79.0013440"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Kandikatkur B.O",
+    "pincode": "505401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3842340",
+    "longitude": "78.9637610"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Asifnagar B.O",
+    "pincode": "505401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.4397920",
+    "longitude": "79.0179100"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Pothur B.O",
+    "pincode": "505401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3925420",
+    "longitude": "78.9922570"
+  }
+]

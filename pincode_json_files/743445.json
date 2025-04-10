@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Chaita BO",
+    "pincode": "743445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6374655",
+    "longitude": "88.7626271"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Amta BO",
+    "pincode": "743445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6011115",
+    "longitude": "88.7812586"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Bhabanipur BO",
+    "pincode": "743445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6076362",
+    "longitude": "88.7578177"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Ghona BO",
+    "pincode": "743445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6301184",
+    "longitude": "88.7758503"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Gopalpur SO North 24 Parganas",
+    "pincode": "743445",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6234989",
+    "longitude": "88.7494318"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Gouribhoj BO",
+    "pincode": "743445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6328729",
+    "longitude": "88.7543852"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Sadarpur Behala BO",
+    "pincode": "743445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6297461",
+    "longitude": "88.7277460"
+  }
+]

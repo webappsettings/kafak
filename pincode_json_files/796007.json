@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Edenthar B.O",
+    "pincode": "796007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.754052399999999",
+    "longitude": "92.718493899999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Tuithiang B.O",
+    "pincode": "796007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.730915899999999",
+    "longitude": "92.7220303"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Bethlehem B.O",
+    "pincode": "796007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.736784499999999",
+    "longitude": "92.724440299999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Ramthar B.O",
+    "pincode": "796007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.7387932",
+    "longitude": "92.722628799999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Chandmary S.O",
+    "pincode": "796007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.741368",
+    "longitude": "92.718002"
+  }
+]

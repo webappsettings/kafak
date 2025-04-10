@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "EdakodePavukonam BO",
+    "pincode": "679522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.8922000",
+    "longitude": "75.9995000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Pathankulam BO",
+    "pincode": "679522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "75.9995000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Panayur BO",
+    "pincode": "679522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "75.9995000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Vaniamkulam SO",
+    "pincode": "679522",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7820399",
+    "longitude": "76.326195"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Cherukattupulam BO",
+    "pincode": "679522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.8922000",
+    "longitude": "75.9995000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Panayur BO",
+    "pincode": "679522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "75.9995"
+  }
+]

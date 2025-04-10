@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Kalthotty BO",
+    "pincode": "685507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.72109",
+    "longitude": "77.06041"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Ayyappancoil SO",
+    "pincode": "685507",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.70250",
+    "longitude": "77.04011"
+  }
+]

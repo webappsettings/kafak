@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Chengannur RS SO",
+    "pincode": "689121",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.3800000",
+    "longitude": "76.8100000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Chengannur HO",
+    "pincode": "689121",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.3208611",
+    "longitude": "76.6027222"
+  }
+]

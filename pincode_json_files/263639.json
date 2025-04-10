@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kantali BO",
+    "pincode": "263639",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8110024",
+    "longitude": "79.6138538"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Lakhani BO",
+    "pincode": "263639",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7815800",
+    "longitude": "79.6038772"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Naughar Estate BO",
+    "pincode": "263639",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8746000",
+    "longitude": "79.5633500"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Laubanj BO",
+    "pincode": "263639",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7815800",
+    "longitude": "79.6038772"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kausani SO",
+    "pincode": "263639",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8421111",
+    "longitude": "79.6038333"
+  }
+]

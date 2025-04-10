@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Namagondlu B.O",
+    "pincode": "561206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.5783684",
+    "longitude": "77.605080900000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Kadabur B.O",
+    "pincode": "561206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.591768699999999",
+    "longitude": "77.577582899999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Dn Palya S.O",
+    "pincode": "561206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.629138899999999",
+    "longitude": "77.603027800000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Huduguru B.O",
+    "pincode": "561206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.6489963",
+    "longitude": "77.570898799999995"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Lankaparahat BO",
+    "pincode": "735228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8000000",
+    "longitude": "88.2400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Ramjhora SO",
+    "pincode": "735228",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7600000",
+    "longitude": "89.2000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Dumchipara BO",
+    "pincode": "735228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7500000",
+    "longitude": "89.2300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Makrapara BO",
+    "pincode": "735228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8100000",
+    "longitude": "89.1900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Mujnai BO",
+    "pincode": "735228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7200000",
+    "longitude": "89.2500000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Garganda BO",
+    "pincode": "735228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7800000",
+    "longitude": "89.2200000"
+  }
+]

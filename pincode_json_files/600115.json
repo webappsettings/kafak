@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Injambakkam S.O",
+    "pincode": "600115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9251389",
+    "longitude": "80.1986944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Neelangarai S.O",
+    "pincode": "600115",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0468200",
+    "longitude": "80.2456170"
+  }
+]

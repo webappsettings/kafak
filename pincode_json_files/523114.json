@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Mogilicherla B.O",
+    "pincode": "523114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0598160",
+    "longitude": "79.6593250"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Bodawada B.O",
+    "pincode": "523114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0736570",
+    "longitude": "79.6110880"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Rallapadu Project B.O",
+    "pincode": "523114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0450620",
+    "longitude": "79.7363150"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Timmareddipalem B.O",
+    "pincode": "523114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0872480",
+    "longitude": "79.7220670"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Linga Samudram S.O",
+    "pincode": "523114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0950000",
+    "longitude": "79.7007222"
+  }
+]

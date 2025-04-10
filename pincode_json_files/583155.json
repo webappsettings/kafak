@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "D Kaggal B.O",
+    "pincode": "583155",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.3278860",
+    "longitude": "76.9550096"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Somasamudra B.O",
+    "pincode": "583155",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2395645",
+    "longitude": "76.9003438"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kolur S.O",
+    "pincode": "583155",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.9723101",
+    "longitude": "76.7588981"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Chanahal B.O",
+    "pincode": "583155",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.3672140",
+    "longitude": "76.9815880"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Dammuru B.O",
+    "pincode": "583155",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.3066751",
+    "longitude": "76.9258701"
+  }
+]

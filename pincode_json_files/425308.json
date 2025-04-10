@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Kahurkheda B.O",
+    "pincode": "425308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Tahakali B.O",
+    "pincode": "425308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Varangaon Ord.Factory S.O",
+    "pincode": "425308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.035231",
+    "longitude": "75.923463"
+  }
+]

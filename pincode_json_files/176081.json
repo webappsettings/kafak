@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Badiarkhar BO",
+    "pincode": "176081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0637640",
+    "longitude": "76.6167750"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Lower Averi BO",
+    "pincode": "176081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0731550",
+    "longitude": "76.6007480"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Zandpur BO",
+    "pincode": "176081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0637640",
+    "longitude": "76.6167750"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Jhikli Bheth BO",
+    "pincode": "176081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0757680",
+    "longitude": "76.6268310"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Taragarh Kangra SO",
+    "pincode": "176081",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.063385",
+    "longitude": "76.6220432"
+  }
+]

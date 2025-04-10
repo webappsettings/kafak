@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Chak Kherewala BO",
+    "pincode": "152033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.9799600",
+    "longitude": "74.6816000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Nukerian BO",
+    "pincode": "152033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.9799600",
+    "longitude": "74.6816000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Ratta Khera BO",
+    "pincode": "152033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.9799600",
+    "longitude": "74.6816000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Khuranj BO",
+    "pincode": "152033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.4598942",
+    "longitude": "74.2876132"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Chak Badhoke BO",
+    "pincode": "152033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.9799600",
+    "longitude": "74.6816000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Chak Janisar BO",
+    "pincode": "152033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.9799600",
+    "longitude": "74.6816000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Mandi Amin Ganj SO",
+    "pincode": "152033",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FAZILKA",
+    "statename": "PUNJAB",
+    "latitude": "30.445801",
+    "longitude": "74.255157"
+  }
+]

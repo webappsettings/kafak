@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Yamuna Nagar Railway Station S.O",
+    "pincode": "135001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "18.6636256",
+    "longitude": "73.7808690"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Yamunanagar H.O",
+    "pincode": "135001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.136043",
+    "longitude": "77.276951"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Bhatia Nagar S.O",
+    "pincode": "135001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.1339444",
+    "longitude": "77.2907500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Model Town S.O (Yamuna Nagar)",
+    "pincode": "135001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "18.6636256",
+    "longitude": "73.7808690"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Sugar Mill S.O",
+    "pincode": "135001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.1288889",
+    "longitude": "77.2897500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Ram Pura Olony S.O",
+    "pincode": "135001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.1383333",
+    "longitude": "77.2987500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Mud Hut Colony S.O",
+    "pincode": "135001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "77.2617500",
+    "longitude": "30.1213889"
+  }
+]

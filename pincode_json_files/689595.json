@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Kodupunna BO",
+    "pincode": "689595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Mithrakary BO",
+    "pincode": "689595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.4122750",
+    "longitude": "76.4707680"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Urukari BO",
+    "pincode": "689595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Ramankary SO",
+    "pincode": "689595",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.9700000",
+    "longitude": "76.9500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Vezhapra BO",
+    "pincode": "689595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

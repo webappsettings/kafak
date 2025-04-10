@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Periaseeragapadi B.O",
+    "pincode": "636308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5852285",
+    "longitude": "78.0421045"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Akkarapalayam B.O",
+    "pincode": "636308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5734221",
+    "longitude": "78.0913522"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Bairoji Agraharam B.O",
+    "pincode": "636308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5605093",
+    "longitude": "78.0706003"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Veerapandi Salem S.O",
+    "pincode": "636308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5769888",
+    "longitude": "78.0731752"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Ariyanur B.O",
+    "pincode": "636308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5936590",
+    "longitude": "78.0767705"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Chinnaseeragapadi B.O",
+    "pincode": "636308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5787054",
+    "longitude": "78.0565240"
+  }
+]

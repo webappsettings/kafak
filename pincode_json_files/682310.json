@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Kaninad BO",
+    "pincode": "682310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.9934631",
+    "longitude": "76.4159965"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Vadavucode SO",
+    "pincode": "682310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.985194444",
+    "longitude": "76.42916667"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Pancode BO",
+    "pincode": "682310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.99970499",
+    "longitude": "76.4413726"
+  }
+]

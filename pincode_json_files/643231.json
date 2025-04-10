@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Defence Service Staff College S.O",
+    "pincode": "643231",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.362803",
+    "longitude": "76.792452999999995"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Berhatti B.O",
+    "pincode": "643231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3884170",
+    "longitude": "76.7855870"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Wellington S.O",
+    "pincode": "643231",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3674167",
+    "longitude": "76.7870833"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Wellington Bazaar S.O",
+    "pincode": "643231",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.354753000000001",
+    "longitude": "76.784947000000003"
+  }
+]

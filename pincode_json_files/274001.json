@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Deoria HO",
+    "pincode": "274001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4827222",
+    "longitude": "83.7797500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "HANUMAN MANDIR SO",
+    "pincode": "274001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "RAM GULAM TOLA SO",
+    "pincode": "274001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "DEORIA KUTCHARY SO",
+    "pincode": "274001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "NAI BAZAR SO",
+    "pincode": "274001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "DEORIA NEW COLONY SO",
+    "pincode": "274001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Kanuru B.O",
+    "pincode": "520007",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4950400",
+    "longitude": "80.6885820"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Yanamalakuduru B.O",
+    "pincode": "520007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4804320",
+    "longitude": "80.6734320"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Industrial Estate S.O (Krishna)",
+    "pincode": "520007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5245211",
+    "longitude": "80.6748524"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Autonagar S.O",
+    "pincode": "520007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5003056",
+    "longitude": "80.6762778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Vasanthanagar B.O",
+    "pincode": "520007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "80.7079930",
+    "longitude": "16.4833430"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Bautha BO",
+    "pincode": "273405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.3140420",
+    "longitude": "83.6336960"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Dihghat BO",
+    "pincode": "273405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6563070",
+    "longitude": "83.5776210"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Dumraila BO",
+    "pincode": "273405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6617890",
+    "longitude": "8.5821010"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Sadhana BO",
+    "pincode": "273405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6618270",
+    "longitude": "83.5820580"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Barhi S.O Gorakhpur",
+    "pincode": "273405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.74903",
+    "longitude": "83.366524"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Bishunpura BO",
+    "pincode": "273405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.3000380",
+    "longitude": "83.6587810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Kuin Bazar BO",
+    "pincode": "273405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7440680",
+    "longitude": "83.4520300"
+  }
+]

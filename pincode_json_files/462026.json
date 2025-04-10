@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Bawadia Kalan B.O",
+    "pincode": "462026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.219999999999999",
+    "longitude": "77.439999999999998"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "University S.O (Bhopal)",
+    "pincode": "462026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2100000",
+    "longitude": "77.4400000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Bholad BO",
+    "pincode": "171216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.215599999999998",
+    "longitude": "77.406040000000004"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Jhalta BO",
+    "pincode": "171216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.21002",
+    "longitude": "77.406963000000005"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Giltari BO",
+    "pincode": "171216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5913",
+    "longitude": "77.606024000000005"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Tooran BO",
+    "pincode": "171216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "77.824236999999997",
+    "longitude": "31.237545000000001"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Jhagtan BO",
+    "pincode": "171216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2102",
+    "longitude": "77.406963000000005"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Mandal SO Shimla",
+    "pincode": "171216",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4048700",
+    "longitude": "77.6019130"
+  }
+]

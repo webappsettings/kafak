@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Bistauli BO",
+    "pincode": "202170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7244245",
+    "longitude": "78.2248291"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Chhonk BO",
+    "pincode": "202170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6719182",
+    "longitude": "78.2191320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Bijaigarh S.O",
+    "pincode": "202170",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.71941667",
+    "longitude": "78.22541667"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Kathera BO",
+    "pincode": "202170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7244245",
+    "longitude": "78.2248291"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Gangrol BO",
+    "pincode": "202170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7244245",
+    "longitude": "78.2248291"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Matia BO",
+    "pincode": "743437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6896646",
+    "longitude": "88.7710424"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Nehalpur BO",
+    "pincode": "743437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6895538",
+    "longitude": "88.7566152"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Dhanyakuria SO",
+    "pincode": "743437",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7013523",
+    "longitude": "88.7565144"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Arbelia BO",
+    "pincode": "743437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7028426",
+    "longitude": "88.7616407"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Begampur BO",
+    "pincode": "743437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6851653",
+    "longitude": "88.7500992"
+  }
+]

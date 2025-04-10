@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Aralihalli B.O",
+    "pincode": "577233",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9600000",
+    "longitude": "75.7500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Arabilichi B.O",
+    "pincode": "577233",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9400000",
+    "longitude": "75.7500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kudligere S.O",
+    "pincode": "577233",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9587778",
+    "longitude": "75.5866667"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kallihal B.O",
+    "pincode": "577233",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.8900000",
+    "longitude": "75.7500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Arakere B.O",
+    "pincode": "577233",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9500000",
+    "longitude": "75.7700000"
+  }
+]

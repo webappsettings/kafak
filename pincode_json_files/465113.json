@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Khadi B.O",
+    "pincode": "465113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "30.2797550",
+    "longitude": "78.3689340"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Simrol B.O",
+    "pincode": "465113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.5390090",
+    "longitude": "75.9113970"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Sundersi S.O",
+    "pincode": "465113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2680070",
+    "longitude": "76.4418500"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Makodi B.O",
+    "pincode": "465113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "20.7705960",
+    "longitude": "76.1312710"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Nipania  Dhakar B.O",
+    "pincode": "465113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2017130",
+    "longitude": "76.4505240"
+  }
+]

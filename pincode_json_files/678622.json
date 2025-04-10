@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Erattakulam BO",
+    "pincode": "678622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.6785",
+    "longitude": "76.5019"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Ramasseri BO",
+    "pincode": "678622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.5019"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Elapulli South BO",
+    "pincode": "678622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.6785",
+    "longitude": "76.5019"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Vengodi BO",
+    "pincode": "678622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.5019"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Tenari BO",
+    "pincode": "678622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934",
+    "longitude": "76.5019"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Elapulli SO",
+    "pincode": "678622",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7995710",
+    "longitude": "76.6423180"
+  }
+]

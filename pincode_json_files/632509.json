@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Hakeemnagar SO",
+    "pincode": "632509",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249656",
+    "longitude": "79.3668455"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Federation Buildings BO",
+    "pincode": "632509",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9114500",
+    "longitude": "79.2726000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Kilvisharam BO",
+    "pincode": "632509",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249656",
+    "longitude": "79.3668455"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Arungundram BO",
+    "pincode": "632509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9114500",
+    "longitude": "79.2726000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Ayilam BO",
+    "pincode": "632509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9114500",
+    "longitude": "79.2726000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Melvisharam SO",
+    "pincode": "632509",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249656",
+    "longitude": "79.3668455"
+  }
+]

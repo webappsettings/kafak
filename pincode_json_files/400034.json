@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Tulsiwadi S.O",
+    "pincode": "400034",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.97307844",
+    "longitude": "72.81853813"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Haji Ali S.O",
+    "pincode": "400034",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9808830",
+    "longitude": "72.8151190"
+  }
+]

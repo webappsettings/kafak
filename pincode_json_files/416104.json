@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Alas B.O",
+    "pincode": "416104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Aurwad B.O",
+    "pincode": "416104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Bubnal B.O",
+    "pincode": "416104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Narsobawadi S.O",
+    "pincode": "416104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.6957309",
+    "longitude": "74.6008396"
+  }
+]

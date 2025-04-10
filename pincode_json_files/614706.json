@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Thillaivilagam B.O",
+    "pincode": "614706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.41",
+    "longitude": "79.55"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Thillaivilagam South B.O",
+    "pincode": "614706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.39",
+    "longitude": "79.55"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Kummattitidal B.O",
+    "pincode": "614706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.46",
+    "longitude": "79.54"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Pinnathur B.O",
+    "pincode": "614706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.46",
+    "longitude": "79.56"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Udayamarthandapuram S.O",
+    "pincode": "614706",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4609444",
+    "longitude": "79.5477778"
+  }
+]

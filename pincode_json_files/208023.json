@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "Munshipurwa SO",
+    "pincode": "208023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4418889",
+    "longitude": "80.3425833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "T P Nagar SO",
+    "pincode": "208023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4369167",
+    "longitude": "80.3315833"
+  }
+]

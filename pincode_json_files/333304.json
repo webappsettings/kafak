@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Barwa B.O",
+    "pincode": "333304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7440150",
+    "longitude": "75.3617320"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Birol B.O",
+    "pincode": "333304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8477350",
+    "longitude": "75.3143380"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Gothara B.O",
+    "pincode": "333304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8000650",
+    "longitude": "75.3383710"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Basawa B.O",
+    "pincode": "333304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7713620",
+    "longitude": "75.3237790"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Jhajhar S.O",
+    "pincode": "333304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8089444",
+    "longitude": "75.3130833"
+  }
+]

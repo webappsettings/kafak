@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Bhaminiput B.O",
+    "pincode": "764005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8583450",
+    "longitude": "82.5593783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Raniput B.O",
+    "pincode": "764005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8583450",
+    "longitude": "82.5593783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Anta B.O",
+    "pincode": "764005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8583450",
+    "longitude": "82.5593783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Digapur B.O",
+    "pincode": "764005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8583450",
+    "longitude": "82.5593783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Jayanagar S.O (Koraput)",
+    "pincode": "764005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8583450",
+    "longitude": "82.5593783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Ghumar B.O",
+    "pincode": "764005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8583450",
+    "longitude": "82.5593783"
+  }
+]

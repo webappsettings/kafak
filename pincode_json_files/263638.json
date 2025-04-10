@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Pokhari BO",
+    "pincode": "263638",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7815790",
+    "longitude": "79.6038782"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Ranban BO",
+    "pincode": "263638",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7590100",
+    "longitude": "79.6303940"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Manan SO",
+    "pincode": "263638",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7267000",
+    "longitude": "79.6145000"
+  }
+]

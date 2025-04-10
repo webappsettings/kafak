@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Rajakilpakkam BO",
+    "pincode": "600073",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9090000",
+    "longitude": "80.1250000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Gowriwakkam SO",
+    "pincode": "600073",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9200000",
+    "longitude": "80.1708889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Selaiyur SO",
+    "pincode": "600073",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9234375",
+    "longitude": "80.14743125"
+  }
+]

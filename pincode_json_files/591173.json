@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Yallammahill S.O",
+    "pincode": "591173",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.8523889",
+    "longitude": "74.5108056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Ugargol B.O",
+    "pincode": "591173",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.7500000",
+    "longitude": "75.1700000"
+  }
+]

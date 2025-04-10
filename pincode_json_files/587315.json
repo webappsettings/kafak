@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Golbhavi B.O",
+    "pincode": "587315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.5043289",
+    "longitude": "75.2917422"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Terdal S.O",
+    "pincode": "587315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.4962500",
+    "longitude": "75.0544167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Tamadaddi B.O",
+    "pincode": "587315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.5043289",
+    "longitude": "75.2917422"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Halingali B.O",
+    "pincode": "587315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.5043289",
+    "longitude": "75.2917422"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Hanagandi B.O",
+    "pincode": "587315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.5043289",
+    "longitude": "75.2917422"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Sasalatti B.O",
+    "pincode": "587315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.5043289",
+    "longitude": "75.2917422"
+  }
+]

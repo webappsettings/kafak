@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Secretariat S.O (North Goa)",
+    "pincode": "403521",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.5900000",
+    "longitude": "73.0900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Alto porvorim S.O",
+    "pincode": "403521",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.52908980",
+    "longitude": "73.82699620"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Alto Betim S.O",
+    "pincode": "403521",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.5224722",
+    "longitude": "73.8307222"
+  }
+]

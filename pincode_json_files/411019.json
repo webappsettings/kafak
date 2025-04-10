@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "M.Phulenagar S.O",
+    "pincode": "411019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6690833",
+    "longitude": "73.7991111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "Chinchwad East S.O",
+    "pincode": "411019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6395",
+    "longitude": "73.79586111"
+  }
+]

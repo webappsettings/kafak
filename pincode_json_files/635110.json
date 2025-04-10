@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Gopanapalli B.O",
+    "pincode": "635110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6500812",
+    "longitude": "77.7955247"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Hosur Cattle Farm S.O",
+    "pincode": "635110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4875",
+    "longitude": "78.0823"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Achettipalli B.O",
+    "pincode": "635110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6746976",
+    "longitude": "77.8267098"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Muduganapalli B.O",
+    "pincode": "635110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7330400",
+    "longitude": "77.8301470"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Panchakshipuram B.O",
+    "pincode": "635110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5957676",
+    "longitude": "77.7799068"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Mugalur B.O",
+    "pincode": "635110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6190872",
+    "longitude": "77.8056342"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Nagondapalli B.O",
+    "pincode": "635110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6611231",
+    "longitude": "77.7669324"
+  }
+]

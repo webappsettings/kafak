@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Demouli BO",
+    "pincode": "721145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2695000",
+    "longitude": "87.2867000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Salua SO",
+    "pincode": "721145",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4009722",
+    "longitude": "87.4594444"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Sakpara BO",
+    "pincode": "721145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2695000",
+    "longitude": "87.2867000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Rangametia BO",
+    "pincode": "721145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2695000",
+    "longitude": "87.2867000"
+  }
+]

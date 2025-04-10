@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Kota SO",
+    "pincode": "576221",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.5280000",
+    "longitude": "74.7052770"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Belur Devasthanabettu BO",
+    "pincode": "576221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.5396715",
+    "longitude": "74.7437021"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Kotathattu BO",
+    "pincode": "576221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.5219689",
+    "longitude": "74.6884700"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Manur BO",
+    "pincode": "576221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.5360452",
+    "longitude": "74.7038981"
+  }
+]

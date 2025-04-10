@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "GHUMNEWAL B.O",
+    "pincode": "141110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.907710999999999",
+    "longitude": "75.650964000000002"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Bassian Bet BO",
+    "pincode": "141110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.9001980",
+    "longitude": "75.6222640"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Bhatta Dhahan BO",
+    "pincode": "141110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "26.8976150",
+    "longitude": "75.8301890"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Chak Kalan BO",
+    "pincode": "141110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "31.1770350",
+    "longitude": "75.5342210"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Purain BO",
+    "pincode": "141110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.9192000",
+    "longitude": "75.6164440"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Hambran SO",
+    "pincode": "141110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.9364722",
+    "longitude": "75.6697666"
+  }
+]

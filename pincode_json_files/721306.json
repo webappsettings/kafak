@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Talbagicha BO",
+    "pincode": "721306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3145000",
+    "longitude": "87.3090000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Hijli Cooperative BO",
+    "pincode": "721306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3145000",
+    "longitude": "87.3090000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Hijli SO",
+    "pincode": "721306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3404600",
+    "longitude": "87.3078380"
+  }
+]

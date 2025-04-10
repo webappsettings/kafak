@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Takkellapadu B.O",
+    "pincode": "522509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3110780",
+    "longitude": "80.4910470"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Venigandla B.O",
+    "pincode": "522509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3513440",
+    "longitude": "80.4799270"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Gollamudi B.O",
+    "pincode": "522509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3416000",
+    "longitude": "80.4728000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Venkatakrishnapuram B.O",
+    "pincode": "522509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3009850",
+    "longitude": "80.5417620"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Pedakakani S.O",
+    "pincode": "522509",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3401944",
+    "longitude": "80.4910278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Reddypalem B.O",
+    "pincode": "522509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3402079",
+    "longitude": "80.4910370"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Uppalapadu B.O",
+    "pincode": "522509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3066460",
+    "longitude": "80.5127130"
+  }
+]

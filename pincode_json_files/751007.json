@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Satyanagar S.O (Khorda)",
+    "pincode": "751007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2797266",
+    "longitude": "85.8524016"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "V S S Nagar S.O",
+    "pincode": "751007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.3086390",
+    "longitude": "85.8457500"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Saheed Nagar S.O",
+    "pincode": "751007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.290795",
+    "longitude": "85.8483333"
+  }
+]

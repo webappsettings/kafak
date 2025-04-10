@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Bodakpatna B.O",
+    "pincode": "756135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1196950",
+    "longitude": "86.3929250"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Olanga B.O",
+    "pincode": "756135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.0951066",
+    "longitude": "86.4520733"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Randiahat S.O",
+    "pincode": "756135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.0666666",
+    "longitude": "86.4658333"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Odanga B.O",
+    "pincode": "756135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1299916",
+    "longitude": "86.3803733"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Saramara B.O",
+    "pincode": "756135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1416699",
+    "longitude": "86.3586299"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Badabarchikayan B.O",
+    "pincode": "756135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1634399",
+    "longitude": "86.4020216"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Kadabaranga B.O",
+    "pincode": "756135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1471466",
+    "longitude": "86.3954800"
+  }
+]

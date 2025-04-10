@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Atak Pardi BO",
+    "pincode": "396007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.5856860",
+    "longitude": "72.9674150"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Parnera Pardi BO",
+    "pincode": "396007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.5772630",
+    "longitude": "72.9593440"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Velvach BO",
+    "pincode": "396007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.4825840",
+    "longitude": "73.0936510"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Jujwa BO",
+    "pincode": "396007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.5850640",
+    "longitude": "72.9776500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Valsad Sugar Factory SO",
+    "pincode": "396007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.5713830",
+    "longitude": "72.9551840"
+  }
+]

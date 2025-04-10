@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Boyapalli B.O",
+    "pincode": "504272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.1177580",
+    "longitude": "79.4605441"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Dwarakapur B.O",
+    "pincode": "504272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.1259514",
+    "longitude": "79.4626538"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Tandur  S.O",
+    "pincode": "504272",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.150828",
+    "longitude": "79.450842"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Chakepalli B.O",
+    "pincode": "504272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.1820860",
+    "longitude": "79.4816378"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Repallewada B.O",
+    "pincode": "504272",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.1760637",
+    "longitude": "79.4281914"
+  }
+]

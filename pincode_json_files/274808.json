@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Barthi BO",
+    "pincode": "274808",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.289999999999999",
+    "longitude": "83.920000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Itahua Chandauli BO",
+    "pincode": "274808",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.289999999999999",
+    "longitude": "83.920000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Pipara Ramdhar BO",
+    "pincode": "274808",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.289999999999999",
+    "longitude": "83.920000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Chero BO",
+    "pincode": "274808",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.289999999999999",
+    "longitude": "83.920000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Chakara Gosai SO",
+    "pincode": "274808",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Bakuchi BO",
+    "pincode": "274808",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.289999999999999",
+    "longitude": "83.920000000000002"
+  }
+]

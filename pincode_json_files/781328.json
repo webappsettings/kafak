@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bhotanta Mohitara B.O",
+    "pincode": "781328",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Charnabazar B.O",
+    "pincode": "781328",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3637000",
+    "longitude": "91.1032000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Kathalmurighat B.O",
+    "pincode": "781328",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3637000",
+    "longitude": "91.1032000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Baghmarabazar S.O",
+    "pincode": "781328",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.3637000",
+    "longitude": "91.1032000"
+  }
+]

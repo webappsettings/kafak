@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Vettimukal BO",
+    "pincode": "686631",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.5592000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Ettumanur Junction SO",
+    "pincode": "686631",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.6702600",
+    "longitude": "76.5601300"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Kottakkapuram BO",
+    "pincode": "686631",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.6690000",
+    "longitude": "76.5592000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Pattithanam BO",
+    "pincode": "686631",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.5592000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Punnathura West BO",
+    "pincode": "686631",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.5592000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Ettumanur SO",
+    "pincode": "686631",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.668666",
+    "longitude": "76.555494"
+  }
+]

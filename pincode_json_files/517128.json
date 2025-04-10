@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kukkalapalle B.O",
+    "pincode": "517128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4204",
+    "longitude": "79.1205"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Prasanth Nagar S.O (Chittoor)",
+    "pincode": "517128",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4204",
+    "longitude": "79.1205"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Mahasamudram B.O",
+    "pincode": "517128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4204",
+    "longitude": "79.1205"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Iruvaram S.O",
+    "pincode": "517128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.19280556",
+    "longitude": "79.07636111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Madhavaram IRM B.O",
+    "pincode": "517128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4204",
+    "longitude": "79.1205"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Periyambadi B.O",
+    "pincode": "517128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4204",
+    "longitude": "79.1205"
+  }
+]

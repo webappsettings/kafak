@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Butchampeta B.O",
+    "pincode": "533292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.1222000",
+    "longitude": "81.7937000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Burugupudi B.O",
+    "pincode": "533292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.1339000",
+    "longitude": "81.8306000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Dosakayapalli S.O",
+    "pincode": "533292",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0666944",
+    "longitude": "81.8265278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Nandarada B.O",
+    "pincode": "533292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.1220000",
+    "longitude": "81.8620000"
+  }
+]

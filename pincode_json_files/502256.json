@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Hulgera B.O",
+    "pincode": "502256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.8601926",
+    "longitude": "77.6868135"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Cheekurthy B.O",
+    "pincode": "502256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.926613168120962",
+    "longitude": "77.65830855760768"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Kakijanwada B.O",
+    "pincode": "502256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.943323077242546",
+    "longitude": "77.68323349060529"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Chalki B.O",
+    "pincode": "502256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.9141802",
+    "longitude": "77.6763908"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Nyalkal S.O",
+    "pincode": "502256",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.846878370398194",
+    "longitude": "77.6622092752613"
+  }
+]

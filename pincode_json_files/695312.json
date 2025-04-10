@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Vettoor BO",
+    "pincode": "695312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.7159190",
+    "longitude": "76.7258980"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Melvettoor SO",
+    "pincode": "695312",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.6858333",
+    "longitude": "76.8023056"
+  }
+]

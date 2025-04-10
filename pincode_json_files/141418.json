@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Kubba BO",
+    "pincode": "141418",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8340160",
+    "longitude": "76.0899510"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Mehdoodan BO",
+    "pincode": "141418",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8111770",
+    "longitude": "76.0805260"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Begowal BO",
+    "pincode": "141418",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "31.6100900",
+    "longitude": "75.5208290"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Rampur SO Ludhiana",
+    "pincode": "141418",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8414722",
+    "longitude": "75.6719722"
+  }
+]

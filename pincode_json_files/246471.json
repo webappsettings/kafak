@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Rampur BO",
+    "pincode": "246471",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2432560",
+    "longitude": "78.9408450"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Trijuginarain BO",
+    "pincode": "246471",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.6475930",
+    "longitude": "78.9882080"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Byung BO",
+    "pincode": "246471",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5511050",
+    "longitude": "79.0521470"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Badasu BO",
+    "pincode": "246471",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5175630",
+    "longitude": "79.1542410"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Gaurikund BO",
+    "pincode": "246471",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.6529130",
+    "longitude": "79.0256580"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Narainkoti BO",
+    "pincode": "246471",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.6637120",
+    "longitude": "79.0276320"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Phata SO",
+    "pincode": "246471",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5770556",
+    "longitude": "79.0394722"
+  }
+]

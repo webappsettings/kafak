@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Nallur B.O",
+    "pincode": "614208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9200000",
+    "longitude": "79.3000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Sundaraperumalkoil S.O",
+    "pincode": "614208",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9385000",
+    "longitude": "79.3016944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Kiliyur B.O",
+    "pincode": "614208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8300000",
+    "longitude": "78.8500000"
+  }
+]

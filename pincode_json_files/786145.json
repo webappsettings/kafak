@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Kadamoni B.O",
+    "pincode": "786145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.1900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Sripuria S.O",
+    "pincode": "786145",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.1950000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Sripuria Bengali Gaon B.O",
+    "pincode": "786145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.1900000"
+  }
+]

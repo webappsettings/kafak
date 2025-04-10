@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Hotanahalli B.O",
+    "pincode": "581203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8863736",
+    "longitude": "75.1368344"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Andalagi B.O",
+    "pincode": "581203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9102703",
+    "longitude": "75.1239312"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Yalawatti B.O",
+    "pincode": "581203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8654667",
+    "longitude": "75.1359475"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Bommanahalli S.O (Haveri)",
+    "pincode": "581203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8873753",
+    "longitude": "75.1374172"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Hullatti B.O",
+    "pincode": "581203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8640934",
+    "longitude": "75.1011003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Hungund B.O",
+    "pincode": "581203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9097553",
+    "longitude": "75.1728547"
+  }
+]

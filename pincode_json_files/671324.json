@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Mangalpady SO",
+    "pincode": "671324",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.64140221",
+    "longitude": "74.92519818"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Ichilangodu BO",
+    "pincode": "671324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6451391",
+    "longitude": "74.9530257"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Kudalmerkala BO",
+    "pincode": "671324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6567003",
+    "longitude": "75.0085398"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Dharmathadka BO",
+    "pincode": "671324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6662508",
+    "longitude": "75.0289877"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Permude BO",
+    "pincode": "671324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6599952",
+    "longitude": "75.0173035"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Heroor BO",
+    "pincode": "671324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6487132",
+    "longitude": "74.9660038"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Oklong B.O",
+    "pincode": "795106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.392983000000001",
+    "longitude": "94.005430000000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Khamsom B.O",
+    "pincode": "795106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "25.182595",
+    "longitude": "94.154297"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Tumuyan Khullen B.O",
+    "pincode": "795106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.184705999999998",
+    "longitude": "93.98124"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Senapati S.O",
+    "pincode": "795106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.3258550",
+    "longitude": "94.1246500"
+  }
+]

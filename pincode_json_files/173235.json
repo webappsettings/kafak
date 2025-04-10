@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Piplughat BO",
+    "pincode": "173235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Saryanj BO",
+    "pincode": "173235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Hanuman Barog BO",
+    "pincode": "173235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Bhararighat BO",
+    "pincode": "173235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Dhundan SO",
+    "pincode": "173235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9123333",
+    "longitude": "77.1058056"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Palankipadu B.O",
+    "pincode": "521158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Nimmaluru B.O",
+    "pincode": "521158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Machilipatnam Division",
+    "officename": "Nimmakuru S.O",
+    "pincode": "521158",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.27030556",
+    "longitude": "80.99669444"
+  }
+]

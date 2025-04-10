@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Guntur Bazar S.O",
+    "pincode": "522003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.289286",
+    "longitude": "80.449708"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "S.K.P.Temple(Guntur) S.O",
+    "pincode": "522003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4685833",
+    "longitude": "80.7349167"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Choutra(Guntur) S.O",
+    "pincode": "522003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4741667",
+    "longitude": "80.7388889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Etukuru Road(Guntur) S.O",
+    "pincode": "522003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4754167",
+    "longitude": "80.7411111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Factories Ward S.O",
+    "pincode": "522003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2850000",
+    "longitude": "80.4298611"
+  }
+]

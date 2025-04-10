@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Kasba Peth S.O",
+    "pincode": "411011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5202500",
+    "longitude": "73.8599167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Mangalwar Peth S.O (Pune)",
+    "pincode": "411011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5216940",
+    "longitude": "73.8632300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City West Division",
+    "officename": "Rasta Peth S.O",
+    "pincode": "411011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5203020",
+    "longitude": "73.8648780"
+  }
+]

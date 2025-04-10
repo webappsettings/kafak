@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Koreya B.O",
+    "pincode": "783388",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Majharalga B.O",
+    "pincode": "783388",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "A.P.Mill S.O",
+    "pincode": "783388",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.0359000",
+    "longitude": "90.5157000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Chalantapara B.O",
+    "pincode": "783388",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Balapara B.O",
+    "pincode": "783388",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

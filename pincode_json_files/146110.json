@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Jahan Khelan BO",
+    "pincode": "146110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.2400000",
+    "longitude": "75.2300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Chak Sadu BO",
+    "pincode": "146110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.3600000",
+    "longitude": "75.8100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Kharkan Camp BO",
+    "pincode": "146110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.6300000",
+    "longitude": "75.4100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Mehlanwali BO",
+    "pincode": "146110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.4200000",
+    "longitude": "75.9600000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Kot Abdul Khaliq SO",
+    "pincode": "146110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.510808",
+    "longitude": "75.978272"
+  }
+]

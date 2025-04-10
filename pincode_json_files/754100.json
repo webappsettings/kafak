@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Paramahansa B.O",
+    "pincode": "754100",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4113141",
+    "longitude": "85.9662250"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Sidheswarpur B.O",
+    "pincode": "754100",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4009784",
+    "longitude": "86.0167690"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Gatiroutpatna B.O",
+    "pincode": "754100",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4384980",
+    "longitude": "85.9576649"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Biribati S.O",
+    "pincode": "754100",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.42945",
+    "longitude": "85.9749118"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Kandarpur B.O",
+    "pincode": "754100",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4070104",
+    "longitude": "86.0156852"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Fakirpada B.O",
+    "pincode": "754100",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4157264",
+    "longitude": "85.9994935"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Lambhvel BO",
+    "pincode": "387310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5813000",
+    "longitude": "72.9371000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Boriavi SO",
+    "pincode": "387310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5591944",
+    "longitude": "72.9641389"
+  }
+]

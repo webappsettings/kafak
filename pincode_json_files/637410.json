@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Marapparai B.O",
+    "pincode": "637410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4123866",
+    "longitude": "78.0572083"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Karungalpatti B.O",
+    "pincode": "637410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4440390",
+    "longitude": "78.0728480"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Chinnamanali B.O",
+    "pincode": "637410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3944883",
+    "longitude": "78.0847066"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Morangam B.O",
+    "pincode": "637410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4660120",
+    "longitude": "78.0289030"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Thottiapatti B.O",
+    "pincode": "637410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4330530",
+    "longitude": "78.0618620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Kokkalai B.O",
+    "pincode": "637410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3766966",
+    "longitude": "78.0536900"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Vaiyappamalai S.O",
+    "pincode": "637410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4116111",
+    "longitude": "78.0803611"
+  }
+]

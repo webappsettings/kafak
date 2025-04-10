@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kadampadi BO",
+    "pincode": "641401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0359660",
+    "longitude": "77.1642530"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kangayampalayam SO",
+    "pincode": "641401",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0252340",
+    "longitude": "77.1535220"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Goldenpet BO",
+    "pincode": "641401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0196410",
+    "longitude": "77.1808120"
+  }
+]

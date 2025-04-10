@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Mallapur B.O",
+    "pincode": "581323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3923837",
+    "longitude": "74.4699893"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Santgal B.O",
+    "pincode": "581323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4159335",
+    "longitude": "74.5424840"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Santeguli B.O",
+    "pincode": "581323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4269091",
+    "longitude": "74.5805821"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Konalli B.O",
+    "pincode": "581323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3867940",
+    "longitude": "74.4549367"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Soppinahosalli B.O",
+    "pincode": "581323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4336361",
+    "longitude": "74.6179936"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Chandavar S.O",
+    "pincode": "581323",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4008273",
+    "longitude": "74.4808469"
+  }
+]

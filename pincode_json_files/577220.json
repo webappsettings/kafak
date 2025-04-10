@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Sindhuvadi B.O",
+    "pincode": "577220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7600000",
+    "longitude": "75.4400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Halaga B.O",
+    "pincode": "577220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7800000",
+    "longitude": "75.4500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Singanabidre B.O",
+    "pincode": "577220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.8000000",
+    "longitude": "75.4600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Mandagadde S.O",
+    "pincode": "577220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7258611",
+    "longitude": "75.4698889"
+  }
+]

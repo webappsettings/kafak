@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Lakhapur B.O",
+    "pincode": "460553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2336850",
+    "longitude": "77.2778690"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Sajpur",
+    "pincode": "460553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.994361699999999",
+    "longitude": "78.012466230000001"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Amla Depot S.O",
+    "pincode": "460553",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.9328333",
+    "longitude": "78.1051667"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Ambada Amladepot B.O",
+    "pincode": "460553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1857680",
+    "longitude": "78.6937620"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Morandhana B.O",
+    "pincode": "460553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.9014290",
+    "longitude": "78.0744640"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Nahiya B.O",
+    "pincode": "460553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8782270",
+    "longitude": "78.0480750"
+  }
+]

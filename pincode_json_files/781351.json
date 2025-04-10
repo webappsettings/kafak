@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Baridatara B.O",
+    "pincode": "781351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2701000",
+    "longitude": "91.2020000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Kalag S.O",
+    "pincode": "781351",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2241000",
+    "longitude": "91.2821000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barbari B.O",
+    "pincode": "781351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2701000",
+    "longitude": "91.2020000"
+  }
+]

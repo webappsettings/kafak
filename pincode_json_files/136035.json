@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Kharkada B.O",
+    "pincode": "136035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0380240",
+    "longitude": "76.2980640"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Mastgarh B.O",
+    "pincode": "136035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0380240",
+    "longitude": "76.2980640"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Duserpur B.O",
+    "pincode": "136035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0380240",
+    "longitude": "76.2980640"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Kharkan B.O",
+    "pincode": "136035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0380240",
+    "longitude": "76.2980640"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Agondh B.O",
+    "pincode": "136035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0380240",
+    "longitude": "76.2980640"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Seonmajra B.O",
+    "pincode": "136035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0380240",
+    "longitude": "76.2980640"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Guhla S.O",
+    "pincode": "136035",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "30.0383333",
+    "longitude": "76.2984167"
+  }
+]

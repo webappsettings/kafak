@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Kukrahati SO",
+    "pincode": "721658",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0337000",
+    "longitude": "88.0635000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Baroda BO",
+    "pincode": "721658",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9221000",
+    "longitude": "87.9839000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Dhekua BO",
+    "pincode": "721658",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9221000",
+    "longitude": "87.9839000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Dorokashipur BO",
+    "pincode": "721658",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9221000",
+    "longitude": "87.9839000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Golapchak BO",
+    "pincode": "721658",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9221000",
+    "longitude": "87.9839000"
+  }
+]

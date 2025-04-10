@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Jemua BO",
+    "pincode": "713206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5566320",
+    "longitude": "87.3757420"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Durgapur Abl Township SO",
+    "pincode": "713206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5262178",
+    "longitude": "87.3291173"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Fuljhore BO",
+    "pincode": "713206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5391570",
+    "longitude": "87.3404762"
+  }
+]

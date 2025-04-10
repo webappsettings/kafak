@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Laharpur B.O",
+    "pincode": "484330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6000000",
+    "longitude": "81.8100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Jaithari S.O",
+    "pincode": "484330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2810000",
+    "longitude": "78.6174000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Gaurela B.O",
+    "pincode": "484330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8500000",
+    "longitude": "81.8900000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Amgawan B.O",
+    "pincode": "484330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6400000",
+    "longitude": "81.4100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Dhangawan B.O",
+    "pincode": "484330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9100000",
+    "longitude": "81.9200000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Gorsi B.O",
+    "pincode": "484330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8500000",
+    "longitude": "81.8900000"
+  }
+]

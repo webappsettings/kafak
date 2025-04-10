@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Srirangapur B.O",
+    "pincode": "509410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Yelikatta B.O",
+    "pincode": "509410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Chowlapally B.O",
+    "pincode": "509410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Mogalgidda S.O",
+    "pincode": "509410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.0873056",
+    "longitude": "78.1233889"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Chinchode B.O",
+    "pincode": "509410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Manmarri B.O",
+    "pincode": "509410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Pidikiryala B.O",
+    "pincode": "509410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

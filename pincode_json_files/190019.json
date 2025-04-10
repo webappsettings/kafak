@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Bagh Mehtab SO",
+    "pincode": "190019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0165000",
+    "longitude": "74.8125278"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Kralpora BO",
+    "pincode": "190019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "113.3000000",
+    "longitude": "96.3300000"
+  }
+]

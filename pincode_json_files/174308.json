@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Budhan BO",
+    "pincode": "174308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5204050",
+    "longitude": "76.4240860"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Dhundla BO",
+    "pincode": "174308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6002390",
+    "longitude": "76.3675900"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Chamiari BO",
+    "pincode": "174308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5693130",
+    "longitude": "76.4168660"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Malangar BO",
+    "pincode": "174308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5881020",
+    "longitude": "76.3826180"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Tanoh BO",
+    "pincode": "174308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5693274",
+    "longitude": "76.3929247"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Kohdra BO",
+    "pincode": "174308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5696460",
+    "longitude": "76.3931850"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Lathiani SO",
+    "pincode": "174308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5430278",
+    "longitude": "76.4129167"
+  }
+]

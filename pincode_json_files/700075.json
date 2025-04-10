@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Santoshpur SO",
+    "pincode": "700075",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4916389",
+    "longitude": "88.3836111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Viveknagar SO Kolkata",
+    "pincode": "700075",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4992140",
+    "longitude": "88.3750640"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Santoshpur Avenue SO",
+    "pincode": "700075",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3620000",
+    "longitude": "88.2144000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Garfa SO",
+    "pincode": "700075",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4980000",
+    "longitude": "88.3823333"
+  }
+]

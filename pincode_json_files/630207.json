@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Nachiapuram S.O",
+    "pincode": "630207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0796667",
+    "longitude": "78.6701944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Athikaram B.O",
+    "pincode": "630207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0963",
+    "longitude": "78.645547"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Siravayal B.O",
+    "pincode": "630207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.105823",
+    "longitude": "78.659817"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Kambanur B.O",
+    "pincode": "630207",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.075832",
+    "longitude": "78.658042"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Pillayarpatti B.O",
+    "pincode": "630207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.120052",
+    "longitude": "78.668617"
+  }
+]

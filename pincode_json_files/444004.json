@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Gandhinagar Akola S.O",
+    "pincode": "444004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7061111",
+    "longitude": "77.0025000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Kaulkhed S.O",
+    "pincode": "444004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6772778",
+    "longitude": "77.0126944"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Chandur B.O",
+    "pincode": "444004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6600000",
+    "longitude": "77.0100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Malkapur B.O",
+    "pincode": "444004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6700000",
+    "longitude": "77.0300000"
+  }
+]

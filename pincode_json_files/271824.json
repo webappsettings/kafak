@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Mahsi BO",
+    "pincode": "271824",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6381870",
+    "longitude": "81.3674390"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Sadhuwapur BO",
+    "pincode": "271824",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5832160",
+    "longitude": "81.3963010"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Kapoorpur BO",
+    "pincode": "271824",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5813170",
+    "longitude": "81.4361390"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Rehuwa Mansoor BO",
+    "pincode": "271824",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2850990",
+    "longitude": "80.9577310"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Mahsi Tahsil SO",
+    "pincode": "271824",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6156389",
+    "longitude": "81.4075000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Sikandarpur BO",
+    "pincode": "271824",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5922960",
+    "longitude": "81.3784350"
+  }
+]

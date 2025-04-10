@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Vivekanand Nagar S.O",
+    "pincode": "440015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.11591667",
+    "longitude": "79.06955556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Narendra Nagar S.O (Nagpur)",
+    "pincode": "440015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Samartha Nagar S.O",
+    "pincode": "440015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.06680556",
+    "longitude": "79.07252778"
+  }
+]

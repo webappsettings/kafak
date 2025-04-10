@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Kasarveli B.O",
+    "pincode": "415629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.0481981",
+    "longitude": "73.2958263"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Shirgaon (RTG) S.O",
+    "pincode": "415629",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.020104",
+    "longitude": "73.298628"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Basani B.O",
+    "pincode": "415629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6781000",
+    "longitude": "73.6378900"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Kalbadevi B.O",
+    "pincode": "415629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6781000",
+    "longitude": "73.6378900"
+  }
+]

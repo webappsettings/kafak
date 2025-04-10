@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Umreth",
+    "pincode": "480442",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1178",
+    "longitude": "79.33238"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Jamuniya Jethu B.O",
+    "pincode": "480442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "22.0929",
+    "longitude": "78.7958"
+  }
+]

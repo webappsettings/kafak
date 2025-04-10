@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Challet B.O",
+    "pincode": "786179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.1900000",
+    "longitude": "95.5600000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Tipong S.O",
+    "pincode": "786179",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.1944000",
+    "longitude": "95.5650000"
+  }
+]

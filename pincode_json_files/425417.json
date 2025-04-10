@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Patibedaki B.O",
+    "pincode": "425417",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.134793",
+    "longitude": "73.912884"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Chinchpada S.O",
+    "pincode": "425417",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.187595",
+    "longitude": "73.911149"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Bandhare B.O",
+    "pincode": "425417",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.226708",
+    "longitude": "73.897703"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Anjane B.O",
+    "pincode": "425417",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.258243",
+    "longitude": "73.916255"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Sonare Digar B.O",
+    "pincode": "425417",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.231367",
+    "longitude": "73.930483"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Gangapur B.O",
+    "pincode": "425417",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.181979",
+    "longitude": "73.934467"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Kolde B.O",
+    "pincode": "425417",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.147855",
+    "longitude": "73.879872"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Rajajinagar H.O",
+    "pincode": "560010",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.993209",
+    "longitude": "77.554461000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Industrial Estate S.O (Bengaluru)",
+    "pincode": "560010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.977667",
+    "longitude": "77.549487999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Rajajinagar IVth Block S.O",
+    "pincode": "560010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.983036999999999",
+    "longitude": "77.560979000000003"
+  }
+]

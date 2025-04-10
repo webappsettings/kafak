@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Manjacombai Bazaar B.O",
+    "pincode": "643221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2846300",
+    "longitude": "76.6881110"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Melur Nilgiris S.O",
+    "pincode": "643221",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.299125",
+    "longitude": "76.702688"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Araihatty B.O",
+    "pincode": "643221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2920570",
+    "longitude": "76.7185160"
+  }
+]

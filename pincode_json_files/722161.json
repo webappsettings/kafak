@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Tajpurgram BO",
+    "pincode": "722161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9332800",
+    "longitude": "87.5669900"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Jayrambati SO",
+    "pincode": "722161",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9167522",
+    "longitude": "87.6001722"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Anur BO",
+    "pincode": "722161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8864273",
+    "longitude": "87.7049413"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Gopinathpur BO",
+    "pincode": "722161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9332800",
+    "longitude": "87.5669900"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Sihar BO",
+    "pincode": "722161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9332800",
+    "longitude": "87.5669900"
+  }
+]

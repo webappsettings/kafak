@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Pubthoria B.O",
+    "pincode": "782137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3338000",
+    "longitude": "92.5633000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Kuworitul S.O",
+    "pincode": "782137",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3338000",
+    "longitude": "92.5633000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Bengenaati B.O",
+    "pincode": "782137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3338000",
+    "longitude": "92.5633000"
+  }
+]

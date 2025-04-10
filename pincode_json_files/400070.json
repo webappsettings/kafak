@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Kurla North SO",
+    "pincode": "400070",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0825800",
+    "longitude": "72.8822280"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Kurla West SO",
+    "pincode": "400070",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.068833",
+    "longitude": "72.877783"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Netaji Nagar SO",
+    "pincode": "400070",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0681810",
+    "longitude": "72.8778390"
+  }
+]

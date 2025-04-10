@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Baad B.O",
+    "pincode": "581351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4736117",
+    "longitude": "74.3747709"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Kagal B.O",
+    "pincode": "581351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.5032341",
+    "longitude": "74.3651900"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Gudeangadi S.O",
+    "pincode": "581351",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4679040",
+    "longitude": "74.3775818"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Hubbangeri B.O",
+    "pincode": "581351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4870345",
+    "longitude": "74.3807692"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Aghanashini B.O",
+    "pincode": "581351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.5211190",
+    "longitude": "74.3662843"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Holangadde B.O",
+    "pincode": "581351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4508022",
+    "longitude": "74.3820343"
+  }
+]

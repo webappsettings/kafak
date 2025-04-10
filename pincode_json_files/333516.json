@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Muradpur B.O",
+    "pincode": "333516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1112820",
+    "longitude": "75.8924230"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Dumoli Khurd B.O",
+    "pincode": "333516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1097680",
+    "longitude": "75.9176580"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Gujarwas B.O",
+    "pincode": "333516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1250600",
+    "longitude": "75.8477050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Thali B.O",
+    "pincode": "333516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1420900",
+    "longitude": "75.8737120"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Singhana S.O",
+    "pincode": "333516",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0986111",
+    "longitude": "75.8359722"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Khanpur B.O",
+    "pincode": "333516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1329320",
+    "longitude": "75.8123430"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jhunjhunu Division",
+    "officename": "Moi Purani B.O",
+    "pincode": "333516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHUNJHUNU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1164660",
+    "longitude": "75.7924810"
+  }
+]

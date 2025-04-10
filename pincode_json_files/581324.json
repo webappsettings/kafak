@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Amdalli B.O",
+    "pincode": "581324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.7632689",
+    "longitude": "74.2225716"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Todur B.O",
+    "pincode": "581324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.7676891",
+    "longitude": "74.2030558"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Mudga B.O",
+    "pincode": "581324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.7482270",
+    "longitude": "74.2423663"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Todur Camp B.O",
+    "pincode": "581324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.7791797",
+    "longitude": "74.2087314"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Chendiye S.O",
+    "pincode": "581324",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.7682578",
+    "longitude": "74.1903529"
+  }
+]

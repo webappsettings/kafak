@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Bhadebhar BO",
+    "pincode": "261404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5660000",
+    "longitude": "80.6832930"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Dadeura BO",
+    "pincode": "261404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5660000",
+    "longitude": "80.6832930"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Parsehra BO",
+    "pincode": "261404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5667000",
+    "longitude": "80.6832930"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Parsada SO",
+    "pincode": "261404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3124000",
+    "longitude": "80.3900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Nighuwamau BO",
+    "pincode": "261404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5667000",
+    "longitude": "80.6832930"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Sakrara BO",
+    "pincode": "261404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5660000",
+    "longitude": "80.6832930"
+  }
+]

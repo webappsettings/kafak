@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "GARHMALPUR SO",
+    "pincode": "221709",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.942243099999999",
+    "longitude": "83.966685200000001"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Birpura BO",
+    "pincode": "221709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.850000000000001",
+    "longitude": "83.840000000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Isari Salempur BO",
+    "pincode": "221709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.870000000000001",
+    "longitude": "83.530000000000001"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Sarya Bagdaura BO",
+    "pincode": "221709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.870000000000001",
+    "longitude": "83.939999999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Takha BO",
+    "pincode": "221709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.850000000000001",
+    "longitude": "84"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Khari BO",
+    "pincode": "221709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.850000000000001",
+    "longitude": "83.840000000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Ratsi Mehmanpur BO",
+    "pincode": "221709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.920000000000002",
+    "longitude": "83.959999999999994"
+  }
+]

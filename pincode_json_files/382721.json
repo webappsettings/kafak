@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Kalol Gandhi Road SO",
+    "pincode": "382721",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2400000",
+    "longitude": "72.5000000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Kalol HO",
+    "pincode": "382721",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2422778",
+    "longitude": "72.4990000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Kalol Society Area SO",
+    "pincode": "382721",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2300000",
+    "longitude": "72.4900000"
+  }
+]

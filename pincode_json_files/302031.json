@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Jamdoli S.O",
+    "pincode": "302031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9118889",
+    "longitude": "70.6024722"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Luniawas B.O",
+    "pincode": "302031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8698910",
+    "longitude": "75.8922440"
+  }
+]

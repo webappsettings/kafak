@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Paliabindha S.O",
+    "pincode": "756167",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.9863889",
+    "longitude": "86.6366667"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Barunai B.O",
+    "pincode": "756167",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.0345616",
+    "longitude": "86.6241283"
+  }
+]

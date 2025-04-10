@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Kuttikanam BO",
+    "pincode": "685531",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.58270",
+    "longitude": "76.97124"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Peermade SO",
+    "pincode": "685531",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.57126",
+    "longitude": "76.99619"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Glenmary BO",
+    "pincode": "685531",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.59578",
+    "longitude": "76.99748"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Lakshmi Coil BO",
+    "pincode": "685531",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.59284",
+    "longitude": "77.02441"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Pallikunnu BO",
+    "pincode": "685531",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.59758",
+    "longitude": "76.96901"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Pambanar BO",
+    "pincode": "685531",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.57529",
+    "longitude": "77.02565"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Karadikuzhy BO",
+    "pincode": "685531",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.5805320",
+    "longitude": "77.0425280"
+  }
+]

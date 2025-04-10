@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Colony Ramchandra Pur BO",
+    "pincode": "743287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9266475",
+    "longitude": "88.7997385"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Chikanpara BO",
+    "pincode": "743287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9339166",
+    "longitude": "88.7710424"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Thakurnagar SO",
+    "pincode": "743287",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9254724",
+    "longitude": "88.7763118"
+  }
+]

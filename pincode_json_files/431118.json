@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Ajantha Caves B.O",
+    "pincode": "431118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5333130",
+    "longitude": "75.7499870"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Sawaladbara B.O",
+    "pincode": "431118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6094600",
+    "longitude": "75.7243200"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Phardapur S.O",
+    "pincode": "431118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.580868",
+    "longitude": "75.724719"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Palaskheda B.O",
+    "pincode": "431118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1155191",
+    "longitude": "75.0289777"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Jamthi B.O",
+    "pincode": "431118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6094600",
+    "longitude": "75.7243200"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "Dapodi Bazar S.O",
+    "pincode": "411012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.57988889",
+    "longitude": "73.83105556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune City East Division",
+    "officename": "Dapodi S.O",
+    "pincode": "411012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.58252778",
+    "longitude": "73.83358333"
+  }
+]

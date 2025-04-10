@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "P and T Colony Kavalbyrasandra S.O",
+    "pincode": "560032",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.022581000000001",
+    "longitude": "77.593103999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "R T Nagar H.O",
+    "pincode": "560032",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.021645299999999",
+    "longitude": "77.592799799999995"
+  }
+]

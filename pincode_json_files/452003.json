@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Vallabhnagar S.O (Indore)",
+    "pincode": "452003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.43",
+    "longitude": "75.52"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Pardesipura S.O",
+    "pincode": "452003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7430556",
+    "longitude": "75.8723889"
+  }
+]

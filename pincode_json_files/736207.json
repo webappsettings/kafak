@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Baruipara BO",
+    "pincode": "736207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7600000",
+    "longitude": "88.2400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Purba Shalbari BO",
+    "pincode": "736207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.1900000",
+    "longitude": "89.3100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Jorai BO",
+    "pincode": "736207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.0800000",
+    "longitude": "82.8000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Radhanagar BO",
+    "pincode": "736207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.4600000",
+    "longitude": "89.8000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Rampur BO",
+    "pincode": "736207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "28.7800000",
+    "longitude": "79.0200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Barobisha SO",
+    "pincode": "736207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.4704860",
+    "longitude": "89.8051230"
+  }
+]

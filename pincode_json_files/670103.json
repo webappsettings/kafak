@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Tiruvangad SO",
+    "pincode": "670103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7533680",
+    "longitude": "75.4909120"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Moozhikkara BO",
+    "pincode": "670103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7600000",
+    "longitude": "75.5200000"
+  }
+]

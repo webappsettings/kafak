@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Immidivarappadu B.O",
+    "pincode": "533218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Tadikona B.O",
+    "pincode": "533218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Kodurupadu B.O",
+    "pincode": "533218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Peruru S.O",
+    "pincode": "533218",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.54886111",
+    "longitude": "81.9785"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Gudala B.O",
+    "pincode": "533218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Rollapalem B.O",
+    "pincode": "533218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

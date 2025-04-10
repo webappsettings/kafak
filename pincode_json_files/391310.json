@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Karchiya BO",
+    "pincode": "391310",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.8200000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Bajwa SO",
+    "pincode": "391310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3664722",
+    "longitude": "73.1423056"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Karodia BO",
+    "pincode": "391310",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.8200000"
+  }
+]

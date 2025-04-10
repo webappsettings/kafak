@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Vilathupatti B.O",
+    "pincode": "622101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4400000",
+    "longitude": "78.7200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Annavasal S.O",
+    "pincode": "622101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4500000",
+    "longitude": "78.7200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Chittannavasal B.O",
+    "pincode": "622101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0200000",
+    "longitude": "79.2000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Kilakurichi B.O",
+    "pincode": "622101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4600000",
+    "longitude": "78.7200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Madianallur B.O",
+    "pincode": "622101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4900000",
+    "longitude": "78.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Mangudi B.O",
+    "pincode": "622101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4100000",
+    "longitude": "78.7200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Narthamalai B.O",
+    "pincode": "622101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4900000",
+    "longitude": "78.7800000"
+  }
+]

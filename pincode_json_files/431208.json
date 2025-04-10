@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Akola B.O",
+    "pincode": "431208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Hivra  Kabli B.O",
+    "pincode": "431208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3569700",
+    "longitude": "77.7825000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Tapowan Gondhan B.O",
+    "pincode": "431208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3569700",
+    "longitude": "77.7825000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Warkheda (Firangi ) B.O",
+    "pincode": "431208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1206976",
+    "longitude": "76.033388000000002"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Tembhurni S.O (Jalna)",
+    "pincode": "431208",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.124831",
+    "longitude": "75.991619"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Kumbharzari B.O",
+    "pincode": "431208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3569700",
+    "longitude": "77.7825000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Wadhona B.O",
+    "pincode": "431208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

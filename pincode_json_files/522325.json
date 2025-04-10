@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Pedapudi B.O",
+    "pincode": "522325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Govada B.O",
+    "pincode": "522325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Amartaluru S.O",
+    "pincode": "522325",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.10733333",
+    "longitude": "80.68816667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Panchalavaram B.O",
+    "pincode": "522325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Takali KH B.O",
+    "pincode": "422306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.175",
+    "longitude": "74.2747"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Pimplad B.O",
+    "pincode": "422306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.912282",
+    "longitude": "73.677733"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Kotamgaon B.O",
+    "pincode": "422306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9568914",
+    "longitude": "73.9036397"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Pachore BK B.O",
+    "pincode": "422306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.175",
+    "longitude": "74.2747"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Redgaon KH B.O",
+    "pincode": "422306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.175",
+    "longitude": "74.2747"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Vahegaon Sal B.O",
+    "pincode": "422306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.175",
+    "longitude": "74.2747"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Lasalgaon S.O",
+    "pincode": "422306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5544310",
+    "longitude": "74.5120240"
+  }
+]

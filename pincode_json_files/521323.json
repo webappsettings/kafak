@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Pedapalaparru B.O",
+    "pincode": "521323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4300000",
+    "longitude": "81.0500000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Guntakoduru B.O",
+    "pincode": "521323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4600000",
+    "longitude": "81.0800000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Serigolvepalli B.O",
+    "pincode": "521323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4800000",
+    "longitude": "81.0700000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Chowtapalli B.O",
+    "pincode": "521323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4100000",
+    "longitude": "81.0400000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Dondapadu B.O",
+    "pincode": "521323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4600000",
+    "longitude": "81.0300000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Moturu S.O",
+    "pincode": "521323",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4476944",
+    "longitude": "81.0464722"
+  }
+]

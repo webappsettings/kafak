@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Balurghat HO",
+    "pincode": "733101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2266944",
+    "longitude": "88.7749722"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Khadimpur SO",
+    "pincode": "733101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2302553",
+    "longitude": "88.7714195"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Balurghat Market SO",
+    "pincode": "733101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2302553",
+    "longitude": "88.7714195"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Chakbhabani SO",
+    "pincode": "733101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2302533",
+    "longitude": "88.7714195"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Narayanpur SO South Dinajpur",
+    "pincode": "733101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2300000",
+    "longitude": "88.7800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "School Para SO",
+    "pincode": "733101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2100000",
+    "longitude": "88.7770000"
+  }
+]

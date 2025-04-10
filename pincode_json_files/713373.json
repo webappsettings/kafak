@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Pariharpur BO",
+    "pincode": "713373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6739450",
+    "longitude": "86.9523950"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Sripur Bazar SO Bardhaman",
+    "pincode": "713373",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8371222",
+    "longitude": "86.9099730"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Nischinta BO",
+    "pincode": "713373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6739450",
+    "longitude": "86.9523950"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Sripur BO",
+    "pincode": "713373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6739450",
+    "longitude": "86.9523950"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Kankhaya BO",
+    "pincode": "713373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6739450",
+    "longitude": "86.9523950"
+  }
+]

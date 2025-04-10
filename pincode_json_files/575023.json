@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Talapady B.O",
+    "pincode": "575023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7655172",
+    "longitude": "74.8706775"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Kinya B.O",
+    "pincode": "575023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7833378",
+    "longitude": "74.8879724"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Someshwar Uchil S.O",
+    "pincode": "575023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.7800000",
+    "longitude": "74.8617500"
+  }
+]

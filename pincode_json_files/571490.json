@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Marukotai B.O",
+    "pincode": "571490",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.031527",
+    "longitude": "77.592029"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Indiaganatha B.O",
+    "pincode": "571490",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Mahadeshwara Malai S.O",
+    "pincode": "571490",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.06019444",
+    "longitude": "77.98725"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Gopinatham B.O",
+    "pincode": "571490",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

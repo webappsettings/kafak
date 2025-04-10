@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Bhatha BO",
+    "pincode": "841215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.959341999999999",
+    "longitude": "85.031141000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Maker SO",
+    "pincode": "841215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.9593420",
+    "longitude": "85.0311410"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Baghakol BO",
+    "pincode": "841215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.959341999999999",
+    "longitude": "85.031141000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Banauta BO",
+    "pincode": "841215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.959341999999999",
+    "longitude": "85.031141000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Pirmaker BO",
+    "pincode": "841215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.959341999999999",
+    "longitude": "85.031141000000005"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Ayodhya Nagar S.O",
+    "pincode": "440024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.11891667",
+    "longitude": "79.1115"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Nandavan Colony S.O",
+    "pincode": "440024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.13491667",
+    "longitude": "79.12441667"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Raje Raghujinagar S.O",
+    "pincode": "440024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.12411111",
+    "longitude": "79.10919444"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Dighori Naka S.O",
+    "pincode": "440024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.11430556",
+    "longitude": "79.13086111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Hanuman Nagar S.O",
+    "pincode": "440024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.12963889",
+    "longitude": "79.10511111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur City Division",
+    "officename": "Manewada Road S.O",
+    "pincode": "440024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.11416667",
+    "longitude": "79.10416667"
+  }
+]

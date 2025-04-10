@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Dialpur SO",
+    "pincode": "144803",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.0504200",
+    "longitude": "75.9140700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Kudowal BO",
+    "pincode": "144803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.4927899",
+    "longitude": "75.4620901"
+  }
+]

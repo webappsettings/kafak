@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Kusumagiri BO",
+    "pincode": "682030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.8505159",
+    "longitude": "76.2710832"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Kakkanad West BO",
+    "pincode": "682030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.0073941",
+    "longitude": "76.3243579"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Thengod BO",
+    "pincode": "682030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.0269119",
+    "longitude": "76.3691248"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Kakkanad SO",
+    "pincode": "682030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.02113889",
+    "longitude": "76.34377778"
+  }
+]

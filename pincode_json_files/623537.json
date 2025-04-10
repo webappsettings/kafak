@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Sholandur BO",
+    "pincode": "623537",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5700000",
+    "longitude": "78.8500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "PKodikulam BO",
+    "pincode": "623537",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5100000",
+    "longitude": "78.8000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Pottagavayal SO",
+    "pincode": "623537",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.517451",
+    "longitude": "78.834586"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Naranamangalam BO",
+    "pincode": "623537",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5400000",
+    "longitude": "78.8600000"
+  }
+]

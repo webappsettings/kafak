@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Muliyasa BO",
+    "pincode": "362222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.3828446",
+    "longitude": "70.1890578"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Tinmas BO",
+    "pincode": "362222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4201344",
+    "longitude": "70.2689216"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Mangalpur BO",
+    "pincode": "362222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.3919797",
+    "longitude": "70.2332746"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Akha BO",
+    "pincode": "362222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4168298",
+    "longitude": "70.2281481"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Jonpur BO",
+    "pincode": "362222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.3868661",
+    "longitude": "70.2144165"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Manekvada BO",
+    "pincode": "362222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.3906583",
+    "longitude": "70.2710019"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Agatrai SO",
+    "pincode": "362222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.365742",
+    "longitude": "70.253677"
+  }
+]

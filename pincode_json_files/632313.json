@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Semmambadi BO",
+    "pincode": "632313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7290000",
+    "longitude": "79.6059000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Narayanamangalam BO",
+    "pincode": "632313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7290000",
+    "longitude": "79.6059000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Kolappalur SO Tiruvannamalai",
+    "pincode": "632313",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2351944",
+    "longitude": "79.0765833"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Namathodu BO",
+    "pincode": "632313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7290000",
+    "longitude": "79.6059000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "TellurArni BO",
+    "pincode": "632313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7290000",
+    "longitude": "79.6059000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Indiravanam BO",
+    "pincode": "632313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7290000",
+    "longitude": "79.6059000"
+  }
+]

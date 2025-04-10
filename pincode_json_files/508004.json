@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Pagidimarri B.O",
+    "pincode": "508004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.0351200",
+    "longitude": "79.1651200"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Cherla Gowravaram B.O",
+    "pincode": "508004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.0126500",
+    "longitude": "79.1562100"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Dorepally B.O",
+    "pincode": "508004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.011695",
+    "longitude": "79.184205"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "S.L.B.C Camp Colony Gandamvarigudem S.O",
+    "pincode": "508004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.020143",
+    "longitude": "79.243429"
+  }
+]

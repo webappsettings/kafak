@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Rewa Bansagar Coloney S.O",
+    "pincode": "486005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5300000",
+    "longitude": "81.3000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Khaur B.O",
+    "pincode": "486005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Lohi B.O",
+    "pincode": "486005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Kanauja B.O",
+    "pincode": "486005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Laxmanpur B.O",
+    "pincode": "486005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5372000",
+    "longitude": "81.3042000"
+  }
+]

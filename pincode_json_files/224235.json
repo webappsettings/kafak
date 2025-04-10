@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Naugaon BO",
+    "pincode": "224235",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.221360000000001",
+    "longitude": "82.595658999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Sijhauli BO",
+    "pincode": "224235",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.468395000000001",
+    "longitude": "82.691542999999996"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "UPSS Mill SO",
+    "pincode": "224235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4683950",
+    "longitude": "82.6915430"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Lorpur BO",
+    "pincode": "224235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3882260",
+    "longitude": "82.5591600"
+  }
+]

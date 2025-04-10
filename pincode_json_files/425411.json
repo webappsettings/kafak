@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Bahyane B.O",
+    "pincode": "425411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.401122",
+    "longitude": "74.476091"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Wavad B.O",
+    "pincode": "425411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.353571",
+    "longitude": "74.317949"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Ranala S.O",
+    "pincode": "425411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.347233",
+    "longitude": "74.379228"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Chaupale B.O",
+    "pincode": "425411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.36475",
+    "longitude": "74.29823"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Koparli B.O",
+    "pincode": "425411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "74.426295",
+    "longitude": "74.426292"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Manjare B.O",
+    "pincode": "425411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.397775",
+    "longitude": "74.448155"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Melaiyur TVG S.O",
+    "pincode": "609107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7603056",
+    "longitude": "79.8465278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Talachangadu B.O",
+    "pincode": "609107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1400000",
+    "longitude": "79.8100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Natarajapillai Chavadi B.O",
+    "pincode": "609107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1500000",
+    "longitude": "79.7700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Kilaperumpallam B.O",
+    "pincode": "609107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1400000",
+    "longitude": "79.8200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Mayiladuthurai Division",
+    "officename": "Melaperumpallam B.O",
+    "pincode": "609107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYILADUTHURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1400000",
+    "longitude": "79.8100000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Godbhaga S.O",
+    "pincode": "768111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3342500",
+    "longitude": "83.6191944"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kumelsingha B.O",
+    "pincode": "768111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3827883",
+    "longitude": "83.8656466"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Lahanda B.O",
+    "pincode": "768111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4132149",
+    "longitude": "83.8465916"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Dulampur B.O",
+    "pincode": "768111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3825333",
+    "longitude": "83.8517249"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Silet B.O",
+    "pincode": "768111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4132149",
+    "longitude": "83.8465916"
+  }
+]

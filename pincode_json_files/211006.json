@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Daraganj SO",
+    "pincode": "211006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.44266",
+    "longitude": "81.88116"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Allahpur SO",
+    "pincode": "211006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.45145",
+    "longitude": "81.87366"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Nirala Chowk SO",
+    "pincode": "211006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4369",
+    "longitude": "81.83421"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Sohbatia Bagh SO",
+    "pincode": "211006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.44705",
+    "longitude": "81.86354"
+  }
+]

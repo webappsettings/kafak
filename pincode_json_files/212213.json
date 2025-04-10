@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Alam Chand BO",
+    "pincode": "212213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4358010",
+    "longitude": "81.8463110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Sayed Serawan BO",
+    "pincode": "212213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531820",
+    "longitude": "81.8274740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Gauspur BO",
+    "pincode": "212213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531820",
+    "longitude": "81.8274740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Baserhi BO",
+    "pincode": "212213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531820",
+    "longitude": "81.8274740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Mahgaon SO",
+    "pincode": "212213",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.51265",
+    "longitude": "81.61036"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Sikandarpur Bazha BO",
+    "pincode": "212213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531820",
+    "longitude": "81.8274740"
+  }
+]

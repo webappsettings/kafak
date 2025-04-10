@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Kalyan D.C. S.O",
+    "pincode": "421301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2448333",
+    "longitude": "73.1254722"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Kalyan City H.O",
+    "pincode": "421301",
+    "officetype": "HO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2448056",
+    "longitude": "73.1255556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Subhash Road S.O (Thane)",
+    "pincode": "421301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2072777",
+    "longitude": "73.1827500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Kalyan Rs S.O",
+    "pincode": "421301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2373611",
+    "longitude": "73.1317778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Thane Division",
+    "officename": "Pimpaloli B.O",
+    "pincode": "421301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.5353000",
+    "longitude": "76.1449000"
+  }
+]

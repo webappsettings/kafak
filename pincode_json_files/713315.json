@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Kapista BO",
+    "pincode": "713315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8177780",
+    "longitude": "86.9832800"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Roshna BO",
+    "pincode": "713315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8177780",
+    "longitude": "86.9832800"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Jamgram BO",
+    "pincode": "713315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8177780",
+    "longitude": "86.9832800"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Panuria SO",
+    "pincode": "713315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2118000",
+    "longitude": "87.6523970"
+  }
+]

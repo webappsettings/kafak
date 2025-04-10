@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Kachchh University DSO",
+    "pincode": "370015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2468370",
+    "longitude": "69.6731730"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Haripar BO",
+    "pincode": "370015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2042260",
+    "longitude": "69.6661400"
+  }
+]

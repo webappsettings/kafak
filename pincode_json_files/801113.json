@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "NEORA S.O",
+    "pincode": "801113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5749390",
+    "longitude": "84.9868230"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "SARAI BO",
+    "pincode": "801113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5667698",
+    "longitude": "85.9876434"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "ANDA BO",
+    "pincode": "801113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.2123123",
+    "longitude": "85.1313544"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "BALUA BO",
+    "pincode": "801113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.1231312",
+    "longitude": "85.3132131"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "FARIDPUR BO",
+    "pincode": "801113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.1313754",
+    "longitude": "85.1212748"
+  }
+]

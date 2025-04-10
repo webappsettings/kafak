@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Ramaniali B.O",
+    "pincode": "785686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Tengapukhuri B.O",
+    "pincode": "785686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Simaluguri S.O",
+    "pincode": "785686",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dholebagan B.O",
+    "pincode": "785686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Ramugaon B.O",
+    "pincode": "785686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Silasaku B.O",
+    "pincode": "785686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Moutgaon B.O",
+    "pincode": "785686",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9225000",
+    "longitude": "94.7548000"
+  }
+]

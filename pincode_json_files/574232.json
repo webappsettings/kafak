@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Kuthkunja B.O",
+    "pincode": "574232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6597384",
+    "longitude": "75.4907764"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Pambethady B.O",
+    "pincode": "574232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6720873",
+    "longitude": "75.4442561"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Panja S.O",
+    "pincode": "574232",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6764722",
+    "longitude": "75.4734722"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Karikala B.O",
+    "pincode": "574232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6720873",
+    "longitude": "75.4442561"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Balpa B.O",
+    "pincode": "574232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6731924",
+    "longitude": "75.5180920"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Kenya B.O",
+    "pincode": "574232",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6867215",
+    "longitude": "75.5004967"
+  }
+]

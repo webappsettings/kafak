@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "EME Records S.O",
+    "pincode": "500015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.48658333",
+    "longitude": "78.50836111"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Trimulgherry H.O",
+    "pincode": "500015",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.478398",
+    "longitude": "78.514711"
+  }
+]

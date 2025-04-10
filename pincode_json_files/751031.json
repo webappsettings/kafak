@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Barimunda B.O",
+    "pincode": "751031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.3550039",
+    "longitude": "85.872192400000003"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Kalyanpur B.O",
+    "pincode": "751031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.367325099999999",
+    "longitude": "85.865625899999998"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Patia S.O",
+    "pincode": "751031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.273626",
+    "longitude": "85.834157"
+  }
+]

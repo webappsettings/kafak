@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Ayikkarapadi BO",
+    "pincode": "673637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1746230",
+    "longitude": "75.8976890"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Andiyoorkunnu BO",
+    "pincode": "673637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1864030",
+    "longitude": "75.9274530"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Kannamvettikavu BO",
+    "pincode": "673637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1899240",
+    "longitude": "75.9143870"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Pulikkal SO",
+    "pincode": "673637",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1776600",
+    "longitude": "75.9188790"
+  }
+]

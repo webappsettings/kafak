@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Mansatala SO",
+    "pincode": "700023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5395277",
+    "longitude": "88.3268888"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Raja J.N.Market S.O",
+    "pincode": "700023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.54633333",
+    "longitude": "88.322"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Khiddirpore SO",
+    "pincode": "700023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5388888",
+    "longitude": "88.3190555"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Watgunge SO",
+    "pincode": "700023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5419444",
+    "longitude": "88.3264722"
+  }
+]

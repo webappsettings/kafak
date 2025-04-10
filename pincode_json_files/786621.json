@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Ashabam B.O",
+    "pincode": "786621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1800000",
+    "longitude": "95.3400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Nigam B.O",
+    "pincode": "786621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1800000",
+    "longitude": "95.3400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Ghinai B.O",
+    "pincode": "786621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1800000",
+    "longitude": "95.3400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Borkhermia B.O",
+    "pincode": "786621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1800000",
+    "longitude": "95.3400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Silgrant B.O",
+    "pincode": "786621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1800000",
+    "longitude": "95.3400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Mahmora Ali Kinar B.O",
+    "pincode": "786621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1800000",
+    "longitude": "95.3400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Namrup S.O",
+    "pincode": "786621",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1057000",
+    "longitude": "95.2127000"
+  }
+]

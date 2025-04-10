@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Lallian BO",
+    "pincode": "144028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.352399999999999",
+    "longitude": "75.617099999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Chitti SO",
+    "pincode": "144028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.23570365",
+    "longitude": "75.47466472"
+  }
+]

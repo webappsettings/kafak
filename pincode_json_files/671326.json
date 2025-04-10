@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Chittarikkal SO",
+    "pincode": "671326",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.32232242",
+    "longitude": "75.35792694"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Mandapam BO",
+    "pincode": "671326",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.3076962",
+    "longitude": "75.3317940"
+  }
+]

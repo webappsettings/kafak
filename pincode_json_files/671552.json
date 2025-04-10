@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Padre BO",
+    "pincode": "671552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6193186",
+    "longitude": "75.1370253"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Katukukke BO",
+    "pincode": "671552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6646247",
+    "longitude": "75.1282024"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Perla SO",
+    "pincode": "671552",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.64446227",
+    "longitude": "75.10609529"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Balemoola BO",
+    "pincode": "671552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6684295",
+    "longitude": "75.1449995"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Sheni BO",
+    "pincode": "671552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6495219",
+    "longitude": "75.0571439"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Ukkinadka BO",
+    "pincode": "671552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6308036",
+    "longitude": "75.0932351"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Vaninagar BO",
+    "pincode": "671552",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.6197348",
+    "longitude": "75.1487803"
+  }
+]

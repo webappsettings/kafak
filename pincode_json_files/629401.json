@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Anjugramam B.O",
+    "pincode": "629401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1500000",
+    "longitude": "77.5700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Variyoor B.O",
+    "pincode": "629401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1400000",
+    "longitude": "77.5600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Azhakappapuram S.O",
+    "pincode": "629401",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1472778",
+    "longitude": "77.5406667"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "James Town B.O",
+    "pincode": "629401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1500000",
+    "longitude": "77.5600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Pottakulam B.O",
+    "pincode": "629401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1400000",
+    "longitude": "77.5300000"
+  }
+]

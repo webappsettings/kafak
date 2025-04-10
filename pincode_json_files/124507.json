@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Bahadurgarh Sector 6 SO",
+    "pincode": "124507",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6811790",
+    "longitude": "76.9027040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Line Par Bahadurgarh SO",
+    "pincode": "124507",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6811790",
+    "longitude": "76.9027040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Bahadurgarh HO",
+    "pincode": "124507",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.636391",
+    "longitude": "76.921349"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Main Bazar Bahadurgarh  SO",
+    "pincode": "124507",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6811790",
+    "longitude": "76.9027040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "NA",
+    "divisionname": "Rohtak Division",
+    "officename": "Mini Secretariat Bahadurgarh S.O",
+    "pincode": "124507",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "28.670181",
+    "longitude": "76.926713"
+  }
+]

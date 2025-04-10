@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Atwari BO",
+    "pincode": "224157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5429250",
+    "longitude": "82.4061970"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Sonawan BO",
+    "pincode": "224157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1340820",
+    "longitude": "85.2593110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Ahirauli BO",
+    "pincode": "224157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5150100",
+    "longitude": "82.3092370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Ramdas Patti BO",
+    "pincode": "224157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6919180",
+    "longitude": "81.6281680"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Fatehpur Belabagh BO",
+    "pincode": "224157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4848250",
+    "longitude": "82.5976860"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Hath Pakar BO",
+    "pincode": "224157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5429250",
+    "longitude": "82.4061970"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Khemapur SO",
+    "pincode": "224157",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5429250",
+    "longitude": "82.4061970"
+  }
+]

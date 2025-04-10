@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "Chakeri Aerodrum SO",
+    "pincode": "208008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4138056",
+    "longitude": "80.3974444"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "CAT SO",
+    "pincode": "208008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4137778",
+    "longitude": "80.3975000"
+  }
+]

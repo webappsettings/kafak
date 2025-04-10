@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Panota B.O",
+    "pincode": "306022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4560528",
+    "longitude": "73.6786317"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Dhanla B.O",
+    "pincode": "306022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5327838",
+    "longitude": "73.6633273"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Basni Jojawar B.O",
+    "pincode": "306022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4928500",
+    "longitude": "73.7502500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Jojawar S.O",
+    "pincode": "306022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5319167",
+    "longitude": "73.7414444"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Bhagora B.O",
+    "pincode": "306022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4928500",
+    "longitude": "73.7502500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Kot  Solankiyan B.O",
+    "pincode": "306022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4928500",
+    "longitude": "73.7502500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Sansari B.O",
+    "pincode": "306022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4928500",
+    "longitude": "73.7502500"
+  }
+]

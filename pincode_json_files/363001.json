@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Surendranagar Udyognagar SO",
+    "pincode": "363001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.734000000000002",
+    "longitude": "71.637900000000002"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Surendranagar Junction NDTSO",
+    "pincode": "363001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.744229000000001",
+    "longitude": "71.630122"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Surendranagar HO",
+    "pincode": "363001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.724768000000001",
+    "longitude": "71.627375000000001"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Surendranagar MPSC SO",
+    "pincode": "363001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.724",
+    "longitude": "71.643000000000001"
+  }
+]

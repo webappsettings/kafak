@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Railpeta Bapatla S.O",
+    "pincode": "522101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.9",
+    "longitude": "80.46669444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Rangaraothota S.O",
+    "pincode": "522101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.90308333",
+    "longitude": "80.46825"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Snpagraharam S.O",
+    "pincode": "522101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.90991667",
+    "longitude": "80.47913889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tenali Division",
+    "officename": "Bapatla H.O",
+    "pincode": "522101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.90369444",
+    "longitude": "80.46794444"
+  }
+]

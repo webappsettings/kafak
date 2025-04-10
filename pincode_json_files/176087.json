@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Thandole BO",
+    "pincode": "176087",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0087280",
+    "longitude": "76.5232320"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Bhoura BO",
+    "pincode": "176087",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0060630",
+    "longitude": "76.5313000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Pahra SO",
+    "pincode": "176087",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0300833",
+    "longitude": "76.5376111"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Malahu BO",
+    "pincode": "176087",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0280380",
+    "longitude": "76.5329270"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Tikker Indorian BO",
+    "pincode": "176087",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0280380",
+    "longitude": "76.5329270"
+  }
+]

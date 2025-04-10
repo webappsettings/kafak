@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Aruhabruti B.O",
+    "pincode": "756079",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6752850",
+    "longitude": "87.3254949"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Rasalpur B.O",
+    "pincode": "756079",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6671100",
+    "longitude": "87.3246099"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Baiganabadia B.O",
+    "pincode": "756079",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.7074350",
+    "longitude": "87.3022850"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Barbatia B.O",
+    "pincode": "756079",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6913883",
+    "longitude": "87.3285833"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Nayapalli B.O",
+    "pincode": "756079",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.7012100",
+    "longitude": "87.3225616"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Nilpura B.O",
+    "pincode": "756079",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6822916",
+    "longitude": "87.3424516"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Dahamunda S.O",
+    "pincode": "756079",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.79655",
+    "longitude": "87.2282"
+  }
+]

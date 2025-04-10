@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Dharmour Kheel BO",
+    "pincode": "175010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Mahun BO",
+    "pincode": "175010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Kanda Churag  BO",
+    "pincode": "175010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3200000",
+    "longitude": "77.1700000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Sapnot BO",
+    "pincode": "175010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Balindi BO",
+    "pincode": "175010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Shorshan BO",
+    "pincode": "175010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Churag SO",
+    "pincode": "175010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.344505",
+    "longitude": "77.1570000"
+  }
+]

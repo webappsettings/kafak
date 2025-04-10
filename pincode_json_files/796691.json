@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Ralvawng B.O",
+    "pincode": "796691",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "22.936439499999999",
+    "longitude": "92.831982600000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Zohnuai B.O",
+    "pincode": "796691",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "22.902002100000001",
+    "longitude": "92.760583100000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Zotlang S.O",
+    "pincode": "796691",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "22.8667940",
+    "longitude": "92.7665940"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Hnahchang B.O",
+    "pincode": "796691",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "22.937996999999999",
+    "longitude": "92.763203899999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Mualthuam N B.O",
+    "pincode": "796691",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "23.111241",
+    "longitude": "92.746035399999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Pukpui B.O",
+    "pincode": "796691",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "22.932185499999999",
+    "longitude": "92.751877500000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Haulawng B.O",
+    "pincode": "796691",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUNGLEI",
+    "statename": "MIZORAM",
+    "latitude": "23.729509700000001",
+    "longitude": "92.772760300000002"
+  }
+]

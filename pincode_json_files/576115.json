@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Kemmannu SO",
+    "pincode": "576115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.4006880",
+    "longitude": "74.7107430"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Badanidiyur BO",
+    "pincode": "576115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3883323",
+    "longitude": "74.7007284"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Hoode BO",
+    "pincode": "576115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.4085080",
+    "longitude": "74.6987030"
+  }
+]

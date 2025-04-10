@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Boiler Project  TR SO",
+    "pincode": "620014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7765000",
+    "longitude": "78.7932222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "C Sector BHEL  TR SO",
+    "pincode": "620014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7824167",
+    "longitude": "78.7953611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Administrative OfficeBHEL SO",
+    "pincode": "620014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7760556",
+    "longitude": "78.7923889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Kamarajapuram BHEL SO",
+    "pincode": "620014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7640556",
+    "longitude": "78.7946667"
+  }
+]

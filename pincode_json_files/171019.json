@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Kangal BO",
+    "pincode": "171019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.0201000",
+    "longitude": "77.9060000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Jalog SO",
+    "pincode": "171019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1226389",
+    "longitude": "77.2720278"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Dharogra BO",
+    "pincode": "171019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.0130000",
+    "longitude": "77.1190000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Gadheri BO",
+    "pincode": "171019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8250000",
+    "longitude": "77.5290000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Himri BO",
+    "pincode": "171019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2103600",
+    "longitude": "77.1289000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Ogli BO",
+    "pincode": "171019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1021300",
+    "longitude": "77.1299600"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Pandoa BO",
+    "pincode": "171019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2163500",
+    "longitude": "77.1296600"
+  }
+]

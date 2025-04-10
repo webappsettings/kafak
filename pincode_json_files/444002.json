@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Bhaurad B.O",
+    "pincode": "444002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7300000",
+    "longitude": "76.9600000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Gajanan Nagar B.O",
+    "pincode": "444002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7100000",
+    "longitude": "76.9800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Akola City S.O",
+    "pincode": "444002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7100000",
+    "longitude": "76.9900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Rpts Akola S.O",
+    "pincode": "444002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7245556",
+    "longitude": "76.9806667"
+  }
+]

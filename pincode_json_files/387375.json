@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Ravli BO",
+    "pincode": "387375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4766460",
+    "longitude": "72.7992050"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Sanjaya BO",
+    "pincode": "387375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4766480",
+    "longitude": "72.7992030"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Vadtal SO",
+    "pincode": "387375",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.3647000",
+    "longitude": "72.5204000"
+  }
+]

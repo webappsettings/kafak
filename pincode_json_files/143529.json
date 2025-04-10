@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Tibber SO",
+    "pincode": "143529",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.9607",
+    "longitude": "75.3978"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Babri BO",
+    "pincode": "143529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "32.009999999999998",
+    "longitude": "75.370000000000005"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Bhumbli BO",
+    "pincode": "143529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.940000000000001",
+    "longitude": "75.379999999999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Sidhwan BO",
+    "pincode": "143529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.940000000000001",
+    "longitude": "75.409999999999997"
+  }
+]

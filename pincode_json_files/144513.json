@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Amargarh BO",
+    "pincode": "144513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.1343000",
+    "longitude": "76.0460000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Kamam BO",
+    "pincode": "144513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.1343000",
+    "longitude": "76.0460000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Karnana BO",
+    "pincode": "144513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.1343000",
+    "longitude": "76.0460000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Rasulpur BO",
+    "pincode": "144513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.1343000",
+    "longitude": "76.0460000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Musapur SO",
+    "pincode": "144513",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.3417621",
+    "longitude": "75.75808164"
+  }
+]

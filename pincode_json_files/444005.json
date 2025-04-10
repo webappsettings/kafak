@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Gudadhi B.O",
+    "pincode": "444005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7300000",
+    "longitude": "77.0800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Umari B.O",
+    "pincode": "444005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7200000",
+    "longitude": "77.0300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Jatharpeth Akola S.O",
+    "pincode": "444005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7187500",
+    "longitude": "77.0175833"
+  }
+]

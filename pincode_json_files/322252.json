@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Somla BO",
+    "pincode": "322252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9479300",
+    "longitude": "76.7932010"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Tali BO",
+    "pincode": "322252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7168800",
+    "longitude": "77.2347670"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Jatwada BO",
+    "pincode": "322252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7857760",
+    "longitude": "77.1736290"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bhukrawali BO",
+    "pincode": "322252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8100670",
+    "longitude": "77.1827800"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Dhanda BO",
+    "pincode": "322252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7705720",
+    "longitude": "77.2520100"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Suroth SO",
+    "pincode": "322252",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8096111",
+    "longitude": "77.1478611"
+  }
+]

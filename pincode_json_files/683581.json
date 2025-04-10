@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Ayyampuzha BO",
+    "pincode": "683581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.2486874",
+    "longitude": "76.473512600000007"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Chully BO",
+    "pincode": "683581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "12.3928625",
+    "longitude": "75.318574799999993"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Anapparakalady BO",
+    "pincode": "683581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.236112",
+    "longitude": "76.450583399999999"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Kalady Plantation BO",
+    "pincode": "683581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.258236800000001",
+    "longitude": "76.524630200000004"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Manjapra SO",
+    "pincode": "683581",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.214466",
+    "longitude": "76.45176"
+  }
+]

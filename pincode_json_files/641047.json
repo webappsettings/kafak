@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Samichettipalayam BO",
+    "pincode": "641047",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1637466",
+    "longitude": "76.9366500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Gudalurcoimbatore BO",
+    "pincode": "641047",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1705650",
+    "longitude": "76.9459083"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Jothipuram SO",
+    "pincode": "641047",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1618770",
+    "longitude": "76.9473150"
+  }
+]

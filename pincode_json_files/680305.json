@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Anandapuram BO",
+    "pincode": "680305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3700000",
+    "longitude": "76.2400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Nellayithrissur SO",
+    "pincode": "680305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3852500",
+    "longitude": "76.2836111"
+  }
+]

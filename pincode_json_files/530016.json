@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Dwarakanagar S.O",
+    "pincode": "530016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7270278",
+    "longitude": "83.3031944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "New Colony S.O",
+    "pincode": "530016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5780278",
+    "longitude": "81.9935556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Akkayyapalem S.O",
+    "pincode": "530016",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7295278",
+    "longitude": "83.3089444"
+  }
+]

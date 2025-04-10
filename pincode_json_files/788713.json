@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Barkatpur B.O",
+    "pincode": "788713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Nairgram B.O",
+    "pincode": "788713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chargola Bazar B.O",
+    "pincode": "788713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Lalarchak B.O",
+    "pincode": "788713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Silchar Road S.O",
+    "pincode": "788713",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8675840",
+    "longitude": "92.3603820"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Jobainpur B.O",
+    "pincode": "788713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.3500000"
+  }
+]

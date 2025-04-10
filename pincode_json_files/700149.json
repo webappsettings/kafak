@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Chowhati BO",
+    "pincode": "700149",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4049560",
+    "longitude": "88.4076660"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Rajpur Bazar SO",
+    "pincode": "700149",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.42968",
+    "longitude": "88.41735"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Rajpur SO South 24 Parganas",
+    "pincode": "700149",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3421000",
+    "longitude": "88.2150000"
+  }
+]

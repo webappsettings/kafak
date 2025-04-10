@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Pulluthu BO",
+    "pincode": "625019",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9558690",
+    "longitude": "78.0399370"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Nagamalai SO",
+    "pincode": "625019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9330556",
+    "longitude": "78.0519444"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Erkudi Achampathu BO",
+    "pincode": "625019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9384930",
+    "longitude": "78.0665570"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Thuvariman BO",
+    "pincode": "625019",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9590880",
+    "longitude": "78.0569910"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Vadivelkarai BO",
+    "pincode": "625019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9178320",
+    "longitude": "78.0637670"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Kilakuyilkudi BO",
+    "pincode": "625019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9091930",
+    "longitude": "78.0523550"
+  }
+]

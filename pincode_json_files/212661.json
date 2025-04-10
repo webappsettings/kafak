@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Gauri BO",
+    "pincode": "212661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7954900",
+    "longitude": "80.5401500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Mahakhera BO",
+    "pincode": "212661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7954900",
+    "longitude": "80.5401500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Lalauli SO",
+    "pincode": "212661",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8122778",
+    "longitude": "80.0385000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Arhawal BO",
+    "pincode": "212661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9256900",
+    "longitude": "80.8144160"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Korra Kanak BO",
+    "pincode": "212661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7954900",
+    "longitude": "80.5401500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Mahana BO",
+    "pincode": "212661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9256890",
+    "longitude": "80.8144170"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Ajamatpur BO",
+    "pincode": "212661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9256920",
+    "longitude": "80.8144140"
+  }
+]

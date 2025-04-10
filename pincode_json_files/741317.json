@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia North Division",
+    "officename": "Joania BO",
+    "pincode": "741317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3400000",
+    "longitude": "88.4100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia North Division",
+    "officename": "Aluipara BO",
+    "pincode": "741317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3100000",
+    "longitude": "88.4000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Nadia North Division",
+    "officename": "Joania Bhaluka SO",
+    "pincode": "741317",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3568056",
+    "longitude": "88.4029167"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Khokhial BO",
+    "pincode": "184151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3467260",
+    "longitude": "75.4359290"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Saidpur BO",
+    "pincode": "184151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7829540",
+    "longitude": "75.8982670"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Kotpunnu BO",
+    "pincode": "184151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4343520",
+    "longitude": "75.2435240"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Airwan BO",
+    "pincode": "184151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4038720",
+    "longitude": "75.0180510"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Parole SO",
+    "pincode": "184151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3269320",
+    "longitude": "75.4595160"
+  }
+]

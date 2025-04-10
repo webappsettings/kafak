@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Rastapur B.O",
+    "pincode": "414606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3400000",
+    "longitude": "74.9100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Kauthe B.O",
+    "pincode": "414606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3600000",
+    "longitude": "74.9200000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Chanda S.O",
+    "pincode": "414606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3641667",
+    "longitude": "74.9313056"
+  }
+]

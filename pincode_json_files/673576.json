@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Sugandhagiri BO",
+    "pincode": "673576",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5400000",
+    "longitude": "76.0400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Lakkidi BO",
+    "pincode": "673576",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5400000",
+    "longitude": "76.0500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Vythiri SO",
+    "pincode": "673576",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.54950173",
+    "longitude": "76.03933003"
+  }
+]

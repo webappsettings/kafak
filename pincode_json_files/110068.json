@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Maidan Garhi BO",
+    "pincode": "110068",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.501222200000001",
+    "longitude": "77.200305499999999"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Ignou SO",
+    "pincode": "110068",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5012222",
+    "longitude": "77.2003056"
+  }
+]

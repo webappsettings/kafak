@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Darga (Vijayapura) B.O",
+    "pincode": "586103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.8497266",
+    "longitude": "75.6958007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Bhutnal B.O",
+    "pincode": "586103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.8973549",
+    "longitude": "75.7190179"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "B.L.D.E.A Campus SO",
+    "pincode": "586103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.8463781",
+    "longitude": "75.7103326"
+  }
+]

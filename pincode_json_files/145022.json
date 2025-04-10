@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Dunera SO",
+    "pincode": "145022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.4400000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Bhanguri BO",
+    "pincode": "145022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.399999999999999",
+    "longitude": "75.859999999999999"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Lehroon BO",
+    "pincode": "145022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.2643445",
+    "longitude": "75.642105099999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Sarti BO",
+    "pincode": "145022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.479999999999997",
+    "longitude": "75.829999999999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Bhattwan BO",
+    "pincode": "145022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.420000000000002",
+    "longitude": "75.840000000000003"
+  }
+]

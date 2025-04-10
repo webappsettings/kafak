@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Shipgyare BO",
+    "pincode": "737120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.5300000",
+    "longitude": "88.5100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Lachung BO",
+    "pincode": "737120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.6800000",
+    "longitude": "88.7400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Naga BO",
+    "pincode": "737120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.5300000",
+    "longitude": "88.6200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Chungthang SO",
+    "pincode": "737120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.5184494",
+    "longitude": "88.5371958"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Lachen BO",
+    "pincode": "737120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.7100000",
+    "longitude": "88.5500000"
+  }
+]

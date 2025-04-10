@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "NEOTANI BO",
+    "pincode": "209841",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7572380",
+    "longitude": "80.6563980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Hasanganj SO",
+    "pincode": "209841",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3348000",
+    "longitude": "80.4146000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Chharihara BO",
+    "pincode": "209841",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8014650",
+    "longitude": "80.6020830"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Maula Bankipur BO",
+    "pincode": "209841",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7584980",
+    "longitude": "80.6009910"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Lajpat Nagar South Delhi SO",
+    "pincode": "110024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5381667",
+    "longitude": "77.2150278"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Krishna Market SO",
+    "pincode": "110024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5740556",
+    "longitude": "77.2423090"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Amar Colony SO",
+    "pincode": "110024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5631667",
+    "longitude": "77.2487500"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Defence Colony SO South Delhi",
+    "pincode": "110024",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5800000",
+    "longitude": "77.2300000"
+  }
+]

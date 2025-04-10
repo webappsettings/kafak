@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Kadabagatti B.O",
+    "pincode": "581103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4486485",
+    "longitude": "74.6993950"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Benachi B.O",
+    "pincode": "581103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4035585",
+    "longitude": "74.7745857"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Alnavar S.O",
+    "pincode": "581103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4319024",
+    "longitude": "74.7380983"
+  }
+]

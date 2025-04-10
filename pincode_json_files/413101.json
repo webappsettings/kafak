@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Akluj S.O",
+    "pincode": "413101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.881835",
+    "longitude": "75.018947"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Bagechiwadi B.O",
+    "pincode": "413101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.4775120",
+    "longitude": "75.2985780"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Kondbhav B.O",
+    "pincode": "413101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.9209480",
+    "longitude": "74.9267230"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Chakore B.O",
+    "pincode": "413101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.9209480",
+    "longitude": "74.9267230"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Malewadi B.O",
+    "pincode": "413101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8635090",
+    "longitude": "75.0406710"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Sangramnagar BO",
+    "pincode": "413101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8923730",
+    "longitude": "75.0406710"
+  }
+]

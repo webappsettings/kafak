@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Jainapur B.O",
+    "pincode": "591226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3815323",
+    "longitude": "74.5460600"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Mugali B.O",
+    "pincode": "591226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3276587",
+    "longitude": "74.5813285"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Hattarwat B.O",
+    "pincode": "591226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3541592",
+    "longitude": "74.5033459"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Karagaon B.O",
+    "pincode": "591226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3358985",
+    "longitude": "74.6340286"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Karoshi S.O",
+    "pincode": "591226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.368605",
+    "longitude": "74.576006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Bambalwad B.O",
+    "pincode": "591226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3628493",
+    "longitude": "74.6299087"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Vadral B.O",
+    "pincode": "591226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.3468957",
+    "longitude": "74.5306441"
+  }
+]

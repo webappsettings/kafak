@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Belsagra BO",
+    "pincode": "825330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.72315",
+    "longitude": "85.465350000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Rabodh BO",
+    "pincode": "825330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.525486999999998",
+    "longitude": "85.717658999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Topa Coliery SO",
+    "pincode": "825330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.7441900",
+    "longitude": "85.4757000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "ORLA B.O",
+    "pincode": "825330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.749780000000001",
+    "longitude": "85.478570000000005"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Chainpur BO",
+    "pincode": "825330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.525489",
+    "longitude": "85.514874000000006"
+  }
+]

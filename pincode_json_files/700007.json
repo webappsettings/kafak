@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Barabazar H O",
+    "pincode": "700007",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5809166",
+    "longitude": "88.3601944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata Central Division",
+    "officename": "College Square SO",
+    "pincode": "700007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5785000",
+    "longitude": "88.3631000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Kalakar Street SO",
+    "pincode": "700007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5860555",
+    "longitude": "88.3549444"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Archana SO",
+    "pincode": "700007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5840000",
+    "longitude": "88.3619166"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Vaishya Sabha SO",
+    "pincode": "700007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5848333",
+    "longitude": "88.3588888"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata Central Division",
+    "officename": "Strand Road SO",
+    "pincode": "700007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5814000",
+    "longitude": "88.3493000"
+  }
+]

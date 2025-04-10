@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Naranpura Vistar SO",
+    "pincode": "380013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.052198",
+    "longitude": "72.555163"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Shastrinagar SO Ahmedabad",
+    "pincode": "380013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.064536",
+    "longitude": "72.555998"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Nava Vadaj SO",
+    "pincode": "380013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.052198",
+    "longitude": "72.555163"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Vadaj SO",
+    "pincode": "380013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.050209",
+    "longitude": "72.571517"
+  }
+]

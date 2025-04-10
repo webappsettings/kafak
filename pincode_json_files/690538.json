@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Arinallur South BO",
+    "pincode": "690538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "9.0100000",
+    "longitude": "76.5900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Perungalam BO",
+    "pincode": "690538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "9.0200000",
+    "longitude": "76.6500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Arinallur SO",
+    "pincode": "690538",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "9.0300000",
+    "longitude": "76.5900000"
+  }
+]

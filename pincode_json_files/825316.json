@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Hesagarha BO",
+    "pincode": "825316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.8550090",
+    "longitude": "85.4433243"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Kuju SO",
+    "pincode": "825316",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.7272200",
+    "longitude": "85.5095700"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Mandu BO",
+    "pincode": "825316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.7260300",
+    "longitude": "85.5207000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "PUNDI B.O",
+    "pincode": "825316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.739986999999999",
+    "longitude": "85.379840000000002"
+  }
+]

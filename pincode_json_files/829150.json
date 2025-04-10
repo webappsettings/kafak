@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Ramgarh Project SO",
+    "pincode": "829150",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.5918940",
+    "longitude": "85.6758710"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Sandi BO",
+    "pincode": "829150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Sikani BO",
+    "pincode": "829150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Honhey BO",
+    "pincode": "829150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Bhuchungdih BO",
+    "pincode": "829150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Marangmarcha BO",
+    "pincode": "829150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

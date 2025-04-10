@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Malegaon BK S.O",
+    "pincode": "413115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.134101",
+    "longitude": "74.512222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Malegaon IRR Colony B.O",
+    "pincode": "413115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.9381500",
+    "longitude": "75.1446500"
+  }
+]

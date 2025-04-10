@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Kayalpatnam S.O",
+    "pincode": "628204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5638611",
+    "longitude": "78.1233889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Kayalpatnam Bazaar B.O",
+    "pincode": "628204",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5670860",
+    "longitude": "78.1229200"
+  }
+]

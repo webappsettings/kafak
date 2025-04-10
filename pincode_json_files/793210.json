@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Hingaria",
+    "pincode": "793210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.108896999999999",
+    "longitude": "92.247495999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Sheruphie B.O",
+    "pincode": "793210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.606010000000001",
+    "longitude": "92.434939999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Lumshnong S.O",
+    "pincode": "793210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.2816440",
+    "longitude": "92.5887350"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Khatdum B.O",
+    "pincode": "793210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Kuliang",
+    "pincode": "793210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.084215",
+    "longitude": "92.366459000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Rata Cherra B.O",
+    "pincode": "793210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Sonapur B.O",
+    "pincode": "793210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.606100000000001",
+    "longitude": "92.434929999999994"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Solemari No.1 B.O",
+    "pincode": "784177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6224400",
+    "longitude": "93.1356700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Biswanathghat S.O",
+    "pincode": "784177",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.6224400",
+    "longitude": "93.1356700"
+  }
+]

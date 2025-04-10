@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Kolumam B.O",
+    "pincode": "642204",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4881300",
+    "longitude": "77.3490200"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Pappankulam B.O",
+    "pincode": "642204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Nallannagoundanpudur B.O",
+    "pincode": "642204",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4881320",
+    "longitude": "77.3592000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Rudrapalayam B.O",
+    "pincode": "642204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Samarayapatti B.O",
+    "pincode": "642204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Uralpatti B.O",
+    "pincode": "642204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Komaralingam S.O",
+    "pincode": "642204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4883",
+    "longitude": "77.3513"
+  }
+]

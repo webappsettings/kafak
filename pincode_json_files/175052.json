@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Baryara BO",
+    "pincode": "175052",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7600000",
+    "longitude": "76.9000000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Sehli BO Saigaloo",
+    "pincode": "175052",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7100000",
+    "longitude": "76.8900000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Saigaloo SO",
+    "pincode": "175052",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7490833",
+    "longitude": "76.8944167"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Baloh BO",
+    "pincode": "175052",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7000000",
+    "longitude": "76.8900000"
+  }
+]

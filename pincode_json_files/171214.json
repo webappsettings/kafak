@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Ranol BO",
+    "pincode": "171214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2101200",
+    "longitude": "77.0129000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Devidhar BO",
+    "pincode": "171214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9130000",
+    "longitude": "77.1295800"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Todsa BO",
+    "pincode": "171214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9152000",
+    "longitude": "77.4086000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Jangla SO",
+    "pincode": "171214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2375",
+    "longitude": "77.8272778"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Thana BO",
+    "pincode": "171214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2123500",
+    "longitude": "77.1990000"
+  }
+]

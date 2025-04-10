@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Bachra SO",
+    "pincode": "829201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHATRA",
+    "statename": "JHARKHAND",
+    "latitude": "23.41168",
+    "longitude": "85.035399999999996"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Bachra North B.O",
+    "pincode": "829201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHATRA",
+    "statename": "JHARKHAND",
+    "latitude": "23.68573",
+    "longitude": "85.062447700000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Bundu BO",
+    "pincode": "829201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHATRA",
+    "statename": "JHARKHAND",
+    "latitude": "23.6857300",
+    "longitude": "85.0624477"
+  }
+]

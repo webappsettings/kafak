@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Padam BO",
+    "pincode": "689694",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1200000",
+    "longitude": "76.9200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Kalanjoor SO",
+    "pincode": "689694",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.0700000",
+    "longitude": "76.3200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Mancode BO",
+    "pincode": "689694",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "9.1200000",
+    "longitude": "76.8900000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Bhabanipur BO",
+    "pincode": "743270",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2000963",
+    "longitude": "88.7289492"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Berbari BO",
+    "pincode": "743270",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2084154",
+    "longitude": "88.8431038"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Kulia BO",
+    "pincode": "743270",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2261372",
+    "longitude": "88.8238996"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Helencha Colony SO",
+    "pincode": "743270",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1870632",
+    "longitude": "88.8569904"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Baneswarpur BO",
+    "pincode": "743270",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2042696",
+    "longitude": "88.8347733"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Barasat Division",
+    "officename": "Kumarkhola BO",
+    "pincode": "743270",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1817893",
+    "longitude": "88.8344407"
+  }
+]

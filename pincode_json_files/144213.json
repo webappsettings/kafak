@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Fatehpur Bhattlan BO",
+    "pincode": "144213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.9400000",
+    "longitude": "75.1300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Manhota BO",
+    "pincode": "144213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8000000",
+    "longitude": "75.8100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Sansarpur BO",
+    "pincode": "144213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.7700000",
+    "longitude": "75.8500000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Bhanowal SO",
+    "pincode": "144213",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.772477",
+    "longitude": "75.797047"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Koi BO",
+    "pincode": "144213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8000000",
+    "longitude": "75.8100000"
+  }
+]

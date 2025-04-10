@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "Rawatpur SO",
+    "pincode": "208019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4791944",
+    "longitude": "80.2931944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "Syyed Nagar Post Office SO",
+    "pincode": "208019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4735556",
+    "longitude": "80.3194444"
+  }
+]

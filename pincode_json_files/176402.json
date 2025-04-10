@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Kandrori SO",
+    "pincode": "176402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1888211",
+    "longitude": "75.666122"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Dah BO",
+    "pincode": "176402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1851050",
+    "longitude": "75.7051650"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Bhojpur BO",
+    "pincode": "176402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1854270",
+    "longitude": "75.6717190"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Raja Khasa BO",
+    "pincode": "176402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1753260",
+    "longitude": "75.7167960"
+  }
+]

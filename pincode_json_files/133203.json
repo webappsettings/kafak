@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Dhanaura B.O",
+    "pincode": "133203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "28.9546000",
+    "longitude": "78.2647000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Gokal Garh B.O",
+    "pincode": "133203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.2999500",
+    "longitude": "77.0413500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Thakar Pura B.O",
+    "pincode": "133203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.2999500",
+    "longitude": "77.0413500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Sohana B.O",
+    "pincode": "133203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.3781840",
+    "longitude": "76.7766914"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Mullana S.O",
+    "pincode": "133203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.2750000",
+    "longitude": "77.0437778"
+  }
+]

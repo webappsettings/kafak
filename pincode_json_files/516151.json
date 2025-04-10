@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Lebaka B.O",
+    "pincode": "516151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.2600482",
+    "longitude": "79.2078578"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Pothapi B.O",
+    "pincode": "516151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3394519",
+    "longitude": "79.2368327"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Konapuram B.O",
+    "pincode": "516151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3487016",
+    "longitude": "79.2024852"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Tangatur S.O",
+    "pincode": "516151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.2709000",
+    "longitude": "79.1068500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Kumpinipuram B.O",
+    "pincode": "516151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3271894",
+    "longitude": "79.2195613"
+  }
+]

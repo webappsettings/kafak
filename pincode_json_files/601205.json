@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Pulicat SO",
+    "pincode": "601205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.4163560",
+    "longitude": "80.3173730"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Kolur BO",
+    "pincode": "601205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.4180000",
+    "longitude": "80.1980000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Thirupalavanam BO",
+    "pincode": "601205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3880000",
+    "longitude": "80.2200000"
+  }
+]

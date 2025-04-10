@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "T pudupatti B.O",
+    "pincode": "621217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0300000",
+    "longitude": "78.5600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Thiruthalaiyur B.O",
+    "pincode": "621217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0400000",
+    "longitude": "78.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Velakkanatham B.O",
+    "pincode": "621217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9800000",
+    "longitude": "78.5100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Neiveli B.O",
+    "pincode": "621217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0100000",
+    "longitude": "78.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Thandalai B.O",
+    "pincode": "621217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0100000",
+    "longitude": "78.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Thandalaiputhur S.O",
+    "pincode": "621217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0000000",
+    "longitude": "78.5300000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Girwar B.O",
+    "pincode": "470021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8328310",
+    "longitude": "78.9724380"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Padaria B.O",
+    "pincode": "470021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.1783420",
+    "longitude": "78.1640450"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Parsoriya B.O",
+    "pincode": "470021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8472060",
+    "longitude": "78.9351980"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sanodha B.O",
+    "pincode": "470021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8646980",
+    "longitude": "78.9443810"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Dugasara B.O",
+    "pincode": "470021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8674610",
+    "longitude": "78.8969490"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Bamora S.O",
+    "pincode": "470021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8814290",
+    "longitude": "78.8113630"
+  }
+]

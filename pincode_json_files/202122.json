@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Sikandarpur Kota BO",
+    "pincode": "202122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0436734",
+    "longitude": "78.0373748"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Siya Khas BO",
+    "pincode": "202122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9661044",
+    "longitude": "78.0612704"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Amrauli BO",
+    "pincode": "202122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9903879",
+    "longitude": "78.0544946"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Aligarh Dairy Farm S.O",
+    "pincode": "202122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9375",
+    "longitude": "78.0818"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Chherat BO",
+    "pincode": "202122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9657293",
+    "longitude": "78.0900169"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Bahadurpur Kota BO",
+    "pincode": "202122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0272357",
+    "longitude": "78.0348779"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Pala Kastali BO",
+    "pincode": "202122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0002560",
+    "longitude": "78.0766036"
+  }
+]

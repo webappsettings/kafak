@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "V K Rayapuram B.O",
+    "pincode": "533434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0110000",
+    "longitude": "82.1900000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Hussain Puram B.O",
+    "pincode": "533434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0300000",
+    "longitude": "82.1400000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "P Vemavaram B.O",
+    "pincode": "533434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0400000",
+    "longitude": "82.2200000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Unduru B.O",
+    "pincode": "533434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0300000",
+    "longitude": "82.2000000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Pedabrahmadevam B.O",
+    "pincode": "533434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9700000",
+    "longitude": "82.0600000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Medapadu B.O",
+    "pincode": "533434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9800000",
+    "longitude": "82.1000000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Vetlapalem S.O",
+    "pincode": "533434",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0236667",
+    "longitude": "82.1303056"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Pedasankarlapudi B.O",
+    "pincode": "533432",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.2700000",
+    "longitude": "82.1600000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Siripuram B.O",
+    "pincode": "533432",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.2500699",
+    "longitude": "82.1516360"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Yeluru B.O",
+    "pincode": "533432",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.2484000",
+    "longitude": "82.1523000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Prathipadu S.O (East Godavari)",
+    "pincode": "533432",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.229957",
+    "longitude": "82.193677"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Chinasankaralapudi B.O",
+    "pincode": "533432",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.2600000",
+    "longitude": "82.1500000"
+  }
+]

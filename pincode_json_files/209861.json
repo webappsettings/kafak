@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Shankerpur Sarai BO",
+    "pincode": "209861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4921470",
+    "longitude": "80.4025810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Devra Kalan BO",
+    "pincode": "209861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5011730",
+    "longitude": "80.4024960"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Majra Piper Khera BO",
+    "pincode": "209861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5017880",
+    "longitude": "80.3923030"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Ganga Ghat SO",
+    "pincode": "209861",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4803889",
+    "longitude": "80.3872778"
+  }
+]

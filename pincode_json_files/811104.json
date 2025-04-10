@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Husaina B.O",
+    "pincode": "811104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Ramnathpur B.O",
+    "pincode": "811104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Sarmera S.O.",
+    "pincode": "811104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.257734",
+    "longitude": "85.799799"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Gopalbad B.O",
+    "pincode": "811104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Chero B.O",
+    "pincode": "811104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Mirnagar B.O",
+    "pincode": "811104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Pyarepur B.O",
+    "pincode": "811104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

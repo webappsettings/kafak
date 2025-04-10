@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Tigriya Chota B.O",
+    "pincode": "455111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "18.9594270",
+    "longitude": "72.8302920"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Tigariya Goga B.O",
+    "pincode": "455111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8329140",
+    "longitude": "76.0551460"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Balgarh S.O",
+    "pincode": "455111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9624180",
+    "longitude": "76.0496040"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Nagda B.O",
+    "pincode": "455111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4454600",
+    "longitude": "75.4169920"
+  }
+]

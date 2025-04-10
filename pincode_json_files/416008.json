@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Rajarampuri S.O",
+    "pincode": "416008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.69319444",
+    "longitude": "74.24505556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Pratibhanagar S.O",
+    "pincode": "416008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.686018",
+    "longitude": "74.242693"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Shivaji Veedyapeeth Marg S.O",
+    "pincode": "416008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.68958333",
+    "longitude": "74.24847222"
+  }
+]

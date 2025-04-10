@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Airoli S.O",
+    "pincode": "400708",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1523056",
+    "longitude": "72.9946389"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Airoli B.O",
+    "pincode": "400708",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANE",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1500000",
+    "longitude": "72.9900000"
+  }
+]

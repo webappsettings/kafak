@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Hissowal BO",
+    "pincode": "141422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8039520",
+    "longitude": "75.6659020"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Raqba BO",
+    "pincode": "141422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8132340",
+    "longitude": "75.6484480"
+  }
+]

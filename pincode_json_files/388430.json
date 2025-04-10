@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Khanpur BO",
+    "pincode": "388430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5608760",
+    "longitude": "72.9547660"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Dharmajranoli BO",
+    "pincode": "388430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.3984570",
+    "longitude": "72.8993000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Dharmaj SO",
+    "pincode": "388430",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5591944",
+    "longitude": "72.9641389"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Bhurakui BO",
+    "pincode": "388430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.4766490",
+    "longitude": "72.7992020"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Vadadla BO",
+    "pincode": "388430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.8195470",
+    "longitude": "72.7484370"
+  }
+]

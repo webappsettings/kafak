@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Budamangalam",
+    "pincode": "610102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7300000",
+    "longitude": "79.5200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Erukattur B.O",
+    "pincode": "610102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7400000",
+    "longitude": "79.5600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Kandodathavanitham B.O",
+    "pincode": "610102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7500000",
+    "longitude": "79.5400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Velukudi B.O",
+    "pincode": "610102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7200000",
+    "longitude": "79.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Kamalapuram S.O (Tiruvarur)",
+    "pincode": "610102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7400000",
+    "longitude": "79.5700000"
+  }
+]

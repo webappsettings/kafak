@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Behbalpur BO",
+    "pincode": "144519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.6500000",
+    "longitude": "75.5800000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Kotfathui SO",
+    "pincode": "144519",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.276989",
+    "longitude": "75.969832"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Mananhana BO",
+    "pincode": "144519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0400000",
+    "longitude": "75.4100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Pach Nangal Khushalpur BO",
+    "pincode": "144519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.5600000",
+    "longitude": "75.4100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Thinda BO",
+    "pincode": "144519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8172600",
+    "longitude": "75.6573040"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Talni B.O",
+    "pincode": "431522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5896200",
+    "longitude": "76.5964600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Bittergaon B.O",
+    "pincode": "431522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5896200",
+    "longitude": "76.5964600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Kadepur B.O",
+    "pincode": "431522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5896200",
+    "longitude": "76.5964600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Patharwadi B.O",
+    "pincode": "431522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5896200",
+    "longitude": "76.5964600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Kamkheda B.O",
+    "pincode": "431522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5896200",
+    "longitude": "76.5964600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Pangaon S.O (Latur)",
+    "pincode": "431522",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6303",
+    "longitude": "76.6283"
+  }
+]

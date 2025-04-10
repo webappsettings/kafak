@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Mangolpuri I  Block SO",
+    "pincode": "110083",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.7147778",
+    "longitude": "77.0878333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Mangolpuri N Block SO",
+    "pincode": "110083",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6936667",
+    "longitude": "77.0900000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Mangolpuri S Block SO",
+    "pincode": "110083",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6904722",
+    "longitude": "77.0822778"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Mangolpuri A Block SO",
+    "pincode": "110083",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6938611",
+    "longitude": "77.0936111"
+  }
+]

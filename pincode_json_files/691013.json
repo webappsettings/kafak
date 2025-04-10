@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kollam Civil Station SO",
+    "pincode": "691013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8900000",
+    "longitude": "76.5800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kollam Cutchery SO",
+    "pincode": "691013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8900000",
+    "longitude": "76.5800000"
+  }
+]

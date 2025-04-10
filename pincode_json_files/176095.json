@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Uttrapur BO",
+    "pincode": "176095",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9150240",
+    "longitude": "76.5987080"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Jaisinghpur SO Kangra",
+    "pincode": "176095",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.894375",
+    "longitude": "76.606903"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Tammber BO",
+    "pincode": "176095",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9318520",
+    "longitude": "76.6017980"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Vijaypur BO",
+    "pincode": "176095",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9048240",
+    "longitude": "76.6094370"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Harrot BO",
+    "pincode": "176095",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9311970",
+    "longitude": "76.5900390"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Netru BO",
+    "pincode": "176095",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9113080",
+    "longitude": "76.6147580"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dharamsala Division",
+    "officename": "Karanghat BO",
+    "pincode": "176095",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9197600",
+    "longitude": "76.5933860"
+  }
+]

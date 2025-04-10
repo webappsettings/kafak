@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Rakhial Udyog Vistar SO",
+    "pincode": "380023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.020662",
+    "longitude": "72.626245"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Sukhrampura SO",
+    "pincode": "380023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.012137",
+    "longitude": "72.626433"
+  }
+]

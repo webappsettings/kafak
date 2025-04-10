@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Murmuria B.O",
+    "pincode": "785704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "27.0053000",
+    "longitude": "94.5125000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Ongc Jorhat S.O",
+    "pincode": "785704",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "27.0053000",
+    "longitude": "94.5125000"
+  }
+]

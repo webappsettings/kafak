@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Ekarool BO",
+    "pincode": "673574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4400000",
+    "longitude": "75.8800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Iyyad BO",
+    "pincode": "673574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4200000",
+    "longitude": "75.8700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Talayad BO",
+    "pincode": "673574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5000000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Vayalada BO",
+    "pincode": "673574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5100000",
+    "longitude": "75.8700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Emmamparamba BO",
+    "pincode": "673574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.5200000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Mangad BO",
+    "pincode": "673574",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4100000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Unnikulam SO",
+    "pincode": "673574",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4333355",
+    "longitude": "75.903315800000001"
+  }
+]

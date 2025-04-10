@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Kamadod B.O",
+    "pincode": "581145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.5743199",
+    "longitude": "75.6811756"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Chalageri S.O",
+    "pincode": "581145",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.5677096",
+    "longitude": "75.7205617"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Karur B.O",
+    "pincode": "581145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.5629902",
+    "longitude": "75.7422870"
+  }
+]

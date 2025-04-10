@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Lamzawl B.O",
+    "pincode": "796290",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "23.816697399999999",
+    "longitude": "93.205218099999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Ne Khawdungsei B.O",
+    "pincode": "796290",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "23.976391899999999",
+    "longitude": "93.213993099999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Kawlbem B.O",
+    "pincode": "796290",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "23.8707478",
+    "longitude": "93.307152299999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Ngopa S.O",
+    "pincode": "796290",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "23.4706320",
+    "longitude": "93.3221240"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Khawkawn B.O",
+    "pincode": "796290",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "24.020035499999999",
+    "longitude": "93.221664899999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "MIMBUNG",
+    "pincode": "796290",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

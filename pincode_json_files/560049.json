@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Bhattarahalli S.O",
+    "pincode": "560049",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0188056",
+    "longitude": "77.709916699999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Mandur B.O",
+    "pincode": "560049",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.082573999999999",
+    "longitude": "77.738460000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Bidrahalli B.O",
+    "pincode": "560049",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.061360000000001",
+    "longitude": "77.715877000000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Virgonagar S.O",
+    "pincode": "560049",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.0184167",
+    "longitude": "77.718416700000006"
+  }
+]

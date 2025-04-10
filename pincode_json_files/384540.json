@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Ladol SO",
+    "pincode": "384540",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.622014",
+    "longitude": "72.735107"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Kharod BO",
+    "pincode": "384540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.6649430",
+    "longitude": "72.6830910"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Mandali BO",
+    "pincode": "384540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

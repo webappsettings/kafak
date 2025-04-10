@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Manekbag SO",
+    "pincode": "380015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.015392",
+    "longitude": "72.543014"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Polytechnic SO Ahmedabad",
+    "pincode": "380015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.032196",
+    "longitude": "72.578457"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "Jodhpur Char Rasta SO",
+    "pincode": "380015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.026800",
+    "longitude": "72.523330"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "S A C SO",
+    "pincode": "380015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.027696",
+    "longitude": "72.517625"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Ahmedabad City Division",
+    "officename": "I I M SO",
+    "pincode": "380015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMADABAD",
+    "statename": "GUJARAT",
+    "latitude": "23.034048",
+    "longitude": "72.534717"
+  }
+]

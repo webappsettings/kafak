@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Chimanpura BO",
+    "pincode": "841416",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.216200000000001",
+    "longitude": "84.513199999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Dumra BO",
+    "pincode": "841416",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.216200000000001",
+    "longitude": "84.513199999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Khawaspur BO",
+    "pincode": "841416",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.216200000000001",
+    "longitude": "84.513199999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Sarif Jalalpur BO",
+    "pincode": "841416",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.216200000000001",
+    "longitude": "84.513199999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Kishunpura SO",
+    "pincode": "841416",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.2162000",
+    "longitude": "84.5132000"
+  }
+]

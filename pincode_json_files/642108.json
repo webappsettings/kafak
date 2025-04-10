@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Paralai B.O",
+    "pincode": "642108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6572807",
+    "longitude": "77.0106623"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Iyerpadi S.O",
+    "pincode": "642108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3621111",
+    "longitude": "76.9801667"
+  }
+]

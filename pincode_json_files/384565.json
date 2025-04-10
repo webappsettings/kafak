@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Padharia BO",
+    "pincode": "384565",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "22.2725280",
+    "longitude": "73.1929790"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Vasai Dabhala SO",
+    "pincode": "384565",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.534573",
+    "longitude": "72.562645"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Dabhala BO",
+    "pincode": "384565",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.5590090",
+    "longitude": "72.5456230"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Titodan BO",
+    "pincode": "384565",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.5237790",
+    "longitude": "72.6084640"
+  }
+]

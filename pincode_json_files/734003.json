@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Champasari BO",
+    "pincode": "734003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7467000",
+    "longitude": "88.4162000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Champasari Forest BO",
+    "pincode": "734003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.787590000000002",
+    "longitude": "88.432659999999998"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Pradhan Nagar SO",
+    "pincode": "734003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7316944",
+    "longitude": "88.4187778"
+  }
+]

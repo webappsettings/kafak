@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Koduvalli BO",
+    "pincode": "600055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8570000",
+    "longitude": "79.7100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Morai BO",
+    "pincode": "600055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1700000",
+    "longitude": "80.6600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Palavedu BO",
+    "pincode": "600055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1400000",
+    "longitude": "80.0330000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "CRP camp SO Tiruvallur",
+    "pincode": "600055",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1271389",
+    "longitude": "79.9108889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Mittanamalli BO",
+    "pincode": "600055",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1450000",
+    "longitude": "80.0450000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Pandeeswaram BO",
+    "pincode": "600055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1770000",
+    "longitude": "80.0360000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Avadi IAF SO",
+    "pincode": "600055",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1467778",
+    "longitude": "80.0727500"
+  }
+]

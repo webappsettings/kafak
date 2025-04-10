@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Peda Pavani S.O",
+    "pincode": "523115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0071389",
+    "longitude": "79.8140833"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Chinapavani B.O",
+    "pincode": "523115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0297480",
+    "longitude": "79.8220000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Annaboinapalli B.O",
+    "pincode": "523115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0718090",
+    "longitude": "79.7915290"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Chinalatrip B.O",
+    "pincode": "523115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.016982",
+    "longitude": "79.861352999999994"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Medarametlapalem B.O",
+    "pincode": "523115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0246500",
+    "longitude": "79.7944480"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Nayudupalem B.O",
+    "pincode": "523115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.9882970",
+    "longitude": "79.8368910"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Mutyalapadu B.O",
+    "pincode": "523115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.9843580",
+    "longitude": "79.8019150"
+  }
+]

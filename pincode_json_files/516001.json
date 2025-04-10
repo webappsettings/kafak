@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Cuddapah H.O",
+    "pincode": "516001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.478539",
+    "longitude": "78.822058"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Nagarajupet S.O",
+    "pincode": "516001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4823333",
+    "longitude": "78.8223889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Sunnapuralla Palli S.O",
+    "pincode": "516001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3931000",
+    "longitude": "78.8057500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Almaspet S.O",
+    "pincode": "516001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4881066",
+    "longitude": "78.8163715"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Maruti Nagar S.O",
+    "pincode": "516001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4703889",
+    "longitude": "78.8374167"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Cooperative Colony S.O",
+    "pincode": "516001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4692500",
+    "longitude": "78.8011944"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Angol S.O",
+    "pincode": "590006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.82",
+    "longitude": "74.5"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Ranichannamma Nagar S.O",
+    "pincode": "590006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.8284167",
+    "longitude": "74.487055600000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Tilakwadi S.O",
+    "pincode": "590006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.8170833",
+    "longitude": "74.5023056"
+  }
+]

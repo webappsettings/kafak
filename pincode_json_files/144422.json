@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Bhakhlaur BO",
+    "pincode": "144422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.052700000000002",
+    "longitude": "75.963300000000004"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Chak Dana BO",
+    "pincode": "144422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.053599999999999",
+    "longitude": "75.964500000000001"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Urapar SO",
+    "pincode": "144422",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.05057619",
+    "longitude": "75.96099611"
+  }
+]

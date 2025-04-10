@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Pipenagar SO",
+    "pincode": "402126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4907500",
+    "longitude": "73.1820833"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Ainghar BO",
+    "pincode": "402126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4995850",
+    "longitude": "73.1710652"
+  }
+]

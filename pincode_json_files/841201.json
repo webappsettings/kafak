@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Dharmapura BO",
+    "pincode": "841201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.912648000000001",
+    "longitude": "84.551047999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Shitalpur Bazar BO",
+    "pincode": "841201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.912648000000001",
+    "longitude": "84.551047999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Bareja SO Saran",
+    "pincode": "841201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.9023740",
+    "longitude": "84.5057540"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Madansath BO",
+    "pincode": "841201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.912648000000001",
+    "longitude": "84.551047999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Jamanpura BO",
+    "pincode": "841201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.912648000000001",
+    "longitude": "84.551047999999994"
+  }
+]

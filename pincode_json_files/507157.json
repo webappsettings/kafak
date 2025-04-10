@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Jujjularaopet B.O",
+    "pincode": "507157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.219643999999999",
+    "longitude": "79.913660100000001"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Nayakangudem B.O",
+    "pincode": "507157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.1969292",
+    "longitude": "79.889154000000005"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Bhagyathaveedu B.O",
+    "pincode": "507157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.219646999999998",
+    "longitude": "79.913657099999995"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Eswaramadharam B.O",
+    "pincode": "507157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.209969999999998",
+    "longitude": "79.893109999999993"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Palair S.O",
+    "pincode": "507157",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.2090833",
+    "longitude": "79.9227778"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Rajupeta B.O",
+    "pincode": "507157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.209969999999998",
+    "longitude": "79.893109999999993"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Mangalthanda  B.O",
+    "pincode": "507157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.180654000000001",
+    "longitude": "79.831950000000006"
+  }
+]

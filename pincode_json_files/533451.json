@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Chendurti B.O",
+    "pincode": "533451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.186804",
+    "longitude": "82.271624"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Kodavali B.O",
+    "pincode": "533451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kakinada",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.186804",
+    "longitude": "82.271624"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Vannepudi B.O",
+    "pincode": "533451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.217211899999999",
+    "longitude": "82.272199420000007"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Kakinada Division",
+    "officename": "Tatiparthi S.O",
+    "pincode": "533451",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.186804",
+    "longitude": "82.271624"
+  }
+]

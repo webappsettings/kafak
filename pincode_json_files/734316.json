@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Rousay Bazar BO",
+    "pincode": "734316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0666000",
+    "longitude": "88.4666000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Mahakal Dara BO",
+    "pincode": "734316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0953000",
+    "longitude": "88.4635000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Sindebong BO",
+    "pincode": "734316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0732000",
+    "longitude": "88.5023000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Swansay BO",
+    "pincode": "734316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0593560",
+    "longitude": "27.0593560"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Upper Dalapchand BO",
+    "pincode": "734316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0593560",
+    "longitude": "88.4694530"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Topkhana SO",
+    "pincode": "734316",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0600000",
+    "longitude": "88.4700000"
+  }
+]

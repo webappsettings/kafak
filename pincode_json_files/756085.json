@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Bajitpur B.O",
+    "pincode": "756085",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6328700",
+    "longitude": "87.4749166"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Naskarpur B.O",
+    "pincode": "756085",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.6315299",
+    "longitude": "87.4353633"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Chandaneswar S.O",
+    "pincode": "756085",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.72",
+    "longitude": "87.2282"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Madhawapur BO",
+    "pincode": "225205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0529000",
+    "longitude": "81.3847500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Bilakhiya BO",
+    "pincode": "225205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2008700",
+    "longitude": "81.2075500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Bhainsuriya BO",
+    "pincode": "225205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0529000",
+    "longitude": "81.3847500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Amoli Kalan BO",
+    "pincode": "225205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1337027",
+    "longitude": "82.5644304"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Katka BO",
+    "pincode": "225205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0529000",
+    "longitude": "81.3847500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Sirkauli BO",
+    "pincode": "225205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0529000",
+    "longitude": "81.3847500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Ramnagar SO Barabanki",
+    "pincode": "225205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0942122",
+    "longitude": "81.3789860"
+  }
+]

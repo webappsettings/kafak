@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Himatnagar HO",
+    "pincode": "383001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.603626",
+    "longitude": "72.963943"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Hajipura SO",
+    "pincode": "383001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.6038333",
+    "longitude": "72.9626111"
+  }
+]

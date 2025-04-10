@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Karmatanr",
+    "pincode": "828404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.952936999999999",
+    "longitude": "85.924057000000005"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Dugdha Coal washery SO",
+    "pincode": "828404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.7641640",
+    "longitude": "86.1420690"
+  }
+]

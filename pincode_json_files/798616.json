@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Chungtore B.O",
+    "pincode": "798616",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUENSANG",
+    "statename": "NAGALAND",
+    "latitude": "26.2374011",
+    "longitude": "94.695998000000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Chimonger B.O",
+    "pincode": "798616",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUENSANG",
+    "statename": "NAGALAND",
+    "latitude": "26.278386000000001",
+    "longitude": "94.677397799999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Angangba B.O",
+    "pincode": "798616",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUENSANG",
+    "statename": "NAGALAND",
+    "latitude": "26.217474200000002",
+    "longitude": "94.680831800000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Yangli B.O",
+    "pincode": "798616",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUENSANG",
+    "statename": "NAGALAND",
+    "latitude": "26.208690399999998",
+    "longitude": "94.655316999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Longkhim S.O",
+    "pincode": "798616",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUENSANG",
+    "statename": "NAGALAND",
+    "latitude": "24.7513890",
+    "longitude": "78.8378330"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Bararhi BO",
+    "pincode": "821103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAIMUR (BHABUA)",
+    "statename": "BIHAR",
+    "latitude": "25.0205460",
+    "longitude": "83.3709250"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Sikandarpur BO",
+    "pincode": "821103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAIMUR (BHABUA)",
+    "statename": "BIHAR",
+    "latitude": "25.0656740",
+    "longitude": "83.4820250"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Biur BO",
+    "pincode": "821103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAIMUR (BHABUA)",
+    "statename": "BIHAR",
+    "latitude": "25.0682240",
+    "longitude": "83.5150170"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Chainpur SO Kaimur Bhabua",
+    "pincode": "821103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAIMUR (BHABUA)",
+    "statename": "BIHAR",
+    "latitude": "25.0425660",
+    "longitude": "83.6058010"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Mudhi BO",
+    "pincode": "821103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAIMUR (BHABUA)",
+    "statename": "BIHAR",
+    "latitude": "25.0923040",
+    "longitude": "83.5256770"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Majhganwan BO",
+    "pincode": "821103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAIMUR (BHABUA)",
+    "statename": "BIHAR",
+    "latitude": "25.123100000000001",
+    "longitude": "83.388300000000001"
+  }
+]

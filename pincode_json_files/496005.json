@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "JSPL Patrapali SO",
+    "pincode": "496005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGARH",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.928025",
+    "longitude": "83.354727"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Gorkha BO",
+    "pincode": "496005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGARH",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9244150",
+    "longitude": "83.3471776"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Kirodimalnagar BO",
+    "pincode": "496005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGARH",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9301170",
+    "longitude": "83.3577610"
+  }
+]

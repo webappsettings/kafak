@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Chhotka Sasaram BO",
+    "pincode": "802157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5778610",
+    "longitude": "84.5459700"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Karisath BO",
+    "pincode": "802157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5718410",
+    "longitude": "84.5497740"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Gajrajganj SO",
+    "pincode": "802157",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5587222",
+    "longitude": "84.6674722"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Davda BO",
+    "pincode": "387350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.9380000",
+    "longitude": "72.9050000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Sandhana BO",
+    "pincode": "387350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "72.9050000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Bamroli BO",
+    "pincode": "387350",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.9380000",
+    "longitude": "72.9050000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Palana SO",
+    "pincode": "387350",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.7525000",
+    "longitude": "72.6844722"
+  }
+]

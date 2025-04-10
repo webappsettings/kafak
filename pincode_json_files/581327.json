@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Dhareshwar B.O",
+    "pincode": "581327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3698347",
+    "longitude": "74.4101015"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Holegadde B.O",
+    "pincode": "581327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3646741",
+    "longitude": "74.4175259"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Haldipur S.O",
+    "pincode": "581327",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3485594",
+    "longitude": "74.4233838"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Jognikatte B.O",
+    "pincode": "581327",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.3375730",
+    "longitude": "74.4311408"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Sanivarapu Peta S.O",
+    "pincode": "534003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7318904",
+    "longitude": "81.0669702"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Westren Street S.O",
+    "pincode": "534003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7067778",
+    "longitude": "81.1096111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Pinakadimi B.O",
+    "pincode": "534003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7430000",
+    "longitude": "81.0575000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Ankannagudem B.O",
+    "pincode": "534003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7310000",
+    "longitude": "81.0938000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Koppaka B.O",
+    "pincode": "534003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7506000",
+    "longitude": "81.0299000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Pedakadimi B.O",
+    "pincode": "534003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7358000",
+    "longitude": "81.0244000"
+  }
+]

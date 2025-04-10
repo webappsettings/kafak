@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Kudli BO",
+    "pincode": "402308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.411269900000001",
+    "longitude": "73.301600199999996"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Jamgaon BO",
+    "pincode": "402308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.398148500000001",
+    "longitude": "73.289233499999995"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Vile BO",
+    "pincode": "402308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3830174",
+    "longitude": "73.3448662"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Patnus BO",
+    "pincode": "402308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4562547",
+    "longitude": "73.3844866"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Raigad Division",
+    "officename": "Bhira SO RaigarhMH",
+    "pincode": "402308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9963333",
+    "longitude": "73.1231389"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Achipatti B.O",
+    "pincode": "642002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Palanigoundenpudur B.O",
+    "pincode": "642002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "T.Kottampatti B.O",
+    "pincode": "642002",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6690000",
+    "longitude": "77.0190000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Puliampatti B.O",
+    "pincode": "642002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Mahalinga Puram S.O",
+    "pincode": "642002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6693",
+    "longitude": "77.0125"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "Kurumbapalayam B.O",
+    "pincode": "642002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Pollachi Division",
+    "officename": "R.Ponnapuram B.O",
+    "pincode": "642002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

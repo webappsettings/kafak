@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Melmuri BO",
+    "pincode": "676517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0679310",
+    "longitude": "76.0798010"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Pookkottur SO",
+    "pincode": "676517",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1016060",
+    "longitude": "76.0574640"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Vellur BO",
+    "pincode": "676517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "12.1548850",
+    "longitude": "75.2070430"
+  }
+]

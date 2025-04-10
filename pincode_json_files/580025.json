@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Amragol B.O",
+    "pincode": "580025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.3995050",
+    "longitude": "75.0859019"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Bhairidevarkoppa S.O",
+    "pincode": "580025",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.38686",
+    "longitude": "75.106149099999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Navanagar S.O",
+    "pincode": "580025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.3944345",
+    "longitude": "75.0791224"
+  }
+]

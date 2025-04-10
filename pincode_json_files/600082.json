@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Periyar Nagar S.O",
+    "pincode": "600082",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.115905",
+    "longitude": "80.222683"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "G K M Colony S.O",
+    "pincode": "600082",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.110046",
+    "longitude": "80.219841"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Kumaran Nagar S.O",
+    "pincode": "600082",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.12494",
+    "longitude": "80.22565"
+  }
+]

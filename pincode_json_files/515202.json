@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Hindupur Fort B.O",
+    "pincode": "515202",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Kodihalli B.O",
+    "pincode": "515202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Muddireddypalli S.O",
+    "pincode": "515202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.8299",
+    "longitude": "77.49"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "BIT College BO",
+    "pincode": "515202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Kaggallu B.O",
+    "pincode": "515202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "P.Sadlapalli B.O",
+    "pincode": "515202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Pulakunta B O",
+    "pincode": "515202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

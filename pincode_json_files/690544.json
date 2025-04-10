@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kulasekharapuram SO",
+    "pincode": "690544",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "9.0900000",
+    "longitude": "76.5300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Karunagappally North BO",
+    "pincode": "690544",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "9.0600000",
+    "longitude": "76.5300000"
+  }
+]

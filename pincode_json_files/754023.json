@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "GobindpurSidhagiri B.O",
+    "pincode": "754023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.5764218",
+    "longitude": "86.0524236"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "CHHATIA S.O",
+    "pincode": "754023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.61226",
+    "longitude": "86.0679966"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Bandalo B.O",
+    "pincode": "754023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6324325",
+    "longitude": "86.0827244"
+  }
+]

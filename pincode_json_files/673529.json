@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Katalur BO",
+    "pincode": "673529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4800000",
+    "longitude": "75.6400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Tikkoti SO",
+    "pincode": "673529",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4956875",
+    "longitude": "75.6275625"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Chingapuram BO",
+    "pincode": "673529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.4900000",
+    "longitude": "75.6400000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Madrasu BO",
+    "pincode": "248125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4195980",
+    "longitude": "77.7962400"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Ambari BO",
+    "pincode": "248125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4786000",
+    "longitude": "77.8302000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Langha BO",
+    "pincode": "248125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4195980",
+    "longitude": "77.7962000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Ashok Ashram BO",
+    "pincode": "248125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4786110",
+    "longitude": "77.8302000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Kata Pathar BO",
+    "pincode": "248125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5429500",
+    "longitude": "77.9155400"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Dakpathar SO",
+    "pincode": "248125",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4954722",
+    "longitude": "77.7998056"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Khiriya BO",
+    "pincode": "275103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9400000",
+    "longitude": "83.5500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Raikwardeeh BO",
+    "pincode": "275103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9400000",
+    "longitude": "83.5500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bagali Pijra BO",
+    "pincode": "275103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9400000",
+    "longitude": "83.5500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Kushmaur SO",
+    "pincode": "275103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9494980",
+    "longitude": "83.5582030"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Piparidih BO",
+    "pincode": "275103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9400000",
+    "longitude": "83.5500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Salahabad BO",
+    "pincode": "275103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9600000",
+    "longitude": "83.6900000"
+  }
+]

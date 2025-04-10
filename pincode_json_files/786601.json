@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Hoogrijan S.O",
+    "pincode": "786601",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3996944",
+    "longitude": "95.3131111"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Bisfootia B.O",
+    "pincode": "786601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3900000",
+    "longitude": "95.2900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Balijan T.E. B.O",
+    "pincode": "786601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3900000",
+    "longitude": "95.2900000"
+  }
+]

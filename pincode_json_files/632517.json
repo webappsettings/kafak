@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Puttuthakku BO",
+    "pincode": "632517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249656",
+    "longitude": "79.3668465"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Melakuppam BO",
+    "pincode": "632517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249646",
+    "longitude": "79.3668465"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Nandiyalam BO",
+    "pincode": "632517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249646",
+    "longitude": "79.3668465"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Arapakkam BO",
+    "pincode": "632517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9249636",
+    "longitude": "79.3668475"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Kilminnal BO",
+    "pincode": "632517",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9240500",
+    "longitude": "79.3922500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Ratnagiri Kilminnal SO",
+    "pincode": "632517",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9240500",
+    "longitude": "79.3922500"
+  }
+]

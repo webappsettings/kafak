@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Surpur Kerwad B.O",
+    "pincode": "591106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.5200000",
+    "longitude": "74.7200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Kakkeri B.O",
+    "pincode": "591106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.4900000",
+    "longitude": "74.7200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Mangyankop B.O",
+    "pincode": "591106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.5700000",
+    "longitude": "74.6900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Bidi S.O",
+    "pincode": "591106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.8523889",
+    "longitude": "74.5108056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Buranaki B.O",
+    "pincode": "591106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.4900000",
+    "longitude": "74.6900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Linganmath B.O",
+    "pincode": "591106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.4600000",
+    "longitude": "74.7300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Mugalihal B.O",
+    "pincode": "591106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.6000000",
+    "longitude": "74.6500000"
+  }
+]

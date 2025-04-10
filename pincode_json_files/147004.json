@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "TIET SO",
+    "pincode": "147004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3528611",
+    "longitude": "76.3703889"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Tripri SO",
+    "pincode": "147004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3588889",
+    "longitude": "76.3919444"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Mullepur BO",
+    "pincode": "147004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.8400000",
+    "longitude": "75.6700000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Nandpur Kesho BO",
+    "pincode": "147004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4500000",
+    "longitude": "76.4300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Govt Printing Press SO",
+    "pincode": "147004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.353900",
+    "longitude": "76.401934"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "JAIL ROAD SO",
+    "pincode": "147004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3731",
+    "longitude": "76.3716"
+  }
+]

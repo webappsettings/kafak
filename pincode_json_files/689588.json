@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Kulathur BO",
+    "pincode": "689588",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "10.5854930",
+    "longitude": "79.1238060"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Vaipur SO",
+    "pincode": "689588",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1100000",
+    "longitude": "76.6600000"
+  }
+]

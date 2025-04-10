@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Nimbhora S.O",
+    "pincode": "425506",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.167084",
+    "longitude": "75.962007"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Dasnoor B.O",
+    "pincode": "425506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

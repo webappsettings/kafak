@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Kaiwara S.O",
+    "pincode": "563128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.344167000000001",
+    "longitude": "77.987222000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Hirekattigenahalli B.O",
+    "pincode": "563128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.303433399999999",
+    "longitude": "78.043964599999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Talagavara B.O",
+    "pincode": "563128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.318357300000001",
+    "longitude": "77.980943499999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Ammanallur B.O",
+    "pincode": "563128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.2970927",
+    "longitude": "77.992101500000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Bommekallu B.O",
+    "pincode": "563128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.380563",
+    "longitude": "77.976308599999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Santhekallahalli B.O",
+    "pincode": "563128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.278628400000001",
+    "longitude": "77.944164999999998"
+  }
+]

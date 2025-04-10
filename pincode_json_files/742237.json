@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Manigram SO",
+    "pincode": "742237",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.5876027",
+    "longitude": "88.2078444"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Karaya BO",
+    "pincode": "742237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.221399999999999",
+    "longitude": "87.750100000000003"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Pilky BO",
+    "pincode": "742237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.221399999999999",
+    "longitude": "87.750100000000003"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Balia BO",
+    "pincode": "742237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.230499999999999",
+    "longitude": "87.702500000000001"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kherur BO",
+    "pincode": "742237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.221399999999999",
+    "longitude": "87.750100000000003"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kabilpur BO",
+    "pincode": "742237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.212199999999999",
+    "longitude": "87.797799999999995"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barkhanajan B.O",
+    "pincode": "781337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2618000",
+    "longitude": "91.4642000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Hatinamati B.O",
+    "pincode": "781337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2618000",
+    "longitude": "91.4642000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Sondha B.O",
+    "pincode": "781337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2618000",
+    "longitude": "91.4642000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Milanpur S.O",
+    "pincode": "781337",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2618000",
+    "longitude": "91.4642000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Chengnoi B.O",
+    "pincode": "781337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2618000",
+    "longitude": "91.4642000"
+  }
+]

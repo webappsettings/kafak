@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Ayyampatti BO",
+    "pincode": "620015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7792892",
+    "longitude": "78.8185786"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Thuvakudi BO",
+    "pincode": "620015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7474927",
+    "longitude": "78.8203437"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Tirunedungulam BO",
+    "pincode": "620015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7712232",
+    "longitude": "78.8521260"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Valavandankottai BO",
+    "pincode": "620015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7607197",
+    "longitude": "78.8358489"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Asoor BO",
+    "pincode": "620015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7279650",
+    "longitude": "78.8476401"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "National Institute of Technology SO",
+    "pincode": "620015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8584444",
+    "longitude": "78.6901944"
+  }
+]

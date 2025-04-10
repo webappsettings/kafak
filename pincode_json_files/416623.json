@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Waniwade B.O",
+    "pincode": "416623",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Mond S.O",
+    "pincode": "416623",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.4148056",
+    "longitude": "73.4534722"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Baparde B.O",
+    "pincode": "416623",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

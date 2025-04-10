@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Nedumpuram BO",
+    "pincode": "689110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3613870",
+    "longitude": "76.5574930"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Podiyadi SO",
+    "pincode": "689110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.5100000",
+    "longitude": "76.3800000"
+  }
+]

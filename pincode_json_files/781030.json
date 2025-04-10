@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Madhyamkhanda B.O",
+    "pincode": "781030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.2098000",
+    "longitude": "91.7419700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Barbaka B.O",
+    "pincode": "781030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.2098000",
+    "longitude": "91.7419700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Dopdar B.O",
+    "pincode": "781030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.2098000",
+    "longitude": "91.7419700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "North Guwahati S.O",
+    "pincode": "781030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.2098000",
+    "longitude": "91.7419700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Rongmahal B.O",
+    "pincode": "781030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.2098000",
+    "longitude": "91.7419700"
+  }
+]

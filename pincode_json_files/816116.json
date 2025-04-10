@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Tinpahar RS SO",
+    "pincode": "816116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.2445020",
+    "longitude": "87.2417440"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Jonka BO",
+    "pincode": "816116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.051922999999999",
+    "longitude": "87.829537000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Bara Durgapur BO",
+    "pincode": "816116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.010449999999999",
+    "longitude": "87.721199999999996"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Brindaban BO",
+    "pincode": "816116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.100000000000001",
+    "longitude": "87.590000000000003"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Kalyanchak BO",
+    "pincode": "816116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "25.051928",
+    "longitude": "87.829532"
+  }
+]

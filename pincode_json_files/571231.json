@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Kodlipet S.O",
+    "pincode": "571231",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.79719444",
+    "longitude": "75.88861111"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Bessur B.O",
+    "pincode": "571231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.7828646",
+    "longitude": "75.9336848"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Nirugunda B.O",
+    "pincode": "571231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.8014040",
+    "longitude": "75.9161753"
+  }
+]

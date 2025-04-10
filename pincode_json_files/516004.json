@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Chinna Musali Reddy Palli B.O",
+    "pincode": "516004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4437259",
+    "longitude": "78.8294272"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Industrial Estate B.O",
+    "pincode": "516004",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4513106",
+    "longitude": "78.8375544"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Yerramukkapalli S.O",
+    "pincode": "516004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4673691",
+    "longitude": "78.8241189"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Mamillapalli B.O",
+    "pincode": "516004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4425922",
+    "longitude": "78.8345481"
+  }
+]

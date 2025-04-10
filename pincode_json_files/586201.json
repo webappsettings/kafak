@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Chimmalagi B.O",
+    "pincode": "586201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.3894434",
+    "longitude": "75.8315312"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Almatti R.S. B.O",
+    "pincode": "586201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.3457555",
+    "longitude": "75.9004211"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Ghani B.O",
+    "pincode": "586201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.3908432",
+    "longitude": "75.8057284"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Vandal B.O",
+    "pincode": "586201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.4147211",
+    "longitude": "75.8860445"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Benal B.O",
+    "pincode": "586201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.3844204",
+    "longitude": "75.8824396"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Almatti  Damsite S.O",
+    "pincode": "586201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.3447271",
+    "longitude": "75.8941851"
+  }
+]

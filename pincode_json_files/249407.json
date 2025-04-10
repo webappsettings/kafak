@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Arya Nagar SO Haridwar",
+    "pincode": "249407",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6300000",
+    "longitude": "78.3300000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Jwalapur SO",
+    "pincode": "249407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9270000",
+    "longitude": "78.1165833"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Jwalapur Town SO",
+    "pincode": "249407",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.9230556",
+    "longitude": "78.1063056"
+  }
+]

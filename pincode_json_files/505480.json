@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Bommakal B.O",
+    "pincode": "505480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.1619766",
+    "longitude": "79.3392066"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Vangara S.O",
+    "pincode": "505480",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1658611",
+    "longitude": "79.3350833"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Amangurthi B.O",
+    "pincode": "505480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.1634766",
+    "longitude": "79.3638483"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Katrapalli B.O",
+    "pincode": "505480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.1647983",
+    "longitude": "79.3841483"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Raikal B.O",
+    "pincode": "505480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.1577833",
+    "longitude": "79.3170616"
+  }
+]

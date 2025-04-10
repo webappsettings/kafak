@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Kumbharia BO",
+    "pincode": "395010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1853625",
+    "longitude": "72.8921527"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Saroli BO",
+    "pincode": "395010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.4888300",
+    "longitude": "73.4798920"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Bombay Market SO",
+    "pincode": "395010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1992778",
+    "longitude": "72.8488889"
+  }
+]

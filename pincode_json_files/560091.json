@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Herohalli S.O",
+    "pincode": "560091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.990615",
+    "longitude": "77.487875000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Bapagrama B.O",
+    "pincode": "560091",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9996610",
+    "longitude": "77.4510370"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Viswaneedam S.O",
+    "pincode": "560091",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9909900",
+    "longitude": "77.5027310"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Sir M.VISVESVARAYA NAGARA S.O",
+    "pincode": "560091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "12.971569",
+    "longitude": "77.492306"
+  }
+]

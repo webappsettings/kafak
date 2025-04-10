@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Palaspani",
+    "pincode": "480112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.838982909999999",
+    "longitude": "78.693897320000005"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Lohangi Raiyat B.O",
+    "pincode": "480112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.89095",
+    "longitude": "78.24927"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Mau B.O",
+    "pincode": "480112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.976959",
+    "longitude": "78.574417"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Rajegaon B.O",
+    "pincode": "480112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.89095",
+    "longitude": "78.93814"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "MOHKHED SO",
+    "pincode": "480112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0533889",
+    "longitude": "78.9378611"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Mahalpur B.O",
+    "pincode": "480112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.05335",
+    "longitude": "78.93814"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Manikandam BO",
+    "pincode": "620012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7236379",
+    "longitude": "78.6303075"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Fathimanagar BO",
+    "pincode": "620012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.6700000",
+    "longitude": "78.6000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Nagamangalam BO",
+    "pincode": "620012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7012068",
+    "longitude": "78.6222045"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Edamalaipatti Pudur SO",
+    "pincode": "620012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7784167",
+    "longitude": "78.6737778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Craw Ford Colony SO",
+    "pincode": "620012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7815000",
+    "longitude": "78.6760556"
+  }
+]

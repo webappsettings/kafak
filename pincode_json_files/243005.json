@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Old City SO",
+    "pincode": "243005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4511000",
+    "longitude": "79.6300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Shyam Ganj SO",
+    "pincode": "243005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3441000",
+    "longitude": "79.4313000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Prem Nagar SO Bareilly",
+    "pincode": "243005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3447000",
+    "longitude": "79.4314000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Shamat Ganj SO",
+    "pincode": "243005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.34473",
+    "longitude": "79.43134"
+  }
+]

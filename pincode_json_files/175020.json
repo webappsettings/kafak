@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Harabagh BO",
+    "pincode": "175020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9800000",
+    "longitude": "76.8200000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Gumma (Mandi) S.O",
+    "pincode": "175020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.96385",
+    "longitude": "76.852277"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Jhatingri BO",
+    "pincode": "175020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Urla BO",
+    "pincode": "175020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  }
+]

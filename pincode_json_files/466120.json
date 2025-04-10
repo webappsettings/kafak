@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Jasmat B.O",
+    "pincode": "466120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8656230",
+    "longitude": "76.6499350"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Khajuriya Kasam B.O",
+    "pincode": "466120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9347380",
+    "longitude": "76.6383830"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Dhuradakalan B.O",
+    "pincode": "466120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8515050",
+    "longitude": "76.5358170"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Shyampura Magarda",
+    "pincode": "466120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.784590999999999",
+    "longitude": "76.580921000000004"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Siddikganj S.O",
+    "pincode": "466120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "19.8880760",
+    "longitude": "77.3303620"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Nougaon B.O",
+    "pincode": "466120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6002330",
+    "longitude": "75.3019930"
+  }
+]

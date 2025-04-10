@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Deepasikha S.O",
+    "pincode": "759147",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.9509990",
+    "longitude": "85.2258300"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Gadasila B.O",
+    "pincode": "759147",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "21.091666",
+    "longitude": "85.083055560000005"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "MKURJI BO",
+    "pincode": "801105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.3656565",
+    "longitude": "85.9693665"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "SHIKARPUR BO",
+    "pincode": "801105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5664500",
+    "longitude": "85.1131000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "Khagaul Bazar SO",
+    "pincode": "801105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5848880",
+    "longitude": "85.0389350"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "KHAGAUL S.O",
+    "pincode": "801105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5848880",
+    "longitude": "85.0389350"
+  }
+]

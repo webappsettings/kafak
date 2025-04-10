@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Chopra SO Rudraprayag",
+    "pincode": "246495",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2845200",
+    "longitude": "78.9811740"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Haretikhal BO",
+    "pincode": "246495",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4361750",
+    "longitude": "79.3835720"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Kurjhan BO",
+    "pincode": "246495",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4362850",
+    "longitude": "79.3836870"
+  }
+]

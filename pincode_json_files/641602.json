@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Kallampalayam Road BO",
+    "pincode": "641602",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1063860",
+    "longitude": "77.3329020"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Puluvapatti BO",
+    "pincode": "641602",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Pandian nagar BO",
+    "pincode": "641602",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1660610",
+    "longitude": "77.3468000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupur Division",
+    "officename": "Tirupur North SO",
+    "pincode": "641602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUPPUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1125160",
+    "longitude": "77.3408000"
+  }
+]

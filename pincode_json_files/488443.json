@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Adhrod B.O",
+    "pincode": "488443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.060199999999998",
+    "longitude": "79.462100000000007"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Bagrod B.O",
+    "pincode": "488443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7224",
+    "longitude": "78.218999999999994"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Ganjabdagaon B.O",
+    "pincode": "488443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.060199999999998",
+    "longitude": "79.462100000000007"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Baghwar B.O",
+    "pincode": "488443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.881399999999999",
+    "longitude": "79.041799999999995"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Jhaladumari B.O",
+    "pincode": "488443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.060199999999998",
+    "longitude": "79.462100000000007"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Raipura S.O",
+    "pincode": "488443",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.7178230",
+    "longitude": "80.1818860"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "JarguwanB.O",
+    "pincode": "488443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.060199999999998",
+    "longitude": "79.462100000000007"
+  }
+]

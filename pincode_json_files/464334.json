@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Khamkheda B.O",
+    "pincode": "464334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1223260",
+    "longitude": "76.6123880"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Mainwada B.O",
+    "pincode": "464334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "30.0070540",
+    "longitude": "31.5413990"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Pipraha B.O",
+    "pincode": "464334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7698160",
+    "longitude": "78.2419190"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Satpada kalan B.O",
+    "pincode": "464334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.735952000000001",
+    "longitude": "78.130283000000006"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Lagdha B.O",
+    "pincode": "464334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.758385000000001",
+    "longitude": "78.189938999999995"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Tyonda S.O",
+    "pincode": "464334",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "27.9797370",
+    "longitude": "75.8824420"
+  }
+]

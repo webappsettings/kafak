@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Ayodhiyapattinam East B.O",
+    "pincode": "636103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6751901",
+    "longitude": "78.2424321"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Masinaickenpatti B.O",
+    "pincode": "636103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6669503",
+    "longitude": "78.2286134"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Ayodhiyapattinam S.O",
+    "pincode": "636103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6706410",
+    "longitude": "78.2300725"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Kullampatti B.O",
+    "pincode": "636103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6925341",
+    "longitude": "78.2586088"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem East Division",
+    "officename": "Mettupatti Tadanur B.O",
+    "pincode": "636103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6802112",
+    "longitude": "78.2434621"
+  }
+]

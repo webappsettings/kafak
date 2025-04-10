@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Choru BO",
+    "pincode": "177044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "41.1228000",
+    "longitude": "16.8656000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Lahar BO",
+    "pincode": "177044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6481000",
+    "longitude": "76.5470000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Bara SO HamirpurHP",
+    "pincode": "177044",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.772928",
+    "longitude": "76.396582"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Jeehan BO",
+    "pincode": "177044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "37.8323000",
+    "longitude": "87.5434000"
+  }
+]

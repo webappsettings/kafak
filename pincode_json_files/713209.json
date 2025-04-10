@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Durgapur Mg Avenue SO",
+    "pincode": "713209",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5455166",
+    "longitude": "87.2928166"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Durgapur Re College SO",
+    "pincode": "713209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5534248",
+    "longitude": "87.2908401"
+  }
+]

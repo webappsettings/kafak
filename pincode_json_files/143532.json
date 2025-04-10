@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Bharath BO",
+    "pincode": "143532",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.16",
+    "longitude": "75.409999999999997"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Behrampur SO",
+    "pincode": "143532",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "32.1300000",
+    "longitude": "75.3988800"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Dodwan BO",
+    "pincode": "143532",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "32.140000000000001",
+    "longitude": "75.409999999999997"
+  }
+]

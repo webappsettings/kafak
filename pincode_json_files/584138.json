@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Diddgi B.O",
+    "pincode": "584138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9300000",
+    "longitude": "76.8300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Gowdhan Bhavi B.O",
+    "pincode": "584138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9300000",
+    "longitude": "76.8300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Tadakal B.O",
+    "pincode": "584138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9400000",
+    "longitude": "76.8300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Balaganur S.O",
+    "pincode": "584138",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2032778",
+    "longitude": "77.3487778"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Udbal B.O",
+    "pincode": "584138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9400000",
+    "longitude": "76.8300000"
+  }
+]

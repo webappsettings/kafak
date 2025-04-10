@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Chalapuram SO",
+    "pincode": "673002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.2422242",
+    "longitude": "75.7918329"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Tali SO",
+    "pincode": "673002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOZHIKODE",
+    "statename": "KERALA",
+    "latitude": "11.248929",
+    "longitude": "75.785788"
+  }
+]

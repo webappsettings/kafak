@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Kakhadi B.O",
+    "pincode": "754027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.5036576",
+    "longitude": "85.7672522"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Mancheswar B.O",
+    "pincode": "754027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.5077819",
+    "longitude": "85.8036835"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Kayalpada B.O",
+    "pincode": "754027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.5135334",
+    "longitude": "85.8448849"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Chasapara S.O",
+    "pincode": "754027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4661944",
+    "longitude": "85.8585556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Dhurusia B.O",
+    "pincode": "754027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4847356",
+    "longitude": "85.7479464"
+  }
+]

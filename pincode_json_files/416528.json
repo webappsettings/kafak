@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Pinguli B.O",
+    "pincode": "416528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9789217",
+    "longitude": "73.7049573"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Industrial Area Pinguli S.O",
+    "pincode": "416528",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9885556",
+    "longitude": "73.6828889"
+  }
+]

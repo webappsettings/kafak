@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Chandrapur S.O (Kamrup)",
+    "pincode": "781150",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1887778",
+    "longitude": "91.7456389"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Gobardhan B.O",
+    "pincode": "781150",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.2159000",
+    "longitude": "91.8901716"
+  }
+]

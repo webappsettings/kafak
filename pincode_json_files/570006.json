@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "University Campus S.O (Mysuru)",
+    "pincode": "570006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.3131667",
+    "longitude": "76.613249999999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Manasagangothri S.O",
+    "pincode": "570006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.313166669999999",
+    "longitude": "76.613249999999994"
+  }
+]

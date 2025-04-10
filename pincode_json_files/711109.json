@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Bakultala SO",
+    "pincode": "711109",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5652500",
+    "longitude": "88.2838611"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Danesh SkLane SO",
+    "pincode": "711109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8227777",
+    "longitude": "88.2430555"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Goaberia SO",
+    "pincode": "711109",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5585278",
+    "longitude": "88.2771389"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Podra BO",
+    "pincode": "711109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5615110",
+    "longitude": "88.2765300"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Bassi BO",
+    "pincode": "176214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1358220",
+    "longitude": "76.2370490"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Maherana BO",
+    "pincode": "176214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1358220",
+    "longitude": "76.2370490"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Shamirpur BO",
+    "pincode": "176214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1358220",
+    "longitude": "76.2370490"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Salol BO",
+    "pincode": "176214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1358220",
+    "longitude": "76.2370490"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Tiara SO",
+    "pincode": "176214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1364000",
+    "longitude": "76.2369620"
+  }
+]

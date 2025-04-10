@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Nannambra BO",
+    "pincode": "676320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9929768",
+    "longitude": "75.9155220"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Tayyalingal SO",
+    "pincode": "676320",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9777197",
+    "longitude": "75.8787006"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Omachapuzha BO",
+    "pincode": "676320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9783129",
+    "longitude": "75.9309157"
+  }
+]

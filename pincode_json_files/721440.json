@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Ballyagobindapur BO",
+    "pincode": "721440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0098151",
+    "longitude": "87.6359125"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Chakbhabani BO",
+    "pincode": "721440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9513149",
+    "longitude": "87.6075294"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Pania BO",
+    "pincode": "721440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9976860",
+    "longitude": "87.6211061"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Srirampur BO",
+    "pincode": "721440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0046020",
+    "longitude": "87.5789698"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Pratapdighi SO",
+    "pincode": "721440",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9751312",
+    "longitude": "87.5906714"
+  }
+]

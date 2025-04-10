@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Alipore HO",
+    "pincode": "700027",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5257500",
+    "longitude": "88.3377222"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Alipore Dist Board S.O",
+    "pincode": "700027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Chetla SO",
+    "pincode": "700027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5175000",
+    "longitude": "88.3352222"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Mominpur SO",
+    "pincode": "700027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5256111",
+    "longitude": "88.3253333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Natioinal Library SO",
+    "pincode": "700027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5350833",
+    "longitude": "88.3332222"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Alipore Civil Court SO",
+    "pincode": "700027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5218888",
+    "longitude": "88.3336388"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Alipore Bodyguard Line SO",
+    "pincode": "700027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5350277",
+    "longitude": "88.3280555"
+  }
+]

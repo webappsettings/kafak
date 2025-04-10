@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Shampar BO",
+    "pincode": "361240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.7400000",
+    "longitude": "70.4500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Hajamchora BO",
+    "pincode": "361240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.6800000",
+    "longitude": "70.4200000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Madhapar BO",
+    "pincode": "361240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.7300000",
+    "longitude": "70.4600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Balambha SO",
+    "pincode": "361240",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.8209440",
+    "longitude": "70.4465030"
+  }
+]

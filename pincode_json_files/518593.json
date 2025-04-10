@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Kanala S.O",
+    "pincode": "518593",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.4248056",
+    "longitude": "78.4538611"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Mitnala B.O",
+    "pincode": "518593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Pusulur B.O",
+    "pincode": "518593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Maddur B.O",
+    "pincode": "518593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Guntanala B.O",
+    "pincode": "518593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "S.Nagulavaram B.O",
+    "pincode": "518593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

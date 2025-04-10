@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Tiruporur SO",
+    "pincode": "603110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7410670",
+    "longitude": "80.1905500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Illalur BO",
+    "pincode": "603110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7141292",
+    "longitude": "80.1502027"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Alathur Industrial Estate BO",
+    "pincode": "603110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6617454",
+    "longitude": "80.1216765"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Kayar BO",
+    "pincode": "603110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7137000",
+    "longitude": "80.1813800"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Venbedu BO",
+    "pincode": "603110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7137000",
+    "longitude": "80.1813800"
+  }
+]

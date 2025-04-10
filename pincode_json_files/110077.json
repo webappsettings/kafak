@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Dhulsiras B.O",
+    "pincode": "110077",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5641730",
+    "longitude": "77.0413340"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Raj Nagar   II S.O",
+    "pincode": "110077",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5748056",
+    "longitude": "77.0787222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Barthal B.O",
+    "pincode": "110077",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5428040",
+    "longitude": "77.0491440"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Bagdola B.O",
+    "pincode": "110077",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.571529000000002",
+    "longitude": "77.072995000000006"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Palam Extn (Harijan Basti) S.O",
+    "pincode": "110077",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5879440",
+    "longitude": "77.0722760"
+  }
+]

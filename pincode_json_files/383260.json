@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Chandrej BO",
+    "pincode": "383260",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.2486020",
+    "longitude": "73.0673650"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Borditimba BO",
+    "pincode": "383260",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.2290260",
+    "longitude": "73.2196800"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Rampura Kampa BO",
+    "pincode": "383260",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Akrund SO",
+    "pincode": "383260",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.2934210",
+    "longitude": "73.1354600"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Vatrakgadh BO",
+    "pincode": "383260",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.2766090",
+    "longitude": "73.1733100"
+  }
+]

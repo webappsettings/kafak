@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Sant Nagar SO South Delhi",
+    "pincode": "110065",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5540030",
+    "longitude": "77.2490300"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Sriniwaspuri SO",
+    "pincode": "110065",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5646944",
+    "longitude": "77.2555833"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Nehru Nagar SO South Delhi",
+    "pincode": "110065",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5691260",
+    "longitude": "77.2536010"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "East Of Kailash PhaseI SO",
+    "pincode": "110065",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5593611",
+    "longitude": "77.2568056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "East Of Kailash SO",
+    "pincode": "110065",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5579444",
+    "longitude": "77.2459722"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Dhenugawan BO",
+    "pincode": "272129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7992700",
+    "longitude": "82.3181350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Nandnagar BO",
+    "pincode": "272129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7992720",
+    "longitude": "82.3181370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Sikandarpur BO",
+    "pincode": "272129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7992730",
+    "longitude": "82.3181380"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Shankarpur SO",
+    "pincode": "272129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7992770",
+    "longitude": "82.3181390"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "BelwaBO",
+    "pincode": "272129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8122730",
+    "longitude": "82.2949870"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Malauli Gosain BO",
+    "pincode": "272129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7992710",
+    "longitude": "82.3181360"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Tharuapur BO",
+    "pincode": "272129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7992740",
+    "longitude": "82.3181400"
+  }
+]

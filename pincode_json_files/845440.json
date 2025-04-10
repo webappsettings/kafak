@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Palanwa BO",
+    "pincode": "845440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.8978500",
+    "longitude": "84.7000120"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Laukaria BO",
+    "pincode": "845440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.3000000",
+    "longitude": "84.8777700"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "ParsaunaTapasi BO",
+    "pincode": "845440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.8985800",
+    "longitude": "84.7000010"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Sakarar BO",
+    "pincode": "845440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.8995000",
+    "longitude": "84.7004500"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Jaitapur Laukaria SO",
+    "pincode": "845440",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "27.1405555",
+    "longitude": "84.9805555"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Gad Bahuari BO",
+    "pincode": "845440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.8977000",
+    "longitude": "84.7000000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Mahuwal Mahal SO",
+    "pincode": "841240",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.0777777",
+    "longitude": "84.6441666"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Tarwaparsa BO",
+    "pincode": "841240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.077777699999999",
+    "longitude": "84.644166600000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Chandparsa BO",
+    "pincode": "841240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.077777699999999",
+    "longitude": "84.644166600000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Merhi BO",
+    "pincode": "841240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.077777699999999",
+    "longitude": "84.644166600000005"
+  }
+]

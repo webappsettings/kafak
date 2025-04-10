@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "DODDAVALLABHI B.O",
+    "pincode": "563133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.1666147",
+    "longitude": "77.990522499999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Belamaranahalli B.O",
+    "pincode": "563133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.173964",
+    "longitude": "77.970277199999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Arabikothnur B.O",
+    "pincode": "563133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.123323900000001",
+    "longitude": "78.041409299999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Chakarasanahalli B.O",
+    "pincode": "563133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.1427967",
+    "longitude": "77.968227999999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Sulur B.O",
+    "pincode": "563133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.138276599999999",
+    "longitude": "78.0395149"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "NARASAPURA INDUSTRIAL AREA B O",
+    "pincode": "563133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.1386111",
+    "longitude": "78.0055555"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Narasapura S.O",
+    "pincode": "563133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.1386111",
+    "longitude": "78.005555599999994"
+  }
+]

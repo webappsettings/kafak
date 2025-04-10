@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Hindi Prachar Sabha S.O",
+    "pincode": "600017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0342222",
+    "longitude": "80.2394722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Thygarayanagar North ND S.O",
+    "pincode": "600017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0497000",
+    "longitude": "80.2402000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Thygarayanagar H.O",
+    "pincode": "600017",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0453611",
+    "longitude": "80.2376111"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Thygarayanagar South NDS.O",
+    "pincode": "600017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0405000",
+    "longitude": "80.2331000"
+  }
+]

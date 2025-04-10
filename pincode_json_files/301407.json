@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Basmenpur B.O",
+    "pincode": "301407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6645350",
+    "longitude": "76.1520150"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Mandawar S.O (Alwar)",
+    "pincode": "301407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5613889",
+    "longitude": "76.6122222"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Balluwas B.O",
+    "pincode": "301407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.9013110",
+    "longitude": "76.5517130"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Gopipura B.O",
+    "pincode": "301407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8260350",
+    "longitude": "76.4881180"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Sheopur B.O",
+    "pincode": "301407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8356520",
+    "longitude": "75.8288260"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Chandpur B.O",
+    "pincode": "301407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8967300",
+    "longitude": "76.5054650"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Refinery Township SO",
+    "pincode": "851117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Nagdah BO",
+    "pincode": "851117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Dumri BO",
+    "pincode": "851117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  }
+]

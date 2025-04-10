@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Beed B.O",
+    "pincode": "416011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Kandgaon B.O",
+    "pincode": "416011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Bahireshwar B.O",
+    "pincode": "416011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Washi B.O",
+    "pincode": "416011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Sane Guruji Vasahat S.O",
+    "pincode": "416011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.6734379",
+    "longitude": "74.2023726"
+  }
+]

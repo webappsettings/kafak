@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Chenijaan B.O",
+    "pincode": "785010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4842100",
+    "longitude": "94.1037000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Sotai B.O",
+    "pincode": "785010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4842100",
+    "longitude": "94.1037000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Kachagoral B.O",
+    "pincode": "785010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4842100",
+    "longitude": "94.1037000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Chengeli Gaon S.O",
+    "pincode": "785010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4842100",
+    "longitude": "94.1037000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Kalakhowa B.O",
+    "pincode": "785010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4842100",
+    "longitude": "94.1037000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Pub charigaon B.O",
+    "pincode": "785010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4842100",
+    "longitude": "94.1037000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Midhawali BO",
+    "pincode": "281302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4900000",
+    "longitude": "78.0100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Garhumrao BO",
+    "pincode": "281302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4900000",
+    "longitude": "78.0100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Bisawar SO",
+    "pincode": "281302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3930833",
+    "longitude": "77.9254444"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Baramai BO",
+    "pincode": "281302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Bharatia BO",
+    "pincode": "281302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Mai BO",
+    "pincode": "281302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4900000",
+    "longitude": "78.0100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Tasinga BO",
+    "pincode": "281302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4900000",
+    "longitude": "78.0100000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Govindamuttom BO",
+    "pincode": "690527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.166076",
+    "longitude": "76.494390"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Mavelikara Division",
+    "officename": "Puthuppally SO",
+    "pincode": "690527",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALAPPUZHA",
+    "statename": "KERALA",
+    "latitude": "9.148006",
+    "longitude": "76.496796"
+  }
+]

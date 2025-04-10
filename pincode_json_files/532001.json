@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Srikakulam Official Colony S.O",
+    "pincode": "532001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.2952222",
+    "longitude": "83.9040278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Srikakulam H.O",
+    "pincode": "532001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.296229",
+    "longitude": "83.893679"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Srikakulam Collectorate S.O",
+    "pincode": "532001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.2729167",
+    "longitude": "83.9060278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Srikakulam Zilla Parishad S.O",
+    "pincode": "532001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.2852778",
+    "longitude": "83.8958333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Srikakulam District Court S.O",
+    "pincode": "532001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.3095833",
+    "longitude": "83.8954167"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Srikakulam Division",
+    "officename": "Srikakulam Town S.O",
+    "pincode": "532001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRIKAKULAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.2971944",
+    "longitude": "83.8951389"
+  }
+]

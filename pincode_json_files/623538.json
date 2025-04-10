@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Arunoothimangalam BO",
+    "pincode": "623538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.6900000",
+    "longitude": "78.8900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Karkathakudi BO",
+    "pincode": "623538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7400000",
+    "longitude": "78.8800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Kokkurani BO",
+    "pincode": "623538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7000000",
+    "longitude": "78.8200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Saveriyarpattinam BO",
+    "pincode": "623538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.6700000",
+    "longitude": "78.8600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Sanaveli SO",
+    "pincode": "623538",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.683801",
+    "longitude": "78.868062"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Gudalur BO",
+    "pincode": "623538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7300000",
+    "longitude": "78.8500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Malapanaiyur BO",
+    "pincode": "623538",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7200000",
+    "longitude": "78.8900000"
+  }
+]

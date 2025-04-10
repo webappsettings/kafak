@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "KUMHRAR SO",
+    "pincode": "800026",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.6000000",
+    "longitude": "85.1738888"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "B H COLONY SO",
+    "pincode": "800026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5927410",
+    "longitude": "85.1748290"
+  }
+]

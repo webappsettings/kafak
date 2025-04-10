@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "West Nalkata B.O",
+    "pincode": "799266",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "24.06562",
+    "longitude": "91.993047"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Purba Betcherra B.O",
+    "pincode": "799266",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "24.06562",
+    "longitude": "91.993047"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Karamcherra B.O",
+    "pincode": "799266",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "24.06562",
+    "longitude": "91.993047"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Kanchancherra",
+    "pincode": "799266",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.1598056"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Betcherra B.O",
+    "pincode": "799266",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "24.06562",
+    "longitude": "91.993047"
+  }
+]

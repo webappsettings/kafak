@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Gunadala S.O",
+    "pincode": "520004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5204167",
+    "longitude": "80.6660556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Machavaram S.O (Krishna)",
+    "pincode": "520004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5174",
+    "longitude": "80.6185"
+  }
+]

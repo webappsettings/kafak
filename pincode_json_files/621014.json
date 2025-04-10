@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Ammapatti B.O",
+    "pincode": "621014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1200000",
+    "longitude": "78.6100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Kalladipatti B.O",
+    "pincode": "621014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0500000",
+    "longitude": "78.5700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Adhanur B.O",
+    "pincode": "621014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0600000",
+    "longitude": "78.5700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Singalandapuram B.O",
+    "pincode": "621014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1200000",
+    "longitude": "78.6000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Kaliyampatti B.O",
+    "pincode": "621014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0900000",
+    "longitude": "78.5800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Karattampatti B.O",
+    "pincode": "621014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0700000",
+    "longitude": "78.6000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Pagalavadi S.O",
+    "pincode": "621014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0800000",
+    "longitude": "78.6000000"
+  }
+]

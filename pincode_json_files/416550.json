@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Amboli B.O",
+    "pincode": "416550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.970000000000001",
+    "longitude": "74.010000000000005"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Devsu B.O",
+    "pincode": "416550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.8927622",
+    "longitude": "73.958600200000006"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Choukul B.O",
+    "pincode": "416550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.892773699999999",
+    "longitude": "74.018229899999994"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Danoli B.O",
+    "pincode": "416550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.93",
+    "longitude": "73.939999999999998"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Kudal Audyogik Samuha S.O",
+    "pincode": "416550",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9108056",
+    "longitude": "73.8230833"
+  }
+]

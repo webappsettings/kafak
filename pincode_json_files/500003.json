@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Secunderabad H.O",
+    "pincode": "500003",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.44128087456386",
+    "longitude": "78.49522379805465"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Rail Nilayam S.O",
+    "pincode": "500003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

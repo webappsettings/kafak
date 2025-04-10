@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Marisda SO",
+    "pincode": "721449",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.8587819",
+    "longitude": "87.7549911"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Karaldanimakbarh BO",
+    "pincode": "721449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6916000",
+    "longitude": "87.7719000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Banamalichatta BO",
+    "pincode": "721449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9867569",
+    "longitude": "87.8549755"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Daisai BO",
+    "pincode": "721449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6916000",
+    "longitude": "87.7719000"
+  }
+]

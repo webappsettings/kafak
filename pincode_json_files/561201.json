@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Karlamangala B.O",
+    "pincode": "561201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.9300000",
+    "longitude": "77.2600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Attimagere B.O",
+    "pincode": "561201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8700000",
+    "longitude": "77.2600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Ajjanahalli B.O",
+    "pincode": "561201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8600000",
+    "longitude": "77.2500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Thimmasandra B.O",
+    "pincode": "561201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8000000",
+    "longitude": "77.2800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Veeregowdanadoddi S.O",
+    "pincode": "561201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.3900000",
+    "longitude": "77.1200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Lakshmipura B.O",
+    "pincode": "561201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8300000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Madabal B.O",
+    "pincode": "561201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.9100000",
+    "longitude": "77.2300000"
+  }
+]

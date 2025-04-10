@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Manohar BO",
+    "pincode": "722142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4263960",
+    "longitude": "87.2851130"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Nityanandapur BO",
+    "pincode": "722142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4166800",
+    "longitude": "87.1166540"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Maliara SO",
+    "pincode": "722142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.0000045",
+    "longitude": "87.0000131"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Brindabanpur Barsal BO",
+    "pincode": "722142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4974000",
+    "longitude": "87.2227500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Chousal BO",
+    "pincode": "722142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4166740",
+    "longitude": "87.1166600"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Metali BO",
+    "pincode": "722142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4263950",
+    "longitude": "87.2851140"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Banjora BO",
+    "pincode": "722142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5096462",
+    "longitude": "87.2294794"
+  }
+]

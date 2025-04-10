@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Harsour BO",
+    "pincode": "174305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4712000",
+    "longitude": "76.5048000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Pathliar BO",
+    "pincode": "174305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5059000",
+    "longitude": "76.4606000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Jhanjiani BO",
+    "pincode": "174305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4578000",
+    "longitude": "76.5119000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Baliah Khurd BO",
+    "pincode": "174305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5255000",
+    "longitude": "76.4606000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Mehre SO",
+    "pincode": "174305",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5267000",
+    "longitude": "76.4624000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Barsar HO",
+    "pincode": "174305",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.523361",
+    "longitude": "76.450071"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Bhakreri BO",
+    "pincode": "174305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5342000",
+    "longitude": "76.4723000"
+  }
+]

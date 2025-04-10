@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Chunangad SO",
+    "pincode": "679511",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7996682",
+    "longitude": "76.4040164"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Mulanhur BO",
+    "pincode": "679511",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.4236000"
+  }
+]

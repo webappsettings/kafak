@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Bahadurpalli B.O",
+    "pincode": "500043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.5654",
+    "longitude": "78.4291"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Dindigul B.O",
+    "pincode": "500043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.6265",
+    "longitude": "78.3723"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Gagillapur B.O",
+    "pincode": "500043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.611",
+    "longitude": "78.3282"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Bowrampet B.O",
+    "pincode": "500043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.5725",
+    "longitude": "78.3703"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Airforce Academy S.O",
+    "pincode": "500043",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.65297222",
+    "longitude": "78.39713889"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Srirangavaram B.O",
+    "pincode": "500043",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.6568",
+    "longitude": "78.4206"
+  }
+]

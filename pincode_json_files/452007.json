@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Gurunanak Chauk S.O",
+    "pincode": "452007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7159167",
+    "longitude": "75.8558333"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Courts S.O",
+    "pincode": "452007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7219722",
+    "longitude": "75.8654444"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Ram Bagh S.O",
+    "pincode": "452007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7235833",
+    "longitude": "75.8577778"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Siyaganj S.O",
+    "pincode": "452007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7170833",
+    "longitude": "75.8666667"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Collectorate S.O",
+    "pincode": "452007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7096111",
+    "longitude": "75.8550000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Nagar H.O",
+    "pincode": "452007",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7198333",
+    "longitude": "75.8611111"
+  }
+]

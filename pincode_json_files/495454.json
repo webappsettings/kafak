@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Gevra Basti BO",
+    "pincode": "495454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3267890",
+    "longitude": "82.6213310"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Durpa BO",
+    "pincode": "495454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3457170",
+    "longitude": "82.6934720"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Pandania BO",
+    "pincode": "495454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3483860",
+    "longitude": "82.6402410"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Kusmunda Colliery SO",
+    "pincode": "495454",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3472700",
+    "longitude": "82.6528300"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bhairotal BO",
+    "pincode": "495454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3713180",
+    "longitude": "82.6345540"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bhilaibazar BO",
+    "pincode": "495454",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.305928000000002",
+    "longitude": "82.618628999999999"
+  }
+]

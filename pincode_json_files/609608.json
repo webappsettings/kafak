@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Ubayavedanthapuram B.O",
+    "pincode": "609608",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9300000",
+    "longitude": "79.7100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Kollapuram S.O",
+    "pincode": "609608",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "79.7100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Kurungulam B.O",
+    "pincode": "609608",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "79.6800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Menangudi B.O",
+    "pincode": "609608",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "79.7100000"
+  }
+]

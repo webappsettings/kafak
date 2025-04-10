@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Kochara B.O",
+    "pincode": "416522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9581515",
+    "longitude": "73.5459901"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Mhapan B.O",
+    "pincode": "416522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9340842",
+    "longitude": "73.5611303"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Khavane B.O",
+    "pincode": "416522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9194037",
+    "longitude": "73.564710599999998"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Niwatiwadi B.O",
+    "pincode": "416522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9387822",
+    "longitude": "73.5445384"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "SINDHUDURG DIVISION",
+    "officename": "Pat S.O",
+    "pincode": "416522",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINDHUDURG",
+    "statename": "MAHARASHTRA",
+    "latitude": "15.9886944",
+    "longitude": "73.5275000"
+  }
+]

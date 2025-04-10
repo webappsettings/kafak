@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "CHIMMONI DAM BO",
+    "pincode": "680304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.4334170",
+    "longitude": "76.4823350"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Palappilly SO",
+    "pincode": "680304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.4331111",
+    "longitude": "76.3796389"
+  }
+]

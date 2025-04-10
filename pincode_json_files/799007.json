@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Banamalipur B.O",
+    "pincode": "799007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Dhaleswar S.O",
+    "pincode": "799007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "23.83555556",
+    "longitude": "91.29502778"
+  }
+]

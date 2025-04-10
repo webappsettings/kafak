@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Balegaon B.O",
+    "pincode": "444117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0300000",
+    "longitude": "77.0300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Mundgaon S.O",
+    "pincode": "444117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0500278",
+    "longitude": "76.9928056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Pathardi B.O",
+    "pincode": "444117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0200000",
+    "longitude": "76.9400000"
+  }
+]

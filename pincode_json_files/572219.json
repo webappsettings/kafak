@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Koppa B.O",
+    "pincode": "572219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3261261",
+    "longitude": "76.9407395"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Belavatha B.O",
+    "pincode": "572219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2395973",
+    "longitude": "76.8609384"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Kadaba S.O (Tumakuru)",
+    "pincode": "572219",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3168611",
+    "longitude": "77.1086389"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Byadigere B.O",
+    "pincode": "572219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2394521",
+    "longitude": "76.8585586"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Doddakunnala B.O",
+    "pincode": "572219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2391556",
+    "longitude": "76.8589826"
+  }
+]

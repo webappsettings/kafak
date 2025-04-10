@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Angareshwar BO",
+    "pincode": "392030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.8004470",
+    "longitude": "73.1350290"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Nikora BO",
+    "pincode": "392030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7803840",
+    "longitude": "73.1323580"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Mangleshwar BO",
+    "pincode": "392030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7653740",
+    "longitude": "73.1325100"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Shuklatirth SO",
+    "pincode": "392030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7536670",
+    "longitude": "73.1215110"
+  }
+]

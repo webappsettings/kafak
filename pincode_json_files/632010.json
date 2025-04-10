@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Abdullapuram S.O",
+    "pincode": "632010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9235278",
+    "longitude": "79.0963611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Melmonavur B.O",
+    "pincode": "632010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9208000",
+    "longitude": "79.0916000"
+  }
+]

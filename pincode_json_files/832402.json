@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Kandra SO Seraikelakharsawan",
+    "pincode": "832402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.85397",
+    "longitude": "86.05078"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Hudu BO",
+    "pincode": "832402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.81465",
+    "longitude": "86.028450000000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Dumra B.O",
+    "pincode": "832402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.852",
+    "longitude": "86.050799999999995"
+  }
+]

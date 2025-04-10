@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Sarai Khas BO",
+    "pincode": "144805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.4844400",
+    "longitude": "75.2755500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Kahlwan BO",
+    "pincode": "144805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.3260222",
+    "longitude": "75.5761759"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "CRPF Campus Sarai Khas SO",
+    "pincode": "144805",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.3820750",
+    "longitude": "75.3840290"
+  }
+]

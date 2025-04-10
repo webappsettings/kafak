@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Cavellary Lines SO",
+    "pincode": "211004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.49444",
+    "longitude": "81.86133"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "M L N EnggColl",
+    "pincode": "211004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4922000",
+    "longitude": "81.8647000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Chenkody B.O",
+    "pincode": "629177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3200000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Veeyannur B.O",
+    "pincode": "629177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3100000",
+    "longitude": "77.2700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Aruvikkarai B.O",
+    "pincode": "629177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3300000",
+    "longitude": "77.2800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Attur B.O",
+    "pincode": "629177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3200000",
+    "longitude": "77.2600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Moovattumugham B.O",
+    "pincode": "629177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3400000",
+    "longitude": "77.2500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Tiruvattar S.O",
+    "pincode": "629177",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.3325833",
+    "longitude": "77.2793056"
+  }
+]

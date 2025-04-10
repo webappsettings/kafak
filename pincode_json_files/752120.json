@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "BAHARANA B.O",
+    "pincode": "752120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.1356803",
+    "longitude": "86.0603595"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "AMARESWAR B.O",
+    "pincode": "752120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.1356803",
+    "longitude": "86.0603595"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "NUAPALAMHAT S.O",
+    "pincode": "752120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.1356803",
+    "longitude": "86.0603595"
+  }
+]

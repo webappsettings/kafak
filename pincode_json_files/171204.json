@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Kiari SO",
+    "pincode": "171204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1461389",
+    "longitude": "77.5462222"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Galeha BO",
+    "pincode": "171204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.0886325",
+    "longitude": "77.1290423"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Deori Khaneti BO",
+    "pincode": "171204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2102000",
+    "longitude": "77.1293000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Panog BO",
+    "pincode": "171204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9134500",
+    "longitude": "77.1295600"
+  }
+]

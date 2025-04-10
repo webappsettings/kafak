@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Srikona S.O",
+    "pincode": "788026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8236370",
+    "longitude": "92.8018270"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Rajnagar B.O",
+    "pincode": "788026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8300000",
+    "longitude": "92.7300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Baglaghat B.O",
+    "pincode": "788026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8300000",
+    "longitude": "92.7300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Digar Srikona B.O",
+    "pincode": "788026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8300000",
+    "longitude": "92.7300000"
+  }
+]

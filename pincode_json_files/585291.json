@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Geddalmari B.O",
+    "pincode": "585291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.3300000",
+    "longitude": "76.5100000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Rajankollur S.O",
+    "pincode": "585291",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.7615556",
+    "longitude": "77.1353056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Jamalapur B.O",
+    "pincode": "585291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.3000000",
+    "longitude": "76.4800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Kamanatagi B.O",
+    "pincode": "585291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.4000000",
+    "longitude": "76.5200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Ammapur S K",
+    "pincode": "585291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.292074",
+    "longitude": "76.428873999999993"
+  }
+]

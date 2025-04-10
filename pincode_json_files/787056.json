@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Katri Chapori B.O",
+    "pincode": "787056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.4600000",
+    "longitude": "94.2300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Pathalipam S.O",
+    "pincode": "787056",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.4450000",
+    "longitude": "94.2052000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Subansiri Koibarta Adarsha Gao B.O",
+    "pincode": "787056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.4600000",
+    "longitude": "94.2300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Ukhamati B.O",
+    "pincode": "787056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.4600000",
+    "longitude": "94.2300000"
+  }
+]

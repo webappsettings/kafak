@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Sahdra BO",
+    "pincode": "144525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.4200000",
+    "longitude": "75.0400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Chandiani Khurd BO",
+    "pincode": "144525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.0500000",
+    "longitude": "75.8100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Makhoopur BO",
+    "pincode": "144525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.5600000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Mallewal BO",
+    "pincode": "144525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.5600000",
+    "longitude": "74.8900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Sahiba SO",
+    "pincode": "144525",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.140820",
+    "longitude": "76.249366"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Jhamerh BO",
+    "pincode": "175014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Drubbal SO",
+    "pincode": "175014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8515556",
+    "longitude": "76.8196111"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Kurati BO",
+    "pincode": "175014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7082560",
+    "longitude": "76.9313760"
+  }
+]

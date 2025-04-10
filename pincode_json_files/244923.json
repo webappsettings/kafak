@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Bilaspur Chini Mill SO",
+    "pincode": "244923",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6106944",
+    "longitude": "79.1696944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Rampura Buzurg BO",
+    "pincode": "244923",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2400000",
+    "longitude": "84.1100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Godhi BO",
+    "pincode": "244923",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6106000",
+    "longitude": "79.1696000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Panwaria BO",
+    "pincode": "244923",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6106000",
+    "longitude": "79.1696000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Chandain BO",
+    "pincode": "244923",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6106000",
+    "longitude": "79.1696000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Kaushal Ganj BO",
+    "pincode": "244923",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.6106000",
+    "longitude": "79.1696000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Swarg Farm BO",
+    "pincode": "244923",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "22.0700000",
+    "longitude": "82.1300000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Suldhal B.O",
+    "pincode": "591101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.9973272",
+    "longitude": "74.6750854"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Ankalgi S.O",
+    "pincode": "591101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0312127",
+    "longitude": "74.6874128"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Madwal B.O",
+    "pincode": "591101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0401762",
+    "longitude": "74.7211492"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Akkatangerhal B.O",
+    "pincode": "591101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0357130",
+    "longitude": "74.7053564"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Mallapur KA B.O",
+    "pincode": "591101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0520220",
+    "longitude": "74.6896240"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gokak Division",
+    "officename": "Tavag B.O",
+    "pincode": "591101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.0787345",
+    "longitude": "74.8000398"
+  }
+]

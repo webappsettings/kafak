@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "T.R.Pattinam South B.O",
+    "pincode": "609606",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.8700000",
+    "longitude": "79.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Tirumalairayanpattinam S.O",
+    "pincode": "609606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.5200000",
+    "longitude": "79.4900000"
+  }
+]

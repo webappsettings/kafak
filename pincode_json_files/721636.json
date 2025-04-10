@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Padumbasan SO",
+    "pincode": "721636",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4919444",
+    "longitude": "88.5430555"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Salgechhia SO",
+    "pincode": "721636",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2931210",
+    "longitude": "87.8598861"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Tamluk HO",
+    "pincode": "721636",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2955",
+    "longitude": "87.9260"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Bargabhima SO",
+    "pincode": "721636",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2931410",
+    "longitude": "87.9235450"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Parbatipur SO",
+    "pincode": "721636",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2901120",
+    "longitude": "87.9236550"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Sankarara SO",
+    "pincode": "721636",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2860000",
+    "longitude": "87.9200000"
+  }
+]

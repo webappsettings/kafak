@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Adhegaon B.O",
+    "pincode": "413212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0482360",
+    "longitude": "75.1323470"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Bhimanagar S.O",
+    "pincode": "413212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.058496",
+    "longitude": "75.113126"
+  }
+]

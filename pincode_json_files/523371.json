@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Rayavaram B.O",
+    "pincode": "523371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7200000",
+    "longitude": "79.3100000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Kethagudipi B.O",
+    "pincode": "523371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.6900000",
+    "longitude": "79.2800000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Mangalikunta B.O",
+    "pincode": "523371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.6300000",
+    "longitude": "79.3200000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Nasarsahebpalle B.O",
+    "pincode": "523371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.6400000",
+    "longitude": "79.2700000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Nagellamudipi B.O",
+    "pincode": "523371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.5900000",
+    "longitude": "79.2600000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Thummalacheruvu S.O",
+    "pincode": "523371",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.6372778",
+    "longitude": "79.2676111"
+  }
+]

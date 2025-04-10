@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Malcha Marg SO",
+    "pincode": "110021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.6040833",
+    "longitude": "77.1872500"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "South Delhi Campus SO",
+    "pincode": "110021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5829722",
+    "longitude": "77.1615000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Chanakya Puri SO",
+    "pincode": "110021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.583723",
+    "longitude": "77.190064"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Anand Niketan SO",
+    "pincode": "110021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5787222",
+    "longitude": "77.1648889"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Moti Bagh SO",
+    "pincode": "110021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.6139722",
+    "longitude": "77.1256111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Nanak Pura SO",
+    "pincode": "110021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5807778",
+    "longitude": "77.1727222"
+  }
+]

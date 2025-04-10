@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Singbulli BO",
+    "pincode": "734218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "26.882147199999999",
+    "longitude": "88.278842100000006"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Phuguri SO",
+    "pincode": "734218",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "27.1168490",
+    "longitude": "88.5859500"
+  }
+]

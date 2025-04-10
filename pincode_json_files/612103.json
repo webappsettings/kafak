@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Tirupuvanam S.O",
+    "pincode": "612103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9886060",
+    "longitude": "79.4370720"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Ammachathiram B.O",
+    "pincode": "612103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9900000",
+    "longitude": "79.4200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Umamaheswarapuram B.O",
+    "pincode": "612103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9900000",
+    "longitude": "79.4200000"
+  }
+]

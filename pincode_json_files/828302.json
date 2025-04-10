@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Bhowra SO",
+    "pincode": "828302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.7113470",
+    "longitude": "86.3997390"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Amlabad Colliery BO",
+    "pincode": "828302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHANBAD",
+    "statename": "JHARKHAND",
+    "latitude": "23.685133",
+    "longitude": "86.397840400000007"
+  }
+]

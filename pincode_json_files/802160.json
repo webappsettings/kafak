@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Katkaira BO",
+    "pincode": "802160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5940980",
+    "longitude": "84.7777110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Dhandihan BO",
+    "pincode": "802160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5638330",
+    "longitude": "84.7787410"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Kulharia BO",
+    "pincode": "802160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5723470",
+    "longitude": "84.7708280"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Pareo BO",
+    "pincode": "802160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5549410",
+    "longitude": "84.8113990"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Sakaddi BO",
+    "pincode": "802160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5773260",
+    "longitude": "84.7486820"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Koilwar SO",
+    "pincode": "802160",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5795380",
+    "longitude": "84.7923680"
+  }
+]

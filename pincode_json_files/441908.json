@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Akot B.O",
+    "pincode": "441908",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8846420",
+    "longitude": "79.6754690"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Belati B.O",
+    "pincode": "441908",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.2647400",
+    "longitude": "79.7259660"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Sarandi B.O",
+    "pincode": "441908",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.3654690",
+    "longitude": "79.8800830"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Bhawad B.O",
+    "pincode": "441908",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8703650",
+    "longitude": "79.7315750"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Masal B.O",
+    "pincode": "441908",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8408310",
+    "longitude": "79.7792370"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Palora B.O",
+    "pincode": "441908",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8917730",
+    "longitude": "79.6996740"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Konda Kosra S.O",
+    "pincode": "441908",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8761667",
+    "longitude": "79.6875000"
+  }
+]

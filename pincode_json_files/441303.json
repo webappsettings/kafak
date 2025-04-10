@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Mowad S.O",
+    "pincode": "441303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.4660833",
+    "longitude": "78.4494167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Khairgaon B.O",
+    "pincode": "441303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.4442460",
+    "longitude": "78.4453530"
+  }
+]

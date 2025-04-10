@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Kelagur(J) B.O",
+    "pincode": "577122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1649206",
+    "longitude": "75.4570393"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Niduvale B.O",
+    "pincode": "577122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1864534",
+    "longitude": "75.4958133"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Javali S.O",
+    "pincode": "577122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1654356",
+    "longitude": "75.4858891"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Balur B.O",
+    "pincode": "577122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1450937",
+    "longitude": "75.5096427"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Megur B.O",
+    "pincode": "577122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1537412",
+    "longitude": "75.4798058"
+  }
+]

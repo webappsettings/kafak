@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Nimbhora Bodkhe B.O",
+    "pincode": "444711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8800000",
+    "longitude": "77.6600000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Dighi B.O",
+    "pincode": "444711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8400000",
+    "longitude": "78.2800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Mangrul Dastgir S.O",
+    "pincode": "444711",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8316944",
+    "longitude": "78.2372778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Nimboli B.O",
+    "pincode": "444711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.8000000",
+    "longitude": "78.2300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Zada B.O",
+    "pincode": "444711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7900000",
+    "longitude": "78.2700000"
+  }
+]

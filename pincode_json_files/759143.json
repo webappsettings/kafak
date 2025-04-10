@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Parang B.O",
+    "pincode": "759143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8748916",
+    "longitude": "85.0310916"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Hakimpada S.O",
+    "pincode": "759143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8406389",
+    "longitude": "85.0965556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Badkerjang B.O",
+    "pincode": "759143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8614183",
+    "longitude": "84.9699733"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Jarasingha B.O",
+    "pincode": "759143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8563166",
+    "longitude": "85.0625800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Golabandha B.O",
+    "pincode": "759143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8533600",
+    "longitude": "84.9950750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Kumanda B.O",
+    "pincode": "759143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8538216",
+    "longitude": "85.0775716"
+  }
+]

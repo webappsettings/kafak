@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Nutannagar B.O",
+    "pincode": "799009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Lankamura B.O",
+    "pincode": "799009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Durjaynagar B.O",
+    "pincode": "799009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Narayanpur B.O",
+    "pincode": "799009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Agartala Aerodrome S.O",
+    "pincode": "799009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "23.884989",
+    "longitude": "91.250156"
+  }
+]

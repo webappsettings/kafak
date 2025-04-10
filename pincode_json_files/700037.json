@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Belgachia Road SO",
+    "pincode": "700037",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6087570",
+    "longitude": "88.3893600"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Northern Avenue SO",
+    "pincode": "700037",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6118889",
+    "longitude": "22.3861944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Belgachia SO",
+    "pincode": "700037",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6060000",
+    "longitude": "88.3837778"
+  }
+]

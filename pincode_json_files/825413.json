@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Gurio BO",
+    "pincode": "825413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Kolhaukala BO",
+    "pincode": "825413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Bijaiya",
+    "pincode": "825413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Telaiya Dam SO",
+    "pincode": "825413",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.3243040",
+    "longitude": "85.5215530"
+  }
+]

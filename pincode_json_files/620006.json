@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Melur B.O",
+    "pincode": "620006",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8700000",
+    "longitude": "78.6100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Srirangam H.O",
+    "pincode": "620006",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8600000",
+    "longitude": "78.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Srirangam North S.O",
+    "pincode": "620006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8600000",
+    "longitude": "78.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Renganagar S.O",
+    "pincode": "620006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8563880",
+    "longitude": "78.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Srirangam West S.O",
+    "pincode": "620006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8600000",
+    "longitude": "78.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Ammamandapam S.O",
+    "pincode": "620006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8501111",
+    "longitude": "78.6897778"
+  }
+]

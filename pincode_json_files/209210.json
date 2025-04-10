@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Uttaripura SO",
+    "pincode": "209210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7401910",
+    "longitude": "80.0958170"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Sugarardeva EUP  9346 BO",
+    "pincode": "209210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7287760",
+    "longitude": "80.1104450"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Radhan  EUP5857 BO",
+    "pincode": "209210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7428330",
+    "longitude": "80.1210960"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Nadiha BO",
+    "pincode": "209210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7329150",
+    "longitude": "80.0974850"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Beeramau BO",
+    "pincode": "209210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3180510",
+    "longitude": "79.8004860"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Dudwa BO",
+    "pincode": "209210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7573190",
+    "longitude": "80.0878790"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Saibasu BO",
+    "pincode": "209210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7710370",
+    "longitude": "80.0995090"
+  }
+]

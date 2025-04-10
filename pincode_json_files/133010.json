@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Defence Colony S.O",
+    "pincode": "133010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "28.5726330",
+    "longitude": "77.2325100"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Boh B.O",
+    "pincode": "133010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.242696",
+    "longitude": "77.058567"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Kalarehri B.O",
+    "pincode": "133010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.378184",
+    "longitude": "76.776691"
+  }
+]

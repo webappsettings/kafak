@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Jagatpura S.O",
+    "pincode": "302017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8360833",
+    "longitude": "75.8303333"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Malviya Nagar S.O (Jaipur)",
+    "pincode": "302017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9192500",
+    "longitude": "75.7196389"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Mrec Jaipur S.O",
+    "pincode": "302017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8612600",
+    "longitude": "75.8139890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Dantli BO",
+    "pincode": "302017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8236120",
+    "longitude": "75.9085790"
+  }
+]

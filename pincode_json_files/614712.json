@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Talanayar IV Sethi B.O",
+    "pincode": "614712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.52",
+    "longitude": "79.75"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Pirinjimulai B.O",
+    "pincode": "614712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.57",
+    "longitude": "79.77"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Vadugur B.O",
+    "pincode": "614712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.57",
+    "longitude": "79.74"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Talanayar Agraharam S.O",
+    "pincode": "614712",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.5629720",
+    "longitude": "79.7733060"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Talanayar III Sethi B.O",
+    "pincode": "614712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.54",
+    "longitude": "79.76"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Manakudi B.O",
+    "pincode": "614712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.58",
+    "longitude": "79.75"
+  }
+]

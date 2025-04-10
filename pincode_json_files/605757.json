@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Tirukkoyilur Bazaar S.O",
+    "pincode": "605757",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9636667",
+    "longitude": "79.2034167"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Tirukkoyilur H.O",
+    "pincode": "605757",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9660556",
+    "longitude": "79.2046667"
+  }
+]

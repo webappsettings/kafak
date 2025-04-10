@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Chidambarapuram BO",
+    "pincode": "627501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4964910",
+    "longitude": "77.5580110"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Keelakaruvelankulam BO",
+    "pincode": "627501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5278400",
+    "longitude": "77.5600310"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Kilakku Kalakkadu BO",
+    "pincode": "627501",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5189130",
+    "longitude": "77.5586570"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Padalayarkulam BO",
+    "pincode": "627501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5187610",
+    "longitude": "77.5724660"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Pathai BO",
+    "pincode": "627501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5386730",
+    "longitude": "77.5367610"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Singampathu BO",
+    "pincode": "627501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5155460",
+    "longitude": "77.5593840"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Kalakad SO",
+    "pincode": "627501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5150718",
+    "longitude": "77.5494769"
+  }
+]

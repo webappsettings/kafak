@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Alanpur B.O",
+    "pincode": "301412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8219230",
+    "longitude": "76.4478220"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Bamanwas B.O",
+    "pincode": "301412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7489930",
+    "longitude": "76.4649850"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Bhagukawas B.O",
+    "pincode": "301412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2433340",
+    "longitude": "76.6183460"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Shamda B.O",
+    "pincode": "301412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8171230",
+    "longitude": "76.4273840"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Harsora S.O",
+    "pincode": "301412",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8618611",
+    "longitude": "76.5531111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Babari B.O",
+    "pincode": "301412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5519210",
+    "longitude": "76.6031520"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Babaria B.O",
+    "pincode": "301412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7883540",
+    "longitude": "76.3695170"
+  }
+]

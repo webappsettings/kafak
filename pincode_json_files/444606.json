@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Rukhmini Nagar S.O",
+    "pincode": "444606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9285278",
+    "longitude": "77.7516389"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Gokul Market S.O",
+    "pincode": "444606",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9099722",
+    "longitude": "77.7273611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Congress Nagar S.O (Amravati)",
+    "pincode": "444606",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9300000",
+    "longitude": "77.7700000"
+  }
+]

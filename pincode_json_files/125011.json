@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Glf Hisar BO",
+    "pincode": "125011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.2177440",
+    "longitude": "75.6818990"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Ttc Hisar BO",
+    "pincode": "125011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1915130",
+    "longitude": "75.6957140"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "CSF Hisar BO",
+    "pincode": "125011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1915130",
+    "longitude": "75.6957140"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "BSF Hisar SO",
+    "pincode": "125011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.2275278",
+    "longitude": "75.6669167"
+  }
+]

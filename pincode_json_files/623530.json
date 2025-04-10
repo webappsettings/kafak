@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Kulathur BO",
+    "pincode": "623530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4500000",
+    "longitude": "78.7900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Toruvalur SO",
+    "pincode": "623530",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.405502",
+    "longitude": "78.816496"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Siruvayal BO",
+    "pincode": "623530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4700000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Kavanur TOR BO",
+    "pincode": "623530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4900000",
+    "longitude": "78.5700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Kiliyur BO",
+    "pincode": "623530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5000000",
+    "longitude": "78.7700000"
+  }
+]

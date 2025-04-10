@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Basaral SO",
+    "pincode": "177301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.714744",
+    "longitude": "76.355230"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Jhalan BO",
+    "pincode": "177301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6995000",
+    "longitude": "76.3534000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Karaur BO",
+    "pincode": "177301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7033000",
+    "longitude": "76.3579000"
+  }
+]

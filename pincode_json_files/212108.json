@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Basahra Uparhar BO",
+    "pincode": "212108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1046230",
+    "longitude": "82.1332820"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Newadhiya Uparhar BO",
+    "pincode": "212108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3027000",
+    "longitude": "81.8117000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Bihariya BO",
+    "pincode": "212108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2278810",
+    "longitude": "81.5404440"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Lakhnauti BO",
+    "pincode": "212108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.244820000000001",
+    "longitude": "81.871540999999993"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Shankargarh SO",
+    "pincode": "212108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.19077",
+    "longitude": "81.61173"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Bhandiwar BO",
+    "pincode": "212108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531820",
+    "longitude": "81.8274740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Bemra BO",
+    "pincode": "212108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1046230",
+    "longitude": "82.1332820"
+  }
+]

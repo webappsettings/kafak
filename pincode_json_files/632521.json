@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Tajpura BO",
+    "pincode": "632521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9044480",
+    "longitude": "79.3191506"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Vilapakkam SO",
+    "pincode": "632521",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8923531",
+    "longitude": "79.2112669"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Uppupettai BO",
+    "pincode": "632521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8642500",
+    "longitude": "79.2953000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Sattur BO",
+    "pincode": "632521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9044470",
+    "longitude": "79.3191516"
+  }
+]

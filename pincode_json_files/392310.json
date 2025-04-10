@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Kiya BO",
+    "pincode": "392310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.0400000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Valan SO",
+    "pincode": "392310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.0268056",
+    "longitude": "73.0936111"
+  }
+]

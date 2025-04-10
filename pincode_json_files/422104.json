@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Mithsagare B.O",
+    "pincode": "422104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8500100",
+    "longitude": "73.9999900"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Pangri BK B.O",
+    "pincode": "422104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8178486",
+    "longitude": "74.2017816"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Wavi S.O",
+    "pincode": "422104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8448439",
+    "longitude": "74.0020175"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Shaha B.O",
+    "pincode": "422104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8508600",
+    "longitude": "74.2638600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Dahiwadi B.O",
+    "pincode": "422104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8508600",
+    "longitude": "74.2638600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Pathare B.O",
+    "pincode": "422104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8297119",
+    "longitude": "74.3338124"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Sayale B.O",
+    "pincode": "422104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7997185",
+    "longitude": "74.3059486"
+  }
+]

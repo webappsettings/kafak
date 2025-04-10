@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Muckanamalaipatti S.O",
+    "pincode": "622103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4602778",
+    "longitude": "78.6861110"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Pudur pdk B.O",
+    "pincode": "622103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.2200000",
+    "longitude": "78.8000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Veerapatti B.O",
+    "pincode": "622103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4700000",
+    "longitude": "78.6600000"
+  }
+]

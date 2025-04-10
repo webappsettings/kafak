@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Sialsir B.O",
+    "pincode": "796184",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.171595799999999",
+    "longitude": "92.989708199999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Chekawn B.O",
+    "pincode": "796184",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.187262799999999",
+    "longitude": "93.016798399999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Lungkawlh B.O",
+    "pincode": "796184",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.0807976",
+    "longitude": "93.085699099999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Lungchhuan B.O",
+    "pincode": "796184",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.148923",
+    "longitude": "93.014019700000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "N. Vanlaiphai S.O",
+    "pincode": "796184",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.7258333",
+    "longitude": "92.7190278"
+  }
+]

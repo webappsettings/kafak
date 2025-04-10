@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Siddavattam S.O",
+    "pincode": "516237",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4681389",
+    "longitude": "78.9743889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Jyothi B.O",
+    "pincode": "516237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4900000",
+    "longitude": "78.9100000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Jangalapalli B.O",
+    "pincode": "516237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4700000",
+    "longitude": "78.9900000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "Vontithatipalli B.O",
+    "pincode": "516237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4800000",
+    "longitude": "78.9300000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Cuddapah Division",
+    "officename": "P. Kothapalli B.O",
+    "pincode": "516237",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.5000000",
+    "longitude": "78.9000000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Pasodara BO",
+    "pincode": "395013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1816820",
+    "longitude": "72.8691880"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Sania Hemad BO",
+    "pincode": "395013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.3274370",
+    "longitude": "72.8234840"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Sarthana SO",
+    "pincode": "395013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2146878",
+    "longitude": "72.8269532"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Valak BO",
+    "pincode": "395013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1002100",
+    "longitude": "72.9230320"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Kosmada BO",
+    "pincode": "395013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2027253",
+    "longitude": "72.9189284"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Laskana BO",
+    "pincode": "395013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.3373870",
+    "longitude": "72.7474440"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Varachhali BO",
+    "pincode": "395013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2099790",
+    "longitude": "72.8497680"
+  }
+]

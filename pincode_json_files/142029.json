@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Dholan Kalan BO",
+    "pincode": "142029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8019890",
+    "longitude": "75.7865650"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Mansuran BO",
+    "pincode": "142029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8059400",
+    "longitude": "75.7589520"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Jodhan SO",
+    "pincode": "142029",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.7951111",
+    "longitude": "75.7563611"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Dhaipai BO",
+    "pincode": "142029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.7795440",
+    "longitude": "75.7240650"
+  }
+]

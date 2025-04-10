@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Anklas BO",
+    "pincode": "396235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2251340",
+    "longitude": "72.9401420"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Athal BO",
+    "pincode": "396235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DADRA AND NAGAR HAVELI",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.2744080",
+    "longitude": "72.9431040"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Kharadpada BO",
+    "pincode": "396235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DADRA AND NAGAR HAVELI",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.2585940",
+    "longitude": "72.9477170"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Borigam BO",
+    "pincode": "396235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2954650",
+    "longitude": "72.9519620"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Kachigam BO",
+    "pincode": "396235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2684140",
+    "longitude": "72.9730500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Naroli SO",
+    "pincode": "396235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DADRA AND NAGAR HAVELI",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.2744080",
+    "longitude": "72.9431040"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Nagvas BO",
+    "pincode": "396235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2489990",
+    "longitude": "72.9194800"
+  }
+]

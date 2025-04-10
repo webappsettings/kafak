@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Greater Kailash SO",
+    "pincode": "110048",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5376667",
+    "longitude": "77.2381389"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Kailash Colony SO",
+    "pincode": "110048",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5471667",
+    "longitude": "77.2438056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Masjid Moth SO",
+    "pincode": "110048",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5404722",
+    "longitude": "77.2346667"
+  }
+]

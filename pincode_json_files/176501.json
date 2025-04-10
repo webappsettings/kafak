@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Ghati Bilwan BO",
+    "pincode": "176501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9463520",
+    "longitude": "75.9511750"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Jandaur BO",
+    "pincode": "176501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8980620",
+    "longitude": "75.9593870"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Amroh BO",
+    "pincode": "176501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8654370",
+    "longitude": "75.9419690"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Riri BO",
+    "pincode": "176501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8900000",
+    "longitude": "75.9500000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Sansarpur Terrace SO",
+    "pincode": "176501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9244160",
+    "longitude": "75.9271380"
+  }
+]

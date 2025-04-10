@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Gobra BO",
+    "pincode": "721441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.6646641",
+    "longitude": "87.5117612"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Jhawgeria BO",
+    "pincode": "721441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.6786436",
+    "longitude": "87.5631613"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Mandar BO",
+    "pincode": "721441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.6903317",
+    "longitude": "87.5518553"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Haldia Patna BO",
+    "pincode": "721441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9259763",
+    "longitude": "87.8362244"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Ramnagar SO East Midnapore",
+    "pincode": "721441",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.6744185",
+    "longitude": "87.5598549"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Alankarpur BO",
+    "pincode": "721441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.6492722",
+    "longitude": "87.5284578"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Hirapur BO",
+    "pincode": "721441",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.6732508",
+    "longitude": "87.5383492"
+  }
+]

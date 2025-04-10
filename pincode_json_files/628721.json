@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Alagappapuram B.O",
+    "pincode": "628721",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0735000",
+    "longitude": "77.6931000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Vanaramutti S.O",
+    "pincode": "628721",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1295000",
+    "longitude": "77.7571000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kalangaraipatti B.O",
+    "pincode": "628721",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0762000",
+    "longitude": "77.6653000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Pillaiyarnatham B.O",
+    "pincode": "628721",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1292000",
+    "longitude": "77.6863000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kattalankulam B.O",
+    "pincode": "628721",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6372000",
+    "longitude": "77.9118000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Nachiyarpuram B.O",
+    "pincode": "628721",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0482000",
+    "longitude": "77.7053000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Zamindevarkulam B.O",
+    "pincode": "628721",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1124000",
+    "longitude": "77.7052000"
+  }
+]

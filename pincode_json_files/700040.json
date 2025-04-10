@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Regent Park SO",
+    "pincode": "700040",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4853056",
+    "longitude": "88.3521667"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Russa SO",
+    "pincode": "700040",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4843333",
+    "longitude": "88.3464167"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "South Kolkata Division",
+    "officename": "Netaji Nagar SO Kolkata",
+    "pincode": "700040",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4805690",
+    "longitude": "88.3575560"
+  }
+]

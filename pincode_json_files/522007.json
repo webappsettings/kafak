@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Chandramoulinagar S.O",
+    "pincode": "522007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.314373",
+    "longitude": "80.429927"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Amaravathi Road(Guntur) S.O",
+    "pincode": "522007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5185833",
+    "longitude": "80.7186389"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Koritepadu(Guntur) S.O",
+    "pincode": "522007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3109722",
+    "longitude": "80.4613889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "L.W.Works(Guntur) S.O",
+    "pincode": "522007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3199444",
+    "longitude": "80.4298611"
+  }
+]

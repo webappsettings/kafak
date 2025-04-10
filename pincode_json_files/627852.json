@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Urmelalagian B.O",
+    "pincode": "627852",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0091000",
+    "longitude": "77.3343000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Ayikudi S.O",
+    "pincode": "627852",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9986000",
+    "longitude": "77.3304000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "KILANGAD B.O",
+    "pincode": "627852",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0042000000000009",
+    "longitude": "77.317700000000002"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Agarakattu B.O",
+    "pincode": "627852",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9878000",
+    "longitude": "77.3115000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "KuthiathodeEKM BO",
+    "pincode": "683594",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.1751535",
+    "longitude": "76.2867313"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Puthenvelikkara SO",
+    "pincode": "683594",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.185723",
+    "longitude": "76.245625"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Elanthikara BO",
+    "pincode": "683594",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.1745149",
+    "longitude": "76.266565799999995"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Arusi B.O",
+    "pincode": "477449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.0607170",
+    "longitude": "78.8531280"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Kurthar B.O",
+    "pincode": "477449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.9770060",
+    "longitude": "78.7986180"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Alampur S.O (Bhind",
+    "pincode": "477449",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.0262360",
+    "longitude": "78.7953180"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Gangepura B.O",
+    "pincode": "477449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.0277780",
+    "longitude": "78.8442640"
+  }
+]

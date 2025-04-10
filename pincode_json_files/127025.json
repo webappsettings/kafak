@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Malkosh BO",
+    "pincode": "127025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7784000",
+    "longitude": "76.3418000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Baund SO",
+    "pincode": "127025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7784000",
+    "longitude": "76.3418000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Aun BO",
+    "pincode": "127025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7784000",
+    "longitude": "76.3418000"
+  }
+]

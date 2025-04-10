@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Dhanapur BO",
+    "pincode": "227407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2269110",
+    "longitude": "81.8319990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bisesarganj SO",
+    "pincode": "227407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1116944",
+    "longitude": "81.9441944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Ramgarh BO",
+    "pincode": "227407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "23.652368",
+    "longitude": "85.56121"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Misrauli BO",
+    "pincode": "227407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0855000",
+    "longitude": "81.7951050"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bargaon BO",
+    "pincode": "227407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0855000",
+    "longitude": "81.7951050"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Thirumangalam B.O",
+    "pincode": "637302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4329133",
+    "longitude": "77.9374783"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Kasturippatti B.O",
+    "pincode": "637302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4535366",
+    "longitude": "77.8971483"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Kolikkalnatham B.O",
+    "pincode": "637302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4374316",
+    "longitude": "77.9160600"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Nagichettipatti B.O",
+    "pincode": "637302",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4537033",
+    "longitude": "77.8551950"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Karumapuram B.O",
+    "pincode": "637302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4522183",
+    "longitude": "77.9369750"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Sankaridrug.R.S S.O",
+    "pincode": "637302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4494444",
+    "longitude": "77.8726944"
+  }
+]

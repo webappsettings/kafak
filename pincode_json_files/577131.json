@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Attigundi B.O",
+    "pincode": "577131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4281634",
+    "longitude": "75.7414607"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Bisagnimutt B.O",
+    "pincode": "577131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4633270",
+    "longitude": "75.7518334"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Mallenahalli S.O",
+    "pincode": "577131",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4224127",
+    "longitude": "75.8014671"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Kaimara B.O",
+    "pincode": "577131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3714507",
+    "longitude": "75.7445721"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Kesavinamane B.O",
+    "pincode": "577131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.5148254",
+    "longitude": "75.7278009"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Pandaravalli B.O",
+    "pincode": "577131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4042459",
+    "longitude": "75.7058282"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Palluruthy South BO",
+    "pincode": "682006",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.9163651",
+    "longitude": "76.2755491"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Palluruthy SO",
+    "pincode": "682006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.916055556",
+    "longitude": "76.27541667"
+  }
+]

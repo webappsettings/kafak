@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Kalyani Nagar S.O",
+    "pincode": "753013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4503545",
+    "longitude": "85.9031803"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Sri Aurobinda Marg S.O",
+    "pincode": "753013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4534316",
+    "longitude": "85.8986573"
+  }
+]

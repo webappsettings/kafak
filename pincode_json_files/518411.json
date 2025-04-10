@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Konidela S.O",
+    "pincode": "518411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.92738889",
+    "longitude": "77.28813889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Mutsumarri B.O",
+    "pincode": "518411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Bijina Vemula B.O",
+    "pincode": "518411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Nehru Nagar B.O",
+    "pincode": "518411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

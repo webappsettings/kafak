@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Neikuppai B.O",
+    "pincode": "621111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9200000",
+    "longitude": "78.7900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "R.Valavanur B.O",
+    "pincode": "621111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9300000",
+    "longitude": "78.7800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Purathakudi S.O",
+    "pincode": "621111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9300000",
+    "longitude": "78.7900000"
+  }
+]

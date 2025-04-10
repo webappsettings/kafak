@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Babhnan SO",
+    "pincode": "272161",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9344850",
+    "longitude": "82.5041530"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Belwaria Jungle BO",
+    "pincode": "272161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3961630",
+    "longitude": "82.9678200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Barhya BO",
+    "pincode": "272161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8175140",
+    "longitude": "82.2252658"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Mahuwadabar BO",
+    "pincode": "272161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3961630",
+    "longitude": "82.1525625"
+  }
+]

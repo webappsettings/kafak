@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Deuribarbam B.O",
+    "pincode": "787026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4200000",
+    "longitude": "94.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Jairampur B.O",
+    "pincode": "787026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4200000",
+    "longitude": "94.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Salmari No.2 B.O",
+    "pincode": "787026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4200000",
+    "longitude": "94.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Hollowdanga B.O",
+    "pincode": "787026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4200000",
+    "longitude": "94.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Bordoloni S.O",
+    "pincode": "787026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4807890",
+    "longitude": "94.5566490"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Samarajan Tiniali B.O",
+    "pincode": "787026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4200000",
+    "longitude": "94.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Missamari B.O",
+    "pincode": "787026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4200000",
+    "longitude": "94.4300000"
+  }
+]

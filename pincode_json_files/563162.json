@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Karahalli B.O",
+    "pincode": "563162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.001629100000001",
+    "longitude": "78.184405900000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Mavahalli B.O",
+    "pincode": "563162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.0533099",
+    "longitude": "78.208513600000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Soregowdanakote B.O",
+    "pincode": "563162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9861366",
+    "longitude": "78.210680800000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Doddurukarapanahalli B.O",
+    "pincode": "563162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.015503600000001",
+    "longitude": "78.239339400000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Hunkunda B.O",
+    "pincode": "563162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "13.04654",
+    "longitude": "78.245131099999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Deshihalli Bangarpet S.O",
+    "pincode": "563162",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9848611",
+    "longitude": "78.189083299999993"
+  }
+]

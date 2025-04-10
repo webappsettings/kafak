@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Khadikapada B.O",
+    "pincode": "758081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6360333",
+    "longitude": "86.0005849"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Banabir B.O",
+    "pincode": "758081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.5762133",
+    "longitude": "86.0218750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Damahuda B.O",
+    "pincode": "758081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6052816",
+    "longitude": "86.0338816"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Machhagarh S.O",
+    "pincode": "758081",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6549633",
+    "longitude": "86.0624100"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Gholkunda B.O",
+    "pincode": "758081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6084250",
+    "longitude": "86.0555900"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Mirigikhoji B.O",
+    "pincode": "758081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6103450",
+    "longitude": "85.9552733"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Goras B.O",
+    "pincode": "758081",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6851633",
+    "longitude": "86.0550033"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Pedda Dhanwada B.O",
+    "pincode": "509135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.9446718",
+    "longitude": "77.8633006"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Chinna Tandrapad B.O",
+    "pincode": "509135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.9446718",
+    "longitude": "77.8633006"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Mandoddi B.O",
+    "pincode": "509135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.9446718",
+    "longitude": "77.8633006"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Uppal B.O",
+    "pincode": "509135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.9505045",
+    "longitude": "77.8405442"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Uppal Camp S.O",
+    "pincode": "509135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.981787",
+    "longitude": "77.691433"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Tangal B.O",
+    "pincode": "509135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.9785944",
+    "longitude": "77.7513458"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Yapadinne B.O",
+    "pincode": "509135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JOGULAMBA GADWAL",
+    "statename": "TELANGANA",
+    "latitude": "15.9819516",
+    "longitude": "77.7435550"
+  }
+]

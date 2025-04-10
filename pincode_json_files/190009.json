@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Central Market SO",
+    "pincode": "190009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0709444",
+    "longitude": "74.8016111"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "New Secretariat Srinagar SO",
+    "pincode": "190009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0746388",
+    "longitude": "74.8010833"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Rambagh SO Srinagar",
+    "pincode": "190009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "36.9000000",
+    "longitude": "25.9000000"
+  }
+]

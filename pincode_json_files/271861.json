@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Baldev Nagar BO",
+    "pincode": "271861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5635500",
+    "longitude": "82.1685200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Mathura Bazar SO",
+    "pincode": "271861",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5788056",
+    "longitude": "82.0590278"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Laliya BO",
+    "pincode": "271861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5595860",
+    "longitude": "82.1523250"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Pranpur BO",
+    "pincode": "271861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5798220",
+    "longitude": "82.0979020"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Bankatwa BO",
+    "pincode": "271861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2759490",
+    "longitude": "82.3790890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Kodri BO",
+    "pincode": "271861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4308260",
+    "longitude": "82.4617360"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Mangra Kohal BO",
+    "pincode": "271861",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5841400",
+    "longitude": "82.1726600"
+  }
+]

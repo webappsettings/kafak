@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Kolwadi B.O",
+    "pincode": "412110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.541737999999999",
+    "longitude": "74.025227999999998"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Theur S.O",
+    "pincode": "412110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5258056",
+    "longitude": "74.0440000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Naygaon B.O",
+    "pincode": "412110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.7570184",
+    "longitude": "73.572288400000005"
+  }
+]

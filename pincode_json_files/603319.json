@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Sirunagalur BO",
+    "pincode": "603319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5248500",
+    "longitude": "79.9555000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Sendivakkam BO",
+    "pincode": "603319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6840062",
+    "longitude": "79.9833373"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Melmaruvathur SO",
+    "pincode": "603319",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9251389",
+    "longitude": "80.1986944"
+  }
+]

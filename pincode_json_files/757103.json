@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Pratappur S.O (Mayurbhanj)",
+    "pincode": "757103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.9380556",
+    "longitude": "86.7261111"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Haripur B.O",
+    "pincode": "757103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.8035045",
+    "longitude": "86.7138297"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Orachandbilla B.O",
+    "pincode": "757103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.8034045",
+    "longitude": "86.7128297"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Madhopur B.O",
+    "pincode": "757103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.7680163",
+    "longitude": "86.7400984"
+  }
+]

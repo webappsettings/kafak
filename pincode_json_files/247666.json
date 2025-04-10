@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Dandhera BO",
+    "pincode": "247666",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7192000",
+    "longitude": "77.3806000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Milap Nagar SO",
+    "pincode": "247666",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8426944",
+    "longitude": "77.8979444"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Bijholi BO",
+    "pincode": "247666",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7192000",
+    "longitude": "77.3806000"
+  }
+]

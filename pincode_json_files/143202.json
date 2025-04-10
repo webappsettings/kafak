@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Bhalaipur Purban BO",
+    "pincode": "143202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6100000",
+    "longitude": "75.2200000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Wadala Khurd BO",
+    "pincode": "143202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5900000",
+    "longitude": "75.2300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Lakhuwal BO",
+    "pincode": "143202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5600000",
+    "longitude": "75.2900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Dhianpur BO",
+    "pincode": "143202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5600000",
+    "longitude": "75.2400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Wadalkalan BO",
+    "pincode": "143202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6363030",
+    "longitude": "75.0389951"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Baba Bakala SO",
+    "pincode": "143202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5600000",
+    "longitude": "75.2700000"
+  }
+]

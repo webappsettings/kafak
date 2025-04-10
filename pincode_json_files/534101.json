@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "Tadepalligudem H.O",
+    "pincode": "534101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8118333",
+    "longitude": "81.5235000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "Aphb Colony S.O",
+    "pincode": "534101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8272222",
+    "longitude": "81.5194444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "Tadepalligudem Town S.O",
+    "pincode": "534101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.812666",
+    "longitude": "81.528423"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "Subbaraopeta S.O",
+    "pincode": "534101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.813551",
+    "longitude": "81.531069"
+  }
+]

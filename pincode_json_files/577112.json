@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Balehonnur S.O",
+    "pincode": "577112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3508333",
+    "longitude": "75.4672222"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Melpal B.O",
+    "pincode": "577112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4346574",
+    "longitude": "75.4252042"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Bannur B.O",
+    "pincode": "577112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3333450",
+    "longitude": "75.4904891"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Megaramakki B.O",
+    "pincode": "577112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.4289604",
+    "longitude": "75.4743744"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Devagodu B.O",
+    "pincode": "577112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3481830",
+    "longitude": "75.4284013"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Kanabur B.O",
+    "pincode": "577112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3706277",
+    "longitude": "75.4553736"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Herur B.O",
+    "pincode": "577112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3657676",
+    "longitude": "75.4046584"
+  }
+]

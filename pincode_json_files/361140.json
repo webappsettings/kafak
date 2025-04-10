@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Moti Khavdi BO",
+    "pincode": "361140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.3800000",
+    "longitude": "69.8600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Gagva BO",
+    "pincode": "361140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.3900000",
+    "longitude": "69.8100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Digvijay Gram SO",
+    "pincode": "361140",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.4700000",
+    "longitude": "70.0500000"
+  }
+]

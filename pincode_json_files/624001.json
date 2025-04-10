@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Angunagar SO",
+    "pincode": "624001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3783333",
+    "longitude": "77.9547222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Dindigul HO",
+    "pincode": "624001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.363107",
+    "longitude": "77.981923"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Dindigul Fort SO",
+    "pincode": "624001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3665833",
+    "longitude": "77.9683056"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Pandianagar SO",
+    "pincode": "624001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3704444",
+    "longitude": "77.9830278"
+  }
+]

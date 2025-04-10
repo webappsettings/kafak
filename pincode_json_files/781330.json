@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Koklabari B.O",
+    "pincode": "781330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.3291389",
+    "longitude": "91.0102500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barghogra B.O",
+    "pincode": "781330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.3291389",
+    "longitude": "91.0102500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Kamardisa B.O",
+    "pincode": "781330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.3291389",
+    "longitude": "91.0102500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Lowkata B.O",
+    "pincode": "781330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.3291389",
+    "longitude": "91.0102500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Simla S.O",
+    "pincode": "781330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.3291389",
+    "longitude": "91.0102500"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Ariyalur B.O",
+    "pincode": "614702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.49",
+    "longitude": "79.56"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Kulamanickam B.O",
+    "pincode": "614702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.51",
+    "longitude": "79.54"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Idaiyur S.O",
+    "pincode": "614702",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4713611",
+    "longitude": "79.5867778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Devadanam B.O",
+    "pincode": "614702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.49",
+    "longitude": "79.53"
+  }
+]

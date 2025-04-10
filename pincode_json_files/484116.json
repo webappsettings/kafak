@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Patnakalan B.O",
+    "pincode": "484116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1200000",
+    "longitude": "81.6000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Batura B.O",
+    "pincode": "484116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHDOL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2000000",
+    "longitude": "81.6300000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Amai Colliery S.O",
+    "pincode": "484116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9734000",
+    "longitude": "78.6538000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Kelhauri B.O",
+    "pincode": "484116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1900000",
+    "longitude": "81.6400000"
+  }
+]

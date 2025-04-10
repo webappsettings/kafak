@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Hazrat Nizamuddin SO",
+    "pincode": "110013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5877500",
+    "longitude": "77.2505833"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Dargah Sharif SO",
+    "pincode": "110013",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5912222",
+    "longitude": "77.2423333"
+  }
+]

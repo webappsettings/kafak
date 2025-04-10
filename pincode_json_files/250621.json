@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Jalalpur BO",
+    "pincode": "250621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.120000000000001",
+    "longitude": "77.290000000000006"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Barwala BO",
+    "pincode": "250621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1600000",
+    "longitude": "77.2500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Baoli SO",
+    "pincode": "250621",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1376111",
+    "longitude": "77.2695833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Gunga Kheri BO",
+    "pincode": "250621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1500000",
+    "longitude": "77.2900000"
+  }
+]

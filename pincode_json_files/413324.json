@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Papari B.O",
+    "pincode": "413324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2780500",
+    "longitude": "75.0762700"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Hiware B.O",
+    "pincode": "413324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2780500",
+    "longitude": "75.0762700"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Shetphal S.O",
+    "pincode": "413324",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.90668",
+    "longitude": "75.42919"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Khandali B.O",
+    "pincode": "413324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8636350",
+    "longitude": "74.9116660"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Deodi B.O",
+    "pincode": "413324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2780500",
+    "longitude": "75.0762700"
+  }
+]

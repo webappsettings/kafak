@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Koppal Bazar S.O",
+    "pincode": "583231",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.3413939",
+    "longitude": "76.1539681"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Koppal Kutcheri S.O",
+    "pincode": "583231",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.351699999999999",
+    "longitude": "76.156300000000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Koppal H.O",
+    "pincode": "583231",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.3493762",
+    "longitude": "76.153785799999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Koppal R S S.O",
+    "pincode": "583231",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.3512108",
+    "longitude": "76.143529000000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Koppal G S Gunj S.O",
+    "pincode": "583231",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.347723999999999",
+    "longitude": "76.161939700000005"
+  }
+]

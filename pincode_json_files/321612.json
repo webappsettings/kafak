@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Gazipura BO",
+    "pincode": "321612",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0163780",
+    "longitude": "76.9383790"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Palanheda BO",
+    "pincode": "321612",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2799560",
+    "longitude": "77.1427640"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Gahnoli BO",
+    "pincode": "321612",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0163780",
+    "longitude": "76.9383790"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Santha BO",
+    "pincode": "321612",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2799560",
+    "longitude": "77.1427640"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Paota Dausa SO",
+    "pincode": "321612",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9588333",
+    "longitude": "76.9283889"
+  }
+]

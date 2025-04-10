@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Biranchipur B.O",
+    "pincode": "761143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8983700",
+    "longitude": "84.8860700"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Karasinghi B.O",
+    "pincode": "761143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8983600",
+    "longitude": "84.8860500"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Karachulli S.O",
+    "pincode": "761143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8983900",
+    "longitude": "84.8860800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Takarada B.O",
+    "pincode": "761143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8983500",
+    "longitude": "84.8860400"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Krimba B.O",
+    "pincode": "761143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.858211000000001",
+    "longitude": "84.940213"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "B.Karadabadi B.O",
+    "pincode": "761143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8983800",
+    "longitude": "84.8860900"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Badatanda B.O.",
+    "pincode": "761143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.858212000000002",
+    "longitude": "84.940213"
+  }
+]

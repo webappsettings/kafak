@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Chandaiya BO",
+    "pincode": "202139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5472702",
+    "longitude": "78.1478918"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Komari BO",
+    "pincode": "202139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "17.2008563",
+    "longitude": "76.5372625"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Lutsan BO",
+    "pincode": "202139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5863775",
+    "longitude": "78.2891377"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "K G W Sasni SO",
+    "pincode": "202139",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7097500",
+    "longitude": "78.1343056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Sikur BO",
+    "pincode": "202139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7774485",
+    "longitude": "81.9821162"
+  }
+]

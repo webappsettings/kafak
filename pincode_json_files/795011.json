@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Haotak Khullen B.O",
+    "pincode": "795011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURACHANDPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.351505700000001",
+    "longitude": "93.804760900000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Phubala B.O",
+    "pincode": "795011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.535118400000002",
+    "longitude": "93.755194599999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Thinungei B.O",
+    "pincode": "795011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.551309499999999",
+    "longitude": "93.758295000000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Naransena B.O",
+    "pincode": "795011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.517022099999998",
+    "longitude": "93.745758600000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Ningthoukhong SO",
+    "pincode": "795011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.571347",
+    "longitude": "93.763833"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Potsangbam B.O",
+    "pincode": "795011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.593450700000002",
+    "longitude": "93.765633600000001"
+  }
+]

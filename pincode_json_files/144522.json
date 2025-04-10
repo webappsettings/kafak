@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Bharthala BO",
+    "pincode": "144522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.2500000",
+    "longitude": "75.8400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Majara Jattan BO",
+    "pincode": "144522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.0400000",
+    "longitude": "75.9600000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Bagowal BO",
+    "pincode": "144522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.2500000",
+    "longitude": "75.8400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Mutton BO",
+    "pincode": "144522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.2500000",
+    "longitude": "75.8400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Banah BO",
+    "pincode": "144522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.2500000",
+    "longitude": "75.1400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Nighi BO",
+    "pincode": "144522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.2500000",
+    "longitude": "75.8100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Kathagrh SO",
+    "pincode": "144522",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.039154",
+    "longitude": "76.382037"
+  }
+]

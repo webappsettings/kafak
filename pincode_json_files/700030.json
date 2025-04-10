@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Purba Sinthee SO",
+    "pincode": "700030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6245000",
+    "longitude": "88.3981111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Sethbagan SO",
+    "pincode": "700030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.1723000",
+    "longitude": "88.2321000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Ghugudanga SO",
+    "pincode": "700030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6190278",
+    "longitude": "88.3886667"
+  }
+]

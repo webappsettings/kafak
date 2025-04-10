@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Naduchalaipudur BO",
+    "pincode": "627107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4807180",
+    "longitude": "77.5600620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Salainainarpallivasal BO",
+    "pincode": "627107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4990000",
+    "longitude": "77.5552240"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Kovilammalpuram BO",
+    "pincode": "627107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4907610",
+    "longitude": "77.5765100"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Mavadi SO",
+    "pincode": "627107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.4641667",
+    "longitude": "77.5585000"
+  }
+]

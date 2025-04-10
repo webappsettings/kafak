@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "St. Jose De Areal S.O",
+    "pincode": "403709",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.2546667",
+    "longitude": "74.0138056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Macazana B.O",
+    "pincode": "403709",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.4600000",
+    "longitude": "14.6800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Curtorim S.O",
+    "pincode": "403709",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.29059650",
+    "longitude": "74.02329300"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Khatgun B.O",
+    "pincode": "415502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6544383",
+    "longitude": "74.3675366"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Visapur B.O",
+    "pincode": "415502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6654706",
+    "longitude": "74.3616728"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Pusegaon S.O",
+    "pincode": "415502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.7081667",
+    "longitude": "74.318135"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Ner B.O",
+    "pincode": "415502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6766500",
+    "longitude": "74.3190000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Katgun B.O",
+    "pincode": "415502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6544363",
+    "longitude": "74.3675386"
+  }
+]

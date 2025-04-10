@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Jhanjrola Khera",
+    "pincode": "122506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "28.46698",
+    "longitude": "77.05641"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "TAJ NAGAR BO",
+    "pincode": "122506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Farrukh Nagar SO",
+    "pincode": "122506",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4493056",
+    "longitude": "76.8216111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Sewari BO",
+    "pincode": "122506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4467960",
+    "longitude": "76.8256920"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Sultanpur BO",
+    "pincode": "122506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4467960",
+    "longitude": "76.8256920"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Khera Khurampur BO",
+    "pincode": "122506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4467960",
+    "longitude": "76.8256920"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Patil RS BO",
+    "pincode": "122506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4467960",
+    "longitude": "76.8256920"
+  }
+]

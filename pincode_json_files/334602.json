@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Rawansar B.O",
+    "pincode": "334602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3188000",
+    "longitude": "73.9183000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Sahjrasar B.O",
+    "pincode": "334602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7077000",
+    "longitude": "73.8140000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Nakodesar",
+    "pincode": "334602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.346515700000001",
+    "longitude": "74.006508999999994"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Garabdesar B.O",
+    "pincode": "334602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.4318000",
+    "longitude": "73.9594000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Kharda B.O",
+    "pincode": "334602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2993000",
+    "longitude": "73.7831000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Kalu S.O",
+    "pincode": "334602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3821944",
+    "longitude": "73.8911111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Kujti B.O",
+    "pincode": "334602",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3393000",
+    "longitude": "73.6653000"
+  }
+]

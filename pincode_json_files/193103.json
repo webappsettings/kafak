@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Delina B.O",
+    "pincode": "193103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.239301",
+    "longitude": "74.420231"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Kanispora B.O",
+    "pincode": "193103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.218876",
+    "longitude": "74.390676"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Singhpora Kalan B.O",
+    "pincode": "193103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.228735",
+    "longitude": "74.419219"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Khawaja Bagh S.O",
+    "pincode": "193103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.21380556",
+    "longitude": "74.37202778"
+  }
+]

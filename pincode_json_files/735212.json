@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Pradhanpara BO",
+    "pincode": "735212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6700000",
+    "longitude": "89.0500000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Sajnapara BO",
+    "pincode": "735212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7100000",
+    "longitude": "89.0600000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Sakoajhora BO",
+    "pincode": "735212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6700000",
+    "longitude": "89.0300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Gairkata SO",
+    "pincode": "735212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7000000",
+    "longitude": "89.0200000"
+  }
+]

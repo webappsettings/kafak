@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Rasina B.O",
+    "pincode": "136042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8024630",
+    "longitude": "76.5603830"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Teontha B.O",
+    "pincode": "136042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8024630",
+    "longitude": "76.5603830"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Naina Dhos B.O",
+    "pincode": "136042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8024630",
+    "longitude": "76.5603830"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Fatehpur S.O (Kaithal)",
+    "pincode": "136042",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8024630",
+    "longitude": "76.5603830"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Mundri B.O",
+    "pincode": "136042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8024630",
+    "longitude": "76.5603830"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Saunch B.O",
+    "pincode": "136042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8024630",
+    "longitude": "76.5603830"
+  }
+]

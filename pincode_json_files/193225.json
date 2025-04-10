@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Nowgabra B.O",
+    "pincode": "193225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.3996",
+    "longitude": "73.862399999999994"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Tad B.O",
+    "pincode": "193225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.3996",
+    "longitude": "73.862399999999994"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Tangdhar S.O",
+    "pincode": "193225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.2955",
+    "longitude": "74.2236"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Chamkote B.O",
+    "pincode": "193225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.3996",
+    "longitude": "73.862399999999994"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Teetwal B.O",
+    "pincode": "193225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.3996",
+    "longitude": "73.862399999999994"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Hajitarah B.O",
+    "pincode": "193225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.3996",
+    "longitude": "73.862399999999994"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Nachian B.O",
+    "pincode": "193225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUPWARA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.3996",
+    "longitude": "73.862399999999994"
+  }
+]

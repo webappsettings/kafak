@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Pataudi SO",
+    "pincode": "122503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3332778",
+    "longitude": "76.7737778"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Narhera BO",
+    "pincode": "122503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3257280",
+    "longitude": "76.7778110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Baspadamka BO",
+    "pincode": "122503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3257280",
+    "longitude": "76.7778110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Jamalpur BO",
+    "pincode": "122503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3257280",
+    "longitude": "76.7778110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Janaula BO",
+    "pincode": "122503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3257280",
+    "longitude": "76.7778110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Baslambi BO",
+    "pincode": "122503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3257280",
+    "longitude": "76.7778110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Unchamajra BO",
+    "pincode": "122503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3257280",
+    "longitude": "76.7778110"
+  }
+]

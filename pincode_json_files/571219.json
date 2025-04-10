@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Devanur B.O",
+    "pincode": "571219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.1602612",
+    "longitude": "76.0728064"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Nittur B.O",
+    "pincode": "571219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.1231394",
+    "longitude": "76.0576573"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Balele S.O",
+    "pincode": "571219",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.13619444",
+    "longitude": "76.05286111"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Kottageri B.O",
+    "pincode": "571219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.1231394",
+    "longitude": "76.0323587"
+  }
+]

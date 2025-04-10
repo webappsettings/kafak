@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Raoli Camp SO",
+    "pincode": "400022",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0355280",
+    "longitude": "72.8668020"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Sion SO",
+    "pincode": "400022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.044426",
+    "longitude": "72.863721"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Transit Camp SO",
+    "pincode": "400022",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0876910",
+    "longitude": "72.8334770"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Chunabhatti SO",
+    "pincode": "400022",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0557440",
+    "longitude": "72.8722350"
+  }
+]

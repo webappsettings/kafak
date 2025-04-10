@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Chittorgarh H.O",
+    "pincode": "312001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8827778",
+    "longitude": "74.6225000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Collectorate  Chittorgarh S.O",
+    "pincode": "312001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8881111",
+    "longitude": "74.6221389"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Ranasanga  Bazar  Chittorgarh S.O",
+    "pincode": "312001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8876310",
+    "longitude": "74.6340900"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "COURT CAMPUS SO",
+    "pincode": "312001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

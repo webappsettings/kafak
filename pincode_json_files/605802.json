@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Sirpadanallur B.O",
+    "pincode": "605802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.01",
+    "longitude": "79.030000000000001"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Kadambur S.O (Villupuram)",
+    "pincode": "605802",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9453889",
+    "longitude": "79.4952500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Eduthanur B.O",
+    "pincode": "605802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.960000000000001",
+    "longitude": "79.030000000000001"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Elayanarkuppam B.O",
+    "pincode": "605802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.98",
+    "longitude": "79.019999999999996"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Sirpanandal B.O",
+    "pincode": "605802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.98",
+    "longitude": "79.040000000000006"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Tiruvarangam B.O",
+    "pincode": "605802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "12",
+    "longitude": "79.060000000000002"
+  }
+]

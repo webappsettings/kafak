@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Singlacherra Bazar B.O",
+    "pincode": "788736",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Dullabcherra Bazar B.O",
+    "pincode": "788736",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Dullabcherra S.O",
+    "pincode": "788736",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chamtilla B.O",
+    "pincode": "788736",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chantilla B.O",
+    "pincode": "788736",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Banskhantilla B.O",
+    "pincode": "788736",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Vetarbond B.O",
+    "pincode": "788736",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  }
+]

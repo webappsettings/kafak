@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Wardadi BK B.O",
+    "pincode": "443308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.6378000",
+    "longitude": "77.7939650"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Raheri BK B.O",
+    "pincode": "443308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9924000",
+    "longitude": "76.2730000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Jambhora B.O",
+    "pincode": "443308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9923000",
+    "longitude": "76.2729000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Sonoshi B.O",
+    "pincode": "443308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9176675",
+    "longitude": "76.2652539"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Changephal B.O",
+    "pincode": "443308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9532740",
+    "longitude": "76.1236521"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Tadshioni B.O",
+    "pincode": "443308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9923000",
+    "longitude": "76.2729000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Dusarbid S.O",
+    "pincode": "443308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0088889",
+    "longitude": "76.3072778"
+  }
+]

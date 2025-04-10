@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Hebbal Layout S.O",
+    "pincode": "570016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.346861110000001",
+    "longitude": "76.614888890000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Metagalli S.O",
+    "pincode": "570016",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.33922222",
+    "longitude": "76.631527779999999"
+  }
+]

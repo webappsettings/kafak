@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Rustampur S.O",
+    "pincode": "450337",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.7000000",
+    "longitude": "75.6000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Aabud B.O",
+    "pincode": "450337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.7835000",
+    "longitude": "76.2855000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Khirala B.O",
+    "pincode": "450337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.6172000",
+    "longitude": "76.3043000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Kumthi B.O",
+    "pincode": "450337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.6661000",
+    "longitude": "76.3051000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Suktanagar B.O",
+    "pincode": "450337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.5368000",
+    "longitude": "76.1290000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Borgaon Bujurg B.O",
+    "pincode": "450337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.6090000",
+    "longitude": "76.3289000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Saiyadpur B.O",
+    "pincode": "450337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.7484000",
+    "longitude": "76.2855000"
+  }
+]

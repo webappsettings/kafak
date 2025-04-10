@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Barnes High School B.O",
+    "pincode": "422401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9547000",
+    "longitude": "73.8266500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Devlali S.O",
+    "pincode": "422401",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8971378",
+    "longitude": "73.8368452"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Belatgavhan B.O",
+    "pincode": "422401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9228850",
+    "longitude": "73.8465835"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Vadner Dumala B.O",
+    "pincode": "422401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4478762",
+    "longitude": "74.5170189"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Devlali Bazar S.O",
+    "pincode": "422401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9547000",
+    "longitude": "73.8266500"
+  }
+]

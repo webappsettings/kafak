@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Karumalaikudal B.O",
+    "pincode": "636403",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.8039410",
+    "longitude": "77.8314620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Pudusampalli B.O",
+    "pincode": "636403",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.8128890",
+    "longitude": "77.8380710"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Salem West Division",
+    "officename": "Raman Nagar S.O",
+    "pincode": "636403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SALEM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.8167620",
+    "longitude": "77.8419340"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Gutupalli B.O",
+    "pincode": "518598",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Balapalapalli B.O",
+    "pincode": "518598",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Rangapuram S.O",
+    "pincode": "518598",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.40925",
+    "longitude": "78.07291667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "R.Kothapalli B.O",
+    "pincode": "518598",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Rahimanpuram B.O",
+    "pincode": "518598",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "H.Kottala B.O",
+    "pincode": "518598",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

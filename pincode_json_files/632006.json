@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Kangeyanallur B.O",
+    "pincode": "632006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9538000",
+    "longitude": "79.1556000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Gandhinagar S.O (Vellore)",
+    "pincode": "632006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9155833",
+    "longitude": "79.1320278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Virudhambattu S.O",
+    "pincode": "632006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9163056",
+    "longitude": "79.7645278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Gandhinagar West S.O",
+    "pincode": "632006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9520833",
+    "longitude": "79.1339722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Jaffarapettai B.O",
+    "pincode": "632006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9594000",
+    "longitude": "79.1115000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Thandalam Krishnapuram B.O",
+    "pincode": "632006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9402000",
+    "longitude": "79.1200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Senur B.O",
+    "pincode": "632006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9474000",
+    "longitude": "79.1075000"
+  }
+]

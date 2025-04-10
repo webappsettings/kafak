@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Neerpair BO",
+    "pincode": "603313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3487310",
+    "longitude": "80.0031420"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Onambakkam BO",
+    "pincode": "603313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3487330",
+    "longitude": "80.0031400"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Chithamur SO",
+    "pincode": "603313",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.348732",
+    "longitude": "80.003141"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Nugumbal BO",
+    "pincode": "603313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3487310",
+    "longitude": "80.0031420"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Kattudevadur BO",
+    "pincode": "603313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3487350",
+    "longitude": "80.0031380"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Vilanganur BO",
+    "pincode": "603313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3487330",
+    "longitude": "80.0031400"
+  }
+]

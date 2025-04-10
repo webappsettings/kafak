@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Mansingh Patti Barkagaon BO",
+    "pincode": "802118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6284490",
+    "longitude": "84.1065480"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Umarpur Diar BO",
+    "pincode": "802118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5955930",
+    "longitude": "83.9991580"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Upadhyapandeypur BO",
+    "pincode": "802118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6281610",
+    "longitude": "84.1073840"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Nagpura BO",
+    "pincode": "802118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6538160",
+    "longitude": "84.0914560"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Sonbarsa BO",
+    "pincode": "802118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.6444370",
+    "longitude": "84.0908530"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Dulahpur SO",
+    "pincode": "802118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5784167",
+    "longitude": "83.9789722"
+  }
+]

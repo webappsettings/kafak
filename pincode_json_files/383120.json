@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Dalpur BO",
+    "pincode": "383120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.5118350",
+    "longitude": "72.9283390"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Hajipur BO",
+    "pincode": "383120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Piludra BO",
+    "pincode": "383120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Sampad BO",
+    "pincode": "383120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.5059760",
+    "longitude": "72.8458450"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Salal SO",
+    "pincode": "383120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.4789000",
+    "longitude": "72.8704980"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Moyad BO",
+    "pincode": "383120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.5141650",
+    "longitude": "72.8722250"
+  }
+]

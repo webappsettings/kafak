@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Burdhanpur BO",
+    "pincode": "229316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.3100000",
+    "longitude": "76.2200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Sarawan BO",
+    "pincode": "229316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "34.0300000",
+    "longitude": "118.7300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Ahiyapur BO",
+    "pincode": "229316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1400000",
+    "longitude": "85.3900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Hardaspur BO",
+    "pincode": "229316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "32.6400000",
+    "longitude": "74.1500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Rasehta BO",
+    "pincode": "229316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "41.1500000",
+    "longitude": "80.5800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Ratapur SO",
+    "pincode": "229316",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2385000",
+    "longitude": "81.2380556"
+  }
+]

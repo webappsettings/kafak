@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Roth B.O",
+    "pincode": "767061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.9913383",
+    "longitude": "83.4247766"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Bharsuja B.O",
+    "pincode": "767061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.9639583",
+    "longitude": "83.3983217"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Pandesara B.O",
+    "pincode": "767061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.9681100",
+    "longitude": "83.4209083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Jharnipali B.O",
+    "pincode": "767061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.9290967",
+    "longitude": "83.4164833"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Duduka S.O",
+    "pincode": "767061",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.9840500",
+    "longitude": "83.4787700"
+  }
+]

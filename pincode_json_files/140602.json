@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Buras BO",
+    "pincode": "140602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.4200000",
+    "longitude": "76.4800000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Dhuman BO",
+    "pincode": "140602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.5600000",
+    "longitude": "76.6000000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Manakpur SO",
+    "pincode": "140602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.595109",
+    "longitude": "76.632103"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Bhagrana BO",
+    "pincode": "140602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.6000000",
+    "longitude": "76.5700000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Dadu Majra BO",
+    "pincode": "140602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.7500000",
+    "longitude": "76.7200000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Urdan BO",
+    "pincode": "140602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.7900000",
+    "longitude": "76.8900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Khera Gajju BO",
+    "pincode": "140602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.5800000",
+    "longitude": "76.6300000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Tiruchengodu South S.O",
+    "pincode": "637211",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3690278",
+    "longitude": "77.8891667"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Tiruchengodu H.O",
+    "pincode": "637211",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3797500",
+    "longitude": "77.8855278"
+  }
+]

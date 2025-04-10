@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Mulligoor B.O",
+    "pincode": "643209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2802510",
+    "longitude": "76.6188880"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Avalanchi Power House B.O",
+    "pincode": "643209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3182740",
+    "longitude": "76.5999410"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Yedakadu B.O",
+    "pincode": "643209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2963560",
+    "longitude": "76.6376610"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Bickatti B.O",
+    "pincode": "643209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4654280",
+    "longitude": "76.6856660"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Nilgiris Division",
+    "officename": "Emerald S.O",
+    "pincode": "643209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THE NILGIRIS",
+    "statename": "TAMIL NADU",
+    "latitude": "11.320937",
+    "longitude": "76.62368"
+  }
+]

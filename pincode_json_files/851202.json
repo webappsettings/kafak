@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Gogri SO",
+    "pincode": "851202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.5111520",
+    "longitude": "86.4769080"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Borna BO",
+    "pincode": "851202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.5111520",
+    "longitude": "86.4769080"
+  }
+]

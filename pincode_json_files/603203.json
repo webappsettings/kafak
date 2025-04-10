@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Kavanur BO",
+    "pincode": "603203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6840022",
+    "longitude": "79.9833413"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Kattankolathur SO",
+    "pincode": "603203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3678333",
+    "longitude": "80.0705556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chengalpattu Division",
+    "officename": "Ninnakarai BO",
+    "pincode": "603203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6840052",
+    "longitude": "79.9833383"
+  }
+]

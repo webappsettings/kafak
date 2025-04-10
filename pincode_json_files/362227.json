@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Gelana BO",
+    "pincode": "362227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.2227620",
+    "longitude": "70.2346035"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Kalvani BO",
+    "pincode": "362227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.2248101",
+    "longitude": "70.2651641"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Pankhan BO",
+    "pincode": "362227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.2182505",
+    "longitude": "70.2194544"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Rangpur BO",
+    "pincode": "362227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.2299196",
+    "longitude": "70.3010012"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Meswan BO",
+    "pincode": "362227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.2602248",
+    "longitude": "70.2794322"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Kevadra SO",
+    "pincode": "362227",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.255722",
+    "longitude": "70.226234"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Sondarda BO",
+    "pincode": "362227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.2624376",
+    "longitude": "70.2547987"
+  }
+]

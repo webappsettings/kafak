@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Adajan BO",
+    "pincode": "395009",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1925710",
+    "longitude": "72.7997360"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Palanpur BO",
+    "pincode": "395009",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2108600",
+    "longitude": "72.7713340"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Anand Mahal Road SO",
+    "pincode": "395009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2012500",
+    "longitude": "72.7947140"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Ramnagar SO Surat",
+    "pincode": "395009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2164010",
+    "longitude": "72.7887680"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Navyug College SO",
+    "pincode": "395009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1992222",
+    "longitude": "72.8033611"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Mangalagiri H.O",
+    "pincode": "522503",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.43433",
+    "longitude": "80.56469"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Old Mangalagiri S.O",
+    "pincode": "522503",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.42364",
+    "longitude": "80.56733"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Apsp Colony(Mangalagiri) S.O",
+    "pincode": "522503",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4280000",
+    "longitude": "80.6127778"
+  }
+]

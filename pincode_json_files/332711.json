@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Maonda RS SO",
+    "pincode": "332711",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7600833",
+    "longitude": "73.7440278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Jillo BO",
+    "pincode": "332711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8438057",
+    "longitude": "75.9129349"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Maonda Khurd BO",
+    "pincode": "332711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8322706",
+    "longitude": "75.8493890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Nathakinangal BO",
+    "pincode": "332711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8352804",
+    "longitude": "75.8446802"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Dayalkinangal BO",
+    "pincode": "332711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8721225",
+    "longitude": "75.8679195"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Makri BO",
+    "pincode": "332711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.7920465",
+    "longitude": "75.8152695"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Maonda Kalan BO",
+    "pincode": "332711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8083811",
+    "longitude": "75.8267407"
+  }
+]

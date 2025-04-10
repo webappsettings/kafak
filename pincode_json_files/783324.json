@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Bidyapara S.O",
+    "pincode": "783324",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0247222",
+    "longitude": "89.9754444"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Howrarpar B.O",
+    "pincode": "783324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0121360",
+    "longitude": "89.9127410"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Tistarpar B.O",
+    "pincode": "783324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "25.9555940",
+    "longitude": "89.8528450"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Chagalchara B.O",
+    "pincode": "783324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0280780",
+    "longitude": "89.9428390"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dharmasala B.O",
+    "pincode": "783324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0233000",
+    "longitude": "89.8864770"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Patamari B.O",
+    "pincode": "783324",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "58.9555950",
+    "longitude": "89.8528420"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Bagrakote SO",
+    "pincode": "734501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8900000",
+    "longitude": "88.5700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Ellenbarrie Tea Estate BO",
+    "pincode": "734501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Chanda Company BO",
+    "pincode": "734501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8700000",
+    "longitude": "88.5700000"
+  }
+]

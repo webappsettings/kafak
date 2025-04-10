@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Semangi B.O",
+    "pincode": "639117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0600000",
+    "longitude": "77.9600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Vettamangalam B.O",
+    "pincode": "639117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0400000",
+    "longitude": "77.9500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Nadayanur B.O",
+    "pincode": "639117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0800000",
+    "longitude": "77.9800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Noyyal B.O",
+    "pincode": "639117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0600000",
+    "longitude": "77.9300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Velayuthampalayam S.O",
+    "pincode": "639117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9602222",
+    "longitude": "78.0827222"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Dada BO",
+    "pincode": "146021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.2600000",
+    "longitude": "75.8100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Sadhu Ashram SO",
+    "pincode": "146021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.527297",
+    "longitude": "75.938578"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Bassi Purani BO",
+    "pincode": "146021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.2600000",
+    "longitude": "75.2100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Bassi Gulam Hussain BO",
+    "pincode": "146021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.2500000",
+    "longitude": "75.4100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Nara BO",
+    "pincode": "146021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.4100000",
+    "longitude": "75.4600000"
+  }
+]

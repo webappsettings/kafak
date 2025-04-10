@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Korhala Bazar  B.O",
+    "pincode": "443104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6090990",
+    "longitude": "76.0623540"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Panhera Khedi B.O",
+    "pincode": "443104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6676600",
+    "longitude": "76.0344000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Dhamangaon Badhe S.O",
+    "pincode": "443104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.673452",
+    "longitude": "76.033592"
+  }
+]

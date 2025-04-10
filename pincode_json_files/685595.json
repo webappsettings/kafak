@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Amayapra BO",
+    "pincode": "685595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.92170",
+    "longitude": "76.82196"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Cheenikuzhi BO",
+    "pincode": "685595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.89301",
+    "longitude": "76.83999"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Moolakad BO",
+    "pincode": "685595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.85136",
+    "longitude": "76.86977"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Udumbannur SO",
+    "pincode": "685595",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.90592",
+    "longitude": "76.81564"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Malayinchi BO",
+    "pincode": "685595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.88434",
+    "longitude": "76.87499"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Peringassery BO",
+    "pincode": "685595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.86671",
+    "longitude": "76.85811"
+  }
+]

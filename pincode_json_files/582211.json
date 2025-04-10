@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Nagendragad B.O",
+    "pincode": "582211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.7920003",
+    "longitude": "75.9100645"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Sarjapur B.O",
+    "pincode": "582211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.8367074",
+    "longitude": "75.7867580"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Itagi B.O",
+    "pincode": "582211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.7388819",
+    "longitude": "75.8247918"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Lakkalkatti B.O",
+    "pincode": "582211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.7714224",
+    "longitude": "75.8990138"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Mushigeri B.O",
+    "pincode": "582211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.7316077",
+    "longitude": "75.8640164"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Sudi S.O",
+    "pincode": "582211",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.7316077",
+    "longitude": "75.8640164"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Shantageri B.O",
+    "pincode": "582211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.8163870",
+    "longitude": "75.8212834"
+  }
+]

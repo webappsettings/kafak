@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Banki Mongra SO",
+    "pincode": "495447",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4016700",
+    "longitude": "82.6181900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Mongra BO",
+    "pincode": "495447",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4059110",
+    "longitude": "82.6024160"
+  }
+]

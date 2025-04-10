@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Sarita Vihar SO",
+    "pincode": "110076",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5348333",
+    "longitude": "77.2911667"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Madanpur Khadar BO",
+    "pincode": "110076",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5300000",
+    "longitude": "77.3000000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Ali BO",
+    "pincode": "110076",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5200000",
+    "longitude": "77.3100000"
+  }
+]

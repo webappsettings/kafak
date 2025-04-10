@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Jamui HO",
+    "pincode": "811307",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JAMUI",
+    "statename": "BIHAR",
+    "latitude": "24.9288056",
+    "longitude": "86.2261944"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Jamui Court SO",
+    "pincode": "811307",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMUI",
+    "statename": "BIHAR",
+    "latitude": "24.92326",
+    "longitude": "86.220236"
+  }
+]

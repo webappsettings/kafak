@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Kaminenipalle B.O",
+    "pincode": "518563",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Sirvel S.O",
+    "pincode": "518563",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.3201944",
+    "longitude": "78.5325556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Deebaguntla B.O",
+    "pincode": "518563",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.390000000000001",
+    "longitude": "78.5"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Govindapalle B.O",
+    "pincode": "518563",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.35",
+    "longitude": "78.519999999999996"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Jillella B.O",
+    "pincode": "518563",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

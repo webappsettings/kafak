@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Vemavaram B.O",
+    "pincode": "522435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6291000",
+    "longitude": "79.8614000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Kothapalem B.O",
+    "pincode": "522435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5781000",
+    "longitude": "79.8759000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Machavaram S.O (Narasaraopet)",
+    "pincode": "522435",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.57",
+    "longitude": "79.865"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Chennayapalem B.O",
+    "pincode": "522435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6516000",
+    "longitude": "79.8545000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Pinnelli B.O",
+    "pincode": "522435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5699000",
+    "longitude": "79.8330000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Velampalle B.O",
+    "pincode": "522435",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6280000",
+    "longitude": "79.9092000"
+  }
+]

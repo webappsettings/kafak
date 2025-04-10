@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Puran B.O",
+    "pincode": "343039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7720340",
+    "longitude": "72.3429530"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Surajwara B.O",
+    "pincode": "343039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7394010",
+    "longitude": "72.2867110"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Malwara S.O",
+    "pincode": "343039",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7782970",
+    "longitude": "72.2881910"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Akhrad B.O",
+    "pincode": "343039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8096360",
+    "longitude": "72.2511830"
+  }
+]

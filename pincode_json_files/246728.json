@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Chowkpuri BO",
+    "pincode": "246728",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3065090",
+    "longitude": "78.1934910"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Khari BO",
+    "pincode": "246728",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3462860",
+    "longitude": "78.2063120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Umri BO",
+    "pincode": "246728",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "19.2895000",
+    "longitude": "78.4385000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Nawada BO",
+    "pincode": "246728",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3001820",
+    "longitude": "78.2266120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Dhokalpur BO",
+    "pincode": "246728",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3865450",
+    "longitude": "78.2326620"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Jhalu SO",
+    "pincode": "246728",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3374722",
+    "longitude": "78.2250278"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Dhanaura BO",
+    "pincode": "246728",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3637910",
+    "longitude": "78.2824950"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Changmaji B.O",
+    "pincode": "782440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.1166000",
+    "longitude": "92.8666000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Hindu Block B.O",
+    "pincode": "782440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.1166000",
+    "longitude": "92.8666000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Daboka S.O",
+    "pincode": "782440",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.1166000",
+    "longitude": "92.8666000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Koroiguri B.O",
+    "pincode": "782440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.1166000",
+    "longitude": "92.8666000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Modertoli B.O",
+    "pincode": "782440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.1166000",
+    "longitude": "92.8666000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Seepat BO",
+    "pincode": "495555",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1314600",
+    "longitude": "82.2903820"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Ujwal Nagar SO Bilaspur",
+    "pincode": "495555",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.135000000000002",
+    "longitude": "82.318100000000001"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Pandhi BO",
+    "pincode": "495555",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1172760",
+    "longitude": "82.2556140"
+  }
+]

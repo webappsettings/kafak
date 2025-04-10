@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Shodesha Palli B.O",
+    "pincode": "506151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9650772",
+    "longitude": "79.3465524"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Tatikayala B.O",
+    "pincode": "506151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9137956",
+    "longitude": "79.3883520"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Rampur B.O",
+    "pincode": "506151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9379139",
+    "longitude": "79.4502193"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Mallikudurla B.O",
+    "pincode": "506151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9583250",
+    "longitude": "79.3509330"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Janakipuram B.O",
+    "pincode": "506151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9516920",
+    "longitude": "79.3714851"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Kyathampalli B.O",
+    "pincode": "506151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9503245",
+    "longitude": "79.3831235"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Peddapendyal S.O",
+    "pincode": "506151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9207282537268",
+    "longitude": "79.4091188040228"
+  }
+]

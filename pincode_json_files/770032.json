@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Bandomunda S.O",
+    "pincode": "770032",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2295469",
+    "longitude": "84.9313118"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Loco Colony Bandomunda S.O",
+    "pincode": "770032",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2302095",
+    "longitude": "84.9065098"
+  }
+]

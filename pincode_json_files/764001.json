@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Jeypore(K) H.O",
+    "pincode": "764001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8630620",
+    "longitude": "82.5666860"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "B.D.Pur S.O",
+    "pincode": "764001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.1100000",
+    "longitude": "83.1400000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Jeypore(K) Koraput Road S.O",
+    "pincode": "764001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8510136",
+    "longitude": "82.5687340"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Jeypore(K) Civil Court S.O",
+    "pincode": "764001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8667040",
+    "longitude": "82.5721042"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Sriram Nagar S.O",
+    "pincode": "764001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "19.6697000",
+    "longitude": "83.1110000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Agripada S.O",
+    "pincode": "400011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9768889",
+    "longitude": "72.8242778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Haines Road S.O",
+    "pincode": "400011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9769167",
+    "longitude": "72.8243056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Jacob Circle S.O",
+    "pincode": "400011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9808659",
+    "longitude": "72.82491602"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Chinchpokli S.O",
+    "pincode": "400011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9881111",
+    "longitude": "72.8318889"
+  }
+]

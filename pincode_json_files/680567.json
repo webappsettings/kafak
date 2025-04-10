@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Chulur BO",
+    "pincode": "680567",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.2800000",
+    "longitude": "76.1300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Karayamvattam BO",
+    "pincode": "680567",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3800000",
+    "longitude": "76.1400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Valapad Beach BO",
+    "pincode": "680567",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.4000000",
+    "longitude": "76.1000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Valapad SO",
+    "pincode": "680567",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "9.5845278",
+    "longitude": "76.3676111"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Triprayar BO",
+    "pincode": "680567",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.4000000",
+    "longitude": "76.1300000"
+  }
+]

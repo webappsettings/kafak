@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Nangal Raya S.O",
+    "pincode": "110046",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.6110556",
+    "longitude": "77.1088056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Sagarpur S.O",
+    "pincode": "110046",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.6110556",
+    "longitude": "77.1029167"
+  }
+]

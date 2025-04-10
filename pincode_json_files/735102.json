@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Mohitnagar BO",
+    "pincode": "735102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5300000",
+    "longitude": "88.6800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Chaulhati BO",
+    "pincode": "735102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.4900000",
+    "longitude": "88.5800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Debnagar BO",
+    "pincode": "735102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5100000",
+    "longitude": "88.6900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Kharia BO",
+    "pincode": "735102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5300000",
+    "longitude": "88.7000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "JpgGovt Engg College SO",
+    "pincode": "735102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5500000",
+    "longitude": "88.7000000"
+  }
+]

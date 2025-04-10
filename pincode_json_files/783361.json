@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Srirampur S.O (Kokrajhar)",
+    "pincode": "783361",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4036944",
+    "longitude": "90.2721944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Goladangi B.O",
+    "pincode": "783361",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4754130",
+    "longitude": "89.8996200"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Jaraguri B.O",
+    "pincode": "783361",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.5034140",
+    "longitude": "89.8703900"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Simultapu B.O",
+    "pincode": "783361",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.5034140",
+    "longitude": "89.8703900"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Haraputa B.O",
+    "pincode": "783361",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4842890",
+    "longitude": "90.0513250"
+  }
+]

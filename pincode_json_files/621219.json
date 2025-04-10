@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Anukkur B.O",
+    "pincode": "621219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3300000",
+    "longitude": "78.8600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Yesanai S.O",
+    "pincode": "621219",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3000000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Vadakkumadevi B.O",
+    "pincode": "621219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2900000",
+    "longitude": "78.8700000"
+  }
+]

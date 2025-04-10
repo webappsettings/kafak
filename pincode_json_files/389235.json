@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Movasa BO",
+    "pincode": "389235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.1929849",
+    "longitude": "73.7439130"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Padedi Rampur BO",
+    "pincode": "389235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "22.9277000",
+    "longitude": "73.5713000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Vania Vada Gorada BO",
+    "pincode": "389235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.2310557",
+    "longitude": "73.7337015"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kalibel BO",
+    "pincode": "389235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.1631690",
+    "longitude": "73.7391722"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Malekpur SO",
+    "pincode": "389235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.2310557",
+    "longitude": "73.7337010"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Nanavadadala BO",
+    "pincode": "389235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.2443953",
+    "longitude": "73.6830220"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Vadina Gorda BO",
+    "pincode": "389235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.1885953",
+    "longitude": "73.7085110"
+  }
+]

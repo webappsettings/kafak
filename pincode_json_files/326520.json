@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Morak Gaon B.O",
+    "pincode": "326520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7200000",
+    "longitude": "75.9400000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Aditya Nagar S.O",
+    "pincode": "326520",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7221111",
+    "longitude": "75.9505278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Barodia Kalan B.O",
+    "pincode": "326520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7400000",
+    "longitude": "75.9200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Budh Khan B.O",
+    "pincode": "326520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7100000",
+    "longitude": "75.9200000"
+  }
+]

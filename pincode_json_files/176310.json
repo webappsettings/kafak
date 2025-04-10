@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Rangmehal SO",
+    "pincode": "176310",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5556500",
+    "longitude": "76.1272800"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Chamba HO",
+    "pincode": "176310",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5596830",
+    "longitude": "76.1217810"
+  }
+]

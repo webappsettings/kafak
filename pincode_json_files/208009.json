@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "Armapore SO",
+    "pincode": "208009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4613611",
+    "longitude": "80.2810833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur City Division",
+    "officename": "Armapore Estate SO",
+    "pincode": "208009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4700278",
+    "longitude": "80.2613333"
+  }
+]

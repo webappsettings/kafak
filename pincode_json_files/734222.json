@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Tinchuley BO",
+    "pincode": "734222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0440000",
+    "longitude": "88.3809000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Takdah SO",
+    "pincode": "734222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0600000",
+    "longitude": "88.4700000"
+  }
+]

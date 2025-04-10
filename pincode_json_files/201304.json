@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Baraula BO",
+    "pincode": "201304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5621970",
+    "longitude": "77.3740730"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Chhaprauli Bengar BO",
+    "pincode": "201304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4942110",
+    "longitude": "77.4142540"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Gejha BO",
+    "pincode": "201304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5230980",
+    "longitude": "77.3855550"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Gautam Buddha Nagar Division office",
+    "officename": "Maharshi Nagar SO",
+    "pincode": "201304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAUTAM BUDDHA NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5336957190134",
+    "longitude": "77.3851263407135"
+  }
+]

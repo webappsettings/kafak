@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Chiheru BO",
+    "pincode": "144411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2396000",
+    "longitude": "75.7109100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Maheru BO",
+    "pincode": "144411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2396000",
+    "longitude": "75.7109100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Raipur B.O",
+    "pincode": "144411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.23414",
+    "longitude": "75.66619"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "University Campus Nanak Nagri SO",
+    "pincode": "144411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2512360",
+    "longitude": "75.8105820"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Madhopur BO",
+    "pincode": "144411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2178080",
+    "longitude": "75.7693920"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Hardasspur BO",
+    "pincode": "144411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2396000",
+    "longitude": "75.7109100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Khajurla BO",
+    "pincode": "144411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2396000",
+    "longitude": "75.7109100"
+  }
+]

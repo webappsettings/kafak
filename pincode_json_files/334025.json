@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Gajsukhdesar B.O",
+    "pincode": "334025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Bagseu B.O",
+    "pincode": "334025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5755561",
+    "longitude": "73.800734000000006"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Mansoori B.O",
+    "pincode": "334025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Sadhasar B.O",
+    "pincode": "334025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "JASRASAR S.O",
+    "pincode": "334025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "27.702943000000001",
+    "longitude": "73.810835999999995"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Utmamdesar B.O",
+    "pincode": "334025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Lalamdesar Bara B.O",
+    "pincode": "334025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

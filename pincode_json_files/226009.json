@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "AMAUSI AD SO",
+    "pincode": "226009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7701890",
+    "longitude": "80.8785990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Industrial Area SO",
+    "pincode": "226009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8447000",
+    "longitude": "80.9456260"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Gandhimaanagar SO",
+    "pincode": "641004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0414167",
+    "longitude": "77.0032222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Peelamedu SO",
+    "pincode": "641004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0142000",
+    "longitude": "76.5948000"
+  }
+]

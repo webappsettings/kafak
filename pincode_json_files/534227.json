@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Tadiparru B.O",
+    "pincode": "534227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.787701",
+    "longitude": "81.723314"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Velagaduuru B.O",
+    "pincode": "534227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.650400",
+    "longitude": "80.614652"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Mortha S.O",
+    "pincode": "534227",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.80991667",
+    "longitude": "81.7015"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Dammennu B.O",
+    "pincode": "534227",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.826598",
+    "longitude": "81.708263"
+  }
+]

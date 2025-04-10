@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Furfura BO",
+    "pincode": "712706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7621710",
+    "longitude": "88.1709220"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Dakshindihi BO",
+    "pincode": "712706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7621710",
+    "longitude": "88.1709220"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Ilahipur BO",
+    "pincode": "712706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7400089",
+    "longitude": "88.3499910"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Aniya BO",
+    "pincode": "712706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7621710",
+    "longitude": "88.1709220"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Charpur BO",
+    "pincode": "712706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7621710",
+    "longitude": "88.1709220"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "NEW SEAKHALA SO",
+    "pincode": "712706",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8882500",
+    "longitude": "88.4022500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Paschimtajpur BO",
+    "pincode": "712706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7621710",
+    "longitude": "88.1709220"
+  }
+]

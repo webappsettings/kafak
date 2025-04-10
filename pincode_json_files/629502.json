@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Ganapathipuram S.O",
+    "pincode": "629502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1316700",
+    "longitude": "77.3572800"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Rajakkamangalam B.O",
+    "pincode": "629502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.1300000",
+    "longitude": "77.3700000"
+  }
+]

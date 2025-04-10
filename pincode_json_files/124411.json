@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Lahli BO",
+    "pincode": "124411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.4529770",
+    "longitude": "76.3784980"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Patwapur BO",
+    "pincode": "124411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.4529770",
+    "longitude": "76.3784980"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Garhi Ballab BO",
+    "pincode": "124411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.5021490",
+    "longitude": "76.3453670"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Banyani BO",
+    "pincode": "124411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.4529770",
+    "longitude": "76.3784980"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Anwal SO",
+    "pincode": "124411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.8220278",
+    "longitude": "76.3936667"
+  }
+]

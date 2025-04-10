@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Engineering College S.O (Jabalpur)",
+    "pincode": "482011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1918880",
+    "longitude": "79.9870350"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Gokulpur S.O",
+    "pincode": "482011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1834722",
+    "longitude": "79.9741667"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Jabalpur Factory S.O",
+    "pincode": "482011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1725556",
+    "longitude": "79.9716389"
+  }
+]

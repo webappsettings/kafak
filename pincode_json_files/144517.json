@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Bairsian BO",
+    "pincode": "144517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.0528000",
+    "longitude": "76.1134000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Hiala BO",
+    "pincode": "144517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.0436000",
+    "longitude": "76.1123000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Kot Ranjha BO",
+    "pincode": "144517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.0532000",
+    "longitude": "76.1193000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Behloor Kalan BO",
+    "pincode": "144517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.0526000",
+    "longitude": "76.1192000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Kahlon BO",
+    "pincode": "144517",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.3002990",
+    "longitude": "75.6304280"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Rahon SO",
+    "pincode": "144517",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.05018797",
+    "longitude": "76.1189109"
+  }
+]

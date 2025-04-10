@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Laheriasarai Court SO",
+    "pincode": "846001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1327030",
+    "longitude": "85.9066130"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Laheriasarai HO",
+    "pincode": "846001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1192222",
+    "longitude": "85.9044722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Imambari SO",
+    "pincode": "846001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1195000",
+    "longitude": "85.9046000"
+  }
+]

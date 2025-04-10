@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Sirlonabagram B.O",
+    "pincode": "754298",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.3935328",
+    "longitude": "86.1608867"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "KALARABANKA S.O",
+    "pincode": "754298",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.372428",
+    "longitude": "86.135106"
+  }
+]

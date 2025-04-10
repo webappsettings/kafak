@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Shinianggri",
+    "pincode": "794107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Riangshi A",
+    "pincode": "794107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.714278",
+    "longitude": "91.095406999999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Jadigitim B.O",
+    "pincode": "794107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Nangwalbibra S.O",
+    "pincode": "794107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5124722",
+    "longitude": "90.2206389"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Khalu A",
+    "pincode": "794107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.432959",
+    "longitude": "90.784490000000005"
+  }
+]

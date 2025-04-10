@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Dadhial BO",
+    "pincode": "384305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.617314",
+    "longitude": "72.531172"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Kada SO Mahesana",
+    "pincode": "384305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.63173",
+    "longitude": "72.569249"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Magroda BO",
+    "pincode": "384305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.608195",
+    "longitude": "72.510002"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Lachhadi BO",
+    "pincode": "384305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.606025",
+    "longitude": "72.552452"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Kharvada BO",
+    "pincode": "384305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.604778",
+    "longitude": "72.512544"
+  }
+]

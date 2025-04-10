@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Gangarampur Bamnia BO",
+    "pincode": "722201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.0773800",
+    "longitude": "87.6832000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Trisalan BO",
+    "pincode": "722201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1499280",
+    "longitude": "87.6310650"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Akui SO",
+    "pincode": "722201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2346990",
+    "longitude": "87.0724560"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Dighalgram BO",
+    "pincode": "722201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1499300",
+    "longitude": "87.6310630"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Khorsee BO",
+    "pincode": "722201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1499270",
+    "longitude": "87.6310660"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Ratra BO",
+    "pincode": "722201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1499250",
+    "longitude": "87.6310680"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Mandra BO",
+    "pincode": "722201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1499260",
+    "longitude": "87.6310670"
+  }
+]

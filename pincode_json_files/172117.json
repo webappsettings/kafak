@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Gulling BO",
+    "pincode": "172117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.619211",
+    "longitude": "77.378378999999995"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Mud BO",
+    "pincode": "172117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.999504000000002",
+    "longitude": "77.882444100000001"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Sagnam SO",
+    "pincode": "172117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0567222",
+    "longitude": "78.3647778"
+  }
+]

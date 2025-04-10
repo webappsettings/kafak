@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Pantheri B.O",
+    "pincode": "343023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2003020",
+    "longitude": "72.2704280"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Dhansa S.O",
+    "pincode": "343023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2168120",
+    "longitude": "72.3932650"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Thalwad B.O",
+    "pincode": "343023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2330780",
+    "longitude": "72.3513570"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Unri B.O",
+    "pincode": "343023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2357860",
+    "longitude": "72.2504430"
+  }
+]

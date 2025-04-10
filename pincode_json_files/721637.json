@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Biswas BO",
+    "pincode": "721637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3020000",
+    "longitude": "87.9250000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Dhalhara BO",
+    "pincode": "721637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3020000",
+    "longitude": "87.9250000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Abasbari SO",
+    "pincode": "721637",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2931210",
+    "longitude": "87.9235540"
+  }
+]

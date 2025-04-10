@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Etore BO",
+    "pincode": "742104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.1047000",
+    "longitude": "88.2516000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Chotobathan BO",
+    "pincode": "742104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.1047000",
+    "longitude": "88.2516000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kiriteswari BO",
+    "pincode": "742104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.1047000",
+    "longitude": "88.2516000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "DLSSJdham SO",
+    "pincode": "742104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.0752777",
+    "longitude": "88.4197222"
+  }
+]

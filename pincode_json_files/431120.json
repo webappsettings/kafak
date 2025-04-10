@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Bahulkheda B.O",
+    "pincode": "431120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.3000110",
+    "longitude": "75.6499900"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Jarandi B.O",
+    "pincode": "431120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5843800",
+    "longitude": "75.5957200"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Soegaon S.O",
+    "pincode": "431120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.599144",
+    "longitude": "75.617717"
+  }
+]

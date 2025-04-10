@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Mulund East SO",
+    "pincode": "400081",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1672629",
+    "longitude": "72.9575656"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North East Division",
+    "officename": "Mhada Colony SO",
+    "pincode": "400081",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1670833",
+    "longitude": "72.9668056"
+  }
+]

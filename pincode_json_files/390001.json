@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Vadodara HO",
+    "pincode": "390001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3035833",
+    "longitude": "73.1976944"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Mandvi SO Vadodara",
+    "pincode": "390001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.2994",
+    "longitude": "73.2081"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Khanderao Market SO",
+    "pincode": "390001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.2961111",
+    "longitude": "73.1994444"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Madanzampa SO",
+    "pincode": "390001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.2922500",
+    "longitude": "73.2033889"
+  }
+]

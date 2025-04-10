@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Mattathurkkunnu BO",
+    "pincode": "680684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3700000",
+    "longitude": "76.3100000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Kodakara SO",
+    "pincode": "680684",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3711667",
+    "longitude": "76.3053611"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Manakulangara BO",
+    "pincode": "680684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3600000",
+    "longitude": "76.2900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Chembuchira BO",
+    "pincode": "680684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3800000",
+    "longitude": "76.3800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Mattathur BO",
+    "pincode": "680684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3600000",
+    "longitude": "76.3700000"
+  }
+]

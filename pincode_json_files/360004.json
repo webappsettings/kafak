@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Pal BO",
+    "pincode": "360004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2162950",
+    "longitude": "70.7408699"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Mavdi NDTSO",
+    "pincode": "360004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2585881",
+    "longitude": "70.7811013"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Ravki BO",
+    "pincode": "360004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1918340",
+    "longitude": "70.7231543"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot Malviyanagar SO",
+    "pincode": "360004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.265634",
+    "longitude": "70.7335156"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Vavdi BO",
+    "pincode": "360004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2381230",
+    "longitude": "70.7890326"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rajkot Postal Colony SO",
+    "pincode": "360004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.2977778",
+    "longitude": "70.7889722"
+  }
+]

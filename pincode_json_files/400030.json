@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Worli Colony S.O",
+    "pincode": "400030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.006074",
+    "longitude": "72.821293"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Worli Sea Face S.O",
+    "pincode": "400030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0178056",
+    "longitude": "72.8171944"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Century Mill S.O",
+    "pincode": "400030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0163056",
+    "longitude": "72.8181667"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City West Division",
+    "officename": "Worli Police Camp S.O",
+    "pincode": "400030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0168889",
+    "longitude": "72.8170278"
+  }
+]

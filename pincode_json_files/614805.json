@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Mangalanadu B.O",
+    "pincode": "614805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1800000",
+    "longitude": "79.1600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Subramaniapuram S.O (Pudukkottai)",
+    "pincode": "614805",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1700000",
+    "longitude": "79.1000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Amarasimhendrapuram B.O",
+    "pincode": "614805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1900000",
+    "longitude": "79.1800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Kodivayal B.O",
+    "pincode": "614805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1700000",
+    "longitude": "79.1600000"
+  }
+]

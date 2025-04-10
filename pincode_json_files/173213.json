@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Dharot BO",
+    "pincode": "173213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Chambaghat SO",
+    "pincode": "173213",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9226599",
+    "longitude": "77.0969155"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Basal BO",
+    "pincode": "173213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9833000",
+    "longitude": "77.0931390"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Ambagarathur S.O",
+    "pincode": "609601",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9600000",
+    "longitude": "79.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Nallambal B.O",
+    "pincode": "609601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9300000",
+    "longitude": "79.7600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Seithur B.O",
+    "pincode": "609601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9600000",
+    "longitude": "79.7400000"
+  }
+]

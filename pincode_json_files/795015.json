@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Phuba B.O",
+    "pincode": "795015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.427047000000002",
+    "longitude": "94.254885000000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Lakhamei B.O",
+    "pincode": "795015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.391757999999999",
+    "longitude": "94.303298999999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Purul B.O",
+    "pincode": "795015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.375070999999998",
+    "longitude": "94.227119999999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Koide B.O",
+    "pincode": "795015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.385580999999998",
+    "longitude": "94.183710000000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Maiba B.O",
+    "pincode": "795015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.415236",
+    "longitude": "94.211915000000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Makhan Bazar B.O",
+    "pincode": "795015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.432850999999999",
+    "longitude": "94.122545000000002"
+  }
+]

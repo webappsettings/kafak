@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Gandhinagar S.O (Kolhapur)",
+    "pincode": "416119",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.7057422",
+    "longitude": "74.3032045"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Chinchwad B.O",
+    "pincode": "416119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Valivade B.O",
+    "pincode": "416119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Kolhapur Division",
+    "officename": "Gadmudshingi B.O",
+    "pincode": "416119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLHAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

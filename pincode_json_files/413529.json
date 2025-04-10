@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Janwal B.O",
+    "pincode": "413529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3710497",
+    "longitude": "76.2627000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Wadwal Nagnath S.O",
+    "pincode": "413529",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5331",
+    "longitude": "76.8051"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Shivankhed B.O",
+    "pincode": "413529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0957500",
+    "longitude": "76.2627000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Sugaon Mahalang B.O",
+    "pincode": "413529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0957500",
+    "longitude": "76.2627000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Zari B.O",
+    "pincode": "413529",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0957500",
+    "longitude": "76.2627000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kannur Thana SO",
+    "pincode": "670012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8745350",
+    "longitude": "75.3701900"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kannookara BO",
+    "pincode": "670012",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.6533081",
+    "longitude": "75.5619692"
+  }
+]

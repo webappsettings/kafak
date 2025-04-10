@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Ghonewal BO",
+    "pincode": "143603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "32.0200000",
+    "longitude": "74.9200000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Dahoorian BO",
+    "pincode": "143603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.8100000",
+    "longitude": "74.7100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Jatta BO",
+    "pincode": "143603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6339843",
+    "longitude": "74.8722592"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Dujowal BO",
+    "pincode": "143603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.9300000",
+    "longitude": "74.8300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Thoba BO",
+    "pincode": "143603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.9400000",
+    "longitude": "74.8500000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Ramdass SO",
+    "pincode": "143603",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.97",
+    "longitude": "74.91"
+  }
+]

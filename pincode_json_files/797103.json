@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Chumukedima S.O",
+    "pincode": "797103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.8632160",
+    "longitude": "93.7543150"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Khoponalla B.O",
+    "pincode": "797103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.801090299999998",
+    "longitude": "93.745046400000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "P C College B.O",
+    "pincode": "797103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.8053563",
+    "longitude": "93.801750299999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Tenyiphe B.O",
+    "pincode": "797103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.830596199999999",
+    "longitude": "93.775602899999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Maikam B.O",
+    "pincode": "797103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.769254400000001",
+    "longitude": "93.687398299999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Nihekhu B.O",
+    "pincode": "797103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.864706000000002",
+    "longitude": "93.934488000000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Pimla B.O",
+    "pincode": "797103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.708769",
+    "longitude": "93.653841999999997"
+  }
+]

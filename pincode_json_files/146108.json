@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Pandori  Ganga Singh BO",
+    "pincode": "146108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.5600000",
+    "longitude": "75.5600000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Makhsoospur BO",
+    "pincode": "146108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.8900000",
+    "longitude": "75.2300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Sarhala Kalan SO",
+    "pincode": "146108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.336968",
+    "longitude": "75.953936"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Kharar Achharwal BO",
+    "pincode": "146108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.6600000",
+    "longitude": "74.9600000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Laksian BO",
+    "pincode": "146108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.5600000",
+    "longitude": "75.4500000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Sarhala Khurd BO",
+    "pincode": "146108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.4500000",
+    "longitude": "75.2300000"
+  }
+]

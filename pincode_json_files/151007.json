@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Bhisiana BO",
+    "pincode": "151007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.271017535403303",
+    "longitude": "74.77338503351805"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Mehma Bhagwana BO",
+    "pincode": "151007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.288886678544557",
+    "longitude": "74.81557120337054"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Virk Khurd BO",
+    "pincode": "151007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.241728493266276",
+    "longitude": "74.74188336241598"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Virk Kalan BO",
+    "pincode": "151007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.25035542889424",
+    "longitude": "74.75686819329046"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Burj Mehma BO",
+    "pincode": "151007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.264510814536603",
+    "longitude": "74.79997329158657"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Air Force Station Bhisiana",
+    "pincode": "151007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.270952673822404",
+    "longitude": "74.77336357397677"
+  }
+]

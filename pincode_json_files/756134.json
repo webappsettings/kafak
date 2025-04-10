@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Chandarpada B.O",
+    "pincode": "756134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.1934800",
+    "longitude": "86.5461816"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Garasang B.O",
+    "pincode": "756134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.1895316",
+    "longitude": "86.4757316"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Mirjapur B.O",
+    "pincode": "756134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.2291649",
+    "longitude": "86.5234566"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Jalanga Gandibed B.O",
+    "pincode": "756134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.1986583",
+    "longitude": "86.4938616"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Ada S.O",
+    "pincode": "756134",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.1931389",
+    "longitude": "86.5230556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Antara B.O",
+    "pincode": "756134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.1651133",
+    "longitude": "86.4779116"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Barada B.O",
+    "pincode": "756134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.1743499",
+    "longitude": "86.4430350"
+  }
+]

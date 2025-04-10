@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "H A L Korwa SO",
+    "pincode": "227412",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2144722",
+    "longitude": "81.8210556"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Darpipur BO",
+    "pincode": "227412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2145610",
+    "longitude": "81.8210700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Pashchim Duara BO",
+    "pincode": "227412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2145610",
+    "longitude": "81.8210700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Dharai Mafi BO",
+    "pincode": "227412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2145610",
+    "longitude": "81.8210700"
+  }
+]

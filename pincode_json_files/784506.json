@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Dhankhana B.O",
+    "pincode": "784506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8143750",
+    "longitude": "92.5941149"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bansbera B.O",
+    "pincode": "784506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8143740",
+    "longitude": "92.5941159"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Nepalibasti B.O",
+    "pincode": "784506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8543200",
+    "longitude": "93.1121500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Dighalijuli B.O",
+    "pincode": "784506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8543200",
+    "longitude": "93.1121500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Missamari S.O",
+    "pincode": "784506",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8160179",
+    "longitude": "92.5824111"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Garubandha B.O",
+    "pincode": "784506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8143760",
+    "longitude": "92.5941139"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Jiagabharu B.O",
+    "pincode": "784506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.8143760",
+    "longitude": "92.5941139"
+  }
+]

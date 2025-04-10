@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Paltanbazar S.O",
+    "pincode": "781008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1810278",
+    "longitude": "91.7500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Rehabari S.O",
+    "pincode": "781008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1723889",
+    "longitude": "91.7505556"
+  }
+]

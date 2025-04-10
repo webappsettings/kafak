@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Begumpura S.O",
+    "pincode": "431004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Dr. B.A. Marathwada University S.O",
+    "pincode": "431004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.904718",
+    "longitude": "75.313549"
+  }
+]

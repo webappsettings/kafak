@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Nana Ankevaliya BO",
+    "pincode": "363110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.940200000000001",
+    "longitude": "71.696399999999997"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Bajarangpura BO",
+    "pincode": "363110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.8306",
+    "longitude": "71.727900000000005"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Modhvana BO",
+    "pincode": "363110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.932099999999998",
+    "longitude": "71.742699999999999"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Anindra BO",
+    "pincode": "363110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.8261",
+    "longitude": "71.694199999999995"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Ghanad BO",
+    "pincode": "363110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.889099999999999",
+    "longitude": "71.690600000000003"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Pedhda BO",
+    "pincode": "363110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.936",
+    "longitude": "71.664900000000003"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Vana SO",
+    "pincode": "363110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.724861099999998",
+    "longitude": "71.6273056"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Genguti B.O",
+    "pincode": "756056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.4339850",
+    "longitude": "86.8981316"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Kuruda S.O",
+    "pincode": "756056",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.79655",
+    "longitude": "87.2282"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "BASANTAPUR BO",
+    "pincode": "756056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.430659",
+    "longitude": "86.884361"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Balia Farm B.O",
+    "pincode": "756056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.5016866",
+    "longitude": "86.9042416"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Chhanapur B.O",
+    "pincode": "756056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.4822533",
+    "longitude": "86.8772183"
+  }
+]

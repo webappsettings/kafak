@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Hindupur H.O",
+    "pincode": "515201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.826869",
+    "longitude": "77.494508"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Hindupur Extns S.O",
+    "pincode": "515201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

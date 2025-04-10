@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Baidmara BO",
+    "pincode": "827009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.6318000",
+    "longitude": "86.1437500"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Sector IX SO",
+    "pincode": "827009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.6907778",
+    "longitude": "86.1509444"
+  }
+]

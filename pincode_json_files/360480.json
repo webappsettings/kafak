@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Butavadar BO",
+    "pincode": "360480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.9548880",
+    "longitude": "70.1917200"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Hariyasan BO",
+    "pincode": "360480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.8485020",
+    "longitude": "70.1277190"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Valasan BO",
+    "pincode": "360480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.5509240",
+    "longitude": "72.8825630"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Bagadhra BO",
+    "pincode": "360480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.9842300",
+    "longitude": "70.2249870"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Mandasan BO",
+    "pincode": "360480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.9209030",
+    "longitude": "70.2051150"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Padavla BO",
+    "pincode": "360480",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.8809490",
+    "longitude": "70.2490280"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Paneli SO",
+    "pincode": "360480",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.9392947",
+    "longitude": "70.1679270"
+  }
+]

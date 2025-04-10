@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Faizullahpur BO",
+    "pincode": "841420",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.180299999999999",
+    "longitude": "84.666200000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Paharpur BO",
+    "pincode": "841420",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.180299999999999",
+    "longitude": "84.808499999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Matiyari BO",
+    "pincode": "841420",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.180299999999999",
+    "longitude": "84.808499999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Gamhari BO",
+    "pincode": "841420",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.180299999999999",
+    "longitude": "84.808499999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Harpurjan BO",
+    "pincode": "841420",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.180299999999999",
+    "longitude": "84.808499999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Katalpur BO",
+    "pincode": "841420",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.180299999999999",
+    "longitude": "84.808499999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Rajapatti SO",
+    "pincode": "841420",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.9132000",
+    "longitude": "84.1012000"
+  }
+]

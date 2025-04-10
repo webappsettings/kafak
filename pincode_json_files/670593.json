@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Peruvalathuparamba BO",
+    "pincode": "670593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "12.0047968",
+    "longitude": "75.5404901"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Irukkur SO",
+    "pincode": "670593",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8745350",
+    "longitude": "75.3701900"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kalliad BO",
+    "pincode": "670593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "12.0050312",
+    "longitude": "75.5830623"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kusavanvayal BO",
+    "pincode": "670593",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "12.0280514",
+    "longitude": "75.6062048"
+  }
+]

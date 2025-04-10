@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Karakot BO",
+    "pincode": "246159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1414150",
+    "longitude": "78.7497460"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Ghiri BO",
+    "pincode": "246159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1414150",
+    "longitude": "78.7497460"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Gumain BO",
+    "pincode": "246159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1414150",
+    "longitude": "78.7497460"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Bangaon Malla BO",
+    "pincode": "246159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1414150",
+    "longitude": "78.7497460"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Gaind BO",
+    "pincode": "246159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1414150",
+    "longitude": "78.7497460"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Lwali SO",
+    "pincode": "246159",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1226111",
+    "longitude": "78.7346111"
+  }
+]

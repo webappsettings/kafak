@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Palakode BO",
+    "pincode": "670305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "12.0544155",
+    "longitude": "75.2181289"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Vengarakannur SO",
+    "pincode": "670305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8745350",
+    "longitude": "75.3701900"
+  }
+]

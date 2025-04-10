@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Jaypee Nagar S.O",
+    "pincode": "486450",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6752500",
+    "longitude": "81.6452222"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Bholgarh B.O",
+    "pincode": "486450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Bihra B.O",
+    "pincode": "486450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Paipakhara B.O",
+    "pincode": "486450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Jay Pee Puram B.O",
+    "pincode": "486450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Kachoor B.O",
+    "pincode": "486450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Maddepur B.O",
+    "pincode": "486450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  }
+]

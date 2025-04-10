@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Pratappur BO",
+    "pincode": "802352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2918870",
+    "longitude": "85.4078510"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Akhagaon SO",
+    "pincode": "802352",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5587222",
+    "longitude": "84.6674722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Jalpura BO",
+    "pincode": "802352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.4870590",
+    "longitude": "84.7384700"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Jokta BO",
+    "pincode": "802352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5152770",
+    "longitude": "84.7054960"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Nasaratpur BO",
+    "pincode": "802352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.4521840",
+    "longitude": "84.7472160"
+  }
+]

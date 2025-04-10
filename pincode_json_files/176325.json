@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Baggi Kanged BO",
+    "pincode": "176325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6264300",
+    "longitude": "75.9260000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Bhunad BO",
+    "pincode": "176325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6482400",
+    "longitude": "75.9159800"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Samleu SO",
+    "pincode": "176325",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6029600",
+    "longitude": "75.9143900"
+  }
+]

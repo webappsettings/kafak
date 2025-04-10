@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Rampur BO",
+    "pincode": "203389",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1616111",
+    "longitude": "78.3755207"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Belon BO",
+    "pincode": "203389",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1777076",
+    "longitude": "78.3506488"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Vijay  Nagliya BO",
+    "pincode": "203389",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1478004",
+    "longitude": "78.3465957"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "NAPP SO",
+    "pincode": "203389",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2044317",
+    "longitude": "78.3757057"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Narora SO",
+    "pincode": "203389",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1951087",
+    "longitude": "78.3859491"
+  }
+]

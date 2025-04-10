@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Mailani Gram BO",
+    "pincode": "262803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2900000",
+    "longitude": "80.3400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Suwabojh Jungle BO",
+    "pincode": "262803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2200000",
+    "longitude": "80.3300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Tharvaranpur BO",
+    "pincode": "262803",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1900000",
+    "longitude": "80.3200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Mailani SO",
+    "pincode": "262803",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9098420",
+    "longitude": "80.7845350"
+  }
+]

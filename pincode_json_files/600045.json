@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Tambaram HO",
+    "pincode": "600045",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9333611",
+    "longitude": "80.1183056"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Irumbuliyur BO",
+    "pincode": "600045",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9040000",
+    "longitude": "80.0780000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Kasthuribainagar BO",
+    "pincode": "600045",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9100000",
+    "longitude": "80.0890000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Tambaram West SO",
+    "pincode": "600045",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9278611",
+    "longitude": "80.1176389"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "MEPZ Tambaram SO",
+    "pincode": "600045",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENGALPATTU",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9367360",
+    "longitude": "80.1256280"
+  }
+]

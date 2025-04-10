@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Bishjore BO",
+    "pincode": "722158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5236000",
+    "longitude": "86.9381000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Gossindihi BO",
+    "pincode": "722158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5227000",
+    "longitude": "86.9354000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Saltora SO",
+    "pincode": "722158",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5230166",
+    "longitude": "86.9345500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Motukbani BO",
+    "pincode": "722158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5223700",
+    "longitude": "86.9355000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Murlu BO",
+    "pincode": "722158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4489997",
+    "longitude": "86.8933640"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Shyampur BO",
+    "pincode": "722158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4984630",
+    "longitude": "86.9439515"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Kanuri BO",
+    "pincode": "722158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5227479",
+    "longitude": "86.9354873"
+  }
+]

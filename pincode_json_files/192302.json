@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Sindhshirmal BO",
+    "pincode": "192302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5000000",
+    "longitude": "23.6000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Turkoo Babuar BO",
+    "pincode": "192302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "12.5000000",
+    "longitude": "21.5000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Ahagam BO",
+    "pincode": "192302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "75.158101",
+    "longitude": "75.123591"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Arihal BO",
+    "pincode": "192302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5000000",
+    "longitude": "26.5000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Balpora BO",
+    "pincode": "192302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "23.5000000",
+    "longitude": "32.5000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Hawl SO",
+    "pincode": "192302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7972500",
+    "longitude": "74.8612222"
+  }
+]

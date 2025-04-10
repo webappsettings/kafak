@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Mookuthi Kunnu BO",
+    "pincode": "673595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5900000",
+    "longitude": "76.3200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Nambiar Kunnu BO",
+    "pincode": "673595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.6200000",
+    "longitude": "76.3200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Nenmeni Kunnu BO",
+    "pincode": "673595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.6500000",
+    "longitude": "76.3500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Thazhathur BO",
+    "pincode": "673595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.6100000",
+    "longitude": "76.3000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Puthan Kunnu BO",
+    "pincode": "673595",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.6500000",
+    "longitude": "76.3100000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Cheeral SO",
+    "pincode": "673595",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.6077373",
+    "longitude": "76.3113019"
+  }
+]

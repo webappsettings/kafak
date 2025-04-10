@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Sandepudi B.O",
+    "pincode": "522619",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.0941000",
+    "longitude": "80.2461000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Ganapavaram S.O (Guntur)",
+    "pincode": "522619",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.122641",
+    "longitude": "80.174145"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Turlapadu B.O",
+    "pincode": "522619",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.1003000",
+    "longitude": "80.2606000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Veluru B.O",
+    "pincode": "522619",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.1048000",
+    "longitude": "80.2095000"
+  }
+]

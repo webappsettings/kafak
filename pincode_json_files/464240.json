@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Sanai B.O",
+    "pincode": "464240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "40.7312680",
+    "longitude": "74.0603090"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Kulhar B.O",
+    "pincode": "464240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "29.9262530",
+    "longitude": "78.6767480"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Bamora R.S S.O",
+    "pincode": "464240",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8457500",
+    "longitude": "78.7613611"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Serwasa B.O",
+    "pincode": "464240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "17.4104630",
+    "longitude": "78.5069080"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Gitola B.O",
+    "pincode": "464240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.026133999999999",
+    "longitude": "78.046422000000007"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Dudhawari B.O",
+    "pincode": "464240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIDISHA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "27.1501290",
+    "longitude": "78.3985340"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Ranipur B.O",
+    "pincode": "460443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.2512990",
+    "longitude": "79.0617190"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Sitakamath B.O",
+    "pincode": "460443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0775280",
+    "longitude": "78.0851610"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Ghoradongari S.O",
+    "pincode": "460443",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1200000",
+    "longitude": "78.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Ghuggi",
+    "pincode": "460443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.086886450000002",
+    "longitude": "77.964776389999997"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Dharakhoh B.O",
+    "pincode": "460443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0096760",
+    "longitude": "77.9501760"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Bansbodi",
+    "pincode": "460443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.046562290000001",
+    "longitude": "77.933639279999994"
+  }
+]

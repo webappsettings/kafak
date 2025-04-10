@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Kurnool H.O",
+    "pincode": "518001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.833006",
+    "longitude": "78.047822"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Kurnool Bazar S.O",
+    "pincode": "518001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.82769444",
+    "longitude": "78.05216667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Knl osmaniacollege S.O",
+    "pincode": "518001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.83322222",
+    "longitude": "78.03572222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Kurnool Dt Court S.O",
+    "pincode": "518001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.84038889",
+    "longitude": "78.0505"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Kurnool chowk S.O",
+    "pincode": "518001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.82875",
+    "longitude": "78.05247222"
+  }
+]

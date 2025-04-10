@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Ramuwala Kalan BO",
+    "pincode": "142040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "31.013999999999999",
+    "longitude": "74.933850000000007"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Mallianwala BO",
+    "pincode": "142040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.743574500000001",
+    "longitude": "75.203012900000004"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Ramuwala Harchoke BO",
+    "pincode": "142040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "31.013999999999999",
+    "longitude": "74.933850000000007"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Butter SO",
+    "pincode": "142040",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.721378000000001",
+    "longitude": "75.273548000000005"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Ramuwala Nawan BO",
+    "pincode": "142040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "31.013999999999999",
+    "longitude": "74.933850000000007"
+  }
+]

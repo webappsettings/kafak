@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Beh BO",
+    "pincode": "177105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8529340",
+    "longitude": "76.1174990"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Thore SO",
+    "pincode": "177105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8906940",
+    "longitude": "76.1210270"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Gheori BO",
+    "pincode": "177105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9545310",
+    "longitude": "75.9782540"
+  }
+]

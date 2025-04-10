@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Bhadreswar SO",
+    "pincode": "712124",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7442500",
+    "longitude": "88.3548333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Nanda BO",
+    "pincode": "712124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7442500",
+    "longitude": "88.3548333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Saradapally BO",
+    "pincode": "712124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7442500",
+    "longitude": "88.3548333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Bighati BO",
+    "pincode": "712124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7442500",
+    "longitude": "88.3548333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "K G R S Path SO",
+    "pincode": "712124",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8269444",
+    "longitude": "88.3425278"
+  }
+]

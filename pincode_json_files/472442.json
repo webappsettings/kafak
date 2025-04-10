@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Asati B.O",
+    "pincode": "472442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.4055000",
+    "longitude": "78.8467000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Pohakhas B.O",
+    "pincode": "472442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5271000",
+    "longitude": "78.7465000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Kulua B.O",
+    "pincode": "472442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0234000",
+    "longitude": "79.6969000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Gidkhini B.O",
+    "pincode": "472442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.4025000",
+    "longitude": "78.8071000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Mudara B.O",
+    "pincode": "472442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6947000",
+    "longitude": "78.7465000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Niwari S.O",
+    "pincode": "472442",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.3521000",
+    "longitude": "78.8015000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Binwara B.O",
+    "pincode": "472442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Niwari",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5271000",
+    "longitude": "79.2231000"
+  }
+]

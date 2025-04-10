@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Alati BO",
+    "pincode": "712414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7600000",
+    "longitude": "88.3200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Kulbatpur BO",
+    "pincode": "712414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9500000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Baikunthapur BO",
+    "pincode": "712414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9500000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Nachipur BO",
+    "pincode": "712414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9500000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Nimdangi BO",
+    "pincode": "712414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9500000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Ghargohal BO",
+    "pincode": "712414",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9500000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Deulpara SO",
+    "pincode": "712414",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8916160",
+    "longitude": "87.9459060"
+  }
+]

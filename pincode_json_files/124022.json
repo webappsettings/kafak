@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Bahu Akbarpur BO",
+    "pincode": "124022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6715930",
+    "longitude": "76.7480850"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Basana BO",
+    "pincode": "124022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6715930",
+    "longitude": "76.7480850"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Mokhra SO",
+    "pincode": "124022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.8876389",
+    "longitude": "76.4276667"
+  }
+]

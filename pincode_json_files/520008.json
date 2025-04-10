@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Vj Polytechnic S.O",
+    "pincode": "520008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5083611",
+    "longitude": "80.6661389"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Currency Nagar S.O",
+    "pincode": "520008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5213000",
+    "longitude": "80.6792000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "APUHS SO",
+    "pincode": "520008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5182778",
+    "longitude": "80.6702500"
+  }
+]

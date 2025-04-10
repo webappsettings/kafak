@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Muttembaka B.O",
+    "pincode": "524415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025471",
+    "longitude": "80.0709439"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Balireddypalem B.O",
+    "pincode": "524415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025511",
+    "longitude": "80.0709399"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Kallur B.O",
+    "pincode": "524415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.7851000",
+    "longitude": "80.1113900"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Kasipuram B.O",
+    "pincode": "524415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0809500",
+    "longitude": "80.0180500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Nellipudi B.O",
+    "pincode": "524415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0809500",
+    "longitude": "80.0180500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Valamedu B.O",
+    "pincode": "524415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025451",
+    "longitude": "80.0709459"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Vakadu S.O",
+    "pincode": "524415",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025278",
+    "longitude": "80.0709444"
+  }
+]

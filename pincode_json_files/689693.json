@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Athirumkal BO",
+    "pincode": "689693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1600000",
+    "longitude": "76.8700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Nirathupara BO",
+    "pincode": "689693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1300000",
+    "longitude": "76.9000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Kulathumon BO",
+    "pincode": "689693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1700000",
+    "longitude": "76.8900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Murinjakal BO",
+    "pincode": "689693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1700000",
+    "longitude": "76.8500000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Nedumoncavu BO",
+    "pincode": "689693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.1600000",
+    "longitude": "76.8400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Koodal SO",
+    "pincode": "689693",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.8400000",
+    "longitude": "76.3900000"
+  }
+]

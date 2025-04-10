@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Bhimangad B.O",
+    "pincode": "587202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "15.9134400",
+    "longitude": "75.9317500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Murdi B.O",
+    "pincode": "587202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "15.9134400",
+    "longitude": "75.9317500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Ilal B.O",
+    "pincode": "587202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "15.9134400",
+    "longitude": "75.9317500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Mangalgudda B.O",
+    "pincode": "587202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "15.9134400",
+    "longitude": "75.9317500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Wadageri B.O",
+    "pincode": "587202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "15.9134400",
+    "longitude": "75.9317500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Gudur S.O (Bagalkot)",
+    "pincode": "587202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1812500",
+    "longitude": "75.6991667"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Nunna S.O",
+    "pincode": "521212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5785000",
+    "longitude": "80.6837778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Surampalli B.O",
+    "pincode": "521212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5937800",
+    "longitude": "80.7221470"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Adavinekkalam B.O",
+    "pincode": "521212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6321750",
+    "longitude": "80.7226190"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Pathapadu B.O",
+    "pincode": "521212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5774550",
+    "longitude": "80.8661520"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Kanasanapalli B.O",
+    "pincode": "521212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6376730",
+    "longitude": "80.7471060"
+  }
+]

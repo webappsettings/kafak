@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Tuirial H.E.P B.O",
+    "pincode": "796091",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "23.718685399999998",
+    "longitude": "92.799766500000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Bilkhawthlir S.O",
+    "pincode": "796091",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.2253210",
+    "longitude": "92.6767270"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Saipum B.O",
+    "pincode": "796091",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.354309900000001",
+    "longitude": "92.850866199999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Buhchang B.O",
+    "pincode": "796091",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.338282899999999",
+    "longitude": "92.659532499999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "N.Chawnpui B.O",
+    "pincode": "796091",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.375420299999998",
+    "longitude": "92.7799701"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Phaisen B.O",
+    "pincode": "796091",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.4081279",
+    "longitude": "92.685865300000003"
+  }
+]

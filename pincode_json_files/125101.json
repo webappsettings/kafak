@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Asa Khera BO",
+    "pincode": "125101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Chautala SO",
+    "pincode": "125101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "29.7802222",
+    "longitude": "74.5243056"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Jandwala Bishnoian BO",
+    "pincode": "125101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

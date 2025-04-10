@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Patpur BO",
+    "pincode": "722147",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1449360",
+    "longitude": "87.2044810"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Ramsagar SO",
+    "pincode": "722147",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3194400",
+    "longitude": "87.3644400"
+  }
+]

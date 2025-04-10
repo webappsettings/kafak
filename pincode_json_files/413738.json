@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Pimpri Lauki B.O",
+    "pincode": "413738",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.485906",
+    "longitude": "74.393567"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Panodi B.O",
+    "pincode": "413738",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.479796",
+    "longitude": "74.352882"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Warwandi B.O",
+    "pincode": "413738",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.422941",
+    "longitude": "74.38074"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Ashvi Kd S.O",
+    "pincode": "413738",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.516610396533885",
+    "longitude": "74.3672248684179"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Shedgaon B.O",
+    "pincode": "413738",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.519992",
+    "longitude": "74.337119"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Kharshinde B.O",
+    "pincode": "413738",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.46283",
+    "longitude": "74.423251"
+  }
+]

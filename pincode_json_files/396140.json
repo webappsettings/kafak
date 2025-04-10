@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Kalgam BO",
+    "pincode": "396140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3249670",
+    "longitude": "72.7865520"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Phansa SO",
+    "pincode": "396140",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3249670",
+    "longitude": "72.7865520"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Anokhu BO",
+    "pincode": "332002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5052485",
+    "longitude": "74.9325683"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Kasli BO",
+    "pincode": "332002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5473863",
+    "longitude": "75.0552739"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Nagwa BO",
+    "pincode": "332002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5110793",
+    "longitude": "75.0508931"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Netarwas BO",
+    "pincode": "332002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5410004",
+    "longitude": "75.0231457"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Pewa BO",
+    "pincode": "332002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.4607290",
+    "longitude": "74.9968543"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Dhod SO",
+    "pincode": "332002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.4954167",
+    "longitude": "74.9866111"
+  }
+]

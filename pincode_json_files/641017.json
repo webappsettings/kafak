@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Pannimadai BO",
+    "pincode": "641017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0858666",
+    "longitude": "76.9167683"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Thoppampatti BO",
+    "pincode": "641017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0942849",
+    "longitude": "76.9302883"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Coimbatore Division",
+    "officename": "Vadamadurai Kurudampalayam SO",
+    "pincode": "641017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COIMBATORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0847700",
+    "longitude": "76.9381800"
+  }
+]

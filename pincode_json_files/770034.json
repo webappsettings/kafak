@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "KANSBAHAL",
+    "pincode": "770034",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2153487",
+    "longitude": "84.6586948"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "PIET MANDIAKUDAR",
+    "pincode": "770034",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2274846",
+    "longitude": "84.6958879"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Laing Colony B.O",
+    "pincode": "770034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2655309",
+    "longitude": "84.6291165"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Ushra Colony B.O",
+    "pincode": "770034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2411249",
+    "longitude": "84.6917876"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Chungimati B.O",
+    "pincode": "770034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2357904",
+    "longitude": "84.6777351"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Dumerjore B.O",
+    "pincode": "770034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2694611",
+    "longitude": "84.6913055"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Laing B.O",
+    "pincode": "770034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2378781",
+    "longitude": "84.6485436"
+  }
+]

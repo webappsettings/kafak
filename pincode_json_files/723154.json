@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Aharrah BO",
+    "pincode": "723154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2941755",
+    "longitude": "86.2008762"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Hensla BO",
+    "pincode": "723154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2794228",
+    "longitude": "86.2592196"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Jhunjka BO",
+    "pincode": "723154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2698547",
+    "longitude": "86.2742614"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Satra BO",
+    "pincode": "723154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2817191",
+    "longitude": "86.3039588"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Sirkabad SO",
+    "pincode": "723154",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1631480",
+    "longitude": "86.1153810"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Thumba Jhalda BO",
+    "pincode": "723154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3346308",
+    "longitude": "86.2335687"
+  }
+]

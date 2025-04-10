@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "High Court SO Chandigarh",
+    "pincode": "160001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7573000",
+    "longitude": "76.8066000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "New Sectt Chandigarh SO",
+    "pincode": "160001",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7333",
+    "longitude": "76.7794"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Khuda Ali Sher",
+    "pincode": "160001",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "30.74",
+    "longitude": "76.78"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Vidhansadan SO",
+    "pincode": "160001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7602777",
+    "longitude": "76.8024722"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Kaimbwala B.O",
+    "pincode": "160001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "25.699999999999999",
+    "longitude": "94.099999999999994"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Wadepuri B.O",
+    "pincode": "431606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.048022",
+    "longitude": "77.255934"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Asarjan B.O",
+    "pincode": "431606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1251338",
+    "longitude": "77.2924127"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "SRTMU Nanded S.O",
+    "pincode": "431606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.102151",
+    "longitude": "77.284917"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Vishnupuri B.O",
+    "pincode": "431606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1106784",
+    "longitude": "77.2860241"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Pandarahally B.O",
+    "pincode": "577555",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.2221020",
+    "longitude": "76.4003480"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Annehal B.O",
+    "pincode": "577555",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.1069000",
+    "longitude": "76.3232040"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Hullur B.O",
+    "pincode": "577555",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.1850880",
+    "longitude": "76.3000420"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Sondekola B.O",
+    "pincode": "577555",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.1202550",
+    "longitude": "76.3579400"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Godabanahal S.O",
+    "pincode": "577555",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.2215833",
+    "longitude": "76.3974167"
+  }
+]

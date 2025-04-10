@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Eluru R.S S.O",
+    "pincode": "534005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7146389",
+    "longitude": "81.1127778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Beedi Colony S.O",
+    "pincode": "534005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.737828",
+    "longitude": "81.10241"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Tangellamudi S.O",
+    "pincode": "534005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7220833",
+    "longitude": "81.1052222"
+  }
+]

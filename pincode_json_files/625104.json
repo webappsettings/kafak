@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Vowalthottam BO",
+    "pincode": "625104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9614500",
+    "longitude": "78.2450000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Madurai Agricultural College SO",
+    "pincode": "625104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9704444",
+    "longitude": "78.2045278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Arumbanur BO",
+    "pincode": "625104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9945050",
+    "longitude": "78.1927790"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Kodikulam BO",
+    "pincode": "625104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9569760",
+    "longitude": "78.1607190"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Kathakinaru BO",
+    "pincode": "625104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9865460",
+    "longitude": "78.1717030"
+  }
+]

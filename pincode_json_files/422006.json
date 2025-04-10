@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Gandhi Nagar (Nashik) S.O",
+    "pincode": "422006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0050500",
+    "longitude": "73.7862500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Upnagar S.O",
+    "pincode": "422006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0050500",
+    "longitude": "73.7862500"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Chagachagere B.O",
+    "pincode": "573164",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.1100000",
+    "longitude": "76.3200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Nagarahalli B.O",
+    "pincode": "573164",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.1300000",
+    "longitude": "76.2900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Bagivalu B.O",
+    "pincode": "573164",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.1300000",
+    "longitude": "76.3600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Lalanakere S.O",
+    "pincode": "573164",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9346389",
+    "longitude": "76.6260833"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Yeraganalu B.O",
+    "pincode": "573164",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.1000000",
+    "longitude": "76.3400000"
+  }
+]

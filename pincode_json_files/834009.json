@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Lame Baragaon BO",
+    "pincode": "834009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4409320",
+    "longitude": "84.6845220"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Bariatu BO",
+    "pincode": "834009",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3972234",
+    "longitude": "85.3573110"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Ranchi Medical College Campus SO",
+    "pincode": "834009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3907222",
+    "longitude": "85.3485000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Ranchi Medical College SO",
+    "pincode": "834009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "28.2231841",
+    "longitude": "82.1937020"
+  }
+]

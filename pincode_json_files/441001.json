@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Kamthi City SO",
+    "pincode": "441001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.2275310",
+    "longitude": "79.1900830"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Kamthi H.O",
+    "pincode": "441001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NAGPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.2275310",
+    "longitude": "79.1900830"
+  }
+]

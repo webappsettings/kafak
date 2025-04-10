@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Vanjinipatti B.O",
+    "pincode": "630201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1800000",
+    "longitude": "78.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "A.Thekkur S.O",
+    "pincode": "630201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1891111",
+    "longitude": "78.5288611"
+  }
+]

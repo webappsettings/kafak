@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Jumrapahar",
+    "pincode": "825315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.852944000000001",
+    "longitude": "85.659614000000005"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Chatrochatti BO",
+    "pincode": "825315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "24.188680000000002",
+    "longitude": "85.205969999999994"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Konardam SO",
+    "pincode": "825315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.9290000",
+    "longitude": "85.7613000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Chuttey BO",
+    "pincode": "825315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "24.4886800",
+    "longitude": "85.4929700"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Kuruknalo BO",
+    "pincode": "825315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "24.188680000000002",
+    "longitude": "85.205969999999994"
+  }
+]

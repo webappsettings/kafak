@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Tilgam B.O",
+    "pincode": "193108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.152188",
+    "longitude": "74.484673"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Saloosa B.O",
+    "pincode": "193108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.182863",
+    "longitude": "74.455114"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Athoora B.O",
+    "pincode": "193108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.212517",
+    "longitude": "74.468761"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Kreeri S.O",
+    "pincode": "193108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.205",
+    "longitude": "74.3504167"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Wanigam B.O",
+    "pincode": "193108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.184757",
+    "longitude": "74.480793"
+  }
+]

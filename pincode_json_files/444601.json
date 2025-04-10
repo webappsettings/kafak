@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Walgaon Road Tso Amravati S.O",
+    "pincode": "444601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9696111",
+    "longitude": "77.7433333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Rajapeth S.O",
+    "pincode": "444601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9369167",
+    "longitude": "77.7436389"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "MIDC Sub Post Office",
+    "pincode": "444601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.920000000000002",
+    "longitude": "77.769999999999996"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Bhaji Bazar Amravati S.O",
+    "pincode": "444601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9339167",
+    "longitude": "77.7423611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Old Cotton Market S.O",
+    "pincode": "444601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9339722",
+    "longitude": "77.7535833"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Amravati H.O",
+    "pincode": "444601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9298611",
+    "longitude": "77.7523056"
+  }
+]

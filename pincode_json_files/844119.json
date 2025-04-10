@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Pachdamia BO",
+    "pincode": "844119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.8273030",
+    "longitude": "85.1868190"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Ghataro SO",
+    "pincode": "844119",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6916389",
+    "longitude": "85.2113333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Kartahan BO",
+    "pincode": "844119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.8273030",
+    "longitude": "85.1868190"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Bhaurkhol B.O",
+    "pincode": "768219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7644301",
+    "longitude": "83.7716318"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Bagmunda B.O",
+    "pincode": "768219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7644301",
+    "longitude": "83.7716318"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Kudabaga B.O",
+    "pincode": "768219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7545317",
+    "longitude": "83.668295"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Thebra B.O",
+    "pincode": "768219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.73552",
+    "longitude": "83.7228633"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Kadamdihi B.O",
+    "pincode": "768219",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7634633",
+    "longitude": "83.6980183"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Lakhanpur S.O Jharsuguda",
+    "pincode": "768219",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.8564722",
+    "longitude": "84.0134444"
+  }
+]

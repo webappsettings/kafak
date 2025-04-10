@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Kidwai Nagar S.O (Mumbai)",
+    "pincode": "400031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0097830",
+    "longitude": "72.8526560"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Wadala Rs S.O",
+    "pincode": "400031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0167778",
+    "longitude": "72.8583611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Wadala S.O",
+    "pincode": "400031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0144444",
+    "longitude": "72.8528611"
+  }
+]

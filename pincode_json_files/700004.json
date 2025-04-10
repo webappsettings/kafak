@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "RGKar Medical College SO",
+    "pincode": "700004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6034550",
+    "longitude": "88.3782530"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Shyambazar Mail SO",
+    "pincode": "700004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5977222",
+    "longitude": "88.3717777"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Ultadanga SO",
+    "pincode": "700004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5800000",
+    "longitude": "88.3500000"
+  }
+]

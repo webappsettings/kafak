@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Nipania B.O",
+    "pincode": "486006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Chorahata S.O",
+    "pincode": "486006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5572500",
+    "longitude": "81.3761389"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Tamarabasi B.O",
+    "pincode": "486006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Khaira B.O",
+    "pincode": "486006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Rausar B.O",
+    "pincode": "486006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  }
+]

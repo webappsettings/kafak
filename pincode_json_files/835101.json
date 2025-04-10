@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Kuchu BO",
+    "pincode": "835101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.502618999999999",
+    "longitude": "85.414340999999993"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Halmad BO",
+    "pincode": "835101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.450033999999999",
+    "longitude": "85.761538000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Lagam BO",
+    "pincode": "835101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.362182000000001",
+    "longitude": "85.865256000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Chotamuri SO",
+    "pincode": "835101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "47.2719040",
+    "longitude": "8.3417690"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Hakedag BO",
+    "pincode": "835101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.435801999999999",
+    "longitude": "85.784604000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Tetebandrampur BO",
+    "pincode": "835101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.344100000000001",
+    "longitude": "85.309562"
+  }
+]

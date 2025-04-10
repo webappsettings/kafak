@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Raj Bhawan S.O (Bhopal)",
+    "pincode": "462003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2334200",
+    "longitude": "77.4200000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "C.T.T.Nagar H.O",
+    "pincode": "462003",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2341667",
+    "longitude": "77.3991667"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "M.A.C.T. S.O",
+    "pincode": "462003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2171944",
+    "longitude": "77.4060278"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Kamla Nagar S.O (Bhopal)",
+    "pincode": "462003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2100000",
+    "longitude": "77.3900000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Shastri Nagar S.O (Bhopal)",
+    "pincode": "462003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2300000",
+    "longitude": "77.3800000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Tulsi Nagar S.O",
+    "pincode": "462003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2260278",
+    "longitude": "77.4088611"
+  }
+]

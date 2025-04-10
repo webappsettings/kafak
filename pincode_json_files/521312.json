@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Velinuthala B.O",
+    "pincode": "521312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5200000",
+    "longitude": "80.8600000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Vunguturu S.O (Krishna)",
+    "pincode": "521312",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.518444",
+    "longitude": "80.885794"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Garapadu B.O",
+    "pincode": "521312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5300000",
+    "longitude": "80.9100000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Veldipadu B.O",
+    "pincode": "521312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5000000",
+    "longitude": "80.8600000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Amudalapalli B.O",
+    "pincode": "521312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5100000",
+    "longitude": "80.9000000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Ponukumadu B.O",
+    "pincode": "521312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5300000",
+    "longitude": "80.8900000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Koyyagurapadu B.O",
+    "pincode": "521312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5100000",
+    "longitude": "80.9200000"
+  }
+]

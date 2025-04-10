@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Dakhin Dhadka SO",
+    "pincode": "713302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6941667",
+    "longitude": "86.9797222"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Jhingri Mohallah SO",
+    "pincode": "713302",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2960416",
+    "longitude": "87.6126833"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Railpar SO Bardhaman",
+    "pincode": "713302",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6739450",
+    "longitude": "86.9523950"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Palashbagan SO",
+    "pincode": "713302",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7365500",
+    "longitude": "87.1476560"
+  }
+]

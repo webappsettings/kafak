@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Kodayar Melthangal BO",
+    "pincode": "627427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5508170",
+    "longitude": "77.3595750"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Oothu BO",
+    "pincode": "627427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5759810",
+    "longitude": "77.3426690"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Nalumukku SO",
+    "pincode": "627427",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.5530278",
+    "longitude": "77.3615833"
+  }
+]

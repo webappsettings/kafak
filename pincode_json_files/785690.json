@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bekadolong B.O",
+    "pincode": "785690",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Teokghat B.O",
+    "pincode": "785690",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Namtola B.O",
+    "pincode": "785690",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Aideopukhuri B.O",
+    "pincode": "785690",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "94.6318889",
+    "longitude": "26.9886944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bengenabari B.O",
+    "pincode": "785690",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Sonari S.O (Sibsagar)",
+    "pincode": "785690",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  }
+]

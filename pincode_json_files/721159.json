@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Nayagram BO",
+    "pincode": "721159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0035000",
+    "longitude": "87.1460000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Kharikamathani SO",
+    "pincode": "721159",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4252000",
+    "longitude": "87.6693500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Jharia BO",
+    "pincode": "721159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0035000",
+    "longitude": "87.1460000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Kalmapukhuria BO",
+    "pincode": "721159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0035000",
+    "longitude": "87.1460000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Nekrasole BO",
+    "pincode": "721159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0035000",
+    "longitude": "87.1460000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Tufuria Kamalpur BO",
+    "pincode": "721159",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0035000",
+    "longitude": "87.1460000"
+  }
+]

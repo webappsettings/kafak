@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Moonniyur SO",
+    "pincode": "676311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0602990",
+    "longitude": "75.9220530"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Moonniyur South BO",
+    "pincode": "676311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0602990",
+    "longitude": "75.9172904"
+  }
+]

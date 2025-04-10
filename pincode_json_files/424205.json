@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Paldhi Pahur B.O",
+    "pincode": "424205",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Wakod B.O",
+    "pincode": "424205",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Pahur S.O",
+    "pincode": "424205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7113089",
+    "longitude": "75.6811561"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Nachankheda B.O",
+    "pincode": "424205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

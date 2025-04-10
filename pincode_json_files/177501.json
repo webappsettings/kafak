@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Thathwani BO",
+    "pincode": "177501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6458000",
+    "longitude": "76.6163000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Parol SO",
+    "pincode": "177501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.657024",
+    "longitude": "76.620513"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Aman BO",
+    "pincode": "177501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6458000",
+    "longitude": "76.6141000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Nagaon Girls  College S.O",
+    "pincode": "782001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3486944",
+    "longitude": "92.7005000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Nagaon H.O",
+    "pincode": "782001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3486944",
+    "longitude": "92.7005000"
+  }
+]

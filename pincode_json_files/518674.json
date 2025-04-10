@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Julepalle B.O",
+    "pincode": "518674",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "M.Chintakunta B.O",
+    "pincode": "518674",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Pasurapadu B.O",
+    "pincode": "518674",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Nandyal Division",
+    "officename": "Gospadu S.O",
+    "pincode": "518674",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Nandyal",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.3565833",
+    "longitude": "78.4169167"
+  }
+]

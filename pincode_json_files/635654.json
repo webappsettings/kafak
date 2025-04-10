@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Sevathur B.O",
+    "pincode": "635654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4280230",
+    "longitude": "78.5124620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Periyakannalapatti B.O",
+    "pincode": "635654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4472490",
+    "longitude": "78.4870560"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Natham B.O",
+    "pincode": "635654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4099490",
+    "longitude": "78.4719400"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Sundarampalli S.O",
+    "pincode": "635654",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4075090",
+    "longitude": "78.4537840"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Kakangarai R.S. B.O",
+    "pincode": "635654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4262760",
+    "longitude": "78.4733040"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Lakkinaickenpatti B.O",
+    "pincode": "635654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4605630",
+    "longitude": "78.5043600"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Subhelav BO",
+    "pincode": "391775",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.3500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Lamdapura BO",
+    "pincode": "391775",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.3500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Anjesar BO",
+    "pincode": "391775",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "23.1300000",
+    "longitude": "73.3500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Bahutha BO",
+    "pincode": "391775",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "23.1300000",
+    "longitude": "73.3500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Namisara BO",
+    "pincode": "391775",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.3500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Tundav SO",
+    "pincode": "391775",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3035833",
+    "longitude": "73.1976944"
+  }
+]

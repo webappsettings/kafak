@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Purnea Court SO",
+    "pincode": "854301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7714850",
+    "longitude": "87.4709770"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Purnea DB SO",
+    "pincode": "854301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7714350",
+    "longitude": "87.4710350"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Purnea HO",
+    "pincode": "854301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7771391",
+    "longitude": "87.4752551"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Bhatta Bazar SO",
+    "pincode": "854301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7732050",
+    "longitude": "87.4810170"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Sendamangalam S.O",
+    "pincode": "637409",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2819167",
+    "longitude": "78.2338333"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Akkiampatti B.O",
+    "pincode": "637409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2676300",
+    "longitude": "78.2346000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Pachudayampattipudur B.O",
+    "pincode": "637409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2769466",
+    "longitude": "78.2237150"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Gandhipuram B.O",
+    "pincode": "637409",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2935850",
+    "longitude": "78.2362749"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Pottanam B.O",
+    "pincode": "637409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2926650",
+    "longitude": "78.2052100"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Namakkal Division",
+    "officename": "Ramanadapuram B.O",
+    "pincode": "637409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMAKKAL",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2953633",
+    "longitude": "78.2602316"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Angarankuppam B.O",
+    "pincode": "632204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9853000",
+    "longitude": "79.0195000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Mudinambattu B.O",
+    "pincode": "632204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9428000",
+    "longitude": "79.0147000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Kavasambattu B.O",
+    "pincode": "632204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9347000",
+    "longitude": "78.9987000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Kilmuttukur B.O",
+    "pincode": "632204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9928000",
+    "longitude": "79.0137000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Vaduganthangal S.O",
+    "pincode": "632204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9156389",
+    "longitude": "79.7571111"
+  }
+]

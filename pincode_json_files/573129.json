@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Rayarakoppal B.O",
+    "pincode": "573129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8500000",
+    "longitude": "75.9200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Bharathur B.O",
+    "pincode": "573129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8200000",
+    "longitude": "75.9400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Kenchammanahosakote S.O",
+    "pincode": "573129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8508056",
+    "longitude": "75.8548889"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Hemmige B.O",
+    "pincode": "573129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8300000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Malagalale B.O",
+    "pincode": "573129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8800000",
+    "longitude": "75.8900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Harihalli B.O",
+    "pincode": "573129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8400000",
+    "longitude": "75.8600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Magge B.O",
+    "pincode": "573129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.8700000",
+    "longitude": "75.9300000"
+  }
+]

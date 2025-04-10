@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Mewanagar S.O",
+    "pincode": "344025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7955833",
+    "longitude": "72.1528611"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Variya (Bhagji)",
+    "pincode": "344025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.754826099999999",
+    "longitude": "72.111846999999997"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Variya Tagji",
+    "pincode": "344025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.768518199999999",
+    "longitude": "72.087889000000004"
+  }
+]

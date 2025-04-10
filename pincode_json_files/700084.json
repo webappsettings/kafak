@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Kamda Hari SO",
+    "pincode": "700084",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2728000",
+    "longitude": "88.2320000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Garia SO South 24 Parganas",
+    "pincode": "700084",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.47265",
+    "longitude": "88.37986"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Garia Garden SO",
+    "pincode": "700084",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3421000",
+    "longitude": "88.2150000"
+  }
+]

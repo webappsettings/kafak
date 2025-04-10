@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Dahima BO",
+    "pincode": "125006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1123472",
+    "longitude": "75.1883777"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Hisar Cantt SO",
+    "pincode": "125006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1123472",
+    "longitude": "75.8183777"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Ladwa BO",
+    "pincode": "125006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1123472",
+    "longitude": "75.8183777"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Satroad Kalan BO",
+    "pincode": "125006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1123472",
+    "longitude": "75.8183777"
+  }
+]

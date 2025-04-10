@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Bhadasar B.O",
+    "pincode": "341516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3146840",
+    "longitude": "74.8550992"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Daudsar B.O",
+    "pincode": "341516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3828188",
+    "longitude": "74.8817826"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Dhankoli S.O",
+    "pincode": "341516",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3405278",
+    "longitude": "74.8176944"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Chawandia B.O",
+    "pincode": "341516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3236000",
+    "longitude": "74.9517330"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Parewari B.O",
+    "pincode": "341516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3995170",
+    "longitude": "74.5755990"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Sanyra J BO",
+    "pincode": "370610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.7850503",
+    "longitude": "68.8844275"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Kalyanpar BO",
+    "pincode": "370610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2520000",
+    "longitude": "69.4203530"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Manjal SO",
+    "pincode": "370610",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.0239990",
+    "longitude": "69.2998000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Anandpar BO",
+    "pincode": "370610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2362252",
+    "longitude": "69.3753072"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Anandsar BO",
+    "pincode": "370610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2292750",
+    "longitude": "69.4255680"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Ratnipora BO",
+    "pincode": "192304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.9208520",
+    "longitude": "74.9438380"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Kakapora",
+    "pincode": "192304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.9473333",
+    "longitude": "74.9273333"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Sumboora BO",
+    "pincode": "192304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.9636590",
+    "longitude": "74.9353700"
+  }
+]

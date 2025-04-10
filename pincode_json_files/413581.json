@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ganjur B.O",
+    "pincode": "413581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4189000",
+    "longitude": "76.8419000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ashta B.O",
+    "pincode": "413581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4189000",
+    "longitude": "76.8419000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Devangra B.O",
+    "pincode": "413581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4189000",
+    "longitude": "76.8419000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "JJJKSSK Nalegaon S.O",
+    "pincode": "413581",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4221",
+    "longitude": "76.8101"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Mahalangra B.O",
+    "pincode": "413581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4189000",
+    "longitude": "76.8419000"
+  }
+]

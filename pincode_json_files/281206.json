@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Gajoo BO",
+    "pincode": "281206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Gudera BO",
+    "pincode": "281206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Sonai SO Mathura",
+    "pincode": "281206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4761944",
+    "longitude": "77.6969444"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Kumhan BO",
+    "pincode": "281206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  }
+]

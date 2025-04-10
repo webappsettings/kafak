@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Dilawarpur B.O",
+    "pincode": "508355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "16.7957303",
+    "longitude": "79.5864896"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Sunyapahad B.O",
+    "pincode": "508355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURYAPET",
+    "statename": "TELANGANA",
+    "latitude": "16.7207434",
+    "longitude": "79.6927336"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Kondrapole B.O",
+    "pincode": "508355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "16.7919934",
+    "longitude": "79.6118285"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Wadapally S.O",
+    "pincode": "508355",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "16.6922778",
+    "longitude": "79.6617778"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Kallepalle B.O.",
+    "pincode": "508355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "16.745200000000001",
+    "longitude": "79.569299999999998"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Borraipalem B.O",
+    "pincode": "508355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "16.7746760",
+    "longitude": "79.5477531"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Damaracherla B.O",
+    "pincode": "508355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALGONDA",
+    "statename": "TELANGANA",
+    "latitude": "16.7251757",
+    "longitude": "79.6458245"
+  }
+]

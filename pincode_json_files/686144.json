@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Vechoor BO",
+    "pincode": "686144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "15.5934000",
+    "longitude": "76.3952000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Kudavechoor SO",
+    "pincode": "686144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.668074",
+    "longitude": "76.422971"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Ambika Market BO",
+    "pincode": "686144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7471000",
+    "longitude": "76.3952000"
+  }
+]

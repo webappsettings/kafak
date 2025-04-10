@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Merthi SO",
+    "pincode": "262550",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7798889",
+    "longitude": "80.2771944"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Narayan Nagar BO",
+    "pincode": "262550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7730000",
+    "longitude": "80.2885000"
+  }
+]

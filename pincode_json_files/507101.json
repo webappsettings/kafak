@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Sca Bldg S.O",
+    "pincode": "507101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Bhajanamandir S.O",
+    "pincode": "507101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Kothagudem Colls H.O",
+    "pincode": "507101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.5435556",
+    "longitude": "80.6184444"
+  }
+]

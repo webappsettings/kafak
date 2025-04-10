@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Sector VII(Sunabeda) S.O",
+    "pincode": "763002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.7205966",
+    "longitude": "82.8168766"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Sunabeda 2 S.O",
+    "pincode": "763002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.7262316",
+    "longitude": "82.8209166"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "R Zone(Sunabeda) S.O",
+    "pincode": "763002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.7262316",
+    "longitude": "82.8209166"
+  }
+]

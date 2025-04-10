@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Gangsi BO",
+    "pincode": "205119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7854558",
+    "longitude": "78.5689521"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Halpura BO",
+    "pincode": "205119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5654485",
+    "longitude": "78.5698854"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Tindauli SO",
+    "pincode": "205119",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2381944",
+    "longitude": "79.0551944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Darwah BO",
+    "pincode": "205119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5214552",
+    "longitude": "78.7855652"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Kuchela BO",
+    "pincode": "205119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5486231",
+    "longitude": "78.4532156"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Jabapur BO",
+    "pincode": "205119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8752544",
+    "longitude": "78.5243655"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Kosma BO",
+    "pincode": "205119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAINPURI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.541222300000001",
+    "longitude": "78.5622489"
+  }
+]

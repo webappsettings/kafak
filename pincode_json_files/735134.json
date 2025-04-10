@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Nakugach BO",
+    "pincode": "735134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6200000",
+    "longitude": "88.4500000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Sawdavita BO",
+    "pincode": "735134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5100000",
+    "longitude": "88.5500000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Rajganj SO",
+    "pincode": "735134",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5500000",
+    "longitude": "88.5200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Fatapukur BO",
+    "pincode": "735134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5700000",
+    "longitude": "88.5400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Gadra BO",
+    "pincode": "735134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5800000",
+    "longitude": "88.4600000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Sahebpara BO",
+    "pincode": "735134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.4900000",
+    "longitude": "88.5400000"
+  }
+]

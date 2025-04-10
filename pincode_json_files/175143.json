@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Jagatsukh SO",
+    "pincode": "175143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.199727",
+    "longitude": "77.200857"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Khakhnal BO",
+    "pincode": "175143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1700000",
+    "longitude": "77.1900000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Prini BO",
+    "pincode": "175143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.2200000",
+    "longitude": "77.1900000"
+  }
+]

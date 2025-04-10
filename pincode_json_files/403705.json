@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Xeldem B.O",
+    "pincode": "403705",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "73.3500000",
+    "longitude": "15.4500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Avedem B.O",
+    "pincode": "403705",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "74.0500000",
+    "longitude": "15.2300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Rivona B.O",
+    "pincode": "403705",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.299999999999997",
+    "longitude": "15.52"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Cavorem B.O",
+    "pincode": "403705",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.25023",
+    "longitude": "74.057450000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Quepem S.O",
+    "pincode": "403705",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.21380346",
+    "longitude": "74.07077056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Pirla B.O",
+    "pincode": "403705",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "74.040000000000006",
+    "longitude": "15.24"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Sirvoi B.O",
+    "pincode": "403705",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.280000000000001",
+    "longitude": "15.609999999999999"
+  }
+]

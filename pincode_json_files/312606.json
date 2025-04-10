@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Bangreda Ghata B.O",
+    "pincode": "312606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7332360",
+    "longitude": "74.8898200"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Melana B.O",
+    "pincode": "312606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6665650",
+    "longitude": "74.9075000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Sarsi B.O",
+    "pincode": "312606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6940950",
+    "longitude": "74.9217050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Kanera S.O",
+    "pincode": "312606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITTORGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7032222",
+    "longitude": "74.9008056"
+  }
+]

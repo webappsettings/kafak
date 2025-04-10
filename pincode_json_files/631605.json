@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Asoor B.O",
+    "pincode": "631605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341785",
+    "longitude": "79.7036352"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Thammanur B.O",
+    "pincode": "631605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7955500",
+    "longitude": "79.8327000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Walajabad S.O",
+    "pincode": "631605",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7913889",
+    "longitude": "79.8169444"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Puliambakkam B.O",
+    "pincode": "631605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7955500",
+    "longitude": "79.8327000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Uttukadu B.O",
+    "pincode": "631605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341815",
+    "longitude": "79.7036322"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Avalur B.O",
+    "pincode": "631605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6135530",
+    "longitude": "79.7574640"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Nathanallur B.O",
+    "pincode": "631605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341845",
+    "longitude": "79.7036292"
+  }
+]

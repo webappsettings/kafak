@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Mayan BO",
+    "pincode": "123103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Khaleta BO",
+    "pincode": "123103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Dhawana BO",
+    "pincode": "123103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Khol SO",
+    "pincode": "123103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "28.1728056",
+    "longitude": "76.4020000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Balwari BO",
+    "pincode": "123103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Mandola BO",
+    "pincode": "123103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

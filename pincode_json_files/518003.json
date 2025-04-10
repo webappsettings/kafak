@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Industrial Estate B.O",
+    "pincode": "518003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Kalluru B.O",
+    "pincode": "518003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Peddapadu B.O",
+    "pincode": "518003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "SAP Camp kNL S.O",
+    "pincode": "518003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.83213889",
+    "longitude": "78.02688889"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Babhalaj B.O",
+    "pincode": "425421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.279070",
+    "longitude": "75.054747"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Hisale B.O",
+    "pincode": "425421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.267337",
+    "longitude": "75.099782"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Bhorkheda B.O",
+    "pincode": "425421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.307293",
+    "longitude": "74.984918"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Thalner S.O",
+    "pincode": "425421",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.256456",
+    "longitude": "74.954537"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Manjrod B.O",
+    "pincode": "425421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.224221",
+    "longitude": "74.984397"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Tonde B.O",
+    "pincode": "425421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.263304",
+    "longitude": "75.110119"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Wathode B.O",
+    "pincode": "425421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.266137",
+    "longitude": "74.915214"
+  }
+]

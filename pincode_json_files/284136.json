@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Bangawan Kalan BO",
+    "pincode": "284136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LALITPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Matatila SO",
+    "pincode": "284136",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LALITPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.0344000",
+    "longitude": "78.2304000"
+  }
+]

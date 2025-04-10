@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Mudiganam B.O",
+    "pincode": "639002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8800000",
+    "longitude": "77.9500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Pavithram B.O",
+    "pincode": "639002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "77.9900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Pallapalayam B.O",
+    "pincode": "639002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9200000",
+    "longitude": "78.0000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Thumbivadi B.O",
+    "pincode": "639002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9100000",
+    "longitude": "77.9800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Pallamarudapatti B.O",
+    "pincode": "639002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9400000",
+    "longitude": "77.9900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Viswanathapuri B.O",
+    "pincode": "639002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9500000",
+    "longitude": "78.0100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Sengunthapuram S.O",
+    "pincode": "639002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9615278",
+    "longitude": "78.0732500"
+  }
+]

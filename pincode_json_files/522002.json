@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Guntur H.O",
+    "pincode": "522002",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3023663",
+    "longitude": "80.4353233"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Guntur Division",
+    "officename": "Brodipet(Guntur) S.O",
+    "pincode": "522002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GUNTUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3146111",
+    "longitude": "80.4409722"
+  }
+]

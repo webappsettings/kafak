@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Sachana BO",
+    "pincode": "361230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.5600000",
+    "longitude": "70.1800000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Balachadi SO",
+    "pincode": "361230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.6208400",
+    "longitude": "70.1695520"
+  }
+]

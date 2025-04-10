@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Tohda BO",
+    "pincode": "493195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Tulsi BO",
+    "pincode": "493195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Bhatbhera BO",
+    "pincode": "493195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Hirmi SO",
+    "pincode": "493195",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5333330",
+    "longitude": "81.9333330"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Suhela BO",
+    "pincode": "493195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  }
+]

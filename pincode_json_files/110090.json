@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Khajoori Khas BO",
+    "pincode": "110090",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6922500",
+    "longitude": "77.3042222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Karawal Nagar SO",
+    "pincode": "110090",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.7259444",
+    "longitude": "77.2726389"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Shaheed Bhagat Singh Colony SO",
+    "pincode": "110090",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6739166",
+    "longitude": "77.3198333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Sabhapur BO",
+    "pincode": "110090",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Sonia Vihar SO",
+    "pincode": "110090",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.7262778",
+    "longitude": "77.2476944"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Badarpur Khadar BO",
+    "pincode": "110090",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6922500",
+    "longitude": "77.3042222"
+  }
+]

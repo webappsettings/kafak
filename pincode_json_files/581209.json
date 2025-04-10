@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Ingalahalli B.O",
+    "pincode": "581209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4107932",
+    "longitude": "75.3056636"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hebsur S.O",
+    "pincode": "581209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4521183",
+    "longitude": "75.3018255"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Ballarwad B.O",
+    "pincode": "581209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4531316",
+    "longitude": "75.3310192"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Manakawad B.O",
+    "pincode": "581209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4056018",
+    "longitude": "75.3353447"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Shishuvinahalli B.O",
+    "pincode": "581209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4216950",
+    "longitude": "75.3223735"
+  }
+]

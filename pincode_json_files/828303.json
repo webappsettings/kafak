@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Deogram BO",
+    "pincode": "828303",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Jogidih BO",
+    "pincode": "828303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.625499999999999",
+    "longitude": "86.431150000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Mahal BO",
+    "pincode": "828303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.625499999999999",
+    "longitude": "86.431150000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Shiv babudih BO",
+    "pincode": "828303",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dhanbad Division",
+    "officename": "Bhojudih SO",
+    "pincode": "828303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BOKARO",
+    "statename": "JHARKHAND",
+    "latitude": "23.5667610",
+    "longitude": "86.3501560"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "A.Gokavaram B.O",
+    "pincode": "534416",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8171000",
+    "longitude": "81.3850000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Kaikaram S.O",
+    "pincode": "534416",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8117500",
+    "longitude": "81.3660556"
+  }
+]

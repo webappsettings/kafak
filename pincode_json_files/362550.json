@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Gharal BO",
+    "pincode": "362550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.8263681",
+    "longitude": "71.1176779"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Saiyad Rajpara BO",
+    "pincode": "362550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.7939762",
+    "longitude": "71.2042883"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Khatrivada BO",
+    "pincode": "362550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.8326347",
+    "longitude": "71.2014678"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Sanakhda SO",
+    "pincode": "362550",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.83842960",
+    "longitude": "71.16594160"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Motha BO",
+    "pincode": "362550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.8247718",
+    "longitude": "71.1346401"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Simar BO",
+    "pincode": "362550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.7877731",
+    "longitude": "71.1456952"
+  }
+]

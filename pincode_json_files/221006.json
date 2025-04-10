@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Babatpur Ad SO",
+    "pincode": "221006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4488889",
+    "longitude": "82.8472778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Pure Raghunathpur BO",
+    "pincode": "221006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4400000",
+    "longitude": "82.8400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Kaithauli BO",
+    "pincode": "221006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4400000",
+    "longitude": "82.8400000"
+  }
+]

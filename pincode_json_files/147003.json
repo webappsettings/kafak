@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Gurbax Colony SO",
+    "pincode": "147003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3414444",
+    "longitude": "76.4133889"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "D C W SO",
+    "pincode": "147003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3569167",
+    "longitude": "76.4189167"
+  }
+]

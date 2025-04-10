@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Dumral BO",
+    "pincode": "387355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.7000070",
+    "longitude": "72.8666930"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Piplag SO",
+    "pincode": "387355",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.3959000",
+    "longitude": "72.5130000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Akhdol BO",
+    "pincode": "387355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.6314269",
+    "longitude": "72.8189003"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Keriavi BO",
+    "pincode": "387355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.6681000",
+    "longitude": "72.8535000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Piplata BO",
+    "pincode": "387355",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.6416174",
+    "longitude": "72.8295155"
+  }
+]

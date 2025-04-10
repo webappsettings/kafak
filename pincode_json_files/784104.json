@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Shalonibari S.O",
+    "pincode": "784104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.7070475",
+    "longitude": "92.7777134"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Haleswar B.O",
+    "pincode": "784104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.7169854",
+    "longitude": "92.7630391"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Kalher B.O",
+    "pincode": "502371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.19580832243508",
+    "longitude": "77.84481427536348"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Nagdhar B.O",
+    "pincode": "502371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.110409657878684",
+    "longitude": "77.8255126161096"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Bachepally B.O",
+    "pincode": "502371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.142264898242114",
+    "longitude": "77.87655625138537"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Masanpally B.O",
+    "pincode": "502371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.182504514802677",
+    "longitude": "77.87351991589901"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Nizampet S.O",
+    "pincode": "502371",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.0490000",
+    "longitude": "78.2673333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "KRISHNAPUR B.O",
+    "pincode": "502371",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.159647874953617",
+    "longitude": "77.81228504136404"
+  }
+]

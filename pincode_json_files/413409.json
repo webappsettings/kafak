@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Chumb B.O",
+    "pincode": "413409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3432100",
+    "longitude": "75.7190500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Mandegaon B.O",
+    "pincode": "413409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3432100",
+    "longitude": "75.7190500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Umbarge B.O",
+    "pincode": "413409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3432100",
+    "longitude": "75.7190500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Babhulgaon B.O",
+    "pincode": "413409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3432100",
+    "longitude": "75.7190500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Kategaon B.O",
+    "pincode": "413409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3432100",
+    "longitude": "75.7190500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Agalgaon S.O",
+    "pincode": "413409",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.317455",
+    "longitude": "75.746779"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Chare B.O",
+    "pincode": "413409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.5151667",
+    "longitude": "75.4466667"
+  }
+]

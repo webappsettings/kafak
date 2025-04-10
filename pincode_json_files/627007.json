@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Jawahar Nagar Tirunelveli SO",
+    "pincode": "627007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6899167",
+    "longitude": "77.7368889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Perumalpuram SO",
+    "pincode": "627007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7067500",
+    "longitude": "77.7372500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Konganthanparai BO",
+    "pincode": "627007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6440350",
+    "longitude": "77.7192560"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Reddiarpatti BO",
+    "pincode": "627007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUNELVELI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.6811140",
+    "longitude": "77.7398550"
+  }
+]

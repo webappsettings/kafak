@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "R. K. Puri Gwalior SO",
+    "pincode": "474011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.213071",
+    "longitude": "78.202799"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "New High Court S.O",
+    "pincode": "474011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Jiwaji University S.O",
+    "pincode": "474011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  }
+]

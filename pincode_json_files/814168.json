@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Suggapahari B.O",
+    "pincode": "814168",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUMKA",
+    "statename": "JHARKHAND",
+    "latitude": "24.113320000000002",
+    "longitude": "87.114930000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Khatangi B.O",
+    "pincode": "814168",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUMKA",
+    "statename": "JHARKHAND",
+    "latitude": "24.316240000000001",
+    "longitude": "87.270910000000001"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Halpur BO",
+    "pincode": "277213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.920000000000002",
+    "longitude": "84.170000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "VBNarayanpur SO",
+    "pincode": "277213",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8900000",
+    "longitude": "84.1700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Malhaua Chorkaind BO",
+    "pincode": "277213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.93",
+    "longitude": "84.159999999999997"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Sakarpura BO",
+    "pincode": "277213",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.940000000000001",
+    "longitude": "84.189999999999998"
+  }
+]

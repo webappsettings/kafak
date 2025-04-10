@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Dongarkinhi B.O",
+    "pincode": "413229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.924249",
+    "longitude": "75.437016"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Pimpalwandi S.O (Beed)",
+    "pincode": "413229",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.930973",
+    "longitude": "75.352222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Jatnandur B.O",
+    "pincode": "413229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.950708",
+    "longitude": "75.414479"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Karegaon B.O",
+    "pincode": "413229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.963567",
+    "longitude": "75.452862"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Pangri B.O",
+    "pincode": "413229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.917211",
+    "longitude": "76.458862"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Pimpalgaon Dhas B.O",
+    "pincode": "413229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.925877",
+    "longitude": "75.528953"
+  }
+]

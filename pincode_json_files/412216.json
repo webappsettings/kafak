@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Koregaon Bhima S.O",
+    "pincode": "412216",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.7318",
+    "longitude": "73.165199999999999"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Lonikand B.O",
+    "pincode": "412216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.628729",
+    "longitude": "74.03295"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Vadhu BK B.O",
+    "pincode": "412216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.679019",
+    "longitude": "74.047638000000006"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Fulgaon B.O",
+    "pincode": "412216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.577179999999998",
+    "longitude": "74.234449999999995"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Perne B.O",
+    "pincode": "412216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.607600999999999",
+    "longitude": "74.088757999999999"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Pimpri Sandas B.O",
+    "pincode": "412216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.609572",
+    "longitude": "74.128399999999999"
+  }
+]

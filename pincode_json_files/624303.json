@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "NPanjampatti SO",
+    "pincode": "624303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1900000",
+    "longitude": "77.5500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Alamarathupatti BO",
+    "pincode": "624303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3100000",
+    "longitude": "77.9400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Vakkampatti BO",
+    "pincode": "624303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3200000",
+    "longitude": "77.9200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Kalikkampatti BO",
+    "pincode": "624303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3000000",
+    "longitude": "77.9300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Munnilakottai BO",
+    "pincode": "624303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3100000",
+    "longitude": "77.9200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Veerakkal BO",
+    "pincode": "624303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3200000",
+    "longitude": "77.8900000"
+  }
+]

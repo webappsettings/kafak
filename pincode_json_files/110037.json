@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "IGI Airport SO",
+    "pincode": "110037",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5556389",
+    "longitude": "77.0845556"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Palam Airport SO",
+    "pincode": "110037",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5745556",
+    "longitude": "77.0975556"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Mahipalpur BO",
+    "pincode": "110037",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5400000",
+    "longitude": "77.1200000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Gurgaon Road SO",
+    "pincode": "110037",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.545674",
+    "longitude": "77.123159"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Nangal Dewat BO",
+    "pincode": "110037",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.530277699999999",
+    "longitude": "77.115527700000001"
+  }
+]

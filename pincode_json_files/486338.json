@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Saraisenger B.O",
+    "pincode": "486338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Duara B.O",
+    "pincode": "486338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Jodhpur B.O",
+    "pincode": "486338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Raghunathganj S.O",
+    "pincode": "486338",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6752500",
+    "longitude": "81.6452222"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Sagara B.O",
+    "pincode": "486338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Silpari B.O",
+    "pincode": "486338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5372000",
+    "longitude": "81.3042000"
+  }
+]

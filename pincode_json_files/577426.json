@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Ripponpet S.O",
+    "pincode": "577426",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9908611",
+    "longitude": "75.2613333"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Halugadde B.O",
+    "pincode": "577426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.0300000",
+    "longitude": "75.2300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Harohithlu B.O",
+    "pincode": "577426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9600000",
+    "longitude": "75.3400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kenchanala B.O",
+    "pincode": "577426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.0200000",
+    "longitude": "75.2800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Bellur(Hosanagar) B.O",
+    "pincode": "577426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9100000",
+    "longitude": "75.3400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Talale B.O",
+    "pincode": "577426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9600000",
+    "longitude": "75.2700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Arasalu B.O",
+    "pincode": "577426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.0600000",
+    "longitude": "75.3100000"
+  }
+]

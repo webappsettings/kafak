@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Zinzuwada SO",
+    "pincode": "363755",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.724861099999998",
+    "longitude": "71.6273056"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Fatepur BO",
+    "pincode": "363755",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.400300000000001",
+    "longitude": "71.630399999999995"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Nagvada BO",
+    "pincode": "363755",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.326000000000001",
+    "longitude": "71.7119"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Dhama BO",
+    "pincode": "363755",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.396899999999999",
+    "longitude": "71.671800000000005"
+  }
+]

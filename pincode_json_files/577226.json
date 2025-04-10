@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kuduvalli B.O",
+    "pincode": "577226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7600000",
+    "longitude": "75.3500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Beguvalli B.O",
+    "pincode": "577226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7200000",
+    "longitude": "75.4000000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Guthi Yedehalli B.O",
+    "pincode": "577226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7400000",
+    "longitude": "75.3800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Hanagere B.O",
+    "pincode": "577226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.8400000",
+    "longitude": "75.4000000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Kannangi B.O",
+    "pincode": "577226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7900000",
+    "longitude": "75.3600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Shivamogga Division",
+    "officename": "Tudur S.O",
+    "pincode": "577226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIVAMOGGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7310833",
+    "longitude": "75.4364722"
+  }
+]

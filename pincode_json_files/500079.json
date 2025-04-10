@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Vaishalinagar S.O",
+    "pincode": "500079",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.345909",
+    "longitude": "78.520281"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Hasthinapuram S.O",
+    "pincode": "500079",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.3246800",
+    "longitude": "78.5543800"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Jillellaguda B.O",
+    "pincode": "500079",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.33123",
+    "longitude": "78.52612"
+  }
+]

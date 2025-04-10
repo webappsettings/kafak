@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "K.Sivagnanapuram B.O",
+    "pincode": "628716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0204000",
+    "longitude": "77.7905000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Idaiseval B.O",
+    "pincode": "628716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0772000",
+    "longitude": "77.7872000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Villiseri B.O",
+    "pincode": "628716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.0370000",
+    "longitude": "77.7846000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "NALATTINPUTHUR S.O",
+    "pincode": "628716",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1301000000000005",
+    "longitude": "77.805999999999997"
+  }
+]

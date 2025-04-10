@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Jhapaha BO",
+    "pincode": "842004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1705550",
+    "longitude": "85.3915030"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Mustafapur BO",
+    "pincode": "842004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1705550",
+    "longitude": "85.3915030"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Chakmohabbat B.O",
+    "pincode": "842004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.148599999999998",
+    "longitude": "85.399299999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Umanagar SO",
+    "pincode": "842004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1014000",
+    "longitude": "85.2329000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "CRPF Camp BO",
+    "pincode": "842004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1705550",
+    "longitude": "85.3915030"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Daud Chapra BO",
+    "pincode": "842004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1705550",
+    "longitude": "85.3915030"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Jamalabad BO",
+    "pincode": "842004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1705550",
+    "longitude": "85.3915030"
+  }
+]

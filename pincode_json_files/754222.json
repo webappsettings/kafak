@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Basupur B.O",
+    "pincode": "754222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.600073600000002",
+    "longitude": "86.4646568"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Chaudakulat S.O",
+    "pincode": "754222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.4022",
+    "longitude": "86.3089"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Kora B.O",
+    "pincode": "754222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.562727500000001",
+    "longitude": "86.445427199999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Kadaliban B.O",
+    "pincode": "754222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5904977",
+    "longitude": "86.519352499999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Gogua B.O",
+    "pincode": "754222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.569915200000001",
+    "longitude": "86.494665900000001"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Palasingha B.O",
+    "pincode": "754222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5816406",
+    "longitude": "86.469171599999996"
+  }
+]

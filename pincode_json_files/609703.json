@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Alangudichery B.O",
+    "pincode": "609703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8700000",
+    "longitude": "79.8000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Gopurajapuram B.O",
+    "pincode": "609703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8400000",
+    "longitude": "79.7900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "P.Kondagai B.O",
+    "pincode": "609703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7700000",
+    "longitude": "79.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Pragramam B.O",
+    "pincode": "609703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8700000",
+    "longitude": "79.7800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Agara Kondagai B.O",
+    "pincode": "609703",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8800000",
+    "longitude": "79.8100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Tittachery S.O",
+    "pincode": "609703",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7603056",
+    "longitude": "79.8465278"
+  }
+]

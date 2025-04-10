@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Uttara B.O",
+    "pincode": "744209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Kadamtala S.O (North And Middle Andaman)",
+    "pincode": "744209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "12.3806850",
+    "longitude": "92.8027390"
+  }
+]

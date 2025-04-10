@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Fatehpur BO",
+    "pincode": "185133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.3757110",
+    "longitude": "74.6178268"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Dhani Dhar BO",
+    "pincode": "185133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.3757110",
+    "longitude": "74.6178268"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Rehtal BO",
+    "pincode": "185133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.3757110",
+    "longitude": "74.6178268"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Post Graduate College Rajouri SO",
+    "pincode": "185133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.3757110",
+    "longitude": "74.6178268"
+  }
+]

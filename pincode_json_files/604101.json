@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kilsevur BO",
+    "pincode": "604101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2427070",
+    "longitude": "79.7484000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kunnapakkam BO",
+    "pincode": "604101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2155260",
+    "longitude": "79.7480120"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Avanipur BO",
+    "pincode": "604101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2770810",
+    "longitude": "79.8177680"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Akshipakkam SO",
+    "pincode": "604101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2517778",
+    "longitude": "79.8256667"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Pankolathur BO",
+    "pincode": "604101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2155260",
+    "longitude": "79.7480120"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Andapattu BO",
+    "pincode": "604101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2542150",
+    "longitude": "79.7540070"
+  }
+]

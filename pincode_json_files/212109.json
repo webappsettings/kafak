@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Kahli BO",
+    "pincode": "212109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Sikandra SO",
+    "pincode": "212109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.58736",
+    "longitude": "81.97257"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Karnaipur BO",
+    "pincode": "212109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Kamlanagar BO",
+    "pincode": "212109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Baharia Bazar BO",
+    "pincode": "212109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Kumhauna BO",
+    "pincode": "212109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Bomapur BO",
+    "pincode": "212109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.587363",
+    "longitude": "81.972572999999997"
+  }
+]

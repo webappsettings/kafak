@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Dhurali BO",
+    "pincode": "140306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Mote Majra BO",
+    "pincode": "140306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Raipur Kalan BO",
+    "pincode": "140306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Aerocity S.O",
+    "pincode": "140306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.65",
+    "longitude": "76.73"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Dharamgarh BO",
+    "pincode": "140306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Manauli SO",
+    "pincode": "140306",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6431388",
+    "longitude": "75.7233055"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Kurari",
+    "pincode": "140306",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  }
+]

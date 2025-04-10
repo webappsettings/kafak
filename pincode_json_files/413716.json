@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Musalwadi B.O",
+    "pincode": "413716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.459626",
+    "longitude": "74.694931"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Lakh B.O",
+    "pincode": "413716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.508391",
+    "longitude": "74.681027"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Taklimiya B.O",
+    "pincode": "413716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.453676",
+    "longitude": "74.667855"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Deolali Pravara S.O",
+    "pincode": "413716",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.474172941742655",
+    "longitude": "74.61903089684026"
+  }
+]

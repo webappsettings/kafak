@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Kahan BO",
+    "pincode": "392240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.8593280",
+    "longitude": "73.0385790"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Tankaria SO",
+    "pincode": "392240",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.8817900",
+    "longitude": "73.0120360"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Adol BO",
+    "pincode": "392240",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.8737000",
+    "longitude": "73.0316000"
+  }
+]

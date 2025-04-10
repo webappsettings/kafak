@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Kenadhipa B.O",
+    "pincode": "768214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.6476775",
+    "longitude": "84.2364236"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Kinaloi B.O",
+    "pincode": "768214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.7026367",
+    "longitude": "84.1658659"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Sadamal B.O",
+    "pincode": "768214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7335088",
+    "longitude": "84.2264293"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Binjipali B.O",
+    "pincode": "768214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.6662063",
+    "longitude": "84.211853"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Laida S.O",
+    "pincode": "768214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4593611",
+    "longitude": "83.9746667"
+  }
+]

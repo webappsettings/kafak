@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Choki SO",
+    "pincode": "362315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.65215",
+    "longitude": "70.531071"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Kathrota BO",
+    "pincode": "362315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.6277564",
+    "longitude": "70.5299667"
+  }
+]

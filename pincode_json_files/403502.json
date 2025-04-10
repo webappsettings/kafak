@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Sirsaim B.O",
+    "pincode": "403502",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "73.8600000",
+    "longitude": "15.6300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Tivim S.O",
+    "pincode": "403502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.62369020",
+    "longitude": "73.85789150"
+  }
+]

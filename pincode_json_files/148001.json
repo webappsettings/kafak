@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "N G M Sangrur SO",
+    "pincode": "148001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.2416667",
+    "longitude": "75.8326667"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Sangrur Kty SO",
+    "pincode": "148001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.2471944",
+    "longitude": "75.8457500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Sangrur HO",
+    "pincode": "148001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.2455278",
+    "longitude": "75.8443056"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Mini Secteriate Sangrur SO",
+    "pincode": "148001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.2473889",
+    "longitude": "75.8388611"
+  }
+]

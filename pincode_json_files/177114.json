@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Khabli BO",
+    "pincode": "177114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9298370",
+    "longitude": "76.2138720"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Bankhandi SO",
+    "pincode": "177114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9881090",
+    "longitude": "76.1851090"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Paisa BO",
+    "pincode": "177114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.8904820",
+    "longitude": "76.2487380"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Gher BO",
+    "pincode": "177114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.9298370",
+    "longitude": "76.2138720"
+  }
+]

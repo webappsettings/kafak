@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Jalalgarh SO",
+    "pincode": "854327",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.9609650",
+    "longitude": "87.5099060"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Ahilgaon BO",
+    "pincode": "854327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.9697000",
+    "longitude": "87.5024830"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Sohangaon BO",
+    "pincode": "854327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "26.0136080",
+    "longitude": "87.6556470"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Tarauna BO",
+    "pincode": "854327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "26.0125200",
+    "longitude": "87.6340620"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Ekamba Nishara BO",
+    "pincode": "854327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.9799410",
+    "longitude": "87.5840690"
+  }
+]

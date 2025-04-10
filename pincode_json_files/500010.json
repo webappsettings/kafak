@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Bolarum S.O",
+    "pincode": "500010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HYDERABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.50533333",
+    "longitude": "78.51855556"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Alwal S.O",
+    "pincode": "500010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.504078",
+    "longitude": "78.514311"
+  }
+]

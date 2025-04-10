@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Shaina SO",
+    "pincode": "148103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4215361",
+    "longitude": "75.3804916"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Cheema BO",
+    "pincode": "148103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "35.4776060",
+    "longitude": "97.5222790"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Jodhpur BO",
+    "pincode": "148103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "26.2389470",
+    "longitude": "73.0243090"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Pakhoke BO",
+    "pincode": "148103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "31.3386070",
+    "longitude": "75.0005330"
+  }
+]

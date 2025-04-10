@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Sukkangalpatti B.O",
+    "pincode": "625540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8400000",
+    "longitude": "77.4300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Vellaiyammalpuram B.O",
+    "pincode": "625540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8100000",
+    "longitude": "77.4300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Odaipatti S.O",
+    "pincode": "625540",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8328360",
+    "longitude": "77.4429620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Seepalakottai B.O",
+    "pincode": "625540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8421620",
+    "longitude": "77.9827600"
+  }
+]

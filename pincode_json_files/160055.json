@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Baliali B.O",
+    "pincode": "160055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.758500000000002",
+    "longitude": "76.659999999999997"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Daun BO",
+    "pincode": "160055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.692050999999999",
+    "longitude": "76.698409999999996"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Chandigarh Sector 55 SO",
+    "pincode": "160055",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.73256",
+    "longitude": "76.72081"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sunny Enclave S.O.",
+    "pincode": "160055",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.7585",
+    "longitude": "76.66"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Balongi BO",
+    "pincode": "160055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.692050999999999",
+    "longitude": "76.698409999999996"
+  }
+]

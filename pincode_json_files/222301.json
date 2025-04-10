@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Malhipur BO",
+    "pincode": "222301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0297000",
+    "longitude": "82.2341798"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Sonawan BO",
+    "pincode": "222301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0580410",
+    "longitude": "82.3589480"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bainti Kalan BO",
+    "pincode": "222301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0580410",
+    "longitude": "82.3589480"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Koiripur SO",
+    "pincode": "222301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0303056",
+    "longitude": "82.3422778"
+  }
+]

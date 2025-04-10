@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Mazgaon Dock S.O",
+    "pincode": "400010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9718056",
+    "longitude": "72.8406667"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Mazgaon Road S.O",
+    "pincode": "400010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9711667",
+    "longitude": "72.8410833"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Mazgaon S.O",
+    "pincode": "400010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9715590",
+    "longitude": "72.8401490"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "Dockyard Road S.O",
+    "pincode": "400010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9663840",
+    "longitude": "72.8442050"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City East Division",
+    "officename": "V K Bhavan S.O",
+    "pincode": "400010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9687200",
+    "longitude": "72.8399730"
+  }
+]

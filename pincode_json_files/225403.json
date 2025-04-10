@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Imliha BO",
+    "pincode": "225403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8701600",
+    "longitude": "81.6765400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Qyampur BO",
+    "pincode": "225403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8701600",
+    "longitude": "81.6765400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Tarapur BO",
+    "pincode": "225403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8784820",
+    "longitude": "81.5964430"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Itaura BO",
+    "pincode": "225403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8701600",
+    "longitude": "81.6765400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Khutauli BO",
+    "pincode": "225403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9099995",
+    "longitude": "81.6226804"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Kusfar BO",
+    "pincode": "225403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8701600",
+    "longitude": "81.6765400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Dariya Bad SO",
+    "pincode": "225403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9724167",
+    "longitude": "81.6380278"
+  }
+]

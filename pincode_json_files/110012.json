@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "National Physical Laboratory SO",
+    "pincode": "110012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6368611",
+    "longitude": "77.1696111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Inderpuri SO",
+    "pincode": "110012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6320278",
+    "longitude": "77.1484167"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "IARI SO",
+    "pincode": "110012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6401944",
+    "longitude": "77.1659722"
+  }
+]

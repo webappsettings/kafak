@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Noushara SO",
+    "pincode": "190011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0733056",
+    "longitude": "74.8165556"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Anchar BO",
+    "pincode": "190011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.1261030",
+    "longitude": "74.6732050"
+  }
+]

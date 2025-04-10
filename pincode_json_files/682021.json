@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Vadacode Kailas Colony BO",
+    "pincode": "682021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.0474799",
+    "longitude": "76.3644927"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Vadacode BO",
+    "pincode": "682021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.0237434",
+    "longitude": "76.3334987"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Thrikkakara SO",
+    "pincode": "682021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.02375",
+    "longitude": "76.33347222"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Padaria BO",
+    "pincode": "272173",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7527200",
+    "longitude": "83.0134020"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Maghar SO",
+    "pincode": "272173",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7527270",
+    "longitude": "83.1340700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Girdhar Pur BO",
+    "pincode": "272173",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7527210",
+    "longitude": "83.1340100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Rasula Bad BO",
+    "pincode": "272173",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7527260",
+    "longitude": "83.1340400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Asharfa Bad BO",
+    "pincode": "272173",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7527200",
+    "longitude": "83.1340000"
+  }
+]

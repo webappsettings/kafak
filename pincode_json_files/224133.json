@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Dabha Samer SO",
+    "pincode": "224133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7259270",
+    "longitude": "82.1618450"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Jyoti Sadan BO",
+    "pincode": "224133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7139470",
+    "longitude": "82.1383000"
+  }
+]

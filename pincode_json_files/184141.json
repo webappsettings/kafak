@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Said BO",
+    "pincode": "184141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.3362470",
+    "longitude": "74.1789720"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Sanoora BO",
+    "pincode": "184141",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.4466870",
+    "longitude": "75.1490010"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Surara BO",
+    "pincode": "184141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5091440",
+    "longitude": "75.2557560"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Raikoota BO",
+    "pincode": "184141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.9035820",
+    "longitude": "72.4768770"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Jatwal BO",
+    "pincode": "184141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5432520",
+    "longitude": "75.1559970"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Naran BO",
+    "pincode": "184141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.6983320",
+    "longitude": "75.0201980"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Ghagwal SO",
+    "pincode": "184141",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5122060",
+    "longitude": "75.2128940"
+  }
+]

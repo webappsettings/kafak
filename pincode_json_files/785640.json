@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Rongpurnagar S.O",
+    "pincode": "785640",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5716000",
+    "longitude": "94.3951000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Towkok B.O",
+    "pincode": "785640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Phukannagar S.O",
+    "pincode": "785640",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5832000",
+    "longitude": "94.3835000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Sivasagar H.O",
+    "pincode": "785640",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9886944",
+    "longitude": "94.6318889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Betbari B.O",
+    "pincode": "785640",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.9836944",
+    "longitude": "94.6500833"
+  }
+]

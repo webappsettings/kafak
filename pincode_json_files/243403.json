@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Iffco Township SO",
+    "pincode": "243403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2160000",
+    "longitude": "79.2466000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Malgoan BO",
+    "pincode": "243403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1578900",
+    "longitude": "79.2689770"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Nadasa BO",
+    "pincode": "384410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.518607",
+    "longitude": "72.221578"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Rantej BO",
+    "pincode": "384410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.480134",
+    "longitude": "72.164431"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Balol SO",
+    "pincode": "384410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.52221",
+    "longitude": "72.24944"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Maguna BO",
+    "pincode": "384410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.576504",
+    "longitude": "72.288562"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Deloli BO",
+    "pincode": "384410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.569591",
+    "longitude": "72.26146"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Palaj BO",
+    "pincode": "384410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Asjol BO",
+    "pincode": "384410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.515695",
+    "longitude": "72.18173"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Lonhtpur BO",
+    "pincode": "365540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "20.5870000",
+    "longitude": "71.2314000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Vadhera BO",
+    "pincode": "365540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "20.3538710",
+    "longitude": "71.0333000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Jafrabad SO Amreli",
+    "pincode": "365540",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.6019167",
+    "longitude": "71.2164444"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Babarkot BO",
+    "pincode": "365540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "20.8721310",
+    "longitude": "71.4076720"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Lunsapur BO",
+    "pincode": "365540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.5478000",
+    "longitude": "70.6584000"
+  }
+]

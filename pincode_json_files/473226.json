@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Ramnagar B.O",
+    "pincode": "473226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.3400000",
+    "longitude": "77.1800000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Raghogarh S.O",
+    "pincode": "473226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6652600",
+    "longitude": "77.3606860"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Kherai B.O",
+    "pincode": "473226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4000000",
+    "longitude": "77.2600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Awan B.O",
+    "pincode": "473226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4000000",
+    "longitude": "77.1400000"
+  }
+]

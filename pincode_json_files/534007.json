@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Bhogapuram B.O",
+    "pincode": "534007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7945000",
+    "longitude": "81.0199000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Kalaparru B.O",
+    "pincode": "534007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6708000",
+    "longitude": "81.0117000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Industrial Estate S.O (West Godavari)",
+    "pincode": "534007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4214",
+    "longitude": "81.04147"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "P&t Colony S.O (West Godavari)",
+    "pincode": "534007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6984000",
+    "longitude": "81.0168000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Sb Colony S.O",
+    "pincode": "534007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7144167",
+    "longitude": "81.0865000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Kokkiripadu B.O",
+    "pincode": "534007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6927000",
+    "longitude": "81.0158000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Gandhinagaram S.O (West Godavari)",
+    "pincode": "534007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.6927000",
+    "longitude": "81.0158000"
+  }
+]

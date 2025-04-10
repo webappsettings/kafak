@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Judawan B.O",
+    "pincode": "472005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6288000",
+    "longitude": "78.8115000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Khiriya Naka B.O",
+    "pincode": "472005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6288000",
+    "longitude": "78.8115000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Pahadi Tilwaran B.O",
+    "pincode": "472005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6288000",
+    "longitude": "78.8115000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Aston B.O",
+    "pincode": "472005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "78.8115000",
+    "longitude": "24.6288000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Kundeshwar S.O",
+    "pincode": "472005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9734000",
+    "longitude": "78.6568940"
+  }
+]

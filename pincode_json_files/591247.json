@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Kadapur B.O",
+    "pincode": "591247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.4991604",
+    "longitude": "74.6691669"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Chikodi Sugar Factory S.O",
+    "pincode": "591247",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.50597",
+    "longitude": "74.618844"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Hirekudi B.O",
+    "pincode": "591247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.4624257",
+    "longitude": "74.5914686"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Nagral B.O",
+    "pincode": "591247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.4704275",
+    "longitude": "74.8105278"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Basavanalgadde B.O",
+    "pincode": "591247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.45937",
+    "longitude": "74.611107000000004"
+  }
+]

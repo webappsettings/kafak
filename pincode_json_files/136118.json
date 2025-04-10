@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Kurukshetra H.O",
+    "pincode": "136118",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.973216999999998",
+    "longitude": "76.846972199999996"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Thanesar Town S.O",
+    "pincode": "136118",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9724720",
+    "longitude": "76.8552900"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Birla Mandir S.O",
+    "pincode": "136118",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9653611",
+    "longitude": "76.8261389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Mohan Nagar S.O (Kurukshetra)",
+    "pincode": "136118",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9723670",
+    "longitude": "76.8552610"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Judicial Complex Kurukshetra S.O",
+    "pincode": "136118",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9732170",
+    "longitude": "76.8303460"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Sector 3 U E KKR S.O",
+    "pincode": "136118",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9606630",
+    "longitude": "76.8908560"
+  }
+]

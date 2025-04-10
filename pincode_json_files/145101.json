@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Kaunterpur BO",
+    "pincode": "145101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.159999999999997",
+    "longitude": "75.609999999999999"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Mirthal SO",
+    "pincode": "145101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.12009",
+    "longitude": "75.59708"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Ghiala BO",
+    "pincode": "145101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.159999999999997",
+    "longitude": "75.650000000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Gurrah BO",
+    "pincode": "145101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.130000000000003",
+    "longitude": "75.640000000000001"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Nangal BO",
+    "pincode": "145101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.120089999999998",
+    "longitude": "75.597080000000005"
+  }
+]

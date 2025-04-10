@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Bharathinagar PMK BO",
+    "pincode": "623707",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5500000",
+    "longitude": "78.5900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Paramakudi ITI BO",
+    "pincode": "623707",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5400000",
+    "longitude": "78.6000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Paramakudi HO",
+    "pincode": "623707",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.548803",
+    "longitude": "78.588652"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Ramanathapuram Division",
+    "officename": "Paramakudi Bazaar SO",
+    "pincode": "623707",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAMANATHAPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5455255",
+    "longitude": "78.5936407"
+  }
+]

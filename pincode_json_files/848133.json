@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Warish Nagar SO",
+    "pincode": "848133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8629680",
+    "longitude": "85.7810260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Kashore BO",
+    "pincode": "848133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Sadipur BO",
+    "pincode": "848133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Gohi Bishanpur BO",
+    "pincode": "848133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Rahua BO",
+    "pincode": "848133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  }
+]

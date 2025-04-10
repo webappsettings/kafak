@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Asotapura B.O",
+    "pincode": "341306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6340100",
+    "longitude": "74.3464500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Ladnuncity S.O",
+    "pincode": "341306",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6494444",
+    "longitude": "74.3995833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Pahelipatti Ladnun S.O",
+    "pincode": "341306",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6457500",
+    "longitude": "74.3990833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Bakalia B.O",
+    "pincode": "341306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6500700",
+    "longitude": "74.3999930"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Dujar B.O",
+    "pincode": "341306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6038000",
+    "longitude": "74.4086000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Sunari B.O",
+    "pincode": "341306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6366000",
+    "longitude": "74.3338000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Ladnun Lsg S.O",
+    "pincode": "341306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6441667",
+    "longitude": "74.4063889"
+  }
+]

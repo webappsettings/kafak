@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Beruanbadi B.O",
+    "pincode": "752082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.0812537",
+    "longitude": "84.9236817"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Bahadajhola S.O",
+    "pincode": "752082",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1034000",
+    "longitude": "84.9083800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Gumi B.O",
+    "pincode": "752082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.0812537",
+    "longitude": "84.9236817"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Kaptapalli B.O",
+    "pincode": "752082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.0812537",
+    "longitude": "84.9236817"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Singarpalli B.O",
+    "pincode": "752082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.0812530",
+    "longitude": "84.9236000"
+  }
+]

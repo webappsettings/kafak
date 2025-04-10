@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Sasure B.O",
+    "pincode": "413402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0835600",
+    "longitude": "75.8502400"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Vairag S.O",
+    "pincode": "413402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.06033",
+    "longitude": "75.80417"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Dhamangaon B.O",
+    "pincode": "413402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0835600",
+    "longitude": "75.8502400"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Raleras B.O",
+    "pincode": "413402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0835600",
+    "longitude": "75.8502400"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Sarole B.O",
+    "pincode": "413402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0835600",
+    "longitude": "75.8502400"
+  }
+]

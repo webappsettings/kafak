@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Atiabaribagan BO",
+    "pincode": "735217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "28.1700000",
+    "longitude": "90.8500000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Kalchini SO",
+    "pincode": "735217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6930556",
+    "longitude": "89.4455000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Chuapara BO",
+    "pincode": "735217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7300000",
+    "longitude": "89.4100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Garopara BO",
+    "pincode": "735217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6500000",
+    "longitude": "89.4800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Nimti Domohani BO",
+    "pincode": "735217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6000000",
+    "longitude": "89.4400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "GANGUTIA TG",
+    "pincode": "735217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7100000",
+    "longitude": "86.8300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Rajabhat Tea Estate BO",
+    "pincode": "735217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6100000",
+    "longitude": "89.4500000"
+  }
+]

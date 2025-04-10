@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Bachali BO",
+    "pincode": "246131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9248990",
+    "longitude": "78.8269380"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Srikotkhal BO",
+    "pincode": "246131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9248990",
+    "longitude": "78.8269380"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Ekeshwar A SO",
+    "pincode": "246131",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9426667",
+    "longitude": "78.8166944"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Ira BO",
+    "pincode": "246131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9248990",
+    "longitude": "78.8269380"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Simar BO",
+    "pincode": "246131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9248990",
+    "longitude": "78.8269380"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Raisoli BO",
+    "pincode": "246131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9248990",
+    "longitude": "78.8269380"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Silandi B.O",
+    "pincode": "756144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1645350",
+    "longitude": "86.2881116"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Basantia S.O (Bhadrak)",
+    "pincode": "756144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.0662222",
+    "longitude": "86.5027222"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Apanda B.O",
+    "pincode": "756144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1429150",
+    "longitude": "86.2916316"
+  }
+]

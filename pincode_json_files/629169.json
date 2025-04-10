@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Kanjikuzhi B.O",
+    "pincode": "629169",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.2600000",
+    "longitude": "77.2600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kanniyakumari Division",
+    "officename": "Palliyadi S.O",
+    "pincode": "629169",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNIYAKUMARI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.2732778",
+    "longitude": "77.2492778"
+  }
+]

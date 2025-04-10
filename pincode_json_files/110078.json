@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "N.S.I.T. Dwarka S.O",
+    "pincode": "110078",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6102222",
+    "longitude": "77.0376667"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Kakrola B.O",
+    "pincode": "110078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.598434999999998",
+    "longitude": "77.022020999999995"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "GGSIP University S.O",
+    "pincode": "110078",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6330278",
+    "longitude": "77.1366389"
+  }
+]

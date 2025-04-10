@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Birpur SO Supaul",
+    "pincode": "854340",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.6290000",
+    "longitude": "86.3630000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Banailipatti BO",
+    "pincode": "854340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Basantpur BO",
+    "pincode": "854340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  }
+]

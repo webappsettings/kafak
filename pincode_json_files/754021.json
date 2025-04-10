@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "NIMPUR B.O",
+    "pincode": "754021",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4958770",
+    "longitude": "85.9148801"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "JAGATPUR S.O",
+    "pincode": "754021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4951913",
+    "longitude": "85.9219611"
+  }
+]

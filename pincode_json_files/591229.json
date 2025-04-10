@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Mattiwade B.O",
+    "pincode": "591229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5225575",
+    "longitude": "74.3026410"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Hanchinal K.S. B.O",
+    "pincode": "591229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5229632",
+    "longitude": "74.3635778"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Kognoli S.O",
+    "pincode": "591229",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.540044",
+    "longitude": "74.330341"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Chikodi Division",
+    "officename": "Sulgaon B.O",
+    "pincode": "591229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5436590",
+    "longitude": "74.2778316"
+  }
+]

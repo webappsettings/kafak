@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Sarsa BO",
+    "pincode": "271806",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4584390",
+    "longitude": "81.7157890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Satpediya BO",
+    "pincode": "271806",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4843610",
+    "longitude": "81.7595600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Lalpur BO",
+    "pincode": "271806",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5833060",
+    "longitude": "81.5999400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Belwa Padum BO",
+    "pincode": "271806",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4678420",
+    "longitude": "81.7759680"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Farda Sumerpur BO",
+    "pincode": "271806",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4254000",
+    "longitude": "81.7741500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Khutehna Chauraha SO",
+    "pincode": "271806",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4655720",
+    "longitude": "81.7376780"
+  }
+]

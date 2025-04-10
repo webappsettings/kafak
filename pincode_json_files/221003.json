@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Pisaur BO",
+    "pincode": "221003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3500000",
+    "longitude": "82.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Chamaon BO",
+    "pincode": "221003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3595140",
+    "longitude": "82.9515000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Christ Nagar BO",
+    "pincode": "221003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3500000",
+    "longitude": "82.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Sarsawan BO",
+    "pincode": "221003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3595140",
+    "longitude": "82.9515000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "VARANASI SHIVPUR SO",
+    "pincode": "221003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3405000",
+    "longitude": "82.9940000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Chandmari SO",
+    "pincode": "221003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3829630",
+    "longitude": "82.9719980"
+  }
+]

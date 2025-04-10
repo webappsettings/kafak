@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Phulbani H.O",
+    "pincode": "762001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.4758840",
+    "longitude": "84.2307160"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Madikunda S.O",
+    "pincode": "762001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.4600783",
+    "longitude": "84.2433966"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Masterpada S.O",
+    "pincode": "762001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.4859566",
+    "longitude": "84.2292583"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Phulbani Bazar S.O",
+    "pincode": "762001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.4734016",
+    "longitude": "84.2352716"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Ollenbatch Nagar S.O",
+    "pincode": "762001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.4806833",
+    "longitude": "84.2291216"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Penjisahi (TPO 1135) S.O",
+    "pincode": "762001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.4824366",
+    "longitude": "84.2404016"
+  }
+]

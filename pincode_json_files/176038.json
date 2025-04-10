@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Daulatpur SO Kangra",
+    "pincode": "176038",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.1072778",
+    "longitude": "76.5320556"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Kulthi BO",
+    "pincode": "176038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7863150",
+    "longitude": "76.0001620"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Dhamer BO",
+    "pincode": "176038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7845430",
+    "longitude": "76.0013690"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Jalari BO",
+    "pincode": "176038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7838470",
+    "longitude": "76.0001620"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehra Gopipur Division",
+    "officename": "Janyankar BO",
+    "pincode": "176038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGRA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7863150",
+    "longitude": "76.0001620"
+  }
+]

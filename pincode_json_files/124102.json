@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Madana Kalan BO",
+    "pincode": "124102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.7599660",
+    "longitude": "76.9317630"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Mehrana BO",
+    "pincode": "124102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.7599660",
+    "longitude": "76.9317630"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Seria BO",
+    "pincode": "124102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.7285280",
+    "longitude": "76.9317630"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Birdhana BO",
+    "pincode": "124102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.7599660",
+    "longitude": "76.9317630"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Dujana SO",
+    "pincode": "124102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6827222",
+    "longitude": "76.6320833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Chamanpura BO",
+    "pincode": "124102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.7599660",
+    "longitude": "76.9317630"
+  }
+]

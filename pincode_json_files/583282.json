@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Gundur Camp B.O",
+    "pincode": "583282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.5312568",
+    "longitude": "76.6028755"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Singanhal B.O",
+    "pincode": "583282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.5492920",
+    "longitude": "76.5697770"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Sriramnagar S.O (Koppal)",
+    "pincode": "583282",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.5001324",
+    "longitude": "76.6016953"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Bargoor B.O",
+    "pincode": "583282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.5051214",
+    "longitude": "76.6410809"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Gundur B.O",
+    "pincode": "583282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.5479723",
+    "longitude": "76.6004615"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Mushtoor B.O",
+    "pincode": "583282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4572386",
+    "longitude": "76.6376691"
+  }
+]

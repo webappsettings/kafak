@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Adambur B.O",
+    "pincode": "614629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9100000",
+    "longitude": "79.0600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Padirakudi B.O",
+    "pincode": "614629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8900000",
+    "longitude": "79.1000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Kalabam B.O",
+    "pincode": "614629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9300000",
+    "longitude": "79.0100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Thiruppunavasal B.O",
+    "pincode": "614629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8400000",
+    "longitude": "79.0800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Thiyathur B.O",
+    "pincode": "614629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8900000",
+    "longitude": "79.0900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Idaiyur B.O",
+    "pincode": "614629",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8800000",
+    "longitude": "79.0700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Ponbethi S.O",
+    "pincode": "614629",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9400000",
+    "longitude": "79.1000000"
+  }
+]

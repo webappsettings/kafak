@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Nibi Kalan BO",
+    "pincode": "211019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4289000",
+    "longitude": "81.9116810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Chhatnag BO",
+    "pincode": "211019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4289000",
+    "longitude": "81.9116810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Chhibaiya BO",
+    "pincode": "211019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4289000",
+    "longitude": "81.9116810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Jhunsi SO",
+    "pincode": "211019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.42902",
+    "longitude": "81.91397"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Malawan Khurd BO",
+    "pincode": "211019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4289000",
+    "longitude": "81.9116810"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Madhubagan BO",
+    "pincode": "735215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7100000",
+    "longitude": "89.3800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Hasimara SO",
+    "pincode": "735215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.7356389",
+    "longitude": "89.3657500"
+  }
+]

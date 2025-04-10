@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Akalur BO",
+    "pincode": "679302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.9449000",
+    "longitude": "76.0831000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Gandhi Seva  Sadan BO",
+    "pincode": "679302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.9449000",
+    "longitude": "76.0831000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "PerurOPM SO",
+    "pincode": "679302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.77092304",
+    "longitude": "76.47047412"
+  }
+]

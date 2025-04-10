@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Deogaon B.O",
+    "pincode": "305415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0400000",
+    "longitude": "75.2800000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Baghera S.O",
+    "pincode": "305415",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0203056",
+    "longitude": "75.3157500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Karonj B.O",
+    "pincode": "305415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0400000",
+    "longitude": "75.2800000"
+  }
+]

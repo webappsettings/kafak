@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Jalawas B.O",
+    "pincode": "301714",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.946473999999998",
+    "longitude": "76.463249000000005"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Sanoli B.O",
+    "pincode": "301714",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.947410999999999",
+    "longitude": "76.423045000000002"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Bahror Jat S.O",
+    "pincode": "301714",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.9515000",
+    "longitude": "76.4318889"
+  }
+]

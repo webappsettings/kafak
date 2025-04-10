@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Karoli BO",
+    "pincode": "387710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "75.5736000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Rampur BO",
+    "pincode": "387710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "87.2648000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Navagam BO",
+    "pincode": "387710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "83.6792000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Ramol SO",
+    "pincode": "387710",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.9664500",
+    "longitude": "72.6770480"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Demol BO",
+    "pincode": "387710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.8930000",
+    "longitude": "72.9752000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Mitral BO",
+    "pincode": "387710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "72.9752000"
+  }
+]

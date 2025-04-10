@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Narainpur Kalan BO",
+    "pincode": "230306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.6545600",
+    "longitude": "81.3546200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Suwansa SO",
+    "pincode": "230306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7024010",
+    "longitude": "82.1602270"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Naudera BO",
+    "pincode": "230306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.5400000",
+    "longitude": "81.2510000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Surwa Mishirpur BO",
+    "pincode": "230306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.5150000",
+    "longitude": "81.5410000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Kailidih BO",
+    "pincode": "230306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.6545600",
+    "longitude": "81.3546200"
+  }
+]

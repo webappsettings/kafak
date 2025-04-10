@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Jhundpur BO",
+    "pincode": "131023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.0500000",
+    "longitude": "76.9100000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Nangal Kalan BO",
+    "pincode": "131023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.6500000",
+    "longitude": "76.4300000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Aterna BO",
+    "pincode": "131023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.0500000",
+    "longitude": "76.9100000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Jakhauli SO",
+    "pincode": "131023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9342500",
+    "longitude": "77.1521389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Manauli BO",
+    "pincode": "131023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.0500000",
+    "longitude": "76.9100000"
+  }
+]

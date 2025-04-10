@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Chak Bilgan BO",
+    "pincode": "144504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.183499999999999",
+    "longitude": "75.912700000000001"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Katt BO",
+    "pincode": "144504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.272400000000001",
+    "longitude": "75.842699999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Chak Ramu BO",
+    "pincode": "144504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.1784",
+    "longitude": "75.891999999999996"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Behram SO",
+    "pincode": "144504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.21657084",
+    "longitude": "75.89003276"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Bharo Mazara",
+    "pincode": "144504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.1739",
+    "longitude": "75.881299999999996"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Langeri Jagirdaran BO",
+    "pincode": "144504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Shahid Bhagat Singh Nagar",
+    "statename": "PUNJAB",
+    "latitude": "31.272400000000001",
+    "longitude": "75.842699999999994"
+  }
+]

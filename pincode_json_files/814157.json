@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Malhara BO",
+    "pincode": "814157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.0786093",
+    "longitude": "86.906050100000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Jhillighat BO",
+    "pincode": "814157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.0786123",
+    "longitude": "86.906047099999995"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Kharagdiha BO",
+    "pincode": "814157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.493164400000001",
+    "longitude": "86.7843546"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Jamunia BO",
+    "pincode": "814157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.5423872",
+    "longitude": "86.946946499999996"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Mohanpur Hat B.O",
+    "pincode": "814157",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Chulhiya BO",
+    "pincode": "814157",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.493162399999999",
+    "longitude": "86.784356599999995"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Dehijore SO",
+    "pincode": "814157",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  }
+]

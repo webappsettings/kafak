@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Aranyam Kandriga B.O",
+    "pincode": "517581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Narayanavaram S.O",
+    "pincode": "517581",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.4238333",
+    "longitude": "79.5895278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Kemparapalem B.O",
+    "pincode": "517581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Palamangalam B.O",
+    "pincode": "517581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Thumbur B.O",
+    "pincode": "517581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Venkatakrishnapalem B.O",
+    "pincode": "517581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Bheemunicheruvu B.O",
+    "pincode": "517581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Chimbhale B.O",
+    "pincode": "414701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6200000",
+    "longitude": "74.6500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Nimgaon Khalu B.O",
+    "pincode": "414701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3700000",
+    "longitude": "74.4000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Kashti S.O",
+    "pincode": "414701",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5495278",
+    "longitude": "74.5819167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Ajnuj B.O",
+    "pincode": "414701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.5700000",
+    "longitude": "74.6000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Kauthe B.O",
+    "pincode": "414701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.3200000",
+    "longitude": "74.3500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Yelapane B.O",
+    "pincode": "414701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6500000",
+    "longitude": "74.6800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Hangewadi B.O",
+    "pincode": "414701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2700000",
+    "longitude": "74.3000000"
+  }
+]

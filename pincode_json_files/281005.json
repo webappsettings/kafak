@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Kosi Khurd BO",
+    "pincode": "281005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Barari BO",
+    "pincode": "281005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Bhainsa BO",
+    "pincode": "281005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Dhangaon BO",
+    "pincode": "281005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Sersa BO",
+    "pincode": "281005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4700000",
+    "longitude": "77.6900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Mathura Refinery SO",
+    "pincode": "281005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MATHURA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3797778",
+    "longitude": "77.6904167"
+  }
+]

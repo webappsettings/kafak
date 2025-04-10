@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Pedavanjivaka B.O",
+    "pincode": "524411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0652500",
+    "longitude": "80.0441500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Molaganur B.O",
+    "pincode": "524411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4426077",
+    "longitude": "79.9864470"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Siddavaram B.O",
+    "pincode": "524411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0652500",
+    "longitude": "80.0441500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Zarugumalli B.O",
+    "pincode": "524411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4426097",
+    "longitude": "79.9864450"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Kota(NL) S.O",
+    "pincode": "524411",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0433333",
+    "longitude": "80.0493611"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Kokkupadu B.O",
+    "pincode": "524411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0652500",
+    "longitude": "80.0441500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Kothapatnam B.O",
+    "pincode": "524411",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0652500",
+    "longitude": "80.0441500"
+  }
+]

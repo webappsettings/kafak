@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Mattancherry Jetty SO",
+    "pincode": "682002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.965638889",
+    "longitude": "76.26402778"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Mattancherry Town SO",
+    "pincode": "682002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.957055556",
+    "longitude": "76.25544444"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Ernakulam Division",
+    "officename": "Mattancherry SO",
+    "pincode": "682002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "9.95925",
+    "longitude": "76.25844444"
+  }
+]

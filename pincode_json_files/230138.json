@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Dhindhui BO",
+    "pincode": "230138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.4548000",
+    "longitude": "81.3654000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Manapur BO",
+    "pincode": "230138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.4548000",
+    "longitude": "81.3654000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Labeda BO",
+    "pincode": "230138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.4548000",
+    "longitude": "81.3654000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Lakhipur Kapsa BO",
+    "pincode": "230138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.4548000",
+    "longitude": "81.5454000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Saifabad SO",
+    "pincode": "230138",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0164740",
+    "longitude": "82.2699910"
+  }
+]

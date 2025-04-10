@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Bannanje SO",
+    "pincode": "576101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3481231",
+    "longitude": "74.742346999999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Kukkikatte BO",
+    "pincode": "576101",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3243915",
+    "longitude": "74.7675197"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Udupi Courts SO",
+    "pincode": "576101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.335083300000001",
+    "longitude": "74.748833300000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Udupi HO",
+    "pincode": "576101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3405",
+    "longitude": "74.748833300000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Chitpadi BO",
+    "pincode": "576101",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3290157",
+    "longitude": "74.7622733"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Udupi Division",
+    "officename": "Mission Compound SO KARNATAKA CIRCLE",
+    "pincode": "576101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.3304750",
+    "longitude": "74.7483020"
+  }
+]

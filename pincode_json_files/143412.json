@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Alipur BO",
+    "pincode": "143412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.2100000",
+    "longitude": "74.9300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Jaunke BO",
+    "pincode": "143412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.1900000",
+    "longitude": "74.9600000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Pringri BO",
+    "pincode": "143412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.2300000",
+    "longitude": "74.8900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Kirtowal BO",
+    "pincode": "143412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.2100000",
+    "longitude": "74.8900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Harike SO",
+    "pincode": "143412",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.1700000",
+    "longitude": "74.9400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Ratta Gudda BO",
+    "pincode": "143412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.2300000",
+    "longitude": "74.9200000"
+  }
+]

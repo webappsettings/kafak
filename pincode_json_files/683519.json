@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Kottuvally BO",
+    "pincode": "683519",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.1193299",
+    "longitude": "76.246511900000002"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Alwaye Division",
+    "officename": "Kaitharam SO",
+    "pincode": "683519",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ERNAKULAM",
+    "statename": "KERALA",
+    "latitude": "10.116741",
+    "longitude": "76.242074"
+  }
+]

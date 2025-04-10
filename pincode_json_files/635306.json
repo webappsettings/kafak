@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Anderipatti B.O",
+    "pincode": "635306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2389965",
+    "longitude": "78.5150704"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Kunnathur B.O",
+    "pincode": "635306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3500090",
+    "longitude": "78.5166580"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Badapalli B.O",
+    "pincode": "635306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2427609",
+    "longitude": "78.4883791"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Samalpatti R.S S.O",
+    "pincode": "635306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3125556",
+    "longitude": "78.4828611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Kodamandapatti B.O",
+    "pincode": "635306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3391200",
+    "longitude": "78.4721500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Ettipatti B.O",
+    "pincode": "635306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2036380",
+    "longitude": "78.6217675"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Valipatti B.O",
+    "pincode": "635306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3391200",
+    "longitude": "78.4721500"
+  }
+]

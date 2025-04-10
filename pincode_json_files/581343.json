@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Kumta H.O",
+    "pincode": "581343",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.428964000000001",
+    "longitude": "74.415543999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Alvekodi(KMT) B.O",
+    "pincode": "581343",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4130759",
+    "longitude": "74.4032287"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Honmav B.O",
+    "pincode": "581343",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4173031",
+    "longitude": "74.4112860"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Kumta Kutchery S.O",
+    "pincode": "581343",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.4202857",
+    "longitude": "74.4139146"
+  }
+]

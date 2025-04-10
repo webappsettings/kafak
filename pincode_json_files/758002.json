@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Bodapalasa B.O",
+    "pincode": "758002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6743734",
+    "longitude": "85.6310533"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Ghutur B.O",
+    "pincode": "758002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6499839",
+    "longitude": "85.6351095"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Nelung B.O",
+    "pincode": "758002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6624696",
+    "longitude": "85.6597897"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Ranki B.O",
+    "pincode": "758002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6217368",
+    "longitude": "85.5806067"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhar Bazar S.O",
+    "pincode": "758002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6216667",
+    "longitude": "84.5805556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhar Atopur S.O",
+    "pincode": "758002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6333330",
+    "longitude": "85.5833330"
+  }
+]

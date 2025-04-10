@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Vasant Vihar1 SO",
+    "pincode": "110057",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5680000",
+    "longitude": "77.1594167"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Vasant Vihar2 SO",
+    "pincode": "110057",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5578889",
+    "longitude": "77.1557500"
+  }
+]

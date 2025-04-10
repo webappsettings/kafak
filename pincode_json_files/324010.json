@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Borabas B.O",
+    "pincode": "324010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.0200000",
+    "longitude": "75.6900000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Engineering College Kota S.O",
+    "pincode": "324010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1430833",
+    "longitude": "75.8048889"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Chand Baori",
+    "pincode": "324010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.941381",
+    "longitude": "75.731014000000002"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Jaspura",
+    "pincode": "324010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.902867000000001",
+    "longitude": "75.797526000000005"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Dolya B.O",
+    "pincode": "324010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9500000",
+    "longitude": "75.7900000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Bairpan BO",
+    "pincode": "231225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.2048770",
+    "longitude": "82.7832490"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Dibulgani BO",
+    "pincode": "231225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.2104750",
+    "longitude": "82.8048060"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Kandhaura BO",
+    "pincode": "231225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7453400",
+    "longitude": "82.9910310"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Radhore BO",
+    "pincode": "231225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.9578290",
+    "longitude": "82.8981640"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Belwadah B.O",
+    "pincode": "231225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.207523999999999",
+    "longitude": "82.900621000000001"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Anpara Tps SO",
+    "pincode": "231225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.2692340",
+    "longitude": "82.9035420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Bairpur B.O",
+    "pincode": "231225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.357043000000001",
+    "longitude": "82.824588000000006"
+  }
+]

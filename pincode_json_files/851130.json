@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Chhatauna BO",
+    "pincode": "851130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.5215584",
+    "longitude": "86.1828047"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Hasanpur BO",
+    "pincode": "851130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.6601343",
+    "longitude": "86.1944282"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Katarmala BO",
+    "pincode": "851130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Sisauni Kothi BO",
+    "pincode": "851130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Rajakpur BO",
+    "pincode": "851130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Naokothi SO",
+    "pincode": "851130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Mohammadpur Kutcharia BO",
+    "pincode": "229405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6100000",
+    "longitude": "79.4800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Bhadokhar BO",
+    "pincode": "229405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1500000",
+    "longitude": "81.2800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Bhuemau BO",
+    "pincode": "229405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7800000",
+    "longitude": "79.0200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Khagipur Sandwa BO",
+    "pincode": "229405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6100000",
+    "longitude": "79.4800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Munshiganj SO Raebareli",
+    "pincode": "229405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2349460",
+    "longitude": "81.2410080"
+  }
+]

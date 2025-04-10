@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "SSIT Campus B.O",
+    "pincode": "572105",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2584696",
+    "longitude": "76.4788977"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Melekote B.O",
+    "pincode": "572105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2584696",
+    "longitude": "76.4788977"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Maralur S.O",
+    "pincode": "572105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3168611",
+    "longitude": "77.1086389"
+  }
+]

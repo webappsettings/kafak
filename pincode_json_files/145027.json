@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Khojeke Chak BO",
+    "pincode": "145027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.322490000000002",
+    "longitude": "75.769019999999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Bamial SO",
+    "pincode": "145027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.286",
+    "longitude": "75.375"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Janial BO",
+    "pincode": "145027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.32",
+    "longitude": "75.409999999999997"
+  }
+]

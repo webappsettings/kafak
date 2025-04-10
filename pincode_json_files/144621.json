@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Awan Bikeshah BO",
+    "pincode": "144621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.6127900",
+    "longitude": "75.5275100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Bariar BO",
+    "pincode": "144621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.6127900",
+    "longitude": "75.5275100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Begowal SO",
+    "pincode": "144621",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.6127900",
+    "longitude": "75.5275100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Akbarpur BO",
+    "pincode": "144621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.5423317",
+    "longitude": "75.5058241"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Jaid BO",
+    "pincode": "144621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.5423277",
+    "longitude": "75.5058281"
+  }
+]

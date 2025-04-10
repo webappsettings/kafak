@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Bhuvaneswaripet B.O",
+    "pincode": "632602",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9453570",
+    "longitude": "78.8624460"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Gudiyattam H.O",
+    "pincode": "632602",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9502170",
+    "longitude": "78.8803950"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Gudiyattam South S.O",
+    "pincode": "632602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9393590",
+    "longitude": "78.8595270"
+  }
+]

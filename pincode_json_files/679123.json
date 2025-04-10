@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "K A Samajam BO",
+    "pincode": "679123",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7709000",
+    "longitude": "76.3784000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Ottapalam Division",
+    "officename": "Ganeshgiri SO",
+    "pincode": "679123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7595149",
+    "longitude": "76.26216"
+  }
+]

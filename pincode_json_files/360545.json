@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Boricha BO",
+    "pincode": "360545",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7425950",
+    "longitude": "69.6720970"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Adityana SO",
+    "pincode": "360545",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7550500",
+    "longitude": "69.6949500"
+  }
+]

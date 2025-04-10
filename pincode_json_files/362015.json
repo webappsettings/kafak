@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Timbavadi SO",
+    "pincode": "362015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.503042",
+    "longitude": "70.433184"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Plasva BO",
+    "pincode": "362015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4698136",
+    "longitude": "70.4608456"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Vijapur BO",
+    "pincode": "362015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4514754",
+    "longitude": "70.4649920"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Ivnagar BO",
+    "pincode": "362015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4772384",
+    "longitude": "70.4346407"
+  }
+]

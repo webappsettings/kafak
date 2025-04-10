@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Fortward S.O",
+    "pincode": "530001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6935810",
+    "longitude": "83.2920120"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Visakhapatnam H.O",
+    "pincode": "530001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.70402479",
+    "longitude": "83.29639357"
+  }
+]

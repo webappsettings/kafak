@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "K.M.College S.O",
+    "pincode": "506007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.001249",
+    "longitude": "79.589335"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Agricultur Research Station B.O",
+    "pincode": "506007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.014525",
+    "longitude": "79.603017"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Industrial Estate B.O",
+    "pincode": "506007",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.000321",
+    "longitude": "79.586918"
+  }
+]

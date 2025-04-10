@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Chapra Dharampur Jaddu BO",
+    "pincode": "843108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "25.779565000000002",
+    "longitude": "84.749888999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Dadar kolhua BO",
+    "pincode": "843108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.162196000000002",
+    "longitude": "85.370461000000006"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Sirsia Buzurg BO",
+    "pincode": "843108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.276509999999998",
+    "longitude": "84.217404999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "PKolhua SO",
+    "pincode": "843108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.5425260",
+    "longitude": "84.4628530"
+  }
+]

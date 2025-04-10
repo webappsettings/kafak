@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Kelahi BO",
+    "pincode": "815354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMTARA",
+    "statename": "JHARKHAND",
+    "latitude": "23.943877000000001",
+    "longitude": "86.832543999999999"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Kewatjali BO",
+    "pincode": "815354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMTARA",
+    "statename": "JHARKHAND",
+    "latitude": "23.94388",
+    "longitude": "86.832541000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Tarrah BO",
+    "pincode": "815354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMTARA",
+    "statename": "JHARKHAND",
+    "latitude": "23.87293",
+    "longitude": "86.87791"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Chandra Dhipa BO",
+    "pincode": "815354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMTARA",
+    "statename": "JHARKHAND",
+    "latitude": "23.87293",
+    "longitude": "86.87791"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Mihijam SO",
+    "pincode": "815354",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMTARA",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Sahardal BO",
+    "pincode": "815354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMTARA",
+    "statename": "JHARKHAND",
+    "latitude": "23.87293",
+    "longitude": "86.87791"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Mora B.O",
+    "pincode": "400704",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9100000",
+    "longitude": "72.9200000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "N.S.Karanja S.O",
+    "pincode": "400704",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8999722",
+    "longitude": "72.9135833"
+  }
+]

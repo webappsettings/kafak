@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Rajgarh BO",
+    "pincode": "123412",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Tankri BO",
+    "pincode": "123412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Dharan SO",
+    "pincode": "123412",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "28.2017222",
+    "longitude": "76.5955833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Badhrana BO",
+    "pincode": "123412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Diguria BO",
+    "pincode": "226013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9307100",
+    "longitude": "80.9293950"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Ghaila BO",
+    "pincode": "226013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8447000",
+    "longitude": "80.9456260"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "IIM Lucknow SO",
+    "pincode": "226013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9371260",
+    "longitude": "80.9047600"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Punali S.O",
+    "pincode": "314028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8387778",
+    "longitude": "73.9136944"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Kolkhanda B.O",
+    "pincode": "314028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8139860",
+    "longitude": "73.9416560"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Mando Ki Pal B.O",
+    "pincode": "314028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.4179180",
+    "longitude": "73.8799670"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Mandav B.O",
+    "pincode": "314028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7702070",
+    "longitude": "73.9183460"
+  }
+]

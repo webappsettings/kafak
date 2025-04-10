@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Mawadhar SO",
+    "pincode": "246163",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1350000",
+    "longitude": "78.7663889"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Raurkhal BO",
+    "pincode": "246163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9855990",
+    "longitude": "78.7362850"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Siron BO",
+    "pincode": "246163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9855990",
+    "longitude": "78.7362850"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Tharapdhar BO",
+    "pincode": "246163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9855990",
+    "longitude": "78.7362850"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Soola BO",
+    "pincode": "246163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9855990",
+    "longitude": "78.7362850"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Jhatkandi BO",
+    "pincode": "246163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9855990",
+    "longitude": "78.7362850"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Kingorikhal BO",
+    "pincode": "246163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9855990",
+    "longitude": "78.7362850"
+  }
+]

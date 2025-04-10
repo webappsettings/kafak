@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Kasaragod HO",
+    "pincode": "671121",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.5105520",
+    "longitude": "74.9856880"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Adkathbail BO",
+    "pincode": "671121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.5164133",
+    "longitude": "74.9783130"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Kasaragod R S SO",
+    "pincode": "671121",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.5023248",
+    "longitude": "74.9911581"
+  }
+]

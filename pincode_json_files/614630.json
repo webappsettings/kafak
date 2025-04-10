@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Bramanavayal B.O",
+    "pincode": "614630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1300000",
+    "longitude": "79.1300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Karaikottai B.O",
+    "pincode": "614630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0600000",
+    "longitude": "79.2800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Singavanam B.O",
+    "pincode": "614630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1000000",
+    "longitude": "79.1800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Krishnajipattinam B.O",
+    "pincode": "614630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1000000",
+    "longitude": "79.2200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Vettanur B.O",
+    "pincode": "614630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1000000",
+    "longitude": "79.1300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Kattumavadi B.O",
+    "pincode": "614630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1400000",
+    "longitude": "79.2300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Attani S.O",
+    "pincode": "614630",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1400000",
+    "longitude": "79.1900000"
+  }
+]

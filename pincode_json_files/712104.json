@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Sahaganj SO",
+    "pincode": "712104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9336111",
+    "longitude": "88.4033333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Keotalatbagan SO",
+    "pincode": "712104",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5963888",
+    "longitude": "88.2638888"
+  }
+]

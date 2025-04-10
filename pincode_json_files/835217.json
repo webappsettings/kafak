@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Kedal B.O",
+    "pincode": "835217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3699",
+    "longitude": "85.325279"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Neori Vikas Vidyalaya SO",
+    "pincode": "835217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4265570",
+    "longitude": "85.4121240"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Irba BO",
+    "pincode": "835217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4575090",
+    "longitude": "85.4440970"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Chandwe BO",
+    "pincode": "835217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4474920",
+    "longitude": "85.3575480"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Hundur BO",
+    "pincode": "835217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4726200",
+    "longitude": "85.4040190"
+  }
+]

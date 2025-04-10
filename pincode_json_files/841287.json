@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Kashila BO",
+    "pincode": "841287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.0851100",
+    "longitude": "84.2140000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Pihuli BO",
+    "pincode": "841287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.0851100",
+    "longitude": "84.2140000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Asaon SO",
+    "pincode": "841287",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.0851100",
+    "longitude": "84.2140000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Kandhpakar BO",
+    "pincode": "841287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.0851100",
+    "longitude": "84.2140000"
+  }
+]

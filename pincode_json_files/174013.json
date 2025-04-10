@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Nanawan BO",
+    "pincode": "174013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5656000",
+    "longitude": "76.4725000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Barmana SO",
+    "pincode": "174013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4152000",
+    "longitude": "76.8276000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Salnoo BO",
+    "pincode": "174013",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4176000",
+    "longitude": "76.8054000"
+  }
+]

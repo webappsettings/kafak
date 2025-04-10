@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Chandigarh Sector 59 SO",
+    "pincode": "160059",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "73.5302500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Chandigarh Sector 60 SO",
+    "pincode": "160059",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.7345500",
+    "longitude": "76.7861500"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Kendriya Vihar SO",
+    "pincode": "700052",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6295000",
+    "longitude": "88.4306944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Kolkata Airport  Po SO",
+    "pincode": "700052",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6338889",
+    "longitude": "88.4230556"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata North Division",
+    "officename": "Kolkata Airport SO",
+    "pincode": "700052",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6464722",
+    "longitude": "88.4399722"
+  }
+]

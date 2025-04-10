@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Bambooflat S.O",
+    "pincode": "744107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "11.7",
+    "longitude": "92.72"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Stewertgunj B.O",
+    "pincode": "744107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

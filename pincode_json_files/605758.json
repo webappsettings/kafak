@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Adichanur B.O",
+    "pincode": "605758",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0500000",
+    "longitude": "79.2200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Vasanthakrishnapuram B.O",
+    "pincode": "605758",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0600000",
+    "longitude": "79.2200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Virapandi S.O",
+    "pincode": "605758",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9680833",
+    "longitude": "79.2023611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Oddampattu B.O",
+    "pincode": "605758",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0500000",
+    "longitude": "79.2400000"
+  }
+]

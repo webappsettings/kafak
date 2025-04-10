@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Krishnanagar BO",
+    "pincode": "743345",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4530000",
+    "longitude": "88.3400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Kashipur BO",
+    "pincode": "743345",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8080000",
+    "longitude": "88.7030000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Baruipur Division",
+    "officename": "Bijoyganj Bazar SO",
+    "pincode": "743345",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS SOUTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.1076194",
+    "longitude": "89.5048333"
+  }
+]

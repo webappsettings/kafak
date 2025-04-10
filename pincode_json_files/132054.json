@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Biana B.O",
+    "pincode": "132054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Garhi Birbal S.O",
+    "pincode": "132054",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.9111944",
+    "longitude": "77.1550278"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Kalsora B.O",
+    "pincode": "132054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Kalri Jagir B.O",
+    "pincode": "132054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Chogawan B.O",
+    "pincode": "132054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dabkoli Kalan B.O",
+    "pincode": "132054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Nangal B.O",
+    "pincode": "132054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  }
+]

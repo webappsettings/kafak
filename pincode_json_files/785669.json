@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Mohkhuti B.O",
+    "pincode": "785669",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1520780",
+    "longitude": "94.2143330"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Deorihabi Chakalia B.O",
+    "pincode": "785669",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1520780",
+    "longitude": "94.2143330"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Moran S.O",
+    "pincode": "785669",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520780",
+    "longitude": "94.2143330"
+  }
+]

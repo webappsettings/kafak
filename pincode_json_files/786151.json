@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Dighal Tarrang B.O",
+    "pincode": "786151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3300000",
+    "longitude": "95.3300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Dohotiagaon B.O",
+    "pincode": "786151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3300000",
+    "longitude": "95.3300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Kakojan B.O",
+    "pincode": "786151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3300000",
+    "longitude": "95.3300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Bordubi Te B.O",
+    "pincode": "786151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3300000",
+    "longitude": "95.3300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Doom Dooma S.O",
+    "pincode": "786151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.566417",
+    "longitude": "95.555165"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Koomsang B.O",
+    "pincode": "786151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3300000",
+    "longitude": "95.3300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Rupbon B.O",
+    "pincode": "786151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3300000",
+    "longitude": "95.3300000"
+  }
+]

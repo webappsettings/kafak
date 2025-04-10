@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kovilpatti Town S.O",
+    "pincode": "628501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1717000",
+    "longitude": "77.5569000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kovilpatti H.O",
+    "pincode": "628501",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1606000",
+    "longitude": "77.8440000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Ravi Shankar University SO",
+    "pincode": "492010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1440700",
+    "longitude": "81.3542800"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Science College SO",
+    "pincode": "492010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2454600",
+    "longitude": "81.6027000"
+  }
+]

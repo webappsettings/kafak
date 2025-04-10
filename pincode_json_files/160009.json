@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sector 8Chandgarh SO",
+    "pincode": "160009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7406944",
+    "longitude": "76.7972500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sector 9 Chandigarh SO",
+    "pincode": "160009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDIGARH",
+    "statename": "CHANDIGARH",
+    "latitude": "30.7479167",
+    "longitude": "76.7928333"
+  }
+]

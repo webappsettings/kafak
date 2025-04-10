@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Barwa B.O",
+    "pincode": "306706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1250649",
+    "longitude": "73.2961843"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Mirgesar B.O",
+    "pincode": "306706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1959080",
+    "longitude": "73.2910690"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Sesli B.O",
+    "pincode": "306706",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.0410500",
+    "longitude": "73.3740500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Lunawa S.O",
+    "pincode": "306706",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1330556",
+    "longitude": "73.3190278"
+  }
+]

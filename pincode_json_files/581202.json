@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Narayanapur B.O",
+    "pincode": "581202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9320283",
+    "longitude": "75.2385547"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Naganur B.O",
+    "pincode": "581202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8415101",
+    "longitude": "75.3147880"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Tevaramellihalli B.O",
+    "pincode": "581202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8753800",
+    "longitude": "75.3029277"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Kundur B.O",
+    "pincode": "581202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8941236",
+    "longitude": "75.2560104"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Kunimellihalli B.O",
+    "pincode": "581202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8650804",
+    "longitude": "75.3249004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Halebankapur B.O",
+    "pincode": "581202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9114289",
+    "longitude": "75.2291134"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Bankapur S.O",
+    "pincode": "581202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9288193",
+    "longitude": "75.2623459"
+  }
+]

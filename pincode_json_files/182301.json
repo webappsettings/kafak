@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Nomain BO",
+    "pincode": "182301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Vaishno Devi BO",
+    "pincode": "182301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Dera Baba Banda BO",
+    "pincode": "182301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Katra SO Udhampur",
+    "pincode": "182301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.1105000",
+    "longitude": "74.4908000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Adhkawari BO",
+    "pincode": "182301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Aghar Baba Jitto BO",
+    "pincode": "182301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Mangal BO",
+    "pincode": "182301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

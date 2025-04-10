@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kollam HO",
+    "pincode": "691001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8900000",
+    "longitude": "76.5900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kollam Cantonment SO",
+    "pincode": "691001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8800000",
+    "longitude": "76.6000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kollam Bazar SO",
+    "pincode": "691001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.8800000",
+    "longitude": "76.5800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Quilon Division",
+    "officename": "Kollam Taluk Cutchery SO",
+    "pincode": "691001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLLAM",
+    "statename": "KERALA",
+    "latitude": "8.5325130",
+    "longitude": "76.3454740"
+  }
+]

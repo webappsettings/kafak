@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Konwaripukhuri B.O",
+    "pincode": "785008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7249444",
+    "longitude": "94.2292500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Cinnamara S.O",
+    "pincode": "785008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7249444",
+    "longitude": "94.2292500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Koronga B.O",
+    "pincode": "785008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7249444",
+    "longitude": "94.2292500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Lichubari B.O",
+    "pincode": "785008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7249444",
+    "longitude": "94.2292500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Gojpuria B.O",
+    "pincode": "785008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7249444",
+    "longitude": "94.2292500"
+  }
+]

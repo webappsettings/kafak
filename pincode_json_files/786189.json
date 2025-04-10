@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Baghbari Gaon B.O",
+    "pincode": "786189",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3900000",
+    "longitude": "95.6200000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Dinjan S.O",
+    "pincode": "786189",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TINSUKIA",
+    "statename": "ASSAM",
+    "latitude": "27.3320000",
+    "longitude": "95.1421000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Tinsukia Division",
+    "officename": "Bindhakata B.O",
+    "pincode": "786189",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3900000",
+    "longitude": "95.6200000"
+  }
+]

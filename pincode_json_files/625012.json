@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Avaniapuram SO",
+    "pincode": "625012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.882758",
+    "longitude": "78.111534"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Villapuram SO",
+    "pincode": "625012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9010000",
+    "longitude": "78.1232778"
+  }
+]

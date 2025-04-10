@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "A.Konduru S.O",
+    "pincode": "521226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.0478",
+    "longitude": "80.0982"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Repudi B.O",
+    "pincode": "521226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9572880",
+    "longitude": "80.6962110"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Ramachandrapuram B.O",
+    "pincode": "521226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8734230",
+    "longitude": "80.6384140"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Cheemalapadu B.O",
+    "pincode": "521226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8950470",
+    "longitude": "80.6426520"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Krishnaraopalem",
+    "pincode": "521226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

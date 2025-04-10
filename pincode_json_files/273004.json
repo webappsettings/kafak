@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Ashok Nagar SO Gorakhpur",
+    "pincode": "273004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "39.72563",
+    "longitude": "72.006893"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Basharatpur SO",
+    "pincode": "273004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7875000",
+    "longitude": "83.3800000"
+  }
+]

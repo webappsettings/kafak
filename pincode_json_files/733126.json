@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Hili Aftair BO",
+    "pincode": "733126",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2200000",
+    "longitude": "88.7700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Fatepur BO",
+    "pincode": "733126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2200000",
+    "longitude": "88.7700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Trimohini BO",
+    "pincode": "733126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2200000",
+    "longitude": "88.7700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Hili SO",
+    "pincode": "733126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.278280",
+    "longitude": "88.991780"
+  }
+]

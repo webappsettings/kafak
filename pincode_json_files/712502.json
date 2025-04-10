@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Bansberia Bazar SO",
+    "pincode": "712502",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3121000",
+    "longitude": "88.2150000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Bansberia SO",
+    "pincode": "712502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9557222",
+    "longitude": "88.3999167"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Chawk Bansberia BO",
+    "pincode": "712502",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.0000000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Shibpur Bansberia SO",
+    "pincode": "712502",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9606150",
+    "longitude": "88.4061330"
+  }
+]

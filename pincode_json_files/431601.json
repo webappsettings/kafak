@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Nanded Town S.O",
+    "pincode": "431601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.150134",
+    "longitude": "77.315558"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Nanded H.O",
+    "pincode": "431601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.156194",
+    "longitude": "77.310966"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Sachkhand Nanded S.O",
+    "pincode": "431601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.150134",
+    "longitude": "77.315558"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Millgate Nanded S.O",
+    "pincode": "431601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.158019",
+    "longitude": "77.304819"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Khorachukgaon B.O",
+    "pincode": "787034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4300000",
+    "longitude": "94.3100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Na Nadi Bhebeli Kahcari Gaon B.O",
+    "pincode": "787034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4300000",
+    "longitude": "94.3100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Lotakigaon B.O",
+    "pincode": "787034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4300000",
+    "longitude": "94.3100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Gogamukh S.O",
+    "pincode": "787034",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.2540000",
+    "longitude": "94.1902000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kaupatani B.O",
+    "pincode": "787034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4300000",
+    "longitude": "94.3100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kadamguri B.O",
+    "pincode": "787034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4300000",
+    "longitude": "94.3100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Moinapara B.O",
+    "pincode": "787034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4300000",
+    "longitude": "94.3100000"
+  }
+]

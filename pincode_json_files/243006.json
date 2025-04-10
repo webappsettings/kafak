@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Mahanagar SO",
+    "pincode": "243006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3891304",
+    "longitude": "79.4606526"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "RKUniversity SO",
+    "pincode": "243006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3551285",
+    "longitude": "79.4260671"
+  }
+]

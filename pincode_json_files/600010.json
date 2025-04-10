@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Kilpauk Medical College S.O",
+    "pincode": "600010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0775387",
+    "longitude": "80.2429125"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City North Division",
+    "officename": "Kilpauk S.O",
+    "pincode": "600010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0796658",
+    "longitude": "80.2370732"
+  }
+]

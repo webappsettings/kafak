@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chhotomanda B.O",
+    "pincode": "788126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.6912000",
+    "longitude": "92.8321000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Singerbond B.O",
+    "pincode": "788126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.1451000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Swastipally B.O",
+    "pincode": "788126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.6900000",
+    "longitude": "92.4514000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Binnakandi B.O",
+    "pincode": "788126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.6925000",
+    "longitude": "92.1451000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chengjui Grant B.O",
+    "pincode": "788126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.6612000",
+    "longitude": "92.1452000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Nutan Ramnagar B.O",
+    "pincode": "788126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8700000",
+    "longitude": "92.4512000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Binnakandi Ghat S.O",
+    "pincode": "788126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8236370",
+    "longitude": "92.8018270"
+  }
+]

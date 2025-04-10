@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Kesavapuram B.O",
+    "pincode": "515774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.7900000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Koppalakonda B.O",
+    "pincode": "515774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0600000",
+    "longitude": "77.5900000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Muntimadugu B.O",
+    "pincode": "515774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.7900000",
+    "longitude": "77.2800000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Kallur R.S. S.O",
+    "pincode": "515774",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.9214167",
+    "longitude": "77.5838333"
+  }
+]

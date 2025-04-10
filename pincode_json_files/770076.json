@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Tikilipara B.O",
+    "pincode": "770076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.0649016",
+    "longitude": "83.7452450"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "SUMURA B.O",
+    "pincode": "770076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.106928",
+    "longitude": "83.682404000000005"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Basundhara S.O",
+    "pincode": "770076",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.0603733",
+    "longitude": "83.7365600"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Duduka B.O",
+    "pincode": "770076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.0258566",
+    "longitude": "83.8070716"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Balinga B.O",
+    "pincode": "770076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.0310266",
+    "longitude": "83.7604950"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Barpali B.O",
+    "pincode": "770076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.0310716",
+    "longitude": "83.7754050"
+  }
+]

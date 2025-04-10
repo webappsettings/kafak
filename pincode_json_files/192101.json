@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Khanabal SO",
+    "pincode": "192101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7399722",
+    "longitude": "75.1323611"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Anantnag HO",
+    "pincode": "192101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7308611",
+    "longitude": "75.1501944"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Janglat Mandi SO",
+    "pincode": "192101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0677500",
+    "longitude": "74.8165556"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Sarnal SO",
+    "pincode": "192101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7397500",
+    "longitude": "75.1664444"
+  }
+]

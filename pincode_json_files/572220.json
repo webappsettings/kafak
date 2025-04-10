@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "K.Mathighatta B.O",
+    "pincode": "572220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2355454",
+    "longitude": "76.8175982"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Doddagoraghatta B.O",
+    "pincode": "572220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2395458",
+    "longitude": "76.8585695"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "K.Kallahalli B.O",
+    "pincode": "572220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2395973",
+    "longitude": "76.8625885"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Ajjenahalli B.O",
+    "pincode": "572220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2455282",
+    "longitude": "76.8609315"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Bittagondanahalli B.O",
+    "pincode": "572220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2395478",
+    "longitude": "76.8609384"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Kallur S.O (Tumakuru)",
+    "pincode": "572220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3168611",
+    "longitude": "77.1086389"
+  }
+]

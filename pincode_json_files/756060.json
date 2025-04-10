@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Bahala B.O",
+    "pincode": "756060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.4525716",
+    "longitude": "86.8095566"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Sergarh S.O",
+    "pincode": "756060",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "20.5016667",
+    "longitude": "86.9233333"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Barun Singh B.O",
+    "pincode": "756060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.4187066",
+    "longitude": "86.8538916"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Khan Nagar B.O",
+    "pincode": "756060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.4187066",
+    "longitude": "86.8538916"
+  }
+]

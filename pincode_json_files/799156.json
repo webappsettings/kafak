@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Samarendraganj B.O",
+    "pincode": "799156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "South Krishnagar B.O",
+    "pincode": "799156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Hrishyamukh S.O",
+    "pincode": "799156",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "23.5408333",
+    "longitude": "91.4917500"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Madhabnagar B.O",
+    "pincode": "799156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Nalua B.O",
+    "pincode": "799156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

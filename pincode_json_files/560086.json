@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "Mahalakshmipuram Layout S.O",
+    "pincode": "560086",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.010635000000001",
+    "longitude": "77.546496000000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru West Division",
+    "officename": "West of Chord Road II stage S.O",
+    "pincode": "560086",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.002878000000001",
+    "longitude": "77.546368999999999"
+  }
+]

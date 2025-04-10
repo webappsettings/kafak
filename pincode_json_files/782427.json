@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Kathiatoli S.O",
+    "pincode": "782427",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.1835000",
+    "longitude": "92.7362000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Jumurmur B.O",
+    "pincode": "782427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.1835000",
+    "longitude": "92.7362000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Rengbeng B.O",
+    "pincode": "782427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.1835000",
+    "longitude": "92.7362000"
+  }
+]

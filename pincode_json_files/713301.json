@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Asansol HO",
+    "pincode": "713301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6866667",
+    "longitude": "86.9735278"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "Hutton Road SO",
+    "pincode": "713301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "24.0944444",
+    "longitude": "89.4411111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Asansol Division",
+    "officename": "SBGorai Road SO",
+    "pincode": "713301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PASCHIM BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6866000",
+    "longitude": "86.9529000"
+  }
+]

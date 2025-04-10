@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Rourkela - 6 S.O",
+    "pincode": "769006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2466433",
+    "longitude": "84.8819433"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Sector - 2 S.O",
+    "pincode": "769006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2518516",
+    "longitude": "84.884185"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Rajakhet SO",
+    "pincode": "249127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3764167",
+    "longitude": "78.4393056"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Madan Negi BO",
+    "pincode": "249127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6800000",
+    "longitude": "78.3500000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Raulakot BO",
+    "pincode": "249127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4500000",
+    "longitude": "79.6700000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Chherabdhar BO",
+    "pincode": "249127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0500000",
+    "longitude": "78.6700000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Pathiyana BO",
+    "pincode": "249127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2100000",
+    "longitude": "78.6700000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Nelda BO",
+    "pincode": "249127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4005735",
+    "longitude": "78.5163894"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Dharkot Dharmandal BO",
+    "pincode": "249127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.1200000",
+    "longitude": "78.7900000"
+  }
+]

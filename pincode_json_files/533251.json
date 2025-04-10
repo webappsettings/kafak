@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Srirampuram B.O",
+    "pincode": "533251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Gondi B.O",
+    "pincode": "533251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Sakhinetipalli Lanka B.O",
+    "pincode": "533251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Sakhinetipalli S.O",
+    "pincode": "533251",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.42425",
+    "longitude": "81.7185"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Gudimula B.O",
+    "pincode": "533251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Rameswaram B.O",
+    "pincode": "533251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Sakhinetipallipalem B.O",
+    "pincode": "533251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

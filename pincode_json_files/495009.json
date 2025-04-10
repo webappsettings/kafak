@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Semartal BO",
+    "pincode": "495009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1881630",
+    "longitude": "82.1591250"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Lofandi BO",
+    "pincode": "495009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1938860",
+    "longitude": "82.0938190"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Birkona BO",
+    "pincode": "495009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1399220",
+    "longitude": "82.1636440"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Paunsara BO",
+    "pincode": "495009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1767340",
+    "longitude": "82.1985520"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Sendri BO",
+    "pincode": "495009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.1657770",
+    "longitude": "82.1297440"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Koni SO",
+    "pincode": "495009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.128159",
+    "longitude": "82.132334999999998"
+  }
+]

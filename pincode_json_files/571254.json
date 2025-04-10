@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Nokya B.O",
+    "pincode": "571254",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2079314",
+    "longitude": "76.0059915"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Bhadragola B.O",
+    "pincode": "571254",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2266103",
+    "longitude": "75.9623036"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Thithimathi S.O",
+    "pincode": "571254",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.22361111",
+    "longitude": "76.00241667"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Maroor B.O",
+    "pincode": "571254",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2262563",
+    "longitude": "76.0159049"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Bhangwa Ki Chungi SO",
+    "pincode": "230001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9130833",
+    "longitude": "81.9953889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Station Road SO",
+    "pincode": "230001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9131750",
+    "longitude": "82.0011830"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Paltan Bazar SO",
+    "pincode": "230001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9202710",
+    "longitude": "81.9980800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "M C Ganj SO",
+    "pincode": "230001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9139070",
+    "longitude": "82.0011460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Pratapgarh HO",
+    "pincode": "230001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9222778",
+    "longitude": "81.9896389"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Railway Colony SO",
+    "pincode": "230001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9134070",
+    "longitude": "82.0011510"
+  }
+]

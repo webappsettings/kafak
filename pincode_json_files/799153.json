@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Rangamura B.O",
+    "pincode": "799153",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Radhanagar S.O (West Tripura)",
+    "pincode": "799153",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "South Tripura",
+    "statename": "TRIPURA",
+    "latitude": "23.8297500",
+    "longitude": "91.2788333"
+  }
+]

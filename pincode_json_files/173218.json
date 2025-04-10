@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Manlogkalan BO",
+    "pincode": "173218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Diggal SO",
+    "pincode": "173218",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.0864605",
+    "longitude": "76.864713"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Badhokhari BO",
+    "pincode": "173218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Katal BO",
+    "pincode": "173218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Maan BO",
+    "pincode": "173218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Badhalag BO",
+    "pincode": "173218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "77.096736",
+    "longitude": "77.096736"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Singaria Bazar B.O",
+    "pincode": "788719",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.7200000",
+    "longitude": "92.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Kayasthagram S.O",
+    "pincode": "788719",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8675840",
+    "longitude": "92.3603820"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Mullaganj Bazar B.O",
+    "pincode": "788719",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.7200000",
+    "longitude": "92.3500000"
+  }
+]

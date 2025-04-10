@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Ibrahimpur BO",
+    "pincode": "249402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9700000",
+    "longitude": "77.8900000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Garhmirpur BO",
+    "pincode": "249402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9500000",
+    "longitude": "77.9900000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Rohalki BO",
+    "pincode": "249402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8500000",
+    "longitude": "77.8800000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Salempur Mehdood BO",
+    "pincode": "249402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9400000",
+    "longitude": "78.0400000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Aurangabad BO",
+    "pincode": "249402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9100000",
+    "longitude": "78.0400000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Bahadrabad SO",
+    "pincode": "249402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9211667",
+    "longitude": "78.0461944"
+  }
+]

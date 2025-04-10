@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Tirumala S.O (Chittoor)",
+    "pincode": "517504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.67778",
+    "longitude": "79.349268"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Tirumala North B.O",
+    "pincode": "517504",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

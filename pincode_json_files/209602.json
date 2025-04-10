@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Singanpur BO",
+    "pincode": "209602",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8847990",
+    "longitude": "80.9367460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Central Jail SO",
+    "pincode": "209602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3611667",
+    "longitude": "79.5986944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Kanjhiana BO",
+    "pincode": "209602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8847990",
+    "longitude": "80.9367460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Jaitpur BO",
+    "pincode": "209602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8847990",
+    "longitude": "80.9367460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Runi BO",
+    "pincode": "209602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8847990",
+    "longitude": "80.9367460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Bhopat Patti BO",
+    "pincode": "209602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8847990",
+    "longitude": "80.9367460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Gaisinghpur BO",
+    "pincode": "209602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8847990",
+    "longitude": "80.9367460"
+  }
+]

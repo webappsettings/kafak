@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Ankireddipalli B.O",
+    "pincode": "501303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Bogaram B.O",
+    "pincode": "501303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Cherial B.O",
+    "pincode": "501303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Thimmaipalli B.O",
+    "pincode": "501303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Keesara SO",
+    "pincode": "501303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.5244551470892280000001",
+    "longitude": "78.66796367864393"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Keesaragutta B.O",
+    "pincode": "501303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Yadgarpalli B.O",
+    "pincode": "501303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

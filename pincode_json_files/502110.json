@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Medak H.O",
+    "pincode": "502110",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.0490000",
+    "longitude": "78.2673333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Medak Town S.O",
+    "pincode": "502110",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.0467500",
+    "longitude": "78.2581667"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Medak Buss stand S.O",
+    "pincode": "502110",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.0415556",
+    "longitude": "78.2608333"
+  }
+]

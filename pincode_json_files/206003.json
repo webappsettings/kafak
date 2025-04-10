@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Manikpur Bissu BO",
+    "pincode": "206003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7497246",
+    "longitude": "79.0334288"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Ram Lila Road SO",
+    "pincode": "206003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7704650",
+    "longitude": "79.0359474"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Chitbhawan BO",
+    "pincode": "206003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7932898",
+    "longitude": "79.0793341"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Musaoli BO",
+    "pincode": "206003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7137970",
+    "longitude": "79.0281772"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Pilkhar BO",
+    "pincode": "206003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7514831",
+    "longitude": "79.0560311"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Kismatpur B.O",
+    "pincode": "500030",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.334437",
+    "longitude": "78.393676"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Rajendranagar S.O",
+    "pincode": "500030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.32258",
+    "longitude": "78.40011"
+  }
+]

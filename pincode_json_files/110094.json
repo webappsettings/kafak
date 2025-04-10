@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Gokal Puri SO",
+    "pincode": "110094",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.7039444",
+    "longitude": "77.2833056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Dayalpur BO",
+    "pincode": "110094",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6922500",
+    "longitude": "77.3042222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Johripur BO",
+    "pincode": "110094",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH EAST",
+    "statename": "DELHI",
+    "latitude": "28.6922500",
+    "longitude": "77.3042222"
+  }
+]

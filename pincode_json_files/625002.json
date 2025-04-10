@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Meenambalpuram SO",
+    "pincode": "625002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9494000",
+    "longitude": "78.1215000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Sellur SO Madurai",
+    "pincode": "625002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9363598",
+    "longitude": "78.1208019"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Tallakulam HO",
+    "pincode": "625002",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.931492",
+    "longitude": "78.132313"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Madurai Corporation Building SO",
+    "pincode": "625002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.5701944",
+    "longitude": "78.3791944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Narimedu SO",
+    "pincode": "625002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9394722",
+    "longitude": "78.1271944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Ma Race Course SO",
+    "pincode": "625002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9433333",
+    "longitude": "78.1358333"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Madurai Division",
+    "officename": "Madurai Bibikulam SO",
+    "pincode": "625002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MADURAI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7538056",
+    "longitude": "78.2112500"
+  }
+]

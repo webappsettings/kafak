@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Ashalapalli B.O",
+    "pincode": "506005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.884973",
+    "longitude": "79.645962"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Kapulakanparthy B.O",
+    "pincode": "506005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.898591",
+    "longitude": "79.642226"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Bollikunta B.O",
+    "pincode": "506005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.891472",
+    "longitude": "79.613718"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Gadepalli B.O",
+    "pincode": "506005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.91646",
+    "longitude": "79.637922"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Rangshaipet S.O",
+    "pincode": "506005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.952512",
+    "longitude": "79.598472"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Singaram B.O",
+    "pincode": "506005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.895909",
+    "longitude": "79.569912"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Timmapur B.O",
+    "pincode": "506005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.924027",
+    "longitude": "79.570989"
+  }
+]

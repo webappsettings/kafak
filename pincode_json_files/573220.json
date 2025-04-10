@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Teranya B.O",
+    "pincode": "573220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9200000",
+    "longitude": "76.2300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Shanthigrama S.O",
+    "pincode": "573220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9844722",
+    "longitude": "76.2164167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Malali B.O",
+    "pincode": "573220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9300000",
+    "longitude": "76.2300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Mavanur B.O",
+    "pincode": "573220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9200000",
+    "longitude": "76.2600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Hongere B.O",
+    "pincode": "573220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9500000",
+    "longitude": "76.2000000"
+  }
+]

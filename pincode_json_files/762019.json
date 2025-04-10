@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Gandagaon B.O",
+    "pincode": "762019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.2729949",
+    "longitude": "84.2578816"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Sankarakhole S.O",
+    "pincode": "762019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.3170300",
+    "longitude": "84.2949733"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Kainjhar B.O",
+    "pincode": "762019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.2989000",
+    "longitude": "84.2581199"
+  }
+]

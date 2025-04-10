@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Meghi B.O",
+    "pincode": "415807",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.3362600",
+    "longitude": "74.0339300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Devale S.O",
+    "pincode": "415807",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "16.988907",
+    "longitude": "73.583558"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "RATNAGIRI DIVISION",
+    "officename": "Chafavali B.O",
+    "pincode": "415807",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATNAGIRI",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.336259999999999",
+    "longitude": "74.033929999999998"
+  }
+]

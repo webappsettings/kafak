@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Jokha BO",
+    "pincode": "394185",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2702530",
+    "longitude": "72.9624540"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Kosmadi BO",
+    "pincode": "394185",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2702550",
+    "longitude": "72.9624520"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Navagam BO",
+    "pincode": "394185",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2623083",
+    "longitude": "72.9526934"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Kathodara BO",
+    "pincode": "394185",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1838930",
+    "longitude": "72.9301757"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Kamrej Char Rasta SO",
+    "pincode": "394185",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1610770",
+    "longitude": "72.5747410"
+  }
+]

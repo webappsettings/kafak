@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Kalashree Gopalpur B.O",
+    "pincode": "754292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6388833",
+    "longitude": "86.292763300000004"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Saudia B.O",
+    "pincode": "754292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.662573299999998",
+    "longitude": "86.286865000000006"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Benipur B.O",
+    "pincode": "754292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.624346599999999",
+    "longitude": "86.319983300000004"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Chandia B.O",
+    "pincode": "754292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.652581600000001",
+    "longitude": "86.270428300000006"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Raipur B.O",
+    "pincode": "754292",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6444133",
+    "longitude": "86.292263300000002"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Charinangal S.O",
+    "pincode": "754292",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.8523333",
+    "longitude": "86.3293333"
+  }
+]

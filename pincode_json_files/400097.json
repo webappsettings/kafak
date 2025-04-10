@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North West Division",
+    "officename": "Malad East SO",
+    "pincode": "400097",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.179645",
+    "longitude": "72.850256"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North West Division",
+    "officename": "Rani Sati Marg SO",
+    "pincode": "400097",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1842841",
+    "longitude": "72.8517183"
+  }
+]

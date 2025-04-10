@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Puthini B.O",
+    "pincode": "788725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.9400000",
+    "longitude": "92.7300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Tilbhum B.O",
+    "pincode": "788725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.940000000000001",
+    "longitude": "92.730000000000004"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Medley B.O",
+    "pincode": "788725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.9400000",
+    "longitude": "92.7300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Chandkhira S.O",
+    "pincode": "788725",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8675840",
+    "longitude": "92.3603820"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Basantinagar B.O",
+    "pincode": "788725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.9400000",
+    "longitude": "92.7300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Kathaltoli Bazar B.O",
+    "pincode": "788725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.9400000",
+    "longitude": "92.7300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Kalkalighat B.O",
+    "pincode": "788725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.9400000",
+    "longitude": "92.7300000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Pathalipahar S.O",
+    "pincode": "784163",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.1709000",
+    "longitude": "94.0350000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Pithguri B.O",
+    "pincode": "784163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.0700000",
+    "longitude": "93.8400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Barbali B.O",
+    "pincode": "784163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.0700000",
+    "longitude": "93.8400000"
+  }
+]

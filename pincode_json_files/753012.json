@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "A D Market S.O",
+    "pincode": "753012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4526662",
+    "longitude": "85.8898394"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Khannagar S.O",
+    "pincode": "753012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4452768",
+    "longitude": "85.8906505"
+  }
+]

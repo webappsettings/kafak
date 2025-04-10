@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Sector 2 Bhilai SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1210200",
+    "longitude": "81.2107500"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "ISPAT BHAWAN BHILAI SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Bhilai 1 SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.717302",
+    "longitude": "81.534080000000003"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Bhilai Boria SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1888290",
+    "longitude": "81.3710900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Jawahar Market Bhilai SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2100940",
+    "longitude": "81.3738450"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Sector 3 Bhilai SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1147600",
+    "longitude": "81.2209000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "A O Bhilai SO",
+    "pincode": "490001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1152200",
+    "longitude": "81.2251000"
+  }
+]

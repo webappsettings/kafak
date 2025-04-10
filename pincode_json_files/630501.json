@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Kalapur B.O",
+    "pincode": "630501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.172033",
+    "longitude": "78.458445"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Vaiyapuripatti B.O",
+    "pincode": "630501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.210385",
+    "longitude": "78.465085"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "CVmangalam S.O",
+    "pincode": "630501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.87332",
+    "longitude": "78.6698"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Kallampatti B.O",
+    "pincode": "630501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.144865",
+    "longitude": "78.451172"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Surakudi B.O",
+    "pincode": "630501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.1400000",
+    "longitude": "78.481655"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Muraiyur B.O",
+    "pincode": "630501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.146217",
+    "longitude": "78.499708"
+  }
+]

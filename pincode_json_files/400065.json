@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North West Division",
+    "officename": "Nagari Niwara SO",
+    "pincode": "400065",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1756111",
+    "longitude": "72.8777778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North West Division",
+    "officename": "Aareymilk Colony SO",
+    "pincode": "400065",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.155325",
+    "longitude": "72.877967"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Mumbai Region",
+    "divisionname": "Mumbai City North West Division",
+    "officename": "S R P F Camp SO",
+    "pincode": "400065",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUMBAI SUBURBAN",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1442500",
+    "longitude": "72.8560000"
+  }
+]

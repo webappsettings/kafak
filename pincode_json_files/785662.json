@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Khorahat B.O",
+    "pincode": "785662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1266666",
+    "longitude": "94.7400277"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Konwar Dihingia B.O",
+    "pincode": "785662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1266666",
+    "longitude": "94.7400277"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Udaypur B.O",
+    "pincode": "785662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1266666",
+    "longitude": "94.7400277"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dehajan B.O",
+    "pincode": "785662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1266666",
+    "longitude": "94.7400277"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Demow S.O",
+    "pincode": "785662",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1266667",
+    "longitude": "94.7400278"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Nahat B.O",
+    "pincode": "785662",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "27.1266666",
+    "longitude": "94.7400277"
+  }
+]

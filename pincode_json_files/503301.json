@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Bomandevpalli B.O",
+    "pincode": "503301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4703804",
+    "longitude": "77.8825672"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Mirzapur S.O",
+    "pincode": "503301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.441102",
+    "longitude": "77.839867"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Mailaram B.O",
+    "pincode": "503301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4456950",
+    "longitude": "77.8552890"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Ankole B.O",
+    "pincode": "503301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4539589",
+    "longitude": "77.8770450"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Durki B.O",
+    "pincode": "503301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4191346",
+    "longitude": "77.8602296"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Nachapalli B.O",
+    "pincode": "503301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4494355",
+    "longitude": "77.8788242"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Namli B.O",
+    "pincode": "503301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.4550527",
+    "longitude": "77.8764513"
+  }
+]

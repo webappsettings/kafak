@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Korukonda B.O",
+    "pincode": "535214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0643050",
+    "longitude": "83.3341830"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "M Kothasvalasa B.O",
+    "pincode": "535214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.8953900",
+    "longitude": "83.1980130"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Ss Korukonda S.O",
+    "pincode": "535214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.1703889",
+    "longitude": "81.8265278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "B S Factory B.O",
+    "pincode": "535214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0344410",
+    "longitude": "83.2907970"
+  }
+]

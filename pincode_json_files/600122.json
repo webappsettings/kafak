@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Paraniputhur BO",
+    "pincode": "600122",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0080000",
+    "longitude": "80.0990000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Mangadu SO",
+    "pincode": "600122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0270278",
+    "longitude": "80.1105833"
+  }
+]

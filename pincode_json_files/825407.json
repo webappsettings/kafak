@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Baheradih BO",
+    "pincode": "825407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.5576000",
+    "longitude": "85.6923000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Masnodih BO",
+    "pincode": "825407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.4680840",
+    "longitude": "85.5916210"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Bangakhalar BO",
+    "pincode": "825407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.472059999999999",
+    "longitude": "85.688890000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Sapahi BO",
+    "pincode": "825407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.4680820",
+    "longitude": "85.5916230"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Dhab BO",
+    "pincode": "825407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.557600000000001",
+    "longitude": "85.692300000000003"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Dhorakola BO",
+    "pincode": "825407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.468084999999999",
+    "longitude": "85.591620000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Domchanch SO",
+    "pincode": "825407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODERMA",
+    "statename": "JHARKHAND",
+    "latitude": "24.4718580",
+    "longitude": "85.6871450"
+  }
+]

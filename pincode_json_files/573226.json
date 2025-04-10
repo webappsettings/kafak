@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Doddagenigere B.O",
+    "pincode": "573226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9800000",
+    "longitude": "76.1500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Gadenahalli B.O",
+    "pincode": "573226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0200000",
+    "longitude": "76.2200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Boovanahalli S.O",
+    "pincode": "573226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0053333",
+    "longitude": "76.1000556"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Melagodu B.O",
+    "pincode": "573226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0300000",
+    "longitude": "76.2300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Dyavalapura B.O",
+    "pincode": "573226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0200000",
+    "longitude": "76.1900000"
+  }
+]

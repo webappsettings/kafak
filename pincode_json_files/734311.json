@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Kagay Bazar BO",
+    "pincode": "734311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.1550700",
+    "longitude": "88.6407100"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Pedong SO",
+    "pincode": "734311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.1168490",
+    "longitude": "88.5859500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Darjeeling Division",
+    "officename": "Sakyong BO",
+    "pincode": "734311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0593000",
+    "longitude": "88.4694000"
+  }
+]

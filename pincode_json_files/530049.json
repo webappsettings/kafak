@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Pakeertekya B.O",
+    "pincode": "530049",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7083020",
+    "longitude": "83.1526790"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Special Economic Zone P.O",
+    "pincode": "530049",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7124444",
+    "longitude": "83.1490278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Vedullanarava B.O",
+    "pincode": "530049",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7165510",
+    "longitude": "83.1467920"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Visakhapatnam Division",
+    "officename": "Duvvada B.O",
+    "pincode": "530049",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VISAKHAPATANAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7000600",
+    "longitude": "83.1535990"
+  }
+]

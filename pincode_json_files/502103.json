@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Nehru Road Town S.O",
+    "pincode": "502103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.10782",
+    "longitude": "78.85348"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Prashanthnagar Town S.O",
+    "pincode": "502103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.031500",
+    "longitude": "78.878035"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Bharathnagar Town S.O",
+    "pincode": "502103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "10.1690833",
+    "longitude": "78.1464722"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Siddipet Busstand S.O",
+    "pincode": "502103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.1802778",
+    "longitude": "78.1454444"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Siddipet H.O",
+    "pincode": "502103",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.105264",
+    "longitude": "78.843662"
+  }
+]

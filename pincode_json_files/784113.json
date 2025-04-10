@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kopati S.O",
+    "pincode": "784113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.5841965",
+    "longitude": "92.2320211"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Dalakati Borobazar B.O",
+    "pincode": "784113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.4331000",
+    "longitude": "92.0988300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bongaligaon B.O",
+    "pincode": "784113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.4331000",
+    "longitude": "92.0988300"
+  }
+]

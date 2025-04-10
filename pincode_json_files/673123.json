@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Chundale SO",
+    "pincode": "673123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5728858",
+    "longitude": "76.0569201"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Kunnambetta BO",
+    "pincode": "673123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5700000",
+    "longitude": "76.1100000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Murmela B.O",
+    "pincode": "784521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.5943518",
+    "longitude": "91.9881527"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Mechakapukhuri B.O",
+    "pincode": "784521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.6572866",
+    "longitude": "91.9123524"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Barjalah B.O",
+    "pincode": "784521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.4137160",
+    "longitude": "92.0806260"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Tangla S.O",
+    "pincode": "784521",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.6631990",
+    "longitude": "91.9208097"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Purandia B.O",
+    "pincode": "784521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.6876641",
+    "longitude": "91.9526881"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Palahgarh B.O",
+    "pincode": "784521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.6722500",
+    "longitude": "91.9185000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Chamuapara B.O",
+    "pincode": "784521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.6876600",
+    "longitude": "91.9526000"
+  }
+]

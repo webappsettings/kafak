@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Bist Estatre BO",
+    "pincode": "263127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3400000",
+    "longitude": "79.4800000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Gethia BO",
+    "pincode": "263127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3604730",
+    "longitude": "79.4832591"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Chopra BO",
+    "pincode": "263127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.324864300000002",
+    "longitude": "79.501320699999994"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Jeolikote SO",
+    "pincode": "263127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3451000",
+    "longitude": "79.4823000"
+  }
+]

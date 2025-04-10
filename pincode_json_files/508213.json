@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Suryapet H.O",
+    "pincode": "508213",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SURYAPET",
+    "statename": "TELANGANA",
+    "latitude": "17.138358",
+    "longitude": "79.618493"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "Bank Street S.O",
+    "pincode": "508213",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURYAPET",
+    "statename": "TELANGANA",
+    "latitude": "17.1380158",
+    "longitude": "79.6242024"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Suryapet Division",
+    "officename": "K.K.Road S.O",
+    "pincode": "508213",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SURYAPET",
+    "statename": "TELANGANA",
+    "latitude": "17.2353056",
+    "longitude": "79.1059722"
+  }
+]

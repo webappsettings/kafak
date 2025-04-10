@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Doddabele B.O",
+    "pincode": "562132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2200000",
+    "longitude": "77.3300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Manne B.O",
+    "pincode": "562132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2600000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Obalapura B.O",
+    "pincode": "562132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2400000",
+    "longitude": "77.3100000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Kalalaghatta B.O",
+    "pincode": "562132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2000000",
+    "longitude": "77.3200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Tyamagondlu S.O",
+    "pincode": "562132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2149722",
+    "longitude": "77.3014167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Niduvanda B.O",
+    "pincode": "562132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2400000",
+    "longitude": "77.2700000"
+  }
+]

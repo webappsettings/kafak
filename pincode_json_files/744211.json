@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Kalapather B.O",
+    "pincode": "744211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "11.77",
+    "longitude": "92.879999999999995"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Swaraj Dweep SO",
+    "pincode": "744211",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "12.040302",
+    "longitude": "92.983321"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Swaraj Dweep BO",
+    "pincode": "744211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Peal Island B.O",
+    "pincode": "744211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Gundiyali SO",
+    "pincode": "370455",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "22.8363930",
+    "longitude": "69.4196090"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Nana Bhadia BO",
+    "pincode": "370455",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "22.8309700",
+    "longitude": "69.4851580"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Mota Bhadia BO",
+    "pincode": "370455",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "22.8585960",
+    "longitude": "69.4791990"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Baug BO",
+    "pincode": "370455",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2930390",
+    "longitude": "70.3390450"
+  }
+]

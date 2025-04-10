@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Kuruga BO",
+    "pincode": "676551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9528941",
+    "longitude": "75.9760484"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Kanmanamthekkummuri BO",
+    "pincode": "676551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9044581",
+    "longitude": "75.9833228"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Kalpakancheri SO",
+    "pincode": "676551",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9488129",
+    "longitude": "75.9812629"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Thekkankuttur BO",
+    "pincode": "676551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.8814429",
+    "longitude": "75.9535814"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Valavannur BO",
+    "pincode": "676551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9444634",
+    "longitude": "75.9820935"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Kanmanam BO",
+    "pincode": "676551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9133361",
+    "longitude": "75.9870820"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Parammalangadi BO",
+    "pincode": "676551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9242737",
+    "longitude": "75.9698505"
+  }
+]

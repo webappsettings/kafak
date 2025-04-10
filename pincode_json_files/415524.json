@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Bichukale B.O",
+    "pincode": "415524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8380390",
+    "longitude": "74.1504200"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Deur B.O",
+    "pincode": "415524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8568130",
+    "longitude": "74.1166550"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Vathar S.O",
+    "pincode": "415524",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8880000",
+    "longitude": "74.1364722"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Dahigaon B.O",
+    "pincode": "415524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6983360",
+    "longitude": "74.1650910"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Taliye B.O",
+    "pincode": "415524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8633280",
+    "longitude": "74.1479300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Tadawale B.O",
+    "pincode": "415524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.7219030",
+    "longitude": "74.1466850"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Vikhale B.O",
+    "pincode": "415524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8720570",
+    "longitude": "74.1877990"
+  }
+]

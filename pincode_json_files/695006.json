@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Tirumala SO Thiruvananthapuram",
+    "pincode": "695006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.50068340",
+    "longitude": "76.99327530"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Valiavila BO",
+    "pincode": "695006",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.5000000",
+    "longitude": "77.0100000"
+  }
+]

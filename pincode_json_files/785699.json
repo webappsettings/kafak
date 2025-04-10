@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Numaligarh Refinery Project S.O",
+    "pincode": "785699",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.5928000",
+    "longitude": "93.7498000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Kanaighat B.O",
+    "pincode": "785699",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.5928000",
+    "longitude": "93.7498000"
+  }
+]

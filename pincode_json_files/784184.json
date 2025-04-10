@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Borjharani B.O",
+    "pincode": "784184",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.5871900",
+    "longitude": "92.8526400"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bharali Juli BO",
+    "pincode": "784184",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.84094",
+    "longitude": "93.406610000000001"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Gingia S.O",
+    "pincode": "784184",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.5871900",
+    "longitude": "92.8526400"
+  }
+]

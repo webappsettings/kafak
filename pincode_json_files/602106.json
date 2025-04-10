@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Mambakkam B.O",
+    "pincode": "602106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7121563",
+    "longitude": "79.8991076"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Sunguvarchatram S.O",
+    "pincode": "602106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9251389",
+    "longitude": "80.1986944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Sendamangalam B.O",
+    "pincode": "602106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1100500",
+    "longitude": "79.9752000"
+  }
+]

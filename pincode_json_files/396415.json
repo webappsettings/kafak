@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Asna BO",
+    "pincode": "396415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "21.0600000",
+    "longitude": "72.9400000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Chokhad BO",
+    "pincode": "396415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "21.0300000",
+    "longitude": "72.9200000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Dhaman BO",
+    "pincode": "396415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "21.0200000",
+    "longitude": "72.9400000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Kalakachha BO",
+    "pincode": "396415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "21.0600000",
+    "longitude": "72.9600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Simlak BO",
+    "pincode": "396415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "21.0400000",
+    "longitude": "72.9500000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Dabhel SO",
+    "pincode": "396415",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "21.0400000",
+    "longitude": "72.9500000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Mattiyur B.O",
+    "pincode": "612504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1000000",
+    "longitude": "79.4400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Senganur B.O",
+    "pincode": "612504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0700000",
+    "longitude": "79.4400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Manikudi B.O",
+    "pincode": "612504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0700000",
+    "longitude": "79.4600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Sickinaickanpettai B.O",
+    "pincode": "612504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1100000",
+    "longitude": "79.4700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Virakkan B.O",
+    "pincode": "612504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0800000",
+    "longitude": "79.4400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Tirupanandal S.O",
+    "pincode": "612504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0932222",
+    "longitude": "79.4560000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Kumbakonam Division",
+    "officename": "Koorchi B.O",
+    "pincode": "612504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1200000",
+    "longitude": "79.4700000"
+  }
+]

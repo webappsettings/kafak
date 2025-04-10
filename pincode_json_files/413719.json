@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Ranjangaon Kd S.O",
+    "pincode": "413719",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.691193147618304",
+    "longitude": "74.55050309956052"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Ekrukhe B.O",
+    "pincode": "413719",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.706274",
+    "longitude": "74.541934"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Wakadi B.O",
+    "pincode": "413719",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.684607",
+    "longitude": "74.57562"
+  }
+]

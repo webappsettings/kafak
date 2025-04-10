@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Jaipur City S.O",
+    "pincode": "302003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9152500",
+    "longitude": "75.8260278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur City Division",
+    "officename": "Krishi Upaj Mandi S.O",
+    "pincode": "302003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9152500",
+    "longitude": "75.8472778"
+  }
+]

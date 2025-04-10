@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Shalamar BO",
+    "pincode": "110088",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.693361100000001",
+    "longitude": "77.171388899999997"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Shalimar Bagh SO North West Delhi",
+    "pincode": "110088",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.6933611",
+    "longitude": "77.1713889"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Haiderpur SO",
+    "pincode": "110088",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7246667",
+    "longitude": "77.1469444"
+  }
+]

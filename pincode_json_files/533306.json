@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Kota B.O",
+    "pincode": "533306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7100000",
+    "longitude": "82.0600000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Kotipalli S.O",
+    "pincode": "533306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9945000",
+    "longitude": "81.7732778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Sundarapalli B.O",
+    "pincode": "533306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7147000",
+    "longitude": "82.0237000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Khirpuri B.O",
+    "pincode": "444302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6500000",
+    "longitude": "76.9100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Balapur S.O",
+    "pincode": "444302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6638889",
+    "longitude": "76.7713333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Kanheri Gawali B.O",
+    "pincode": "444302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6600000",
+    "longitude": "76.8300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Vyala B.O",
+    "pincode": "444302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6700000",
+    "longitude": "76.8800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Batwadi B.O",
+    "pincode": "444302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6200000",
+    "longitude": "76.7900000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Ridhora B.O",
+    "pincode": "444302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6900000",
+    "longitude": "76.9500000"
+  }
+]

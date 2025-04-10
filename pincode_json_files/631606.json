@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Madhur B.O",
+    "pincode": "631606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5102226",
+    "longitude": "79.8849294"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Thirumukkudal B.O",
+    "pincode": "631606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7798000",
+    "longitude": "79.8714500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Palayaseevaram S.O",
+    "pincode": "631606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7803611",
+    "longitude": "79.8760278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Padur B.O",
+    "pincode": "631606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6840002",
+    "longitude": "79.9833433"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Ullavur B.O",
+    "pincode": "631606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341805",
+    "longitude": "79.7036332"
+  }
+]

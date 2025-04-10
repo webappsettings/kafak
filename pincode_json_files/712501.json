@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Basna BO",
+    "pincode": "712501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1200000",
+    "longitude": "88.4700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Balagarh SO",
+    "pincode": "712501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5955555",
+    "longitude": "88.0000006"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Milangarh BO",
+    "pincode": "712501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8200000",
+    "longitude": "87.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Panchpara BO",
+    "pincode": "712501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8200000",
+    "longitude": "87.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Patuligram BO",
+    "pincode": "712501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8200000",
+    "longitude": "87.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly North Division",
+    "officename": "Jirat BO",
+    "pincode": "712501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8200000",
+    "longitude": "87.8900000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Jivapar BO",
+    "pincode": "360040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.3999430",
+    "longitude": "69.9580110"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Atkot SO",
+    "pincode": "360040",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0095278",
+    "longitude": "70.1465833"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Ishavariya BO",
+    "pincode": "360040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0332375",
+    "longitude": "71.2027253"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Jasapar BO",
+    "pincode": "360040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.9680150",
+    "longitude": "71.0908090"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Panchavda BO",
+    "pincode": "360040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.3535480",
+    "longitude": "71.1953510"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Jangvad BO",
+    "pincode": "360040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.9847240",
+    "longitude": "71.1775280"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Kanpar BO",
+    "pincode": "360040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.9596150",
+    "longitude": "71.0564620"
+  }
+]

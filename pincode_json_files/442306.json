@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Rohani B.O",
+    "pincode": "442306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5400409",
+    "longitude": "78.3493763"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Nachangaon S.O",
+    "pincode": "442306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7003056",
+    "longitude": "78.3301389"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Kandegaon B.O",
+    "pincode": "442306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6470620",
+    "longitude": "78.4864760"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Sonora B.O",
+    "pincode": "442306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6197700",
+    "longitude": "78.3372800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Dahegaon Dhande B.O",
+    "pincode": "442306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6197700",
+    "longitude": "78.3372800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Inzhala B.O",
+    "pincode": "442306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6470600",
+    "longitude": "78.4864780"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Vijaygopal B.O",
+    "pincode": "442306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6197700",
+    "longitude": "78.3372800"
+  }
+]

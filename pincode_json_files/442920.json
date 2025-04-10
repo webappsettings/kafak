@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "PUYARDAND B.O",
+    "pincode": "442920",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Bhisi S.O",
+    "pincode": "442920",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "20.6323",
+    "longitude": "79.4000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Mahalgaon Kalu B.O",
+    "pincode": "442920",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Jamgaon Komti B.O",
+    "pincode": "442920",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Shiora B.O",
+    "pincode": "442920",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Ambenri B.O",
+    "pincode": "442920",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "SAWARLA B.O",
+    "pincode": "442920",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

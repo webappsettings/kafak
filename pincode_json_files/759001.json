@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Dhenkanal H.O",
+    "pincode": "759001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.6540833",
+    "longitude": "85.5993333"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Dhenkanal College S.O",
+    "pincode": "759001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.6419883",
+    "longitude": "85.6146533"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Jubuli Town S.O",
+    "pincode": "759001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.6472216",
+    "longitude": "85.5878666"
+  }
+]

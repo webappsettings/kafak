@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Bayan B.O",
+    "pincode": "461445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Joshipur B.O",
+    "pincode": "461445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Budni Ghat B.O",
+    "pincode": "461445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hoshangabad Division",
+    "officename": "Panguradiya B.O",
+    "pincode": "461445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hoshangabad Division",
+    "officename": "Pilikarar B.O",
+    "pincode": "461445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Jahajpura B.O",
+    "pincode": "461445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

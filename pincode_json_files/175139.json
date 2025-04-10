@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Jahalman SO",
+    "pincode": "175139",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6371667",
+    "longitude": "76.8474722"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Thirot BO",
+    "pincode": "175139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6609000",
+    "longitude": "76.7814000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Mooring BO",
+    "pincode": "175139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6489000",
+    "longitude": "76.8201000"
+  }
+]

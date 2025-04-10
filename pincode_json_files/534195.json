@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "Mandalaparru B.O",
+    "pincode": "534195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7165242",
+    "longitude": "81.4278221"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "Nidamarru B.O",
+    "pincode": "534195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7230250",
+    "longitude": "81.4159944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "P.N.Kolanu S.O",
+    "pincode": "534195",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7392778",
+    "longitude": "81.3938333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Tadepalligudem Division",
+    "officename": "D.Gopavaram B.O",
+    "pincode": "534195",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7428399",
+    "longitude": "81.3764227"
+  }
+]

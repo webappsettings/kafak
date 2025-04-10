@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Khatta Prahladpur BO",
+    "pincode": "250615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9100000",
+    "longitude": "77.3200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Pilana BO",
+    "pincode": "250615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9400000",
+    "longitude": "77.3700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Lalyana BO",
+    "pincode": "250615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8588900",
+    "longitude": "77.3905000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Dhikauli SO",
+    "pincode": "250615",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9075278",
+    "longitude": "77.3673889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Pabla Begmabad BO",
+    "pincode": "250615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9200000",
+    "longitude": "77.3000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Chamrawal BO",
+    "pincode": "250615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8700000",
+    "longitude": "77.3800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Hisawda BO",
+    "pincode": "250615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9700000",
+    "longitude": "77.3600000"
+  }
+]

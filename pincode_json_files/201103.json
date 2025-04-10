@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Tronica City SO",
+    "pincode": "201103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7807325628173",
+    "longitude": "77.2662871677093"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Meerpur Hindu",
+    "pincode": "201103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8027030",
+    "longitude": "77.2347670"
+  }
+]

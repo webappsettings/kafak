@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Chennad BO",
+    "pincode": "686581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "10.3473000",
+    "longitude": "76.3741000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Poonjar SO",
+    "pincode": "686581",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.671564",
+    "longitude": "76.797723"
+  }
+]

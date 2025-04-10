@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Ajana BO",
+    "pincode": "274508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1600000",
+    "longitude": "83.9600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Khema Dei BO",
+    "pincode": "274508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1600000",
+    "longitude": "83.9600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Sajaon BO",
+    "pincode": "274508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1600000",
+    "longitude": "83.9600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Kharwania BO",
+    "pincode": "274508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1600000",
+    "longitude": "83.9600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Pindi SO",
+    "pincode": "274508",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  }
+]

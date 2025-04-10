@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Malappuram Civil Station SO",
+    "pincode": "676505",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0405510",
+    "longitude": "76.0771720"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Malappuram HO",
+    "pincode": "676505",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0509760",
+    "longitude": "76.0710970"
+  }
+]

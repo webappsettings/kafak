@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Sikandarpur BO",
+    "pincode": "845434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.455259999999999",
+    "longitude": "84.742110999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Bariariya BO",
+    "pincode": "845434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.71556",
+    "longitude": "84.742001000000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Puchharia BO",
+    "pincode": "845434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.45214",
+    "longitude": "84.742140000000006"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Thikaha Bhawanipur BO",
+    "pincode": "845434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.45214",
+    "longitude": "84.742249999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Manglapur Rajpur BO",
+    "pincode": "845434",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4528",
+    "longitude": "84.742009999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Sangrampur SO East Champaran",
+    "pincode": "845434",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.6446944",
+    "longitude": "84.9017222"
+  }
+]

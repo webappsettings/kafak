@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Sharif Nagar BO",
+    "pincode": "244602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2351000",
+    "longitude": "78.7551000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Tanda Afzal BO",
+    "pincode": "244602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2351000",
+    "longitude": "78.7551000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Darapur BO",
+    "pincode": "244602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2351000",
+    "longitude": "78.7551000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Sherpur Patti BO",
+    "pincode": "244602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2351000",
+    "longitude": "78.7551000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Surjan Nagar SO",
+    "pincode": "244602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2351944",
+    "longitude": "78.7551944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Rajupur Kalan BO",
+    "pincode": "244602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2351000",
+    "longitude": "78.7551000"
+  }
+]

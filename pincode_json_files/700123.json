@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Talpukur SO",
+    "pincode": "700123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7500000",
+    "longitude": "88.3800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Panpara SO North 24 Parganas",
+    "pincode": "700123",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7500000",
+    "longitude": "88.3800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Barrackpore RS SO",
+    "pincode": "700123",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7700000",
+    "longitude": "88.3500000"
+  }
+]

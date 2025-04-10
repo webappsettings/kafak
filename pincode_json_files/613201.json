@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Uthamanallur B.O",
+    "pincode": "613201",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8900000",
+    "longitude": "79.1500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Ponnavarai BO",
+    "pincode": "613201",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.880000000000001",
+    "longitude": "79.140000000000001"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Kalyanapuram S.O",
+    "pincode": "613201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7789167",
+    "longitude": "79.1400556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Thanjavur Division",
+    "officename": "Mohamed Bunder B.O",
+    "pincode": "613201",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THANJAVUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8700000",
+    "longitude": "79.1100000"
+  }
+]

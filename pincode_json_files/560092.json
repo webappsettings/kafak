@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Byatarayanapura B.O",
+    "pincode": "560092",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.949788",
+    "longitude": "77.541162"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Kodigehalli B.O",
+    "pincode": "560092",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.975161999999999",
+    "longitude": "77.467329000000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Amruthahalli B.O",
+    "pincode": "560092",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.056891999999999",
+    "longitude": "77.598543000000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru East Division",
+    "officename": "Sahakaranagar S.O",
+    "pincode": "560092",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.052055599999999",
+    "longitude": "77.599083300000004"
+  }
+]

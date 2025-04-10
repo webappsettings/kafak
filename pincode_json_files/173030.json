@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Trilokpur BO",
+    "pincode": "173030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.5406176",
+    "longitude": "77.2081801"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Sainwala BO",
+    "pincode": "173030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.5599327",
+    "longitude": "77.2954830"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Bramapapri BO",
+    "pincode": "173030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.8499890",
+    "longitude": "77.2994140"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Palion BO",
+    "pincode": "173030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.8499890",
+    "longitude": "77.2994140"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Kala Amb SO",
+    "pincode": "173030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.497306",
+    "longitude": "77.212017"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Moginand BO",
+    "pincode": "173030",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.5201945",
+    "longitude": "77.2376414"
+  }
+]

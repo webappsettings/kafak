@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Bhagwan Bazar SO",
+    "pincode": "841301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7847100",
+    "longitude": "84.7250000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "District Board SO",
+    "pincode": "841301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7848840",
+    "longitude": "84.7283170"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Chapra HO",
+    "pincode": "841301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7795650",
+    "longitude": "84.7498890"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Rajendra College SO Saran",
+    "pincode": "841301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7795650",
+    "longitude": "84.7498890"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Daulatganj BO",
+    "pincode": "841301",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.8559700",
+    "longitude": "84.8567930"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Jagdam College SO",
+    "pincode": "841301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7871390",
+    "longitude": "84.7378930"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Saran Division",
+    "officename": "Mauna SO",
+    "pincode": "841301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SARAN",
+    "statename": "BIHAR",
+    "latitude": "25.7848000",
+    "longitude": "84.7274000"
+  }
+]

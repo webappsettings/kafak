@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Chikatmati B.O",
+    "pincode": "770031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2379925",
+    "longitude": "84.7300509"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Kalunga S.O",
+    "pincode": "770031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2258109",
+    "longitude": "84.736783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Beldihi B.O",
+    "pincode": "770031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2480413",
+    "longitude": "84.7505172"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Balanda B.O",
+    "pincode": "770031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2021091",
+    "longitude": "84.7359896"
+  }
+]

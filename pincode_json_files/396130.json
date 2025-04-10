@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Sarai BO",
+    "pincode": "396130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2946860",
+    "longitude": "72.7806430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Maroli Sanjan SO",
+    "pincode": "396130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2946860",
+    "longitude": "72.7806430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dhodipada BO",
+    "pincode": "396130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.2826280",
+    "longitude": "72.7926640"
+  }
+]

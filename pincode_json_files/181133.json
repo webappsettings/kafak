@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Bari Brahmna SO",
+    "pincode": "181133",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6365220",
+    "longitude": "74.9141350"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Sarore BO",
+    "pincode": "181133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6297690",
+    "longitude": "74.8901840"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Smailpur BO",
+    "pincode": "181133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6291610",
+    "longitude": "74.9616850"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Birpur BO",
+    "pincode": "181133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6365220",
+    "longitude": "74.9141350"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Tarore BO",
+    "pincode": "181133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5415400",
+    "longitude": "74.2651450"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Bari Brahmna Icomplex SO",
+    "pincode": "181133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6446910",
+    "longitude": "74.8997270"
+  }
+]

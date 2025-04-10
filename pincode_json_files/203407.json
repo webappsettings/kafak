@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Bihra BO",
+    "pincode": "203407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5592421",
+    "longitude": "77.9196023"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Mundi Bakapur BO",
+    "pincode": "203407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5238993",
+    "longitude": "77.9581602"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Nimchana BO",
+    "pincode": "203407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5519533",
+    "longitude": "77.9024611"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Parwana BO",
+    "pincode": "203407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4828941",
+    "longitude": "78.0008053"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Sega Jagatpur BO",
+    "pincode": "203407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5789625",
+    "longitude": "77.9592310"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Shekhpur Gadwa BO",
+    "pincode": "203407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5522870",
+    "longitude": "78.0024134"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Lakhaoti SO",
+    "pincode": "203407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2736000",
+    "longitude": "77.5555000"
+  }
+]

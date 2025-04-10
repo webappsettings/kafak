@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Thathampatti B.O",
+    "pincode": "635201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1274185",
+    "longitude": "78.1580215"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Barur S.O",
+    "pincode": "635201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3013056",
+    "longitude": "78.3046111"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Arasampatti B.O",
+    "pincode": "635201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2700000",
+    "longitude": "78.3100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Irumathur B.O",
+    "pincode": "635201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1200000",
+    "longitude": "78.1500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Jingilikadirampatti B.O",
+    "pincode": "635201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1200000",
+    "longitude": "78.1500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Bendrahalli B.O",
+    "pincode": "635201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1200000",
+    "longitude": "78.1500000"
+  }
+]

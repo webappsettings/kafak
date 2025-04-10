@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Shastri Nagar SO",
+    "pincode": "342003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2717222",
+    "longitude": "73.0036389"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Pratap Nagar SO Jodhpur",
+    "pincode": "342003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2372500",
+    "longitude": "73.0304500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Chopasni Road SO",
+    "pincode": "342003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2812778",
+    "longitude": "73.0012500"
+  }
+]

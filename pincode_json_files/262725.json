@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Banika BO",
+    "pincode": "262725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8500000",
+    "longitude": "80.7100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Khanpur Gurela BO",
+    "pincode": "262725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8200000",
+    "longitude": "80.7800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Oel SO Kheri",
+    "pincode": "262725",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9098420",
+    "longitude": "80.7845350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Dhusaru BO",
+    "pincode": "262725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8900000",
+    "longitude": "80.7400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Motipur BO",
+    "pincode": "262725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8500000",
+    "longitude": "80.7600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Tikar BO",
+    "pincode": "262725",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8900000",
+    "longitude": "80.7100000"
+  }
+]

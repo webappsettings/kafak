@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Chundi BO",
+    "pincode": "370430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.0627490",
+    "longitude": "69.5420210"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Meghpar BO",
+    "pincode": "370430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.0796670",
+    "longitude": "69.5961350"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Naranpar BO",
+    "pincode": "370430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.1177981",
+    "longitude": "69.5883109"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Kera SO",
+    "pincode": "370430",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.2469444",
+    "longitude": "69.6731944"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Kutch Division",
+    "officename": "Gajod BO",
+    "pincode": "370430",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KACHCHH",
+    "statename": "GUJARAT",
+    "latitude": "23.0362656",
+    "longitude": "69.5693220"
+  }
+]

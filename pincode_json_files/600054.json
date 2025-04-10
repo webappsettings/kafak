@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Gandhinagar BO",
+    "pincode": "600054",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1050000",
+    "longitude": "80.0720000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Avadi SO",
+    "pincode": "600054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0701400",
+    "longitude": "80.0609300"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Cvrde SO",
+    "pincode": "600054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1391944",
+    "longitude": "80.0958611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Avadi Camp HO",
+    "pincode": "600054",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1269444",
+    "longitude": "80.1037500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Tank Factory Avadi SO",
+    "pincode": "600054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1090000",
+    "longitude": "80.0951111"
+  }
+]

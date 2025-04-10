@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Sudarshanpur B.O",
+    "pincode": "788160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.5500000",
+    "longitude": "92.5900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Jaffirband S.O",
+    "pincode": "788160",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.5500000",
+    "longitude": "92.5900000"
+  }
+]

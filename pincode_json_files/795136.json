@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Awang Leikinthabi B.O",
+    "pincode": "795136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.927983000000001",
+    "longitude": "93.894897999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kanglatongbi B.O",
+    "pincode": "795136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.977416999999999",
+    "longitude": "93.889770999999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Makhan B.O",
+    "pincode": "795136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "24.984223",
+    "longitude": "93.869924999999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Ch. Khongnangpokpi B.O",
+    "pincode": "795136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "24.953880000000002",
+    "longitude": "93.913920000000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Luwangsangol B.O",
+    "pincode": "795136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "93.901471999999998",
+    "longitude": "24.971823000000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Potsangbam Khoirou B.O",
+    "pincode": "795136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.916862999999999",
+    "longitude": "93.899479999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Sekmai S.O",
+    "pincode": "795136",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.8165320",
+    "longitude": "93.9528270"
+  }
+]

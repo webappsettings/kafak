@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Jamira Bazar S.O",
+    "pincode": "788162",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.3100000",
+    "longitude": "92.5200000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Gharmura Bus Stand B.O",
+    "pincode": "788162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.5500000",
+    "longitude": "92.5900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Gharmura Bazar B.O",
+    "pincode": "788162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.5500000",
+    "longitude": "92.5900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Sultanicherra B.O",
+    "pincode": "788162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.3100000",
+    "longitude": "92.5200000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Ramnathpur B.O",
+    "pincode": "788162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.5500000",
+    "longitude": "92.5900000"
+  }
+]

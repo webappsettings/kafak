@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Karad BO",
+    "pincode": "332710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1593601",
+    "longitude": "75.2887369"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Koolie BO",
+    "pincode": "332710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2040860",
+    "longitude": "75.2770721"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Shyampura BO",
+    "pincode": "332710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2219294",
+    "longitude": "75.3356123"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Umara BO",
+    "pincode": "332710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2245712",
+    "longitude": "75.2537397"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Chakgopinathpura BO",
+    "pincode": "332710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1809859",
+    "longitude": "75.2533724"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Pachar BO",
+    "pincode": "332710",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2523882",
+    "longitude": "75.3528779"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sikar Division",
+    "officename": "Khachariawas SO",
+    "pincode": "332710",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIKAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.4330556",
+    "longitude": "74.8786111"
+  }
+]

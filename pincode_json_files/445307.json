@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Dhunki BO",
+    "pincode": "445307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.818577999999999",
+    "longitude": "78.978831999999997"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Kurai B.O",
+    "pincode": "445307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8726944",
+    "longitude": "79.0538333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Chikparam B.O",
+    "pincode": "445307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8726944",
+    "longitude": "79.0538333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Sakhra Kolgaon B.O",
+    "pincode": "445307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8726944",
+    "longitude": "79.0538333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Velabai B.O",
+    "pincode": "445307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8726944",
+    "longitude": "79.0538333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Sindhola Mines S.O",
+    "pincode": "445307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.87269444",
+    "longitude": "79.05383333"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Kapasia BO",
+    "pincode": "385135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.4853930",
+    "longitude": "72.5286640"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Dholia BO",
+    "pincode": "385135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3459610",
+    "longitude": "72.5737190"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Jethi BO",
+    "pincode": "385135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3131870",
+    "longitude": "72.5207890"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Balundra BO",
+    "pincode": "385135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3758220",
+    "longitude": "72.5437190"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Sarotra BO",
+    "pincode": "385135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3868920",
+    "longitude": "72.5796330"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Iqbalgadh SO",
+    "pincode": "385135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3484330",
+    "longitude": "72.5337930"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Manpuria BO",
+    "pincode": "385135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.371783",
+    "longitude": "72.45531"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Dhondewadi B.O",
+    "pincode": "415104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.2148150",
+    "longitude": "74.1533560"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Kale S.O (Satara)",
+    "pincode": "415104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.1941291",
+    "longitude": "74.1538148"
+  }
+]

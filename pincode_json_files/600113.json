@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "TTTI Taramani S.O",
+    "pincode": "600113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9886667",
+    "longitude": "80.2578889"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Tidel Park S.O",
+    "pincode": "600113",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9898690",
+    "longitude": "80.2487390"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Dr Ambedkar Law Univeristy",
+    "pincode": "600113",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.977474",
+    "longitude": "80.24332"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Hingona Kh B.O",
+    "pincode": "424102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.536202",
+    "longitude": "75.115821"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Waghali B.O",
+    "pincode": "424102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.508847",
+    "longitude": "75.105632"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Patonda S.O",
+    "pincode": "424102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4925029",
+    "longitude": "75.0664076"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Tandulwadi B.O",
+    "pincode": "424102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.550073",
+    "longitude": "75.117484"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Vadale  Vadli B.O",
+    "pincode": "424102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.542602",
+    "longitude": "75.093665"
+  }
+]

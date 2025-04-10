@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Bijay Ramchandrapur S.O",
+    "pincode": "757002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.9569470",
+    "longitude": "86.7412470"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Belgadia S.O",
+    "pincode": "757002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.9301820",
+    "longitude": "86.7227900"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Mayurbhanj Division",
+    "officename": "Bhanjpur S.O",
+    "pincode": "757002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "21.9380556",
+    "longitude": "86.7261111"
+  }
+]

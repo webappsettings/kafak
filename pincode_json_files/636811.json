@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Arakasanahalli B.O",
+    "pincode": "636811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9809100",
+    "longitude": "77.9199500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Chinnampalli B.O",
+    "pincode": "636811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9809100",
+    "longitude": "77.9199500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Kalappambadi B.O",
+    "pincode": "636811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9809100",
+    "longitude": "77.9199500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Perumbalai S.O",
+    "pincode": "636811",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1334167",
+    "longitude": "78.1607500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Gendenahalli B.O",
+    "pincode": "636811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9180266",
+    "longitude": "77.9228432"
+  }
+]

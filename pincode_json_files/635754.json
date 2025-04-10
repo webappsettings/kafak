@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Jaffarabad S.O",
+    "pincode": "635754",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6952250",
+    "longitude": "78.6011800"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Udayendiram B.O",
+    "pincode": "635754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6986260",
+    "longitude": "78.6224450"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Thumberi B.O",
+    "pincode": "635754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6994520",
+    "longitude": "78.5844650"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Chinnapallikuppam B.O",
+    "pincode": "635754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7379360",
+    "longitude": "78.6467130"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Ilayanagaram B.O",
+    "pincode": "635754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7141180",
+    "longitude": "78.6157610"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Madanancherry B.O",
+    "pincode": "635754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7028420",
+    "longitude": "78.5980690"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Vadacheri B.O",
+    "pincode": "635754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7274110",
+    "longitude": "78.6439560"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Majerchar B.O",
+    "pincode": "783325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0325220",
+    "longitude": "90.0069550"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Khalilpur B.O",
+    "pincode": "783325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0227460",
+    "longitude": "89.9669300"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Jhagrarpar S.O",
+    "pincode": "783325",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0364000",
+    "longitude": "89.9642900"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Falimari  Pt i B.O",
+    "pincode": "783325",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0565590",
+    "longitude": "89.9643640"
+  }
+]

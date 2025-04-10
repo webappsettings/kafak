@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Lakhnoo BO",
+    "pincode": "174015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2260000",
+    "longitude": "76.6123000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Behal SO",
+    "pincode": "174015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.225",
+    "longitude": "76.6083"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Gawadewadi B.O",
+    "pincode": "412405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8744000",
+    "longitude": "74.0109000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pune Moffusil Division",
+    "officename": "Avsari KH S.O",
+    "pincode": "412405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.972202",
+    "longitude": "73.964296"
+  }
+]

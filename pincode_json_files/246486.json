@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Nailkhansar BO",
+    "pincode": "246486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3753360",
+    "longitude": "79.1801420"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Jhumakhet BO",
+    "pincode": "246486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9480500",
+    "longitude": "79.4324120"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Lambagar",
+    "pincode": "246486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9983910",
+    "longitude": "79.4366320"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Tentura BO",
+    "pincode": "246486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9561120",
+    "longitude": "79.4242470"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Bachhuwaban SO",
+    "pincode": "246486",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9562778",
+    "longitude": "71.4105000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Saring Gaon BO",
+    "pincode": "246486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3228420",
+    "longitude": "79.1955120"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Nggo Colony Tiruvallur S.O",
+    "pincode": "602001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1507500",
+    "longitude": "79.9169500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Combined Court S.O",
+    "pincode": "602001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1444",
+    "longitude": "79.89401"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Tiruvallur H.O",
+    "pincode": "602001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.1318620",
+    "longitude": "79.9095294"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Ramakrishnapuram BO",
+    "pincode": "520003",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4811120",
+    "longitude": "80.6179580"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "A.C.Company S.O",
+    "pincode": "520003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5280000",
+    "longitude": "80.6268333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Durgapuram S.O",
+    "pincode": "520003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5204444",
+    "longitude": "80.6407222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Purnanandampet S.O",
+    "pincode": "520003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5201667",
+    "longitude": "80.6229444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Vijayawada Division",
+    "officename": "Gandhinagaram S.O (Vijayawada)",
+    "pincode": "520003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NTR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5183",
+    "longitude": "80.6291"
+  }
+]

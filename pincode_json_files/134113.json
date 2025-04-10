@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Industrial Estate  Panchkula S.O",
+    "pincode": "134113",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.6765722",
+    "longitude": "76.8369361"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Sector 15 Panchkula S.O",
+    "pincode": "134113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.6852778",
+    "longitude": "76.8392222"
+  }
+]

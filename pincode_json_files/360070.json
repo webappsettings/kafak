@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Nonghanchora BO",
+    "pincode": "360070",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0836940",
+    "longitude": "70.5688830"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Mengni SO",
+    "pincode": "360070",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0919000",
+    "longitude": "70.6956980"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Champabeda BO",
+    "pincode": "360070",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1034000",
+    "longitude": "86.5672010"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Anida Vachhra BO",
+    "pincode": "360070",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0524470",
+    "longitude": "70.5703700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Dalia BO",
+    "pincode": "360070",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0743760",
+    "longitude": "70.7146170"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Kota B.O",
+    "pincode": "584139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2300000",
+    "longitude": "76.6300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Gowdur B.O",
+    "pincode": "584139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2600000",
+    "longitude": "76.6700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Yelagatta B.O",
+    "pincode": "584139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2600000",
+    "longitude": "76.7300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Devarabhupur B.O",
+    "pincode": "584139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2400000",
+    "longitude": "76.5700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Tanmankal",
+    "pincode": "584139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.33098",
+    "longitude": "76.605699999999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Gurgunta S.O",
+    "pincode": "584139",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2032778",
+    "longitude": "77.3487778"
+  }
+]

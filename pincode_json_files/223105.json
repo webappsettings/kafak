@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Soithakalan SO",
+    "pincode": "223105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6261000",
+    "longitude": "82.6253000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Dukhaipur Sambalshah BO",
+    "pincode": "223105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.359999999999999",
+    "longitude": "82.659999999999997"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Ramnagar BO",
+    "pincode": "223105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4513",
+    "longitude": "83.157899999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Sarpataha BO",
+    "pincode": "223105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.651399999999999",
+    "longitude": "84.654499999999999"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Gangauli BO",
+    "pincode": "223105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.66",
+    "longitude": "82.689999999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Sarijahangirpatti BO",
+    "pincode": "223105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.215399999999999",
+    "longitude": "82.6541"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Kammarpur BO",
+    "pincode": "223105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.579999999999998",
+    "longitude": "82.579999999999998"
+  }
+]

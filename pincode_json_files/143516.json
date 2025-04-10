@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Qadian SO",
+    "pincode": "143516",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8200000",
+    "longitude": "75.3800000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Dhandal BO",
+    "pincode": "143516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.859999999999999",
+    "longitude": "75.409999999999997"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Kandila BO",
+    "pincode": "143516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.77",
+    "longitude": "75.349999999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Khojala BO",
+    "pincode": "143516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.75",
+    "longitude": "75.379999999999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Kot Todarmal BO",
+    "pincode": "143516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.84",
+    "longitude": "75.420000000000002"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Leel Kalan BO",
+    "pincode": "143516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.800000000000001",
+    "longitude": "75.359999999999999"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Dhapai BO",
+    "pincode": "143516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.780000000000001",
+    "longitude": "75.400000000000006"
+  }
+]

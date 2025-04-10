@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Khamarpalli B.O",
+    "pincode": "761120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8819883",
+    "longitude": "84.7023483"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Aladi B.O",
+    "pincode": "761120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8932566",
+    "longitude": "84.7289416"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Jhadabhumi B.O",
+    "pincode": "761120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.9199733",
+    "longitude": "84.7173850"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Patadhar B.O",
+    "pincode": "761120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8877716",
+    "longitude": "84.7134133"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "B.D.Pur B.O",
+    "pincode": "761120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8984716",
+    "longitude": "84.7031999"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Nimapadar B.O",
+    "pincode": "761120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8782133",
+    "longitude": "84.6818083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Baragam S.O",
+    "pincode": "761120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.8932567",
+    "longitude": "84.7289417"
+  }
+]

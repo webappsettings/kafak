@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Vedikhal SO",
+    "pincode": "246177",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8790000",
+    "longitude": "79.0045556"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Kasani BO",
+    "pincode": "246177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8792540",
+    "longitude": "79.0044620"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Kota Mahadev BO",
+    "pincode": "246177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8792540",
+    "longitude": "79.0044620"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Saindhar BO",
+    "pincode": "246177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8792540",
+    "longitude": "79.0044620"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Kadola BO",
+    "pincode": "246177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8792540",
+    "longitude": "79.0044620"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pauri Division",
+    "officename": "Chorkinda Talla BO",
+    "pincode": "246177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAURI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8792540",
+    "longitude": "79.0044620"
+  }
+]

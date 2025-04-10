@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Jangar BO",
+    "pincode": "365455",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.6688024",
+    "longitude": "71.5028050"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Pipallag BO",
+    "pincode": "365455",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.6603283",
+    "longitude": "71.1411382"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Motaankadiya SO",
+    "pincode": "365455",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.6499000",
+    "longitude": "71.1294520"
+  }
+]

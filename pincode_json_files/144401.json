@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Banga Road Phagwara SO",
+    "pincode": "144401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2486000",
+    "longitude": "75.8098900"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Mehli Gate Phagwara SO",
+    "pincode": "144401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.21127656",
+    "longitude": "75.47345419"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Phagwara HO",
+    "pincode": "144401",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2529039",
+    "longitude": "75.7614479"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "THAPAR COLONY PHAGWARA SO",
+    "pincode": "144401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.2486000",
+    "longitude": "75.8098900"
+  }
+]

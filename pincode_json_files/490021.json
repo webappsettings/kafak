@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Sirsakala BO",
+    "pincode": "490021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1899980",
+    "longitude": "81.4608640"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Aundhi BO",
+    "pincode": "490021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1798720",
+    "longitude": "81.4684070"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Auri BO",
+    "pincode": "490021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1678950",
+    "longitude": "81.4800750"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Bhilai East SO",
+    "pincode": "490021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.521137",
+    "longitude": "81.480025999999995"
+  }
+]

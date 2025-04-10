@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Chanda Khurd B.O",
+    "pincode": "323614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7257340",
+    "longitude": "76.3318890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Anghora B.O",
+    "pincode": "323614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7072850",
+    "longitude": "76.2145960"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Daulatpura B.O",
+    "pincode": "323614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0824780",
+    "longitude": "75.8306430"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Nawalpura B.O",
+    "pincode": "323614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2874550",
+    "longitude": "75.9376150"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Sumerganj Mandi S.O",
+    "pincode": "323614",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0728889",
+    "longitude": "75.7111667"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Balban B.O",
+    "pincode": "323614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7091700",
+    "longitude": "76.2797710"
+  }
+]

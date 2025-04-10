@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Amtala B.O",
+    "pincode": "781134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0736110",
+    "longitude": "91.4286110"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Kukurmara S.O",
+    "pincode": "781134",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0736111",
+    "longitude": "91.4286111"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Jiakur B.O",
+    "pincode": "781134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0736110",
+    "longitude": "91.4286110"
+  }
+]

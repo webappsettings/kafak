@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Avalur BO",
+    "pincode": "636907",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.924799999999999",
+    "longitude": "78.680899999999994"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Naripalli SO",
+    "pincode": "636907",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.05135",
+    "longitude": "78.480325"
+  }
+]

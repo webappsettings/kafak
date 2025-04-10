@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Salunkwadi B.O",
+    "pincode": "431519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.697709",
+    "longitude": "76.551848"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Ujani B.O",
+    "pincode": "431519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.709639",
+    "longitude": "76.689367"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Girwali B.O",
+    "pincode": "431519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.745775",
+    "longitude": "76.467671"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Poos B.O",
+    "pincode": "431519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.739268",
+    "longitude": "76.493544"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Pattiwadgaon B.O",
+    "pincode": "431519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.687304",
+    "longitude": "76.608435"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Ghatnandur S.O",
+    "pincode": "431519",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.731179",
+    "longitude": "76.552498"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Thanakalan B.O",
+    "pincode": "503202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6937116",
+    "longitude": "78.0521450"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Mahabub Farm B.O",
+    "pincode": "503202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6937116",
+    "longitude": "78.0521450"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Kurnapalli B.O",
+    "pincode": "503202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6937116",
+    "longitude": "78.0521450"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Edapalli S.O",
+    "pincode": "503202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.678185",
+    "longitude": "77.948303"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Mangalpahad B.O",
+    "pincode": "503202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6937116",
+    "longitude": "78.0521450"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Jamlam B.O",
+    "pincode": "503202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6905946",
+    "longitude": "77.9741380"
+  }
+]

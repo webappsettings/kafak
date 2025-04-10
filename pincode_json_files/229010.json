@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Rupamau BO",
+    "pincode": "229010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2301200",
+    "longitude": "81.3200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "ITI SO Raebareli",
+    "pincode": "229010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2349460",
+    "longitude": "81.2410080"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Maliak Mau Aima BO",
+    "pincode": "229010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6900000",
+    "longitude": "81.9200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Rahi BO",
+    "pincode": "229010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2351000",
+    "longitude": "81.2900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Jawahar Vihar SO",
+    "pincode": "229010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2200000",
+    "longitude": "81.2500000"
+  }
+]

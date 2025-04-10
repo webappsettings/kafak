@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Malosan BO",
+    "pincode": "384515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.607114",
+    "longitude": "72.700059"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Gavada SO",
+    "pincode": "384515",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.590117",
+    "longitude": "72.693762"
+  }
+]

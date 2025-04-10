@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Nagalapura B.O",
+    "pincode": "583123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1554698",
+    "longitude": "76.6101582"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Vaddu B.O",
+    "pincode": "583123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1865083",
+    "longitude": "76.6297812"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kurekuppa B.O",
+    "pincode": "583123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2184588",
+    "longitude": "76.6479559"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Talur B.O",
+    "pincode": "583123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1693637",
+    "longitude": "76.6083128"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Toranagallu S.O",
+    "pincode": "583123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1963342",
+    "longitude": "76.6756988"
+  }
+]

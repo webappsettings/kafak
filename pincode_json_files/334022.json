@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Bambloo B.O",
+    "pincode": "334022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1240000",
+    "longitude": "73.5093000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Gersar B.O",
+    "pincode": "334022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0401000",
+    "longitude": "73.3775000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Pemasar",
+    "pincode": "334022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.078357400000002",
+    "longitude": "73.415074399999995"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Udasar S.O",
+    "pincode": "334022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0401420",
+    "longitude": "73.3775030"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Ridmalsar B.O",
+    "pincode": "334022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0424000",
+    "longitude": "73.4239000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Runiya Bara Bas B.O",
+    "pincode": "334022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2682000",
+    "longitude": "73.6418000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Serera B.O",
+    "pincode": "334022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1580000",
+    "longitude": "73.6241000"
+  }
+]

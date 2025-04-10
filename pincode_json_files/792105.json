@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Podumani B.O",
+    "pincode": "792105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMSAI",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.025070199999998",
+    "longitude": "93.972424899999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Kumari Kachari B.O",
+    "pincode": "792105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAMSAI",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.580607499999999",
+    "longitude": "95.846333400000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Mahadevpur S.O (Lohit)",
+    "pincode": "792105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAMSAI",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.7946150",
+    "longitude": "96.4063100"
+  }
+]

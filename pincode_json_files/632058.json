@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Kattuputhur B.O",
+    "pincode": "632058",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8480000",
+    "longitude": "79.0947000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Vellore Division",
+    "officename": "Pennathur S.O",
+    "pincode": "632058",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VELLORE",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2456944",
+    "longitude": "79.2250278"
+  }
+]

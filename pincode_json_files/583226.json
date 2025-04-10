@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Halwagali B.O",
+    "pincode": "583226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.1746015",
+    "longitude": "75.9673652"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Kawaloor B.O",
+    "pincode": "583226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.2157573",
+    "longitude": "75.9425709"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Bochenhalli B.O",
+    "pincode": "583226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.1889137",
+    "longitude": "76.0074803"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Hatti B.O",
+    "pincode": "583226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.2157573",
+    "longitude": "75.9351358"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Tigri B.O",
+    "pincode": "583226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.1724235",
+    "longitude": "76.0224900"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Alawandi S.O",
+    "pincode": "583226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.2326445",
+    "longitude": "75.9789202"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Ghattreddihal",
+    "pincode": "583226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.2429763",
+    "longitude": "75.9240100"
+  }
+]

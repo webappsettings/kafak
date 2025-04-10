@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Stantanpuram B.O",
+    "pincode": "518006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Balaji Nagar S.O",
+    "pincode": "518006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.78169444",
+    "longitude": "78.06316667"
+  }
+]

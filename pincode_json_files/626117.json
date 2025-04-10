@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Rajapalayam Ambalapuli Bazzar SO",
+    "pincode": "626117",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4476111",
+    "longitude": "77.5559444"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Rajapalayam HO",
+    "pincode": "626117",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4505833",
+    "longitude": "77.5599167"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Virudhunagar Division",
+    "officename": "Pudupalayam SO Virudhunagar",
+    "pincode": "626117",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIRUDHUNAGAR",
+    "statename": "TAMIL NADU",
+    "latitude": "9.4400000",
+    "longitude": "77.5400000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Kharanwali B.O",
+    "pincode": "133302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.3781880",
+    "longitude": "76.7766870"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Kalka R.S. S.O",
+    "pincode": "133302",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.0587757",
+    "longitude": "76.0856010"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Kalka S.O",
+    "pincode": "133302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.8344444",
+    "longitude": "76.9382222"
+  }
+]

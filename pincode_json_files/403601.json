@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Margao H.O",
+    "pincode": "403601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.27470136",
+    "longitude": "73.95756147"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "South Goa Collectorate SO",
+    "pincode": "403601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.2704167",
+    "longitude": "73.9599167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Aquem S.O",
+    "pincode": "403601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.2716111",
+    "longitude": "73.9693333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Gogol S.O",
+    "pincode": "403601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.2818889",
+    "longitude": "73.9865556"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Dakra Colliery SO",
+    "pincode": "829210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.645",
+    "longitude": "84.644999999999996"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Churi Madhay B.O",
+    "pincode": "829210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.669779999999999",
+    "longitude": "85.021069999999995"
+  }
+]

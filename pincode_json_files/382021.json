@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 19 SO",
+    "pincode": "382021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2247040",
+    "longitude": "72.6659990"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 29 SO",
+    "pincode": "382021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.242555",
+    "longitude": "72.661997"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 22 SO",
+    "pincode": "382021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2342640",
+    "longitude": "72.6574640"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 30 SO",
+    "pincode": "382021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.239408",
+    "longitude": "72.667223"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Gandhinagar Division",
+    "officename": "Gandhinagar Sector 21 SO",
+    "pincode": "382021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANDHINAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2309950",
+    "longitude": "72.6676450"
+  }
+]

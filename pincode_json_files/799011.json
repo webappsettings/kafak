@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Ujan Ghaniamara B.O",
+    "pincode": "799011",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Kanakraipara B.O",
+    "pincode": "799011",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Sankumabari B.O",
+    "pincode": "799011",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Takarjala B.O",
+    "pincode": "799011",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Jampuijala SO",
+    "pincode": "799011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "23.82975",
+    "longitude": "91.2788333"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Jampuijala Colony B.O",
+    "pincode": "799011",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Kendraicherra B.O",
+    "pincode": "799011",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

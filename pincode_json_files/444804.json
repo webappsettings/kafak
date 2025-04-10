@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Waki Raipur B.O",
+    "pincode": "444804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0200000",
+    "longitude": "77.5700000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Purna Nagar S.O",
+    "pincode": "444804",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9444722",
+    "longitude": "77.7815833"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Nirul B.O",
+    "pincode": "444804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0600000",
+    "longitude": "77.5500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Yesurna B.O",
+    "pincode": "444804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1000000",
+    "longitude": "77.5000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Khairi B.O",
+    "pincode": "444804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1300000",
+    "longitude": "77.5400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Rama B.O",
+    "pincode": "444804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0600000",
+    "longitude": "77.5400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Sawalapur B.O",
+    "pincode": "444804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0800000",
+    "longitude": "77.5600000"
+  }
+]

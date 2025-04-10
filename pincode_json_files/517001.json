@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Chittoor Bazar S.O",
+    "pincode": "517001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.21925",
+    "longitude": "79.09725"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Ctr Court Buildings S.O",
+    "pincode": "517001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.21641667",
+    "longitude": "79.09008333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Ctr Market S.O",
+    "pincode": "517001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.216972",
+    "longitude": "79.09275"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Chittoor H.O",
+    "pincode": "517001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.21555556",
+    "longitude": "79.10102778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Readspet S.O",
+    "pincode": "517001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.2105",
+    "longitude": "79.0956"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Panigrahipentho S.O",
+    "pincode": "760006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3203399",
+    "longitude": "84.7732049"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Sankarapur S.O",
+    "pincode": "760006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3203390",
+    "longitude": "84.7732040"
+  }
+]

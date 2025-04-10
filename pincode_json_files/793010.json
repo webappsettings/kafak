@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Laitkor Peak S.O",
+    "pincode": "793010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5739167",
+    "longitude": "91.8848611"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Laitkor B.O",
+    "pincode": "793010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Pomlakrai B.O",
+    "pincode": "793010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

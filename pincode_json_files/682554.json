@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Lakshadweep Division",
+    "officename": "Bithra B.O",
+    "pincode": "682554",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "LAKSHADWEEP DISTRICT",
+    "statename": "LAKSHADWEEP",
+    "latitude": "11.598982",
+    "longitude": "72.186846"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Lakshadweep Division",
+    "officename": "Chetlat S.O",
+    "pincode": "682554",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAKSHADWEEP DISTRICT",
+    "statename": "LAKSHADWEEP",
+    "latitude": "11.691404",
+    "longitude": "72.711116"
+  }
+]

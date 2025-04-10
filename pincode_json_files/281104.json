@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Rasgaon BO",
+    "pincode": "281104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.489999999999998",
+    "longitude": "78.010000000000005"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Unchagaon BO",
+    "pincode": "281104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4900000",
+    "longitude": "78.0100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Jalesar RS SO",
+    "pincode": "281104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2819000",
+    "longitude": "78.1806000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mathura Division",
+    "officename": "Mahrara BO",
+    "pincode": "281104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HATHRAS",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4900000",
+    "longitude": "78.0100000"
+  }
+]

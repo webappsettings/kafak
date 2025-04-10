@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Junagadh Agri Campus SO",
+    "pincode": "362001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5073056",
+    "longitude": "70.4493611"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Junagadh Mangnath Road SO",
+    "pincode": "362001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5176793",
+    "longitude": "70.4632323"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Junagadh HO",
+    "pincode": "362001",
+    "officetype": "HO",
+    "delivery": "Non Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5056111",
+    "longitude": "70.4589167"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Junagadh Azad Chowk SO",
+    "pincode": "362001",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.519189",
+    "longitude": "70.461366"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Junagadh Sardarbag SO",
+    "pincode": "362001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5198611",
+    "longitude": "70.4511944"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Junagadh Station Road SO",
+    "pincode": "362001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5117500",
+    "longitude": "70.4593333"
+  }
+]

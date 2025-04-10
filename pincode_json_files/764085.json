@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Parajadeopalli B.O",
+    "pincode": "764085",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.2679816",
+    "longitude": "82.8256066"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Khatiguda S.O",
+    "pincode": "764085",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.2679816",
+    "longitude": "82.8256066"
+  }
+]

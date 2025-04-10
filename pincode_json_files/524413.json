@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Kothapalem B.O",
+    "pincode": "524413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.4398000",
+    "longitude": "79.9691000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Mettu B.O",
+    "pincode": "524413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025421",
+    "longitude": "80.0709489"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Vunuguntapalem B.O",
+    "pincode": "524413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025511",
+    "longitude": "80.0709399"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Tinnelapudi B.O",
+    "pincode": "524413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0322414",
+    "longitude": "80.0297806"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Gudali B.O",
+    "pincode": "524413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025431",
+    "longitude": "80.0709479"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Vallipedu B.O",
+    "pincode": "524413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.0025461",
+    "longitude": "80.0709449"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Vidyanagar S.O (Nellore)",
+    "pincode": "524413",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.916625",
+    "longitude": "79.993084"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Chakeri SO",
+    "pincode": "322034",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5493889",
+    "longitude": "76.8590833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Aulwada BO",
+    "pincode": "322034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1769530",
+    "longitude": "76.5054650"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Makholi BO",
+    "pincode": "322034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1251070",
+    "longitude": "76.4476320"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Badolas BO",
+    "pincode": "322034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1837180",
+    "longitude": "76.4852260"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Padana BO",
+    "pincode": "322034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1677220",
+    "longitude": "76.4389550"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Selu BO",
+    "pincode": "322034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1539280",
+    "longitude": "76.4158130"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Abinash Chaowdhury Lane SO",
+    "pincode": "700046",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3242450",
+    "longitude": "88.2118431"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Gobinda Khatick Road SO",
+    "pincode": "700046",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLKATA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5503146",
+    "longitude": "88.3810106"
+  }
+]

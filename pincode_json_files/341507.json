@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Shimbhupura B.O",
+    "pincode": "341507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1132000",
+    "longitude": "75.1859000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Shyamgarh B.O",
+    "pincode": "341507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1432220",
+    "longitude": "75.1581860"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Deolikallan B.O",
+    "pincode": "341507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1374000",
+    "longitude": "75.0783500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Maroth S.O",
+    "pincode": "341507",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0945000",
+    "longitude": "75.0908611"
+  }
+]

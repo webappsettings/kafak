@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Badiwala BO",
+    "pincode": "251327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6334740",
+    "longitude": "77.9583190"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Kelanpur BO",
+    "pincode": "251327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6767870",
+    "longitude": "77.8653730"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Sherpur BO",
+    "pincode": "251327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6437320",
+    "longitude": "77.9314890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Hari Nagar BO",
+    "pincode": "251327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6418560",
+    "longitude": "77.8918490"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Almawala B.O",
+    "pincode": "251327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.591224",
+    "longitude": "78.000265999999996"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Purkazi SO",
+    "pincode": "251327",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6585300",
+    "longitude": "77.8441300"
+  }
+]

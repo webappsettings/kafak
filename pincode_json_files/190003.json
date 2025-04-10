@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Khanyar SO",
+    "pincode": "190003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0733056",
+    "longitude": "74.8165556"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Nandpora BO",
+    "pincode": "190003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.1261030",
+    "longitude": "74.6732050"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Rainawari SO",
+    "pincode": "190003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0980833",
+    "longitude": "74.8289444"
+  }
+]

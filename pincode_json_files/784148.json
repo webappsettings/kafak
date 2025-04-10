@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Burha B.O",
+    "pincode": "784148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.4695090",
+    "longitude": "91.8440209"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Hengalpara B.O",
+    "pincode": "784148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.4695143",
+    "longitude": "91.8440159"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Tengara B.O",
+    "pincode": "784148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5943510",
+    "longitude": "91.9881527"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Andherighat B.O",
+    "pincode": "784148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5037138",
+    "longitude": "91.7849890"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kenduguri B.O",
+    "pincode": "784148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.4695130",
+    "longitude": "91.8440169"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Duni S.O (Darrang",
+    "pincode": "784148",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.4695083",
+    "longitude": "91.8440219"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Keshpura BO",
+    "pincode": "283207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.3578400",
+    "longitude": "78.1545900"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Mustfabad BO",
+    "pincode": "283207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.4578360",
+    "longitude": "78.1632580"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Kaitha BO",
+    "pincode": "283207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3668890",
+    "longitude": "78.4616090"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Phariha SO",
+    "pincode": "283207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1916000",
+    "longitude": "78.2823000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Pilakhatar BO",
+    "pincode": "283207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.7845180",
+    "longitude": "78.3254789"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Konder BO",
+    "pincode": "283207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.1278520",
+    "longitude": "78.1245790"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Valsad Chhipwad SO",
+    "pincode": "396001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.6186340",
+    "longitude": "72.9325460"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Valsad Mota Bazar SO",
+    "pincode": "396001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.6160430",
+    "longitude": "72.9272250"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Valsad HO",
+    "pincode": "396001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.6076180",
+    "longitude": "72.9265810"
+  }
+]

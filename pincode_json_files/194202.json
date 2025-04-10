@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Kairy B.O",
+    "pincode": "194202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "46.938459999999999",
+    "longitude": "30.964417000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Kungyam B.O",
+    "pincode": "194202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "KARZOK B.O",
+    "pincode": "194202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "NYOMA MUD",
+    "pincode": "194202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "33.205916",
+    "longitude": "78.648384"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Chumathang B.O",
+    "pincode": "194202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Hemiya B.O",
+    "pincode": "194202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

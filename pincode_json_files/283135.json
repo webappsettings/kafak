@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Dakhinara BO",
+    "pincode": "283135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.0224800",
+    "longitude": "78.0111000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Bara Bazar Shikohabad SO",
+    "pincode": "283135",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1053056",
+    "longitude": "78.5865000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Shikohabad SO",
+    "pincode": "283135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1059444",
+    "longitude": "78.5851389"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Dhatari BO",
+    "pincode": "283135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.2012470",
+    "longitude": "78.0214570"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Thanumai BO",
+    "pincode": "283135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.3322140",
+    "longitude": "78.3321450"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Mandai BO",
+    "pincode": "283135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.2355500",
+    "longitude": "78.0245480"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Urmura BO",
+    "pincode": "283135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.1112220",
+    "longitude": "78.1122220"
+  }
+]

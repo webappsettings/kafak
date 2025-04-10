@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Karla Kalam B.O",
+    "pincode": "431731",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.103498",
+    "longitude": "77.599256"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Thadihiparga B.O",
+    "pincode": "431731",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.668081",
+    "longitude": "77.704131"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Sagroli S.O",
+    "pincode": "431731",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.691441",
+    "longitude": "77.738559"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Shewala B.O",
+    "pincode": "431731",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.050550",
+    "longitude": "77.141538"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Bolegaon B.O",
+    "pincode": "431731",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.712936",
+    "longitude": "77.748992"
+  }
+]

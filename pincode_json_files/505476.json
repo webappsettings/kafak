@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Valbhapur B.O",
+    "pincode": "505476",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1304742",
+    "longitude": "79.4380566"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Yelkathurthi S.O",
+    "pincode": "505476",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0883611",
+    "longitude": "79.4822500"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Gopalpur B.O",
+    "pincode": "505476",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1128029",
+    "longitude": "79.4074475"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Veeranarayanpur B.O",
+    "pincode": "505476",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1404731",
+    "longitude": "79.4478562"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Suraram B.O",
+    "pincode": "505476",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1292892",
+    "longitude": "79.4537076"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Damera B.O",
+    "pincode": "505476",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0736757",
+    "longitude": "79.4258131"
+  }
+]

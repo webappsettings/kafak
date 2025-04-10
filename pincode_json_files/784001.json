@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Kacharigaon S.O",
+    "pincode": "784001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.6511000",
+    "longitude": "92.7728500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Hazarapar S.O",
+    "pincode": "784001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.6511000",
+    "longitude": "92.7728500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Tezpur Bazar S.O",
+    "pincode": "784001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.7070425",
+    "longitude": "92.7777184"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Sonitpur S.O",
+    "pincode": "784001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.6511000",
+    "longitude": "92.7728500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Tezpur H.O",
+    "pincode": "784001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.7070425",
+    "longitude": "92.7777184"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Mahabhairab S.O",
+    "pincode": "784001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SONITPUR",
+    "statename": "ASSAM",
+    "latitude": "26.6511000",
+    "longitude": "92.7728500"
+  }
+]

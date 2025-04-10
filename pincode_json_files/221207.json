@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Dabethuwa BO",
+    "pincode": "221207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5331790",
+    "longitude": "82.7374120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Nayepur Chaumuhani BO",
+    "pincode": "221207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5331790",
+    "longitude": "82.7374120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Barahi Newada BO",
+    "pincode": "221207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5331790",
+    "longitude": "82.7374120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Thaney Rampur BO",
+    "pincode": "221207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5331790",
+    "longitude": "82.7374120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Kathiraon SO",
+    "pincode": "221207",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3017000",
+    "longitude": "82.5107000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Tari BO",
+    "pincode": "221207",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5331790",
+    "longitude": "82.7374120"
+  }
+]

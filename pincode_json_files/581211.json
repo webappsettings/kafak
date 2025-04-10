@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Konanatambagi B.O",
+    "pincode": "581211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.6737324",
+    "longitude": "75.7976123"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Medleri S.O",
+    "pincode": "581211",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.6706474",
+    "longitude": "75.7324979"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Belur B.O",
+    "pincode": "581211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.7195016",
+    "longitude": "75.7549223"
+  }
+]

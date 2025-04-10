@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Masarh BO",
+    "pincode": "802162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5570610",
+    "longitude": "84.5772560"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Nawada Ben SO",
+    "pincode": "802162",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5587222",
+    "longitude": "84.6674722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Kawara BO",
+    "pincode": "802162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.5281010",
+    "longitude": "84.5569920"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Saneya Barhata BO",
+    "pincode": "802162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.3971050",
+    "longitude": "84.3740400"
+  }
+]

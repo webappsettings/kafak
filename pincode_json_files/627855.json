@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Puliyangudi S.O",
+    "pincode": "627855",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1625000",
+    "longitude": "77.3680000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Ayyapuram B.O",
+    "pincode": "627855",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1442000",
+    "longitude": "77.3991000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "PUNNIAPURAM B.O",
+    "pincode": "627855",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1382999999999992",
+    "longitude": "77.370400000000004"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Thiruvettanallur B.O",
+    "pincode": "627855",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1248000",
+    "longitude": "77.3882000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Chinthamani B.O",
+    "pincode": "627855",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1732000",
+    "longitude": "77.3805000"
+  }
+]

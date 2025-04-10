@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Nagapattinam H.O",
+    "pincode": "611001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7603056",
+    "longitude": "79.8465278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Nagapattinam Bazaar S.O",
+    "pincode": "611001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8950000",
+    "longitude": "79.9441700"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Velippalayam S.O",
+    "pincode": "611001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7800000",
+    "longitude": "79.8400000"
+  }
+]

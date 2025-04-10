@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Bapera B.O",
+    "pincode": "441915",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.5188650",
+    "longitude": "79.9066760"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Wahani B.O",
+    "pincode": "441915",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.4601660",
+    "longitude": "79.8380780"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Sihora S.O (Bhandara)",
+    "pincode": "441915",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1630556",
+    "longitude": "79.6558056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Chulhad B.O",
+    "pincode": "441915",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.4751040",
+    "longitude": "79.7932500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Mohgaon Khadan B.O",
+    "pincode": "441915",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.4601660",
+    "longitude": "79.8380780"
+  }
+]

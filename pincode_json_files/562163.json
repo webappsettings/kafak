@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Arakere B.O",
+    "pincode": "562163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.2000000",
+    "longitude": "77.5400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Doddatumkur B.O",
+    "pincode": "562163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2300000",
+    "longitude": "77.5300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Konnagatta B.O",
+    "pincode": "562163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.3100000",
+    "longitude": "77.6000000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Shivapura B.O",
+    "pincode": "562163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.3100000",
+    "longitude": "77.5700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Veerapura B.O",
+    "pincode": "562163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2600000",
+    "longitude": "77.5400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Basettihalli B.O",
+    "pincode": "562163",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2600000",
+    "longitude": "77.5500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Nagadenahalli S.O",
+    "pincode": "562163",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2800000",
+    "longitude": "77.6000000"
+  }
+]

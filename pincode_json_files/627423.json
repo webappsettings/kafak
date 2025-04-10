@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Thuppakudi BO",
+    "pincode": "627423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7744730",
+    "longitude": "77.4450980"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Theertharappapuram BO",
+    "pincode": "627423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.8077220",
+    "longitude": "77.4404360"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Ananjaperumal Nadanur BO",
+    "pincode": "627423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.8006310",
+    "longitude": "77.4242920"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Pottalpudur SO",
+    "pincode": "627423",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7976667",
+    "longitude": "77.3882222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Pappangulam BO",
+    "pincode": "627423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7939870",
+    "longitude": "77.4188040"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Mudaliarpatti BO",
+    "pincode": "627423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.8116130",
+    "longitude": "77.3807570"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tirunelveli Division",
+    "officename": "Therku Madathur BO",
+    "pincode": "627423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.8407570",
+    "longitude": "77.4060100"
+  }
+]

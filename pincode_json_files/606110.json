@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "C Keeranur B.O",
+    "pincode": "606110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4600000",
+    "longitude": "79.3200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Karuvepilankurichi S.O",
+    "pincode": "606110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7567778",
+    "longitude": "79.7626111"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Karmangudi B.O",
+    "pincode": "606110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4700000",
+    "longitude": "79.3500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Therku Vadakku Puthur B.O",
+    "pincode": "606110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4400000",
+    "longitude": "79.3200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Deevalur B.O",
+    "pincode": "606110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4600000",
+    "longitude": "79.2800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Sathiyavadi B.O",
+    "pincode": "606110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4500000",
+    "longitude": "79.3100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Sathukudal B.O",
+    "pincode": "606110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.4900000",
+    "longitude": "79.2900000"
+  }
+]

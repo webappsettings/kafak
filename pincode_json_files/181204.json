@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Kot Maira BO",
+    "pincode": "181204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.8410290",
+    "longitude": "74.4628210"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Bardoh BO",
+    "pincode": "181204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.8269240",
+    "longitude": "74.3526910"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Pallanwala SO",
+    "pincode": "181204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.8403333",
+    "longitude": "74.4666667"
+  }
+]

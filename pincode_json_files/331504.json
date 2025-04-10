@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Ajeetsar B.O",
+    "pincode": "331504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Ranasar Bikan B.O",
+    "pincode": "331504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Gogasar S.O",
+    "pincode": "331504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.3027222",
+    "longitude": "74.9670833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Kangar B.O",
+    "pincode": "331504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Asalsar B.O",
+    "pincode": "331504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

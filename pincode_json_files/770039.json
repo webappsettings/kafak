@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Ratakhandi B.O",
+    "pincode": "770039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.3177418",
+    "longitude": "84.6971385"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Kalosihiria B.O",
+    "pincode": "770039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.3220111",
+    "longitude": "84.7957738"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Kumjharia B.O",
+    "pincode": "770039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.347894",
+    "longitude": "84.7461993"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Padampur B.O",
+    "pincode": "770039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2594086",
+    "longitude": "84.7652304"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Kuarmunda S.O",
+    "pincode": "770039",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.2855814",
+    "longitude": "84.7690551"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Rourkela Division",
+    "officename": "Gobira B.O",
+    "pincode": "770039",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUNDARGARH",
+    "statename": "ODISHA",
+    "latitude": "22.317099",
+    "longitude": "84.7306934"
+  }
+]

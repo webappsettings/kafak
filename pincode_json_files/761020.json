@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Chatrapur H.O",
+    "pincode": "761020",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3602350",
+    "longitude": "84.9958220"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Chatrapur Bazar S.O",
+    "pincode": "761020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3600767",
+    "longitude": "84.9874933"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Sitarampalli S.O",
+    "pincode": "761020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3563733",
+    "longitude": "84.9811483"
+  }
+]

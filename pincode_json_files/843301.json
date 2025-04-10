@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Sitamarhi HO",
+    "pincode": "843301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.5637222",
+    "longitude": "85.5243333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Shaktipith Chandidham SO",
+    "pincode": "843301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.5637222",
+    "longitude": "85.5243333"
+  }
+]

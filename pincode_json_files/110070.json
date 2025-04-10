@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Vasant Kunj SO",
+    "pincode": "110070",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.534162",
+    "longitude": "77.152685"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Masood Pur BO",
+    "pincode": "110070",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5200000",
+    "longitude": "77.1500000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Vasant Kunj PktA SO",
+    "pincode": "110070",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5139722",
+    "longitude": "77.1655000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Hatundi B.O",
+    "pincode": "305012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3656660",
+    "longitude": "74.6492490"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Mss Hatundi S.O",
+    "pincode": "305012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3567222",
+    "longitude": "74.6446944"
+  }
+]

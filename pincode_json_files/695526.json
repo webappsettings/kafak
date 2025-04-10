@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Pulluvila SO",
+    "pincode": "695526",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.3445000",
+    "longitude": "77.0372222"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Lourdepuram BO",
+    "pincode": "695526",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.3400000",
+    "longitude": "77.0600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Puthiathura BO",
+    "pincode": "695526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.3400000",
+    "longitude": "77.0600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum South Division",
+    "officename": "Kazhavur BO",
+    "pincode": "695526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.3500000",
+    "longitude": "77.0400000"
+  }
+]

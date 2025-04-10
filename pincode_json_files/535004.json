@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Dharmapuri B.O",
+    "pincode": "535004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0924690",
+    "longitude": "83.4029740"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Sarika B.O",
+    "pincode": "535004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0818820",
+    "longitude": "83.3522230"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Jonnavalasa B.O",
+    "pincode": "535004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0928660",
+    "longitude": "83.3617370"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Rakodu B.O",
+    "pincode": "535004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0848090",
+    "longitude": "83.3301740"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Vizianagaram Court Complex S.O",
+    "pincode": "535004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1026111",
+    "longitude": "83.3945556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Pinavemali B.O",
+    "pincode": "535004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0848090",
+    "longitude": "83.3301740"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Industrial Estate S.O (Vizianagaram)",
+    "pincode": "535004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.088816",
+    "longitude": "83.389117"
+  }
+]

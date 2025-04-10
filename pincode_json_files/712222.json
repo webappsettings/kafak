@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Champdani SO",
+    "pincode": "712222",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8820000",
+    "longitude": "87.7015000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Baidyabati SO",
+    "pincode": "712222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7921667",
+    "longitude": "88.3344722"
+  }
+]

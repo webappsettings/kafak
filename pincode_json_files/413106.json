@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Hingangaon B.O",
+    "pincode": "413106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1021740",
+    "longitude": "75.0951590"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Bijawadi B.O",
+    "pincode": "413106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1457880",
+    "longitude": "74.9588700"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Vadapuri B.O",
+    "pincode": "413106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1157700",
+    "longitude": "75.0272200"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Indapur Bazar S.O",
+    "pincode": "413106",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1204444",
+    "longitude": "75.0317778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Kalashi B.O",
+    "pincode": "413106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1130730",
+    "longitude": "75.0269540"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Kalthan B.O",
+    "pincode": "413106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1729890",
+    "longitude": "75.0194940"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Baramati Division",
+    "officename": "Indapur S.O",
+    "pincode": "413106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PUNE",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.11195990",
+    "longitude": "75.02564050"
+  }
+]

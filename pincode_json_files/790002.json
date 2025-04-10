@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Tenzingaon B.O",
+    "pincode": "790002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.109735100000002",
+    "longitude": "92.258272500000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Balemu B.O",
+    "pincode": "790002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "26.959761100000001",
+    "longitude": "92.145339699999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Kalaktang S.O",
+    "pincode": "790002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.2928540",
+    "longitude": "92.4974340"
+  }
+]

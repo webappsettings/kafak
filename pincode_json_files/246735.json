@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Sabdalpur BO",
+    "pincode": "246735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "19.2895000",
+    "longitude": "78.4385000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Bhogpur BO",
+    "pincode": "246735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "19.2895000",
+    "longitude": "78.4385000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Jamalpur Kirat BO",
+    "pincode": "246735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "19.2895000",
+    "longitude": "78.4385000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Rahtauli B.O",
+    "pincode": "246735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1085",
+    "longitude": "78.5425"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Rawana Shikarpur BO",
+    "pincode": "246735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "19.2895000",
+    "longitude": "78.4385000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Rajakatajpur SO",
+    "pincode": "246735",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3735278",
+    "longitude": "78.1348056"
+  }
+]

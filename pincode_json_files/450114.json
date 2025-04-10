@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Indhawadi B.O",
+    "pincode": "450114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.2337000",
+    "longitude": "76.2594000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Gujarkhedi B.O",
+    "pincode": "450114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1800000",
+    "longitude": "76.2797000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Punasa S.O",
+    "pincode": "450114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8300000",
+    "longitude": "76.3300000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Kelwakhurd B.O",
+    "pincode": "450114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1800000",
+    "longitude": "76.2797000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Public Office SO Thiruvananthapuram",
+    "pincode": "695033",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.507839",
+    "longitude": "76.955446"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "PMG Jn SO",
+    "pincode": "695033",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.4986111",
+    "longitude": "76.9493333"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Trivandrum North Division",
+    "officename": "Vikas Bhavan SO",
+    "pincode": "695033",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVANANTHAPURAM",
+    "statename": "KERALA",
+    "latitude": "8.507652",
+    "longitude": "76.948479"
+  }
+]

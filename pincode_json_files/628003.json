@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "New Colony S.O (Tuticorin)",
+    "pincode": "628003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7256944",
+    "longitude": "78.2025556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Tuticorin Division",
+    "officename": "Tuticorin courts S.O",
+    "pincode": "628003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUTICORIN",
+    "statename": "TAMIL NADU",
+    "latitude": "8.7256944",
+    "longitude": "78.2025556"
+  }
+]

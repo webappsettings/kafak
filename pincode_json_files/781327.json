@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Betbari B.O",
+    "pincode": "781327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Gandhipur B.O",
+    "pincode": "781327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Jalahghat S.O",
+    "pincode": "781327",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bamunkata B.O",
+    "pincode": "781327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Golagaon B.O",
+    "pincode": "781327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Anchali B.O",
+    "pincode": "781327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bakua B.O",
+    "pincode": "781327",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4154000",
+    "longitude": "91.1148000"
+  }
+]

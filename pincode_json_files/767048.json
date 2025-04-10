@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Bhundimuhan B.O",
+    "pincode": "767048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.7430825",
+    "longitude": "83.2604726"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Mudghat B.O",
+    "pincode": "767048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.6670289",
+    "longitude": "83.2382627"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Ramchandrapur B.O",
+    "pincode": "767048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.6349961",
+    "longitude": "83.2235305"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Bhainsa S.O (Balangir)",
+    "pincode": "767048",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.708023000000001",
+    "longitude": "83.215328999999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Dumerpita B.O",
+    "pincode": "767048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.6619901",
+    "longitude": "83.2673661"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Balangir Division",
+    "officename": "Mayabarha B.O",
+    "pincode": "767048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALANGIR",
+    "statename": "ODISHA",
+    "latitude": "20.7367766",
+    "longitude": "83.2360600"
+  }
+]

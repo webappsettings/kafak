@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Angadh BO",
+    "pincode": "391330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3500000",
+    "longitude": "73.1100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Sindhrot BO",
+    "pincode": "391330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.1100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Ankodia BO",
+    "pincode": "391330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3500000",
+    "longitude": "73.1100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Kotna BO",
+    "pincode": "391330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.1100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Sherkhi BO",
+    "pincode": "391330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.1100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Undera BO",
+    "pincode": "391330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.1100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Koyali SO",
+    "pincode": "391330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3035833",
+    "longitude": "73.1976944"
+  }
+]

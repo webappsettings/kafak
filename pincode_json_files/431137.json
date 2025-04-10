@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Salwadgaon B.O",
+    "pincode": "431137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.490987000000001",
+    "longitude": "75.548049000000006"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Hiradpuri B.O",
+    "pincode": "431137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4208900",
+    "longitude": "75.5257226"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Takali Ambad B.O",
+    "pincode": "431137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4666700",
+    "longitude": "76.5268300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Dahyala B.O",
+    "pincode": "431137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.6142760",
+    "longitude": "75.7850100"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Navgaon B.O",
+    "pincode": "431137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4287363",
+    "longitude": "75.5145606"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Chhatrapati Sambhajinagar Division",
+    "officename": "Bihamandwa S.O",
+    "pincode": "431137",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4537",
+    "longitude": "75.5697"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kandapala B.O",
+    "pincode": "768045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5863127",
+    "longitude": "83.4211991"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bhainatora B.O",
+    "pincode": "768045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5863127",
+    "longitude": "83.4211991"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kapasira B.O",
+    "pincode": "768045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5863127",
+    "longitude": "83.4211991"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Ruchida B.O",
+    "pincode": "768045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5863127",
+    "longitude": "83.4211991"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bhukta S.O",
+    "pincode": "768045",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.2333300",
+    "longitude": "83.6166670"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kumbho B.O",
+    "pincode": "768045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5863127",
+    "longitude": "83.4211991"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bara B.O",
+    "pincode": "768045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5794552",
+    "longitude": "83.3867264"
+  }
+]

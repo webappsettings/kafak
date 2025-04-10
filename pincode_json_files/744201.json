@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Nimbudera B.O",
+    "pincode": "744201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Swdeshnagar B.O",
+    "pincode": "744201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Pitchernalla B.O",
+    "pincode": "744201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Betapur S.O",
+    "pincode": "744201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "12.615395",
+    "longitude": "92.928454"
+  }
+]

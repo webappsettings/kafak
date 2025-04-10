@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Ayyampettai S.O",
+    "pincode": "631601",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9251389",
+    "longitude": "80.1986944"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Ekanampet B.O",
+    "pincode": "631601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8042385",
+    "longitude": "79.7684526"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Thenambakkam B.O",
+    "pincode": "631601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341855",
+    "longitude": "79.7036282"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Naickenpet B.O",
+    "pincode": "631601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341855",
+    "longitude": "79.7036302"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Thimmarajampettai B.O",
+    "pincode": "631601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341905",
+    "longitude": "79.7036232"
+  }
+]

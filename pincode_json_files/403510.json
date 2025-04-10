@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Canca B.O",
+    "pincode": "403510",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "73.1200000",
+    "longitude": "16.4100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Parra S.O",
+    "pincode": "403510",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.59194430",
+    "longitude": "73.80863830"
+  }
+]

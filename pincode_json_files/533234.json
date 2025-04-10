@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Seethanagaram B.O",
+    "pincode": "533234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8580000",
+    "longitude": "81.8876000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Choppella B.O",
+    "pincode": "533234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8373000",
+    "longitude": "81.8484000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Yeditha S.O",
+    "pincode": "533234",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8640556",
+    "longitude": "81.8934167"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Dulla B.O",
+    "pincode": "533234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8597000",
+    "longitude": "81.8580000"
+  }
+]

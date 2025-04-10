@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Bhulanpur Pac SO",
+    "pincode": "221108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2935000",
+    "longitude": "82.9430833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Rohana BO",
+    "pincode": "221108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3200000",
+    "longitude": "82.9800000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Nadigaon SO",
+    "pincode": "285206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1072778",
+    "longitude": "79.0225833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Baseeth BO",
+    "pincode": "285206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1324000",
+    "longitude": "79.0351000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Gaindoli BO",
+    "pincode": "285206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0581200",
+    "longitude": "79.0560400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Sajera BO",
+    "pincode": "285206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1211600",
+    "longitude": "78.9747800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Ghillaur BO",
+    "pincode": "285206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2541000",
+    "longitude": "79.0632000"
+  }
+]

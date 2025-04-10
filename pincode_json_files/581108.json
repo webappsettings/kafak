@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Kuragund B.O",
+    "pincode": "581108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.7909486",
+    "longitude": "75.5914774"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Basapur B.O",
+    "pincode": "581108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8270914",
+    "longitude": "75.5617584"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Havanur B.O",
+    "pincode": "581108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8650727",
+    "longitude": "75.6909438"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Belivigi B.O",
+    "pincode": "581108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9244317",
+    "longitude": "75.6587859"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Niralagi B.O",
+    "pincode": "581108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9453744",
+    "longitude": "75.6481429"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Kancharagatti B.O",
+    "pincode": "581108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8",
+    "longitude": "75.4"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Haveri Division",
+    "officename": "Guttal S.O",
+    "pincode": "581108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAVERI",
+    "statename": "KARNATAKA",
+    "latitude": "14.8367590",
+    "longitude": "75.6309211"
+  }
+]

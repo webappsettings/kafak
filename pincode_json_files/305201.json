@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Leswa B.O",
+    "pincode": "305201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1000050",
+    "longitude": "74.3166950"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Govind Garh S.O",
+    "pincode": "305201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4523611",
+    "longitude": "74.3829167"
+  }
+]

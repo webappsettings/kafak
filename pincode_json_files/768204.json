@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Durlaga B.O",
+    "pincode": "768204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9208084",
+    "longitude": "84.0334033"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "O.M.P. Line Jharsuguda S.O",
+    "pincode": "768204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.8564722",
+    "longitude": "84.0134444"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Panchpara B.O",
+    "pincode": "768204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9077509",
+    "longitude": "84.004517"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Talmal B.O",
+    "pincode": "768204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9189713",
+    "longitude": "84.0764532"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "VSS AIRPORT SO",
+    "pincode": "768204",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9161",
+    "longitude": "84.0464"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Talpatia B.O",
+    "pincode": "768204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9402579",
+    "longitude": "84.0320097"
+  }
+]

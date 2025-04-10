@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Jagjit Nagar BO",
+    "pincode": "173225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Kot BO",
+    "pincode": "173225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Jubbar SO",
+    "pincode": "173225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9361389",
+    "longitude": "76.9637500"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Pocharchar B.O",
+    "pincode": "783323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "25.751626999999999",
+    "longitude": "93.172873999999993"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Amco Road S.O",
+    "pincode": "783323",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0165278",
+    "longitude": "89.9743889"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Aironjongla B.O",
+    "pincode": "783323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.1779430",
+    "longitude": "91.7374570"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Muthakhowa B.O",
+    "pincode": "783323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0213830",
+    "longitude": "90.0005830"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dhubri Balurchar B.O",
+    "pincode": "783323",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.0206980",
+    "longitude": "89.9743460"
+  }
+]

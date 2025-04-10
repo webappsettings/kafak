@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rajnandgaon Division",
+    "officename": "NAVGHATA B.O.",
+    "pincode": "491996",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KABIRDHAM",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.807464599999999",
+    "longitude": "81.187151"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rajnandgaon Division",
+    "officename": "Mohanpur B.O",
+    "pincode": "491996",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KABIRDHAM",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.894627",
+    "longitude": "81.269778000000002"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rajnandgaon Division",
+    "officename": "SahasPur Lohara SO",
+    "pincode": "491996",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KABIRDHAM",
+    "statename": "CHHATTISGARH",
+    "latitude": "20.584534999999999",
+    "longitude": "80.750172000000006"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rajnandgaon Division",
+    "officename": "SONJHARI B.O.",
+    "pincode": "491996",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KABIRDHAM",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.787389000000001",
+    "longitude": "80.976356999999993"
+  }
+]

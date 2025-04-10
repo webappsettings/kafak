@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Anantapur Collectorate S.O",
+    "pincode": "515001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6705000",
+    "longitude": "77.6018333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Patel Road S.O",
+    "pincode": "515001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6700278",
+    "longitude": "77.6039167"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Satyanandanagar S.O",
+    "pincode": "515001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6761389",
+    "longitude": "77.5877222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Aravindanagar S.O",
+    "pincode": "515001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6723333",
+    "longitude": "77.5852778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Anantapur H.O",
+    "pincode": "515001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.680822",
+    "longitude": "77.594785"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Sainagar S.O",
+    "pincode": "515001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.6805833",
+    "longitude": "77.6015000"
+  }
+]

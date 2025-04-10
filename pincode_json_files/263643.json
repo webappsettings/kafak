@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Jeoli BO",
+    "pincode": "263643",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5983650",
+    "longitude": "79.6615068"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Deolikhan BO",
+    "pincode": "263643",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5983690",
+    "longitude": "79.6615028"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kayala BO",
+    "pincode": "263643",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6439640",
+    "longitude": "79.5910710"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kosi SO Almora",
+    "pincode": "263643",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5969722",
+    "longitude": "79.6575000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Kathpuria BO",
+    "pincode": "263643",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6460340",
+    "longitude": "79.5647420"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Darmar Tikhun BO",
+    "pincode": "263643",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6344074",
+    "longitude": "79.5533064"
+  }
+]

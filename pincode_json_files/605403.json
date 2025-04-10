@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Maragadhapuram BO",
+    "pincode": "605403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0671660",
+    "longitude": "79.3958270"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Valudareddy S.O",
+    "pincode": "605403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0671660",
+    "longitude": "79.3958270"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kandambakkam BO",
+    "pincode": "605403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0671660",
+    "longitude": "79.3958270"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Pidagam BO",
+    "pincode": "605403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0671660",
+    "longitude": "79.3958270"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Athiyur Thiruvadi BO",
+    "pincode": "605403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0671660",
+    "longitude": "79.3958270"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Salamedu BO",
+    "pincode": "605403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0671660",
+    "longitude": "79.3958270"
+  }
+]

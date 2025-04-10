@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "MANAS NAGAR SO",
+    "pincode": "226023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7970330",
+    "longitude": "80.8848980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "32 Bn PAC SO Lucknow",
+    "pincode": "226023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8447000",
+    "longitude": "80.9456260"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Basudebpur BO",
+    "pincode": "700083",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5200000",
+    "longitude": "88.3200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "East Belghoria SO",
+    "pincode": "700083",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6600000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Nandan Nagar SO",
+    "pincode": "700083",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6700000",
+    "longitude": "88.3900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "D P Nagar BO",
+    "pincode": "700083",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6700000",
+    "longitude": "88.3800000"
+  }
+]

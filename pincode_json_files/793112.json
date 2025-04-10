@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Disong B.O",
+    "pincode": "793112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Shella S.O",
+    "pincode": "793112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5739167",
+    "longitude": "91.8848611"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Mawlong B.O",
+    "pincode": "793112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Ichamati B.O",
+    "pincode": "793112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Nongriat",
+    "pincode": "793112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.250951000000001",
+    "longitude": "91.672088099999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Kalatak B.O",
+    "pincode": "793112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Dalia B.O",
+    "pincode": "793112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "A.P.Terminal S.O",
+    "pincode": "403801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.3851944",
+    "longitude": "73.8390000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "A.P.Dabolim S.O",
+    "pincode": "403801",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.3851944",
+    "longitude": "73.8390278"
+  }
+]

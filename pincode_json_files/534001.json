@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Eluru H.O",
+    "pincode": "534001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7050833",
+    "longitude": "81.1061389"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Eluru Division",
+    "officename": "Benerjipeta S.O",
+    "pincode": "534001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Eluru",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.7128056",
+    "longitude": "81.1186944"
+  }
+]

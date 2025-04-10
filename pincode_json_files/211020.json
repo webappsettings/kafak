@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Central PO Kumbh Mela SO",
+    "pincode": "211020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4358",
+    "longitude": "81.84631"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Arail PO Kumbh Mela",
+    "pincode": "211020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.413127",
+    "longitude": "81.899303"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Parade West PO Kumbh Mela",
+    "pincode": "211020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.431317",
+    "longitude": "81.8665633"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Jhunsi South PO Kumbh Mela",
+    "pincode": "211020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAYAGRAJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.402819",
+    "longitude": "81.938352"
+  }
+]

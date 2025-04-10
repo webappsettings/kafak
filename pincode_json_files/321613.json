@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Pakhar BO",
+    "pincode": "321613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Rasidpur SO",
+    "pincode": "321613",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0740556",
+    "longitude": "76.8951111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Barkhera BO",
+    "pincode": "321613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Unkroond BO",
+    "pincode": "321613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7614110",
+    "longitude": "75.8780850"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Dholkhera BO",
+    "pincode": "321613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Kanur B.O",
+    "pincode": "412804",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.0072000",
+    "longitude": "73.8849500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Satara Division",
+    "officename": "Bavdhan S.O",
+    "pincode": "412804",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.9138056",
+    "longitude": "73.889952"
+  }
+]

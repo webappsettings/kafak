@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bhilapada BO",
+    "pincode": "322216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7415220",
+    "longitude": "76.7345850"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Mohanpura BO",
+    "pincode": "322216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7739050",
+    "longitude": "76.7587770"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Tesgaon BO",
+    "pincode": "322216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7204840",
+    "longitude": "76.7740480"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Kemri SO Karauli",
+    "pincode": "322216",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7386111",
+    "longitude": "77.0303056"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Badagaon BO",
+    "pincode": "322216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "28.8737280",
+    "longitude": "77.3338780"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Two-hat B.O",
+    "pincode": "792055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.213754900000001",
+    "longitude": "96.981412500000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Gandhigram B.O",
+    "pincode": "792055",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.2784373",
+    "longitude": "96.890584399999995"
+  }
+]

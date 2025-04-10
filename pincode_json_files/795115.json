@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "BR Colony B.O",
+    "pincode": "795115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.799111",
+    "longitude": "93.919511999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Keimai B.O",
+    "pincode": "795115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.802320000000002",
+    "longitude": "93.116829999999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Nungkao B.O.",
+    "pincode": "795115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.789394999999999",
+    "longitude": "93.308505999999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Gularthol S.O",
+    "pincode": "795115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.8019722",
+    "longitude": "93.9405278"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kashimpur B.O",
+    "pincode": "795115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.752610000000001",
+    "longitude": "93.139474000000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Bidyanagar B.O",
+    "pincode": "795115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.534611000000002",
+    "longitude": "93.551021000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "New Keiphundai B.O",
+    "pincode": "795115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIRIBAM",
+    "statename": "MANIPUR",
+    "latitude": "24.802289999999999",
+    "longitude": "93.116798000000003"
+  }
+]

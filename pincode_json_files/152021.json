@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Mallanwala SO",
+    "pincode": "152021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.052868",
+    "longitude": "74.820107"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Rukne Wala BO",
+    "pincode": "152021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.8265500",
+    "longitude": "74.5765000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Kamal Wala BO",
+    "pincode": "152021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.0712258",
+    "longitude": "31.2801927"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Kaluwala",
+    "pincode": "152021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Arif Ke BO",
+    "pincode": "152021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.8265500",
+    "longitude": "74.5765000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Malluwalia Wala BO",
+    "pincode": "152021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.8265500",
+    "longitude": "74.5765000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Sudh Singh Wala BO",
+    "pincode": "152021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.8265500",
+    "longitude": "74.5765000"
+  }
+]

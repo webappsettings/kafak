@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bhopaura SO",
+    "pincode": "275302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.0885833",
+    "longitude": "83.4678889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Iraura Chaubey Pur BO",
+    "pincode": "275302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "82.9100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Narawa Sarai BO",
+    "pincode": "275302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "82.9100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Vijra Pura BO",
+    "pincode": "275302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "82.9100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Fateh Pur Tal Naraja BO",
+    "pincode": "275302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1000000",
+    "longitude": "20.1000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Hamid Pur BO",
+    "pincode": "275302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1000000",
+    "longitude": "20.1000000"
+  }
+]

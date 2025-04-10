@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Gambhiriyia B.O",
+    "pincode": "470004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8131380",
+    "longitude": "78.6015670"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Makronia Camp S.O",
+    "pincode": "470004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8634400",
+    "longitude": "78.8007730"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Rajakhedi S.O",
+    "pincode": "470004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8634400",
+    "longitude": "78.8007730"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Pamakhedi B.O",
+    "pincode": "470004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8446110",
+    "longitude": "78.8495890"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sidguya B.O",
+    "pincode": "470004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8446110",
+    "longitude": "78.8495890"
+  }
+]

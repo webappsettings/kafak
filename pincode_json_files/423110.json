@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Tisgaon B.O",
+    "pincode": "423110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2041727",
+    "longitude": "73.8271959"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Kumbharde B.O",
+    "pincode": "423110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4174",
+    "longitude": "74.31845"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Umrana S.O",
+    "pincode": "423110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5544310",
+    "longitude": "74.5120240"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Girnare B.O",
+    "pincode": "423110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5499429",
+    "longitude": "74.528744"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Dongargaon B.O",
+    "pincode": "423110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4174",
+    "longitude": "74.31845"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Chinchave B.O",
+    "pincode": "423110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4174",
+    "longitude": "74.31845"
+  }
+]

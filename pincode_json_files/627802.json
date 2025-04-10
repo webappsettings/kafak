@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Courtallam S.O",
+    "pincode": "627802",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9174199999999999",
+    "longitude": "77.240700000000004"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Kasimajorpuram B.O",
+    "pincode": "627802",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "8.9268000",
+    "longitude": "77.2503000"
+  }
+]

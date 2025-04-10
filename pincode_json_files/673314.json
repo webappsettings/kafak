@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Vallikkunnu BO",
+    "pincode": "673314",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0927244",
+    "longitude": "75.8446802"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Vallikkunnu North BO",
+    "pincode": "673314",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.0927244",
+    "longitude": "75.8446802"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Kadalundinagaram SO",
+    "pincode": "673314",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1182014",
+    "longitude": "75.8307373"
+  }
+]

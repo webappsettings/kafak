@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Kherdabada B.O",
+    "pincode": "327026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6229570",
+    "longitude": "74.4844720"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Mahidam S.O",
+    "pincode": "327026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8294167",
+    "longitude": "74.6452500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Badgun B.O",
+    "pincode": "327026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7033010",
+    "longitude": "74.5053290"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Bhungda B.O",
+    "pincode": "327026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6621300",
+    "longitude": "74.5067770"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Cheev B.O",
+    "pincode": "327026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6132840",
+    "longitude": "74.5026680"
+  }
+]

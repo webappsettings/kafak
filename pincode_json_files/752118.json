@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Kundeihat",
+    "pincode": "752118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.974247999999999",
+    "longitude": "86.1938143"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Kotang",
+    "pincode": "752118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.9352397",
+    "longitude": "86.1598582"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Jaleswarpada",
+    "pincode": "752118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.9644640",
+    "longitude": "86.1830327"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Bangurigaon",
+    "pincode": "752118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.9381254",
+    "longitude": "86.1924601"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Jamola S.O",
+    "pincode": "305630",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1092222",
+    "longitude": "74.5482222"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Satawaria B.O",
+    "pincode": "305630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1200000",
+    "longitude": "74.6400000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Lamba Kund Ka B.O",
+    "pincode": "305630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0500000",
+    "longitude": "74.6100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Begliawas B.O",
+    "pincode": "305630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0900000",
+    "longitude": "74.6100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Jhipian B.O",
+    "pincode": "305630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0900000",
+    "longitude": "74.6300000"
+  }
+]

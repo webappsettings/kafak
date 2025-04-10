@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Panch  Dehria B.O",
+    "pincode": "465335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2835530",
+    "longitude": "76.6835010"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Siloda B.O",
+    "pincode": "465335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.1947690",
+    "longitude": "81.2257220"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Jamner S.O (Shajapur)",
+    "pincode": "465335",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.32544",
+    "longitude": "76.75392"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Chakrod B.O",
+    "pincode": "465335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3394750",
+    "longitude": "76.7823410"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Dhabla  Ghosi B.O",
+    "pincode": "465335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2835530",
+    "longitude": "76.6835010"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Amlay B.O",
+    "pincode": "465335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2906710",
+    "longitude": "76.7239120"
+  }
+]

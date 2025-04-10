@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Mahishbathan BO",
+    "pincode": "700156",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.569215",
+    "longitude": "88.448868000000004"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "New Town SO",
+    "pincode": "700156",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5760376",
+    "longitude": "88.4718303"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Hatgacha BO",
+    "pincode": "700156",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.555582999999999",
+    "longitude": "88.470751000000007"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Kolkata East Division",
+    "officename": "Chakpanchuria BO",
+    "pincode": "700156",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.579998",
+    "longitude": "88.486399000000006"
+  }
+]

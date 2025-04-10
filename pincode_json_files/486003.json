@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Sonaura B.O",
+    "pincode": "486003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5372000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Ajgarha B.O",
+    "pincode": "486003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Ratahara B.O",
+    "pincode": "486003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5372000",
+    "longitude": "81.3042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Rewa APSU S.O",
+    "pincode": "486003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5677222",
+    "longitude": "81.3328333"
+  }
+]

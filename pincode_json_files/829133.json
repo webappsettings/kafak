@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Sounda D SO",
+    "pincode": "829133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.6600500",
+    "longitude": "85.3422050"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Souda Basti BO",
+    "pincode": "829133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.6600500",
+    "longitude": "85.3422050"
+  }
+]

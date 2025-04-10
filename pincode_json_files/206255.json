@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Piprauli Shiv BO",
+    "pincode": "206255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7768018",
+    "longitude": "79.6983003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Malhosi SO",
+    "pincode": "206255",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7987320",
+    "longitude": "79.6719616"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Marhadaspur BO",
+    "pincode": "206255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7856135",
+    "longitude": "79.7474384"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Yakubpur BO",
+    "pincode": "206255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7650006",
+    "longitude": "79.7161102"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Jalalpur BO",
+    "pincode": "206255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7571069",
+    "longitude": "79.6698474"
+  }
+]

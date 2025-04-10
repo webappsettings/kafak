@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Janata B.O",
+    "pincode": "784179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8661200",
+    "longitude": "93.4090500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Batiamari B.O",
+    "pincode": "784179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.7852748",
+    "longitude": "93.4144980"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bihmari B.O",
+    "pincode": "784179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8661200",
+    "longitude": "93.4090500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Borjuli Nepaligaon B.O",
+    "pincode": "784179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8661200",
+    "longitude": "93.4090500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Buroi Ghat B.O",
+    "pincode": "784179",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8661200",
+    "longitude": "93.4090500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bedeti S.O",
+    "pincode": "784179",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8661200",
+    "longitude": "93.4090500"
+  }
+]

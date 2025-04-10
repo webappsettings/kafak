@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Fatehpur Rajputan SO",
+    "pincode": "143113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.648",
+    "longitude": "74.999"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Talwandi Dogran BO",
+    "pincode": "143113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6100000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Raipur Kalan BO",
+    "pincode": "143113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6600000",
+    "longitude": "75.0400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Nangal Dial Singh BO",
+    "pincode": "143113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6200000",
+    "longitude": "75.0100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Wadala Johal BO",
+    "pincode": "143113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6443000",
+    "longitude": "75.0100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Nawanpind BO",
+    "pincode": "143113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5400000",
+    "longitude": "74.9900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Rasulpur Kalan BO",
+    "pincode": "143113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6400000",
+    "longitude": "75.0500000"
+  }
+]

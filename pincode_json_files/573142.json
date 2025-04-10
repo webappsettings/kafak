@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Hulikallu B.O",
+    "pincode": "573142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.7000000",
+    "longitude": "76.0400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Doddamagge S.O",
+    "pincode": "573142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.6921389",
+    "longitude": "76.0815278"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Koratikere B.O",
+    "pincode": "573142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.6800000",
+    "longitude": "76.1100000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Heggadihalli B.O",
+    "pincode": "573142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.6800000",
+    "longitude": "76.0300000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Boddam Bazar SO",
+    "pincode": "825301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.9936880",
+    "longitude": "85.3514760"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Pethiatand SO",
+    "pincode": "825301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.9930150",
+    "longitude": "85.3563260"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Bara Bazar SO Hazaribag",
+    "pincode": "825301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.9938500",
+    "longitude": "85.3927000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Hazaribagh HO",
+    "pincode": "825301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.9926667",
+    "longitude": "85.3660000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Distt Board SO",
+    "pincode": "825301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.9985833",
+    "longitude": "85.3651111"
+  }
+]

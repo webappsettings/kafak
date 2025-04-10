@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Ashok Nagar SO",
+    "pincode": "201001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6613890",
+    "longitude": "77.4450980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Nehru Nagar SO",
+    "pincode": "201001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6845277",
+    "longitude": "77.5247500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Ghaziabad HO",
+    "pincode": "201001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6683129546835",
+    "longitude": "77.4298306830469"
+  }
+]

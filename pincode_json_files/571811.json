@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Kanchanahalli B.O",
+    "pincode": "571811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Chunchanahalli S.O",
+    "pincode": "571811",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "13.0200000",
+    "longitude": "76.7400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "G Nagathihalli B.O",
+    "pincode": "571811",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

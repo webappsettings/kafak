@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Ajrana Kalan B.O",
+    "pincode": "136130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9732170",
+    "longitude": "76.8303460"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Bhusthala B.O",
+    "pincode": "136130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9732170",
+    "longitude": "76.8303460"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Tangore B.O",
+    "pincode": "136130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9732170",
+    "longitude": "76.8303460"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Jhansa S.O",
+    "pincode": "136130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "29.9732170",
+    "longitude": "76.8303460"
+  }
+]

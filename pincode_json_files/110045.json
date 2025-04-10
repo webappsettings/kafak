@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Dabri B.O",
+    "pincode": "110045",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.609674999999999",
+    "longitude": "77.089541999999994"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Indira Park B.O",
+    "pincode": "110045",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "17.4136550",
+    "longitude": "78.4838330"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Mahavir Enclave",
+    "pincode": "110045",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5964620",
+    "longitude": "77.0808100"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Palam Village S.O",
+    "pincode": "110045",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5911667",
+    "longitude": "77.0905556"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Nasirpur B.O",
+    "pincode": "110045",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.597176000000001",
+    "longitude": "77.090783000000002"
+  }
+]

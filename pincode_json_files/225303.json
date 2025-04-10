@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Ram Mandai BO",
+    "pincode": "225303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Basauli BO",
+    "pincode": "225303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Shivrajpur B.O",
+    "pincode": "225303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.267841000000001",
+    "longitude": "81.300224"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Mohammad Pur Khaley SO",
+    "pincode": "225303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  }
+]

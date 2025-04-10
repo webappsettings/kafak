@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Pilol BO",
+    "pincode": "391745",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.1600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Vasna Kotaria BO",
+    "pincode": "391745",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5900000",
+    "longitude": "73.1600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Sokhda SO",
+    "pincode": "391745",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.4227222",
+    "longitude": "73.1663888"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara West Division",
+    "officename": "Asoj BO",
+    "pincode": "391745",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.4100000",
+    "longitude": "73.2000000"
+  }
+]

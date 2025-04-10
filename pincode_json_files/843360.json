@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Changel BO",
+    "pincode": "843360",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.120888000000001",
+    "longitude": "85.364720000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Jajuar SO",
+    "pincode": "843360",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.1825700",
+    "longitude": "85.3948000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Angoa BO",
+    "pincode": "843360",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.120888000000001",
+    "longitude": "85.364720000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "BTayab BO",
+    "pincode": "843360",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.120888000000001",
+    "longitude": "85.364720000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Muzaffarpur Division",
+    "officename": "Ufrauli BO",
+    "pincode": "843360",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARPUR",
+    "statename": "BIHAR",
+    "latitude": "26.120888000000001",
+    "longitude": "85.364720000000005"
+  }
+]

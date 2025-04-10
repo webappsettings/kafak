@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Chhatt BO",
+    "pincode": "140603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Dayalpur Sodhian BO",
+    "pincode": "140603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Pabhat BO",
+    "pincode": "140603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Zirakpur SO",
+    "pincode": "140603",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "S.A.S Nagar",
+    "statename": "PUNJAB",
+    "latitude": "30.6539722",
+    "longitude": "76.8209722"
+  }
+]

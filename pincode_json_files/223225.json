@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Naharpur BO",
+    "pincode": "223225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1300000",
+    "longitude": "82.8100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "MAHUL SO",
+    "pincode": "223225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1300000",
+    "longitude": "82.8100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Raida BO",
+    "pincode": "223225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1300000",
+    "longitude": "82.8100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Rama Pur BO",
+    "pincode": "223225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1300000",
+    "longitude": "82.8100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Faridpur BO",
+    "pincode": "223225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1300000",
+    "longitude": "82.8100000"
+  }
+]

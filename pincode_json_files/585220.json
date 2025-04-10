@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Rangampeth S.O",
+    "pincode": "585220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.7615556",
+    "longitude": "77.1353056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Devargonal B.O",
+    "pincode": "585220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5700000",
+    "longitude": "76.7200000"
+  }
+]

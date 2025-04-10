@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Alampur BO",
+    "pincode": "212659",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0927473",
+    "longitude": "80.4409890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Kapil Kalan BO",
+    "pincode": "212659",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1062100",
+    "longitude": "80.3487900"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Banthara BO",
+    "pincode": "212659",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1062100",
+    "longitude": "80.3487900"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Kalana B.O.",
+    "pincode": "212659",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.106210000000001",
+    "longitude": "80.348789999999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Kora Jahanabad SO",
+    "pincode": "212659",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1040833",
+    "longitude": "80.3640833"
+  }
+]

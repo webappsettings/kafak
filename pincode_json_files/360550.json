@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Bileshwar BO",
+    "pincode": "360550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7800850",
+    "longitude": "69.7868080"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Ranavav SO",
+    "pincode": "360550",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6854722",
+    "longitude": "69.7442500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Dharampur BO",
+    "pincode": "360550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6661460",
+    "longitude": "69.6750760"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Bhod BO",
+    "pincode": "360550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6698560",
+    "longitude": "69.7942200"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Ranavav Railway Station SO",
+    "pincode": "360550",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6978000",
+    "longitude": "69.7606200"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Amardad BO",
+    "pincode": "360550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PORBANDAR",
+    "statename": "GUJARAT",
+    "latitude": "21.6971940",
+    "longitude": "69.7234800"
+  }
+]

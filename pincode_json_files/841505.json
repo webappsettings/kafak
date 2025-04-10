@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Khajuria BO",
+    "pincode": "841505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524799999999999",
+    "longitude": "84.354100000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Maniyara BO",
+    "pincode": "841505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524799999999999",
+    "longitude": "84.354100000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Rampur Daud BO",
+    "pincode": "841505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524799999999999",
+    "longitude": "84.354100000000003"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Sasamusa SO",
+    "pincode": "841505",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.5248000",
+    "longitude": "85.3541000"
+  }
+]

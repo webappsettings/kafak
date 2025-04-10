@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Sheetal B.O",
+    "pincode": "301018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.480962000000002",
+    "longitude": "76.846149999999994"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Silarpur B.O",
+    "pincode": "301018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "28.148008000000001",
+    "longitude": "76.789192"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Khazuri Bass S.O",
+    "pincode": "301018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5149722",
+    "longitude": "76.8449722"
+  }
+]

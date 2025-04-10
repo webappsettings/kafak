@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Puduvoyal BO",
+    "pincode": "601206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3160000",
+    "longitude": "80.1170000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Kavarapettai SO",
+    "pincode": "601206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3707778",
+    "longitude": "80.1452500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Kilikodi BO",
+    "pincode": "601206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3580000",
+    "longitude": "80.1240000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Kilmudalambedu BO",
+    "pincode": "601206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3400000",
+    "longitude": "80.1020000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Chinnambedu BO",
+    "pincode": "601206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3070000",
+    "longitude": "80.0910000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Puvalambedu BO",
+    "pincode": "601206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVALLUR",
+    "statename": "TAMIL NADU",
+    "latitude": "13.3950000",
+    "longitude": "80.0110000"
+  }
+]

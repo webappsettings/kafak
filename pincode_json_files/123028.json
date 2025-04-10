@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bairawas BO",
+    "pincode": "123028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHENDRAGARH",
+    "statename": "HARYANA",
+    "latitude": "28.1917620",
+    "longitude": "76.1305870"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Daroli Ahir BO",
+    "pincode": "123028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHENDRAGARH",
+    "statename": "HARYANA",
+    "latitude": "28.1917620",
+    "longitude": "76.1305870"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Sehma BO",
+    "pincode": "123028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHENDRAGARH",
+    "statename": "HARYANA",
+    "latitude": "28.1917620",
+    "longitude": "76.1305870"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kothal Khurd BO",
+    "pincode": "123028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHENDRAGARH",
+    "statename": "HARYANA",
+    "latitude": "28.1917620",
+    "longitude": "76.1305870"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Nihalawas BO",
+    "pincode": "123028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHENDRAGARH",
+    "statename": "HARYANA",
+    "latitude": "28.1917620",
+    "longitude": "76.1305870"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Nangal Sirohi SO",
+    "pincode": "123028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHENDRAGARH",
+    "statename": "HARYANA",
+    "latitude": "27.8916389",
+    "longitude": "76.1113056"
+  }
+]

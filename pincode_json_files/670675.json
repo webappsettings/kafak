@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Peringathur SO",
+    "pincode": "670675",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7533680",
+    "longitude": "75.4909120"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Mekkunnu BO",
+    "pincode": "670675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7200000",
+    "longitude": "75.5800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Puliyanambram BO",
+    "pincode": "670675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "10.2000000",
+    "longitude": "76.3600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Kidanhi BO",
+    "pincode": "670675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.6900000",
+    "longitude": "75.6000000"
+  }
+]

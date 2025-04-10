@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Champawati BO",
+    "pincode": "854306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7771390",
+    "longitude": "87.4752550"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Sarsi SO",
+    "pincode": "854306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.8156030",
+    "longitude": "87.3115530"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Burhia Dhankatta BO",
+    "pincode": "854306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7341760",
+    "longitude": "87.5568900"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Zianganj BO",
+    "pincode": "854306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7771390",
+    "longitude": "87.4752550"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Gokulpur BO",
+    "pincode": "854306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.1762380",
+    "longitude": "87.2182840"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Bahora BO",
+    "pincode": "854306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.9246090",
+    "longitude": "87.2816540"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Parasmani BO",
+    "pincode": "854306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.7917430",
+    "longitude": "87.4998760"
+  }
+]

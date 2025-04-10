@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Sultanpur BO",
+    "pincode": "700051",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6600000",
+    "longitude": "88.4300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Birati SO",
+    "pincode": "700051",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.6600000",
+    "longitude": "88.4200000"
+  }
+]

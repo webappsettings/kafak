@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Bhikhnapur BO",
+    "pincode": "230404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.5784000",
+    "longitude": "81.3445000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Vishwanathganj SO",
+    "pincode": "230404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8131770",
+    "longitude": "81.9413930"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Sarai Raja BO",
+    "pincode": "230404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.5450000",
+    "longitude": "81.5112000"
+  }
+]

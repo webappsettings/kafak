@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "M.Bhupathipur B.O",
+    "pincode": "502117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Settipally Kalan B.O",
+    "pincode": "502117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Banda Posanipally B.O",
+    "pincode": "502117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Venkatapur B.O",
+    "pincode": "502117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Rajpally S.O",
+    "pincode": "502117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.020893",
+    "longitude": "78.295001"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "S. Kondapur B.O",
+    "pincode": "502117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

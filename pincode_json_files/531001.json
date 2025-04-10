@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Gandhinagaram S.O (Visakhapatnam)",
+    "pincode": "531001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6985640",
+    "longitude": "83.0007970"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Anakapalle H.O",
+    "pincode": "531001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6913056",
+    "longitude": "83.0026944"
+  }
+]

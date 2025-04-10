@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "BASHA BO",
+    "pincode": "226026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9062580",
+    "longitude": "80.9484750"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Behta BO",
+    "pincode": "226026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8892620",
+    "longitude": "81.0023250"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "IIT Dasauli SO",
+    "pincode": "226026",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8447000",
+    "longitude": "80.9456260"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Sanatan Dharam Vidya Peeth SO",
+    "pincode": "226026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9303055",
+    "longitude": "80.9826388"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Rajauli BO",
+    "pincode": "226026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.6425390",
+    "longitude": "85.4999620"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Lucknow Division",
+    "officename": "Gudamba BO",
+    "pincode": "226026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LUCKNOW",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9302370",
+    "longitude": "80.9827940"
+  }
+]

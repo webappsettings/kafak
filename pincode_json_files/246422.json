@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Badrinath Seasonal SO",
+    "pincode": "246422",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7446944",
+    "longitude": "79.4910833"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Mana BO",
+    "pincode": "246422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.744309999999999",
+    "longitude": "79.495763999999994"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Hanuman Chatti BO",
+    "pincode": "246422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMOLI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.694772",
+    "longitude": "79.514146999999994"
+  }
+]

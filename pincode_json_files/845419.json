@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Pipara BO",
+    "pincode": "845419",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4950000",
+    "longitude": "84.6065000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Nawada Izara BO",
+    "pincode": "845419",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4951000",
+    "longitude": "84.6160000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Izara BO",
+    "pincode": "845419",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4952000",
+    "longitude": "84.6156000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Sareya Khas BO",
+    "pincode": "845419",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4958000",
+    "longitude": "84.6065000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Chandi Sthan BO",
+    "pincode": "845419",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4951000",
+    "longitude": "84.6165000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Salaha BO",
+    "pincode": "845419",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.4956000",
+    "longitude": "84.6169000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Gobindganj SO",
+    "pincode": "845419",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "25.9144100",
+    "longitude": "85.2619000"
+  }
+]

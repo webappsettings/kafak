@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Bishnunagar B.O",
+    "pincode": "788781",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8200000",
+    "longitude": "92.2900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Pathu B.O",
+    "pincode": "788781",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8200000",
+    "longitude": "92.2900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Baropunji B.O",
+    "pincode": "788781",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8200000",
+    "longitude": "92.2900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Latu B.O",
+    "pincode": "788781",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8200000",
+    "longitude": "92.2900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Mahisashan S.O",
+    "pincode": "788781",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.8675840",
+    "longitude": "92.3603820"
+  }
+]

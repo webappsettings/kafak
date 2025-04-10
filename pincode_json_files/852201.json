@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Saharsa HO",
+    "pincode": "852201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.8840833",
+    "longitude": "86.5923611"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Saharsa Bazar SO",
+    "pincode": "852201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.8840833",
+    "longitude": "86.5923611"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Saharsa DistBoard SO",
+    "pincode": "852201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.8833000",
+    "longitude": "86.6000000"
+  }
+]

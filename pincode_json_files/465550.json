@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Amba B.O",
+    "pincode": "465550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.5021290",
+    "longitude": "71.3159540"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Jhalara B.O",
+    "pincode": "465550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.9355240",
+    "longitude": "76.1406930"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Lotiakrishna B.O",
+    "pincode": "465550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.9355200",
+    "longitude": "76.1406930"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "SUDWAS B.O",
+    "pincode": "465550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6975020",
+    "longitude": "75.8708240"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Madkota B.O",
+    "pincode": "465550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7392750",
+    "longitude": "75.8504900"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Barode S.O",
+    "pincode": "465550",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.78812",
+    "longitude": "75.81057"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Bapcha B.O",
+    "pincode": "465550",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6248080",
+    "longitude": "77.0132640"
+  }
+]

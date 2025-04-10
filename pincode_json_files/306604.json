@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Deoli Pabuji B.O",
+    "pincode": "306604",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Kharda B.O",
+    "pincode": "306604",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Neepal B.O",
+    "pincode": "306604",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Sanwalta B.O",
+    "pincode": "306604",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Jeewand Kalan S.O",
+    "pincode": "306604",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4336762",
+    "longitude": "73.492355"
+  }
+]

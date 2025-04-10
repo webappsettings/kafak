@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "GPRE College S.O",
+    "pincode": "518007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.80177778",
+    "longitude": "78.04855556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "B.Tandrapadu B.O",
+    "pincode": "518007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

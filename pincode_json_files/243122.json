@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Izzatnagar",
+    "pincode": "243122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4025574",
+    "longitude": "79.4245216"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Rajendra Nagar SO Bareilly",
+    "pincode": "243122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3433000",
+    "longitude": "79.4125000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "MUNSHI NAGAR S.O.",
+    "pincode": "243122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4033",
+    "longitude": "79.4506"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "CARI SO",
+    "pincode": "243122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3670360",
+    "longitude": "79.4304380"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Biharman Nagla BO",
+    "pincode": "243122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4878010",
+    "longitude": "79.4571787"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Ner Workshop SO",
+    "pincode": "243122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4511000",
+    "longitude": "79.5255000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "HARTMAN ROAD S.O.",
+    "pincode": "243122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4035",
+    "longitude": "79.325"
+  }
+]

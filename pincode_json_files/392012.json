@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Maktampur SO",
+    "pincode": "392012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7101420",
+    "longitude": "73.0220610"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Argama BO",
+    "pincode": "392012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7939510",
+    "longitude": "72.9016800"
+  }
+]

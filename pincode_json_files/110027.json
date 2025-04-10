@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Rajouri Market S.O",
+    "pincode": "110027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6455278",
+    "longitude": "77.1274722"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Janta Market S.O",
+    "pincode": "110027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6426944",
+    "longitude": "77.1232222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Subhash Nagar S.O (West Delhi)",
+    "pincode": "110027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6404460",
+    "longitude": "77.1049180"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Subhash Nagar West S.O",
+    "pincode": "110027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6371111",
+    "longitude": "77.1098889"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Rajouri Garden J 6 S.O",
+    "pincode": "110027",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6427222",
+    "longitude": "77.1232500"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Tagore Garden S.O",
+    "pincode": "110027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6467222",
+    "longitude": "77.1124722"
+  }
+]

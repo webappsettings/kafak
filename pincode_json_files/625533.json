@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Uthamapalayam S.O",
+    "pincode": "625533",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8053640",
+    "longitude": "77.3288640"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Hanumanthanpatti B.O",
+    "pincode": "625533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7658270",
+    "longitude": "77.3096000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Uthamapalayam Bazar S.O",
+    "pincode": "625533",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8063",
+    "longitude": "77.3295"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "U.Ammapatti B.O",
+    "pincode": "625533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7919560",
+    "longitude": "77.7502150"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Uthamapalayam West S.O",
+    "pincode": "625533",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.8165",
+    "longitude": "77.3327"
+  }
+]

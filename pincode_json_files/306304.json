@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Raipur  Marwar S.O",
+    "pincode": "306304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0243611",
+    "longitude": "74.0274167"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Haripur B.O",
+    "pincode": "306304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0265601",
+    "longitude": "74.0369977"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Deepawas B.O",
+    "pincode": "306304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0413050",
+    "longitude": "74.0237380"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Jhoontha B.O",
+    "pincode": "306304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0413060",
+    "longitude": "74.0237370"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Kalab kalan B.O",
+    "pincode": "306304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0413090",
+    "longitude": "74.0237340"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Pachanpura B.O",
+    "pincode": "306304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0413080",
+    "longitude": "74.0237350"
+  }
+]

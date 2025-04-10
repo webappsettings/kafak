@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Narsingi B.O",
+    "pincode": "500089",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.389898",
+    "longitude": "78.356508"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Manikonda S.O",
+    "pincode": "500089",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.402119",
+    "longitude": "78.377216"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad City Division",
+    "officename": "Mancherevula B.O",
+    "pincode": "500089",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.37756",
+    "longitude": "78.35441"
+  }
+]

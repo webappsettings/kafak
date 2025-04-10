@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Vilakkottur BO",
+    "pincode": "670693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7570000",
+    "longitude": "75.6490000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Cheruparamba BO",
+    "pincode": "670693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7700000",
+    "longitude": "75.6300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Narikkodmala BO",
+    "pincode": "670693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8000000",
+    "longitude": "75.6900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Poyilur BO",
+    "pincode": "670693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7600000",
+    "longitude": "75.6400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Kallikandy BO",
+    "pincode": "670693",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7400000",
+    "longitude": "75.6400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Thalassery Division",
+    "officename": "Thuvakunnu SO",
+    "pincode": "670693",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.7533680",
+    "longitude": "75.4909120"
+  }
+]

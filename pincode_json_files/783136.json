@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dhanuagaon B.O",
+    "pincode": "783136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kanaimara B.O",
+    "pincode": "783136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Purandiara B.O",
+    "pincode": "783136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Hatsingimari  S.O",
+    "pincode": "783136",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "25.431379",
+    "longitude": "89.54179"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Fulerchar B.O",
+    "pincode": "783136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kalapani B.O",
+    "pincode": "783136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Manullapara B.O",
+    "pincode": "783136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

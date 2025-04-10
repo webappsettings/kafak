@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Dhangawan BO",
+    "pincode": "802209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2311480",
+    "longitude": "84.4398730"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Sara BO",
+    "pincode": "802209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2166060",
+    "longitude": "84.3945580"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Barkagaon  BO",
+    "pincode": "802209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2234660",
+    "longitude": "84.4304190"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Bhadsera BO",
+    "pincode": "802209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2290310",
+    "longitude": "84.4199070"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Deo BO",
+    "pincode": "802209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2504580",
+    "longitude": "84.4602720"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Tarari SO",
+    "pincode": "802209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2222220",
+    "longitude": "84.2644440"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Bihta English BO",
+    "pincode": "802209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOJPUR",
+    "statename": "BIHAR",
+    "latitude": "25.1798770",
+    "longitude": "84.4412500"
+  }
+]

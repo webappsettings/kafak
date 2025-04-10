@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Chaingada BO",
+    "pincode": "829103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.5941700",
+    "longitude": "85.4792000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Barkakana NTS SO",
+    "pincode": "829103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.6188333",
+    "longitude": "85.4487500"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Baridih BO",
+    "pincode": "829103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.627669999999998",
+    "longitude": "85.510499999999993"
+  }
+]

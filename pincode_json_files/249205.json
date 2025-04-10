@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Haripur Kalan BO",
+    "pincode": "249205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0200000",
+    "longitude": "78.2100000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Dev Sanskriti Vishwavidyalaya B.O",
+    "pincode": "249205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.998000000000001",
+    "longitude": "78.191999999999993"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Raiwala SO",
+    "pincode": "249205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEHRADUN",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.0333889",
+    "longitude": "78.2086944"
+  }
+]

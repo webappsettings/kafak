@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kirawar BO",
+    "pincode": "127035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.963899999999999",
+    "longitude": "75.956500000000005"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bhurtana BO",
+    "pincode": "127035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.963899999999999",
+    "longitude": "75.956500000000005"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Paposa BO",
+    "pincode": "127035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.963899999999999",
+    "longitude": "75.956500000000005"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Rohnat BO",
+    "pincode": "127035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.963899999999999",
+    "longitude": "75.956500000000005"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Jamalpur SO Bhiwani",
+    "pincode": "127035",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.9639000",
+    "longitude": "75.9565000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Ratera BO",
+    "pincode": "127035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.963899999999999",
+    "longitude": "75.956500000000005"
+  }
+]

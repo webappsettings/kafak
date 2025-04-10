@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Marrigudem B.O",
+    "pincode": "507315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.378297",
+    "longitude": "80.747466000000003"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Chaprala Palli B.O",
+    "pincode": "507315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Yatalakunta B.O",
+    "pincode": "507315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Annapureddipalli S.O",
+    "pincode": "507315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.380399",
+    "longitude": "80.781708"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Pentlam B.O",
+    "pincode": "507315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Rcpuram B.O",
+    "pincode": "507315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.407724000000002",
+    "longitude": "80.765570999999994"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Regallapadu B.O",
+    "pincode": "507315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.329796000000002",
+    "longitude": "80.831632999999997"
+  }
+]

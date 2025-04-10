@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Chandauna BO",
+    "pincode": "847303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1829",
+    "longitude": "86.170500000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Jogiara SO",
+    "pincode": "847303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1491790",
+    "longitude": "85.8905870"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Agai BO",
+    "pincode": "847303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1829",
+    "longitude": "86.170500000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Bandhauli BO",
+    "pincode": "847303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "25.9557",
+    "longitude": "86.098100000000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Jahangirtola BO",
+    "pincode": "847303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1829",
+    "longitude": "86.170500000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Bishanpur BO",
+    "pincode": "847303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "25.621300000000002",
+    "longitude": "86.887699999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Garri BO",
+    "pincode": "847303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1829",
+    "longitude": "86.170500000000004"
+  }
+]

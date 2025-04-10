@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Kacchuhar BO",
+    "pincode": "821302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.123850000000001",
+    "longitude": "84.408799999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Amjhore Camp SO",
+    "pincode": "821302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.7058240",
+    "longitude": "84.0036860"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Nawadih Karma BO",
+    "pincode": "821302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.705824",
+    "longitude": "84.003686000000002"
+  }
+]

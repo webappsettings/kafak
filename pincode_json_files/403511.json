@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Sangolda B.O",
+    "pincode": "403511",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "74.5200000",
+    "longitude": "16.3700000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Sem Saligao B.O",
+    "pincode": "403511",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "74.5200000",
+    "longitude": "16.3700000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Saligao S.O",
+    "pincode": "403511",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.54736400",
+    "longitude": "73.78253460"
+  }
+]

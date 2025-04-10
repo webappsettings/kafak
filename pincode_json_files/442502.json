@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Cementnagar S.O",
+    "pincode": "442502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9194444",
+    "longitude": "79.1098056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "WADA B.O",
+    "pincode": "442502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.920000000000002",
+    "longitude": "79.159999999999997"
+  }
+]

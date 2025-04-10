@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Bhiwari Ind. Area. Alwar S.O",
+    "pincode": "301019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2171667",
+    "longitude": "76.8646944"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "R.H.B. Bhiwari S.O",
+    "pincode": "301019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2119167",
+    "longitude": "76.8533611"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "NA",
+    "divisionname": "Alwar Division",
+    "officename": "EXTENSION COUNTER BHIWARI I.A. POST OFFICE",
+    "pincode": "301019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "28.2093",
+    "longitude": "76.8542"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Alwar Division",
+    "officename": "Shahdod B.O",
+    "pincode": "301019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALWAR",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1989620",
+    "longitude": "76.8922730"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Gorkal B.O",
+    "pincode": "584203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0300000",
+    "longitude": "77.2500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Kurdi S.O",
+    "pincode": "584203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.2032778",
+    "longitude": "77.3487778"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Rajalbanda B.O",
+    "pincode": "584203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "15.9700000",
+    "longitude": "77.1800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Aroli B.O",
+    "pincode": "584203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0300000",
+    "longitude": "77.2500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Sunkeshwar B.O",
+    "pincode": "584203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0100000",
+    "longitude": "77.1500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Garaladinni B.O",
+    "pincode": "584203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.0300000",
+    "longitude": "77.2500000"
+  }
+]

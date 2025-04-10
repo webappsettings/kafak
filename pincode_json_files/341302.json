@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Badabara B.O",
+    "pincode": "341302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2575000",
+    "longitude": "73.7538000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Bhinchawa B.O",
+    "pincode": "341302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2575000",
+    "longitude": "73.7538000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Pawa B.O",
+    "pincode": "341302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4241000",
+    "longitude": "73.0790000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Serani Ki Dhani B.O",
+    "pincode": "341302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2575000",
+    "longitude": "73.7538000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Ranigaon B.O",
+    "pincode": "341302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0910000",
+    "longitude": "74.4285000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Nagaur Division",
+    "officename": "Chhotikhatu S.O",
+    "pincode": "341302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6136111",
+    "longitude": "75.1509722"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Medical College S.O (Solapur)",
+    "pincode": "413003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "75.9096240",
+    "longitude": "17.6652630"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Gurunanak Nagar S.O",
+    "pincode": "413003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6659167",
+    "longitude": "75.8943333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Sadar Bazar S.O (Solapur)",
+    "pincode": "413003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6625540",
+    "longitude": "75.9085280"
+  }
+]

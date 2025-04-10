@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bilaspur Kutchery BilaspurCGHSO",
+    "pincode": "495001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0888210",
+    "longitude": "82.1429490"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Kilaward Bilaspur SO",
+    "pincode": "495001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0829700",
+    "longitude": "82.1613900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bilaspur BilaspurCGH HO",
+    "pincode": "495001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.086991309999998",
+    "longitude": "82.1451292"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Juna Bilaspur SO",
+    "pincode": "495001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0759000",
+    "longitude": "82.1692900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Mangla SO",
+    "pincode": "495001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0971910",
+    "longitude": "82.1293880"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Bilaspur Industrial Estate SO",
+    "pincode": "495001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0648000",
+    "longitude": "82.1353800"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Gole Bazar Bilaspur SO",
+    "pincode": "495001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BILASPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.0872460",
+    "longitude": "82.1536850"
+  }
+]

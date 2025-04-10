@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Calangute S.O",
+    "pincode": "403516",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "15.54419450",
+    "longitude": "73.77068030"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Arpora B.O",
+    "pincode": "403516",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH GOA",
+    "statename": "GOA",
+    "latitude": "73.7600000",
+    "longitude": "15.5600000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Danda BO",
+    "pincode": "392230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9702690",
+    "longitude": "72.9769150"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Dora BO",
+    "pincode": "392230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9539320",
+    "longitude": "72.9960180"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Ochhan BO",
+    "pincode": "392230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9837120",
+    "longitude": "73.0324810"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Ikhar SO",
+    "pincode": "392230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9565820",
+    "longitude": "73.0369460"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Mangrol BO",
+    "pincode": "392230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9420980",
+    "longitude": "72.7732550"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Karena BO",
+    "pincode": "392230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "22.0022650",
+    "longitude": "73.0550000"
+  }
+]

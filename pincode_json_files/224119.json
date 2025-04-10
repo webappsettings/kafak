@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Pure Kamgar BO",
+    "pincode": "224119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.834116000000002",
+    "longitude": "81.637072000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Rani Mau Bhatthi BO",
+    "pincode": "224119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.785343999999998",
+    "longitude": "81.595692"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Sithauli BO",
+    "pincode": "224119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.813196999999999",
+    "longitude": "81.666515000000004"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Jakhauli BO",
+    "pincode": "224119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.818318000000001",
+    "longitude": "81.578353000000007"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Hunhuna BO",
+    "pincode": "224119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.775518000000002",
+    "longitude": "81.622687999999997"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Giraunda BO",
+    "pincode": "224119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.819693000000001",
+    "longitude": "81.578835999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Patranga RS SO",
+    "pincode": "224119",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8028870",
+    "longitude": "81.6203290"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Bhagawa B.O",
+    "pincode": "450554",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8621000",
+    "longitude": "76.6607000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Thapna B.O",
+    "pincode": "450554",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.3220000",
+    "longitude": "77.2577000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Mortakka B.O",
+    "pincode": "450554",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "76.0478000",
+    "longitude": "22.2125000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Mandhata Omkareshwar S.O",
+    "pincode": "450554",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8300000",
+    "longitude": "76.3300000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Fatimanagar S.O",
+    "pincode": "506004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.9852500",
+    "longitude": "79.5237778"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "R E College S.O",
+    "pincode": "506004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.981071",
+    "longitude": "79.529135"
+  }
+]

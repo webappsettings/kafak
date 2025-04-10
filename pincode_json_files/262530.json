@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Barabey GDSBO",
+    "pincode": "262530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4927200",
+    "longitude": "80.2807040"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Chamali BO",
+    "pincode": "262530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5656140",
+    "longitude": "80.1504140"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Jakhpuran BO",
+    "pincode": "262530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5551300",
+    "longitude": "80.1494870"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Tharkote BO",
+    "pincode": "262530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5517860",
+    "longitude": "80.1853680"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Shilling BO",
+    "pincode": "262530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5538310",
+    "longitude": "80.2181880"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Shillingatoli BO",
+    "pincode": "262530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5634140",
+    "longitude": "80.2186700"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Aincholi SO",
+    "pincode": "262530",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5665000",
+    "longitude": "80.2103056"
+  }
+]

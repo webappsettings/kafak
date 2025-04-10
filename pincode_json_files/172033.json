@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Tandi BO",
+    "pincode": "172033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3474500",
+    "longitude": "77.6420000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Nither SO",
+    "pincode": "172033",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.387228",
+    "longitude": "77.433509"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Durah BO",
+    "pincode": "172033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3474500",
+    "longitude": "77.6420000"
+  }
+]

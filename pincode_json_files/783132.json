@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dhumerghat B.O",
+    "pincode": "783132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "25.991772000000001",
+    "longitude": "90.178179999999998"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Katarihara B.O",
+    "pincode": "783132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Jaleswar S.O",
+    "pincode": "783132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "26.0157000",
+    "longitude": "89.9919000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Tulsibari B.O",
+    "pincode": "783132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Gaurnagar B.O",
+    "pincode": "783132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dharai B.O",
+    "pincode": "783132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

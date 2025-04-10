@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Kelagur B.O",
+    "pincode": "577111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2321721",
+    "longitude": "75.6855501"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Aldur S.O",
+    "pincode": "577111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2425576",
+    "longitude": "75.6520976"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Hangaravalli B.O",
+    "pincode": "577111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3008581",
+    "longitude": "75.6283869"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Gullanpet B.O",
+    "pincode": "577111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2071739",
+    "longitude": "75.6577302"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Handi B.O",
+    "pincode": "577111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1829375",
+    "longitude": "75.6743599"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Kanathi B.O",
+    "pincode": "577111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3052998",
+    "longitude": "75.5855788"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chikkamagaluru Division",
+    "officename": "Guddadamane B.O",
+    "pincode": "577111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKAMAGALURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2352513",
+    "longitude": "75.6222714"
+  }
+]

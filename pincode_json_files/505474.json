@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Yaradpalli B.O",
+    "pincode": "505474",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.3515366",
+    "longitude": "79.3093899"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Ambalpur B.O",
+    "pincode": "505474",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.2937383",
+    "longitude": "79.2841900"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Mogalipalam B.O",
+    "pincode": "505474",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.2683149",
+    "longitude": "79.2478833"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Gangipalli B.O",
+    "pincode": "505474",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.3659783",
+    "longitude": "79.2753483"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Tadikal S.O",
+    "pincode": "505474",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.3039167",
+    "longitude": "79.2909722"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Kondapalakala B.O",
+    "pincode": "505474",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.3834833",
+    "longitude": "79.3095816"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Rekonda B.O",
+    "pincode": "505474",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.2492383",
+    "longitude": "79.2423233"
+  }
+]

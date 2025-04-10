@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Daflagarh B.O",
+    "pincode": "784171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8535300",
+    "longitude": "93.4797500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Tetenbari S.O",
+    "pincode": "784171",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8535300",
+    "longitude": "93.4797500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Balijan Barua B.O",
+    "pincode": "784171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Biswanath",
+    "statename": "ASSAM",
+    "latitude": "26.8535300",
+    "longitude": "93.4797500"
+  }
+]

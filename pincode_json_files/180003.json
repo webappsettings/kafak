@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Industrial Estate SO Jammu",
+    "pincode": "180003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6748860",
+    "longitude": "74.8755660"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Mandal BO",
+    "pincode": "180003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8806830",
+    "longitude": "75.4363910"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Makwal BO",
+    "pincode": "180003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5214560",
+    "longitude": "75.0120150"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Sohanjana BO",
+    "pincode": "180003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.8806530",
+    "longitude": "75.0521900"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Jammu Cantt SO",
+    "pincode": "180003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6892900",
+    "longitude": "74.8331060"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "NATC SO",
+    "pincode": "180003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6898889",
+    "longitude": "74.8366667"
+  }
+]

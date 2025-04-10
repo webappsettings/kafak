@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Shelgaon B.O",
+    "pincode": "431502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.558753",
+    "longitude": "76.309542"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Satona S.O",
+    "pincode": "431502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.495751",
+    "longitude": "76.349043"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Davla",
+    "pincode": "431502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.531025",
+    "longitude": "76.29226"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Mapegaon B.O",
+    "pincode": "431502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.509507",
+    "longitude": "76.353965"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Khandavi B.O",
+    "pincode": "431502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.480428",
+    "longitude": "76.297372"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Osmanpur B.O",
+    "pincode": "431502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALNA",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.530225",
+    "longitude": "76.257519"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Chaklal Chand BO",
+    "pincode": "276140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "77.1065600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Jameen Harkhori BO",
+    "pincode": "276140",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.1668100",
+    "longitude": "77.1065600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "JIYANPUR SO",
+    "pincode": "276140",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1500000",
+    "longitude": "83.3300000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Kattimodu S.O",
+    "pincode": "614716",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.5020833",
+    "longitude": "79.6605278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Pichankottagam B.O",
+    "pincode": "614716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.48",
+    "longitude": "79.67"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Melamarudur B.O",
+    "pincode": "614716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.46",
+    "longitude": "79.68"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Thanikottagam B.O",
+    "pincode": "614716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.44",
+    "longitude": "79.68"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Vadamalaimanakadu B.O",
+    "pincode": "614716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAPATTINAM",
+    "statename": "TAMIL NADU",
+    "latitude": "10.45",
+    "longitude": "79.7"
+  }
+]

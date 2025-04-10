@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Gandhisarak SO",
+    "pincode": "712248",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7328611",
+    "longitude": "88.3526944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Bangurpark SO",
+    "pincode": "712248",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7216666",
+    "longitude": "86.3441666"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Rishra SO",
+    "pincode": "712248",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7208333",
+    "longitude": "88.3541667"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Hooghly South Division",
+    "officename": "Mahesh 2 SO",
+    "pincode": "712248",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOOGHLY",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7302222",
+    "longitude": "88.3483611"
+  }
+]

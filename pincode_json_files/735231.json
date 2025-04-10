@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Ahlay BO",
+    "pincode": "735231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "26.9500000",
+    "longitude": "88.7100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Ambeok BO",
+    "pincode": "735231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARJEELING",
+    "statename": "WEST BENGAL",
+    "latitude": "27.0300000",
+    "longitude": "88.7000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Fagu SO Darjeeling",
+    "pincode": "735231",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "26.9600000",
+    "longitude": "88.7000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Maipatey Gaon BO",
+    "pincode": "735231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "27.4500000",
+    "longitude": "88.9000000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Kala Balua BO",
+    "pincode": "854201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "25.990732999999999",
+    "longitude": "87.275510999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Ramnagar BO",
+    "pincode": "854201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.777138999999998",
+    "longitude": "87.475255000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Balua Kachahari BO",
+    "pincode": "854201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "27.154416999999999",
+    "longitude": "84.430396000000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Banaili SO",
+    "pincode": "854201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.9578000",
+    "longitude": "87.3314260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Malinia Diara BO",
+    "pincode": "854201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.777138999999998",
+    "longitude": "87.475255000000004"
+  }
+]

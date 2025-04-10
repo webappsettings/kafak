@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Peketipakalu B.O",
+    "pincode": "533340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.1761000",
+    "longitude": "82.2318000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Tapeswaram S.O",
+    "pincode": "533340",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8901389",
+    "longitude": "81.9248056"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Velagathodu B.O",
+    "pincode": "533340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9015000",
+    "longitude": "81.8798000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Ippanapadu B.O",
+    "pincode": "533340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9042000",
+    "longitude": "81.9246000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Palathodu B.O",
+    "pincode": "533340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9038000",
+    "longitude": "81.9003000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Arthamuru B.O",
+    "pincode": "533340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.8909000",
+    "longitude": "81.9439000"
+  }
+]

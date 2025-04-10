@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Dhauti BO",
+    "pincode": "244225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Sherpur BO",
+    "pincode": "244225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Tomra BO",
+    "pincode": "244225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Bachhraon SO",
+    "pincode": "244225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Chakanwala BO",
+    "pincode": "244225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Arni BO",
+    "pincode": "360450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.7410340",
+    "longitude": "70.2782320"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Khirsara Ghed BO",
+    "pincode": "360450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.7521970",
+    "longitude": "70.7101560"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Sajadiyali BO",
+    "pincode": "360450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.9365200",
+    "longitude": "70.5569850"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Timbdi Jam BO",
+    "pincode": "360450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0253000",
+    "longitude": "70.5655000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Bhayavadar SO",
+    "pincode": "360450",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "21.8533333",
+    "longitude": "70.2472222"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Nava Matravad BO",
+    "pincode": "360450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0059419",
+    "longitude": "70.3152375"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Gondal Division",
+    "officename": "Vadali BO",
+    "pincode": "360450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "23.9419980",
+    "longitude": "73.0375760"
+  }
+]

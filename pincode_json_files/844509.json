@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Bajitpur Kasturi BO",
+    "pincode": "844509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6595490",
+    "longitude": "85.4625740"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Chakjamal BO",
+    "pincode": "844509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.659549",
+    "longitude": "85.462574"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Sarai Dhanesh BO",
+    "pincode": "844509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.659549",
+    "longitude": "85.462574"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Sekhopur BO",
+    "pincode": "844509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.659549",
+    "longitude": "85.462574"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Sahdei Buzurg SO",
+    "pincode": "844509",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "37.8819590",
+    "longitude": "32.4789080"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Paharpur Toi BO",
+    "pincode": "844509",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6595490",
+    "longitude": "85.4625740"
+  }
+]

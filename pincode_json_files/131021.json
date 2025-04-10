@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Qumaspur BO",
+    "pincode": "131021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9600000",
+    "longitude": "77.0800000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Joshi Chauhan B.O.",
+    "pincode": "131021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.976099999999999",
+    "longitude": "77.099999999999994"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Deepalpur BO",
+    "pincode": "131021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9600000",
+    "longitude": "77.0800000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Bahalgarh SO",
+    "pincode": "131021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9581750",
+    "longitude": "77.0929861"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Khewra BO",
+    "pincode": "131021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9600000",
+    "longitude": "77.0800000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sonepat Division",
+    "officename": "Baroli BO",
+    "pincode": "131021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONIPAT",
+    "statename": "HARYANA",
+    "latitude": "28.9600000",
+    "longitude": "77.0800000"
+  }
+]

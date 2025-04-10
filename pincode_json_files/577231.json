@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Chirdoni B.O",
+    "pincode": "577231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.2100000",
+    "longitude": "75.8400000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Kanivebilichi S.O",
+    "pincode": "577231",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1489722",
+    "longitude": "75.9002222"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Belalagere B.O",
+    "pincode": "577231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.2500000",
+    "longitude": "75.8400000"
+  }
+]

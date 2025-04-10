@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Velangudi B.O",
+    "pincode": "609603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.7100000",
+    "longitude": "79.8100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Nallathur B.O",
+    "pincode": "609603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.0000000",
+    "longitude": "79.7700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Tirukottaram B.O",
+    "pincode": "609603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9700000",
+    "longitude": "79.7700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Kurumbagaram B.O",
+    "pincode": "609603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9800000",
+    "longitude": "79.7700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Melakasakudi B.O",
+    "pincode": "609603",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9600000",
+    "longitude": "79.7800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Nedungadu S.O",
+    "pincode": "609603",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.5800000",
+    "longitude": "79.4600000"
+  }
+]

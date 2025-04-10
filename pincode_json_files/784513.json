@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bhairakunda B.O",
+    "pincode": "784513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.4740000",
+    "longitude": "91.9785500"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Sapangaon S.O",
+    "pincode": "784513",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.4740000",
+    "longitude": "91.9785500"
+  }
+]

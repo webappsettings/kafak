@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Butter Sivya BO",
+    "pincode": "143205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5800000",
+    "longitude": "75.3000000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Dhardeo BO",
+    "pincode": "143205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.6300000",
+    "longitude": "75.2500000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Ghagar Bhana BO",
+    "pincode": "143205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.5800000",
+    "longitude": "75.3000000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Sathiala SO",
+    "pincode": "143205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRITSAR",
+    "statename": "PUNJAB",
+    "latitude": "31.58",
+    "longitude": "75.30"
+  }
+]

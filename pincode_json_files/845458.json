@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Nawadih BO",
+    "pincode": "845458",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.5656",
+    "longitude": "84.553659999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Radhia BO",
+    "pincode": "845458",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.625299999999999",
+    "longitude": "84.5625"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Rampurwa Bazar BO",
+    "pincode": "845458",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.553999999999998",
+    "longitude": "84.256559999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Chhapkahia BO",
+    "pincode": "845458",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.5656",
+    "longitude": "84.553659999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Paharpur BO",
+    "pincode": "845458",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.625399999999999",
+    "longitude": "84.553659999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Ganga Pipara BO",
+    "pincode": "845458",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.5656",
+    "longitude": "84.553659999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Manguraha SO",
+    "pincode": "845458",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.6232000",
+    "longitude": "84.5850000"
+  }
+]

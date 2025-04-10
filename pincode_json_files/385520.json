@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Basu BO",
+    "pincode": "385520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0605710",
+    "longitude": "72.3280110"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Changwada BO",
+    "pincode": "385520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0853420",
+    "longitude": "72.3673700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Meta BO",
+    "pincode": "385520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0446670",
+    "longitude": "72.3404350"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Takarwada BO",
+    "pincode": "385520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.1058970",
+    "longitude": "72.3296330"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Kanodar SO",
+    "pincode": "385520",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0906290",
+    "longitude": "72.3947440"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Badarpura BO",
+    "pincode": "385520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Changa BO",
+    "pincode": "385520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

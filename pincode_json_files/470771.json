@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Amakheda B.O",
+    "pincode": "470771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8709220",
+    "longitude": "79.5125660"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Kandipur B.O",
+    "pincode": "470771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8971780",
+    "longitude": "79.5097550"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Hindoriya S.O",
+    "pincode": "470771",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9027790",
+    "longitude": "79.5701770"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Anu B.O",
+    "pincode": "470771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8493320",
+    "longitude": "79.5406740"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Gunji B.O",
+    "pincode": "470771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8539960",
+    "longitude": "79.5659630"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Samanna",
+    "pincode": "470771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.860593000000001",
+    "longitude": "79.488634000000005"
+  }
+]

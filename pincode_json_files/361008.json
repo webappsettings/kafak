@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Medical Campus SO",
+    "pincode": "361008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.4780556",
+    "longitude": "70.0652500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Patel Colony SO",
+    "pincode": "361008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.4820278",
+    "longitude": "70.0602778"
+  }
+]

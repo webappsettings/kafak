@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Dehar BO",
+    "pincode": "172025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1675500",
+    "longitude": "77.5310000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Kandagai BO",
+    "pincode": "172025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1675500",
+    "longitude": "77.5310000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Dalash SO",
+    "pincode": "172025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.370982",
+    "longitude": "77.517142"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Olwa BO",
+    "pincode": "172025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1675500",
+    "longitude": "77.5310000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Sush BO",
+    "pincode": "172025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3634220",
+    "longitude": "77.4124566"
+  }
+]

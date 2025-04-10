@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Hathaunj BO",
+    "pincode": "277302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8700000",
+    "longitude": "83.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Bara Gaon BO",
+    "pincode": "277302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9300000",
+    "longitude": "84.1400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Jigirasand BO",
+    "pincode": "277302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9700000",
+    "longitude": "84.0900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Asan BO",
+    "pincode": "277302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8900000",
+    "longitude": "84.0900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Khejuri BO",
+    "pincode": "277302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9600000",
+    "longitude": "84.0700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Panicha BO",
+    "pincode": "277302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9500000",
+    "longitude": "84.1300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Kharasara SO",
+    "pincode": "277302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.934555400000001",
+    "longitude": "84.080326299999996"
+  }
+]

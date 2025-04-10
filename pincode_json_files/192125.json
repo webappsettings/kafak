@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Gopal Pora BO",
+    "pincode": "192125",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "132",
+    "longitude": "195.30000000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Nanil BO",
+    "pincode": "192125",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "132.5000000",
+    "longitude": "123.9000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Hutmarah BO",
+    "pincode": "192125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.89",
+    "longitude": "74.24"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Nambal BO",
+    "pincode": "192125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.89",
+    "longitude": "74.24"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Akura BO",
+    "pincode": "192125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.89",
+    "longitude": "74.24"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Ranbirpora BO",
+    "pincode": "192125",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "124.8000000",
+    "longitude": "210.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Martand SO",
+    "pincode": "192125",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7597500",
+    "longitude": "75.2766944"
+  }
+]

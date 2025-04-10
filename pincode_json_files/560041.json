@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Jayanagar H.O",
+    "pincode": "560041",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.9235083",
+    "longitude": "77.585900199999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Tilaknagar S.O (Bengaluru)",
+    "pincode": "560041",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.925729199999999",
+    "longitude": "77.591704500000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Bengaluru South Division",
+    "officename": "Jayanagar East S.O",
+    "pincode": "560041",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BENGALURU URBAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.919764000000001",
+    "longitude": "77.592444799999996"
+  }
+]

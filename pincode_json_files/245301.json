@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Parpa BO",
+    "pincode": "245301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5661660",
+    "longitude": "77.6951260"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Samana BO",
+    "pincode": "245301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5883520",
+    "longitude": "77.6865380"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Saulana BO",
+    "pincode": "245301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6324330",
+    "longitude": "77.6507490"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Dehra BO",
+    "pincode": "245301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6490020",
+    "longitude": "77.6027480"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Dhaulana SO",
+    "pincode": "245301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6351958452053",
+    "longitude": "77.6499350270665"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Kandaula BO",
+    "pincode": "245301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6616620",
+    "longitude": "77.6564760"
+  }
+]

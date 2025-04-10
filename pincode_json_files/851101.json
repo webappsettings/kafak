@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Begusarai Court SO",
+    "pincode": "851101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "GDCollege Road SO",
+    "pincode": "851101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Begusarai HO",
+    "pincode": "851101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Sri Ram Press SO",
+    "pincode": "851101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "BEGUSARAI ZILA PARISHAD S.O",
+    "pincode": "851101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

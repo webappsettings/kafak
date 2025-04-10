@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Siliguri B.O",
+    "pincode": "781103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1746000",
+    "longitude": "91.3401000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Bamundi B.O",
+    "pincode": "781103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1746000",
+    "longitude": "91.3401000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Gandhmow B.O",
+    "pincode": "781103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1746000",
+    "longitude": "91.3401000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Srihati B.O",
+    "pincode": "781103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1746000",
+    "longitude": "91.3401000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Soalkuchi S.O",
+    "pincode": "781103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1000000",
+    "longitude": "91.3401000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Bongshor B.O",
+    "pincode": "781103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1746000",
+    "longitude": "91.3401000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Halogaon B.O",
+    "pincode": "781103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1746000",
+    "longitude": "91.3401000"
+  }
+]

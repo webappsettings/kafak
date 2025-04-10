@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Sajinagechhia BO",
+    "pincode": "721154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4586000",
+    "longitude": "87.7745000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Deulia BO",
+    "pincode": "721154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4586000",
+    "longitude": "87.7745000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Payag BO",
+    "pincode": "721154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4586000",
+    "longitude": "87.7745000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Pulsita SO",
+    "pincode": "721154",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4438888",
+    "longitude": "87.8375000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Chapda BO",
+    "pincode": "721154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4586000",
+    "longitude": "87.7745000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Narayanchak BO",
+    "pincode": "721154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4586000",
+    "longitude": "87.7745000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Tamluk Division",
+    "officename": "Sitapur BO",
+    "pincode": "721154",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4586000",
+    "longitude": "87.7745000"
+  }
+]

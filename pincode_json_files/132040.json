@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "MUNAK",
+    "pincode": "132040",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Bal Rangan B.O",
+    "pincode": "132040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Munak B.O",
+    "pincode": "132040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "100.0000000",
+    "longitude": "100.0000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Ballah S.O",
+    "pincode": "132040",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5053611",
+    "longitude": "76.7852222"
+  }
+]

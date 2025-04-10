@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Loharghat B.O",
+    "pincode": "781120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0802000",
+    "longitude": "91.5596000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Rajapara B.O",
+    "pincode": "781120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0802000",
+    "longitude": "91.5596000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Mataikhar B.O",
+    "pincode": "781120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0802000",
+    "longitude": "91.5596000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Borduar S.O",
+    "pincode": "781120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.0802000",
+    "longitude": "91.5596000"
+  }
+]

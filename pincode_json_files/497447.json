@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Bseam Colly BO",
+    "pincode": "497447",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOREA",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.182089000000001",
+    "longitude": "82.162840000000003"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "West Jhagrakhand Colly SO",
+    "pincode": "497447",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOREA",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.197717999999998",
+    "longitude": "82.159655000000001"
+  }
+]

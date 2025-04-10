@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Nandner B.O",
+    "pincode": "466448",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8889780",
+    "longitude": "78.7079380"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Jontala B.O",
+    "pincode": "466448",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8712400",
+    "longitude": "77.9909950"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Gadar",
+    "pincode": "466448",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.986599999999999",
+    "longitude": "78.015500000000003"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Aamon B.O",
+    "pincode": "466448",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "43.4696370",
+    "longitude": "111.9666300"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Baktara S.O",
+    "pincode": "466448",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9067590",
+    "longitude": "78.0140880"
+  }
+]

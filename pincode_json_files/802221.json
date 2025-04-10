@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Imirtha BO",
+    "pincode": "802221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.2623140",
+    "longitude": "84.2476360"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Surajpura SO",
+    "pincode": "802221",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "25.2560690",
+    "longitude": "84.2239880"
+  }
+]

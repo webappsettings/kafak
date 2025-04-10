@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Bikaran B.O",
+    "pincode": "311606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.6009204",
+    "longitude": "75.4723341"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Malka Khera B.O",
+    "pincode": "311606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2257500",
+    "longitude": "75.1141500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Jalindri B.O",
+    "pincode": "311606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2885330",
+    "longitude": "75.3642720"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Mangthala B.O",
+    "pincode": "311606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.3375464",
+    "longitude": "75.3003919"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Shyampura S. O.",
+    "pincode": "311606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2575470",
+    "longitude": "75.2753590"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Jwala Puri S.O",
+    "pincode": "110087",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6800278",
+    "longitude": "77.0787500"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Peeragarhi B.O",
+    "pincode": "110087",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6797450",
+    "longitude": "77.0926890"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Sunder Vihar S.O",
+    "pincode": "110087",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6663889",
+    "longitude": "77.0881667"
+  }
+]

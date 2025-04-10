@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Cherekapar B.O",
+    "pincode": "785701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "93.3713000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Daya Chariali B.O",
+    "pincode": "785701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "93.3713000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Singhaduar B.O",
+    "pincode": "785701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "93.3713000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Hahchara S.O",
+    "pincode": "785701",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "94.3713000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Khelua B.O",
+    "pincode": "785701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "93.3713000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Nogagaon B.O",
+    "pincode": "785701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "93.3713000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bhadhara B.O",
+    "pincode": "785701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIVASAGAR",
+    "statename": "ASSAM",
+    "latitude": "26.5933000",
+    "longitude": "94.3713000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Misri BO",
+    "pincode": "127042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7129000",
+    "longitude": "76.2911000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Sankror BO",
+    "pincode": "127042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7129000",
+    "longitude": "76.2911000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Ranila BO",
+    "pincode": "127042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7129000",
+    "longitude": "76.2911000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Sanwar SO Bhiwani",
+    "pincode": "127042",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7129000",
+    "longitude": "76.2911000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Sanjarwas BO",
+    "pincode": "127042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.7129000",
+    "longitude": "76.2911000"
+  }
+]

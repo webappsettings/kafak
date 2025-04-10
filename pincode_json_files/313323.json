@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Kotharia S.O (Rajsamand)",
+    "pincode": "313323",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.0533333",
+    "longitude": "73.8847222"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Maja B.O",
+    "pincode": "313323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9900000",
+    "longitude": "73.8200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Namana B.O",
+    "pincode": "313323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9900000",
+    "longitude": "73.9100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Akodara B.O",
+    "pincode": "313323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9200000",
+    "longitude": "73.9700000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Bamanhera B.O",
+    "pincode": "313323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9900000",
+    "longitude": "73.8800000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Bijnol B.O",
+    "pincode": "313323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9600000",
+    "longitude": "73.9300000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Pakhand B.O",
+    "pincode": "313323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9400000",
+    "longitude": "73.9600000"
+  }
+]

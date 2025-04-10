@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Sector 5 Bhilai SO",
+    "pincode": "490006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1107800",
+    "longitude": "81.2054300"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Nawagaon Bhilai SO",
+    "pincode": "490006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1833000",
+    "longitude": "81.3306000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Sector 6 Bhilai SO",
+    "pincode": "490006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1135200",
+    "longitude": "81.2040600"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Sector 7 Bhilai SO",
+    "pincode": "490006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1136600",
+    "longitude": "81.1943900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Civic Centre Bhilai SO",
+    "pincode": "490006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.224847",
+    "longitude": "81.458320000000001"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Maroda Bhilai SO",
+    "pincode": "490006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1010700",
+    "longitude": "81.2036000"
+  }
+]

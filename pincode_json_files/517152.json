@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Damalacheruvu S.O",
+    "pincode": "517152",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.4816111",
+    "longitude": "79.0431111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Krishnapuram B.O",
+    "pincode": "517152",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Vallivedu B.O",
+    "pincode": "517152",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Vedagirivaripalle B.O",
+    "pincode": "517152",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.4724530",
+    "longitude": "79.0218840"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Gundlaguttapalle B.O",
+    "pincode": "517152",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Gundlapalle B.O",
+    "pincode": "517152",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.4498970",
+    "longitude": "79.0363070"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Mogarala B.O",
+    "pincode": "517152",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

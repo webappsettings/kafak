@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Amritpur BO",
+    "pincode": "844113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Balukaram SO",
+    "pincode": "844113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.4141666",
+    "longitude": "85.2413888"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Daudnagar BO",
+    "pincode": "844113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Madhopur Ram BO",
+    "pincode": "844113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Chaklahlad BO",
+    "pincode": "844113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Nandlalpur BO",
+    "pincode": "844113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vaishali Division",
+    "officename": "Madarna BO",
+    "pincode": "844113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VAISHALI",
+    "statename": "BIHAR",
+    "latitude": "25.6737460",
+    "longitude": "85.3655630"
+  }
+]

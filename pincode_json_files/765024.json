@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Derigam B.O",
+    "pincode": "765024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "G.Laxmipur B.O",
+    "pincode": "765024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Bichikote B.O",
+    "pincode": "765024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Naira B.O",
+    "pincode": "765024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Bhamini B.O",
+    "pincode": "765024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Limapadar B.O",
+    "pincode": "765024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Ukkamba S.O",
+    "pincode": "765024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.3029166",
+    "longitude": "83.7735233"
+  }
+]

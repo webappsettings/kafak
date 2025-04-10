@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Yelavatti B.O",
+    "pincode": "582117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.2537210",
+    "longitude": "75.4868959"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Magadi B.O",
+    "pincode": "582117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.2170820",
+    "longitude": "75.5117331"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Chinchali B.O",
+    "pincode": "582117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.2909286",
+    "longitude": "75.4858767"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Neelgund B.O",
+    "pincode": "582117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.3078587",
+    "longitude": "75.4886018"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Madhalli B.O",
+    "pincode": "582117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.2640314",
+    "longitude": "75.4296039"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Yatanhalli B.O",
+    "pincode": "582117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.2509100",
+    "longitude": "75.4327367"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Mulgund S.O",
+    "pincode": "582117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.2920551",
+    "longitude": "75.5333303"
+  }
+]

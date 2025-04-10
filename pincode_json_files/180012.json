@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Railway Station SO",
+    "pincode": "180012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7059050",
+    "longitude": "74.8799670"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "New Fruit Market SO",
+    "pincode": "180012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7159870",
+    "longitude": "74.8799690"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Meghdoot Bhawan",
+    "pincode": "180012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.71018622763894",
+    "longitude": "74.87953785806894"
+  }
+]

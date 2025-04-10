@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Nowgang B.O",
+    "pincode": "754109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1592512",
+    "longitude": "86.1739040"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Galadhari B.O",
+    "pincode": "754109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1478180",
+    "longitude": "86.1526702"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Debidol S.O",
+    "pincode": "754109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.14415",
+    "longitude": "86.1629"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Kortal B.O",
+    "pincode": "754109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1846380",
+    "longitude": "86.1721230"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Ashrampatana B.O",
+    "pincode": "754109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "25.6361880",
+    "longitude": "85.1095410"
+  }
+]

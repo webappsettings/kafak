@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Jaon BO",
+    "pincode": "172002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4581000",
+    "longitude": "77.6438900"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Shamani BO",
+    "pincode": "172002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4225376",
+    "longitude": "77.5762633"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Arsu SO",
+    "pincode": "172002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.479688",
+    "longitude": "77.581408"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Deem BO",
+    "pincode": "172002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5818700",
+    "longitude": "77.6890300"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Nishani BO",
+    "pincode": "172002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5818700",
+    "longitude": "77.6890300"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Beoni BO",
+    "pincode": "172002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5818700",
+    "longitude": "77.6890300"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Sarahan BO",
+    "pincode": "172002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5818700",
+    "longitude": "77.6890300"
+  }
+]

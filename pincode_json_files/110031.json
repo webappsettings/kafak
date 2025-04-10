@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Gandhi Nagar SO East Delhi",
+    "pincode": "110031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAHDARA",
+    "statename": "DELHI",
+    "latitude": "28.6921111",
+    "longitude": "77.3042222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Geeta Colony SO",
+    "pincode": "110031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHAHDARA",
+    "statename": "DELHI",
+    "latitude": "28.6530000",
+    "longitude": "77.2741667"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Rajgarh Colony SO",
+    "pincode": "110031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6592500",
+    "longitude": "77.2742222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Gandhi Nagar Bazar SO",
+    "pincode": "110031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHAHDARA",
+    "statename": "DELHI",
+    "latitude": "28.6606111",
+    "longitude": "77.2664167"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Kailash Nagar SO",
+    "pincode": "110031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHAHDARA",
+    "statename": "DELHI",
+    "latitude": "28.6646111",
+    "longitude": "77.2593611"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Shastri Nagar SO East Delhi",
+    "pincode": "110031",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6922500",
+    "longitude": "77.2742222"
+  }
+]

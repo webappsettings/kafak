@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Beraberia BO",
+    "pincode": "700121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7900000",
+    "longitude": "88.4400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Sewli Telinipara BO",
+    "pincode": "700121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7600000",
+    "longitude": "88.4300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Nilganj Bazaar SO",
+    "pincode": "700121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7600000",
+    "longitude": "88.4300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Suryapur BO",
+    "pincode": "700121",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7500000",
+    "longitude": "88.4200000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Kasan BO",
+    "pincode": "122051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3442470",
+    "longitude": "76.9438390"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Nsg Camp Manesar SO",
+    "pincode": "122051",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.3420000",
+    "longitude": "76.9365278"
+  }
+]

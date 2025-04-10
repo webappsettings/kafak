@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dholar BO",
+    "pincode": "396220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.3937000",
+    "longitude": "72.8313140"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Moti Daman SO",
+    "pincode": "396220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4061990",
+    "longitude": "72.8347210"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Magarwada BO",
+    "pincode": "396220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4038100",
+    "longitude": "72.8460740"
+  }
+]

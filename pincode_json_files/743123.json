@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Bhatpara SO",
+    "pincode": "743123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.8700000",
+    "longitude": "88.4100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "BARRACKPORE DIVISION",
+    "officename": "Muktarpur SO",
+    "pincode": "743123",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "24 PARAGANAS NORTH",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8800000",
+    "longitude": "88.4100000"
+  }
+]

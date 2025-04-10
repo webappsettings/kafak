@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Bhatni BO",
+    "pincode": "229410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.9889870",
+    "longitude": "81.8987780"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Kaithola SO",
+    "pincode": "229410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9689630",
+    "longitude": "81.6084540"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Jewai BO",
+    "pincode": "229410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.5640000",
+    "longitude": "21.5400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Pratapgarh Division",
+    "officename": "Agai BO",
+    "pincode": "229410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.8878780",
+    "longitude": "81.8877000"
+  }
+]

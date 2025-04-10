@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "MALAPANAGUDI",
+    "pincode": "515872",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.046051",
+    "longitude": "76.798044000000004"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Anantapur Division",
+    "officename": "Herial S.O",
+    "pincode": "515872",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.0127500",
+    "longitude": "76.8319167"
+  }
+]

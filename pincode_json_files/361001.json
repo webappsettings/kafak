@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Lal Bunglow SO",
+    "pincode": "361001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.4699722",
+    "longitude": "70.0655000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Jamnagar HO",
+    "pincode": "361001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.4654722",
+    "longitude": "70.0785000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Station Road SO Jamnagar",
+    "pincode": "361001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.4700000",
+    "longitude": "70.0600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Khambhalia Gate SO",
+    "pincode": "361001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.1600000",
+    "longitude": "69.8400000"
+  }
+]

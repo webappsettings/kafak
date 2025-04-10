@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Mandawali BO",
+    "pincode": "246749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6450560",
+    "longitude": "78.2547340"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Mohanpur BO",
+    "pincode": "246749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5151730",
+    "longitude": "78.0338080"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Rampur Chatha B.O",
+    "pincode": "246749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.759900999999999",
+    "longitude": "78.300162999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Bijauri BO",
+    "pincode": "246749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6327040",
+    "longitude": "78.3244790"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Jatpura Bonda BO",
+    "pincode": "246749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6327040",
+    "longitude": "78.3244790"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Bhaguwala BO",
+    "pincode": "246749",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9817260",
+    "longitude": "77.2740460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Sahanpur SO",
+    "pincode": "246749",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6346111",
+    "longitude": "78.3249167"
+  }
+]

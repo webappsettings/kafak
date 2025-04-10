@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "M.Agraharam B.O",
+    "pincode": "518385",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Nancherla B.O",
+    "pincode": "518385",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Hampa B.O",
+    "pincode": "518385",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Maddikera S.O",
+    "pincode": "518385",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.24813889",
+    "longitude": "77.41677778"
+  }
+]

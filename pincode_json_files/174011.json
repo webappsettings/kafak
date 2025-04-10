@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Zakatkhana BO",
+    "pincode": "174011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2805000",
+    "longitude": "76.7132000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Swarghat SO",
+    "pincode": "174011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2306000",
+    "longitude": "76.7168000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Jamli BO",
+    "pincode": "174011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2292000",
+    "longitude": "76.7769000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Kutehla BO",
+    "pincode": "174011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5114000",
+    "longitude": "76.7294000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Tanbol BO",
+    "pincode": "174011",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2301000",
+    "longitude": "76.7177000"
+  }
+]

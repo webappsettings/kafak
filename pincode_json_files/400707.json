@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Jaskhar B.O",
+    "pincode": "400707",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8700000",
+    "longitude": "72.9200000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Navghar B.O",
+    "pincode": "400707",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8700000",
+    "longitude": "72.9200000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Navi Mumbai Division",
+    "officename": "Jnpt S.O",
+    "pincode": "400707",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIGAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.8846944",
+    "longitude": "72.9134722"
+  }
+]

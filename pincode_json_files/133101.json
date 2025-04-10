@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Keshopur Samalkha B.O",
+    "pincode": "133101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.293700000000001",
+    "longitude": "76.920699999999997"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Bihta S.O (Ambala)",
+    "pincode": "133101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.3842500",
+    "longitude": "76.7716667"
+  }
+]

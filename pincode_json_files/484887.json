@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Umania B.O",
+    "pincode": "484887",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8500000",
+    "longitude": "81.6600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Amgawan B.O",
+    "pincode": "484887",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8800000",
+    "longitude": "81.7300000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Igntu Amarkantak S.O.",
+    "pincode": "484887",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2988611",
+    "longitude": "81.3574167"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Johila Project B.O",
+    "pincode": "484887",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.850000000000001",
+    "longitude": "81.890000000000001"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Karaundi B.O",
+    "pincode": "484887",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0200000",
+    "longitude": "81.4100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Bhejari B.O",
+    "pincode": "484887",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7900000",
+    "longitude": "81.7600000"
+  }
+]

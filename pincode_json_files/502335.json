@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Nagulapally B.O",
+    "pincode": "502335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "17.868644",
+    "longitude": "78.45714"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Kunthanpally B.O",
+    "pincode": "502335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "17.858538",
+    "longitude": "78.426106"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Gunreddipally B.O",
+    "pincode": "502335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "17.8657",
+    "longitude": "78.508676"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Malkapur BO",
+    "pincode": "502335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Masaipet S.O",
+    "pincode": "502335",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "17.9052222",
+    "longitude": "78.4611111"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Islampur B.O",
+    "pincode": "502335",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "17.5224",
+    "longitude": "78.2844"
+  }
+]

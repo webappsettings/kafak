@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Tiruneermalai BO",
+    "pincode": "600132",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "17.9192139",
+    "longitude": "77.5104694"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Darkash BO",
+    "pincode": "600132",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "17.9192139",
+    "longitude": "77.5104694"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tambaram Division",
+    "officename": "Tirumudivakkam SO",
+    "pincode": "600132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "17.9192139",
+    "longitude": "77.5104694"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Majithia Enclave SO",
+    "pincode": "147005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.339139",
+    "longitude": "76.356081"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Ranbirpura BO",
+    "pincode": "147005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3200000",
+    "longitude": "76.3200000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Kalyan BO",
+    "pincode": "147005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3500000",
+    "longitude": "76.3000000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Sanaha BO",
+    "pincode": "224182",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.766627",
+    "longitude": "81.970389999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Barwa BO",
+    "pincode": "224182",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.767128",
+    "longitude": "81.971666999999997"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Lakhauri BO",
+    "pincode": "224182",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.766627",
+    "longitude": "81.970389999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Nawada BO",
+    "pincode": "224182",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.766627",
+    "longitude": "81.970389999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Raunahi SO",
+    "pincode": "224182",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7666270",
+    "longitude": "81.9703900"
+  }
+]

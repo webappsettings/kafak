@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Dhok Banyar BO",
+    "pincode": "185156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Bharore BO",
+    "pincode": "185156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Kangri SO",
+    "pincode": "185156",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "30.0533889",
+    "longitude": "74.4206389"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Thichka BO",
+    "pincode": "185156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Tilla Tanda BO",
+    "pincode": "185156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Dhar BO",
+    "pincode": "185156",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

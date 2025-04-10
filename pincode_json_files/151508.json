@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Tamkot BO",
+    "pincode": "151508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.064599999999999",
+    "longitude": "75.406800000000004"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Bhaini Bagha SO",
+    "pincode": "151508",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.059476",
+    "longitude": "75.363371"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Khokhar Kalan BO",
+    "pincode": "151508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.020600000000002",
+    "longitude": "75.342699999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Khiala Kalan BO",
+    "pincode": "151508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "31.668800000000001",
+    "longitude": "74.704400000000007"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Moosa BO",
+    "pincode": "151508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "29.978400000000001",
+    "longitude": "75.319400000000002"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Ubha BO",
+    "pincode": "151508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.107299999999999",
+    "longitude": "75.360200000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Burj Hari BO",
+    "pincode": "151508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.086099999999998",
+    "longitude": "75.347499999999997"
+  }
+]

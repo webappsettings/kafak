@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Nagal Khajuri B.O",
+    "pincode": "135004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.0835000",
+    "longitude": "77.2654000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Pansra B.O",
+    "pincode": "135004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781848",
+    "longitude": "76.7766914"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Khera Khurd B.O",
+    "pincode": "135004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.0835000",
+    "longitude": "77.2654000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Kalanaur B.O",
+    "pincode": "135004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781868",
+    "longitude": "76.7766894"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Shadi Pur B.O",
+    "pincode": "135004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.0835000",
+    "longitude": "77.2654000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Nahar Pur B.O",
+    "pincode": "135004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.0835000",
+    "longitude": "77.2654000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Thermal Colony Yamuna Nagar S.O",
+    "pincode": "135004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.115213",
+    "longitude": "77.338224"
+  }
+]

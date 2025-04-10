@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Bhadlikotha BO",
+    "pincode": "385505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3763720",
+    "longitude": "72.2890780"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Bhilachal BO",
+    "pincode": "385505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.4447710",
+    "longitude": "72.3949120"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Dantiwada BO",
+    "pincode": "385505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3345840",
+    "longitude": "72.3349290"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Dantiwada Colony SO",
+    "pincode": "385505",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3238410",
+    "longitude": "72.3315430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Jegol BO",
+    "pincode": "385505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.4141310",
+    "longitude": "72.3436920"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Odhava BO",
+    "pincode": "385505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.4171810",
+    "longitude": "72.3757410"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "CHODUNGARI B.O",
+    "pincode": "385505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.368737",
+    "longitude": "72.316936"
+  }
+]

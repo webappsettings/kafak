@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Panchetgarh SO",
+    "pincode": "721438",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9552786",
+    "longitude": "87.5604062"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Ghatua Purusottampur BO",
+    "pincode": "721438",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9552790",
+    "longitude": "87.5604060"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Contai Division",
+    "officename": "Chandanpur BO",
+    "pincode": "721438",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR EAST",
+    "statename": "WEST BENGAL",
+    "latitude": "21.9730620",
+    "longitude": "87.5667750"
+  }
+]

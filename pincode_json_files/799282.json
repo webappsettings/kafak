@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Bhagabannagar B.O",
+    "pincode": "799282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.159805599999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Chinibagan B.O",
+    "pincode": "799282",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.159805599999999"
+  }
+]

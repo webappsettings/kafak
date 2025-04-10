@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Chaibasa HO",
+    "pincode": "833201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.54575",
+    "longitude": "85.80509"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Bari Bazar SO",
+    "pincode": "833201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.5585",
+    "longitude": "85.79969"
+  }
+]

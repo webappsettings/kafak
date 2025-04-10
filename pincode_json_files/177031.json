@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Chulhari BO",
+    "pincode": "177031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4430070",
+    "longitude": "76.4005400"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Una Division",
+    "officename": "Raipur SO Una",
+    "pincode": "177031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.7785278",
+    "longitude": "76.9975000"
+  }
+]

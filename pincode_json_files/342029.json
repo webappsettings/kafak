@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Dhandhora B.O",
+    "pincode": "342029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.809988799999999",
+    "longitude": "73.368035399999997"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Soyla PO",
+    "pincode": "342029",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.82283",
+    "longitude": "73.33653"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Dhanari Kallan BO",
+    "pincode": "342029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6950900",
+    "longitude": "73.2436500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Kajnau Kallan BO",
+    "pincode": "342029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7592628",
+    "longitude": "73.2824201"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Nandia Kallan BO",
+    "pincode": "342029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6950900",
+    "longitude": "73.2436500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Kherapa BO",
+    "pincode": "342029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7000070",
+    "longitude": "73.2999930"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Nandiya Khurd BO",
+    "pincode": "342029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6950900",
+    "longitude": "73.2436500"
+  }
+]

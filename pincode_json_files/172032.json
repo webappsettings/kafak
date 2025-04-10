@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Jaon BO",
+    "pincode": "172032",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4581000",
+    "longitude": "77.6438900"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Chowai SO",
+    "pincode": "172032",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.445754",
+    "longitude": "77.442315"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Gad BO",
+    "pincode": "172032",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KULLU",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4581000",
+    "longitude": "77.6438900"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Ladhagi BO",
+    "pincode": "172032",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "31.4437623",
+    "longitude": "77.44422231"
+  }
+]

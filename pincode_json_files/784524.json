@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Teliapara B.O",
+    "pincode": "784524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7612000",
+    "longitude": "93.0521000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Ajodhyapur B.O",
+    "pincode": "784524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7612000",
+    "longitude": "93.0521000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Hatigarh S.O (Darrang",
+    "pincode": "784524",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7208280",
+    "longitude": "92.2232320"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Ghograbazar B.O",
+    "pincode": "784524",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7208320",
+    "longitude": "92.2232280"
+  }
+]

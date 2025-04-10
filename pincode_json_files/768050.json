@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Chendeikela B.O",
+    "pincode": "768050",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "20.7949801",
+    "longitude": "82.7135182"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "KANSADA B.O",
+    "pincode": "768050",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Jamseth B.O",
+    "pincode": "768050",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "20.8216198",
+    "longitude": "82.7263309"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Jhitiki B.O",
+    "pincode": "768050",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "20.9108078",
+    "longitude": "82.7355451"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Mandosil S.O",
+    "pincode": "768050",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "20.8692000",
+    "longitude": "82.7384800"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Mandigobindgarh IT SO",
+    "pincode": "147301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.6640833",
+    "longitude": "76.2788333"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Mandigobindgarh SO",
+    "pincode": "147301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.666450",
+    "longitude": "76.290968"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Salana BO",
+    "pincode": "147301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.6700000",
+    "longitude": "76.2100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Ghutind B.O",
+    "pincode": "147301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.648299999999999",
+    "longitude": "76.172899999999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Kumbh BO",
+    "pincode": "147301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.6300000",
+    "longitude": "76.2800000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Shahpur BO",
+    "pincode": "147301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.6600000",
+    "longitude": "76.2300000"
+  }
+]

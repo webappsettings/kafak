@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Chakbedulia BO",
+    "pincode": "851128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Naipur BO",
+    "pincode": "851128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Rasidpur BO",
+    "pincode": "851128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Samsa BO",
+    "pincode": "851128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Agapur BO",
+    "pincode": "851128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Govindpur BO",
+    "pincode": "851128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Mansurchak SO",
+    "pincode": "851128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEGUSARAI",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  }
+]

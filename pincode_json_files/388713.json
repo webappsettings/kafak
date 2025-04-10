@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Veganpur BO",
+    "pincode": "388713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7963960",
+    "longitude": "73.5025900"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Padhiyar BO",
+    "pincode": "388713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.8426000",
+    "longitude": "73.5175700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Ratanpur R BO",
+    "pincode": "388713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7212130",
+    "longitude": "73.4413000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kakanpur SO",
+    "pincode": "388713",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.8326944",
+    "longitude": "73.4848889"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Manipur C BO",
+    "pincode": "388713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7480400",
+    "longitude": "73.4481100"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Dhanol BO",
+    "pincode": "388713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7543610",
+    "longitude": "73.4778700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Tuwa BO",
+    "pincode": "388713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.8028650",
+    "longitude": "73.4638000"
+  }
+]

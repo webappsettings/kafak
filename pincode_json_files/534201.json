@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Bhimavaram H.O",
+    "pincode": "534201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.54069444",
+    "longitude": "81.52402778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Bhimavaram Railway Colony S.O",
+    "pincode": "534201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.54727778",
+    "longitude": "81.51933333"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Bhimavaram Division",
+    "officename": "Someswaralayam S.O",
+    "pincode": "534201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.53655556",
+    "longitude": "81.507"
+  }
+]

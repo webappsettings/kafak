@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hosapete Patel Nagar S.O",
+    "pincode": "583201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2739722",
+    "longitude": "76.3783611"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hosapete H.O",
+    "pincode": "583201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2713889",
+    "longitude": "76.391000000000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hosapete J P Nagar S.O",
+    "pincode": "583201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.266353199999999",
+    "longitude": "76.395666700000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hosapete Ranipet S.O",
+    "pincode": "583201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2752222",
+    "longitude": "76.386666700000006"
+  }
+]

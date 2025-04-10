@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Bhuskaul BO",
+    "pincode": "846007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.005400000000002",
+    "longitude": "85.903499999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Atihar BO",
+    "pincode": "846007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "25.005400000000002",
+    "longitude": "85.903499999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "GBasailha BO",
+    "pincode": "846007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.005400000000002",
+    "longitude": "85.903499999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Saramohanpur SO",
+    "pincode": "846007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARBHANGA",
+    "statename": "BIHAR",
+    "latitude": "26.1725450",
+    "longitude": "85.9312290"
+  }
+]

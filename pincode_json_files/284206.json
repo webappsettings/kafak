@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Barhwar BO",
+    "pincode": "284206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4665100",
+    "longitude": "79.1125000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Dhurwai BO",
+    "pincode": "284206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4938500",
+    "longitude": "79.0475600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Tori Fatehpur SO",
+    "pincode": "284206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531944",
+    "longitude": "79.1156944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Bijna BO",
+    "pincode": "284206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4773200",
+    "longitude": "79.0221300"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Pandwaha BO",
+    "pincode": "284206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4703400",
+    "longitude": "79.1633200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Pasaura BO",
+    "pincode": "284206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4964500",
+    "longitude": "79.2394800"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Rohili BO",
+    "pincode": "209735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.205325",
+    "longitude": "79.579566"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sarai Prayag SO",
+    "pincode": "209735",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1245833",
+    "longitude": "79.0000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Tera Jaket BO",
+    "pincode": "209735",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.205325",
+    "longitude": "79.579566"
+  }
+]

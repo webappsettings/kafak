@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Topanapalli B.O",
+    "pincode": "506369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.725145",
+    "longitude": "79.816802"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "VENKATAPUR",
+    "pincode": "506369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Chintanekkonda B.O",
+    "pincode": "506369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.792552",
+    "longitude": "79.761224"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Engal B.O",
+    "pincode": "506369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.820805",
+    "longitude": "79.745336"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Saireddipalli B.O",
+    "pincode": "506369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.762009",
+    "longitude": "79.77889"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Appalraopet B.O",
+    "pincode": "506369",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.760634",
+    "longitude": "79.810328"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Redlawada S.O",
+    "pincode": "506369",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.737104",
+    "longitude": "79.773873"
+  }
+]

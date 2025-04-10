@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Muthupatnam S.O",
+    "pincode": "630001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0708887",
+    "longitude": "78.7551389"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Karaikudi Angadi B.O",
+    "pincode": "630001",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.060336",
+    "longitude": "78.77344"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Karaikudi H.O",
+    "pincode": "630001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0768595",
+    "longitude": "78.7794284"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Kallukatti S.O",
+    "pincode": "630001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.07168",
+    "longitude": "78.7656389"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Senjai S.O",
+    "pincode": "630001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0582778",
+    "longitude": "78.7656389"
+  }
+]

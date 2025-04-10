@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Nathapattu B.O",
+    "pincode": "607109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7900000",
+    "longitude": "79.8000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Vellapakkam B.O",
+    "pincode": "607109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7800000",
+    "longitude": "79.7000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Varakalpattu S.O",
+    "pincode": "607109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7700000",
+    "longitude": "79.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Alaginatham B.O",
+    "pincode": "607109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.800000000000001",
+    "longitude": "79.700000000000003"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Gunamangalam B.O",
+    "pincode": "607109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7700000",
+    "longitude": "79.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Kalaiyur B.O",
+    "pincode": "607109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.8100000",
+    "longitude": "79.7100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Marudadu B.O",
+    "pincode": "607109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.7800000",
+    "longitude": "79.7100000"
+  }
+]

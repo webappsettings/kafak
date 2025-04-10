@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Arapattu B.O",
+    "pincode": "571212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2249501",
+    "longitude": "75.7358542"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Yavakapady B.O",
+    "pincode": "571212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2408502",
+    "longitude": "75.6546262"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Parane B.O",
+    "pincode": "571212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2709446",
+    "longitude": "75.7168856"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Cheyandane S.O",
+    "pincode": "571212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.227",
+    "longitude": "75.68463889"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Kadanga B.O",
+    "pincode": "571212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2245531",
+    "longitude": "75.7520011"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Karada B.O",
+    "pincode": "571212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2177403",
+    "longitude": "75.7144180"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Kakkabbe B.O",
+    "pincode": "571212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.2563534",
+    "longitude": "75.6433287"
+  }
+]

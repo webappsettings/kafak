@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Gulvanch B.O",
+    "pincode": "422112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8500080",
+    "longitude": "73.9999920"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Khopadi BK B.O",
+    "pincode": "422112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8641343",
+    "longitude": "74.6239296"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "I.A. Musalgaon Sinnar S.O",
+    "pincode": "422112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8355584",
+    "longitude": "74.0542379"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Musalgaon B.O",
+    "pincode": "422112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8355584",
+    "longitude": "74.0542379"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Datli B.O",
+    "pincode": "422112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8143040",
+    "longitude": "74.0828789"
+  }
+]

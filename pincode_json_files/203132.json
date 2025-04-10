@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Sonda  Habibpur BO",
+    "pincode": "203132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1886975",
+    "longitude": "77.7968072"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Khurja  Jn  RS SO",
+    "pincode": "203132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2123925",
+    "longitude": "77.8186082"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Bhadaura Kamalpur BO",
+    "pincode": "203132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2647374",
+    "longitude": "77.7551794"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Samashpur BO",
+    "pincode": "203132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2438328",
+    "longitude": "77.7866792"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Asgarpur BO",
+    "pincode": "203132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2015952",
+    "longitude": "77.8452158"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Dabar BO",
+    "pincode": "203132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1349719",
+    "longitude": "77.8843975"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Sarangpur BO",
+    "pincode": "203132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2079111",
+    "longitude": "77.7645778"
+  }
+]

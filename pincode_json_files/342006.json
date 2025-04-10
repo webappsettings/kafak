@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Kachery SO",
+    "pincode": "342006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.294421",
+    "longitude": "73.036988"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Rasala Road SO",
+    "pincode": "342006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.298251",
+    "longitude": "73.059048"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Mahamandir SO",
+    "pincode": "342006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3069444",
+    "longitude": "73.0398611"
+  }
+]

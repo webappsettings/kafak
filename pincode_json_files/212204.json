@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Sawrai Buzurg BO",
+    "pincode": "212204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Daranagar SO Allahabad",
+    "pincode": "212204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6797",
+    "longitude": "81.35232"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Jahangirabad BO",
+    "pincode": "212204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Nawawan BO",
+    "pincode": "212204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Shahjadpur ED BO",
+    "pincode": "212204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.639983000000001",
+    "longitude": "77.328547999999998"
+  }
+]

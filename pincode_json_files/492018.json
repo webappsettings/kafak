@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Rakhi B.O",
+    "pincode": "492018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.58007",
+    "longitude": "81.34308"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Sector  27 Naya Raipur SO",
+    "pincode": "492018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.093112",
+    "longitude": "81.475138"
+  }
+]

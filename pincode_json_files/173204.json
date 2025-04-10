@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Kasauli MT BO",
+    "pincode": "173204",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9015000",
+    "longitude": "76.9645277"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Kasauli SO",
+    "pincode": "173204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.899776",
+    "longitude": "76.961475"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Kasauli RI BO",
+    "pincode": "173204",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOLAN",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9044860",
+    "longitude": "77.0967360"
+  }
+]

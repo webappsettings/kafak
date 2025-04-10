@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Bisukia BO",
+    "pincode": "277503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7900000",
+    "longitude": "84.0700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Cherueyan BO",
+    "pincode": "277503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7600000",
+    "longitude": "84.1500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Singhpur BO",
+    "pincode": "277503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7700000",
+    "longitude": "84.0300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Phehpana SO",
+    "pincode": "277503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.768540600000001",
+    "longitude": "84.046312999999998"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Chitara BO",
+    "pincode": "322026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7808000",
+    "longitude": "76.3926670"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Phalodi Quarry SO",
+    "pincode": "322026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7023333",
+    "longitude": "73.9203056"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bhairoonpura",
+    "pincode": "322026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.879923000000002",
+    "longitude": "76.398454000000001"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Dumoda BO",
+    "pincode": "322026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8681990",
+    "longitude": "76.3666230"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Lahsoda BO",
+    "pincode": "322026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8295300",
+    "longitude": "76.3307500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Phalodi BO",
+    "pincode": "322026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9327670",
+    "longitude": "76.3821000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Dangarwada BO",
+    "pincode": "322026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8424530",
+    "longitude": "77.5332800"
+  }
+]

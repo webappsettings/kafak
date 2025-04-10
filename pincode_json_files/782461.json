@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Kheronigaon B.O",
+    "pincode": "782461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.8394444",
+    "longitude": "93.4376944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Amlakhi Bazar B.O",
+    "pincode": "782461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.8394444",
+    "longitude": "93.4376944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Longnit B.O",
+    "pincode": "782461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.8394444",
+    "longitude": "93.4376944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Rongplimplam B.O",
+    "pincode": "782461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.8394444",
+    "longitude": "93.4376944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Mahendijua B.O",
+    "pincode": "782461",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.8394444",
+    "longitude": "93.4376944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Manja S.O",
+    "pincode": "782461",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.8394444",
+    "longitude": "93.4376944"
+  }
+]

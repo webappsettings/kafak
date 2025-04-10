@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Beltari BO",
+    "pincode": "262520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4983650",
+    "longitude": "80.2769710"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Simalkote BO",
+    "pincode": "262520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5486660",
+    "longitude": "80.2766280"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bharkatia SO",
+    "pincode": "262520",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5723611",
+    "longitude": "80.2548056"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bilai BO",
+    "pincode": "262520",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5326860",
+    "longitude": "80.2462010"
+  }
+]

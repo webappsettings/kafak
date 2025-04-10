@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Eklara BO",
+    "pincode": "383225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7479000",
+    "longitude": "72.8090000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Singa BO",
+    "pincode": "383225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7500000",
+    "longitude": "72.8423000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Davad SO",
+    "pincode": "383225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7181500",
+    "longitude": "72.8379020"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Kabso BO",
+    "pincode": "383225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7906700",
+    "longitude": "72.8262000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Arsodia BO",
+    "pincode": "383225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7495000",
+    "longitude": "72.8397000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Pethapur BO",
+    "pincode": "383225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Prempur BO",
+    "pincode": "383225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7158000",
+    "longitude": "72.8961000"
+  }
+]

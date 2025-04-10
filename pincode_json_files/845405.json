@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Nankardewa BO",
+    "pincode": "845405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "25.256900000000002",
+    "longitude": "83.5685"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "East Champaran Division",
+    "officename": "Narha Panapur S.O",
+    "pincode": "845405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBI CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "26.37",
+    "longitude": "85.28"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Hole B.O",
+    "pincode": "413315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.7651750",
+    "longitude": "75.3004010"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Shevate B.O",
+    "pincode": "413315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.8255150",
+    "longitude": "75.2660390"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Bhosa (K) S.O",
+    "pincode": "413315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.809436",
+    "longitude": "75.286183"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Pandharpur Division",
+    "officename": "Patwardhan Kuroli B.O",
+    "pincode": "413315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.7683860",
+    "longitude": "75.1946250"
+  }
+]

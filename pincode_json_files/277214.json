@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Laxman Chapra BO",
+    "pincode": "277214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.75",
+    "longitude": "84.560000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Chand Diar BO",
+    "pincode": "277214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.780000000000001",
+    "longitude": "84.569999999999993"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Shobha Chapra BO",
+    "pincode": "277214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.760000000000002",
+    "longitude": "84.560000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Ibrahimabad Uprwar BO",
+    "pincode": "277214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.030000000000001",
+    "longitude": "84.109999999999999"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Ballia Division",
+    "officename": "Karanchhapa SO",
+    "pincode": "277214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7640000",
+    "longitude": "84.5418056"
+  }
+]

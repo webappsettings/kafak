@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Payyambalam SO",
+    "pincode": "670001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8675834",
+    "longitude": "75.3583201"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kannur HO",
+    "pincode": "670001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8745350",
+    "longitude": "75.3701900"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Cannanore Division",
+    "officename": "Kannur Railway Station SO",
+    "pincode": "670001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANNUR",
+    "statename": "KERALA",
+    "latitude": "11.8733284",
+    "longitude": "75.3654249"
+  }
+]

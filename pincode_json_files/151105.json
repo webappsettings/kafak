@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Mehraj SO",
+    "pincode": "151105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.31511",
+    "longitude": "75.19169"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Bhaini Kani BO",
+    "pincode": "151105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.266100000000002",
+    "longitude": "75.253399999999999"
+  }
+]

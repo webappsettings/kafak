@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kubulong B.O",
+    "pincode": "798615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.413906399999998",
+    "longitude": "94.533983300000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Longjang B.O",
+    "pincode": "798615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.458416799999998",
+    "longitude": "94.552940100000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Sungratsu B.O",
+    "pincode": "798615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.395006299999999",
+    "longitude": "94.554059699999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Impur S.O",
+    "pincode": "798615",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.3220740",
+    "longitude": "94.5144800"
+  }
+]

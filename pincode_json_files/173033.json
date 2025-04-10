@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Daro Devria BO",
+    "pincode": "173033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Narag",
+    "pincode": "173033",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.816198",
+    "longitude": "77.188317"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Sarsoo BO",
+    "pincode": "173033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Wasni BO",
+    "pincode": "173033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Malhoti BO",
+    "pincode": "173033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Sharia BO",
+    "pincode": "173033",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

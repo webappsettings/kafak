@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Khanna HO",
+    "pincode": "141401",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.7029167",
+    "longitude": "76.2244167"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana Moffusil Division",
+    "officename": "Amloh RoadKhanna SO",
+    "pincode": "141401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.6526111",
+    "longitude": "76.2796111"
+  }
+]

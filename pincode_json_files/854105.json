@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Katihar Rs SO",
+    "pincode": "854105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5374000",
+    "longitude": "87.5660000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Katihar Colony SO",
+    "pincode": "854105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5375000",
+    "longitude": "87.5660000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Katihar HO",
+    "pincode": "854105",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5441944",
+    "longitude": "87.5698333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Katihar Bara Bazar SO",
+    "pincode": "854105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5371000",
+    "longitude": "87.5760000"
+  }
+]

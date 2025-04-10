@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Kureja BO",
+    "pincode": "384255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "71.9752000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Chandrumana BO",
+    "pincode": "384255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8205000",
+    "longitude": "71.9752000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Khanpur Rajkuva BO",
+    "pincode": "384255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "71.9752000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Sankra BO",
+    "pincode": "384255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "86.5137000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Adiya BO",
+    "pincode": "384255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8205000",
+    "longitude": "71.9752000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Khari Vavdi BO",
+    "pincode": "384255",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "71.9752000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Kungher SO",
+    "pincode": "384255",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8205000",
+    "longitude": "71.9752000"
+  }
+]

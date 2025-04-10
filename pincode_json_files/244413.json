@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Hathipur Chandoi BO",
+    "pincode": "244413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6628000",
+    "longitude": "78.3534000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Tewar Khas BO",
+    "pincode": "244413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6628000",
+    "longitude": "78.3534000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Kundarki SO",
+    "pincode": "244413",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6837778",
+    "longitude": "78.7832500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Haryana BO",
+    "pincode": "244413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6628000",
+    "longitude": "78.3534000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Hathipur Chittu BO",
+    "pincode": "244413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6628000",
+    "longitude": "78.3534000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Majholi Khas BO",
+    "pincode": "244413",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6628000",
+    "longitude": "78.3534000"
+  }
+]

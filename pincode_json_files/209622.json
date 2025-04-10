@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Pithnapur BO",
+    "pincode": "209622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5403540",
+    "longitude": "79.5975650"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Amratpur SO",
+    "pincode": "209622",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5406944",
+    "longitude": "79.6000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Chapra BO",
+    "pincode": "209622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8973940",
+    "longitude": "78.0880130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Harsinghpur BO",
+    "pincode": "209622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8973940",
+    "longitude": "78.0880130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Hariharpur BO",
+    "pincode": "209622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8973940",
+    "longitude": "78.0880130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Karanpur Dutt BO",
+    "pincode": "209622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8973940",
+    "longitude": "78.0880130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Kumhraur BO",
+    "pincode": "209622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8973940",
+    "longitude": "78.0880130"
+  }
+]

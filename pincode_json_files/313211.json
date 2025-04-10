@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Rajpura B.O",
+    "pincode": "313211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9700000",
+    "longitude": "74.1200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Gawaardi B.O",
+    "pincode": "313211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9300000",
+    "longitude": "74.1000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Kabra B.O",
+    "pincode": "313211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7400000",
+    "longitude": "74.0000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Dariba S.O",
+    "pincode": "313211",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9517778",
+    "longitude": "74.1301111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Charana B.O",
+    "pincode": "313211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.9100000",
+    "longitude": "74.0800000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Kotri B.O",
+    "pincode": "313211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.3200000",
+    "longitude": "73.7400000"
+  }
+]

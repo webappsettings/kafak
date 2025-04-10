@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Nagina SO Gurgaon",
+    "pincode": "122108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "27.9204000",
+    "longitude": "76.9844680"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Mandikhera BO",
+    "pincode": "122108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Sakras BO",
+    "pincode": "122108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Budarpur BO",
+    "pincode": "122108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Bhadas BO",
+    "pincode": "122108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Moolthan BO",
+    "pincode": "122108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Umra BO",
+    "pincode": "122108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NUH",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

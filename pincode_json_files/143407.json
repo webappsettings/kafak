@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Munda Pind BO",
+    "pincode": "143407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3600000",
+    "longitude": "75.0700000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Behal BO",
+    "pincode": "143407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3700000",
+    "longitude": "75.0900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Khawaspur BO",
+    "pincode": "143407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3800000",
+    "longitude": "75.0900000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Khela BO",
+    "pincode": "143407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3600000",
+    "longitude": "75.0800000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Fatehabad SO Amritsar",
+    "pincode": "143407",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.38",
+    "longitude": "75.095"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Johal Dhai Wala BO",
+    "pincode": "143407",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.1300000",
+    "longitude": "75.8400000"
+  }
+]

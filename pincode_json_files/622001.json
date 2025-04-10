@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Machuvadi S.O",
+    "pincode": "622001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3800000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Pudukkottai Pub Offices S.O",
+    "pincode": "622001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3700000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Bhuvaneswarinagar S.O",
+    "pincode": "622001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3800000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Pudukkottai H.O",
+    "pincode": "622001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3800000",
+    "longitude": "78.8200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Pudukkottai East S.O",
+    "pincode": "622001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3700000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pudukkottai Division",
+    "officename": "Pillaithannirpandal S.O",
+    "pincode": "622001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PUDUKKOTTAI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.3690410",
+    "longitude": "78.8148610"
+  }
+]

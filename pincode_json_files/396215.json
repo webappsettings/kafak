@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dabhel BO",
+    "pincode": "396215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4011500",
+    "longitude": "72.8921620"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Kunta BO",
+    "pincode": "396215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.4161840",
+    "longitude": "72.8733330"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Kachigam BO",
+    "pincode": "396215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4056350",
+    "longitude": "72.8778430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Daman IE SO",
+    "pincode": "396215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4058370",
+    "longitude": "72.8764990"
+  }
+]

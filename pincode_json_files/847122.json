@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Bhatraghat BO",
+    "pincode": "847122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "25.7362000",
+    "longitude": "86.0642000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "CQuaztola BO",
+    "pincode": "847122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "25.7362000",
+    "longitude": "86.0642000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Parohi BO",
+    "pincode": "847122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "25.7362000",
+    "longitude": "86.0642000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Noorchak BO",
+    "pincode": "847122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "25.7362000",
+    "longitude": "86.0642000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Darbhanga Division",
+    "officename": "Bisfi SO",
+    "pincode": "847122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.1561667",
+    "longitude": "85.8928889"
+  }
+]

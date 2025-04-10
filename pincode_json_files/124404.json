@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Hassangarh SO",
+    "pincode": "124404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6811790",
+    "longitude": "76.9027040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Samchana BO",
+    "pincode": "124404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6349880",
+    "longitude": "76.8239590"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Nilothi BO",
+    "pincode": "124404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6349880",
+    "longitude": "76.8239590"
+  }
+]

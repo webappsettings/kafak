@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "G.Padar B.O",
+    "pincode": "765034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "18.937985000000001",
+    "longitude": "83.756924999999995"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Marma B.O",
+    "pincode": "765034",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "18.937985000000001",
+    "longitude": "83.756924999999995"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Jaganathpur S.O",
+    "pincode": "765034",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.0058183",
+    "longitude": "83.7160083"
+  }
+]

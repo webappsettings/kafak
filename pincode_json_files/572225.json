@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Samige Road Railway Station. B.O",
+    "pincode": "572225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1650716",
+    "longitude": "76.5550313"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Talavaranahalli B.O",
+    "pincode": "572225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2493221",
+    "longitude": "76.7859814"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Sampige S.O",
+    "pincode": "572225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2701389",
+    "longitude": "76.7615000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Sampige hosahalli B.O",
+    "pincode": "572225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1650716",
+    "longitude": "76.5550313"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Marasettihalli B.O",
+    "pincode": "572225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2493221",
+    "longitude": "76.7859814"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Attikatte B.O",
+    "pincode": "572225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.1650716",
+    "longitude": "76.5550313"
+  }
+]

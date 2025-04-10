@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Daulatpur BO",
+    "pincode": "249405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9340000",
+    "longitude": "77.9810000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Patanjali Yogpeeth SO",
+    "pincode": "249405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8704444",
+    "longitude": "77.8884722"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Thathia SO",
+    "pincode": "209734",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9215000",
+    "longitude": "79.8997500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Rura BO",
+    "pincode": "209734",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.028612",
+    "longitude": "79.925903"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Bhadausi BO",
+    "pincode": "209734",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.028612",
+    "longitude": "79.92593"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Khama BO",
+    "pincode": "209734",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.028612",
+    "longitude": "79.925903"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Patti BO",
+    "pincode": "209734",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.028612",
+    "longitude": "79.925903"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Bhunna BO",
+    "pincode": "209734",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.028612",
+    "longitude": "79.925903"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sursi BO",
+    "pincode": "209734",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.028612",
+    "longitude": "79.925903"
+  }
+]

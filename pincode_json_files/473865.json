@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Kanker B.O",
+    "pincode": "473865",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.6900000",
+    "longitude": "78.0500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Mohini B.O",
+    "pincode": "473865",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.6700000",
+    "longitude": "77.8900000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Dhigwas B.O",
+    "pincode": "473865",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.7200000",
+    "longitude": "78.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Sehore B.O",
+    "pincode": "473865",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.7100000",
+    "longitude": "77.9400000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Hateda B.O",
+    "pincode": "473865",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.6800000",
+    "longitude": "78.1100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Biloni",
+    "pincode": "473865",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.556149008863802",
+    "longitude": "78.307377770000002"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Magroni S.O",
+    "pincode": "473865",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHIVPURI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.4730390",
+    "longitude": "77.7053850"
+  }
+]

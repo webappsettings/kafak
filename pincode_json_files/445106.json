@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Umri Kap B.O",
+    "pincode": "445106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9563055",
+    "longitude": "78.1132222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Ayata B.O",
+    "pincode": "445106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9563055",
+    "longitude": "78.1132222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Bhansara B.O",
+    "pincode": "445106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9563055",
+    "longitude": "78.1132222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Datodi B.O",
+    "pincode": "445106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9563055",
+    "longitude": "78.1132222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Sawali Sadoba S.O",
+    "pincode": "445106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.95630556",
+    "longitude": "78.11322222"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Palsi B.O",
+    "pincode": "445106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9563055",
+    "longitude": "78.1132222"
+  }
+]

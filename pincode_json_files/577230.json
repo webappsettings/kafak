@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Chilurkadadakatte B.O",
+    "pincode": "577230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1200000",
+    "longitude": "75.6700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Govinakovi B.O",
+    "pincode": "577230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1700000",
+    "longitude": "75.6700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Chilur S.O",
+    "pincode": "577230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1051111",
+    "longitude": "75.6849722"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Haralahalli B.O",
+    "pincode": "577230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1900000",
+    "longitude": "75.6600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Kotehal B.O",
+    "pincode": "577230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.1300000",
+    "longitude": "75.7000000"
+  }
+]

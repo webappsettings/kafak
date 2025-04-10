@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Agucha B.O",
+    "pincode": "311022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8211370",
+    "longitude": "74.7261550"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Hurda S.O",
+    "pincode": "311022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9038889",
+    "longitude": "74.6882500"
+  }
+]

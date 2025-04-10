@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Junathana SO",
+    "pincode": "396445",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9500000",
+    "longitude": "72.9400000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Navsari HO",
+    "pincode": "396445",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9500000",
+    "longitude": "72.9200000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Malesar SO",
+    "pincode": "396445",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9500000",
+    "longitude": "72.9300000"
+  }
+]

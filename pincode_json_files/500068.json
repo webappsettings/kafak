@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "SAHARA STATES S.O",
+    "pincode": "500068",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.34795",
+    "longitude": "78.57159"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "G.S.I (S.R) Bandlaguda S.O",
+    "pincode": "500068",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDCHAL MALKAJGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.36366",
+    "longitude": "78.58319"
+  }
+]

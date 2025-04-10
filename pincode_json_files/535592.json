@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Karrivalasa B.O",
+    "pincode": "535592",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.1020000",
+    "longitude": "18.4546000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Gadivalasa B.O",
+    "pincode": "535592",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.1448000",
+    "longitude": "18.5077000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Panasapeddikonavalasa B.O",
+    "pincode": "535592",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.1050000",
+    "longitude": "18.4547000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Pachipenta S.O",
+    "pincode": "535592",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.4793056",
+    "longitude": "83.1124444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Kesali B.O",
+    "pincode": "535592",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.1030000",
+    "longitude": "18.4546000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Padmapuram B.O",
+    "pincode": "535592",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.0957000",
+    "longitude": "18.4828000"
+  }
+]

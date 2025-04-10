@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Khawaraoji BO",
+    "pincode": "303506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1610430",
+    "longitude": "76.0536960"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Hapawas BO",
+    "pincode": "303506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Jaun BO",
+    "pincode": "303506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Mundghisya BO",
+    "pincode": "303506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Thumdi BO",
+    "pincode": "303506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7391590",
+    "longitude": "76.1236050"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Paparda SO",
+    "pincode": "303506",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7799722",
+    "longitude": "76.4404167"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Jaipur Moffusil Division",
+    "officename": "Shyalawas Kalan BO",
+    "pincode": "303506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.7614110",
+    "longitude": "75.8780850"
+  }
+]

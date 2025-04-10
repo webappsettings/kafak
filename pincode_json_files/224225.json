@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Ahiran Subansh BO",
+    "pincode": "224225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.352719",
+    "longitude": "82.932676999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Achhora SO",
+    "pincode": "224225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6010870",
+    "longitude": "81.9274160"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Reona BO",
+    "pincode": "224225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.410164999999999",
+    "longitude": "80.396482000000006"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Paliya Pratapshah BO",
+    "pincode": "224225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.601087",
+    "longitude": "81.927415999999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Hardoiya BO",
+    "pincode": "224225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.601087",
+    "longitude": "81.927415999999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Kalyanpur Keotani BO",
+    "pincode": "224225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.608087000000001",
+    "longitude": "81.927415999999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Mawai Kalan BO",
+    "pincode": "224225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.741236000000001",
+    "longitude": "81.587059999999994"
+  }
+]

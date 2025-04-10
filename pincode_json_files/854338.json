@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Saheban BO",
+    "pincode": "854338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Bhimnagar Bairrage SO",
+    "pincode": "854338",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.6299000",
+    "longitude": "86.3639900"
+  }
+]

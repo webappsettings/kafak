@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Pegadapalli B.O",
+    "pincode": "506015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0321071",
+    "longitude": "79.5377187"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Mucherla B.O",
+    "pincode": "506015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0637829",
+    "longitude": "79.5626989"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "K C Colony S.O",
+    "pincode": "506015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0454657785541",
+    "longitude": "79.5297009251115"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Chintagattu B.O",
+    "pincode": "506015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0532839",
+    "longitude": "79.5135364"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Bheemaram B.O",
+    "pincode": "506015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0321071",
+    "longitude": "79.5377187"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Peddapalli R.S S.O",
+    "pincode": "505172",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.6159722",
+    "longitude": "79.3861944"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Peddapalli H.O",
+    "pincode": "505172",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.6115954",
+    "longitude": "79.3733967"
+  }
+]

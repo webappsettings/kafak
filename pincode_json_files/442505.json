@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Mhatardevi",
+    "pincode": "442505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9507821",
+    "longitude": "79.1238069"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Shengaon B.O",
+    "pincode": "442505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9344970",
+    "longitude": "79.1637860"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "BELSANI B.O",
+    "pincode": "442505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.969999999999999",
+    "longitude": "79.120000000000005"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Dhanora Pipri B.O",
+    "pincode": "442505",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.3846739",
+    "longitude": "78.6883146"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Ghugus Colliery S.O",
+    "pincode": "442505",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9405833",
+    "longitude": "79.1202500"
+  }
+]

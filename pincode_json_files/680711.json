@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Karalam BO",
+    "pincode": "680711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3300000",
+    "longitude": "76.3100000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Moorkkanad BO",
+    "pincode": "680711",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.4100000",
+    "longitude": "76.2000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Panamkulam BO",
+    "pincode": "680711",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.4100000",
+    "longitude": "76.2000000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Karuvannur SO",
+    "pincode": "680711",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3984167",
+    "longitude": "76.2199444"
+  }
+]

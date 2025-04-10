@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Sarvasiddi B.O",
+    "pincode": "531060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4683566",
+    "longitude": "82.8320266"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Vommavaram B.O",
+    "pincode": "531060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4577100",
+    "longitude": "82.7801800"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Vakapadu B.O",
+    "pincode": "531060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4467833",
+    "longitude": "82.8415283"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "S Rayavaram S.O",
+    "pincode": "531060",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4537500",
+    "longitude": "82.8052222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Lingarajupalem B.O",
+    "pincode": "531060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4433366",
+    "longitude": "82.8110316"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Venkatapuram B.O",
+    "pincode": "531060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4354380",
+    "longitude": "82.8271290"
+  }
+]

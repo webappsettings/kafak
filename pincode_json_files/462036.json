@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Tara Sewaniya B.O",
+    "pincode": "462036",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3300000",
+    "longitude": "77.2700000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Kurana B.O",
+    "pincode": "462036",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3200000",
+    "longitude": "77.3100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Gandhi Nagar (Bhopal) S.O",
+    "pincode": "462036",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3000000",
+    "longitude": "77.3600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Parwaliya Sadak B.O",
+    "pincode": "462036",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3300000",
+    "longitude": "77.2700000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Mungaliya Hatt B.O",
+    "pincode": "462036",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3500000",
+    "longitude": "77.2500000"
+  }
+]

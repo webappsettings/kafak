@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Utran BO",
+    "pincode": "394105",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.2305298",
+    "longitude": "72.8638900"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Utran Power House SO",
+    "pincode": "394105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1984722",
+    "longitude": "72.8342778"
+  }
+]

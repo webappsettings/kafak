@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Ujjan BO",
+    "pincode": "185234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Kotdhara BO",
+    "pincode": "185234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Baba Ghulam Shah Badshah University SO",
+    "pincode": "185234",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.3716188",
+    "longitude": "74.3130024"
+  }
+]

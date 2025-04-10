@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Banchukamari BO",
+    "pincode": "736122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5100000",
+    "longitude": "89.4900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Ghagra BO",
+    "pincode": "736122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5200000",
+    "longitude": "89.4900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Alipurduar Court SO",
+    "pincode": "736122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alipurduar",
+    "statename": "WEST BENGAL",
+    "latitude": "26.4990556",
+    "longitude": "89.5264444"
+  }
+]

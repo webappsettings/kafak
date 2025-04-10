@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Kidotar BO",
+    "pincode": "385130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.3988330",
+    "longitude": "72.6088570"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Dabhela BO",
+    "pincode": "385130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.4358070",
+    "longitude": "72.6366290"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Shri Amirgadh SO",
+    "pincode": "385130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.4079920",
+    "longitude": "72.6391480"
+  }
+]

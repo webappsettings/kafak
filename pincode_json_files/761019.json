@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Alladigam B.O",
+    "pincode": "761019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4756216",
+    "longitude": "84.9598666"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Badachakada B.O",
+    "pincode": "761019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5113666",
+    "longitude": "84.9867850"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Pratapur S.O (Ganjam)",
+    "pincode": "761019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4912216",
+    "longitude": "84.9334933"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Khajipalli B.O",
+    "pincode": "761019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5040283",
+    "longitude": "84.9421266"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Komanda B.O",
+    "pincode": "761019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5348200",
+    "longitude": "84.9855416"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Badarampalli B.O",
+    "pincode": "761019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.5183366",
+    "longitude": "84.9674850"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Poirasi B.O",
+    "pincode": "761019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4910499",
+    "longitude": "84.9918299"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Katihar Bmp Camp SO",
+    "pincode": "854106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.4731100",
+    "longitude": "87.4324000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "DIGHRI BO",
+    "pincode": "854106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.4731100",
+    "longitude": "87.4324000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "B SIMARIA BO",
+    "pincode": "854106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.4731100",
+    "longitude": "87.4324000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "SANDALPUR BO",
+    "pincode": "854106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.4731100",
+    "longitude": "87.4324000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "DALAN BO",
+    "pincode": "854106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.4731100",
+    "longitude": "87.4324000"
+  }
+]

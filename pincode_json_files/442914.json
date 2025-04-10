@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Chinora B.O",
+    "pincode": "442914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2660000",
+    "longitude": "79.0136000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "MAJRA RYT B.O",
+    "pincode": "442914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.289999999999999",
+    "longitude": "79.030000000000001"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Khemjai B.O",
+    "pincode": "442914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "79.1300000",
+    "longitude": "20.3600000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Salori B.O",
+    "pincode": "442914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "79.0800000",
+    "longitude": "20.3200000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Bhatala B.O",
+    "pincode": "442914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2113000",
+    "longitude": "79.0734000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "PEWARA B.O",
+    "pincode": "442914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.260000000000002",
+    "longitude": "79.079999999999998"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Anandwan S.O",
+    "pincode": "442914",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2574167",
+    "longitude": "79.0215833"
+  }
+]

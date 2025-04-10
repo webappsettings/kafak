@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Nikaspur Nisfi BO",
+    "pincode": "848121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Morwa SO",
+    "pincode": "848121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8629680",
+    "longitude": "85.7810260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Ramapur Maheshpur BO",
+    "pincode": "848121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Gangapur BO",
+    "pincode": "848121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  }
+]

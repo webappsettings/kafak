@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Gudhana BO",
+    "pincode": "243637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8819569",
+    "longitude": "79.2179918"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Mohammad Ganj BO",
+    "pincode": "243637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2710877",
+    "longitude": "79.2662575"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Katiyan BO",
+    "pincode": "243637",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8910378",
+    "longitude": "79.2310172"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Kakrala SO",
+    "pincode": "243637",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUDAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8936100",
+    "longitude": "79.1950000"
+  }
+]

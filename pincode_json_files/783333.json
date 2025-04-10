@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dingdinga S.O",
+    "pincode": "783333",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHUBRI",
+    "statename": "ASSAM",
+    "latitude": "26.4036944",
+    "longitude": "90.2721944"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Failaguri B.O",
+    "pincode": "783333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4001560",
+    "longitude": "89.8774070"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Grahampur B.O",
+    "pincode": "783333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.3514650",
+    "longitude": "89.8855920"
+  }
+]

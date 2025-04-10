@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Datawali BO",
+    "pincode": "206002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7981404",
+    "longitude": "79.0391206"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Sarangpura BO",
+    "pincode": "206002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7818931",
+    "longitude": "78.9705383"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Pratapner BO",
+    "pincode": "206002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7806778",
+    "longitude": "78.9457948"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Vaidpura BO",
+    "pincode": "206002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8667603",
+    "longitude": "78.9867948"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Adhiyapur BO",
+    "pincode": "206002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8491063",
+    "longitude": "78.9655901"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "I T I Etawah SO",
+    "pincode": "206002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8110297",
+    "longitude": "79.0029323"
+  }
+]

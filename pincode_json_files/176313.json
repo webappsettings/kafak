@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Hobar BO",
+    "pincode": "176313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4534400",
+    "longitude": "75.9768000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Kakira SO",
+    "pincode": "176313",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4559100",
+    "longitude": "75.9343500"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Awan BO",
+    "pincode": "176313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4638200",
+    "longitude": "76.0072700"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Kuddi BO",
+    "pincode": "176313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4712900",
+    "longitude": "75.9894300"
+  }
+]

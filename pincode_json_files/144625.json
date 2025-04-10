@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Talwandi Madho BO",
+    "pincode": "144625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.2685600",
+    "longitude": "75.3270000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Sidhwan Dona SO",
+    "pincode": "144625",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.0919218",
+    "longitude": "75.5189232"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Sandhu Chatha BO",
+    "pincode": "144625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.1540938",
+    "longitude": "77.3798012"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Kular BO",
+    "pincode": "144625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.3749250",
+    "longitude": "75.3842110"
+  }
+]

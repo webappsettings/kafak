@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Narsingapur B.O",
+    "pincode": "505497",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0840083",
+    "longitude": "79.3239300"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Koppur B.O",
+    "pincode": "505497",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1063433",
+    "longitude": "79.3784960"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Ratnagiri B.O",
+    "pincode": "505497",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1286966",
+    "longitude": "79.3603450"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Bheemdevarpalli S.O",
+    "pincode": "505497",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1012222",
+    "longitude": "79.3648333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Kothapalli B.O",
+    "pincode": "505497",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0843233",
+    "longitude": "79.3851933"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Manikyapur B.O",
+    "pincode": "505497",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.1436333",
+    "longitude": "79.3780350"
+  }
+]

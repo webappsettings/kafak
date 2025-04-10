@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Mardon Sahib B.O",
+    "pincode": "133008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.250459",
+    "longitude": "76.776315"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Tharwa B.O",
+    "pincode": "133008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.279928",
+    "longitude": "76.786277"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Baraula B.O",
+    "pincode": "133008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.210836",
+    "longitude": "76.758583"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Durana B.O",
+    "pincode": "133008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.230788",
+    "longitude": "76.795873"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Majri S.O",
+    "pincode": "133008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.378179",
+    "longitude": "76.776697"
+  }
+]

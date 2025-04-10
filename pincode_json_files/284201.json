@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Barwasagar SO",
+    "pincode": "284201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3745833",
+    "longitude": "78.7331944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Ghughuwa BO",
+    "pincode": "284201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3718200",
+    "longitude": "78.7688700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Taindol BO",
+    "pincode": "284201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1234000",
+    "longitude": "78.7265000"
+  }
+]

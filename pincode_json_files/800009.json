@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Sabalpur BO",
+    "pincode": "800009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.3696666",
+    "longitude": "85.6666558"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Marchi B.O",
+    "pincode": "800009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5521",
+    "longitude": "85.2075"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Kothia BO",
+    "pincode": "800009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.3698745",
+    "longitude": "85.2558589"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "Punadih BO",
+    "pincode": "800009",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.6035844",
+    "longitude": "85.1325890"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "BEGUMPUR SO",
+    "pincode": "800009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5823000",
+    "longitude": "85.2283000"
+  }
+]

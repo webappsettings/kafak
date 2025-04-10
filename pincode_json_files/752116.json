@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Mahalpada",
+    "pincode": "752116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.943439699999999",
+    "longitude": "86.079988799999995"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Erbong",
+    "pincode": "752116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.943429999999999",
+    "longitude": "86.079980000000006"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Birtung",
+    "pincode": "752116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.9664862",
+    "longitude": "86.0605909"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Garhkarmala",
+    "pincode": "752116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.995619900000001",
+    "longitude": "86.091057599999999"
+  }
+]

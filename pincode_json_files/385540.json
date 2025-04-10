@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Jhabadia BO",
+    "pincode": "385540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.1261180",
+    "longitude": "72.0760940"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Lunpur BO",
+    "pincode": "385540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.1647290",
+    "longitude": "72.0890960"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Vasna BO",
+    "pincode": "385540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Khardosan BO",
+    "pincode": "385540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.1767860",
+    "longitude": "72.1654010"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Dhuva BO",
+    "pincode": "385540",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.2060570",
+    "longitude": "72.2003150"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Banaskantha Division",
+    "officename": "Junadisa SO",
+    "pincode": "385540",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANAS KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.2157350",
+    "longitude": "72.1553710"
+  }
+]

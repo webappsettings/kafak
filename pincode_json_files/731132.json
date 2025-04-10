@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Kabilpur BO",
+    "pincode": "731132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9858470",
+    "longitude": "87.6211060"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "MdBazar Town Ship SO",
+    "pincode": "731132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8401180",
+    "longitude": "87.6686380"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Deucha BO",
+    "pincode": "731132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.0446640",
+    "longitude": "87.5815990"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Nischintapur Jagatpur BO",
+    "pincode": "731132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.0594040",
+    "longitude": "87.5741880"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Harinsingha BO",
+    "pincode": "731132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9945710",
+    "longitude": "87.6087640"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Puranagram BO",
+    "pincode": "731132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.0007440",
+    "longitude": "87.6235740"
+  }
+]

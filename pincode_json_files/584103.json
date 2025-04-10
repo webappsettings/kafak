@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Mitti Malkapur B.O",
+    "pincode": "584103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.1407406",
+    "longitude": "77.3981996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Maliabad B.O",
+    "pincode": "584103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.1533041",
+    "longitude": "77.3704119"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Raichur Jawahar Nagar S.O",
+    "pincode": "584103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.3334722",
+    "longitude": "77.3623889"
+  }
+]

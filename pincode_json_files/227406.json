@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Sawangi BO",
+    "pincode": "227406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1540540",
+    "longitude": "81.8142380"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Dahiyawan BO",
+    "pincode": "227406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1088550",
+    "longitude": "81.9442980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Ratapur BO",
+    "pincode": "227406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2427100",
+    "longitude": "81.2429340"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bhadar SO",
+    "pincode": "227406",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1088550",
+    "longitude": "81.9442980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bhawapur BO",
+    "pincode": "227406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1088550",
+    "longitude": "81.9442980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Amtahi BO",
+    "pincode": "227406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "23.3941490",
+    "longitude": "83.9664890"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Vikramgad S.O",
+    "pincode": "401605",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7993333",
+    "longitude": "73.0943056"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Dadade B.O",
+    "pincode": "401605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8541106",
+    "longitude": "73.0346244"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Sukhasale B.O",
+    "pincode": "401605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8004427",
+    "longitude": "73.1161508"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Khoste B.O",
+    "pincode": "401605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7359929",
+    "longitude": "73.1312725"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Ondhe B.O",
+    "pincode": "401605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7741746",
+    "longitude": "73.0903311"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Wehelpada B.O",
+    "pincode": "401605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.862027000000001",
+    "longitude": "73.118337999999994"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Medhi B.O",
+    "pincode": "401605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8702316",
+    "longitude": "73.0818468"
+  }
+]

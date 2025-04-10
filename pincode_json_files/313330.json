@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Dowra B.O",
+    "pincode": "313330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2100000",
+    "longitude": "73.9100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Panotia B.O",
+    "pincode": "313330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1900000",
+    "longitude": "73.9900000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Lodiyana B.O",
+    "pincode": "313330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9600000",
+    "longitude": "74.5700000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Jilola B.O",
+    "pincode": "313330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2900000",
+    "longitude": "74.0000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Olanakhera B.O",
+    "pincode": "313330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2300000",
+    "longitude": "74.0000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Sakroda B.O",
+    "pincode": "313330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.0700000",
+    "longitude": "73.7800000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Lawa Sardargarh S.O",
+    "pincode": "313330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.7746389",
+    "longitude": "73.7462222"
+  }
+]

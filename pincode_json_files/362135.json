@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Surajgadh B.O.",
+    "pincode": "362135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.197873999999999",
+    "longitude": "70.551153999999997"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Sasan Gir SO",
+    "pincode": "362135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.168616",
+    "longitude": "70.597393"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Chitrod BO",
+    "pincode": "362135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "21.1467503",
+    "longitude": "70.5709844"
+  }
+]

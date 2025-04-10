@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Sutarpara BO",
+    "pincode": "736171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.0800000",
+    "longitude": "90.8600000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Khattimari BO",
+    "pincode": "736171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3500000",
+    "longitude": "89.3200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Unishbisha BO",
+    "pincode": "736171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.0900000",
+    "longitude": "89.8800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Ghoksadanga SO",
+    "pincode": "736171",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.4255555",
+    "longitude": "89.2763888"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Kalpani BO",
+    "pincode": "736171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3600000",
+    "longitude": "89.3100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Patakamari BO",
+    "pincode": "736171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3900000",
+    "longitude": "89.2500000"
+  }
+]

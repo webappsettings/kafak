@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "RBagahi BO",
+    "pincode": "843311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.3800000",
+    "longitude": "85.5000000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Belahi BO",
+    "pincode": "843311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.3800000",
+    "longitude": "85.5000000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Gisara BO",
+    "pincode": "843311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.3800000",
+    "longitude": "85.5000000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "BhBhimpur BO",
+    "pincode": "843311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.3885500",
+    "longitude": "85.5100000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Partapur BO",
+    "pincode": "843311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.3800000",
+    "longitude": "85.5000000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Athri SO",
+    "pincode": "843311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.4288360",
+    "longitude": "85.4646310"
+  }
+]

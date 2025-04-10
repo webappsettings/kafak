@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Kota City S.O",
+    "pincode": "324006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1877778",
+    "longitude": "75.8419444"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Kaithuni Pole Kota S.O",
+    "pincode": "324006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1758333",
+    "longitude": "75.8336111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Subzi Mandi Kota S.O",
+    "pincode": "324006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1700000",
+    "longitude": "75.8400000"
+  }
+]

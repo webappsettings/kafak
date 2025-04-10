@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Silohi B.O",
+    "pincode": "314026",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.5614580",
+    "longitude": "74.0139480"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Galiakot S.O",
+    "pincode": "314026",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.5231667",
+    "longitude": "74.0020833"
+  }
+]

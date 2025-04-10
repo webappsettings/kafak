@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Wara Daraka BO",
+    "pincode": "151209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDKOT",
+    "statename": "PUNJAB",
+    "latitude": "30.618500000000001",
+    "longitude": "74.748900000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Dhimanwali BO",
+    "pincode": "151209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDKOT",
+    "statename": "PUNJAB",
+    "latitude": "30.581828999999999",
+    "longitude": "74.832053999999999"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Sikhanwala BO",
+    "pincode": "151209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDKOT",
+    "statename": "PUNJAB",
+    "latitude": "30.639099999999999",
+    "longitude": "74.829499999999996"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Sandhwan SO",
+    "pincode": "151209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARIDKOT",
+    "statename": "PUNJAB",
+    "latitude": "30.613204",
+    "longitude": "74.800354999999996"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Machaki Mal Singh BO",
+    "pincode": "151209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDKOT",
+    "statename": "PUNJAB",
+    "latitude": "30.618500000000001",
+    "longitude": "74.748900000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Wander Jatana BO",
+    "pincode": "151209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDKOT",
+    "statename": "PUNJAB",
+    "latitude": "30.618500000000001",
+    "longitude": "74.748900000000006"
+  }
+]

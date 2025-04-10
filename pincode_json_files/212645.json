@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Bilanda BO",
+    "pincode": "212645",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9173055",
+    "longitude": "80.7980833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Mahoi BO",
+    "pincode": "212645",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1473000",
+    "longitude": "80.7980833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Lateefpur BO",
+    "pincode": "212645",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1473000",
+    "longitude": "80.5935900"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Haswa SO",
+    "pincode": "212645",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5541000",
+    "longitude": "80.4822000"
+  }
+]

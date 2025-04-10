@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bagrian SO",
+    "pincode": "148018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.4280277",
+    "longitude": "76.0348333"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhatian Khurd BO",
+    "pincode": "148018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.3981470",
+    "longitude": "76.0152550"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Kandhargarh BO",
+    "pincode": "148018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.3713030",
+    "longitude": "75.9826070"
+  }
+]

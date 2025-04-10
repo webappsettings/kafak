@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Joynagar Madrassa B.O",
+    "pincode": "782445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.0685000",
+    "longitude": "92.9001000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Ambari B.O",
+    "pincode": "782445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.0685000",
+    "longitude": "92.9001000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Nilbagan S.O",
+    "pincode": "782445",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.0685000",
+    "longitude": "92.9001000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Barangatoli Bazar B.O",
+    "pincode": "782445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.0685000",
+    "longitude": "92.9001000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Kapashbari B.O",
+    "pincode": "782445",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.0685000",
+    "longitude": "92.9001000"
+  }
+]

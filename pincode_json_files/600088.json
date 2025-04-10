@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Adambakkam S.O",
+    "pincode": "600088",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1563333",
+    "longitude": "80.3200556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Nilamangai Nagar S.O",
+    "pincode": "600088",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1376111",
+    "longitude": "80.3374722"
+  }
+]

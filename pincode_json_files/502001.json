@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Sangareddy H.O",
+    "pincode": "502001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.626514889032922",
+    "longitude": "78.08678440619123"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Sangareddy Collectorate S.O",
+    "pincode": "502001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.9956389",
+    "longitude": "78.1424167"
+  }
+]

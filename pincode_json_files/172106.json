@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Batseri BO",
+    "pincode": "172106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4254929",
+    "longitude": "78.2649886"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Sangla SO",
+    "pincode": "172106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.42764",
+    "longitude": "78.264112"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Kamroo BO",
+    "pincode": "172106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4363598",
+    "longitude": "78.2578426"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Rakchham BO",
+    "pincode": "172106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.4254939",
+    "longitude": "78.2649876"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Chitkul BO",
+    "pincode": "172106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2905500",
+    "longitude": "78.6054600"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Chansu BO",
+    "pincode": "172106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.2905500",
+    "longitude": "78.6054600"
+  }
+]

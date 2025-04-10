@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Karwar H.O",
+    "pincode": "581301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.816357",
+    "longitude": "74.134433000000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Karwar Division",
+    "officename": "Karwar Market S.O",
+    "pincode": "581301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.8074786",
+    "longitude": "74.1294610"
+  }
+]

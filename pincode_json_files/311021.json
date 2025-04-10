@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Badla B.O",
+    "pincode": "311021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8626000",
+    "longitude": "74.5982410"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Gulabpura S.O",
+    "pincode": "311021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9016667",
+    "longitude": "74.6536111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Lamba Khari Ka B.O",
+    "pincode": "311021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8917250",
+    "longitude": "74.6093770"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Taswariya B.O",
+    "pincode": "311021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8315130",
+    "longitude": "74.6107538"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Gageda B.O",
+    "pincode": "311021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8634620",
+    "longitude": "74.5540810"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Jalampura B.O",
+    "pincode": "311021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8810100",
+    "longitude": "74.5959500"
+  }
+]

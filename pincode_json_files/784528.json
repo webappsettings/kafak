@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Maugaon B.O",
+    "pincode": "784528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.5943518",
+    "longitude": "91.9881527"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Dhopguri B.O",
+    "pincode": "784528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7110300",
+    "longitude": "92.9009000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Sikari Banglow B.O",
+    "pincode": "784528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.0949096",
+    "longitude": "92.9009100"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bhuyankhat B.O",
+    "pincode": "784528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7110300",
+    "longitude": "92.9009000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Nashanshali B.O",
+    "pincode": "784528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7110300",
+    "longitude": "92.9009000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Dalong Ghat B.O",
+    "pincode": "784528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7110300",
+    "longitude": "92.9009000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Purani Tangla S.O",
+    "pincode": "784528",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7110300",
+    "longitude": "92.9009000"
+  }
+]

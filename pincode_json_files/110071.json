@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Kangan Heri B.O",
+    "pincode": "110071",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5461860",
+    "longitude": "76.9901870"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Badusarai B.O",
+    "pincode": "110071",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5295950",
+    "longitude": "76.9864680"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Chhawla S.O",
+    "pincode": "110071",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.561300",
+    "longitude": "77.001911"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Qutub Vihar SO",
+    "pincode": "110071",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5748060",
+    "longitude": "77.6276850"
+  }
+]

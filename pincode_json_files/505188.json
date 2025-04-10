@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Perepalli B.O",
+    "pincode": "505188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Julapalli B.O",
+    "pincode": "505188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Rangapuram B.O",
+    "pincode": "505188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Elakalapalli B.O",
+    "pincode": "505188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Rompikunta B.O",
+    "pincode": "505188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Kamanpur S.O",
+    "pincode": "505188",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.6614722",
+    "longitude": "79.5039167"
+  }
+]

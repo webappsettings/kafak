@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Smaspur BO",
+    "pincode": "122003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4465007",
+    "longitude": "77.0736160"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Gurgaon Sector 45 SO",
+    "pincode": "122003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4620000",
+    "longitude": "77.0316389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Gwal Pahari BO",
+    "pincode": "122003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4465007",
+    "longitude": "77.0736160"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Wazirabad BO",
+    "pincode": "122003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4465007",
+    "longitude": "77.0736160"
+  }
+]

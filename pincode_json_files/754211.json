@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Tinimuhani S.O",
+    "pincode": "754211",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5175500",
+    "longitude": "86.3876000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Kendrapara College S.O",
+    "pincode": "754211",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5175500",
+    "longitude": "86.3876000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Keshpur Bazar S.O",
+    "pincode": "754211",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.5175500",
+    "longitude": "86.3876000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Kendrapara H.O",
+    "pincode": "754211",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KENDRAPARA",
+    "statename": "ODISHA",
+    "latitude": "20.50437856",
+    "longitude": "86.41902155"
+  }
+]

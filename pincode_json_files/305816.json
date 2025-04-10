@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Nalu B.O",
+    "pincode": "305816",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6537000",
+    "longitude": "74.9950000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Patan B.O",
+    "pincode": "305816",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1718000",
+    "longitude": "75.9323000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Tiloniya S.O",
+    "pincode": "305816",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6549722",
+    "longitude": "74.9388611"
+  }
+]

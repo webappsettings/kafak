@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Rithora BO",
+    "pincode": "243002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7871570",
+    "longitude": "79.0245870"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Airforce Station",
+    "pincode": "243002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3882500",
+    "longitude": "79.4022500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Bhandsar BO",
+    "pincode": "243002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3874445",
+    "longitude": "79.2919100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Mundia Ahamad Nagar BO",
+    "pincode": "243002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAREILLY",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1167800",
+    "longitude": "79.7987100"
+  }
+]

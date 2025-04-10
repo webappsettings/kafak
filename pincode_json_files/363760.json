@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Odu BO",
+    "pincode": "363760",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "23.2301",
+    "longitude": "71.694599999999994"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Surendranagar Division",
+    "officename": "Kharaghoda SO",
+    "pincode": "363760",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURENDRANAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.724861099999998",
+    "longitude": "71.6273056"
+  }
+]

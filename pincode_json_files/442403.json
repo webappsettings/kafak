@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Babupeth S.O",
+    "pincode": "442403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.5584444",
+    "longitude": "79.1873611"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Junona B.O",
+    "pincode": "442403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDRAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9302888",
+    "longitude": "79.3393500"
+  }
+]

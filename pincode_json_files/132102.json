@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Patti Kalyana S.O",
+    "pincode": "132102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.2116944",
+    "longitude": "77.2351667"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Bhodwal Majri B.O",
+    "pincode": "132102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "33.3600000",
+    "longitude": "29.8800000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Mahoti B.O",
+    "pincode": "132102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "33.6600000",
+    "longitude": "33.9900000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Gandhi Samarak Nidhi B.O",
+    "pincode": "132102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "33.3300000",
+    "longitude": "25.3600000"
+  }
+]

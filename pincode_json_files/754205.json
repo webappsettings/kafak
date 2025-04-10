@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Nalipur B.O",
+    "pincode": "754205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.608763499999998",
+    "longitude": "86.241173000000003"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Sipura B.O",
+    "pincode": "754205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.620008899999998",
+    "longitude": "86.202865099999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Balichandrapur S.O",
+    "pincode": "754205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6141944",
+    "longitude": "86.2245833"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Achyut Basant B.O",
+    "pincode": "754205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6729533",
+    "longitude": "86.244473299999996"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Barada Cuttack B.O",
+    "pincode": "754205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.610115799999999",
+    "longitude": "86.297422400000002"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Palei B.O",
+    "pincode": "754205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6034389",
+    "longitude": "86.281705700000003"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "KENDRAPARA DIVISION",
+    "officename": "Lalitgiri B.O",
+    "pincode": "754205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.599830999999998",
+    "longitude": "86.257592299999999"
+  }
+]

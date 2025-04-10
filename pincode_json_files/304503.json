@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Budha Dewal B.O",
+    "pincode": "304503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2903740",
+    "longitude": "75.1603750"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Jharli B.O",
+    "pincode": "304503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "27.5102500",
+    "longitude": "75.8048880"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Antoli B.O",
+    "pincode": "304503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3744390",
+    "longitude": "75.1603750"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Morla B.O",
+    "pincode": "304503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3571780",
+    "longitude": "75.1963930"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Kacholia B.O",
+    "pincode": "304503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3508760",
+    "longitude": "75.2654060"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Sindoliya B.O",
+    "pincode": "304503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3174900",
+    "longitude": "75.2770720"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Lambaharisingh S.O",
+    "pincode": "304503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3744390",
+    "longitude": "75.1574570"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Jyothinagar NTPC S.O",
+    "pincode": "505215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.755468",
+    "longitude": "79.48932"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Annapoorna colony S.O",
+    "pincode": "505215",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.7615203",
+    "longitude": "79.4736835"
+  }
+]

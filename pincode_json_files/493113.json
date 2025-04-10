@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Jangda BO",
+    "pincode": "493113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Hathband SO",
+    "pincode": "493113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "20.8944206",
+    "longitude": "81.5993951"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Nawapara BO",
+    "pincode": "493113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Bhainsa BO",
+    "pincode": "493113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Kesda BO",
+    "pincode": "493113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Mohbhatta BO",
+    "pincode": "493113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALODA BAZAR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  }
+]

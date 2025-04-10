@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Gandhi BO",
+    "pincode": "209621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5403540",
+    "longitude": "79.5975650"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Khandauli BO",
+    "pincode": "209621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5403540",
+    "longitude": "79.5975650"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Kankapur BO",
+    "pincode": "209621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5403540",
+    "longitude": "79.5975650"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sabalpur BO",
+    "pincode": "209621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5403540",
+    "longitude": "79.5975650"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Aligarh SO Farrukhabad",
+    "pincode": "209621",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3696944",
+    "longitude": "79.6315278"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Jainpur Maheshpur BO",
+    "pincode": "209621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARRUKHABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5403540",
+    "longitude": "79.5975650"
+  }
+]

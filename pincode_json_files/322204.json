@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Lawad BO",
+    "pincode": "322204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "34.733747999999999",
+    "longitude": "31.628240000000002"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Sop BO",
+    "pincode": "322204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6152540",
+    "longitude": "26.6637190"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Badasawata BO",
+    "pincode": "322204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4846540",
+    "longitude": "76.7278800"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bagor BO",
+    "pincode": "322204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6484040",
+    "longitude": "76.6239420"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Kunjela BO",
+    "pincode": "322204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6637190",
+    "longitude": "76.7855870"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Shahar SO",
+    "pincode": "322204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7417500",
+    "longitude": "76.1508889"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Gandal BO",
+    "pincode": "322204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5796940",
+    "longitude": "76.6694260"
+  }
+]

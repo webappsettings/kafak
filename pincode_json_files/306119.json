@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Itendra Mertiyan B.O",
+    "pincode": "306119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5351500",
+    "longitude": "73.3002000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Jawali B.O",
+    "pincode": "306119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5111955",
+    "longitude": "73.3964121"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Nadana bhatan B.O",
+    "pincode": "306119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4422098",
+    "longitude": "73.3575935"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Saleriya B.O",
+    "pincode": "306119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2709720",
+    "longitude": "73.5653900"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Khod S.O",
+    "pincode": "306119",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5303333",
+    "longitude": "73.3375556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Dhariya B.O",
+    "pincode": "306119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7710963",
+    "longitude": "73.3234408"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Pali Division",
+    "officename": "Khatukara B.O",
+    "pincode": "306119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2709730",
+    "longitude": "73.5653890"
+  }
+]

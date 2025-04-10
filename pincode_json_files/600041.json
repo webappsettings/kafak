@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Tiruvanmiyur S.O",
+    "pincode": "600041",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0017500",
+    "longitude": "80.3685833"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Palavakkam S.O (Kanchipuram)",
+    "pincode": "600041",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9608160",
+    "longitude": "80.2565620"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City South Division",
+    "officename": "Valmiki Nagar S.O",
+    "pincode": "600041",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9930840",
+    "longitude": "80.1630430"
+  }
+]

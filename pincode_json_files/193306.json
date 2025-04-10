@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Rajpora",
+    "pincode": "193306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8241944",
+    "longitude": "74.8534167"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Qasbiyar BO",
+    "pincode": "193306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8087490",
+    "longitude": "74.8100430"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Tiken Batpora BO",
+    "pincode": "193306",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8480610",
+    "longitude": "74.8697190"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Brithipora BO",
+    "pincode": "193306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHOPIAN",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8242640",
+    "longitude": "74.8531350"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Drabgam BO",
+    "pincode": "193306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8202100",
+    "longitude": "74.8158350"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Klampora BO",
+    "pincode": "193306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8084030",
+    "longitude": "74.8331240"
+  }
+]

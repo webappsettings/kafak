@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Block 18 Neyveli S.O",
+    "pincode": "607803",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6100000",
+    "longitude": "79.5000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Block 26 Neyveli S.O",
+    "pincode": "607803",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6000000",
+    "longitude": "79.5000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Block 5 Neyveli S.O",
+    "pincode": "607803",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6200000",
+    "longitude": "79.4900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Cuddalore Division",
+    "officename": "Neyveli 3 S.O",
+    "pincode": "607803",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.6100000",
+    "longitude": "79.5700000"
+  }
+]

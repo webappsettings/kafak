@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Mujehara BO",
+    "pincode": "231312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2120740",
+    "longitude": "82.5591600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Kamasin BO",
+    "pincode": "231312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1678260",
+    "longitude": "82.5875500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Kholua BO",
+    "pincode": "231312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1640900",
+    "longitude": "82.5571320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Tilthi BO",
+    "pincode": "231312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1986520",
+    "longitude": "82.5267010"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Balliparwa BO",
+    "pincode": "231312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1656850",
+    "longitude": "82.5536880"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Chilh SO",
+    "pincode": "231312",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2055930",
+    "longitude": "82.5269890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Mawaiya BO",
+    "pincode": "231312",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1660830",
+    "longitude": "82.5381990"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Saigaon B.O",
+    "pincode": "431523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.688789",
+    "longitude": "76.356312"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Dhanora  BO",
+    "pincode": "431523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6866320",
+    "longitude": "76.7855870"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Suggaon B.O",
+    "pincode": "431523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.630808",
+    "longitude": "76.421944"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Deola B.O",
+    "pincode": "431523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.570734",
+    "longitude": "76.325934"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Patoda B.O.",
+    "pincode": "431523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.606738",
+    "longitude": "76.327366"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Radi B.O",
+    "pincode": "431523",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.640478",
+    "longitude": "76.377335"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Ambasakhar S.O",
+    "pincode": "431523",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.661651",
+    "longitude": "76.428086"
+  }
+]

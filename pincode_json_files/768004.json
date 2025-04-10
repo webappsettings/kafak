@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Ainthapali S.O",
+    "pincode": "768004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4933248",
+    "longitude": "83.9868737"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Budharaja S.O",
+    "pincode": "768004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4796667",
+    "longitude": "83.9783889"
+  }
+]

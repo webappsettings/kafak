@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Shravasti SO",
+    "pincode": "271805",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHRAVASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3454722",
+    "longitude": "81.8361667"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Puredeen Namgarh BO",
+    "pincode": "271805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHRAVASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5378000",
+    "longitude": "82.0085800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Mahdeiya BO",
+    "pincode": "271805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHRAVASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4671500",
+    "longitude": "82.0652290"
+  }
+]

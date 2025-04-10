@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Pala Town SO",
+    "pincode": "686575",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7116010",
+    "longitude": "76.6869560"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Pala Market Junction SO",
+    "pincode": "686575",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.7137560",
+    "longitude": "76.6829460"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Kottayam Division",
+    "officename": "Pala HO",
+    "pincode": "686575",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOTTAYAM",
+    "statename": "KERALA",
+    "latitude": "9.709608",
+    "longitude": "76.678226"
+  }
+]

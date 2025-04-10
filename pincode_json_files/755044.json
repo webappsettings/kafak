@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Siha B.O",
+    "pincode": "755044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.7144243",
+    "longitude": "86.0367537"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Chandikhol S.O",
+    "pincode": "755044",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.7152777",
+    "longitude": "86.1108333"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Darpanigarh B.O",
+    "pincode": "755044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.7072966",
+    "longitude": "86.0690968"
+  }
+]

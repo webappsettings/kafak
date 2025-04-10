@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Bhandara H.O",
+    "pincode": "441904",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.16341",
+    "longitude": "79.65594"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Bhandara Town S.O",
+    "pincode": "441904",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1771944",
+    "longitude": "79.6538889"
+  }
+]

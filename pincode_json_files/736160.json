@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Chhat Fulbari BO",
+    "pincode": "736160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6600000",
+    "longitude": "88.4100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Bilshi BO",
+    "pincode": "736160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "28.1200000",
+    "longitude": "78.9000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Andaran Fulbari BO",
+    "pincode": "736160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6600000",
+    "longitude": "88.4100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Uttar Andaranfulbari BO",
+    "pincode": "736160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.8400000",
+    "longitude": "80.9400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Cooch Behar Division",
+    "officename": "Tufanganj New Town SO",
+    "pincode": "736160",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "COOCHBEHAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.5233300",
+    "longitude": "89.6672200"
+  }
+]

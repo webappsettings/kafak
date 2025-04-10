@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Thakur Pimpalgaon B.O",
+    "pincode": "414503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3200000",
+    "longitude": "75.5500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Chapadgaon B.O",
+    "pincode": "414503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3300000",
+    "longitude": "75.5500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Khampimpri B.O",
+    "pincode": "414503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3200000",
+    "longitude": "75.5400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Hatgaon B.O",
+    "pincode": "414503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3300000",
+    "longitude": "75.5500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Kambi B.O",
+    "pincode": "414503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3200000",
+    "longitude": "75.5400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Mungi B.O",
+    "pincode": "414503",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3100000",
+    "longitude": "75.5600000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Bodhegaon S.O",
+    "pincode": "414503",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.3072222",
+    "longitude": "75.4436389"
+  }
+]

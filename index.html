@@ -73,10 +73,21 @@
   <h2>Order Pure Honey</h2>
 
   <form id="honeyForm" action="?" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="pincode" placeholder="PIN Code" required>
-    <textarea name="address" placeholder="Delivery Address" required></textarea>
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+    <button type="button" onclick="getLocationFromOSM()">📍 Use My Location</button>
+
+    <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
+
+    <select id="officename" name="officename" required style="display:none;">
+      <option value="">Select Office</option>
+    </select>
+
+    <input type="text" id="place" name="place" placeholder="Place" readonly>
+    <input type="text" id="district" name="district" placeholder="District" readonly>
+    <input type="text" id="state" name="state" placeholder="State" readonly>
+    <textarea name="address" placeholder="Full Address" required></textarea>
     <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
     <textarea name="message" placeholder="Any special instructions?"></textarea>
 
@@ -92,12 +103,147 @@
     const form = document.getElementById('honeyForm');
     cd = `AKfycbzQ8mt_-863fFOj6CT1P0ZTjO2p3HsU-Zs283QRe2vBEE-hIlQLkke_77w_c1koPCidRA`;
     var sc = `https://script.google.com/macros/s/${cd}/exec`;
+
+
+
+
+     // Triggered manually by user
+    function getLocationFromOSM() {
+      if (!navigator.geolocation) {
+        alert("Geolocation not supported.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error);
+
+      function success(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`, {
+          headers: {
+            'User-Agent': 'kafak-honey-form/1.0 (https://kafaklife.com/)'
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          const address = data.address;
+          const pincode = address.postcode || '';
+          const road = address.road || address.suburb || '';
+
+          if (pincode && /^[1-9][0-9]{5}$/.test(pincode)) {
+            pincodeInput.value = pincode;
+
+            // Optional: fill partial address
+            const addressField = document.querySelector('textarea[name="address"]');
+            if (road && addressField && !addressField.value) {
+              addressField.value = road + ', ';
+            }
+
+            // Trigger pincode input event to load matching local JSON
+            const event = new Event('input', { bubbles: true });
+            pincodeInput.dispatchEvent(event);
+          } else {
+            alert("Could not detect a valid Indian pincode.");
+          }
+          if (!pincode) {
+            alert("Could not detect a valid pincode for your location. Please type manually.");
+          }
+        })
+        .catch(() => {
+          alert("Location found, but address could not be determined.");
+        });
+      }
+
+      function error() {
+        alert("Unable to fetch your location. Please allow location access.");
+      }
+    }
+
     
 
     window.addEventListener('DOMContentLoaded', () => {
       /*if (localStorage.getItem('kfk-code')) {
         form.name.value = localStorage.getItem('kfk-code');
       }*/
+
+      const pincodeInput = document.getElementById('pincode');
+    const officeDropdown = document.getElementById('officename');
+    const districtInput = document.getElementById('district');
+    const stateInput = document.getElementById('state');
+
+
+
+     
+
+    pincodeInput.addEventListener('input', function () {
+      const pin = this.value.trim();
+
+      document.getElementById('place').value = '';
+      document.getElementById('district').value = '';
+      document.getElementById('state').value = '';
+
+      if (pin.length === 6) {
+        fetch(`pincode_json_files/${pin}.json`)
+          .then(res => {
+            if (!res.ok) throw new Error('Invalid pincode');
+            return res.json();
+          })
+          .then(data => {
+            if (data.length > 0) {
+              districtInput.value = data[0].district || '';
+              stateInput.value = data[0].statename || '';
+
+              if (data.length === 1) {
+                // Only one office, select and hide dropdown
+                officeDropdown.innerHTML = `<option value="${data[0].officename}" selected>${data[0].officename}</option>`;
+                officeDropdown.style.display = 'none';
+
+
+
+                document.getElementById('place').value = data[0].officename.replace(/\s(BO|SO|HO)$/,' '+ data[0].officetype)+', '+data[0].divisionname.replace(/\sDivision$/, '');
+
+              } else {
+                // Multiple offices, require user to pick
+                officeDropdown.innerHTML = '<option value="">Select Office</option>';
+                data.forEach(item => {
+                  const opt = document.createElement('option');
+                   //item.officename.replace(/\s(BO|SO|HO)$/, ' '+item.divisionname.replace(/\sDivision$/, ''));
+
+                  // Replace ' BO', ' SO', ' HO' at the end with ' PO'
+                  const label = item.officename.replace(/\s(BO|SO|HO)$/, ' '+item.officetype +', ' + item.divisionname.replace(/\sDivision$/, ''));
+                  opt.value = label
+                  opt.textContent = label;
+
+                  officeDropdown.appendChild(opt);
+                });
+
+
+                officeDropdown.style.display = 'block';
+              }
+            } else {
+              clearFields();
+            }
+          })
+          .catch(() => {
+            clearFields();
+          });
+      } else {
+        clearFields();
+      }
+    });
+
+    officeDropdown.addEventListener('change', function() {
+      document.getElementById('place').value = this.value
+    })
+
+    function clearFields() {
+      officeDropdown.innerHTML = '<option value="">Select Office</option>';
+      officeDropdown.style.display = 'none';
+      districtInput.value = '';
+      stateInput.value = '';
+    }
+
 
 
       const kfkcode = localStorage.getItem('kfkcode');

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Horzey B.O",
+    "pincode": "194101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.205101599999999",
+    "longitude": "77.069992099999993"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Chuchul B.O",
+    "pincode": "194101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "33.602951699999998",
+    "longitude": "78.656179499999993"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Faing B.O",
+    "pincode": "194101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.183911600000002",
+    "longitude": "77.490314999999995"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Leh H.O",
+    "pincode": "194101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.1528380",
+    "longitude": "77.5770380"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Durbuk B.O",
+    "pincode": "194101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "78.227999999999994",
+    "longitude": "34.020000000000003"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Spituk B.O",
+    "pincode": "194101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.115281600000003",
+    "longitude": "77.554810000000003"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Leh City S.O",
+    "pincode": "194101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

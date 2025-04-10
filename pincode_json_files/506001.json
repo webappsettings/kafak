@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Lashkar Bazar S.O",
+    "pincode": "506001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0098611",
+    "longitude": "79.5643611"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Hanamkonda H.O",
+    "pincode": "506001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.005522",
+    "longitude": "79.557726"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Subedari S.O",
+    "pincode": "506001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.1526111",
+    "longitude": "79.9022778"
+  }
+]

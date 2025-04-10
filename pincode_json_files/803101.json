@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Biharsharif HO",
+    "pincode": "803101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.1963333",
+    "longitude": "85.5200000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Alinagar SO",
+    "pincode": "803101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.1755830",
+    "longitude": "85.5245300"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Sakunat SO",
+    "pincode": "803101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.1900000",
+    "longitude": "85.5200000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Amber SO",
+    "pincode": "803101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.9644430",
+    "longitude": "85.2722470"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nalanda Division",
+    "officename": "Nalanda College SO",
+    "pincode": "803101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.2027777",
+    "longitude": "85.5263888"
+  }
+]

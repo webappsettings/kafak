@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Chanhouta BO",
+    "pincode": "176309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4384000",
+    "longitude": "76.4664310"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Khani BO",
+    "pincode": "176309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4604100",
+    "longitude": "76.4740200"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Deol BO",
+    "pincode": "176309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.3307410",
+    "longitude": "76.5502680"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Garola SO",
+    "pincode": "176309",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4384000",
+    "longitude": "76.4664300"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Gareema BO",
+    "pincode": "176309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4436970",
+    "longitude": "76.4895640"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Ulansa BO",
+    "pincode": "176309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.4522600",
+    "longitude": "76.4534200"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Siura BO",
+    "pincode": "176309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5962990",
+    "longitude": "76.1066250"
+  }
+]

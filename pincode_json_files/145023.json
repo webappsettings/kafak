@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Gho BO",
+    "pincode": "145023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.32",
+    "longitude": "75.700000000000003"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Bhabber BO",
+    "pincode": "145023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.350000000000001",
+    "longitude": "75.700000000000003"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Ferozepur Kalan BO",
+    "pincode": "145023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.329999999999998",
+    "longitude": "75.579999999999998"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Panjore BO",
+    "pincode": "145023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.289999999999999",
+    "longitude": "75.560000000000002"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Ranipur BO",
+    "pincode": "145023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.350000000000001",
+    "longitude": "75.650000000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Sujanpur SO Gurdaspur",
+    "pincode": "145023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.2706482",
+    "longitude": "75.6425457"
+  }
+]

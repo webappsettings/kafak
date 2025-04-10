@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Bhaoupura BO",
+    "pincode": "285128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2519000",
+    "longitude": "79.3832000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Kartalapur BO",
+    "pincode": "285128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2519700",
+    "longitude": "79.3721500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Madora BO",
+    "pincode": "285128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2710000",
+    "longitude": "79.3845000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Gora Bhoopka BO",
+    "pincode": "285128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2519000",
+    "longitude": "79.3832000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Sheikhpur Buzurg BO",
+    "pincode": "285128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2574200",
+    "longitude": "79.3854100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Madori BO",
+    "pincode": "285128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2587000",
+    "longitude": "79.3845200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Hadrukh SO",
+    "pincode": "285128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2588889",
+    "longitude": "79.3712778"
+  }
+]

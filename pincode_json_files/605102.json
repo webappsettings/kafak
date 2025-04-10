@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Thiruvandarkoil BO",
+    "pincode": "605102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.9200000",
+    "longitude": "79.6600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Chinnababusamudram BO",
+    "pincode": "605102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9300000",
+    "longitude": "79.6900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Periyababusamudram BO",
+    "pincode": "605102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9400000",
+    "longitude": "79.6800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kandamangalam SO",
+    "pincode": "605102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9151111",
+    "longitude": "79.6873333"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Ariyur BO",
+    "pincode": "605102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.9100000",
+    "longitude": "79.7000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Pallithennal BO",
+    "pincode": "605102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9000000",
+    "longitude": "79.7200000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Shahpur B.O",
+    "pincode": "441906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1549130",
+    "longitude": "79.5687730"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Bhandara Of S.O",
+    "pincode": "441906",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1140556",
+    "longitude": "79.5441667"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Mohdura B.O",
+    "pincode": "441906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1625000",
+    "longitude": "79.6557410"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Bela B.O",
+    "pincode": "441906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1518020",
+    "longitude": "79.6137130"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Thana Petrol Pump B.O",
+    "pincode": "441906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1491260",
+    "longitude": "79.5426870"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Pipri B.O",
+    "pincode": "441906",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9834180",
+    "longitude": "79.6291560"
+  }
+]

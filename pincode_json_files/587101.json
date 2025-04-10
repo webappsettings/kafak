@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Bagalkot B.H.School S.O",
+    "pincode": "587101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1833413",
+    "longitude": "75.6999920"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bagalkot Division",
+    "officename": "Bagalkot H.O",
+    "pincode": "587101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BAGALKOT",
+    "statename": "KARNATAKA",
+    "latitude": "16.1812500",
+    "longitude": "75.6991667"
+  }
+]

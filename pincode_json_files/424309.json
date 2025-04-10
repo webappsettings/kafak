@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Waghadi Bk B.O",
+    "pincode": "424309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.106008",
+    "longitude": "74.82625"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Walkheda B.O",
+    "pincode": "424309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.107125",
+    "longitude": "74.867571"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Pimparkheda B.O",
+    "pincode": "424309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.141350",
+    "longitude": "74.794194"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Gorane B.O",
+    "pincode": "424309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.164702",
+    "longitude": "74.807394"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Waypur B.O",
+    "pincode": "424309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.14",
+    "longitude": "74.780356"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Songir S.O",
+    "pincode": "424309",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.081337",
+    "longitude": "74.78827"
+  }
+]

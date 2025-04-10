@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Tetla B.O",
+    "pincode": "832107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.642795",
+    "longitude": "86.167550000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Tumung BO",
+    "pincode": "832107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.8589000",
+    "longitude": "86.3729000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Gitilata BO",
+    "pincode": "832107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.6787331",
+    "longitude": "86.1777110"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Kendamundi BO",
+    "pincode": "832107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.8589000",
+    "longitude": "86.3729000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Shankarda BO",
+    "pincode": "832107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.8589000",
+    "longitude": "86.3729000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Sundarnagar SO",
+    "pincode": "832107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.73673",
+    "longitude": "86.19734"
+  }
+]

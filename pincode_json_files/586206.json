@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Devangaon S.O",
+    "pincode": "586206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "17.1667298",
+    "longitude": "76.3288790"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Kadlewad (PA) B.O",
+    "pincode": "586206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "17.0834086",
+    "longitude": "76.3405732"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Bommanahalli B.O",
+    "pincode": "586206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "17.1095325",
+    "longitude": "76.3000419"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Devar Navadagi B.O",
+    "pincode": "586206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "17.0768870",
+    "longitude": "76.3343596"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Kumshi B.O",
+    "pincode": "586206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "17.0734200",
+    "longitude": "76.3321230"
+  }
+]

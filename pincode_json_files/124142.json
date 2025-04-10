@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Jhamri BO",
+    "pincode": "124142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.7253670",
+    "longitude": "76.5626910"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Khanpur Khurd BO",
+    "pincode": "124142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.5021490",
+    "longitude": "76.3453670"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Bahu SO",
+    "pincode": "124142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.4542222",
+    "longitude": "76.3253611"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Goria BO",
+    "pincode": "124142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.5021490",
+    "longitude": "76.3453670"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Khorra BO",
+    "pincode": "124142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.4822530",
+    "longitude": "76.3510320"
+  }
+]

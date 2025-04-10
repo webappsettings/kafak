@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Banghati",
+    "pincode": "312624",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "23.800512000000001",
+    "longitude": "74.742485000000002"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Prathvipura BO",
+    "pincode": "312624",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6729980",
+    "longitude": "74.6315220"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Jamli B.O",
+    "pincode": "312624",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8075530",
+    "longitude": "74.5642300"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Chittorgarh Division",
+    "officename": "Peepalkhunt S.O",
+    "pincode": "312624",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PRATAPGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8075530",
+    "longitude": "74.5617070"
+  }
+]

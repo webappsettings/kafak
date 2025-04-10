@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Trikarpur South BO",
+    "pincode": "671311",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.1417813",
+    "longitude": "75.1720487"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Elambachi SO",
+    "pincode": "671311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.1197988",
+    "longitude": "75.18267058"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Udumbanthala BO",
+    "pincode": "671311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.1072537",
+    "longitude": "75.1764261"
+  }
+]

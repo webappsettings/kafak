@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Jalgaon Galane B.O",
+    "pincode": "423202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.54984",
+    "longitude": "74.45877"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "G.S.S.K. S.O",
+    "pincode": "423202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5544310",
+    "longitude": "74.5120240"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Pimpalgaon D B.O",
+    "pincode": "423202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5822899",
+    "longitude": "74.43555"
+  }
+]

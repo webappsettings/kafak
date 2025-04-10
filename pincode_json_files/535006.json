@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Munginapalli B.O",
+    "pincode": "535006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1186050",
+    "longitude": "83.4778440"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Jammu B.O",
+    "pincode": "535006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1034890",
+    "longitude": "83.4555410"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Pedathadivada B.O",
+    "pincode": "535006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0843610",
+    "longitude": "83.4409360"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Gunupur B.O",
+    "pincode": "535006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0973240",
+    "longitude": "83.4590200"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Pinathadivada B.O",
+    "pincode": "535006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0764060",
+    "longitude": "83.4510160"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Denkada S.O",
+    "pincode": "535006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0745278",
+    "longitude": "83.4743333"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Mandwal B.O",
+    "pincode": "136044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.575949999999999",
+    "longitude": "76.484932999999998"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Santokh Majra B.O",
+    "pincode": "136044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.575949999999999",
+    "longitude": "76.484932999999998"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Rohera B.O",
+    "pincode": "136044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.575949999999999",
+    "longitude": "76.484932999999998"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Rajound S.O",
+    "pincode": "136044",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.5759500",
+    "longitude": "76.4849330"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Bir Bangran B.O",
+    "pincode": "136044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.575949999999999",
+    "longitude": "76.484932999999998"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Kithana B.O",
+    "pincode": "136044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.575949999999999",
+    "longitude": "76.484932999999998"
+  }
+]

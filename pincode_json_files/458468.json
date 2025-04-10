@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Nayagaon C F S.O",
+    "pincode": "458468",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.07337",
+    "longitude": "75.00692"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Kesharpura B.O",
+    "pincode": "458468",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5435000",
+    "longitude": "74.7583900"
+  }
+]

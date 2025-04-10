@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Nanta B.O",
+    "pincode": "324008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2000000",
+    "longitude": "75.8000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Thermal Colony Kota S.O",
+    "pincode": "324008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1877778",
+    "longitude": "75.8288889"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Girdharpura B.O",
+    "pincode": "324008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2200000",
+    "longitude": "75.8300000"
+  }
+]

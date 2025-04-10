@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Halimpur BO",
+    "pincode": "811214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.3350567",
+    "longitude": "86.4731159"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Jamalpur SO Munger",
+    "pincode": "811214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.31446",
+    "longitude": "86.4927"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Sadar Bazar Jamalpur SO",
+    "pincode": "811214",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.374756",
+    "longitude": "86.473525"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Ithari BO",
+    "pincode": "811214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.3131703",
+    "longitude": "86.5489033"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Pattam BO",
+    "pincode": "811214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.312717",
+    "longitude": "86.4906091"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Safiabad BO",
+    "pincode": "811214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.3450385",
+    "longitude": "86.4865925"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Sarobagh BO",
+    "pincode": "811214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.3171496",
+    "longitude": "86.4951213"
+  }
+]

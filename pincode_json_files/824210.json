@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Raniganj SO Gaya",
+    "pincode": "824210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.4382400",
+    "longitude": "84.5916450"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Bedauli BO",
+    "pincode": "824210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.4382400",
+    "longitude": "84.5916450"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Salaiya BO",
+    "pincode": "824210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.4382400",
+    "longitude": "84.5916450"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Bara BO",
+    "pincode": "824210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.4382400",
+    "longitude": "84.5916450"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Kothi BO",
+    "pincode": "824210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.4382400",
+    "longitude": "84.5916450"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Nagwan Pathra BO",
+    "pincode": "824210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.4382400",
+    "longitude": "84.5916450"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "BIRAJ B.O",
+    "pincode": "824210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.34",
+    "longitude": "84.450000000000003"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Kutubpur BO",
+    "pincode": "251315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2715410",
+    "longitude": "77.9006960"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Bhooma BO",
+    "pincode": "251315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2625680",
+    "longitude": "77.9382530"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Katiya BO",
+    "pincode": "251315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3578210",
+    "longitude": "77.9436200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Kithora BO",
+    "pincode": "251315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2803990",
+    "longitude": "77.9521320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Miranpur SO",
+    "pincode": "251315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2914722",
+    "longitude": "77.9485278"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Kasampur Khola BO",
+    "pincode": "251315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3537690",
+    "longitude": "77.9807420"
+  }
+]

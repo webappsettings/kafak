@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "PATEL NAGAR S.O",
+    "pincode": "800023",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patna Division",
+    "officename": "LBS Nagar SO",
+    "pincode": "800023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.5900520",
+    "longitude": "85.1492330"
+  }
+]

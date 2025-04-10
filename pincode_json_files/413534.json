@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ghatpimpri B.O",
+    "pincode": "413534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6245052",
+    "longitude": "75.6004357"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Nipani B.O",
+    "pincode": "413534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6245052",
+    "longitude": "75.6004357"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Pakhrud B.O",
+    "pincode": "413534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6245052",
+    "longitude": "75.6004357"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Lanjeshwar B.O",
+    "pincode": "413534",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.6245052",
+    "longitude": "75.6004357"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ieet S.O",
+    "pincode": "413534",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.620673",
+    "longitude": "75.600314"
+  }
+]

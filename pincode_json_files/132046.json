@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Phaphrana B.O",
+    "pincode": "132046",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5286111",
+    "longitude": "75.9966111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Kurlan B.O",
+    "pincode": "132046",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5286111",
+    "longitude": "75.9966111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Salwan S.O",
+    "pincode": "132046",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5052778",
+    "longitude": "76.7146111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Thari B.O",
+    "pincode": "132046",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5286111",
+    "longitude": "75.9966111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Goli B.O",
+    "pincode": "132046",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5286111",
+    "longitude": "75.9966111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "A.K.G.V.Mormajra B.O",
+    "pincode": "132046",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.5286111",
+    "longitude": "75.9966111"
+  }
+]

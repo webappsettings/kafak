@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "A.Katapali B.O",
+    "pincode": "768006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4542866",
+    "longitude": "83.8977350"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Garmunda B.O",
+    "pincode": "768006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.5016650",
+    "longitude": "83.9439600"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Sankarma B.O",
+    "pincode": "768006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.5016650",
+    "longitude": "83.9439600"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bareipali B.O",
+    "pincode": "768006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4964483",
+    "longitude": "83.9625616"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Dhankauda B.O",
+    "pincode": "768006",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.5016650",
+    "longitude": "83.9439600"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Remed S.O",
+    "pincode": "768006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.5097222",
+    "longitude": "83.9452777"
+  }
+]

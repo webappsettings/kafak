@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Kundacherry B.O",
+    "pincode": "571247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.3907595",
+    "longitude": "75.5663088"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Sannapulikote B.O",
+    "pincode": "571247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.3581116",
+    "longitude": "75.5689696"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Bhagamandala S.O",
+    "pincode": "571247",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.38538889",
+    "longitude": "75.53388889"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Chettimani B.O",
+    "pincode": "571247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.3786896",
+    "longitude": "75.5727354"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Aiyangeri B.O",
+    "pincode": "571247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.37242",
+    "longitude": "75.574250000000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kodagu Division",
+    "officename": "Karike B.O",
+    "pincode": "571247",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KODAGU",
+    "statename": "KARNATAKA",
+    "latitude": "12.4478798",
+    "longitude": "75.4142812"
+  }
+]

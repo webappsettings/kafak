@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Mahadevgram BO",
+    "pincode": "383317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.5184860",
+    "longitude": "73.2735870"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Moti Isrol BO",
+    "pincode": "383317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.5579160",
+    "longitude": "73.3139700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Varthu BO",
+    "pincode": "383317",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.5385140",
+    "longitude": "73.3218960"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Dadhalia SO",
+    "pincode": "383317",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARVALLI",
+    "statename": "GUJARAT",
+    "latitude": "23.5197990",
+    "longitude": "73.3547520"
+  }
+]

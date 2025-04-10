@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Chhatra Bazar S.O",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4601900",
+    "longitude": "85.8921618"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Jobra S.O",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4747436",
+    "longitude": "85.9003727"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "MAHANADI VIHAR S.O",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4657306",
+    "longitude": "85.9149808"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "College Square S.O (Cuttack)",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.466379",
+    "longitude": "85.896464199999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Malgodown S.O",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4584846",
+    "longitude": "85.8958429"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Sikharpur S.O",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4644099",
+    "longitude": "85.9035404"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack City Division",
+    "officename": "Ravenshaw University S.O",
+    "pincode": "753003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUTTACK",
+    "statename": "ODISHA",
+    "latitude": "20.4658937",
+    "longitude": "85.8940491"
+  }
+]

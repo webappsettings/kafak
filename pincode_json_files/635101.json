@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Kalvehalli B.O",
+    "pincode": "635101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5186213",
+    "longitude": "78.2137265"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Kurumpatti B.O",
+    "pincode": "635101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5277500",
+    "longitude": "78.1492500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Gundalapatti B.O",
+    "pincode": "635101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3281973",
+    "longitude": "78.2110323"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Sundekuppam B.O",
+    "pincode": "635101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5186223",
+    "longitude": "78.2137255"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Krishnagiri Project S.O",
+    "pincode": "635101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5275000",
+    "longitude": "78.2161944"
+  }
+]

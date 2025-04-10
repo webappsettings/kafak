@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Malegaon City S.O",
+    "pincode": "423203",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5499489",
+    "longitude": "74.528738"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Market Yard Malegaon S.O",
+    "pincode": "423203",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.56215",
+    "longitude": "74.51045"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Malegaon Nayapura Ward S.O",
+    "pincode": "423203",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5499579",
+    "longitude": "74.528729"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Soygaon B.O",
+    "pincode": "423203",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5533619",
+    "longitude": "74.5080312"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Malegaon H.O",
+    "pincode": "423203",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0073120",
+    "longitude": "75.5625490"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Malegaon Division",
+    "officename": "Sangmeshwar Malegaon S.O",
+    "pincode": "423203",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.56215",
+    "longitude": "74.51045"
+  }
+]

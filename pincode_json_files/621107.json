@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Tirupayar B.O",
+    "pincode": "621107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2600000",
+    "longitude": "78.8000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Alambadi B.O",
+    "pincode": "621107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2600000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Senjeri B.O",
+    "pincode": "621107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2400000",
+    "longitude": "78.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Palayam B.O",
+    "pincode": "621107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2300000",
+    "longitude": "78.8100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Kurumbalur S.O",
+    "pincode": "621107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2400000",
+    "longitude": "78.8000000"
+  }
+]

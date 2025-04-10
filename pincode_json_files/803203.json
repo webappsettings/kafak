@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "ALAWALPUR SO",
+    "pincode": "803203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.4937937",
+    "longitude": "85.1048962"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "USFA BO",
+    "pincode": "803203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "85.141662999999994",
+    "longitude": "25.610464"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "RUKUNPUR BO",
+    "pincode": "803203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.594094999999999",
+    "longitude": "85.137564999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "DGTOLA BO",
+    "pincode": "803203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.333365799999999",
+    "longitude": "85.258888799999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "PATNA SAHIB DIVISION",
+    "officename": "NANDLALABAD BO",
+    "pincode": "803203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATNA",
+    "statename": "BIHAR",
+    "latitude": "25.610471",
+    "longitude": "85.141655999999998"
+  }
+]

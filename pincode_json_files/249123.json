@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Khandogi BO",
+    "pincode": "249123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3304442",
+    "longitude": "78.5560686"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Radhudhar BO",
+    "pincode": "249123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3346869",
+    "longitude": "78.5107083"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Tipri BO",
+    "pincode": "249123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3721857",
+    "longitude": "78.5007657"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Patniyadevi BO",
+    "pincode": "249123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3346800",
+    "longitude": "78.5107000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Jakhnidhar SO",
+    "pincode": "249123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.5324167",
+    "longitude": "77.3418611"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Chheti BO",
+    "pincode": "249123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3236705",
+    "longitude": "78.5227802"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Pipola BO",
+    "pincode": "249123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3734268",
+    "longitude": "78.5227802"
+  }
+]

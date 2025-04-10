@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Cidco Colony S.O (Nashik)",
+    "pincode": "422009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9884390",
+    "longitude": "73.7207250"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Indira Nagar S.O (Nashik)",
+    "pincode": "422009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8908576",
+    "longitude": "75.3586955"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kachadal B.O",
+    "pincode": "783134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Melopara B.O",
+    "pincode": "783134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Sesapani B.O",
+    "pincode": "783134",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Darrangiri S.O.",
+    "pincode": "783134",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "26.0186944",
+    "longitude": "89.9942778"
+  }
+]

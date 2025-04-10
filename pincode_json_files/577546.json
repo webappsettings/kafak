@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Byadarahally B.O",
+    "pincode": "577546",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "12.9979630",
+    "longitude": "77.6027730"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Venkalgudda B.O",
+    "pincode": "577546",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.0074800",
+    "longitude": "76.8151400"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Abbinahole B.O",
+    "pincode": "577546",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.0397570",
+    "longitude": "76.7517760"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Sugur B.O",
+    "pincode": "577546",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.1002050",
+    "longitude": "76.8086620"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Maskal B.O",
+    "pincode": "577546",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.9901490",
+    "longitude": "76.6946870"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Hariyabbe S.O",
+    "pincode": "577546",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.2215833",
+    "longitude": "76.3974167"
+  }
+]

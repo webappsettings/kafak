@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Silambani B.O",
+    "pincode": "630302",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9481780",
+    "longitude": "78.8165750"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Devakottai H.O",
+    "pincode": "630302",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9464",
+    "longitude": "78.8229167"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Devakottai South S.O",
+    "pincode": "630302",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9452500",
+    "longitude": "78.7737778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Karuthavoorani B.O",
+    "pincode": "630302",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9489130",
+    "longitude": "78.8249920"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Karaikudi Division",
+    "officename": "Devakottai West S.O",
+    "pincode": "630302",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIVAGANGA",
+    "statename": "TAMIL NADU",
+    "latitude": "9.9439685",
+    "longitude": "78.8214722"
+  }
+]

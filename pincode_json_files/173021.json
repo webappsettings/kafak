@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Misserwala BO",
+    "pincode": "173021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.4768835",
+    "longitude": "77.5476117"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Sainwala Mubarakpur BO",
+    "pincode": "173021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.4843359",
+    "longitude": "77.5074774"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Majra SO Sirmaur",
+    "pincode": "173021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.49",
+    "longitude": "77.53"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Solan Division",
+    "officename": "Kotribyas BO",
+    "pincode": "173021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRMAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.8499890",
+    "longitude": "77.2994140"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Rafala BO",
+    "pincode": "360023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1935240",
+    "longitude": "70.5912252"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Kuchiyadad BO",
+    "pincode": "360023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1935240",
+    "longitude": "70.5912252"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Mesavada BO",
+    "pincode": "360023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1935240",
+    "longitude": "70.5912252"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Ziyana BO",
+    "pincode": "360023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.4024989",
+    "longitude": "70.9288953"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "KUVADAVA SO",
+    "pincode": "360023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.3609167",
+    "longitude": "70.9460000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Magharvada BO",
+    "pincode": "360023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1935240",
+    "longitude": "70.5912252"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Targhadia BO",
+    "pincode": "360023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1935240",
+    "longitude": "70.5912252"
+  }
+]

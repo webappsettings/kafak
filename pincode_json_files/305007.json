@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Gc Road Ajmer S.O",
+    "pincode": "305007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4523889",
+    "longitude": "74.6554722"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Naka Madar Ajmer S.O",
+    "pincode": "305007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4507500",
+    "longitude": "74.6675833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Ajmer Railway Station S.O",
+    "pincode": "305007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4489167",
+    "longitude": "73.6507500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Pal Beesla Ajmer S.O",
+    "pincode": "305007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4543056",
+    "longitude": "74.6473056"
+  }
+]

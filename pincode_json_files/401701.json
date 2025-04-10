@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Borigaon B.O",
+    "pincode": "401701",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1225140",
+    "longitude": "72.7662385"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Bordi S.O",
+    "pincode": "401701",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4978056",
+    "longitude": "73.0153611"
+  }
+]

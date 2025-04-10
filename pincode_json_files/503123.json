@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "ANCHANUR B.O",
+    "pincode": "503123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.2452800",
+    "longitude": "78.4570628"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "MUTHYAMPET B.O",
+    "pincode": "503123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.2874185",
+    "longitude": "78.4056046"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Domakonda S.O",
+    "pincode": "503123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.25395611",
+    "longitude": "78.4349546"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Faridpet B.O",
+    "pincode": "503123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.3137197",
+    "longitude": "78.4559903"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Sangameshwar B.O",
+    "pincode": "503123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.2233893",
+    "longitude": "78.4516614"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Amberipet B.O",
+    "pincode": "503123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAMAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "18.2673626",
+    "longitude": "78.4995897"
+  }
+]

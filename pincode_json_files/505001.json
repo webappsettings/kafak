@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Jawaharnagar S.O",
+    "pincode": "505001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.444402",
+    "longitude": "79.117282"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Jublikaman S.O",
+    "pincode": "505001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.427778",
+    "longitude": "79.13269"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Ramnagar S.O",
+    "pincode": "505001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.434253",
+    "longitude": "79.109466"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Karimnagar H.O",
+    "pincode": "505001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.43392",
+    "longitude": "79.13406499999999"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Dist. Court Building S.O",
+    "pincode": "505001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.445362",
+    "longitude": "79.123646"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Collectorate Complex S.O",
+    "pincode": "505001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARIMNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "18.431804",
+    "longitude": "79.126406"
+  }
+]

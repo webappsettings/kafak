@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Harobelvadi B.O",
+    "pincode": "581201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.6222510",
+    "longitude": "75.0717683"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Shirur B.O",
+    "pincode": "581201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.6054774",
+    "longitude": "75.1046387"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Byalal B.O",
+    "pincode": "581201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.6094085",
+    "longitude": "75.1825221"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Kabbenur B.O",
+    "pincode": "581201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.6373679",
+    "longitude": "15.6373679"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Marewad B.O",
+    "pincode": "581201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.5311594",
+    "longitude": "75.0515394"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Amminabhavi S.O",
+    "pincode": "581201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.5376788",
+    "longitude": "75.0594143"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Karadigudda B.O",
+    "pincode": "581201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.5581567",
+    "longitude": "75.0374824"
+  }
+]

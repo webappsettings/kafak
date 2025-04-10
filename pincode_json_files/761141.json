@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Kupati B.O",
+    "pincode": "761141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "20.1388750",
+    "longitude": "84.5147750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Domuhani B.O",
+    "pincode": "761141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "20.1387116",
+    "longitude": "84.5922116"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Harigada B.O",
+    "pincode": "761141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "20.1181066",
+    "longitude": "84.5767366"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Badangi B.O",
+    "pincode": "761141",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "20.1555800",
+    "longitude": "84.5814700"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Gallery S.O",
+    "pincode": "761141",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "20.0919216",
+    "longitude": "84.5690200"
+  }
+]

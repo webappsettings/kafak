@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Palakkad College SO",
+    "pincode": "678001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.808119",
+    "longitude": "76.6476903"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Palakkad Collectorate SO",
+    "pincode": "678001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7744",
+    "longitude": "76.6563"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Palakkad Fort SO",
+    "pincode": "678001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7744",
+    "longitude": "76.6563"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Palghat Division",
+    "officename": "Palakkad HO",
+    "pincode": "678001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PALAKKAD",
+    "statename": "KERALA",
+    "latitude": "10.7995710",
+    "longitude": "76.6423180"
+  }
+]

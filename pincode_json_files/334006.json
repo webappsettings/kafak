@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Raj.Krishi Vishwavidhyalaya S.O",
+    "pincode": "334006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.1172222",
+    "longitude": "73.0400000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Bichhwal Ind.Area S.O",
+    "pincode": "334006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0580891",
+    "longitude": "73.3340975"
+  }
+]

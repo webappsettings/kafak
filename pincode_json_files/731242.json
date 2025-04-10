@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Bujung BO",
+    "pincode": "731242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2546050",
+    "longitude": "87.9187710"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Anantapurkanaipur BO",
+    "pincode": "731242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2283190",
+    "longitude": "87.8973120"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Gopegram BO",
+    "pincode": "731242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2395910",
+    "longitude": "87.9262690"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Kurumgram SO",
+    "pincode": "731242",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2457590",
+    "longitude": "87.8737840"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Sardha BO",
+    "pincode": "731242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2452620",
+    "longitude": "87.8964840"
+  }
+]

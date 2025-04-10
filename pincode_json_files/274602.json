@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Deosia BO",
+    "pincode": "274602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "83.8700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Israuli BO",
+    "pincode": "274602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "83.8700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Nariaon BO",
+    "pincode": "274602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "83.8700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Nema BO",
+    "pincode": "274602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "83.8700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Reoli BO",
+    "pincode": "274602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "83.8700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Takia BO",
+    "pincode": "274602",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1800000",
+    "longitude": "83.8700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Bhagalpur SO",
+    "pincode": "274602",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  }
+]

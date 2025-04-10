@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Kotabagi B.O",
+    "pincode": "581105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.6089403",
+    "longitude": "74.9531384"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Kurabagatti B.O",
+    "pincode": "581105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.5689699",
+    "longitude": "74.9640765"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Garag S.O",
+    "pincode": "581105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.5738824",
+    "longitude": "74.9293893"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Tadakod B.O",
+    "pincode": "581105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.6082160",
+    "longitude": "74.9088122"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Madhanabhavi B.O",
+    "pincode": "581105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.5899341",
+    "longitude": "74.8556938"
+  }
+]

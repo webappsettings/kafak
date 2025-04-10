@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kothavaripalle B.O",
+    "pincode": "517319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.11928",
+    "longitude": "78.7631"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Gajulavaripalle B.O",
+    "pincode": "517319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.11928",
+    "longitude": "78.7631"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Madanapalle Spinning Mills Gds B.O",
+    "pincode": "517319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.11928",
+    "longitude": "78.7631"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Pathapolu B.O",
+    "pincode": "517319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.11928",
+    "longitude": "78.7631"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Chinnatippasamudram S.O",
+    "pincode": "517319",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.11928",
+    "longitude": "78.7631"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Mittapalle B.O",
+    "pincode": "517319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.11928",
+    "longitude": "78.7631"
+  }
+]

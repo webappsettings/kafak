@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Jakhala BO",
+    "pincode": "123301",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Rattanthal BO",
+    "pincode": "123301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Guriani SO",
+    "pincode": "123301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "28.3571944",
+    "longitude": "76.5355000"
+  }
+]

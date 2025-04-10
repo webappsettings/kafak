@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Kailkeshopur BO",
+    "pincode": "224202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7005090",
+    "longitude": "82.1710130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Raithua BO",
+    "pincode": "224202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7005090",
+    "longitude": "82.1710130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Naipura BO",
+    "pincode": "224202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "82.171013",
+    "longitude": "80.9742038"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Bharatkund SO",
+    "pincode": "224202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AYODHYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6421220",
+    "longitude": "82.1210320"
+  }
+]

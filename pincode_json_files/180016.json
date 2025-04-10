@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Vinaik Bazar SO",
+    "pincode": "180016",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7305120",
+    "longitude": "74.8674950"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Krishna Nagar SO Jammu",
+    "pincode": "180016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7335010",
+    "longitude": "74.8515800"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Chachegaon B.O",
+    "pincode": "415122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1162000",
+    "longitude": "73.8892100"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Yeravale B.O",
+    "pincode": "415122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1162000",
+    "longitude": "73.8892100"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Karad Division",
+    "officename": "Wing S.O",
+    "pincode": "415122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.2416169",
+    "longitude": "74.1186739"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Dharwad Saptapur S.O",
+    "pincode": "580001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4500869",
+    "longitude": "74.9952295"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Dharwad City S.O",
+    "pincode": "580001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4604243",
+    "longitude": "75.0160582"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Dharwad Kutchery S.O",
+    "pincode": "580001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4523038",
+    "longitude": "75.0025601"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Dharwad H.O",
+    "pincode": "580001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4518333",
+    "longitude": "75.0062500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Dharwad Line Bazar S.O",
+    "pincode": "580001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.4550628",
+    "longitude": "75.0090440"
+  }
+]

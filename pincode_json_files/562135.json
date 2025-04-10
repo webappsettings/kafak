@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Harohalli B.O",
+    "pincode": "562135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.3100000",
+    "longitude": "77.7500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Mandibele B.O",
+    "pincode": "562135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2700000",
+    "longitude": "77.7900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Narayanapura B.O",
+    "pincode": "562135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.3400000",
+    "longitude": "77.7600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Channarayapatna B.O",
+    "pincode": "562135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2400000",
+    "longitude": "77.7800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Vijayapura S.O",
+    "pincode": "562135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BENGALURU RURAL",
+    "statename": "KARNATAKA",
+    "latitude": "13.2951944",
+    "longitude": "77.8025833"
+  }
+]

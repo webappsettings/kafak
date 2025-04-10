@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Choibari B.O",
+    "pincode": "783376",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.3420780",
+    "longitude": "90.3420780"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Dabargaon B.O",
+    "pincode": "783376",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.6968750",
+    "longitude": "93.9852920"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Choraikhola S.O",
+    "pincode": "783376",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.1823000",
+    "longitude": "90.3081000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Majergaon B.O",
+    "pincode": "783376",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.3353380",
+    "longitude": "90.4413930"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Nayekgaon B.O",
+    "pincode": "783376",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.4214880",
+    "longitude": "90.4950750"
+  }
+]

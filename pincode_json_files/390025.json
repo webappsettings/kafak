@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Soma Talav SO",
+    "pincode": "390025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3035833",
+    "longitude": "73.1976944"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Waghodia Road SO",
+    "pincode": "390025",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.2930833",
+    "longitude": "73.2298056"
+  }
+]

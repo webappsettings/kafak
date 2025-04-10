@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Avaragere B.O",
+    "pincode": "577003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.4468270",
+    "longitude": "75.9448720"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "DAVANAGERE DIVISION",
+    "officename": "Rm Yard  Davanagere S.O",
+    "pincode": "577003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAVANGERE",
+    "statename": "KARNATAKA",
+    "latitude": "14.4688889",
+    "longitude": "75.9197778"
+  }
+]

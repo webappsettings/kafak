@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "TirurKerala HO",
+    "pincode": "676101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9136761",
+    "longitude": "75.9214282"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Tirur Division",
+    "officename": "Tirur East Bazar SO",
+    "pincode": "676101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9139911",
+    "longitude": "75.9215515"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Devarmukkulam B.O",
+    "pincode": "635111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3106000",
+    "longitude": "12.3106000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Karimangalam S.O",
+    "pincode": "635111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3070833",
+    "longitude": "78.2030556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Karagur B.O",
+    "pincode": "635111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3106000",
+    "longitude": "78.1880000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Karaikodihalli B.O",
+    "pincode": "635111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3106000",
+    "longitude": "78.1880000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Bommahalli B.O",
+    "pincode": "635111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3106000",
+    "longitude": "78.1880000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Dindal B.O",
+    "pincode": "635111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3106000",
+    "longitude": "78.1880000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Mukkulam B.O",
+    "pincode": "635111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.3106000",
+    "longitude": "78.1880000"
+  }
+]

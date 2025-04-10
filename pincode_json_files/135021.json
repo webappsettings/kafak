@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Bakarwala B.O",
+    "pincode": "135021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3158700",
+    "longitude": "77.5200900"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Deodhar B.O",
+    "pincode": "135021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781858",
+    "longitude": "76.7766900"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Partap Nagar S.O",
+    "pincode": "135021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "77.4979167",
+    "longitude": "30.2894444"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Muzafatkalan B.O",
+    "pincode": "135021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781900",
+    "longitude": "76.7766850"
+  }
+]

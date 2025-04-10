@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Vatuvanchal SO",
+    "pincode": "673581",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5565585",
+    "longitude": "76.2230296"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Kadalmat BO",
+    "pincode": "673581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5400000",
+    "longitude": "76.2200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Chellangode BO",
+    "pincode": "673581",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.5400000",
+    "longitude": "76.2700000"
+  }
+]

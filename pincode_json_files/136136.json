@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Mandheri B.O",
+    "pincode": "136136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1665190",
+    "longitude": "76.7096040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Thol S.O",
+    "pincode": "136136",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1665190",
+    "longitude": "76.7096040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Shanti Nagar B.O",
+    "pincode": "136136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1665190",
+    "longitude": "76.7096040"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Ajrawar B.O",
+    "pincode": "136136",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1665190",
+    "longitude": "76.7096040"
+  }
+]

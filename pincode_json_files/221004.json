@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "DLW SO",
+    "pincode": "221004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2853889",
+    "longitude": "82.9604167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "West Colony SO",
+    "pincode": "221004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1800000",
+    "longitude": "82.5800000"
+  }
+]

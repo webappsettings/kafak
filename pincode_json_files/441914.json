@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Andhalgaon S.O",
+    "pincode": "441914",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.3608056",
+    "longitude": "79.6180556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Jamb B.O",
+    "pincode": "441914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.3927650",
+    "longitude": "79.5814140"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Kandri B.O",
+    "pincode": "441914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.3875350",
+    "longitude": "79.5448890"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Nagpur Moffusil Division",
+    "officename": "Salaikhurd B.O",
+    "pincode": "441914",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHANDARA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.3590090",
+    "longitude": "79.6305600"
+  }
+]

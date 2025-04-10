@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Kamarhati BO",
+    "pincode": "713421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "22.9800000",
+    "longitude": "87.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Barabainan BO",
+    "pincode": "713421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9900000",
+    "longitude": "87.9400000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Pasanda BO",
+    "pincode": "713421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.0200000",
+    "longitude": "87.9000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Tajpur BO",
+    "pincode": "713421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.0600000",
+    "longitude": "87.9300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Saknara BO",
+    "pincode": "713421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.0300000",
+    "longitude": "87.9000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Raina SO",
+    "pincode": "713421",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2888555",
+    "longitude": "87.6023722"
+  }
+]

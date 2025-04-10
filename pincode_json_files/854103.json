@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "SIRNEA BO",
+    "pincode": "854103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5375000",
+    "longitude": "87.5660000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "KUMARIPUR BO",
+    "pincode": "854103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5375000",
+    "longitude": "87.5660000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "MANSAHI BO",
+    "pincode": "854103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5375000",
+    "longitude": "87.5660000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "TINGACHIA BO",
+    "pincode": "854103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5375000",
+    "longitude": "87.5660000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Daharia Molls SO",
+    "pincode": "854103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5375000",
+    "longitude": "87.5660000"
+  }
+]

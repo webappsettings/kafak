@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Dosut BO",
+    "pincode": "805132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9579826",
+    "longitude": "85.7374603"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Samharigarh BO",
+    "pincode": "805132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9579826",
+    "longitude": "85.7374603"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Aruri BO",
+    "pincode": "805132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9579826",
+    "longitude": "85.7374603"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Baghibardiha BO",
+    "pincode": "805132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9579826",
+    "longitude": "85.7374603"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Dhewdha BO",
+    "pincode": "805132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9579826",
+    "longitude": "85.7374603"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Keshauri BO",
+    "pincode": "805132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9579826",
+    "longitude": "85.7374603"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Dumrawan SO",
+    "pincode": "805132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.9378058",
+    "longitude": "85.6441016"
+  }
+]

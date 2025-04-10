@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Airport SO",
+    "pincode": "452005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7277",
+    "longitude": "75.8044"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Bijasan Road S.O",
+    "pincode": "452005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7246944",
+    "longitude": "75.8239167"
+  }
+]

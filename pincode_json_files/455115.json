@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Jamgod B.O",
+    "pincode": "455115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9672530",
+    "longitude": "76.1725770"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Sadikheda B.O",
+    "pincode": "455115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0199450",
+    "longitude": "76.2739790"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Sanwanrsi B.O",
+    "pincode": "455115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "29.786642",
+    "longitude": "31.021893"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Anwalia Piplia B.O",
+    "pincode": "455115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9855000",
+    "longitude": "76.2196000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Churlai Badi B.O",
+    "pincode": "455115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9148490",
+    "longitude": "76.2232880"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Kokhriya B.O",
+    "pincode": "455115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0632830",
+    "longitude": "76.6614850"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Bhonrasa S.O",
+    "pincode": "455115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEWAS",
+    "statename": "MADHYA PRADESH",
+    "latitude": "27.0300000",
+    "longitude": "81.1000000"
+  }
+]

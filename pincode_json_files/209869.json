@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Ballapur BO",
+    "pincode": "209869",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6008260",
+    "longitude": "79.3880550"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Raghurampur BO",
+    "pincode": "209869",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9465800",
+    "longitude": "80.1780110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Vyoli Islamabad BO",
+    "pincode": "209869",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0087930",
+    "longitude": "80.1798110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Hariyapur BO",
+    "pincode": "209869",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9605460",
+    "longitude": "80.1804450"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Kalwari BO",
+    "pincode": "209869",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9651360",
+    "longitude": "80.1822370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Ganj Jalalabad BO",
+    "pincode": "209869",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARDOI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9727200",
+    "longitude": "80.2032100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Ganj Moradabad SO",
+    "pincode": "209869",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9577778",
+    "longitude": "80.1865000"
+  }
+]

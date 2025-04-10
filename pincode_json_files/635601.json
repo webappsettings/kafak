@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Tirupattur H.O",
+    "pincode": "635601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4921170",
+    "longitude": "78.5624250"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Tirupattur TNHB S.O",
+    "pincode": "635601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.4856150",
+    "longitude": "78.5566740"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Asiriyar Nagar S.O",
+    "pincode": "635601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5113970",
+    "longitude": "78.5673920"
+  }
+]

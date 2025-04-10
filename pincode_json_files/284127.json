@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Bhattagaon SO",
+    "pincode": "284127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4265000",
+    "longitude": "78.5998889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Bhagwantpura BO",
+    "pincode": "284127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4307400",
+    "longitude": "78.6242700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Simraha BO",
+    "pincode": "284127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHANSI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2432900",
+    "longitude": "78.5750800"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Gurgaon South City II SO",
+    "pincode": "122018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "28.4620000",
+    "longitude": "77.0316389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "D Block South City II Gurgaon",
+    "pincode": "122018",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURUGRAM",
+    "statename": "HARYANA",
+    "latitude": "0",
+    "longitude": "0"
+  }
+]

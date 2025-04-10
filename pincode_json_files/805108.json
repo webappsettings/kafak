@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Bali BO",
+    "pincode": "805108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "25.081328",
+    "longitude": "85.684559"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Bajitpur BO",
+    "pincode": "805108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "25.0940500",
+    "longitude": "85.6362310"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Parwati BO",
+    "pincode": "805108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "25.0940500",
+    "longitude": "85.6362310"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Apsai BO",
+    "pincode": "805108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "25.0940500",
+    "longitude": "85.6362310"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Rewra Mahrath BO",
+    "pincode": "805108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "25.103016",
+    "longitude": "85.680188"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Lalbigha SO",
+    "pincode": "805108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "25.0163000",
+    "longitude": "85.6342000"
+  }
+]

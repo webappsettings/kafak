@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Adasikupa B.O",
+    "pincode": "762112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1516150",
+    "longitude": "84.2959233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Petapanga B.O",
+    "pincode": "762112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1363050",
+    "longitude": "84.2834900"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Luhuringia B.O",
+    "pincode": "762112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1269800",
+    "longitude": "84.2907266"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Gardingia B.O",
+    "pincode": "762112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.2214650",
+    "longitude": "84.2798950"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Burbinaju B.O",
+    "pincode": "762112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1721200",
+    "longitude": "84.2790720"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Paburia S.O",
+    "pincode": "762112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1659083",
+    "longitude": "84.2557150"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Bemaura BO",
+    "pincode": "229201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2340000",
+    "longitude": "81.2400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Behta SO",
+    "pincode": "229201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1745556",
+    "longitude": "80.9002778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Hasnapur BO",
+    "pincode": "229201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3150000",
+    "longitude": "81.2440000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Pahuri BO",
+    "pincode": "229201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1300000",
+    "longitude": "81.3300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Rae Bareilly Division",
+    "officename": "Bijemau BO",
+    "pincode": "229201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAE BARELI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8100000",
+    "longitude": "82.0880000"
+  }
+]

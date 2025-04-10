@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Kamarpur BO",
+    "pincode": "802102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5332400",
+    "longitude": "83.9301150"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Buxar Jail SO",
+    "pincode": "802102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5730555",
+    "longitude": "83.8811111"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "MVCollege Buxar BO",
+    "pincode": "802102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5887370",
+    "longitude": "83.9633240"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Pulia BO",
+    "pincode": "802102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5396960",
+    "longitude": "83.9521870"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Karhshi BO",
+    "pincode": "802102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5002190",
+    "longitude": "83.9612900"
+  }
+]

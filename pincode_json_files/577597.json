@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Kabbala B.O",
+    "pincode": "577597",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.6647000",
+    "longitude": "76.3109000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Kerehosahally B.O",
+    "pincode": "577597",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7081260",
+    "longitude": "75.8446800"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Alaghatta B.O",
+    "pincode": "577597",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.6916270",
+    "longitude": "76.2702440"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Ballalasamudra B.O",
+    "pincode": "577597",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7043580",
+    "longitude": "76.2862870"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Thandaga B.O",
+    "pincode": "577597",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.6064160",
+    "longitude": "76.3540930"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Belagur S.O",
+    "pincode": "577597",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.2215833",
+    "longitude": "76.3974167"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Velakalnatham B.O",
+    "pincode": "635854",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5480140",
+    "longitude": "78.4687300"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Bandarapalli B.O",
+    "pincode": "635854",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5693320",
+    "longitude": "78.5066450"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Kothur B.O",
+    "pincode": "635854",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6136850",
+    "longitude": "78.4347190"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Mallapalli B.O",
+    "pincode": "635854",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5485180",
+    "longitude": "78.4686760"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Sorakayalnatham B.O",
+    "pincode": "635854",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6017230",
+    "longitude": "78.4786000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Tirupattur Division",
+    "officename": "Pachur S.O",
+    "pincode": "635854",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tirupathur",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5861020",
+    "longitude": "78.4628390"
+  }
+]

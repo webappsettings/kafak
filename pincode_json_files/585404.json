@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Bakchowdi B.O",
+    "pincode": "585404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Aliabad B.O",
+    "pincode": "585404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "17.6258",
+    "longitude": "78.5955"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Secundrapur B.O",
+    "pincode": "585404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Naubad SO",
+    "pincode": "585404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "17.9336",
+    "longitude": "77.4788"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Kaplapur (A) B.O",
+    "pincode": "585404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Andur B.O",
+    "pincode": "585404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Kolhar (K) B.O",
+    "pincode": "585404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Jharkheda B.O",
+    "pincode": "466661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3705120",
+    "longitude": "77.1815870"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Chhatri B.O",
+    "pincode": "466661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8330120",
+    "longitude": "87.5643040"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Paatan B.O",
+    "pincode": "466661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8493250",
+    "longitude": "72.1266260"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Doraha S.O (Sehore)",
+    "pincode": "466661",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4031340",
+    "longitude": "77.1607390"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Sehore Division",
+    "officename": "Khaikheda B.O",
+    "pincode": "466661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEHORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4568750",
+    "longitude": "77.1830240"
+  }
+]

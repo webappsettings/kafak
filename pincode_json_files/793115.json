@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Krang B.O",
+    "pincode": "793115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.32",
+    "longitude": "91.790000000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Sohiong S.O",
+    "pincode": "793115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.6513380",
+    "longitude": "91.2299320"
+  }
+]

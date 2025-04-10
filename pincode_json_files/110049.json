@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Gautam Nagar SO",
+    "pincode": "110049",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5617090",
+    "longitude": "77.2112240"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "New Delhi South ExtII SO",
+    "pincode": "110049",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5662090",
+    "longitude": "77.2179650"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Andrewsganj SO",
+    "pincode": "110049",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5640278",
+    "longitude": "77.2324167"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Gulmohar Park SO",
+    "pincode": "110049",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5578611",
+    "longitude": "77.2131944"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Sadiq Nagar SO",
+    "pincode": "110049",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5571944",
+    "longitude": "77.2226667"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Sahpurjat BO",
+    "pincode": "110049",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.550000000000001",
+    "longitude": "77.209999999999994"
+  }
+]

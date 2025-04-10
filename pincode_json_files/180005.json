@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Kotli Colony SO",
+    "pincode": "180005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7429444",
+    "longitude": "74.8504444"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Karan Nagar SO Jammu",
+    "pincode": "180005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7458730",
+    "longitude": "74.8697190"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Puran Nagar SO",
+    "pincode": "180005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7480720",
+    "longitude": "74.8607550"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Rehari Mohalla SO",
+    "pincode": "180005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7449880",
+    "longitude": "74.8506790"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Subash Nagar Jammu SO",
+    "pincode": "180005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7449710",
+    "longitude": "74.8455960"
+  }
+]

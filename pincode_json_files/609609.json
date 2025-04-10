@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Varichikudi B.O",
+    "pincode": "609609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9900000",
+    "longitude": "79.8200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Kottuchery S.O",
+    "pincode": "609609",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9600000",
+    "longitude": "79.8300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Tiruvettakudi B.O",
+    "pincode": "609609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9800000",
+    "longitude": "79.8400000"
+  }
+]

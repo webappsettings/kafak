@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Akabpur BO",
+    "pincode": "713515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3500000",
+    "longitude": "88.2700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Nadanghat SO",
+    "pincode": "713515",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2224000",
+    "longitude": "88.1518000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Dirghapara BO",
+    "pincode": "713515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3600000",
+    "longitude": "88.2200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Nowpara BO",
+    "pincode": "713515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.390000000000001",
+    "longitude": "88.260000000000005"
+  }
+]

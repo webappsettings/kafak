@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Hukanjuri B.O",
+    "pincode": "792129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRAP",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.113161699999999",
+    "longitude": "95.453205999999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Namsang B.O",
+    "pincode": "792129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRAP",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.106348700000002",
+    "longitude": "95.509846400000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "MILONPUR B.O",
+    "pincode": "792129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRAP",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.458130000000001",
+    "longitude": "96.471149999999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Narottam Nagar B.O",
+    "pincode": "792129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRAP",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.244228499999998",
+    "longitude": "95.494519600000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Soha B.O",
+    "pincode": "792129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRAP",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.214599799999998",
+    "longitude": "95.637538899999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Deomali S.O",
+    "pincode": "792129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRAP",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.1694260",
+    "longitude": "95.5692240"
+  }
+]

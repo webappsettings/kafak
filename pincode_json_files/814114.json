@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Deosang BT SO",
+    "pincode": "814114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Gurukul Vidyapith BO",
+    "pincode": "814114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.492550000000001",
+    "longitude": "86.694950000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Sakrigali BO",
+    "pincode": "814114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.483308999999998",
+    "longitude": "86.699990999999997"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Maladih BO",
+    "pincode": "814114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.483307",
+    "longitude": "86.699993000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Simra BO",
+    "pincode": "814114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.483305000000001",
+    "longitude": "86.699995000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Mathurapur BO",
+    "pincode": "814114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.340955999999998",
+    "longitude": "86.541319000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Sangrampur Lorhiya BO",
+    "pincode": "814114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.492550000000001",
+    "longitude": "86.694950000000006"
+  }
+]

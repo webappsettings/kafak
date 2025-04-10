@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Chatham S.O",
+    "pincode": "744102",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Haddo S.O",
+    "pincode": "744102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "11.6658333",
+    "longitude": "92.7411111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Radio Colony B.O",
+    "pincode": "744102",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Delanipur S.O",
+    "pincode": "744102",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH ANDAMANS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Marthalli B.O",
+    "pincode": "571320",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Kurahatti Hosur B.O",
+    "pincode": "571320",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Cowdalli S.O",
+    "pincode": "571320",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.1223333",
+    "longitude": "76.6800833"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Doddalathur B.O",
+    "pincode": "571320",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Ponnachi B.O",
+    "pincode": "571320",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Vadakhalla BO",
+    "pincode": "571320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMARAJANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.07644",
+    "longitude": "77.485254"
+  }
+]

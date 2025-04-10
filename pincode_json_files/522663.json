@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Domalagundam B.O",
+    "pincode": "522663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2961900",
+    "longitude": "79.5876820"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Mugachintalapalem B.O",
+    "pincode": "522663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.1589580",
+    "longitude": "79.6945770"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Ravulapuram B.O",
+    "pincode": "522663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2585240",
+    "longitude": "79.5819210"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Remidicherla B.O",
+    "pincode": "522663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2820720",
+    "longitude": "79.6507260"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Bandlamottu S.O",
+    "pincode": "522663",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.8783056",
+    "longitude": "80.0856111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Gandiganumala B.O",
+    "pincode": "522663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2957580",
+    "longitude": "79.5725050"
+  }
+]

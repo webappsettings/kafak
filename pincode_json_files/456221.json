@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Paslod B.O",
+    "pincode": "456221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2913840",
+    "longitude": "75.5102000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Unhel S.O",
+    "pincode": "456221",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3300000",
+    "longitude": "75.5600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Chhitar Devi",
+    "pincode": "456221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.353283999999999",
+    "longitude": "75.642279000000002"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Barkheda Madan B.O",
+    "pincode": "456221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4248560",
+    "longitude": "75.5684250"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Bedavan B.O",
+    "pincode": "456221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3441360",
+    "longitude": "75.5589310"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Alot Jagir B.O",
+    "pincode": "456221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3943040",
+    "longitude": "75.6149890"
+  }
+]

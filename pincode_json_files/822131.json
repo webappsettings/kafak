@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Halka BO",
+    "pincode": "822131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "23.6512400",
+    "longitude": "85.2895100"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Kurhat Kataiya BO",
+    "pincode": "822131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "23.6512400",
+    "longitude": "85.2895100"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Kulahia",
+    "pincode": "822131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.542200000000001",
+    "longitude": "84.279229999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Harihar Ganj SO Palamau",
+    "pincode": "822131",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.037555600000001",
+    "longitude": "84.063555600000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Semarwar",
+    "pincode": "822131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.037555600000001",
+    "longitude": "84.063555600000001"
+  }
+]

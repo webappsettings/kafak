@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Jotsoma B.O",
+    "pincode": "797002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.673091599999999",
+    "longitude": "94.064053299999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kohima Science College S.O",
+    "pincode": "797002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.6707778",
+    "longitude": "94.1075833"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Poilwa B.O",
+    "pincode": "797002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.5809499",
+    "longitude": "93.9083866"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Mezoma B.O",
+    "pincode": "797002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.675661600000002",
+    "longitude": "94.019181599999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Khonoma B.O",
+    "pincode": "797002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.651758300000001",
+    "longitude": "94.022143299999996"
+  }
+]

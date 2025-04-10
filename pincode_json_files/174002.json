@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Bassi Kehloor SO",
+    "pincode": "174002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3136",
+    "longitude": "76.5068"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Majri BO",
+    "pincode": "174002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "30.9613000",
+    "longitude": "76.8607000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Lehri BO",
+    "pincode": "174002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.3685000",
+    "longitude": "76.4476000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hamirpur Division",
+    "officename": "Kaulan Wala Toba BO",
+    "pincode": "174002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BILASPUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "76.4476",
+    "longitude": "76.4476"
+  }
+]

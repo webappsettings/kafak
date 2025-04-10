@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Ungar B.O",
+    "pincode": "798614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.4883366",
+    "longitude": "94.660473300000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Phangsang B.O",
+    "pincode": "798614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.4288433",
+    "longitude": "94.660624999999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Mongsenyimti B.O",
+    "pincode": "798614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.428744999999999",
+    "longitude": "94.6160833"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Yisemyong B.O",
+    "pincode": "798614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.395665000000001",
+    "longitude": "94.5958866"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Longkong B.O",
+    "pincode": "798614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.390023299999999",
+    "longitude": "94.616741599999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Chuchuyimlang S.O",
+    "pincode": "798614",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.3220740",
+    "longitude": "94.5144800"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Salulamang B.O",
+    "pincode": "798614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.463114999999998",
+    "longitude": "94.683369999999996"
+  }
+]

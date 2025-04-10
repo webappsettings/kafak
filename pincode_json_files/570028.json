@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Vajamangala B.O",
+    "pincode": "570028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Alanahalli S.O",
+    "pincode": "570028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.29936111",
+    "longitude": "76.70113889"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Harohalli B.O",
+    "pincode": "570028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Lalithadripura B.O",
+    "pincode": "570028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

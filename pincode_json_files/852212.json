@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Chainpur BO",
+    "pincode": "852212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.8834960",
+    "longitude": "86.8834960"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Parri BO",
+    "pincode": "852212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.9286900",
+    "longitude": "86.6006250"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Bariahi BO",
+    "pincode": "852212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.8834960",
+    "longitude": "86.6006250"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Bangaon SO Saharsa",
+    "pincode": "852212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.8840833",
+    "longitude": "86.5923611"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Rahuamani BO",
+    "pincode": "852212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARSA",
+    "statename": "BIHAR",
+    "latitude": "25.9286900",
+    "longitude": "86.6006250"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Maheshpur BO",
+    "pincode": "841508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524899999999999",
+    "longitude": "84.440305600000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Sahdi Giri BO",
+    "pincode": "841508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524899999999999",
+    "longitude": "84.440305600000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Bijaipur SO Gopalganj",
+    "pincode": "841508",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.4676667",
+    "longitude": "84.4403056"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Bairiya BO",
+    "pincode": "841508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524899999999999",
+    "longitude": "84.440305600000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "BDMahuwan BO",
+    "pincode": "841508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524899999999999",
+    "longitude": "84.440305600000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Bharpurwa BO",
+    "pincode": "841508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524899999999999",
+    "longitude": "84.440305600000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Jagdishpur BO",
+    "pincode": "841508",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.524899999999999",
+    "longitude": "84.440305600000002"
+  }
+]

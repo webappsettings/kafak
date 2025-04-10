@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Vriddhachalam Cutchery S.O",
+    "pincode": "606001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5155556",
+    "longitude": "79.3276389"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Vriddhachalam H.O",
+    "pincode": "606001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5251111",
+    "longitude": "79.3225833"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Vriddhachalam Bazaar S.O",
+    "pincode": "606001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.5146389",
+    "longitude": "79.3223611"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Bar Kochara B.O",
+    "pincode": "305922",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9230000",
+    "longitude": "74.2120000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Dewata B.O",
+    "pincode": "305922",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9237500",
+    "longitude": "74.2128100"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Dunger Khera B.O",
+    "pincode": "305922",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9200000",
+    "longitude": "74.2100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Saroth B.O",
+    "pincode": "305922",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9230000",
+    "longitude": "74.2120000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Biliyawas B.O",
+    "pincode": "305922",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9200000",
+    "longitude": "74.2100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Anakar B.O",
+    "pincode": "305922",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9237000",
+    "longitude": "74.2128000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Beawar Division",
+    "officename": "Jawaja S.O",
+    "pincode": "305922",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9408056",
+    "longitude": "74.2060556"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Patan Three Gate SO",
+    "pincode": "384265",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8378000",
+    "longitude": "72.1415520"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Patan HO",
+    "pincode": "384265",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.852903",
+    "longitude": "72.128809"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Patan City SO",
+    "pincode": "384265",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8509444",
+    "longitude": "72.1212222"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Patan Rajkawada SO",
+    "pincode": "384265",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8378000",
+    "longitude": "72.1415520"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Patan Division",
+    "officename": "Patan H N G University SO",
+    "pincode": "384265",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATAN",
+    "statename": "GUJARAT",
+    "latitude": "23.8700000",
+    "longitude": "72.1300000"
+  }
+]

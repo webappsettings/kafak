@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Sofatpur BO",
+    "pincode": "246732",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6947140",
+    "longitude": "82.9098130"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Jalpur BO",
+    "pincode": "246732",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6632740",
+    "longitude": "78.2269660"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Rajpur Nawada BO",
+    "pincode": "246732",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6251040",
+    "longitude": "78.2312380"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Nagal SO Bijnor",
+    "pincode": "246732",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3735278",
+    "longitude": "78.1348056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Sabalpur Bitra BO",
+    "pincode": "246732",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6012780",
+    "longitude": "78.1885050"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Gadiali B.O",
+    "pincode": "756137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.9421483",
+    "longitude": "86.5111950"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Kasimpur B.O",
+    "pincode": "756137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.9273466",
+    "longitude": "86.5636266"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Korua B.O",
+    "pincode": "756137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.9597550",
+    "longitude": "86.5038633"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Fatepur B.O",
+    "pincode": "756137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.9295216",
+    "longitude": "86.5380466"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Govindapur B.O",
+    "pincode": "756137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.9539800",
+    "longitude": "86.5002833"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Asurali S.O",
+    "pincode": "756137",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.93568",
+    "longitude": "86.7976"
+  }
+]

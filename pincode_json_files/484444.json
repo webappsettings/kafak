@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Jamuna Colliery S.O",
+    "pincode": "484444",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1605000",
+    "longitude": "81.9404722"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Latar B.O",
+    "pincode": "484444",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1600000",
+    "longitude": "81.9100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Harad B.O",
+    "pincode": "484444",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1300000",
+    "longitude": "81.9100000"
+  }
+]

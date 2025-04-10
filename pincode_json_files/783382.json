@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Barjana B.O",
+    "pincode": "783382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Malegarh B.O",
+    "pincode": "783382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Jogighopa S.O",
+    "pincode": "783382",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.1354000",
+    "longitude": "90.3413000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Pachania B.O",
+    "pincode": "783382",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

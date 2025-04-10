@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Chhirwa B.O",
+    "pincode": "451114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHARGONE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.9737000",
+    "longitude": "75.9277000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "SELDA S.O",
+    "pincode": "451114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHARGONE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0678",
+    "longitude": "75.8561"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Rodia B.O",
+    "pincode": "451114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHARGONE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.9999000",
+    "longitude": "75.9172000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Ahirkheda B.O",
+    "pincode": "451114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHARGONE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.9765000",
+    "longitude": "75.8596000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Khedi Bujurg B.O",
+    "pincode": "451114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHARGONE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1160000",
+    "longitude": "75.1464000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Anjangaon B.O",
+    "pincode": "451114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHARGONE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.9726000",
+    "longitude": "75.9724000"
+  }
+]

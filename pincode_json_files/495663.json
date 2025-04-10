@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Amora BO",
+    "pincode": "495663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9745030",
+    "longitude": "82.3621300"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Konar BO",
+    "pincode": "495663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9218120",
+    "longitude": "82.3180570"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Gopal Nagar SO Chattisgarh Circle",
+    "pincode": "495663",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9673050",
+    "longitude": "82.3464350"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Kosa BO",
+    "pincode": "495663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.8991310",
+    "longitude": "82.3397640"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Mulmula BO",
+    "pincode": "495663",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9279610",
+    "longitude": "82.3546830"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Barkuhi B.O",
+    "pincode": "480447",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1865600",
+    "longitude": "78.7051030"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Chandametta S.O",
+    "pincode": "480447",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0139700",
+    "longitude": "78.6686200"
+  }
+]

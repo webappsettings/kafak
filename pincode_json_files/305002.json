@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Sendaria B.O",
+    "pincode": "305002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4274405",
+    "longitude": "74.6826232"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Adarsh Nagar (Ajmer) S.O",
+    "pincode": "305002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0841667",
+    "longitude": "74.6505556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Ie Makhu Pura Ajmer S.O",
+    "pincode": "305002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4016667",
+    "longitude": "74.6508333"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Ajmer Division",
+    "officename": "Makhupura B.O",
+    "pincode": "305002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AJMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3960000",
+    "longitude": "74.6658000"
+  }
+]

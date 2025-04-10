@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Sainik School Kapurthala SO",
+    "pincode": "144601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.3834500",
+    "longitude": "75.3270500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "DISTRICT COURT COMPLEX KAPURTHALA",
+    "pincode": "144601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.38474",
+    "longitude": "75.418102"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Kapurthala HO",
+    "pincode": "144601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.3721893",
+    "longitude": "75.3777881"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "KAPURTHALA TOWN SO",
+    "pincode": "144601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.3749350",
+    "longitude": "75.3842010"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Kapurthala Division",
+    "officename": "Kanjli Road Kapurthala SO",
+    "pincode": "144601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAPURTHALA",
+    "statename": "PUNJAB",
+    "latitude": "31.23308688",
+    "longitude": "75.23263508"
+  }
+]

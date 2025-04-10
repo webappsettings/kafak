@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Dhaneria B.O",
+    "pincode": "313206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJSAMAND",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8900000",
+    "longitude": "74.1000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Khartana B.O",
+    "pincode": "313206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8600000",
+    "longitude": "73.9900000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Jewana B.O",
+    "pincode": "313206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8900000",
+    "longitude": "74.0200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Morath B.O",
+    "pincode": "313206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8500000",
+    "longitude": "74.0800000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Sanwar S.O (Udaipur)",
+    "pincode": "313206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.0725000",
+    "longitude": "73.6888889"
+  }
+]

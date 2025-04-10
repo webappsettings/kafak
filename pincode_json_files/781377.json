@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Thamna S.O (Nalbari)",
+    "pincode": "781377",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Garamdew B.O",
+    "pincode": "781377",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Athiabari B.O",
+    "pincode": "781377",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Lafakuchi B.O",
+    "pincode": "781377",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Rampur B.O",
+    "pincode": "781377",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Charaimari B.O",
+    "pincode": "781377",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  }
+]

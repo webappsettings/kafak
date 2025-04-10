@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Laxminagar B.O",
+    "pincode": "502125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.0237",
+    "longitude": "78.0949"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Yellapur B.O",
+    "pincode": "502125",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.028924",
+    "longitude": "78.197434"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Podichanpally S.O",
+    "pincode": "502125",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.054280",
+    "longitude": "78.191672"
+  }
+]

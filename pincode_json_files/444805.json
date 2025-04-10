@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Paratwada H.O",
+    "pincode": "444805",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.303488932135824",
+    "longitude": "77.51486860225016"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Amaravati Division",
+    "officename": "Chhota Bazar S.O",
+    "pincode": "444805",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AMRAVATI",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.2980833",
+    "longitude": "77.5161389"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Binta BO",
+    "pincode": "263621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7761423",
+    "longitude": "79.4937476"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Naulakote BO",
+    "pincode": "263621",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6433705",
+    "longitude": "79.4321735"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Bagwalipokhar SO",
+    "pincode": "263621",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALMORA",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7443000",
+    "longitude": "79.4652000"
+  }
+]

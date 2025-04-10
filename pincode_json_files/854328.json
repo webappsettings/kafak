@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Jogbani SO",
+    "pincode": "854328",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.3641100",
+    "longitude": "87.2767540"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Maheshwari BO",
+    "pincode": "854328",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "25.7771390",
+    "longitude": "87.4752550"
+  }
+]

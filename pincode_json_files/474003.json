@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "GWALIOR CITY SO",
+    "pincode": "474003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2322760",
+    "longitude": "78.1726920"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Hazira Chowk S.O",
+    "pincode": "474003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  }
+]

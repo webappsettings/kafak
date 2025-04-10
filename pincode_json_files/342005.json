@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Saraswati Nagar NDTSO Jodhpur S.O",
+    "pincode": "342005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2284545",
+    "longitude": "73.0449461"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur KUM Bhagat Ki Kothi SO",
+    "pincode": "342005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2326111",
+    "longitude": "73.0149167"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Marudhar Ind  Area SO",
+    "pincode": "342005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2250000",
+    "longitude": "73.0045556"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Byluvaddigere B.O",
+    "pincode": "583223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2433899",
+    "longitude": "76.5258949"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kakubal B.O",
+    "pincode": "583223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2199360",
+    "longitude": "76.5285802"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kariganur B.O",
+    "pincode": "583223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2551373",
+    "longitude": "76.4253152"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Papinayakanahalli S.O",
+    "pincode": "583223",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2397222",
+    "longitude": "76.4900278"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Dharmasagara B.O",
+    "pincode": "583223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2337554",
+    "longitude": "76.5619223"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Gadiganur B.O",
+    "pincode": "583223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2228335",
+    "longitude": "76.5959542"
+  }
+]

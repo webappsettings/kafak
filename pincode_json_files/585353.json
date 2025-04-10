@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Dhumansur B.O",
+    "pincode": "585353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Gadwanti B.O",
+    "pincode": "585353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Kankatta B.O",
+    "pincode": "585353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Maniknagar S.O",
+    "pincode": "585353",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "17.78369444",
+    "longitude": "77.11138889"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Hunsgera B.O",
+    "pincode": "585353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Sedol B.O",
+    "pincode": "585353",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

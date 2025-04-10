@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Dorsa BO",
+    "pincode": "283206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6523250",
+    "longitude": "79.3545550"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Kotla SO Firozabad",
+    "pincode": "283206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1536389",
+    "longitude": "78.3795833"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Bartara BO",
+    "pincode": "283206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5362550",
+    "longitude": "79.6826340"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Jatau BO",
+    "pincode": "283206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5648950",
+    "longitude": "79.5685410"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Okhra BO",
+    "pincode": "283206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5698410",
+    "longitude": "79.6255880"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Narkhi BO",
+    "pincode": "283206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3568890",
+    "longitude": "79.6542640"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Mainpuri Division",
+    "officename": "Gangni BO",
+    "pincode": "283206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5698950",
+    "longitude": "79.3256640"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Champabati Bazar B.O",
+    "pincode": "783373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.2575060",
+    "longitude": "92.5290780"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Duttapur B.O",
+    "pincode": "783373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.2575060",
+    "longitude": "92.5290780"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Mozabari B.O",
+    "pincode": "783373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5217760",
+    "longitude": "90.3904520"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Karigaon B.O",
+    "pincode": "783373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOKRAJHAR",
+    "statename": "ASSAM",
+    "latitude": "26.5561570",
+    "longitude": "90.3407170"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Sidli S.O",
+    "pincode": "783373",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.3011000",
+    "longitude": "90.3220000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Garubhasa B.O",
+    "pincode": "783373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5538450",
+    "longitude": "90.6914170"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kashikotra B.O",
+    "pincode": "783373",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5359720",
+    "longitude": "90.4425720"
+  }
+]

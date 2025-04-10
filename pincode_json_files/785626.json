@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Barting Naochalia B.O",
+    "pincode": "785626",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.508900000000001",
+    "longitude": "93.969499999999996"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Hatiekhowa B.O",
+    "pincode": "785626",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.508900000000001",
+    "longitude": "93.969499999999996"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Namkhatoal B.O",
+    "pincode": "785626",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.508900000000001",
+    "longitude": "93.969499999999996"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Hukurakhat B.O",
+    "pincode": "785626",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.508900000000001",
+    "longitude": "93.969499999999996"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Maheema S.O",
+    "pincode": "785626",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.5089000",
+    "longitude": "93.9695000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Chapra Road SO",
+    "pincode": "841226",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "25.7904000",
+    "longitude": "84.7007000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Siwan Chowk Bazar SO",
+    "pincode": "841226",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.2267778",
+    "longitude": "84.3617500"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Mahodipur BO",
+    "pincode": "841226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.219909999999999",
+    "longitude": "84.358069999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Siwan HO",
+    "pincode": "841226",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SIWAN",
+    "statename": "BIHAR",
+    "latitude": "26.2269722",
+    "longitude": "84.3564167"
+  }
+]

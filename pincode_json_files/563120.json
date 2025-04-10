@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Doddachinnahalli B.O",
+    "pincode": "563120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9596769",
+    "longitude": "78.228595400000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Doddavalagamdi B.O",
+    "pincode": "563120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9440665",
+    "longitude": "78.218756999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Oorgaum S.O",
+    "pincode": "563120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9565",
+    "longitude": "78.237666700000005"
+  }
+]

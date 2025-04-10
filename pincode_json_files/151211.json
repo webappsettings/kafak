@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Ghumiara BO",
+    "pincode": "151211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.060956999999998",
+    "longitude": "74.612823000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Middu Khera BO",
+    "pincode": "151211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.142119999999998",
+    "longitude": "75.189809999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Lohara BO",
+    "pincode": "151211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.060955",
+    "longitude": "74.612825000000001"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Bring Khera BO",
+    "pincode": "151211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.142119999999998",
+    "longitude": "75.189809999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Mandi Killianwali SO",
+    "pincode": "151211",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "29.976171000000001",
+    "longitude": "74.696175999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Haku Wala BO",
+    "pincode": "151211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.142119999999998",
+    "longitude": "75.189809999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Killianwali BO",
+    "pincode": "151211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.060960000000001",
+    "longitude": "74.612819999999999"
+  }
+]

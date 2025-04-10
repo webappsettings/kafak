@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Dhamoul B.O",
+    "pincode": "804423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "22.544599999999999",
+    "longitude": "88.596599999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Nagla Kinger S.O",
+    "pincode": "804423",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "27.13719",
+    "longitude": "78.01706"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Kodmarai B.O",
+    "pincode": "804423",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "22.544599999999999",
+    "longitude": "88.596599999999995"
+  }
+]

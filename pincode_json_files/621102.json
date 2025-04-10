@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Viswagudi B.O",
+    "pincode": "621102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3300000",
+    "longitude": "78.7800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Arasalur B.O",
+    "pincode": "621102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3100000",
+    "longitude": "78.7800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Annamangalam S.O",
+    "pincode": "621102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3300000",
+    "longitude": "78.8000000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Balaghat Division",
+    "officename": "Piparwani B.O",
+    "pincode": "480881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEONI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Balaghat Division",
+    "officename": "Turia B.O",
+    "pincode": "480881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEONI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Balaghat Division",
+    "officename": "Riddi B.O",
+    "pincode": "480881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEONI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Balaghat Division",
+    "officename": "Khandasa B.O",
+    "pincode": "480881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEONI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Balaghat Division",
+    "officename": "Pindrai B.O",
+    "pincode": "480881",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SEONI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Balaghat Division",
+    "officename": "Khawasa S.O (Seoni)",
+    "pincode": "480881",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SEONI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0984167",
+    "longitude": "79.5494444"
+  }
+]

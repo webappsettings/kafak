@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Cinakon Chariali B.O",
+    "pincode": "785615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7172000",
+    "longitude": "93.7111000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Karuabahi Satra B.O",
+    "pincode": "785615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7172000",
+    "longitude": "93.7111000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Numaligarh S.O",
+    "pincode": "785615",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7172000",
+    "longitude": "93.7111000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Kuruabahi Tiniali B.O",
+    "pincode": "785615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7172000",
+    "longitude": "93.7111000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dhodang B.O",
+    "pincode": "785615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7172000",
+    "longitude": "93.7111000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Behora B.O",
+    "pincode": "785615",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7172000",
+    "longitude": "93.7111000"
+  }
+]

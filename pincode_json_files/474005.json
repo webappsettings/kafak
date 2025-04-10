@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Gwalior Residency S.O",
+    "pincode": "474005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Jamahar B.O",
+    "pincode": "474005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2801360",
+    "longitude": "78.1731880"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Dharamshala (D.D. Nagar) S.O",
+    "pincode": "474005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Baraua B.O",
+    "pincode": "474005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.3141050",
+    "longitude": "78.1315000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Susera B.O",
+    "pincode": "474005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.3239450",
+    "longitude": "78.1535930"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Gwalior Residency Nodal Delivery Center",
+    "pincode": "474005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "26.234382",
+    "longitude": "78.208398"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Bhadroli B.O",
+    "pincode": "474005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2566270",
+    "longitude": "78.2625650"
+  }
+]

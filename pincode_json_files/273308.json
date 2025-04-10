@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Nipania BO",
+    "pincode": "273308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4703530",
+    "longitude": "83.4641080"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Sonauli S.O",
+    "pincode": "273308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.471295",
+    "longitude": "83.465689"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Zara BO",
+    "pincode": "273308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4771460",
+    "longitude": "83.4595440"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Bhagwanpur Bazar BO",
+    "pincode": "273308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4712950",
+    "longitude": "83.4656890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Ratanpur BO",
+    "pincode": "273308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4771850",
+    "longitude": "83.4693710"
+  }
+]

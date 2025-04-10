@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Sahdeokhap BO",
+    "pincode": "824234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.6867467",
+    "longitude": "84.9438365"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Magadh University SO",
+    "pincode": "824234",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.6853889",
+    "longitude": "84.9643889"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Zindapur BO",
+    "pincode": "824234",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.6867467",
+    "longitude": "84.9438365"
+  }
+]

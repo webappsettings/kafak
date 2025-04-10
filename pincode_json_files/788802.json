@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Sialtek B.O",
+    "pincode": "788802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8600000",
+    "longitude": "92.5900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Fulbari B.O",
+    "pincode": "788802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CACHAR",
+    "statename": "ASSAM",
+    "latitude": "24.8609900",
+    "longitude": "92.5966000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Panchgram S.O",
+    "pincode": "788802",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.8600000",
+    "longitude": "92.5900000"
+  }
+]

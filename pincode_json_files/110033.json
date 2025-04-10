@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "NSMandi SO",
+    "pincode": "110033",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7126944",
+    "longitude": "77.1733333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Bhalaswa BO",
+    "pincode": "110033",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.72775",
+    "longitude": "77.163611099999997"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Jahangir Puri A Block SO",
+    "pincode": "110033",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7277500",
+    "longitude": "77.1636111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Jahangir Puri D Block SO",
+    "pincode": "110033",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7305000",
+    "longitude": "77.1754722"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Adrash Nagar SO",
+    "pincode": "110033",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7164722",
+    "longitude": "77.1750000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Jahangir Puri H Block SO",
+    "pincode": "110033",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7271389",
+    "longitude": "77.1749722"
+  }
+]

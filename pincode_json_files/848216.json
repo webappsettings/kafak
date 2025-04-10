@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Jhakhar BO",
+    "pincode": "848216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Bihrha SO",
+    "pincode": "848216",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8629680",
+    "longitude": "85.7810260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Haripur BO",
+    "pincode": "848216",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  }
+]

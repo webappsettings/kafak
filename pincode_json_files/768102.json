@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kadobahal B.O",
+    "pincode": "768102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3080733",
+    "longitude": "83.8412983"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Larambha S.O",
+    "pincode": "768102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3457778",
+    "longitude": "83.8289167"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "DALAB B.O",
+    "pincode": "768102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Tampersara B.O",
+    "pincode": "768102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3338616",
+    "longitude": "83.8605233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Deshbhatli B.O",
+    "pincode": "768102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.2283950",
+    "longitude": "83.8883700"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kultatukura B.O",
+    "pincode": "768102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.2999550",
+    "longitude": "83.8663883"
+  }
+]

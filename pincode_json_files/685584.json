@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Thodupuzha West SO",
+    "pincode": "685584",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.89644",
+    "longitude": "76.70615"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Idukki Division",
+    "officename": "Thodupuzha HO",
+    "pincode": "685584",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "IDUKKI",
+    "statename": "KERALA",
+    "latitude": "9.8974167",
+    "longitude": "76.7154444"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Tenduwa BO",
+    "pincode": "492099",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Tatibandh SO",
+    "pincode": "492099",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2595556",
+    "longitude": "81.5774444"
+  }
+]

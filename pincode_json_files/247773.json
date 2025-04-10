@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Gogwan BO",
+    "pincode": "247773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3747020",
+    "longitude": "77.2253250"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Pawati Kalan BO",
+    "pincode": "247773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4895540",
+    "longitude": "77.2045780"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Jhinjhana SO",
+    "pincode": "247773",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4730710",
+    "longitude": "77.7077420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Purmafi BO",
+    "pincode": "247773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5434430",
+    "longitude": "77.2707320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Tana BO",
+    "pincode": "247773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5275560",
+    "longitude": "77.2736960"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Udpur BO",
+    "pincode": "247773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6075270",
+    "longitude": "77.1236240"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Kairtoo BO",
+    "pincode": "247773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5686610",
+    "longitude": "77.1540860"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Ashoknagar SO Vellore",
+    "pincode": "631001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0904670",
+    "longitude": "79.6540600"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Arakkonam HO",
+    "pincode": "631001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0806389",
+    "longitude": "79.6988333"
+  }
+]

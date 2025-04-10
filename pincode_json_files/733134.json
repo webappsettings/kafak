@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Industrial Market SO",
+    "pincode": "733134",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "25.6200000",
+    "longitude": "88.1200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Raiganj Bandar SO",
+    "pincode": "733134",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.2302553",
+    "longitude": "88.7714195"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Raiganj Town SO",
+    "pincode": "733134",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.6835231",
+    "longitude": "89.4605260"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Mohanbati SO",
+    "pincode": "733134",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7200000",
+    "longitude": "88.0700000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Sudarshanpur SO",
+    "pincode": "733134",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3258210",
+    "longitude": "89.4605260"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Raiganj H.O",
+    "pincode": "733134",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "25.6000000",
+    "longitude": "88.1200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Uttar Dinajpur Division",
+    "officename": "Rashbehari Market SO",
+    "pincode": "733134",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINAJPUR UTTAR",
+    "statename": "WEST BENGAL",
+    "latitude": "26.3258211",
+    "longitude": "89.4605260"
+  }
+]

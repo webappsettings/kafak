@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Kathalia S.O",
+    "pincode": "799132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "23.3825",
+    "longitude": "91.3517"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Jatrapur B.O",
+    "pincode": "799132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Kalikrishnagar B.O",
+    "pincode": "799132",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Manaipathar B.O",
+    "pincode": "799132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Nirvoypur B.O",
+    "pincode": "799132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Bhabanipur B.O",
+    "pincode": "799132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Maheshpur B.O",
+    "pincode": "799132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sepahijala",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

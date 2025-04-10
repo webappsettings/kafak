@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "D H Suthoon S.O",
+    "pincode": "506011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.005474",
+    "longitude": "79.573321"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Reddicolony S.O",
+    "pincode": "506011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "18.0113056",
+    "longitude": "79.5713333"
+  }
+]

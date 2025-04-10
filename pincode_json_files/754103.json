@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Svm College S.O",
+    "pincode": "754103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Jagatsinghpur H.O",
+    "pincode": "754103",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.2528611",
+    "longitude": "86.1771944"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Kachumari B.O",
+    "pincode": "785670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Moranhat S.O",
+    "pincode": "785670",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bishrampur B.O",
+    "pincode": "785670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Photikachowa B.O",
+    "pincode": "785670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Rangoli B.O",
+    "pincode": "785670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dichow Botua B.O",
+    "pincode": "785670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Batomora B.O",
+    "pincode": "785670",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARAIDEO",
+    "statename": "ASSAM",
+    "latitude": "27.1520000",
+    "longitude": "94.8809722"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Millerganj SO",
+    "pincode": "141003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.893333299999998",
+    "longitude": "75.866972200000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Shimlapuri SO",
+    "pincode": "141003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8656777",
+    "longitude": "75.8640500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Janta Nagar SO",
+    "pincode": "141003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8808333",
+    "longitude": "75.8594722"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "AP Basti SO",
+    "pincode": "141003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8946667",
+    "longitude": "75.8503611"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Labour Colony SO Ludhiana",
+    "pincode": "141003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8900000",
+    "longitude": "75.8600000"
+  }
+]

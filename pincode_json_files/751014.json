@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Bhubaneswar Court S.O",
+    "pincode": "751014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2535556",
+    "longitude": "85.8400556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "B J B Nagar S.O",
+    "pincode": "751014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2522778",
+    "longitude": "85.8414722"
+  }
+]

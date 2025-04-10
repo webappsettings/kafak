@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Kirtantali B.O",
+    "pincode": "799279",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Gournagar SO",
+    "pincode": "799279",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.1598056"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Goldharpur B.O",
+    "pincode": "799279",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Chantail B.O",
+    "pincode": "799279",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Deora Cherra B.O",
+    "pincode": "799279",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Zarultali B.O",
+    "pincode": "799279",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Paiturbazar S.O",
+    "pincode": "799279",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.1598056"
+  }
+]

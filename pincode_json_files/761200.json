@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Parlakhemundi H.O",
+    "pincode": "761200",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.779149",
+    "longitude": "84.082815"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Jangam Street",
+    "pincode": "761200",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Hospital Road S.O Gajapati",
+    "pincode": "761200",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Chitrakar Street S.O",
+    "pincode": "761200",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Paralakhemundi Bus Stand S.O",
+    "pincode": "761200",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.7774511",
+    "longitude": "84.0936900"
+  }
+]

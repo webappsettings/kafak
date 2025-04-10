@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Bangalanagar S.O",
+    "pincode": "334004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0280556",
+    "longitude": "73.2925000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Bikaner Division",
+    "officename": "Rcp Colony S.O",
+    "pincode": "334004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BIKANER",
+    "statename": "RAJASTHAN",
+    "latitude": "28.0229000",
+    "longitude": "73.3119000"
+  }
+]

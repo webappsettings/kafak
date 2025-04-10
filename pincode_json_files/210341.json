@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Bidokhar BO",
+    "pincode": "210341",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5216540",
+    "longitude": "80.5416320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Deogaon BO",
+    "pincode": "210341",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7777360",
+    "longitude": "80.1220170"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Mawaijar BO",
+    "pincode": "210341",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8248500",
+    "longitude": "80.0247110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Patanpur BO",
+    "pincode": "210341",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5826320",
+    "longitude": "79.8524510"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Barwa BO",
+    "pincode": "210341",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6502031",
+    "longitude": "79.2350010"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Patyara BO",
+    "pincode": "210341",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8529720",
+    "longitude": "80.1185540"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Ingohta SO",
+    "pincode": "210341",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7570833",
+    "longitude": "80.1092778"
+  }
+]

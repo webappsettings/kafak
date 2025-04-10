@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Goaltore SO",
+    "pincode": "721128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7057778",
+    "longitude": "87.1686944"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Debagram BO",
+    "pincode": "721128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7097000",
+    "longitude": "87.1710000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Pingboni BO",
+    "pincode": "721128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7097000",
+    "longitude": "87.1710000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Ramgarh SO West MidnapoBO",
+    "pincode": "721128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7097000",
+    "longitude": "87.1710000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Andharia Bandri Sole BO",
+    "pincode": "721128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7097000",
+    "longitude": "87.1710000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Bulanpur BO",
+    "pincode": "721128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDINIPUR WEST",
+    "statename": "WEST BENGAL",
+    "latitude": "22.7097000",
+    "longitude": "87.1710000"
+  }
+]

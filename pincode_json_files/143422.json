@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Goindwal SO",
+    "pincode": "143422",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3700000",
+    "longitude": "75.1400000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Jhandher M Purkhan BO",
+    "pincode": "143422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3400000",
+    "longitude": "75.1200000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Dhunda BO",
+    "pincode": "143422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3400000",
+    "longitude": "75.1300000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Manak Dheke BO",
+    "pincode": "143422",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.3400000",
+    "longitude": "75.1000000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Goli BO",
+    "pincode": "176306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5795100",
+    "longitude": "75.9884100"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Dradha BO",
+    "pincode": "176306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5714600",
+    "longitude": "75.9817100"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "BATHRI BAZAR SO",
+    "pincode": "176306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5737100",
+    "longitude": "75.9796400"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamba Division",
+    "officename": "Sherpur BO",
+    "pincode": "176306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMBA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.5854200",
+    "longitude": "75.9550300"
+  }
+]

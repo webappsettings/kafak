@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Tentuligaon",
+    "pincode": "752113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.0620000",
+    "longitude": "86.0810000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Brahmakundi",
+    "pincode": "752113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.0622072",
+    "longitude": "86.0817508"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Chhanijanga",
+    "pincode": "752113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.0622070",
+    "longitude": "86.0817500"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Bhodar",
+    "pincode": "752113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.0622070",
+    "longitude": "86.0817500"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Tulasipur",
+    "pincode": "752113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "20.0622000",
+    "longitude": "86.0817500"
+  }
+]

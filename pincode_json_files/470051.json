@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Chitora B.O",
+    "pincode": "470051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7254270",
+    "longitude": "78.8091060"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Katangi B.O",
+    "pincode": "470051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6398180",
+    "longitude": "78.6675300"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Baxwaha B.O",
+    "pincode": "470051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5911390",
+    "longitude": "78.6739120"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Khurai Thawari B.O",
+    "pincode": "470051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6447950",
+    "longitude": "78.7292290"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Samnapur B.O",
+    "pincode": "470051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6966420",
+    "longitude": "78.8326020"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Bilahra Raja S.O",
+    "pincode": "470051",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6447950",
+    "longitude": "78.7292290"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Mahuyakheda B.O",
+    "pincode": "470051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7068700",
+    "longitude": "78.5131100"
+  }
+]

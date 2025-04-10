@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Bhera Pakar BO",
+    "pincode": "274506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Chanuki BO",
+    "pincode": "274506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Bankata Misir BO",
+    "pincode": "274506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Payasi BO",
+    "pincode": "274506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Majhauli Raj SO",
+    "pincode": "274506",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Kodara BO",
+    "pincode": "274506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.9500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Mahuja BO",
+    "pincode": "274506",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEORIA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2900000",
+    "longitude": "83.9500000"
+  }
+]

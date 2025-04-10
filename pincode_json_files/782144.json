@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Ghahibhatikuri B.O",
+    "pincode": "782144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2627800",
+    "longitude": "92.6417800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Baligaon S.O",
+    "pincode": "782144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2627800",
+    "longitude": "92.6417800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Uttar Petboha B.O",
+    "pincode": "782144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2627800",
+    "longitude": "92.6417800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Borkola B.O",
+    "pincode": "782144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2627800",
+    "longitude": "92.6417800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Deorigaon B.O",
+    "pincode": "782144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2627800",
+    "longitude": "92.6417800"
+  }
+]

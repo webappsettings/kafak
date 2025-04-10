@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Mallapur BO",
+    "pincode": "225201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Banarki BO",
+    "pincode": "225201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Bhitauli BO",
+    "pincode": "225201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Lodhaura BO",
+    "pincode": "225201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9325100",
+    "longitude": "81.3977000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Bahramghat SO",
+    "pincode": "225201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1170000",
+    "longitude": "81.4505556"
+  }
+]

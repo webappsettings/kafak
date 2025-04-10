@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Shigli S.O",
+    "pincode": "582210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.0641608",
+    "longitude": "75.4675158"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Doddur",
+    "pincode": "582210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.059679271976",
+    "longitude": "75.511196754604"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Balehosur",
+    "pincode": "582210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "14.989126446048",
+    "longitude": "75.601512096553"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Surangi",
+    "pincode": "582210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.050452472964",
+    "longitude": "75.558349989085"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Dedri BO",
+    "pincode": "497229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.147847",
+    "longitude": "82.948412"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Krishnapur BO",
+    "pincode": "497229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "3.1428993200000002",
+    "longitude": "82.481792080000005"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Salhi BO",
+    "pincode": "497229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.140965",
+    "longitude": "82.832248"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Patnakot BO",
+    "pincode": "497229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.153348000000001",
+    "longitude": "82.813592"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Sonpur B.O",
+    "pincode": "497229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.446725000000001",
+    "longitude": "83.286219000000003"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Ketka BO",
+    "pincode": "497229",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.137897",
+    "longitude": "82.876909"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Surajpur SO",
+    "pincode": "497229",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAJPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.215966",
+    "longitude": "82.869260"
+  }
+]

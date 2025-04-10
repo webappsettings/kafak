@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Pahroopur BO",
+    "pincode": "225404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8775500",
+    "longitude": "81.5112500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Dariyabad RS SO",
+    "pincode": "225404",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8850540",
+    "longitude": "81.5549020"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Neoli Danapur BO",
+    "pincode": "225404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9899500",
+    "longitude": "81.4151000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Barabanki Division",
+    "officename": "Patulki BO",
+    "pincode": "225404",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARABANKI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8175028",
+    "longitude": "81.5664910"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Sangria B.O",
+    "pincode": "311023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8520350",
+    "longitude": "74.8684250"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Khamore B.O",
+    "pincode": "311023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.7537270",
+    "longitude": "25.7537270"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Itdiya B.O",
+    "pincode": "311023",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8297690",
+    "longitude": "74.8097700"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Arwar B.O",
+    "pincode": "311023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8033690",
+    "longitude": "74.8097653"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Dhanop B.O",
+    "pincode": "311023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8436210",
+    "longitude": "74.8857929"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Kothian S.O",
+    "pincode": "311023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8619235",
+    "longitude": "74.7883809"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Bhilwara Division",
+    "officename": "Kotri Bhado Ki B.O",
+    "pincode": "311023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHILWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8899490",
+    "longitude": "74.7385530"
+  }
+]

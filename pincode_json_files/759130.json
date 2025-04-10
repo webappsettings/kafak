@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Kosala S.O",
+    "pincode": "759130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.8406389",
+    "longitude": "85.0965556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Santarabandha B.O",
+    "pincode": "759130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "21.0826200",
+    "longitude": "84.9487250"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Brahmanbil B.O",
+    "pincode": "759130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "21.0505350",
+    "longitude": "84.9338000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Nisha B.O",
+    "pincode": "759130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.9235700",
+    "longitude": "85.0034666"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Raijharan B.O",
+    "pincode": "759130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.9571650",
+    "longitude": "84.9706600"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Changudia B.O",
+    "pincode": "759130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "21.1096116",
+    "longitude": "84.9552166"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Kampsala B.O",
+    "pincode": "759130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "21.1453850",
+    "longitude": "84.9498850"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Jagatpur BO",
+    "pincode": "110084",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7572222",
+    "longitude": "77.1977777"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Burari SO",
+    "pincode": "110084",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.7572222",
+    "longitude": "77.1977778"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Sant Nagar SO",
+    "pincode": "110084",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.7572222",
+    "longitude": "77.1977777"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Wazirabad Village SO",
+    "pincode": "110084",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.7222390",
+    "longitude": "77.2218190"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Nathupura Village SO",
+    "pincode": "110084",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.7691574",
+    "longitude": "77.17729"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Jharoda Majraa BO",
+    "pincode": "110084",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.757222200000001",
+    "longitude": "77.197777700000003"
+  }
+]

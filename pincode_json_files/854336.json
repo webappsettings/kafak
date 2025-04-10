@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Nawabganj SO Araria",
+    "pincode": "854336",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.3789970",
+    "longitude": "87.1323140"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Achra BO",
+    "pincode": "854336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "27.1766700",
+    "longitude": "78.0080750"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Ghurna BO",
+    "pincode": "854336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.4429560",
+    "longitude": "87.0873980"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Manikpur BO",
+    "pincode": "854336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "25.0698730",
+    "longitude": "81.1030570"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Basmatia BO",
+    "pincode": "854336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "25.1489900",
+    "longitude": "86.1605510"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Bela Basmatia BO",
+    "pincode": "854336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.5710870",
+    "longitude": "87.0671920"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Bhawanipur BO",
+    "pincode": "854336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "22.5332360",
+    "longitude": "88.3459360"
+  }
+]

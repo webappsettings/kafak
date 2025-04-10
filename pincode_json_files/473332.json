@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Amrod B.O",
+    "pincode": "473332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.7800000",
+    "longitude": "77.6700000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Piprol Nai Saray",
+    "pincode": "473332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.827728367354901",
+    "longitude": "77.725717810000006"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Chhapar B.O",
+    "pincode": "473332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.8100000",
+    "longitude": "77.5400000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Depalkhedi B.O",
+    "pincode": "473332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.8800000",
+    "longitude": "77.6500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Dungasara B.O",
+    "pincode": "473332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.8400000",
+    "longitude": "77.6100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Jaleshwar B.O",
+    "pincode": "473332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.8100000",
+    "longitude": "77.6700000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Naisarai S.O",
+    "pincode": "473332",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ASHOKNAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5180830",
+    "longitude": "77.7148460"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Kakrana BO",
+    "pincode": "124412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6055850",
+    "longitude": "76.6200260"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Chimni BO",
+    "pincode": "124412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6411460",
+    "longitude": "76.6392520"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Dharana BO",
+    "pincode": "124412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHAJJAR",
+    "statename": "HARYANA",
+    "latitude": "28.6055850",
+    "longitude": "76.6200260"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Kahnaur SO",
+    "pincode": "124412",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.7615556",
+    "longitude": "76.4896389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Sundana BO",
+    "pincode": "124412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6055850",
+    "longitude": "76.6200260"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Garnauthi BO",
+    "pincode": "124412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.7359040",
+    "longitude": "76.5105060"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Gopalpur Taranda B.O",
+    "pincode": "755025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "21.0501297",
+    "longitude": "86.2097497"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Mukundapur B.O",
+    "pincode": "755025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "21.0288615",
+    "longitude": "86.2633233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Tarakote B.O",
+    "pincode": "755025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.9969183",
+    "longitude": "86.2036127"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Tulasipur B.O",
+    "pincode": "755025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "21.0232467",
+    "longitude": "86.2144205"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Dulakhapatna B.O",
+    "pincode": "755025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.9995495",
+    "longitude": "86.2833350"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Ranigoda B.O",
+    "pincode": "755025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.9456741",
+    "longitude": "86.2534619"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Barundai S.O",
+    "pincode": "755025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.993869",
+    "longitude": "86.226647"
+  }
+]

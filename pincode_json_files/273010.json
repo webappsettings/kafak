@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Jungle Chauri BO",
+    "pincode": "273010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7311480",
+    "longitude": "83.4331800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Khorabar BO",
+    "pincode": "273010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7070540",
+    "longitude": "83.4456800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "M.M.M.E.College S.O",
+    "pincode": "273010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.73361",
+    "longitude": "83.35216"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Raiganj BO",
+    "pincode": "273010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7314300",
+    "longitude": "83.4331800"
+  }
+]

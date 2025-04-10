@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Nashik H.O",
+    "pincode": "422001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0082",
+    "longitude": "73.80645"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Budhwar Peth S.O",
+    "pincode": "422001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0082000",
+    "longitude": "73.8064500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Nashik City S.O",
+    "pincode": "422001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0082000",
+    "longitude": "73.8064500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Nasik Division",
+    "officename": "Nashik Main Road S.O",
+    "pincode": "422001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NASHIK",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.0082000",
+    "longitude": "73.8064500"
+  }
+]

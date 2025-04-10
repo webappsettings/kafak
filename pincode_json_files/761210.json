@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Tatipati B.O",
+    "pincode": "761210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.8300466",
+    "longitude": "84.2102816"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Gurandi S.O",
+    "pincode": "761210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.818160",
+    "longitude": "84.2205116"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Bhuskudi B.O",
+    "pincode": "761210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.83194",
+    "longitude": "84.20201"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Jangalpadu B.O",
+    "pincode": "761210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.7919749",
+    "longitude": "84.2059966"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Gosani B.O",
+    "pincode": "761210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.8095316",
+    "longitude": "84.24341"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Saradapur B.O",
+    "pincode": "761210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.7981899",
+    "longitude": "84.1910633"
+  }
+]

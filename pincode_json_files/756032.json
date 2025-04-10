@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Nayabazar Jaleswar S.O",
+    "pincode": "756032",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.7900000",
+    "longitude": "87.2282000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Balasore Division",
+    "officename": "Jaleswar H.O",
+    "pincode": "756032",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BALESHWAR",
+    "statename": "ODISHA",
+    "latitude": "21.8045556",
+    "longitude": "87.2261111"
+  }
+]

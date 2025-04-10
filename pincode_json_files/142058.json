@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Chak Kannian Kalan BO",
+    "pincode": "142058",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.7972700",
+    "longitude": "75.3205400"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Nasirewala BO",
+    "pincode": "142058",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.8164703",
+    "longitude": "75.1716993"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Kishanpura SO Moga",
+    "pincode": "142058",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.933701",
+    "longitude": "75.348499"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Indergarh BO",
+    "pincode": "142058",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOGA",
+    "statename": "PUNJAB",
+    "latitude": "30.9075131",
+    "longitude": "75.3104495"
+  }
+]

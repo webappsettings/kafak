@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Kothi BO",
+    "pincode": "360060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.5251479",
+    "longitude": "70.9946043"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "KharchiyaJam BO",
+    "pincode": "360060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0077103",
+    "longitude": "71.1001167"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Baldhoi BO",
+    "pincode": "360060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0479000",
+    "longitude": "71.0600000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Kundani BO",
+    "pincode": "360060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1249410",
+    "longitude": "71.1567523"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Kanesara BO",
+    "pincode": "360060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1014958",
+    "longitude": "71.0798652"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "Virnagar SO",
+    "pincode": "360060",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.0373889",
+    "longitude": "71.1132222"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Rajkot Division",
+    "officename": "LakhavadNani BO",
+    "pincode": "360060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJKOT",
+    "statename": "GUJARAT",
+    "latitude": "22.1588395",
+    "longitude": "71.0951815"
+  }
+]

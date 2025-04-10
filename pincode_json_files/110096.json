@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Ghazipur BO",
+    "pincode": "110096",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6177700",
+    "longitude": "77.3296100"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Mayur Vihar PhIII SO",
+    "pincode": "110096",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.608638899999999",
+    "longitude": "77.336416700000001"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Vasundhra Enclave SO",
+    "pincode": "110096",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6221944",
+    "longitude": "77.3167222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "New Ashok Nagar S.O",
+    "pincode": "110096",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.596722",
+    "longitude": "77.312114"
+  }
+]

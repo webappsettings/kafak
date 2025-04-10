@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Paun BO",
+    "pincode": "262502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5818710",
+    "longitude": "80.1885120"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Degree College SO Pithoragarh",
+    "pincode": "262502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5817480",
+    "longitude": "80.1998299"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bisharh BO",
+    "pincode": "262502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5638220",
+    "longitude": "80.1950880"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Sawai B.O",
+    "pincode": "744301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Mus B.O",
+    "pincode": "744301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Carnicobar S.O",
+    "pincode": "744301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "9.175112",
+    "longitude": "92.816118"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Lapathy B.O",
+    "pincode": "744301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Kakana B.O",
+    "pincode": "744301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

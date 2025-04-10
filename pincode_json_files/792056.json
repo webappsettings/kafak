@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Lallung B.O",
+    "pincode": "792056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.513770900000001",
+    "longitude": "95.932012999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "New Mohang B.O",
+    "pincode": "792056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.5483285",
+    "longitude": "95.875711100000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Vijoypur B.O",
+    "pincode": "792056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.511614000000002",
+    "longitude": "95.981409999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Kherem Bisa B.O",
+    "pincode": "792056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.470605299999999",
+    "longitude": "95.909444500000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Bordumsa S.O",
+    "pincode": "792056",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.1376930",
+    "longitude": "95.7396590"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Rajanagar B.O",
+    "pincode": "792056",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.4984216",
+    "longitude": "95.957763900000003"
+  }
+]

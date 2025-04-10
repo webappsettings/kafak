@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Sagtara B.O",
+    "pincode": "313902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1400000",
+    "longitude": "74.0500000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Kejad B.O",
+    "pincode": "313902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1700000",
+    "longitude": "73.8500000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Pal Nimboda B.O",
+    "pincode": "313902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1400000",
+    "longitude": "73.8200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Bana Khurd B.O",
+    "pincode": "313902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1400000",
+    "longitude": "73.8300000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Pal Sarara B.O",
+    "pincode": "313902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1400000",
+    "longitude": "73.8300000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Sarara S.O",
+    "pincode": "313902",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1430000",
+    "longitude": "73.8237778"
+  }
+]

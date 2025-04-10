@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "P A C SO",
+    "pincode": "271001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1348611",
+    "longitude": "81.9361111"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Gonda HO",
+    "pincode": "271001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1289167",
+    "longitude": "81.9433056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Civil Line SO Gonda",
+    "pincode": "271001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1289400",
+    "longitude": "81.9451100"
+  }
+]

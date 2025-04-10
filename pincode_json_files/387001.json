@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Dumral Bazar SO",
+    "pincode": "387001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.7310500",
+    "longitude": "72.8638000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Nadiad HO",
+    "pincode": "387001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.6974444",
+    "longitude": "72.8641667"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "Ashram Road Nadiad SO",
+    "pincode": "387001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.7310490",
+    "longitude": "72.8638000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Kheda Division",
+    "officename": "SRP Group Area Nadiad SO",
+    "pincode": "387001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHEDA",
+    "statename": "GUJARAT",
+    "latitude": "22.7310490",
+    "longitude": "72.8638000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Mc Cluskiganj SO",
+    "pincode": "829208",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "25.5991",
+    "longitude": "84.436700000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Nindra BO",
+    "pincode": "829208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATEHAR",
+    "statename": "JHARKHAND",
+    "latitude": "25.5991000",
+    "longitude": "84.4367000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Lapra B.O",
+    "pincode": "829208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.64986",
+    "longitude": "84.944029999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Nawadih BO",
+    "pincode": "829208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "25.5991000",
+    "longitude": "84.4367000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Hesalong",
+    "pincode": "829208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATEHAR",
+    "statename": "JHARKHAND",
+    "latitude": "23.589942000000001",
+    "longitude": "84.862298999999993"
+  }
+]

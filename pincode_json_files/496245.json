@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Bansajhal BO",
+    "pincode": "496245",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3833108",
+    "longitude": "83.990298199999998"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Dumaria BO",
+    "pincode": "496245",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4240168",
+    "longitude": "83.810173800000001"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Tumla BO",
+    "pincode": "496245",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.379351",
+    "longitude": "83.884406799999994"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Bhelwan BO",
+    "pincode": "496245",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.354404899999999",
+    "longitude": "83.852603599999995"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Konpara BO",
+    "pincode": "496245",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4208295",
+    "longitude": "83.843324600000003"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Ankira BO",
+    "pincode": "496245",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3950891",
+    "longitude": "83.908248299999997"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Lawakera SO",
+    "pincode": "496245",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.383624",
+    "longitude": "83.979996"
+  }
+]

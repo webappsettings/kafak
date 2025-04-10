@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Sahaspur B.O",
+    "pincode": "768215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9419528",
+    "longitude": "84.2901279"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Aintapali B.O",
+    "pincode": "768215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.8964161",
+    "longitude": "84.2428338"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Sudang B.O",
+    "pincode": "768215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9087289",
+    "longitude": "84.3157371"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Sarangloi B.O",
+    "pincode": "768215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.9172103",
+    "longitude": "84.2550593"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Laikera S.O",
+    "pincode": "768215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.88566",
+    "longitude": "84.21092"
+  }
+]

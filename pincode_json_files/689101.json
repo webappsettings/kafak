@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Tiruvalla Market Jn SO",
+    "pincode": "689101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3000000",
+    "longitude": "76.5600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tiruvalla Division",
+    "officename": "Tiruvalla HO",
+    "pincode": "689101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.3689444",
+    "longitude": "76.5789722"
+  }
+]

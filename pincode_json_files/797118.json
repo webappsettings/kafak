@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Rangapahar B.O",
+    "pincode": "797118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.855355200000002",
+    "longitude": "93.7104961"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Signal Village",
+    "pincode": "797118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.6707778",
+    "longitude": "94.1075833"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Thahekhu B.O",
+    "pincode": "797118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.882923900000002",
+    "longitude": "93.721470699999998"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Sujaganj Bazar SO",
+    "pincode": "812002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2428333",
+    "longitude": "86.9731389"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Tatarpur",
+    "pincode": "812002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2496944",
+    "longitude": "86.9869722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Bhagalpur City SO",
+    "pincode": "812002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2421111",
+    "longitude": "86.9722500"
+  }
+]

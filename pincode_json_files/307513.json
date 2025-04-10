@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Rohua",
+    "pincode": "307513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.649374999999999",
+    "longitude": "72.413657999999998"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Jetawara B.O",
+    "pincode": "307513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.5880710",
+    "longitude": "72.3163130"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Pithapura B.O",
+    "pincode": "307513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6206730",
+    "longitude": "72.3725490"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Raipur B.O",
+    "pincode": "307513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6766390",
+    "longitude": "72.3607110"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Mandar S.O (Sirohi)",
+    "pincode": "307513",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8852778",
+    "longitude": "72.8530556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Bant B.O",
+    "pincode": "307513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.5862930",
+    "longitude": "72.2778290"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Sorda B.O",
+    "pincode": "307513",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.5848100",
+    "longitude": "72.3607110"
+  }
+]

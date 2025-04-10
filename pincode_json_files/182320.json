@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "SMVDU SO",
+    "pincode": "182320",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.9408888",
+    "longitude": "74.9548333"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Kakriyal BO",
+    "pincode": "182320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REASI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.941653000000002",
+    "longitude": "74.954098999999999"
+  }
+]

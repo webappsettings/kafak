@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Pampore SO",
+    "pincode": "192121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0421944",
+    "longitude": "74.8953333"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Khanda BO",
+    "pincode": "192121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.1049830",
+    "longitude": "74.6732050"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Nehama BO",
+    "pincode": "192121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.1261030",
+    "longitude": "74.6732050"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Pahroo BO",
+    "pincode": "192121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0767490",
+    "longitude": "74.6286790"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Honipora BO",
+    "pincode": "192121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.1049830",
+    "longitude": "74.6093900"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Konibal BO",
+    "pincode": "192121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.1261030",
+    "longitude": "74.6732050"
+  }
+]

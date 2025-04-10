@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Udayagiri S.O (Mysuru)",
+    "pincode": "570019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.3141667",
+    "longitude": "76.6565556"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Ramanahalli B.O",
+    "pincode": "570019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Hanchya BO",
+    "pincode": "570019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

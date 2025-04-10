@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Mamnoor B.O",
+    "pincode": "506166",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.907326",
+    "longitude": "79.592432"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Mamnoor S.O",
+    "pincode": "506166",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.916908",
+    "longitude": "79.594092"
+  }
+]

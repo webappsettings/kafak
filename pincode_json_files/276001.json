@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Azamgarh RS SO",
+    "pincode": "276001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0421944",
+    "longitude": "83.1623889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Azamgarh HO",
+    "pincode": "276001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.052616",
+    "longitude": "83.1828748"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Azamgarh City SO",
+    "pincode": "276001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0760833",
+    "longitude": "83.1773889"
+  }
+]

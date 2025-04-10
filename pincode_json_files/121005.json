@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Faridabad Sector 22 SO",
+    "pincode": "121005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3917778",
+    "longitude": "77.3021389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Jawahar Colony Faridabad SO",
+    "pincode": "121005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3696111",
+    "longitude": "77.2866389"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Saroda B.O",
+    "pincode": "458330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5941570",
+    "longitude": "74.8627030"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Bawal Nai B.O",
+    "pincode": "458330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5844000",
+    "longitude": "74.8856000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Meghpura B.O",
+    "pincode": "458330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5941590",
+    "longitude": "74.8627010"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Athana B.O",
+    "pincode": "458330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6031586",
+    "longitude": "74.8607105"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Suwakheda B.O",
+    "pincode": "458330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5493220",
+    "longitude": "74.8490317"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Tarapur B.O",
+    "pincode": "458330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5941580",
+    "longitude": "74.8627020"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Jawad S.O",
+    "pincode": "458330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5955278",
+    "longitude": "74.8626111"
+  }
+]

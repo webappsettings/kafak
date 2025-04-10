@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Gohogaon B.O",
+    "pincode": "443303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2365200",
+    "longitude": "76.7522300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Shelgaon Deshmukh B.O",
+    "pincode": "443303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2365100",
+    "longitude": "76.7522300"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Vishvi B.O",
+    "pincode": "443303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1505970",
+    "longitude": "76.5676670"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Aregaon B.O",
+    "pincode": "443303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1505980",
+    "longitude": "76.5676660"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Belgaon B.O",
+    "pincode": "443303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2365100",
+    "longitude": "76.7522200"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Pangarkhed B.O",
+    "pincode": "443303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1506010",
+    "longitude": "76.5676640"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Dongaon S.O",
+    "pincode": "443303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1849722",
+    "longitude": "76.7216944"
+  }
+]

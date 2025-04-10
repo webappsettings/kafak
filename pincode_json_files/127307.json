@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Morwala BO",
+    "pincode": "127307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bhagwi BO",
+    "pincode": "127307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Jhijhar BO",
+    "pincode": "127307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Loharwara BO",
+    "pincode": "127307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Achina SO",
+    "pincode": "127307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bigowa BO",
+    "pincode": "127307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bhagesari BO",
+    "pincode": "127307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.6745000",
+    "longitude": "76.3707000"
+  }
+]

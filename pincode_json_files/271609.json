@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Fakirapur BO",
+    "pincode": "271609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2700060",
+    "longitude": "82.3746470"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Rehra Mafi BO",
+    "pincode": "271609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2925640",
+    "longitude": "82.3971640"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Mahadeiya State BO",
+    "pincode": "271609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3969820",
+    "longitude": "82.3376320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Pipra Ram Chandar BO",
+    "pincode": "271609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2722380",
+    "longitude": "82.3424430"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Gumri BO",
+    "pincode": "271609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2796540",
+    "longitude": "82.2854520"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Puraina Wajid BO",
+    "pincode": "271609",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0117690",
+    "longitude": "82.0268980"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Chamrupur SO",
+    "pincode": "271609",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3055278",
+    "longitude": "82.3367500"
+  }
+]

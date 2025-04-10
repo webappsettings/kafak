@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Jeevan Park B.O",
+    "pincode": "110059",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "D. K. Mohan Garden S.O",
+    "pincode": "110059",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6215000",
+    "longitude": "77.0415278"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Sanjay Enclave PO",
+    "pincode": "110059",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6130290",
+    "longitude": "77.0597560"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "K5 Extn. Mohan Garden",
+    "pincode": "110059",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6354370",
+    "longitude": "77.0439580"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Matiala B.O",
+    "pincode": "110059",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6094090",
+    "longitude": "77.0543250"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Hastal Village B.O",
+    "pincode": "110059",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6377130",
+    "longitude": "77.0490260"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Uttam Nagar S.O",
+    "pincode": "110059",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6270833",
+    "longitude": "77.8844167"
+  }
+]

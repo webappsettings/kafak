@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Chandupur BO",
+    "pincode": "262124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5137380",
+    "longitude": "80.1488100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Piperia Santosh BO",
+    "pincode": "262124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4984700",
+    "longitude": "80.2710600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "MATHANA  JAPTI BO",
+    "pincode": "262124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5137360",
+    "longitude": "80.1481200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Jamunia BO",
+    "pincode": "262124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.5137360",
+    "longitude": "80.1488120"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Kali Nagar SO",
+    "pincode": "262124",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6162000",
+    "longitude": "80.0104500"
+  }
+]

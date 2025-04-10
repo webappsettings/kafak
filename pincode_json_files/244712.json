@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Dharampur BO",
+    "pincode": "244712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.390000000000001",
+    "longitude": "79.659999999999997"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Jaspur SO",
+    "pincode": "244712",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "26.2808611",
+    "longitude": "78.8213889"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Mahuwadabara BO",
+    "pincode": "244712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.2750320",
+    "longitude": "78.7872876"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Barionwala BO",
+    "pincode": "244712",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.670000000000002",
+    "longitude": "79.829999999999998"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Raipur BO",
+    "pincode": "244712",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6600000",
+    "longitude": "79.8200000"
+  }
+]

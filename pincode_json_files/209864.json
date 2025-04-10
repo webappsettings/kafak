@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Sawain BO",
+    "pincode": "209864",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1841080",
+    "longitude": "80.7335790"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Mahesh Khera BO",
+    "pincode": "209864",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2553100",
+    "longitude": "80.7115320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Bhagwant Nagar SO",
+    "pincode": "209864",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1252000",
+    "longitude": "80.4526000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Panai Kalan BO",
+    "pincode": "209864",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UNNAO",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2245080",
+    "longitude": "80.7312140"
+  }
+]

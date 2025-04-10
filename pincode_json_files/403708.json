@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Seraulim B.O",
+    "pincode": "403708",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.2000000",
+    "longitude": "15.5500000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Colva S.O",
+    "pincode": "403708",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.27475010",
+    "longitude": "73.95753010"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Vanelim B.O",
+    "pincode": "403708",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "72.2000000",
+    "longitude": "15.5500000"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Banshi Paharpur SO",
+    "pincode": "321403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5658611",
+    "longitude": "77.4585556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Jatmasi BO",
+    "pincode": "321403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9714320",
+    "longitude": "77.5195740"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Jotroli BO",
+    "pincode": "321403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9748740",
+    "longitude": "77.4963140"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Mahalpur Choora BO",
+    "pincode": "321403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9487870",
+    "longitude": "77.4883320"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Dana Khedli BO",
+    "pincode": "321403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9456380",
+    "longitude": "77.5302600"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Sirrond BO",
+    "pincode": "321403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9317120",
+    "longitude": "77.4580760"
+  }
+]

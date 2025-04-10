@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Raikban BO",
+    "pincode": "185135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Darhal Malkan SO",
+    "pincode": "185135",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.2856000",
+    "longitude": "74.2440000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Dodaj BO",
+    "pincode": "185135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Rajouri Division",
+    "officename": "Chowkian BO",
+    "pincode": "185135",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJOURI",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Likhi BO",
+    "pincode": "121107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "23.7069100",
+    "longitude": "73.0228170"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Tappa Bilochpur BO",
+    "pincode": "121107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "28.0347150",
+    "longitude": "77.4895560"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Banswa BO",
+    "pincode": "121107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "27.8963090",
+    "longitude": "77.4486840"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Gulawad BO",
+    "pincode": "121107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "28.0012564",
+    "longitude": "77.4522700"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Hassanpur SO",
+    "pincode": "121107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "27.9690278",
+    "longitude": "77.4929167"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Bhandoli BO",
+    "pincode": "121107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "28.3603100",
+    "longitude": "77.4716310"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Bhiduki BO",
+    "pincode": "121107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALWAL",
+    "statename": "HARYANA",
+    "latitude": "27.9180470",
+    "longitude": "77.4501180"
+  }
+]

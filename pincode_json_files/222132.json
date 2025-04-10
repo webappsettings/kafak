@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Dhirajpur BO",
+    "pincode": "222132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.66",
+    "longitude": "81.689999999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Masida BO",
+    "pincode": "222132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.960000000000001",
+    "longitude": "82.120000000000005"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Kohara Sultanpur BO",
+    "pincode": "222132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.879999999999999",
+    "longitude": "82.780000000000001"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Kuwarda BO",
+    "pincode": "222132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.449999999999999",
+    "longitude": "81.150000000000006"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Shambhuganj BO",
+    "pincode": "222132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1584",
+    "longitude": "84.632499999999993"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Fatehganj SO Jaunpur",
+    "pincode": "222132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5881667",
+    "longitude": "82.7632222"
+  }
+]

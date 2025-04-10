@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Poothadi BO",
+    "pincode": "673596",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.6600000",
+    "longitude": "76.7300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Athirattu Kunnu BO",
+    "pincode": "673596",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.7300000",
+    "longitude": "76.1700000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Thazha Munda BO",
+    "pincode": "673596",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.7000000",
+    "longitude": "76.1600000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Kenichira SO",
+    "pincode": "673596",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.7219894",
+    "longitude": "76.1530178"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Choothupara BO",
+    "pincode": "673596",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.7000000",
+    "longitude": "76.1800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Koleri BO",
+    "pincode": "673596",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.7000000",
+    "longitude": "76.1900000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Calicut Division",
+    "officename": "Vala Vayal BO",
+    "pincode": "673596",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WAYANAD",
+    "statename": "KERALA",
+    "latitude": "11.7000000",
+    "longitude": "76.2000000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Sushant City S.O",
+    "pincode": "250005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "MIET SO",
+    "pincode": "250005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9737222",
+    "longitude": "77.6411111"
+  }
+]

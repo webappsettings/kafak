@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Mylapore H.O",
+    "pincode": "600004",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0356389",
+    "longitude": "80.2720278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Mandaveli S.O",
+    "pincode": "600004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "13.0294444",
+    "longitude": "80.2667500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Chennai City Central Division",
+    "officename": "Vivekananda College Madras S.O",
+    "pincode": "600004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHENNAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0416111",
+    "longitude": "80.0975833"
+  }
+]

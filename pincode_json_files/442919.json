@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Warsawada B.O",
+    "pincode": "442919",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADCHIROLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.66",
+    "longitude": "79.989999999999995"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Vasantpur B.O",
+    "pincode": "442919",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GADCHIROLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Chandrapur Division",
+    "officename": "Mulchera SO",
+    "pincode": "442919",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GADCHIROLI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.6788190",
+    "longitude": "80.0050900"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Tisotra BO",
+    "pincode": "246723",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6215710",
+    "longitude": "78.1521680"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Balawali SO",
+    "pincode": "246723",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6274444",
+    "longitude": "78.1093333"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bijnor Division",
+    "officename": "Khirni Barkatpur BO",
+    "pincode": "246723",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIJNOR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6300000",
+    "longitude": "78.1094000"
+  }
+]

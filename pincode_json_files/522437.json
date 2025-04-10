@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "China Garlapadu B.O",
+    "pincode": "522437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4932000",
+    "longitude": "79.7630000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Chinaagraharam B.O",
+    "pincode": "522437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4837000",
+    "longitude": "79.8151000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Pedagarlapadu B.O",
+    "pincode": "522437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5271000",
+    "longitude": "79.5033000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Veerapuram B.O",
+    "pincode": "522437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5574000",
+    "longitude": "79.7847000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Tummalacheruvu B.O",
+    "pincode": "522437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5262000",
+    "longitude": "79.7966000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Karalapadu B.O",
+    "pincode": "522437",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5053000",
+    "longitude": "79.8018000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Brahmanapalle S.O",
+    "pincode": "522437",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.5171667",
+    "longitude": "79.8298611"
+  }
+]

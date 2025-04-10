@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Shiwar SO",
+    "pincode": "322704",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2008889",
+    "longitude": "76.0325278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Mahapura BO",
+    "pincode": "322704",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2255460",
+    "longitude": "76.0798010"
+  }
+]

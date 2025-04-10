@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Dagmara",
+    "pincode": "847451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "25.2899113",
+    "longitude": "86.8220341"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "KUNAUALI BAZAR SO",
+    "pincode": "847451",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.2899113",
+    "longitude": "86.8220341"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "KAMALPUR",
+    "pincode": "847451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.2899113",
+    "longitude": "86.8220341"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Sikarhatta",
+    "pincode": "847451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.2899113",
+    "longitude": "86.8220341"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "KUNAULI",
+    "pincode": "847451",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.2899113",
+    "longitude": "86.8220341"
+  }
+]

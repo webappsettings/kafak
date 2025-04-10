@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Kalarampatti B.O",
+    "pincode": "621101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2000000",
+    "longitude": "78.7400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Melapuliyur B.O",
+    "pincode": "621101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2700000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Puduattur B.O",
+    "pincode": "621101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Ladapuram B.O",
+    "pincode": "621101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2400000",
+    "longitude": "78.7400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Ammapalayam S.O",
+    "pincode": "621101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2200000",
+    "longitude": "78.7400000"
+  }
+]

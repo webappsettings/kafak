@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Piplikalan BO",
+    "pincode": "244236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9000000",
+    "longitude": "78.4600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Rajab Pur SO",
+    "pincode": "244236",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Atrasikalan BO",
+    "pincode": "244236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9000000",
+    "longitude": "78.4600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Karaundi BO",
+    "pincode": "244236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.3700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Maheshra BO",
+    "pincode": "244236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9000000",
+    "longitude": "78.4600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Chand Nagar BO",
+    "pincode": "244236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.4600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Khajuri BO",
+    "pincode": "244236",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9000000",
+    "longitude": "78.4600000"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Ramdaspeth Akola S.O",
+    "pincode": "444001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7100000",
+    "longitude": "77.0000000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Ranpisenagar Akola S.O",
+    "pincode": "444001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7077778",
+    "longitude": "77.0161944"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Akola H.O",
+    "pincode": "444001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AKOLA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7100000",
+    "longitude": "77.0000000"
+  }
+]

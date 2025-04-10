@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Ramkanali BO",
+    "pincode": "723142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5780052",
+    "longitude": "86.7642624"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Ramchandrapur Ashram SO",
+    "pincode": "723142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3457200",
+    "longitude": "86.4825760"
+  }
+]

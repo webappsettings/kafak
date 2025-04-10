@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Wankhed B.O",
+    "pincode": "444201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9674500",
+    "longitude": "76.7354800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Jastgaon B.O",
+    "pincode": "444201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9679500",
+    "longitude": "76.7354800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Paturda S.O",
+    "pincode": "444201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9530833",
+    "longitude": "76.7289167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Kavthal B.O",
+    "pincode": "444201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9674500",
+    "longitude": "76.7354800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Kodri B.O",
+    "pincode": "444201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9674600",
+    "longitude": "76.7354800"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Warwat Khanderao B.O",
+    "pincode": "444201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9674500",
+    "longitude": "76.7354800"
+  }
+]

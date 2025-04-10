@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Indong BO",
+    "pincode": "735223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.9300000",
+    "longitude": "88.8100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Kumai BO",
+    "pincode": "735223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Samsing BO",
+    "pincode": "735223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALIMPONG",
+    "statename": "WEST BENGAL",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Jalpaiguri Division",
+    "officename": "Matelli SO",
+    "pincode": "735223",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALPAIGURI",
+    "statename": "WEST BENGAL",
+    "latitude": "26.9400000",
+    "longitude": "88.8100000"
+  }
+]

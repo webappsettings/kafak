@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Purmandal SO",
+    "pincode": "181145",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6814870",
+    "longitude": "74.0085400"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Utter Behni BO",
+    "pincode": "181145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6215840",
+    "longitude": "75.0036250"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Khara Madana BO",
+    "pincode": "181145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6814870",
+    "longitude": "75.0085400"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Mandal BO",
+    "pincode": "181145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.8806830",
+    "longitude": "75.4363910"
+  }
+]

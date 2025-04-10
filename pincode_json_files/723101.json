@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Jubli Compound SO",
+    "pincode": "723101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1959000",
+    "longitude": "86.2154000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Alangidanga SO",
+    "pincode": "723101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2029000",
+    "longitude": "86.2219820"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Purulia HO",
+    "pincode": "723101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3319167",
+    "longitude": "86.3655000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Chowkbazar SO Puruliya",
+    "pincode": "723101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3319165",
+    "longitude": "86.0465200"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Purulia RS SO",
+    "pincode": "723101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1955000",
+    "longitude": "86.2154000"
+  }
+]

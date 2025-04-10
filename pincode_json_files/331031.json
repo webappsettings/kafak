@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Binasar B.O",
+    "pincode": "331031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Raipuria B.O",
+    "pincode": "331031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Satra S.O",
+    "pincode": "331031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.4628889",
+    "longitude": "75.0640000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Molisar B.O",
+    "pincode": "331031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

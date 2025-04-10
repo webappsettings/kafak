@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Parla Khalsa BO",
+    "pincode": "321610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9551340",
+    "longitude": "76.8403830"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Patoli BO",
+    "pincode": "321610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAUSA",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9831550",
+    "longitude": "76.8158720"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bhanakpura BO",
+    "pincode": "321610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9799360",
+    "longitude": "76.8735370"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Ghatabalaji SO",
+    "pincode": "321610",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8246667",
+    "longitude": "76.0942222"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bhajeda BO",
+    "pincode": "321610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9755790",
+    "longitude": "76.8274070"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Sankarwada BO",
+    "pincode": "321610",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.9477190",
+    "longitude": "76.8230810"
+  }
+]

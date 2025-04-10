@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Mawana Factory SO",
+    "pincode": "250402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.0937222",
+    "longitude": "77.9237222"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Dhikauli BO",
+    "pincode": "250402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.0800000",
+    "longitude": "77.9200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Sathla BO",
+    "pincode": "250402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.0500000",
+    "longitude": "77.9200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Nasarpur B.O",
+    "pincode": "250402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.052842999999999",
+    "longitude": "77.947455000000005"
+  }
+]

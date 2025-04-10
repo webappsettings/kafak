@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Sarsehri B.O",
+    "pincode": "133005",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.3781868",
+    "longitude": "76.7766894"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Babyal S.O",
+    "pincode": "133005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBALA",
+    "statename": "HARYANA",
+    "latitude": "30.3569444",
+    "longitude": "76.8783333"
+  }
+]

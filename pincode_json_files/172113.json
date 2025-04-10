@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Dhanker BO",
+    "pincode": "172113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.090987200000001",
+    "longitude": "78.227855599999998"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Mane BO",
+    "pincode": "172113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.619211",
+    "longitude": "77.378378999999995"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Tabo SO",
+    "pincode": "172113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.0953603042289",
+    "longitude": "78.3826190046966"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Lalung BO",
+    "pincode": "172113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.619211",
+    "longitude": "77.378378999999995"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Jagtial H.O",
+    "pincode": "505327",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.7936944",
+    "longitude": "78.9152778"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Khila Jagtial S.O",
+    "pincode": "505327",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.799892",
+    "longitude": "78.916067"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "New Abadi Jagtial S.O",
+    "pincode": "505327",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.797761",
+    "longitude": "78.920862"
+  }
+]

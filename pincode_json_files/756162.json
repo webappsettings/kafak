@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Suan B.O",
+    "pincode": "756162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1741066",
+    "longitude": "86.7528550"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Nuagaon B.O",
+    "pincode": "756162",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "21.1683900",
+    "longitude": "86.7907150"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhadrak Division",
+    "officename": "Eram S.O",
+    "pincode": "756162",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRAK",
+    "statename": "ODISHA",
+    "latitude": "20.93568",
+    "longitude": "86.7976"
+  }
+]

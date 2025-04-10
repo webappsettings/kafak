@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bongalpukhuri B.O",
+    "pincode": "785014",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.6361000",
+    "longitude": "93.6711000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Rajabari S.O",
+    "pincode": "785014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.6361000",
+    "longitude": "93.6711000"
+  }
+]

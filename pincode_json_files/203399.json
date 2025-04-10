@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Chiroury BO",
+    "pincode": "203399",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1124142",
+    "longitude": "78.4097242"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Jargawan BO",
+    "pincode": "203399",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1259267",
+    "longitude": "78.3831167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Dharakpur BO",
+    "pincode": "203399",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1378859",
+    "longitude": "78.3700704"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Ramghat SO Bulandshahr",
+    "pincode": "203399",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1480842",
+    "longitude": "78.4336280"
+  }
+]

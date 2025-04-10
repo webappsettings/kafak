@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Barbudnia B.O",
+    "pincode": "314401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6884720",
+    "longitude": "73.8858030"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Decha B.O",
+    "pincode": "314401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6639180",
+    "longitude": "73.8799340"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Obri S.O",
+    "pincode": "314401",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.8507222",
+    "longitude": "73.7100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Virat B.O",
+    "pincode": "314401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6777560",
+    "longitude": "73.8918900"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Parda Mehton ka B.O",
+    "pincode": "314401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6225640",
+    "longitude": "73.7567140"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Pepala Gunj B.O",
+    "pincode": "314401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6562170",
+    "longitude": "73.9258860"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Phaota B.O",
+    "pincode": "314401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6521850",
+    "longitude": "73.8743020"
+  }
+]

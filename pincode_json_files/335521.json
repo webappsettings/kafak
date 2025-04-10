@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Hardaswali B.O",
+    "pincode": "335521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Mahela B.O",
+    "pincode": "335521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Poharka B.O",
+    "pincode": "335521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Baramsar B.O",
+    "pincode": "335521",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "PURABSAR S.O.",
+    "pincode": "335521",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.0672",
+    "longitude": "74.32329"
+  }
+]

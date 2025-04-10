@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Sarasaria BO",
+    "pincode": "262311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.9341326",
+    "longitude": "79.8772834"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Nanakmatta SO",
+    "pincode": "262311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.8959444",
+    "longitude": "79.6566389"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Pratappur BO",
+    "pincode": "262311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.2500000",
+    "longitude": "79.0100000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "TIKURI",
+    "pincode": "262311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.940000000000001",
+    "longitude": "79.810000000000002"
+  }
+]

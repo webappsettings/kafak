@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Station Road SO",
+    "pincode": "364006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7791",
+    "longitude": "72.1395"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Kumbharwada SO",
+    "pincode": "364006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7788060",
+    "longitude": "72.1295390"
+  }
+]

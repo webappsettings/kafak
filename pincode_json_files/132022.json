@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Nalipar B.O",
+    "pincode": "132022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Kunjpura S.O",
+    "pincode": "132022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.7176111",
+    "longitude": "77.0783056"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Khirajpur B.O",
+    "pincode": "132022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

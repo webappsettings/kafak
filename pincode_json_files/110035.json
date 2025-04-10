@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Rampura BO",
+    "pincode": "110035",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6921111",
+    "longitude": "77.1578611"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Keshavpuram SO",
+    "pincode": "110035",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6921111",
+    "longitude": "77.1578611"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Power House SO",
+    "pincode": "110035",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6738333",
+    "longitude": "77.1445833"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Sarai Rohilla SO",
+    "pincode": "110035",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6694167",
+    "longitude": "77.1763889"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "C4 Keshav Puram SO North West Delhi",
+    "pincode": "110035",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6912580",
+    "longitude": "77.1562910"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Ganeshpura SO",
+    "pincode": "110035",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6754167",
+    "longitude": "77.1655556"
+  }
+]

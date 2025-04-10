@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Raksera B.O",
+    "pincode": "132115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.5902777",
+    "longitude": "76.1099166"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Hathwala S.O",
+    "pincode": "132115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.2262222",
+    "longitude": "77.1155556"
+  }
+]

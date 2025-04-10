@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Shendi B.O",
+    "pincode": "414601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2300000",
+    "longitude": "74.8100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Pimpalgaon Malvi B.O",
+    "pincode": "414601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2600000",
+    "longitude": "74.8100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Pimpalgaon Ujjani B.O",
+    "pincode": "414601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2300000",
+    "longitude": "74.8100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Jeur S.O (Ahmed Nagar)",
+    "pincode": "414601",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2112125",
+    "longitude": "74.8043175"
+  }
+]

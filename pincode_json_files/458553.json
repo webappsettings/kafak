@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Bordia Kalan B.O",
+    "pincode": "458553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.3666790",
+    "longitude": "75.0999880"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Admalya B.O",
+    "pincode": "458553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833809",
+    "longitude": "74.9908700"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Jharda B.O",
+    "pincode": "458553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833799",
+    "longitude": "74.9908710"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Narayangarh S.O (Mandsaur)",
+    "pincode": "458553",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0740000",
+    "longitude": "75.0703889"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Harsol B.O",
+    "pincode": "458553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833799",
+    "longitude": "74.9908710"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Somia B.O",
+    "pincode": "458553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833789",
+    "longitude": "74.9908720"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Fancy Bazar S.O",
+    "pincode": "781001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1787500",
+    "longitude": "91.7359722"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Uzanbazar S.O",
+    "pincode": "781001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1924300",
+    "longitude": "91.7553700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Guwahati G.P.O.",
+    "pincode": "781001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1887778",
+    "longitude": "91.7456389"
+  }
+]

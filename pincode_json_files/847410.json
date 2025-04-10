@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Madhubani Division",
+    "officename": "Kachhubi BO",
+    "pincode": "847410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "24.267400899999998",
+    "longitude": "86.296942200000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Madhubani Division",
+    "officename": "Kachhua BO",
+    "pincode": "847410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.283502500000001",
+    "longitude": "86.4657543"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Madhubani Division",
+    "officename": "Berma BO",
+    "pincode": "847410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.397574599999999",
+    "longitude": "86.159914900000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Madhubani Division",
+    "officename": "Lawani BO",
+    "pincode": "847410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.3589725",
+    "longitude": "86.494600700000007"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Madhubani Division",
+    "officename": "Tamuria SO",
+    "pincode": "847410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.3472500",
+    "longitude": "86.0718611"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Madhubani Division",
+    "officename": "Sonre BO",
+    "pincode": "847410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MADHUBANI",
+    "statename": "BIHAR",
+    "latitude": "26.281957999999999",
+    "longitude": "86.133609000000007"
+  }
+]

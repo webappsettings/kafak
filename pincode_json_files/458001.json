@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Shri Ramtekri Mandsaur S.O",
+    "pincode": "458001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0700000",
+    "longitude": "75.0600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Mandsaur H.O",
+    "pincode": "458001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0740000",
+    "longitude": "75.0703889"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Mandsaur Nai Abadi S.O",
+    "pincode": "458001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0700000",
+    "longitude": "75.0600000"
+  }
+]

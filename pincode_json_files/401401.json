@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Kelwa Road B.O",
+    "pincode": "401401",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.6247486",
+    "longitude": "72.7910380"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Kelwa S.O (Thane)",
+    "pincode": "401401",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1993056",
+    "longitude": "72.9793333"
+  }
+]

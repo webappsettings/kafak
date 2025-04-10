@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Ahmedgarh sO",
+    "pincode": "148021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6914722",
+    "longitude": "75.8301111"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Dehliz Kalan BO",
+    "pincode": "148021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6695460",
+    "longitude": "75.8228900"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Maholi Kalan BO",
+    "pincode": "148021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6242700",
+    "longitude": "75.7574990"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Nathu Majra BO",
+    "pincode": "148021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6478090",
+    "longitude": "75.8809900"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Jandali Khurd BO",
+    "pincode": "148021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6681980",
+    "longitude": "75.8425010"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Rohira BO",
+    "pincode": "148021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6358310",
+    "longitude": "75.8490380"
+  }
+]

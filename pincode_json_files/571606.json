@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Hosahalli B.O",
+    "pincode": "571606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Palahalli B.O",
+    "pincode": "571606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Hulikere B.O",
+    "pincode": "571606",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Belagola S.O",
+    "pincode": "571606",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "12.3900000",
+    "longitude": "76.7100000"
+  }
+]

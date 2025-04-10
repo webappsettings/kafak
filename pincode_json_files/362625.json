@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Nakra BO",
+    "pincode": "362625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4434820",
+    "longitude": "70.1168920"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Sitana BO",
+    "pincode": "362625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4335960",
+    "longitude": "70.0662090"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Nanadia SO",
+    "pincode": "362625",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4709500",
+    "longitude": "70.0720170"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Matiyana BO",
+    "pincode": "362625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.3982480",
+    "longitude": "70.1239980"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Bamnasa Ghed BO",
+    "pincode": "362625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.3814750",
+    "longitude": "70.1548720"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Vadala Ghed BO",
+    "pincode": "362625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.4195080",
+    "longitude": "70.0814920"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Porbandar Division",
+    "officename": "Ambalia BO",
+    "pincode": "362625",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JUNAGADH",
+    "statename": "GUJARAT",
+    "latitude": "21.5797310",
+    "longitude": "70.3539240"
+  }
+]

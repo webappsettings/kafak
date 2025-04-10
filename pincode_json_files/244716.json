@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Thari BO",
+    "pincode": "244716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.283141000000001",
+    "longitude": "79.056034999999994"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Anandnagar BO",
+    "pincode": "244716",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.316271",
+    "longitude": "78.971249999999998"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "RTC Hempur SO",
+    "pincode": "244716",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.1450000",
+    "longitude": "79.4500000"
+  }
+]

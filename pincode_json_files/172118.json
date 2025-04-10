@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Katgaon SO",
+    "pincode": "172118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.591683",
+    "longitude": "78.037023"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Bhaba BO",
+    "pincode": "172118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6981500",
+    "longitude": "78.0696500"
+  }
+]

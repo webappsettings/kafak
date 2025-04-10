@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Gumanpura Kota S.O",
+    "pincode": "324007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1752778",
+    "longitude": "75.8475000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Chhawni Ram Chandra Pura S.O",
+    "pincode": "324007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1713056",
+    "longitude": "75.8565556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Small Industrial Area Kota S.O",
+    "pincode": "324007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1638333",
+    "longitude": "75.8609167"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "New Grain Mandi Kota H.O",
+    "pincode": "324007",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1600000",
+    "longitude": "75.8500000"
+  }
+]

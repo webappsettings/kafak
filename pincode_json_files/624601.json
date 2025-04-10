@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Palani Bazaar SO",
+    "pincode": "624601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4500000",
+    "longitude": "77.5100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Palani HO",
+    "pincode": "624601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4528056",
+    "longitude": "77.5150000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Palani East SO",
+    "pincode": "624601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4500000",
+    "longitude": "77.5300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Palani West SO",
+    "pincode": "624601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4600000",
+    "longitude": "77.5100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Palani Devastanam SO",
+    "pincode": "624601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4400000",
+    "longitude": "77.5200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Dindigul Division",
+    "officename": "Palani RS SO",
+    "pincode": "624601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DINDIGUL",
+    "statename": "TAMIL NADU",
+    "latitude": "10.4500000",
+    "longitude": "77.5200000"
+  }
+]

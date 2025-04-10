@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Chaumel BO",
+    "pincode": "262525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4400000",
+    "longitude": "80.1300000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Chirra BO",
+    "pincode": "262525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4800000",
+    "longitude": "80.1000000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bapru BO",
+    "pincode": "262525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4500000",
+    "longitude": "80.1900000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Mau BO",
+    "pincode": "262525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4300000",
+    "longitude": "80.1700000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Abbotmount SO",
+    "pincode": "262525",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3289830",
+    "longitude": "80.0812880"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Chanda Regru BO",
+    "pincode": "262525",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4500000",
+    "longitude": "80.1200000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Makkankunnu SO",
+    "pincode": "689645",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.0600000",
+    "longitude": "76.9200000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pathanamthitta Division",
+    "officename": "Pathanamthitta HO",
+    "pincode": "689645",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PATHANAMTHITTA",
+    "statename": "KERALA",
+    "latitude": "9.2642778",
+    "longitude": "76.7872500"
+  }
+]

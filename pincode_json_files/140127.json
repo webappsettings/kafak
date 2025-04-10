@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Bhallan B.O",
+    "pincode": "140127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Bhanam B.O",
+    "pincode": "140127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Sukhshal BO",
+    "pincode": "140127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "New Nangram SO",
+    "pincode": "140127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "73.5302500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Bhallari B.O",
+    "pincode": "140127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.8066000"
+  }
+]

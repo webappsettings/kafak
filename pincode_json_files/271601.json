@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Malari BO",
+    "pincode": "271601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1327540",
+    "longitude": "82.0540590"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Deoria Alawal BO",
+    "pincode": "271601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1885750",
+    "longitude": "82.0868390"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Karamdeeh BO",
+    "pincode": "271601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1769978",
+    "longitude": "82.0927960"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Bishunpur Bairiya SO",
+    "pincode": "271601",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1661944",
+    "longitude": "82.0437222"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Imiliarupi BO",
+    "pincode": "271601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1174330",
+    "longitude": "82.1047050"
+  }
+]

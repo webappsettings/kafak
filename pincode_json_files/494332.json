@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bastar Division",
+    "officename": "Govindpur S.O.",
+    "pincode": "494332",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "20.241",
+    "longitude": "81.4513"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bastar Division",
+    "officename": "Sarangpal B.O",
+    "pincode": "494332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "20.300799999999999",
+    "longitude": "81.524199999999993"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bastar Division",
+    "officename": "Shriguhan B.O",
+    "pincode": "494332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "20.426300000000001",
+    "longitude": "81.524799999999999"
+  }
+]

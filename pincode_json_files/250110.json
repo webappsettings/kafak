@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Pabli Khas BO",
+    "pincode": "250110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.0700000",
+    "longitude": "77.6800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Modipuram SO",
+    "pincode": "250110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4640200",
+    "longitude": "77.7206700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Pallavpuram S.O",
+    "pincode": "250110",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.053945",
+    "longitude": "77.715953"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Dulhera BO",
+    "pincode": "250110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.0700000",
+    "longitude": "77.7200000"
+  }
+]

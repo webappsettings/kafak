@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Kasa Budruk B.O",
+    "pincode": "401607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9128824",
+    "longitude": "73.0464309"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Rankol B.O",
+    "pincode": "401607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8975034",
+    "longitude": "72.8604097"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Talawada B.O",
+    "pincode": "401607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.907348500000001",
+    "longitude": "73.011488900000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Veti B.O",
+    "pincode": "401607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9059519",
+    "longitude": "72.9755829"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Tawa B.O",
+    "pincode": "401607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8710859",
+    "longitude": "72.9431038"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Kasa S.O",
+    "pincode": "401607",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.9150556",
+    "longitude": "72.9543056"
+  }
+]

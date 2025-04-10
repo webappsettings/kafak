@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Misord S.O",
+    "pincode": "462047",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6200000",
+    "longitude": "77.5700000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Palas Indus Town BO",
+    "pincode": "462047",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.129999999999999",
+    "longitude": "77.489999999999995"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Bagroda B.O",
+    "pincode": "462047",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.234079999999999",
+    "longitude": "77.399379999999994"
+  }
+]

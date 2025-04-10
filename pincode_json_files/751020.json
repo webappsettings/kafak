@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Pokhariput S.O",
+    "pincode": "751020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2381583",
+    "longitude": "85.8067416"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Aerodrome Area S.O",
+    "pincode": "751020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.5041666",
+    "longitude": "85.97"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Airport S.O (Khorda)",
+    "pincode": "751020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2381351",
+    "longitude": "85.8068555"
+  }
+]

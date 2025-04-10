@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Bhalswagaj BO",
+    "pincode": "247668",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8540000",
+    "longitude": "77.8880000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Nalhera Anantpur BO",
+    "pincode": "247668",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7705000",
+    "longitude": "78.1500000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Manakpur Adampur BO",
+    "pincode": "247668",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.86",
+    "longitude": "77.86"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Iqbalpur SO",
+    "pincode": "247668",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8745556",
+    "longitude": "77.8019444"
+  }
+]

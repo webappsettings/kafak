@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "GR Railway Station SO",
+    "pincode": "273012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7603889",
+    "longitude": "83.3805000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Loco  Workshop LSG SO",
+    "pincode": "273012",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7645833",
+    "longitude": "83.3773889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Railway Colony SO Gorakhpur",
+    "pincode": "273012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7276944",
+    "longitude": "83.3853889"
+  }
+]

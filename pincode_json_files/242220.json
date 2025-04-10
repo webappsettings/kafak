@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Chaurasia BO",
+    "pincode": "242220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Chilaua BO",
+    "pincode": "242220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Jearrahimpur BO",
+    "pincode": "242220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Raghunathpur BO",
+    "pincode": "242220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Ashrafpur BO",
+    "pincode": "242220",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8837000",
+    "longitude": "79.9122000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Shahjahanpur Division",
+    "officename": "Allahganj SO",
+    "pincode": "242220",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAHJAHANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8923889",
+    "longitude": "79.9173056"
+  }
+]

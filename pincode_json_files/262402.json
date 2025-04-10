@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Bindhukhatta SO",
+    "pincode": "262402",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.0400000",
+    "longitude": "79.5400000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Lalkua SO",
+    "pincode": "262402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.1494722",
+    "longitude": "79.5163056"
+  }
+]

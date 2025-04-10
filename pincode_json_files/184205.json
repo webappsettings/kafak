@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Galak BO",
+    "pincode": "184205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6047530",
+    "longitude": "75.3506920"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Sundla BO",
+    "pincode": "184205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6047530",
+    "longitude": "75.2887370"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Babey BO",
+    "pincode": "184205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.6239270",
+    "longitude": "111.9402300"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Mukwal Chinji BO",
+    "pincode": "184205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6245140",
+    "longitude": "75.2533640"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Dhamma BO",
+    "pincode": "184205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6350670",
+    "longitude": "75.6686920"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Thial BO",
+    "pincode": "184205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.686736000000003",
+    "longitude": "75.246448000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Ramkot SO Kathua",
+    "pincode": "184205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATHUA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6047530",
+    "longitude": "75.2887370"
+  }
+]

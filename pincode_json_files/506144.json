@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Dharmapuram B.O",
+    "pincode": "506144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMAKONDA",
+    "statename": "TELANGANA",
+    "latitude": "17.8804780",
+    "longitude": "79.4230850"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Chinnapendyal B.O",
+    "pincode": "506144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.8937252",
+    "longitude": "79.4178912"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Naskal B.O",
+    "pincode": "506144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.8804780",
+    "longitude": "79.4230850"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Pallagutta B.O",
+    "pincode": "506144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.8851847",
+    "longitude": "79.3100214"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Rajavaram B.O",
+    "pincode": "506144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.8877326",
+    "longitude": "79.3885943"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Abadighanpur S.O",
+    "pincode": "506144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.853979",
+    "longitude": "79.370305"
+  }
+]

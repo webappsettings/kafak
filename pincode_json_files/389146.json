@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Pahad BO",
+    "pincode": "389146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DOHAD",
+    "statename": "GUJARAT",
+    "latitude": "22.9071844",
+    "longitude": "73.9698066"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Singapur BO",
+    "pincode": "389146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DOHAD",
+    "statename": "GUJARAT",
+    "latitude": "22.9253526",
+    "longitude": "74.0686342"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Zerjitagadh BO",
+    "pincode": "389146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DOHAD",
+    "statename": "GUJARAT",
+    "latitude": "22.9078787",
+    "longitude": "74.1001083"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Nava Vadia BO",
+    "pincode": "389146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DOHAD",
+    "statename": "GUJARAT",
+    "latitude": "22.8906405",
+    "longitude": "74.0290007"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Padalia BO",
+    "pincode": "389146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DOHAD",
+    "statename": "GUJARAT",
+    "latitude": "22.8379310",
+    "longitude": "74.2531460"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Dudhia SO",
+    "pincode": "389146",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DOHAD",
+    "statename": "GUJARAT",
+    "latitude": "22.8812852",
+    "longitude": "74.0037708"
+  }
+]

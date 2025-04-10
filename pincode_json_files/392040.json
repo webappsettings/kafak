@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Devla BO",
+    "pincode": "392040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9967040",
+    "longitude": "72.5787630"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Islampur BO",
+    "pincode": "392040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9762330",
+    "longitude": "72.6414800"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Madafar BO",
+    "pincode": "392040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "22.0562480",
+    "longitude": "72.6445990"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Nada BO",
+    "pincode": "392040",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9517330",
+    "longitude": "72.5591930"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Tankari SO",
+    "pincode": "392040",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.9387960",
+    "longitude": "73.5405710"
+  }
+]

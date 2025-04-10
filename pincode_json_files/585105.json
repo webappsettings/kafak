@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Kb M.B.Nagar B.O",
+    "pincode": "585105",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.32",
+    "longitude": "76.829999999999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Gb Santrashwadi B.O",
+    "pincode": "585105",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.34",
+    "longitude": "76.849999999999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Rajapur B.O",
+    "pincode": "585105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.32",
+    "longitude": "76.849999999999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "GB Ggh S.O",
+    "pincode": "585105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.328583299999998",
+    "longitude": "76.847888900000001"
+  }
+]

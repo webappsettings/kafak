@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Nari BO",
+    "pincode": "364004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7745800",
+    "longitude": "72.0722050"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Chitra SO",
+    "pincode": "364004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7644885",
+    "longitude": "72.1519144"
+  }
+]

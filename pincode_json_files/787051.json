@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kakoi Rajgarh B.O",
+    "pincode": "787051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "94.0900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Moitri Ashram B.O",
+    "pincode": "787051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "94.0900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Lilabari AF S.O",
+    "pincode": "787051",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.1738000",
+    "longitude": "94.0548000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Joyhing Te B.O",
+    "pincode": "787051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "94.0900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Rongajan Borbil B.O",
+    "pincode": "787051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "94.0900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Rajgarh Rupahi B.O",
+    "pincode": "787051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.2347",
+    "longitude": "94.125900000000001"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Chaboti B.O",
+    "pincode": "787051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHIMPUR",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "94.0900000"
+  }
+]

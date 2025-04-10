@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Bapalamendi B.O",
+    "pincode": "762027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.3467933",
+    "longitude": "84.3394416"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Jhagadapata B.O",
+    "pincode": "762027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.3947866",
+    "longitude": "84.3617716"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "R Nuagaon B.O",
+    "pincode": "762027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.3961416",
+    "longitude": "84.3905683"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Linepada S.O",
+    "pincode": "762027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.3566000",
+    "longitude": "84.3628283"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Dankuni B.O",
+    "pincode": "762027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.3709983",
+    "longitude": "84.3554966"
+  }
+]

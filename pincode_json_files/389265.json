@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kajali BO",
+    "pincode": "389265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "22.2347610",
+    "longitude": "73.7753200"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kelamul BO",
+    "pincode": "389265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "22.2319130",
+    "longitude": "73.8638000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Nani Kharsoli BO",
+    "pincode": "389265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.1974810",
+    "longitude": "73.8329900"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Zinzwa BO",
+    "pincode": "389265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.2070899",
+    "longitude": "73.7528000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Ladpur BO",
+    "pincode": "389265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.2290156",
+    "longitude": "73.7873700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Siyal BO",
+    "pincode": "389265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.1995400",
+    "longitude": "73.8015500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Malvan SO",
+    "pincode": "389265",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Mahisagar",
+    "statename": "GUJARAT",
+    "latitude": "23.2238400",
+    "longitude": "73.8325100"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Dakopgiri B.O",
+    "pincode": "794101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.57835",
+    "longitude": "90.183999999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Araimile S.O",
+    "pincode": "794101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5124722",
+    "longitude": "90.2206389"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Gambarigre",
+    "pincode": "794101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.653438000000001",
+    "longitude": "90.194810000000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Captain Reserve B.O",
+    "pincode": "794101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST GARO HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

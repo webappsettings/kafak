@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Jungle Saligram BO",
+    "pincode": "273014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7605550",
+    "longitude": "83.3731680"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Pac Camp SO",
+    "pincode": "273014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7636944",
+    "longitude": "83.3972778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Jungle Dhushar BO",
+    "pincode": "273014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7947490",
+    "longitude": "83.4316460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Jungle Laxmipur BO",
+    "pincode": "273014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0211450",
+    "longitude": "83.3201490"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Jungle Tulshiram BO",
+    "pincode": "273014",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GORAKHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7608720",
+    "longitude": "83.4036660"
+  }
+]

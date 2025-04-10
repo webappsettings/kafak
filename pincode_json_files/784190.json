@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Barbagan B.O",
+    "pincode": "784190",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5943518",
+    "longitude": "91.9881527"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Chamuakhat B.O",
+    "pincode": "784190",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5489307",
+    "longitude": "92.0738647"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bhakatpara S.O",
+    "pincode": "784190",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.5398884",
+    "longitude": "92.0727482"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Shamtilla B.O",
+    "pincode": "784190",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.7110300",
+    "longitude": "92.9009000"
+  }
+]

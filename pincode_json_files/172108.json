@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Kalpa SO",
+    "pincode": "172108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5321809",
+    "longitude": "78.2505706"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Roghi BO",
+    "pincode": "172108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.6525000",
+    "longitude": "78.2448500"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Duni BO",
+    "pincode": "172108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.5460886",
+    "longitude": "78.2599752"
+  }
+]

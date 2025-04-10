@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Obindora BO",
+    "pincode": "192211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "75.158101",
+    "longitude": "77.14259"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Dooru SO",
+    "pincode": "192211",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.5711667",
+    "longitude": "75.2232500"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Hiller Shahabad BO",
+    "pincode": "192211",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "256.2000000",
+    "longitude": "284.2000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Kriri Nowpora BO",
+    "pincode": "192211",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5000000",
+    "longitude": "12.5000000"
+  }
+]

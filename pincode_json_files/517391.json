@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Nawabkota B.O",
+    "pincode": "517391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kandukuru B.O",
+    "pincode": "517391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Pulikallu PTM  B.O",
+    "pincode": "517391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.713",
+    "longitude": "78.2077"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "T.Sodam B.O",
+    "pincode": "517391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Peddatippasamudram S.O",
+    "pincode": "517391",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.71183333",
+    "longitude": "78.20686111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Pattamvandlapalle B.O",
+    "pincode": "517391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.713",
+    "longitude": "78.2077"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Katnagallu B.O",
+    "pincode": "517391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.713",
+    "longitude": "78.2077"
+  }
+]

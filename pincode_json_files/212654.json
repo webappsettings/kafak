@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Naugaon BO",
+    "pincode": "212654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9974400",
+    "longitude": "80.9857500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Jamraon SO",
+    "pincode": "212654",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0304000",
+    "longitude": "80.5560000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Kishandaspur BO",
+    "pincode": "212654",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9974400",
+    "longitude": "80.9857500"
+  }
+]

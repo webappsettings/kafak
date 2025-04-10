@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Lal Chowk SO",
+    "pincode": "190001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0716944",
+    "longitude": "74.8106111"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Srinagar GPO",
+    "pincode": "190001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0720833",
+    "longitude": "74.8206667"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Nehru Park SO",
+    "pincode": "190001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0893056",
+    "longitude": "74.8445833"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "SK Secretariat SO",
+    "pincode": "190001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0744167",
+    "longitude": "74.8048056"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Badyar Bala SO",
+    "pincode": "190001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0733055",
+    "longitude": "74.8165555"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Sathu SO",
+    "pincode": "190001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0793889",
+    "longitude": "74.8136389"
+  }
+]

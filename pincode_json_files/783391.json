@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Alukhunda Bazar B.O",
+    "pincode": "783391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5535000",
+    "longitude": "90.8033000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Barpathar B.O",
+    "pincode": "783391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "27.8751120",
+    "longitude": "95.6905040"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Sonaikhola B.O",
+    "pincode": "783391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.6136210",
+    "longitude": "90.7402120"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Panbari B.O",
+    "pincode": "783391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.6219410",
+    "longitude": "90.8353530"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Monakocha B.O",
+    "pincode": "783391",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.4738170",
+    "longitude": "90.6844210"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Patiladaha S.O",
+    "pincode": "783391",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.2726000",
+    "longitude": "90.3452000"
+  }
+]

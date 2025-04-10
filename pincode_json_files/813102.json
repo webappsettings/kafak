@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Rajpur BO",
+    "pincode": "813102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1573297",
+    "longitude": "86.7962965"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Banka HO",
+    "pincode": "813102",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BANKA",
+    "statename": "BIHAR",
+    "latitude": "24.8866944",
+    "longitude": "86.9183889"
+  }
+]

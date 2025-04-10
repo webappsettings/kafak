@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Bahraich HO",
+    "pincode": "271801",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5683570",
+    "longitude": "81.5928840"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Qanoongopura SO",
+    "pincode": "271801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5731111",
+    "longitude": "81.5998056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Gudari Bazar SO",
+    "pincode": "271801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5743333",
+    "longitude": "81.5874167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Chhwani Bazar SO",
+    "pincode": "271801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5761389",
+    "longitude": "81.5964167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Bahraich City SO",
+    "pincode": "271801",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5788611",
+    "longitude": "81.5961111"
+  }
+]

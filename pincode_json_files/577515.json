@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Marabhaghatta B.O",
+    "pincode": "577515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7504120",
+    "longitude": "76.1870680"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Aralihally B.O",
+    "pincode": "577515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7846770",
+    "longitude": "76.2421190"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Sanehally B.O",
+    "pincode": "577515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7779020",
+    "longitude": "76.1602590"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Bagur S.O (Chitradurga)",
+    "pincode": "577515",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.2215833",
+    "longitude": "76.3974167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Kondajji B.O",
+    "pincode": "577515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7367530",
+    "longitude": "76.1957620"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Konguvalli B.O",
+    "pincode": "577515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "11.4600380",
+    "longitude": "78.5683000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Malali B.O",
+    "pincode": "577515",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7613690",
+    "longitude": "76.2305310"
+  }
+]

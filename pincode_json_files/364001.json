@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar HO",
+    "pincode": "364001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7750",
+    "longitude": "72.1479"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar K Nagar SO",
+    "pincode": "364001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.8939010",
+    "longitude": "72.1392480"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Khargate SO",
+    "pincode": "364001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7783000",
+    "longitude": "72.1467000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Gogha Circle SO",
+    "pincode": "364001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7620278",
+    "longitude": "72.1557222"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Wadva SO",
+    "pincode": "364001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7720833",
+    "longitude": "72.1393611"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Nirmalnagar SO",
+    "pincode": "364001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7727790",
+    "longitude": "72.1154330"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhavnagar Shivaji Circle Area SO",
+    "pincode": "364001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAVNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "21.7537900",
+    "longitude": "72.1684400"
+  }
+]

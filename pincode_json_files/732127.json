@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Palgachhi BO",
+    "pincode": "732127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.1626550",
+    "longitude": "88.3396310"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Khejuriaghat SO",
+    "pincode": "732127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "24.0005555",
+    "longitude": "87.0013611"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Chamagram BO",
+    "pincode": "732127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Charbabupur BO",
+    "pincode": "732127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.1626550",
+    "longitude": "88.3396310"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Gurutola BO",
+    "pincode": "732127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.1626550",
+    "longitude": "88.3396310"
+  }
+]

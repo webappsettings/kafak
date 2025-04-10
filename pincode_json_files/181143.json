@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "CENTRAL UNIVERSITY BO",
+    "pincode": "181143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Gurah Salathia SO",
+    "pincode": "181143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAMMU",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6047778",
+    "longitude": "75.0431389"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Rahya BO",
+    "pincode": "181143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.6225810",
+    "longitude": "74.9927050"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Jammu Division",
+    "officename": "Rajinderpura BO",
+    "pincode": "181143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.2668510",
+    "longitude": "74.5967050"
+  }
+]

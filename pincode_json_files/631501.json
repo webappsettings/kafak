@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Kanchipuram Collectorate S.O",
+    "pincode": "631501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8269440",
+    "longitude": "79.6856720"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Thoopul S.O",
+    "pincode": "631501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8427500",
+    "longitude": "79.7713000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Kanchipuram Cutchery S.O",
+    "pincode": "631501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341935",
+    "longitude": "79.7036202"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Little Kanchipuram S.O",
+    "pincode": "631501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.7042500",
+    "longitude": "79.7505200"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Kanchipuram H.O",
+    "pincode": "631501",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8323611",
+    "longitude": "79.7099722"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Kanchipuram Division",
+    "officename": "Pillayarpalayam S.O",
+    "pincode": "631501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANCHIPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.8341885",
+    "longitude": "79.7036250"
+  }
+]

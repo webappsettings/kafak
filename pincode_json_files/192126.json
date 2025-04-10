@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Laripora BO",
+    "pincode": "192126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "236.5200000",
+    "longitude": "725.3000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Mandlan",
+    "pincode": "192126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.046080000000003",
+    "longitude": "75.295105000000007"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Pahalgam SO",
+    "pincode": "192126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0335000",
+    "longitude": "75.3235277"
+  }
+]

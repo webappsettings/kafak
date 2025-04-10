@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Bhusawal H.O",
+    "pincode": "425201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0450746",
+    "longitude": "75.7864589"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Bhusawal Shivaji Nagar S.O",
+    "pincode": "425201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0431973",
+    "longitude": "75.7814287"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Bhusawal Athawade Bazar S.O",
+    "pincode": "425201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.0408809",
+    "longitude": "75.7811321"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Bhusaval Division",
+    "officename": "Bhusawal Kutchery S.O",
+    "pincode": "425201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.051786",
+    "longitude": "75.781814"
+  }
+]

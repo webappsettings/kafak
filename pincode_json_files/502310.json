@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Vittalapur B.O",
+    "pincode": "502310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.231706",
+    "longitude": "78.864603"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Choudaram B.O",
+    "pincode": "502310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.187477",
+    "longitude": "78.93519"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Mylaram B.O",
+    "pincode": "502310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.224815",
+    "longitude": "78.918601"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Allipur S.O",
+    "pincode": "502310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.241323",
+    "longitude": "78.922867"
+  }
+]

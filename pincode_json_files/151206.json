@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Kotha Guru BO",
+    "pincode": "151206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.443300000000001",
+    "longitude": "75.094700000000003"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Hamirgarh BO",
+    "pincode": "151206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "25.188199999999998",
+    "longitude": "74.626900000000006"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Maluka BO",
+    "pincode": "151206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.429500000000001",
+    "longitude": "75.054500000000004"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Siryewala BO",
+    "pincode": "151206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.488199999999999",
+    "longitude": "75.045100000000005"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Bhagta Bhai SO",
+    "pincode": "151206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.48222",
+    "longitude": "75.09502"
+  }
+]

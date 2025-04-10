@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Vihokhu B.O",
+    "pincode": "797116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.867654399999999",
+    "longitude": "93.865741499999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Dimapur Bazar S.O",
+    "pincode": "797116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.8632160",
+    "longitude": "93.7543150"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kuhuboto B.O",
+    "pincode": "797116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.931607899999999",
+    "longitude": "93.753224399999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kushiabill B.O",
+    "pincode": "797116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.938963699999999",
+    "longitude": "93.753428200000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Padampukhuri B.O",
+    "pincode": "797116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.868410900000001",
+    "longitude": "93.751015499999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Khehekhu B.O",
+    "pincode": "797116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.791636799999999",
+    "longitude": "93.802191699999995"
+  }
+]

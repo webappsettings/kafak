@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Bhatgaon BO",
+    "pincode": "493776",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAMTARI",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "RSPColony Gangrel BO",
+    "pincode": "493776",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAMTARI",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.5000000",
+    "longitude": "81.5000000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Rudri SO",
+    "pincode": "493776",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHAMTARI",
+    "statename": "CHHATTISGARH",
+    "latitude": "20.6621111",
+    "longitude": "81.5548333"
+  }
+]

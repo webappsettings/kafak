@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Dehri BMP SO",
+    "pincode": "821307",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9013890",
+    "longitude": "84.1838890"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Dehrionsone SO",
+    "pincode": "821307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9013890",
+    "longitude": "84.1838890"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtas Division",
+    "officename": "Dehri R S SO",
+    "pincode": "821307",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ROHTAS",
+    "statename": "BIHAR",
+    "latitude": "24.9013890",
+    "longitude": "84.1838890"
+  }
+]

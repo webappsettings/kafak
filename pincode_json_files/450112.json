@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Gulgaon Raiyat B.O",
+    "pincode": "450112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "76.5285000",
+    "longitude": "22.1367000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Purani B.O",
+    "pincode": "450112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1584000",
+    "longitude": "76.5430000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Guyada B.O",
+    "pincode": "450112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "76.4832000",
+    "longitude": "20.0260000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Jamkota B.O",
+    "pincode": "450112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1324000",
+    "longitude": "76.4765000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Sindhkhal B.O",
+    "pincode": "450112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "17.4091000",
+    "longitude": "78.4506000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Jalwa Bujurg B.O",
+    "pincode": "450112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1000000",
+    "longitude": "76.4042000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Mundi S.O",
+    "pincode": "450112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8300000",
+    "longitude": "76.3300000"
+  }
+]

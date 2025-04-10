@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Dariba B.O",
+    "pincode": "331501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Dhani Kumharan",
+    "pincode": "331501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Siwaron Ki Dhani",
+    "pincode": "331501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Dunkar B.O",
+    "pincode": "331501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Bidasar S.O",
+    "pincode": "331501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8533889",
+    "longitude": "74.3024722"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Ghantiyal Bari",
+    "pincode": "331501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

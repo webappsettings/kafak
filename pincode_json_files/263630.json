@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Dewaldhar BO",
+    "pincode": "263630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8394843",
+    "longitude": "79.7764247"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Billori SO",
+    "pincode": "263630",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7647222",
+    "longitude": "79.7358388"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Almora Division",
+    "officename": "Janoti Palari BO",
+    "pincode": "263630",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGESHWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7481600",
+    "longitude": "79.7518700"
+  }
+]

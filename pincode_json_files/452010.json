@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Sanwer Link Road Indore S.O",
+    "pincode": "452010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.3889000",
+    "longitude": "75.7431000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Nipaniya SO",
+    "pincode": "452010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.75874",
+    "longitude": "75.929845"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore DDU Nagar S.O",
+    "pincode": "452010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7560833",
+    "longitude": "75.8752222"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Vijay Nagar S.O",
+    "pincode": "452010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7603056",
+    "longitude": "75.8863333"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Dupsa BO",
+    "pincode": "713519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3400000",
+    "longitude": "88.3000000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Samudragarh SO",
+    "pincode": "713519",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.1045501",
+    "longitude": "87.7264400"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Nasaratpur BO",
+    "pincode": "713519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3400000",
+    "longitude": "88.3300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Raipur BO",
+    "pincode": "713519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3800000",
+    "longitude": "88.2800000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Charmaniknagar BO",
+    "pincode": "713519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NADIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3200000",
+    "longitude": "88.3300000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Kutirpara BO",
+    "pincode": "713519",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3900000",
+    "longitude": "88.3400000"
+  }
+]

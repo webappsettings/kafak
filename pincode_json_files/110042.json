@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Siraspur BO",
+    "pincode": "110042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7441111",
+    "longitude": "77.1450000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Pehlad Pur BO",
+    "pincode": "110042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7277500",
+    "longitude": "77.1636111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Mukundpur Village",
+    "pincode": "110042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.744111",
+    "longitude": "77.144999999999996"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Delhi Engg College SO",
+    "pincode": "110042",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.7463611",
+    "longitude": "77.1185278"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Shahbad Dairy PO",
+    "pincode": "110042",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.741421",
+    "longitude": "77.094711"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Badli SO North West Delhi",
+    "pincode": "110042",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.7446900",
+    "longitude": "77.1450370"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Samai Pur SO",
+    "pincode": "110042",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7441111",
+    "longitude": "77.1450000"
+  }
+]

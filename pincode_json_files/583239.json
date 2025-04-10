@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hampi S.O",
+    "pincode": "583239",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.3341966",
+    "longitude": "76.4617871"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kaddi Rampura B.O",
+    "pincode": "583239",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.3119736",
+    "longitude": "76.4503437"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Malpanagudi B.O",
+    "pincode": "583239",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2855592",
+    "longitude": "76.4309997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kondanayakanahalli B.O",
+    "pincode": "583239",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2828556",
+    "longitude": "76.4195842"
+  }
+]

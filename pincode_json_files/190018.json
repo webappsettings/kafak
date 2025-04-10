@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Bemina Chowk BO",
+    "pincode": "190018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "129.6000000",
+    "longitude": "72.3600000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Sebdan BO",
+    "pincode": "190018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0448370",
+    "longitude": "74.7319650"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Bemina SO",
+    "pincode": "190018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRINAGAR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0766111",
+    "longitude": "74.7689166"
+  }
+]

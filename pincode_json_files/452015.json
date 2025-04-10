@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Indore Kumar Khadi S.O",
+    "pincode": "452015",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7367222",
+    "longitude": "75.8494167"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore City Division",
+    "officename": "Industrial Estate S.O (Indore)",
+    "pincode": "452015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.44",
+    "longitude": "75.51"
+  }
+]

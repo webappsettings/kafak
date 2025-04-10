@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Ginja BO",
+    "pincode": "206130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9541691",
+    "longitude": "78.9352226"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Heonra BO",
+    "pincode": "206130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9385983",
+    "longitude": "78.9646941"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Larkhaur BO",
+    "pincode": "206130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9327834",
+    "longitude": "78.9325618"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Saifai SO",
+    "pincode": "206130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9545325",
+    "longitude": "78.9612722"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Kuiya BO",
+    "pincode": "206130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAWAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9239065",
+    "longitude": "79.0119552"
+  }
+]

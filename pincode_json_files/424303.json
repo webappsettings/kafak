@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Khandalai B.O",
+    "pincode": "424303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.989005",
+    "longitude": "74.498848"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Bhadane B.O",
+    "pincode": "424303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.938551",
+    "longitude": "74.481649"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Lonkhedi B.O",
+    "pincode": "424303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.89945",
+    "longitude": "74.532889"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Ner S.O",
+    "pincode": "424303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.94298",
+    "longitude": "74.513788"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Shirdhane B.O",
+    "pincode": "424303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.003054",
+    "longitude": "74.518733"
+  }
+]

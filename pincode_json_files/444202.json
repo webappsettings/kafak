@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Bodkha B.O",
+    "pincode": "444202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6476900",
+    "longitude": "77.7682600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Sangrampur S.O (Buldhana)",
+    "pincode": "444202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5336389",
+    "longitude": "76.1794722"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Palsi Zanshi B.O",
+    "pincode": "444202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6476900",
+    "longitude": "77.8682600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Warwat Bakal B.O",
+    "pincode": "444202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6476900",
+    "longitude": "77.8682600"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Buldana Division",
+    "officename": "Kankanwada B.O",
+    "pincode": "444202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULDHANA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6476900",
+    "longitude": "77.7682600"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Hansapore BO",
+    "pincode": "396450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9100000",
+    "longitude": "72.9200000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Eru BO",
+    "pincode": "396450",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9200000",
+    "longitude": "72.9100000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Chhapra BO",
+    "pincode": "396450",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9300000",
+    "longitude": "72.9300000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Navsari Division",
+    "officename": "Eru Ac SO",
+    "pincode": "396450",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAVSARI",
+    "statename": "GUJARAT",
+    "latitude": "20.9300000",
+    "longitude": "72.9100000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "New Colony S.O (East Godavari)",
+    "pincode": "533201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.564576",
+    "longitude": "81.996984"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Amalapuram H.O",
+    "pincode": "533201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.57652778",
+    "longitude": "82.00297222"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Amalapuram Bus Complex S.O",
+    "pincode": "533201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.57969444",
+    "longitude": "81.99791667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Moberlypeta S.O",
+    "pincode": "533201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.57783333",
+    "longitude": "81.99366667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Amalapuram Division",
+    "officename": "Rdos Office Road S.O",
+    "pincode": "533201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Konaseema",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.587321",
+    "longitude": "82.021045"
+  }
+]

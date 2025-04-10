@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Tindivanam HO",
+    "pincode": "604001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2271944",
+    "longitude": "79.6496389"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Tindivanam Bazaar SO",
+    "pincode": "604001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "12.2365833",
+    "longitude": "79.6501667"
+  }
+]

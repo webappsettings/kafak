@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Udaichandpur BO",
+    "pincode": "222181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8800000",
+    "longitude": "82.5800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Thanagaddi SO",
+    "pincode": "222181",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5971000",
+    "longitude": "82.9033000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Barain BO",
+    "pincode": "222181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3200000",
+    "longitude": "81.2500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Behra BO",
+    "pincode": "222181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.3000000",
+    "longitude": "82.9800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Ratnupur BO",
+    "pincode": "222181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1000000",
+    "longitude": "82.4500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Khargsenpur B.O",
+    "pincode": "222181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Sohani BO",
+    "pincode": "222181",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4571000",
+    "longitude": "83.2158000"
+  }
+]

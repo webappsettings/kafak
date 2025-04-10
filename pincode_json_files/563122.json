@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "ROBERTSONPET MDG",
+    "pincode": "563122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9565",
+    "longitude": "78.270166700000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Parandahalli B.O",
+    "pincode": "563122",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9581427",
+    "longitude": "78.283248"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Ganeshpuram B.O",
+    "pincode": "563122",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.957102000000001",
+    "longitude": "78.276692699999998"
+  }
+]

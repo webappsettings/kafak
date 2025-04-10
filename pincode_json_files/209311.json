@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Jainpur I A SO",
+    "pincode": "209311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANPUR DEHAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3663440",
+    "longitude": "79.9873800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "MAti KishunPur BO",
+    "pincode": "209311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR DEHAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3623840",
+    "longitude": "79.9968770"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Girsi BO",
+    "pincode": "209311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2521460",
+    "longitude": "80.0239710"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Bara BO",
+    "pincode": "209311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR DEHAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3810890",
+    "longitude": "80.0148240"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Mohana EUP 7305 BO",
+    "pincode": "209311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR DEHAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3331280",
+    "longitude": "80.0106420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Kanpur Moffusil Division",
+    "officename": "Patra BO",
+    "pincode": "209311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANPUR DEHAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3336660",
+    "longitude": "80.0457470"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "R. Kudapali B.O",
+    "pincode": "768225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7918507",
+    "longitude": "83.9140404"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Rampur Colliery S.O",
+    "pincode": "768225",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.803025",
+    "longitude": "83.925035"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Katabaga B.O",
+    "pincode": "768225",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.7556871",
+    "longitude": "83.9164133"
+  }
+]

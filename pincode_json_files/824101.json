@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Aurangabad Kutchehry SO",
+    "pincode": "824101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "24.770316",
+    "longitude": "84.248952"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Aurangabad BH HO",
+    "pincode": "824101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "24.770316",
+    "longitude": "84.248952"
+  }
+]

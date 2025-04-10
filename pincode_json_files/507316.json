@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Peddireddigudem S.O",
+    "pincode": "507316",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.3201944",
+    "longitude": "80.6944444"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Rajapuram B.O",
+    "pincode": "507316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.3483585",
+    "longitude": "80.731133900000003"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Bhavannapalem B.O",
+    "pincode": "507316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.262350000000001",
+    "longitude": "80.69135"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Abbugudem B.O",
+    "pincode": "507316",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.262350000000001",
+    "longitude": "80.69135"
+  }
+]

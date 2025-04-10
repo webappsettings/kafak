@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Singach BO",
+    "pincode": "361010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.3900000",
+    "longitude": "69.7300000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Devalia Targhadi BO",
+    "pincode": "361010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3200000",
+    "longitude": "69.7200000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Zakhar BO",
+    "pincode": "361010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAMNAGAR",
+    "statename": "GUJARAT",
+    "latitude": "22.3600000",
+    "longitude": "69.7700000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Kajurada BO",
+    "pincode": "361010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3300000",
+    "longitude": "69.7000000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Bharana BO",
+    "pincode": "361010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3700000",
+    "longitude": "69.7000000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Vadinar SO",
+    "pincode": "361010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.4855833",
+    "longitude": "70.1354444"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Motamandha BO",
+    "pincode": "361010",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3100000",
+    "longitude": "69.6700000"
+  }
+]

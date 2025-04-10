@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Noornagar B.O",
+    "pincode": "464671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1141490",
+    "longitude": "78.4034190"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Khargone S.O",
+    "pincode": "464671",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8233000",
+    "longitude": "75.6103000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Begania B.O",
+    "pincode": "464671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.3824340",
+    "longitude": "77.4673290"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Chhabara B.O",
+    "pincode": "464671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6668260",
+    "longitude": "76.8452020"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Jamgarh B.O",
+    "pincode": "464671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1039300",
+    "longitude": "78.2760890"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Bhondiya B.O",
+    "pincode": "464671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "29.4906140",
+    "longitude": "75.4257320"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Rajwada B.O",
+    "pincode": "464671",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7177100",
+    "longitude": "75.8544850"
+  }
+]

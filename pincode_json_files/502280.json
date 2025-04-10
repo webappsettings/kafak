@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Khata B.O",
+    "pincode": "502280",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.020547",
+    "longitude": "79.06551"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Ankshapur B.O",
+    "pincode": "502280",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.041092",
+    "longitude": "79.00464"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Gatlamalyal B.O",
+    "pincode": "502280",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.068884",
+    "longitude": "79.095117"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Akkenapally B.O",
+    "pincode": "502280",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.079806",
+    "longitude": "79.066944"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Medak Division",
+    "officename": "Nangnoor S.O",
+    "pincode": "502280",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIDDIPET",
+    "statename": "TELANGANA",
+    "latitude": "18.0620000",
+    "longitude": "79.0363333"
+  }
+]

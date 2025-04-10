@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Kota H.O",
+    "pincode": "324001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2100000",
+    "longitude": "75.8600000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Nayapura Kota S.O",
+    "pincode": "324001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1915000",
+    "longitude": "75.8482778"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Subhash Marg Kota S.O",
+    "pincode": "324001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2134444",
+    "longitude": "75.8660833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Kota Division",
+    "officename": "Kota Kutchery S.O",
+    "pincode": "324001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOTA",
+    "statename": "RAJASTHAN",
+    "latitude": "25.2045000",
+    "longitude": "75.8605556"
+  }
+]

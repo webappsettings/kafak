@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Cheema SO",
+    "pincode": "148029",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.0990278",
+    "longitude": "75.6812500"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Shahpur kalan BO",
+    "pincode": "148029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.1372310",
+    "longitude": "75.6775360"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Jharon BO",
+    "pincode": "148029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.1315010",
+    "longitude": "75.6513570"
+  }
+]

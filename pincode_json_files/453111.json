@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Jamburdi Sarwar B.O",
+    "pincode": "453111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8450010",
+    "longitude": "75.7197040"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Alwasa B.O",
+    "pincode": "453111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8290600",
+    "longitude": "75.8330590"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Baghana B.O",
+    "pincode": "453111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "29.0695960",
+    "longitude": "75.8519430"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Kalmer B.O",
+    "pincode": "453111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7944680",
+    "longitude": "75.4548650"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Palia B.O",
+    "pincode": "453111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8298850",
+    "longitude": "75.7938310"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Hatod S.O",
+    "pincode": "453111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8000000",
+    "longitude": "75.7300000"
+  }
+]

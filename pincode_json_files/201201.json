@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Churiyala BO",
+    "pincode": "201201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8551590",
+    "longitude": "77.6707920"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Saidpur BO",
+    "pincode": "201201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8671070",
+    "longitude": "77.6450210"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Rori BO",
+    "pincode": "201201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8620880",
+    "longitude": "77.6063540"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Talheta BO",
+    "pincode": "201201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8296210",
+    "longitude": "77.6736550"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Harmukhpuri SO",
+    "pincode": "201201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.5785420",
+    "longitude": "78.5462170"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Sara BO",
+    "pincode": "201201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8754330",
+    "longitude": "77.5726880"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Govindpuri SO",
+    "pincode": "201201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8558717330207",
+    "longitude": "77.5912120253817"
+  }
+]

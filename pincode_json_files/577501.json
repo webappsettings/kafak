@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Chitradurga  Dist Office S.O",
+    "pincode": "577501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.2263333",
+    "longitude": "76.349249999999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Chitradurga Chickpet S.O",
+    "pincode": "577501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.220694",
+    "longitude": "76.399900000000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Chitradurga H.O",
+    "pincode": "577501",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.221583300000001",
+    "longitude": "76.397416699999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Chitradurga  Fort S.O",
+    "pincode": "577501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.216049",
+    "longitude": "76.398912999999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Kanaka Circle Chitradurga S.O",
+    "pincode": "577501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "14.231195",
+    "longitude": "76.381100000000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Chitradurga Division",
+    "officename": "Chitradurga  Collegeroad S.O",
+    "pincode": "577501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITRADURGA",
+    "statename": "KARNATAKA",
+    "latitude": "12.345000000000001",
+    "longitude": "74.670000000000002"
+  }
+]

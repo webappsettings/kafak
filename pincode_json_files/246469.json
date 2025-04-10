@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Mansoona BO",
+    "pincode": "246469",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5481450",
+    "longitude": "79.1232960"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Okhimath SO",
+    "pincode": "246469",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5123056",
+    "longitude": "79.0937500"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Daira BO",
+    "pincode": "246469",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2005720",
+    "longitude": "79.2118220"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Fafanj BO",
+    "pincode": "246469",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.2028340",
+    "longitude": "79.1982410"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Sari BO",
+    "pincode": "246469",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5180600",
+    "longitude": "79.1534420"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chamoli Division",
+    "officename": "Thatigadgu BO",
+    "pincode": "246469",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUDRA PRAYAG",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5171620",
+    "longitude": "79.1535730"
+  }
+]

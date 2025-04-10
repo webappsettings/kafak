@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kallahalli Rajapura B.O",
+    "pincode": "583203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "15.2625709",
+    "longitude": "76.3839167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hosapete N C C S.O",
+    "pincode": "583203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYNAGAR",
+    "statename": "KARNATAKA",
+    "latitude": "15.2625709",
+    "longitude": "76.3839167"
+  }
+]

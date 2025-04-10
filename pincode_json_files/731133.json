@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Churar BO",
+    "pincode": "731133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7519120",
+    "longitude": "87.3115530"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Paigora BO",
+    "pincode": "731133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7595350",
+    "longitude": "87.3379390"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Ranipathar BO",
+    "pincode": "731133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.7592800",
+    "longitude": "87.3078260"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Panchrahat SO",
+    "pincode": "731133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9113333",
+    "longitude": "87.5271667"
+  }
+]

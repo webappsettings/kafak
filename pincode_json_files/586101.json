@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Vijayapura Jorapur Peth SO",
+    "pincode": "586101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.834326799999999",
+    "longitude": "75.706215999999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Vijayapura Kutchery SO",
+    "pincode": "586101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.825014199999998",
+    "longitude": "75.718060600000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Vijayapura H.O",
+    "pincode": "586101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.829520299999999",
+    "longitude": "75.716762299999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Vijayapura Bazar SO",
+    "pincode": "586101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.833768899999999",
+    "longitude": "75.716000699999995"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Solamadevi BO",
+    "pincode": "612902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1300000",
+    "longitude": "79.4000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Udayanatham BO",
+    "pincode": "612902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1500000",
+    "longitude": "79.4100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Devamangalam BO",
+    "pincode": "612902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1700000",
+    "longitude": "79.3800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Kodalikaruppur SO",
+    "pincode": "612902",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1876900",
+    "longitude": "79.2581480"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Anaikudam BO",
+    "pincode": "612902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1400000",
+    "longitude": "79.3800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Kodali BO",
+    "pincode": "612902",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1500000",
+    "longitude": "79.4300000"
+  }
+]

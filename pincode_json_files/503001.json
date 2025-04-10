@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Nizamabad H.O",
+    "pincode": "503001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6715",
+    "longitude": "78.0937"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Kotagalli S.O",
+    "pincode": "503001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Gajulpet S.O",
+    "pincode": "503001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Shivajinagar S.O",
+    "pincode": "503001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Jawahar Road S.O",
+    "pincode": "503001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Phullong S.O",
+    "pincode": "503001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

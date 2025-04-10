@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Baranamsang B.O",
+    "pincode": "798622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.705460599999999",
+    "longitude": "94.706268699999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Naginimora S.O",
+    "pincode": "798622",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.4815740",
+    "longitude": "94.9926490"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Kongon B.O",
+    "pincode": "798622",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MON",
+    "statename": "NAGALAND",
+    "latitude": "26.746258000000001",
+    "longitude": "94.813873799999996"
+  }
+]

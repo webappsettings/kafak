@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Borkund B.O",
+    "pincode": "424308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.714792",
+    "longitude": "74.826727"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Dhamangaon B.O",
+    "pincode": "424308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.749592",
+    "longitude": "74.940884"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Hendrun B.O",
+    "pincode": "424308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.9042271",
+    "longitude": "74.7748909"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Shirud S.O",
+    "pincode": "424308",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.731264",
+    "longitude": "74.892194"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Moghan B.O",
+    "pincode": "424308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.44505",
+    "longitude": "74.45510"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Mordad B.O",
+    "pincode": "424308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.681563",
+    "longitude": "74.92788"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Nandale B.O",
+    "pincode": "424308",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHULE",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.658707",
+    "longitude": "74.81877"
+  }
+]

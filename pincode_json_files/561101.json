@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Adarangi B.O",
+    "pincode": "561101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1200000",
+    "longitude": "77.1900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Mayasandra B.O",
+    "pincode": "561101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1200000",
+    "longitude": "77.1300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Hulikal B.O",
+    "pincode": "561101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1400000",
+    "longitude": "77.1500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Sirigiripura B.O",
+    "pincode": "561101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1500000",
+    "longitude": "77.1900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Sugganahalli B.O",
+    "pincode": "561101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1600000",
+    "longitude": "77.1300000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Kudur S.O",
+    "pincode": "561101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1070833",
+    "longitude": "77.1673056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Marasandra B.O",
+    "pincode": "561101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1600000",
+    "longitude": "77.1600000"
+  }
+]

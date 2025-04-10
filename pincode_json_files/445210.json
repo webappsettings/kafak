@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Lohi S.O",
+    "pincode": "445210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7514",
+    "longitude": "75.7138"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Hatola B.O",
+    "pincode": "445210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7514",
+    "longitude": "75.7138"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Satefal B.O",
+    "pincode": "445210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7514",
+    "longitude": "75.7138"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Tarnoli B.O",
+    "pincode": "445210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7514",
+    "longitude": "75.7138"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Yeotmal Division",
+    "officename": "Adegaon B.O",
+    "pincode": "445210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAVATMAL",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.7514",
+    "longitude": "75.7138"
+  }
+]

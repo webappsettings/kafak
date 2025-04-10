@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Irinjalakuda HO",
+    "pincode": "680121",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3469722",
+    "longitude": "76.2076111"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Chelur BO",
+    "pincode": "680121",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.2100000",
+    "longitude": "76.1800000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Kochi Region",
+    "divisionname": "Irinjalakuda Division",
+    "officename": "Irinjalakuda Mkt SO",
+    "pincode": "680121",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THRISSUR",
+    "statename": "KERALA",
+    "latitude": "10.3497778",
+    "longitude": "76.2173056"
+  }
+]

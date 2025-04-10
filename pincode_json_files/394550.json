@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Bhimpore BO",
+    "pincode": "394550",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.0811580",
+    "longitude": "72.7289270"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Dumasgam BO",
+    "pincode": "394550",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.1703690",
+    "longitude": "72.7892430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Surat Division",
+    "officename": "Dumas SO",
+    "pincode": "394550",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURAT",
+    "statename": "GUJARAT",
+    "latitude": "21.0875556",
+    "longitude": "72.7144722"
+  }
+]

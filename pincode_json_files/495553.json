@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Kirari BO",
+    "pincode": "495553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9740640",
+    "longitude": "82.4549660"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Sonsari BO",
+    "pincode": "495553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.7579750",
+    "longitude": "82.3614630"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Tarod BO",
+    "pincode": "495553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9825780",
+    "longitude": "82.4327240"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Pakaria BO",
+    "pincode": "495553",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9230850",
+    "longitude": "82.4414220"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Nariyara SO",
+    "pincode": "495553",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JANJGIR-CHAMPA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.9406800",
+    "longitude": "82.3929600"
+  }
+]

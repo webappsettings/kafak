@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Kalamb B.O",
+    "pincode": "401304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.4002916",
+    "longitude": "72.7776873"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Navi Mumbai Region",
+    "divisionname": "Palghar Division",
+    "officename": "Nirmal S.O (Thane)",
+    "pincode": "401304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PALGHAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1993056",
+    "longitude": "72.9793333"
+  }
+]

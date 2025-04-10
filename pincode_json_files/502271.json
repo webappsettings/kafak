@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Cheelapalli B.O",
+    "pincode": "502271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.07630804012172",
+    "longitude": "77.9146482414284"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Jukal B.O",
+    "pincode": "502271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.088741303417187",
+    "longitude": "77.98389470253669"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Tenkati B.O",
+    "pincode": "502271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.06589587234414",
+    "longitude": "77.87321370646812"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Shankarampet S.O",
+    "pincode": "502271",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.0512500",
+    "longitude": "77.9136389"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Moosapet B.O",
+    "pincode": "502271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.036090946255637",
+    "longitude": "77.95384823160417"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Uthloor B.O",
+    "pincode": "502271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.06090228797812",
+    "longitude": "77.94299244652765"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Makta Laxmapur B.O",
+    "pincode": "502271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEDAK",
+    "statename": "TELANGANA",
+    "latitude": "18.021652278789105",
+    "longitude": "77.94213534056578"
+  }
+]

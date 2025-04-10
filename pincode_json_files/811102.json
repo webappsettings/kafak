@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Singhaul BO",
+    "pincode": "811102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.12406",
+    "longitude": "85.459475"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Mehus SO",
+    "pincode": "811102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.1417690",
+    "longitude": "85.8618020"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Mafo BO",
+    "pincode": "811102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.141694",
+    "longitude": "85.862891"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Esuwa BO",
+    "pincode": "811102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.12406",
+    "longitude": "85.459475"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Gagaur BO",
+    "pincode": "811102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.141694",
+    "longitude": "85.862891"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Katari BO",
+    "pincode": "811102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.141694",
+    "longitude": "85.862891"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Sasaur BO",
+    "pincode": "811102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHEIKHPURA",
+    "statename": "BIHAR",
+    "latitude": "25.12406",
+    "longitude": "85.459475"
+  }
+]

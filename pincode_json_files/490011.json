@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Khursipar Bhilai SO",
+    "pincode": "490011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.239602000000001",
+    "longitude": "81.390192999999996"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "New Khursipar Bhilai SO",
+    "pincode": "490011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1234100",
+    "longitude": "81.2409200"
+  }
+]

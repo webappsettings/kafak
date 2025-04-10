@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Bainsta BO",
+    "pincode": "182126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Kuhritti BO",
+    "pincode": "182126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Roan SO",
+    "pincode": "182126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7241944",
+    "longitude": "75.1791111"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Kaghote BO",
+    "pincode": "182126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Chhatriari BO",
+    "pincode": "182126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.305413000000001",
+    "longitude": "75.061222000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Barerian BO",
+    "pincode": "182126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Bhatiari BO",
+    "pincode": "182126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

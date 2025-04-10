@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Mamaria Ahir BO",
+    "pincode": "123101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Punsika BO",
+    "pincode": "123101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Pithrawas BO",
+    "pincode": "123101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Bhotwas Ahir BO",
+    "pincode": "123101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Tint BO",
+    "pincode": "123101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Khori SO",
+    "pincode": "123101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "28.2090000",
+    "longitude": "76.8841111"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gurgaon Division",
+    "officename": "Basbatori BO",
+    "pincode": "123101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "REWARI",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

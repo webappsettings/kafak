@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Lunidhar SO",
+    "pincode": "365460",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.6019167",
+    "longitude": "71.2164444"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Balelpiparia BO",
+    "pincode": "365460",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.7587804",
+    "longitude": "71.1286015"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Bambhaniya BO",
+    "pincode": "365460",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.7401498",
+    "longitude": "71.4680530"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "DadvaRandal BO",
+    "pincode": "365460",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.8182093",
+    "longitude": "71.0713191"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Devgam BO",
+    "pincode": "365460",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.7673933",
+    "longitude": "71.0690907"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Jihtudi BO",
+    "pincode": "365460",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.7234122",
+    "longitude": "71.1173713"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Lakhapadar BO",
+    "pincode": "365460",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.7089041",
+    "longitude": "71.5497680"
+  }
+]

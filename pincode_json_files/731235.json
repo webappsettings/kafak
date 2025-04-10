@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Paruldanga BO",
+    "pincode": "731235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6901330",
+    "longitude": "87.7099040"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Santiniketan SO",
+    "pincode": "731235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6822500",
+    "longitude": "87.6870833"
+  }
+]

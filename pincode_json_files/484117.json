@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Bargawan B.O",
+    "pincode": "484117",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SHAHDOL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.289999999999999",
+    "longitude": "81.680000000000007"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Amlai Paper Mills S.O",
+    "pincode": "484117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAHDOL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9733889",
+    "longitude": "78.6568333"
+  }
+]

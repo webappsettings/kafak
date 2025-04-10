@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Tadlapally B.O",
+    "pincode": "502294",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.640825798117007",
+    "longitude": "78.08653117779063"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Fasalwadi B.O",
+    "pincode": "502294",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.640316754064898",
+    "longitude": "78.12442837223203"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Sangareddy Division",
+    "officename": "Manjira Barrage S.O",
+    "pincode": "502294",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGAREDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.1146944",
+    "longitude": "78.1022778"
+  }
+]

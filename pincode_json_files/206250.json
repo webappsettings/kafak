@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Kamara BO",
+    "pincode": "206250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6833270",
+    "longitude": "79.4715352"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Saraipukhta BO",
+    "pincode": "206250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7060090",
+    "longitude": "79.5324544"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Harchandpur SO Auraiya",
+    "pincode": "206250",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7011435",
+    "longitude": "79.5041322"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Deoraon BO",
+    "pincode": "206250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7018624",
+    "longitude": "79.5103588"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Rajuamau BO",
+    "pincode": "206250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7091201",
+    "longitude": "79.4817924"
+  }
+]

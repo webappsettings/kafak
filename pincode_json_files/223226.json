@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bakhara BO",
+    "pincode": "223226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0700000",
+    "longitude": "82.5700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Chhittepur BO",
+    "pincode": "223226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0700000",
+    "longitude": "82.5700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "PUSPNAGAR SO",
+    "pincode": "223226",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0100000",
+    "longitude": "82.8000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bunda BO",
+    "pincode": "223226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0700000",
+    "longitude": "82.5700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Ishapur BO",
+    "pincode": "223226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0700000",
+    "longitude": "82.5700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Sikaraur Sahabari BO",
+    "pincode": "223226",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0700000",
+    "longitude": "82.5700000"
+  }
+]

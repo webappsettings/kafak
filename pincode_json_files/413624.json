@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Kati S.O",
+    "pincode": "413624",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.961229",
+    "longitude": "75.889136"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Sawargaon Kati B.O",
+    "pincode": "413624",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.010041000000001",
+    "longitude": "76.071064100000001"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Masla Khurd B.O",
+    "pincode": "413624",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.010041000000001",
+    "longitude": "76.071064100000001"
+  }
+]

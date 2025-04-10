@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Kukdipada B.O",
+    "pincode": "457772",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Narela B.O",
+    "pincode": "457772",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Semlia B.O",
+    "pincode": "457772",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Bhamel B.O",
+    "pincode": "457772",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Khawasa S.O (Jhabua)",
+    "pincode": "457772",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7720833",
+    "longitude": "74.5907778"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Makodia B.O",
+    "pincode": "457772",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Sagwa B.O",
+    "pincode": "457772",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JHABUA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

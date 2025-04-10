@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Rolla S.O",
+    "pincode": "515321",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.84230556",
+    "longitude": "77.10155556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Dodderi B.O",
+    "pincode": "515321",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Hulikunta B.O",
+    "pincode": "515321",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Rathnagiri B.O",
+    "pincode": "515321",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Dokkalahalli B.O",
+    "pincode": "515321",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Kaki B.O",
+    "pincode": "515321",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

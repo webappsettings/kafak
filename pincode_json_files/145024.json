@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Madhopur SO Gurdaspur",
+    "pincode": "145024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.3544",
+    "longitude": "75.6066"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Tharial BO",
+    "pincode": "145024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATHANKOT",
+    "statename": "PUNJAB",
+    "latitude": "32.350000000000001",
+    "longitude": "75.609999999999999"
+  }
+]

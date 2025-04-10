@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Manjerikla HO",
+    "pincode": "676121",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.12052330",
+    "longitude": "76.11312850"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Manjeri Bazar SO",
+    "pincode": "676121",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.12093350",
+    "longitude": "76.11863380"
+  }
+]

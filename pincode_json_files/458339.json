@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Paheda B.O",
+    "pincode": "458339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2618000",
+    "longitude": "74.9892500"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Malhargarh S.O",
+    "pincode": "458339",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0700000",
+    "longitude": "75.0600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Sunthod B.O",
+    "pincode": "458339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833809",
+    "longitude": "74.9908700"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Barkheda Dev Dungari B.O",
+    "pincode": "458339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2618000",
+    "longitude": "74.9892500"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Chaldu B.O",
+    "pincode": "458339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833799",
+    "longitude": "74.9908710"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Kunchrod B.O",
+    "pincode": "458339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2833819",
+    "longitude": "74.9908690"
+  }
+]

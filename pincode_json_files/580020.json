@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Sarafkatta S.O",
+    "pincode": "580020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.3407672",
+    "longitude": "75.143347000000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi H.O",
+    "pincode": "580020",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.352302999999999",
+    "longitude": "75.144945000000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Tabibland S.O",
+    "pincode": "580020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.345813700000001",
+    "longitude": "75.148271100000002"
+  }
+]

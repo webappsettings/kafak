@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Dena BO",
+    "pincode": "390022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3766000",
+    "longitude": "73.1125000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Harni Colony SO",
+    "pincode": "390022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3328611",
+    "longitude": "73.2073611"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Harni BO",
+    "pincode": "390022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "74.6519000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Amaliyara BO",
+    "pincode": "390022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.3766000",
+    "longitude": "73.1125000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Virod BO",
+    "pincode": "390022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "15.5934000",
+    "longitude": "73.1125000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Vadodara East Division",
+    "officename": "Vadodara Airport S.O",
+    "pincode": "390022",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VADODARA",
+    "statename": "GUJARAT",
+    "latitude": "22.333855",
+    "longitude": "73.226709"
+  }
+]

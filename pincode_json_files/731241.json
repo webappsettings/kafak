@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Dunigram BO",
+    "pincode": "731241",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.2095630",
+    "longitude": "87.9213220"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Koyemba BO",
+    "pincode": "731241",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6286960",
+    "longitude": "87.7960070"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Nonadanga BO",
+    "pincode": "731241",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.1757710",
+    "longitude": "87.9659460"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Birbhum Division",
+    "officename": "Chandpara SO",
+    "pincode": "731241",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIRBHUM",
+    "statename": "WEST BENGAL",
+    "latitude": "24.1906180",
+    "longitude": "87.9101890"
+  }
+]

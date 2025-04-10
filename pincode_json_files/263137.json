@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Sargakhet BO",
+    "pincode": "263137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4500000",
+    "longitude": "79.6500000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Ramgarh SO Nainital",
+    "pincode": "263137",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.2163889",
+    "longitude": "79.5296667"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Kashialekh BO",
+    "pincode": "263137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4200000",
+    "longitude": "79.6300000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Gagar BO",
+    "pincode": "263137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4100000",
+    "longitude": "79.5400000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Satbungs BO",
+    "pincode": "263137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4400000",
+    "longitude": "79.6000000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Supi BO",
+    "pincode": "263137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4500000",
+    "longitude": "79.6100000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Bhatalia BO",
+    "pincode": "263137",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAINITAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4300000",
+    "longitude": "79.6400000"
+  }
+]

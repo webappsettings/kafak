@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Panniwali B.O",
+    "pincode": "335037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "29.6083900",
+    "longitude": "74.4298460"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Lalgarh Jatan S.O",
+    "pincode": "335037",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "29.9035230",
+    "longitude": "73.8797390"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Morjand Khari B.O",
+    "pincode": "335037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "29.7984590",
+    "longitude": "74.3650870"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Sardarpura Jiwan B.O",
+    "pincode": "335037",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "29.7498510",
+    "longitude": "74.0549810"
+  }
+]

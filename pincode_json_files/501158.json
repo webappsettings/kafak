@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Malkapur B.O",
+    "pincode": "501158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIKARABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.30434",
+    "longitude": "77.55467"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Mittabaspalle B.O",
+    "pincode": "501158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIKARABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.30463",
+    "longitude": "77.55487"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Karankot B.O",
+    "pincode": "501158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIKARABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.30412",
+    "longitude": "77.5541"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "Sangamkalan B.O",
+    "pincode": "501158",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIKARABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.30437",
+    "longitude": "77.55412"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Secunderabad Division",
+    "officename": "CCI Tandur S.O",
+    "pincode": "501158",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIKARABAD",
+    "statename": "TELANGANA",
+    "latitude": "17.29802778",
+    "longitude": "77.48119444"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Antharikshanagar B.O",
+    "pincode": "573202",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0400000",
+    "longitude": "76.1100000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Hemavathinagar S.O",
+    "pincode": "573202",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "12.5686111",
+    "longitude": "64.3836389"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Hassan Division",
+    "officename": "Vidyanagar (Hassan) S.O",
+    "pincode": "573202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HASSAN",
+    "statename": "KARNATAKA",
+    "latitude": "13.0053333",
+    "longitude": "76.1000556"
+  }
+]

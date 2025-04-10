@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Diu SO",
+    "pincode": "362520",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIU",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.713943",
+    "longitude": "70.975823"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Diu Bazar ND TSO",
+    "pincode": "362520",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DIU",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

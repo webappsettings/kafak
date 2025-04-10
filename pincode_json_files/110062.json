@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Dr Ambedkar Nagar SO South Delhi",
+    "pincode": "110062",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.51",
+    "longitude": "77.23"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Dakshinpuri PhaseI SO",
+    "pincode": "110062",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5227222",
+    "longitude": "77.2404444"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Dakshinpuri PhaseIII SO",
+    "pincode": "110062",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5155278",
+    "longitude": "77.2374722"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Pushpa Bhawan SO",
+    "pincode": "110062",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5276111",
+    "longitude": "77.2328056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Dakshinpuri PhaseII SO",
+    "pincode": "110062",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5201111",
+    "longitude": "77.2397500"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Hamdard Nagar SO",
+    "pincode": "110062",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5125556",
+    "longitude": "77.2510556"
+  }
+]

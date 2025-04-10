@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Mbaulwa B.O",
+    "pincode": "797101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.410997800000001",
+    "longitude": "93.639034800000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Nchongram B.O",
+    "pincode": "797101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.3539864",
+    "longitude": "93.625329399999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Peren S.O",
+    "pincode": "797101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.6707778",
+    "longitude": "94.1075833"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Tening B.O",
+    "pincode": "797101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.304279000000001",
+    "longitude": "93.590827899999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "N.Song B.O",
+    "pincode": "797101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEREN",
+    "statename": "NAGALAND",
+    "latitude": "25.281565799999999",
+    "longitude": "93.549119700000006"
+  }
+]

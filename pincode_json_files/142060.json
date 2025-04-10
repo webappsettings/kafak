@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Kabbar Wacha BO",
+    "pincode": "142060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.7848400",
+    "longitude": "74.8603000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Loham BO",
+    "pincode": "142060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9181050",
+    "longitude": "74.6161370"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Gill BO",
+    "pincode": "142060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9181040",
+    "longitude": "74.6161380"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Kot Karor Kalan BO",
+    "pincode": "142060",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.8431500",
+    "longitude": "74.3966200"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Mudki SO",
+    "pincode": "142060",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.927546",
+    "longitude": "74.610497"
+  }
+]

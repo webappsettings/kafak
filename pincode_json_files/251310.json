@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Gadhla BO",
+    "pincode": "251310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5265070",
+    "longitude": "77.8312050"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Basera SO",
+    "pincode": "251310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5555600",
+    "longitude": "77.8532600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Tejalhera BO",
+    "pincode": "251310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5831600",
+    "longitude": "77.8416800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Khaikheri BO",
+    "pincode": "251310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.5976300",
+    "longitude": "77.8565600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Tuglakpur BO",
+    "pincode": "251310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.6007200",
+    "longitude": "77.8871200"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Deogiri S.O",
+    "pincode": "583112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.0085793",
+    "longitude": "76.6256935"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Subbarayanahalli B.O",
+    "pincode": "583112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.0088584",
+    "longitude": "76.5556609"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Swamihalli B.O",
+    "pincode": "583112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9716830",
+    "longitude": "76.6110861"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Gollalingammanahalli B.O",
+    "pincode": "583112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9712206",
+    "longitude": "76.6656878"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Motalakunta B.O",
+    "pincode": "583112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9697508",
+    "longitude": "76.7057278"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Yaradammanahalli B.O",
+    "pincode": "583112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9639046",
+    "longitude": "76.6330373"
+  }
+]

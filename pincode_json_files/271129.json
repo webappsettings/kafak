@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Karnipur Deeh BO",
+    "pincode": "271129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9518680",
+    "longitude": "82.1468850"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Naipur BO",
+    "pincode": "271129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "22.0258700",
+    "longitude": "87.5123800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Chandapur SO Gonda",
+    "pincode": "271129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1289167",
+    "longitude": "81.9433056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Banepur BO",
+    "pincode": "271129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "22.7352610",
+    "longitude": "88.1639000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Kotha BO",
+    "pincode": "271129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9358320",
+    "longitude": "82.1740830"
+  }
+]

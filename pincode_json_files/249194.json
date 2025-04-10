@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Maneri BO",
+    "pincode": "249194",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UTTAR KASHI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7396022",
+    "longitude": "78.5305907"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "MD Colony SO",
+    "pincode": "249194",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UTTAR KASHI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7414722",
+    "longitude": "79.5297778"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Latasera BO",
+    "pincode": "249194",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTAR KASHI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7811813",
+    "longitude": "78.6157565"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Soura BO",
+    "pincode": "249194",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UTTAR KASHI",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7688384",
+    "longitude": "78.6044052"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Dharera BO",
+    "pincode": "283202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2388471",
+    "longitude": "78.1621437"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Etmadpur",
+    "pincode": "283202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2320000",
+    "longitude": "78.1960000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Bhagupur BO",
+    "pincode": "283202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2332821",
+    "longitude": "78.1307744"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Dhaurra BO",
+    "pincode": "283202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2221761",
+    "longitude": "78.1364889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Behrampur BO",
+    "pincode": "283202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2708792",
+    "longitude": "78.0965691"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Agwar BO",
+    "pincode": "283202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2333127",
+    "longitude": "78.1991895"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Sawain BO",
+    "pincode": "283202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2551942",
+    "longitude": "78.1879549"
+  }
+]

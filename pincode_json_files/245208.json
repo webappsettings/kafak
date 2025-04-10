@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Bahadurgarh SO",
+    "pincode": "245208",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5478900",
+    "longitude": "78.4597448"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Bhadsiana BO",
+    "pincode": "245208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6924460",
+    "longitude": "76.9239730"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Nek Nanpur Nanai BO",
+    "pincode": "245208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8468140",
+    "longitude": "77.9802890"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Alam Nagar BO",
+    "pincode": "245208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6731000",
+    "longitude": "78.1493170"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Sharpur BO",
+    "pincode": "245208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6479920",
+    "longitude": "78.1578680"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Mahmoodpur Palwara BO",
+    "pincode": "245208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6512730",
+    "longitude": "77.8017020"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Siil Campus S.O",
+    "pincode": "507154",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.6091944",
+    "longitude": "80.7048056"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Collectorate(Bhadradri Kothagudem)NDSO",
+    "pincode": "507154",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHADRADRI KOTHAGUDEM",
+    "statename": "TELANGANA",
+    "latitude": "17.583459",
+    "longitude": "80.659080"
+  }
+]

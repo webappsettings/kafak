@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Haravu B.O",
+    "pincode": "571427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Kyathanahalli S.O",
+    "pincode": "571427",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "12.4600000",
+    "longitude": "76.6500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Aralakuppe B.O",
+    "pincode": "571427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Rampura B.O",
+    "pincode": "571427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mandya Division",
+    "officename": "Yenneholekoppal B.O",
+    "pincode": "571427",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDYA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

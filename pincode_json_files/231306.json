@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Hansipur BO",
+    "pincode": "231306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1591400",
+    "longitude": "82.8677560"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Bagahan BO",
+    "pincode": "231306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1708660",
+    "longitude": "82.8062510"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Magarahan BO",
+    "pincode": "231306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1542230",
+    "longitude": "82.8325240"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Domanpur BO",
+    "pincode": "231306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1048650",
+    "longitude": "82.8677550"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Sikhar SO",
+    "pincode": "231306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.0742000",
+    "longitude": "82.4857000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Khanpur BO",
+    "pincode": "231306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1048640",
+    "longitude": "82.8677560"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Ramgarh Kiriyat BO",
+    "pincode": "231306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MIRZAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1417500",
+    "longitude": "82.7691500"
+  }
+]

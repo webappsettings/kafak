@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Jail Road S.O (West Delhi)",
+    "pincode": "110058",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6360950",
+    "longitude": "77.0965740"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "D.E.S.U. Colony S.O",
+    "pincode": "110058",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6115000",
+    "longitude": "77.0970833"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Janakpuri C 4 S.O",
+    "pincode": "110058",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6221111",
+    "longitude": "77.0790556"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Janakpuri A 3 S.O",
+    "pincode": "110058",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6241111",
+    "longitude": "77.0793611"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Janakpuri B 1 S.O",
+    "pincode": "110058",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6498611",
+    "longitude": "77.1306667"
+  }
+]

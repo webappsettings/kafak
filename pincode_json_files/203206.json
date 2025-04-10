@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Til BegumPur BO",
+    "pincode": "203206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4767528",
+    "longitude": "77.6374978"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Bulandshahar Division",
+    "officename": "Industrial Estate Sikandrabad SO",
+    "pincode": "203206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BULANDSHAHR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4037222",
+    "longitude": "77.8560278"
+  }
+]

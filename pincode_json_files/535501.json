@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Jagannadhapuram S.O",
+    "pincode": "535501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.7802778",
+    "longitude": "83.4328889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Parvatipuram Town S.O",
+    "pincode": "535501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.7846389",
+    "longitude": "83.4250000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Parvatipuram H.O",
+    "pincode": "535501",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.7727778",
+    "longitude": "83.4244167"
+  }
+]

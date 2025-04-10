@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Donkarayi S.O",
+    "pincode": "533348",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.9296111",
+    "longitude": "81.7991944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Forebey Dam Camp B.O",
+    "pincode": "533348",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.929635999999999",
+    "longitude": "81.799205999999998"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Mangampadu B.O",
+    "pincode": "533348",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.965458999999999",
+    "longitude": "81.899590000000003"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "BARUNIA B.O",
+    "pincode": "754082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6569563",
+    "longitude": "86.0209813"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "BYREE S.O",
+    "pincode": "754082",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6323883",
+    "longitude": "86.0342642"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "SALAPADA B.O",
+    "pincode": "754082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.7218971",
+    "longitude": "86.0065417"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Kalakala B.O",
+    "pincode": "754082",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.7081633",
+    "longitude": "85.9822293"
+  }
+]

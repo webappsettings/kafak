@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Gujranwala Colony SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6955833",
+    "longitude": "77.1901111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Model Town III SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7075278",
+    "longitude": "77.1880556"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "GTB Nagar SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.6984440",
+    "longitude": "77.2021110"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "DrMukerjee Nagar SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7108611",
+    "longitude": "77.2158333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Model Town II SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7062778",
+    "longitude": "77.1897222"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Nirankari Colony SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.7152500",
+    "longitude": "77.2044444"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "G T B Nagar extension SO",
+    "pincode": "110009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.698444",
+    "longitude": "77.202111"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Chalisgaon H.O",
+    "pincode": "424101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.460336",
+    "longitude": "75.011102"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Chalisgaon Adarsha Nagar S.O",
+    "pincode": "424101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4613641",
+    "longitude": "74.9898334"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Chalisgaon Town S.O",
+    "pincode": "424101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4568230",
+    "longitude": "75.0030530"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Jalgaon Division",
+    "officename": "Chalisgaon R S S.O",
+    "pincode": "424101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALGAON",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.4568220",
+    "longitude": "75.0030540"
+  }
+]

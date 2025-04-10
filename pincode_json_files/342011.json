@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Residency Road SO",
+    "pincode": "342011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.269964",
+    "longitude": "73.044701"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Agency SO",
+    "pincode": "342011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2634722",
+    "longitude": "73.0277778"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Jodhpur Aerodrame SO",
+    "pincode": "342011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2615278",
+    "longitude": "73.0420833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Jodhpur Division",
+    "officename": "Ratanada SO",
+    "pincode": "342011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JODHPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2782778",
+    "longitude": "73.0296944"
+  }
+]

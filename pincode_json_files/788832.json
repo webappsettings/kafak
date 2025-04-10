@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Dezabra B.O",
+    "pincode": "788832",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.5400000",
+    "longitude": "92.6900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Langting Hasin B.O",
+    "pincode": "788832",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "25.5000000",
+    "longitude": "93.1100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Langting S.O",
+    "pincode": "788832",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.8236370",
+    "longitude": "92.8018270"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Mandardisha B.O",
+    "pincode": "788832",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "25.5000000",
+    "longitude": "93.1100000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Hatikhali B.O",
+    "pincode": "788832",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.6500000",
+    "longitude": "92.6900000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Mupa B.O",
+    "pincode": "788832",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.5400000",
+    "longitude": "92.6900000"
+  }
+]

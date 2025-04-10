@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Kadadanamari B.O",
+    "pincode": "563123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.632699199999999",
+    "longitude": "78.125096900000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Batlahalli S.O",
+    "pincode": "563123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.1356389",
+    "longitude": "78.134222199999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Raghuttahalli B.O",
+    "pincode": "563123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.5610306",
+    "longitude": "78.125032500000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Mudlagollahalli B.O",
+    "pincode": "563123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.5610306",
+    "longitude": "78.125032500000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Irgampalli B.O",
+    "pincode": "563123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.537298399999999",
+    "longitude": "78.131448300000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Kodigal B.O",
+    "pincode": "563123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.6003303",
+    "longitude": "78.119882599999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Yenumalapadi B.O",
+    "pincode": "563123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.6099326",
+    "longitude": "78.188042899999999"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Katwa College SO",
+    "pincode": "713130",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6405555",
+    "longitude": "88.1358333"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Katwa HO",
+    "pincode": "713130",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6477778",
+    "longitude": "88.1302778"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Atuhatpara SO",
+    "pincode": "713130",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6443330",
+    "longitude": "88.1315830"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Katwa Bazar SO",
+    "pincode": "713130",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.8655555",
+    "longitude": "87.8636111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Burdwan Division",
+    "officename": "Katwa Station Bazar SO",
+    "pincode": "713130",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PURBA BARDHAMAN",
+    "statename": "WEST BENGAL",
+    "latitude": "23.6426666",
+    "longitude": "88.1266500"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Raichur R.S. S.O",
+    "pincode": "584101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.190629699999999",
+    "longitude": "77.340285300000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Raichur H.O",
+    "pincode": "584101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.203277799999999",
+    "longitude": "77.348777799999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Raichur Saath Katchery S.O",
+    "pincode": "584101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.190586799999998",
+    "longitude": "77.340306799999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Raichur Division",
+    "officename": "Raichur Naya Bazar S.O",
+    "pincode": "584101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAICHUR",
+    "statename": "KARNATAKA",
+    "latitude": "16.202277800000001",
+    "longitude": "77.355500000000006"
+  }
+]

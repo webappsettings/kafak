@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Uppaladinni B.O",
+    "pincode": "586170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.6651374",
+    "longitude": "75.4774475"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Jainapur B.O",
+    "pincode": "586170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.3755680",
+    "longitude": "74.5477930"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Bellubbi B.O",
+    "pincode": "586170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.4733860",
+    "longitude": "75.6033500"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Kakhandki B.O",
+    "pincode": "586170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.6005780",
+    "longitude": "75.6402950"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Karjol B.O",
+    "pincode": "586170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.5870474",
+    "longitude": "75.6971676"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Vijayapura Division",
+    "officename": "Mamadapur SO",
+    "pincode": "586170",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIJAYAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "16.535599",
+    "longitude": "75.35566"
+  }
+]

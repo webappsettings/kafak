@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Arni Fort SO",
+    "pincode": "632301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6696000",
+    "longitude": "79.2854000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Arni HO",
+    "pincode": "632301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6696944",
+    "longitude": "79.2854167"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Arunagirichatram SO",
+    "pincode": "632301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6696000",
+    "longitude": "79.2854000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Tiruvannamalai Division",
+    "officename": "Saidapettai Arni SO",
+    "pincode": "632301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TIRUVANNAMALAI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.6696000",
+    "longitude": "79.2854000"
+  }
+]

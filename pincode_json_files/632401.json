@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Navalpur SO",
+    "pincode": "632401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9618000",
+    "longitude": "79.3308500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Ranipet HO",
+    "pincode": "632401",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9283030",
+    "longitude": "79.3324850"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Arakkonam Division",
+    "officename": "Ranipet Bazar SO",
+    "pincode": "632401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Ranipet",
+    "statename": "TAMIL NADU",
+    "latitude": "12.9283030",
+    "longitude": "79.3324850"
+  }
+]

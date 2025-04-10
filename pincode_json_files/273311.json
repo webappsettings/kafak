@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Bodna BO",
+    "pincode": "273311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.947803",
+    "longitude": "78.036660999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Gadaura BO",
+    "pincode": "273311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "23.54731",
+    "longitude": "81.696630999999996"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Laxmipur Khurd BO",
+    "pincode": "273311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.402346999999999",
+    "longitude": "83.747801999999993"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Meghauli Kala BO",
+    "pincode": "273311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.582011000000001",
+    "longitude": "84.217339999999993"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Rengahia BO",
+    "pincode": "273311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.384577",
+    "longitude": "83.775677999999999"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Jhulnipur BO",
+    "pincode": "273311",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.381775999999999",
+    "longitude": "83.794917999999996"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gorakhpur Division",
+    "officename": "Orwalliya S.O",
+    "pincode": "273311",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHARAJGANJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.230256",
+    "longitude": "83.552056"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Garh Uproda BO",
+    "pincode": "495684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.6345580",
+    "longitude": "82.7610080"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Ajgarbahar BO",
+    "pincode": "495684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.5218560",
+    "longitude": "82.7090850"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Lemroo B.O",
+    "pincode": "495684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.599571999999998",
+    "longitude": "82.834946000000002"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Balco Nagar Korba SO",
+    "pincode": "495684",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4033100",
+    "longitude": "82.7485300"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Satrenga B.O",
+    "pincode": "495684",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.587592999999998",
+    "longitude": "82.688844000000003"
+  }
+]

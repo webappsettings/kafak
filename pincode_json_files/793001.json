@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Meghalaya Secretariat S.O",
+    "pincode": "793001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5787",
+    "longitude": "91.8932"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Shillong G.P.O.",
+    "pincode": "793001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.57391667",
+    "longitude": "91.88486111"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Oakland S.O",
+    "pincode": "793001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST KHASI HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Hotwar BO",
+    "pincode": "834012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3732690",
+    "longitude": "85.3932770"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Dumardaga B.O",
+    "pincode": "834012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.409009999999999",
+    "longitude": "85.406800000000004"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Buti Chowk S.O",
+    "pincode": "834012",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.63995",
+    "longitude": "85.5113"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Buti BO",
+    "pincode": "834012",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4114740",
+    "longitude": "85.3949860"
+  }
+]

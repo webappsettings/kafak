@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bhadla Nana BO",
+    "pincode": "364720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.3380310",
+    "longitude": "71.5559520"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Sarva BO",
+    "pincode": "364720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.2243760",
+    "longitude": "71.4790650"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Bodi BO",
+    "pincode": "364720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.2906350",
+    "longitude": "71.6073720"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Kumbhara BO",
+    "pincode": "364720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.2392360",
+    "longitude": "71.5213750"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Gadhadiya BO",
+    "pincode": "364720",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.2939930",
+    "longitude": "71.4840760"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Paliyad SO",
+    "pincode": "364720",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.2580700",
+    "longitude": "71.5613710"
+  }
+]

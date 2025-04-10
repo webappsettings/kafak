@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Mukto B.O",
+    "pincode": "790105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAWANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "91.908157200000005",
+    "longitude": "27.546445500000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Lhou B.O",
+    "pincode": "790105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAWANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.580374299999999",
+    "longitude": "91.941823600000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Jang S.O",
+    "pincode": "790105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TAWANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.6317760",
+    "longitude": "92.1034960"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Yuthumbu",
+    "pincode": "790105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAWANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.345792599999999",
+    "longitude": "91.584968900000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Thingbu B.O",
+    "pincode": "790105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAWANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "92.106284400000007",
+    "longitude": "27.637043899999998"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Amoni B.O",
+    "pincode": "782138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Barbhagia B.O",
+    "pincode": "782138",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Missa S.O",
+    "pincode": "782138",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  }
+]

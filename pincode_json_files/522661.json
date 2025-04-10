@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Inumella B.O",
+    "pincode": "522661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2884000",
+    "longitude": "79.8333000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Muppalla(VKD) S.O",
+    "pincode": "522661",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2400556",
+    "longitude": "79.8385000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Butchipapannapalem B.O",
+    "pincode": "522661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2351000",
+    "longitude": "79.7681000"
+  }
+]

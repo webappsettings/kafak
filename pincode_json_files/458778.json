@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Borda B.O",
+    "pincode": "458778",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3747000",
+    "longitude": "76.2046000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Bhensoda Town B.O",
+    "pincode": "458778",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3747000",
+    "longitude": "76.2046000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Osara B.O",
+    "pincode": "458778",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3747000",
+    "longitude": "76.2046000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Dhuan Khedi B.O",
+    "pincode": "458778",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3747000",
+    "longitude": "76.2046000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Satalkhedi B.O",
+    "pincode": "458778",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.3747000",
+    "longitude": "76.2046000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Bhensoda Mandi S.O",
+    "pincode": "458778",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANDSAUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4420335",
+    "longitude": "75.8388558"
+  }
+]

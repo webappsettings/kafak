@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Ramgarh SO Chandauli",
+    "pincode": "232107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3805820",
+    "longitude": "83.4461000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Saifpur BO",
+    "pincode": "232107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2810000",
+    "longitude": "83.1190000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Raiya BO",
+    "pincode": "232107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.380582",
+    "longitude": "83.446100000000001"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Ballipur BO",
+    "pincode": "232107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2810000",
+    "longitude": "83.1190000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Laxmangarh BO",
+    "pincode": "232107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2810000",
+    "longitude": "83.1190000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Nadi Nidhaura BO",
+    "pincode": "232107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2810000",
+    "longitude": "83.1190000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Nairhi BO",
+    "pincode": "232107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANDAULI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2810000",
+    "longitude": "83.1190000"
+  }
+]

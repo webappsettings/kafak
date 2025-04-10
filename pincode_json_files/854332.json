@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Bathraha Ashabhag BO",
+    "pincode": "854332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.373971999999998",
+    "longitude": "87.670441999999994"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Pahunsi BO",
+    "pincode": "854332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.399283",
+    "longitude": "87.408216999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Amgachhi BO",
+    "pincode": "854332",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.415607000000001",
+    "longitude": "87.514854"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Kuari SO",
+    "pincode": "854332",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARARIA",
+    "statename": "BIHAR",
+    "latitude": "26.3856860",
+    "longitude": "87.4901090"
+  }
+]

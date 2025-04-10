@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Delchi  Buzurg B.O",
+    "pincode": "456440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5306770",
+    "longitude": "75.5800680"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Sagwali B.O",
+    "pincode": "456440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8558050",
+    "longitude": "75.0056190"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Jhutawad B.O",
+    "pincode": "456440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6353900",
+    "longitude": "75.5800680"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Tutiya  Khedi B.O",
+    "pincode": "456440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8558050",
+    "longitude": "75.0056190"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Berchha B.O",
+    "pincode": "456440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2027390",
+    "longitude": "75.2799880"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Mehidpur  Road S.O",
+    "pincode": "456440",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.56091",
+    "longitude": "75.51466"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Bappiya B.O",
+    "pincode": "456440",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "27.2700770",
+    "longitude": "72.2867110"
+  }
+]

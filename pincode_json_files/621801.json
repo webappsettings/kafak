@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Andimadam SO",
+    "pincode": "621801",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2000000",
+    "longitude": "79.2200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Pattanamkurichi BO",
+    "pincode": "621801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8900000",
+    "longitude": "78.9000000"
+  }
+]

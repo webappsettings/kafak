@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Kolakkanatham S.O",
+    "pincode": "621106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2300000",
+    "longitude": "78.8600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Garudamangalam B.O",
+    "pincode": "621106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0800000",
+    "longitude": "78.9200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Kolathur B.O",
+    "pincode": "621106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1100000",
+    "longitude": "78.9800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Sathanur B.O",
+    "pincode": "621106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1500000",
+    "longitude": "78.9800000"
+  }
+]

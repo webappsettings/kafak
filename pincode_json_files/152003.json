@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Fatttuwala BO",
+    "pincode": "152003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9915500",
+    "longitude": "74.6133000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Canal Colony Ferozepur SO",
+    "pincode": "152003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0341",
+    "longitude": "74.8482"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Dhira Patra BO",
+    "pincode": "152003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9915500",
+    "longitude": "74.6133000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Jhoke Harihar BO",
+    "pincode": "152003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9915500",
+    "longitude": "74.6133000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Khai Pheme Ki BO",
+    "pincode": "152003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9915500",
+    "longitude": "74.6133000"
+  }
+]

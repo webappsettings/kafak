@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Shobhapur S.O",
+    "pincode": "482009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2013889",
+    "longitude": "79.9768611"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Vehicle Factory S.O",
+    "pincode": "482009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2116389",
+    "longitude": "79.9859722"
+  }
+]

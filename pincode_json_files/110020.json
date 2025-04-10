@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Tehkhand BO",
+    "pincode": "110020",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5200000",
+    "longitude": "77.2900000"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Okhla Industrial Estate SO",
+    "pincode": "110020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH",
+    "statename": "DELHI",
+    "latitude": "28.5521111",
+    "longitude": "77.2686667"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "F F C Okhla SO",
+    "pincode": "110020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5577222",
+    "longitude": "77.2648333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "Okhla Industrial Area Phasei SO",
+    "pincode": "110020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.5432820",
+    "longitude": "77.2578450"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South Division",
+    "officename": "C R R I SO South Delhi",
+    "pincode": "110020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "South East",
+    "statename": "DELHI",
+    "latitude": "28.551707",
+    "longitude": "77.275149"
+  }
+]

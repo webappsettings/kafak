@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Kodiyalbail S.O",
+    "pincode": "575003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.875166699999999",
+    "longitude": "74.841027800000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Boloor S.O",
+    "pincode": "575003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8848682",
+    "longitude": "74.8248739"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "District Courts S.O (Dakshina Kannada)",
+    "pincode": "575003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8744",
+    "longitude": "74.843395000000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mangaluru Division",
+    "officename": "Gandhinagar S.O (Dakshina Kannada)",
+    "pincode": "575003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.8836773",
+    "longitude": "74.833617899999993"
+  }
+]

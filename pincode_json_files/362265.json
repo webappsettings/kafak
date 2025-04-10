@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Veraval SO",
+    "pincode": "362265",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.911308",
+    "longitude": "70.365808"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Veraval Postal Colony ND TSO",
+    "pincode": "362265",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "70.35543879",
+    "longitude": "20.91346309"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Dabhor BO",
+    "pincode": "362265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.9437283",
+    "longitude": "70.3612965"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Dari BO",
+    "pincode": "362265",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.9469742",
+    "longitude": "70.323299"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Veraval Rayon Factory SO",
+    "pincode": "362265",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GIR SOMNATH",
+    "statename": "GUJARAT",
+    "latitude": "20.9181944",
+    "longitude": "70.3580833"
+  }
+]

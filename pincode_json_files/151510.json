@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Aklia BO",
+    "pincode": "151510",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.14507",
+    "longitude": "75.423019999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Chauke BO",
+    "pincode": "151510",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.182400000000001",
+    "longitude": "75.338300000000004"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Ralla BO",
+    "pincode": "151510",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.119599999999998",
+    "longitude": "75.433300000000003"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Joga SO",
+    "pincode": "151510",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANSA",
+    "statename": "PUNJAB",
+    "latitude": "30.16179",
+    "longitude": "75.42432"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Balloh BO",
+    "pincode": "151510",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.14507",
+    "longitude": "75.423019999999994"
+  }
+]

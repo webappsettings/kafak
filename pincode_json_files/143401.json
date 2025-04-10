@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "Tarn Taran HO",
+    "pincode": "143401",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "31.4577580",
+    "longitude": "74.9186070"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Amritsar Division",
+    "officename": "New Judicial Court Complex S.o",
+    "pincode": "143401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Tarn Taran",
+    "statename": "PUNJAB",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

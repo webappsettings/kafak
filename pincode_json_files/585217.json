@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Hosurwadi B.O",
+    "pincode": "585217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.370000000000001",
+    "longitude": "76.120000000000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Mashal S.O",
+    "pincode": "585217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.341333299999999",
+    "longitude": "76.834472199999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Karajagi B.O",
+    "pincode": "585217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.280000000000001",
+    "longitude": "76.209999999999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Mannur B.O",
+    "pincode": "585217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.300000000000001",
+    "longitude": "76.099999999999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Shivoor B.O",
+    "pincode": "585217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.23",
+    "longitude": "76.140000000000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Udachan B.O",
+    "pincode": "585217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.210000000000001",
+    "longitude": "76.170000000000002"
+  }
+]

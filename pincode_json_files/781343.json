@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Dighaldonga B.O",
+    "pincode": "781343",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.2809000",
+    "longitude": "91.2542000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Pakhamara B.O",
+    "pincode": "781343",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.2809000",
+    "longitude": "91.2542000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Dhanbil S.O",
+    "pincode": "781343",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.2809000",
+    "longitude": "91.2542000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Amingaon Chowk B.O",
+    "pincode": "781343",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Japadang B.O",
+    "pincode": "781343",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.2809000",
+    "longitude": "91.2542000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Chaibari B.O",
+    "pincode": "781343",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.2809000",
+    "longitude": "91.2542000"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Vantmuri Colony Belagavi S. O",
+    "pincode": "590017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.852388899999999",
+    "longitude": "74.510805599999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Belagavi MalMaruti Extension S.O",
+    "pincode": "590017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.879724",
+    "longitude": "74.528356700000003"
+  }
+]

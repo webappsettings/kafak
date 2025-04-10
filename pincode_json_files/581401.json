@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Maratikoppa B.O",
+    "pincode": "581401",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Hosapete B.O",
+    "pincode": "581401",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Sirsi Courts S.O",
+    "pincode": "581401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.62172222",
+    "longitude": "74.83019444"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Sirsi Division",
+    "officename": "Sirsi H.O",
+    "pincode": "581401",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "UTTARA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "14.618606",
+    "longitude": "74.829808999999997"
+  }
+]

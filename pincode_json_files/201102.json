@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Jaoli BO",
+    "pincode": "201102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6691560",
+    "longitude": "77.4537580"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Teela Shahbazpur BO",
+    "pincode": "201102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7142080",
+    "longitude": "77.3174090"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Badshahpur Siroli BO",
+    "pincode": "201102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7886100",
+    "longitude": "77.3424930"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Behta Hazipur BO",
+    "pincode": "201102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7270020",
+    "longitude": "77.3123400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Loni SO",
+    "pincode": "201102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7493611",
+    "longitude": "77.2861111"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Chirori BO",
+    "pincode": "201102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7685570",
+    "longitude": "77.3289760"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Ghaziabad Division",
+    "officename": "Mandola BO",
+    "pincode": "201102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GHAZIABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7945850",
+    "longitude": "77.2772870"
+  }
+]

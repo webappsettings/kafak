@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Dhamul SO",
+    "pincode": "805101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8330000",
+    "longitude": "85.5330000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Barasolapur BO",
+    "pincode": "805101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8406790",
+    "longitude": "85.4659380"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Dhanar BO",
+    "pincode": "805101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8406790",
+    "longitude": "85.4659380"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Dharhara BO",
+    "pincode": "805101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAWADA",
+    "statename": "BIHAR",
+    "latitude": "24.8406790",
+    "longitude": "85.4659380"
+  }
+]

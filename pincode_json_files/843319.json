@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "DMathauna BO",
+    "pincode": "843319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.357016999999999",
+    "longitude": "85.666590099999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Jadupatti Bazar BO",
+    "pincode": "843319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.52281",
+    "longitude": "85.768180000000001"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Choraut SO",
+    "pincode": "843319",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.5637222",
+    "longitude": "85.5243333"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Sujatpur BO",
+    "pincode": "843319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.521799999999999",
+    "longitude": "85.762079999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "BBehta BO",
+    "pincode": "843319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.522010000000002",
+    "longitude": "85.768029999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Koryahi BO",
+    "pincode": "843319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.52281",
+    "longitude": "85.768190000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Pirokhar BO",
+    "pincode": "843319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.522099999999998",
+    "longitude": "85.768050000000002"
+  }
+]

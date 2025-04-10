@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Bihata B.O",
+    "pincode": "485661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Unchehara S.O",
+    "pincode": "485661",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.3933000",
+    "longitude": "80.7853000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Karhikala B.O",
+    "pincode": "485661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  }
+]

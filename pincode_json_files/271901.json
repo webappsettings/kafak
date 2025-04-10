@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Jarwal Road SO",
+    "pincode": "271901",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1187778",
+    "longitude": "81.5427222"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Bhartha BO",
+    "pincode": "271901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5466910",
+    "longitude": "81.2546370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Jataura BO",
+    "pincode": "271901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1287670",
+    "longitude": "81.5789090"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Bahraich Division",
+    "officename": "Tappe Sipah BO",
+    "pincode": "271901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAHRAICH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0866030",
+    "longitude": "81.4992880"
+  }
+]

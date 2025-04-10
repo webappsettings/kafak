@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Chandani SO",
+    "pincode": "262310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3361660",
+    "longitude": "80.0826610"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Banbassa Canal BO",
+    "pincode": "262310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "28.9926760",
+    "longitude": "80.0919090"
+  }
+]

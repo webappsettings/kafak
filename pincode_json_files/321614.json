@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Nayabas B.O",
+    "pincode": "321614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2237360",
+    "longitude": "77.1168750"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Piprau B.O",
+    "pincode": "321614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1922780",
+    "longitude": "77.1513920"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Talchhera B.O",
+    "pincode": "321614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "20.9580790",
+    "longitude": "85.1291360"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Utarda B.O",
+    "pincode": "321614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1670310",
+    "longitude": "77.1283820"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Akhaigarh S.O",
+    "pincode": "321614",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2214722",
+    "longitude": "77.1945833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Barauli Chhar B.O",
+    "pincode": "321614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2341560",
+    "longitude": "77.0937260"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Baroli Ran B.O",
+    "pincode": "321614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1817430",
+    "longitude": "77.1312590"
+  }
+]

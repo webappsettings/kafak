@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Kansada B.O",
+    "pincode": "752065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1344652",
+    "longitude": "85.3009144"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Kulasar B.O",
+    "pincode": "752065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1435619",
+    "longitude": "85.3818116"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Surukabadi B.O",
+    "pincode": "752065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1271247",
+    "longitude": "85.2871298"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Badakumari B.O",
+    "pincode": "752065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1859107",
+    "longitude": "85.3334536"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Rajsunakhala S.O",
+    "pincode": "752065",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1798300",
+    "longitude": "85.3182700"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Narendrapur B.O",
+    "pincode": "752065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1680489",
+    "longitude": "85.3541429"
+  }
+]

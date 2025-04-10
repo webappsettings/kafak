@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Chirala H.O",
+    "pincode": "523155",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.8291667",
+    "longitude": "80.3520000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Bosenagar S.O (Prakasam)",
+    "pincode": "523155",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.8189240",
+    "longitude": "80.3471560"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Santha Bazar S.O",
+    "pincode": "523155",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Bapatla",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.8166944",
+    "longitude": "80.3500000"
+  }
+]

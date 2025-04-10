@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Chamundi Extension S.O",
+    "pincode": "570004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.30269444",
+    "longitude": "76.643277780000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Mysuru Fort S.O",
+    "pincode": "570004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.302277780000001",
+    "longitude": "76.653638889999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Krishna Raja Mohalla S.O",
+    "pincode": "570004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.301277779999999",
+    "longitude": "76.653333329999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Krishnamurthypuram S.O",
+    "pincode": "570004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.29238889",
+    "longitude": "76.642666669999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Mysuru Division",
+    "officename": "Lakshmipuram S.O (Mysuru)",
+    "pincode": "570004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.296744",
+    "longitude": "76.644964000000002"
+  }
+]

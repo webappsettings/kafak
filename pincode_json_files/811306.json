@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Baghaur BO",
+    "pincode": "811306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.073370199999999",
+    "longitude": "25.043280800000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Kendi BO",
+    "pincode": "811306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.056949900000006",
+    "longitude": "25.0607252"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Konag BO",
+    "pincode": "811306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.069862999999998",
+    "longitude": "25.027356399999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "S Salaunja BO",
+    "pincode": "811306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.099911399999996",
+    "longitude": "24.9909082"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Shiovsona BO",
+    "pincode": "811306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.118107499999994",
+    "longitude": "24.999163899999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Halsi S.O",
+    "pincode": "811306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUNGER",
+    "statename": "BIHAR",
+    "latitude": "25.032989",
+    "longitude": "86.052923"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "G Parsando BO",
+    "pincode": "811306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.047861800000007",
+    "longitude": "25.023927799999999"
+  }
+]

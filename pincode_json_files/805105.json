@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Maira Barich BO",
+    "pincode": "805105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.0819880",
+    "longitude": "85.6345500"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Bahadurganj BO",
+    "pincode": "805105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.0819880",
+    "longitude": "85.6345500"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Katrisarai SO",
+    "pincode": "805105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.0011389",
+    "longitude": "85.5840556"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Badi BO",
+    "pincode": "805105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.0819880",
+    "longitude": "85.6345500"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Bhagwanpur BO",
+    "pincode": "805105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.0819880",
+    "longitude": "85.6345500"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Nawadha Division",
+    "officename": "Gazipur BO",
+    "pincode": "805105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NALANDA",
+    "statename": "BIHAR",
+    "latitude": "25.0819880",
+    "longitude": "85.6345500"
+  }
+]

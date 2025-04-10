@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Makatpur SO",
+    "pincode": "815301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.1879260",
+    "longitude": "86.3076430"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Barganda SO",
+    "pincode": "815301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "2411.0000000",
+    "longitude": "8618.0000000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Giridih HO",
+    "pincode": "815301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.184713",
+    "longitude": "86.302193"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Giridih Bazar SO",
+    "pincode": "815301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.21452",
+    "longitude": "86.389526"
+  }
+]

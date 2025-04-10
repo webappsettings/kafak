@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Chandi Mandir S.O",
+    "pincode": "134107",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.7238333",
+    "longitude": "76.8759167"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Chandi Mandir Cantt S.O",
+    "pincode": "134107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.7238333",
+    "longitude": "76.8759167"
+  }
+]

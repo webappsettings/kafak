@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Amarnagar SO Faridabad",
+    "pincode": "121003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3917778",
+    "longitude": "77.3021389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Gurukul Indraprashtha BO",
+    "pincode": "121003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3598660",
+    "longitude": "77.3597190"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Mathura Road Faridabad SO",
+    "pincode": "121003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.4513611",
+    "longitude": "77.3079444"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Anangpur BO",
+    "pincode": "121003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.4625",
+    "longitude": "77.264444"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Tilpat BO",
+    "pincode": "121003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.4636980",
+    "longitude": "77.3338780"
+  }
+]

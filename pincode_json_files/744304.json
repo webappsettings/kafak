@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Mildera B.O",
+    "pincode": "744304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Kapanga S.O",
+    "pincode": "744304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "8.000927",
+    "longitude": "93.374073"
+  }
+]

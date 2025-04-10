@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Lachhima BO",
+    "pincode": "262533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5937000",
+    "longitude": "79.4055000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Okhrani BO",
+    "pincode": "262533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8821000",
+    "longitude": "80.0968000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Chausala BO",
+    "pincode": "262533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5840000",
+    "longitude": "79.8880000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Kotgari Ghanjri BO",
+    "pincode": "262533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8643000",
+    "longitude": "80.0828000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Merla Sangaur BO",
+    "pincode": "262533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.7793700",
+    "longitude": "80.0437000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Pankhu SO",
+    "pincode": "262533",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9007700",
+    "longitude": "80.0716000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Dashauli BO",
+    "pincode": "262533",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PITHORAGARH",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.8907000",
+    "longitude": "80.0510000"
+  }
+]

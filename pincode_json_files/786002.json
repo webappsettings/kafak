@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Hiloidhari B.O",
+    "pincode": "786002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.4800000",
+    "longitude": "94.9400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Assam Medical College S.O",
+    "pincode": "786002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.4864444",
+    "longitude": "94.9431389"
+  }
+]

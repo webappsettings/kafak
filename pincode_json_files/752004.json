@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Baniasahi B.O",
+    "pincode": "752004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.8908907",
+    "longitude": "85.9728816"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Garhbhingura B.O",
+    "pincode": "752004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.8911953",
+    "longitude": "85.9282746"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Bantaligram B.O",
+    "pincode": "752004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.9135152",
+    "longitude": "85.9896652"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Chhaitana B.O",
+    "pincode": "752004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.8749625",
+    "longitude": "85.9459309"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Baliguali S.O",
+    "pincode": "752004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.8344",
+    "longitude": "85.871"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Puri Division",
+    "officename": "Badagaon B.O",
+    "pincode": "752004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURI",
+    "statename": "ODISHA",
+    "latitude": "19.8736315",
+    "longitude": "85.9771977"
+  }
+]

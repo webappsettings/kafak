@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Mankaura B.O",
+    "pincode": "470675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0351070",
+    "longitude": "79.4647630"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Chirola B.O",
+    "pincode": "470675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9560030",
+    "longitude": "79.3409230"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Kishunganj B.O",
+    "pincode": "470675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9720650",
+    "longitude": "79.3606360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Aslana B.O",
+    "pincode": "470675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9350410",
+    "longitude": "79.3141630"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Piparia Champat B.O",
+    "pincode": "470675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9622760",
+    "longitude": "79.3887900"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Narsingarh S.O",
+    "pincode": "470675",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9907110",
+    "longitude": "79.3923810"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sitanagar B.O",
+    "pincode": "470675",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMOH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0452990",
+    "longitude": "79.4422590"
+  }
+]

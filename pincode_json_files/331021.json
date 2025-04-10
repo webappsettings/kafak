@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Untawalia B.O",
+    "pincode": "331021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Dhani D.S.Pura B.O",
+    "pincode": "331021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Ratan Nagar S.O",
+    "pincode": "331021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "28.2189167",
+    "longitude": "74.9530833"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Meghsar B.O",
+    "pincode": "331021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Depalsar B.O",
+    "pincode": "331021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

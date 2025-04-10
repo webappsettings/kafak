@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Kahanpur Khui B.O",
+    "pincode": "140128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Jhaj B.O",
+    "pincode": "140128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Kalwan B.O",
+    "pincode": "140128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Katta Sabour B.O",
+    "pincode": "140128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Khera Kalmout B.O",
+    "pincode": "140128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "DUMEWAL SO",
+    "pincode": "140128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Makari Bari B.O",
+    "pincode": "231206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.531354",
+    "longitude": "83.114220000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Markudi B.O",
+    "pincode": "231206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.531354",
+    "longitude": "83.114220000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Churk SO",
+    "pincode": "231206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.6412222",
+    "longitude": "83.0987500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Cherui BO",
+    "pincode": "231206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.6448870",
+    "longitude": "83.0951850"
+  }
+]

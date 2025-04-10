@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Gohlani BO",
+    "pincode": "140126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Bass Bhabour BO",
+    "pincode": "140126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Mojowal BO",
+    "pincode": "140126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Fertilizer Factory Nangal SO",
+    "pincode": "140126",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "31.3818889",
+    "longitude": "76.3603611"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Swamipur BO",
+    "pincode": "140126",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9666111",
+    "longitude": "76.3715277"
+  }
+]

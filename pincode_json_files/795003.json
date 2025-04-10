@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kunja (P) B.O",
+    "pincode": "795003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.714009000000001",
+    "longitude": "93.903419999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kyamgei B.O",
+    "pincode": "795003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL EAST",
+    "statename": "MANIPUR",
+    "latitude": "24.805900999999999",
+    "longitude": "93.945353999999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Ningombam B.O",
+    "pincode": "795003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.743288",
+    "longitude": "93.894226000000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Manipur University S.O",
+    "pincode": "795003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.750941",
+    "longitude": "93.928189"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Canchipur (TCD) B.O",
+    "pincode": "795003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.794751999999999",
+    "longitude": "93.857890999999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Mongsangei B.O",
+    "pincode": "795003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.760750999999999",
+    "longitude": "93.906334999999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Langthabal B.O",
+    "pincode": "795003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.751874999999998",
+    "longitude": "93.915869000000001"
+  }
+]

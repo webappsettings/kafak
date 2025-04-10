@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Sagarraipur BO",
+    "pincode": "221310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3300000",
+    "longitude": "82.3900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Suryabhanpur BO",
+    "pincode": "221310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2800000",
+    "longitude": "82.3400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Darawasi BO",
+    "pincode": "221310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3300000",
+    "longitude": "82.3400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Ibrhimpur Uparwar BO",
+    "pincode": "221310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2300000",
+    "longitude": "82.3600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Jangiganj SO",
+    "pincode": "221310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3031667",
+    "longitude": "82.3698333"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Baragaon BO",
+    "pincode": "221310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3300000",
+    "longitude": "82.3800000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Semradh BO",
+    "pincode": "221310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2500000",
+    "longitude": "82.3300000"
+  }
+]

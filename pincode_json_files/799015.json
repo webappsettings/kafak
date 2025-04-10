@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Narayanpur Bazar SO",
+    "pincode": "799015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "23.909314",
+    "longitude": "91.251929"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Tebaria B.O",
+    "pincode": "799015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

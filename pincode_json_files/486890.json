@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "DUDHICHUA PROJECT",
+    "pincode": "486890",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "24.182413",
+    "longitude": "82.709941"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Rewa Division",
+    "officename": "Jayant Colliery S.O",
+    "pincode": "486890",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SINGRAULI",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.1445000",
+    "longitude": "82.6375556"
+  }
+]

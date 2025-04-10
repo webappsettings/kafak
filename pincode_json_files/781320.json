@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Hudukhata B.O",
+    "pincode": "781320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2953000",
+    "longitude": "91.0432000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barmazra B.O",
+    "pincode": "781320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2953000",
+    "longitude": "91.0432000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Chenglimari B.O",
+    "pincode": "781320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2953000",
+    "longitude": "91.0432000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Chamuagati B.O",
+    "pincode": "781320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2953000",
+    "longitude": "91.0432000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Rupahi B.O",
+    "pincode": "781320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2953000",
+    "longitude": "91.0432000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Salbari S.O",
+    "pincode": "781320",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAKSA",
+    "statename": "ASSAM",
+    "latitude": "26.6424",
+    "longitude": "91.0925"
+  }
+]

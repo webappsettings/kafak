@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Belagavi Doordarshan Nagar S.O",
+    "pincode": "590019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.877083300000001",
+    "longitude": "74.5006111"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Belagavi Division",
+    "officename": "Belagavi Vishweswaraih Nagar S.O",
+    "pincode": "590019",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BELAGAVI",
+    "statename": "KARNATAKA",
+    "latitude": "15.873542",
+    "longitude": "74.508476999999999"
+  }
+]

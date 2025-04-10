@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Dhanmandal S.O",
+    "pincode": "754024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6852433",
+    "longitude": "86.111335"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Chandital B.O",
+    "pincode": "754024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6650550",
+    "longitude": "86.1005233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Bantala B.O",
+    "pincode": "754024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6525733",
+    "longitude": "86.0758750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "JAJPUR DIVISION",
+    "officename": "Barithengada B.O",
+    "pincode": "754024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAJAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.6616583",
+    "longitude": "86.0635899"
+  }
+]

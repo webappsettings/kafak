@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Jiblakpalli B.O",
+    "pincode": "508284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADADRI BHUVANAGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.3454000",
+    "longitude": "78.8241000"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Julur B.O",
+    "pincode": "508284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADADRI BHUVANAGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.3454000",
+    "longitude": "78.8241000"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Pillayipalli B.O",
+    "pincode": "508284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADADRI BHUVANAGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.3454000",
+    "longitude": "78.8241000"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Inderial B.O",
+    "pincode": "508284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADADRI BHUVANAGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.3454000",
+    "longitude": "78.8241000"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Pochampalli S.O",
+    "pincode": "508284",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YADADRI BHUVANAGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.0899444",
+    "longitude": "79.4466667"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nalgonda Division",
+    "officename": "Vankamamidi B.O",
+    "pincode": "508284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADADRI BHUVANAGIRI",
+    "statename": "TELANGANA",
+    "latitude": "17.3454000",
+    "longitude": "78.8241000"
+  }
+]

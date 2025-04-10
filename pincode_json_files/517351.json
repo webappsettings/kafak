@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Gollapalle BRK B.O",
+    "pincode": "517351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Thummanamgutta B.O",
+    "pincode": "517351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Devalacheruvu B.O",
+    "pincode": "517351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.550014",
+    "longitude": "78.3499986"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Maddinayanipalle B.O",
+    "pincode": "517351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Burakayalakota S.O",
+    "pincode": "517351",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.550014",
+    "longitude": "78.499986"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Balireddigaripalle B.O",
+    "pincode": "517351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Vepurikota B.O",
+    "pincode": "517351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

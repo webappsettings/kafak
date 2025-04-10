@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Hiracherra B.O",
+    "pincode": "799281",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Irani B.O",
+    "pincode": "799281",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Latiapur B.O",
+    "pincode": "799281",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Tripura Tillabazar B.O",
+    "pincode": "799281",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Baburbazar S.O",
+    "pincode": "799281",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.1598056"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Rangauti B.O",
+    "pincode": "799281",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Unakoti",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

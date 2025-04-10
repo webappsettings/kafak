@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Limbi BO",
+    "pincode": "394680",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.3260400",
+    "longitude": "73.8811400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Serulla BO",
+    "pincode": "394680",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1262000",
+    "longitude": "73.3926100"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Ukai Dam SO",
+    "pincode": "394680",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.2237778",
+    "longitude": "73.5796111"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Bhatwada BO",
+    "pincode": "394680",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1663670",
+    "longitude": "73.5644974"
+  }
+]

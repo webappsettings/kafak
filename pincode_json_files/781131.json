@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Warmawsaw B.O",
+    "pincode": "781131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "26.1887778",
+    "longitude": "91.7456389"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Jirang B.O",
+    "pincode": "781131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "26.1887778",
+    "longitude": "91.7456389"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Patharkhmah B.O",
+    "pincode": "781131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "26.1887778",
+    "longitude": "91.7456389"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Rani S.O (Kamrup)",
+    "pincode": "781131",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP",
+    "statename": "ASSAM",
+    "latitude": "26.1887778",
+    "longitude": "91.7456389"
+  }
+]

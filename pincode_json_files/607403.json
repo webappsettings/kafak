@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kirumambakkam",
+    "pincode": "607403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.9344722",
+    "longitude": "79.8350556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Pillayarkuppam BO",
+    "pincode": "607403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "12.0322530",
+    "longitude": "79.5898410"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Reddichavadi BO",
+    "pincode": "607403",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CUDDALORE",
+    "statename": "TAMIL NADU",
+    "latitude": "11.8395720",
+    "longitude": "79.7862430"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Barbaspur B.O",
+    "pincode": "484336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4500000",
+    "longitude": "81.4600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Pasan B.O",
+    "pincode": "484336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1500000",
+    "longitude": "81.9500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Shahdol Division",
+    "officename": "Kotma Colliery S.O",
+    "pincode": "484336",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANUPPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1590556",
+    "longitude": "81.9403056"
+  }
+]

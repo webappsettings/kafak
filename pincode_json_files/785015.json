@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Korokatoly S.O",
+    "pincode": "785015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4610000",
+    "longitude": "94.1230000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Desoinagar B.O",
+    "pincode": "785015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4610000",
+    "longitude": "94.1230000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dhekorgorah B.O",
+    "pincode": "785015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4610000",
+    "longitude": "94.1230000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Gorokhiadol B.O",
+    "pincode": "785015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4610000",
+    "longitude": "94.1230000"
+  }
+]

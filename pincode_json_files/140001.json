@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Minisectt Ropar SO",
+    "pincode": "140001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9812222",
+    "longitude": "76.5196667"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "I I T ROPAR",
+    "pincode": "140001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.6920510",
+    "longitude": "76.6984100"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Ropar HO",
+    "pincode": "140001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.96661",
+    "longitude": "73.53025"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Chandigarh Division",
+    "officename": "Thermal Plant Colony Ropar SO",
+    "pincode": "140001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RUPNAGAR",
+    "statename": "PUNJAB",
+    "latitude": "30.9432222",
+    "longitude": "76.5350278"
+  }
+]

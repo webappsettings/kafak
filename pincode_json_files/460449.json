@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Pathakheda S.O",
+    "pincode": "460449",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1275000",
+    "longitude": "78.1447222"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Amdhana B.O",
+    "pincode": "460449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.3715400",
+    "longitude": "78.7447870"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Salaiya B.O",
+    "pincode": "460449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7775590",
+    "longitude": "80.7131250"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Shaktigarh B.O",
+    "pincode": "460449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1934210",
+    "longitude": "78.1849430"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Shobhapur Colloery B.O",
+    "pincode": "460449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0896610",
+    "longitude": "78.0109760"
+  }
+]

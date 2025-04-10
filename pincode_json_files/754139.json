@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Kanipada B.O",
+    "pincode": "754139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.2149766",
+    "longitude": "86.4097750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Ambiki B.O",
+    "pincode": "754139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1510350",
+    "longitude": "86.4560133"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Bhitarandhari B.O",
+    "pincode": "754139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.2332416",
+    "longitude": "86.4700083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Jirailo B.O",
+    "pincode": "754139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.1784750",
+    "longitude": "86.4142116"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Kunjakothi B.O",
+    "pincode": "754139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.2005033",
+    "longitude": "86.4631983"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Ersama S.O",
+    "pincode": "754139",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.303609",
+    "longitude": "86.359219"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Cuttack South Division",
+    "officename": "Japabhuan B.O",
+    "pincode": "754139",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAGATSINGHAPUR",
+    "statename": "ODISHA",
+    "latitude": "20.2063083",
+    "longitude": "86.4314783"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Latur Bazar S.O",
+    "pincode": "413512",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4264686",
+    "longitude": "76.573632000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Latur H.O",
+    "pincode": "413512",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.400494",
+    "longitude": "76.578184"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Hatte Road Latur S.O",
+    "pincode": "413512",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4264686",
+    "longitude": "77.0823432"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Labour Colony Latur S.O",
+    "pincode": "413512",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4264686",
+    "longitude": "76.573632000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Latur RS S.O",
+    "pincode": "413512",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4264686",
+    "longitude": "76.573632000000003"
+  }
+]

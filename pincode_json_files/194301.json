@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Omba B.O",
+    "pincode": "194301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Barsoo B.O",
+    "pincode": "194301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Lankarchey B.O",
+    "pincode": "194301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Sangra B.O",
+    "pincode": "194301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.99447",
+    "longitude": "78.787840000000003"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Tikat B.O",
+    "pincode": "194301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Khasgam Thuina B.O",
+    "pincode": "194301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Sankoo S.O",
+    "pincode": "194301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.5535060",
+    "longitude": "76.1350430"
+  }
+]

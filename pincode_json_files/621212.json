@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Perambalur H.O",
+    "pincode": "621212",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2400000",
+    "longitude": "78.8700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Madanagopalapuram S.O",
+    "pincode": "621212",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2400000",
+    "longitude": "78.8700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Srirangam Division",
+    "officename": "Perambalur Collectorate S.O",
+    "pincode": "621212",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.2200000",
+    "longitude": "78.8800000"
+  }
+]

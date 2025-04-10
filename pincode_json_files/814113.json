@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Rikhiya BO",
+    "pincode": "814113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.493161400000002",
+    "longitude": "86.784357600000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Vidyapith BO",
+    "pincode": "814113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.549250000000001",
+    "longitude": "86.81541"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "T Balasi BO",
+    "pincode": "814113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.549250000000001",
+    "longitude": "86.81541"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Kusmaha BO",
+    "pincode": "814113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.549250000000001",
+    "longitude": "86.81541"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Deoghar College SO",
+    "pincode": "814113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Rarhiya BO",
+    "pincode": "814113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.493161400000002",
+    "longitude": "86.784357600000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Bichgarha Kusumdih BO",
+    "pincode": "814113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.549250000000001",
+    "longitude": "86.81541"
+  }
+]

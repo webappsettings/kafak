@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Korba Town SO",
+    "pincode": "495677",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3448700",
+    "longitude": "82.6982800"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Korba HO",
+    "pincode": "495677",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.36168743",
+    "longitude": "82.730405439999998"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Korba Colliery SO",
+    "pincode": "495677",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3527200",
+    "longitude": "82.7148900"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Hasdeo Project Korba SO",
+    "pincode": "495677",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.6039444",
+    "longitude": "82.1251944"
+  }
+]

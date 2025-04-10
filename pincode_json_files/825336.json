@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Hendegarha BO",
+    "pincode": "825336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Charhi SO",
+    "pincode": "825336",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "23.8536050",
+    "longitude": "85.4408560"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Jarwa BO",
+    "pincode": "825336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAZARIBAGH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

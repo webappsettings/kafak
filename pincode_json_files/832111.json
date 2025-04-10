@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Hartopa B.O",
+    "pincode": "832111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.6953",
+    "longitude": "86.258499999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Narwa Mines  SO",
+    "pincode": "832111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.69903",
+    "longitude": "86.25814"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Hitku BO",
+    "pincode": "832111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.707222300000002",
+    "longitude": "86.244010299999999"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Coudapakkam BO",
+    "pincode": "605502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.9400000",
+    "longitude": "79.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Katterikuppam BO",
+    "pincode": "605502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "12.0000000",
+    "longitude": "79.7000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Thondamanatham BO",
+    "pincode": "605502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.9600000",
+    "longitude": "79.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kadaperikuppam BO",
+    "pincode": "605502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9800000",
+    "longitude": "79.7300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Suthukeni BO",
+    "pincode": "605502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "12.0100000",
+    "longitude": "79.6800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Valudavur SO",
+    "pincode": "605502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9691111",
+    "longitude": "79.6857778"
+  }
+]

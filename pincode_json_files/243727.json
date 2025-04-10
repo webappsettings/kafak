@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Gawan BO",
+    "pincode": "243727",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.4225348",
+    "longitude": "78.3512306"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Singhaula Daulatsingh BO",
+    "pincode": "243727",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2681783",
+    "longitude": "78.3818478"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Singhauli Kalloo BO",
+    "pincode": "243727",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2996898",
+    "longitude": "78.8340173"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Rajpura SO Budaun",
+    "pincode": "243727",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.339932",
+    "longitude": "78.389484"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Jijonda BO",
+    "pincode": "243727",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2430313",
+    "longitude": "78.4803199"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Neora BO",
+    "pincode": "243727",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3587385",
+    "longitude": "78.3788180"
+  }
+]

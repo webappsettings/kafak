@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Goyalabujurg B.O",
+    "pincode": "456003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.3718040",
+    "longitude": "73.0139620"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Kaliadeh B.O",
+    "pincode": "456003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.3718040",
+    "longitude": "73.0139620"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Rooi B.O",
+    "pincode": "456003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9609420",
+    "longitude": "76.0603010"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Sodang B.O",
+    "pincode": "456003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.9609420",
+    "longitude": "76.0603010"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Ujjain  Bherugarh S.O",
+    "pincode": "456003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2245278",
+    "longitude": "75.7763333"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Badepura B.O",
+    "pincode": "477566",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6823450",
+    "longitude": "78.8957200"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Barhi S.O (Bhind",
+    "pincode": "477566",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6875110",
+    "longitude": "78.9341840"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Gyanpura B.O",
+    "pincode": "477566",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6712620",
+    "longitude": "78.9937510"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Nai Garhi B.O",
+    "pincode": "477566",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6418480",
+    "longitude": "78.9696740"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Sapad B.O",
+    "pincode": "477566",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6491810",
+    "longitude": "78.9312520"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Bhawanpura (Barhi) B.O",
+    "pincode": "477566",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6209280",
+    "longitude": "78.9533980"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Sankari B.O",
+    "pincode": "477566",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIND",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.6244760",
+    "longitude": "78.9883600"
+  }
+]

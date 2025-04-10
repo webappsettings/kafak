@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Sinhauna BO",
+    "pincode": "262905",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3300000",
+    "longitude": "80.9700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Singaha Kallan BO",
+    "pincode": "262905",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3300000",
+    "longitude": "80.9200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Motipur BO",
+    "pincode": "262905",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3600000",
+    "longitude": "80.9200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Khairigarh BO",
+    "pincode": "262905",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3500000",
+    "longitude": "80.8400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Singahi SO",
+    "pincode": "262905",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9098420",
+    "longitude": "80.7845350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Naubana BO",
+    "pincode": "262905",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2600000",
+    "longitude": "80.9200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Naurangabad BO",
+    "pincode": "262905",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3000000",
+    "longitude": "80.9300000"
+  }
+]

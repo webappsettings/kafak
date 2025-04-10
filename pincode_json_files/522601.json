@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Narasaraopet H.O",
+    "pincode": "522601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2321111",
+    "longitude": "80.0430278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Arundalpet (NSV) S.O",
+    "pincode": "522601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2340556",
+    "longitude": "80.0522500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Narasaraopet Bazar S.O",
+    "pincode": "522601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2375833",
+    "longitude": "80.1541111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Prakashnagar S.O",
+    "pincode": "522601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2286944",
+    "longitude": "80.0470556"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "N.S.C.Colony S.O",
+    "pincode": "522601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.2290556",
+    "longitude": "80.0345556"
+  }
+]

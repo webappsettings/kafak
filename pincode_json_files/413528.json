@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Kothala B.O",
+    "pincode": "413528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.571708000000001",
+    "longitude": "76.017698999999993"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Awad Shirpura B.O",
+    "pincode": "413528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.571708000000001",
+    "longitude": "76.017698999999993"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Sawargaon (Shiradhon) B.O",
+    "pincode": "413528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.571708000000001",
+    "longitude": "76.017698999999993"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ranjani B.O",
+    "pincode": "413528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.571708000000001",
+    "longitude": "76.017698999999993"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Shiradhon S.O",
+    "pincode": "413528",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.513265",
+    "longitude": "76.185799"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ghargaon B.O",
+    "pincode": "413528",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.571708000000001",
+    "longitude": "76.017698999999993"
+  }
+]

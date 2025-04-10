@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Mallialpalli B.O",
+    "pincode": "505208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.7566077",
+    "longitude": "79.4456286"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Ramagundam S.O",
+    "pincode": "505208",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.7736667",
+    "longitude": "79.4487222"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Abadi Ramagundam B.O",
+    "pincode": "505208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.8004989",
+    "longitude": "79.4498312"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Kundanpalli B.O",
+    "pincode": "505208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.7532435",
+    "longitude": "79.4288610"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Peddapalli Division",
+    "officename": "Peddampet B.O",
+    "pincode": "505208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PEDDAPALLI",
+    "statename": "TELANGANA",
+    "latitude": "18.7999698",
+    "longitude": "79.4374522"
+  }
+]

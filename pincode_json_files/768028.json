@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bargarh Bazar S.O",
+    "pincode": "768028",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3320978",
+    "longitude": "83.6160888"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bargarh H.O",
+    "pincode": "768028",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3342500",
+    "longitude": "83.6191944"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bargarh Court S.O",
+    "pincode": "768028",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BARGARH",
+    "statename": "ODISHA",
+    "latitude": "21.3345117",
+    "longitude": "83.6191567"
+  }
+]

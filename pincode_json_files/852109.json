@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Dharhara BO",
+    "pincode": "852109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Lalpur BO",
+    "pincode": "852109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Mahadeo Asthan BO",
+    "pincode": "852109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Ganpatganj SO Supaul",
+    "pincode": "852109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.6290000",
+    "longitude": "86.3630000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Achalpur BO",
+    "pincode": "852109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Devipur BO",
+    "pincode": "852109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Saharsa Division",
+    "officename": "Maheshpur BO",
+    "pincode": "852109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SUPAUL",
+    "statename": "BIHAR",
+    "latitude": "26.1317090",
+    "longitude": "86.6107110"
+  }
+]

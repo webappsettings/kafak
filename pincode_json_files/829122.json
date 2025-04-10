@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Ramgarh SO Ramgarh",
+    "pincode": "829122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hazaribagh Division",
+    "officename": "Ramgarh Cantt HO",
+    "pincode": "829122",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "RAMGARH",
+    "statename": "JHARKHAND",
+    "latitude": "23.6321389",
+    "longitude": "85.5141944"
+  }
+]

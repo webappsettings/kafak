@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dholaguri B.O",
+    "pincode": "785613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.5833000",
+    "longitude": "93.8000000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bokial B.O",
+    "pincode": "785613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.5833000",
+    "longitude": "93.8000000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Letekujaan S.O",
+    "pincode": "785613",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.5833000",
+    "longitude": "93.8000000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bukial Bagan  BO",
+    "pincode": "785613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOLAGHAT",
+    "statename": "ASSAM",
+    "latitude": "26.465966999999999",
+    "longitude": "93.797365999999997"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Lashkar City S.O",
+    "pincode": "474009",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.202625",
+    "longitude": "78.162234"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Naya Bazar S.O (Gwalior",
+    "pincode": "474009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1786470",
+    "longitude": "78.1449080"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Phalka Bazar S.O",
+    "pincode": "474009",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1786470",
+    "longitude": "78.1449080"
+  }
+]

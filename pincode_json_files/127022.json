@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Chiriya SO",
+    "pincode": "127022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.4614000",
+    "longitude": "76.2609000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Dudhwa BO",
+    "pincode": "127022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.4614000",
+    "longitude": "76.2609000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Makrana BO",
+    "pincode": "127022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.4614000",
+    "longitude": "76.2609000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Mauri BO",
+    "pincode": "127022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.4614000",
+    "longitude": "76.2609000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Chang Road BO",
+    "pincode": "127022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHARKI DADRI",
+    "statename": "HARYANA",
+    "latitude": "28.4614000",
+    "longitude": "76.2609000"
+  }
+]

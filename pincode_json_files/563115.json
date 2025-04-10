@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Beml Nagar Colony S.O",
+    "pincode": "563115",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.971472199999999",
+    "longitude": "78.242166699999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Bharathnagar S.O",
+    "pincode": "563115",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.9956944",
+    "longitude": "78.242166699999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Beml Nagar S.O",
+    "pincode": "563115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLAR",
+    "statename": "KARNATAKA",
+    "latitude": "12.982222200000001",
+    "longitude": "78.233944399999999"
+  }
+]

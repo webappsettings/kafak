@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Bursham B.O",
+    "pincode": "132106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "36.3900000",
+    "longitude": "32.3600000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Binjhol B.O",
+    "pincode": "132106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "36.8700000",
+    "longitude": "25.8500000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Panipat NFL S.O",
+    "pincode": "132106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.36213889",
+    "longitude": "76.97230556"
+  }
+]

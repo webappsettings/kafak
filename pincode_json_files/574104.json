@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Hiriangady B.O",
+    "pincode": "574104",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.2128652",
+    "longitude": "74.9947806"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Karkala West S.O",
+    "pincode": "574104",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.212916699999999",
+    "longitude": "75.003527800000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Karkala H.O",
+    "pincode": "574104",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.2127611",
+    "longitude": "74.994730200000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Karkala Bazar S.O",
+    "pincode": "574104",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "UDUPI",
+    "statename": "KARNATAKA",
+    "latitude": "13.2127500",
+    "longitude": "74.9947806"
+  }
+]

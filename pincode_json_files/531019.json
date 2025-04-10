@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Pedamushidivada B.O",
+    "pincode": "531019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7181380",
+    "longitude": "83.1005860"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Thadi B.O",
+    "pincode": "531019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6480550",
+    "longitude": "83.0521770"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Valluru B.O",
+    "pincode": "531019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6533730",
+    "longitude": "83.0375000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Lankelapalem B.O",
+    "pincode": "531019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6875840",
+    "longitude": "83.0962940"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Jawaharlalnehru Pharmacity S.O",
+    "pincode": "531019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6631389",
+    "longitude": "83.0928611"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Maredupudi B.O",
+    "pincode": "531019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6851610",
+    "longitude": "83.0649970"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Narsingaraopeta B.O",
+    "pincode": "531019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.6907384",
+    "longitude": "83.0574327"
+  }
+]

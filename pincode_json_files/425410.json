@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Anarad B.O",
+    "pincode": "425410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.469454",
+    "longitude": "74.497956"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Sarangkheda S.O",
+    "pincode": "425410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.432756",
+    "longitude": "74.52751"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Kalamboo B.O",
+    "pincode": "425410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.453345",
+    "longitude": "74.548226"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Biladi T.S B.O",
+    "pincode": "425410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.440219",
+    "longitude": "74.470329"
+  }
+]

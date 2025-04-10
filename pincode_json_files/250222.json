@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Mahal BO",
+    "pincode": "250222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1308300",
+    "longitude": "77.7853500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Mahalka BO",
+    "pincode": "250222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1100000",
+    "longitude": "77.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Lawar SO",
+    "pincode": "250222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1017000",
+    "longitude": "77.9184000"
+  }
+]

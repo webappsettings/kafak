@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Majra Anand Singh BO",
+    "pincode": "263160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.1472014",
+    "longitude": "79.4082864"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Kalinagar BO",
+    "pincode": "263160",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.0472093",
+    "longitude": "79.3582861"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nainital Division",
+    "officename": "Dineshpur SO",
+    "pincode": "263160",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAM SINGH NAGAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.0250000",
+    "longitude": "79.1914000"
+  }
+]

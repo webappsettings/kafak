@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Nehru Gate Batala SO",
+    "pincode": "143505",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8075000",
+    "longitude": "75.1955800"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Batala City SO",
+    "pincode": "143505",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8075000",
+    "longitude": "75.1955800"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Judicial Complex Batala SO",
+    "pincode": "143505",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8317480",
+    "longitude": "75.2229030"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Batala HO",
+    "pincode": "143505",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8075000",
+    "longitude": "75.1955800"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Guru Nanak Nagar SO Gurdaspur",
+    "pincode": "143505",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8300000",
+    "longitude": "75.2100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Krishna Nagar Batala SO",
+    "pincode": "143505",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.8200000",
+    "longitude": "75.2000000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "AKMarket SO",
+    "pincode": "110055",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6448889",
+    "longitude": "77.2020556"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Multani Dhanda SO",
+    "pincode": "110055",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6461111",
+    "longitude": "77.2094167"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Pahar Ganj SO",
+    "pincode": "110055",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6401667",
+    "longitude": "77.2129167"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Swami Ram Tirth Nagar SO",
+    "pincode": "110055",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6460833",
+    "longitude": "77.2025278"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "SRT NAGAR EXTENSION COUNTER",
+    "pincode": "110055",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6123000",
+    "longitude": "77.1700000"
+  }
+]

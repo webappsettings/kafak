@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "GB Shahabazar S.O",
+    "pincode": "585101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.3453333",
+    "longitude": "76.827111099999996"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Kalaburagi H.O",
+    "pincode": "585101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.341322999999999",
+    "longitude": "76.834491999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "GB Jagath S.O",
+    "pincode": "585101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.3361667",
+    "longitude": "76.836944399999993"
+  }
+]

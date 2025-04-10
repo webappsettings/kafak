@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Dekapam B.O",
+    "pincode": "787061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.7100000",
+    "longitude": "94.8800000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Dipa B.O",
+    "pincode": "787061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.7100000",
+    "longitude": "94.8800000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Somkong Pagar B.O",
+    "pincode": "787061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.7100000",
+    "longitude": "94.8800000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Simen Chapori S.O",
+    "pincode": "787061",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4805000",
+    "longitude": "94.9595000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Talem B.O",
+    "pincode": "787061",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.7100000",
+    "longitude": "94.7200000"
+  }
+]

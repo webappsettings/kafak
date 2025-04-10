@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Katahit BO",
+    "pincode": "222144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3900000",
+    "longitude": "25.3900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Baraipar SO",
+    "pincode": "222144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7628056",
+    "longitude": "82.4275556"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Sonahita BO",
+    "pincode": "222144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1254000",
+    "longitude": "81.6357000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Itaha BO",
+    "pincode": "222144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6900000",
+    "longitude": "82.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Barhata BO",
+    "pincode": "222144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3600000",
+    "longitude": "81.3300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Gonapar BO",
+    "pincode": "222144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3600000",
+    "longitude": "81.2200000"
+  }
+]

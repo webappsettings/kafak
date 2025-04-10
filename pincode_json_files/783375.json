@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Deosiri B.O",
+    "pincode": "783375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.770485000000001",
+    "longitude": "90.463403"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Santipur B.O",
+    "pincode": "783375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.168455000000002",
+    "longitude": "91.728334000000004"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Ranipur B.O",
+    "pincode": "783375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.617010000000001",
+    "longitude": "89.997669000000002"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Khungring B.O",
+    "pincode": "783375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.722535000000001",
+    "longitude": "90.410162"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Runikhata S.O",
+    "pincode": "783375",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.4036944",
+    "longitude": "90.2721944"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Nanjangud H.O",
+    "pincode": "571301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.12233333",
+    "longitude": "76.680083330000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Nanjangud Division",
+    "officename": "Srikantapuri Extension S.O",
+    "pincode": "571301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MYSURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.116666670000001",
+    "longitude": "76.674444440000002"
+  }
+]

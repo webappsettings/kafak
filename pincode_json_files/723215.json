@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Chitmu BO",
+    "pincode": "723215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4786770",
+    "longitude": "86.0717870"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Pundag BO",
+    "pincode": "723215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5075410",
+    "longitude": "86.0873630"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Baglata SO",
+    "pincode": "723215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.3000500",
+    "longitude": "86.4212500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Purulia Division",
+    "officename": "Chowkibera BO",
+    "pincode": "723215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURULIA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.5092491",
+    "longitude": "86.0962783"
+  }
+]

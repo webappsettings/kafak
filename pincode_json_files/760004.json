@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Goilundi S.O",
+    "pincode": "760004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3091000",
+    "longitude": "84.8068750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Baidyanathpur S.O",
+    "pincode": "760004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3057300",
+    "longitude": "84.8048250"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Courtpeta S.O",
+    "pincode": "760004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3071233",
+    "longitude": "84.8081083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Berhampur Division",
+    "officename": "Medical College S.O (Ganjam)",
+    "pincode": "760004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.3077000",
+    "longitude": "84.8126833"
+  }
+]

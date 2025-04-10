@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Kapaliya B.O",
+    "pincode": "465106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2969350",
+    "longitude": "76.2073530"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Jhokar B.O",
+    "pincode": "465106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "31.7196520",
+    "longitude": "76.6073330"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Maksi S.O",
+    "pincode": "465106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2985000",
+    "longitude": "76.1472778"
+  }
+]

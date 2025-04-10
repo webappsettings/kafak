@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Argoti BO",
+    "pincode": "497116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.78659",
+    "longitude": "83.0884"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Kunni BO",
+    "pincode": "497116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.869205",
+    "longitude": "83.06277"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Turna BO",
+    "pincode": "497116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.985733",
+    "longitude": "83.138765"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Lahpatra BO",
+    "pincode": "497116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.039033",
+    "longitude": "83.087333"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Lakhanpur SO Surguja",
+    "pincode": "497116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.980221",
+    "longitude": "83.47296"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Jamgala BO",
+    "pincode": "497116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.01773",
+    "longitude": "82.96906"
+  }
+]

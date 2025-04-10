@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Amilauri BO",
+    "pincode": "221406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4271960",
+    "longitude": "82.4858740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Kariyaon BO",
+    "pincode": "221406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4271960",
+    "longitude": "82.4858740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Puregareria BO",
+    "pincode": "221406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4271960",
+    "longitude": "82.4858740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Purani Bazar BO",
+    "pincode": "221406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4271960",
+    "longitude": "82.4858740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Mondh SO",
+    "pincode": "221406",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2539000",
+    "longitude": "82.2828000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Ajaipur BO",
+    "pincode": "221406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4271960",
+    "longitude": "82.4858740"
+  }
+]

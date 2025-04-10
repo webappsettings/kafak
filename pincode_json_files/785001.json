@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Jorhat H.O",
+    "pincode": "785001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7580278",
+    "longitude": "94.2100556"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Garali S.O",
+    "pincode": "785001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7598056",
+    "longitude": "94.2136111"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Tarajan S.O",
+    "pincode": "785001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4517000",
+    "longitude": "94.1240000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Bhogdaimukh S.O",
+    "pincode": "785001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.7560000",
+    "longitude": "94.2094000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Dhalarsatra S.O",
+    "pincode": "785001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "25.1314000",
+    "longitude": "92.1911000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Macharhat S.O",
+    "pincode": "785001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4603000",
+    "longitude": "94.1213000"
+  }
+]

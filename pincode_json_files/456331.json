@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Durgapura B.O",
+    "pincode": "456331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.5204440",
+    "longitude": "87.3119230"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Mehatvas B.O",
+    "pincode": "456331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.8278160",
+    "longitude": "75.7715030"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Bhatisuda B.O",
+    "pincode": "456331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.0785210",
+    "longitude": "73.2883300"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Birlagram  Nagda S.O",
+    "pincode": "456331",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UJJAIN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4525833",
+    "longitude": "75.4052500"
+  }
+]

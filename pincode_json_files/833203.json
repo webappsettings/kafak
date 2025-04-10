@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Todanghatu BO",
+    "pincode": "833203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.770199999999999",
+    "longitude": "85.312299999999993"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Barananda BO",
+    "pincode": "833203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Maluka BO",
+    "pincode": "833203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.158663000000001",
+    "longitude": "85.665314600000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Pokharpi BO",
+    "pincode": "833203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Jagannathpur SO",
+    "pincode": "833203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.2096",
+    "longitude": "85.64247"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Kochra BO",
+    "pincode": "833203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.586165999999999",
+    "longitude": "85.805098999999998"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Kasira BO",
+    "pincode": "833203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.138999999999999",
+    "longitude": "85.711500000000001"
+  }
+]

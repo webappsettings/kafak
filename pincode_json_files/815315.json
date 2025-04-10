@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Pobi BO",
+    "pincode": "815315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.24",
+    "longitude": "86.8"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Sankho BO",
+    "pincode": "815315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "25.24",
+    "longitude": "86.8"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Kurhobindo BO",
+    "pincode": "815315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.21",
+    "longitude": "86.15"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Dhuraita BO",
+    "pincode": "815315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.24",
+    "longitude": "86.7"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Lataki BO",
+    "pincode": "815315",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.23",
+    "longitude": "86.12"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Giridih Division",
+    "officename": "Mirzaganj SO",
+    "pincode": "815315",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GIRIDIH",
+    "statename": "JHARKHAND",
+    "latitude": "24.1797411",
+    "longitude": "86.3022310"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Gajabahal B.O",
+    "pincode": "766031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3971316",
+    "longitude": "83.4684583"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Pourkela B.O",
+    "pincode": "766031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.4226250",
+    "longitude": "83.4788783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Teresinga B.O",
+    "pincode": "766031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3976350",
+    "longitude": "83.4366233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Sargulmalpada B.O",
+    "pincode": "766031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3517600",
+    "longitude": "83.4163983"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Risida S.O",
+    "pincode": "766031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3972366",
+    "longitude": "83.4684583"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Rinja B.O",
+    "pincode": "766031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3380066",
+    "longitude": "83.4400633"
+  }
+]

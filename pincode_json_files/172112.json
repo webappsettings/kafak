@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Hango BO",
+    "pincode": "172112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.828685100000001",
+    "longitude": "78.540170399999994"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rampur Bushahr Division",
+    "officename": "Liyo SO",
+    "pincode": "172112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KINNAUR",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.886353",
+    "longitude": "78.596723"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Mandlawada B.O",
+    "pincode": "454774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.8507610",
+    "longitude": "76.0181560"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Pithampur Sector III S.O",
+    "pincode": "454774",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6288611",
+    "longitude": "75.6140556"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Khandwa B.O",
+    "pincode": "454774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6000070",
+    "longitude": "74.8448650"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Kunwarsi B.O",
+    "pincode": "454774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.5542890",
+    "longitude": "75.5655150"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Sagore B.O",
+    "pincode": "454774",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6754330",
+    "longitude": "88.3734010"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Sulawad B.O",
+    "pincode": "454774",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6204610",
+    "longitude": "75.5567820"
+  }
+]

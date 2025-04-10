@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Rehsupur BO",
+    "pincode": "202128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8668400",
+    "longitude": "78.2518863"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Sheikhupur BO",
+    "pincode": "202128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8668400",
+    "longitude": "78.2518863"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Changeri BO",
+    "pincode": "202128",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8668400",
+    "longitude": "78.2518863"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Baranadi BO",
+    "pincode": "202128",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9405960",
+    "longitude": "78.2283897"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Jalali SO",
+    "pincode": "202128",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8670000",
+    "longitude": "78.2503056"
+  }
+]

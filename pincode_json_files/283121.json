@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Bhakar BO",
+    "pincode": "283121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9610092",
+    "longitude": "77.8624545"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Rasoolpur BO",
+    "pincode": "283121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9420149",
+    "longitude": "77.7688751"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Nagla Dulhe Khan BO",
+    "pincode": "283121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9347777",
+    "longitude": "77.7280395"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "KHERAGARH SO",
+    "pincode": "283121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.4173718",
+    "longitude": "80.9799772"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Bhilawali BO",
+    "pincode": "283121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9812022",
+    "longitude": "77.8281514"
+  }
+]

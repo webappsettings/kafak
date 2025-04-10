@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Dhanger BO",
+    "pincode": "125048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHABAD",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Mahmadpur Rohi BO",
+    "pincode": "125048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHABAD",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Khara Kheri BO",
+    "pincode": "125048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHABAD",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Chinder BO",
+    "pincode": "125048",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHABAD",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Badopal SO",
+    "pincode": "125048",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHABAD",
+    "statename": "HARYANA",
+    "latitude": "29.4165833",
+    "longitude": "75.5486667"
+  }
+]

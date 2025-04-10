@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hoshangabad Division",
+    "officename": "Pipliya Kala B.O",
+    "pincode": "461551",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHANGABAD",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hoshangabad Division",
+    "officename": "Tawa Nagar S.O",
+    "pincode": "461551",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHANGABAD",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7502100",
+    "longitude": "77.2459300"
+  }
+]

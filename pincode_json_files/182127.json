@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Thalora BO",
+    "pincode": "182127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Majalta SO",
+    "pincode": "182127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.7241944",
+    "longitude": "75.1791111"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Saldhar BO",
+    "pincode": "182127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.305413000000001",
+    "longitude": "75.061222000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Khoon BO",
+    "pincode": "182127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Battal BO",
+    "pincode": "182127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Peoni BO",
+    "pincode": "182127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDHAMPUR",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Ballutgi B.O",
+    "pincode": "583284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.6933427",
+    "longitude": "75.9995909"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Mudhol S.O",
+    "pincode": "583284",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4328056",
+    "longitude": "75.6361389"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Sankanoor B.O",
+    "pincode": "583284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.7033956",
+    "longitude": "75.8830436"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Karmudi B.O",
+    "pincode": "583284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.6248176",
+    "longitude": "75.9335120"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Hiremyageri B.O",
+    "pincode": "583284",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.6769598",
+    "longitude": "75.9227403"
+  }
+]

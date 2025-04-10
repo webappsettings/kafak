@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Bhoor Baral BO",
+    "pincode": "250103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9056000",
+    "longitude": "77.6274000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Partapur BO",
+    "pincode": "250103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9301595",
+    "longitude": "77.6450135"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "I E Partapur Ext",
+    "pincode": "250103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "28.899451",
+    "longitude": "77.652629"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "Rithani BO",
+    "pincode": "250103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9369710",
+    "longitude": "77.6634595"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Meerut Division",
+    "officename": "I E Partapur SO",
+    "pincode": "250103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MEERUT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3114000",
+    "longitude": "77.1324000"
+  }
+]

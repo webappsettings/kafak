@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Gowadi B.O",
+    "pincode": "314025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6633430",
+    "longitude": "73.9902160"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Ara B.O",
+    "pincode": "314025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6777560",
+    "longitude": "74.0575500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Gamda Brahamania B.O",
+    "pincode": "314025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6592550",
+    "longitude": "73.9655830"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Sagwara S.O",
+    "pincode": "314025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6641111",
+    "longitude": "74.0070278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Varsinghpur B.O",
+    "pincode": "314025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7047930",
+    "longitude": "74.0377520"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Palmavit B.O",
+    "pincode": "314025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7009540",
+    "longitude": "74.0256640"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Sagwara Bazar S.O",
+    "pincode": "314025",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DUNGARPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.6756111",
+    "longitude": "74.0234444"
+  }
+]

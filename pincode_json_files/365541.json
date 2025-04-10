@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "UTCL Kovaya SO",
+    "pincode": "365541",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.3950610",
+    "longitude": "71.1273040"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Kovaya BO",
+    "pincode": "365541",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "20.9393100",
+    "longitude": "71.4587160"
+  }
+]

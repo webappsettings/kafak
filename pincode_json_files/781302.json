@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barghol B.O",
+    "pincode": "781302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2571500",
+    "longitude": "91.1309700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Gomafulbari B.O",
+    "pincode": "781302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2571500",
+    "longitude": "91.1309700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Nizbahari B.O",
+    "pincode": "781302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2571500",
+    "longitude": "91.1309700"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Baharihat S.O",
+    "pincode": "781302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2571500",
+    "longitude": "91.1309700"
+  }
+]

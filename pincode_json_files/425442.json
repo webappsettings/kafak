@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Lakhapur B.O",
+    "pincode": "425442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.661523",
+    "longitude": "74.31531"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Borad S.O",
+    "pincode": "425442",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.621647",
+    "longitude": "74.335749"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Mohida B.O",
+    "pincode": "425442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.606790",
+    "longitude": "74.292491"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Tulaja B.O",
+    "pincode": "425442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.669887",
+    "longitude": "74.366346"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Kharvad B.O",
+    "pincode": "425442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.587277",
+    "longitude": "74.335974"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Mod B.O",
+    "pincode": "425442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.591879",
+    "longitude": "74.315335"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Talve B.O",
+    "pincode": "425442",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.580956",
+    "longitude": "74.266509"
+  }
+]

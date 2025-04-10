@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Serna B.O",
+    "pincode": "343028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1996710",
+    "longitude": "72.4272160"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Modran S.O",
+    "pincode": "343028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1817480",
+    "longitude": "72.4346910"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Basda Dhanji B.O",
+    "pincode": "343028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALORE",
+    "statename": "RAJASTHAN",
+    "latitude": "25.1480410",
+    "longitude": "72.4579000"
+  }
+]

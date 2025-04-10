@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Vehlana BO",
+    "pincode": "251003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4281580",
+    "longitude": "77.6858070"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Sujroo BO",
+    "pincode": "251003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4512390",
+    "longitude": "77.6934320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Industrial Estate SO Muzaffarnagar",
+    "pincode": "251003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4730710",
+    "longitude": "77.7077420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Kukra B.O",
+    "pincode": "251003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.285599999999999",
+    "longitude": "77.420000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Shernagar B.O",
+    "pincode": "251003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.285599999999999",
+    "longitude": "77.420000000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Jaroda BO",
+    "pincode": "251003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4016120",
+    "longitude": "77.6879000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Lachera BO",
+    "pincode": "251003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4081050",
+    "longitude": "77.6644220"
+  }
+]

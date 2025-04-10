@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Karvad BO",
+    "pincode": "396193",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3562860",
+    "longitude": "72.9549150"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Moti Tambadi BO",
+    "pincode": "396193",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3252330",
+    "longitude": "72.9903450"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dadra SO",
+    "pincode": "396193",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DADRA AND NAGAR HAVELI",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.3210860",
+    "longitude": "72.9663420"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dungra BO",
+    "pincode": "396193",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3316700",
+    "longitude": "72.9499480"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Lavachha BO",
+    "pincode": "396193",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3015850",
+    "longitude": "72.9844400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Nani Tambadi BO",
+    "pincode": "396193",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3252330",
+    "longitude": "72.9903450"
+  }
+]

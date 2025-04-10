@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Zeliangrong B.O",
+    "pincode": "797117",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Circular Road S.O",
+    "pincode": "797117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "25.8632160",
+    "longitude": "93.7543150"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Pwd Colony B.O",
+    "pincode": "797117",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DIMAPUR",
+    "statename": "NAGALAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

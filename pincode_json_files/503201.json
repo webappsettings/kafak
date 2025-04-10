@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Old Varni B.O",
+    "pincode": "503201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5407388",
+    "longitude": "77.9194592"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "JALALPUR B.O",
+    "pincode": "503201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.508287",
+    "longitude": "77.970239"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Jakhora B.O",
+    "pincode": "503201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5407388",
+    "longitude": "77.9194592"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Srinagar B.O",
+    "pincode": "503201",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5407388",
+    "longitude": "77.9194592"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Varni S.O",
+    "pincode": "503201",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.53018",
+    "longitude": "77.897778"
+  }
+]

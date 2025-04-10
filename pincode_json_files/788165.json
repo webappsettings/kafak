@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Dharirghat Grant B.O",
+    "pincode": "788165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.4000000",
+    "longitude": "92.5600000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Manipur Bagan S.O",
+    "pincode": "788165",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.4000000",
+    "longitude": "92.5600000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Karicherra Bazar B.O",
+    "pincode": "788165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.4000000",
+    "longitude": "92.5600000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Kukicherra B.O",
+    "pincode": "788165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.4000000",
+    "longitude": "92.5600000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Lalpani B.O",
+    "pincode": "788165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.4000000",
+    "longitude": "92.5600000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Dholai T E B.O",
+    "pincode": "788165",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "24.4000000",
+    "longitude": "92.5600000"
+  }
+]

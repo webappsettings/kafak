@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Hinotia Bhoi B.O",
+    "pincode": "483001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "80.0520950",
+    "longitude": "23.0958040"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Dhanpuri B.O",
+    "pincode": "483001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0950440",
+    "longitude": "80.1554980"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Khukkham B.O",
+    "pincode": "483001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1501640",
+    "longitude": "80.1902960"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Padwar B.O",
+    "pincode": "483001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0915400",
+    "longitude": "80.0508140"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Deori Patpara B.O",
+    "pincode": "483001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0958040",
+    "longitude": "80.0520950"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Umaria Kudari B.O",
+    "pincode": "483001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0958040",
+    "longitude": "80.0520950"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Barela S.O",
+    "pincode": "483001",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.9000000",
+    "longitude": "80.0500000"
+  }
+]

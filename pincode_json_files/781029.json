@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Pillangkata B.O",
+    "pincode": "781029",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "26.1124100",
+    "longitude": "91.7984400"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guwahati Division",
+    "officename": "Basistha S.O",
+    "pincode": "781029",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAMRUP METRO",
+    "statename": "ASSAM",
+    "latitude": "26.1124167",
+    "longitude": "91.7984444"
+  }
+]

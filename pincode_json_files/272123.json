@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Deisand BO",
+    "pincode": "272123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7772590",
+    "longitude": "82.2252658"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Pagar BO",
+    "pincode": "272123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7772590",
+    "longitude": "81.2964330"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Barahuwan BO",
+    "pincode": "272123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3961630",
+    "longitude": "82.2356470"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Bankati Bazar SO",
+    "pincode": "272123",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6774830",
+    "longitude": "82.9293460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Bharwalia BO",
+    "pincode": "272123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8175120",
+    "longitude": "82.2252658"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Khoria BO",
+    "pincode": "272123",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3961630",
+    "longitude": "82.2252658"
+  }
+]

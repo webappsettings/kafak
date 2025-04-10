@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Kheruwala B.O",
+    "pincode": "335064",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.8452990",
+    "longitude": "74.2334890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Manuka B.O",
+    "pincode": "335064",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.7537360",
+    "longitude": "74.2017910"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Dholipal S.O",
+    "pincode": "335064",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.5974444",
+    "longitude": "74.2737500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Hirnawali B.O",
+    "pincode": "335064",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.7086720",
+    "longitude": "74.2487450"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Inderpura B.O",
+    "pincode": "335064",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.7972820",
+    "longitude": "74.2641490"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Kalwasia B.O",
+    "pincode": "335064",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.7924980",
+    "longitude": "74.1959200"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Narayangarh B.O",
+    "pincode": "335064",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "30.4784790",
+    "longitude": "77.1312590"
+  }
+]

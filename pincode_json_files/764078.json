@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Nandahandi B.O",
+    "pincode": "764078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.200251600000001",
+    "longitude": "82.733146599999998"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Maliguda B.O",
+    "pincode": "764078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.238571",
+    "longitude": "82.661544899999996"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Dongerbheja S.O",
+    "pincode": "764078",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.2234883",
+    "longitude": "82.6821949"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Digisalpa B.O",
+    "pincode": "764078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.213088299999999",
+    "longitude": "82.640251599999999"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Dohona B.O",
+    "pincode": "764078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.186425",
+    "longitude": "82.618979999999993"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "R.Jaganathpur B.O",
+    "pincode": "764078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.199449999999999",
+    "longitude": "82.713228299999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "J.B.Guda B.O",
+    "pincode": "764078",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NABARANGPUR",
+    "statename": "ODISHA",
+    "latitude": "19.186425",
+    "longitude": "82.618979999999993"
+  }
+]

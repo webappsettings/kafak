@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Renusagar SO",
+    "pincode": "231218",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.1059000",
+    "longitude": "82.5508000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Khajura BO",
+    "pincode": "231218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.1825170",
+    "longitude": "82.7948660"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Pati B.O",
+    "pincode": "231218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "82.285546999999994",
+    "longitude": "82.959537999999995"
+  }
+]

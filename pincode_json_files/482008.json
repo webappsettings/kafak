@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Perfect Pottories B.O",
+    "pincode": "482008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1276410",
+    "longitude": "79.9289840"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Polipathar S.O",
+    "pincode": "482008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1276620",
+    "longitude": "79.9305260"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Vidyut Nagar S.O (Jabalpur)",
+    "pincode": "482008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1598056",
+    "longitude": "79.9543611"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Bargi  IPC B.O",
+    "pincode": "482008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4706510",
+    "longitude": "80.0451090"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Gwarighat B.O",
+    "pincode": "482008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1099690",
+    "longitude": "79.9276650"
+  }
+]

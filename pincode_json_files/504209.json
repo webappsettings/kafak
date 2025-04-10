@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Timmapur B.O",
+    "pincode": "504209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8931660",
+    "longitude": "79.4404369"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Mulkala B.O",
+    "pincode": "504209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8697833",
+    "longitude": "79.3837949"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Patha Mancherial B.O",
+    "pincode": "504209",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8729240",
+    "longitude": "79.4451870"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Mancherial Cement Works S.O",
+    "pincode": "504209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.897649",
+    "longitude": "79.447076"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Gadapur B.O",
+    "pincode": "504209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.9510525",
+    "longitude": "79.3650356"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Vempalli B.O",
+    "pincode": "504209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8730283",
+    "longitude": "79.4118699"
+  }
+]

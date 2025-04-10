@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Feder Road SO",
+    "pincode": "722101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2282166",
+    "longitude": "87.0679500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Bankura HO",
+    "pincode": "722101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2346111",
+    "longitude": "87.0650833"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Lalbazar SO Bankura",
+    "pincode": "722101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2169000",
+    "longitude": "87.0668700"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Nutanchati SO",
+    "pincode": "722101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "22.3691700",
+    "longitude": "87.0783300"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Pilgrim Road SO",
+    "pincode": "722101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.2169044",
+    "longitude": "87.0668791"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Bankura Division",
+    "officename": "Bankura  DSB SO",
+    "pincode": "722101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BANKURA",
+    "statename": "WEST BENGAL",
+    "latitude": "23.4491700",
+    "longitude": "87.3063900"
+  }
+]

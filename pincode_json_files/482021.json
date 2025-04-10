@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Gauraiyaghat B.O",
+    "pincode": "482021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0919999",
+    "longitude": "80.0022000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "R.F.R.C. S.O",
+    "pincode": "482021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1598056",
+    "longitude": "79.9543611"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Barbati B.O",
+    "pincode": "482021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0919999",
+    "longitude": "80.0022000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Kailwas B.O",
+    "pincode": "482021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0919999",
+    "longitude": "80.0022000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Khamaria Neemkheda B.O",
+    "pincode": "482021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0919999",
+    "longitude": "80.0022000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Pindrai Barha B.O",
+    "pincode": "482021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0919999",
+    "longitude": "80.0022000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Jabalpur Division",
+    "officename": "Sagada Jhapni B.O",
+    "pincode": "482021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JABALPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.0919999",
+    "longitude": "80.0022000"
+  }
+]

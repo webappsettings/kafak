@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Gandhi Nagar S.O",
+    "pincode": "580030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.356579699999999",
+    "longitude": "75.093142999999998"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Udyamnagar S.O",
+    "pincode": "580030",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.351186800000001",
+    "longitude": "75.114382399999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Akashaya Colony",
+    "pincode": "580030",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.359837000000001",
+    "longitude": "75.127052000000006"
+  }
+]

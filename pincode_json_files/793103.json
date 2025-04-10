@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Mawlasnai B.O",
+    "pincode": "793103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Kyrdem B.O",
+    "pincode": "793103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Mawbri B.O",
+    "pincode": "793103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Umiam S.O",
+    "pincode": "793103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "26.4601",
+    "longitude": "96.2321"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Umroi B.O",
+    "pincode": "793103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Rongmen B.O",
+    "pincode": "793103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Umktieh B.O",
+    "pincode": "793103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

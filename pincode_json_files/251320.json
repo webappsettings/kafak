@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Hassanpur BO",
+    "pincode": "251320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2560060",
+    "longitude": "77.9745800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Husainpur B.O",
+    "pincode": "251320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.297635",
+    "longitude": "78.046976999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Ramraj SO",
+    "pincode": "251320",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4730710",
+    "longitude": "77.7077420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Muzaffarnagar Division",
+    "officename": "Siali B.O",
+    "pincode": "251320",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.314972999999998",
+    "longitude": "78.033951999999999"
+  }
+]

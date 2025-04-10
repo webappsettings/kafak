@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Hebbal B.O",
+    "pincode": "583268",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4494280",
+    "longitude": "76.6087978"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Marli B.O",
+    "pincode": "583268",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4740399",
+    "longitude": "76.5725129"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Danapur B.O",
+    "pincode": "583268",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4516488",
+    "longitude": "76.5991847"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Pragathinagar S.O",
+    "pincode": "583268",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4805446",
+    "longitude": "76.5791779"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Hanwal B.O",
+    "pincode": "583268",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.5120200",
+    "longitude": "76.5428798"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Hoskera B.O",
+    "pincode": "583268",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4923326",
+    "longitude": "76.5629857"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "KOPPAL DIVISION",
+    "officename": "Jangamarakalgudi B.O",
+    "pincode": "583268",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOPPAL",
+    "statename": "KARNATAKA",
+    "latitude": "15.4574209",
+    "longitude": "76.5603356"
+  }
+]

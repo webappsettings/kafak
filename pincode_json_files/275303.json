@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Panail BO",
+    "pincode": "275303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "22.1100000",
+    "longitude": "11.2200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Canal Head BO",
+    "pincode": "275303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "20.1000000",
+    "longitude": "10.2000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Gotha BO",
+    "pincode": "275303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "20.1100000",
+    "longitude": "11.2100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mahula BO",
+    "pincode": "275303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AZAMGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "20.1200000",
+    "longitude": "10.2100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Nai Bazar BO",
+    "pincode": "275303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "21.1100000",
+    "longitude": "10.2200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mohammadabad Sipah BO",
+    "pincode": "275303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "12.2500000",
+    "longitude": "10.2000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Dohari  Ghat SO",
+    "pincode": "275303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2693333",
+    "longitude": "83.5084444"
+  }
+]

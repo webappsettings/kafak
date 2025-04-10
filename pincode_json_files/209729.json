@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Bibia Jalalpur BO",
+    "pincode": "209729",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.035909",
+    "longitude": "84.054731"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sikanderpur SO Kannauj",
+    "pincode": "209729",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0514410",
+    "longitude": "79.9141430"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Aseha BO",
+    "pincode": "209729",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.035909",
+    "longitude": "84.054731"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Nauli BO",
+    "pincode": "209729",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.035909",
+    "longitude": "84.054731"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Chanderpur BO",
+    "pincode": "209729",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.035909",
+    "longitude": "84.054731"
+  }
+]

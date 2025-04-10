@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Babupur S.O",
+    "pincode": "485112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5764000",
+    "longitude": "80.8713400"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Ramasthan B.O",
+    "pincode": "485112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Garhwa Kala B.O",
+    "pincode": "485112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5373000",
+    "longitude": "81.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Goraiya B.O",
+    "pincode": "485112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Kunwa B.O",
+    "pincode": "485112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Khamaria B.O",
+    "pincode": "485112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Girwali B.O",
+    "pincode": "413526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4603270",
+    "longitude": "75.6574960"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Lakhangaon B.O",
+    "pincode": "413526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4603270",
+    "longitude": "75.6574960"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Pimpalgaon Kamleshwari B.O",
+    "pincode": "413526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4603270",
+    "longitude": "75.6574960"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Pargaon S.O",
+    "pincode": "413526",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.664979",
+    "longitude": "75.696278"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Hatola B.O",
+    "pincode": "413526",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.4603270",
+    "longitude": "75.6574960"
+  }
+]

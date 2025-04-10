@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Ranuchakmakandpur BO",
+    "pincode": "812004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.5236000",
+    "longitude": "84.5236000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Shankarpur BO",
+    "pincode": "812004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.6522000",
+    "longitude": "84.6650000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Fatehpur BO",
+    "pincode": "812004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.6310000",
+    "longitude": "84.2330000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Mirzapur BO",
+    "pincode": "812004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.6520000",
+    "longitude": "84.6520000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Champanagar SO",
+    "pincode": "812004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2400310",
+    "longitude": "86.9845120"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Sahebganj",
+    "pincode": "812004",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2496944",
+    "longitude": "86.9869722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Amribishapur BO",
+    "pincode": "812004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.9522000",
+    "longitude": "84.6260000"
+  }
+]

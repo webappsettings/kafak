@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Malikpur Khadar B.O",
+    "pincode": "135106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.5817900",
+    "longitude": "77.1137500"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Pipli Majra B.O",
+    "pincode": "135106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.2413796",
+    "longitude": "77.4873959"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Kalesar B.O",
+    "pincode": "135106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.4473315",
+    "longitude": "77.4472425"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Bhudkalan S.O",
+    "pincode": "135106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.2794444",
+    "longitude": "77.4955278"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Tajewala B.O",
+    "pincode": "135106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781868",
+    "longitude": "76.7766894"
+  }
+]

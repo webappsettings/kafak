@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Dharmavaram Bazar S.O",
+    "pincode": "515671",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANANTAPUR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Hindupur Division",
+    "officename": "Dharmavaram H.O",
+    "pincode": "515671",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Sri Sathya Sai",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.41236111",
+    "longitude": "77.72305556"
+  }
+]

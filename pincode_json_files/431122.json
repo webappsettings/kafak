@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Court Road S.O",
+    "pincode": "431122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9912240",
+    "longitude": "75.7509050"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "MARKET YARD S.O (Beed)",
+    "pincode": "431122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.1534810",
+    "longitude": "76.2099120"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "Beed H.O",
+    "pincode": "431122",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.989635",
+    "longitude": "75.75621"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "M.GANJ S.O",
+    "pincode": "431122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9902510",
+    "longitude": "75.7671260"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Beed Division",
+    "officename": "DHONDIPURA S.O",
+    "pincode": "431122",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BEED",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.9916960",
+    "longitude": "75.7607080"
+  }
+]

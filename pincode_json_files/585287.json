@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Maddarki B.O",
+    "pincode": "585287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.800000000000001",
+    "longitude": "76.819999999999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Mudbal B.O",
+    "pincode": "585287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.829999999999998",
+    "longitude": "76.819999999999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Bheemarayanagudi S.O",
+    "pincode": "585287",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.4400000",
+    "longitude": "76.4700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Diggi B.O",
+    "pincode": "585287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.710000000000001",
+    "longitude": "76.799999999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Hothpeth B.O",
+    "pincode": "585287",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.760000000000002",
+    "longitude": "76.819999999999993"
+  }
+]

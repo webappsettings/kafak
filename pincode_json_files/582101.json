@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Gadag Bazar S.O",
+    "pincode": "582101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4282761",
+    "longitude": "75.630508199999994"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Gadag Cotton Market S.O",
+    "pincode": "582101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4255295",
+    "longitude": "75.634703200000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Gadag H.O",
+    "pincode": "582101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4328056",
+    "longitude": "75.636138900000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Gadag Division",
+    "officename": "Gadag Extension S.O",
+    "pincode": "582101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GADAG",
+    "statename": "KARNATAKA",
+    "latitude": "15.4336941",
+    "longitude": "75.644241100000002"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Rakha Mines BO",
+    "pincode": "832106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.6920500",
+    "longitude": "86.3439000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Rakha Copper Project SO",
+    "pincode": "832106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.64036",
+    "longitude": "86.37412"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Matigora BO",
+    "pincode": "832106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "64.479896999999994",
+    "longitude": "34.648947"
+  }
+]

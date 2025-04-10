@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Kate Javalga B.O",
+    "pincode": "413530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1158350",
+    "longitude": "76.7528450"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Lambota B.O",
+    "pincode": "413530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1158350",
+    "longitude": "76.7528450"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Shirol Wanjarwada B.O",
+    "pincode": "413530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1158350",
+    "longitude": "76.7528450"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Nitoor S.O",
+    "pincode": "413530",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2401",
+    "longitude": "76.7841"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Ambegaon Masalga B.O",
+    "pincode": "413530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1158350",
+    "longitude": "76.7528450"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Kelgaon B.O",
+    "pincode": "413530",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LATUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.1158350",
+    "longitude": "76.7528450"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Shergaon B.O",
+    "pincode": "790003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.195200799999999",
+    "longitude": "92.399039500000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Jigaon",
+    "pincode": "790003",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.119509999999998",
+    "longitude": "92.193472"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Rupa S.O",
+    "pincode": "790003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.2928540",
+    "longitude": "92.4974340"
+  }
+]

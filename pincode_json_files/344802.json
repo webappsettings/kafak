@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Lapundara Barthan",
+    "pincode": "344802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.049171000000001",
+    "longitude": "72.076341999999997"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "GIRA",
+    "pincode": "344802",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.138284",
+    "longitude": "71.964094"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Malwa Patawatan (Jageer)",
+    "pincode": "344802",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0021384",
+    "longitude": "72.065279000000004"
+  }
+]

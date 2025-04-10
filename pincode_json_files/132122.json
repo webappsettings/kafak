@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dehra B.O",
+    "pincode": "132122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.5902777",
+    "longitude": "76.1099166"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Khojkipur B.O",
+    "pincode": "132122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.5902777",
+    "longitude": "76.1099166"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Atta S.O",
+    "pincode": "132122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.2515000",
+    "longitude": "77.0990833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dikadla B.O",
+    "pincode": "132122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANIPAT",
+    "statename": "HARYANA",
+    "latitude": "29.5902777",
+    "longitude": "76.1099166"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Devkund B.O",
+    "pincode": "804428",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.959099999999999",
+    "longitude": "84.781099999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Usari S.O",
+    "pincode": "804428",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.24374",
+    "longitude": "84.663"
+  }
+]

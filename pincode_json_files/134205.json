@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Morni S.O",
+    "pincode": "134205",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.7000000",
+    "longitude": "77.0833333"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Mandhana B.O",
+    "pincode": "134205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.3781860",
+    "longitude": "76.7766890"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Thendog B.O",
+    "pincode": "134205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.3781830",
+    "longitude": "76.7766920"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Bhojkoti B.O",
+    "pincode": "134205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.3781860",
+    "longitude": "76.7766894"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Tikkar B.O",
+    "pincode": "134205",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCHKULA",
+    "statename": "HARYANA",
+    "latitude": "30.3781830",
+    "longitude": "76.7766920"
+  }
+]

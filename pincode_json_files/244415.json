@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Bahoranpur Narauli BO",
+    "pincode": "244415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6200000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "RN Sahaspur BO",
+    "pincode": "244415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6200000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Guarau BO",
+    "pincode": "244415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6200000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Narainpur BO",
+    "pincode": "244415",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6200000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Raja Ka Sahaspur SO",
+    "pincode": "244415",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "17.1042778",
+    "longitude": "78.7832222"
+  }
+]

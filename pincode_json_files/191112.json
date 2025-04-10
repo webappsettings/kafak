@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Abhama BO",
+    "pincode": "191112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PULWAMA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "60.5000000",
+    "longitude": "53.2000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Keller Mastpora BO",
+    "pincode": "191112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHOPIAN",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "80.5",
+    "longitude": "97.1"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Kenidajan BO",
+    "pincode": "191112",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "69.1110000",
+    "longitude": "54.9990000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Chrar-i-Sharief SO",
+    "pincode": "191112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.8614722",
+    "longitude": "74.7669444"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Pakherpora BO",
+    "pincode": "191112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "63.1110000",
+    "longitude": "44.8888000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Darwan Nawgam BO",
+    "pincode": "191112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "88.6",
+    "longitude": "99.1"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Hardudalwan BO",
+    "pincode": "191112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Budgam",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "87.6",
+    "longitude": "98.5"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Ganganal B.O",
+    "pincode": "585323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.6400000",
+    "longitude": "76.7500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Sagar S.O",
+    "pincode": "585323",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.7615556",
+    "longitude": "77.1353056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Kannekollur B.O",
+    "pincode": "585323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.6600000",
+    "longitude": "76.8900000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Rastapur B.O",
+    "pincode": "585323",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.6300000",
+    "longitude": "76.8500000"
+  }
+]

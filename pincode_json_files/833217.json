@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Jojo Camp BO",
+    "pincode": "833217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.1609000",
+    "longitude": "85.5042000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Balijharan BO",
+    "pincode": "833217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "20.409358000000001",
+    "longitude": "85.222426999999996"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Noamundi SO",
+    "pincode": "833217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.15822",
+    "longitude": "85.49386"
+  }
+]

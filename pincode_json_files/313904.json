@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Dayli B.O",
+    "pincode": "313904",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.2100000",
+    "longitude": "73.8200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Katanwara B.O",
+    "pincode": "313904",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1800000",
+    "longitude": "73.8000000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Nathara B.O",
+    "pincode": "313904",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.2200000",
+    "longitude": "73.8200000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Thana B.O",
+    "pincode": "313904",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.2200000",
+    "longitude": "73.8300000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Chawand S.O",
+    "pincode": "313904",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.1875278",
+    "longitude": "73.8098889"
+  }
+]

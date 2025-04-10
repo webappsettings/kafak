@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Sawaimadhopur Bazar SO",
+    "pincode": "322021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9943056",
+    "longitude": "76.3848611"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Alanpur SO",
+    "pincode": "322021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.0000833",
+    "longitude": "75.3631111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Sawaimadhopur Town SO",
+    "pincode": "322021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9919444",
+    "longitude": "76.3852778"
+  }
+]

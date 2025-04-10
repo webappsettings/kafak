@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Sahaspur BO",
+    "pincode": "496242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4858268",
+    "longitude": "83.7969085"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Farsabahar SO",
+    "pincode": "496242",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.895677",
+    "longitude": "83.847366"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Khutgaon BO",
+    "pincode": "496242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.5492210",
+    "longitude": "83.9029510"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Pandaripani BO",
+    "pincode": "496242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.6383433",
+    "longitude": "83.6002499"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Menderbahar BO",
+    "pincode": "496242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4858268",
+    "longitude": "83.7969085"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raigarh Division",
+    "officename": "Bhagora BO",
+    "pincode": "496242",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JASHPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.4612471",
+    "longitude": "83.8526036"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Hawa Camp B.O",
+    "pincode": "791121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAPUM PARE",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.932400000000001",
+    "longitude": "96.350399999999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Lora - I & II",
+    "pincode": "791121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAPUM PARE",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.165616499999999",
+    "longitude": "93.581563200000005"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Kimin S.O",
+    "pincode": "791121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PAPUM PARE",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.0990278",
+    "longitude": "93.6263333"
+  }
+]

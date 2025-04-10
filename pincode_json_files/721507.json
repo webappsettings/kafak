@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Raghunathpur SO West Midnapore",
+    "pincode": "721507",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4500000",
+    "longitude": "86.9958000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Jhargram HO",
+    "pincode": "721507",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4537778",
+    "longitude": "86.9985000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Jamda SO West Midnapore",
+    "pincode": "721507",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.4654000",
+    "longitude": "86.9962000"
+  }
+]

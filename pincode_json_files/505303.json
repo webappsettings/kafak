@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Kishandaspet S.O",
+    "pincode": "505303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.371966",
+    "longitude": "78.647245"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Dumala B.O",
+    "pincode": "505303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3893660",
+    "longitude": "78.6775160"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Kondapur B.O",
+    "pincode": "505303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3449830",
+    "longitude": "78.6737610"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Narayanapur B.O",
+    "pincode": "505303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3616830",
+    "longitude": "78.6565090"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Bandalingampalli B.O",
+    "pincode": "505303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3290840",
+    "longitude": "78.6573460"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Padira B.O",
+    "pincode": "505303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.3620790",
+    "longitude": "78.7046380"
+  }
+]

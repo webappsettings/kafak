@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Gothagam B.O",
+    "pincode": "761146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.479481199999999",
+    "longitude": "84.702139399999993"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Dengapadar B.O",
+    "pincode": "761146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.486866800000001",
+    "longitude": "84.666495800000007"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Gobindapur B.O",
+    "pincode": "761146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.492699600000002",
+    "longitude": "84.682290399999999"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Thuruburai B.O",
+    "pincode": "761146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.475061400000001",
+    "longitude": "84.691427500000003"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Burupada S.O",
+    "pincode": "761146",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4936683",
+    "longitude": "84.7159183"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Delol SO",
+    "pincode": "389310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.6281389",
+    "longitude": "73.5038611"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Alwa BO",
+    "pincode": "389310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.5980500",
+    "longitude": "73.5240000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Malav BO",
+    "pincode": "389310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.6013200",
+    "longitude": "73.5518000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Medapur BO",
+    "pincode": "389310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.5869900",
+    "longitude": "73.5012400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Bedhiya BO",
+    "pincode": "389310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.6570700",
+    "longitude": "73.5347980"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Rabod BO",
+    "pincode": "389310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.6148660",
+    "longitude": "73.5431700"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kandach BO",
+    "pincode": "389310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.6249700",
+    "longitude": "73.5115200"
+  }
+]

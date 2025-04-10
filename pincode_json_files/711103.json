@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "BGarden SO",
+    "pincode": "711103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5579167",
+    "longitude": "88.3060833"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "DGRoad SO",
+    "pincode": "711103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5588056",
+    "longitude": "88.3154444"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Andul Road SO",
+    "pincode": "711103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5629167",
+    "longitude": "88.3014167"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Howrah Division",
+    "officename": "Bataitala SO",
+    "pincode": "711103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOWRAH",
+    "statename": "WEST BENGAL",
+    "latitude": "22.5626111",
+    "longitude": "88.3145000"
+  }
+]

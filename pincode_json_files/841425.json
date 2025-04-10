@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Bhagwatparsa BO",
+    "pincode": "841425",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "84.346316999999999",
+    "longitude": "26.569925999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Chhitauna BO",
+    "pincode": "841425",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "84.346316999999999",
+    "longitude": "26.569925999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Kalyanpur BO",
+    "pincode": "841425",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "84.346316999999999",
+    "longitude": "26.569925999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Phulwaria BO",
+    "pincode": "841425",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "84.346316999999999",
+    "longitude": "26.569925999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Songharwa BO",
+    "pincode": "841425",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.5834273",
+    "longitude": "84.279222700000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Siwan Division",
+    "officename": "Bathubazar SO",
+    "pincode": "841425",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOPALGANJ",
+    "statename": "BIHAR",
+    "latitude": "26.4676667",
+    "longitude": "84.4403056"
+  }
+]

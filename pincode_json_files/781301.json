@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Thakurbazar S.O",
+    "pincode": "781301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.3178700",
+    "longitude": "91.0102900"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Barpeta H.O",
+    "pincode": "781301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.3291389",
+    "longitude": "91.0102500"
+  }
+]

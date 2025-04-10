@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Bhadoi Pachali B.O",
+    "pincode": "786191",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3400000",
+    "longitude": "95.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Nagajan B.O",
+    "pincode": "786191",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3400000",
+    "longitude": "95.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Zutlibari B.O",
+    "pincode": "786191",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3400000",
+    "longitude": "95.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Naoholia S.O",
+    "pincode": "786191",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2222000",
+    "longitude": "95.2038000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Bokuloni Chariali B.O",
+    "pincode": "786191",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3400000",
+    "longitude": "95.3500000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kamini Tea Estate B.O",
+    "pincode": "786191",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3400000",
+    "longitude": "95.3500000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Bhaderwah SO",
+    "pincode": "182222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "32.5848000",
+    "longitude": "75.4305000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Katyara BO",
+    "pincode": "182222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Sungli Sartingal BO",
+    "pincode": "182222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Chanichinta BO",
+    "pincode": "182222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

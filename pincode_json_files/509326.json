@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Watwarlapalli B.O",
+    "pincode": "509326",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAGARKURNOOL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Srisailam Dam  S.O",
+    "pincode": "509326",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAGARKURNOOL",
+    "statename": "TELANGANA",
+    "latitude": "16.0742222",
+    "longitude": "78.0315556"
+  }
+]

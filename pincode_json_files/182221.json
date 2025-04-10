@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Bhalra BO",
+    "pincode": "182221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "GAJOTH BO",
+    "pincode": "182221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.0513080",
+    "longitude": "75.6506620"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Bhalla BO",
+    "pincode": "182221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Udrana SO",
+    "pincode": "182221",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.1405700",
+    "longitude": "75.5556890"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Kursari BO",
+    "pincode": "182221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Chattarsori BO",
+    "pincode": "182221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "JAMMU RN",
+    "divisionname": "Udhampur Division",
+    "officename": "Malhoti BO",
+    "pincode": "182221",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DODA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "1.0000000",
+    "longitude": "1.0000000"
+  }
+]

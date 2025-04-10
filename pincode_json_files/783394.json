@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Patabari B.O",
+    "pincode": "783394",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.7075060",
+    "longitude": "90.5021590"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Bengtal S.O",
+    "pincode": "783394",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.3014000",
+    "longitude": "30.3225000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Ouguri B.O",
+    "pincode": "783394",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5282760",
+    "longitude": "92.9200920"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Chatonilibari B.O",
+    "pincode": "783394",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5866280",
+    "longitude": "90.5092440"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Tukrijhora B.O",
+    "pincode": "783394",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIRANG",
+    "statename": "ASSAM",
+    "latitude": "26.3995070",
+    "longitude": "90.4490580"
+  }
+]

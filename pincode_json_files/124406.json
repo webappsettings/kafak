@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Assan BO",
+    "pincode": "124406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6055850",
+    "longitude": "76.6200260"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Bakheta BO",
+    "pincode": "124406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.6055850",
+    "longitude": "76.6200260"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Humayunpur BO",
+    "pincode": "124406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.7359040",
+    "longitude": "76.5105060"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Morekheri BO",
+    "pincode": "124406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.7359040",
+    "longitude": "76.5105060"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Rohtak Division",
+    "officename": "Kansala SO",
+    "pincode": "124406",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ROHTAK",
+    "statename": "HARYANA",
+    "latitude": "28.8909167",
+    "longitude": "76.7828889"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kandi HO",
+    "pincode": "742137",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9542500",
+    "longitude": "88.0372500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kandi Bazar SO",
+    "pincode": "742137",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "23.9601370",
+    "longitude": "88.0410120"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kandi Bus Stand SO",
+    "pincode": "742137",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.6099916",
+    "longitude": "88.0627500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "Kolkata Region",
+    "divisionname": "Murshidabad Division",
+    "officename": "Kandi Court SO",
+    "pincode": "742137",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MURSHIDABAD",
+    "statename": "WEST BENGAL",
+    "latitude": "24.3005611",
+    "longitude": "88.4582916"
+  }
+]

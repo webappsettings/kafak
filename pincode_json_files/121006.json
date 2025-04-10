@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Faridabad Sector 8 SO",
+    "pincode": "121006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3574444",
+    "longitude": "77.3336389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Faridabad Sector 9 SO",
+    "pincode": "121006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3720518",
+    "longitude": "77.3321204"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "GT Road Faridabad SO",
+    "pincode": "121006",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3662500",
+    "longitude": "77.3154722"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Faridabad Sector 7 SO",
+    "pincode": "121006",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3917778",
+    "longitude": "77.3021389"
+  }
+]

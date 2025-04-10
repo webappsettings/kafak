@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Sankarankovil H.O",
+    "pincode": "627756",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1634000",
+    "longitude": "77.5064000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Kovilpatti Division",
+    "officename": "Sankarankovil Bazaar S.O",
+    "pincode": "627756",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TENKASI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.1699000",
+    "longitude": "77.5060000"
+  }
+]

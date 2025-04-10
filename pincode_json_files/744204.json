@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Rampur B.O",
+    "pincode": "744204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Tugapur B.O",
+    "pincode": "744204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Mohanpur B.O",
+    "pincode": "744204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "12.960000000000001",
+    "longitude": "92.870000000000005"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Mayabander S.O",
+    "pincode": "744204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "12.92361111",
+    "longitude": "92.89861111"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Weby B.O",
+    "pincode": "744204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH AND MIDDLE ANDAMAN",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

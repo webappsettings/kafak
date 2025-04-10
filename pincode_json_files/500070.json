@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Saradanagar S.O",
+    "pincode": "500070",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.30436",
+    "longitude": "78.58112"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Vaidehinagar S.O",
+    "pincode": "500070",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.3211944",
+    "longitude": "78.5690833"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad City Region",
+    "divisionname": "Hyderabad South East Division",
+    "officename": "Vanasthalipuram S.O",
+    "pincode": "500070",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANGA REDDY",
+    "statename": "TELANGANA",
+    "latitude": "17.3316667",
+    "longitude": "78.5736667"
+  }
+]

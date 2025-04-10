@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Sahaspuriya B.O",
+    "pincode": "323023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5412780",
+    "longitude": "75.4548650"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Chatarganj B.O",
+    "pincode": "323023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5490320",
+    "longitude": "75.5174790"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Hindoli S.O",
+    "pincode": "323023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.5813889",
+    "longitude": "75.4988611"
+  }
+]

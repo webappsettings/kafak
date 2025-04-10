@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Keelarasur BO",
+    "pincode": "621653",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0100000",
+    "longitude": "78.9800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Poondi BO",
+    "pincode": "621653",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0300000",
+    "longitude": "79.0200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Kokkudi BO",
+    "pincode": "621653",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0300000",
+    "longitude": "79.0200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Methal BO",
+    "pincode": "621653",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0300000",
+    "longitude": "79.0100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Sillakudi BO",
+    "pincode": "621653",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PERAMBALUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0800000",
+    "longitude": "79.0000000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Kallagam SO",
+    "pincode": "621653",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIRUCHIRAPPALLI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.8584444",
+    "longitude": "78.6901944"
+  }
+]

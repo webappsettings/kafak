@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bardakhan BO",
+    "pincode": "262527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4600000",
+    "longitude": "80.0400000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Sungarkhal BO",
+    "pincode": "262527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5000000",
+    "longitude": "80.0200000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Kothera BO",
+    "pincode": "262527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5100000",
+    "longitude": "80.0700000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Raigaon BO",
+    "pincode": "262527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4700000",
+    "longitude": "80.0000000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bisrari BO",
+    "pincode": "262527",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4800000",
+    "longitude": "80.0600000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Barakote SO",
+    "pincode": "262527",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.6400000",
+    "longitude": "79.7000000"
+  }
+]

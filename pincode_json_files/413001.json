@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Solapur H.O",
+    "pincode": "413001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6659167",
+    "longitude": "75.8943333"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Sidheswar Peth S.O",
+    "pincode": "413001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "75.9064010",
+    "longitude": "17.6693760"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Jawaharlal Nehru Vastigrah S.O",
+    "pincode": "413001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6703333",
+    "longitude": "75.9004444"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Solapur Division",
+    "officename": "Navi Peth Solapur S.O",
+    "pincode": "413001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOLAPUR",
+    "statename": "MAHARASHTRA",
+    "latitude": "17.6743611",
+    "longitude": "75.8982500"
+  }
+]

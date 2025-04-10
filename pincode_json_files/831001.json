@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Bistupur Bazar SO",
+    "pincode": "831001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.79347",
+    "longitude": "86.18324"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Jamshedpur HO",
+    "pincode": "831001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.7993",
+    "longitude": "86.18486"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Sakchi SO",
+    "pincode": "831001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.80343",
+    "longitude": "86.20252"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Sakchi Court SO",
+    "pincode": "831001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.81142",
+    "longitude": "86.20127"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Civil Court SO",
+    "pincode": "831001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.81157",
+    "longitude": "86.21301"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "CoOp  College BO",
+    "pincode": "831001",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.5035410",
+    "longitude": "86.4541510"
+  }
+]

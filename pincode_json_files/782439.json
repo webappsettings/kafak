@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Barhawar B.O",
+    "pincode": "782439",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Choudhury Bazar B.O",
+    "pincode": "782439",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Charing B.O",
+    "pincode": "782439",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Murazar Bazar S.O",
+    "pincode": "782439",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Dighaljar B.O",
+    "pincode": "782439",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Samarail B.O",
+    "pincode": "782439",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Karayani B.O",
+    "pincode": "782439",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  }
+]

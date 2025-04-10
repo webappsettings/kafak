@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "M M Ashram",
+    "pincode": "812003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2496944",
+    "longitude": "86.9869722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Barari SO",
+    "pincode": "812003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2496944",
+    "longitude": "86.9869722"
+  }
+]

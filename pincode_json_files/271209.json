@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Jaiprabha Gram SO",
+    "pincode": "271209",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3574167",
+    "longitude": "82.0688056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Basant Pur Raja BO",
+    "pincode": "271209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3409320",
+    "longitude": "82.1033460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Bhawanipur Uppadhyay BO",
+    "pincode": "271209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5515360",
+    "longitude": "81.9900790"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Janki Nagar BO",
+    "pincode": "271209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3571070",
+    "longitude": "82.0780690"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Devtaha BO",
+    "pincode": "271209",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4929710",
+    "longitude": "81.9819300"
+  }
+]

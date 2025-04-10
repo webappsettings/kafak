@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Beehatbeeram BO",
+    "pincode": "261405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4029000",
+    "longitude": "80.6874000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Fateh Nagar BO",
+    "pincode": "261405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4029000",
+    "longitude": "80.6874000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Rajepara BO",
+    "pincode": "261405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4029000",
+    "longitude": "80.6874000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Amtamau BO",
+    "pincode": "261405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4029000",
+    "longitude": "80.6874000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Badrawan BO",
+    "pincode": "261405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4029000",
+    "longitude": "80.6874000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Machharehta SO",
+    "pincode": "261405",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4170556",
+    "longitude": "80.6400556"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Baniyamau BO",
+    "pincode": "261405",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4029000",
+    "longitude": "80.6874000"
+  }
+]

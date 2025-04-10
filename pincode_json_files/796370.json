@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Sailulak B.O",
+    "pincode": "796370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.120222500000001",
+    "longitude": "93.147089399999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Biate B.O",
+    "pincode": "796370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAWZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.2469599",
+    "longitude": "93.121613800000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Leng B.O",
+    "pincode": "796370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.157798100000001",
+    "longitude": "93.119423999999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Sialhawk B.O",
+    "pincode": "796370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.294451200000001",
+    "longitude": "93.094502000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Mualcheng B.O",
+    "pincode": "796370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.183248800000001",
+    "longitude": "93.058040099999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Tlangpui B.O",
+    "pincode": "796370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.294993399999999",
+    "longitude": "93.049467699999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Lungdar S.O",
+    "pincode": "796370",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SERCHHIP",
+    "statename": "MIZORAM",
+    "latitude": "23.3414570",
+    "longitude": "92.8501800"
+  }
+]

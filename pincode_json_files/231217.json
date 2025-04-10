@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Belhatthi BO",
+    "pincode": "231217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.3057800",
+    "longitude": "83.0467370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Sukhdevanand Ashram BO",
+    "pincode": "231217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.0397100",
+    "longitude": "83.0191000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Jagideeh B.O",
+    "pincode": "231217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.277650000000001",
+    "longitude": "83.052899999999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Renukoot SO",
+    "pincode": "231217",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.2142778",
+    "longitude": "83.0353056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Dala Pipar B.O",
+    "pincode": "231217",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "34.319094",
+    "longitude": "83.119985"
+  }
+]

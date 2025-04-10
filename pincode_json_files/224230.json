@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Dhiwa Daulatpur BO",
+    "pincode": "224230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9918560",
+    "longitude": "83.9479640"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Baragaon Brahimpur BO",
+    "pincode": "224230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4252540",
+    "longitude": "82.8182800"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Kedarnagar SO",
+    "pincode": "224230",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5401690",
+    "longitude": "82.5483420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Chandpur BO",
+    "pincode": "224230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1963110",
+    "longitude": "82.8997240"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Jamunipur BO",
+    "pincode": "224230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2929010",
+    "longitude": "83.0884780"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Shadipur BO",
+    "pincode": "224230",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5579120",
+    "longitude": "82.5767360"
+  }
+]

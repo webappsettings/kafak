@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Purushottam Nagar S.O",
+    "pincode": "425424",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.568333",
+    "longitude": "74.514166"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Dongargaon B.O",
+    "pincode": "425424",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.557389",
+    "longitude": "74.526034"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Gogapur B.O",
+    "pincode": "425424",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.612526",
+    "longitude": "74.574584"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Dhule Division",
+    "officename": "Kavlith B.O",
+    "pincode": "425424",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NANDURBAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.596739",
+    "longitude": "74.54041"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Defence Colony S.O (Gwalior",
+    "pincode": "474002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.1786470",
+    "longitude": "78.1449080"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Industrial Estate Gwalior S.O",
+    "pincode": "474002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Shakti Nagar S.O (Gwalior",
+    "pincode": "474002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "Gwalior R.S. S.O",
+    "pincode": "474002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gwalior Division",
+    "officename": "R.B. Colony Gwalior S.O",
+    "pincode": "474002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GWALIOR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2308320",
+    "longitude": "78.3219360"
+  }
+]

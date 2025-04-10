@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Singhpokharia BO",
+    "pincode": "833202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.4521000",
+    "longitude": "85.8144000"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Tuibir  BO",
+    "pincode": "833202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Tata College Chaibasa SO",
+    "pincode": "833202",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.52687",
+    "longitude": "85.81494"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Asura BO",
+    "pincode": "833202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.5188000",
+    "longitude": "85.8359500"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Kelende  BO",
+    "pincode": "833202",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST SINGHBHUM",
+    "statename": "JHARKHAND",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

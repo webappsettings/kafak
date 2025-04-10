@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Udaipur SO HP Circle",
+    "pincode": "175142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.7263056",
+    "longitude": "76.6622778"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Chimrat BO",
+    "pincode": "175142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.7100000",
+    "longitude": "76.4800000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Trilokinath BO",
+    "pincode": "175142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.6800000",
+    "longitude": "76.6900000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Karpat BO",
+    "pincode": "175142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.7500000",
+    "longitude": "76.7100000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Salugran BO",
+    "pincode": "175142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.7500000",
+    "longitude": "76.5400000"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Mandi Division",
+    "officename": "Tindi BO",
+    "pincode": "175142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAHUL AND SPITI",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "32.7330000",
+    "longitude": "76.4698000"
+  }
+]

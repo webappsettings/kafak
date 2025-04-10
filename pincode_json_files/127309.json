@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kaunt BO",
+    "pincode": "127309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.708400000000001",
+    "longitude": "76.219999999999999"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Manheru SO",
+    "pincode": "127309",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.7084000",
+    "longitude": "76.2200000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Dhareru BO",
+    "pincode": "127309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.708400000000001",
+    "longitude": "76.219999999999999"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kaila BO",
+    "pincode": "127309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.708400000000001",
+    "longitude": "76.219999999999999"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Sanga BO",
+    "pincode": "127309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.708400000000001",
+    "longitude": "76.219999999999999"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Ajitpura BO",
+    "pincode": "127309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.708400000000001",
+    "longitude": "76.219999999999999"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Fatehgarh Haryana BO",
+    "pincode": "127309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.708400000000001",
+    "longitude": "76.219999999999999"
+  }
+]

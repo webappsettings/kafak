@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Jaunpur HO",
+    "pincode": "222001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7490000",
+    "longitude": "82.6987000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "SIPAH S.O",
+    "pincode": "222001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7527000",
+    "longitude": "82.6905000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Shakarmandi SO",
+    "pincode": "222001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7683000",
+    "longitude": "82.6881000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Shastri Marg SO",
+    "pincode": "222001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7539000",
+    "longitude": "82.6869000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Jaunpur Division",
+    "officename": "Sutahatti Bazar SO",
+    "pincode": "222001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JAUNPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8602000",
+    "longitude": "80.9083000"
+  }
+]

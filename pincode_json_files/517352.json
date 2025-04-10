@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Rishivalley S.O",
+    "pincode": "517352",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.63330556",
+    "longitude": "78.45066667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Erraballe B.O",
+    "pincode": "517352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Thettu B.O",
+    "pincode": "517352",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

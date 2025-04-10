@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Khammam H.O",
+    "pincode": "507001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "17.4026389",
+    "longitude": "80.2353333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Church Road S.O",
+    "pincode": "507001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Bus Station S.O",
+    "pincode": "507001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Khammam Division",
+    "officename": "Burhanpuram S.O",
+    "pincode": "507001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHAMMAM",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

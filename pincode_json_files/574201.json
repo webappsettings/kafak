@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Court Hill(Puttur) S.O",
+    "pincode": "574201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.760888899999999",
+    "longitude": "75.199944400000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Puttur Division",
+    "officename": "Puttur(D.K.) H.O",
+    "pincode": "574201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DAKSHINA KANNADA",
+    "statename": "KARNATAKA",
+    "latitude": "12.762560000000001",
+    "longitude": "75.20044"
+  }
+]

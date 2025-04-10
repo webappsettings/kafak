@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "MARKHA B.O",
+    "pincode": "194107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Ney B.O",
+    "pincode": "194107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "NIMOO B.O",
+    "pincode": "194107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "LIKIR B.O",
+    "pincode": "194107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.29032",
+    "longitude": "77.213211"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "BASGO B.O",
+    "pincode": "194107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.216900000000003",
+    "longitude": "77.283299999999997"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Alchi B.O",
+    "pincode": "194107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "SASPOL S.O",
+    "pincode": "194107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.35191",
+    "longitude": "77.170334"
+  }
+]

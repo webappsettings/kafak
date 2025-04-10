@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Regional College S.O",
+    "pincode": "462002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2400000",
+    "longitude": "77.3800000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Vidya Vihar S.O",
+    "pincode": "462002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2400000",
+    "longitude": "77.4000000"
+  }
+]

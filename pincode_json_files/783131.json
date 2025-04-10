@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Jhowdanga B.O",
+    "pincode": "783131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Barkona B.O",
+    "pincode": "783131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Radhamadhabhat B.O",
+    "pincode": "783131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kakripara B.O",
+    "pincode": "783131",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Mankachar S.O",
+    "pincode": "783131",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH SALMARA MANCACHAR",
+    "statename": "ASSAM",
+    "latitude": "25.5332000",
+    "longitude": "89.8601000"
+  }
+]

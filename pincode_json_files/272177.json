@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Bhitani BO",
+    "pincode": "272177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8175120",
+    "longitude": "82.1525625"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Khairati BO",
+    "pincode": "272177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.7772590",
+    "longitude": "82.2356470"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Kharka BO",
+    "pincode": "272177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8175120",
+    "longitude": "82.2252658"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Naguwa BO",
+    "pincode": "272177",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3961630",
+    "longitude": "82.2252658"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Banpur SO",
+    "pincode": "272177",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6212560",
+    "longitude": "83.8747590"
+  }
+]

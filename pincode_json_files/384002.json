@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Mahesana I E SO",
+    "pincode": "384002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.588142000000001",
+    "longitude": "72.370790999999997"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Mahesana Division",
+    "officename": "Mahesana Radhanpur Road S.O",
+    "pincode": "384002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHESANA",
+    "statename": "GUJARAT",
+    "latitude": "23.657895",
+    "longitude": "72.118538000000001"
+  }
+]

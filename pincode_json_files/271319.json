@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Lakar Mandi BO",
+    "pincode": "271319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6382880",
+    "longitude": "70.6506730"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Ramapur Bhagahi BO",
+    "pincode": "271319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8926310",
+    "longitude": "82.2393150"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Haribanshpur BO",
+    "pincode": "271319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8857700",
+    "longitude": "82.1944740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Pure Shivdayal Ganj SO",
+    "pincode": "271319",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8462222",
+    "longitude": "82.2021389"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Khadauwan BO",
+    "pincode": "271319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8714670",
+    "longitude": "82.2312050"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Kolahanpur Visen BO",
+    "pincode": "271319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GONDA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8978410",
+    "longitude": "82.2002960"
+  }
+]

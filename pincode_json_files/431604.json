@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Chauphala S.O",
+    "pincode": "431604",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.145665",
+    "longitude": "77.330183"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Karimabad Nanded S.O",
+    "pincode": "431604",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.8402504",
+    "longitude": "77.19356412"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Nanded Division",
+    "officename": "Itwara Nanded S.O",
+    "pincode": "431604",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NANDED",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.144468",
+    "longitude": "77.326358"
+  }
+]

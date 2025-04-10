@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Vaish Kanti BO",
+    "pincode": "212206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.817474000000004"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Karari SO",
+    "pincode": "212206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.46462",
+    "longitude": "81.42273"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Bidaom BO",
+    "pincode": "212206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.817474000000004"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Raxwara BO",
+    "pincode": "212206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.817474000000004"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Zafarpur Mahawan BO",
+    "pincode": "212206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.817474000000004"
+  }
+]

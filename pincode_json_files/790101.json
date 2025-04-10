@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Lish B.O",
+    "pincode": "790101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.370356699999999",
+    "longitude": "92.246097700000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Dirang S.O",
+    "pincode": "790101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.2928540",
+    "longitude": "92.4974340"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Dirang Basti B.O",
+    "pincode": "790101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.331290200000002",
+    "longitude": "92.293899300000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Sangti B.O",
+    "pincode": "790101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.405859100000001",
+    "longitude": "92.275893600000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Munna Camp B.O",
+    "pincode": "790101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.337540199999999",
+    "longitude": "92.328365199999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Senge B.O",
+    "pincode": "790101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KAMENG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.483430899999998",
+    "longitude": "92.110159600000003"
+  }
+]

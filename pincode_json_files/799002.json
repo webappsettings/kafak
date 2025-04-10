@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "AgartalaGuard Post B.O",
+    "pincode": "799002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Town Rampur B.O",
+    "pincode": "799002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Border Rampur B.O",
+    "pincode": "799002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Paschim Bhubanban B.O",
+    "pincode": "799002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Barjala B.O",
+    "pincode": "799002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Krishnanagar B.O",
+    "pincode": "799002",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Ramnagar S.O (West Tripura)",
+    "pincode": "799002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "West Tripura",
+    "statename": "TRIPURA",
+    "latitude": "23.8297500",
+    "longitude": "91.2788333"
+  }
+]

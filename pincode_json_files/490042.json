@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Amleshwar BO",
+    "pincode": "490042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2069260",
+    "longitude": "81.5802070"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Oteband BO",
+    "pincode": "490042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.0429560",
+    "longitude": "81.2904210"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Pahanda BO",
+    "pincode": "490042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2095090",
+    "longitude": "81.5431870"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Kapasda BO",
+    "pincode": "490042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1430710",
+    "longitude": "81.5257390"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Limtara BO",
+    "pincode": "490042",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2856100",
+    "longitude": "81.4690930"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Kumhari SO",
+    "pincode": "490042",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.800371999999999",
+    "longitude": "81.335644000000002"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Dharapur BO",
+    "pincode": "383421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.6987000",
+    "longitude": "73.0755000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Poshina BO",
+    "pincode": "383421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7555750",
+    "longitude": "73.1141210"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Chitroda SO",
+    "pincode": "383421",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.8849500",
+    "longitude": "73.2914660"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Mota Kotda BO",
+    "pincode": "383421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7087800",
+    "longitude": "73.0973400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "BolundraR BO",
+    "pincode": "383421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7430000",
+    "longitude": "73.0969000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Sabli BO",
+    "pincode": "383421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7564780",
+    "longitude": "73.0793380"
+  }
+]

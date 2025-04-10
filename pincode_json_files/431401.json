@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Kranti Chowk Parbhani S.O",
+    "pincode": "431401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.270878",
+    "longitude": "76.769834000000003"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Naya Mondha Parbhani S.O",
+    "pincode": "431401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.264527999999999",
+    "longitude": "76.768773999999993"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Parbhani Town S.O",
+    "pincode": "431401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.276119999999999",
+    "longitude": "76.757430999999997"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Parbhani H.O",
+    "pincode": "431401",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.272097160000001",
+    "longitude": "76.772164369999999"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Shivajinagar Parbhani S.O",
+    "pincode": "431401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.262820999999999",
+    "longitude": "76.785346000000004"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Pharbhani Division",
+    "officename": "Station Parbhani S.O",
+    "pincode": "431401",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PARBHANI",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.259478999999999",
+    "longitude": "76.772976"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "East Bagabassa B.O",
+    "pincode": "799113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Gomati",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Kupilong B.O",
+    "pincode": "799113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Gomati",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Bagma B.O",
+    "pincode": "799113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Gomati",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Garjanmura B.O",
+    "pincode": "799113",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "Gomati",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Tepania S.O",
+    "pincode": "799113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Gomati",
+    "statename": "TRIPURA",
+    "latitude": "23.555724",
+    "longitude": "91.451206"
+  }
+]

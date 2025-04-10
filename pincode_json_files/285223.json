@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Barsar BO",
+    "pincode": "285223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8455200",
+    "longitude": "79.3747100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Binaura BO",
+    "pincode": "285223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8371700",
+    "longitude": "79.2620400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Kotra SO Jalaun",
+    "pincode": "285223",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9836667",
+    "longitude": "79.4515556"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Said Nagar BO",
+    "pincode": "285223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8182900",
+    "longitude": "79.2634500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Aindha BO",
+    "pincode": "285223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8774600",
+    "longitude": "79.2930400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Sikri Vyas BO",
+    "pincode": "285223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8615000",
+    "longitude": "79.2761000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Kurkuru BO",
+    "pincode": "285223",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JALAUN",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.8689700",
+    "longitude": "79.2722500"
+  }
+]

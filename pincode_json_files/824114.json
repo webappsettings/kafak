@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Munjhar BO",
+    "pincode": "824114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Barpa BO",
+    "pincode": "824114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Deohara SO",
+    "pincode": "824114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.8761700",
+    "longitude": "75.3433130"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Jaitpur BO",
+    "pincode": "824114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Malhara BO",
+    "pincode": "824114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Shekhpura BO",
+    "pincode": "824114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "DHANAWAM B.O",
+    "pincode": "823004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.73",
+    "longitude": "84.939999999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "DHANSHIR B.O",
+    "pincode": "823004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.760000000000002",
+    "longitude": "84.939999999999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Civil Aerodram SO",
+    "pincode": "823004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.7938333",
+    "longitude": "85.0080833"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Bagadaha BO",
+    "pincode": "823004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.6867467",
+    "longitude": "84.9438365"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Jamri BO",
+    "pincode": "823004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.6867467",
+    "longitude": "84.9438365"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "Pandey Parasawan BO",
+    "pincode": "823004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.6867467",
+    "longitude": "84.9438365"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Gaya Division",
+    "officename": "GHUTIYA B.O",
+    "pincode": "823004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAYA",
+    "statename": "BIHAR",
+    "latitude": "24.780000000000001",
+    "longitude": "84.950000000000003"
+  }
+]

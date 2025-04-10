@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Rajol B.O",
+    "pincode": "313805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.0000000",
+    "longitude": "73.7800000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Depur B.O",
+    "pincode": "313805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.9600000",
+    "longitude": "73.7400000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Dhankiwara B.O",
+    "pincode": "313805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.0400000",
+    "longitude": "73.8100000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Dhelana",
+    "pincode": "313805",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "23.98",
+    "longitude": "73.73"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Chorai B.O",
+    "pincode": "313805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.0100000",
+    "longitude": "73.7400000"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Udaipur Division",
+    "officename": "Kunda B.O",
+    "pincode": "313805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDAIPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "24.0300000",
+    "longitude": "73.8100000"
+  }
+]

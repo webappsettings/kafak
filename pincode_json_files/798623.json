@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Paper Nagar S.O",
+    "pincode": "798623",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.3220740",
+    "longitude": "94.5144800"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Yajang C",
+    "pincode": "798623",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.657800000000002",
+    "longitude": "94.506200000000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Anaki",
+    "pincode": "798623",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.685789",
+    "longitude": "94.711815000000001"
+  }
+]

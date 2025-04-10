@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Bijrol BO",
+    "pincode": "250620",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1200000",
+    "longitude": "77.3100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Kandera BO",
+    "pincode": "250620",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1596500",
+    "longitude": "77.3231000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Bamnauli SO",
+    "pincode": "250620",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BAGHPAT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.1462222",
+    "longitude": "77.3500556"
+  }
+]

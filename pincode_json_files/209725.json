@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Chhipatti SO",
+    "pincode": "209725",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0567778",
+    "longitude": "79.9177778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Hari Nagar SO Kannauj",
+    "pincode": "209725",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.205325",
+    "longitude": "79.579566"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Kannauj SO",
+    "pincode": "209725",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0551667",
+    "longitude": "79.9180556"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Kannauj Samachar SO",
+    "pincode": "209725",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0561667",
+    "longitude": "79.9179722"
+  }
+]

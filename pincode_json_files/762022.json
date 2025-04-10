@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Duguripadi B.O",
+    "pincode": "762022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1560033",
+    "longitude": "84.4117483"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Kurmingia B.O",
+    "pincode": "762022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1288333",
+    "longitude": "84.4187800"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Balumaha B.O",
+    "pincode": "762022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.2014016",
+    "longitude": "84.4021700"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Talarimaha B.O",
+    "pincode": "762022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.2103733",
+    "longitude": "84.3924666"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Phulbani Division",
+    "officename": "Kalinga S.O",
+    "pincode": "762022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANDHAMAL",
+    "statename": "ODISHA",
+    "latitude": "20.1657900",
+    "longitude": "84.4133983"
+  }
+]

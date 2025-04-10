@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Kandukur H.O",
+    "pincode": "523105",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.2163056",
+    "longitude": "78.9040833"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Kandukur Cutchery S.O",
+    "pincode": "523105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.2161170",
+    "longitude": "79.9049380"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Prakasam Division",
+    "officename": "Kandukur South S.O",
+    "pincode": "523105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.2117222",
+    "longitude": "79.9005000"
+  }
+]

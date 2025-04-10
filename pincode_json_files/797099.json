@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Wozhu Old",
+    "pincode": "797099",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WOKHA",
+    "statename": "NAGALAND",
+    "latitude": "26.394059120000001",
+    "longitude": "94.22816736"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Bhandari S.O",
+    "pincode": "797099",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WOKHA",
+    "statename": "NAGALAND",
+    "latitude": "26.2849592",
+    "longitude": "94.1118263"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Liowokha Old",
+    "pincode": "797099",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WOKHA",
+    "statename": "NAGALAND",
+    "latitude": "26.095193200000001",
+    "longitude": "94.255914700000005"
+  }
+]

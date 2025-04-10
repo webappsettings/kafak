@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Mosra S.O",
+    "pincode": "503206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.613214",
+    "longitude": "77.9717365"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Humnapur B.O",
+    "pincode": "503206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5663666",
+    "longitude": "77.9188366"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Govur B.O",
+    "pincode": "503206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5981949",
+    "longitude": "77.9484500"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Malkapoor B.O",
+    "pincode": "503206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5998553",
+    "longitude": "77.9993976"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "CHINTAKUNTA B.O",
+    "pincode": "503206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5833000",
+    "longitude": "77.9792616"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "GHANPUR B.O",
+    "pincode": "503206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5731755",
+    "longitude": "77.9302612"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "CHANDUR B.O",
+    "pincode": "503206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6132375",
+    "longitude": "77.9773263"
+  }
+]

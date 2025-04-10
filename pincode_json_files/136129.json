@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Naisi B.O",
+    "pincode": "136129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1156860",
+    "longitude": "76.6664050"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Rohti B.O",
+    "pincode": "136129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1156860",
+    "longitude": "76.6664050"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Ismailabad S.O",
+    "pincode": "136129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1156860",
+    "longitude": "76.6664050"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Chammu Kalan B.O",
+    "pincode": "136129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1156860",
+    "longitude": "76.6664050"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Jalbehra B.O",
+    "pincode": "136129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1156860",
+    "longitude": "76.6664050"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Thaska Miranji B.O",
+    "pincode": "136129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KURUKSHETRA",
+    "statename": "HARYANA",
+    "latitude": "30.1156860",
+    "longitude": "76.6664050"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Mendki B.O.",
+    "pincode": "464661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.3530210",
+    "longitude": "78.6295890"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Ucher B.O",
+    "pincode": "464661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.4957540",
+    "longitude": "83.4683560"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Sanchi S.O",
+    "pincode": "464661",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4834167",
+    "longitude": "77.7395000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Banskheda B.O",
+    "pincode": "464661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8189570",
+    "longitude": "76.7065940"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Gulgaon B.O",
+    "pincode": "464661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "20.1890300",
+    "longitude": "79.2704850"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Vidisha Division",
+    "officename": "Katsari B.O",
+    "pincode": "464661",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAISEN",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.395381",
+    "longitude": "77.674293000000006"
+  }
+]

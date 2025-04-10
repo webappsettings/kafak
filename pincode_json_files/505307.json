@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Lingampet B.O",
+    "pincode": "505307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.5830310",
+    "longitude": "78.7405360"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Rudrangi S.O",
+    "pincode": "505307",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.624679",
+    "longitude": "78.701582"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Mallial B.O",
+    "pincode": "505307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.5770520",
+    "longitude": "78.7601490"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Manala B.O",
+    "pincode": "505307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.6252160",
+    "longitude": "78.6282060"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Thimmapur B.O",
+    "pincode": "505307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.5778660",
+    "longitude": "78.8004040"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Jogapur B.O",
+    "pincode": "505307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.5508820",
+    "longitude": "78.7509870"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Sanugula B.O",
+    "pincode": "505307",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAJANNA SIRCILLA",
+    "statename": "TELANGANA",
+    "latitude": "18.5648540",
+    "longitude": "78.7183280"
+  }
+]

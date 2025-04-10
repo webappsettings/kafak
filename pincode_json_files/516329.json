@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Proddatur Division",
+    "officename": "Veerannagattupalle B.O",
+    "pincode": "516329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3375832",
+    "longitude": "78.4862963"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Proddatur Division",
+    "officename": "Tangedupalle B.O",
+    "pincode": "516329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3923581",
+    "longitude": "78.4809380"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Proddatur Division",
+    "officename": "Vaimpalle S.O",
+    "pincode": "516329",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Y.S.R.",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.3728333",
+    "longitude": "78.4443889"
+  }
+]

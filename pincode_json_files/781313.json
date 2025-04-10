@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Mazgaon B.O",
+    "pincode": "781313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.2856000",
+    "longitude": "90.5742000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Guagacha B.O",
+    "pincode": "781313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2856000",
+    "longitude": "90.5742000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Balabhitha B.O",
+    "pincode": "781313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2856000",
+    "longitude": "90.5742000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Mespara B.O",
+    "pincode": "781313",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2856000",
+    "longitude": "90.5742000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Simlaguri S.O",
+    "pincode": "781313",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2856000",
+    "longitude": "90.5742000"
+  }
+]

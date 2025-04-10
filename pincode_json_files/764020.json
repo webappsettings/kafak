@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Koraput H.O",
+    "pincode": "764020",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8260000",
+    "longitude": "82.6950590"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Koraput Division",
+    "officename": "Koraput Collectorate S.O",
+    "pincode": "764020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORAPUT",
+    "statename": "ODISHA",
+    "latitude": "18.8099445",
+    "longitude": "82.7149981"
+  }
+]

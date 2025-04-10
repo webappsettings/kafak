@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "ARNIAKHURD B.O",
+    "pincode": "465118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "28.1328960",
+    "longitude": "77.9138890"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "PADLIYA B.O",
+    "pincode": "465118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.0033870",
+    "longitude": "75.8563000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "PAGRAWADKALAN B.O",
+    "pincode": "465118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1640560",
+    "longitude": "76.5546030"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "BINAYA B.O",
+    "pincode": "465118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1914020",
+    "longitude": "76.6008330"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "AWANTIPUR BARODIYA",
+    "pincode": "465118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.139819",
+    "longitude": "76.587567"
+  }
+]

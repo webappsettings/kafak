@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Yealing B.O",
+    "pincode": "792111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LOHIT",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.873214300000001",
+    "longitude": "95.9134332"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Yealing",
+    "pincode": "792111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LOHIT",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.511679999999998",
+    "longitude": "95.538775999999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "20th Mile (Chailiang)",
+    "pincode": "792111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LOHIT",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.512577499999999",
+    "longitude": "95.563589300000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Hati Duba",
+    "pincode": "792111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LOHIT",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.505623799999999",
+    "longitude": "95.575612399999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Sunpura S.O",
+    "pincode": "792111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LOHIT",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.7946150",
+    "longitude": "96.4063100"
+  }
+]

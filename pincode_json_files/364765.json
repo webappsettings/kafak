@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Surka BO",
+    "pincode": "364765",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.0233550",
+    "longitude": "71.6650870"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Adtala BO",
+    "pincode": "364765",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "21.9668940",
+    "longitude": "71.6149470"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Goradka BO",
+    "pincode": "364765",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.0256230",
+    "longitude": "71.6130060"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Lakhanka BO",
+    "pincode": "364765",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "21.9564510",
+    "longitude": "71.6636840"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Pipaliya BO",
+    "pincode": "364765",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.0521370",
+    "longitude": "71.6639810"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Ugamedi SO",
+    "pincode": "364765",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "21.9914490",
+    "longitude": "71.6286470"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Bhavnagar Division",
+    "officename": "Tatam BO",
+    "pincode": "364765",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BOTAD",
+    "statename": "GUJARAT",
+    "latitude": "22.0568440",
+    "longitude": "71.6271480"
+  }
+]

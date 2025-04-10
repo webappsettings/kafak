@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kansar B.O",
+    "pincode": "768121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4400952",
+    "longitude": "84.5122428"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "SADA B.O",
+    "pincode": "768121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Barghat B.O",
+    "pincode": "768121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5087845",
+    "longitude": "84.5103958"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "PALAKUDAR B.O",
+    "pincode": "768121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Gohira Dam Site S.O",
+    "pincode": "768121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5403740",
+    "longitude": "84.7346520"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Dholpara B.O",
+    "pincode": "768121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4447987",
+    "longitude": "84.5426309"
+  }
+]

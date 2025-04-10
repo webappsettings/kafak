@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Gangtok HO",
+    "pincode": "737101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.3322500",
+    "longitude": "88.6140278"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Sichey Gaon SO",
+    "pincode": "737101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.3300000",
+    "longitude": "88.6000000"
+  }
+]

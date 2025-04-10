@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Gowada BO",
+    "pincode": "396170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.1403440",
+    "longitude": "72.7416160"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Umargam SO",
+    "pincode": "396170",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.1962980",
+    "longitude": "72.7503920"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Palgam BO",
+    "pincode": "396170",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.1968820",
+    "longitude": "72.7802180"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dehri BO",
+    "pincode": "396170",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.1512510",
+    "longitude": "72.7414880"
+  }
+]

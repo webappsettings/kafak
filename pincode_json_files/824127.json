@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Kaler SO",
+    "pincode": "824127",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "19.8761700",
+    "longitude": "75.3433130"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Manpur Chanda BO",
+    "pincode": "824127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Belaon BO",
+    "pincode": "824127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Sohsa BO",
+    "pincode": "824127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Chauri BO",
+    "pincode": "824127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURANGABAD",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Belsar BO",
+    "pincode": "824127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Hridaychak BO",
+    "pincode": "824127",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "19.876169999999998",
+    "longitude": "75.343312999999995"
+  }
+]

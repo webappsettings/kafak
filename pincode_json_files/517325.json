@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Madanapalle H.O",
+    "pincode": "517325",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.55605556",
+    "longitude": "78.50127778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Madanapalle Society Colony S.O",
+    "pincode": "517325",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.5557979",
+    "longitude": "78.500872"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Chittoor Division",
+    "officename": "Kothapeta Madanapalle S.O",
+    "pincode": "517325",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Annamayya",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.5503",
+    "longitude": "78.5029"
+  }
+]

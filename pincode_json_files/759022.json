@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Maidharpur B.O",
+    "pincode": "759022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.6962283",
+    "longitude": "85.1783783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Hindol S.O",
+    "pincode": "759022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.6388400",
+    "longitude": "85.2668470"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Kansara B.O",
+    "pincode": "759022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.7169450",
+    "longitude": "85.1457133"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Phulapada B.O",
+    "pincode": "759022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "20.7533216",
+    "longitude": "85.1665750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Baunsapokhari B.O",
+    "pincode": "759022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.6422866",
+    "longitude": "85.1683550"
+  }
+]

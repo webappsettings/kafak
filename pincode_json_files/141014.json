@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Dhandari Kalan SO",
+    "pincode": "141014",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8682222",
+    "longitude": "75.9192222"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Daba Road SO",
+    "pincode": "141014",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8695972",
+    "longitude": "75.8829250"
+  }
+]

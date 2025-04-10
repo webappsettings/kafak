@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Rania SO",
+    "pincode": "125076",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "29.5235833",
+    "longitude": "74.8406389"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Dohtar BO",
+    "pincode": "125076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Kharian BO",
+    "pincode": "125076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Nanuana BO",
+    "pincode": "125076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Sultanpuria BO",
+    "pincode": "125076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Jodhpuria BO",
+    "pincode": "125076",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Boitamari S.O",
+    "pincode": "783389",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "24.1319000",
+    "longitude": "92.1411000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Kayetpara B.O",
+    "pincode": "783389",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BONGAIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.3152860",
+    "longitude": "90.4809100"
+  }
+]

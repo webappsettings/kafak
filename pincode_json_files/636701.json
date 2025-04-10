@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Hale Dharmapuri B.O",
+    "pincode": "636701",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1600000",
+    "longitude": "78.1600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Mathikonpalayam B.O",
+    "pincode": "636701",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1400000",
+    "longitude": "78.1600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Dharmapuri Division",
+    "officename": "Dharmapuri H.O",
+    "pincode": "636701",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DHARMAPURI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.1462091",
+    "longitude": "78.1578583"
+  }
+]

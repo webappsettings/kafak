@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Devli B.O",
+    "pincode": "465116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "25.7582180",
+    "longitude": "75.3818160"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Khatsur B.O",
+    "pincode": "465116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2725600",
+    "longitude": "76.5856660"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Mortakhevdi B.O",
+    "pincode": "465116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2725600",
+    "longitude": "76.5856660"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Polai Kalan S.O",
+    "pincode": "465116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAJAPUR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2074561",
+    "longitude": "76.5189204"
+  }
+]

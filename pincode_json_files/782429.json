@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Sibpur B.O",
+    "pincode": "782429",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Jogijan Bazar S.O",
+    "pincode": "782429",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Radhanagar B.O",
+    "pincode": "782429",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOJAI",
+    "statename": "ASSAM",
+    "latitude": "26.3503000",
+    "longitude": "92.6922000"
+  }
+]

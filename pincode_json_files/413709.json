@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Gondhavani S.O",
+    "pincode": "413709",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.63624939633331",
+    "longitude": "74.658249395053"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Shrirampur Division",
+    "officename": "Shrirampur H.O",
+    "pincode": "413709",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.618564497077056",
+    "longitude": "74.66251531217345"
+  }
+]

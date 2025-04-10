@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Helana B.O",
+    "pincode": "781375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bangaon S.O (Nalbari)",
+    "pincode": "781375",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Rampur Dekapara B.O",
+    "pincode": "781375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Golibandha B.O",
+    "pincode": "781375",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Bajali",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  }
+]

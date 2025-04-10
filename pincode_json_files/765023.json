@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Penakham B.O",
+    "pincode": "765023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.09396",
+    "longitude": "83.7230083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Neelamguda B.O",
+    "pincode": "765023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.09396",
+    "longitude": "83.7230083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Panasaguda B.O",
+    "pincode": "765023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.09396",
+    "longitude": "83.7230083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Gulumunda.",
+    "pincode": "765023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.127597999999999",
+    "longitude": "83.784879000000004"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Kujendri S.O",
+    "pincode": "765023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.1486433",
+    "longitude": "83.7694433"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Omadingi B.O",
+    "pincode": "765023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.09396",
+    "longitude": "83.7230083"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Buthingi B.O",
+    "pincode": "765023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.09396",
+    "longitude": "83.7230083"
+  }
+]

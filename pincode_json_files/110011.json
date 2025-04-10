@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Nirman Bhawan SO",
+    "pincode": "110011",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.6108611",
+    "longitude": "77.2148611"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Udyog Bhawan SO",
+    "pincode": "110011",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.6111111",
+    "longitude": "77.2127500"
+  }
+]

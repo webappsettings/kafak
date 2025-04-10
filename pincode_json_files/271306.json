@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Datauli BO",
+    "pincode": "271306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1262460",
+    "longitude": "82.2395900"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Kishunpur Grant BO",
+    "pincode": "271306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1937620",
+    "longitude": "82.3397660"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Ahirauli Buzurg BO",
+    "pincode": "271306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1401160",
+    "longitude": "82.2822950"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Rehra Bazar SO",
+    "pincode": "271306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1859444",
+    "longitude": "82.2794167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "BUDHIPUR BO",
+    "pincode": "271306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1710170",
+    "longitude": "82.3205010"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Badhya Fareed Khan BO",
+    "pincode": "271306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1791220",
+    "longitude": "82.2392360"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Saraikhas BO",
+    "pincode": "271306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1374590",
+    "longitude": "82.3426190"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Patel Nagar SO Central Delhi",
+    "pincode": "110008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6476",
+    "longitude": "77.1695"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Patel Nagar West SO",
+    "pincode": "110008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6472222",
+    "longitude": "77.1697500"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Dada Ghosh Bhawan SO",
+    "pincode": "110008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6527778",
+    "longitude": "77.1558889"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Patel Nagar East SO",
+    "pincode": "110008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6453611",
+    "longitude": "77.1729722"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi Central Division",
+    "officename": "Patel Nagar South SO",
+    "pincode": "110008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WEST",
+    "statename": "DELHI",
+    "latitude": "28.6452500",
+    "longitude": "77.1656667"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Tiruturaipundi Bazaar S.O",
+    "pincode": "614713",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.5361710",
+    "longitude": "79.6396000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Tiruturaipundi R.S. S.O",
+    "pincode": "614713",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.5360278",
+    "longitude": "79.6360000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Pattukottai Division",
+    "officename": "Tiruturaipundi H.O",
+    "pincode": "614713",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "THIRUVARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.5316111",
+    "longitude": "79.6388333"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Amavragarh BO",
+    "pincode": "322212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3642690",
+    "longitude": "77.7051440"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bhanwara BO",
+    "pincode": "322212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0309910",
+    "longitude": "76.4722140"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Chirawanda BO",
+    "pincode": "322212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "20.3827430",
+    "longitude": "72.9312920"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Sukar BO",
+    "pincode": "322212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "36.1011580",
+    "longitude": "115.1316900"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Garhmoran SO",
+    "pincode": "322212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAULI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.1484167",
+    "longitude": "76.4659722"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Bichpuri BO",
+    "pincode": "322212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1740260",
+    "longitude": "77.9138890"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sawaimadhopur Division",
+    "officename": "Riwali BO",
+    "pincode": "322212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAWAI MADHOPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5946080",
+    "longitude": "76.4324470"
+  }
+]

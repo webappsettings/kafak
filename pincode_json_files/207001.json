@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Collectorate Compound SO",
+    "pincode": "207001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.53452654249019",
+    "longitude": "78.93036828057586"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Etah HO",
+    "pincode": "207001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5584100",
+    "longitude": "78.6562480"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Gandhi Market SO Etah",
+    "pincode": "207001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5560260",
+    "longitude": "78.6594900"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Patiali Gate SO",
+    "pincode": "207001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5586090",
+    "longitude": "78.6645080"
+  }
+]

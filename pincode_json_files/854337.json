@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Bhogabhatgama BO",
+    "pincode": "854337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.734176000000001",
+    "longitude": "87.556889999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Belwa BO",
+    "pincode": "854337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.709021",
+    "longitude": "87.555654000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Gaura BO",
+    "pincode": "854337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.777138999999998",
+    "longitude": "87.475255000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Hasanganj BO",
+    "pincode": "854337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "26.774214000000001",
+    "longitude": "80.636160000000004"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Kalsar BO",
+    "pincode": "854337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.652265",
+    "longitude": "87.611232999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Rautara BO",
+    "pincode": "854337",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "22.826422999999998",
+    "longitude": "86.663627000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Purnea Division",
+    "officename": "Ranipatra SO",
+    "pincode": "854337",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PURNIA",
+    "statename": "BIHAR",
+    "latitude": "25.6662000",
+    "longitude": "87.5593610"
+  }
+]

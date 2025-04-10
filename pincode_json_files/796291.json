@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Hrianghmun B.O",
+    "pincode": "796291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "23.970390099999999",
+    "longitude": "93.290897900000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "MIMBUNG S.O",
+    "pincode": "796291",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.9996",
+    "longitude": "93.2854"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Teikhang B.O",
+    "pincode": "796291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAITUAL",
+    "statename": "MIZORAM",
+    "latitude": "23.949384299999998",
+    "longitude": "93.301692399999993"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Selam B.O",
+    "pincode": "796291",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPHAI",
+    "statename": "MIZORAM",
+    "latitude": "23.804525900000002",
+    "longitude": "93.292872599999995"
+  }
+]

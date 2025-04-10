@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Deepika Project Korba",
+    "pincode": "495452",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3614200",
+    "longitude": "82.7307000"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bilaspur Division",
+    "officename": "Wcl Gevra Project SO",
+    "pincode": "495452",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KORBA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.3471800",
+    "longitude": "82.5541900"
+  }
+]

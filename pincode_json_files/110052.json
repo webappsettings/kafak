@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Nimri SO",
+    "pincode": "110052",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6726389",
+    "longitude": "77.1811111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Satyawati Nagar SO",
+    "pincode": "110052",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.6930833",
+    "longitude": "77.1823056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Wazir Pur III SO",
+    "pincode": "110052",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.6797500",
+    "longitude": "77.1721389"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Ashok Vihar HO",
+    "pincode": "110052",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NORTH",
+    "statename": "DELHI",
+    "latitude": "28.6933611",
+    "longitude": "77.1713889"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Sattenapalle H.O",
+    "pincode": "522403",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3966944",
+    "longitude": "80.1493889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Narasaraopet Division",
+    "officename": "Gandhi Chowk S.O (Guntur)",
+    "pincode": "522403",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Palnadu",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.3975000",
+    "longitude": "80.1485000"
+  }
+]

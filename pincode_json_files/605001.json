@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Pondicherry HO",
+    "pincode": "605001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.9344722",
+    "longitude": "79.8350556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Pondicherry Bazaar SO",
+    "pincode": "605001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PONDICHERRY",
+    "statename": "PUDUCHERRY",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

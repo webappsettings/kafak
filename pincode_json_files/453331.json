@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Umria B.O",
+    "pincode": "453331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6013750",
+    "longitude": "81.0754660"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Pigdambar B.O",
+    "pincode": "453331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6190760",
+    "longitude": "75.7949680"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Rangwasa B.O",
+    "pincode": "453331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7379890",
+    "longitude": "75.5684250"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Tihi B.O",
+    "pincode": "453331",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "50.1218010",
+    "longitude": "19.0200020"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Rao S.O",
+    "pincode": "453331",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "INDORE",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.4400000",
+    "longitude": "75.5000000"
+  }
+]

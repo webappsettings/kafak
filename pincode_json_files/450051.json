@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Sukva B.O",
+    "pincode": "450051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.4811000",
+    "longitude": "77.9538000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Jamuniya Kalan B.O",
+    "pincode": "450051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "233643145",
+    "longitude": "78.267547800000003"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Kharkalan S.O",
+    "pincode": "450051",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8300000",
+    "longitude": "76.3300000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Bhagwanpura B.O",
+    "pincode": "450051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.7873000",
+    "longitude": "76.5777000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Sirpur B.O",
+    "pincode": "450051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8271000",
+    "longitude": "76.6354000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Devalikalan B.O",
+    "pincode": "450051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "27.1045000",
+    "longitude": "75.2464000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Khandwa Division",
+    "officename": "Pangra B.O",
+    "pincode": "450051",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST NIMAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.722300000000001",
+    "longitude": "76.613100000000003"
+  }
+]

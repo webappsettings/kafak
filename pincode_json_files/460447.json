@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Sarni S.O",
+    "pincode": "460447",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.1054167",
+    "longitude": "78.1781667"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Rajegaon Khapa Ryt",
+    "pincode": "460447",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BETUL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.153449680000001",
+    "longitude": "78.227066609999994"
+  }
+]

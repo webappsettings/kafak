@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "G.S.T.Centre B.O",
+    "pincode": "517644",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Srikalahasti H.O",
+    "pincode": "517644",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.748928",
+    "longitude": "79.707452"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Srikalahasti North S.O",
+    "pincode": "517644",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.7605833",
+    "longitude": "79.7065278"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Tirupati Division",
+    "officename": "Kothapet (Srikalahasti) S.O",
+    "pincode": "517644",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CHITTOOR",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "13.7514444",
+    "longitude": "79.7002778"
+  }
+]

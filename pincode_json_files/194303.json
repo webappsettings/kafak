@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Parkachik B.O",
+    "pincode": "194303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.052834900000001",
+    "longitude": "76.0017304"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "PURTAKCHEY B.O",
+    "pincode": "194303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.99447",
+    "longitude": "78.787840000000003"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Panikhar S.O",
+    "pincode": "194303",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.5535060",
+    "longitude": "76.1350430"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Namsuru B.O",
+    "pincode": "194303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.99447",
+    "longitude": "78.787840000000003"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Yuljuk B.O",
+    "pincode": "194303",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.1568282",
+    "longitude": "75.920014899999998"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Senari B.O",
+    "pincode": "804421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.1264",
+    "longitude": "84.809899999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Sachai B.O",
+    "pincode": "804421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.1264",
+    "longitude": "84.809899999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Nadaura B.O",
+    "pincode": "804421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.1264",
+    "longitude": "84.809899999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Kurtha S.O",
+    "pincode": "804421",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.11572",
+    "longitude": "85.00094"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "AurangabadBihar Division",
+    "officename": "Ahmadpur Harna B.O",
+    "pincode": "804421",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ARWAL",
+    "statename": "BIHAR",
+    "latitude": "25.1264",
+    "longitude": "84.809899999999999"
+  }
+]

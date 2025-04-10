@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Lumlingthyang BO",
+    "pincode": "737107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.5300000",
+    "longitude": "88.5100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Raley Khesey BO",
+    "pincode": "737107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.5300000",
+    "longitude": "88.5100000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Rakdong BO",
+    "pincode": "737107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.3800000",
+    "longitude": "88.5200000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Samdong BO",
+    "pincode": "737107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.3500000",
+    "longitude": "88.4900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Dikchu SO",
+    "pincode": "737107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.3398330",
+    "longitude": "88.6550490"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sikkim Division",
+    "officename": "Gor BO",
+    "pincode": "737107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NORTH DISTRICT",
+    "statename": "SIKKIM",
+    "latitude": "27.4300000",
+    "longitude": "88.4900000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Belahari SO",
+    "pincode": "228133",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2232778",
+    "longitude": "82.2829444"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Basupur BO",
+    "pincode": "228133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.1336520",
+    "longitude": "83.0220390"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Nanemau BO",
+    "pincode": "228133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1100000",
+    "longitude": "81.6300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bahauddinpur BO",
+    "pincode": "228133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.0568320",
+    "longitude": "82.3967110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Mirpur Saraiya BO",
+    "pincode": "228133",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1793796",
+    "longitude": "82.6645470"
+  }
+]

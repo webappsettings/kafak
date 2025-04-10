@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Manigilla B.O",
+    "pincode": "509106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WANAPARTHY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Gandhichowk",
+    "pincode": "509106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WANAPARTHY",
+    "statename": "TELANGANA",
+    "latitude": "16.3995243",
+    "longitude": "77.9569652"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Savaigudem B.O",
+    "pincode": "509106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WANAPARTHY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Wanaparthy Division",
+    "officename": "Pedamandadi B.O",
+    "pincode": "509106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WANAPARTHY",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

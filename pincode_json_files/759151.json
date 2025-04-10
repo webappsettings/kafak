@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Karnapal B.O",
+    "pincode": "759151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Pabitranagar S.O",
+    "pincode": "759151",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "21.130935",
+    "longitude": "85.168192"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Arkil B.O",
+    "pincode": "759151",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANUGUL",
+    "statename": "ODISHA",
+    "latitude": "21.1956641",
+    "longitude": "85.1277201"
+  }
+]

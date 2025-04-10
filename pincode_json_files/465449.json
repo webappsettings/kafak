@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Saliakhedi B.O",
+    "pincode": "465449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6705220",
+    "longitude": "75.5058320"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Soyat  Khurd B.O",
+    "pincode": "465449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.1208530",
+    "longitude": "76.2080770"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Dehriyakulmi B.O",
+    "pincode": "465449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2072270",
+    "longitude": "76.7059000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Dogargaon B.O",
+    "pincode": "465449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "20.9696660",
+    "longitude": "80.8516170"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Loharia B.O",
+    "pincode": "465449",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.4601410",
+    "longitude": "81.8360980"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ujjain Division",
+    "officename": "Soyat Kalan S.O",
+    "pincode": "465449",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AGAR MALWA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.18883",
+    "longitude": "76.1722159"
+  }
+]

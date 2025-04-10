@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Kaul S.O",
+    "pincode": "136021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8463889",
+    "longitude": "76.6630278"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Chuhar Majra B.O",
+    "pincode": "136021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8463830",
+    "longitude": "76.6631930"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Sakra B.O",
+    "pincode": "136021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8463830",
+    "longitude": "76.6631930"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Sanghrouli B.O",
+    "pincode": "136021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8463830",
+    "longitude": "76.6631930"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Ahun B.O",
+    "pincode": "136021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8463830",
+    "longitude": "76.6631930"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Pharal B.O",
+    "pincode": "136021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8463830",
+    "longitude": "76.6631930"
+  }
+]

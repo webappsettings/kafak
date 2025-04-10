@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Toderpur BO",
+    "pincode": "247231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1314398",
+    "longitude": "77.4515525"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Gayajudinpur",
+    "pincode": "247231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.136735999999999",
+    "longitude": "77.432903999999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Chilkana SO",
+    "pincode": "247231",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.0762849",
+    "longitude": "77.4687631"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Budhakhera BO",
+    "pincode": "247231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.0585786",
+    "longitude": "77.5172758"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Bartha Kayastha BO",
+    "pincode": "247231",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1086432",
+    "longitude": "77.4802353"
+  }
+]

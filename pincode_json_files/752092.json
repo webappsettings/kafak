@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Dimisar B.O",
+    "pincode": "752092",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Bhaliadihi B.O",
+    "pincode": "752092",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Baulasahi B.O",
+    "pincode": "752092",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Damasahi B.O",
+    "pincode": "752092",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Godipada S.O",
+    "pincode": "752092",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1166667",
+    "longitude": "85.1000000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Banabakoda B.O",
+    "pincode": "480109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.6042570",
+    "longitude": "78.7100640"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Pindrai B.O",
+    "pincode": "480109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.5175300",
+    "longitude": "80.0409180"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Piplanarayanwar S.O",
+    "pincode": "480109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.5424800",
+    "longitude": "78.7300100"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Koparwari B.O",
+    "pincode": "480109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.5905190",
+    "longitude": "78.7348670"
+  }
+]

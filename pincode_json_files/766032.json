@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Rajpur B.O",
+    "pincode": "766032",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3553983",
+    "longitude": "83.47329"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Karlamunda S.O",
+    "pincode": "766032",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "20.3553916",
+    "longitude": "83.4430533"
+  }
+]

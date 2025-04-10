@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Buxar HO",
+    "pincode": "802101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5784166",
+    "longitude": "83.9789722"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Nai Bazar SO Buxar",
+    "pincode": "802101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.5555330",
+    "longitude": "83.9681430"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhojpur Division",
+    "officename": "Sohni Patti SO",
+    "pincode": "802101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BUXAR",
+    "statename": "BIHAR",
+    "latitude": "25.4661550",
+    "longitude": "84.5222190"
+  }
+]

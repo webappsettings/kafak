@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Hemnoor B.O",
+    "pincode": "585304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5100000",
+    "longitude": "76.8500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Kongandi B.O",
+    "pincode": "585304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5800000",
+    "longitude": "76.8500000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Laxmipur B.O",
+    "pincode": "585304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5400000",
+    "longitude": "76.8000000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Bijaspur S.O",
+    "pincode": "585304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.7615556",
+    "longitude": "77.1353056"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Sharadahalli B.O",
+    "pincode": "585304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5900000",
+    "longitude": "76.8200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Birnoor B.O",
+    "pincode": "585304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5400000",
+    "longitude": "76.8800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Kollur B.O",
+    "pincode": "585304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YADGIR",
+    "statename": "KARNATAKA",
+    "latitude": "16.5000000",
+    "longitude": "76.9100000"
+  }
+]

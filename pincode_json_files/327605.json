@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Akhebhanji Ka Gara B.O",
+    "pincode": "327605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7421970",
+    "longitude": "74.2328170"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Thikariya B.O",
+    "pincode": "327605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7816310",
+    "longitude": "74.1517070"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Luharia S.O",
+    "pincode": "327605",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7618611",
+    "longitude": "74.2206111"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Lasada B.O",
+    "pincode": "327605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7853540",
+    "longitude": "74.1684080"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Dungarpur Division",
+    "officename": "Paloda B.O",
+    "pincode": "327605",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BANSWARA",
+    "statename": "RAJASTHAN",
+    "latitude": "23.7595450",
+    "longitude": "74.1739060"
+  }
+]

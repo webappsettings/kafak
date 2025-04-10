@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Bhubaneswar Secretariate S.O",
+    "pincode": "751001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2696111",
+    "longitude": "85.8313056"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Odisha  Assembly S.O",
+    "pincode": "751001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2732066",
+    "longitude": "85.8314149"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "Bhubaneswar G.P.O.",
+    "pincode": "751001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2723056",
+    "longitude": "85.8339722"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Bhubaneswar Division",
+    "officename": "A G S.O",
+    "pincode": "751001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KHORDHA",
+    "statename": "ODISHA",
+    "latitude": "20.2680556",
+    "longitude": "85.8288333"
+  }
+]

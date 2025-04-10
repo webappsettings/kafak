@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "District Courts SO North Delhi",
+    "pincode": "110054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6670940",
+    "longitude": "77.2165340"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Patrachar Vidyalay SO",
+    "pincode": "110054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.7060278",
+    "longitude": "77.2217778"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Civil Lines SO North Delhi",
+    "pincode": "110054",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6624167",
+    "longitude": "77.2348333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Aruna Nagar SO",
+    "pincode": "110054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.6975570",
+    "longitude": "77.2250670"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi North Division",
+    "officename": "Timarpur SO",
+    "pincode": "110054",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "CENTRAL",
+    "statename": "DELHI",
+    "latitude": "28.7032778",
+    "longitude": "77.2228611"
+  }
+]

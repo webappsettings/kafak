@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "JHAGRUCHAK BO",
+    "pincode": "854108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.517199999999999",
+    "longitude": "87.531400000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "BHATWARA BO",
+    "pincode": "854108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5172000",
+    "longitude": "87.5314000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "KHERIA BO",
+    "pincode": "854108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5172000",
+    "longitude": "87.5314000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Korha SO",
+    "pincode": "854108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5172000",
+    "longitude": "87.5314000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "DHANETHA BO",
+    "pincode": "854108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.517199999999999",
+    "longitude": "87.531400000000005"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "MUSAPUR BO",
+    "pincode": "854108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5172000",
+    "longitude": "87.5314000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "SISIYA BO",
+    "pincode": "854108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.5172000",
+    "longitude": "87.5314000"
+  }
+]

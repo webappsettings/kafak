@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Rudrur R.S. B.O",
+    "pincode": "503188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5826688",
+    "longitude": "77.8766287"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Rudrur S.O",
+    "pincode": "503188",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.579162",
+    "longitude": "77.878548"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Raikur B.O",
+    "pincode": "503188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.6185857",
+    "longitude": "77.8536324"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Ranampalli B.O",
+    "pincode": "503188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5940373",
+    "longitude": "77.8670915"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Manda B.O",
+    "pincode": "503188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.6118000",
+    "longitude": "18.9427000"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Anandnagar B.O",
+    "pincode": "503188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5839096",
+    "longitude": "77.8552494"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Nizamabad Division",
+    "officename": "Teglaipalli B.O",
+    "pincode": "503188",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NIZAMABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.5397445",
+    "longitude": "77.8634189"
+  }
+]

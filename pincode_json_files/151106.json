@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Gumti Kalan BO",
+    "pincode": "151106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.426100000000002",
+    "longitude": "75.1648"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Ghanda Bana BO",
+    "pincode": "151106",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.415900000000001",
+    "longitude": "75.272599999999997"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Bhai Rupa SO",
+    "pincode": "151106",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.43095",
+    "longitude": "75.21968"
+  }
+]

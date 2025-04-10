@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Bagetar B.O",
+    "pincode": "788820",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.5900000",
+    "longitude": "92.8400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Zion B.O",
+    "pincode": "788820",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.4560000",
+    "longitude": "92.8430000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Electric Veng B.O",
+    "pincode": "788820",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.7320000",
+    "longitude": "92.8430000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Haflo R.S. B.O",
+    "pincode": "788820",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.5923000",
+    "longitude": "92.8423000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Topadisa B.O",
+    "pincode": "788820",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.4300000",
+    "longitude": "92.8431000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Haflong Ptc S.O",
+    "pincode": "788820",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.8236370",
+    "longitude": "92.8018270"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Sarkari Bagan B.O",
+    "pincode": "788820",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIMA HASAO",
+    "statename": "ASSAM",
+    "latitude": "24.5898000",
+    "longitude": "92.8432000"
+  }
+]

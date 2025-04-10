@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Hardua B.O",
+    "pincode": "485334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "80.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Nawagaon B.O",
+    "pincode": "485334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "80.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Pilikothi B.O",
+    "pincode": "485334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "80.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Kailashpur Ashram B.O.",
+    "pincode": "485334",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "80.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "M G  G V chitrakoot S.O",
+    "pincode": "485334",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5764000",
+    "longitude": "80.8713500"
+  }
+]

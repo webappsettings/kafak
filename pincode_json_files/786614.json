@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Jeypore Mobile B.O",
+    "pincode": "786614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.2400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kamargaon B.O",
+    "pincode": "786614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.2400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Tipam B.O",
+    "pincode": "786614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.2400000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Jeypore S.O",
+    "pincode": "786614",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.1521000",
+    "longitude": "95.2326000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Ushapur B.O",
+    "pincode": "786614",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2800000",
+    "longitude": "95.2400000"
+  }
+]

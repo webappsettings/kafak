@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "S.K.D.Nagar S.O",
+    "pincode": "518301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.62230556",
+    "longitude": "77.269"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Adoni town S.O",
+    "pincode": "518301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.63316667",
+    "longitude": "77.27386111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Adoni H.O",
+    "pincode": "518301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.65838889",
+    "longitude": "77.2735"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Kurnool Region",
+    "divisionname": "Kurnool Division",
+    "officename": "Bhar Peta Adoni S.O",
+    "pincode": "518301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KURNOOL",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.61877778",
+    "longitude": "77.2685"
+  }
+]

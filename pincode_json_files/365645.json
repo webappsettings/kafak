@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Kadaya BO",
+    "pincode": "365645",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.4036033",
+    "longitude": "70.8625347"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Lunghiya BO",
+    "pincode": "365645",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "22.1591251",
+    "longitude": "70.7941564"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Monvel BO",
+    "pincode": "365645",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.3575775",
+    "longitude": "70.9051205"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Amreli Division",
+    "officename": "Bhader SO",
+    "pincode": "365645",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMRELI",
+    "statename": "GUJARAT",
+    "latitude": "21.3760510",
+    "longitude": "70.9332620"
+  }
+]

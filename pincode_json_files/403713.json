@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Betalbhatim B.O",
+    "pincode": "403713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "74.5200000",
+    "longitude": "16.0700000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Utorda B.O",
+    "pincode": "403713",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "73.1800000",
+    "longitude": "15.4600000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Nuvem B.O",
+    "pincode": "403713",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "73.9400000",
+    "longitude": "1.3100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Goa-Panaji Region",
+    "divisionname": "Goa Division",
+    "officename": "Majorda S.O",
+    "pincode": "403713",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH GOA",
+    "statename": "GOA",
+    "latitude": "15.30882030",
+    "longitude": "73.92073460"
+  }
+]

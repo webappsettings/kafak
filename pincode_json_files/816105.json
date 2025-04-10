@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Jambad BO",
+    "pincode": "816105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.858158",
+    "longitude": "87.774202000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Binodpur BO",
+    "pincode": "816105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.761479999999999",
+    "longitude": "87.810730000000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Gaganpahari BO",
+    "pincode": "816105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAKUR",
+    "statename": "JHARKHAND",
+    "latitude": "24.858163000000001",
+    "longitude": "87.774197000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Mayur Kola BO",
+    "pincode": "816105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.761479999999999",
+    "longitude": "87.810730000000007"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Kistonagar BO",
+    "pincode": "816105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PAKUR",
+    "statename": "JHARKHAND",
+    "latitude": "24.8581",
+    "longitude": "87.774100000000004"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Patharia BO",
+    "pincode": "816105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHEBGANJ",
+    "statename": "JHARKHAND",
+    "latitude": "24.858160000000002",
+    "longitude": "87.774199999999993"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Santhal Parganas Division",
+    "officename": "Kotalpokhar SO",
+    "pincode": "816105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PAKUR",
+    "statename": "JHARKHAND",
+    "latitude": "24.2445020",
+    "longitude": "87.2417440"
+  }
+]

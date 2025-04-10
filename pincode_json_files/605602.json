@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "VILUPPURAM HO",
+    "pincode": "605602",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9453889",
+    "longitude": "79.4952500"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Villupuram West SO",
+    "pincode": "605602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9403611",
+    "longitude": "79.4882222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kamala Nagar SO Villupuram",
+    "pincode": "605602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9500000",
+    "longitude": "79.4900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Maharajapuram SO",
+    "pincode": "605602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9383333",
+    "longitude": "79.5162778"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Kilperumbakkam SO",
+    "pincode": "605602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9468333",
+    "longitude": "79.5015556"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Villupuram East SO",
+    "pincode": "605602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9404444",
+    "longitude": "79.5052222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Chennai City Region",
+    "divisionname": "Pondicherry Division",
+    "officename": "Villupuram Collectorate SO",
+    "pincode": "605602",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VILLUPURAM",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9335278",
+    "longitude": "79.4826111"
+  }
+]

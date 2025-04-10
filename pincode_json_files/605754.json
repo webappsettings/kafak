@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Murukkambadi B.O",
+    "pincode": "605754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0500000",
+    "longitude": "79.0800000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Jambai B.O",
+    "pincode": "605754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0000000",
+    "longitude": "79.0600000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Kangeyanur B.O",
+    "pincode": "605754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9900000",
+    "longitude": "79.1300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Kazhumalam B.O",
+    "pincode": "605754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9700000",
+    "longitude": "79.1400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Manalurpet S.O",
+    "pincode": "605754",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0008056",
+    "longitude": "79.0905278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Devaradiyarkuppam B.O",
+    "pincode": "605754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.0100000",
+    "longitude": "79.0900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Vriddhachalam Division",
+    "officename": "Sangiyam B.O",
+    "pincode": "605754",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALLAKURICHI",
+    "statename": "TAMIL NADU",
+    "latitude": "11.9800000",
+    "longitude": "79.1300000"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Jaganpur BO",
+    "pincode": "282005",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.216290600000001",
+    "longitude": "78.013771199999994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "KH SANSTHAN SO",
+    "pincode": "282005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2180899",
+    "longitude": "77.9925588"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "Dayal Bagh",
+    "pincode": "282005",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2242626",
+    "longitude": "78.0107981"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "NEW AGRA",
+    "pincode": "282005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2134560",
+    "longitude": "78.0082671"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Agra Division",
+    "officename": "YAMUNA KINARA  SO",
+    "pincode": "282005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AGRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.0000000",
+    "longitude": "78.0000000"
+  }
+]

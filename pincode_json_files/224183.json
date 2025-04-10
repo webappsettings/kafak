@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Saidahi SO",
+    "pincode": "224183",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4683950",
+    "longitude": "82.6915430"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Mahulia BO",
+    "pincode": "224183",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6485120",
+    "longitude": "86.4162000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Masorha BO",
+    "pincode": "224183",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2906450",
+    "longitude": "82.8091910"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Lawaiya Pratappur BO",
+    "pincode": "224183",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.4676640",
+    "longitude": "82.3967110"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Majgaon BO",
+    "pincode": "224183",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3003370",
+    "longitude": "82.8057700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Faizabad Division",
+    "officename": "Sarjupur BO",
+    "pincode": "224183",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMBEDKAR NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3003370",
+    "longitude": "82.8057700"
+  }
+]

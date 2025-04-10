@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Hafizpur B.O",
+    "pincode": "135002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781868",
+    "longitude": "76.7766894"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Aurangabad B.O",
+    "pincode": "135002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781888",
+    "longitude": "76.7766874"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Damla B.O",
+    "pincode": "135002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.3781838",
+    "longitude": "76.7766924"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Harnaul B.O",
+    "pincode": "135002",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "27.7030000",
+    "longitude": "77.7497000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ambala Division",
+    "officename": "Jagdhari Work Shop S.O",
+    "pincode": "135002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "YAMUNANAGAR",
+    "statename": "HARYANA",
+    "latitude": "30.1617500",
+    "longitude": "77.3019722"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Nowagarh BO",
+    "pincode": "832108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.807099999999998",
+    "longitude": "86.131900000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Gamharia SO",
+    "pincode": "832108",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.82675",
+    "longitude": "86.09048"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Burudih BO",
+    "pincode": "832108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.867899999999999",
+    "longitude": "86.131900000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Rapcha B.O",
+    "pincode": "832108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.826499999999999",
+    "longitude": "86.090400000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Jagarnathpur B.O",
+    "pincode": "832108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.826499999999999",
+    "longitude": "86.090400000000002"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Dugdha BO",
+    "pincode": "832108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.807099999999998",
+    "longitude": "86.075800000000001"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Baramari BO",
+    "pincode": "832108",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SARAIKELA KHARSAWAN",
+    "statename": "JHARKHAND",
+    "latitude": "22.868393999999999",
+    "longitude": "86.087362900000002"
+  }
+]

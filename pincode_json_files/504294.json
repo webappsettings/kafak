@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Tumpally B.O",
+    "pincode": "504294",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUMURAM BHEEM ASIFABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.953795",
+    "longitude": "79.531539800000004"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Kowdianmovad",
+    "pincode": "504294",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUMURAM BHEEM ASIFABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.294259",
+    "longitude": "79.150091000000003"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Chirrakunta S.O",
+    "pincode": "504294",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KUMURAM BHEEM ASIFABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.309608",
+    "longitude": "79.262098"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Devaiguda B.O",
+    "pincode": "504294",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUMURAM BHEEM ASIFABAD",
+    "statename": "TELANGANA",
+    "latitude": "18.85585",
+    "longitude": "79.800872999999996"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Ullipittadorli B.O",
+    "pincode": "504294",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUMURAM BHEEM ASIFABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.2325257",
+    "longitude": "79.239476100000005"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Rakaba Junglepatti BO",
+    "pincode": "274406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7200000",
+    "longitude": "84.2300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Madhopur Buzurg BO",
+    "pincode": "274406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7200000",
+    "longitude": "84.2300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Piparaghat BO",
+    "pincode": "274406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7200000",
+    "longitude": "84.2300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Gauri Ibrahim BO",
+    "pincode": "274406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7200000",
+    "longitude": "84.2300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Gauri Jagdish BO",
+    "pincode": "274406",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7200000",
+    "longitude": "84.2300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Seorahi SO",
+    "pincode": "274406",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  }
+]

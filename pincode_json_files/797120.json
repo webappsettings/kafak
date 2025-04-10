@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Phesama B.O",
+    "pincode": "797120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.627021599999999",
+    "longitude": "94.113849000000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Pfuchama",
+    "pincode": "797120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.6206882",
+    "longitude": "94.087434999999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Lalmati B.O",
+    "pincode": "797120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.738786600000001",
+    "longitude": "94.008666599999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Zubza B.O",
+    "pincode": "797120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.712395000000001",
+    "longitude": "94.040923300000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "P.R Hill S.O",
+    "pincode": "797120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.6587",
+    "longitude": "94.0974"
+  }
+]

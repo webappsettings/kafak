@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Kurauna BO",
+    "pincode": "221301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3900000",
+    "longitude": "82.5600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Pipargaon BO",
+    "pincode": "221301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3900000",
+    "longitude": "82.5600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Ugapur BO",
+    "pincode": "221301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3900000",
+    "longitude": "82.5600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Ghosiya BO",
+    "pincode": "221301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3900000",
+    "longitude": "82.5600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Hridaipur BO",
+    "pincode": "221301",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3900000",
+    "longitude": "82.5600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Aurai SO Sant Ravidas Nagar",
+    "pincode": "221301",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3209290",
+    "longitude": "82.4770040"
+  }
+]

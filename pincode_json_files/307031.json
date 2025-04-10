@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Amli B.O",
+    "pincode": "307031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8367220",
+    "longitude": "73.1234930"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Adityanagar S.O",
+    "pincode": "307031",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.8227",
+    "longitude": "72.6517222"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Thandi Beri B.O.",
+    "pincode": "307031",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.808626",
+    "longitude": "73.188062000000002"
+  }
+]

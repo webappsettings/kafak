@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Mamatkheda B.O",
+    "pincode": "457340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7200000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Naveli B.O",
+    "pincode": "457340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7200000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "KALUKHEDA S.O",
+    "pincode": "457340",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7251667",
+    "longitude": "75.0413611"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Maota B.O",
+    "pincode": "457340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7200000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Ranayra B.O",
+    "pincode": "457340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7200000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Talidana B.O",
+    "pincode": "457340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7200000",
+    "longitude": "75.0000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Mundlaram B.O",
+    "pincode": "457340",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.7200000",
+    "longitude": "75.0000000"
+  }
+]

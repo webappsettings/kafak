@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Usha Form BO",
+    "pincode": "262801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1700000",
+    "longitude": "80.4900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Kukra Town BO",
+    "pincode": "262801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2000000",
+    "longitude": "80.4500000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Bankey Ganj SO",
+    "pincode": "262801",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9098420",
+    "longitude": "80.7845350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Hazaratpur BO",
+    "pincode": "262801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.1700000",
+    "longitude": "80.4600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Pahar Nagar BO",
+    "pincode": "262801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2400000",
+    "longitude": "80.4300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Hindustan Farm BO",
+    "pincode": "262801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.3500000",
+    "longitude": "80.4200000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Khanjanpur BO",
+    "pincode": "262801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2200000",
+    "longitude": "80.4400000"
+  }
+]

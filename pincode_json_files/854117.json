@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Neema BO",
+    "pincode": "854117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.9644000",
+    "longitude": "85.2722000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Rosna SO",
+    "pincode": "854117",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.9644000",
+    "longitude": "85.2722000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Divisional Office Katihar",
+    "officename": "Dilli Diwanganj BO",
+    "pincode": "854117",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KATIHAR",
+    "statename": "BIHAR",
+    "latitude": "25.9644000",
+    "longitude": "85.2722000"
+  }
+]

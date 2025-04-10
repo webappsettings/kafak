@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Nani Vankad BO",
+    "pincode": "396210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4426900",
+    "longitude": "72.8825630"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Bhimpore BO",
+    "pincode": "396210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4473610",
+    "longitude": "72.8574560"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Dunetha BO",
+    "pincode": "396210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4267760",
+    "longitude": "72.8470070"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Daman SO",
+    "pincode": "396210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4172220",
+    "longitude": "72.8374530"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Kadaiya BO",
+    "pincode": "396210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4640070",
+    "longitude": "72.8548300"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Marvad BO",
+    "pincode": "396210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4385330",
+    "longitude": "72.8373830"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Varkund BO",
+    "pincode": "396210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DAMAN",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.4026430",
+    "longitude": "72.8617630"
+  }
+]

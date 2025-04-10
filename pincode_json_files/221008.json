@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Ram Nagar Pac SO",
+    "pincode": "221008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2777778",
+    "longitude": "83.0313056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Ramnagar SO Varanasi",
+    "pincode": "221008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2909575",
+    "longitude": "83.0339506"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi East Division",
+    "officename": "Kateshar BO",
+    "pincode": "221008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VARANASI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2810000",
+    "longitude": "83.1190000"
+  }
+]

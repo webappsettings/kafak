@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Eriangalgi B.O",
+    "pincode": "583115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2555474",
+    "longitude": "76.8382333"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Kudathini S.O",
+    "pincode": "583115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1965677",
+    "longitude": "76.7578844"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Veniveerapura B.O",
+    "pincode": "583115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1970650",
+    "longitude": "76.8024199"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Yelubenchi B.O",
+    "pincode": "583115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2541252",
+    "longitude": "76.7313349"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Siddammanahalli B.O",
+    "pincode": "583115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.2695275",
+    "longitude": "76.7875175"
+  }
+]

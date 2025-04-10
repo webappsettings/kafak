@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Rayagada Gandhinagar S.O",
+    "pincode": "765001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.6654",
+    "longitude": "83.15824"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Rayagada College S.O",
+    "pincode": "765001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.6654",
+    "longitude": "83.15824"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Rayagada(K) H.O",
+    "pincode": "765001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.148341",
+    "longitude": "83.453261"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Rayagada Bazar S.O",
+    "pincode": "765001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.6654",
+    "longitude": "83.15824"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "R K Nagar Rayagada S.O",
+    "pincode": "765001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.6654",
+    "longitude": "83.15824"
+  }
+]

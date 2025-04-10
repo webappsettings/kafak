@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Maram S.O",
+    "pincode": "795105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.3258550",
+    "longitude": "94.1246500"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Ngari Khullen B.O",
+    "pincode": "795105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.343958000000001",
+    "longitude": "94.323882999999995"
+  }
+]

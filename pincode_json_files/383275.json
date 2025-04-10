@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Tandaliya BO",
+    "pincode": "383275",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0000950",
+    "longitude": "73.1438120"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Laxmipura Sabarkantha SO",
+    "pincode": "383275",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.7312360",
+    "longitude": "72.9841960"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Damavas BO",
+    "pincode": "383275",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.9828410",
+    "longitude": "73.1261590"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Galodiya BO",
+    "pincode": "383275",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0124450",
+    "longitude": "73.0810240"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Khergadh BO",
+    "pincode": "383275",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0577300",
+    "longitude": "73.1438120"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Kalol Kampa BO",
+    "pincode": "383275",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "24.0101930",
+    "longitude": "73.1371070"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Ahmedabad HQ Region",
+    "divisionname": "Sabarkantha Division",
+    "officename": "Vaghela Derol BO",
+    "pincode": "383275",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SABAR KANTHA",
+    "statename": "GUJARAT",
+    "latitude": "23.9762640",
+    "longitude": "73.1113560"
+  }
+]

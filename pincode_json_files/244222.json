@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Didauli BO",
+    "pincode": "244222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8353055",
+    "longitude": "78.4732777"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Saghan Machharya BO",
+    "pincode": "244222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8353055",
+    "longitude": "78.4732777"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Ikonda B.O",
+    "pincode": "244222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8327294",
+    "longitude": "78.4645994"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Sarkara Kamal BO",
+    "pincode": "244222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8353055",
+    "longitude": "78.4732777"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Joya SO",
+    "pincode": "244222",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8353056",
+    "longitude": "78.4732778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Palaula BO",
+    "pincode": "244222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8353055",
+    "longitude": "78.4732777"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Sarkari  Ajij BO",
+    "pincode": "244222",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8353055",
+    "longitude": "78.4732777"
+  }
+]

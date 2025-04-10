@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Riyawan B.O",
+    "pincode": "457333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6700000",
+    "longitude": "74.9500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Ranigaon B.O",
+    "pincode": "457333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6700000",
+    "longitude": "74.9500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Maukhedi B.O",
+    "pincode": "457333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6700000",
+    "longitude": "74.9500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Panchewa B.O",
+    "pincode": "457333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6700000",
+    "longitude": "74.9500000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Sukheda S.O",
+    "pincode": "457333",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6756667",
+    "longitude": "74.9515556"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Ratlam Division",
+    "officename": "Sujapur B.O",
+    "pincode": "457333",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RATLAM",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.6700000",
+    "longitude": "74.9500000"
+  }
+]

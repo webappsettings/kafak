@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Srichandpur Kothia BO",
+    "pincode": "848122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Madhopur Dighrua SO",
+    "pincode": "848122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8629680",
+    "longitude": "85.7810260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Chaksikandar BO",
+    "pincode": "848122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Chakpahar BO",
+    "pincode": "848122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Harpur Bhindi BO",
+    "pincode": "848122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Songar BO",
+    "pincode": "848122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  }
+]

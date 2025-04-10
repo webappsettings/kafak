@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Madhapur BO",
+    "pincode": "505330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.8524780",
+    "longitude": "78.7433700"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Kallur B.O",
+    "pincode": "505330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Yousufnagar B.O",
+    "pincode": "505330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.8646645",
+    "longitude": "78.6721395"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Venkatapur B.O",
+    "pincode": "505330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.8289680",
+    "longitude": "78.7539970"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Ailapur S.O",
+    "pincode": "505330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.871626",
+    "longitude": "78.700673"
+  }
+]

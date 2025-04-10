@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Sriduttganj SO",
+    "pincode": "271607",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3775556",
+    "longitude": "82.2998611"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Deoria Mubarakpur BO",
+    "pincode": "271607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3377900",
+    "longitude": "82.2435570"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Deoria Rani Jot BO",
+    "pincode": "271607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3665010",
+    "longitude": "82.2732660"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Maniyaria BO",
+    "pincode": "271607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4086820",
+    "longitude": "82.3234840"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Dari Chaura BO",
+    "pincode": "271607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3440760",
+    "longitude": "82.3463710"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Rampur Banghusra BO",
+    "pincode": "271607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3745100",
+    "longitude": "82.2420320"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Mahuwa BO",
+    "pincode": "271607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3353740",
+    "longitude": "82.3045220"
+  }
+]

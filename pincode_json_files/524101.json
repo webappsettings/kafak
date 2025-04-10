@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Gudur H.O",
+    "pincode": "524101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Tirupati",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.1463611",
+    "longitude": "79.8469444"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Gudur East S.O",
+    "pincode": "524101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.1271944",
+    "longitude": "79.8401111"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudur Division",
+    "officename": "Malavyanagar S.O",
+    "pincode": "524101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SPSR NELLORE",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "14.143533",
+    "longitude": "79.842392"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Itakhuli B.O",
+    "pincode": "785007",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4444100",
+    "longitude": "94.1502000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Jorhat Engg College S.O",
+    "pincode": "785007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4444100",
+    "longitude": "94.1502000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Sibsagar Division",
+    "officename": "Hatigarh B.O",
+    "pincode": "785007",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JORHAT",
+    "statename": "ASSAM",
+    "latitude": "26.4444100",
+    "longitude": "94.1502000"
+  }
+]

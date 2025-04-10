@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Gonare BO",
+    "pincode": "272171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6597800",
+    "longitude": "82.8220700"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Lalganj Basti SO",
+    "pincode": "272171",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6597850",
+    "longitude": "82.8220740"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Newari BO",
+    "pincode": "272171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6597810",
+    "longitude": "82.8220710"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Rautapar BO",
+    "pincode": "272171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6597820",
+    "longitude": "82.8220720"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Thokwa BO",
+    "pincode": "272171",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6597840",
+    "longitude": "82.8220730"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Baznagar BO",
+    "pincode": "207402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kasganj",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8700000",
+    "longitude": "78.8600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Roshan Nagar BO",
+    "pincode": "207402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kasganj",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8400000",
+    "longitude": "78.8400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Neoli SO",
+    "pincode": "207402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Kasganj",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.905921696915023",
+    "longitude": "78.81797399138763"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Gaupura BO",
+    "pincode": "207402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Kasganj",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9100000",
+    "longitude": "78.8000000"
+  }
+]

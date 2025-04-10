@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Delwara B.O",
+    "pincode": "307501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6093820",
+    "longitude": "72.7229800"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Utraj B.O",
+    "pincode": "307501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.5905470",
+    "longitude": "72.7118530"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Oriya B.O",
+    "pincode": "307501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.6241280",
+    "longitude": "72.7386760"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Shergaon",
+    "pincode": "307501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.686461000000001",
+    "longitude": "72.821512999999996"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sirohi Division",
+    "officename": "Abu S.O",
+    "pincode": "307501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIROHI",
+    "statename": "RAJASTHAN",
+    "latitude": "24.5888333",
+    "longitude": "72.7140000"
+  }
+]

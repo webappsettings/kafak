@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Osmanabad HO",
+    "pincode": "413501",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.183308",
+    "longitude": "76.037974"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Osmanabad Town SO",
+    "pincode": "413501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.227900000000002",
+    "longitude": "76.056700000000006"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Vidyanagar S.O (Osmanabad)",
+    "pincode": "413501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "18.2279000",
+    "longitude": "76.0567000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Regional Office Aurangabad",
+    "divisionname": "Osmanabad Division",
+    "officename": "Mily Colony S.O",
+    "pincode": "413501",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "OSMANABAD",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.2695670",
+    "longitude": "76.7741140"
+  }
+]

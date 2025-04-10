@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Rithakhal BO",
+    "pincode": "262580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4500000",
+    "longitude": "79.8800000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Devidhura SO",
+    "pincode": "262580",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4100000",
+    "longitude": "79.8600000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Dholigaon BO",
+    "pincode": "262580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3700000",
+    "longitude": "79.8500000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Gagar BO",
+    "pincode": "262580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4700000",
+    "longitude": "79.8900000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Timla BO",
+    "pincode": "262580",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.2370000",
+    "longitude": "80.3532000"
+  }
+]

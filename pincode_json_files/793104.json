@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Sumer S.O",
+    "pincode": "793104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5739167",
+    "longitude": "91.8848611"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Mawlein Mawkhan B.O",
+    "pincode": "793104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "25.699999999999999",
+    "longitude": "91.890000000000001"
+  }
+]

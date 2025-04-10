@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Konkarada S.O",
+    "pincode": "761144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4646521",
+    "longitude": "84.6616905"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Dengadi B.O",
+    "pincode": "761144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4635713",
+    "longitude": "84.6386840"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Kaudia B.O",
+    "pincode": "761144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4680336",
+    "longitude": "84.6575198"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Kurla B.O",
+    "pincode": "761144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4583567",
+    "longitude": "84.6929459"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Aska Division",
+    "officename": "Adapada B.O",
+    "pincode": "761144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANJAM",
+    "statename": "ODISHA",
+    "latitude": "19.4497019",
+    "longitude": "84.6458131"
+  }
+]

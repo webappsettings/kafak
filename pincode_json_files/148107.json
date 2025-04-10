@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Dhurkot BO",
+    "pincode": "148107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.6919810",
+    "longitude": "75.7967370"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Khudi  Kalan BO",
+    "pincode": "148107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3600630",
+    "longitude": "75.4869030"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Rure Ke Kalan BO",
+    "pincode": "148107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.2595240",
+    "longitude": "75.4398290"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Dhaula BO",
+    "pincode": "148107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.1615620",
+    "longitude": "74.5682970"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Handiaya SO",
+    "pincode": "148107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3310555",
+    "longitude": "75.5063055"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Kahne Ke BO",
+    "pincode": "148107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.2566200",
+    "longitude": "75.4825350"
+  }
+]

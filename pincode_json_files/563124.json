@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Billur B.O",
+    "pincode": "563124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.853155299999999",
+    "longitude": "78.005738600000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Chakavelu B.O",
+    "pincode": "563124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.8263225",
+    "longitude": "78.097834899999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Palyakere B.O",
+    "pincode": "563124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.691332299999999",
+    "longitude": "78.041744499999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Rasicheruvu B.O",
+    "pincode": "563124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.859088399999999",
+    "longitude": "78.059457800000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Puligal B.O",
+    "pincode": "563124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.780918099999999",
+    "longitude": "78.087760500000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Venkatapura B.O",
+    "pincode": "563124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.7428414",
+    "longitude": "78.067096800000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Kolar Division",
+    "officename": "Chelur S.O (Kolar)",
+    "pincode": "563124",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHIKKABALLAPURA",
+    "statename": "KARNATAKA",
+    "latitude": "13.126805600000001",
+    "longitude": "78.129583299999993"
+  }
+]

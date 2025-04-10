@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Bathinda HO",
+    "pincode": "151001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.204677",
+    "longitude": "74.949001"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Kamla Nehru Colony Bathinda SO",
+    "pincode": "151001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.2241",
+    "longitude": "74.9592"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "MRSTU Bathinda",
+    "pincode": "151001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "30.17343",
+    "longitude": "74.92282"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Bhatinda Division",
+    "officename": "Nai Basti Bathinda SO",
+    "pincode": "151001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BATHINDA",
+    "statename": "PUNJAB",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bhogdia B.O",
+    "pincode": "781305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2794500",
+    "longitude": "91.1562800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Chenga S.O",
+    "pincode": "781305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2794500",
+    "longitude": "91.1562800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Pachim Mazdia B.O",
+    "pincode": "781305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.279450000000001",
+    "longitude": "91.156279999999995"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Khangra B.O",
+    "pincode": "781305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2794500",
+    "longitude": "91.1562800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Makrikuchi B.O",
+    "pincode": "781305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2794500",
+    "longitude": "91.1562800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Chenimari B.O",
+    "pincode": "781305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2794500",
+    "longitude": "91.1562800"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Jatradia B.O",
+    "pincode": "781305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARPETA",
+    "statename": "ASSAM",
+    "latitude": "26.2794500",
+    "longitude": "91.1562800"
+  }
+]

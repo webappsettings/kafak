@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Gopalprasad S.O",
+    "pincode": "759150",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.973939",
+    "longitude": "85.041435"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Barihapur B.O",
+    "pincode": "759150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "21.035391000000001",
+    "longitude": "85.000043000000005"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Poolampalayam B.O",
+    "pincode": "639008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "11.0200000",
+    "longitude": "78.0400000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Andankoil S.O",
+    "pincode": "639008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9500000",
+    "longitude": "78.0700000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Athur B.O",
+    "pincode": "639008",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9900000",
+    "longitude": "78.0300000"
+  }
+]

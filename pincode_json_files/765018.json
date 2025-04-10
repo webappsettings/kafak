@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Buduni B.O",
+    "pincode": "765018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Dumuriguda B.O",
+    "pincode": "765018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Paikapada B.O",
+    "pincode": "765018",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Therubali S.O",
+    "pincode": "765018",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAYAGADA",
+    "statename": "ODISHA",
+    "latitude": "19.2873883",
+    "longitude": "83.4381966"
+  }
+]

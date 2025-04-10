@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Chikkakeriyaginahalli",
+    "pincode": "583124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "13.41854",
+    "longitude": "76.619791000000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Hirekeriginalli B.O",
+    "pincode": "583124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9515254",
+    "longitude": "76.4602334"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Nidugurthi B.O",
+    "pincode": "583124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.0187285",
+    "longitude": "76.4292399"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Yeshwantnagar S.O(Ballari)",
+    "pincode": "583124",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.0439576",
+    "longitude": "76.4982694"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Bandri B.O",
+    "pincode": "583124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "14.9890599",
+    "longitude": "76.4505539"
+  }
+]

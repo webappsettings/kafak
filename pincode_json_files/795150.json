@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Pudunamei B.O",
+    "pincode": "795150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.528645999999998",
+    "longitude": "94.158099000000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Mao S.O",
+    "pincode": "795150",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.3258550",
+    "longitude": "94.1246500"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Pfukhro B.O",
+    "pincode": "795150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.508333",
+    "longitude": "94.160276999999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Phunanamei B.O",
+    "pincode": "795150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.522110000000001",
+    "longitude": "94.152883000000003"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Kuttha BO",
+    "pincode": "249001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3928209",
+    "longitude": "78.4531696"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Tehri HO",
+    "pincode": "249001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3764167",
+    "longitude": "78.4393056"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Gyansoo BO",
+    "pincode": "249001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4760000",
+    "longitude": "78.2390000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "New Tehri Collectrate SO",
+    "pincode": "249001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3760556",
+    "longitude": "78.4820000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Pangerkhal BO",
+    "pincode": "249001",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3650611",
+    "longitude": "78.4446426"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Tehri Kutchery SO",
+    "pincode": "249001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3747222",
+    "longitude": "78.4299444"
+  }
+]

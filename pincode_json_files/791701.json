@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "HLUMTE",
+    "pincode": "791701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "THANGTE",
+    "pincode": "791701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "S. LUNGDAI",
+    "pincode": "791701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "CHITHAR",
+    "pincode": "791701",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

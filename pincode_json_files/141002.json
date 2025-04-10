@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Model Town Ludhiana SO",
+    "pincode": "141002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8414722",
+    "longitude": "75.6719722"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "New Model Town SO",
+    "pincode": "141002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8949722",
+    "longitude": "75.8413611"
+  }
+]

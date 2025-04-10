@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Bangaldhara B.O",
+    "pincode": "782412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MARIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.190300000000001",
+    "longitude": "92.373900000000006"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Ahatguri B.O",
+    "pincode": "782412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MARIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.190300000000001",
+    "longitude": "92.373900000000006"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Silchung B.O",
+    "pincode": "782412",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MARIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.190300000000001",
+    "longitude": "92.373900000000006"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Dharamtul S.O",
+    "pincode": "782412",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MARIGAON",
+    "statename": "ASSAM",
+    "latitude": "26.1903000",
+    "longitude": "92.3739000"
+  }
+]

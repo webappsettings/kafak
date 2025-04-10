@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Newal Garh BO",
+    "pincode": "271203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5931600",
+    "longitude": "82.5695200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Jarwa SO",
+    "pincode": "271203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6459444",
+    "longitude": "82.5238056"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Amwabas BO",
+    "pincode": "271203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.5612460",
+    "longitude": "82.6078210"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Mutehra BO",
+    "pincode": "271203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6370980",
+    "longitude": "82.6078210"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Ganeshpur BO",
+    "pincode": "271203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3572910",
+    "longitude": "82.2651190"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Raniyapur BO",
+    "pincode": "271203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.6181000",
+    "longitude": "82.5446200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Gonda Division",
+    "officename": "Ramwapur BO",
+    "pincode": "271203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BALRAMPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4867970",
+    "longitude": "82.6348390"
+  }
+]

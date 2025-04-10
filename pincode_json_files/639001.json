@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Karur H.O",
+    "pincode": "639001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9602222",
+    "longitude": "78.0827222"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Ramakrishnapuram S.O",
+    "pincode": "639001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9635833",
+    "longitude": "78.0771667"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Karur Division",
+    "officename": "Karur West S.O",
+    "pincode": "639001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KARUR",
+    "statename": "TAMIL NADU",
+    "latitude": "10.9600000",
+    "longitude": "78.0800000"
+  }
+]

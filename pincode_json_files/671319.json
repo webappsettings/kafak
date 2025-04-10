@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Mylatti BO",
+    "pincode": "671319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.4437637",
+    "longitude": "75.0549674"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "UDMA  Padinhare BO",
+    "pincode": "671319",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.4399817",
+    "longitude": "75.0165035"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Bare BO",
+    "pincode": "671319",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.4479048",
+    "longitude": "75.0421312"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Kasaragod Division",
+    "officename": "Udma SO",
+    "pincode": "671319",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KASARAGOD",
+    "statename": "KERALA",
+    "latitude": "12.44476406",
+    "longitude": "75.02531549"
+  }
+]

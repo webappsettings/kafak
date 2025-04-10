@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Tileibani B.O",
+    "pincode": "768119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5458853",
+    "longitude": "84.6053689"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Rengalbeda B.O",
+    "pincode": "768119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4414161",
+    "longitude": "84.6821937"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Purunagarh S.O",
+    "pincode": "768119",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5403739",
+    "longitude": "84.7346519"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "GUNDIAPALI",
+    "pincode": "768119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.53331",
+    "longitude": "84.733329"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Tentelabahal B.O",
+    "pincode": "768119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4603259",
+    "longitude": "84.6436276"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "K.Tainsar B.O",
+    "pincode": "768119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.5392964",
+    "longitude": "84.6603890"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Tabada B.O",
+    "pincode": "768119",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGARH",
+    "statename": "ODISHA",
+    "latitude": "21.4337024",
+    "longitude": "84.6555016"
+  }
+]

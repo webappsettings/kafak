@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Kakari Project SO",
+    "pincode": "231224",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.1057000",
+    "longitude": "82.4657000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Mirzapur Division",
+    "officename": "Rehta B.O",
+    "pincode": "231224",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SONBHADRA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.171512",
+    "longitude": "82.775964000000002"
+  }
+]

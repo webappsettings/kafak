@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Gerukamukh S.O",
+    "pincode": "787035",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.4805000",
+    "longitude": "94.5495000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Mingmang B.O",
+    "pincode": "787035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.5300000",
+    "longitude": "94.2700000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Nalbari Kachari B.O",
+    "pincode": "787035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.5300000",
+    "longitude": "94.2700000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kayam Borpathar B.O",
+    "pincode": "787035",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHEMAJI",
+    "statename": "ASSAM",
+    "latitude": "27.302700000000002",
+    "longitude": "94.211200000000005"
+  }
+]

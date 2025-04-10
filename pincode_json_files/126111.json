@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Bighana B.O",
+    "pincode": "126111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "36.3200000",
+    "longitude": "25.3600000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Alewa S.O",
+    "pincode": "126111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "29.4753",
+    "longitude": "76.4476"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Pegan B.O",
+    "pincode": "126111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "23.3600000",
+    "longitude": "36.3200000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Khanda B.O",
+    "pincode": "126111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "28.5500000",
+    "longitude": "23.3600000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dhilluwal B.O",
+    "pincode": "126111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "25.3600000",
+    "longitude": "36.3200000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Durana B.O",
+    "pincode": "126111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "25.3600000",
+    "longitude": "32.3600000"
+  }
+]

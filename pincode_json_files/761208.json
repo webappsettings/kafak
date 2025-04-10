@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "K.Sitapur B.O",
+    "pincode": "761208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.814421599999999",
+    "longitude": "83.9857966"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Hadubhangi B.O",
+    "pincode": "761208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.8163366",
+    "longitude": "83.942414999999997"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Bapenbadi B.O",
+    "pincode": "761208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.863779999999998",
+    "longitude": "83.935254999999998"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Kharada S.O",
+    "pincode": "761208",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.8213366",
+    "longitude": "83.9647283"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Devadala B.O",
+    "pincode": "761208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.828691599999999",
+    "longitude": "83.998706600000006"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Gaiba B.O",
+    "pincode": "761208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.9226116",
+    "longitude": "83.946876599999996"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Parida B.O",
+    "pincode": "761208",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "18.888145000000002",
+    "longitude": "83.947809899999996"
+  }
+]

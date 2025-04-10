@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Jarakhar BO",
+    "pincode": "210428",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6581670",
+    "longitude": "79.4754460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Majhagawan SO",
+    "pincode": "210428",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6237220",
+    "longitude": "79.4142310"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Dhagwan BO",
+    "pincode": "210428",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.7017030",
+    "longitude": "79.4306500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Nauranga BO",
+    "pincode": "210428",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6285920",
+    "longitude": "79.4658230"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Tolarawat BO",
+    "pincode": "210428",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6311170",
+    "longitude": "79.4526710"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Malehta BO",
+    "pincode": "210428",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HAMIRPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.6586820",
+    "longitude": "79.4762460"
+  }
+]

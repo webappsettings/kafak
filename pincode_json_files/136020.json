@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Jajjanpur B.O",
+    "pincode": "136020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8753690",
+    "longitude": "76.6066110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Dhand S.O",
+    "pincode": "136020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8753690",
+    "longitude": "76.6066110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Pabnawa B.O",
+    "pincode": "136020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8753690",
+    "longitude": "76.6066110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Chandlana B.O",
+    "pincode": "136020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8753690",
+    "longitude": "76.6066110"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Kurukshetra Division",
+    "officename": "Jadola B.O",
+    "pincode": "136020",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAITHAL",
+    "statename": "HARYANA",
+    "latitude": "29.8753690",
+    "longitude": "76.6066110"
+  }
+]

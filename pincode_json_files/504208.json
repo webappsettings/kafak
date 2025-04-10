@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Mancherial H.O",
+    "pincode": "504208",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.880305",
+    "longitude": "79.442307"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Grain Market S.O",
+    "pincode": "504208",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8639051",
+    "longitude": "79.4547946"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Mancherial Bazar S.O",
+    "pincode": "504208",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8776667",
+    "longitude": "79.4468333"
+  }
+]

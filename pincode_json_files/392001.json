@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Sindhvai SO",
+    "pincode": "392001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7060910",
+    "longitude": "72.9862590"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Gayatri Nagar SO Gujrat Circle",
+    "pincode": "392001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7116120",
+    "longitude": "72.9869140"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Panch Fanas SO",
+    "pincode": "392001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.6980490",
+    "longitude": "72.9833350"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Bharuch HO",
+    "pincode": "392001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.6926990",
+    "longitude": "72.9828640"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Bharuch City SO",
+    "pincode": "392001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.6898700",
+    "longitude": "72.9732600"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Bharuch RS SO",
+    "pincode": "392001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.7040220",
+    "longitude": "72.9991480"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "LBChakla SO",
+    "pincode": "392001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHARUCH",
+    "statename": "GUJARAT",
+    "latitude": "21.6949050",
+    "longitude": "72.9871280"
+  }
+]

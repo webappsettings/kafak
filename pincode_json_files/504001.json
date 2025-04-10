@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Adilabad Collectorate S.O",
+    "pincode": "504001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ADILABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.1158333",
+    "longitude": "78.8683611"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Bhuktapur S.O",
+    "pincode": "504001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ADILABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.1094444",
+    "longitude": "78.8848333"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Bhagyanagar S.O",
+    "pincode": "504001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ADILABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.6812915",
+    "longitude": "78.5330564"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Station Road S.O",
+    "pincode": "504001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ADILABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.6776216",
+    "longitude": "78.5363234"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Adilabad H.O",
+    "pincode": "504001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ADILABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.671677",
+    "longitude": "78.537184"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Gandhi Chowk S.O",
+    "pincode": "504001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ADILABAD",
+    "statename": "TELANGANA",
+    "latitude": "19.6756805",
+    "longitude": "78.5369066"
+  }
+]

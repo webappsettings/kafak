@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "N.F.L.Vijaipur S.O",
+    "pincode": "473111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6652600",
+    "longitude": "77.3606860"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Dongar Vijaypur B.O",
+    "pincode": "473111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4800000",
+    "longitude": "77.1200000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Bhamawad B.O",
+    "pincode": "473111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4400000",
+    "longitude": "77.1100000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Vijaypur B.O",
+    "pincode": "473111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4900000",
+    "longitude": "77.1700000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Bhatawali S.O",
+    "pincode": "244105",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8981147",
+    "longitude": "78.7227801"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Qazipura BO",
+    "pincode": "244105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Vikas Bhawan Moradabad SO",
+    "pincode": "244105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8800000",
+    "longitude": "78.7300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Mahlakpur Nizampur B.O",
+    "pincode": "244105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.829999999999998",
+    "longitude": "78.769999999999996"
+  }
+]

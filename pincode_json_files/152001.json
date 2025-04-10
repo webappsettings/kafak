@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Sadar Bazar SO Firozpur",
+    "pincode": "152001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9275460",
+    "longitude": "74.6104970"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Cantt Railway Station Ferozepu SO",
+    "pincode": "152001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9275460",
+    "longitude": "74.6104970"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Ferozepur HO",
+    "pincode": "152001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "30.9275460",
+    "longitude": "74.6104970"
+  }
+]

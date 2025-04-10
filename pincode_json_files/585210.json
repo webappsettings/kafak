@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Kurkunta B.O",
+    "pincode": "585210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.1900000",
+    "longitude": "77.3600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Madkol B.O",
+    "pincode": "585210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "16.5900000",
+    "longitude": "77.4200000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "YADGIRI DIVISION",
+    "officename": "Kurkunta C.F S.O",
+    "pincode": "585210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "16.9500000",
+    "longitude": "76.8333300"
+  }
+]

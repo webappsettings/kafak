@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Bhithauli Chitrakoot BO",
+    "pincode": "261402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4293000",
+    "longitude": "80.5300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Atwa BO",
+    "pincode": "261402",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.4293000",
+    "longitude": "80.5300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Lucknow  HQ Region",
+    "divisionname": "Sitapur Division",
+    "officename": "Naimisharanya SO",
+    "pincode": "261402",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SITAPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.2141000",
+    "longitude": "80.2846000"
+  }
+]

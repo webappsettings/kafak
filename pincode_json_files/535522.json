@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Lakshminarayanapuram B.O",
+    "pincode": "535522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.3415000",
+    "longitude": "18.7663000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Narsipuram B.O",
+    "pincode": "535522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.4038000",
+    "longitude": "18.7397000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Kavitibhadra B.O",
+    "pincode": "535522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.3412000",
+    "longitude": "18.7662000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Mrutyunjayarayanagaram S.O",
+    "pincode": "535522",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.7455556",
+    "longitude": "83.2672778"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Sangamvalasa B.O",
+    "pincode": "535522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.3676000",
+    "longitude": "18.7829000"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Parvathipuram Division",
+    "officename": "Mulaga B.O",
+    "pincode": "535522",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Parvathipuram Manyam",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "83.3270000",
+    "longitude": "18.7674000"
+  }
+]

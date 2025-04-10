@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Gandhinagar SO Basti",
+    "pincode": "272001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7956120",
+    "longitude": "82.7366400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "ITI SO Basti",
+    "pincode": "272001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7990700",
+    "longitude": "82.7190370"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Orijote SO",
+    "pincode": "272001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7959170",
+    "longitude": "82.7465630"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Civil Line SO Basti",
+    "pincode": "272001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7867960",
+    "longitude": "82.7228570"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Basti HO",
+    "pincode": "272001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7925000",
+    "longitude": "82.7297778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Basti Kutchery SO",
+    "pincode": "272001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BASTI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.7914440",
+    "longitude": "82.7190690"
+  }
+]

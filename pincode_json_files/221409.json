@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Nai Bazar SO Sant Ravidas Nagar",
+    "pincode": "221409",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3209290",
+    "longitude": "82.4770040"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Kukarauthi BO",
+    "pincode": "221409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4099240",
+    "longitude": "82.6014810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Pargaspur BO",
+    "pincode": "221409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4099240",
+    "longitude": "82.6014810"
+  }
+]

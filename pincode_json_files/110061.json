@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Bijwasan SO",
+    "pincode": "110061",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.53285",
+    "longitude": "77.05162"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi South West Division",
+    "officename": "Shahbad Mohammadpur BO",
+    "pincode": "110061",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NEW DELHI",
+    "statename": "DELHI",
+    "latitude": "28.5400000",
+    "longitude": "77.0500000"
+  }
+]

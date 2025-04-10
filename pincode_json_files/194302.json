@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Karsha B.O",
+    "pincode": "194302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "33.5319456",
+    "longitude": "76.904161200000004"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Zangla B.O",
+    "pincode": "194302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "33.670000000000002",
+    "longitude": "76.884900000000002"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "CHA-LUNGNAK B.O",
+    "pincode": "194302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "ABRAN B.O",
+    "pincode": "194302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "AKSHOW B.O",
+    "pincode": "194302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Padum S.O",
+    "pincode": "194302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARGIL",
+    "statename": "LADAKH",
+    "latitude": "34.5535060",
+    "longitude": "76.1350430"
+  }
+]

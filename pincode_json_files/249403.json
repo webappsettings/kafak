@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "BHEL SO Haridwar",
+    "pincode": "249403",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.940507",
+    "longitude": "78.121702"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Shivalik Nagar SO",
+    "pincode": "249403",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9335556",
+    "longitude": "78.0725000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Adm BlockBHEL SO",
+    "pincode": "249403",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9497778",
+    "longitude": "78.1028056"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "Roshnabad Kutchery SO",
+    "pincode": "249403",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9253333",
+    "longitude": "78.1076111"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dehradun Division",
+    "officename": "SectorIII BHEL SO",
+    "pincode": "249403",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HARIDWAR",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.9359167",
+    "longitude": "78.0885556"
+  }
+]

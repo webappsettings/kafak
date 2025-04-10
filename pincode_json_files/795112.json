@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Cheljang B.O",
+    "pincode": "795112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "24.402221999999998",
+    "longitude": "93.705849999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Irang B.O",
+    "pincode": "795112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.34638",
+    "longitude": "94.114834999999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kotlien B.O",
+    "pincode": "795112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "24.431892999999999",
+    "longitude": "93.565867999999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Thengjang B.O",
+    "pincode": "795112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "24.602311",
+    "longitude": "93.691963999999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Chalwa (P) B.O",
+    "pincode": "795112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.116067999999999",
+    "longitude": "93.808654000000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Gelnal B.O",
+    "pincode": "795112",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.215226999999999",
+    "longitude": "93.815009000000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "T Waichong S.O",
+    "pincode": "795112",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.3258550",
+    "longitude": "94.1246500"
+  }
+]

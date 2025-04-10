@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Pandakkal BO",
+    "pincode": "673310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHE",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.7600000",
+    "longitude": "75.5400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Naluthara BO",
+    "pincode": "673310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHE",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.6900000",
+    "longitude": "75.5300000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Pallur BO",
+    "pincode": "673310",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHE",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.7400000",
+    "longitude": "75.5400000"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Vadakara Division",
+    "officename": "Mahe SO",
+    "pincode": "673310",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHE",
+    "statename": "PUDUCHERRY",
+    "latitude": "11.6988219",
+    "longitude": "75.5466845"
+  }
+]

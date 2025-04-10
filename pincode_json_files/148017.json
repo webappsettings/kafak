@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Meemsa BO",
+    "pincode": "148017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.3941790",
+    "longitude": "75.9593870"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhullerheri BO",
+    "pincode": "148017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.3466390",
+    "longitude": "75.9610610"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Mehsampur BO",
+    "pincode": "148017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0232770",
+    "longitude": "75.5072880"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhojowali BO",
+    "pincode": "148017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.3448860",
+    "longitude": "75.9216460"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhalwan SO",
+    "pincode": "148017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "30.3236388",
+    "longitude": "75.9453611"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Harchandpur BO",
+    "pincode": "148017",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANGRUR",
+    "statename": "PUNJAB",
+    "latitude": "26.3441530",
+    "longitude": "81.1664810"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "IA Babrala SO",
+    "pincode": "242021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0232778",
+    "longitude": "79.1287778"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Budaun Division",
+    "officename": "Mehua Hasanganj BO",
+    "pincode": "242021",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBHAL",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2773802",
+    "longitude": "78.4127676"
+  }
+]

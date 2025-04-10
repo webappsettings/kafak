@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Dadauna BO",
+    "pincode": "209747",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.953337",
+    "longitude": "79.439573"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Majhupur BO",
+    "pincode": "209747",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.953337",
+    "longitude": "79.439573"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Salempur BO",
+    "pincode": "209747",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.953337",
+    "longitude": "79.439573"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Paraur BO",
+    "pincode": "209747",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.953337",
+    "longitude": "79.439573"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sakrawa SO",
+    "pincode": "209747",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.9971111",
+    "longitude": "79.0000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Birpur BO",
+    "pincode": "209747",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.953337",
+    "longitude": "79.439573"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehgarh Division",
+    "officename": "Sarifabad BO",
+    "pincode": "209747",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANNAUJ",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.953337",
+    "longitude": "79.439573"
+  }
+]

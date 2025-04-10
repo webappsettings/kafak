@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mirpur Rahimabad BO",
+    "pincode": "275306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1000000",
+    "longitude": "20.1000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Bandi Ghat BO",
+    "pincode": "275306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1000000",
+    "longitude": "20.1000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Jogari BO",
+    "pincode": "275306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1000000",
+    "longitude": "20.1000000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "KOIRIYAPAR SO",
+    "pincode": "275306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.5500000",
+    "longitude": "80.5900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Dangauli BO",
+    "pincode": "275306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "30.1000000",
+    "longitude": "20.1000000"
+  }
+]

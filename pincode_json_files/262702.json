@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Kheri Town SO",
+    "pincode": "262702",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.9098420",
+    "longitude": "80.7845350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Kheri Division",
+    "officename": "Gopalapur BO",
+    "pincode": "262702",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHERI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.8800000",
+    "longitude": "80.8300000"
+  }
+]

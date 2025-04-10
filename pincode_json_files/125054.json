@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Bahaudin SO",
+    "pincode": "125054",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "29.5461389",
+    "longitude": "75.2148333"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Baruwalii BO",
+    "pincode": "125054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Mauju Khera BO",
+    "pincode": "125054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Patli Dabar BO",
+    "pincode": "125054",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

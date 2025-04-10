@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Jesingpur BO",
+    "pincode": "394633",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "20.9487100",
+    "longitude": "73.3520400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Kasvav BO",
+    "pincode": "394633",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0018250",
+    "longitude": "73.3502380"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Palawadi BO",
+    "pincode": "394633",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "20.9487100",
+    "longitude": "73.3520400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Dhanturi BO",
+    "pincode": "394633",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "20.9487100",
+    "longitude": "73.3520400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Mangalia BO",
+    "pincode": "394633",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "20.9487100",
+    "longitude": "73.3520400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Ambia BO",
+    "pincode": "394633",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "20.9487100",
+    "longitude": "73.3520400"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Gadat SO Tapi",
+    "pincode": "394633",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "20.9772800",
+    "longitude": "73.3643450"
+  }
+]

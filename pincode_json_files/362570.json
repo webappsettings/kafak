@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Wanakbara SO",
+    "pincode": "362570",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DIU",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.717441",
+    "longitude": "70.874430"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Junagadh Division",
+    "officename": "Bucharvada BO",
+    "pincode": "362570",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DIU",
+    "statename": "THE DADRA AND NAGAR HAVELI AND DAMAN AND DIU",
+    "latitude": "20.7291717",
+    "longitude": "70.9177572"
+  }
+]

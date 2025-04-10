@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Kadila B.O",
+    "pincode": "304501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3101700",
+    "longitude": "75.4497670"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Chandsen B.O",
+    "pincode": "304501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3101700",
+    "longitude": "75.4497670"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Kalmanda B.O",
+    "pincode": "304501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2408380",
+    "longitude": "75.5465820"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Avikanagar S.O",
+    "pincode": "304501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3093140",
+    "longitude": "75.4186750"
+  }
+]

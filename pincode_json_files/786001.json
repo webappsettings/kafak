@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Khaliamari B.O",
+    "pincode": "786001",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.4600000",
+    "longitude": "95.3200000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Panchali S.O",
+    "pincode": "786001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.3159000",
+    "longitude": "94.5357000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Naliapool B.O",
+    "pincode": "786001",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.4600000",
+    "longitude": "95.3200000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Dibrugarh H.O",
+    "pincode": "786001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.4798611",
+    "longitude": "94.9055000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Graham Bazar S.O",
+    "pincode": "786001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2746000",
+    "longitude": "95.0706000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Kadamoni S.O",
+    "pincode": "786001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.2824000",
+    "longitude": "95.2126000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Dibrugarh Division",
+    "officename": "Santipara S.O",
+    "pincode": "786001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DIBRUGARH",
+    "statename": "ASSAM",
+    "latitude": "27.4755000",
+    "longitude": "94.9041667"
+  }
+]

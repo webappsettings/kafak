@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Khunga Kothi B.O",
+    "pincode": "126110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "29.3000000",
+    "longitude": "36.3000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Mohammad Khera B.O",
+    "pincode": "126110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "33.3000000",
+    "longitude": "25.3000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Baniya Khera B.O",
+    "pincode": "126110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "29.4500000",
+    "longitude": "25.3000000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dalamwala B.O",
+    "pincode": "126110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "28.1111100",
+    "longitude": "29.4444000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Dharthrath S.O",
+    "pincode": "126110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "29.376",
+    "longitude": "76.4505"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Ritauli B.O",
+    "pincode": "126110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JIND",
+    "statename": "HARYANA",
+    "latitude": "29.3000000",
+    "longitude": "36.3000000"
+  }
+]

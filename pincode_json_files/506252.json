@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Kurchapalli B.O",
+    "pincode": "506252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.7983272",
+    "longitude": "79.3175900"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Ippaguda S.O",
+    "pincode": "506252",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.7674139986487",
+    "longitude": "79.3773256589816"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Bommera B.O",
+    "pincode": "506252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.6759664",
+    "longitude": "79.4258603"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Gudur B.O",
+    "pincode": "506252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.7314684",
+    "longitude": "79.4080792"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Hanamkonda Division",
+    "officename": "Samudrala B.O",
+    "pincode": "506252",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "JANGOAN",
+    "statename": "TELANGANA",
+    "latitude": "17.7446691",
+    "longitude": "79.3983277"
+  }
+]

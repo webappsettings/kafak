@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Focal Point SO",
+    "pincode": "141010",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8837222",
+    "longitude": "75.9091111"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Moti Nagar SO",
+    "pincode": "141010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.8975666",
+    "longitude": "75.8875416"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ludhiana City Division",
+    "officename": "Jamalpur Awana SO",
+    "pincode": "141010",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "LUDHIANA",
+    "statename": "PUNJAB",
+    "latitude": "30.9023056",
+    "longitude": "75.9041944"
+  }
+]

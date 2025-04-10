@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "SIHHMUI",
+    "pincode": "796410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NA",
+    "statename": "NA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Sairang S.O",
+    "pincode": "796410",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.9332300",
+    "longitude": "92.4892240"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Dapchhuah B.O",
+    "pincode": "796410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAMIT",
+    "statename": "MIZORAM",
+    "latitude": "23.7703712",
+    "longitude": "92.520438400000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Mualkhang B.O",
+    "pincode": "796410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "23.898903799999999",
+    "longitude": "92.674376899999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Rawpuichhip B.O",
+    "pincode": "796410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAMIT",
+    "statename": "MIZORAM",
+    "latitude": "23.7858354",
+    "longitude": "92.558484000000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Ptc Lungverh B.O",
+    "pincode": "796410",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.787337600000001",
+    "longitude": "92.668787199999997"
+  }
+]

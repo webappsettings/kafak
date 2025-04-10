@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Rairangpur Division",
+    "officename": "Rairangpur H.O",
+    "pincode": "757043",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "22.2664167",
+    "longitude": "86.1735833"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Rairangpur Division",
+    "officename": "Anladuva S.O",
+    "pincode": "757043",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "22.2609000",
+    "longitude": "86.1732000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Rairangpur Division",
+    "officename": "Mahuldiha S.O",
+    "pincode": "757043",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "22.2781850",
+    "longitude": "86.1678166"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Rairangpur Division",
+    "officename": "Rairangpur Bazar S.O",
+    "pincode": "757043",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "22.2554300",
+    "longitude": "86.1775033"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Rairangpur Division",
+    "officename": "Rairangpur R.S S.O",
+    "pincode": "757043",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAYURBHANJ",
+    "statename": "ODISHA",
+    "latitude": "22.2623316",
+    "longitude": "86.1790250"
+  }
+]

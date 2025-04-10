@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Raholi B.O",
+    "pincode": "304022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5086470",
+    "longitude": "75.7894720"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Banasthali Vidya Peeth S.O",
+    "pincode": "304022",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4014220",
+    "longitude": "75.8721610"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Palai B.O",
+    "pincode": "304022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3937410",
+    "longitude": "75.9142730"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Chaturbhujpura B.O",
+    "pincode": "304022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2408380",
+    "longitude": "75.5465820"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Sunara B.O",
+    "pincode": "304022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.4356800",
+    "longitude": "75.8388700"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Jodhpuria B.O",
+    "pincode": "304022",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.2389470",
+    "longitude": "73.0243090"
+  }
+]

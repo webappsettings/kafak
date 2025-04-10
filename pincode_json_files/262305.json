@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Pandari BO",
+    "pincode": "262305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7403400",
+    "longitude": "80.1210500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "BITHRA B.O.",
+    "pincode": "262305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.741299999999999",
+    "longitude": "80.126800000000003"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Neoria Mobile BO",
+    "pincode": "262305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.7403400",
+    "longitude": "80.1210500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Bareilly Division",
+    "officename": "Neoria SO",
+    "pincode": "262305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PILIBHIT",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6215833",
+    "longitude": "79.8163889"
+  }
+]

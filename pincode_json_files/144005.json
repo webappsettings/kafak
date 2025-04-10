@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Rama Mandi SO",
+    "pincode": "144005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.30867431",
+    "longitude": "75.62740926"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Dhina BO",
+    "pincode": "144005",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.300298999999999",
+    "longitude": "75.630427999999995"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Jalandhar Cantt HO",
+    "pincode": "144005",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.29153377",
+    "longitude": "75.61625696"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Sadar Bazar Jalandhar Cantt SO",
+    "pincode": "144005",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.28968678",
+    "longitude": "75.62601113"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Jalandhar Division",
+    "officename": "Mithapur BO",
+    "pincode": "144005",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "JALANDHAR",
+    "statename": "PUNJAB",
+    "latitude": "31.3261",
+    "longitude": "75.576800000000006"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Keradango B.O",
+    "pincode": "761214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.164015",
+    "longitude": "84.0379133"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Khajuripada B.O",
+    "pincode": "761214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.0628616",
+    "longitude": "84.089615"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Tabarada B.O",
+    "pincode": "761214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.10165",
+    "longitude": "84.1203333"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Nuagada S.O",
+    "pincode": "761214",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.1617986",
+    "longitude": "84.1448258"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Badapada B.O",
+    "pincode": "761214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.1089166",
+    "longitude": "84.1070099"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Jhalarasingi B.O",
+    "pincode": "761214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.0554783",
+    "longitude": "84.0871916"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Rayagada Division",
+    "officename": "Gulli B.O",
+    "pincode": "761214",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GAJAPATI",
+    "statename": "ODISHA",
+    "latitude": "19.1089166",
+    "longitude": "84.1070099"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Nalbari H.O",
+    "pincode": "781335",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.4447778",
+    "longitude": "91.4380000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Bidyapur S.O",
+    "pincode": "781335",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.2640000",
+    "longitude": "91.2546000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Nalbari Division",
+    "officename": "Khatabari BO",
+    "pincode": "781335",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "NALBARI",
+    "statename": "ASSAM",
+    "latitude": "26.264800000000001",
+    "longitude": "91.264600000000002"
+  }
+]

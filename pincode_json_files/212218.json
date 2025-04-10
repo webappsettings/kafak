@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Audhan BO",
+    "pincode": "212218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.4531828",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Imli Gaon BO",
+    "pincode": "212218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.639983000000001",
+    "longitude": "77.328547999999998"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Noorpur BO",
+    "pincode": "212218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.151119000000001",
+    "longitude": "78.412660000000002"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Purkhas BO",
+    "pincode": "212218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "24.775162000000002",
+    "longitude": "82.881558999999996"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Tilhapur SO",
+    "pincode": "212218",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.33734",
+    "longitude": "81.57747"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Bigahra Usmanpur BO",
+    "pincode": "212218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.453182000000002",
+    "longitude": "81.827473999999995"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Prayagraj Division",
+    "officename": "Newada BO",
+    "pincode": "212218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KAUSHAMBI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.639983000000001",
+    "longitude": "77.328547999999998"
+  }
+]

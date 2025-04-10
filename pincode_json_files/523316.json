@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Markapur East S.O",
+    "pincode": "523316",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.7415278",
+    "longitude": "79.2711389"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Markapur Bazar S.O",
+    "pincode": "523316",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.742619",
+    "longitude": "79.273935"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Markapur  Division",
+    "officename": "Markapur H.O",
+    "pincode": "523316",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PRAKASAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "15.735919",
+    "longitude": "79.26964"
+  }
+]

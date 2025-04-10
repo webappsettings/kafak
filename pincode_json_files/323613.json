@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Mohanpura B.O",
+    "pincode": "323613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "26.8237670",
+    "longitude": "75.7400560"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Babai B.O",
+    "pincode": "323613",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8873100",
+    "longitude": "75.7662200"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Indergarh S.O (Bundi)",
+    "pincode": "323613",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BUNDI",
+    "statename": "RAJASTHAN",
+    "latitude": "25.4383333",
+    "longitude": "76.1700000"
+  }
+]

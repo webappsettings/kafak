@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Indukuru B.O",
+    "pincode": "533354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.2468",
+    "longitude": "81.795100000000005"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Sarabhavaram B.O",
+    "pincode": "533354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.2333",
+    "longitude": "81.751400000000004"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Devaram B.O",
+    "pincode": "533354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.259599999999999",
+    "longitude": "81.748599999999996"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "INDUKURUPETA S.O",
+    "pincode": "533354",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.263309",
+    "longitude": "81.78336"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Rajahmundry Division",
+    "officename": "Devipatnam B.O",
+    "pincode": "533354",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "EAST GODAVARI",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.3645",
+    "longitude": "81.679500000000004"
+  }
+]

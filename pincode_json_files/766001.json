@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Bhawanipatna CollegeSquare S.O",
+    "pincode": "766001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "19.9191898",
+    "longitude": "83.1761518"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Bhawanipatna B.B.Pada S.O",
+    "pincode": "766001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "19.9129904",
+    "longitude": "83.1675337"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Bhawanipatna Collectorate S.O",
+    "pincode": "766001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Bhawanipatna Stadium S.O",
+    "pincode": "766001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "19.9090295",
+    "longitude": "83.1743586"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Bhawanipatna H.O",
+    "pincode": "766001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "19.9083857",
+    "longitude": "83.1701798"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Berhampur Region",
+    "divisionname": "Kalahandi Division",
+    "officename": "Bhawanipatna Naktiguda S.O",
+    "pincode": "766001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALAHANDI",
+    "statename": "ODISHA",
+    "latitude": "19.9061154",
+    "longitude": "83.1499867"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Shianpari BO",
+    "pincode": "142044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0994500",
+    "longitude": "74.9341700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Makhu SO",
+    "pincode": "142044",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.104733",
+    "longitude": "74.987923"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Behak Gujjaran BO",
+    "pincode": "142044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0994500",
+    "longitude": "74.9341700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Fatehgarh Sabrah BO",
+    "pincode": "142044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0994500",
+    "longitude": "74.9341700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Pir Mohamad BO",
+    "pincode": "142044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0994500",
+    "longitude": "74.9341700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Sarhali BO",
+    "pincode": "142044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.0994500",
+    "longitude": "74.9341700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Ferozpur Division",
+    "officename": "Makhu Canal Colony BO",
+    "pincode": "142044",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FIROZEPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.1033180",
+    "longitude": "74.9977820"
+  }
+]

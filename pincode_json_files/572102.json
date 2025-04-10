@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "S G Extn Tumakuru S.O",
+    "pincode": "572102",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.341777799999999",
+    "longitude": "77.098527799999999"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Gandhinagar S.O Tumakuru",
+    "pincode": "572102",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.337138899999999",
+    "longitude": "77.097222200000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Someswarapuram S.O",
+    "pincode": "572102",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "12.5823333",
+    "longitude": "74.3845000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "SIT Campus B.O",
+    "pincode": "572102",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.2584696",
+    "longitude": "77.3343088"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Jayanagar Extn Tumakuru  S.O",
+    "pincode": "572102",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.3165248",
+    "longitude": "77.1213123"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "South Karnataka Region",
+    "divisionname": "Tumakuru Division",
+    "officename": "Settihalli B.O",
+    "pincode": "572102",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TUMAKURU",
+    "statename": "KARNATAKA",
+    "latitude": "13.6545649",
+    "longitude": "77.2178646"
+  }
+]

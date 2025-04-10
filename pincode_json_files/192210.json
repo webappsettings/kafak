@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Hakura Badasgam BO",
+    "pincode": "192210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7309870",
+    "longitude": "75.1501430"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Fateh Pora BO",
+    "pincode": "192210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.6532800",
+    "longitude": "75.1580930"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Gosanigund BO",
+    "pincode": "192210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.7309870",
+    "longitude": "75.1501430"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Larkipora BO",
+    "pincode": "192210",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "33.6453270",
+    "longitude": "75.1735080"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Srinagar Division",
+    "officename": "Dialgam",
+    "pincode": "192210",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ANANTNAG",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.0733056",
+    "longitude": "74.8165556"
+  }
+]

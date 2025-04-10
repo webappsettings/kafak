@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Kilaneduvoi BO",
+    "pincode": "621805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3200000",
+    "longitude": "79.4100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Thennur BO",
+    "pincode": "621805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3400000",
+    "longitude": "79.4200000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Tirukalappur BO",
+    "pincode": "621805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3100000",
+    "longitude": "79.1100000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Periakrishnapuram BO",
+    "pincode": "621805",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.3300000",
+    "longitude": "79.4300000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Tiruchirapalli Division",
+    "officename": "Varadarajampettai SO",
+    "pincode": "621805",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Ariyalur",
+    "statename": "TAMIL NADU",
+    "latitude": "11.1876900",
+    "longitude": "79.2581480"
+  }
+]

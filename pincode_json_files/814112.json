@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "BDeoghar HO",
+    "pincode": "814112",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "B MANDIR SO",
+    "pincode": "814112",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Deoghar Court SO",
+    "pincode": "814112",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Jhaunsagarhi SO",
+    "pincode": "814112",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  }
+]

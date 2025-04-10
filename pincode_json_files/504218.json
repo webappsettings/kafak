@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Tirmalapur",
+    "pincode": "504218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.098822999999999",
+    "longitude": "79.372185999999999"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Sonapur  B.O",
+    "pincode": "504218",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Devapur Cement Works S.O",
+    "pincode": "504218",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "19.031052",
+    "longitude": "79.35165"
+  }
+]

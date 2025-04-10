@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Hullur B.O",
+    "pincode": "585212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.109999999999999",
+    "longitude": "76.450000000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Ankalgi B.O",
+    "pincode": "585212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.140000000000001",
+    "longitude": "76.5"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Itagi B.O",
+    "pincode": "585212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.170000000000002",
+    "longitude": "76.540000000000006"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Aurad B.O",
+    "pincode": "585212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.210000000000001",
+    "longitude": "76.510000000000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Tellur B.O",
+    "pincode": "585212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.190000000000001",
+    "longitude": "76.489999999999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Ghanagapur T S.O",
+    "pincode": "585212",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.100000000000001",
+    "longitude": "76.310000000000002"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Ghangapur Sangam B.O",
+    "pincode": "585212",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.18",
+    "longitude": "76.519999999999996"
+  }
+]

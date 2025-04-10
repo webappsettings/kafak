@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Khanpur BO",
+    "pincode": "394641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.1102160",
+    "longitude": "73.3969860"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Gandhi Vidhyapith BO",
+    "pincode": "394641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0164500",
+    "longitude": "73.3023000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bardoli Division",
+    "officename": "Ambach BO",
+    "pincode": "394641",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TAPI",
+    "statename": "GUJARAT",
+    "latitude": "21.0164500",
+    "longitude": "73.3023000"
+  }
+]

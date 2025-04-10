@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Biral BO",
+    "pincode": "247771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MUZAFFARNAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2506400",
+    "longitude": "77.3524180"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Ailum SO",
+    "pincode": "247771",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.4730710",
+    "longitude": "77.7077420"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Bhanera BO",
+    "pincode": "247771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.3589370",
+    "longitude": "77.2581880"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Bharsi BO",
+    "pincode": "247771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2974590",
+    "longitude": "77.3022510"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Baghpat Division",
+    "officename": "Nala BO",
+    "pincode": "247771",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SHAMLI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.2820940",
+    "longitude": "77.2736910"
+  }
+]

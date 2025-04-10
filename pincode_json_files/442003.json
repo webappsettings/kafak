@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Cotton Market S.O",
+    "pincode": "442003",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7319167",
+    "longitude": "78.5977778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Hindinagar S.O",
+    "pincode": "442003",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.7362778",
+    "longitude": "78.5883333"
+  }
+]

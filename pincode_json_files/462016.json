@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "MP Bhoj Open University S.O",
+    "pincode": "462016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.1936667",
+    "longitude": "77.4125000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "R.S.Market S.O",
+    "pincode": "462016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2400000",
+    "longitude": "77.4000000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "R.S.Nagar S.O",
+    "pincode": "462016",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2170000",
+    "longitude": "77.4304722"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhopal Division",
+    "officename": "Shivaji Nagar S.O (Bhopal)",
+    "pincode": "462016",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BHOPAL",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.2333900",
+    "longitude": "77.4300000"
+  }
+]

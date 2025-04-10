@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Mahadevpur BO",
+    "pincode": "732121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Aiho SO",
+    "pincode": "732121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "24.1761111",
+    "longitude": "88.2438888"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Gandhinagar BO",
+    "pincode": "732121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Sirshi BO",
+    "pincode": "732121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Gouramari BO",
+    "pincode": "732121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  }
+]

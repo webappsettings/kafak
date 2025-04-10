@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kharak Kalan SO",
+    "pincode": "127114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8280000",
+    "longitude": "76.3087000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kalinga BO",
+    "pincode": "127114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8280000",
+    "longitude": "76.3087000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bamla BO",
+    "pincode": "127114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8280000",
+    "longitude": "76.3087000"
+  }
+]

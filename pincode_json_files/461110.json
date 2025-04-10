@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hoshangabad Division",
+    "officename": "Powarkheda S.O",
+    "pincode": "461110",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HOSHANGABAD",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7064960",
+    "longitude": "77.7398430"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hoshangabad Division",
+    "officename": "Reshalpur B.O",
+    "pincode": "461110",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HOSHANGABAD",
+    "statename": "MADHYA PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Basantpur B.O",
+    "pincode": "768025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.3869716",
+    "longitude": "83.8899883"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Kalamati B.O",
+    "pincode": "768025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.3625950",
+    "longitude": "83.8898200"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "KUD GUNDERPUR",
+    "pincode": "768025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.33595",
+    "longitude": "83.93517"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "CHIPLIMA BO",
+    "pincode": "768025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.3501",
+    "longitude": "83.9082"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "KARDOLA B.O",
+    "pincode": "768025",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "C.A. Chiplima S.O",
+    "pincode": "768025",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4593611",
+    "longitude": "83.9746667"
+  }
+]

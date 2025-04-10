@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Siswania BO",
+    "pincode": "272172",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6333400",
+    "longitude": "82.9907400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Taryapar BO",
+    "pincode": "272172",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6333500",
+    "longitude": "82.9907500"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Chhitahi BO",
+    "pincode": "272172",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6333000",
+    "longitude": "82.9907000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Lutuhi BO",
+    "pincode": "272172",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6333100",
+    "longitude": "82.9907200"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Mahuli SO",
+    "pincode": "272172",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6333200",
+    "longitude": "82.9907100"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Siktaha BO",
+    "pincode": "272172",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SANT KABEER NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.6333300",
+    "longitude": "82.9907300"
+  }
+]

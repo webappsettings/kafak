@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Morabadi SO",
+    "pincode": "834008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3844167",
+    "longitude": "85.3298889"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "New Area Marabadi SO",
+    "pincode": "834008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3983611",
+    "longitude": "85.3311944"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Ranchi University SO",
+    "pincode": "834008",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.3922222",
+    "longitude": "85.3137500"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Adalhatu SO",
+    "pincode": "834008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "25.1305650",
+    "longitude": "83.0347950"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Ranchi Division",
+    "officename": "Kanke Road SO",
+    "pincode": "834008",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "RANCHI",
+    "statename": "JHARKHAND",
+    "latitude": "23.4023611",
+    "longitude": "85.3152500"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Bhuteshwar S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8441280",
+    "longitude": "78.7227430"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Luxmipura S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8315980",
+    "longitude": "78.7320330"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Nai Gallamandi S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8564190",
+    "longitude": "78.7060980"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar City S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8417620",
+    "longitude": "78.7306160"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Subhash Nagar S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8492000",
+    "longitude": "78.7327100"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Bada Bazar S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8371389",
+    "longitude": "78.7336111"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Sagar Division",
+    "officename": "Sagar Sadar Bazar S.O",
+    "pincode": "470002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAGAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.8363140",
+    "longitude": "78.7360820"
+  }
+]

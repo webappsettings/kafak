@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Juttada B.O",
+    "pincode": "531023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.8227590",
+    "longitude": "82.9666040"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Muddurthi B.O",
+    "pincode": "531023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7713550",
+    "longitude": "82.9675480"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Duddupalem B.O",
+    "pincode": "531023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7682400",
+    "longitude": "83.0215050"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Govada S.O",
+    "pincode": "531023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.8045278",
+    "longitude": "82.9648889"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Rayapurajupeta B.O",
+    "pincode": "531023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.8113190",
+    "longitude": "82.9811100"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Bhogapuram B.O",
+    "pincode": "531023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Anakapalli",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.7770770",
+    "longitude": "82.9538150"
+  }
+]

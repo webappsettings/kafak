@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Ratanpur Bela BO",
+    "pincode": "848113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Ranitol BO",
+    "pincode": "848113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Koan Bajitpur BO",
+    "pincode": "848113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Singhiakhurd BO",
+    "pincode": "848113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Birouli Rural Institute SO",
+    "pincode": "848113",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8629680",
+    "longitude": "85.7810260"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Pokhraira BO",
+    "pincode": "848113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Punas BO",
+    "pincode": "848113",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.862967999999999",
+    "longitude": "85.781025999999997"
+  }
+]

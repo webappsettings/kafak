@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Lagaun BO",
+    "pincode": "284501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LALITPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Rajghat Dam Project SO",
+    "pincode": "284501",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LALITPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2728000",
+    "longitude": "81.3156000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Thanwara BO",
+    "pincode": "284501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LALITPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Jhansi Division",
+    "officename": "Deori BO",
+    "pincode": "284501",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LALITPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

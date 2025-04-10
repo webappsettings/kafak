@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Sagmania S.O",
+    "pincode": "485114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.1028000",
+    "longitude": "80.7549000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Bharjuna Kala B.O",
+    "pincode": "485114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Satna Division",
+    "officename": "Satna Siding B.O",
+    "pincode": "485114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SATNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.5790000",
+    "longitude": "81.8320000"
+  }
+]

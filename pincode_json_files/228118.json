@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Kamla Nehru Institute SO",
+    "pincode": "228118",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2890000",
+    "longitude": "82.0795000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Angnakol BO",
+    "pincode": "228118",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2647760",
+    "longitude": "82.0727060"
+  }
+]

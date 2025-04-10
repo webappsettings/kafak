@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Padupuri Mazgaon B.O",
+    "pincode": "784514",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.3413300",
+    "longitude": "91.9927000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Lalpul Bazar S.O",
+    "pincode": "784514",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.6520801",
+    "longitude": "92.1732588"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Aminpara B.O",
+    "pincode": "784514",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.5943518",
+    "longitude": "91.9881527"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Daipam B.O",
+    "pincode": "784514",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.6270393",
+    "longitude": "92.1235387"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Ekrabari B.O",
+    "pincode": "784514",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.5943518",
+    "longitude": "91.9881527"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Gerua Bazar B.O",
+    "pincode": "784514",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UDALGURI",
+    "statename": "ASSAM",
+    "latitude": "26.3413300",
+    "longitude": "91.9927000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Darrang Division",
+    "officename": "Bechimari B.O",
+    "pincode": "784514",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DARRANG",
+    "statename": "ASSAM",
+    "latitude": "26.5193093",
+    "longitude": "91.9795807"
+  }
+]

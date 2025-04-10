@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Neemri Charnan",
+    "pincode": "331502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Chuhas",
+    "pincode": "331502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Dewani B.O",
+    "pincode": "331502",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Churu Division",
+    "officename": "Chhapar S.O",
+    "pincode": "331502",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHURU",
+    "statename": "RAJASTHAN",
+    "latitude": "27.8160278",
+    "longitude": "74.4364722"
+  }
+]

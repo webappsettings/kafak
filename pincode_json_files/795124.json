@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Loktak Project S.O",
+    "pincode": "795124",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.6325370",
+    "longitude": "93.7701010"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Charoi Khullel B.O",
+    "pincode": "795124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURACHANDPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.6073366",
+    "longitude": "93.715819300000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Jiban Nager B.O",
+    "pincode": "795124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURACHANDPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.6112231",
+    "longitude": "93.714890199999999"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Mayuran B.O",
+    "pincode": "795124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURACHANDPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.565973700000001",
+    "longitude": "93.644968500000004"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Leimatak B.O",
+    "pincode": "795124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURACHANDPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.584066499999999",
+    "longitude": "93.666926399999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Sadukhoiroi B.O",
+    "pincode": "795124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BISHNUPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.524056000000002",
+    "longitude": "93.625231600000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Tokpalamdan B.O",
+    "pincode": "795124",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHURACHANDPUR",
+    "statename": "MANIPUR",
+    "latitude": "24.548733200000001",
+    "longitude": "93.637468999999996"
+  }
+]

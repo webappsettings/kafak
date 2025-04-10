@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Birdpur No13 BO",
+    "pincode": "272203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDHARTH NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3014000",
+    "longitude": "83.0947600"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Sekhuiya BO",
+    "pincode": "272203",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIDDHARTH NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3014200",
+    "longitude": "83.0947620"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Basti Division",
+    "officename": "Naugarh SO",
+    "pincode": "272203",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIDDHARTH NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3014900",
+    "longitude": "83.0947610"
+  }
+]

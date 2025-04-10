@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Samastipur HO",
+    "pincode": "848101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8605833",
+    "longitude": "85.7800833"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Samastipur Division",
+    "officename": "Samastipur Bazar SO",
+    "pincode": "848101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMASTIPUR",
+    "statename": "BIHAR",
+    "latitude": "25.8622500",
+    "longitude": "85.7856389"
+  }
+]

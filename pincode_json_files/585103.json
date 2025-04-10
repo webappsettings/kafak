@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Hirapur B.O",
+    "pincode": "585103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.329999999999998",
+    "longitude": "76.799999999999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Sirasgi B.O",
+    "pincode": "585103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.309999999999999",
+    "longitude": "76.780000000000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "GB Bahamanipura S.O",
+    "pincode": "585103",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.329416699999999",
+    "longitude": "76.828000000000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Sindagi B.O",
+    "pincode": "585103",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.350000000000001",
+    "longitude": "76.780000000000001"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "Gb Sharannagar B.O",
+    "pincode": "585103",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.329999999999998",
+    "longitude": "76.819999999999993"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Kalaburagi Division",
+    "officename": "GB M.S.K.Mill S.O",
+    "pincode": "585103",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KALABURAGI",
+    "statename": "KARNATAKA",
+    "latitude": "17.331361099999999",
+    "longitude": "76.814916699999998"
+  }
+]

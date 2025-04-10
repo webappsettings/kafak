@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Patparganj SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6143611",
+    "longitude": "77.290027800000004"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "CHILLA  SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.5959",
+    "longitude": "77.3003"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Himmatpuri SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6053889",
+    "longitude": "77.3073333"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Kalyanpuri SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6146944",
+    "longitude": "77.3178056"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Mayur Vihar PhI SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6070000",
+    "longitude": "77.2945833"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Kalyanvas SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6198333",
+    "longitude": "77.3121111"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Delhi East Division",
+    "officename": "Trilok Puri SO",
+    "pincode": "110091",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST",
+    "statename": "DELHI",
+    "latitude": "28.6138889",
+    "longitude": "77.2935556"
+  }
+]

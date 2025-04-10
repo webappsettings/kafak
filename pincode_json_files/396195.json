@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Chanod Md BO",
+    "pincode": "396195",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3485270",
+    "longitude": "72.9299850"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Valsad Division",
+    "officename": "Vapi IE SO",
+    "pincode": "396195",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VALSAD",
+    "statename": "GUJARAT",
+    "latitude": "20.3617470",
+    "longitude": "72.9198220"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "West Champaran Division",
+    "officename": "Valmiki Nagar SO",
+    "pincode": "845107",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PASHCHIM CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "27.4493611",
+    "longitude": "83.9240556"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "West Champaran Division",
+    "officename": "Rampurwa BO",
+    "pincode": "845107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASHCHIM CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "27.378484499999999",
+    "longitude": "83.902951000000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "West Champaran Division",
+    "officename": "Champapur Gonauli BO",
+    "pincode": "845107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASHCHIM CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "27.342359099999999",
+    "longitude": "83.981039999999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "West Champaran Division",
+    "officename": "Laxmipur Bherihari BO",
+    "pincode": "845107",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PASHCHIM CHAMPARAN",
+    "statename": "BIHAR",
+    "latitude": "27.404702100000002",
+    "longitude": "83.900302100000005"
+  }
+]

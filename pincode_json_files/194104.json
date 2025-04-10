@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "CHUCHOT YOKMA B.O",
+    "pincode": "194104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "33.798999999999999",
+    "longitude": "77.757000000000005"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "MATHOO B.O",
+    "pincode": "194104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "77.644999999999996",
+    "longitude": "33.996000000000002"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "CHUCHOT SHAMMA B.O",
+    "pincode": "194104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "77.358639999999994",
+    "longitude": "33.961950000000002"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "STOK B.O",
+    "pincode": "194104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "37.799999999999997",
+    "longitude": "122.40000000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Chuchot Gongma B.O",
+    "pincode": "194104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "33.799694000000002",
+    "longitude": "77.575858199999999"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Chuglamsar S.O",
+    "pincode": "194104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.1528380",
+    "longitude": "77.5770380"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Leh Division",
+    "officename": "Saboo B.O",
+    "pincode": "194104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LEH LADAKH",
+    "statename": "LADAKH",
+    "latitude": "34.132880499999999",
+    "longitude": "77.633565899999994"
+  }
+]

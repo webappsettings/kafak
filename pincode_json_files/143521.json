@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Gurdaspur Kutchery SO",
+    "pincode": "143521",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "32.0432740",
+    "longitude": "75.3988800"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Gurdaspur HO",
+    "pincode": "143521",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "32.0432740",
+    "longitude": "75.3988800"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Gurdaspur Division",
+    "officename": "Kalanaur Road Gurdaspur SO",
+    "pincode": "143521",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "GURDASPUR",
+    "statename": "PUNJAB",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

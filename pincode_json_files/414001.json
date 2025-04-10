@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Ahmednagar H.O",
+    "pincode": "414001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0953184",
+    "longitude": "74.7473232"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Sarjepura S.O",
+    "pincode": "414001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0976944",
+    "longitude": "74.7371111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Anandibazar S.O",
+    "pincode": "414001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0951944",
+    "longitude": "74.7352778"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "Ahmednagar City S.O",
+    "pincode": "414001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0958333",
+    "longitude": "74.7391111"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Pune Region",
+    "divisionname": "Ahmednagar Division",
+    "officename": "M.G.Udyan S.O",
+    "pincode": "414001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "AHMEDNAGAR",
+    "statename": "MAHARASHTRA",
+    "latitude": "19.0905278",
+    "longitude": "74.7349444"
+  }
+]

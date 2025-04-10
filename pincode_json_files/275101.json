@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mau Town SO",
+    "pincode": "275101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9518889",
+    "longitude": "83.5551944"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mau HO",
+    "pincode": "275101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9454152",
+    "longitude": "83.5669856"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mirjahadipura Chowk SO",
+    "pincode": "275101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9590833",
+    "longitude": "83.5453889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Mau RS SO",
+    "pincode": "275101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9377778",
+    "longitude": "83.5633889"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Azamgarh Division",
+    "officename": "Kahinaur BO",
+    "pincode": "275101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAU",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9400000",
+    "longitude": "83.5500000"
+  }
+]

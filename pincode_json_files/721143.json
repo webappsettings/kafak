@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Andhari BO",
+    "pincode": "721143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2786000",
+    "longitude": "87.3798000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Andhari Maubhandar BO",
+    "pincode": "721143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2786000",
+    "longitude": "87.3798000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Rohini SO",
+    "pincode": "721143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.1021000",
+    "longitude": "87.1020000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Bonpura BO",
+    "pincode": "721143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2786000",
+    "longitude": "87.3798000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Bachhurkhoyar BO",
+    "pincode": "721143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2786000",
+    "longitude": "87.3798000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Baharadari BO",
+    "pincode": "721143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2786000",
+    "longitude": "87.3798000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "South Bengal Region",
+    "divisionname": "Midnapore Division",
+    "officename": "Narda BO",
+    "pincode": "721143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Jhargram",
+    "statename": "WEST BENGAL",
+    "latitude": "22.2786000",
+    "longitude": "87.3798000"
+  }
+]

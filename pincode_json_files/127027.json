@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Rewari Khera BO",
+    "pincode": "127027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8837000",
+    "longitude": "76.2392000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Sai BO",
+    "pincode": "127027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8837000",
+    "longitude": "76.2392000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Chang SO",
+    "pincode": "127027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8837000",
+    "longitude": "76.2392000"
+  }
+]

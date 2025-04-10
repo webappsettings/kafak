@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Kalantra B.O",
+    "pincode": "193109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.173746999999999",
+    "longitude": "74.432528000000005"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "NOWPORA JAGIR B.O",
+    "pincode": "193109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.211230999999998",
+    "longitude": "74.443770000000001"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "WAGOORA S.O",
+    "pincode": "193109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.173747",
+    "longitude": "74.432528"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "CHANDOOSA B.O",
+    "pincode": "193109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.170000000000002",
+    "longitude": "74.420000000000002"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Kachawa Muqam B.O",
+    "pincode": "193109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.173746999999999",
+    "longitude": "74.432528000000005"
+  },
+  {
+    "circlename": "Jammu Kashmir Circle",
+    "regionname": "Srinagar HQ Region",
+    "divisionname": "Baramulla Division",
+    "officename": "Khaitangan B.O",
+    "pincode": "193109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARAMULLA",
+    "statename": "JAMMU AND KASHMIR",
+    "latitude": "34.156004000000003",
+    "longitude": "74.420282"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Sanaha BO",
+    "pincode": "227408",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.151558",
+    "longitude": "81.770499"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bikana BO",
+    "pincode": "227408",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.3173950",
+    "longitude": "81.6473440"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Mai Ghatkaur BO",
+    "pincode": "227408",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1515580",
+    "longitude": "81.7704990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Bhanti BO",
+    "pincode": "227408",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1515580",
+    "longitude": "81.7704990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Saruawan BO",
+    "pincode": "227408",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1515580",
+    "longitude": "81.7704990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Tikari BO",
+    "pincode": "227408",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Amethi",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.1515580",
+    "longitude": "81.7704990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Dhammaur SO",
+    "pincode": "227408",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2416389",
+    "longitude": "81.9201389"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Karaikalmedu B.O",
+    "pincode": "609605",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9400000",
+    "longitude": "79.8500000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Thalatheru S.O",
+    "pincode": "609605",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.5600000",
+    "longitude": "79.4900000"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Central Region Trichirapalli",
+    "divisionname": "Nagapattinam Division",
+    "officename": "Karaikoilpathu B.O",
+    "pincode": "609605",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARAIKAL",
+    "statename": "PUDUCHERRY",
+    "latitude": "10.9400000",
+    "longitude": "79.8400000"
+  }
+]

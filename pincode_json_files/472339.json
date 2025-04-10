@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Bachhora B.O",
+    "pincode": "472339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.7500080",
+    "longitude": "79.0666920"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Dhamanakhas B.O",
+    "pincode": "472339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.7500100",
+    "longitude": "79.0666900"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Digoda S.O",
+    "pincode": "472339",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.7408000",
+    "longitude": "78.8311000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Ramnagar B.O",
+    "pincode": "472339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.9719500",
+    "longitude": "78.8420000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Barmadang B.O",
+    "pincode": "472339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.9719500",
+    "longitude": "78.8420000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhatarpur Division",
+    "officename": "Bijron B.O",
+    "pincode": "472339",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TIKAMGARH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.9719500",
+    "longitude": "78.8420000"
+  }
+]

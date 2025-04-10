@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Korea Colly SO",
+    "pincode": "497559",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOREA",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.215029999999999",
+    "longitude": "82.398270999999994"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Gelhapani BO",
+    "pincode": "497559",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOREA",
+    "statename": "CHHATTISGARH",
+    "latitude": "23.14155688",
+    "longitude": "82.2338886"
+  }
+]

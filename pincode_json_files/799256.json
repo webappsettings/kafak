@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Khedacherra B.O",
+    "pincode": "799256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Tripura Damcherra S.O",
+    "pincode": "799256",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "24.1417",
+    "longitude": "92.1732"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Kacharicherra B.O",
+    "pincode": "799256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Narendranagar B.O",
+    "pincode": "799256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Piplacherra B.O",
+    "pincode": "799256",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

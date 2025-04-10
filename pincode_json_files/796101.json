@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Saiphai B.O",
+    "pincode": "796101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.406687900000001",
+    "longitude": "92.795011900000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Phainuam B.O",
+    "pincode": "796101",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.468234299999999",
+    "longitude": "92.781901300000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Vairengte S.O",
+    "pincode": "796101",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "24.2253210",
+    "longitude": "92.6767270"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Bhaurgarah BO",
+    "pincode": "843318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.847526299999998",
+    "longitude": "85.580495999999997"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Bokhra BO",
+    "pincode": "843318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.355769299999999",
+    "longitude": "85.667613399999993"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Saterh BO",
+    "pincode": "843318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.357036999999998",
+    "longitude": "85.6665986"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Goraul Sharif BO",
+    "pincode": "843318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "25.9317949",
+    "longitude": "85.321135999999996"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Mahisautha BO",
+    "pincode": "843318",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.594249999999999",
+    "longitude": "85.437550000000002"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "Muzaffarpur Region",
+    "divisionname": "Sitamarhi Division",
+    "officename": "Budhnagra Deorhi SO",
+    "pincode": "843318",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SITAMARHI",
+    "statename": "BIHAR",
+    "latitude": "26.5637222",
+    "longitude": "85.5243333"
+  }
+]

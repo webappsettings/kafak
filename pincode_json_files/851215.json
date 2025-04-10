@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Kabela BO",
+    "pincode": "851215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.511151999999999",
+    "longitude": "86.476907999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Dumaria Khurd BO",
+    "pincode": "851215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.511151999999999",
+    "longitude": "86.476907999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Jorawarpur BO",
+    "pincode": "851215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.511151999999999",
+    "longitude": "86.476907999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Bishanpur BO",
+    "pincode": "851215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.511151999999999",
+    "longitude": "86.476907999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Madhopur BO",
+    "pincode": "851215",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.511151999999999",
+    "longitude": "86.476907999999995"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Begusarai Division",
+    "officename": "Naya Gaon SO Begusarai",
+    "pincode": "851215",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KHAGARIA",
+    "statename": "BIHAR",
+    "latitude": "25.4166750",
+    "longitude": "86.1293790"
+  }
+]

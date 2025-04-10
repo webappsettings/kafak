@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Bara Gaon B.O",
+    "pincode": "132023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.6874444",
+    "longitude": "76.9906666"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Tikri B.O",
+    "pincode": "132023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.6874444",
+    "longitude": "76.9906666"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Subri B.O",
+    "pincode": "132023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.6874444",
+    "longitude": "76.9906666"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "S.S. Kunjpura S.O",
+    "pincode": "132023",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.7265278",
+    "longitude": "77.0590556"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Karnal Division",
+    "officename": "Gheer B.O",
+    "pincode": "132023",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KARNAL",
+    "statename": "HARYANA",
+    "latitude": "29.6874444",
+    "longitude": "76.9906666"
+  }
+]

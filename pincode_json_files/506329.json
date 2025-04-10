@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "VASANTAPUR CSP",
+    "pincode": "506329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "KOTHAGUDEM",
+    "pincode": "506329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Elgur Station B.O",
+    "pincode": "506329",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.8607851",
+    "longitude": "79.7354357"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "KRISHNANAGAR",
+    "pincode": "506329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "THIMMAPURAM",
+    "pincode": "506329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "Sangam S.O",
+    "pincode": "506329",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "17.885984",
+    "longitude": "79.710267"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Warangal Division",
+    "officename": "GANDHINAGAR",
+    "pincode": "506329",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARANGAL",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

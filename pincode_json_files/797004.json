@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Thizama B.O",
+    "pincode": "797004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.745589500000001",
+    "longitude": "94.108727500000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Meriema B.O",
+    "pincode": "797004",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.724565500000001",
+    "longitude": "94.095644500000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "New Sectt Complex S.O",
+    "pincode": "797004",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KOHIMA",
+    "statename": "NAGALAND",
+    "latitude": "25.6707778",
+    "longitude": "94.1075833"
+  }
+]

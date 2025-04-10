@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Sihphir B.O",
+    "pincode": "796015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.820790899999999",
+    "longitude": "92.735466900000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Lungdai B.O",
+    "pincode": "796015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "23.881933100000001",
+    "longitude": "92.741292700000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Muthi B.O",
+    "pincode": "796015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.777136599999999",
+    "longitude": "92.762803899999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Selesih B.O",
+    "pincode": "796015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.809728700000001",
+    "longitude": "92.733074299999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Durtlang SO",
+    "pincode": "796015",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AIZAWL",
+    "statename": "MIZORAM",
+    "latitude": "23.841344",
+    "longitude": "92.673541"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Mizoram Division",
+    "officename": "Zanlawn B.O",
+    "pincode": "796015",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KOLASIB",
+    "statename": "MIZORAM",
+    "latitude": "23.981301999999999",
+    "longitude": "92.717234399999995"
+  }
+]

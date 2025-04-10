@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Ding SO",
+    "pincode": "125058",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "29.4503056",
+    "longitude": "75.1193333"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Mochiwali BO",
+    "pincode": "125058",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SIRSA",
+    "statename": "HARYANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

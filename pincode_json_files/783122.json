@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Nishangram B.O",
+    "pincode": "783122",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Goalpara Division",
+    "officename": "Damra S.O",
+    "pincode": "783122",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GOALPARA",
+    "statename": "ASSAM",
+    "latitude": "25.5555000",
+    "longitude": "90.4622000"
+  }
+]

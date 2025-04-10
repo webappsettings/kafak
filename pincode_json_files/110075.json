@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Amberhai B.O",
+    "pincode": "110075",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5782310",
+    "longitude": "77.0496100"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "District Court Complex Dwarka S.O",
+    "pincode": "110075",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.5806910",
+    "longitude": "77.0592030"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "NDC DWARKA SEC-6",
+    "pincode": "110075",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6068611",
+    "longitude": "77.0415278"
+  },
+  {
+    "circlename": "Delhi Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "New Delhi West Division",
+    "officename": "Dwarka Sec-6 S.O",
+    "pincode": "110075",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SOUTH WEST",
+    "statename": "DELHI",
+    "latitude": "28.6068611",
+    "longitude": "77.0415278"
+  }
+]

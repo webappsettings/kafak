@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Gengutia B.O",
+    "pincode": "759146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "21.0079766",
+    "longitude": "85.2618533"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Kulei B.O",
+    "pincode": "759146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.9949050",
+    "longitude": "85.2648883"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Akhuapal B.O",
+    "pincode": "759146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "21.0359383",
+    "longitude": "85.2789783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Manikmara B.O",
+    "pincode": "759146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "21.0425200",
+    "longitude": "85.1996416"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Saranga B.O",
+    "pincode": "759146",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.9175683",
+    "longitude": "85.2618783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Dhenkanal Division",
+    "officename": "Igit Sarang S.O",
+    "pincode": "759146",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHENKANAL",
+    "statename": "ODISHA",
+    "latitude": "20.6540833",
+    "longitude": "85.5993333"
+  }
+]

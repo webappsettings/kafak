@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Taphou B.O",
+    "pincode": "795129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.258769999999998",
+    "longitude": "94.010930000000002"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Toribari B.O",
+    "pincode": "795129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.141641",
+    "longitude": "93.95523"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kangpokpi Mission B.O",
+    "pincode": "795129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.159880000000001",
+    "longitude": "93.963139999999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kangpokpi S.O",
+    "pincode": "795129",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.3258550",
+    "longitude": "94.1246500"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Hengbung B.O",
+    "pincode": "795129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.223742999999999",
+    "longitude": "93.999803999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Maohing B.O",
+    "pincode": "795129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.201260000000001",
+    "longitude": "93.895129999999995"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Thonglang B.O",
+    "pincode": "795129",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KANGPOKPI",
+    "statename": "MANIPUR",
+    "latitude": "25.250053000000001",
+    "longitude": "93.916662000000002"
+  }
+]

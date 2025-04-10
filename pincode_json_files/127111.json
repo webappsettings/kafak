@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Dang BO",
+    "pincode": "127111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Devsar BO",
+    "pincode": "127111",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bajina BO",
+    "pincode": "127111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Kohar BO",
+    "pincode": "127111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Biran BO",
+    "pincode": "127111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Dinod BO",
+    "pincode": "127111",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bhiwani Division",
+    "officename": "Bapora SO",
+    "pincode": "127111",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHIWANI",
+    "statename": "HARYANA",
+    "latitude": "28.8199000",
+    "longitude": "76.0653000"
+  }
+]

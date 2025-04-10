@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Kaithwara BO",
+    "pincode": "228120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2647760",
+    "longitude": "82.0727060"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Athaisi BO",
+    "pincode": "228120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2495830",
+    "longitude": "82.2406730"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Damodarpur BO",
+    "pincode": "228120",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2309500",
+    "longitude": "82.2216540"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Prayagraj Regional Office",
+    "divisionname": "Sultanpur Division",
+    "officename": "Baraunsa SO",
+    "pincode": "228120",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SULTANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2397222",
+    "longitude": "82.2733889"
+  }
+]

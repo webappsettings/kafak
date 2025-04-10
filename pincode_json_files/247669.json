@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Khajuri Akbarpur BO",
+    "pincode": "247669",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.9542129",
+    "longitude": "77.6493171"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Gagalheri SO",
+    "pincode": "247669",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.9743767",
+    "longitude": "77.6614489"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Chauradev BO",
+    "pincode": "247669",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.9433878",
+    "longitude": "77.7230317"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Saharanpur Division",
+    "officename": "Harora BO",
+    "pincode": "247669",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SAHARANPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "29.9954658",
+    "longitude": "77.6793813"
+  }
+]

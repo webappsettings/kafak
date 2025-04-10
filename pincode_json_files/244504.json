@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Fatehpur Vishnoi BO",
+    "pincode": "244504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.6100000",
+    "longitude": "79.1600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Kafiabad BO",
+    "pincode": "244504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Ladawali BO",
+    "pincode": "244504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Kuchawali BO",
+    "pincode": "244504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Modha BO",
+    "pincode": "244504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Sarai Khajoor BO",
+    "pincode": "244504",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8300000",
+    "longitude": "78.7700000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Aghwanpur SO",
+    "pincode": "244504",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MORADABAD",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.9305278",
+    "longitude": "78.7228056"
+  }
+]

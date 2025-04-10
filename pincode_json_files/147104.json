@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Dakaunda BO",
+    "pincode": "147104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4900000",
+    "longitude": "76.3100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Roorki BO",
+    "pincode": "147104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.3300000",
+    "longitude": "76.5800000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Tohra BO",
+    "pincode": "147104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.5100000",
+    "longitude": "76.3100000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Tarkheri BO",
+    "pincode": "147104",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PATIALA",
+    "statename": "PUNJAB",
+    "latitude": "30.5300000",
+    "longitude": "76.3000000"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Patiala Division",
+    "officename": "Chinarthal Kalan SO",
+    "pincode": "147104",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHGARH SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.515984",
+    "longitude": "76.344966"
+  }
+]

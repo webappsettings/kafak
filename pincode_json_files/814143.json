@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "AK Bad BO",
+    "pincode": "814143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.46105",
+    "longitude": "87.315250000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Baijukura BO",
+    "pincode": "814143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.46105",
+    "longitude": "87.315250000000006"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Chanddih BO",
+    "pincode": "814143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.483308000000001",
+    "longitude": "86.699991999999995"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Tapoban BO",
+    "pincode": "814143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.493161400000002",
+    "longitude": "86.784357"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "B.Deoghar Division",
+    "officename": "Kunda SO Deoghar",
+    "pincode": "814143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEOGHAR",
+    "statename": "JHARKHAND",
+    "latitude": "24.4904170",
+    "longitude": "86.6906010"
+  }
+]

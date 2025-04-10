@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Jeeran S.O",
+    "pincode": "458336",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.0700000",
+    "longitude": "75.0600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Harkia Khal B.O",
+    "pincode": "458336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.2817400",
+    "longitude": "74.8657100"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Mandsaur Division",
+    "officename": "Harwar B.O",
+    "pincode": "458336",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NEEMUCH",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.4652910",
+    "longitude": "74.8711220"
+  }
+]

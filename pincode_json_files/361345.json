@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Mojap BO",
+    "pincode": "361345",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3600000",
+    "longitude": "68.9700000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Padli BO",
+    "pincode": "361345",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3800000",
+    "longitude": "69.0400000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Arambhada BO",
+    "pincode": "361345",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.4300000",
+    "longitude": "69.0400000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Bhimrana BO",
+    "pincode": "361345",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.3900000",
+    "longitude": "69.0000000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Rajkot Region",
+    "divisionname": "Jamnagar Division",
+    "officename": "Mithapur SO Jamnagar",
+    "pincode": "361345",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DEVBHUMI DWARKA",
+    "statename": "GUJARAT",
+    "latitude": "22.4855833",
+    "longitude": "70.1354444"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Awalpur BO",
+    "pincode": "244251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381000",
+    "longitude": "78.3734000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Khera Apraula BO",
+    "pincode": "244251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381000",
+    "longitude": "78.3734000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Jajroo BO",
+    "pincode": "244251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381000",
+    "longitude": "78.3734000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Makhdoompur BO",
+    "pincode": "244251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381000",
+    "longitude": "78.3734000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Gajasthal BO",
+    "pincode": "244251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381000",
+    "longitude": "78.3734000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Kaural BO",
+    "pincode": "244251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381000",
+    "longitude": "78.3734000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Nawgawan SO",
+    "pincode": "244251",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  }
+]

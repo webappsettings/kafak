@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Surulipatti B.O",
+    "pincode": "625516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7076240",
+    "longitude": "77.3018270"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Gandhinagar S.O",
+    "pincode": "625516",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7347",
+    "longitude": "77.2844"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Cumbum S.O (Theni)",
+    "pincode": "625516",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.7410080",
+    "longitude": "77.2860910"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Karunagamuthanpatti B.O",
+    "pincode": "625516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0136960",
+    "longitude": "77.4811050"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Kullappagoundanpatti B.O",
+    "pincode": "625516",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "9.6609310",
+    "longitude": "77.2730900"
+  }
+]

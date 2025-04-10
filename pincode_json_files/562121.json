@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Guttalahunase B.O",
+    "pincode": "562121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.5800000",
+    "longitude": "77.4800000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Kallanakupppe B.O",
+    "pincode": "562121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6200000",
+    "longitude": "77.5700000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Malligemetlu B.O",
+    "pincode": "562121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6100000",
+    "longitude": "77.5000000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Terubeedi B.O",
+    "pincode": "562121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.5500000",
+    "longitude": "77.5600000"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Maralavadi S.O",
+    "pincode": "562121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6082778",
+    "longitude": "77.5274167"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "Bengaluru HQ Region",
+    "divisionname": "Channapatna Division",
+    "officename": "Banavasi B.O",
+    "pincode": "562121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RAMANAGARA",
+    "statename": "KARNATAKA",
+    "latitude": "12.6400000",
+    "longitude": "77.5500000"
+  }
+]

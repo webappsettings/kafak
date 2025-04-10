@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Vaghbod BO",
+    "pincode": "389370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.3624083",
+    "longitude": "73.5954500"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kanteli BO",
+    "pincode": "389370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.9277000",
+    "longitude": "73.5713000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Shivrajpur SO",
+    "pincode": "389370",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.4236667",
+    "longitude": "73.6085000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Bapotia BO",
+    "pincode": "389370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.9277000",
+    "longitude": "73.5713000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Moti Umaravan BO",
+    "pincode": "389370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.4931489",
+    "longitude": "73.6520800"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Palikhanda BO",
+    "pincode": "389370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "23.3918266",
+    "longitude": "73.6467600"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Talavdi BO",
+    "pincode": "389370",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "23.3644110",
+    "longitude": "73.6309000"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Belkoni (M) B.O",
+    "pincode": "585443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Mudhol (B) S.O",
+    "pincode": "585443",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "17.9116389",
+    "longitude": "77.5193611"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Chandori B.O",
+    "pincode": "585443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Korekal B.O",
+    "pincode": "585443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Chimegaon B.O",
+    "pincode": "585443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Karkyal B.O",
+    "pincode": "585443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Bidar Division",
+    "officename": "Torna B.O",
+    "pincode": "585443",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BIDAR",
+    "statename": "KARNATAKA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

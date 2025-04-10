@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Maujmabad BO",
+    "pincode": "212651",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9256920",
+    "longitude": "80.8144140"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Chitishapur BO",
+    "pincode": "212651",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9631150",
+    "longitude": "80.9732810"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Ahewa BO",
+    "pincode": "212651",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9256880",
+    "longitude": "80.8144180"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Asani BO",
+    "pincode": "212651",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5193400",
+    "longitude": "81.2693400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Mawai BO",
+    "pincode": "212651",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9256880",
+    "longitude": "80.8144180"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Farshi BO",
+    "pincode": "212651",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.5193400",
+    "longitude": "81.2693400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Fatehpur Division",
+    "officename": "Husainganj SO Fatehpur",
+    "pincode": "212651",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FATEHPUR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.9173056",
+    "longitude": "80.7980833"
+  }
+]

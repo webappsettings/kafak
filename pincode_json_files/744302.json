@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Gandhinagar B.O",
+    "pincode": "744302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Pilomilo Island B.O",
+    "pincode": "744302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Shabnamnagar B.O",
+    "pincode": "744302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Campbelbay S.O",
+    "pincode": "744302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "7.006427",
+    "longitude": "93.93311"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Kondul Island B.O",
+    "pincode": "744302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "A - N Islands Division",
+    "officename": "Little Nicobar B.O",
+    "pincode": "744302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NICOBARS",
+    "statename": "ANDAMAN AND NICOBAR ISLANDS",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

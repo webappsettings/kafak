@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Talari B.O",
+    "pincode": "535148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "19.3352570",
+    "longitude": "78.0708990"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Krishnapuram B.O",
+    "pincode": "535148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1116400",
+    "longitude": "83.1759910"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Vemulapalli B.O",
+    "pincode": "535148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.9486960",
+    "longitude": "81.0982290"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Madhupada B.O",
+    "pincode": "535148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.303090999999998",
+    "longitude": "83.338970000000003"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Kottam B.O",
+    "pincode": "535148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.4454060",
+    "longitude": "82.4400680"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Dharmavaram S.O",
+    "pincode": "535148",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1181111",
+    "longitude": "83.1908056"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Gopalapalli B.O",
+    "pincode": "535148",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1306040",
+    "longitude": "83.2057560"
+  }
+]

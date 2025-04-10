@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Koratla Bazar S.O",
+    "pincode": "505326",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.824403",
+    "longitude": "78.713109"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Karimnagar Division",
+    "officename": "Koratla S.O",
+    "pincode": "505326",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Jagitial",
+    "statename": "TELANGANA",
+    "latitude": "18.82189",
+    "longitude": "78.707798"
+  }
+]

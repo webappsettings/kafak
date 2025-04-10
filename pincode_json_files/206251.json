@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Mahu BO",
+    "pincode": "206251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8717794",
+    "longitude": "79.6476173"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Bela SO Auraiya",
+    "pincode": "206251",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8286819",
+    "longitude": "79.6740303"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Gailly BO",
+    "pincode": "206251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8484253",
+    "longitude": "79.6414375"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etawah Division",
+    "officename": "Hardu BO",
+    "pincode": "206251",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AURAIYA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.8104360",
+    "longitude": "79.6453857"
+  }
+]

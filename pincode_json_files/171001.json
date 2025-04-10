@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Combermere SO",
+    "pincode": "171001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1019444",
+    "longitude": "77.1775556"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "CPRI SO",
+    "pincode": "171001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.0966667",
+    "longitude": "77.1714167"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "IGMC SO",
+    "pincode": "171001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1055833",
+    "longitude": "77.1828611"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Busstand SO",
+    "pincode": "171001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.1038056",
+    "longitude": "77.1699722"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Shimla GPO",
+    "pincode": "171001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.105490",
+    "longitude": "77.170373"
+  },
+  {
+    "circlename": "Himachal Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Shimla Division",
+    "officename": "Shimla High Court SO",
+    "pincode": "171001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SHIMLA",
+    "statename": "HIMACHAL PRADESH",
+    "latitude": "31.0984722",
+    "longitude": "77.1741667"
+  }
+]

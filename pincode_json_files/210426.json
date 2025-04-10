@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Bagwaha BO",
+    "pincode": "210426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHOBA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2274710",
+    "longitude": "79.6698070"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Kulpahar SO",
+    "pincode": "210426",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MAHOBA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3192778",
+    "longitude": "79.6444444"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Satari BO",
+    "pincode": "210426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHOBA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3329270",
+    "longitude": "79.5663350"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Ladpur BO",
+    "pincode": "210426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHOBA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3152750",
+    "longitude": "79.7059990"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Mudhari BO",
+    "pincode": "210426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHOBA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2695740",
+    "longitude": "79.6215460"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Kanpur Region",
+    "divisionname": "Banda Division",
+    "officename": "Sugira BO",
+    "pincode": "210426",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MAHOBA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.3383100",
+    "longitude": "79.6069270"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Jamkani BO",
+    "pincode": "497114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.681001999999999",
+    "longitude": "83.392171000000005"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Pent BO",
+    "pincode": "497114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.742059999999999",
+    "longitude": "83.411569999999998"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Baneya BO",
+    "pincode": "497114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.716242999999999",
+    "longitude": "83.513833000000005"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Guturma BO",
+    "pincode": "497114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.698885000000001",
+    "longitude": "83.469740999999999"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Ulakia BO",
+    "pincode": "497114",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.691617000000001",
+    "longitude": "83.488039000000001"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "SURGUJA DIVISION",
+    "officename": "Pratapgarh SO",
+    "pincode": "497114",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SURGUJA",
+    "statename": "CHHATTISGARH",
+    "latitude": "22.733253999999999",
+    "longitude": "83.474292000000005"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Nirar B.O",
+    "pincode": "476228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2085216",
+    "longitude": "77.7624750"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Pahadgarh S.O",
+    "pincode": "476228",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.5050440",
+    "longitude": "77.9753860"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Kanhar B.O",
+    "pincode": "476228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.0461180",
+    "longitude": "77.6475570"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Tilonjari B.O",
+    "pincode": "476228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2391816",
+    "longitude": "77.6361850"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Mamchon B.O",
+    "pincode": "476228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2037966",
+    "longitude": "77.5573900"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Lahrra B.O",
+    "pincode": "476228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2353583",
+    "longitude": "77.6192349"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Morena Division",
+    "officename": "Kot Sirthara B.O",
+    "pincode": "476228",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MORENA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "26.2392616",
+    "longitude": "77.6891833"
+  }
+]

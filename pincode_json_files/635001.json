@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Krishnagiri H.O",
+    "pincode": "635001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5296",
+    "longitude": "78.2064"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Kattinayanapalli S.O",
+    "pincode": "635001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5377222",
+    "longitude": "78.2498611"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Western Region Coimbatore",
+    "divisionname": "Krishnagiri Division",
+    "officename": "Krishnagiri Courts S.O",
+    "pincode": "635001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KRISHNAGIRI",
+    "statename": "TAMIL NADU",
+    "latitude": "12.5246944",
+    "longitude": "78.1978056"
+  }
+]

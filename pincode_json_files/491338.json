@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Hatranka BO",
+    "pincode": "491338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEMETARA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.7358480",
+    "longitude": "81.3701880"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Khamaria SO Durg",
+    "pincode": "491338",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BEMETARA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.228114999999999",
+    "longitude": "81.374858000000003"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Tipani BO",
+    "pincode": "491338",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BEMETARA",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.8062270",
+    "longitude": "81.3591910"
+  }
+]

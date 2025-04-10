@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Daltonganj Kutchary SO",
+    "pincode": "822101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.0409167",
+    "longitude": "84.069361099999995"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Belwatikar Nd SO",
+    "pincode": "822101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.051490000000001",
+    "longitude": "84.019119000000003"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Daltonganj HO",
+    "pincode": "822101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.03749",
+    "longitude": "84.06387"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Palamau Division",
+    "officename": "Hamidganj SO",
+    "pincode": "822101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "PALAMU",
+    "statename": "JHARKHAND",
+    "latitude": "24.033525000000001",
+    "longitude": "84.050222000000005"
+  }
+]

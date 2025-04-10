@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Maleda B.O",
+    "pincode": "304507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "27.2346740",
+    "longitude": "75.8156260"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Thanwala B.O",
+    "pincode": "304507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5571620",
+    "longitude": "74.4649510"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Titaria B.O",
+    "pincode": "304507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9561300",
+    "longitude": "75.2223810"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Beejwad B.O",
+    "pincode": "304507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "27.4027040",
+    "longitude": "76.5878330"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Hisampur B.O",
+    "pincode": "304507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "25.9925460",
+    "longitude": "75.3441330"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Dabar Kalan B.O",
+    "pincode": "304507",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8692240",
+    "longitude": "75.3528780"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Ajmer Region",
+    "divisionname": "Tonk Division",
+    "officename": "Nasirda S.O",
+    "pincode": "304507",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TONK",
+    "statename": "RAJASTHAN",
+    "latitude": "26.3103056",
+    "longitude": "75.4914444"
+  }
+]

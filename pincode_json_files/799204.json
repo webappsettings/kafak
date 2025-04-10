@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Nalicherra B.O",
+    "pincode": "799204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Kulaibazar S.O",
+    "pincode": "799204",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "23.9060300",
+    "longitude": "91.9907970"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Balarambazar B.O",
+    "pincode": "799204",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Dhalai",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

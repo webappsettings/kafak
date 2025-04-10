@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Kothapeta S.O (Vizianagaram)",
+    "pincode": "535002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1250250",
+    "longitude": "83.4163020"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Vizianagaram H.O",
+    "pincode": "535002",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.111801",
+    "longitude": "83.408944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Dasannapeta S.O",
+    "pincode": "535002",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1017222",
+    "longitude": "83.4313056"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Vizianagaram Division",
+    "officename": "Khadarnagar B.O",
+    "pincode": "535002",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "VIZIANAGARAM",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.1066580",
+    "longitude": "83.3955510"
+  }
+]

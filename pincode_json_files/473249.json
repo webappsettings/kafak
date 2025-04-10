@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Satanpur B.O",
+    "pincode": "473249",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.52",
+    "longitude": "77.370000000000005"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Barkheda Gird B.O",
+    "pincode": "473249",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.530000000000001",
+    "longitude": "77.390000000000001"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Gehunkheda B.O",
+    "pincode": "473249",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.559999999999999",
+    "longitude": "77.400000000000006"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Muhalpur B.O",
+    "pincode": "473249",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.59",
+    "longitude": "77.319999999999993"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Guna Division",
+    "officename": "Bajranggarh S.O",
+    "pincode": "473249",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GUNA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "24.6652600",
+    "longitude": "77.3606860"
+  }
+]

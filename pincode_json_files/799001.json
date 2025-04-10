@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Agartala Bazar S.O",
+    "pincode": "799001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Nirmal",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Agartala H.O",
+    "pincode": "799001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "Nirmal",
+    "statename": "TELANGANA",
+    "latitude": "23.82975",
+    "longitude": "91.27883333"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Jaganath Bari Road S.O",
+    "pincode": "799001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Nirmal",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Agartala Division",
+    "officename": "Agartala Court S.O",
+    "pincode": "799001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "Nirmal",
+    "statename": "TELANGANA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

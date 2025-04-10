@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "B M S Nivas B.O",
+    "pincode": "752024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "19.9414300",
+    "longitude": "85.4052550"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Champagarh B.O",
+    "pincode": "752024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "19.9332466",
+    "longitude": "85.4006466"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Kandhanayagarh B.O",
+    "pincode": "752024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "19.9431066",
+    "longitude": "85.4132716"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Kerandatangi B.O",
+    "pincode": "752024",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "19.9616383",
+    "longitude": "85.3979750"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Bhubaneswar HQ Region",
+    "divisionname": "Nayagarh Division",
+    "officename": "Chandapur S.O (Nayagarh)",
+    "pincode": "752024",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NAYAGARH",
+    "statename": "ODISHA",
+    "latitude": "20.1271944",
+    "longitude": "85.1091111"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Bangiyal BO",
+    "pincode": "249132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5115716",
+    "longitude": "78.3600448"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Sarot BO",
+    "pincode": "249132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5456394",
+    "longitude": "78.3365726"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Lawani BO",
+    "pincode": "249132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5115716",
+    "longitude": "78.3600448"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Chham SO",
+    "pincode": "249132",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.7391389",
+    "longitude": "78.3872222"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Siyansu BO",
+    "pincode": "249132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4880695",
+    "longitude": "78.3828006"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Kaushal BO",
+    "pincode": "249132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5115716",
+    "longitude": "78.3600448"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Maindkhal BO",
+    "pincode": "249132",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.5118516",
+    "longitude": "78.3695448"
+  }
+]

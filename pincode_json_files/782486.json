@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Phongjangre BO",
+    "pincode": "782486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.82602",
+    "longitude": "92.298389999999998"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Khanduli B.O",
+    "pincode": "782486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.6792000",
+    "longitude": "93.3800000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Baida BO",
+    "pincode": "782486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.74277",
+    "longitude": "92.583160000000007"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Hamren S.O",
+    "pincode": "782486",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.6793000",
+    "longitude": "93.3800000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "Dibrugarh Region",
+    "divisionname": "Nagaon Division",
+    "officename": "Umcherra B.O",
+    "pincode": "782486",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST KARBI ANGLONG",
+    "statename": "ASSAM",
+    "latitude": "25.6792000",
+    "longitude": "93.3800000"
+  }
+]

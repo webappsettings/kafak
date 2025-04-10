@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Longkhum B.O",
+    "pincode": "798607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.261576600000001",
+    "longitude": "94.411881600000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Arree Old B.O",
+    "pincode": "798607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WOKHA",
+    "statename": "NAGALAND",
+    "latitude": "26.198187099999998",
+    "longitude": "94.330554899999996"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Mangmentong B.O",
+    "pincode": "798607",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.291241599999999",
+    "longitude": "94.398606599999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Nagaland Division",
+    "officename": "Alichen S.O",
+    "pincode": "798607",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MOKOKCHUNG",
+    "statename": "NAGALAND",
+    "latitude": "26.273415",
+    "longitude": "94.456705"
+  }
+]

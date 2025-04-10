@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Sango BO",
+    "pincode": "262561",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4030000",
+    "longitude": "80.0901000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Simalkhet BO",
+    "pincode": "262561",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4520000",
+    "longitude": "80.1243000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Pati SO",
+    "pincode": "262561",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.5833611",
+    "longitude": "80.2094722"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Mulakote BO",
+    "pincode": "262561",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4100000",
+    "longitude": "79.8660000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Bhumwari BO",
+    "pincode": "262561",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3700000",
+    "longitude": "79.9100000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Chaurakote BO",
+    "pincode": "262561",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.4030000",
+    "longitude": "80.0911000"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Pithoragarh Division",
+    "officename": "Jhudeli BO",
+    "pincode": "262561",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHAMPAWAT",
+    "statename": "UTTARAKHAND",
+    "latitude": "29.3900000",
+    "longitude": "79.9300000"
+  }
+]

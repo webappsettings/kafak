@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Bachamari BO",
+    "pincode": "732142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2886000",
+    "longitude": "88.3836700"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Nageswarpur BO",
+    "pincode": "732142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2886000",
+    "longitude": "88.3836700"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Mangalbari SO",
+    "pincode": "732142",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0177777",
+    "longitude": "88.1480555"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Sahapur BO",
+    "pincode": "732142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.0111730",
+    "longitude": "88.1411330"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Malda Division",
+    "officename": "Madhaipur BO",
+    "pincode": "732142",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALDAH",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2886000",
+    "longitude": "88.3836700"
+  }
+]

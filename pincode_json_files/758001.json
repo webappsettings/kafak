@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhar Science College S.O",
+    "pincode": "758001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6159520",
+    "longitude": "85.5714380"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhargarh H.O",
+    "pincode": "758001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6346667",
+    "longitude": "85.6100000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhar Mining School S.O",
+    "pincode": "758001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6373583",
+    "longitude": "85.6238233"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhar New Markt S.O",
+    "pincode": "758001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6384466",
+    "longitude": "85.6068783"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Madhapur S.O",
+    "pincode": "758001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6414399",
+    "longitude": "85.6023300"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Keonjhar Division",
+    "officename": "Keonjhar Court S.O",
+    "pincode": "758001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KENDUJHAR",
+    "statename": "ODISHA",
+    "latitude": "21.6346075",
+    "longitude": "85.6102141"
+  }
+]

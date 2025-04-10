@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Gudivada H.O",
+    "pincode": "521301",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4338333",
+    "longitude": "80.9916667"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Rajendranagar Colony S.O",
+    "pincode": "521301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.4013611",
+    "longitude": "81.0202500"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Vijayawada Region",
+    "divisionname": "Gudivada Division",
+    "officename": "Satyanarayanapuram S.O (Gudivada)",
+    "pincode": "521301",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "KRISHNA",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "16.429103",
+    "longitude": "80.996047"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Pakhawaiya BO",
+    "pincode": "221306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2200000",
+    "longitude": "82.5100000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Koilara BO",
+    "pincode": "221306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2600000",
+    "longitude": "82.4900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Sahasepur BO",
+    "pincode": "221306",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2400000",
+    "longitude": "82.5400000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Varanasi Region",
+    "divisionname": "Varanasi West Division",
+    "officename": "Khamaria SO Varanasi",
+    "pincode": "221306",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHADOHI",
+    "statename": "UTTAR PRADESH",
+    "latitude": "25.2621820",
+    "longitude": "82.5176060"
+  }
+]

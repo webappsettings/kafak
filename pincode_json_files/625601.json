@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Periyakulam Bazaar S.O",
+    "pincode": "625601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.0752",
+    "longitude": "77.3302"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Periyakulam H.O",
+    "pincode": "625601",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.11",
+    "longitude": "77.5395278"
+  },
+  {
+    "circlename": "Tamilnadu Circle",
+    "regionname": "Southern Region Madurai",
+    "divisionname": "Theni Division",
+    "officename": "Vadagarai S.O",
+    "pincode": "625601",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "THENI",
+    "statename": "TAMIL NADU",
+    "latitude": "10.06252",
+    "longitude": "77.3102"
+  }
+]

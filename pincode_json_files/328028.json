@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Basainadang BO",
+    "pincode": "328028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHOLPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5475330",
+    "longitude": "77.7600290"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Varipura BO",
+    "pincode": "328028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHOLPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5991190",
+    "longitude": "77.7785680"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Nagar BO",
+    "pincode": "328028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHOLPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5482240",
+    "longitude": "77.8083520"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Visnoda BO",
+    "pincode": "328028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHOLPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6630430",
+    "longitude": "77.7956060"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Kotra BO",
+    "pincode": "328028",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHOLPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.6366540",
+    "longitude": "77.7993820"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Dholpur Division",
+    "officename": "Keshar Bagh SO",
+    "pincode": "328028",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHOLPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "26.5372500",
+    "longitude": "77.9838611"
+  }
+]

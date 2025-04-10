@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Raipura BO",
+    "pincode": "492013",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2378400",
+    "longitude": "81.7054200"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Rajkumar College BO",
+    "pincode": "492013",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2378400",
+    "longitude": "81.7054200"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Mathpurena BO",
+    "pincode": "492013",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.2378400",
+    "longitude": "81.7054200"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Raipur Division",
+    "officename": "Sunder Nagar SO",
+    "pincode": "492013",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RAIPUR",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1403500",
+    "longitude": "81.6338900"
+  }
+]

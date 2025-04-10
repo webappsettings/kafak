@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Jior BO",
+    "pincode": "393150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NARMADA",
+    "statename": "GUJARAT",
+    "latitude": "21.9559220",
+    "longitude": "73.5098110"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Sehrav BO",
+    "pincode": "393150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NARMADA",
+    "statename": "GUJARAT",
+    "latitude": "21.9515440",
+    "longitude": "73.5669740"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Lachharas SO",
+    "pincode": "393150",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "NARMADA",
+    "statename": "GUJARAT",
+    "latitude": "21.9052540",
+    "longitude": "73.5445860"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Mangrol BO",
+    "pincode": "393150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NARMADA",
+    "statename": "GUJARAT",
+    "latitude": "21.8952000",
+    "longitude": "73.5749890"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Bharuch Division",
+    "officename": "Tankari BO",
+    "pincode": "393150",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "NARMADA",
+    "statename": "GUJARAT",
+    "latitude": "21.9404580",
+    "longitude": "73.5391860"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Theelair B.O",
+    "pincode": "509351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Narayanpet",
+    "statename": "TELANGANA",
+    "latitude": "16.6158834",
+    "longitude": "77.7516911"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Madhwar B.O",
+    "pincode": "509351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Narayanpet",
+    "statename": "TELANGANA",
+    "latitude": "16.6259029",
+    "longitude": "77.7287688"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Kanmanur B.O",
+    "pincode": "509351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Narayanpet",
+    "statename": "TELANGANA",
+    "latitude": "16.5565117",
+    "longitude": "77.7000863"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Eligandla B.O",
+    "pincode": "509351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Narayanpet",
+    "statename": "TELANGANA",
+    "latitude": "16.5912808",
+    "longitude": "77.6729685"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Ibrahimpatnam B.O",
+    "pincode": "509351",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Narayanpet",
+    "statename": "TELANGANA",
+    "latitude": "16.5817549",
+    "longitude": "77.7484716"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Marrikal S.O",
+    "pincode": "509351",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Narayanpet",
+    "statename": "TELANGANA",
+    "latitude": "16.604187",
+    "longitude": "77.728488"
+  }
+]

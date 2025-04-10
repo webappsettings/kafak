@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Dharam Kheri BO",
+    "pincode": "125038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1898901",
+    "longitude": "76.2245833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Kagasar BO",
+    "pincode": "125038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1898901",
+    "longitude": "76.2245833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Khanda Kheri SO",
+    "pincode": "125038",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1880000",
+    "longitude": "76.2245833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Sulchani BO",
+    "pincode": "125038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1898901",
+    "longitude": "76.2245833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Ugalan BO",
+    "pincode": "125038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1898901",
+    "longitude": "76.2245833"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Hissar Division",
+    "officename": "Bhaklana BO",
+    "pincode": "125038",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HISAR",
+    "statename": "HARYANA",
+    "latitude": "29.1898901",
+    "longitude": "76.2245833"
+  }
+]

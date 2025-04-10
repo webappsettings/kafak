@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Dharkotudaikot BO",
+    "pincode": "249130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3801284",
+    "longitude": "78.4682364"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Jaulangi BO",
+    "pincode": "249130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4100571",
+    "longitude": "78.4155033"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "VKPuram SO",
+    "pincode": "249130",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.4046111",
+    "longitude": "78.3603333"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Kafal Pani BO",
+    "pincode": "249130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3800295",
+    "longitude": "78.4682264"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Nail BO",
+    "pincode": "249130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3800294",
+    "longitude": "78.4682263"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Pali BO",
+    "pincode": "249130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3800284",
+    "longitude": "78.4682262"
+  },
+  {
+    "circlename": "Uttarakhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Tehri Division",
+    "officename": "Jaakhchoura BO",
+    "pincode": "249130",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "TEHRI GARHWAL",
+    "statename": "UTTARAKHAND",
+    "latitude": "30.3800354",
+    "longitude": "78.4683680"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Naspur B.O",
+    "pincode": "504302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8459615",
+    "longitude": "79.4619897"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Coal Chemical Complex S.O",
+    "pincode": "504302",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.869914",
+    "longitude": "79.488807"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Adilabad Division",
+    "officename": "Singapur B.O",
+    "pincode": "504302",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MANCHERIAL",
+    "statename": "TELANGANA",
+    "latitude": "18.8519091",
+    "longitude": "79.5069436"
+  }
+]

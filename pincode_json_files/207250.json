@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Kharsulia BO",
+    "pincode": "207250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3800000",
+    "longitude": "79.2300000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Sarai Aghat SO",
+    "pincode": "207250",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.350733447165226",
+    "longitude": "79.26919348920164"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Alipur BO",
+    "pincode": "207250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3900000",
+    "longitude": "79.2900000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Etah Division",
+    "officename": "Kalua Teel Pur BO",
+    "pincode": "207250",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ETAH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.3400000",
+    "longitude": "79.2500000"
+  }
+]

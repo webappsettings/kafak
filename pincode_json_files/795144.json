@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Huime B.O",
+    "pincode": "795144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UKHRUL",
+    "statename": "MANIPUR",
+    "latitude": "25.252652000000001",
+    "longitude": "94.316643999999997"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Thiwa B.O",
+    "pincode": "795144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.294633999999999",
+    "longitude": "94.272503999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Kachai B.O",
+    "pincode": "795144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UKHRUL",
+    "statename": "MANIPUR",
+    "latitude": "25.237949",
+    "longitude": "94.279696000000001"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Somdal S.O",
+    "pincode": "795144",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "UKHRUL",
+    "statename": "MANIPUR",
+    "latitude": "25.0895160",
+    "longitude": "94.3633860"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Khongdei Simphung B.O",
+    "pincode": "795144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SENAPATI",
+    "statename": "MANIPUR",
+    "latitude": "25.312128999999999",
+    "longitude": "94.263119000000003"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Phadang B.O",
+    "pincode": "795144",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "UKHRUL",
+    "statename": "MANIPUR",
+    "latitude": "25.133246",
+    "longitude": "94.241283999999993"
+  }
+]

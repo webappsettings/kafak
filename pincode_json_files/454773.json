@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Dighthan B.O",
+    "pincode": "454773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6000080",
+    "longitude": "75.2999920"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Ekalduna B.O",
+    "pincode": "454773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6441990",
+    "longitude": "75.4665160"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Bad chapra B.O",
+    "pincode": "454773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.7056340",
+    "longitude": "75.5014640"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Kalsoda khurd B.O",
+    "pincode": "454773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6727690",
+    "longitude": "75.4606900"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Lebadchowki B.O",
+    "pincode": "454773",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "23.4115080",
+    "longitude": "75.0868960"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Indore Region",
+    "divisionname": "Indore Moffusil Division",
+    "officename": "Dehri Ghata Billod S.O",
+    "pincode": "454773",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHAR",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.6716000",
+    "longitude": "75.5132000"
+  }
+]

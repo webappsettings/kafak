@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Jairampur S.O (Changlang)",
+    "pincode": "792121",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.1376930",
+    "longitude": "95.7396590"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Manmao B.O",
+    "pincode": "792121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.3480764",
+    "longitude": "96.013022000000007"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Arunachal Pradesh Division",
+    "officename": "Vijoynagar B.O",
+    "pincode": "792121",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHANGLANG",
+    "statename": "ARUNACHAL PRADESH",
+    "latitude": "27.137692999999999",
+    "longitude": "95.739659000000003"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "Burma Mines SO",
+    "pincode": "831007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.77722",
+    "longitude": "86.20981"
+  },
+  {
+    "circlename": "Jharkhand Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Singhbhum Division",
+    "officename": "N M L SO",
+    "pincode": "831007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "EAST SINGHBUM",
+    "statename": "JHARKHAND",
+    "latitude": "22.77794",
+    "longitude": "86.20489"
+  }
+]

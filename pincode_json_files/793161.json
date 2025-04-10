@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Amlari B.O",
+    "pincode": "793161",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WEST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.200513999999998",
+    "longitude": "92.151291999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Amlarem S.O",
+    "pincode": "793161",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WEST JAINTIA HILLS",
+    "statename": "MEGHALAYA",
+    "latitude": "25.26",
+    "longitude": "92.08"
+  }
+]

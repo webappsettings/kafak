@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Wara Jahangir B.O",
+    "pincode": "444409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WASHIM",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1100000",
+    "longitude": "77.3100000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Dhanora KD B.O",
+    "pincode": "444409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WASHIM",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2200000",
+    "longitude": "77.3300000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Arak B.O",
+    "pincode": "444409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WASHIM",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.3000000",
+    "longitude": "77.2800000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Kalamba Bodkhe B.O",
+    "pincode": "444409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WASHIM",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2200000",
+    "longitude": "77.3400000"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Asegaon S.O",
+    "pincode": "444409",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WASHIM",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.1935833",
+    "longitude": "77.3359167"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Akola Division",
+    "officename": "Falegaon B.O",
+    "pincode": "444409",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WASHIM",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.2000000",
+    "longitude": "77.3200000"
+  }
+]

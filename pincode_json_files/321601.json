@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Mudiya Lalita B.O",
+    "pincode": "321601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1056450",
+    "longitude": "77.2146480"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Kherli Gujar B.O",
+    "pincode": "321601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0969350",
+    "longitude": "77.1672090"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Pali B.O",
+    "pincode": "321601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.6342950",
+    "longitude": "77.0492500"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Halena S.O",
+    "pincode": "321601",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1148611",
+    "longitude": "77.1530556"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Hantra B.O",
+    "pincode": "321601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.1230060",
+    "longitude": "77.2462630"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Bharatpur Division",
+    "officename": "Moloni B.O",
+    "pincode": "321601",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHARATPUR",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0855850",
+    "longitude": "77.1226290"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Girad B.O",
+    "pincode": "442305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6599735",
+    "longitude": "79.1139251"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Mohagaon BO",
+    "pincode": "442305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.903528999999999",
+    "longitude": "78.767455999999996"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Hiwara BO",
+    "pincode": "442305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.539085",
+    "longitude": "78.324477999999999"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Samudrapur S.O",
+    "pincode": "442305",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6406667",
+    "longitude": "78.9646944"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Waigaon Haldya B.O",
+    "pincode": "442305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6398320",
+    "longitude": "78.6125320"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Waigaon Gond B.O",
+    "pincode": "442305",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6398300",
+    "longitude": "78.6125340"
+  }
+]

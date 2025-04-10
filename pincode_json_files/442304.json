@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Nimsada BO",
+    "pincode": "442304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.559272",
+    "longitude": "78.625686999999999"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Allipur S.O (Wardha)",
+    "pincode": "442304",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "21.1483333",
+    "longitude": "79.0715556"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Sirasgaon Bazar B.O",
+    "pincode": "442304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5459500",
+    "longitude": "78.6491500"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Sonegaon Station BO",
+    "pincode": "442304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.629549999999998",
+    "longitude": "78.692620000000005"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Bhankheda B.O",
+    "pincode": "442304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5544510",
+    "longitude": "78.8361830"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Dhotra B.O",
+    "pincode": "442304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.5842044",
+    "longitude": "78.7423071"
+  },
+  {
+    "circlename": "Maharashtra Circle",
+    "regionname": "Nagpur Region",
+    "divisionname": "Wardha Division",
+    "officename": "Goji B.O",
+    "pincode": "442304",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "WARDHA",
+    "statename": "MAHARASHTRA",
+    "latitude": "20.6256399",
+    "longitude": "78.7525760"
+  }
+]

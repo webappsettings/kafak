@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Itahari BO",
+    "pincode": "813206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GODDA",
+    "statename": "JHARKHAND",
+    "latitude": "25.693",
+    "longitude": "84.265"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Roshanpur BO",
+    "pincode": "813206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.9560000",
+    "longitude": "84.9620000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Sukhari BO",
+    "pincode": "813206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GODDA",
+    "statename": "JHARKHAND",
+    "latitude": "24.6322000",
+    "longitude": "84.9653000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Sian BO",
+    "pincode": "813206",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "24.8560000",
+    "longitude": "84.9650000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Bhagalpur Division",
+    "officename": "Ishipur SO",
+    "pincode": "813206",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BHAGALPUR",
+    "statename": "BIHAR",
+    "latitude": "25.2193611",
+    "longitude": "87.3731111"
+  }
+]

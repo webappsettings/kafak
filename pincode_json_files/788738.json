@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "Damcherra Bagan B.O",
+    "pincode": "788738",
+    "officetype": "BO",
+    "delivery": "Non Delivery",
+    "district": "KARIMGANJ",
+    "statename": "ASSAM",
+    "latitude": "24.5000000",
+    "longitude": "92.4300000"
+  },
+  {
+    "circlename": "Assam Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Cachar Division",
+    "officename": "BIDYANAGAR S.O",
+    "pincode": "788738",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HAILAKANDI",
+    "statename": "ASSAM",
+    "latitude": "16.0144",
+    "longitude": "40.5751"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Chhitauni SO",
+    "pincode": "274801",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "26.2100000",
+    "longitude": "83.2600000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Gorakhpur Region",
+    "divisionname": "Deoria Division",
+    "officename": "Rampur Jungle BO",
+    "pincode": "274801",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "KUSHI NAGAR",
+    "statename": "UTTAR PRADESH",
+    "latitude": "27.1400000",
+    "longitude": "83.9500000"
+  }
+]

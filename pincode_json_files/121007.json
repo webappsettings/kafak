@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Faridabad Sector 15 SO",
+    "pincode": "121007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3954030",
+    "longitude": "77.3152920"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Faridabad Sector 12 SO",
+    "pincode": "121007",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3832778",
+    "longitude": "77.3258889"
+  },
+  {
+    "circlename": "Haryana Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Faridabad Division",
+    "officename": "Escortsnagar Faridabad SO",
+    "pincode": "121007",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "FARIDABAD",
+    "statename": "HARYANA",
+    "latitude": "28.3832778",
+    "longitude": "77.3258889"
+  }
+]

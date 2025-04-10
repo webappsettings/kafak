@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Sileru Project S.O",
+    "pincode": "531105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0370833",
+    "longitude": "82.0191944"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Darakonda B.O",
+    "pincode": "531105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "17.9969510",
+    "longitude": "82.1247770"
+  },
+  {
+    "circlename": "Andhra Pradesh Circle",
+    "regionname": "Visakhapatnam Region",
+    "divisionname": "Anakapalle Division",
+    "officename": "Duppulavada B.O",
+    "pincode": "531105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "Alluri Sitharama Raju",
+    "statename": "ANDHRA PRADESH",
+    "latitude": "18.0218367",
+    "longitude": "82.0900765"
+  }
+]

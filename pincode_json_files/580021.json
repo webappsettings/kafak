@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "Hubballi Vidyanagar S.O",
+    "pincode": "580021",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.359837799999999",
+    "longitude": "75.127052399999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Dharwad Division",
+    "officename": "COURT COMPLEX HUBBALLI",
+    "pincode": "580021",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DHARWAD",
+    "statename": "KARNATAKA",
+    "latitude": "15.358532",
+    "longitude": "75.127011199999998"
+  }
+]

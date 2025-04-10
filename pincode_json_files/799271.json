@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Dasdabazar S.O",
+    "pincode": "799271",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "24.3788333",
+    "longitude": "92.1598056"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Barhaldi B.O",
+    "pincode": "799271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Tuichama B.O",
+    "pincode": "799271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Anandabazar B.O",
+    "pincode": "799271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Garchirampara B.O",
+    "pincode": "799271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Kalapania B.O",
+    "pincode": "799271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - I Region",
+    "divisionname": "Dharmanagar Division",
+    "officename": "Sakhan Serhmun B.O",
+    "pincode": "799271",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "North Tripura",
+    "statename": "TRIPURA",
+    "latitude": "NA",
+    "longitude": "NA"
+  }
+]

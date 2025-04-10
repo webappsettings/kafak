@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Hoshiarpur HO",
+    "pincode": "146001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.528927",
+    "longitude": "75.924148"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Bahadurpur Chowk SO",
+    "pincode": "146001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.533758",
+    "longitude": "75.898684"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Mini Sectt SO",
+    "pincode": "146001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.311130",
+    "longitude": "75.55332"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Model Town SO Hoshiarpur",
+    "pincode": "146001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.533858",
+    "longitude": "75.898984"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Railway Road SO Hoshiarpur",
+    "pincode": "146001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.532784",
+    "longitude": "75.912144"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Hoshiarpur Division",
+    "officename": "Hoshiarpur City SO",
+    "pincode": "146001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "HOSHIARPUR",
+    "statename": "PUNJAB",
+    "latitude": "31.535157",
+    "longitude": "75.915203"
+  }
+]

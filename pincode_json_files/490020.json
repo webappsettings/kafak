@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Smriti Nagar Bhilai SO",
+    "pincode": "490020",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.1298900",
+    "longitude": "81.1911200"
+  },
+  {
+    "circlename": "Chattisgarh Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Durg Division",
+    "officename": "Motilal Nehru Nagr Bhilai SO",
+    "pincode": "490020",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DURG",
+    "statename": "CHHATTISGARH",
+    "latitude": "21.211805999999999",
+    "longitude": "81.385672"
+  }
+]

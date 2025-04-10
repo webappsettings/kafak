@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Rajadi Pipla B.O",
+    "pincode": "480105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.8715140",
+    "longitude": "73.5030520"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Jobandera F.V.",
+    "pincode": "480105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.77535408",
+    "longitude": "78.743484499999994"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Mohgaon Haveli S.O",
+    "pincode": "480105",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "22.2000000",
+    "longitude": "79.2600000"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Nandewani B.O",
+    "pincode": "480105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.6885200",
+    "longitude": "78.6852550"
+  },
+  {
+    "circlename": "Madhya Pradesh Circle",
+    "regionname": "Jabalpur Region",
+    "divisionname": "Chhindwara Division",
+    "officename": "Pandharakhedi B.O",
+    "pincode": "480105",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "CHHINDWARA",
+    "statename": "MADHYA PRADESH",
+    "latitude": "21.6238190",
+    "longitude": "78.6793760"
+  }
+]

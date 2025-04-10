@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Sarbahal S.O",
+    "pincode": "768201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.8408271",
+    "longitude": "84.0111965"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Sr Jharsuguda S.O",
+    "pincode": "768201",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.86752778",
+    "longitude": "84.02755556"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sundargarh Division",
+    "officename": "Jharsuguda H.O",
+    "pincode": "768201",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "JHARSUGUDA",
+    "statename": "ODISHA",
+    "latitude": "21.85647222",
+    "longitude": "84.01344444"
+  }
+]

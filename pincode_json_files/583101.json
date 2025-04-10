@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari Satyanarayanapet S.O",
+    "pincode": "583101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.148805599999999",
+    "longitude": "76.936305599999997"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari City S.O",
+    "pincode": "583101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.149972200000001",
+    "longitude": "76.925333300000005"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari District Court S.O",
+    "pincode": "583101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.149083299999999",
+    "longitude": "76.929916700000007"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari Brucepettah S.O",
+    "pincode": "583101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1371111",
+    "longitude": "76.924666700000003"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari Patel Nagar S.O",
+    "pincode": "583101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.142888900000001",
+    "longitude": "76.941444399999995"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari H.O",
+    "pincode": "583101",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.143485999999999",
+    "longitude": "76.925972200000004"
+  },
+  {
+    "circlename": "Karnataka Circle",
+    "regionname": "North Karnataka Region",
+    "divisionname": "Ballari Division",
+    "officename": "Ballari Herialukadam S.O",
+    "pincode": "583101",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "BALLARI",
+    "statename": "KARNATAKA",
+    "latitude": "15.1316893",
+    "longitude": "76.919434199999998"
+  }
+]

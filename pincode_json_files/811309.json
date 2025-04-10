@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Pokhrama BO",
+    "pincode": "811309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.226770700000003",
+    "longitude": "25.190802900000001"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Urain BO",
+    "pincode": "811309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.216832299999993",
+    "longitude": "25.168263199999998"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Lai BO",
+    "pincode": "811309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.196209199999998",
+    "longitude": "25.1596139"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Kajra SO",
+    "pincode": "811309",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "25.3726000",
+    "longitude": "86.4905000"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Sri Kishun B.O",
+    "pincode": "811309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "25.174513999999999",
+    "longitude": "86.258752999999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Arma BO",
+    "pincode": "811309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.248480000000001",
+    "longitude": "25.197776099999999"
+  },
+  {
+    "circlename": "Bihar Circle",
+    "regionname": "East Region Bhagalpur",
+    "divisionname": "Munger Division",
+    "officename": "Pawai BO",
+    "pincode": "811309",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "LAKHISARAI",
+    "statename": "BIHAR",
+    "latitude": "86.196404099999995",
+    "longitude": "25.1736659"
+  }
+]

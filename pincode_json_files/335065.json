@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Fatehpura B.O",
+    "pincode": "335065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.6229730",
+    "longitude": "74.4041950"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Nagrana B.O",
+    "pincode": "335065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.4925790",
+    "longitude": "74.7813560"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Manaksar S.O",
+    "pincode": "335065",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.6653889",
+    "longitude": "74.3890278"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Daulatpura B.O",
+    "pincode": "335065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "27.0824780",
+    "longitude": "75.8306430"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Malerkhera B.O",
+    "pincode": "335065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "27.3906480",
+    "longitude": "76.6268310"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Lilanwali B.O",
+    "pincode": "335065",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "HANUMANGARH",
+    "statename": "RAJASTHAN",
+    "latitude": "29.6960480",
+    "longitude": "74.3778080"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Mahni Kherea BO",
+    "pincode": "152115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.744399999999999",
+    "longitude": "74.67895"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Tarmala BO",
+    "pincode": "152115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.060956000000001",
+    "longitude": "74.612824000000003"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Dabwali Dhab BO",
+    "pincode": "152115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.744399999999999",
+    "longitude": "74.67895"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Khema Khera BO",
+    "pincode": "152115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.744399999999999",
+    "longitude": "74.67895"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Sham Khera BO",
+    "pincode": "152115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.744399999999999",
+    "longitude": "74.67895"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Bhaika Khera SO",
+    "pincode": "152115",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.075778",
+    "longitude": "74.415910999999994"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "Punjab West Region",
+    "divisionname": "Faridkot Division",
+    "officename": "Gurusar Jodhe Ka BO",
+    "pincode": "152115",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "SRI MUKTSAR SAHIB",
+    "statename": "PUNJAB",
+    "latitude": "30.744399999999999",
+    "longitude": "74.67895"
+  }
+]

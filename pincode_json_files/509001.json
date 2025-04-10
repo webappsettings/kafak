@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Veerannapet S.O",
+    "pincode": "509001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.743694",
+    "longitude": "77.977912"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Osmangunj S.O",
+    "pincode": "509001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.739776",
+    "longitude": "77.988398"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Pathapalamur S.O",
+    "pincode": "509001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.734606",
+    "longitude": "77.992601"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Mbn Rs S.O",
+    "pincode": "509001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.754213",
+    "longitude": "77.999376"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Mahabubnagar H.O",
+    "pincode": "509001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.7490833",
+    "longitude": "77.9942222"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "Hanumanpura S.O",
+    "pincode": "509001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.732063",
+    "longitude": "77.984567"
+  },
+  {
+    "circlename": "Telangana Circle",
+    "regionname": "Hyderabad Region",
+    "divisionname": "Mahabubnagar Division",
+    "officename": "T.D. Gutta S.O",
+    "pincode": "509001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "MAHABUBNAGAR",
+    "statename": "TELANGANA",
+    "latitude": "16.750610",
+    "longitude": "77.991257"
+  }
+]

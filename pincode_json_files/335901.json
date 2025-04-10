@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Kotha B.O",
+    "pincode": "335901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "30.1480130",
+    "longitude": "73.9521470"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Khakhan B.O",
+    "pincode": "335901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "29.9064710",
+    "longitude": "73.8756090"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Dullapur Kerri B.O",
+    "pincode": "335901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "30.0934130",
+    "longitude": "73.8768650"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Pakki B.O",
+    "pincode": "335901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "30.1225980",
+    "longitude": "73.9455340"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Sujawalpur B.O",
+    "pincode": "335901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "30.1269760",
+    "longitude": "73.8962990"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Orki B.O",
+    "pincode": "335901",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "30.0935540",
+    "longitude": "73.8925060"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Sriganganagar Division",
+    "officename": "Hindumalkote S.O",
+    "pincode": "335901",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "GANGANAGAR",
+    "statename": "RAJASTHAN",
+    "latitude": "30.1560278",
+    "longitude": "74.1816389"
+  }
+]

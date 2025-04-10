@@ -1,0 +1,80 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Balwant Nagaria BO",
+    "pincode": "202143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0715148",
+    "longitude": "77.9649421"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Madhaula BO",
+    "pincode": "202143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0777837",
+    "longitude": "77.9503069"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Somna SO",
+    "pincode": "202143",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0325000",
+    "longitude": "77.5620000"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Deopur BO",
+    "pincode": "202143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0569882",
+    "longitude": "77.9392400"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Deorau BO",
+    "pincode": "202143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.0748341",
+    "longitude": "77.9292431"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Agra Region",
+    "divisionname": "Aligarh Division",
+    "officename": "Pahawati BO",
+    "pincode": "202143",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "ALIGARH",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.2390691",
+    "longitude": "77.7210661"
+  }
+]

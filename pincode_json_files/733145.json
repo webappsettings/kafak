@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Gopalbati BO",
+    "pincode": "733145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2600000",
+    "longitude": "88.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Powrahar BO",
+    "pincode": "733145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2600000",
+    "longitude": "88.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Thakurpurahat BO",
+    "pincode": "733145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2600000",
+    "longitude": "88.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Teor SO",
+    "pincode": "733145",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2627840",
+    "longitude": "88.8952500"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Jamalpur BO",
+    "pincode": "733145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2600000",
+    "longitude": "88.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Chingishpur BO",
+    "pincode": "733145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2600000",
+    "longitude": "88.8900000"
+  },
+  {
+    "circlename": "West Bengal Circle",
+    "regionname": "North Bengal Region",
+    "divisionname": "Dakshin Dinajpur Division",
+    "officename": "Kamarpara BO",
+    "pincode": "733145",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "DINAJPUR DAKSHIN",
+    "statename": "WEST BENGAL",
+    "latitude": "25.2600000",
+    "longitude": "88.8900000"
+  }
+]

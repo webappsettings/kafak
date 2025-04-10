@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Chauhan Ke Kalan BO",
+    "pincode": "148109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "28.6836890",
+    "longitude": "77.2619250"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Sehjra BO",
+    "pincode": "148109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "31.1201890",
+    "longitude": "74.6195470"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Sanghera SO",
+    "pincode": "148109",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4005270",
+    "longitude": "75.6087110"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Karamgarh BO",
+    "pincode": "148109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "29.6326070",
+    "longitude": "76.0377400"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Wazid Ke Khurd BO",
+    "pincode": "148109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.4603260",
+    "longitude": "75.5731700"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhadalwad BO",
+    "pincode": "148109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "30.3519530",
+    "longitude": "75.9281790"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Nangal Thulewal BO",
+    "pincode": "148109",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARNALA",
+    "statename": "PUNJAB",
+    "latitude": "29.6326070",
+    "longitude": "76.0377400"
+  }
+]

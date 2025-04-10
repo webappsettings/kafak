@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Anand HO",
+    "pincode": "388001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.559237585801156",
+    "longitude": "72.96434941485613"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Anand Town  Anand SO",
+    "pincode": "388001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5545000",
+    "longitude": "72.9639510"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "Sardarganj   Anand SO",
+    "pincode": "388001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.5518000",
+    "longitude": "72.9604000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Anand Division",
+    "officename": "District Court SO Anand",
+    "pincode": "388001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "ANAND",
+    "statename": "GUJARAT",
+    "latitude": "22.7483000",
+    "longitude": "73.2167000"
+  }
+]

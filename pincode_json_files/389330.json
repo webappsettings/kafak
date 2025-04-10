@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Kalol SO Panch Mahals",
+    "pincode": "389330",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.7767500",
+    "longitude": "73.6124444"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Ratanpura BO",
+    "pincode": "389330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.5938000",
+    "longitude": "73.3960000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Maghasar BO",
+    "pincode": "389330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.5623000",
+    "longitude": "73.4590000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Boru Bakorl BO",
+    "pincode": "389330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "22.5991000",
+    "longitude": "72.5713000"
+  },
+  {
+    "circlename": "Gujarat Circle",
+    "regionname": "Vadodara Region",
+    "divisionname": "Panchmahals Division",
+    "officename": "Madhvas BO",
+    "pincode": "389330",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "PANCH MAHALS",
+    "statename": "GUJARAT",
+    "latitude": "23.1954000",
+    "longitude": "73.6213000"
+  }
+]

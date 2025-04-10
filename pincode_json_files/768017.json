@@ -1,0 +1,28 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Burla S.O",
+    "pincode": "768017",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4486667",
+    "longitude": "83.9925000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Medical College Burla S.O",
+    "pincode": "768017",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.5094444",
+    "longitude": "83.8866666"
+  }
+]

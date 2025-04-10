@@ -1,0 +1,41 @@
+[
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Jitwal Kalan SO",
+    "pincode": "148019",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.5893666",
+    "longitude": "75.8418750"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Bhogiwal BO",
+    "pincode": "148019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.5880060",
+    "longitude": "75.8751810"
+  },
+  {
+    "circlename": "Punjab Circle",
+    "regionname": "DivReportingCircle",
+    "divisionname": "Sangrur Division",
+    "officename": "Kup Kalan BO",
+    "pincode": "148019",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "MALERKOTLA",
+    "statename": "PUNJAB",
+    "latitude": "30.6133640",
+    "longitude": "75.8751810"
+  }
+]

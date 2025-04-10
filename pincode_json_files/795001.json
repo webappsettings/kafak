@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Imphal H.O",
+    "pincode": "795001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.80197222",
+    "longitude": "93.94052778"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Manipur High Court S.O",
+    "pincode": "795001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.8019722",
+    "longitude": "93.9405278"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "D.M College S.O",
+    "pincode": "795001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "NA",
+    "longitude": "NA"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "North East - II Region",
+    "divisionname": "Manipur Division",
+    "officename": "Imphal Bazar S.O",
+    "pincode": "795001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "IMPHAL WEST",
+    "statename": "MANIPUR",
+    "latitude": "24.81416667",
+    "longitude": "93.93752778"
+  }
+]

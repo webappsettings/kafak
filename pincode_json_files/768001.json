@@ -1,0 +1,67 @@
+[
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Sambalpur H.O",
+    "pincode": "768001",
+    "officetype": "HO",
+    "delivery": "Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4593611",
+    "longitude": "83.9746667"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Bss Nagar S.O",
+    "pincode": "768001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4683333",
+    "longitude": "83.9863888"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Golebazar S.O",
+    "pincode": "768001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4763888",
+    "longitude": "83.9769444"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Jharuapara S.O",
+    "pincode": "768001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4763888",
+    "longitude": "83.9700000"
+  },
+  {
+    "circlename": "Odisha Circle",
+    "regionname": "Sambalpur Region",
+    "divisionname": "Sambalpur Division",
+    "officename": "Sambalpur Court S.O",
+    "pincode": "768001",
+    "officetype": "PO",
+    "delivery": "Non Delivery",
+    "district": "SAMBALPUR",
+    "statename": "ODISHA",
+    "latitude": "21.4566666",
+    "longitude": "83.9850000"
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Sohliya Iapngar",
+    "pincode": "793116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "25.745269",
+    "longitude": "92.121206999999998"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Raitong",
+    "pincode": "793116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "25.751940999999999",
+    "longitude": "91.987108000000006"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Umtngam",
+    "pincode": "793116",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "25.766894000000001",
+    "longitude": "92.130326999999994"
+  },
+  {
+    "circlename": "North Eastern Circle",
+    "regionname": "Shillong HQ Region",
+    "divisionname": "Meghalaya Division",
+    "officename": "Bhoilymbong S.O",
+    "pincode": "793116",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "RI BHOI",
+    "statename": "MEGHALAYA",
+    "latitude": "25.5739167",
+    "longitude": "91.8848611"
+  }
+]

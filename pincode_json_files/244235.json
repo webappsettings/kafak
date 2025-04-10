@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Bijaura BO",
+    "pincode": "244235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Khadgujar BO",
+    "pincode": "244235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Nagliamev BO",
+    "pincode": "244235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Salempurgosai BO",
+    "pincode": "244235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Kankather BO",
+    "pincode": "244235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Tigree BO",
+    "pincode": "244235",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  },
+  {
+    "circlename": "Uttar Pradesh Circle",
+    "regionname": "Bareilly Region",
+    "divisionname": "Moradabad Division",
+    "officename": "Gajraula SO",
+    "pincode": "244235",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "AMROHA",
+    "statename": "UTTAR PRADESH",
+    "latitude": "28.8381667",
+    "longitude": "78.3734167"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Kharwa B.O",
+    "pincode": "344027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8426403",
+    "longitude": "72.4736678"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Sillore B.O",
+    "pincode": "344027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8195708",
+    "longitude": "72.4324066"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Jethantri B.O",
+    "pincode": "344027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8215566",
+    "longitude": "72.4332027"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Kankrala B.O",
+    "pincode": "344027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8480475",
+    "longitude": "72.4842644"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Kanana B.O",
+    "pincode": "344027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8215536",
+    "longitude": "72.4332057"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Umarlai B.O",
+    "pincode": "344027",
+    "officetype": "BO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8215546",
+    "longitude": "72.4332047"
+  },
+  {
+    "circlename": "Rajasthan Circle",
+    "regionname": "Jodhpur Region",
+    "divisionname": "Barmer Division",
+    "officename": "Parlu S.O",
+    "pincode": "344027",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "BARMER",
+    "statename": "RAJASTHAN",
+    "latitude": "25.8192500",
+    "longitude": "72.4296111"
+  }
+]
