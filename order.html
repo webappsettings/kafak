@@ -76,7 +76,7 @@
     <input type="text" id="name" name="name" placeholder="Your Name" required>
     <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
 
-    <button type="button" onclick="getLocationFromOSM()">📍 Use My Location</button>
+<button type="button" onclick="getLocationFromOpenCage()">📍 Use My Location</button>
 
     <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
 
@@ -107,59 +107,59 @@
 
 
 
-     // Triggered manually by user
-    function getLocationFromOSM() {
-      if (!navigator.geolocation) {
-        alert("Geolocation not supported.");
-        return;
-      }
+    const OPENCAGE_API_KEY = "85c41dc54a1247df928e0713a940c77d"; // replace with your key
 
-      navigator.geolocation.getCurrentPosition(success, error);
+function getLocationFromOpenCage() {
+  if (!navigator.geolocation) {
+    alert("Geolocation not supported.");
+    return;
+  }
 
-      function success(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
+  navigator.geolocation.getCurrentPosition(success, error);
 
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`, {
-    headers: {
-      'User-Agent': 'kafak-honey-form/1.0 (https://kafaklife.com/)'
-    }
-  })
-  .then(res => res.json())
-  .then(data => {
-    const address = data.address || {};
-    const pincode = address.postcode || '';
-    const road = address.road || address.suburb || '';
+  function success(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
 
-    if (!pincode) {
-      alert("Location found, but address could not be determined.");
-      return;
-    }
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${OPENCAGE_API_KEY}&language=en`)
+      .then(res => res.json())
+      .then(data => {
+        if (!data || !data.results || data.results.length === 0) {
+          alert("Could not retrieve address. Please try again.");
+          return;
+        }
 
-    if (/^[1-9][0-9]{5}$/.test(pincode)) {
-      pincodeInput.value = pincode;
+        const result = data.results[0];
+        const components = result.components || {};
+        const postcode = components.postcode || '';
+        const road = components.road || components.village || components.suburb || '';
 
-      const addressField = document.querySelector('textarea[name="address"]');
-      if (road && addressField && !addressField.value) {
-        addressField.value = road + ', ';
-      }
+        if (postcode && /^[1-9][0-9]{5}$/.test(postcode)) {
+          pincodeInput.value = postcode;
 
-      // Trigger input event
-      pincodeInput.dispatchEvent(new Event('input', { bubbles: true }));
-    } else {
-      alert("Could not detect a valid Indian pincode.");
-    }
-  })
-  .catch(() => {
-    alert("Unable to connect to location service. Please try again.");
-  });
+          const addressField = document.querySelector('textarea[name="address"]');
+          if (road && addressField && !addressField.value) {
+            addressField.value = road + ', ';
+          }
+
+          // Trigger event to autofill place/district/state
+          const event = new Event('input', { bubbles: true });
+          pincodeInput.dispatchEvent(event);
+        } else {
+          alert("Could not detect a valid Indian pincode.");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Location found, but address could not be determined.");
+      });
+  }
+
+  function error() {
+    alert("Unable to fetch your location. Please allow location access.");
+  }
 }
 
-
-      function error() {
-        alert("Unable to fetch your location. Please allow location access.");
-      }
-    }
 
     
 
