@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Honey Order Form</title>
+  <style>
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      form {
+        width: 100%;
+        padding: 15px;
+        border-width: 1px;
+      }
+
+      input, textarea, button {
+        font-size: 1em;
+        padding: 8px;
+      }
+
+      h2 {
+        font-size: 1.2em;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8e1;
+      padding: 20px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 2px solid #f9a825;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #f9a825;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #f57f17;
+    }
+    h2 {
+      text-align: center;
+      color: #f57f17;
+    }
+    #response {
+      text-align: center;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h2>Order Pure Honey</h2>
+
+  <form id="honeyForm" action="?" method="POST">
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+    <button type="button" onclick="getLocationFromOSM()">📍 Use My Location</button>
+
+    <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
+
+    <select id="officename" name="officename" required style="display:none;">
+      <option value="">Select Office</option>
+    </select>
+
+    <input type="text" id="place" name="place" placeholder="Place" readonly>
+    <input type="text" id="district" name="district" placeholder="District" readonly>
+    <input type="text" id="state" name="state" placeholder="State" readonly>
+    <textarea name="address" placeholder="Full Address" required></textarea>
+    <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
+    <textarea name="message" placeholder="Any special instructions?"></textarea>
+
+    <!-- <button type="submit">Place Order</button> -->
+    <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
+    <p id="response"></p>
+  </form>
+
+  <script src="jquery-3.6.1.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP"></script>
+
+  <script>
+    const form = document.getElementById('honeyForm');
+    cd = `AKfycbzQ8mt_-863fFOj6CT1P0ZTjO2p3HsU-Zs283QRe2vBEE-hIlQLkke_77w_c1koPCidRA`;
+    var sc = `https://script.google.com/macros/s/${cd}/exec`;
+
+
+
+
+     // Triggered manually by user
+    function getLocationFromOSM() {
+      if (!navigator.geolocation) {
+        alert("Geolocation not supported.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error);
+
+      function success(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+
+  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`, {
+    headers: {
+      'User-Agent': 'kafak-honey-form/1.0 (https://kafaklife.com/)'
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    const address = data.address || {};
+    const pincode = address.postcode || '';
+    const road = address.road || address.suburb || '';
+
+    if (!pincode) {
+      alert("Location found, but address could not be determined.");
+      return;
+    }
+
+    if (/^[1-9][0-9]{5}$/.test(pincode)) {
+      pincodeInput.value = pincode;
+
+      const addressField = document.querySelector('textarea[name="address"]');
+      if (road && addressField && !addressField.value) {
+        addressField.value = road + ', ';
+      }
+
+      // Trigger input event
+      pincodeInput.dispatchEvent(new Event('input', { bubbles: true }));
+    } else {
+      alert("Could not detect a valid Indian pincode.");
+    }
+  })
+  .catch(() => {
+    alert("Unable to connect to location service. Please try again.");
+  });
+}
+
+
+      function error() {
+        alert("Unable to fetch your location. Please allow location access.");
+      }
+    }
+
+    
+
+    window.addEventListener('DOMContentLoaded', () => {
+      /*if (localStorage.getItem('kfk-code')) {
+        form.name.value = localStorage.getItem('kfk-code');
+      }*/
+
+      const pincodeInput = document.getElementById('pincode');
+    const officeDropdown = document.getElementById('officename');
+    const districtInput = document.getElementById('district');
+    const stateInput = document.getElementById('state');
+
+
+
+     
+
+    pincodeInput.addEventListener('input', function () {
+      const pin = this.value.trim();
+
+      document.getElementById('place').value = '';
+      document.getElementById('district').value = '';
+      document.getElementById('state').value = '';
+
+      if (pin.length === 6) {
+        fetch(`pincode_json_files/${pin}.json`)
+          .then(res => {
+            if (!res.ok) throw new Error('Invalid pincode');
+            return res.json();
+          })
+          .then(data => {
+            if (data.length > 0) {
+              districtInput.value = data[0].district || '';
+              stateInput.value = data[0].statename || '';
+
+              if (data.length === 1) {
+                // Only one office, select and hide dropdown
+                officeDropdown.innerHTML = `<option value="${data[0].officename}" selected>${data[0].officename}</option>`;
+                officeDropdown.style.display = 'none';
+
+
+
+                document.getElementById('place').value = data[0].officename.replace(/\s(BO|SO|HO)$/,' '+ data[0].officetype)+', '+data[0].divisionname.replace(/\sDivision$/, '');
+
+              } else {
+                // Multiple offices, require user to pick
+                officeDropdown.innerHTML = '<option value="">Select Office</option>';
+                data.forEach(item => {
+                  const opt = document.createElement('option');
+                   //item.officename.replace(/\s(BO|SO|HO)$/, ' '+item.divisionname.replace(/\sDivision$/, ''));
+
+                  // Replace ' BO', ' SO', ' HO' at the end with ' PO'
+                  const label = item.officename.replace(/\s(BO|SO|HO)$/, ' '+item.officetype +', ' + item.divisionname.replace(/\sDivision$/, ''));
+                  opt.value = label
+                  opt.textContent = label;
+
+                  officeDropdown.appendChild(opt);
+                });
+
+
+                officeDropdown.style.display = 'block';
+              }
+            } else {
+              clearFields();
+            }
+          })
+          .catch(() => {
+            clearFields();
+          });
+      } else {
+        clearFields();
+      }
+    });
+
+    officeDropdown.addEventListener('change', function() {
+      document.getElementById('place').value = this.value
+    })
+
+    function clearFields() {
+      officeDropdown.innerHTML = '<option value="">Select Office</option>';
+      officeDropdown.style.display = 'none';
+      districtInput.value = '';
+      stateInput.value = '';
+    }
+
+
+
+      const kfkcode = localStorage.getItem('kfkcode');
+            if (kfkcode) {
+              // Try fetch existing order details by code using createTextFinder
+              fetch(`${sc}?action=get&kfkcode=${kfkcode}`)
+                .then(res => res.json())
+                .then(data => {
+                  console.log("Fetched data:", data);
+                  if (data.result === 'success') {
+                    const d = data.data;
+                    form.name.value = d.name;
+                    form.phone.value = d.phone;
+                    form.pincode.value = d.pincode;
+                    form.address.value = d.address;
+                    form.quantity.value = d.quantity;
+                    form.message.value = d.message;
+                  }
+                })
+                .catch(err => {
+                  console.error("Error fetching order:", err);
+                });
+            }
+    });
+
+    
+
+    function generateCode(phone) {
+      const epoch = Date.now(); // Unix timestamp in milliseconds
+      const device = getDeviceType(); // e.g. "android"
+      const browser = getBrowserInfo(); // e.g. "chrome135"
+
+      return `${phone}@${epoch}@${device}@${browser}`;
+    }
+
+    function getDeviceType() {
+      const ua = navigator.userAgent.toLowerCase();
+      if (/android/.test(ua)) return 'android';
+      if (/iphone|ipad|ipod/.test(ua)) return 'iphone';
+      if (/windows/.test(ua)) return 'windows';
+      if (/mac/.test(ua)) return 'mac';
+      return 'unknown';
+    }
+
+    function getBrowserInfo() {
+      const ua = navigator.userAgent;
+      let name = 'unknown', version = '';
+
+      if (/chrome/i.test(ua) && !/edge|edg/i.test(ua)) {
+        name = 'chrome';
+        version = ua.match(/chrome\/([\d.]+)/i)?.[1] || '';
+      } else if (/edg/i.test(ua)) {
+        name = 'msedge';
+        version = ua.match(/edg\/([\d.]+)/i)?.[1] || '';
+      } else if (/firefox/i.test(ua)) {
+        name = 'firefox';
+        version = ua.match(/firefox\/([\d.]+)/i)?.[1] || '';
+      } else if (/safari/i.test(ua) && !/chrome/i.test(ua)) {
+        name = 'safari';
+        version = ua.match(/version\/([\d.]+)/i)?.[1] || '';
+      }
+
+      return `${name}${version.split('.')[0] || ''}`; // Just major version
+    }
+
+
+
+
+
+    function onSubmit(token1) {
+      if (typeof grecaptcha === 'undefined') {
+          alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
+          return;
+        }
+
+        
+        // Load saved user details if available
+    
+
+
+     
+
+        grecaptcha.ready(function () {
+          grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
+            const formData = new FormData(form);
+            const orderData = {};
+            formData.forEach((value, key) => {
+              if (key !== 'g-recaptcha-response') {
+                orderData[key] = value;
+              }
+            });
+
+               // Save name, phone, and address to localStorage
+              /*localStorage.setItem('honey_name', orderData.name || '');
+              localStorage.setItem('honey_phone', orderData.phone || '');
+              localStorage.setItem('honey_address', orderData.address || '');*/
+
+              
+              const orderCode = localStorage.getItem('kfkcode') || generateCode(orderData.phone);
+
+              localStorage.setItem('kfkcode', orderCode);
+
+              orderData.kfkcode = orderCode;
+
+            const fullData = {
+              userData: {},
+              orderData: orderData,
+              'g-recaptcha-response': token1
+            };
+
+            const finalData = JSON.stringify(fullData);
+            console.log('finalData=', finalData);
+
+            $.ajax({
+              method: 'POST',
+              url: sc,
+              data: finalData,
+              dataType: 'json',
+              contentType: false,
+              processData: false,
+              beforeSend: function () {
+                // Optional: Add loader here
+              }
+            })
+              .done(function (callback) {
+                console.log(callback);
+                document.getElementById('response').textContent = 'Order submitted successfully!';
+              })
+              .fail(function (callback) {
+                console.error(callback);
+                document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
+              });
+            
+          });
+        });
+
+    }
+
+  </script>
+</body>
+</html>
