@@ -75,6 +75,7 @@
   <form id="honeyForm" action="?" method="POST">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
+    <input type="text" name="pincode" placeholder="PIN Code" required>
     <textarea name="address" placeholder="Delivery Address" required></textarea>
     <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
     <textarea name="message" placeholder="Any special instructions?"></textarea>
@@ -89,24 +90,20 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-    var LOCAL_KEY = 'honey_order_code';
+    cd = `AKfycbzQ8mt_-863fFOj6CT1P0ZTjO2p3HsU-Zs283QRe2vBEE-hIlQLkke_77w_c1koPCidRA`;
+    var sc = `https://script.google.com/macros/s/${cd}/exec`;
+    
 
     window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('honey_name')) {
-        form.name.value = localStorage.getItem('honey_name');
-      }
-      if (localStorage.getItem('honey_phone')) {
-        form.phone.value = localStorage.getItem('honey_phone');
-      }
-      if (localStorage.getItem('honey_address')) {
-        form.address.value = localStorage.getItem('honey_address');
-      }
+      /*if (localStorage.getItem('kfk-code')) {
+        form.name.value = localStorage.getItem('kfk-code');
+      }*/
 
 
-      const code = localStorage.getItem(LOCAL_KEY);
-            if (code) {
+      const kfkcode = localStorage.getItem('kfkcode');
+            if (kfkcode) {
               // Try fetch existing order details by code using createTextFinder
-              fetch(`https://script.google.com/macros/s/AKfycbxESYwK1mnZzCTwHE-YTvSosLG9MQ2iLW2ShHxVwoClhiHOCA40dSn2xc-QPjWA36MrOQ/exec?action=get&code=${code}`)
+              fetch(`${sc}?action=get&kfkcode=${kfkcode}`)
                 .then(res => res.json())
                 .then(data => {
                   console.log("Fetched data:", data);
@@ -114,6 +111,7 @@
                     const d = data.data;
                     form.name.value = d.name;
                     form.phone.value = d.phone;
+                    form.pincode.value = d.pincode;
                     form.address.value = d.address;
                     form.quantity.value = d.quantity;
                     form.message.value = d.message;
@@ -127,9 +125,33 @@
 
     
 
-    function generateCode() {
-      return 'HNY-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    function generateCode(phone) {
+      alert('a')
+      const now = new Date();
+      const timePart = now.toISOString().replace(/[-:]/g, '').split('.')[0]; // e.g. 20250410T120000
+
+      const formattedTime = timePart.slice(0, 8) + 'T' + timePart.slice(9); // 20250410T120000
+
+      // Get device type
+      const ua = navigator.userAgent.toLowerCase();
+      let device = 'unknown';
+      if (/android/.test(ua)) device = 'android';
+      else if (/iphone|ipad|ipod/.test(ua)) device = 'iphone';
+      else if (/windows/.test(ua)) device = 'windows';
+      else if (/mac/.test(ua)) device = 'mac';
+
+      // Get browser name and version
+      let browser = 'unknown';
+      if (/chrome\/(\d+)/.test(ua)) browser = 'chrome' + RegExp.$1;
+      else if (/edg\/(\d+)/.test(ua)) browser = 'MsEdge' + RegExp.$1;
+      else if (/firefox\/(\d+)/.test(ua)) browser = 'firefox' + RegExp.$1;
+      else if (/safari\/(\d+)/.test(ua) && !/chrome/.test(ua)) browser = 'safari' + RegExp.$1;
+
+      return `${phone}@${formattedTime}@${device}@${browser}`;
     }
+
+
+
 
     function onSubmit(token1) {
       if (typeof grecaptcha === 'undefined') {
@@ -155,14 +177,16 @@
             });
 
                // Save name, phone, and address to localStorage
-              localStorage.setItem('honey_name', orderData.name || '');
+              /*localStorage.setItem('honey_name', orderData.name || '');
               localStorage.setItem('honey_phone', orderData.phone || '');
-              localStorage.setItem('honey_address', orderData.address || '');
+              localStorage.setItem('honey_address', orderData.address || '');*/
 
-              const orderCode = localStorage.getItem(LOCAL_KEY) || generateCode();
-              localStorage.setItem(LOCAL_KEY, orderCode);
+              
+              const orderCode = localStorage.getItem('kfkcode') || generateCode(orderData.phone);
 
-              orderData.code = orderCode;
+              localStorage.setItem('kfkcode', orderCode);
+
+              orderData.kfkcode = orderCode;
 
             const fullData = {
               userData: {},
@@ -175,7 +199,7 @@
 
             $.ajax({
               method: 'POST',
-              url: 'https://script.google.com/macros/s/AKfycbwxBEHHLhh26NvlsPkK71KQ0SulQWIOPgdxFIBokVDxSoe9Rvekd_aXaB4DxedAWwsfiQ/exec',
+              url: sc,
               data: finalData,
               dataType: 'json',
               contentType: false,
