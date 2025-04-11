@@ -33,7 +33,7 @@
       background-color: #fff8e1;
       padding: 20px;
     }
-    form {
+    .border-box {
       max-width: 400px;
       margin: auto;
       padding: 20px;
@@ -42,7 +42,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    input, textarea, button {
+    input, textarea, button, select {
       width: 100%;
       margin: 10px 0;
       padding: 10px;
@@ -73,27 +73,36 @@
   <h2>Order Pure Honey</h2>
 
   <form id="honeyForm" action="?" method="POST">
-    <input type="text" id="name" name="name" placeholder="Your Name" required>
-    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-
-    <button type="button" onclick="getLocationFromOSM()">📍 Use My Location</button>
-
-    <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
-
-    <select id="officename" name="officename" required style="display:none;">
-      <option value="">Select Office</option>
-    </select>
-
-    <input type="text" id="place" name="place" placeholder="Place" readonly>
-    <input type="text" id="district" name="district" placeholder="District" readonly>
-    <input type="text" id="state" name="state" placeholder="State" readonly>
-    <textarea name="address" placeholder="Full Address" required></textarea>
+  <div class="border-box">
     <input type="number" name="quantity" placeholder="Quantity (in grams/ml)" required>
-    <textarea name="message" placeholder="Any special instructions?"></textarea>
+      <textarea name="message" placeholder="Any special instructions?"></textarea>
+    </div>
 
-    <!-- <button type="submit">Place Order</button> -->
-    <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
+    <div class="border-box">
+      <h4 style="margin: 0;">Enter delivery address</h4>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <input type="tel" id="whatsappno" name="whatsappno" placeholder="Whatsapp Number" required>
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+      <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
+
+      <select id="officename" name="officename" required style="display:none;">
+        <option value="">Select Post Office</option>
+      </select>
+
+      <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice" style="display:none;">
+
+      <input type="text" id="district" name="district" placeholder="District" readonly>
+      <input type="text" id="house" name="house" placeholder="House name, Flat, Apartment">
+      <input type="text" id="place" name="place" placeholder="Place, Area, Street, Sector, Village">
+      <!-- <input type="text" id="state" name="state" placeholder="State" readonly> -->
+      <!-- <textarea id="address" name="address" placeholder="Full Address" required></textarea> -->
+      
+
+      <!-- <button type="submit">Place Order</button> -->
+      <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
     <p id="response"></p>
+    </div>
   </form>
 
   <script src="jquery-3.6.1.min.js"></script>
@@ -109,61 +118,10 @@
       const pincodeInput = document.getElementById('pincode');
     const officeDropdown = document.getElementById('officename');
     const districtInput = document.getElementById('district');
-    const stateInput = document.getElementById('state');
-
-     // Triggered manually by user
-    function getLocationFromOSM() {
-      if (!navigator.geolocation) {
-        alert("Geolocation not supported.");
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(success, error);
-
-      function success(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
-
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`, {
-    headers: {
-      'User-Agent': 'kafak-honey-form/1.0 (https://kafaklife.com/)'
-    }
-  })
-  .then(res => res.json())
-  .then(data => {
-    const address = data.address || {};
-    const pincode = address.postcode || '';
-    const road = address.road || address.suburb || '';
-
-    if (!pincode) {
-      alert("Location found, but address could not be determined.");
-      return;
-    }
-
-    if (/^[1-9][0-9]{5}$/.test(pincode)) {
-      pincodeInput.value = pincode;
-
-      const addressField = document.querySelector('textarea[name="address"]');
-      if (road && addressField && !addressField.value) {
-        addressField.value = road + ', ';
-      }
-
-      // Trigger input event
-      pincodeInput.dispatchEvent(new Event('input', { bubbles: true }));
-    } else {
-      alert("Could not detect a valid Indian pincode.");
-    }
-  })
-  .catch(() => {
-    alert("Unable to connect to location service. Please try again.");
-  });
-}
+    const postoffice = document.getElementById('postoffice');
+    //const stateInput = document.getElementById('state');
 
 
-      function error() {
-        alert("Unable to fetch your location. Please allow location access.");
-      }
-    }
 
     
 
@@ -171,78 +129,87 @@
       /*if (localStorage.getItem('kfk-code')) {
         form.name.value = localStorage.getItem('kfk-code');
       }*/
-
-
-
-
-     
-
+  let pincodeData = [];
+  var lat,lon
     pincodeInput.addEventListener('input', function () {
-      const pin = this.value.trim();
+  const pin = this.value.trim();
 
-      document.getElementById('place').value = '';
-      document.getElementById('district').value = '';
-      document.getElementById('state').value = '';
+  // Clear existing values
+  document.getElementById('postoffice').value = '';
+  document.getElementById('district').value = '';
+  // document.getElementById('state').value = '';
+  officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
+  officeDropdown.style.display = 'none';
 
-      if (pin.length === 6) {
-        fetch(`pincode_json_files/${pin}.json`)
-          .then(res => {
-            if (!res.ok) throw new Error('Invalid pincode');
-            return res.json();
-          })
-          .then(data => {
-            if (data.length > 0) {
-              districtInput.value = data[0].district || '';
-              stateInput.value = data[0].statename || '';
+  if (pin.length !== 6) return;
 
-              if (data.length === 1) {
-                // Only one office, select and hide dropdown
-                officeDropdown.innerHTML = `<option value="${data[0].officename}" selected>${data[0].officename}</option>`;
-                officeDropdown.style.display = 'none';
-
-
-
-                document.getElementById('place').value = data[0].officename.replace(/\s(BO|SO|HO)$/,' '+ data[0].officetype)+', '+data[0].divisionname.replace(/\sDivision$/, '');
-
-              } else {
-                // Multiple offices, require user to pick
-                officeDropdown.innerHTML = '<option value="">Select Office</option>';
-                data.forEach(item => {
-                  const opt = document.createElement('option');
-                   //item.officename.replace(/\s(BO|SO|HO)$/, ' '+item.divisionname.replace(/\sDivision$/, ''));
-
-                  // Replace ' BO', ' SO', ' HO' at the end with ' PO'
-                  const label = item.officename.replace(/\s(BO|SO|HO)$/, ' '+item.officetype +', ' + item.divisionname.replace(/\sDivision$/, ''));
-                  opt.value = label
-                  opt.textContent = label;
-
-                  officeDropdown.appendChild(opt);
-                });
-
-
-                officeDropdown.style.display = 'block';
-              }
-            } else {
-              clearFields();
-            }
-          })
-          .catch(() => {
-            clearFields();
-          });
-      } else {
-        clearFields();
-      }
-    });
-
-    officeDropdown.addEventListener('change', function() {
-      document.getElementById('place').value = this.value
+  fetch(`pincode_json_files/${pin}.json`)
+    .then(res => {
+      if (!res.ok) throw new Error('Invalid pincode');
+      return res.json();
     })
+    .then(data => {
+  if (!data.length) return;
+
+      pincodeData = data; // <-- Save full data for reuse
+
+
+      const district = data[0].district || '';
+      const state = data[0].statename || '';
+      districtInput.value = district +', '+ state;
+      //stateInput.value = state;
+
+      const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
+
+      if (data.length === 1) {
+        const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' ' + data[0].officetype)}, ${division}`;
+
+        postoffice.style.display = 'block';
+        postoffice.value = label;
+        officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
+        officeDropdown.style.display = 'none';
+      } else {
+        officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
+        data.forEach(item => {
+          const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}, ${item.divisionname.replace(/\sDivision$/, '')}`;
+          const opt = document.createElement('option');
+          opt.value = label;
+          opt.textContent = label;
+          officeDropdown.appendChild(opt);
+        });
+        officeDropdown.style.display = 'block';
+        postoffice.style.display = 'none';
+      }
+    
+
+    })
+    .catch(() => clearFields());
+});
+
+
+
+    /*officeDropdown.addEventListener('change', function () {
+
+  document.getElementById('place').value = this.value;
+  
+
+  // Find matching office in pincodeData
+  const selectedOffice = this.value;
+  const match = pincodeData.find(item => {
+    const division = item.divisionname?.replace(/\sDivision$/, '') || '';
+    const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}, ${division}`;
+    return label === selectedOffice;
+  });
+
+  
+});*/
+
 
     function clearFields() {
       officeDropdown.innerHTML = '<option value="">Select Office</option>';
       officeDropdown.style.display = 'none';
       districtInput.value = '';
-      stateInput.value = '';
+      //stateInput.value = '';
     }
 
 
@@ -259,7 +226,7 @@
                     form.name.value = d.name;
                     form.phone.value = d.phone;
                     form.pincode.value = d.pincode;
-                    form.address.value = d.address;
+                    // form.address.value = d.address;
                     form.quantity.value = d.quantity;
                     form.message.value = d.message;
                   }
