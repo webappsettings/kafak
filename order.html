@@ -102,7 +102,7 @@
 
       <!-- <button type="submit">Place Order</button> -->
       <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
-
+<button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button>
       <button id="sendWhatsApp">Send WhatsApp Confirmation</button>
 
     <p id="response"></p>
@@ -374,12 +374,7 @@
 
   <script>
   document.getElementById('sendWhatsApp').addEventListener('click', function () {
-    /*const phone = form.phone.value.replace(/\D/g, '');
-    const message = encodeURIComponent(
-      `✅ Honey Order Confirmation\n\nName: ${form.name.value}\nPhone: ${form.phone.value}\nPincode: ${form.pincode.value}\nAddress: ${form.address.value}\nQuantity: ${form.quantity.value}g\nMessage: ${form.message.value}`
-    );*/
 
-    // Try opening WhatsApp personal app
     const phone = '7788990313';
 const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
 
@@ -389,6 +384,15 @@ window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
 
 
   });
+
+  function openUpiPayment() {
+  const upiId = 'kafak1234@fbl'; // Replace with your UPI ID
+  const name = 'Abdul'; // Replace with your name
+  const amount = 1; // Example: ₹1 per gram/ml (adjust as needed)
+  const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+  window.open(upiLink, '_blank');
+}
+
 </script>
 
 </body>
