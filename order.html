@@ -102,6 +102,9 @@
 
       <!-- <button type="submit">Place Order</button> -->
       <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
+
+      <button id="sendWhatsApp">Send WhatsApp Confirmation</button>
+
     <p id="response"></p>
 
 
@@ -346,11 +349,11 @@
                 // --- WhatsApp Confirmation ---
   // const message = encodeURIComponent(`✅ Honey Order Confirmation`);
 
-  const customerNumber =  '9895082689';
+  /*const customerNumber =  '9895082689';
 
         if (confirm("Send confirmation via WhatsApp personal app?")) {
   window.location.href = `intent://send/91${customerNumber}#Intent;scheme=smsto;package=com.whatsapp;end`;
-}
+}*/
 
 
               })
@@ -368,5 +371,19 @@
     }
 
   </script>
+
+  <script>
+  document.getElementById('sendWhatsApp').addEventListener('click', function () {
+    const phone = form.phone.value.replace(/\D/g, '');
+    const message = encodeURIComponent(
+      `✅ Honey Order Confirmation\n\nName: ${form.name.value}\nPhone: ${form.phone.value}\nPincode: ${form.pincode.value}\nAddress: ${form.address.value}\nQuantity: ${form.quantity.value}g\nMessage: ${form.message.value}`
+    );
+
+    // Try opening WhatsApp personal app
+    const intentUrl = `intent://send/91${phone}#Intent;scheme=smsto;package=com.whatsapp;end`;
+    window.location.href = intentUrl;
+  });
+</script>
+
 </body>
 </html>
