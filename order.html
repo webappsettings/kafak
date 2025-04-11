@@ -374,14 +374,17 @@
 
   <script>
   document.getElementById('sendWhatsApp').addEventListener('click', function () {
-    const phone = form.phone.value.replace(/\D/g, '');
+    /*const phone = form.phone.value.replace(/\D/g, '');
     const message = encodeURIComponent(
       `✅ Honey Order Confirmation\n\nName: ${form.name.value}\nPhone: ${form.phone.value}\nPincode: ${form.pincode.value}\nAddress: ${form.address.value}\nQuantity: ${form.quantity.value}g\nMessage: ${form.message.value}`
-    );
+    );*/
 
     // Try opening WhatsApp personal app
-    const intentUrl = `intent://send/91${phone}#Intent;scheme=smsto;package=com.whatsapp;end`;
-    window.location.href = intentUrl;
+    const phone = '917788990313';
+const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
+
+window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
+
   });
 </script>
 
