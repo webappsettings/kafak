@@ -385,7 +385,7 @@ const message = encodeURIComponent("Hello! Your honey order has been confirmed â
 
 // window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
 
-window.open(`https://wa.me/91${phone}?text=${message}`, '_blank');
+window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
 
 
   });
