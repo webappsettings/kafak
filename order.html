@@ -103,6 +103,8 @@
       <!-- <button type="submit">Place Order</button> -->
       <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
     <p id="response"></p>
+
+
     </div>
   </form>
 
@@ -341,23 +343,16 @@
                 console.log(callback);
                 document.getElementById('response').textContent = 'Order submitted successfully!';
 
-                const phone = orderData.phone.replace(/\D/g, ''); // Sanitize phone
-                const name = orderData.name || '';
-                const qty = orderData.quantity || '';
-                const addr = orderData.address || '';
-                const msg = orderData.message || '';
-                const place = orderData.place || '';
-                const pincode = orderData.pincode || '';
-                const office = orderData.officename || '';
+                // --- WhatsApp Confirmation ---
+  // const message = encodeURIComponent(`✅ Honey Order Confirmation`);
 
-                const whatsappMsg = `Hi ${name},%0AThank you for your honey order! 🍯%0A%0A📍 *Pincode:* ${pincode}%0A🏢 *Office:* ${office}%0A🏠 *Address:* ${addr}%0A📦 *Quantity:* ${qty}g/ml%0A📝 *Note:* ${msg || 'N/A'}%0A%0AWe’ll contact you soon!`;
+  const customerNumber =  '9895082689';
 
-                const whatsappURL = `https://wa.me/91${phone}?text=${whatsappMsg}`;
+        if (confirm("Send confirmation via WhatsApp personal app?")) {
+  window.location.href = `intent://send/91${customerNumber}#Intent;scheme=smsto;package=com.whatsapp;end`;
+}
 
-                setTimeout(() => {
-                  window.open(whatsappURL, '_blank');
-                }, 1000);
-                
+
               })
               .fail(function (callback) {
                 console.error(callback);
@@ -366,6 +361,9 @@
             
           });
         });
+
+
+
 
     }
 
