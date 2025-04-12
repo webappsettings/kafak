@@ -165,10 +165,10 @@
       districtInput.value = district +', '+ state;
       //stateInput.value = state;
 
-      const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
+      //const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
 
       if (data.length === 1) {
-        const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' ' + data[0].officetype)}, ${division}`;
+        const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' ' + data[0].officetype)}`;
 
         postoffice.style.display = 'block';
         postoffice.value = label;
@@ -177,7 +177,7 @@
       } else {
         officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
         data.forEach(item => {
-          const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}, ${item.divisionname.replace(/\sDivision$/, '')}`;
+          const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}}`;
           const opt = document.createElement('option');
           opt.value = label;
           opt.textContent = label;
