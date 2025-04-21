@@ -177,7 +177,7 @@
       } else {
         officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
         data.forEach(item => {
-          const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}}`;
+          const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
           const opt = document.createElement('option');
           opt.value = label;
           opt.textContent = label;
