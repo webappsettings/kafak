@@ -429,7 +429,7 @@
     wtspformat =  `${successSubmitData.data.name}\n${successSubmitData.data.house}\n${successSubmitData.data.place}\n${successSubmitData.data.diststate}\nPin: ${successSubmitData.data.pincode}\nPh:${successSubmitData.data.phone}`
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
 var extra1 = `Hello! Your honey order has been confirmed ✅\n\n`
-const message = encodeURIComponent(extra1+wtspformat);
+const message = encodeURIComponent(extra1+`\n`+wtspformat);
 
 // window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
 
