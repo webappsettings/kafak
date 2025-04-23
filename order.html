@@ -426,9 +426,10 @@
 
     const phone = '7788990313';
 
-    wtspformat =  `${successSubmitData.data.name}\n${successSubmitData.data.house}\n${successSubmitData.data.place}\n${successSubmitData.data.diststate}\nPin: ${successSubmitData.data.pincode}\n Ph: ${successSubmitData.data.phone}`
+    wtspformat =  `${successSubmitData.data.name}\n${successSubmitData.data.house}\n${successSubmitData.data.place}\n${successSubmitData.data.diststate}\nPin: ${successSubmitData.data.pincode}\nPh:${successSubmitData.data.phone}`
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
-const message = encodeURIComponent(wtspformat);
+var extra1 = `Hello! Your honey order has been confirmed ✅\n`
+const message = encodeURIComponent(extra1+wtspformat);
 
 // window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
 
