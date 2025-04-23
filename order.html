@@ -16,6 +16,7 @@
 
       label .ml{
         font-size: 13px;
+        font-weight: 500;
       }
 
       label {
@@ -115,7 +116,7 @@
 
       <label>
         <span class="eng">Any special instructions?</span>
-        <span class="ml">എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ ?</span>
+        <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ ?)</span>
       </label>
       <textarea name="message" placeholder="Instructions"></textarea>
     </div>
@@ -123,7 +124,7 @@
     <div class="border-box">
       <h4 style="margin: 0;">Enter delivery address</h4>
       <input type="text" id="name" name="name" placeholder="Your Name" required>
-      <input type="tel" id="whatsappno" name="whatsappno" placeholder="Whatsapp Number" required>
+      <!-- <input type="tel" id="whatsappno" name="whatsappno" placeholder="Whatsapp Number" required> -->
       <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
 
       <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
@@ -134,7 +135,7 @@
 
       <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice" style="display:none;">
 
-      <input type="text" id="district" name="district" placeholder="District" readonly>
+      <input type="text" id="diststate" name="diststate" placeholder="District, State" readonly>
       <input type="text" id="house" name="house" placeholder="House name, Flat, Apartment">
       <input type="text" id="place" name="place" placeholder="Place, Area, Street, Sector, Village">
       <!-- <input type="text" id="state" name="state" placeholder="State" readonly> -->
@@ -157,15 +158,18 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-    cd = `AKfycbzQ8mt_-863fFOj6CT1P0ZTjO2p3HsU-Zs283QRe2vBEE-hIlQLkke_77w_c1koPCidRA`;
+    cd = `AKfycby7dhavj4bHj3wBBza9MQb0l8eVxtbRfg1ghrIyFgUmQ4ZMEJJqiHCWBySHE9rAoJIq7g`;
     var sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
+    var successSubmitData;
 
-      const pincodeInput = document.getElementById('pincode');
+    const pincodeInput = document.getElementById('pincode');
     const officeDropdown = document.getElementById('officename');
-    const districtInput = document.getElementById('district');
+    const diststateInput = document.getElementById('diststate');
     const postoffice = document.getElementById('postoffice');
+    const house = document.getElementById('house');
+    const place = document.getElementById('place');
     //const stateInput = document.getElementById('state');
 
 
@@ -183,7 +187,7 @@
 
   // Clear existing values
   document.getElementById('postoffice').value = '';
-  document.getElementById('district').value = '';
+  document.getElementById('diststate').value = '';
   // document.getElementById('state').value = '';
   officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
   officeDropdown.style.display = 'none';
@@ -203,7 +207,7 @@
 
       const district = data[0].district || '';
       const state = data[0].statename || '';
-      districtInput.value = district +', '+ state;
+      diststateInput.value = district +', '+ state;
       //stateInput.value = state;
 
       //const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
@@ -255,7 +259,7 @@
     function clearFields() {
       officeDropdown.innerHTML = '<option value="">Select Office</option>';
       officeDropdown.style.display = 'none';
-      districtInput.value = '';
+      diststateInput.value = '';
       //stateInput.value = '';
     }
 
@@ -273,9 +277,12 @@
                     form.name.value = d.name;
                     form.phone.value = d.phone;
                     form.pincode.value = d.pincode;
-                    // form.address.value = d.address;
+                    form.postoffice.value = d.postoffice;
+                    form.diststate.value = d.diststate;
                     form.quantity.value = d.quantity;
                     form.message.value = d.message;
+                    form.house.value = d.house;
+                    form.place.value = d.place
                   }
                 })
                 .catch(err => {
@@ -385,6 +392,7 @@
             })
               .done(function (callback) {
                 console.log(callback);
+                successSubmitData = callback
                 document.getElementById('response').textContent = 'Order submitted successfully!';
 
                 // --- WhatsApp Confirmation ---
@@ -417,7 +425,11 @@
   document.getElementById('sendWhatsApp').addEventListener('click', function () {
 
     const phone = '7788990313';
-const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
+
+    wtspformat =  `${successSubmitData.data.name} \n ${successSubmitData.data.house} \n ${successSubmitData.data.place}`
+    alert(wtspformat)
+// const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
+const message = encodeURIComponent(wtspformat);
 
 // window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
 
@@ -426,14 +438,14 @@ window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
 
   });
 
-  function openUpiPayment() {
+/*  function openUpiPayment() {
   // const upiId = 'kafak1234@fbl'; // Replace with your UPI ID
   const upiId = '7788990313@okbizaxis'; // Replace with your UPI ID
   const name = 'Abdul'; // Replace with your name
   const amount = 1; // Example: ₹1 per gram/ml (adjust as needed)
   const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
   window.open(upiLink, '_blank');
-}
+}*/
 
 </script>
 
