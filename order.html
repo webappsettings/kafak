@@ -137,7 +137,8 @@
 
       <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice" style="display:none;">
 
-      <input type="text" id="diststate" name="diststate" placeholder="District, State" readonly>
+      <input type="text" id="district" name="district" placeholder="District" readonly>
+      <input type="text" id="state" name="state" placeholder="State" readonly>
       <input type="text" id="house" name="house" placeholder="House name, Flat, Apartment">
       <input type="text" id="place" name="place" placeholder="Place, Area, Street, Sector, Village">
       <!-- <input type="text" id="state" name="state" placeholder="State" readonly> -->
@@ -164,7 +165,7 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-    cd = `AKfycby7dhavj4bHj3wBBza9MQb0l8eVxtbRfg1ghrIyFgUmQ4ZMEJJqiHCWBySHE9rAoJIq7g`;
+    cd = `AKfycbxxJ88o1tZdgTcCpQIsxf_I-GvBdoXfa4m9qESYhdf37wU7x2RB7Q9e_lShRZ12trmXhg`;
     var sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
@@ -172,7 +173,8 @@
 
     const pincodeInput = document.getElementById('pincode');
     const officeDropdown = document.getElementById('officename');
-    const diststateInput = document.getElementById('diststate');
+    const districtInput = document.getElementById('district');
+    const stateInput = document.getElementById('state');
     const postoffice = document.getElementById('postoffice');
     const house = document.getElementById('house');
     const place = document.getElementById('place');
@@ -193,7 +195,8 @@
 
   // Clear existing values
   document.getElementById('postoffice').value = '';
-  document.getElementById('diststate').value = '';
+  document.getElementById('district').value = '';
+  document.getElementById('state').value = '';
   // document.getElementById('state').value = '';
   officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
   officeDropdown.style.display = 'none';
@@ -213,7 +216,8 @@
 
       const district = data[0].district || '';
       const state = data[0].statename || '';
-      diststateInput.value = district +', '+ state;
+      districtInput.value = district;
+      stateInput.value = state;
       //stateInput.value = state;
 
       //const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
@@ -265,8 +269,8 @@
     function clearFields() {
       officeDropdown.innerHTML = '<option value="">Select Office</option>';
       officeDropdown.style.display = 'none';
-      diststateInput.value = '';
-      //stateInput.value = '';
+      districtInput.value = '';
+      stateInput.value = '';
     }
 
 
@@ -284,7 +288,8 @@
                     form.phone.value = d.phone;
                     form.pincode.value = d.pincode;
                     form.postoffice.value = d.postoffice;
-                    form.diststate.value = d.diststate;
+                    form.district.value = d.district;
+                    form.state.value = d.state;
                     form.quantity.value = d.quantity;
                     form.message.value = d.message;
                     form.house.value = d.house;
@@ -428,7 +433,7 @@
 
     const phone = '7788990313';
     var successData = successSubmitData.data;
-    wtspformat =  `${successData.name.toUpperCase()}\n${successData.house.toUpperCase()}\n${successData.place.toUpperCase()}\n${successData.diststate.toUpperCase()}\nPin: ${successData.pincode}\nPh: ${successData.phone}`
+    wtspformat =  `${successData.name.toUpperCase()}\n${successData.house.toUpperCase()}\n${successData.place.toUpperCase()}\n${successData.district.toUpperCase()}\n${successData.state.toUpperCase()}\nPin: ${successData.pincode}\nPh: ${successData.phone}`
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
 var extra1 = `*✅ Order confirmed!* \n\n`
 const message = encodeURIComponent(extra1+wtspformat);
