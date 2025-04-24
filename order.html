@@ -92,6 +92,29 @@
       text-align: center;
       color: green;
     }
+
+    .whatsapp-btn {
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      font-family: 'Arial', sans-serif;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      width: 100%;
+    }
+
+.whatsapp-btn:hover {
+  background-color: #1ebe5b;
+}
+
+
   </style>
 </head>
 <body>
@@ -152,7 +175,10 @@
         <p>Please wait...</p>
       </div>
 <!-- <button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button> -->
-      <button id="sendWhatsApp" style="display: none;">Send WhatsApp Confirmation</button>
+      <button id="sendWhatsApp" style="display: none;" class="whatsapp-btn">
+        <img src="whatsapp--v1.png" style="vertical-align: middle; margin-right: 8px;" alt="WhatsApp Icon"/>
+        Send WhatsApp Confirmation
+      </button>
 
     <p id="response"></p>
 
