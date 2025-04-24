@@ -168,20 +168,19 @@
       <!-- <textarea id="address" name="address" placeholder="Full Address" required></textarea> -->
       
 
+
       <!-- <button type="submit">Place Order</button> -->
-      <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit" id="submitBtn">Submit</button>
+      <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit" id="submitBtn" type="button">Submit</button>
       <div id="loader" style="display: none; text-align: center;">
         <img src="loading.gif" alt="Loading..." width="40">
         <p>Please wait...</p>
       </div>
+      <p id="response"></p>
 <!-- <button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button> -->
-      <button id="sendWhatsApp" style="display: none;" class="whatsapp-btn">
+      <button id="sendWhatsApp" style="display: none;" class="whatsapp-btn" type="button">
         <img src="whatsapp--v1.png" style="vertical-align: middle; margin-right: 8px;" alt="WhatsApp Icon"/>
         Send WhatsApp Confirmation
       </button>
-
-    <p id="response"></p>
-
 
     </div>
   </form>
