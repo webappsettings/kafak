@@ -98,6 +98,8 @@
   <h2>Order Pure Honey</h2>
 
   <form id="honeyForm" action="?" method="POST">
+
+
   <div class="border-box">
     <label>
       <span class="eng">Quantity:</span>
@@ -143,9 +145,13 @@
       
 
       <!-- <button type="submit">Place Order</button> -->
-      <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit">Submit</button>
+      <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit" id="submitBtn">Submit</button>
+      <div id="loader" style="display: none; text-align: center;">
+        <img src="loading.gif" alt="Loading..." width="40">
+        <p>Please wait...</p>
+      </div>
 <!-- <button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button> -->
-      <button id="sendWhatsApp">Send WhatsApp Confirmation</button>
+      <button id="sendWhatsApp" style="display: none;">Send WhatsApp Confirmation</button>
 
     <p id="response"></p>
 
@@ -388,26 +394,22 @@
               processData: false,
               beforeSend: function () {
                 // Optional: Add loader here
+                document.getElementById('loader').style.display = 'block';
+                document.getElementById('submitBtn').style.display = 'none';
               }
             })
               .done(function (callback) {
                 console.log(callback);
                 successSubmitData = callback
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('sendWhatsApp').style.display = 'block';
                 document.getElementById('response').textContent = 'Order submitted successfully!';
-
-                // --- WhatsApp Confirmation ---
-  // const message = encodeURIComponent(`✅ Honey Order Confirmation`);
-
-  /*const customerNumber =  '9895082689';
-
-        if (confirm("Send confirmation via WhatsApp personal app?")) {
-  window.location.href = `intent://send/91${customerNumber}#Intent;scheme=smsto;package=com.whatsapp;end`;
-}*/
-
 
               })
               .fail(function (callback) {
                 console.error(callback);
+                document.getElementById('submitBtn').style.display = 'block';
+                document.getElementById('loader').style.display = 'none'; // Hide loader
                 document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
               });
             
