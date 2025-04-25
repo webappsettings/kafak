@@ -132,7 +132,7 @@
       <span class="eng">Quantity:</span>
       <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
     </label>
-    
+
      <select id="quantity" name="quantity" required>
         <option value="1 Bottle (500 g)">1 Bottle (500 g)</option>
         <option value="2 Bottles (1 kg)">2 Bottles (1 kg)</option>
@@ -239,7 +239,7 @@
   document.getElementById('district').value = '';
   document.getElementById('state').value = '';
   // document.getElementById('state').value = '';
-  officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+  officeDropdown.innerHTML = '<option value="">Select Post Office (പി ഓ?)</option>';
   officeDropdown.style.display = 'none';
 
   if (pin.length !== 6) return;
@@ -280,7 +280,7 @@
   // officeDropdown.style.display = 'none';
 
       } else {
-    officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+    officeDropdown.innerHTML = '<option value="">Select Post Office (പി ഓ?)</option>';
     data.forEach(item => {
       const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
       const opt = document.createElement('option');
@@ -330,7 +330,7 @@ officeDropdown.addEventListener('change', function () {
 
 
     function clearFields() {
-      officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+      officeDropdown.innerHTML = '<option value="">Select Post Office (പി ഓ?)</option>';
       officeDropdown.style.display = 'none';
       districtInput.value = '';
       stateInput.value = '';
@@ -519,10 +519,25 @@ officeDropdown.addEventListener('change', function () {
     var successData = successSubmitData.data;
     const postLabel = successData.officename || successData.postoffice || '';
 
-
-    wtspformat =  `${successData.name.toUpperCase()}\n${successData.house.toUpperCase()}\n${successData.place.toUpperCase()}\n${postLabel.toUpperCase()}\n${successData.district.toUpperCase()}\n${successData.state.toUpperCase()}\nPin: ${successData.pincode}\nPh: ${successData.phone}\n\nQty: ${successData.quantity}`
+    var extra1 = `*✅ Order confirmed!*\n\n`
+    wtspformat = `
+      *${successData.name.toUpperCase()}*\n
+      *${successData.house.toUpperCase()}*\n
+      *${successData.place.toUpperCase()}*\n
+      *${postLabel.toUpperCase()}*\n
+      *${successData.district.toUpperCase()}*\n
+      *${successData.state.toUpperCase()}*\n
+      *Pin: ${successData.pincode}*\n
+      *Ph: ${successData.phone}*\n\n
+      *Qty: ${successData.quantity}*\n
+      *Amount: 500+80(Courier Charge)*\n
+      *Total: 580*\n\n
+      *Send a GPay payment to the number below and share the screenshot*\n
+      *താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ) 👇\n
+      *7788990313 (KAFAK LLP)*\n
+      `;
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
-var extra1 = `*✅ Order confirmed!* \n\n`
+
 const message = encodeURIComponent(extra1+wtspformat);
 
 // window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
