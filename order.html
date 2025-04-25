@@ -519,7 +519,7 @@ officeDropdown.addEventListener('change', function () {
     var successData = successSubmitData.data;
     const postLabel = successData.officename || successData.postoffice || '';
 
-    var extra1 = `*✅ Order confirmed!*\n `
+    var extra1 = `*✅ Order confirmed!* 🍯\n `
     wtspformat = `
     *${successData.name.trim().toUpperCase()}*
     *${successData.house.trim().toUpperCase()}*
@@ -528,10 +528,10 @@ officeDropdown.addEventListener('change', function () {
     *${successData.district.trim().toUpperCase()}*
     *${successData.state.trim().toUpperCase()}*
     *Pin: ${successData.pincode.trim()}*
-    *Ph: ${successData.phone.trim()}*\n\n
+    *Ph: ${successData.phone.trim()}*\n
     *Qty: ${successData.quantity}*
     *Amount: 500+80(Courier Charge)*\n
-    *Total: 580/-*\n\n
+    *Total: 580/-*\n
     *Send a GPay payment to the number below and share the screenshot*
     *(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ)* 👇\n
     *7788990313 (KAFAK LLP)*\n
