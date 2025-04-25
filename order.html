@@ -110,6 +110,10 @@
       width: 100%;
     }
 
+    /*.border-box input {
+      margin-top: 3px;
+    }*/
+
 .whatsapp-btn:hover {
   background-color: #1ebe5b;
 }
@@ -141,29 +145,35 @@
 
       <label>
         <span class="eng">Any special instructions?</span>
-        <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ ?)</span>
+        <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ?)</span>
       </label>
-      <textarea name="message" placeholder="Instructions"></textarea>
+      <textarea name="message" placeholder="Instructions? (നിർദ്ദേശങ്ങൾ?)"></textarea>
     </div>
 
     <div class="border-box">
-      <h4 style="margin: 0;">Enter delivery address</h4>
-      <input type="text" id="name" name="name" placeholder="Your Name" required>
+     
+      <h4 style="margin: 0;">Enter delivery address (അഡ്രസ്സ് ചേര്‍ക്കുക)</h4>
+       <!-- <label>
+        <span class="ml">Your Name (നിങ്ങളുടെ പേര്):</span>
+      </label> -->
+      <input type="text" id="name" name="name" placeholder="Your Name (നിങ്ങളുടെ പേര്?)" required>
       <!-- <input type="tel" id="whatsappno" name="whatsappno" placeholder="Whatsapp Number" required> -->
-      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
 
-      <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
+      <input type="text" id="house" name="house" placeholder="House name, Flat (വീട്ടുപേര്/നമ്പര്‍?)">
+      <input type="text" id="place" name="place" placeholder="Place, Area, Street (സ്ഥലം?)">
+
+      <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required>
 
       <select id="officename" name="officename" required style="display:none;">
-        <option value="">Select Post Office</option>
+        <option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>
       </select>
 
-      <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice" style="display:none;">
+      <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
 
-      <input type="text" id="district" name="district" placeholder="District" readonly>
-      <input type="text" id="state" name="state" placeholder="State" readonly>
-      <input type="text" id="house" name="house" placeholder="House name, Flat, Apartment">
-      <input type="text" id="place" name="place" placeholder="Place, Area, Street, Sector, Village">
+      <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
+      <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
+      
       <!-- <input type="text" id="state" name="state" placeholder="State" readonly> -->
       <!-- <textarea id="address" name="address" placeholder="Full Address" required></textarea> -->
       
@@ -223,7 +233,7 @@
   document.getElementById('district').value = '';
   document.getElementById('state').value = '';
   // document.getElementById('state').value = '';
-  officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
+  officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
   officeDropdown.style.display = 'none';
 
   if (pin.length !== 6) return;
@@ -255,7 +265,7 @@
         officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
         officeDropdown.style.display = 'none';
       } else {
-        officeDropdown.innerHTML = '<option value="">Select Post Office</option>';
+        officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
         data.forEach(item => {
           const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
           const opt = document.createElement('option');
