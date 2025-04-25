@@ -515,7 +515,10 @@ officeDropdown.addEventListener('change', function () {
 
     const phone = '7788990313';
     var successData = successSubmitData.data;
-    wtspformat =  `${successData.name.toUpperCase()}\n${successData.house.toUpperCase()}\n${successData.place.toUpperCase()}\n${successData.district.toUpperCase()}\n${successData.state.toUpperCase()}\nPin: ${successData.pincode}\nPh: ${successData.phone}\n\nQty: ${successData.quantity}`
+    const postLabel = successData.officename || successData.postoffice || '';
+
+
+    wtspformat =  `${successData.name.toUpperCase()}\n${successData.house.toUpperCase()}\n${successData.place.toUpperCase()}\n${postLabel.toUpperCase()}\n${successData.district.toUpperCase()}\n${successData.state.toUpperCase()}\nPin: ${successData.pincode}\nPh: ${successData.phone}\n\nQty: ${successData.quantity}`
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
 var extra1 = `*✅ Order confirmed!* \n\n`
 const message = encodeURIComponent(extra1+wtspformat);
