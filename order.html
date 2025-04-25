@@ -202,7 +202,7 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-    cd = `AKfycbxxJ88o1tZdgTcCpQIsxf_I-GvBdoXfa4m9qESYhdf37wU7x2RB7Q9e_lShRZ12trmXhg`;
+    cd = `AKfycbxEjagK01XveB1f3jwlYWlloJ5ro4RGu-Avrdv7Cq50JvinPtuXFmPUVs880isI6f9RdQ`;
     var sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
@@ -226,6 +226,7 @@
         form.name.value = localStorage.getItem('kfk-code');
       }*/
   let pincodeData = [];
+  let targetPostOffice = null;
   var lat,lon
     pincodeInput.addEventListener('input', function () {
   const pin = this.value.trim();
@@ -248,6 +249,8 @@
     .then(data => {
   if (!data.length) return;
 
+  //alert('aaa');
+
       pincodeData = data; // <-- Save full data for reuse
 
 
@@ -255,6 +258,8 @@
       const state = data[0].statename || '';
       districtInput.value = district;
       stateInput.value = state;
+
+
       //stateInput.value = state;
 
       //const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
@@ -267,17 +272,28 @@
         officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
         officeDropdown.style.display = 'none';
       } else {
-        officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
-        data.forEach(item => {
-          const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
-          const opt = document.createElement('option');
-          opt.value = label;
-          opt.textContent = label;
-          officeDropdown.appendChild(opt);
-        });
-        officeDropdown.style.display = 'block';
-        postoffice.style.display = 'none';
-      }
+    officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+    data.forEach(item => {
+      const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
+      const opt = document.createElement('option');
+      opt.value = label;
+      opt.textContent = label;
+      officeDropdown.appendChild(opt);
+    });
+    officeDropdown.style.display = 'block';
+    postoffice.style.display = 'none';
+
+    if (targetPostOffice) {
+      alert(targetPostOffice)
+      form.officename.style.display = 'block';
+        // form.officeDropdown.value = targetPostOffice;
+        document.getElementById('officename').value = targetPostOffice;
+      
+      
+      targetPostOffice = null
+
+    }
+  }
     
 
     })
@@ -304,7 +320,7 @@
 
 
     function clearFields() {
-      officeDropdown.innerHTML = '<option value="">Select Office</option>';
+      officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
       officeDropdown.style.display = 'none';
       districtInput.value = '';
       stateInput.value = '';
@@ -323,8 +339,30 @@
                     const d = data.data;
                     form.name.value = d.name;
                     form.phone.value = d.phone;
+                    // form.pincode.value = d.pincode;
                     form.pincode.value = d.pincode;
+
+                    // Trigger input event to load post office data
+                    const event = new Event('input', { bubbles: true });
+                    form.pincode.dispatchEvent(event);
+
                     form.postoffice.value = d.postoffice;
+                    if (d.postoffice) {
+                      form.postoffice.value = d.postoffice;
+                      form.postoffice.style.display = 'block';
+                    } else {
+                      form.postoffice.style.display = 'none';
+                    }
+                    if ('officename' in d && d.officename) {
+                      console.log("Officename exists:", d.officename);
+                      //form.officename.style.display = 'block';
+                      
+                      targetPostOffice = d.officename
+                      // Do something with d.officename
+                    } else {
+                      form.officename.style.display = 'none';
+                      console.log("Officename not found or empty");
+                    }
                     form.district.value = d.district;
                     form.state.value = d.state;
                     form.quantity.value = d.quantity;
