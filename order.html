@@ -187,7 +187,8 @@
       </div>
       <p id="response"></p>
 <!-- <button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button> -->
-      <button id="sendWhatsApp" style="display: none;" class="whatsapp-btn" type="button">
+      <div id="sendWhatsApp" style="display: none;">താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക:</div>
+      <button id="sendWhatsAppBtn" class="whatsapp-btn" type="button">
         <img src="whatsapp--v1.png" style="vertical-align: middle; margin-right: 8px;" alt="WhatsApp Icon"/>
         Send WhatsApp Confirmation
       </button>
@@ -464,7 +465,7 @@
   </script>
 
   <script>
-  document.getElementById('sendWhatsApp').addEventListener('click', function () {
+  document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
 
     const phone = '7788990313';
     var successData = successSubmitData.data;
