@@ -255,7 +255,7 @@
   //alert('aaa');
 
       pincodeData = data; // <-- Save full data for reuse
-
+console.log('pincodeData=', pincodeData)
 
       const district = data[0].district || '';
       const state = data[0].statename || '';
@@ -268,7 +268,8 @@
       //const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
 
       if (data.length === 1) {
-        const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' ' + data[0].officetype)}`;
+        // data[0].officetype
+        const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' ' + 'PO')}`;
 
         postoffice.style.display = 'block';
         postoffice.value = label;
@@ -531,9 +532,11 @@ officeDropdown.addEventListener('change', function () {
     *Pin: ${successData.pincode.trim()}*
     *Ph: ${successData.phone.trim()}*\n
     *Qty: ${successData.quantity}*
-    *Amount: 500+80(Courier Charge)*\n
+    *Amount: 500 + 80(Courier Charge)*\n
     *Total: 580/-*`+ '\n\n💬 _പുതിയത് വേണം കൂടാതെ നല്ലതും ആയിരിക്കണം_\n\n'+
-`Send a GPay payment to the number below and share the screenshot
+`______________
+
+Send a GPay payment to the number below and share the screenshot
 (താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ) 👇
 *7788990313 (KAFAK LLP)*\n`;
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
