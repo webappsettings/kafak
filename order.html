@@ -666,7 +666,7 @@ console.log("Decoded :", decodeBase62('deGWJn'));
     const postLabel = successData.officename || successData.postoffice || '';
 
     var extra1 = '*✅ Honey order confirmed!* 🍯\n'+'🔖 ```#'+orderid+'```\n'+'⌚ ```'+submitTime+'```'
-    var msg = successData.message ? `\n\n💬 _${successData.message}_\n` : '';
+    var msg = successData.message ? `\n\n💬 _${successData.message}_\n` : '\n';
     wtspformat = `
 ____________________________________\n
     *${successData.name.trim().toUpperCase()}*
