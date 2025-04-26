@@ -69,7 +69,7 @@
     }
     input, textarea, button, select {
       width: 100%;
-      margin: 10px 0;
+      /*margin: 10px 0;*/
       padding: 10px;
       font-size: 1em;
       border: 1px solid #ccc;
@@ -113,6 +113,13 @@
       width: 100%;
     }
 
+    .form-group span.error {
+    font-size: 12px;
+}
+.text-danger {
+  color: rgb(227 8 29) !important;
+}
+
     /*.border-box input {
       margin-top: 3px;
     }*/
@@ -127,6 +134,9 @@
     width: 50px;
 }
 
+.form-group {
+  margin-bottom: 1rem
+}
 
 
   </style>
@@ -134,31 +144,66 @@
 <body>
   <h2>Order Pure Honey</h2>
 
-  <form id="honeyForm" action="?" method="POST">
+  <!-- Full page loading screen -->
+<div id="main-loader" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+">
+  <img src="loading.gif" alt="Loading..." style="width:80px;height:80px;border-radius:50%;"><br>
+  <p style="margin-top:10px; font-size:18px; color: #555;">Loading your order...</p>
+</div>
+
+  <form id="honeyForm">
 
     <div class="border-box">
      
-      <h4 style="margin: 0;">Enter delivery address (അഡ്രസ്സ് ചേര്‍ക്കുക)</h4>
+      <h4 style="margin: 0 0 10px;">Enter delivery address (അഡ്രസ്സ് ചേര്‍ക്കുക)</h4>
        <!-- <label>
         <span class="ml">Your Name (നിങ്ങളുടെ പേര്):</span>
       </label> -->
-      <input type="text" id="name" name="name" placeholder="Your Name (നിങ്ങളുടെ പേര്?)" required>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Your Name (നിങ്ങളുടെ പേര്?)" required>
+      </div>
       <!-- <input type="tel" id="whatsappno" name="whatsappno" placeholder="Whatsapp Number" required> -->
-      <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
+      <div class="form-group">
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
+      </div>
+      <div class="form-group">
+        <input type="text" id="house" name="house" placeholder="House name, Flat (വീട്ടുപേര്/നമ്പര്‍?)">
+      </div>
+      <div class="form-group">
+        <input type="text" id="place" name="place" placeholder="Place, Area, Street (സ്ഥലം?)">
+      </div>
 
-      <input type="text" id="house" name="house" placeholder="House name, Flat (വീട്ടുപേര്/നമ്പര്‍?)">
-      <input type="text" id="place" name="place" placeholder="Place, Area, Street (സ്ഥലം?)">
+      <div class="form-group">
+        <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required>
+      </div>
 
-      <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required>
+      <div class="form-group">
+        <select id="officename" name="officename" style="display:none;">
+          <option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>
+        </select>
+      </div>
 
-      <select id="officename" name="officename" required style="display:none;">
-        <option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>
-      </select>
+      <div class="form-group">
+        <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
+      </div>
 
-      <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
-
-      <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
-      <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
+      <div class="form-group">
+        <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
+      </div>
+      <div class="form-group">
+        <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
+      </div>
       
       <!-- <input type="text" id="state" name="state" placeholder="State" readonly> -->
       <!-- <textarea id="address" name="address" placeholder="Full Address" required></textarea> -->
@@ -171,37 +216,40 @@
 
 
   <div class="border-box">
-    <label>
-      <span class="eng">Quantity:</span>
-      <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
-    </label>
-
-     <select id="quantity" name="quantity" required>
-        <option value="1 Bottle (500 g)">1 Bottle (500 g)</option>
-        <option value="2 Bottles (1 kg)">2 Bottles (1 kg)</option>
-        <option value="3 Bottles (1.5 kg)">3 Bottles (1.5 kg)</option>
-        <option value="4 Bottles (2 kg)">4 Bottles (2 kg)</option>
-        <option value="5 Bottles (2.5 kg)">5 Bottles (2.5 kg)</option>
-        <option value="6 Bottles (3 kg)">6 Bottles (3 kg)</option>
-        <option value="8 Bottles (4 kg)">8 Bottles (4 kg)</option>
-        <option value="10 Bottles (5 kg)">10 Bottles (5 kg)</option>
-      </select>
-
-
+    <div class="form-group">
       <label>
-        <span class="eng">Any special instructions?</span>
-        <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ?)</span>
+        <span class="eng" style="font-weight: 500;">Quantity:</span>
+        <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
       </label>
-      <textarea name="message" placeholder="Instructions? (നിർദ്ദേശങ്ങൾ?)"></textarea>
+
+       <select id="quantity" name="quantity" required>
+          <option value="1 Bottle (500 g)">1 Bottle (500 g)</option>
+          <option value="2 Bottles (1 kg)">2 Bottles (1 kg)</option>
+          <option value="3 Bottles (1.5 kg)">3 Bottles (1.5 kg)</option>
+          <option value="4 Bottles (2 kg)">4 Bottles (2 kg)</option>
+          <option value="5 Bottles (2.5 kg)">5 Bottles (2.5 kg)</option>
+          <option value="6 Bottles (3 kg)">6 Bottles (3 kg)</option>
+          <option value="8 Bottles (4 kg)">8 Bottles (4 kg)</option>
+          <option value="10 Bottles (5 kg)">10 Bottles (5 kg)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <span class="eng" style="font-weight: 500;">Any special instructions?</span>
+          <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ?)</span>
+        </label>
+        <textarea name="message" placeholder="Instructions? (നിർദ്ദേശങ്ങൾ?)"></textarea>
+      </div>
 
       <!-- <button type="submit">Place Order</button> -->
-      <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit" id="submitBtn" type="button">Submit</button>
+      <!-- <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit" id="submitBtn" type="submit">Submit</button> -->
+      <button type="submit" id="submitBtn">Submit</button>
       <div id="loader" style="display: none; text-align: center;">
         <img src="loading.gif" alt="Loading..." width="40">
         <p>Please wait...</p>
       </div>
       <p id="response"></p>
-<!-- <button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button> -->
       <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red;">Click the button below to send a WhatsApp message <span style="font-size: 14px;font-weight: 500;">(താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക)</span>
         <button id="sendWhatsAppBtn" class="whatsapp-btn" type="button">
           <img src="whatsapp--v1.png" style="vertical-align: middle; margin-right: 8px;" alt="WhatsApp Icon"/>
@@ -214,11 +262,12 @@
   </form>
 
   <script src="jquery-3.6.1.min.js"></script>
+  <script src="jquery.validate.min.js"></script>
   <script src="https://www.google.com/recaptcha/api.js?render=6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP"></script>
 
   <script>
     const form = document.getElementById('honeyForm');
-    const cd = 'AKfycbzUdWbBujkpd79YBIDDOqmUeDRiAg-mkkD7v-bI7B2g9bFAvEWiCOYxS7Wr9peeO0HWmg';
+    const cd = 'AKfycbyNZ5IX_skX0IEoyHKhOSeDMl8FigdbMQWaOXonrGvyvXxxABpBp8qNs5TJequvUTnDSg';
     const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
@@ -353,11 +402,14 @@ officeDropdown.addEventListener('change', function () {
 
       const kfkcode = localStorage.getItem('kfkcode');
             if (kfkcode) {
+                  document.getElementById('main-loader').style.display = 'flex'; // Show loader
+
               // Try fetch existing order details by code using createTextFinder
               fetch(`${sc}?action=get&kfkcode=${kfkcode}`)
                 .then(res => res.json())
                 .then(data => {
                   console.log("Fetched data:", data);
+                  document.getElementById('main-loader').style.display = 'none'; // Hide loader
                   if (data.result === 'success') {
                     const d = data.data;
                     form.name.value = d.name;
@@ -395,8 +447,11 @@ officeDropdown.addEventListener('change', function () {
                   }
                 })
                 .catch(err => {
+                  document.getElementById('main-loader').style.display = 'none'; // Hide loader
                   console.error("Error fetching order:", err);
                 });
+            } else {
+              document.getElementById('main-loader').style.display = 'none'; // Hide loader
             }
     });
 
@@ -650,6 +705,62 @@ window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
   window.open(upiLink, '_blank');
 }*/
 
+</script>
+
+<script>
+var orderValidator = $("#honeyForm").validate({
+    ignore: "",
+    errorElement: 'span',
+    errorClass: 'error text-danger',
+    errorPlacement: function (error, element) {
+        if (element.hasClass("btn-check")) {
+            error.appendTo(element.parent().parent().parent());
+        } else {
+            error.appendTo(element.parent());
+        }
+    },
+    rules: {
+        name: {
+            required: true,
+        },
+        phone: {
+            required: true,
+            number: true,
+            minlength: 10
+        },
+        pincode: {
+            required: true,
+            number: true,
+            minlength: 6
+        },
+    },
+    messages: {
+        name: {
+            required: "Please enter your name",
+        },
+        phone: {
+            required: "Please enter your phone number",
+            number: "Please enter valid phone number",
+            minlength: "Please enter valid phone number",
+        },
+        pincode: {
+            required: "Please enter pincode",
+            number: "Please enter pincode",
+            minlength: "Please enter correct pincode"
+        },
+    },
+    submitHandler: function (form) {
+        // Execute reCAPTCHA and call onSubmit with the token
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
+                onSubmit(token); // Call onSubmit with the reCAPTCHA token
+            }).catch(function (error) {
+                console.error('reCAPTCHA error:', error);
+                showFailure(); // Show failure message if reCAPTCHA fails
+            });
+        });
+    },
+});
 </script>
 
 </body>
