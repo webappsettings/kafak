@@ -390,6 +390,8 @@ officeDropdown.addEventListener('change', function () {
                     form.message.value = d.message;
                     form.house.value = d.house;
                     form.place.value = d.place
+                  } else {
+                    localStorage.removeItem('kfkcode');
                   }
                 })
                 .catch(err => {
@@ -533,6 +535,7 @@ console.log("Decoded :", decodeBase62('deGWJn'));
               .done(function (callback) {
                 console.log(callback);
                 successSubmitData = callback
+                alert(successSubmitData.orderid)
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('sendWhatsApp').style.display = 'block';
                 showSuccess()
