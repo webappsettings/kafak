@@ -198,7 +198,7 @@
           Send WhatsApp Confirmation
         </button>
       </div>
-      
+
     </div>
 
   </form>
@@ -208,7 +208,7 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-    const cd = 'AKfycbzaEYGvafniep6K4zPvJtiVW8YbFnXmN1F0nMbPYwtP30ucgZVNSKMOuTtg9weNZV1aeA';
+    const cd = 'AKfycbxWmaHX3Y1FrDG-_vi2p5YOW7KkICdRAUKjXkfb8xwjRRFfhB9Pi0ebvBO-VBGyEHfTNQ';
     const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
@@ -519,10 +519,11 @@ officeDropdown.addEventListener('change', function () {
   document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
 
     const phone = '7788990313';
+    var submitTime = successSubmitData.timestamp;
     var successData = successSubmitData.data;
     const postLabel = successData.officename || successData.postoffice || '';
 
-    var extra1 = '*✅ Honey order confirmed!* 🍯\n'+'🔖 ```#wz2CTXg9y```\n'+'⌚ ```17/11/2025 12:00AM```'
+    var extra1 = '*✅ Honey order confirmed!* 🍯\n'+'🔖 ```#wz2CTXg9y```\n'+'⌚ ```'+submitTime+'```'
     
     wtspformat = `
 ____________________________________\n
