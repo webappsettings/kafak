@@ -91,6 +91,9 @@
     #response {
       text-align: center;
       color: green;
+      margin: 0 0 5px;
+      font-weight: 500;
+      font-size: 18px;
     }
 
     .whatsapp-btn {
@@ -117,6 +120,13 @@
 .whatsapp-btn:hover {
   background-color: #1ebe5b;
 }
+
+#response img {
+  display: block;
+    margin: 0 auto;
+    width: 50px;
+}
+
 
 
   </style>
@@ -192,7 +202,7 @@
       </div>
       <p id="response"></p>
 <!-- <button type="button" class="btn" onclick="openUpiPayment()">Pay via UPI App</button> -->
-      <div id="sendWhatsApp" style="display: none;">Click the button below to send a WhatsApp message <span style="font-size: 13px;">(താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക)</span>
+      <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red;">Click the button below to send a WhatsApp message <span style="font-size: 14px;font-weight: 500;">(താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക)</span>
         <button id="sendWhatsAppBtn" class="whatsapp-btn" type="button">
           <img src="whatsapp--v1.png" style="vertical-align: middle; margin-right: 8px;" alt="WhatsApp Icon"/>
           Send WhatsApp Confirmation
@@ -208,7 +218,7 @@
 
   <script>
     const form = document.getElementById('honeyForm');
-    const cd = 'AKfycbxWmaHX3Y1FrDG-_vi2p5YOW7KkICdRAUKjXkfb8xwjRRFfhB9Pi0ebvBO-VBGyEHfTNQ';
+    const cd = 'AKfycbzUdWbBujkpd79YBIDDOqmUeDRiAg-mkkD7v-bI7B2g9bFAvEWiCOYxS7Wr9peeO0HWmg';
     const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
@@ -388,6 +398,36 @@ officeDropdown.addEventListener('change', function () {
             }
     });
 
+const base62Chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+// Encode big number to Base62
+/*function encodeBase62(numStr) {
+  let num = BigInt(numStr);
+  let result = "";
+  while (num > 0) {
+    result = base62Chars[num % 62n] + result;
+    num = num / 62n;
+  }
+  return result || "0";
+}*/
+
+// Decode Base62 string back to original number
+function decodeBase62(base62Str) {
+  let result = 0n;
+  for (let i = 0; i < base62Str.length; i++) {
+    const value = BigInt(base62Chars.indexOf(base62Str[i]));
+    result = result * 62n + value;
+  }
+  return result.toString();
+}
+
+// Example usage:
+
+
+
+console.log("Decoded :", decodeBase62('deGWJn'));
+
+
     
 
     function generateCode(phone) {
@@ -495,23 +535,67 @@ officeDropdown.addEventListener('change', function () {
                 successSubmitData = callback
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('sendWhatsApp').style.display = 'block';
-                document.getElementById('response').textContent = 'Order submitted successfully!';
+                showSuccess()
+                setTimeout(function() {
+                  window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                  });
+                }, 500);
+                  
+
+                // document.getElementById('response').textContent = 'Order submitted successfully!';
 
               })
               .fail(function (callback) {
                 console.error(callback);
                 document.getElementById('submitBtn').style.display = 'block';
                 document.getElementById('loader').style.display = 'none'; // Hide loader
-                document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
+                showFailure()
+                // document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
               });
             
           });
         });
 
 
-
+        
 
     }
+
+    function showSuccess() {
+          var responseElement = document.getElementById('response');
+          responseElement.innerHTML = ''; // Clear any existing content
+
+          // Set success message with green text color
+          responseElement.textContent = 'Order submitted successfully!';
+          responseElement.style.color = 'green'; // Set text color to green
+
+          // Create the success image element
+          var img = document.createElement("img");
+          img.src = "success.png";  // Path to your success image
+          img.alt = "Success";      // Alt text for the image
+
+          // Append the image after the message
+          responseElement.appendChild(img);
+        }
+
+        function showFailure() {
+          var responseElement = document.getElementById('response');
+          responseElement.innerHTML = ''; // Clear any existing content
+
+          // Set failure message with red text color
+          responseElement.textContent = 'Failed to submit order. Please try again.';
+          responseElement.style.color = 'red'; // Set text color to red
+
+          // Create the failure image element (optional, if you have a failure image)
+          var img = document.createElement("img");
+          img.src = "failure.png";  // Path to your failure image
+          img.alt = "Failure";      // Alt text for the image
+
+          // Append the image after the message
+          responseElement.appendChild(img);
+        }
 
   </script>
 
