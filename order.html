@@ -88,13 +88,7 @@
       text-align: center;
       color: #f57f17;
     }
-    #response {
-      text-align: center;
-      color: green;
-      margin: 0 0 5px;
-      font-weight: 500;
-      font-size: 18px;
-    }
+    
 
     .whatsapp-btn {
       background-color: #25D366;
@@ -128,16 +122,23 @@
   background-color: #1ebe5b;
 }
 
-#response img {
-  display: block;
-    margin: 0 auto;
-    width: 50px;
-}
+
 
 .form-group {
   margin-bottom: 1rem
 }
 
+.responseInner {
+    display: flex;
+    align-items: center;
+    margin: 5px auto 2px;
+    width: 260px;
+}
+
+.responseInner img {
+      width: 33px;
+    margin-right: 5px;
+}
 
   </style>
 </head>
@@ -234,7 +235,7 @@
         </select>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" style="margin-bottom: 0;">
         <label>
           <span class="eng" style="font-weight: 500;">Any special instructions?</span>
           <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ?)</span>
@@ -249,11 +250,15 @@
         <img src="loading.gif" alt="Loading..." width="40">
         <p>Please wait...</p>
       </div>
-      <p id="response"></p>
-      <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red;">Click the button below to send a WhatsApp message <span style="font-size: 14px;font-weight: 500;">(താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക)</span>
+      <div id="response" style="display: none;">
+        <div id="showsuccess" class="responseInner" style="color: green; display: none;"><img src="success.png" alt="success">Order submitted successfully!</div>
+        <div id="showfailure" class="responseInner" style="color: red; display: none;"><img src="failure.png" alt="failure">Failed to submit order. Please try again.</div>
+      </div>
+      <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red;"><span style="display: block;">Click the button below to send a WhatsApp message</span> <span style="font-size: 14px;font-weight: 500;display: block;">(താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക) <img src="downhand.png" style="width: 33px;margin: 1px auto 4px;
+    display: block;"></span>
         <button id="sendWhatsAppBtn" class="whatsapp-btn" type="button">
-          <img src="whatsapp--v1.png" style="vertical-align: middle; margin-right: 8px;" alt="WhatsApp Icon"/>
-          Send WhatsApp Confirmation
+          <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"/>
+          Send to WhatsApp
         </button>
       </div>
 
@@ -608,7 +613,13 @@ console.log("Decoded :", decodeBase62('deGWJn'));
                 console.error(callback);
                 document.getElementById('submitBtn').style.display = 'block';
                 document.getElementById('loader').style.display = 'none'; // Hide loader
-                showFailure()
+                showFailure();
+                setTimeout(function() {
+                  window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                  });
+                }, 500);
                 // document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
               });
             
@@ -620,39 +631,15 @@ console.log("Decoded :", decodeBase62('deGWJn'));
 
     }
 
-    function showSuccess() {
-          var responseElement = document.getElementById('response');
-          responseElement.innerHTML = ''; // Clear any existing content
+      function showSuccess() {
+        document.getElementById('response').style.display = 'flex';
+        document.getElementById('showsuccess').style.display = 'flex';
+      }
 
-          // Set success message with green text color
-          responseElement.textContent = 'Order submitted successfully!';
-          responseElement.style.color = 'green'; // Set text color to green
-
-          // Create the success image element
-          var img = document.createElement("img");
-          img.src = "success.png";  // Path to your success image
-          img.alt = "Success";      // Alt text for the image
-
-          // Append the image after the message
-          responseElement.appendChild(img);
-        }
-
-        function showFailure() {
-          var responseElement = document.getElementById('response');
-          responseElement.innerHTML = ''; // Clear any existing content
-
-          // Set failure message with red text color
-          responseElement.textContent = 'Failed to submit order. Please try again.';
-          responseElement.style.color = 'red'; // Set text color to red
-
-          // Create the failure image element (optional, if you have a failure image)
-          var img = document.createElement("img");
-          img.src = "failure.png";  // Path to your failure image
-          img.alt = "Failure";      // Alt text for the image
-
-          // Append the image after the message
-          responseElement.appendChild(img);
-        }
+      function showFailure() {
+        document.getElementById('response').style.display = 'flex';
+        document.getElementById('showfailure').style.display = 'flex';
+      }
 
   </script>
 
