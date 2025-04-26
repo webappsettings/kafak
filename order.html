@@ -520,9 +520,10 @@ officeDropdown.addEventListener('change', function () {
     var successData = successSubmitData.data;
     const postLabel = successData.officename || successData.postoffice || '';
 
-    var extra1 = '*✅ Honey Order confirmed!* 🍯\n'+'🔖 #wz2CTXg9y\n'+'⌚ ```17/11/2025 12:00AM```\n'
+    var extra1 = '*✅ Honey Order confirmed!* 🍯\n'+'🔖 #wz2CTXg9y\n'+'⌚ ```17/11/2025 12:00AM```'
     
-    wtspformat = `____________________________________\n
+    wtspformat = `
+____________________________________\n
     *${successData.name.trim().toUpperCase()}*
     *${successData.house.trim().toUpperCase()}*
     *${successData.place.trim().toUpperCase()}*
