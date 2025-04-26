@@ -666,7 +666,7 @@ console.log("Decoded :", decodeBase62('deGWJn'));
     const postLabel = successData.officename || successData.postoffice || '';
 
     var extra1 = '*✅ Honey order confirmed!* 🍯\n'+'🔖 ```#'+orderid+'```\n'+'⌚ ```'+submitTime+'```'
-    
+    var msg = successData.message ? `\n\n💬 _${successData.message}_\n` : '';
     wtspformat = `
 ____________________________________\n
     *${successData.name.trim().toUpperCase()}*
@@ -679,7 +679,7 @@ ____________________________________\n
     *Ph: ${successData.phone.trim()}*\n
     *Qty: ${successData.quantity}*
     *Amount: 500 + 80(Courier Charge)*\n
-    *Total: 580/-*`+ '\n\n💬 _'+successData.message+'_\n'+
+    *Total: 580/-*`+msg+
 `____________________________________
 
 *Send a GPay payment to the number below and share the screenshot*
