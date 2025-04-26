@@ -519,7 +519,8 @@ officeDropdown.addEventListener('change', function () {
     var successData = successSubmitData.data;
     const postLabel = successData.officename || successData.postoffice || '';
 
-    var extra1 = `*✅ Order confirmed!* 🍯\n `
+    var extra1 = '*✅ Order confirmed!* 🍯\n'+'⌚ ```17/11/2025 12:00AM```\n'+'✉️ _പുതിയത് വേണം കൂടാതെ നല്ലതും ആയിരിക്കണം_\n'
+    
     wtspformat = `
     *${successData.name.trim().toUpperCase()}*
     *${successData.house.trim().toUpperCase()}*
@@ -532,8 +533,8 @@ officeDropdown.addEventListener('change', function () {
     *Qty: ${successData.quantity}*
     *Amount: 500+80(Courier Charge)*\n
     *Total: 580/-*\n
-    *Send a GPay payment to the number below and share the screenshot*
-    *(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ)* 👇\n
+    Send a GPay payment to the number below and share the screenshot
+    (താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ) 👇\n
     *7788990313 (KAFAK LLP)*\n
     `;
 // const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
