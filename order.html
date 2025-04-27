@@ -312,7 +312,7 @@
     const quantitySelect = document.getElementById('quantity');
     const submitBtn = document.getElementById('submitBtn');
 
-    var availablePin = true;
+    var availablePin = false;
 
     window.addEventListener('DOMContentLoaded', () => {
       let pincodeData = [];
@@ -664,6 +664,10 @@ ____________________________________
       window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
     });
 
+    jQuery.validator.addMethod("pinavail", function(value, element) {
+      return this.optional( element ) || availablePin;
+    }, 'Please enter correct pincode');
+
     $("#honeyForm").validate({
       errorElement: 'span',
       errorClass: 'error text-danger',
@@ -692,7 +696,8 @@ ____________________________________
         pincode: {
           required: true,
           number: true,
-          minlength: 6
+          minlength: 6,
+          pinavail: true
         },
         officename: {
           required: true,
