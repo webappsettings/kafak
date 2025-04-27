@@ -411,6 +411,7 @@
           .then(data => {
             document.getElementById('main-loader').style.display = 'none';
             if (data.result === 'success') {
+              document.getElementById('editBtn2').style.display = 'block';
               const d = data.data;
               form.name.value = d.name;
               form.phone.value = d.phone;
@@ -444,7 +445,7 @@
               quantitySelect.dispatchEvent(new Event('change'));
             } else {
               localStorage.removeItem('kfkcode');
-              document.getElementById('editBtn2').style.display = 'none';
+              
             }
           })
           .catch(err => {
