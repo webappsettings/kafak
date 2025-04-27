@@ -444,6 +444,7 @@
               quantitySelect.dispatchEvent(new Event('change'));
             } else {
               localStorage.removeItem('kfkcode');
+              document.getElementById('editBtn2').style.display = 'none';
             }
           })
           .catch(err => {
