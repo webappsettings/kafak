@@ -387,38 +387,8 @@
   }
 });
 
-
-
-/*async function loadPincodeFile(pin) {
-  let availablePin = true;
-  let pinData = null;
-
-  try {
-    const response = await fetch(`pincode_json_files/${pin}.json`);
-    
-    if (!response.ok) {
-      availablePin = false;
-      throw new Error('Pincode file not found');
-    }
-
-    pinData = await response.json();
-  } catch (error) {
-    availablePin = false;
-    pinData = null;
-  }
-
-  return { availablePin, pinData };
-}
-*/
-
       officeDropdown.addEventListener('change', function () {
         postoffice.value = '';
-        /*if($(this).val() != '') {
-          $('.pincodeEnable').show();
-        } else {
-          $('.pincodeEnable').hide();
-        } */
-        
       });
 
       const kfkcode = localStorage.getItem('kfkcode');
