@@ -183,10 +183,10 @@
         <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
       </div>
       <div class="form-group">
-        <input type="text" id="house" name="house" placeholder="House name, Flat (വീട്ടുപേര്/നമ്പര്‍?)">
+        <input type="text" id="house" name="house" placeholder="House name/Flat (വീട്ടുപേര്/നമ്പര്‍?)" required>
       </div>
       <div class="form-group">
-        <input type="text" id="place" name="place" placeholder="Place, Area, Street (സ്ഥലം?)">
+        <input type="text" id="place" name="place" placeholder="Place/Area/Street (സ്ഥലം?)" required>
       </div>
       <div class="form-group">
         <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required>
@@ -199,10 +199,10 @@
       <div class="form-group">
         <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
       </div>
-      <div class="form-group">
+      <div class="form-group pincodeEnable" style="display: none;">
         <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
       </div>
-      <div class="form-group">
+      <div class="form-group pincodeEnable" style="display: none;">
         <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
       </div>
     </div>
@@ -282,72 +282,120 @@
     const quantitySelect = document.getElementById('quantity');
     const submitBtn = document.getElementById('submitBtn');
 
+    var availablePin = true;
+
     window.addEventListener('DOMContentLoaded', () => {
       let pincodeData = [];
       let targetPostOffice = null;
 
-      pincodeInput.addEventListener('input', function () {
-        const pin = this.value.trim();
-        postoffice.value = '';
-        districtInput.value = '';
-        stateInput.value = '';
-        officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
-        officeDropdown.style.display = 'none';
+      pincodeInput.addEventListener('input', async function () {
+  const pin = this.value.trim();
+  postoffice.value = '';
+  districtInput.value = '';
+  stateInput.value = '';
+  officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+  officeDropdown.style.display = 'none';
+  $('.pincodeEnable').hide();
 
-        if (pin.length !== 6) return;
+  if (pin.length !== 6) {
+    return;
+  }
 
-        fetch(`pincode_json_files/${pin}.json`)
-          .then(res => {
-            if (!res.ok) throw new Error('Invalid pincode');
-            return res.json();
-          })
-          .then(data => {
-            if (!data.length) return;
+  try {
+    const response = await fetch(`pincode_json_files/${pin}.json`);
 
-            pincodeData = data;
-            const district = data[0].district || '';
-            const state = data[0].statename || '';
-            districtInput.value = district;
-            stateInput.value = state;
+    if (!response.ok) {
+      throw new Error('Pincode file not found');
+    }
 
-            if (data.length === 1) {
-              const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
-              postoffice.style.display = 'block';
-              postoffice.value = label;
-              officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
-              officeDropdown.style.display = 'none';
-              officeDropdown.value = '';
-            } else {
-              officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
-              data.forEach(item => {
-                const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
-                const opt = document.createElement('option');
-                opt.value = label;
-                opt.textContent = label;
-                officeDropdown.appendChild(opt);
-              });
-              officeDropdown.style.display = 'block';
-              postoffice.style.display = 'none';
+    const data = await response.json();
 
-              if (targetPostOffice) {
-                officeDropdown.style.display = 'block';
-                officeDropdown.value = targetPostOffice;
-                postoffice.value = '';
-                postoffice.style.display = 'none';
-                targetPostOffice = null;
-              }
-            }
-          })
-          .catch(() => {
-            officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
-            officeDropdown.style.display = 'none';
-            districtInput.value = '';
-            stateInput.value = '';
-          });
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error('No data inside pincode file');
+    }
+
+    pincodeData = data;
+
+    const district = data[0].district || '';
+    const state = data[0].statename || '';
+    districtInput.value = district;
+    stateInput.value = state;
+    availablePin = true;
+    $('.pincodeEnable').show();
+
+    if (data.length === 1) {
+      const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
+      postoffice.style.display = 'block';
+      postoffice.value = label;
+      officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
+      officeDropdown.style.display = 'none';
+      officeDropdown.value = '';
+    } else {
+      officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+      data.forEach(item => {
+        const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
+        const opt = document.createElement('option');
+        opt.value = label;
+        opt.textContent = label;
+        officeDropdown.appendChild(opt);
       });
+      officeDropdown.style.display = 'block';
+      postoffice.style.display = 'none';
+
+      if (targetPostOffice) {
+        officeDropdown.value = targetPostOffice;
+        postoffice.value = '';
+        postoffice.style.display = 'none';
+        targetPostOffice = null;
+      }
+    }
+  } catch (error) {
+    console.warn('Error loading pincode:', error.message);
+    availablePin = false;
+    pincodeData = [];
+    postoffice.value = '';
+    districtInput.value = '';
+    stateInput.value = '';
+    officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+    officeDropdown.style.display = 'none';
+    $('.pincodeEnable').hide();
+    // Optional: show a nice message to user
+    // alert('Pincode data not available');
+  }
+});
+
+
+
+/*async function loadPincodeFile(pin) {
+  let availablePin = true;
+  let pinData = null;
+
+  try {
+    const response = await fetch(`pincode_json_files/${pin}.json`);
+    
+    if (!response.ok) {
+      availablePin = false;
+      throw new Error('Pincode file not found');
+    }
+
+    pinData = await response.json();
+  } catch (error) {
+    availablePin = false;
+    pinData = null;
+  }
+
+  return { availablePin, pinData };
+}
+*/
 
       officeDropdown.addEventListener('change', function () {
         postoffice.value = '';
+        /*if($(this).val() != '') {
+          $('.pincodeEnable').show();
+        } else {
+          $('.pincodeEnable').hide();
+        } */
+        
       });
 
       const kfkcode = localStorage.getItem('kfkcode');
@@ -630,8 +678,14 @@ ____________________________________
           number: true,
           minlength: 10
         },
-        pincode: {
+        house: {
           required: true,
+        },
+        place: {
+          required: true,
+        },
+        pincode: {
+          required: true && !availablePin,
           number: true,
           minlength: 6
         },
@@ -647,6 +701,12 @@ ____________________________________
           required: "Please enter your phone number",
           number: "Please enter valid phone number",
           minlength: "Please enter valid phone number",
+        },
+        house: {
+          required: "Please enter house name/flat number",
+        },
+        place: {
+          required: "Please enter place name",
         },
         pincode: {
           required: "Please enter pincode",
