@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@200;300;400;500" rel="stylesheet">
   <title>Honey Order Form</title>
   <style>
-
     body, input, textarea, button, select {
-        font-family: 'Anek Malayalam', 'Roboto', sans-serif;
-      }
+      font-family: 'Anek Malayalam', 'Roboto', sans-serif;
+    }
 
-      #honeyForm, #honeyForm * {
-        font-family: 'Anek Malayalam', 'Roboto', sans-serif !important;
-      }
+    #honeyForm, #honeyForm * {
+      font-family: 'Anek Malayalam', 'Roboto', sans-serif !important;
+    }
 
-      label .ml{
-        font-size: 13px;
-        font-weight: 500;
-      }
+    label .ml {
+      font-size: 13px;
+      font-weight: 500;
+    }
 
-      label {
-        font-weight: 600;
-      }
-      label span {
-        display: block;
-      }
+    label {
+      font-weight: 600;
+    }
+
+    label span {
+      display: block;
+    }
 
     @media (max-width: 600px) {
       body {
         padding: 10px;
-        font-family: 'Anek Malayalam', 'Roboto', sans-serif;
       }
-
 
       form {
         width: 100%;
@@ -52,11 +50,13 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #fff8e1;
       padding: 20px;
     }
+
     .border-box {
       max-width: 450px;
       margin: auto;
@@ -67,28 +67,30 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 15px;
     }
+
     input, textarea, button, select {
       width: 100%;
-      /*margin: 10px 0;*/
       padding: 10px;
       font-size: 1em;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+
     button {
       background-color: #f9a825;
       color: white;
       font-weight: bold;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #f57f17;
     }
+
     h2 {
       text-align: center;
       color: #f57f17;
     }
-    
 
     .whatsapp-btn {
       background-color: #25D366;
@@ -108,73 +110,75 @@
     }
 
     .form-group span.error {
-    font-size: 12px;
-}
-.text-danger {
-  color: rgb(227 8 29) !important;
-}
+      font-size: 12px;
+    }
 
-    /*.border-box input {
-      margin-top: 3px;
-    }*/
+    .text-danger {
+      color: rgb(227 8 29) !important;
+    }
 
-.whatsapp-btn:hover {
-  background-color: #1ebe5b;
-}
+    .whatsapp-btn:hover {
+      background-color: #1ebe5b;
+    }
 
+    .form-group {
+      margin-bottom: 1rem;
+    }
 
+    .responseInner {
+      display: flex;
+      align-items: center;
+      margin: 5px auto 2px;
+      width: 260px;
+    }
 
-.form-group {
-  margin-bottom: 1rem
-}
-
-.responseInner {
-    display: flex;
-    align-items: center;
-    margin: 5px auto 2px;
-    width: 260px;
-}
-
-.responseInner img {
+    .responseInner img {
       width: 33px;
-    margin-right: 5px;
-}
+      margin-right: 5px;
+    }
 
+    .price-show {
+      margin-bottom: 10px;
+      border: solid;
+      padding: 10px;
+      border-radius: 10px;
+      border-color: #ffefc0;
+      background-color: #fff8e3;
+      color: red;
+      font-weight: 500;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .price-show span {
+      display: block;
+    }
+
+    .amt {
+      font-size: 15px;
+      color: #d70000;
+    }
+
+    .total-amt {
+      font-size: 16px;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
   <h2>Order Pure Honey</h2>
 
-  <!-- Full page loading screen -->
-<div id="main-loader" style="
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  font-family: Arial, sans-serif;
-">
-  <img src="loading.gif" alt="Loading..." style="width:80px;height:80px;border-radius:50%;"><br>
-  <p style="margin-top:10px; font-size:18px; color: #555;">Loading your order...</p>
-</div>
+  <div id="main-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; font-family: Arial, sans-serif;">
+    <img src="loading.gif" alt="Loading..." style="width:80px; height:80px; border-radius:50%;">
+    <p style="margin-top:10px; font-size:18px; color: #555;">Loading your order...</p>
+  </div>
 
   <form id="honeyForm">
-
     <div class="border-box">
-     
       <h4 style="margin: 0 0 10px;">Enter delivery address (അഡ്രസ്സ് ചേര്‍ക്കുക)</h4>
-       <!-- <label>
-        <span class="ml">Your Name (നിങ്ങളുടെ പേര്):</span>
-      </label> -->
       <div class="form-group">
         <input type="text" id="name" name="name" placeholder="Your Name (നിങ്ങളുടെ പേര്?)" required>
       </div>
-      <!-- <input type="tel" id="whatsappno" name="whatsappno" placeholder="Whatsapp Number" required> -->
       <div class="form-group">
         <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
       </div>
@@ -184,72 +188,32 @@
       <div class="form-group">
         <input type="text" id="place" name="place" placeholder="Place, Area, Street (സ്ഥലം?)">
       </div>
-
       <div class="form-group">
         <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required>
       </div>
-
       <div class="form-group">
         <select id="officename" name="officename" style="display:none;">
           <option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>
         </select>
       </div>
-
       <div class="form-group">
         <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
       </div>
-
       <div class="form-group">
         <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
       </div>
       <div class="form-group">
         <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
       </div>
-      
-      <!-- <input type="text" id="state" name="state" placeholder="State" readonly> -->
-      <!-- <textarea id="address" name="address" placeholder="Full Address" required></textarea> -->
-      
-
-
-      
-
     </div>
 
-    <style>
-      .price-show {
-            margin-bottom: 10px;
-    border: solid;
-    padding: 10px;
-    border-radius: 10px;
-    border-color: #ffefc0;
-    background-color: #fff8e3;
-    color: red;
-    font-weight: 500;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-      }
-      .price-show span {
-        display: block;
-      }
-      .amt {
-        font-size: 15px;
-        color: #d70000;
-      }
-      .total-amt {
-        font-size: 16px;
-        font-weight: 600;
-      }
-    </style>
-
-
-  <div class="border-box">
-    <div class="form-group" style="margin-bottom: 0;">
-      <label>
-        <span class="eng" style="font-weight: 500;">Quantity:</span>
-        <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
-      </label>
-
-       <select id="quantity" name="quantity" required>
+    <div class="border-box">
+      <div class="form-group" style="margin-bottom: 0;">
+        <label>
+          <span class="eng" style="font-weight: 500;">Quantity:</span>
+          <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
+        </label>
+        <select id="quantity" name="quantity" required>
           <option value="1 Bottle (500 g)">1 Bottle (500 g)</option>
           <option value="2 Bottles (1 kg)">2 Bottles (1 kg)</option>
           <option value="3 Bottles (1.5 kg)">3 Bottles (1.5 kg)</option>
@@ -264,39 +228,40 @@
         <span class="amt" id="amt">Amount(₹): 500 + 80 (Courier charge)</span>
         <span class="total-amt" id="totalAmt">Total(₹): 580/-</span>
       </div>
-
       <div class="form-group" style="margin-bottom: 0;">
         <label>
           <span class="eng" style="font-weight: 500;">Any special instructions?</span>
           <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ?)</span>
         </label>
-        <textarea name="message" placeholder="Instructions? (നിർദ്ദേശങ്ങൾ?)"></textarea>
+        <textarea name="message" placeholder="പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടെങ്കില്‍ എഴുതാം (നിര്‍ബന്ധമില്ല)"></textarea>
       </div>
-
-      <!-- <button type="submit">Place Order</button> -->
-      <!-- <button class="g-recaptcha" data-sitekey="6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP" data-callback="onSubmit" id="submitBtn" type="submit">Submit</button> -->
       <button type="submit" id="submitBtn">Submit</button>
       <div id="loader" style="display: none; text-align: center;">
         <img src="loading.gif" alt="Loading..." width="40">
         <p>Please wait...</p>
       </div>
       <div id="response" style="display: none; background-color: #e5fde7;">
-        <div id="showsuccess" class="responseInner" style="color: green; display: none;"><img src="success.png" alt="success">Order submitted successfully!</div>
-        <div id="showfailure" class="responseInner" style="color: red; display: none; width: 305px;"><img src="failure.png" alt="failure">Failed to submit order. Please try again.</div>
+        <div id="showsuccess" class="responseInner" style="color: green; display: none;">
+          <img src="success.png" alt="success">Order submitted successfully!
+        </div>
+        <div id="showfailure" class="responseInner" style="color: red; display: none; width: 305px;">
+          <img src="failure.png" alt="failure">Failed to submit order. Please try again.
+        </div>
       </div>
-      <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red; margin-top: 15px;"><span style="display: block;">Click the button below to send a WhatsApp message</span> <span style="font-size: 14px;font-weight: 500;display: block;">(താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക) <img src="downhand.png" style="width: 33px;margin: 1px auto 4px;
-    display: block;"></span>
+      <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red; margin-top: 15px;">
+        <span style="display: block;">Click the button below to send a WhatsApp message</span>
+        <span style="font-size: 14px; font-weight: 500; display: block;">
+          (താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക)
+          <img src="downhand.png" style="width: 33px; margin: 1px auto 4px; display: block;">
+        </span>
         <div class="btn-group" role="group" style="display: inline-flex; width: 100%; justify-content: space-between;">
           <button id="sendWhatsAppBtn" class="whatsapp-btn" type="button" style="width: calc(100% - 60px)">
-            <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"/>
-            Send to WhatsApp
+            <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"> Send to WhatsApp
           </button>
           <button id="editBtn" type="button" class="btn btn-secondary" style="width: 50px; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
         </div>
       </div>
-
     </div>
-
   </form>
 
   <script src="jquery-3.6.1.min.js"></script>
@@ -308,239 +273,142 @@
     const cd = 'AKfycbw-pk6a1mrzbbecA17NSTrp137Nx5LgDhi2fXkEZRARwUsXYM7dh2tbnTADI-SYQaeV3Q';
     const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
-
-
-    var successSubmitData;
-
+    let successSubmitData;
     const pincodeInput = document.getElementById('pincode');
     const officeDropdown = document.getElementById('officename');
     const districtInput = document.getElementById('district');
     const stateInput = document.getElementById('state');
     const postoffice = document.getElementById('postoffice');
-    const house = document.getElementById('house');
-    const place = document.getElementById('place');
     const quantitySelect = document.getElementById('quantity');
-
-    //const stateInput = document.getElementById('state');
-
-
+    const submitBtn = document.getElementById('submitBtn');
 
     window.addEventListener('DOMContentLoaded', () => {
-      /*if (localStorage.getItem('kfk-code')) {
-        form.name.value = localStorage.getItem('kfk-code');
-      }*/
-  let pincodeData = [];
-  let targetPostOffice = null;
-  var lat,lon
-    pincodeInput.addEventListener('input', function () {
-  const pin = this.value.trim();
+      let pincodeData = [];
+      let targetPostOffice = null;
 
-  // Clear existing values
-  document.getElementById('postoffice').value = '';
-  document.getElementById('district').value = '';
-  document.getElementById('state').value = '';
-  // document.getElementById('state').value = '';
-  officeDropdown.innerHTML = '<option value="">Select Post Office (പി ഓ?)</option>';
-  officeDropdown.style.display = 'none';
-
-  if (pin.length !== 6) return;
-
-  fetch(`pincode_json_files/${pin}.json`)
-    .then(res => {
-      if (!res.ok) throw new Error('Invalid pincode');
-      return res.json();
-    })
-    .then(data => {
-  if (!data.length) return;
-
-  //alert('aaa');
-
-      pincodeData = data; // <-- Save full data for reuse
-console.log('pincodeData=', pincodeData)
-
-      const district = data[0].district || '';
-      const state = data[0].statename || '';
-      districtInput.value = district;
-      stateInput.value = state;
-
-
-      //stateInput.value = state;
-
-      //const division = data[0].divisionname?.replace(/\sDivision$/, '') || '';
-
-      if (data.length === 1) {
-        // data[0].officetype
-        const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' ' + 'PO')}`;
-
-        postoffice.style.display = 'block';
-        postoffice.value = label;
-        officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
+      pincodeInput.addEventListener('input', function () {
+        const pin = this.value.trim();
+        postoffice.value = '';
+        districtInput.value = '';
+        stateInput.value = '';
+        officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
         officeDropdown.style.display = 'none';
 
-        // officeDropdown.innerHTML = `<option value="">Select Post Office</option>`;
-  officeDropdown.value = '';
-  // officeDropdown.style.display = 'none';
+        if (pin.length !== 6) return;
 
-      } else {
-    officeDropdown.innerHTML = '<option value="">Select Post Office (പി ഓ?)</option>';
-    data.forEach(item => {
-      const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
-      const opt = document.createElement('option');
-      opt.value = label;
-      opt.textContent = label;
-      officeDropdown.appendChild(opt);
-    });
-    officeDropdown.style.display = 'block';
-    postoffice.style.display = 'none';
+        fetch(`pincode_json_files/${pin}.json`)
+          .then(res => {
+            if (!res.ok) throw new Error('Invalid pincode');
+            return res.json();
+          })
+          .then(data => {
+            if (!data.length) return;
 
-    if (targetPostOffice) {
-      officeDropdown.style.display = 'block';
-      officeDropdown.value = targetPostOffice;
-      postoffice.value = '';  // ❗ Clear postoffice when using dropdown
-      postoffice.style.display = 'none';
-      targetPostOffice = null;
-    }
+            pincodeData = data;
+            const district = data[0].district || '';
+            const state = data[0].statename || '';
+            districtInput.value = district;
+            stateInput.value = state;
 
-  }
-    
+            if (data.length === 1) {
+              const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
+              postoffice.style.display = 'block';
+              postoffice.value = label;
+              officeDropdown.innerHTML = `<option value="${label}" selected>${label}</option>`;
+              officeDropdown.style.display = 'none';
+              officeDropdown.value = '';
+            } else {
+              officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+              data.forEach(item => {
+                const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
+                const opt = document.createElement('option');
+                opt.value = label;
+                opt.textContent = label;
+                officeDropdown.appendChild(opt);
+              });
+              officeDropdown.style.display = 'block';
+              postoffice.style.display = 'none';
 
-    })
-    .catch(() => clearFields());
-});
+              if (targetPostOffice) {
+                officeDropdown.style.display = 'block';
+                officeDropdown.value = targetPostOffice;
+                postoffice.value = '';
+                postoffice.style.display = 'none';
+                targetPostOffice = null;
+              }
+            }
+          })
+          .catch(() => {
+            officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
+            officeDropdown.style.display = 'none';
+            districtInput.value = '';
+            stateInput.value = '';
+          });
+      });
 
-
-officeDropdown.addEventListener('change', function () {
-  postoffice.value = ''; // Always clear postoffice when a dropdown is selected
-});
-
-
-    /*officeDropdown.addEventListener('change', function () {
-
-  document.getElementById('place').value = this.value;
-  
-
-  // Find matching office in pincodeData
-  const selectedOffice = this.value;
-  const match = pincodeData.find(item => {
-    const division = item.divisionname?.replace(/\sDivision$/, '') || '';
-    const label = `${item.officename.replace(/\s(BO|SO|HO)$/, ' PO')}, ${division}`;
-    return label === selectedOffice;
-  });
-
-  
-});*/
-
-
-    function clearFields() {
-      officeDropdown.innerHTML = '<option value="">Select Post Office (പി ഓ?)</option>';
-      officeDropdown.style.display = 'none';
-      districtInput.value = '';
-      stateInput.value = '';
-    }
-
-    
-
-
+      officeDropdown.addEventListener('change', function () {
+        postoffice.value = '';
+      });
 
       const kfkcode = localStorage.getItem('kfkcode');
-            if (kfkcode) {
-                  document.getElementById('main-loader').style.display = 'flex'; // Show loader
+      if (kfkcode) {
+        document.getElementById('main-loader').style.display = 'flex';
+        submitBtn.style.display = 'none';
+        document.getElementById('sendWhatsApp').style.display = 'block';
+        disableFormFields();
 
-                  if (submitBtn) submitBtn.style.display = 'none';
-                  document.getElementById('sendWhatsApp').style.display = 'block';
-                  disableFormFields();
+        fetch(`${sc}?action=get&kfkcode=${kfkcode}`)
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById('main-loader').style.display = 'none';
+            if (data.result === 'success') {
+              const d = data.data;
+              form.name.value = d.name;
+              form.phone.value = d.phone;
+              form.pincode.value = d.pincode;
 
-              // Try fetch existing order details by code using createTextFinder
-              fetch(`${sc}?action=get&kfkcode=${kfkcode}`)
-                .then(res => res.json())
-                .then(data => {
-                  console.log("Fetched data:", data);
-                  document.getElementById('main-loader').style.display = 'none'; // Hide loader
-                  if (data.result === 'success') {
-                    const d = data.data;
-                    form.name.value = d.name;
-                    form.phone.value = d.phone;
-                    // form.pincode.value = d.pincode;
-                    form.pincode.value = d.pincode;
+              const event = new Event('input', { bubbles: true });
+              form.pincode.dispatchEvent(event);
 
-                    // Trigger input event to load post office data
-                    const event = new Event('input', { bubbles: true });
-                    form.pincode.dispatchEvent(event);
+              form.postoffice.value = d.postoffice;
+              if (d.postoffice) {
+                form.postoffice.style.display = 'block';
+              } else {
+                form.postoffice.style.display = 'none';
+              }
 
-                    form.postoffice.value = d.postoffice;
-                    if (d.postoffice) {
-                      form.postoffice.value = d.postoffice;
-                      form.postoffice.style.display = 'block';
-                    } else {
-                      form.postoffice.style.display = 'none';
-                    }
-                    if ('officename' in d && d.officename) {
-                        console.log("Officename exists:", d.officename);
-                        officeDropdown.style.display = 'block';
-                        targetPostOffice = d.officename;
-                      } else {
-                        officeDropdown.style.display = 'none';
-                      }
+              if ('officename' in d && d.officename) {
+                officeDropdown.style.display = 'block';
+                targetPostOffice = d.officename;
+              } else {
+                officeDropdown.style.display = 'none';
+              }
 
-                    form.district.value = d.district;
-                    form.state.value = d.state;
-                    form.quantity.value = d.quantity;
-                    form.message.value = d.message;
-                    form.house.value = d.house;
-                    form.place.value = d.place
+              form.district.value = d.district;
+              form.state.value = d.state;
+              form.quantity.value = d.quantity;
+              form.message.value = d.message;
+              form.house.value = d.house;
+              form.place.value = d.place;
 
-                    quantitySelect.dispatchEvent(new Event('change'));
-
-                  } else {
-                    localStorage.removeItem('kfkcode');
-                  }
-                })
-                .catch(err => {
-                  document.getElementById('main-loader').style.display = 'none'; // Hide loader
-                  console.error("Error fetching order:", err);
-                });
+              quantitySelect.dispatchEvent(new Event('change'));
             } else {
-              document.getElementById('main-loader').style.display = 'none'; // Hide loader
+              localStorage.removeItem('kfkcode');
             }
+          })
+          .catch(err => {
+            document.getElementById('main-loader').style.display = 'none';
+            console.error("Error fetching order:", err);
+          });
+      } else {
+        document.getElementById('main-loader').style.display = 'none';
+      }
     });
 
-// const base62Chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-// Encode big number to Base62
-/*function encodeBase62(numStr) {
-  let num = BigInt(numStr);
-  let result = "";
-  while (num > 0) {
-    result = base62Chars[num % 62n] + result;
-    num = num / 62n;
-  }
-  return result || "0";
-}*/
-
-// Decode Base62 string back to original number
-/*function decodeBase62(base62Str) {
-  let result = 0n;
-  for (let i = 0; i < base62Str.length; i++) {
-    const value = BigInt(base62Chars.indexOf(base62Str[i]));
-    result = result * 62n + value;
-  }
-  return result.toString();
-}
-
-// Example usage:
-
-
-
-console.log("Decoded :", decodeBase62('deGWJn'));*/
-
-
-    
-
     function generateCode(phone) {
-      const epoch = Date.now(); // Unix timestamp in milliseconds
-      const device = getDeviceType(); // e.g. "android"
-      const browser = getBrowserInfo(); // e.g. "chrome135"
-
+      const epoch = Date.now();
+      const device = getDeviceType();
+      const browser = getBrowserInfo();
       return `${phone}@${epoch}@${device}@${browser}`;
     }
 
@@ -556,7 +424,6 @@ console.log("Decoded :", decodeBase62('deGWJn'));*/
     function getBrowserInfo() {
       const ua = navigator.userAgent;
       let name = 'unknown', version = '';
-
       if (/chrome/i.test(ua) && !/edge|edg/i.test(ua)) {
         name = 'chrome';
         version = ua.match(/chrome\/([\d.]+)/i)?.[1] || '';
@@ -570,111 +437,75 @@ console.log("Decoded :", decodeBase62('deGWJn'));*/
         name = 'safari';
         version = ua.match(/version\/([\d.]+)/i)?.[1] || '';
       }
-
-      return `${name}${version.split('.')[0] || ''}`; // Just major version
+      return `${name}${version.split('.')[0] || ''}`;
     }
-
-
-
-
 
     function onSubmit(token1) {
       if (typeof grecaptcha === 'undefined') {
-          alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
-          return;
-        }
+        alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
+        return;
+      }
 
-        
-        // Load saved user details if available
-    
-
-
-     
-
-        grecaptcha.ready(function () {
-          grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
-            const formData = new FormData(form);
-            const orderData = {};
-            formData.forEach((value, key) => {
-              if (key !== 'g-recaptcha-response') {
-                orderData[key] = value;
-              }
-            });
-
-               // Save name, phone, and address to localStorage
-              /*localStorage.setItem('honey_name', orderData.name || '');
-              localStorage.setItem('honey_phone', orderData.phone || '');
-              localStorage.setItem('honey_address', orderData.address || '');*/
-
-              
-              const orderCode = localStorage.getItem('kfkcode') || generateCode(orderData.phone);
-
-              localStorage.setItem('kfkcode', orderCode);
-
-              orderData.kfkcode = orderCode;
-
-            const fullData = {
-              userData: {},
-              orderData: orderData,
-              'g-recaptcha-response': token1
-            };
-
-            const finalData = JSON.stringify(fullData);
-            console.log('finalData=', finalData);
-
-            $.ajax({
-              method: 'POST',
-              url: sc,
-              data: finalData,
-              dataType: 'json',
-              contentType: false,
-              processData: false,
-              beforeSend: function () {
-                const loader = document.getElementById('loader');
-                const submitBtn = document.getElementById('submitBtn');
-                if (loader) loader.style.display = 'block';
-                if (submitBtn) submitBtn.style.display = 'none';
-              }
-            })
-              .done(function (callback) {
-                console.log(callback);
-                successSubmitData = callback
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('sendWhatsApp').style.display = 'block';
-                disableFormFields();
-                showSuccess()
-                setTimeout(function() {
-                  window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                  });
-                }, 500);
-                  
-
-                // document.getElementById('response').textContent = 'Order submitted successfully!';
-
-              })
-              .fail(function (callback) {
-                console.error(callback);
-                document.getElementById('submitBtn').style.display = 'block';
-                document.getElementById('loader').style.display = 'none'; // Hide loader
-                showFailure();
-                setTimeout(function() {
-                  window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                  });
-                }, 500);
-                // document.getElementById('response').textContent = 'Failed to submit order. Please try again.';
-              });
-            
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
+          const formData = new FormData(form);
+          const orderData = {};
+          formData.forEach((value, key) => {
+            if (key !== 'g-recaptcha-response') {
+              orderData[key] = value;
+            }
           });
+
+          const orderCode = localStorage.getItem('kfkcode') || generateCode(orderData.phone);
+          localStorage.setItem('kfkcode', orderCode);
+          orderData.kfkcode = orderCode;
+
+          const fullData = {
+            userData: {},
+            orderData: orderData,
+            'g-recaptcha-response': token1
+          };
+
+          $.ajax({
+            method: 'POST',
+            url: sc,
+            data: JSON.stringify(fullData),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+              document.getElementById('loader').style.display = 'block';
+              submitBtn.style.display = 'none';
+            }
+          })
+            .done(function (callback) {
+              successSubmitData = callback;
+              document.getElementById('loader').style.display = 'none';
+              document.getElementById('sendWhatsApp').style.display = 'block';
+              disableFormFields();
+              showSuccess();
+              setTimeout(function () {
+                window.scrollTo({
+                  top: document.body.scrollHeight,
+                  behavior: 'smooth'
+                });
+              }, 500);
+            })
+            .fail(function (callback) {
+              console.error(callback);
+              submitBtn.style.display = 'block';
+              document.getElementById('loader').style.display = 'none';
+              showFailure();
+              setTimeout(function () {
+                window.scrollTo({
+                  top: document.body.scrollHeight,
+                  behavior: 'smooth'
+                });
+              }, 500);
+            });
         });
-
-   
-
+      });
     }
-
 
     function getCourierCharge(bottles) {
       switch (bottles) {
@@ -690,107 +521,74 @@ console.log("Decoded :", decodeBase62('deGWJn'));*/
       }
     }
 
-function calculateAmountString(quantityText) {
-  const numberOfBottles = parseInt(quantityText);
-  const basePricePerBottle = 500;
-  if (isNaN(numberOfBottles)) return '';
+    function calculateAmountString(quantityText) {
+      const numberOfBottles = parseInt(quantityText);
+      const basePricePerBottle = 500;
+      if (isNaN(numberOfBottles)) return '';
+      const amount = numberOfBottles * basePricePerBottle;
+      const courierCharge = getCourierCharge(numberOfBottles);
+      return `Amount(₹): ${amount} + ${courierCharge}`;
+    }
 
-  const amount = numberOfBottles * basePricePerBottle;
-  const courierCharge = getCourierCharge(numberOfBottles);
+    function calculateTotalString(amountString) {
+      const numbers = amountString.match(/\d+/g);
+      if (!numbers || numbers.length < 2) return '';
+      const amount = parseInt(numbers[0]);
+      const courierCharge = parseInt(numbers[1]);
+      const total = amount + courierCharge;
+      return `Total(₹): ${total}/-`;
+    }
 
-  return `Amount(₹): ${amount} + ${courierCharge}`;
-}
-
-function calculateTotalString(amountString) {
-  const numbers = amountString.match(/\d+/g);
-  if (!numbers || numbers.length < 2) return '';
-
-  const amount = parseInt(numbers[0]);
-  const courierCharge = parseInt(numbers[1]);
-  const total = amount + courierCharge;
-
-  return `Total(₹): ${total}/-`;
-}
-
-
-
-   quantitySelect.addEventListener('change', function() {
-
-    const quantityText = this.value; // Example: "3 Bottles (1.5 kg)"
-
-    const amountText = calculateAmountString(quantityText);
-
-      
-      
-        const totalText = calculateTotalString(amountText);
-
-        document.getElementById('amt').textContent = amountText + ' (Courier charge)';
-        document.getElementById('totalAmt').textContent = totalText;
-
-
-        //console.log(amountText); 
-        // Amount(₹): 500 + 80 (Courier charge)
-
-
-        //console.log(totalText); 
-// Total(₹): 580/-
-
-      
+    quantitySelect.addEventListener('change', function () {
+      const quantityText = this.value;
+      const amountText = calculateAmountString(quantityText);
+      const totalText = calculateTotalString(amountText);
+      document.getElementById('amt').textContent = amountText + ' (Courier charge)';
+      document.getElementById('totalAmt').textContent = totalText;
     });
 
+    function showSuccess() {
+      document.getElementById('response').style.display = 'flex';
+      document.getElementById('showsuccess').style.display = 'flex';
+    }
 
+    function showFailure() {
+      document.getElementById('response').style.display = 'flex';
+      document.getElementById('showfailure').style.display = 'flex';
+    }
 
-      function showSuccess() {
-        document.getElementById('response').style.display = 'flex';
-        document.getElementById('showsuccess').style.display = 'flex';
-      }
-
-      function showFailure() {
-        document.getElementById('response').style.display = 'flex';
-        document.getElementById('showfailure').style.display = 'flex';
-      }
-
-
-      function disableFormFields() {
-      document.querySelectorAll('input, select, textarea').forEach(function(element) {
+    function disableFormFields() {
+      document.querySelectorAll('input, select, textarea').forEach(function (element) {
         element.disabled = true;
       });
     }
 
     function enableFormFields() {
-      document.querySelectorAll('input, select, textarea').forEach(function(element) {
+      document.querySelectorAll('input, select, textarea').forEach(function (element) {
         element.disabled = false;
       });
     }
 
+    document.getElementById('editBtn').addEventListener('click', function () {
+      enableFormFields();
+      submitBtn.style.display = 'block';
+      document.getElementById('sendWhatsApp').style.display = 'none';
+      document.getElementById('response').style.display = 'none';
+      document.getElementById('showsuccess').style.display = 'none';
+    });
 
-      document.getElementById('editBtn').addEventListener('click', function () {
-        enableFormFields()
-        if (submitBtn) submitBtn.style.display = 'block';
-         document.getElementById('sendWhatsApp').style.display = 'none';
-         document.getElementById('response').style.display = 'none';
-          document.getElementById('showsuccess').style.display = 'none';
-      });
+    document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
+      const phone = '7788990313';
+      const orderid = successSubmitData.orderid;
+      const submitTime = successSubmitData.timestamp;
+      const successData = successSubmitData.data;
+      const postLabel = successData.officename || successData.postoffice || '';
 
-  </script>
-
-  <script>
-  document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
-
-    const phone = '7788990313';
-    var orderid = successSubmitData.orderid
-    var submitTime = successSubmitData.timestamp;
-    var successData = successSubmitData.data;
-    const postLabel = successData.officename || successData.postoffice || '';
-
-     var amountTextW = calculateAmountString(successData.quantity)+ ' (Courier)';
-
-     var totalTextW = calculateTotalString(amountTextW);
-
-
-    var extra1 = '*✅ Honey order confirmed!* 🍯\n'+'🔖 ```#'+orderid+'```\n'+'⌚ ```'+submitTime+'```'
-    var msg = successData.message ? `\n\n💬 _${successData.message.trim()}_\n` : '\n';
-    wtspformat = `
+      const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
+      const totalTextW = calculateTotalString(amountTextW);
+      const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n⌚ \`\`\`${submitTime}\`\`\``;
+      const msg = successData.message ? `\n\n💬 _${successData.message.trim()}_\n` : '\n';
+      const wtspformat = `
 ____________________________________\n
     *${successData.name.trim().toUpperCase()}*
     *${successData.house.trim().toUpperCase()}*
@@ -802,95 +600,74 @@ ____________________________________\n
     *Ph: ${successData.phone.trim()}*\n
     *Qty: ${successData.quantity}*
     *${amountTextW}*\n
-    *${totalTextW}*`+msg+
-`____________________________________
+    *${totalTextW}*${msg}
+____________________________________
 
 *Send a GPay payment to the number below and share the screenshot*
 *(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ)* 👇
-*7788990313 (KAFAK LLP)*\n`;
-// const message = encodeURIComponent("Hello! Your honey order has been confirmed ✅");
+*${phone} (KAFAK LLP)*\n`;
 
-const message = encodeURIComponent(extra1+wtspformat);
+      const message = encodeURIComponent(extra1 + wtspformat);
+      window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
+    });
 
-// window.location.href = `intent://send/${phone}#Intent;scheme=smsto;package=com.whatsapp;S.text=${message};end`;
-
-window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
-
-
-  });
-
-/*  function openUpiPayment() {
-  // const upiId = 'kafak1234@fbl'; // Replace with your UPI ID
-  const upiId = '7788990313@okbizaxis'; // Replace with your UPI ID
-  const name = 'Abdul'; // Replace with your name
-  const amount = 1; // Example: ₹1 per gram/ml (adjust as needed)
-  const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-  window.open(upiLink, '_blank');
-}*/
-
-</script>
-
-<script>
-var orderValidator = $("#honeyForm").validate({
-    //ignore: "",
-    errorElement: 'span',
-    errorClass: 'error text-danger',
-    errorPlacement: function (error, element) {
+    $("#honeyForm").validate({
+      errorElement: 'span',
+      errorClass: 'error text-danger',
+      errorPlacement: function (error, element) {
         if (element.hasClass("btn-check")) {
-            error.appendTo(element.parent().parent().parent());
+          error.appendTo(element.parent().parent().parent());
         } else {
-            error.appendTo(element.parent());
+          error.appendTo(element.parent());
         }
-    },
-    rules: {
+      },
+      rules: {
         name: {
-            required: true,
+          required: true,
         },
         phone: {
-            required: true,
-            number: true,
-            minlength: 10
+          required: true,
+          number: true,
+          minlength: 10
         },
         pincode: {
-            required: true,
-            number: true,
-            minlength: 6
+          required: true,
+          number: true,
+          minlength: 6
         },
         officename: {
-            required: true,
-          },
-    },
-    messages: {
+          required: true,
+        },
+      },
+      messages: {
         name: {
-            required: "Please enter your name",
+          required: "Please enter your name",
         },
         phone: {
-            required: "Please enter your phone number",
-            number: "Please enter valid phone number",
-            minlength: "Please enter valid phone number",
+          required: "Please enter your phone number",
+          number: "Please enter valid phone number",
+          minlength: "Please enter valid phone number",
         },
         pincode: {
-            required: "Please enter pincode",
-            number: "Please enter pincode",
-            minlength: "Please enter correct pincode"
+          required: "Please enter pincode",
+          number: "Please enter pincode",
+          minlength: "Please enter correct pincode"
         },
         officename: {
           required: "Please select postoffice",
         }
-    },
-    submitHandler: function (form) {
-        // Execute reCAPTCHA and call onSubmit with the token
+      },
+      submitHandler: function (form) {
         grecaptcha.ready(function () {
-            grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
-                onSubmit(token); // Call onSubmit with the reCAPTCHA token
-            }).catch(function (error) {
-                console.error('reCAPTCHA error:', error);
-                showFailure(); // Show failure message if reCAPTCHA fails
-            });
+          grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
+            onSubmit(token);
+          }).catch(function (error) {
+            console.error('reCAPTCHA error:', error);
+            showFailure();
+          });
         });
-    },
-});
-</script>
-
+      },
+    });
+  </script>
 </body>
 </html>
