@@ -698,7 +698,7 @@ function calculateAmountString(quantityText) {
   const amount = numberOfBottles * basePricePerBottle;
   const courierCharge = getCourierCharge(numberOfBottles);
 
-  return `Amount(₹): ${amount} + ${courierCharge} (Courier charge)`;
+  return `Amount(₹): ${amount} + ${courierCharge}`;
 }
 
 function calculateTotalString(amountString) {
@@ -724,15 +724,15 @@ function calculateTotalString(amountString) {
       
         const totalText = calculateTotalString(amountText);
 
-        document.getElementById('amt').textContent = amountText;
+        document.getElementById('amt').textContent = amountText + ' (Courier charge)';
         document.getElementById('totalAmt').textContent = totalText;
 
 
-        console.log(amountText); 
+        //console.log(amountText); 
         // Amount(₹): 500 + 80 (Courier charge)
 
 
-        console.log(totalText); 
+        //console.log(totalText); 
 // Total(₹): 580/-
 
       
@@ -783,7 +783,7 @@ function calculateTotalString(amountString) {
     var successData = successSubmitData.data;
     const postLabel = successData.officename || successData.postoffice || '';
 
-     var amountTextW = calculateAmountString(successData.quantity);
+     var amountTextW = calculateAmountString(successData.quantity)+ ' (Courier)';
 
      var totalTextW = calculateTotalString(amountTextW);
 
