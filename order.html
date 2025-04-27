@@ -589,7 +589,7 @@
     }
 
     quantitySelect.addEventListener('change', function () {
-      $('.price-show').hide();
+      $('.price-show, #quantity-error').hide();
       const quantityText = this.value;
       if(quantityText != '') {
         const amountText = calculateAmountString(quantityText);
