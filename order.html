@@ -652,7 +652,7 @@ ____________________________________\n
 ____________________________________
 
 *Send a GPay payment to the number below and share the screenshot*
-*(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് Screenshot അയക്കൂ)* 👇
+*(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് സ്ക്രീന്‍ഷോട്ട് അയക്കൂ)* 👇
 *${phone} (KAFAK LLP)*\n`;
 
       const message = encodeURIComponent(extra1 + wtspformat);
@@ -685,7 +685,7 @@ ____________________________________
           required: true,
         },
         pincode: {
-          required: true && !availablePin,
+          required: true,
           number: true,
           minlength: 6
         },
