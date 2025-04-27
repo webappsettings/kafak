@@ -29,7 +29,7 @@
 
     @media (max-width: 600px) {
       body {
-        padding: 20px;
+        /*padding: 20px;*/
       }
 
       form {
@@ -56,7 +56,7 @@
       font-family: Arial, sans-serif;
       background-color: #f5fff9;
       margin: 0;
-      /*padding: 20px;*/
+      padding: 20px;
     }
 
     .border-box {
@@ -171,7 +171,7 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      padding: 15px 10px 16px;
+      padding: 0px 10px 16px;
     }
     .logo-section {
       width: 30%;
@@ -222,21 +222,24 @@
       <div class="form-group">
         <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
       </div>
-      <div class="form-group pincodeEnable" style="display: none;">
+      <!-- pincodeEnable -->
+      <div class="form-group ">
         <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
       </div>
-      <div class="form-group pincodeEnable" style="display: none;">
+      <div class="form-group ">
         <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
       </div>
     </div>
 
+
     <div class="border-box">
-      <div class="form-group" style="margin-bottom: 0;">
+      <div class="form-group" >
         <label>
           <span class="eng" style="font-weight: 500;">Quantity:</span>
           <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
         </label>
         <select id="quantity" name="quantity" required>
+          <option value="">Select Quantity (അളവ്?)</option>
           <option value="1 Bottle (500 g)">1 Bottle (500 g)</option>
           <option value="2 Bottles (1 kg)">2 Bottles (1 kg)</option>
           <option value="3 Bottles (1.5 kg)">3 Bottles (1.5 kg)</option>
@@ -246,11 +249,12 @@
           <option value="8 Bottles (4 kg)">8 Bottles (4 kg)</option>
           <option value="10 Bottles (5 kg)">10 Bottles (5 kg)</option>
         </select>
-      </div>
-      <div class="price-show">
+        <div class="price-show" style="display: none;">
         <span class="amt" id="amt">Amount(₹): 500 + 80 (Courier charge)</span>
         <span class="total-amt" id="totalAmt">Total(₹): 580/-</span>
       </div>
+      </div>
+      
       <div class="form-group" style="margin-bottom: 0;">
         <label>
           <span class="eng" style="font-weight: 500;">Any special instructions?</span>
@@ -431,6 +435,7 @@
               form.message.value = d.message;
               form.house.value = d.house;
               form.place.value = d.place;
+              $('.price-show').show();
 
               quantitySelect.dispatchEvent(new Event('change'));
             } else {
@@ -530,7 +535,7 @@
                   top: document.body.scrollHeight,
                   behavior: 'smooth'
                 });
-              }, 500);
+              }, 300);
             })
             .fail(function (callback) {
               console.error(callback);
@@ -542,7 +547,7 @@
                   top: document.body.scrollHeight,
                   behavior: 'smooth'
                 });
-              }, 500);
+              }, 300);
             });
         });
       });
@@ -581,11 +586,15 @@
     }
 
     quantitySelect.addEventListener('change', function () {
+      $('.price-show').hide();
       const quantityText = this.value;
-      const amountText = calculateAmountString(quantityText);
-      const totalText = calculateTotalString(amountText);
-      document.getElementById('amt').textContent = amountText + ' (Courier charge)';
-      document.getElementById('totalAmt').textContent = totalText;
+      if(quantityText != '') {
+        const amountText = calculateAmountString(quantityText);
+        const totalText = calculateTotalString(amountText);
+        document.getElementById('amt').textContent = amountText + ' (Courier charge)';
+        document.getElementById('totalAmt').textContent = totalText;
+        $('.price-show').show();
+      }
     });
 
     function showSuccess() {
@@ -685,6 +694,9 @@ ____________________________________
         officename: {
           required: true,
         },
+        quantity: {
+          required: true,
+        }
       },
       messages: {
         name: {
@@ -708,6 +720,9 @@ ____________________________________
         },
         officename: {
           required: "Please select postoffice",
+        },
+        quantity: {
+          required: "Please select quantity",
         }
       },
       submitHandler: function (form) {
