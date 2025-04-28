@@ -209,12 +209,6 @@
         <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
       </div>
       <div class="form-group">
-        <input type="text" id="house" name="house" placeholder="House name/Flat (വീട്ടുപേര്/നമ്പര്‍?)" required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="place" name="place" placeholder="Place (സ്ഥലം?)" required>
-      </div>
-      <div class="form-group">
         <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required>
       </div>
       <div class="form-group">
@@ -232,6 +226,15 @@
       <div class="form-group ">
         <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
       </div>
+
+      <div class="form-group">
+        <input type="text" id="house" name="house" placeholder="House name/Flat (വീട്ടുപേര്/നമ്പര്‍?)" required>
+      </div>
+      <div class="form-group">
+        <input type="text" id="place" name="place" placeholder="Place (സ്ഥലം?)" required>
+      </div>
+
+
     </div>
 
 
@@ -563,13 +566,13 @@
     function getCourierCharge(bottles) {
       switch (bottles) {
         case 1: return 80;
-        case 2: return 150;
+        case 2: return 140;
         case 3: return 190;
         case 4: return 240;
-        case 5: return 270;
-        case 6: return 320;
-        case 8: return 400;
-        case 10: return 480;
+        case 5: return 290;
+        case 6: return 340;
+        case 8: return 480;
+        case 10: return 500;
         default: return 0;
       }
     }
