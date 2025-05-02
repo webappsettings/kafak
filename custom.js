@@ -12,6 +12,7 @@ const quantitySelect = document.getElementById('quantity');
 const submitBtn = document.getElementById('submitBtn');
 
 var availablePin = false;
+var locationSet;
 
 window.addEventListener('DOMContentLoaded', () => {
   let pincodeData = [];
@@ -233,7 +234,7 @@ function onSubmit(token1) {
           successSubmitData = callback;
           document.getElementById('loader').style.display = 'none';
           // document.getElementById('sendWhatsApp').style.display = 'block';
-          var locationSet = 'u'+successSubmitData.userLoc+'-o'+successSubmitData.orderLoc
+          locationSet = 'u'+successSubmitData.userLoc+'-o'+successSubmitData.orderLoc
           localStorage.setItem('loc', locationSet);
           console.log(locationSet)
           disableFormFields();
@@ -362,7 +363,7 @@ function sendToWhatsapp() {
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n 🔗 _kafaklife.com/order?${'u'+successSubmitData.userLoc+'-o'+successSubmitData.orderLoc}_\n⌚ \`\`\`${submitTime}\`\`\``;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n 🔗 _kafaklife.com/order?${locationSet}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = successData.message ? `\n\n💬 _${successData.message.trim()}_\n` : '\n';
   const wtspformat = `
 ____________________________________\n
