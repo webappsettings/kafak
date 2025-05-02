@@ -244,12 +244,7 @@ function onSubmit(token1) {
           showSuccess();
           sendToWhatsapp();
           console.log('successSubmitData=',successSubmitData)
-          setTimeout(function () {
-            window.scrollTo({
-              top: document.body.scrollHeight,
-              behavior: 'smooth'
-            });
-          }, 300);
+          
         })
         .fail(function (callback) {
           console.error(callback);
@@ -465,6 +460,12 @@ $("#honeyForm").validate({
     }
   },
   submitHandler: function (form) {
+    setTimeout(function () {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 300);
     grecaptcha.ready(function () {
       grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
         onSubmit(token);
