@@ -2,7 +2,7 @@ const form = document.getElementById('honeyForm');
 const cd = 'AKfycbzj7F8fwcfLTS86EKJXrqv11JPPSkOZlRdTCfPE2XQESHdT8Av805AIL6ZFuWjZQh2JmQ';
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
-let successSubmitData;
+var successSubmitData;
 const pincodeInput = document.getElementById('pincode');
 const officeDropdown = document.getElementById('officename');
 const districtInput = document.getElementById('district');
@@ -110,7 +110,10 @@ $('.pincodeEnable').hide();
       .then(data => {
         document.getElementById('main-loader').style.display = 'none';
         if (data.result === 'success') {
-          // document.getElementById('editBtn2').style.display = 'block';
+          document.getElementById('editBtn2').style.display = 'block';
+          document.getElementById('whatsapp-btn-wrp').style.display = 'none';
+          successSubmitData = data;
+          console.log('getsuccessSubmitData=', successSubmitData)
           const d = data.data;
           form.name.value = d.name;
           form.phone.value = d.phone;
@@ -338,14 +341,16 @@ function enableFormFields() {
   document.getElementById('showsuccess').style.display = 'none';
 });*/
 
-/*document.getElementById('editBtn2').addEventListener('click', function () {
+document.getElementById('editBtn2').addEventListener('click', function () {
   $(this).hide();
   enableFormFields();
-  submitBtn.style.display = 'block';
-  document.getElementById('sendWhatsApp').style.display = 'none';
+  // submitBtn.style.display = 'block';
+  document.getElementById('whatsapp-btn-wrp').style.display = 'inline-flex';
   document.getElementById('response').style.display = 'none';
   document.getElementById('showsuccess').style.display = 'none';
-});*/
+  /*document.getElementById('sendWhatsApp').style.display = 'none';
+  */
+});
 
 
 /*document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
@@ -358,7 +363,7 @@ function sendToWhatsapp() {
   const orderid = successSubmitData.orderid;
   const submitTime = successSubmitData.timestamp;
   const successData = successSubmitData.data;
-
+console.log('successData', successData)
   const postLabel = successData.officename || successData.postoffice || '';
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';

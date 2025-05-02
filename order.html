@@ -88,11 +88,13 @@
       </div>
       <!-- <button type="submit" id="submitBtn">Submit</button> -->
 
-      <div class="btn-group" role="group" style="display: inline-flex; width: 100%; justify-content: space-between;">
+      <div class="btn-group" id="whatsapp-btn-wrp" role="group" style="display: inline-flex; width: 100%; justify-content: space-between;">
         <button id="submitBtn" class="whatsapp-btn" type="submit">
           <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"><span><span class="eng" style="display: block;">Send to WhatsApp</span> <span class="ml" style="display: block; font-size: 13px">(വാട്സാപ്പില്‍ അയക്കൂ)</span></span>
         </button>
       </div>
+
+      <button type="button" id="editBtn2" class="btn btn-secondary editBtn" style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
 
       <div id="loader" style="display: none; text-align: center;">
         <img src="loading.gif" alt="Loading..." width="40">
@@ -106,7 +108,7 @@
           <img src="failure.png" alt="failure">Failed to submit order. Please try again.
         </div>
       </div>
-      <!-- <button type="button" id="editBtn2" class="btn btn-secondary editBtn" style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
+      <!-- 
       <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red; margin-top: 15px;">
         <span style="display: block;">Click the button below to send a WhatsApp message</span>
         <span style="font-size: 14px; font-weight: 500; display: block;">
