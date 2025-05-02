@@ -1,5 +1,5 @@
 const form = document.getElementById('honeyForm');
-const cd = 'AKfycbw-pk6a1mrzbbecA17NSTrp137Nx5LgDhi2fXkEZRARwUsXYM7dh2tbnTADI-SYQaeV3Q';
+const cd = 'AKfycbzj7F8fwcfLTS86EKJXrqv11JPPSkOZlRdTCfPE2XQESHdT8Av805AIL6ZFuWjZQh2JmQ';
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 let successSubmitData;
@@ -233,9 +233,13 @@ function onSubmit(token1) {
           successSubmitData = callback;
           document.getElementById('loader').style.display = 'none';
           // document.getElementById('sendWhatsApp').style.display = 'block';
+          var locationSet = 'u'+successSubmitData.userLoc+'-o'+successSubmitData.orderLoc
+          localStorage.setItem('loc', locationSet);
+          console.log(locationSet)
           disableFormFields();
           showSuccess();
-          sendToWhatsapp()
+          sendToWhatsapp();
+          console.log('successSubmitData=',successSubmitData)
           setTimeout(function () {
             window.scrollTo({
               top: document.body.scrollHeight,
@@ -353,12 +357,12 @@ function sendToWhatsapp() {
   const orderid = successSubmitData.orderid;
   const submitTime = successSubmitData.timestamp;
   const successData = successSubmitData.data;
- 
+
   const postLabel = successData.officename || successData.postoffice || '';
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n⌚ \`\`\`${submitTime}\`\`\``;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n 🔗 _kafaklife.com/order?${'u'+successSubmitData.userLoc+'-o'+successSubmitData.orderLoc}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = successData.message ? `\n\n💬 _${successData.message.trim()}_\n` : '\n';
   const wtspformat = `
 ____________________________________\n
