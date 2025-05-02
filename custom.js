@@ -235,6 +235,7 @@ function onSubmit(token1) {
           document.getElementById('sendWhatsApp').style.display = 'block';
           disableFormFields();
           showSuccess();
+          sendToWhatsapp()
           setTimeout(function () {
             window.scrollTo({
               top: document.body.scrollHeight,
