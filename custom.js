@@ -363,7 +363,7 @@ function sendToWhatsapp() {
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n 🔗 _kafaklife.com/order?${locationSet}_\n⌚ \`\`\`${submitTime}\`\`\``;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?${locationSet}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = successData.message ? `\n\n💬 _${successData.message.trim()}_\n` : '\n';
   const wtspformat = `
 ____________________________________\n
