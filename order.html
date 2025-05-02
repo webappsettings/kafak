@@ -86,7 +86,14 @@
         </label>
         <textarea name="message" placeholder="പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടെങ്കില്‍ എഴുതാം"></textarea>
       </div>
-      <button type="submit" id="submitBtn">Submit</button>
+      <!-- <button type="submit" id="submitBtn">Submit</button> -->
+
+      <div class="btn-group" role="group" style="display: inline-flex; width: 100%; justify-content: space-between;">
+        <button id="submitBtn" class="whatsapp-btn" type="submit">
+          <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"> Send to WhatsApp
+        </button>
+      </div>
+
       <div id="loader" style="display: none; text-align: center;">
         <img src="loading.gif" alt="Loading..." width="40">
         <p>Please wait...</p>
@@ -99,7 +106,7 @@
           <img src="failure.png" alt="failure">Failed to submit order. Please try again.
         </div>
       </div>
-      <button type="button" id="editBtn2" class="btn btn-secondary editBtn" style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
+      <!-- <button type="button" id="editBtn2" class="btn btn-secondary editBtn" style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
       <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red; margin-top: 15px;">
         <span style="display: block;">Click the button below to send a WhatsApp message</span>
         <span style="font-size: 14px; font-weight: 500; display: block;">
@@ -112,7 +119,7 @@
           </button>
           <button type="button" id="editBtn1" class="btn btn-secondary editBtn" style="width: 50px; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </form>
 

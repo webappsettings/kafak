@@ -100,7 +100,7 @@ $('.pincodeEnable').hide();
   const kfkcode = localStorage.getItem('kfkcode');
   if (kfkcode) {
     document.getElementById('main-loader').style.display = 'flex';
-    submitBtn.style.display = 'none';
+    // submitBtn.style.display = 'none';
     // document.getElementById('sendWhatsApp').style.display = 'block';
     disableFormFields();
 
@@ -109,7 +109,7 @@ $('.pincodeEnable').hide();
       .then(data => {
         document.getElementById('main-loader').style.display = 'none';
         if (data.result === 'success') {
-          document.getElementById('editBtn2').style.display = 'block';
+          // document.getElementById('editBtn2').style.display = 'block';
           const d = data.data;
           form.name.value = d.name;
           form.phone.value = d.phone;
@@ -143,7 +143,7 @@ $('.pincodeEnable').hide();
           quantitySelect.dispatchEvent(new Event('change'));
         } else {
           localStorage.removeItem('kfkcode');
-          submitBtn.style.display = 'block';
+          // submitBtn.style.display = 'block';
           enableFormFields();
         }
       })
@@ -226,16 +226,16 @@ function onSubmit(token1) {
         processData: false,
         beforeSend: function () {
           document.getElementById('loader').style.display = 'block';
-          submitBtn.style.display = 'none';
+          // submitBtn.style.display = 'none';
         }
       })
         .done(function (callback) {
           successSubmitData = callback;
           document.getElementById('loader').style.display = 'none';
-          document.getElementById('sendWhatsApp').style.display = 'block';
+          // document.getElementById('sendWhatsApp').style.display = 'block';
           disableFormFields();
           showSuccess();
-          // sendToWhatsapp()
+          sendToWhatsapp()
           setTimeout(function () {
             window.scrollTo({
               top: document.body.scrollHeight,
@@ -245,7 +245,7 @@ function onSubmit(token1) {
         })
         .fail(function (callback) {
           console.error(callback);
-          submitBtn.style.display = 'block';
+          // submitBtn.style.display = 'block';
           document.getElementById('loader').style.display = 'none';
           showFailure();
           setTimeout(function () {
@@ -325,27 +325,27 @@ function enableFormFields() {
   });
 }
 
-document.getElementById('editBtn1').addEventListener('click', function () {
+/*document.getElementById('editBtn1').addEventListener('click', function () {
   enableFormFields();
   submitBtn.style.display = 'block';
   document.getElementById('sendWhatsApp').style.display = 'none';
   document.getElementById('response').style.display = 'none';
   document.getElementById('showsuccess').style.display = 'none';
-});
+});*/
 
-document.getElementById('editBtn2').addEventListener('click', function () {
+/*document.getElementById('editBtn2').addEventListener('click', function () {
   $(this).hide();
   enableFormFields();
   submitBtn.style.display = 'block';
   document.getElementById('sendWhatsApp').style.display = 'none';
   document.getElementById('response').style.display = 'none';
   document.getElementById('showsuccess').style.display = 'none';
-});
+});*/
 
 
-document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
+/*document.getElementById('sendWhatsAppBtn').addEventListener('click', function () {
   sendToWhatsapp()
-});
+});*/
 
 
 function sendToWhatsapp() {
@@ -353,7 +353,8 @@ function sendToWhatsapp() {
   const orderid = successSubmitData.orderid;
   const submitTime = successSubmitData.timestamp;
   const successData = successSubmitData.data;
-  const postLabel = successData.officename || successData.postoffice || '';
+ 
+  const postLabel = successSubmitData?.data?.officename || '';
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
