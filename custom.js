@@ -354,7 +354,7 @@ function sendToWhatsapp() {
   const submitTime = successSubmitData.timestamp;
   const successData = successSubmitData.data;
  
-  const postLabel = successSubmitData?.data?.officename || '';
+  const postLabel = successData.officename || successData.postoffice || '';
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
