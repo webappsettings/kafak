@@ -1,5 +1,5 @@
 const form = document.getElementById('honeyForm');
-const cd = 'AKfycbwuz11rR49ER6eCbgPh0Rz-A4Go4ZXaVCaintsCyQcyAvD_zF7cJWo6vaaC3ah1DAvx';
+const cd = 'AKfycbwZa-DUu19XO6ZaJHAFulgsLIjTLeSdCJh00dhju5LQxlr_PJxbreLZ-Uir35w4ftThfA';
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 var successSubmitData;
@@ -195,14 +195,8 @@ function getBrowserInfo() {
   return `${name}${version.split('.')[0] || ''}`;
 }
 
-function onSubmit(token1) {
-  if (typeof grecaptcha === 'undefined') {
-    alert('reCAPTCHA not ready yet. Please wait a moment and try again.');
-    return;
-  }
+function onSubmit() {
 
-  grecaptcha.ready(function () {
-    grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
       const formData = new FormData(form);
       const orderData = {};
       formData.forEach((value, key) => {
@@ -217,8 +211,7 @@ function onSubmit(token1) {
 
       const fullData = {
         userData: {},
-        orderData: orderData,
-        'g-recaptcha-response': token1
+        orderData: orderData
       };
 
       $.ajax({
@@ -258,8 +251,8 @@ function onSubmit(token1) {
             });
           }, 300);
         });
-    });
-  });
+    
+  
 }
 
 function getCourierCharge(bottles) {
@@ -460,19 +453,15 @@ $("#honeyForm").validate({
     }
   },
   submitHandler: function (form) {
+
+     onSubmit();
+
     setTimeout(function () {
         window.scrollTo({
           top: document.body.scrollHeight,
           behavior: 'smooth'
         });
       }, 300);
-    grecaptcha.ready(function () {
-      grecaptcha.execute('6LdJ5w0rAAAAAF7QfRkND3V0b6dKrvWKWz8onZhP', { action: 'submit' }).then(function (token) {
-        onSubmit(token);
-      }).catch(function (error) {
-        console.error('reCAPTCHA error:', error);
-        showFailure();
-      });
-    });
+    
   },
 });
