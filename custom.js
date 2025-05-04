@@ -1,5 +1,5 @@
 const form = document.getElementById('honeyForm');
-const cd = 'AKfycbwZa-DUu19XO6ZaJHAFulgsLIjTLeSdCJh00dhju5LQxlr_PJxbreLZ-Uir35w4ftThfA';
+const cd = 'AKfycbydELMga32tb7NALkCqeG1LgWDooBWHGyynnS_JgCXWWomJReHwenJnQJgQ0jigS8dzTQ';
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 var successSubmitData;
@@ -14,7 +14,11 @@ const submitBtn = document.getElementById('submitBtn');
 var availablePin = false;
 var locationSet;
 
+
+
+
 window.addEventListener('DOMContentLoaded', () => {
+
   let pincodeData = [];
   let targetPostOffice = null;
 
@@ -98,14 +102,31 @@ $('.pincodeEnable').hide();
     postoffice.value = '';
   });
 
-  const kfkcode = localStorage.getItem('kfkcode');
-  if (kfkcode) {
-    document.getElementById('main-loader').style.display = 'flex';
-    // submitBtn.style.display = 'none';
-    // document.getElementById('sendWhatsApp').style.display = 'block';
-    disableFormFields();
+  const queryString = window.location.search;
+  const urlParams = queryString.substring(1);
+ 
 
-    fetch(`${sc}?action=get&kfkcode=${kfkcode}`)
+  if(urlParams) {
+   getData(urlParams, 'url')
+ } else {
+   const kfkcode = localStorage.getItem('kfkcode');
+   if (kfkcode) {
+    document.getElementById('main-loader').style.display = 'flex';
+    disableFormFields();
+    getData(kfkcode, 'mem')
+  } else {
+    document.getElementById('main-loader').style.display = 'none';
+  }
+}
+
+  
+});
+
+
+function getData(kfkcode, frm) {
+
+
+  fetch(`${sc}?action=get&kfkcode=${kfkcode}&frm=${frm}`)
       .then(res => res.json())
       .then(data => {
         document.getElementById('main-loader').style.display = 'none';
@@ -146,7 +167,7 @@ $('.pincodeEnable').hide();
 
           quantitySelect.dispatchEvent(new Event('change'));
         } else {
-          localStorage.removeItem('kfkcode');
+          //localStorage.removeItem('kfkcode');
           // submitBtn.style.display = 'block';
           enableFormFields();
         }
@@ -155,10 +176,9 @@ $('.pincodeEnable').hide();
         document.getElementById('main-loader').style.display = 'none';
         console.error("Error fetching order:", err);
       });
-  } else {
-    document.getElementById('main-loader').style.display = 'none';
-  }
-});
+}
+
+
 
 function generateCode(phone) {
   const epoch = Date.now();
