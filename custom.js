@@ -15,12 +15,12 @@ var availablePin = false;
 var locationSet;
 
 
-
+var pincodeData = [];
+var targetPostOffice = null;
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  let pincodeData = [];
-  let targetPostOffice = null;
+  
 
   pincodeInput.addEventListener('input', async function () {
 const pin = this.value.trim();
@@ -76,11 +76,15 @@ if (data.length === 1) {
   officeDropdown.style.display = 'block';
   postoffice.style.display = 'none';
 
+  // alert('targetPostOffice= '+ targetPostOffice)
+
   if (targetPostOffice) {
     officeDropdown.value = targetPostOffice;
+
     postoffice.value = '';
     postoffice.style.display = 'none';
     targetPostOffice = null;
+
   }
 }
 } catch (error) {
@@ -139,13 +143,10 @@ function getData(kfkcode, frm) {
           form.name.value = d.name;
           form.phone.value = d.phone;
           form.pincode.value = d.pincode;
-
-          const event = new Event('input', { bubbles: true });
-          form.pincode.dispatchEvent(event);
-
-          form.postoffice.value = d.postoffice;
+          
           if (d.postoffice) {
             form.postoffice.style.display = 'block';
+            form.postoffice.value = d.postoffice
           } else {
             form.postoffice.style.display = 'none';
           }
@@ -153,6 +154,11 @@ function getData(kfkcode, frm) {
           if ('officename' in d && d.officename) {
             officeDropdown.style.display = 'block';
             targetPostOffice = d.officename;
+
+            const event = new Event('input', { bubbles: true });
+            form.pincode.dispatchEvent(event);
+
+ 
           } else {
             officeDropdown.style.display = 'none';
           }
@@ -166,6 +172,7 @@ function getData(kfkcode, frm) {
           $('.price-show').show();
 
           quantitySelect.dispatchEvent(new Event('change'));
+          disableFormFields();
         } else {
           //localStorage.removeItem('kfkcode');
           // submitBtn.style.display = 'block';
