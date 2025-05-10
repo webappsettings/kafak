@@ -129,6 +129,7 @@ $('.pincodeEnable').hide();
 
 function getData(kfkcode, frm) {
 
+console.log('frm=', frm)
 
   fetch(`${sc}?action=get&kfkcode=${kfkcode}&frm=${frm}`)
       .then(res => res.json())
