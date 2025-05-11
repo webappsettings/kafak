@@ -113,14 +113,15 @@ $('.pincodeEnable').hide();
   if(urlParams) {
    getData(urlParams, 'url')
  } else {
-   const kfkcode = localStorage.getItem('kfkcode');
-   if (kfkcode) {
+  document.getElementById('main-loader').style.display = 'none';
+   // const kfkcode = localStorage.getItem('kfkcode');
+   /*if (kfkcode) {
     document.getElementById('main-loader').style.display = 'flex';
     disableFormFields();
     getData(kfkcode, 'mem')
   } else {
     document.getElementById('main-loader').style.display = 'none';
-  }
+  }*/
 }
 
   
