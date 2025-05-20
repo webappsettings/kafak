@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+
+    .order { background: #fff; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; }
+    .order h3 { margin-top: 0; color: #333; }
+    .order p { margin: 5px 0; font-size: 14px; }
