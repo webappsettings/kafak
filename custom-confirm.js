@@ -61,14 +61,47 @@ fetch(`${sc}?action=list`)
 }
 
 
+function getCourierCharge(bottles) {
+  switch (bottles) {
+    case 1: return 80;
+    case 2: return 140;
+    case 3: return 190;
+    case 4: return 240;
+    case 5: return 290;
+    case 6: return 340;
+    case 8: return 480;
+    case 10: return 500;
+    default: return 0;
+  }
+}
+
+function calculateAmountString(quantityText) {
+  const numberOfBottles = parseInt(quantityText);
+  const basePricePerBottle = 500;
+  if (isNaN(numberOfBottles)) return '';
+  const amount = numberOfBottles * basePricePerBottle;
+  const courierCharge = getCourierCharge(numberOfBottles);
+  return `Amount(₹): ${amount} + ${courierCharge}`;
+}
+
+function calculateTotalString(amountString) {
+  const numbers = amountString.match(/\d+/g);
+  if (!numbers || numbers.length < 2) return '';
+  const amount = parseInt(numbers[0]);
+  const courierCharge = parseInt(numbers[1]);
+  const total = amount + courierCharge;
+  return `Total(₹): ${total}/-`;
+}
+
 
 function sendConfirmation(row) {
   console.log(row);
   const whatsapp = row.whatsapp;
   const orderid = row.orderid;
-  const submitTime = row.timestamp;
+  const submitTime = formatTimestamp(row.timestamp);
   const postLabel = row.officename || row.postoffice || '';
 
+  const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?${row.kfkcode}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = row.message ? `\n\n💬 _${row.message.trim()}_\n` : '\n';
 
@@ -82,6 +115,8 @@ ____________________________________\n
 *${row.state.trim().toUpperCase()}*
 *Ph: ${row.phone}*\n
 *Qty: ${row.quantity}*
+*${amountTextW}*\n
+*${totalTextW}*${msg}
 ${msg}
 ____________________________________
 
