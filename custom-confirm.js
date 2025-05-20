@@ -102,7 +102,7 @@ function sendConfirmation(row) {
   const postLabel = row.officename || row.postoffice || '';
 
   const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?${row.kfkcode}_\n⌚ \`\`\`${submitTime}\`\`\``;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?${row.rowNumber}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = row.message ? `\n\n💬 _${row.message.trim()}_\n` : '\n';
 
   const wtspformat = `
