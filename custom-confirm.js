@@ -103,9 +103,9 @@ function sendConfirmation(row) {
 
   const amountTextW = calculateAmountString(row.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?${row.rowNumber}_\n⌚ \`\`\`${submitTime}\`\`\``;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?o${row.rowNumber}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = row.message ? `\n\n💬 _${String(row.message).trim()}_\n` : '\n';
-  
+
   const wtspformat = `
 ____________________________________\n
 *${row.name.trim().toUpperCase()}*
