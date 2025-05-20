@@ -101,7 +101,8 @@ function sendConfirmation(row) {
   const submitTime = formatTimestamp(row.timestamp);
   const postLabel = row.officename || row.postoffice || '';
 
-  const amountTextW = calculateAmountString(successData.quantity) + ' (Courier)';
+  const amountTextW = calculateAmountString(row.quantity) + ' (Courier)';
+  const totalTextW = calculateTotalString(amountTextW);
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?${row.rowNumber}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = row.message ? `\n\n💬 _${row.message.trim()}_\n` : '\n';
 
