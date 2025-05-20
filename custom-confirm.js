@@ -114,11 +114,11 @@ ____________________________________\n
 *${postLabel.trim().toUpperCase()}*
 *${row.district.trim().toUpperCase()}*
 *${row.state.trim().toUpperCase()}*
+*Pin: ${row.pincode.trim()}*
 *Ph: ${row.phone}*\n
 *Qty: ${row.quantity}*
 *${amountTextW}*\n
 *${totalTextW}*${msg}
-${msg}
 ____________________________________
 
 *Please GPay to the number below and send the screenshot here. We will pack your order after receiving it.*\n
