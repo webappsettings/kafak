@@ -114,7 +114,7 @@ ____________________________________\n
 *${postLabel.trim().toUpperCase()}*
 *${row.district.trim().toUpperCase()}*
 *${row.state.trim().toUpperCase()}*
-*Pin: ${row.pincode.trim()}*
+*Pin: ${String(row.pincode).trim()}*
 *Ph: ${row.phone}*\n
 *Qty: ${row.quantity}*
 *${amountTextW}*\n
