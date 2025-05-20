@@ -90,5 +90,11 @@ ____________________________________
 \n*7788990313 (KAFAK LLP)*\n`;
 
   const message = encodeURIComponent(extra1 + wtspformat);
-  window.open(`whatsapp://send?phone=91${whatsapp}&text=${message}`, '_blank');
+  // Ensure no + symbol and spaces
+  const formattedNumber = whatsapp.replace(/\D/g, ''); // removes +, spaces, dashes, etc.
+  window.open(`whatsapp://send?phone=${formattedNumber}&text=${message}`, '_blank');
+
+
+
+  // window.open(`whatsapp://send?phone=91${whatsapp}&text=${message}`, '_blank');
 }
