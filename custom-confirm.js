@@ -63,7 +63,7 @@ fetch(`${sc}?action=list`)
 
 
 function sendConfirmation(row) {
-  console.log(row)
+  console.log(row);
   const whatsapp = row.whatsapp;
   const orderid = row.orderid;
   const submitTime = row.timestamp;
@@ -82,7 +82,7 @@ ____________________________________\n
 *${row.state.trim().toUpperCase()}*
 *Ph: ${row.phone}*\n
 *Qty: ${row.quantity}*
-*${msg}
+${msg}
 ____________________________________
 
 *Please GPay to the number below and send the screenshot here. We will pack your order after receiving it.*\n
@@ -90,11 +90,12 @@ ____________________________________
 \n*7788990313 (KAFAK LLP)*\n`;
 
   const message = encodeURIComponent(extra1 + wtspformat);
-  // Ensure no + symbol and spaces
-  const formattedNumber = whatsapp.replace(/\D/g, ''); // removes +, spaces, dashes, etc.
-  window.open(`whatsapp://send?phone=${formattedNumber}&text=${message}`, '_blank');
 
 
-
-  // window.open(`whatsapp://send?phone=91${whatsapp}&text=${message}`, '_blank');
+  // Fix: force to string and strip non-digits
+  const formattedNumber = String(whatsapp).replace(/\D/g, '');
+  const withCountryCode = formattedNumber.startsWith('91') ? formattedNumber : '91' + formattedNumber;
+  window.open(`whatsapp://send?phone=${withCountryCode}&text=${message}`, '_blank');
+  // window.open(`whatsapp://send?phone=${formattedNumber}&text=${message}`, '_blank');
 }
+
