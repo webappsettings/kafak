@@ -300,7 +300,7 @@ function getCourierCharge(bottles) {
 
 function calculateAmountString(quantityText) {
   const numberOfBottles = parseInt(quantityText);
-  const basePricePerBottle = 500;
+  const basePricePerBottle = 650;
   if (isNaN(numberOfBottles)) return '';
   const amount = numberOfBottles * basePricePerBottle;
   const courierCharge = getCourierCharge(numberOfBottles);
