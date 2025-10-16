@@ -1,5 +1,5 @@
 const form = document.getElementById('honeyForm');
-const cd = 'AKfycbyTpgX51XZo2SSwNItr3DwXtfZyBBWcpNCS6abrM-29NKYq1ByNqtEVA7ZIo38Nu_K9Nw';
+const cd = 'AKfycbxolfMP1pDwVnPZLMorCZrcRFsLcjmxq9O8FJ3DwSukrHkJgSUqgBorMx0Nm-Pljjj8wg';
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 var successSubmitData;
@@ -259,7 +259,7 @@ function onSubmit() {
           successSubmitData = callback;
           document.getElementById('loader').style.display = 'none';
           // document.getElementById('sendWhatsApp').style.display = 'block';
-          locationSet = 'o'+successSubmitData.orderLoc
+          locationSet = 'u'+successSubmitData.userLoc+'-o'+successSubmitData.orderLoc
           localStorage.setItem('loc', locationSet);
           console.log(locationSet)
           disableFormFields();
@@ -300,7 +300,7 @@ function getCourierCharge(bottles) {
 
 function calculateAmountString(quantityText) {
   const numberOfBottles = parseInt(quantityText);
-  const basePricePerBottle = 650;
+  const basePricePerBottle = 500;
   if (isNaN(numberOfBottles)) return '';
   const amount = numberOfBottles * basePricePerBottle;
   const courierCharge = getCourierCharge(numberOfBottles);
