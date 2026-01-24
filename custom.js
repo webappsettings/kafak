@@ -355,12 +355,11 @@ function calculateAmountString(quantityText) {
     courierCharge = courierRates.kerala[numberOfBottles] || 0;
   }
   else if (stateVal === 'lakshadweep') {
-    courierCharge = numberOfBottles * 110;
+    courierCharge = (numberOfBottles * 100) + 20;
   }
   else {
     courierCharge = courierRates.outside[numberOfBottles] || 0;
   }
-
   return `Amount(₹): ${amount} + ${courierCharge}`;
 }
 
