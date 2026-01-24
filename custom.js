@@ -300,12 +300,30 @@ function getCourierCharge(bottles) {
   }
 }
 
+// function calculateAmountString(quantityText) {
+//   const numberOfBottles = parseInt(quantityText);
+//   const basePricePerBottle = 650;
+//   if (isNaN(numberOfBottles)) return '';
+//   const amount = numberOfBottles * basePricePerBottle;
+//   const courierCharge = getCourierCharge(numberOfBottles);
+//   return `Amount(₹): ${amount} + ${courierCharge}`;
+// }
+
 function calculateAmountString(quantityText) {
   const numberOfBottles = parseInt(quantityText);
   const basePricePerBottle = 650;
+
   if (isNaN(numberOfBottles)) return '';
+
   const amount = numberOfBottles * basePricePerBottle;
-  const courierCharge = getCourierCharge(numberOfBottles);
+  let courierCharge = getCourierCharge(numberOfBottles);
+
+  const stateVal = document.getElementById('state').value.trim().toLowerCase();
+
+  if (stateVal && stateVal !== 'kerala') {
+    courierCharge += 30;
+  }
+
   return `Amount(₹): ${amount} + ${courierCharge}`;
 }
 
