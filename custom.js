@@ -293,28 +293,44 @@ function onSubmit() {
 
 }
 
+
+// function getCourierCharge(bottles) {
+//   switch (bottles) {
+//     case 1: return 80;
+//     case 2: return 140;
+//     case 3: return 190;
+//     case 4: return 240;
+//     case 5: return 290;
+//     case 6: return 340;
+//     case 8: return 480;
+//     case 10: return 500;
+//     default: return 0;
+//   }
+// }
+
 const courierRates = {
-  // കേരളത്തിനുള്ളിലെ നിരക്കുകൾ (Base: 50/bottle + Margin/Discount)
+  // Kerala Rates (Starting 80, Ending 550)
   kerala: {
-    1: 80,    // (50x1) + 30
-    2: 130,   // (50x2) + 30 = 130
-    3: 170,   // (50x3) + 30 = 180 (10 രൂപ കുറച്ചു)
-    4: 210,   // (50x4) + 30 = 230 (20 രൂപ കുറച്ചു)
-    5: 250,   // (50x5) + 30 = 280 (30 രൂപ കുറച്ചു)
-    6: 290,
-    8: 370,
-    10: 450
+    1: 80,
+    2: 140,
+    3: 195,
+    4: 250,
+    5: 305,
+    6: 360,
+    8: 470,
+    10: 550
   },
-  // കേരളത്തിന് പുറത്തേക്കുള്ള നിരക്കുകൾ (Base: 80/bottle + Margin/Discount)
+
+  // Outside Kerala Rates (Starting 110, Ending 850)
   outside: {
-    1: 110,   // (80x1) + 30
-    2: 190,   // (80x2) + 30 = 190
-    3: 260,   // (80x3) + 30 = 270 (10 രൂപ കുറച്ചു)
-    4: 330,   // (80x4) + 30 = 350 (20 രൂപ കുറച്ചു)
-    5: 400,   // (80x5) + 30 = 430 (30 രൂപ കുറച്ചു)
-    6: 470,
-    8: 610,
-    10: 750
+    1: 110,
+    2: 200,
+    3: 285,
+    4: 370,
+    5: 455,
+    6: 540,
+    8: 710,
+    10: 850
   }
 };
 
