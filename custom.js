@@ -341,29 +341,26 @@ const courierRates = {
 // }
 
 function calculateAmountString(quantityText) {
-  // കുപ്പികളുടെ എണ്ണം എടുക്കുന്നു (Eg: "1 Bottle (650 g)" -> 1)
   const numberOfBottles = parseInt(quantityText);
   const basePricePerBottle = 650;
 
   if (isNaN(numberOfBottles)) return '';
 
-  // തേനിന്റെ വില
   const amount = numberOfBottles * basePricePerBottle;
 
-  // സ്റ്റേറ്റ് ചെക്ക് ചെയ്യുന്നു
   const stateVal = document.getElementById('state').value.trim().toLowerCase();
   let courierCharge = 0;
 
-  // കേരളമാണോ എന്ന് നോക്കുന്നു
   if (stateVal === 'kerala') {
-    // കേരളം ആണെങ്കിൽ kerala ലിസ്റ്റിലെ വില എടുക്കും
     courierCharge = courierRates.kerala[numberOfBottles] || 0;
-  } else {
-    // അല്ലെങ്കിൽ outside ലിസ്റ്റിലെ വില എടുക്കും
+  }
+  else if (stateVal === 'lakshadweep') {
+    courierCharge = numberOfBottles * 110;
+  }
+  else {
     courierCharge = courierRates.outside[numberOfBottles] || 0;
   }
 
-  // വില ഡിസ്പ്ലേ ചെയ്യുന്നു
   return `Amount(₹): ${amount} + ${courierCharge}`;
 }
 
