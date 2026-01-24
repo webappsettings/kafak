@@ -347,7 +347,6 @@ function calculateTotalString(amountString) {
 //     $('.price-show').show();
 //   }
 // });
-
 function calculateAmountString(quantityText) {
   const numberOfBottles = parseInt(quantityText);
   const basePricePerBottle = 650;
@@ -356,10 +355,7 @@ function calculateAmountString(quantityText) {
 
   const amount = numberOfBottles * basePricePerBottle;
   let courierCharge = getCourierCharge(numberOfBottles);
-
-  // Check state 
   const stateVal = document.getElementById('state').value.trim().toLowerCase();
-
   if (stateVal && stateVal !== 'kerala') {
     courierCharge += 30;
   }
