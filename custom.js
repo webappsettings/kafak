@@ -336,17 +336,36 @@ function calculateTotalString(amountString) {
   return `Total(₹): ${total}/-`;
 }
 
-quantitySelect.addEventListener('change', function () {
-  $('.price-show, #quantity-error').hide();
-  const quantityText = this.value;
-  if (quantityText != '') {
-    const amountText = calculateAmountString(quantityText);
-    const totalText = calculateTotalString(amountText);
-    document.getElementById('amt').textContent = amountText + ' (Courier charge)';
-    document.getElementById('totalAmt').textContent = totalText;
-    $('.price-show').show();
+// quantitySelect.addEventListener('change', function () {
+//   $('.price-show, #quantity-error').hide();
+//   const quantityText = this.value;
+//   if (quantityText != '') {
+//     const amountText = calculateAmountString(quantityText);
+//     const totalText = calculateTotalString(amountText);
+//     document.getElementById('amt').textContent = amountText + ' (Courier charge)';
+//     document.getElementById('totalAmt').textContent = totalText;
+//     $('.price-show').show();
+//   }
+// });
+
+function calculateAmountString(quantityText) {
+  const numberOfBottles = parseInt(quantityText);
+  const basePricePerBottle = 650;
+
+  if (isNaN(numberOfBottles)) return '';
+
+  const amount = numberOfBottles * basePricePerBottle;
+  let courierCharge = getCourierCharge(numberOfBottles);
+
+  // Check state 
+  const stateVal = document.getElementById('state').value.trim().toLowerCase();
+
+  if (stateVal && stateVal !== 'kerala') {
+    courierCharge += 30;
   }
-});
+
+  return `Amount(₹): ${amount} + ${courierCharge}`;
+}
 
 function showSuccess() {
   document.getElementById('response').style.display = 'flex';
