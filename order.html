@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@200;300;400;500" rel="stylesheet">
-  <link href='favicon.png' rel='icon' type='image/x-icon'/>
+  <link href='favicon.png' rel='icon' type='image/x-icon' />
   <link rel="stylesheet" type="text/css" href="custom.css">
   <title>Honey Order Form</title>
 </head>
+
 <body>
   <div class="header-section">
     <div class="logo-section"><img src="logo-order.png"></div>
     <div class="right-section"><img src="raw-honey.png"></div>
-    
+
   </div>
 
-  <div id="main-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; font-family: Arial, sans-serif;">
+  <div id="main-loader"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; font-family: Arial, sans-serif;">
     <img src="loading.gif" alt="Loading..." style="width:80px; height:80px; border-radius:50%;">
     <p style="margin-top:10px; font-size:18px; color: #555;">Loading your order...</p>
   </div>
@@ -40,7 +43,8 @@
         </select>
       </div>
       <div class="form-group">
-        <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly style="display:none;">
+        <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly
+          style="display:none;">
       </div>
       <!-- pincodeEnable -->
       <div class="form-group pincodeEnable" style="display: none; float: left; width: calc(50% - 5px);">
@@ -60,7 +64,7 @@
 
 
     <div class="border-box">
-      <div class="form-group" >
+      <div class="form-group">
         <label>
           <span class="eng" style="font-weight: 500;">Quantity:</span>
           <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
@@ -76,7 +80,7 @@
           <option value="8 Bottles (4 kg)">8 Bottles (4 kg)</option>
           <option value="10 Bottles (5 kg)">10 Bottles (5 kg)</option>
         </select> -->
-        <select id="quantity" name="quantity" required>
+        <select id="quantity" name="quantity" required disabled>
           <option value="">Select Quantity (അളവ്?)</option>
           <option value="1 Bottle (650 g)">1 Bottle (650 g)</option>
           <option value="2 Bottles (1.300 kg)">2 Bottles (1.300 kg)</option>
@@ -88,11 +92,11 @@
           <option value="10 Bottles (6.500 kg)">10 Bottles (6.500 kg)</option>
         </select>
         <div class="price-show" style="display: none;">
-        <span class="amt" id="amt">Amount(₹): 650 + 80 (Courier charge)</span>
-        <span class="total-amt" id="totalAmt">Total(₹): 650/-</span>
+          <span class="amt" id="amt">Amount(₹): 650 + 80 (Courier charge)</span>
+          <span class="total-amt" id="totalAmt">Total(₹): 650/-</span>
+        </div>
       </div>
-      </div>
-      
+
       <div class="form-group" style="margin-bottom: 0;">
         <label>
           <span class="eng" style="font-weight: 500;">Any special instructions?</span>
@@ -102,13 +106,17 @@
       </div>
       <!-- <button type="submit" id="submitBtn">Submit</button> -->
 
-      <div class="btn-group" id="whatsapp-btn-wrp" role="group" style="display: inline-flex; width: 100%; justify-content: space-between;">
+      <div class="btn-group" id="whatsapp-btn-wrp" role="group"
+        style="display: inline-flex; width: 100%; justify-content: space-between;">
         <button id="submitBtn" class="whatsapp-btn" type="submit">
-          <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"><span><span class="eng" style="display: block;">Send to WhatsApp</span> <span class="ml" style="display: block; font-size: 13px">(വാട്സാപ്പില്‍ അയക്കൂ)</span></span>
+          <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"><span><span class="eng"
+              style="display: block;">Send to WhatsApp</span> <span class="ml"
+              style="display: block; font-size: 13px">(വാട്സാപ്പില്‍ അയക്കൂ)</span></span>
         </button>
       </div>
 
-      <button type="button" id="editBtn2" class="btn btn-secondary editBtn" style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
+      <button type="button" id="editBtn2" class="btn btn-secondary editBtn"
+        style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
 
       <div id="loader" style="display: none; text-align: center;">
         <img src="loading.gif" alt="Loading..." width="40">
@@ -143,4 +151,5 @@
   <script src="jquery.validate.min.js"></script>
   <script src="custom.js"></script>
 </body>
+
 </html>

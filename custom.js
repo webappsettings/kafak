@@ -26,6 +26,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   pincodeInput.addEventListener('input', async function () {
     const pin = this.value.trim();
+
+    // 🔴 1. Immediately Reset & Disable Quantity field when input changes
+    quantitySelect.value = "";       // Clear selected value
+    quantitySelect.disabled = true;  // Disable the dropdown
+    $('.price-show').hide();         // Hide the price display
+
+    // Reset other location fields
     postoffice.value = '';
     districtInput.value = '';
     stateInput.value = '';
@@ -59,6 +66,10 @@ window.addEventListener('DOMContentLoaded', () => {
       availablePin = true;
       $('.pincodeEnable').show();
 
+      // 🟢 2. Enable Quantity field only if Pincode is valid
+      quantitySelect.disabled = false;
+
+      // Handle Post Office selection logic
       if (data.length === 1) {
         const label = `${data[0].officename.replace(/\s(BO|SO|HO)$/, ' PO')}`;
         postoffice.style.display = 'block';
@@ -78,29 +89,25 @@ window.addEventListener('DOMContentLoaded', () => {
         officeDropdown.style.display = 'block';
         postoffice.style.display = 'none';
 
-        // alert('targetPostOffice= '+ targetPostOffice)
-
         if (targetPostOffice) {
           officeDropdown.value = targetPostOffice;
-
           postoffice.value = '';
           postoffice.style.display = 'none';
           targetPostOffice = null;
-
         }
       }
     } catch (error) {
       console.warn('Error loading pincode:', error.message);
       availablePin = false;
       pincodeData = [];
+
+      // Ensure fields remain reset/disabled on error
       postoffice.value = '';
       districtInput.value = '';
       stateInput.value = '';
       officeDropdown.innerHTML = '<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>';
       officeDropdown.style.display = 'none';
       $('.pincodeEnable').hide();
-      // Optional: show a nice message to user
-      // alert('Pincode data not available');
     }
   });
 
