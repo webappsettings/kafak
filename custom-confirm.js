@@ -1,19 +1,52 @@
-const cd = 'AKfycbx0vIfeeIQXffYoILxyexwoVd9Oli9Yv_Dw0mIIB1T9RstV-D6A-wpGTN0DcsD9LIL06A';
+const cd = 'AKfycbx0vIfeeIQXffYoILxyexwoVd9Oli9Yv_Dw0mIIB1T9RstV-D6A-wpGTN0DcsD9LIL06A'; // Your Script ID
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
+
+// 1. New Courier Rates Table
+const courierRates = {
+  // Kerala: Cost 60 + 30 Margin = 90 (Base) -> Adjusted for bulk
+  kerala: {
+    1: 90,
+    2: 150,
+    3: 200,
+    4: 250,
+    5: 300,
+    6: 350,
+    8: 410,
+    10: 470
+  },
+  // Outside Kerala
+  outside: {
+    1: 110,
+    2: 200,
+    3: 285,
+    4: 370,
+    5: 455,
+    6: 540,
+    8: 710,
+    10: 850
+  }
+};
 
 fetch(`${sc}?action=list`)
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById('order-list');
+
+    // Check if rows exist
+    if (!data.rows || data.rows.length === 0) {
+      container.innerHTML = '<p>No pending orders found.</p>';
+      return;
+    }
+
     data.rows.forEach((row, index) => {
-    const wrapper = document.createElement('div');
-    const rowIndex = row.rowNumber;
+      const wrapper = document.createElement('div');
+      const rowIndex = row.rowNumber;
       wrapper.innerHTML = `
         <div>
           ${formatTimestamp(row.timestamp)}<br>
           <b>${row.name}</b> - ${row.phone}<br>
           Qty: ${row.quantity}<br>
-          <button onclick='sendConfirmation(${JSON.stringify(row)})'>Confirm</button>
+          State: <b>${row.state}</b><br> <button onclick='sendConfirmation(${JSON.stringify(row)})'>Confirm via WhatsApp</button>
           <button onclick='markConfirmed(${rowIndex}, this)'>Mark as Confirmed</button>
         </div><hr>`;
       container.appendChild(wrapper);
@@ -25,28 +58,36 @@ fetch(`${sc}?action=list`)
   });
 
 
-  function markConfirmed(rowIndex, btn) {
+function markConfirmed(rowIndex, btn) {
+  // Disable button immediately to prevent double clicks
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+
   fetch(`${sc}?action=confirm&row=${rowIndex}`)
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success') {
         btn.textContent = '✅ Confirmed';
-        btn.disabled = true;
         btn.style.backgroundColor = '#28a745';
+        // Optional: Remove the row from view
+        // btn.parentElement.style.display = 'none';
       } else {
         alert('Failed to mark as confirmed.');
+        btn.disabled = false;
+        btn.textContent = 'Mark as Confirmed';
       }
     })
-    .catch(() => alert('Error while marking confirmation.'));
+    .catch(() => {
+      alert('Error while marking confirmation.');
+      btn.disabled = false;
+      btn.textContent = 'Mark as Confirmed';
+    });
 }
 
-
-
-  function formatTimestamp(isoString) {
+function formatTimestamp(isoString) {
   const date = new Date(isoString);
-
   const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months start from 0
+  const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
 
   let hours = date.getHours();
@@ -55,32 +96,37 @@ fetch(`${sc}?action=list`)
 
   const ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
-  hours = hours ? hours : 12; // 0 should be 12
+  hours = hours ? hours : 12;
 
   return `${day}/${month}/${year} ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
 }
 
-
-function getCourierCharge(bottles) {
-  switch (bottles) {
-    case 1: return 80;
-    case 2: return 140;
-    case 3: return 190;
-    case 4: return 240;
-    case 5: return 290;
-    case 6: return 340;
-    case 8: return 480;
-    case 10: return 500;
-    default: return 0;
-  }
-}
-
-function calculateAmountString(quantityText) {
+// 2. Updated Logic for Amount Calculation
+function calculateAmountString(quantityText, stateName) {
   const numberOfBottles = parseInt(quantityText);
   const basePricePerBottle = 650;
+
   if (isNaN(numberOfBottles)) return '';
+
   const amount = numberOfBottles * basePricePerBottle;
-  const courierCharge = getCourierCharge(numberOfBottles);
+
+  // Normalize state name (lowercase and trim)
+  const stateVal = String(stateName).trim().toLowerCase();
+  let courierCharge = 0;
+
+  if (stateVal === 'kerala') {
+    // Use Kerala Rate Table
+    courierCharge = courierRates.kerala[numberOfBottles] || 0;
+  }
+  else if (stateVal === 'lakshadweep') {
+    // Lakshadweep: 100 per bottle + 20 Extra
+    courierCharge = (numberOfBottles * 100) + 20;
+  }
+  else {
+    // Use Outside Kerala Rate Table
+    courierCharge = courierRates.outside[numberOfBottles] || 0;
+  }
+
   return `Amount(₹): ${amount} + ${courierCharge}`;
 }
 
@@ -93,7 +139,6 @@ function calculateTotalString(amountString) {
   return `Total(₹): ${total}/-`;
 }
 
-
 function sendConfirmation(row) {
   console.log(row);
   const whatsapp = row.whatsapp;
@@ -101,7 +146,9 @@ function sendConfirmation(row) {
   const submitTime = formatTimestamp(row.timestamp);
   const postLabel = row.officename || row.postoffice || '';
 
-  const amountTextW = calculateAmountString(row.quantity) + ' (Courier)';
+  // 3. Pass row.state to calculation function
+  const amountTextW = calculateAmountString(row.quantity, row.state) + ' (Courier)';
+
   const totalTextW = calculateTotalString(amountTextW);
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?o${row.rowNumber}_\n⌚ \`\`\`${submitTime}\`\`\``;
   const msg = row.message ? `\n\n💬 _${String(row.message).trim()}_\n` : '\n';
@@ -127,11 +174,7 @@ ____________________________________
 
   const message = encodeURIComponent(extra1 + wtspformat);
 
-
-  // Fix: force to string and strip non-digits
   const formattedNumber = String(whatsapp).replace(/\D/g, '');
   const withCountryCode = formattedNumber.startsWith('91') ? formattedNumber : '91' + formattedNumber;
   window.open(`whatsapp://send?phone=${withCountryCode}&text=${message}`, '_blank');
-  // window.open(`whatsapp://send?phone=${formattedNumber}&text=${message}`, '_blank');
 }
-
