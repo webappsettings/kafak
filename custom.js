@@ -1,5 +1,5 @@
 // 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE
-const cd = 'AKfycby_gYPXERkTQS9qDpwa2y4s5fHBnftld1yaLKlkEnaAHS_CeOUWyogAIFrydN9CkY7mHw';
+const cd = 'AKfycbxf2hnyuoPFcV8pN4pRsI7kwVr6RyE-n9Fk5jxHiX-MLzyVeHlkMORUVvAczE8mfy7iFg';
 const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
