@@ -210,17 +210,18 @@ function showSuccess() {
 }
 
 function sendToWhatsapp() {
-  const phone = '7788990313';
+  const phone = '7788990313'; // Admin Phone Number
   const orderid = successSubmitData.orderid;
   const d = successSubmitData.data;
 
-  // EDIT LINK GENERATION
+  // Edit Link
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
 
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
+
   const postLabel = d.postoffice || '';
 
   const wtspformat = `
@@ -241,7 +242,9 @@ ____________________________________
 \n*${phone} (KAFAK LLP)*\n`;
 
   const message = encodeURIComponent(extra1 + wtspformat);
-  window.open(`whatsapp://send?phone=91${phone}&text=${message}`, '_blank');
+
+  // 🔴 CHANGE IS HERE: Used universal API link instead of whatsapp://
+  window.open(`https://api.whatsapp.com/send?phone=91${phone}&text=${message}`, '_blank');
 }
 
 // --- VALIDATION ---
