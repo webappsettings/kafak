@@ -1,7 +1,7 @@
 // 🔴 ADMIN DASHBOARD SCRIPT
 
 // 1. Script URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxf2hnyuoPFcV8pN4pRsI7kwVr6RyE-n9Fk5jxHiX-MLzyVeHlkMORUVvAczE8mfy7iFg/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw2zFbJuK3KoK1-ga2KYukpFI3XksC1RXae6n_GVcuPee2U8DI3tVZZiNmsLOij-vizxg/exec';
 
 let allOrders = [];
 let html5QrCode;
