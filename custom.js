@@ -1,6 +1,6 @@
 // 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE
-const cd = 'AKfycbwpYHAGtFP-kS-RsfU79oJ6fZr6BFL_JZjszH_s8JVCtMiWdx54TVzQ2-9nzcXs-FEAEA';
-const sc = `https://script.google.com/macros/s/AKfycbwpYHAGtFP-kS-RsfU79oJ6fZr6BFL_JZjszH_s8JVCtMiWdx54TVzQ2-9nzcXs-FEAEA/exec`;
+const cd = 'AKfycby_gYPXERkTQS9qDpwa2y4s5fHBnftld1yaLKlkEnaAHS_CeOUWyogAIFrydN9CkY7mHw';
+const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 
 
