@@ -53,14 +53,15 @@ function loadOrders() {
 // --- SCANNER LOGIC (DUAL SCAN) ---
 function startScanner(mode) {
   scanMode = mode;
-  scanStep = 1; // Reset to Step 1
+  scanStep = 1;
   tempOrderId = null;
 
   document.getElementById('scanner-modal').style.display = 'flex';
   updateScanInstruction();
 
-  // ബാർകോഡുകൾ കൂടി സപ്പോർട്ട് ചെയ്യാൻ formatsToSupport ചേർക്കുന്നു
-  const config = { fps: 10, qrbox: 250 };
+  // 🔴 CHANGE: qrbox size 250-ൽ നിന്ന് 200 ആക്കി കുറച്ചു. 
+  // ഇത് സ്കാനിംഗ് ഏരിയ ചെറുതാക്കാൻ സഹായിക്കും, അപ്പോൾ കൃത്യമായി ഫോക്കസ് ചെയ്യാം.
+  const config = { fps: 10, qrbox: 200 };
 
   html5QrCode = new Html5Qrcode("reader");
   html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess)
@@ -98,11 +99,16 @@ function updateScanInstruction() {
 }
 
 function onScanSuccess(decodedText) {
-  // Prevent multiple reads
   if (html5QrCode.isScanning === false) return;
 
-  // --- DISPATCH MODE (Single Scan) ---
+  // --- DISPATCH MODE ---
   if (scanMode === 'dispatch') {
+    // Dispatch-ൽ "ORD-" എന്ന് തുടങ്ങുന്നവ മാത്രമേ എടുക്കാവൂ
+    if (!decodedText.startsWith("ORD-")) {
+      console.log("Ignored: Not an Order ID");
+      return;
+    }
+
     stopScanner();
     if (confirm(`Mark Order ${decodedText} as DISPATCHED?`)) {
       updateStatus(decodedText, 'Dispatched');
@@ -110,41 +116,50 @@ function onScanSuccess(decodedText) {
     return;
   }
 
-  // --- TRACKING MODE (Dual Scan) ---
+  // --- TRACKING MODE (Smart Dual Scan) ---
   if (scanMode === 'tracking') {
 
-    // STEP 1: Look for Order ID (Starts with ORD-)
+    // STEP 1: Scan ORDER QR
     if (scanStep === 1) {
-      if (decodedText.startsWith("ORD-")) {
-        console.log("Order Found:", decodedText);
-        tempOrderId = decodedText;
-        scanStep = 2; // Move to next step
-
-        // UI Update: Ask for Tracking ID
-        updateScanInstruction();
-
-        // Pause briefly to avoid double scanning the same QR
-        html5QrCode.pause();
-        setTimeout(() => html5QrCode.resume(), 1000);
-      } else {
-        // If scanned something else in Step 1
-        console.log("Ignored non-order code in Step 1");
+      // 🔴 FILTER: "ORD-" എന്ന് തുടങ്ങുന്നില്ലെങ്കിൽ അത് ബാർകോഡ് ആകാം. അത് ഒഴിവാക്കുക.
+      if (!decodedText.startsWith("ORD-")) {
+        console.log("Ignored: Detected Barcode/Other text while waiting for Order QR");
+        // ചെറിയൊരു മുന്നറിയിപ്പ് താഴെ കാണിക്കാം (Optional)
+        document.getElementById('scan-detail').innerText = "❌ That's not the Order QR! Look for 'ORD-...'";
+        document.getElementById('scan-detail').style.color = "red";
+        return;
       }
-    }
-    // STEP 2: Look for Tracking ID (Anything that is NOT the Order ID)
-    else if (scanStep === 2) {
-      if (decodedText !== tempOrderId) {
-        // Success! We have both IDs
-        stopScanner();
-        // Play a beep sound (Optional/Browser dependent)
-        // new Audio('beep.mp3').play().catch(e=>{}); 
 
-        if (confirm(`Link Tracking ID: ${decodedText} to Order: ${tempOrderId}?`)) {
-          updateTracking(tempOrderId, decodedText);
-        } else {
-          // If cancelled, close scanner or restart? 
-          // Currently closes scanner.
-        }
+      // If valid Order ID
+      console.log("Order Found:", decodedText);
+      tempOrderId = decodedText;
+      scanStep = 2;
+
+      // Update UI for Step 2
+      updateScanInstruction();
+
+      // Pause briefly (1.5 seconds) to move camera to barcode
+      html5QrCode.pause();
+      setTimeout(() => html5QrCode.resume(), 1500);
+    }
+
+    // STEP 2: Scan TRACKING Barcode
+    else if (scanStep === 2) {
+      // 🔴 FILTER: വീണ്ടും പഴയ QR കോഡ് (ORD-...) ആണ് സ്കാൻ ആയതെങ്കിൽ ഒഴിവാക്കുക.
+      if (decodedText.startsWith("ORD-")) {
+        console.log("Ignored: Re-scanned Order QR instead of Tracking ID");
+        document.getElementById('scan-detail').innerText = "⚠️ You scanned Order QR again! Scan the Barcode.";
+        return;
+      }
+
+      // Success! It's a tracking ID
+      stopScanner();
+
+      if (confirm(`Link Tracking ID: ${decodedText} to Order: ${tempOrderId}?`)) {
+        updateTracking(tempOrderId, decodedText);
+      } else {
+        // If cancelled, restart scanner
+        stopScanner();
       }
     }
   }
