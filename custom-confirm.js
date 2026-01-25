@@ -1,178 +1,227 @@
-const cd = 'AKfycbx0vIfeeIQXffYoILxyexwoVd9Oli9Yv_Dw0mIIB1T9RstV-D6A-wpGTN0DcsD9LIL06A'; // Your Script ID
-const sc = `https://script.google.com/macros/s/${cd}/exec`;
+// 🔴 ADMIN DASHBOARD SCRIPT
 
-// 1. New Courier Rates Table
+// 1. Script URL
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpYHAGtFP-kS-RsfU79oJ6fZr6BFL_JZjszH_s8JVCtMiWdx54TVzQ2-9nzcXs-FEAEA/exec';
+
+let allOrders = [];
+let html5QrCode;
+let scanMode = ''; // 'dispatch' or 'tracking'
+
+// 2. Courier Rates (Required for calculation)
 const courierRates = {
   kerala: {
-    1: 80,
-    2: 140, //160   
-    3: 190, //240 
-    4: 240, //320  
-    5: 290, //400 
-    6: 340,// 480
-    8: 480, //480
-    10: 500
+    1: 80, 2: 140, 3: 190, 4: 240,
+    5: 290, 6: 340, 8: 480, 10: 500
   },
   outside: {
-    1: 110,
-    2: 200,
-    3: 280,
-    4: 350,
-    5: 430,
-    6: 510,
-    8: 640,
-    10: 840
+    1: 110, 2: 200, 3: 280, 4: 350,
+    5: 430, 6: 510, 8: 640, 10: 840
   }
 };
 
-fetch(`${sc}?action=list`)
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById('order-list');
-
-    // Check if rows exist
-    if (!data.rows || data.rows.length === 0) {
-      container.innerHTML = '<p>No pending orders found.</p>';
-      return;
-    }
-
-    data.rows.forEach((row, index) => {
-      const wrapper = document.createElement('div');
-      const rowIndex = row.rowNumber;
-      wrapper.innerHTML = `
-        <div>
-          ${formatTimestamp(row.timestamp)}<br>
-          <b>${row.name}</b> - ${row.phone}<br>
-          Qty: ${row.quantity}<br>
-          State: <b>${row.state}</b><br> <button onclick='sendConfirmation(${JSON.stringify(row)})'>Confirm via WhatsApp</button>
-          <button onclick='markConfirmed(${rowIndex}, this)'>Mark as Confirmed</button>
-        </div><hr>`;
-      container.appendChild(wrapper);
-    });
-  })
-  .catch(err => {
-    console.error('Error loading orders:', err);
-    document.getElementById('order-list').innerHTML = '<p>Error loading data.</p>';
-  });
-
-
-function markConfirmed(rowIndex, btn) {
-  // Disable button immediately to prevent double clicks
-  btn.disabled = true;
-  btn.textContent = 'Processing...';
-
-  fetch(`${sc}?action=confirm&row=${rowIndex}`)
+// --- LOAD ORDERS ---
+function loadOrders() {
+  fetch(`${SCRIPT_URL}?action=list`)
     .then(res => res.json())
     .then(data => {
-      if (data.result === 'success') {
-        btn.textContent = '✅ Confirmed';
-        btn.style.backgroundColor = '#28a745';
-        // Optional: Remove the row from view
-        // btn.parentElement.style.display = 'none';
-      } else {
-        alert('Failed to mark as confirmed.');
-        btn.disabled = false;
-        btn.textContent = 'Mark as Confirmed';
+      document.getElementById('loader').style.display = 'none';
+      const container = document.getElementById('order-list');
+      container.innerHTML = '';
+      allOrders = data.rows || [];
+
+      if (allOrders.length === 0) {
+        container.innerHTML = '<p>No pending orders.</p>';
+        return;
       }
-    })
-    .catch(() => {
-      alert('Error while marking confirmation.');
-      btn.disabled = false;
-      btn.textContent = 'Mark as Confirmed';
+
+      allOrders.forEach(row => {
+        // Calculate Price for Display
+        const amount = calculatePrice(row.quantity, row.state);
+        const statusClass = row.status === 'Dispatched' ? 'status-dispatched' : 'status-pending';
+
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <div style="display:flex; justify-content:space-between;">
+            <div>
+              <strong>#${row.orderid}</strong> <span class="${statusClass}">[${row.status}]</span><br>
+              👤 ${row.name} - ${row.phone}<br>
+              🍯 Qty: ${row.quantity} | ₹${amount}<br>
+              📍 ${row.state} - ${row.pincode}
+            </div>
+            <div>
+              <button class="btn btn-print" onclick="printLabel('${row.orderid}')">🖨️ Print</button>
+              <button class="btn btn-whatsapp" onclick="sendWhatsapp('${row.orderid}')">💬 WhatsApp</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
     });
 }
 
-function formatTimestamp(isoString) {
-  const date = new Date(isoString);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
+// --- PRICE CALCULATION LOGIC ---
+function calculatePrice(qty, state) {
+  const n = parseInt(qty);
+  if (isNaN(n)) return 0;
 
-  let hours = date.getHours();
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
+  let charge = 0;
+  let st = String(state).toLowerCase().trim();
 
-  const ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-
-  return `${day}/${month}/${year} ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+  if (st === 'lakshadweep') {
+    charge = (n * 100) + 20;
+  } else {
+    // Kerala Rates
+    const table = st === 'kerala' ? courierRates.kerala : courierRates.outside;
+    charge = table[n] || 0;
+  }
+  return (n * 650) + charge;
 }
 
-// 2. Updated Logic for Amount Calculation
-function calculateAmountString(quantityText, stateName) {
-  const numberOfBottles = parseInt(quantityText);
-  const basePricePerBottle = 650;
+// --- PRINT FUNCTION ---
+function printLabel(orderId) {
+  const order = allOrders.find(o => o.orderid === orderId);
+  if (!order) return;
 
-  if (isNaN(numberOfBottles)) return '';
+  const printArea = document.getElementById('print-area');
+  // QR Code URL (Generates QR containing Order ID)
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${orderId}`;
 
-  const amount = numberOfBottles * basePricePerBottle;
+  printArea.innerHTML = `
+    <div class="print-label">
+      <img src="${qrUrl}" class="qr-code">
+      <h3>TO:</h3>
+      <p><b>${order.name.toUpperCase()}</b><br>
+      ${order.address.replace(/,/g, '<br>')}<br>
+      <b>PH: ${order.phone}</b></p>
+      <hr>
+      <small>Order ID: ${order.orderid} | Qty: ${order.quantity}</small><br>
+      <small>From: Kafak LLP, Kerala | Ph: 7788990313</small>
+    </div>
+  `;
+  window.print();
+}
 
-  // Normalize state name (lowercase and trim)
-  const stateVal = String(stateName).trim().toLowerCase();
+// --- WHATSAPP FUNCTION (Updated) ---
+function sendWhatsapp(orderId) {
+  const row = allOrders.find(o => o.orderid === orderId);
+  if (!row) {
+    alert("Order details not found!");
+    return;
+  }
+
+  // Calculate Price Dynamic
+  const qty = parseInt(row.quantity);
+  const basePrice = qty * 650;
   let courierCharge = 0;
+  let stateVal = String(row.state).trim().toLowerCase();
 
-  if (stateVal === 'kerala') {
-    // Use Kerala Rate Table
-    courierCharge = courierRates.kerala[numberOfBottles] || 0;
-  }
-  else if (stateVal === 'lakshadweep') {
-    // Lakshadweep: 100 per bottle + 20 Extra
-    courierCharge = (numberOfBottles * 100) + 20;
-  }
-  else {
-    // Use Outside Kerala Rate Table
-    courierCharge = courierRates.outside[numberOfBottles] || 0;
+  if (stateVal === 'lakshadweep') {
+    courierCharge = (qty * 100) + 20;
+  } else {
+    const rates = (stateVal === 'kerala') ? courierRates.kerala : courierRates.outside;
+    courierCharge = rates[qty] || 0;
   }
 
-  return `Amount(₹): ${amount} + ${courierCharge}`;
-}
+  const total = basePrice + courierCharge;
 
-function calculateTotalString(amountString) {
-  const numbers = amountString.match(/\d+/g);
-  if (!numbers || numbers.length < 2) return '';
-  const amount = parseInt(numbers[0]);
-  const courierCharge = parseInt(numbers[1]);
-  const total = amount + courierCharge;
-  return `Total(₹): ${total}/-`;
-}
+  // Formatting
+  const amountText = `Amount(₹): ${basePrice} + ${courierCharge} (Courier)`;
+  const totalText = `Total(₹): ${total}/-`;
+  const formattedAddress = row.address.replace(/, /g, '\n').toUpperCase();
+  const submitTime = row.timestamp;
+  const messageContent = row.message ? `\n\n💬 _${row.message}_\n` : '\n';
 
-function sendConfirmation(row) {
-  console.log(row);
-  const whatsapp = row.whatsapp;
-  const orderid = row.orderid;
-  const submitTime = formatTimestamp(row.timestamp);
-  const postLabel = row.officename || row.postoffice || '';
-
-  // 3. Pass row.state to calculation function
-  const amountTextW = calculateAmountString(row.quantity, row.state) + ' (Courier)';
-
-  const totalTextW = calculateTotalString(amountTextW);
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _kafaklife.com/order?o${row.rowNumber}_\n⌚ \`\`\`${submitTime}\`\`\``;
-  const msg = row.message ? `\n\n💬 _${String(row.message).trim()}_\n` : '\n';
-
-  const wtspformat = `
+  // Message Body
+  const header = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderId}\`\`\`\n🔗 _kafaklife.com_\n⌚ \`\`\`${submitTime}\`\`\``;
+  const details = `
 ____________________________________\n
 *${row.name.trim().toUpperCase()}*
-*${row.house.trim().toUpperCase()}*
-*${row.place.trim().toUpperCase()}*
-*${postLabel.trim().toUpperCase()}*
-*${row.district.trim().toUpperCase()}*
-*${row.state.trim().toUpperCase()}*
+${formattedAddress}
 *Pin: ${String(row.pincode).trim()}*
 *Ph: ${row.phone}*\n
 *Qty: ${row.quantity}*
-*${amountTextW}*\n
-*${totalTextW}*${msg}
+*${amountText}*
+*${totalText}*${messageContent}
 ____________________________________
 
 *Please GPay to the number below and send the screenshot here. We will pack your order after receiving it.*\n
 *(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് സ്ക്രീന്‍ഷോട്ട് അയക്കൂ.. സ്ക്രീന്‍ഷോട്ട് അയച്ച ശേഷം ഓർഡർ പാക്ക് ചെയ്യും)* 👇
 \n*7788990313 (KAFAK LLP)*\n`;
 
-  const message = encodeURIComponent(extra1 + wtspformat);
+  const finalMsg = encodeURIComponent(header + details);
 
-  const formattedNumber = String(whatsapp).replace(/\D/g, '');
-  const withCountryCode = formattedNumber.startsWith('91') ? formattedNumber : '91' + formattedNumber;
-  window.open(`whatsapp://send?phone=${withCountryCode}&text=${message}`, '_blank');
+  // Phone Handling
+  let customerPhone = String(row.whatsapp || row.phone).replace(/\D/g, '');
+  if (customerPhone.length === 10) customerPhone = '91' + customerPhone;
+
+  window.open(`whatsapp://send?phone=${customerPhone}&text=${finalMsg}`, '_blank');
 }
+
+// --- SCANNER FUNCTIONS ---
+function startScanner(mode) {
+  scanMode = mode;
+  document.getElementById('scanner-modal').style.display = 'flex';
+  document.getElementById('scan-title').innerText = mode === 'dispatch' ? 'Scan Order QR to DISPATCH' : 'Scan Order QR to UPDATE TRACKING';
+
+  html5QrCode = new Html5Qrcode("reader");
+  html5QrCode.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    onScanSuccess
+  ).catch(err => console.log(err));
+}
+
+function stopScanner() {
+  if (html5QrCode) {
+    html5QrCode.stop().then(() => {
+      document.getElementById('scanner-modal').style.display = 'none';
+    });
+  }
+}
+
+function onScanSuccess(decodedText) {
+  stopScanner();
+
+  if (scanMode === 'dispatch') {
+    if (confirm(`Mark Order ${decodedText} as DISPATCHED?`)) {
+      updateStatus(decodedText, 'Dispatched');
+    }
+  }
+  else if (scanMode === 'tracking') {
+    let trackID = prompt(`Enter Tracking ID for ${decodedText}:`);
+    if (trackID) {
+      updateTracking(decodedText, trackID);
+    }
+  }
+}
+
+// --- API CALLS ---
+function updateStatus(orderId, status) {
+  fetch(`${SCRIPT_URL}?action=updateStatus&orderid=${orderId}&status=${status}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        alert('Status Updated!');
+        loadOrders();
+      } else {
+        alert('Order ID not found or Error!');
+      }
+    });
+}
+
+function updateTracking(orderId, trackingId) {
+  fetch(`${SCRIPT_URL}?action=updateTracking&orderid=${orderId}&tracking=${trackingId}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        alert('Tracking Updated & Order Completed!');
+        loadOrders();
+      } else {
+        alert('Error updating tracking.');
+      }
+    });
+}
+
+// Initial Load
+loadOrders();

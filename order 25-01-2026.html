@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@200;300;400;500" rel="stylesheet">
+    <link href='favicon.png' rel='icon' type='image/x-icon' />
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <title>Honey Order Form</title>
+</head>
+
+<body>
+    <div class="header-section">
+        <div class="logo-section"><img src="logo-order.png"></div>
+        <div class="right-section"><img src="raw-honey.png"></div>
+
+    </div>
+
+    <div id="main-loader"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; font-family: Arial, sans-serif;">
+        <img src="loading.gif" alt="Loading..." style="width:80px; height:80px; border-radius:50%;">
+        <p style="margin-top:10px; font-size:18px; color: #555;">Loading your order...</p>
+    </div>
+
+    <form id="honeyForm">
+        <div class="border-box">
+            <h4 style="margin: 0 0 10px; font-size: 15px;">Enter delivery address (അഡ്രസ്സ് ചേര്‍ക്കുക)</h4>
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Your Name (നിങ്ങളുടെ പേര്?)" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number (ഫോണ്‍?)" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="WhatsApp Number (വാട്സാപ്പ് നമ്പര്‍?)"
+                    required>
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6" required> -->
+                <input type="tel" id="pincode" name="pincode" placeholder="Pincode (പിന്‍കോഡ്?)" maxlength="6"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            </div>
+            <div class="form-group">
+                <select id="officename" name="officename" style="display:none;">
+                    <option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="postoffice" name="postoffice" placeholder="Postoffice (പോസ്റ്റ് ഓഫീസ്)" readonly
+                    style="display:none;">
+            </div>
+            <!-- pincodeEnable -->
+            <div class="form-group pincodeEnable" style="display: none; float: left; width: calc(50% - 5px);">
+                <input type="text" id="district" name="district" placeholder="District (ജില്ല?)" readonly>
+            </div>
+            <div class="form-group pincodeEnable" style="display: none; float: right; width: calc(50% - 5px);">
+                <input type="text" id="state" name="state" placeholder="State (സംസ്ഥാനം?)" readonly>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="house" name="house" placeholder="House name/Flat (വീട്ടുപേര്/നമ്പര്‍?)" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="place" name="place" placeholder="Place (സ്ഥലം?)" required>
+            </div>
+        </div>
+
+
+        <div class="border-box">
+            <div class="form-group">
+                <label>
+                    <span class="eng" style="font-weight: 500;">Quantity:</span>
+                    <span class="ml">(നിങ്ങള്‍ക്ക് തേന്‍ എത്ര അളവില്‍ വേണം?)</span>
+                </label>
+                <!-- <select id="quantity" name="quantity" required>
+          <option value="">Select Quantity (അളവ്?)</option>
+          <option value="1 Bottle (500 g)">1 Bottle (500 g)</option>
+          <option value="2 Bottles (1 kg)">2 Bottles (1 kg)</option>
+          <option value="3 Bottles (1.5 kg)">3 Bottles (1.5 kg)</option>
+          <option value="4 Bottles (2 kg)">4 Bottles (2 kg)</option>
+          <option value="5 Bottles (2.5 kg)">5 Bottles (2.5 kg)</option>
+          <option value="6 Bottles (3 kg)">6 Bottles (3 kg)</option>
+          <option value="8 Bottles (4 kg)">8 Bottles (4 kg)</option>
+          <option value="10 Bottles (5 kg)">10 Bottles (5 kg)</option>
+        </select> -->
+                <select id="quantity" name="quantity" required disabled>
+                    <option value="">Select Quantity (അളവ്?)</option>
+                    <option value="1 Bottle (650 g)">1 Bottle (650 g)</option>
+                    <option value="2 Bottles (1.300 kg)">2 Bottles (1.300 kg)</option>
+                    <option value="3 Bottles (1.950 kg)">3 Bottles (1.950 kg)</option>
+                    <option value="4 Bottles (2.600 kg)">4 Bottles (2.600 kg)</option>
+                    <option value="5 Bottles (3.250 kg)">5 Bottles (3.250 kg)</option>
+                    <option value="6 Bottles (3.900 kg)">6 Bottles (3.900 kg)</option>
+                    <option value="8 Bottles (5.200 kg)">8 Bottles (5.200 kg)</option>
+                    <option value="10 Bottles (6.500 kg)">10 Bottles (6.500 kg)</option>
+                </select>
+                <div class="price-show" style="display: none;">
+                    <span class="amt" id="amt">Amount(₹): 650 + 80 (Courier charge)</span>
+                    <span class="total-amt" id="totalAmt">Total(₹): 650/-</span>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+                <label>
+                    <span class="eng" style="font-weight: 500;">Any special instructions?</span>
+                    <span class="ml">(എന്തെങ്കിലും പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടോ?)</span>
+                </label>
+                <textarea name="message" placeholder="പ്രത്യേക നിർദ്ദേശങ്ങൾ ഉണ്ടെങ്കില്‍ എഴുതാം"></textarea>
+            </div>
+            <!-- <button type="submit" id="submitBtn">Submit</button> -->
+
+            <div class="btn-group" id="whatsapp-btn-wrp" role="group"
+                style="display: inline-flex; width: 100%; justify-content: space-between;">
+                <button id="submitBtn" class="whatsapp-btn" type="submit">
+                    <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"><span><span
+                            class="eng" style="display: block;">Send to WhatsApp</span> <span class="ml"
+                            style="display: block; font-size: 13px">(വാട്സാപ്പില്‍ അയക്കൂ)</span></span>
+                </button>
+            </div>
+
+            <button type="button" id="editBtn2" class="btn btn-secondary editBtn"
+                style="display: none; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
+
+            <div id="loader" style="display: none; text-align: center;">
+                <img src="loading.gif" alt="Loading..." width="40">
+                <p>Please wait...</p>
+            </div>
+            <div id="response" style="display: none; background-color: #e5fde7;">
+                <div id="showsuccess" class="responseInner" style="color: green; display: none;">
+                    <img src="success.png" alt="success">Order submitted successfully!
+                </div>
+                <div id="showfailure" class="responseInner" style="color: red; display: none; width: 305px;">
+                    <img src="failure.png" alt="failure">Failed to submit order. Please try again.
+                </div>
+            </div>
+            <!-- 
+      <div id="sendWhatsApp" style="display: none; font-size: 17px; color: red; margin-top: 15px;">
+        <span style="display: block;">Click the button below to send a WhatsApp message</span>
+        <span style="font-size: 14px; font-weight: 500; display: block;">
+          (താഴെ കാണുന്ന ബട്ടണ്‍ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പ് ചെയ്യുക)
+          <img src="downhand.png" style="width: 33px; margin: 1px auto 4px; display: block;">
+        </span>
+        <div class="btn-group" role="group" style="display: inline-flex; width: 100%; justify-content: space-between;">
+          <button id="sendWhatsAppBtn" class="whatsapp-btn" type="button" style="width: calc(100% - 60px)">
+            <img src="whatsapp--v1.png" style="vertical-align: middle;" alt="WhatsApp Icon"> Send to WhatsApp
+          </button>
+          <button type="button" id="editBtn1" class="btn btn-secondary editBtn" style="width: 50px; font-weight: 400; background-color: #666666; border: 1px solid #666666; font-size: 15px;">Edit</button>
+        </div>
+      </div> -->
+        </div>
+    </form>
+
+    <script src="jquery-3.6.1.min.js"></script>
+    <script src="jquery.validate.min.js"></script>
+    <script src="custom.js"></script>
+</body>
+
+</html>
