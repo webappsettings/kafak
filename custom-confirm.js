@@ -3,27 +3,25 @@ const sc = `https://script.google.com/macros/s/${cd}/exec`;
 
 // 1. New Courier Rates Table
 const courierRates = {
-  // Kerala: Cost 60 + 30 Margin = 90 (Base) -> Adjusted for bulk
   kerala: {
-    1: 90,
-    2: 150,
-    3: 200,
-    4: 250,
-    5: 300,
-    6: 350,
-    8: 410,
-    10: 470
+    1: 80,
+    2: 140, //160   
+    3: 190, //240 
+    4: 240, //320  
+    5: 290, //400 
+    6: 340,// 480
+    8: 480, //480
+    10: 500
   },
-  // Outside Kerala
   outside: {
     1: 110,
     2: 200,
-    3: 285,
-    4: 370,
-    5: 455,
-    6: 540,
-    8: 710,
-    10: 850
+    3: 280,
+    4: 350,
+    5: 430,
+    6: 510,
+    8: 640,
+    10: 840
   }
 };
 
