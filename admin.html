@@ -290,13 +290,15 @@
         </nav>
 
         <div class="search-area shadow-sm">
-            <div class="input-group mb-2">
-                <span class="input-group-text bg-light border-0"><i class="fas fa-search text-muted"></i></span>
-                <input type="text" id="searchInput" class="form-control border-0 bg-light"
-                    placeholder="Search by name, phone or ID..." onkeyup="filterOrders()">
+            <div class="d-flex gap-2 mb-2">
+                <input type="text" id="searchInput" class="form-control border-0 bg-light" placeholder="Search..."
+                    onkeyup="filterOrders()">
+                <button class="btn btn-success" onclick="fetchOrders(true)" title="Fetch New Data">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
             </div>
-            <button id="sync-btn" class="btn btn-primary w-100 shadow-sm fw-bold"
-                style="display:none; border-radius:10px;" onclick="syncWithServer()">
+            <button id="sync-btn" class="btn btn-primary w-100 shadow-sm fw-bold" style="display:none;"
+                onclick="syncWithServer()">
                 🔄 SYNC UPDATES (0)
             </button>
         </div>

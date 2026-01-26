@@ -48,7 +48,18 @@ let scanMode = '';
 let scanStep = 0;
 let tempOid = null;
 
-function fetchOrders() {
+function fetchOrders(forceLoad = false) {
+    // 1. ആദ്യം ഫോണിൽ സേവ് ചെയ്ത ഡാറ്റ ഉണ്ടോ എന്ന് നോക്കുന്നു
+    let savedOrders = localStorage.getItem('allOrdersCache');
+
+    // 2. ഫോണിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ, 'forceLoad' (Load Button) അമർത്തുന്നത് വരെ അത് കാണിക്കുന്നു
+    if (savedOrders && !forceLoad) {
+        allOrders = JSON.parse(savedOrders);
+        renderTabs(allOrders);
+        return; // സെർവറിലേക്ക് പോകാതെ ഇവിടെ നിർത്തുന്നു
+    }
+
+    // 3. ഫോണിൽ ഡാറ്റ ഇല്ലെങ്കിലോ 'Load' ബട്ടൺ അമർത്തിയാലോ മാത്രം സെർവറിലേക്ക് പോകുന്നു
     document.getElementById('loader').style.display = 'block';
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
@@ -56,11 +67,10 @@ function fetchOrders() {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 allOrders = response.data;
+                // സെർവറിൽ നിന്ന് കിട്ടിയ ഡാറ്റ ഫോണിൽ സേവ് ചെയ്യുന്നു
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 renderTabs(allOrders);
             }
-        })
-        .catch(err => {
-            document.getElementById('loader').innerHTML = `<p class="text-danger">Network Error!</p>`;
         });
 }
 
