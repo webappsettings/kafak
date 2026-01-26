@@ -1,6 +1,7 @@
 // 🔴🔴 PASTE YOUR NEW SCRIPT URL HERE (From Step 1) 🔴🔴
 const scriptURL = "https://script.google.com/macros/s/AKfycbzzBowat6eZU-1IWFvxK8Beqi_mfgWx2DAae8NhYEGQ1pohBciil9ULNXb7UnDV61g1fA/exec";
 
+// Courier Rates
 const courierRates = {
     kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
     outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -10,7 +11,6 @@ let allOrders = [];
 let html5QrCode;
 let scanMode = ''; let scanStep = 0; let tempOid = null;
 
-// --- 1. LOAD ORDERS ---
 document.addEventListener('DOMContentLoaded', () => { fetchOrders(); });
 
 function fetchOrders() {
@@ -20,161 +20,179 @@ function fetchOrders() {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 allOrders = response.data;
-                renderOrders(allOrders);
-            } else {
-                alert('Server Error: ' + response.message);
+                renderTabs(allOrders);
             }
         })
-        .catch(err => {
-            document.getElementById('loader').innerHTML = `<p class="text-danger">Network Error. Check URL.</p>`;
-        });
+        .catch(err => console.error(err));
 }
 
-// --- 2. RENDER CARDS (Old Beautiful Design) ---
-function renderOrders(orders) {
-    const container = document.getElementById('ordersContainer');
-    container.innerHTML = '';
+// --- 1. RENDER TABS ---
+function renderTabs(orders) {
+    const pendingList = document.getElementById('list-pending');
+    const paidList = document.getElementById('list-paid');
+    const dispatchedList = document.getElementById('list-dispatched');
 
-    if (!orders || orders.length === 0) {
-        container.innerHTML = '<div class="col-12 text-center mt-5 text-muted">No orders found.</div>';
-        return;
-    }
+    pendingList.innerHTML = ''; paidList.innerHTML = ''; dispatchedList.innerHTML = '';
+
+    let c1 = 0, c2 = 0, c3 = 0;
 
     orders.forEach((d, i) => {
-        let date = new Date(d.timestamp).toLocaleDateString('en-IN');
+        let status = d.Status || 'Pending';
 
-        let statusClass = 'bg-pending';
-        let statusText = d.Status || 'PENDING';
-        if (d.Status === 'Sent') { statusClass = 'bg-sent'; statusText = 'SENT'; }
-        else if (d.Status === 'Dispatched') { statusClass = 'bg-dispatched'; statusText = 'DISPATCHED'; }
+        // --- LOGIC FOR TABS ---
+        if (status === 'Pending' || status === 'Sent') {
+            // Tab 1: New & Waiting for Payment
+            c1++;
+            pendingList.innerHTML += createCardHTML(d, i, 'pending');
+        }
+        else if (status === 'Paid') {
+            // Tab 2: Paid (Ready to Dispatch)
+            c2++;
+            paidList.innerHTML += createCardHTML(d, i, 'paid');
+        }
+        else if (status === 'Dispatched') {
+            // Tab 3: Dispatched
+            c3++;
+            dispatchedList.innerHTML += createCardHTML(d, i, 'dispatched');
+        }
+    });
 
-        let priceInfo = calculatePriceInfo(d.quantity, d.state);
+    // Update Counts
+    document.getElementById('count-pending').innerText = c1;
+    document.getElementById('count-paid').innerText = c2;
+    document.getElementById('count-dispatched').innerText = c3;
+}
 
-        let html = `
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="order-card" id="card-${i}">
-                <div class="card-header-row">
-                    <div class="d-flex align-items-center">
-                        <input type="checkbox" class="custom-cb me-2 order-cb" value="${i}" onchange="highlightCard(${i}, this.checked)">
-                        <span class="order-id">#${d.orderid}</span>
-                    </div>
-                    <span class="status-badge ${statusClass}">${statusText}</span>
-                </div>
+function createCardHTML(d, index, type) {
+    let date = new Date(d.timestamp).toLocaleDateString('en-IN');
+    let state = (d.state || '').toUpperCase();
+    let priceInfo = calculatePriceInfo(d.quantity, d.state);
 
-                <div class="cust-name">${d.name || 'Unknown'}</div>
-                <div class="cust-phone"><i class="fas fa-phone-alt small"></i> ${d.phone}</div>
+    // Status Logic
+    let statusBadge = '';
+    let buttons = '';
+    let tickMark = '';
 
-                <div class="info-box">
-                    <div>
-                        <div class="info-label">Quantity</div>
-                        <div class="info-val">${d.quantity} Bottles</div>
-                    </div>
-                    <div class="text-end">
-                        <div class="info-label">Total Amount</div>
-                        <div class="info-val amount-val">${priceInfo.total}</div>
-                    </div>
-                </div>
-
-                <div class="address-sec">
-                    <i class="fas fa-map-marker-alt text-danger me-1"></i>
-                    ${d.house || ''}, ${d.place || ''}, ${d.district || ''}<br>
-                    Pin: <span class="pin-code">${d.pincode || ''}</span> | ${d.state || ''}
-                    ${d.tracking ? `<div class="mt-2 text-primary fw-bold">📦 Track: ${d.tracking}</div>` : ''}
-                </div>
-
-                <select class="contact-select" id="contact-${i}">
-                    <option value="${d.whatsapp}">WhatsApp (${d.whatsapp})</option>
-                    <option value="${d.phone}">Phone (${d.phone})</option>
-                </select>
-
-                <div class="btn-action-row">
-                    <button class="btn-card btn-print" onclick="printOne(${i})">
-                        <i class="fas fa-print"></i> Print
-                    </button>
-                    <button class="btn-card btn-whatsapp" onclick="sendWA(${i}, this)">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </button>
-                </div>
+    if (type === 'pending') {
+        if (d.Status === 'Sent') {
+            // Waiting for Payment
+            statusBadge = '<span class="badge bg-info text-dark">Invoice Sent ⏳</span>';
+            buttons = `
+                <button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">
+                    💰 Mark Paid
+                </button>
+                <button class="btn-custom btn-wa" onclick="sendWA(${index})">
+                    <i class="fab fa-whatsapp"></i> Resend
+                </button>
+            `;
+        } else {
+            // Brand New
+            statusBadge = '<span class="badge bg-warning text-dark">New</span>';
+            buttons = `
+                <button class="btn-custom btn-wa" onclick="sendWA(${index})">
+                    <i class="fab fa-whatsapp"></i> Send WhatsApp
+                </button>
+            `;
+        }
+    }
+    else if (type === 'paid') {
+        statusBadge = '<span class="badge bg-warning text-dark">Paid ✅</span>';
+        buttons = `
+            <button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">
+                📦 Dispatch
+            </button>
+            <div class="form-check d-inline-block ms-2 pt-2">
+                <input type="checkbox" class="form-check-input order-cb" value="${index}" style="transform:scale(1.3)">
+                <label class="small fw-bold">Select</label>
             </div>
-        </div>`;
-        container.innerHTML += html;
+        `;
+    }
+    else if (type === 'dispatched') {
+        statusBadge = '<span class="badge bg-success">Dispatched</span>';
+        tickMark = '<i class="fas fa-check-circle text-success fs-4 position-absolute top-0 end-0 m-2"></i>';
+        buttons = `
+            <button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">
+                🚚 Add Tracking
+            </button>
+            <button class="btn-custom btn-remove" onclick="hideOrder(this)">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+    }
+
+    // Return Card HTML
+    return `
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="order-card status-${d.Status}">
+            ${tickMark}
+            <div class="card-header-row">
+                <div><span class="order-id">#${d.orderid}</span></div>
+                ${statusBadge}
+            </div>
+
+            <div class="cust-name">${d.name}</div>
+            <div class="cust-details">
+                ${d.place}, ${d.district} <span class="state-badge">${state}</span>
+            </div>
+            <div class="text-muted small mb-2">Ph: ${d.phone}</div>
+
+            <div class="info-box">
+                <div><b>${d.quantity} Bottles</b></div>
+                <div class="text-success fw-bold">${priceInfo.total}</div>
+            </div>
+
+            ${d.tracking ? `<div class="alert alert-light py-1 small border"><i class="fas fa-truck"></i> ${d.tracking}</div>` : ''}
+
+            <div class="action-area">
+                ${buttons}
+            </div>
+        </div>
+    </div>`;
+}
+
+// --- 2. ACTIONS (Mark Paid, Dispatch) ---
+function updateOrder(oid, status) {
+    if (!confirm(`Update order ${oid} to ${status}?`)) return;
+
+    // Optimistic Update (Update UI immediately)
+    const order = allOrders.find(o => o.orderid === oid);
+    if (order) order.Status = status;
+    renderTabs(allOrders);
+
+    // Send to Server
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', // Important for simple requests
+        body: JSON.stringify({ action: 'updateStatus', oid: oid, status: status })
     });
 }
 
-// --- 3. WHATSAPP LOGIC (FIXED: No more 'trim' error) ---
-function sendWA(index, btn) {
+function hideOrder(btn) {
+    if (confirm("Remove this card from view?")) {
+        btn.closest('.col-12').remove();
+    }
+}
+
+// --- 3. WHATSAPP & PRINT (Fix applied) ---
+function sendWA(index) {
     const d = allOrders[index];
-    const selectedPhone = document.getElementById(`contact-${index}`).value;
     const adminPhone = '7788990313';
-
     const priceData = calculatePriceInfo(d.quantity, d.state);
-    const amountTextW = `Amount(₹): ${priceData.base} + ${priceData.courier} (Courier)`;
-    const totalTextW = `Total(₹): ${priceData.numTotal}/-`;
 
-    // 🔴 SAFETY CHECK: (value || '') prevents crash
-    const name = (d.name || '').toString().trim().toUpperCase();
-    const house = (d.house || '').toString().trim().toUpperCase();
-    const place = (d.place || '').toString().trim().toUpperCase();
-    const postLabel = (d.postoffice || '').toString().trim().toUpperCase();
-    const district = (d.district || '').toString().trim().toUpperCase();
-    const state = (d.state || '').toString().trim().toUpperCase();
-    const pin = (d.pincode || '').toString().trim();
-    const phone = (d.phone || '').toString().trim();
+    // Safety check for empty data
+    const safe = (val) => (val || '').toString().trim().toUpperCase();
 
-    const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
-    const orderTime = new Date(d.timestamp).toLocaleString();
-    const editLink = `kafaklife.com/order.html?oid=${d.orderid}&lang=ml`;
+    const msg = encodeURIComponent(`*✅ Order Confirmed!* 🍯\nID: ${d.orderid}\n\nTo:\n*${safe(d.name)}*\n${safe(d.house)}, ${safe(d.place)}\n${safe(d.postoffice)}\n${safe(d.district)}, ${safe(d.state)}\nPIN: ${d.pincode}\nPH: ${d.phone}\n\nQty: ${d.quantity}\nTotal: ${priceData.total}\n\n*Please GPay to: ${adminPhone} (KAFAK LLP)*`);
 
-    const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${orderTime}_\n🔗 _${editLink}_\n(Click link to edit order)`;
+    window.open(`https://wa.me/91${d.whatsapp || d.phone}?text=${msg}`, '_blank');
 
-    const wtspformat = `
-____________________________________\n
-*${name}*
-*${house}*
-*${place}*
-*${postLabel}*
-*${district}*
-*${state}*
-*Pin: ${pin}*
-*Ph: ${phone}*\n
-*Qty: ${d.quantity}*
-*${amountTextW}*\n
-*${totalTextW}*${customerMsg}
-____________________________________
-\n*Please GPay to the number below...*
-_(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്യുക)_ 👇
-\n*${adminPhone} (KAFAK LLP)*\n`;
-
-    const message = encodeURIComponent(extra1 + wtspformat);
-    window.open(`https://wa.me/91${selectedPhone}?text=${message}`, '_blank');
-
-    btn.innerText = 'Sent ✅';
-    fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: 'updateStatus', oid: d.orderid, status: 'Sent' }) });
-}
-
-// --- 4. PRINTING (Safe) ---
-function toggleAll(checked) {
-    document.querySelectorAll('.order-cb').forEach(cb => { cb.checked = checked; highlightCard(cb.value, checked); });
-}
-function highlightCard(i, c) {
-    const card = document.getElementById(`card-${i}`);
-    if (c) card.classList.add('selected'); else card.classList.remove('selected');
-}
-function filterOrders() {
-    const term = document.getElementById('searchInput').value.toLowerCase();
-    renderOrders(allOrders.filter(o => (o.name || '').toLowerCase().includes(term) || String(o.phone).includes(term)));
-}
-
-function printOne(index) {
-    // Select just this one and print
-    document.querySelectorAll('.order-cb').forEach(cb => cb.checked = false);
-    document.querySelector(`.order-cb[value="${index}"]`).checked = true;
-    printSelected();
+    // Auto-move to "Sent" status (Show "Mark Paid" button)
+    updateOrder(d.orderid, 'Sent');
 }
 
 function printSelected() {
     const selected = document.querySelectorAll('.order-cb:checked');
-    if (selected.length === 0) { alert("Select orders!"); return; }
+    if (selected.length === 0) { alert("Select orders from PAID tab!"); return; }
 
     const area = document.getElementById('print-area');
     area.innerHTML = '';
@@ -182,14 +200,8 @@ function printSelected() {
     selected.forEach(cb => {
         const idx = cb.value;
         const d = allOrders[idx];
-        if (!d) return;
-
+        const safe = (val) => (val || '').toString().toUpperCase();
         let po = d.postoffice ? `${d.postoffice}` : '';
-        // 🔴 SAFETY CHECK FOR PRINT
-        let name = (d.name || '').toUpperCase();
-        let house = (d.house || '').toUpperCase();
-        let place = (d.place || '').toUpperCase();
-        let district = (d.district || '').toUpperCase();
 
         area.innerHTML += `
         <div class="label-page">
@@ -197,25 +209,19 @@ function printSelected() {
                 <div id="qrcode-${idx}" class="qr-box"></div>
                 <svg id="barcode-${idx}" class="barcode-box"></svg>
             </div>
-            <div class="to-label">To,</div>
-            <div class="cust-details">
-                ${name}<br>${house}<br>${place} ${po ? ',' + po : ''}<br>${district}, KERALA
+            <div style="font-weight:bold; font-size:14px;">To,</div>
+            <div class="cust-details-print">
+                ${safe(d.name)}<br>${safe(d.house)}<br>${safe(d.place)} ${po ? ',' + po : ''}<br>${safe(d.district)}, ${safe(d.state)}
             </div>
             <div style="font-weight:900; margin-top:5px;">PIN: ${d.pincode}</div>
             <div style="border:2px solid black; padding:5px; display:inline-block; font-weight:900; font-size:16px; margin-top:5px;">PH: ${d.phone}</div>
-            
-             <div style="margin-top:10px; border:1px solid #777; padding:4px; font-size:10px; font-weight:700; width:fit-content; display:flex; gap:5px;">
-                <div style="font-size:18px">📞</div>
-                <div>7788990313, 9895082689<br>If unreachable, call or WhatsApp us</div>
-            </div>
-
             <div class="footer">
                 <div style="text-align:center; color:#d32f2f;">
-                     <svg style="width:40px; fill:#d32f2f;" viewBox="0 0 24 24"><path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/></svg>
-                    <div style="font-weight:900; font-size:12px; letter-spacing:1px;">FRAGILE</div>
+                    <svg style="width:40px; fill:#d32f2f;" viewBox="0 0 24 24"><path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/></svg>
+                    <div style="font-weight:900; font-size:12px;">FRAGILE</div>
                 </div>
                 <div class="from-sec">
-                    From,<br>KAFAK LLP, 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Phone: 778899 0 313
+                    From,<br>KAFAK LLP, 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ph: 778899 0 313
                 </div>
             </div>
         </div>`;
@@ -231,50 +237,31 @@ function printSelected() {
             } catch (e) { }
         });
         setTimeout(() => window.print(), 500);
-    }, 200);
+    }, 500);
 }
 
-// --- 5. SCANNER ---
-function startScanner(mode) {
-    scanMode = mode; scanStep = 1; tempOid = null;
+// --- 4. SCANNER ---
+function startScanner(mode, specificOid) {
+    scanMode = mode; tempOid = specificOid || null; scanStep = mode === 'tracking' && tempOid ? 2 : 1;
     document.getElementById('scanner-modal').style.display = 'flex';
     html5QrCode = new Html5Qrcode("reader");
     html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
 }
-function stopScanner() {
-    if (html5QrCode) html5QrCode.stop().then(() => document.getElementById('scanner-modal').style.display = 'none');
-}
+function stopScanner() { if (html5QrCode) html5QrCode.stop().then(() => document.getElementById('scanner-modal').style.display = 'none'); }
 function onScanSuccess(decodedText) {
-    if (scanMode === 'dispatch') {
-        if (decodedText.startsWith("ORD-")) {
-            html5QrCode.pause();
-            if (confirm(`Mark ${decodedText} as DISPATCHED?`)) {
-                updateServer(decodedText, 'updateStatus', 'Dispatched');
-            } else html5QrCode.resume();
+    if (scanMode === 'dispatch' && decodedText.startsWith("ORD-")) {
+        if (confirm(`Dispatch ${decodedText}?`)) { updateOrder(decodedText, 'Dispatched'); stopScanner(); }
+    } else if (scanMode === 'tracking') {
+        if (scanStep === 2 && !decodedText.startsWith("ORD-")) {
+            if (confirm(`Link Tracking ${decodedText} to ${tempOid}?`)) {
+                fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: tempOid, tracking: decodedText }) })
+                    .then(res => res.json()).then(d => { if (d.result === 'success') { alert("Saved!"); fetchOrders(); stopScanner(); } });
+            }
         }
     }
-    else if (scanMode === 'tracking') {
-        if (scanStep === 1 && decodedText.startsWith("ORD-")) {
-            tempOid = decodedText; scanStep = 2;
-            alert("Order Found. Now Scan Tracking ID.");
-            html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1000);
-        } else if (scanStep === 2 && !decodedText.startsWith("ORD-")) {
-            html5QrCode.pause();
-            if (confirm(`Link Tracking: ${decodedText} to ${tempOid}?`)) {
-                updateServer(tempOid, 'updateTracking', null, decodedText);
-            } else html5QrCode.resume();
-        }
-    }
-}
-function updateServer(oid, action, status, tracking) {
-    let body = { action: action, oid: oid };
-    if (status) body.status = status;
-    if (tracking) body.tracking = tracking;
-    fetch(scriptURL, { method: 'POST', body: JSON.stringify(body) })
-        .then(res => res.json()).then(data => { if (data.result === 'success') { alert("Success"); stopScanner(); fetchOrders(); } });
 }
 function calculatePriceInfo(qty, state) {
     const n = parseInt(qty) || 0; const basePrice = n * 650; let courierCharge = 0; const s = String(state || '').toLowerCase().trim();
     if (s === 'lakshadweep') courierCharge = (n * 100) + 20; else if (s === 'kerala') courierCharge = courierRates.kerala[n] || 0; else courierCharge = courierRates.outside[n] || 0;
-    return { base: basePrice, courier: courierCharge, numTotal: basePrice + courierCharge, total: `₹${basePrice + courierCharge}/-` };
+    return { total: `₹${basePrice + courierCharge}/-` };
 }
