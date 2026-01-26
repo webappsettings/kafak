@@ -25,7 +25,14 @@
             border-radius: 12px;
         }
 
-        /* --- A6 PRINT DESIGN (Based on your Image) --- */
+        .btn-sent {
+            background-color: #e0e0e0;
+            color: #555;
+            border: 1px solid #ccc;
+            cursor: default;
+        }
+
+        /* Print Styles (Same as before) */
         @media print {
             body * {
                 visibility: hidden;
@@ -48,20 +55,16 @@
                 margin: 0;
             }
 
-            /* Set Paper Size to A6 */
-
             .print-page {
                 width: 105mm;
                 height: 148mm;
                 padding: 10mm;
-                position: relative;
-                background: white;
                 page-break-after: always;
-                /* Force new page for each label */
                 display: flex;
                 flex-direction: column;
-                box-sizing: border-box;
+                background: white;
                 font-family: Arial, sans-serif;
+                box-sizing: border-box;
             }
 
             .to-section {
@@ -139,7 +142,6 @@
             }
         }
 
-        /* Hide Print Area on Screen */
         #print-area {
             display: none;
         }
@@ -162,7 +164,6 @@
     </nav>
 
     <div class="container-fluid px-4">
-
         <div class="card p-3">
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
@@ -174,7 +175,7 @@
                             <th>Customer</th>
                             <th>Location</th>
                             <th>Contact Mode</th>
-                            <th>Action</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody id="orderTableBody">
@@ -185,7 +186,6 @@
                 </table>
             </div>
         </div>
-
     </div>
 
     <div id="print-area"></div>
@@ -196,7 +196,7 @@
 
         let allOrders = [];
 
-        // Load Orders on Page Load
+        // Load Orders
         fetch(`${scriptURL}?action=getAllOrders`)
             .then(res => res.json())
             .then(response => {
@@ -213,9 +213,16 @@
             tbody.innerHTML = '';
 
             orders.forEach((order, index) => {
-                // Formatting Date
                 let dateObj = new Date(order.timestamp);
                 let dateStr = dateObj.toLocaleDateString('en-IN');
+
+                // Check Status from Sheet
+                const isSent = order.Status === 'Sent'; // Column header name match avanam
+
+                // Button Style based on Status
+                const btnClass = isSent ? 'btn-secondary btn-sm' : 'btn-success btn-sm';
+                const btnText = isSent ? 'Sent ✅' : '<i class="fab fa-whatsapp"></i> Send';
+                const btnAction = `sendWhatsApp(${index}, this)`;
 
                 let row = `
                 <tr>
@@ -236,8 +243,8 @@
                     </td>
 
                     <td>
-                        <button class="btn btn-success btn-sm" onclick="sendWhatsApp(${index})">
-                            <i class="fab fa-whatsapp"></i> Send
+                        <button class="btn ${btnClass}" id="btn-${index}" onclick="${btnAction}">
+                            ${btnText}
                         </button>
                     </td>
                 </tr>
@@ -246,21 +253,41 @@
             });
         }
 
-        // --- SEND WHATSAPP LOGIC ---
-        function sendWhatsApp(index) {
+        // --- SEND WHATSAPP & UPDATE STATUS ---
+        function sendWhatsApp(index, btnElement) {
             const order = allOrders[index];
-
-            // 🔴 Get the selected number from Dropdown
             const selectedNumber = document.getElementById(`contact-select-${index}`).value;
-
-            // Message Content
             const msg = `Hi ${order.name}, your order for Kafak Honey is packed! 🍯\nID: ${order.orderid}\nWe will ship it soon.`;
 
-            // Open WhatsApp
+            // 1. Open WhatsApp
             window.open(`https://wa.me/91${selectedNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+
+            // 2. Change Button immediately (Visual Feedback)
+            btnElement.className = 'btn btn-secondary btn-sm';
+            btnElement.innerHTML = 'Updating...';
+            btnElement.disabled = true;
+
+            // 3. Update Google Sheet
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'updateStatus', oid: order.orderid, status: 'Sent' })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        btnElement.innerHTML = 'Sent ✅';
+                        // Update local data to reflect change without reload
+                        allOrders[index].Status = 'Sent';
+                    } else {
+                        btnElement.className = 'btn btn-success btn-sm';
+                        btnElement.innerHTML = 'Try Again';
+                        btnElement.disabled = false;
+                        alert('Failed to update status in sheet');
+                    }
+                });
         }
 
-        // --- BULK PRINT LOGIC (A6 BEAUTIFUL) ---
+        // --- PRINT LOGIC (Same as before) ---
         function toggleSelectAll() {
             const checkboxes = document.querySelectorAll('.order-checkbox');
             const selectAll = document.getElementById('selectAll');
@@ -275,7 +302,7 @@
             }
 
             const printArea = document.getElementById('print-area');
-            printArea.innerHTML = ''; // Clear previous
+            printArea.innerHTML = '';
 
             checkboxes.forEach(cb => {
                 const index = cb.value;
@@ -287,11 +314,8 @@
             window.print();
         }
 
-        // --- GENERATE LABEL HTML (Matches your Image) ---
         function createA6Label(d) {
-            // Handle undefined postoffice
             let poText = d.postoffice ? `${d.postoffice},` : '';
-
             return `
             <div class="print-page">
                 <div class="to-section">
@@ -303,7 +327,6 @@
                         ${d.district}, KERALA<br>
                         PIN: ${d.pincode}
                     </div>
-                    
                     <div class="phone-box">
                         <span class="phone-icon">📞</span>
                         <div class="phone-numbers">
@@ -311,22 +334,13 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-section">
                     <div class="fragile-icon">
-                        <svg class="fragile-svg" viewBox="0 0 24 24">
-                            <path d="M18.1,5.1c0,0-2.2-2.8-2.6-3.2C15.1,1.5,14.6,1.2,14,1.2h-4c-0.6,0-1.1,0.3-1.5,0.7C8.1,2.3,5.9,5.1,5.9,5.1 C5.3,5.8,5,6.7,5,7.6v5.8c0,1.9,1.1,3.6,2.8,4.4v3h-1v2h10.4v-2h-1v-3c1.7-0.8,2.8-2.5,2.8-4.4V7.6C19,6.7,18.7,5.8,18.1,5.1z M10.4,4.2L11,3.5l3.5,6l0.9-0.5L11.5,2.5l0.9-0.5l0.5,0.9l-0.9,0.5L12.5,4l0.6-0.8L10.4,4.2z"/>
-                            <path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/>
-                        </svg>
+                        <svg class="fragile-svg" viewBox="0 0 24 24"><path d="M18.1,5.1c0,0-2.2-2.8-2.6-3.2C15.1,1.5,14.6,1.2,14,1.2h-4c-0.6,0-1.1,0.3-1.5,0.7C8.1,2.3,5.9,5.1,5.9,5.1 C5.3,5.8,5,6.7,5,7.6v5.8c0,1.9,1.1,3.6,2.8,4.4v3h-1v2h10.4v-2h-1v-3c1.7-0.8,2.8-2.5,2.8-4.4V7.6C19,6.7,18.7,5.8,18.1,5.1z M10.4,4.2L11,3.5l3.5,6l0.9-0.5L11.5,2.5l0.9-0.5l0.5,0.9l-0.9,0.5L12.5,4l0.6-0.8L10.4,4.2z"/><path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/></svg>
                         <br>FRAGILE
                     </div>
-
                     <div class="from-address">
-                        From,<br>
-                        KAFAK LLP, 10/174, Kunnathery,<br>
-                        Thaikkattukara P.O, Aluva - 683106,<br>
-                        Ernakulam District, Kerala, India.<br>
-                        Phone: 778899 0 313
+                        From,<br>KAFAK LLP, 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
                     </div>
                 </div>
             </div>
