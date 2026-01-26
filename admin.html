@@ -7,11 +7,11 @@
     <title>Kafak Admin Login</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-color: #f0f2f5;
+            background-color: #eef2f5;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -21,116 +21,226 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         .login-card {
             background: white;
-            padding: 40px;
+            padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             text-align: center;
         }
 
         .btn-login {
-            background: linear-gradient(45deg, #2e7d32, #43a047);
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             width: 100%;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
         }
 
-        /* DASHBOARD STYLE (Initial Hidden) */
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        /* DASHBOARD STYLE */
         #dashboard-section {
             display: none;
-            padding-bottom: 80px;
+            padding-bottom: 100px;
         }
 
         .navbar {
             background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            padding: 15px 0;
         }
 
+        .navbar-brand {
+            font-weight: 800;
+            color: #1b5e20 !important;
+            font-size: 20px;
+        }
+
+        /* 🔴 BEAUTIFUL CARD DESIGN */
         .order-card {
             border: none;
-            border-radius: 15px;
+            border-radius: 16px;
             background: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .order-card:active {
+            transform: scale(0.99);
         }
 
         .card-header-custom {
-            background: #f1f8e9;
-            border-radius: 15px 15px 0 0;
-            padding: 12px 15px;
+            background: linear-gradient(to right, #f1f8e9, #fff);
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .status-badge {
+        .order-id {
+            font-weight: 700;
+            color: #37474f;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body-custom {
+            padding: 20px;
+        }
+
+        .customer-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: #263238;
+            margin-bottom: 2px;
+        }
+
+        .customer-phone {
+            font-size: 13px;
+            color: #78909c;
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .order-details-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #eef2f3;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .detail-label {
+            color: #90a4ae;
             font-size: 12px;
-            padding: 5px 10px;
-            border-radius: 20px;
+        }
+
+        .detail-value {
             font-weight: 600;
+            color: #455a64;
+        }
+
+        .price-value {
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .address-text {
+            font-size: 13px;
+            color: #546e7a;
+            line-height: 1.5;
+            margin-top: 10px;
+            border-top: 1px dashed #cfd8dc;
+            padding-top: 10px;
+        }
+
+        /* Badges */
+        .status-badge {
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .bg-pending {
-            background-color: #fff3cd;
-            color: #856404;
+            background-color: #fff8e1;
+            color: #fbc02d;
         }
 
         .bg-dispatched {
-            background-color: #cff4fc;
-            color: #055160;
+            background-color: #e1f5fe;
+            color: #039be5;
         }
 
         .bg-completed {
-            background-color: #d1e7dd;
-            color: #0f5132;
+            background-color: #e8f5e9;
+            color: #43a047;
         }
 
+        /* Buttons */
         .btn-action {
             border-radius: 10px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
+            padding: 10px;
+            border: none;
         }
 
         .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
-            border: none;
+            background: #e8f5e9;
+            color: #2e7d32;
         }
 
         .btn-print {
-            background-color: #343a40;
-            color: white;
-            border: none;
+            background: #eceff1;
+            color: #455a64;
+        }
+
+        .btn-whatsapp:active,
+        .btn-print:active {
+            filter: brightness(0.95);
         }
 
         /* Floating Button */
         .fab-container {
             position: fixed;
-            bottom: 20px;
+            bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 999;
             width: 90%;
             max-width: 400px;
+            background: white;
+            padding: 10px;
+            border-radius: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .btn-scan-fab {
-            width: 100%;
-            padding: 15px;
             border-radius: 30px;
-            background: linear-gradient(45deg, #2e7d32, #43a047);
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+            height: 50px;
+            font-weight: 700;
             border: none;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .scan-dispatch {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .scan-tracking {
+            background: #e53935;
+            color: white;
         }
 
         /* Modal */
@@ -140,7 +250,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 10000;
             display: none;
             flex-direction: column;
@@ -151,20 +261,9 @@
         #reader {
             width: 100%;
             max-width: 500px;
-            border-radius: 10px;
-            background: #000;
-        }
-
-        .close-scan {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -173,30 +272,31 @@
 
     <div id="login-section" class="login-container">
         <div class="login-card">
-            <img src="logo-order.png" style="width:120px; margin-bottom:20px;">
-            <h4 style="font-weight:700; color:#2e7d32;">Admin Login</h4>
-            <p class="text-muted small">Enter your credentials to access dashboard</p>
+            <h1 style="font-size: 50px; margin-bottom: 10px;">🍯</h1>
+            <h4 style="font-weight:700; color:#2e7d32; margin-bottom: 5px;">Admin Portal</h4>
+            <p class="text-muted small mb-4">Secure Login</p>
 
             <div class="mb-3 text-start">
-                <label class="form-label small fw-bold">Username</label>
-                <input type="text" id="adminUser" class="form-control" placeholder="Admin User">
+                <label class="form-label small fw-bold text-muted">Username</label>
+                <input type="text" id="adminUser" class="form-control form-control-lg" placeholder="Enter username">
             </div>
             <div class="mb-4 text-start">
-                <label class="form-label small fw-bold">Password</label>
-                <input type="password" id="adminPass" class="form-control" placeholder="••••••">
+                <label class="form-label small fw-bold text-muted">Password</label>
+                <input type="password" id="adminPass" class="form-control form-control-lg" placeholder="••••••">
             </div>
-            <button class="btn-login" onclick="attemptLogin()" id="loginBtn">LOGIN DASHBOARD</button>
-            <p id="loginMsg" class="text-danger small mt-3"></p>
+            <button class="btn-login" onclick="attemptLogin()" id="loginBtn">ACCESS DASHBOARD</button>
+            <p id="loginMsg" class="text-danger small mt-3 fw-bold"></p>
         </div>
     </div>
 
     <div id="dashboard-section">
-        <nav class="navbar navbar-expand-lg sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">🍯 KAFAK Admin</a>
+        <nav class="navbar sticky-top">
+            <div class="container">
+                <span class="navbar-brand">🍯 KAFAK Admin</span>
                 <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-success" onclick="loadOrders()">🔄</button>
-                    <button class="btn btn-sm btn-outline-danger" onclick="logout()">Logout</button>
+                    <button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="loadOrders()">Sync
+                        🔄</button>
+                    <button class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="logout()">Exit</button>
                 </div>
             </div>
         </nav>
@@ -204,25 +304,27 @@
         <div class="container mt-4">
             <div id="loader" class="text-center py-5">
                 <div class="spinner-border text-success" role="status"></div>
-                <p class="mt-2 text-muted">Loading Orders...</p>
+                <p class="mt-2 text-muted small fw-bold">Fetching Orders...</p>
             </div>
             <div id="order-list" class="row"></div>
         </div>
 
         <div class="fab-container">
-            <div class="d-flex gap-2">
-                <button class="btn-scan-fab flex-grow-1" onclick="startScanner('dispatch')">📦 Dispatch</button>
-                <button class="btn-scan-fab flex-grow-1" style="background: linear-gradient(45deg, #d32f2f, #ef5350);"
-                    onclick="startScanner('tracking')">🚚 Tracking</button>
+            <div class="d-flex gap-2 w-100">
+                <button class="btn-scan-fab scan-dispatch flex-grow-1" onclick="startScanner('dispatch')">📦
+                    Dispatch</button>
+                <button class="btn-scan-fab scan-tracking flex-grow-1" onclick="startScanner('tracking')">🚚
+                    Tracking</button>
             </div>
         </div>
     </div>
 
     <div id="scanner-modal">
-        <button class="close-scan" onclick="stopScanner()">✕</button>
-        <div class="text-center mb-3">
-            <h3 id="scan-instruction" class="text-white">Scanning...</h3>
-            <p id="scan-detail" class="text-white-50 small">Point camera at QR Code</p>
+        <button onclick="stopScanner()"
+            style="position:absolute; top:30px; right:30px; background:white; border:none; width:40px; height:40px; border-radius:50%; font-weight:bold;">✕</button>
+        <div class="text-center mb-4">
+            <h4 id="scan-instruction" class="text-white fw-bold">Scanning...</h4>
+            <p id="scan-detail" class="text-white-50 small">Align QR code within frame</p>
         </div>
         <div id="reader"></div>
     </div>
