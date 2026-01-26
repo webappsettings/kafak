@@ -23,6 +23,7 @@
       background: var(--soft-bg);
       font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
       padding-top: 80px;
+      padding-bottom: 120px;
       min-height: 100vh;
     }
 
@@ -444,10 +445,15 @@
     </button>
   </div>
 
+  <div id="admin-placeholder"></div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
   <script src="custom.js"></script>
   <script>
+    // 🔴 പേജ് ലോഡ് ആകുമ്പോൾ തന്നെ urlParams ലഭ്യമാക്കാൻ
+    const urlParams = new URLSearchParams(window.location.search);
+
     function clearMyData() {
       if (confirm("നിങ്ങളുടെ ഫോണിലെ സേവ് ചെയ്ത വിവരങ്ങൾ (Name, Phone etc.) ക്ലിയർ ചെയ്യട്ടെ?")) {
         localStorage.removeItem('kafakUser');
@@ -455,6 +461,7 @@
         location.reload();
       }
     }
+
   </script>
 </body>
 
