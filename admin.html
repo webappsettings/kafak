@@ -9,38 +9,149 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        /* --- SCREEN STYLES (Simple & Clean) --- */
+        :root {
+            --primary-color: #2e7d32;
+            --bg-color: #f0f2f5;
+        }
+
         body {
-            background-color: #f8f9fa;
+            background-color: var(--bg-color);
             font-family: 'Segoe UI', sans-serif;
+            padding-bottom: 80px;
         }
 
+        /* NAVBAR */
         .navbar {
-            background: #198754;
-            color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: var(--primary-color);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            margin-top: 20px;
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white !important;
         }
 
-        .btn-print {
+        /* FLOATING PRINT BUTTON (Mobile) */
+        .fab-print {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             background: #212529;
             color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: none;
+            z-index: 1001;
         }
 
-        .btn-print:hover {
-            background: #000;
-            color: white;
+        /* --- RESPONSIVE DESIGN --- */
+        /* PC View: Show Table, Hide Cards */
+        @media (min-width: 768px) {
+            .mobile-card-view {
+                display: none;
+            }
+
+            .desktop-table-view {
+                display: block;
+            }
         }
 
-        /* --- PRINT STYLES (A6 LABEL DESIGN) --- */
+        /* Mobile View: Hide Table, Show Cards */
+        @media (max-width: 767px) {
+            .mobile-card-view {
+                display: block;
+            }
+
+            .desktop-table-view {
+                display: none;
+            }
+
+            .container-fluid {
+                padding: 10px;
+            }
+        }
+
+        /* CARD STYLE (For Mobile) */
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .order-card.selected {
+            border: 2px solid var(--primary-color);
+            background: #f1f8e9;
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .order-id {
+            font-weight: 800;
+            color: #555;
+            font-size: 0.9rem;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        .order-date {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .cust-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .cust-loc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .select-check {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+
+        /* LOADING SPINNER */
+        #loader {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        /* --- PRINT STYLES (EXACT REPLICA OF IMAGE) --- */
         @media print {
             body * {
                 visibility: hidden;
@@ -63,114 +174,106 @@
                 margin: 0;
             }
 
-            /* Force A6 Paper */
-
             .label-page {
                 width: 105mm;
                 height: 148mm;
                 background: white;
-                padding: 8mm;
+                padding: 6mm 8mm;
                 position: relative;
                 box-sizing: border-box;
                 page-break-after: always;
-                /* New page for each label */
                 display: flex;
                 flex-direction: column;
                 font-family: Arial, sans-serif;
-                border: 1px solid #eee;
-                /* Light border just for preview/cutting */
             }
 
-            .header-row {
-                margin-bottom: 20px;
-            }
-
-            .to-text {
-                font-size: 14px;
-                font-weight: bold;
-                color: #555;
+            .to-label {
+                font-size: 16px;
+                font-weight: 900;
                 margin-bottom: 5px;
             }
 
-            .cust-name {
-                font-size: 22px;
+            .cust-details {
+                font-size: 17px;
                 font-weight: 800;
                 text-transform: uppercase;
-                line-height: 1.2;
-                margin-bottom: 5px;
-            }
-
-            .cust-address {
-                font-size: 16px;
-                font-weight: 600;
-                text-transform: uppercase;
-                line-height: 1.4;
+                line-height: 1.3;
                 color: #000;
             }
 
-            .phone-container {
-                margin-top: 15px;
-                border: 2px solid #000;
-                border-radius: 8px;
-                padding: 5px 10px;
-                display: inline-block;
-                background: #fff;
+            .cust-pin {
+                margin-top: 2px;
             }
 
-            .phone-label {
-                font-size: 12px;
-                font-weight: bold;
-                margin-right: 5px;
-            }
-
-            .phone-val {
-                font-size: 18px;
+            .cust-phone {
+                margin-top: 5px;
                 font-weight: 900;
+                font-size: 18px;
             }
 
-            /* Footer Section (Fragile + From) */
+            /* The Support Box from your image */
+            .support-box {
+                margin-top: 12px;
+                border: 1px solid #aaa;
+                border-radius: 8px;
+                padding: 5px 8px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background: #fff;
+                width: fit-content;
+            }
+
+            .support-icon img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .support-text {
+                font-size: 11px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            /* Footer */
             .footer {
                 margin-top: auto;
-                /* Push to bottom */
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
-                border-top: 2px solid #eee;
-                padding-top: 10px;
             }
 
-            .fragile-box {
+            .fragile-sec {
                 text-align: center;
                 color: #d32f2f;
             }
 
-            .fragile-icon {
-                font-size: 40px;
-                margin-bottom: -5px;
+            .fragile-icon svg {
+                width: 45px;
+                fill: #d32f2f;
             }
 
-            .fragile-text {
+            .fragile-txt {
                 font-weight: 900;
-                font-size: 12px;
-                letter-spacing: 1px;
+                font-size: 13px;
+                letter-spacing: 0.5px;
+                margin-top: -3px;
             }
 
-            .from-box {
+            .from-sec {
                 text-align: right;
-                font-size: 11px;
+                font-size: 10px;
+                font-weight: 700;
                 line-height: 1.3;
-                color: #333;
-                font-weight: 600;
+                color: #000;
             }
 
-            .from-head {
-                font-weight: bold;
-                font-size: 12px;
+            .from-label {
+                font-size: 11px;
                 margin-bottom: 2px;
             }
         }
 
-        /* Hide Print Area on Screen */
         #print-area {
             display: none;
         }
@@ -179,190 +282,281 @@
 
 <body>
 
-    <nav class="navbar navbar-dark p-3">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <span class="navbar-brand mb-0 h1 fw-bold"><i class="fas fa-boxes"></i> KAFAK Orders</span>
-            <button class="btn btn-light fw-bold shadow-sm" onclick="printSelected()">
-                <i class="fas fa-print"></i> Print Labels (A6)
-            </button>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand"><i class="fas fa-boxes"></i> KAFAK Orders</span>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-light fw-bold" onclick="location.reload()">↻ Refresh</button>
+            </div>
         </div>
     </nav>
 
-    <div class="container-fluid px-4">
-        <div class="table-container">
-            <div class="d-flex justify-content-between mb-3">
-                <h5 class="fw-bold text-secondary">Recent Orders</h5>
-                <button class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Refresh 🔄</button>
-            </div>
+    <div class="container-fluid mt-3">
 
-            <div class="table-responsive">
-                <table class="table table-hover align-middle">
+        <div class="row mb-3">
+            <div class="col-12">
+                <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search by Name or Phone..."
+                    onkeyup="filterOrders()">
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center mb-2 px-2 mobile-card-view">
+            <input type="checkbox" id="selectAllMobile" class="select-check" onchange="toggleAll(this.checked)">
+            <label for="selectAllMobile" class="fw-bold text-muted">Select All</label>
+        </div>
+
+        <div id="loader">
+            <div class="spinner-border text-success" role="status"></div>
+            <p class="mt-2">Loading Orders...</p>
+        </div>
+
+        <div class="card desktop-table-view shadow-sm" style="display:none;">
+            <div class="card-body p-0">
+                <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th style="width: 40px;"><input type="checkbox" id="selectAll"
-                                    style="transform: scale(1.2); cursor: pointer;"></th>
+                            <th class="p-3"><input type="checkbox" id="selectAllPC" class="select-check"
+                                    onchange="toggleAll(this.checked)"></th>
                             <th>Date</th>
                             <th>Order ID</th>
                             <th>Customer</th>
-                            <th>Location</th>
-                            <th>Select Number</th>
+                            <th>Contact Mode</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="orderTable">
-                        <tr>
-                            <td colspan="7" class="text-center p-4 text-muted">Loading Orders...</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="pcTableBody"></tbody>
                 </table>
             </div>
         </div>
+
+        <div id="mobileCardContainer" class="mobile-card-view"></div>
+
     </div>
+
+    <button class="fab-print" onclick="printSelected()" title="Print Selected">
+        <i class="fas fa-print"></i>
+    </button>
 
     <div id="print-area"></div>
 
     <script>
-        // 🔴 PASTE YOUR NEW SCRIPT URL HERE
-        const scriptURL = "https://script.google.com/macros/s/AKfycby_1PorN19SVT-nghojK6v6Qv0vdUUAJx9v5rXlDuQw1ruPXIRTaC-ymjhYGjOszGDkRw/exec";
+        // 🔴🔴 IMPORTANT: PASTE NEW URL HERE 🔴🔴
+        const scriptURL = "https://script.google.com/macros/s/AKfycbyrfUiWip0ZOLShneliIeltOSB5_zbpeL2V852UjE8LctIKfUCVQyordfchBU_Quxxylg/exec";
 
         let allOrders = [];
 
-        // 1. Load Orders
+        // 1. Fetch Orders
         fetch(`${scriptURL}?action=getAllOrders`)
             .then(res => res.json())
             .then(response => {
+                document.getElementById('loader').style.display = 'none';
                 if (response.result === 'success') {
                     allOrders = response.data;
-                    renderTable(allOrders);
+                    renderPC(allOrders);
+                    renderMobile(allOrders);
+                    // Show content
+                    if (window.innerWidth >= 768) {
+                        document.querySelector('.desktop-table-view').style.display = 'block';
+                    }
                 } else {
-                    alert('Error loading orders!');
+                    alert('Error: ' + response.message); // Show actual error
                 }
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                document.getElementById('loader').innerHTML = `<span class="text-danger">Failed to load. Check Script URL.<br>${err}</span>`;
+            });
 
-        // 2. Render Table
-        function renderTable(orders) {
-            const tbody = document.getElementById('orderTable');
+        // 2. Render PC Table
+        function renderPC(orders) {
+            const tbody = document.getElementById('pcTableBody');
             tbody.innerHTML = '';
-
-            orders.forEach((order, index) => {
-                let date = new Date(order.timestamp).toLocaleDateString('en-IN');
-
-                // Status Check for Button Color
-                let isSent = order.Status === 'Sent';
-                let btnClass = isSent ? 'btn-secondary' : 'btn-success';
-                let btnText = isSent ? 'Sent ✅' : '<i class="fab fa-whatsapp"></i> Send';
-
-                let row = `
-                    <tr>
-                        <td><input type="checkbox" class="order-cb" value="${index}" style="transform: scale(1.2); cursor: pointer;"></td>
-                        <td class="small text-muted">${date}</td>
-                        <td class="fw-bold text-primary small">${order.orderid}</td>
+            orders.forEach((d, i) => {
+                tbody.innerHTML += `
+                    <tr class="${d.Status === 'Sent' ? 'table-success' : ''}">
+                        <td class="p-3"><input type="checkbox" class="order-cb select-check" value="${i}"></td>
+                        <td>${formatDate(d.timestamp)}</td>
+                        <td><span class="badge bg-secondary">${d.orderid}</span></td>
                         <td>
-                            <div class="fw-bold">${order.name}</div>
-                            <div class="small text-muted">${order.phone}</div>
+                            <div class="fw-bold">${d.name}</div>
+                            <small class="text-muted">${d.place}</small>
                         </td>
-                        <td class="small">${order.place}, ${order.district}</td>
-                        
                         <td>
-                            <select class="form-select form-select-sm" id="contact-${index}" style="width: 140px;">
-                                <option value="${order.whatsapp}">WhatsApp (${order.whatsapp})</option>
-                                <option value="${order.phone}">Phone (${order.phone})</option>
+                            <select class="form-select form-select-sm" id="contact-pc-${i}">
+                                <option value="${d.whatsapp}">WA (${d.whatsapp})</option>
+                                <option value="${d.phone}">PH (${d.phone})</option>
                             </select>
                         </td>
-
                         <td>
-                            <button class="btn ${btnClass} btn-sm" onclick="sendWA(${index}, this)">${btnText}</button>
+                            <button class="btn btn-sm ${d.Status === 'Sent' ? 'btn-secondary' : 'btn-success'}" 
+                                onclick="sendWA(${i}, this, 'pc')">
+                                ${d.Status === 'Sent' ? 'Sent' : 'Send WA'}
+                            </button>
                         </td>
                     </tr>
                 `;
-                tbody.innerHTML += row;
             });
         }
 
-        // 3. Select All Logic
-        document.getElementById('selectAll').addEventListener('change', function () {
-            const checkboxes = document.querySelectorAll('.order-cb');
-            checkboxes.forEach(cb => cb.checked = this.checked);
-        });
+        // 3. Render Mobile Cards
+        function renderMobile(orders) {
+            const container = document.getElementById('mobileCardContainer');
+            container.innerHTML = '';
+            orders.forEach((d, i) => {
+                container.innerHTML += `
+                    <div class="order-card" id="card-${i}">
+                        <div class="card-header-row">
+                            <span class="order-id">${d.orderid}</span>
+                            <span class="order-date">${formatDate(d.timestamp)}</span>
+                        </div>
+                        <div class="d-flex">
+                            <input type="checkbox" class="order-cb select-check mt-1" value="${i}" onchange="highlightCard(${i}, this.checked)">
+                            <div class="ms-2 w-100">
+                                <div class="cust-name">${d.name}</div>
+                                <div class="cust-loc">${d.place}, ${d.district}</div>
+                                
+                                <div class="bg-light p-2 rounded">
+                                    <div class="d-flex gap-2 mb-2">
+                                        <select class="form-select form-select-sm" id="contact-mob-${i}">
+                                            <option value="${d.whatsapp}">WhatsApp: ${d.whatsapp}</option>
+                                            <option value="${d.phone}">Phone: ${d.phone}</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn w-100 ${d.Status === 'Sent' ? 'btn-secondary' : 'btn-success'} fw-bold" 
+                                        onclick="sendWA(${i}, this, 'mob')">
+                                        <i class="fab fa-whatsapp"></i> ${d.Status === 'Sent' ? 'Sent ✅' : 'Send Message'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
-        // 4. Send WhatsApp
-        function sendWA(index, btn) {
+        // --- UTILS ---
+        function formatDate(iso) {
+            let d = new Date(iso);
+            return d.getDate() + '/' + (d.getMonth() + 1);
+        }
+
+        function toggleAll(checked) {
+            document.querySelectorAll('.order-cb').forEach(cb => {
+                cb.checked = checked;
+                if (document.getElementById(`card-${cb.value}`)) highlightCard(cb.value, checked);
+            });
+            document.getElementById('selectAllPC').checked = checked;
+            document.getElementById('selectAllMobile').checked = checked;
+        }
+
+        function highlightCard(index, checked) {
+            const card = document.getElementById(`card-${index}`);
+            if (card) {
+                if (checked) card.classList.add('selected');
+                else card.classList.remove('selected');
+            }
+        }
+
+        function filterOrders() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allOrders.filter(o =>
+                o.name.toLowerCase().includes(term) ||
+                String(o.phone).includes(term)
+            );
+            renderPC(filtered);
+            renderMobile(filtered);
+        }
+
+        // --- WHATSAPP LOGIC ---
+        function sendWA(index, btn, view) {
             const order = allOrders[index];
-            const phone = document.getElementById(`contact-${index}`).value;
-            const msg = `Hi ${order.name}, your order (${order.orderid}) is confirmed & packing started! 🍯\nWe will ship it soon.`;
+            const selectId = view === 'pc' ? `contact-pc-${index}` : `contact-mob-${index}`;
+            const phone = document.getElementById(selectId).value;
 
+            const msg = `Hi ${order.name}, your order (${order.orderid}) is confirmed! 🍯\nWe will ship it soon.`;
             window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 
-            // Visual Update
-            btn.className = 'btn btn-secondary btn-sm';
-            btn.innerHTML = 'Sent ✅';
-            btn.disabled = true;
+            // Update UI
+            btn.className = 'btn btn-secondary btn-sm w-100';
+            btn.innerText = 'Sent ✅';
 
-            // Background Update (Optional: Update Sheet)
+            // Sync status to Sheet
             fetch(scriptURL, {
                 method: 'POST',
+                mode: 'no-cors', // Important for simple requests
                 body: JSON.stringify({ action: 'updateStatus', oid: order.orderid, status: 'Sent' })
             });
         }
 
-        // 5. PRINT FUNCTION (The Adipoly Part!)
+        // --- PRINT LOGIC (Matches Image Exactly) ---
         function printSelected() {
             const selected = document.querySelectorAll('.order-cb:checked');
             if (selected.length === 0) {
-                alert('Please select at least one order!');
+                alert("Select orders first!");
                 return;
             }
 
-            const printArea = document.getElementById('print-area');
-            printArea.innerHTML = ''; // Clear previous
+            const area = document.getElementById('print-area');
+            area.innerHTML = '';
 
-            selected.forEach(cb => {
-                const order = allOrders[cb.value];
-                printArea.innerHTML += createLabel(order);
+            // Unique set of indices to avoid duplicates if select all behaves weirdly
+            const indices = new Set();
+            selected.forEach(cb => indices.add(cb.value));
+
+            indices.forEach(idx => {
+                const d = allOrders[idx];
+                area.innerHTML += createLabel(d);
             });
 
             window.print();
         }
 
         function createLabel(d) {
-            let po = d.postoffice ? `${d.postoffice},` : '';
+            let po = d.postoffice ? `${d.postoffice}` : '';
             return `
-                <div class="label-page">
-                    <div class="header-row">
-                        <div class="to-text">To,</div>
-                        <div class="cust-name">${d.name}</div>
-                        <div class="cust-address">
-                            ${d.house}<br>
-                            ${d.place}, ${po}<br>
-                            ${d.district}, KERALA<br>
-                            <strong>PIN: ${d.pincode}</strong>
-                        </div>
-                        
-                        <div class="phone-container">
-                            <span class="phone-label">PH:</span>
-                            <span class="phone-val">${d.phone}</span>
-                        </div>
-                    </div>
+            <div class="label-page">
+                <div class="to-label">To,</div>
+                <div class="cust-details">
+                    ${d.name}<br>
+                    ${d.house}<br>
+                    ${d.place} ${po ? ',' + po : ''}<br>
+                    ${d.district}, KERALA
+                </div>
+                <div class="cust-details cust-pin">PIN: ${d.pincode}</div>
+                <div class="cust-phone">PH: ${d.phone}</div>
 
-                    <div class="footer">
-                        <div class="fragile-box">
-                            <div class="fragile-icon"><i class="fas fa-wine-glass"></i></div>
-                            <div class="fragile-text">FRAGILE</div>
-                        </div>
-                        <div class="from-box">
-                            <div class="from-head">From:</div>
-                            KAFAK LLP<br>
-                            10/174, Kunnathery<br>
-                            Thaikkattukara P.O, Aluva<br>
-                            <strong>Ph: 778899 0313</strong>
-                        </div>
+                <div class="support-box">
+                    <div class="support-icon">
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.03 12.03 0 0 0 2.81.57A2 2 0 0 1 22 16.92z"></path>
+                       </svg>
+                    </div>
+                    <div class="support-text">
+                        7788990313, 9895082689<br>
+                        If unreachable, call or WhatsApp us
                     </div>
                 </div>
-            `;
+
+                <div class="footer">
+                    <div class="fragile-sec">
+                        <div class="fragile-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18.1,5.1c0,0-2.2-2.8-2.6-3.2C15.1,1.5,14.6,1.2,14,1.2h-4c-0.6,0-1.1,0.3-1.5,0.7C8.1,2.3,5.9,5.1,5.9,5.1 C5.3,5.8,5,6.7,5,7.6v5.8c0,1.9,1.1,3.6,2.8,4.4v3h-1v2h10.4v-2h-1v-3c1.7-0.8,2.8-2.5,2.8-4.4V7.6C19,6.7,18.7,5.8,18.1,5.1z M10.4,4.2L11,3.5l3.5,6l0.9-0.5L11.5,2.5l0.9-0.5l0.5,0.9l-0.9,0.5L12.5,4l0.6-0.8L10.4,4.2z"/>
+                                <path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/>
+                            </svg>
+                        </div>
+                        <div class="fragile-txt">FRAGILE</div>
+                    </div>
+                    <div class="from-sec">
+                        <div class="from-label">From,</div>
+                        KAFAK LLP, 10/174, Kunnathery,<br>
+                        Thaikkattukara P.O, Aluva - 683106,<br>
+                        Ernakulam District, Kerala, India.<br>
+                        Phone: 778899 0 313
+                    </div>
+                </div>
+            </div>`;
         }
     </script>
-
 </body>
 
 </html>
