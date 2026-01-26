@@ -158,13 +158,8 @@ function fetchOrderDetails(oid) {
 function submitOrder() {
   $('#submitBtn').prop('disabled', true).text(editingOrderId ? 'Updating...' : 'Processing...');
 
+  // Manual check removed since Validation handles it now.
   const poValue = $('#postoffice').val();
-
-  if (!poValue) {
-    alert("ദയവായി പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ.");
-    $('#submitBtn').prop('disabled', false).text(editingOrderId ? 'Update Order' : 'Place Order');
-    return;
-  }
 
   const formData = {
     orderid: editingOrderId || null,
@@ -190,7 +185,6 @@ function submitOrder() {
       if (data.result === 'success') {
         successSubmitData = { orderid: data.orderid, timestamp: data.timestamp, data: formData };
 
-        // Alert in Malayalam/English mix
         alert(editingOrderId ? 'ഓർഡർ അപ്ഡേറ്റ് ചെയ്തു! ✅' : 'ഓർഡർ വിജയകരമായി രേഖപ്പെടുത്തി! ✅');
 
         $('#honeyForm').hide();
@@ -244,7 +238,6 @@ function sendToWhatsapp() {
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  // WhatsApp Message
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 *#${orderid}*\n🔗 _${editLink}_\n(Click link to edit order)`;
   const postLabel = d.postoffice || '';
 
@@ -269,14 +262,15 @@ ____________________________________
   window.open(`https://api.whatsapp.com/send?phone=91${phone}&text=${message}`, '_blank');
 }
 
-// --- MALAYALAM VALIDATION ---
+// --- VALIDATION & MALAYALAM MESSAGES ---
 jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
-}, 'പിൻകോഡ് തെറ്റാണ്!'); // Malayalam Error
+}, 'പിൻകോഡ് തെറ്റാണ്!');
 
 $("#honeyForm").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
+  ignore: ":hidden", // മറഞ്ഞിരിക്കുന്ന ഫീൽഡുകൾ പരിശോധിക്കില്ല (Default)
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },
@@ -284,9 +278,13 @@ $("#honeyForm").validate({
     house: { required: true },
     place: { required: true },
     pincode: { required: true, number: true, minlength: 6, pinavail: true },
+
+    // 🔴 Validation for Post Office Added Here
+    officename: { required: true }, // ഡ്രോപ്പ് ഡൗണിന്
+    postoffice: { required: true }, // സിംഗിൾ ടെക്സ്റ്റ് ബോക്സിന്
+
     quantity: { required: true }
   },
-  // 🔴 MALAYALAM MESSAGES ADDED HERE
   messages: {
     name: { required: "നിങ്ങളുടെ പേര് നൽകുക" },
     phone: {
@@ -308,7 +306,10 @@ $("#honeyForm").validate({
       minlength: "6 അക്ക നമ്പർ നൽകുക",
       pinavail: "ഈ പിൻകോഡ് ലഭ്യമല്ല / തെറ്റാണ്"
     },
+    // 🔴 Validation Messages for Post Office
     officename: { required: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ" },
+    postoffice: { required: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ" },
+
     quantity: { required: "എത്ര ബോട്ടിൽ വേണമെന്ന് തിരഞ്ഞെടുക്കൂ" }
   },
   submitHandler: function (form) {
