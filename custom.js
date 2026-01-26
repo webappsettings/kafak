@@ -1,5 +1,5 @@
 // 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE
-const sc = `https://script.google.com/macros/s/AKfycbyIRamtjufuR-ADwMDidaqLxw5-leivVN1NyNhxDI0QeD0GemVUbPLWSFPwnrecGUOkpg/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzCFPTGSx7c85ET0bi2RUoKFc6HSZFoMUjDH6G-6c9bvlR6WN5YP1M6HwMmSNqrJdfL3g/exec`;
 
 
 // Courier Rates
@@ -309,11 +309,16 @@ jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
 }, 'പിൻകോഡ് തെറ്റാണ്!');
 
-$("#honeyForm").validate({
+// --- VALIDATION & MALAYALAM MESSAGES ---
+jQuery.validator.addMethod("pinavail", function (value, element) {
+  return this.optional(element) || availablePin;
+}, 'പിൻകോഡ് തെറ്റാണ്!');
+
+// 🔴 CHANGE IS HERE: Changed #honeyForm to #order-form
+$("#order-form").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
-  // 🔴 IMPORTANT: Do not ignore hidden fields because personal section is hidden!
-  ignore: [],
+  ignore: [], // Don't ignore hidden fields (Required for logic)
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },
@@ -321,17 +326,42 @@ $("#honeyForm").validate({
     house: { required: true },
     place: { required: true },
     pincode: { required: true, number: true, minlength: 6, pinavail: true },
-    officename: { required: function () { return $('#officename').is(':visible'); } },
-    postoffice: { required: true },
+
+    // Check if visible to avoid validation error on hidden fields
+    officename: {
+      required: function (element) {
+        return $("#officename").is(':visible');
+      }
+    },
+    postoffice: {
+      required: function (element) {
+        return $("#postoffice").is(':visible');
+      }
+    },
+
     quantity: { required: true }
   },
   messages: {
     name: { required: "നിങ്ങളുടെ പേര് നൽകുക" },
-    phone: { required: "ഫോൺ നമ്പർ നൽകുക", number: "നമ്പറുകൾ മാത്രം", minlength: "10 അക്ക നമ്പർ", maxlength: "10 അക്ക നമ്പർ" },
-    whatsapp: { required: "വാട്സാപ്പ് നമ്പർ നൽകുക", number: "നമ്പറുകൾ മാത്രം", minlength: "10 അക്ക നമ്പർ" },
-    house: { required: "വീട്ടുപേര് നൽകുക" },
-    place: { required: "സ്ഥലം നൽകുക" },
-    pincode: { required: "പിൻകോഡ് നൽകുക", number: "നമ്പറുകൾ മാത്രം", minlength: "6 അക്ക നമ്പർ", pinavail: "ഈ പിൻകോഡ് ലഭ്യമല്ല" },
+    phone: {
+      required: "ഫോൺ നമ്പർ നൽകുക",
+      number: "നമ്പറുകൾ മാത്രം നൽകുക",
+      minlength: "10 അക്ക നമ്പർ നൽകുക",
+      maxlength: "10 അക്ക നമ്പർ നൽകുക"
+    },
+    whatsapp: {
+      required: "വാട്സാപ്പ് നമ്പർ നൽകുക",
+      number: "നമ്പറുകൾ മാത്രം നൽകുക",
+      minlength: "10 അക്ക നമ്പർ നൽകുക"
+    },
+    house: { required: "വീട്ടുപേര് / House Name നൽകുക" },
+    place: { required: "സ്ഥലം / Place നൽകുക" },
+    pincode: {
+      required: "പിൻകോഡ് നൽകുക",
+      number: "നമ്പറുകൾ മാത്രം നൽകുക",
+      minlength: "6 അക്ക നമ്പർ നൽകുക",
+      pinavail: "ഈ പിൻകോഡ് ലഭ്യമല്ല / തെറ്റാണ്"
+    },
     officename: { required: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ" },
     postoffice: { required: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ" },
     quantity: { required: "എത്ര ബോട്ടിൽ വേണമെന്ന് തിരഞ്ഞെടുക്കൂ" }
