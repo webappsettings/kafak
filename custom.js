@@ -32,23 +32,23 @@ $(document).ready(function () {
 
   // --- 2. INPUT LISTENERS ---
 
-  // 🔴 PINCODE EDIT HANDLER (FIXED)
+  // 🔴 PINCODE EDIT HANDLER
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
     availablePin = false;
 
-    // 1. Hide Fields Immediately
+    // Hide Fields & Clear Errors
     $('.pincodeEnable').slideUp();
     $('#officename').hide();
     $('#postoffice').hide();
     $('#quantity').prop('disabled', true).val('');
     $('.price-show').hide();
 
-    // 2. Clear OLD Error Messages Immediately
+    // Remove Validation Errors
     $('#pincode-error').remove();
     $('#officename-error').remove();
     $('#postoffice-error').remove();
-    $('#pincode').removeClass('error');
+    $('.form-control-custom').removeClass('error');
 
     checkPincode(this.value.trim());
   });
@@ -56,8 +56,7 @@ $(document).ready(function () {
   // Post Office
   $('#officename').change(function () {
     $('#postoffice').val($(this).val());
-    // Clear error when selected
-    $('#officename-error').remove();
+    $('#officename-error').remove(); // Clear error
   });
 
   // Price Calculation
@@ -271,7 +270,6 @@ function enableInputs() {
   $('#quantity').trigger('change');
 }
 
-// 🔴 RACE CONDITION FIXED: Check if input changed during fetch
 async function checkPincode(pinInput, autoSelectPO = null) {
   const pin = String(pinInput).trim();
   if (!autoSelectPO) {
@@ -285,7 +283,6 @@ async function checkPincode(pinInput, autoSelectPO = null) {
       if (!response.ok) throw new Error('Not found');
       const data = await response.json();
 
-      // 🔴 CHECK: Did the user change the PIN while we were fetching?
       if ($('#pincode').val().trim() !== pin) return;
 
       if (Array.isArray(data) && data.length > 0) {
@@ -324,7 +321,6 @@ async function checkPincode(pinInput, autoSelectPO = null) {
       }
     } catch (err) {
       console.log("Pin Error", err);
-      // 🔴 CHECK: Did the user change the PIN?
       if ($('#pincode').val().trim() !== pin) return;
     }
   }
@@ -453,15 +449,15 @@ function changeLanguage(lang) {
   });
 }
 
-// --- VALIDATION (FIXED) ---
+// --- VALIDATION (FIXED FOR SINGLE PO) ---
 jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
-}, 'തെറ്റായ പിൻകോഡ്'); // 🔴 Short error message
+}, 'തെറ്റായ പിൻകോഡ്');
 
 $("#order-form").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
-  ignore: ":hidden", // 🔴 FIX: Ignore ALL hidden fields (prevents Post Office error when hidden)
+  ignore: [], // 🔴 FIX: Don't ignore hidden fields automatically
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },
@@ -469,7 +465,11 @@ $("#order-form").validate({
     house: { required: true },
     place: { required: true },
     pincode: { required: true, number: true, minlength: 6, pinavail: true },
-    officename: { required: true },
+
+    // 🔴 CONDITIONAL VALIDATION: Only validate if VISIBLE
+    officename: {
+      required: function () { return $('#officename').is(':visible'); }
+    },
     quantity: { required: true }
   },
   messages: {
