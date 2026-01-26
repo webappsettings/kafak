@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafak Life - Pure Honey</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fff9e6;
+            /* Light Honey Color */
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .main-card {
+            max-width: 500px;
+            width: 90%;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(212, 160, 23, 0.15);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            font-weight: 800;
+            color: #f57f17;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        .btn-order {
+            background: linear-gradient(45deg, #ffb300, #ffca28);
+            color: #fff;
+            font-weight: 700;
+            padding: 15px;
+            width: 100%;
+            border-radius: 50px;
+            border: none;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(255, 179, 0, 0.4);
+            transition: transform 0.2s;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .btn-order:hover {
+            transform: scale(1.02);
+            color: #fff;
+        }
+
+        .btn-admin {
+            background: transparent;
+            color: #2e7d32;
+            border: 2px solid #2e7d32;
+            font-weight: 600;
+            padding: 12px;
+            width: 100%;
+            border-radius: 50px;
+            font-size: 16px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-admin:hover {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .logo-emoji {
+            font-size: 60px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-card">
+        <span class="logo-emoji">🍯</span>
+        <h1>KAFAK HONEY</h1>
+        <p>Pure, Natural & Delicious.<br>Direct from nature to your home.</p>
+
+        <a href="order.html" class="btn-order">
+            🛒 PLACE ORDER NOW
+        </a>
+
+        <a href="admin.html" class="btn-admin">
+            🔐 Admin Dashboard
+        </a>
+
+        <div class="mt-4">
+            <small class="text-muted">© 2026 KAFAK LLP</small>
+        </div>
+    </div>
+
+</body>
+
+</html>
