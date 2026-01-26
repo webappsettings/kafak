@@ -318,11 +318,19 @@ function sendToWhatsapp() {
   const phone = '7788990313';
   const orderid = successSubmitData.orderid;
   const d = successSubmitData.data;
+
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
+
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
+
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 *#${orderid}*\n🔗 _${editLink}_\n(Click link to edit order)`;
+
   const postLabel = d.postoffice || '';
+
+  // Customer Message
+  const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
+
   const wtspformat = `
 ____________________________________\n
 *${d.name.trim().toUpperCase()}*
@@ -335,12 +343,16 @@ ____________________________________\n
 *Ph: ${d.phone.trim()}*\n
 *Qty: ${d.quantity}*
 *${amountTextW}*\n
-*${totalTextW}*
+*${totalTextW}*${customerMsg}
 ____________________________________
 \n*Please GPay to the number below...*
+_(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്യുക)_ 👇
 \n*${phone} (KAFAK LLP)*\n`;
+
   const message = encodeURIComponent(extra1 + wtspformat);
-  window.open(`https://api.whatsapp.com/send?phone=91${phone}&text=${message}`, '_blank');
+
+  // Mobile friendly link
+  window.location.href = `https://wa.me/91${phone}?text=${message}`;
 }
 
 // --- VALIDATION ---
