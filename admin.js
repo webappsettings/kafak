@@ -122,15 +122,19 @@ function loadOrders() {
         });
 }
 
-// --- WHATSAPP BOLD FIX ---
+// --- WHATSAPP FUNCTION 
 function sendWhatsapp(orderId) {
-    const row = allOrders.find(o => o.orderid === orderId); if (!row) return;
-    const qty = parseInt(row.quantity); const basePrice = qty * 650;
+    const row = allOrders.find(o => o.orderid === orderId);
+    if (!row) { alert("Order details not found!"); return; }
+
+    const qty = parseInt(row.quantity);
+    const basePrice = qty * 650;
     let courierCharge = (String(row.state).trim().toLowerCase() === 'lakshadweep') ? (qty * 100) + 20 : (String(row.state).trim().toLowerCase() === 'kerala' ? courierRates.kerala[qty] : courierRates.outside[qty]);
+
     const total = basePrice + courierCharge;
     const editLink = `kafaklife.com/order.html?oid=${orderId}`;
 
-    // 🔴 BOLD FIX: Split address by comma, wrap each line in *, then join with newline
+    // Address Bold Fix
     const addressParts = row.address.split(',');
     let boldAddress = "";
     addressParts.forEach(part => {
@@ -140,10 +144,27 @@ function sendWhatsapp(orderId) {
     });
 
     const msg = row.message ? `\n\n💬 *Note:* _${row.message}_` : '';
-    const header = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderId}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
-    const details = `____________________________________\n*${row.name.trim().toUpperCase()}*\n${boldAddress}*Pin: ${String(row.pincode).trim()}*\n*Ph: ${row.phone}*\n*Qty: ${row.quantity}*\n*Amount(₹): ${basePrice} + ${courierCharge} (Courier)*\n*Total(₹): ${total}/-*${msg}\n____________________________________\n\n*Please GPay to the number below...*\n_(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്യുക)_ 👇\n\n*7788990313 (KAFAK LLP)*\n`;
 
-    let cp = String(row.whatsapp || row.phone).replace(/\D/g, ''); if (cp.length === 10) cp = '91' + cp;
+    // 🔴 CHANGE: Added Clock Icon (⌚) and Timestamp
+    const header = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderId}\`\`\`\n⌚ _${row.timestamp}_\n🔗 _${editLink}_\n(Click link to edit order)`;
+
+    const details = `
+____________________________________\n
+*${row.name.trim().toUpperCase()}*
+${boldAddress}
+*Pin: ${String(row.pincode).trim()}*
+*Ph: ${row.phone}*\n
+*Qty: ${row.quantity}*
+*Amount(₹): ${basePrice} + ${courierCharge} (Courier)*
+*Total(₹): ${total}/-*${msg}
+____________________________________
+\n*Please GPay to the number below...*
+_(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്യുക)_ 👇
+\n*7788990313 (KAFAK LLP)*\n`;
+
+    let cp = String(row.whatsapp || row.phone).replace(/\D/g, '');
+    if (cp.length === 10) cp = '91' + cp;
+
     window.open(`https://wa.me/${cp}?text=${encodeURIComponent(header + details)}`, '_blank');
 }
 

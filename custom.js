@@ -362,7 +362,7 @@ function sendToWhatsapp() {
   const totalTextW = calculateTotalString(amountTextW);
 
   // 🔴 CHANGE: Added Date & Time in Italics (_${orderTime}_)
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n📅 _${orderTime}_\n🔗 _${editLink}_\n(Click link to edit order)`;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${orderTime}_\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
   const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
