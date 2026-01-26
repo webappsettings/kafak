@@ -294,7 +294,7 @@
               </div>
 
               <div id="name-section">
-                <label class="form-label text-success" data-i18n="new_user_name">പേര്
+                <label class="form-label text-success" data-i18n="new_user_name">ആദ്യമായിട്ടാണല്ലോ.. പേര്
                   എന്താണ്?</label>
                 <input type="text" class="form-control form-control-custom" id="temp_name" data-i18n-ph="your_name"
                   placeholder="നിങ്ങളുടെ പേര്">
@@ -310,50 +310,76 @@
                 <h5 class="fw-bold text-muted" data-i18n="step2_title">വിലാസം നൽകുക 🏠</h5>
               </div>
 
-              <div class="mb-3">
-                <label class="form-label small text-muted" data-i18n="label_name">പേര്</label>
-                <input type="text" class="form-control form-control-custom" id="name" name="name" required>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label small text-muted" data-i18n="label_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
-                <input type="tel" class="form-control form-control-custom" id="whatsapp" name="whatsapp"
-                  placeholder="WhatsApp Number" maxlength="10" required
-                  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-              </div>
-
-              <div class="row g-3 mb-3">
-                <div class="col-6">
-                  <input type="text" class="form-control form-control-custom" id="house" name="house"
-                    data-i18n-ph="ph_house" placeholder="വീട്ടുപേര്" required>
+              <div id="saved-address-card" class="card p-3 mb-3 border-success"
+                style="display:none; background: #f1f8e9; border-radius: 15px;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <small class="text-muted fw-bold">Delivery Details ✅</small>
+                  <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="enableEditMode()"
+                    style="font-size:12px;">
+                    Edit Details ✏️
+                  </button>
                 </div>
-                <div class="col-6">
-                  <input type="text" class="form-control form-control-custom" id="place" name="place"
-                    data-i18n-ph="ph_place" placeholder="സ്ഥലം" required>
-                </div>
-              </div>
 
-              <div class="mb-3">
-                <input type="tel" class="form-control form-control-custom" id="pincode" name="pincode"
-                  data-i18n-ph="ph_pincode" placeholder="പിൻകോഡ് (6 digits)" maxlength="6" required
-                  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-              </div>
+                <h6 class="fw-bold text-dark mb-1" id="summary-name">User Name</h6>
+                <p class="small text-muted mb-2" id="summary-address" style="line-height: 1.4;">House, Place, Pin</p>
+                <hr style="margin: 8px 0; border-color: #c8e6c9;">
 
-              <div class="row g-3 mb-3 pincodeEnable" style="display:none;">
-                <div class="col-6">
-                  <select class="form-control form-control-custom" id="officename" name="officename"
-                    style="display:none;"></select>
-                  <input type="text" class="form-control form-control-custom" id="postoffice" name="postoffice"
-                    placeholder="Post Office" readonly>
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                  <span class="small text-muted">📞 Phone: <strong id="summary-phone" class="text-dark"></strong></span>
+                  <a href="#" onclick="backToStep1(); return false;"
+                    class="small text-success text-decoration-none fw-bold">Change</a>
                 </div>
-                <div class="col-6">
-                  <input type="text" class="form-control form-control-custom" id="district" name="district"
-                    placeholder="District" readonly>
+                <div class="d-flex align-items-center">
+                  <span class="small text-muted">💬 WhatsApp: <strong id="summary-whatsapp"
+                      class="text-dark"></strong></span>
                 </div>
               </div>
-              <input type="hidden" id="state" name="state">
 
-              <div class="mb-4 p-3 rounded-4" style="background: #f1f8e9; border: 1px solid #c5e1a5;">
+              <div id="address-inputs">
+                <div class="mb-3">
+                  <label class="form-label small text-muted" data-i18n="label_name">പേര് (വേണമെങ്കിൽ മാറ്റാം)</label>
+                  <input type="text" class="form-control form-control-custom" id="name" name="name" required>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label small text-muted" data-i18n="label_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
+                  <input type="tel" class="form-control form-control-custom" id="whatsapp" name="whatsapp"
+                    placeholder="WhatsApp Number" maxlength="10" required
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-6">
+                    <input type="text" class="form-control form-control-custom" id="house" name="house"
+                      data-i18n-ph="ph_house" placeholder="വീട്ടുപേര്" required>
+                  </div>
+                  <div class="col-6">
+                    <input type="text" class="form-control form-control-custom" id="place" name="place"
+                      data-i18n-ph="ph_place" placeholder="സ്ഥലം" required>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <input type="tel" class="form-control form-control-custom" id="pincode" name="pincode"
+                    data-i18n-ph="ph_pincode" placeholder="പിൻകോഡ് (6 digits)" maxlength="6" required
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                </div>
+
+                <div class="row g-3 mb-3 pincodeEnable" style="display:none;">
+                  <div class="col-6">
+                    <select class="form-control form-control-custom" id="officename" name="officename"
+                      style="display:none;"></select>
+                    <input type="text" class="form-control form-control-custom" id="postoffice" name="postoffice"
+                      placeholder="Post Office" readonly>
+                  </div>
+                  <div class="col-6">
+                    <input type="text" class="form-control form-control-custom" id="district" name="district"
+                      placeholder="District" readonly>
+                  </div>
+                </div>
+                <input type="hidden" id="state" name="state">
+              </div>
+              <div class="mb-4 p-3 rounded-4" style="background: #fffDE7; border: 1px solid #FFD54F;">
                 <label class="form-label fw-bold" style="color:var(--theme-green);" data-i18n="label_qty">എത്ര ബോട്ടിൽ
                   വേണം? 👇</label>
                 <select class="form-control form-control-custom" id="quantity" name="quantity" style="background:white;"
@@ -381,8 +407,10 @@
 
               <div class="d-flex gap-3">
                 <button type="button" onclick="backToStep1()"
-                  class="btn btn-light flex-fill py-3 rounded-pill fw-bold border" data-i18n="back_btn">⬅
-                  പുറകോട്ട്</button>
+                  class="btn btn-light flex-fill py-3 rounded-pill fw-bold border d-flex align-items-center justify-content-center gap-2">
+                  <span style="font-size: 24px; line-height: 1;">&#8592;</span>
+                  <span data-i18n="back_btn">പുറകോട്ട്</span>
+                </button>
                 <button type="submit" id="submitBtn" class="btn-submit flex-fill py-3" data-i18n="order_btn">
                   ഓർഡർ ചെയ്യാം ✅
                 </button>
