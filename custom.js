@@ -28,11 +28,12 @@ $(document).ready(function () {
     $('#main-loader').fadeOut();
   }
 
-  // --- 3. AUTO-FILL CUSTOMER DETAILS (SAFE MODE) ---
+  // --- 3. AUTO-FILL CUSTOMER DETAILS (PHONE FIRST MODE) ---
   $('#phone').on('keyup', function () {
     var phone = $(this).val().replace(/\D/g, '');
 
     if (phone.length === 10 && !editingOrderId) {
+
       $('#name').attr('placeholder', 'Searching...');
 
       fetch(`${sc}?action=getCustomer&phone=${phone}`)
@@ -43,17 +44,19 @@ $(document).ready(function () {
           if (response.result === 'success') {
             var d = response.data;
 
-            // Fill Basic Fields
+            // 🔴 CHANGE: Phone First ആയതുകൊണ്ട് പേര് എപ്പോഴും ഫിൽ ചെയ്യുന്നു.
+            // കസ്റ്റമർക്ക് വേണമെങ്കിൽ ഇത് എഡിറ്റ് ചെയ്യാം.
             $('#name').val(d.name);
-            $('#whatsapp').val(d.whatsapp);
 
-            // Focus to House Name
+            if ($('#whatsapp').val().trim() === '') {
+              $('#whatsapp').val(d.whatsapp);
+            }
+
+            // പേര് വന്ന സ്ഥിതിക്ക്, നേരെ വീട്ടുപേരിലേക്ക് ഫോക്കസ് മാറ്റാം
             $('#house').focus();
 
-            // Safe Fill Pincode
             if (d.pincode) {
               $('#pincode').val(d.pincode);
-              // 🔴 FIX: Trust DB data initially
               availablePin = true;
               checkPincode(d.pincode, d.postoffice);
             }
