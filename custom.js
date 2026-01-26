@@ -16,7 +16,6 @@ $(document).ready(function () {
   // --- 1. LANGUAGE & URL CHECK ---
   const urlParams = new URLSearchParams(window.location.search);
   const langParam = urlParams.get('lang');
-
   if (langParam && translations[langParam]) {
     $('.lang-select').val(langParam);
     changeLanguage(langParam);
@@ -33,15 +32,23 @@ $(document).ready(function () {
 
   // --- 2. INPUT LISTENERS ---
 
-  // Pincode
+  // 🔴 PINCODE EDIT HANDLER (FIXED)
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
     availablePin = false;
+
+    // 1. Hide Fields Immediately
     $('.pincodeEnable').slideUp();
     $('#officename').hide();
     $('#postoffice').hide();
     $('#quantity').prop('disabled', true).val('');
     $('.price-show').hide();
+
+    // 2. Clear OLD Error Messages Immediately
+    $('#pincode-error').remove();
+    $('#officename-error').remove();
+    $('#postoffice-error').remove();
+    $('#pincode').removeClass('error');
 
     checkPincode(this.value.trim());
   });
@@ -49,6 +56,8 @@ $(document).ready(function () {
   // Post Office
   $('#officename').change(function () {
     $('#postoffice').val($(this).val());
+    // Clear error when selected
+    $('#officename-error').remove();
   });
 
   // Price Calculation
@@ -83,7 +92,7 @@ function handleStep1() {
     return;
   }
 
-  // CASE A: New User Step 1 (No API call, instant switch)
+  // CASE A: New User Step 1
   if (nameSection.is(':visible')) {
     if (tempNameInput.val().trim() === "") {
       alert("നിങ്ങളുടെ പേര് നൽകുക");
@@ -96,19 +105,14 @@ function handleStep1() {
     return;
   }
 
-  // CASE B: Checking User (API Call)
-
-  // 🔴 1. Save Original Button Content (Text & Arrow)
+  // CASE B: Checking User
   const originalContent = btn.html();
-
-  // 🔴 2. Show Spinner inside Button
   btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Checking...')
     .prop('disabled', true);
 
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
     .then(response => {
-      // 🔴 3. Restore Button
       btn.html(originalContent).prop('disabled', false);
 
       if (response.result === 'success') {
@@ -130,7 +134,6 @@ function handleStep1() {
       }
     })
     .catch(err => {
-      // Error -> Restore Button & Show Name Field
       btn.html(originalContent).prop('disabled', false);
       nameSection.slideDown();
       tempNameInput.focus();
@@ -161,7 +164,6 @@ function backToStep1() {
 
 function submitOrder() {
   const btn = $('#submitBtn');
-  // Submit Button Spinner
   btn.prop('disabled', true).html(
     `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`
   );
@@ -269,6 +271,7 @@ function enableInputs() {
   $('#quantity').trigger('change');
 }
 
+// 🔴 RACE CONDITION FIXED: Check if input changed during fetch
 async function checkPincode(pinInput, autoSelectPO = null) {
   const pin = String(pinInput).trim();
   if (!autoSelectPO) {
@@ -281,6 +284,9 @@ async function checkPincode(pinInput, autoSelectPO = null) {
       const response = await fetch(`pincode_json_files/${pin}.json`);
       if (!response.ok) throw new Error('Not found');
       const data = await response.json();
+
+      // 🔴 CHECK: Did the user change the PIN while we were fetching?
+      if ($('#pincode').val().trim() !== pin) return;
 
       if (Array.isArray(data) && data.length > 0) {
         availablePin = true;
@@ -316,7 +322,11 @@ async function checkPincode(pinInput, autoSelectPO = null) {
           }
         }
       }
-    } catch (err) { console.log("Pin Error", err); }
+    } catch (err) {
+      console.log("Pin Error", err);
+      // 🔴 CHECK: Did the user change the PIN?
+      if ($('#pincode').val().trim() !== pin) return;
+    }
   }
 }
 
@@ -443,15 +453,15 @@ function changeLanguage(lang) {
   });
 }
 
-// --- VALIDATION ---
+// --- VALIDATION (FIXED) ---
 jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
-}, 'പിൻകോഡ് തെറ്റാണ്!');
+}, 'തെറ്റായ പിൻകോഡ്'); // 🔴 Short error message
 
 $("#order-form").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
-  ignore: ":hidden:not(#officename)",
+  ignore: ":hidden", // 🔴 FIX: Ignore ALL hidden fields (prevents Post Office error when hidden)
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },
