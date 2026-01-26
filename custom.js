@@ -12,69 +12,82 @@ var availablePin = false;
 var successSubmitData;
 
 $(document).ready(function () {
+  // 🔴 FIXED: urlParams Define ചെയ്യണം
   const urlParams = new URLSearchParams(window.location.search);
   const urlOid = urlParams.get('oid');
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   // ==========================================
-  // 🔐 ADMIN ONLY: SMART LOCAL SYNC BAR
+  // 🔐 ADMIN ONLY: SMART FLOW BAR
   // ==========================================
   if (isAdmin && urlOid) {
-    // ലോക്കൽ പെൻഡിംഗ് അപ്‌ഡേറ്റുകൾ പരിശോധിക്കുന്നു
+    // ലോക്കൽ സ്റ്റോറേജിൽ നിന്ന് സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
     const isWTSent = localStorage.getItem(`sent_${urlOid}`) === 'true';
     const isPaid = localStorage.getItem(`paid_${urlOid}`) === 'true';
-
     let adminHTML = "";
 
-    // Step 1: Confirm Sent മാത്രം കാണിക്കുന്നു
     if (!isWTSent) {
-      adminHTML = `<button id="btn-sent-${urlOid}" onclick="adminActionLocal('${urlOid}', 'Sent')" class="btn btn-success btn-sm fw-bold w-100 py-2 shadow">💬 CONFIRM SENT (Local)</button>`;
-    }
-    // Step 2: Sent ആയിക്കഴിഞ്ഞാൽ Mark Paid കാണിക്കുന്നു
-    else {
-      adminHTML = `<button id="btn-paid-${urlOid}" onclick="adminActionLocal('${urlOid}', 'Paid')" 
-                    class="btn btn-sm fw-bold w-100 py-2 shadow ${isPaid ? 'btn-secondary opacity-50' : 'btn-warning'}" 
-                    ${isPaid ? 'disabled' : ''}>
-                    ${isPaid ? '💰 PAIDED ✅' : '💰 MARK AS PAID'}
-                  </button>`;
+      adminHTML = `<button id="btn-sent-${urlOid}" onclick="adminAction('${urlOid}', 'Sent')" class="btn btn-success btn-sm fw-bold w-100 py-2 shadow">💬 CONFIRM SENT (WhatsApp)</button>`;
+    } else {
+      adminHTML = `<button id="btn-paid-${urlOid}" onclick="adminAction('${urlOid}', 'Paid')" class="btn btn-sm fw-bold w-100 py-2 shadow ${isPaid ? 'btn-secondary opacity-50' : 'btn-warning'}" ${isPaid ? 'disabled' : ''}>${isPaid ? '💰 PAIDED ✅' : '💰 MARK AS PAID'}</button>`;
     }
 
     const adminUI = `
-        <div id="admin-action-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 15px; z-index: 10000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL (LOCAL): #${urlOid}</span>
-                    <button onclick="closeAdminBar()" class="btn btn-link text-white p-0" style="text-decoration:none;">✕</button>
+            <div id="admin-action-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 15px; z-index: 10000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL (LOCAL): #${urlOid}</span>
+                        <button onclick="closeAdminBar()" class="btn btn-link text-white p-0" style="text-decoration:none;">✕</button>
+                    </div>
+                    <div id="admin-btn-container">${adminHTML}</div>
                 </div>
-                <div id="admin-btn-container">${adminHTML}</div>
-            </div>
-        </div>`;
+            </div>`;
     $('body').append(adminUI);
     $('body').css('padding-bottom', '100px');
   }
 
-  // --- AUTO LOGIN & OTHER LISTENER LOGIC ---
+  // ==========================================
+  // 🚀 AUTO LOGIN
+  // ==========================================
   const savedData = localStorage.getItem('kafakUser');
+  let autoLoggedIn = false;
+
   if (savedData && !urlOid) {
-    const u = JSON.parse(savedData);
-    if (u.phone) {
-      $('#phone').val(u.phone);
-      $('#name').val(u.name || '');
-      $('#whatsapp').val(u.whatsapp || u.phone);
-      $('#house').val(u.house || '');
-      $('#place').val(u.place || '');
-      if (u.pincode) {
-        $('#pincode').val(u.pincode);
-        availablePin = true;
-        checkPincode(String(u.pincode), u.postoffice);
+    try {
+      const u = JSON.parse(savedData);
+      if (u.phone) {
+        $('#phone').val(u.phone);
+        $('#name').val(u.name || '');
+        $('#whatsapp').val(u.whatsapp || u.phone);
+        $('#house').val(u.house || '');
+        $('#place').val(u.place || '');
+        if (u.pincode) {
+          $('#pincode').val(u.pincode);
+          availablePin = true;
+          checkPincode(String(u.pincode), u.postoffice);
+        }
+        $('#step-1').removeClass('active').hide();
+        $('#step-2').addClass('active').fadeIn();
+        $('#progressBar').css('width', '50%');
+        $('#dot-1').addClass('completed').html('✓');
+        $('#dot-2').addClass('active');
+        showSummary(u);
+        autoLoggedIn = true;
       }
-      $('#step-1').hide();
-      $('#step-2').fadeIn();
-      showSummary(u);
-    }
+    } catch (e) { localStorage.removeItem('kafakUser'); }
   }
 
-  // Edit Link വഴി വരുമ്പോൾ Loader കാണിക്കുന്നു
+  if (!autoLoggedIn && !urlOid) {
+    $('#step-1').addClass('active').show();
+  }
+
+  // --- 2. LANGUAGE & EDIT MODE CHECK ---
+  const langParam = urlParams.get('lang');
+  if (langParam && translations[langParam]) {
+    $('.lang-select').val(langParam);
+    changeLanguage(langParam);
+  }
+
   if (urlOid) {
     $('#main-loader').show();
     $('#step-1').hide();
@@ -82,38 +95,125 @@ $(document).ready(function () {
   } else {
     $('#main-loader').fadeOut();
   }
+
+  // --- 3. INPUT LISTENERS ---
+  $('#pincode').on('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    availablePin = false;
+    $('.pincodeEnable').slideUp();
+    $('#quantity').prop('disabled', true).val('');
+    $('.price-show').hide();
+    checkPincode(this.value.trim());
+  });
+
+  $('#officename').change(function () {
+    $('#postoffice').val($(this).val());
+  });
+
+  $('#quantity, #state').on('change keyup', function () {
+    const qty = $('#quantity').val();
+    if (qty) {
+      const priceText = calculateAmountString(qty);
+      $('#amt').text(priceText);
+      $('#totalAmt').text(calculateTotalString(priceText));
+      $('.price-show').show();
+    }
+  });
+
+  $('#phone, #whatsapp, #pincode').on('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
 });
 
-// ==========================================
-// 🚀 LOCAL ACTION LOGIC (No Server Wait)
-// ==========================================
-function adminActionLocal(oid, status) {
-  if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?` || "Mark this order?")) return;
+// --- CORE FUNCTIONS ---
 
-  // 1. പെൻഡിംഗ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+function handleStep1() {
+  const phone = $('#phone').val().replace(/\D/g, '');
+  const tempNameInput = $('#temp_name');
+  const nameSection = $('#name-section');
+  const btn = $('#btnNext');
 
-  // പഴയ ഇൻട്രി ഉണ്ടെങ്കിൽ കളയുന്നു (Duplicate ഒഴിവാക്കാൻ)
-  updates = updates.filter(item => item.oid !== oid || item.status !== status);
-  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+  if (phone.length !== 10) { alert("ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക"); return; }
 
-  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+  if (nameSection.is(':visible')) {
+    if (tempNameInput.val().trim() === "") { alert("നിങ്ങളുടെ പേര് നൽകുക"); return; }
+    $('#name').val(tempNameInput.val());
+    $('#whatsapp').val(phone);
+    saveLocalData({ name: tempNameInput.val(), phone: phone });
+    enableEditMode();
+    proceedToStep2();
+    return;
+  }
 
-  // 2. ബട്ടൺ ലേബൽ അപ്‌ഡേറ്റ് ചെയ്യാൻ സ്റ്റാറ്റസ് ലോക്കലായി സേവ് ചെയ്യുന്നു
-  localStorage.setItem(`${status === 'Paid' ? 'paid' : 'sent'}_${oid}`, 'true');
+  const originalContent = btn.html();
+  btn.html('Checking...').prop('disabled', true);
 
-  alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅\nAdmin Panel തുറക്കുമ്പോൾ Sync ചെയ്യുക.`);
-  location.reload(); // ബട്ടൺ മാറാൻ പേജ് റിഫ്രഷ് ചെയ്യുന്നു
+  fetch(`${sc}?action=getCustomer&phone=${phone}`)
+    .then(res => res.json())
+    .then(response => {
+      btn.html(originalContent).prop('disabled', false);
+      if (response.result === 'success') {
+        const d = response.data;
+        $('#name').val(d.name);
+        $('#whatsapp').val(d.whatsapp || phone);
+        $('#house').val(d.house);
+        $('#place').val(d.place);
+        if (d.pincode) {
+          $('#pincode').val(d.pincode);
+          availablePin = true;
+          checkPincode(String(d.pincode), d.postoffice);
+        }
+        saveLocalData(d);
+        showSummary(d);
+        proceedToStep2();
+      } else {
+        nameSection.slideDown();
+        tempNameInput.focus();
+      }
+    });
 }
 
-function closeAdminBar() {
-  $('#admin-action-bar').fadeOut();
-  $('body').css('padding-bottom', '0');
+function saveLocalData(newData) {
+  let currentData = localStorage.getItem('kafakUser') ? JSON.parse(localStorage.getItem('kafakUser')) : {};
+  const updatedData = { ...currentData, ...newData };
+  localStorage.setItem('kafakUser', JSON.stringify(updatedData));
 }
 
-// ==========================================
-// 📦 CORE FUNCTIONS (Submit, Pincode etc.)
-// ==========================================
+function proceedToStep2() {
+  $('#step-1').fadeOut(200, function () {
+    $('#step-2').fadeIn(200);
+    $('#progressBar').css('width', '50%');
+    $('#dot-1').addClass('completed').html('✓');
+    $('#dot-2').addClass('active');
+  });
+}
+
+function backToStep1() {
+  $('#step-2').fadeOut(200, function () {
+    $('#step-1').fadeIn(200);
+    $('#progressBar').css('width', '0%');
+    $('#dot-1').removeClass('completed').html('1');
+    $('#dot-2').removeClass('active');
+  });
+}
+
+function showSummary(data) {
+  $('#summary-name').text(data.name);
+  $('#summary-phone').text(data.phone || $('#phone').val());
+  let addr = `${data.house || ''}, ${data.place || ''}`;
+  if (data.pincode) addr += ` - ${data.pincode}`;
+  $('#summary-address').text(addr);
+  $('#address-inputs').hide();
+  $('#saved-address-card').fadeIn();
+  $('#quantity').prop('disabled', false);
+}
+
+function enableEditMode() {
+  $('#saved-address-card').hide();
+  $('#address-inputs').fadeIn();
+  if ($('#pincode').val()) $('.pincodeEnable').slideDown();
+}
+
 function submitOrder() {
   const btn = $('#submitBtn');
   btn.prop('disabled', true).html('Processing...');
@@ -131,7 +231,7 @@ function submitOrder() {
     quantity: $('#quantity').val(),
     message: $('#message').val()
   };
-
+  saveLocalData(formData);
   fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: formData }) })
     .then(res => res.json())
     .then(data => {
@@ -154,8 +254,9 @@ async function checkPincode(pinInput, autoSelectPO = null) {
         availablePin = true;
         $('#district').val(data[0].district || '');
         $('#state').val(data[0].statename || '');
-        $('.pincodeEnable').slideDown();
+        if ($('#address-inputs').is(':visible')) $('.pincodeEnable').slideDown();
         $('#quantity').prop('disabled', false);
+
         const officeDropdown = $('#officename');
         const officeInput = $('#postoffice');
         if (data.length === 1) {
@@ -187,7 +288,7 @@ function calculateTotalString(str) {
 }
 
 function sendToWhatsapp() {
-  const phone = '7788990313'; // KAFAK LLP
+  const phone = '7788990313';
   const orderid = successSubmitData.orderid;
   const d = successSubmitData.data;
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
@@ -210,6 +311,7 @@ function fetchOrderDetails(oid) {
         editingOrderId = d.orderid;
         $('#name').val(d.name);
         $('#phone').val(d.phone);
+        $('#whatsapp').val(d.whatsapp || d.phone);
         $('#pincode').val(d.pincode);
         $('#state').val(d.state);
         $('#quantity').val(d.quantity);
@@ -217,6 +319,62 @@ function fetchOrderDetails(oid) {
         $('#place').val(d.place);
         checkPincode(d.pincode, d.postoffice);
         enableEditMode();
+        proceedToStep2();
       }
     });
 }
+
+// 🚀 UPDATED ADMIN ACTION: Local Sync Logic (No Server Wait)
+function adminAction(oid, status) {
+  if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+
+  // 1. പെൻഡിംഗ് അപ്‌ഡേറ്റ് ലിസ്റ്റിലേക്ക് ആഡ് ചെയ്യുന്നു
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+  // പഴയ ഡാറ്റ ഉണ്ടെങ്കിൽ അത് കളഞ്ഞിട്ട് പുതിയത് വെക്കുന്നു
+  updates = updates.filter(item => item.oid !== oid || item.status !== status);
+  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+
+  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  // 2. ബട്ടൺ ലേബൽ മാറാൻ ലോക്കലായി മാർക്ക് ചെയ്യുന്നു
+  const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
+  localStorage.setItem(storageKey, 'true');
+
+  alert(`Saved Locally: ${status} ✅\nAdmin Panel തുറക്കുമ്പോൾ ഇത് Sync ചെയ്യുക.`);
+
+  location.reload(); // ബട്ടൺ മാറാൻ പേജ് റിഫ്രഷ് ചെയ്യുന്നു
+}
+
+function closeAdminBar() {
+  $('#admin-action-bar').fadeOut();
+  $('body').css('padding-bottom', '0');
+}
+
+const translations = {
+  ml: {
+    step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?",
+    step1_desc: "ഓർഡർ ചെയ്യാൻ മൊബൈൽ നമ്പർ നൽകുക",
+    your_name: "നിങ്ങളുടെ പേര്",
+    next_btn: "അടുത്തത് ➔",
+    order_btn: "ഓർഡർ ചെയ്യാം ✅"
+  },
+  en: {
+    step1_title: "What is your Phone Number?",
+    step1_desc: "Enter mobile number to verify",
+    your_name: "Your Name",
+    next_btn: "NEXT STEP ➔",
+    order_btn: "PLACE ORDER ✅"
+  }
+};
+
+function changeLanguage(lang) {
+  $('[data-i18n]').each(function () {
+    const key = $(this).data('i18n');
+    if (translations[lang] && translations[lang][key]) $(this).text(translations[lang][key]);
+  });
+}
+
+$("#order-form").validate({
+  submitHandler: function () { submitOrder(); }
+});
