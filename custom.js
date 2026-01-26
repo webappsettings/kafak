@@ -1,4 +1,4 @@
-// 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE
+// 🔴 1. UPDATE YOUR GOOGLE SCRIPT ID HERE
 const sc = `https://script.google.com/macros/s/AKfycby_1PorN19SVT-nghojK6v6Qv0vdUUAJx9v5rXlDuQw1ruPXIRTaC-ymjhYGjOszGDkRw/exec`;
 
 // Courier Rates
@@ -18,26 +18,27 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
 
   if (oid) {
-    // എഡിറ്റ് മോഡ് ആണെങ്കിൽ ലോഡർ കാണിക്കുന്നു
     $('#main-loader').show();
     fetchOrderDetails(oid);
   } else {
     $('#main-loader').fadeOut();
   }
 
-  // --- 2. PINCODE LISTENER ---
+  // --- 2. INPUT LISTENERS ---
+
+  // Pincode
   $('#pincode').on('input', function () {
-    this.value = this.value.replace(/[^0-9]/g, ''); // Numbers only
+    this.value = this.value.replace(/[^0-9]/g, '');
     availablePin = false;
     checkPincode(this.value.trim());
   });
 
-  // --- 3. POST OFFICE LISTENER ---
+  // Post Office
   $('#officename').change(function () {
     $('#postoffice').val($(this).val());
   });
 
-  // --- 4. PRICE CALCULATION ---
+  // Price Calculation
   $('#quantity, #state').on('change keyup', function () {
     const qty = $('#quantity').val();
     if (qty) {
@@ -48,8 +49,8 @@ $(document).ready(function () {
     }
   });
 
-  // Ensure WhatsApp Input is Numbers Only
-  $('#whatsapp').on('input', function () {
+  // Ensure Number-Only Inputs (Backup for HTML restrictions)
+  $('#phone, #whatsapp, #pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
   });
 });
@@ -60,25 +61,28 @@ $(document).ready(function () {
 
 function handleStep1() {
   const phone = $('#phone').val().replace(/\D/g, '');
-  const nameInput = $('#name');
+  const tempNameInput = $('#temp_name'); // Step 1 Input
   const nameSection = $('#name-section');
   const btn = $('#btnNext');
 
-  // Basic Validation
+  // Validation
   if (phone.length !== 10) {
-    alert("Please enter a valid 10-digit mobile number");
+    alert("ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക");
     return;
   }
 
-  // CASE A: Name field is visible (User is New & entering name)
+  // CASE A: New User entering Name in Step 1
   if (nameSection.is(':visible')) {
-    if (nameInput.val().trim() === "") {
-      alert("Please enter your name to continue");
-      nameInput.focus();
+    if (tempNameInput.val().trim() === "") {
+      alert("നിങ്ങളുടെ പേര് നൽകുക");
+      tempNameInput.focus();
       return;
     }
-    // New User -> Fill WhatsApp with Phone & Go
+
+    // Transfer Name to Step 2 Input & Set WhatsApp
+    $('#name').val(tempNameInput.val());
     $('#whatsapp').val(phone);
+
     proceedToStep2();
     return;
   }
@@ -95,13 +99,11 @@ function handleStep1() {
       if (response.result === 'success') {
         // EXISTING USER -> Auto Fill
         const d = response.data;
-        $('#name').val(d.name);
-        $('#welcome-text').text(`Welcome back, ${d.name}! 👋`);
 
-        // Fill WhatsApp (Saved one OR Phone)
+        // Fill Data in Step 2
+        $('#name').val(d.name);
         $('#whatsapp').val(d.whatsapp || phone);
 
-        // Fill Address
         if ($('#house').val() === '') $('#house').val(d.house);
         if ($('#place').val() === '') $('#place').val(d.place);
         if (d.pincode && $('#pincode').val() === '') {
@@ -113,17 +115,16 @@ function handleStep1() {
         proceedToStep2();
 
       } else {
-        // NEW USER -> Show Name Field
+        // NEW USER -> Show Name Field in Step 1
         nameSection.slideDown();
-        nameInput.focus();
-        $('#welcome-text').text(''); // Clear welcome text
+        tempNameInput.focus();
       }
     })
     .catch(err => {
-      // Network Error -> Treat as New User to allow manual entry
+      // Network Error -> Treat as New User
       btn.text(oldText).prop('disabled', false);
       nameSection.slideDown();
-      nameInput.focus();
+      tempNameInput.focus();
     });
 }
 
@@ -153,7 +154,7 @@ function backToStep1() {
 // 📦 CORE FUNCTIONS
 // ==========================================
 
-// --- SUBMIT ORDER (With Spinner) ---
+// --- SUBMIT ORDER ---
 function submitOrder() {
   const btn = $('#submitBtn');
 
@@ -174,7 +175,7 @@ function submitOrder() {
     pincode: $('#pincode').val(),
     district: $('#district').val(),
     state: $('#state').val(),
-    whatsapp: $('#whatsapp').val(), // Now taken from visible input
+    whatsapp: $('#whatsapp').val(),
     quantity: $('#quantity').val(),
     message: $('#message').val()
   };
@@ -188,7 +189,7 @@ function submitOrder() {
       if (data.result === 'success') {
         successSubmitData = { orderid: data.orderid, timestamp: data.timestamp, data: formData };
 
-        $('.main-card').hide(); // Hide the form card
+        $('.main-card').hide();
         showSuccess();
         setTimeout(sendToWhatsapp, 1500);
 
@@ -203,7 +204,7 @@ function submitOrder() {
     });
 }
 
-// --- FETCH ORDER DETAILS (Safe Mode) ---
+// --- FETCH ORDER DETAILS (For Editing) ---
 function fetchOrderDetails(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`)
     .then(res => res.text())
@@ -221,16 +222,15 @@ function fetchOrderDetails(oid) {
         // Fill Data
         $('#name').val(d.name || '');
         $('#phone').val(d.phone || '');
-        $('#whatsapp').val(d.whatsapp || d.phone); // Fill WhatsApp
+        $('#whatsapp').val(d.whatsapp || d.phone);
         $('#pincode').val(d.pincode || '');
         $('#state').val(d.state || '');
         $('#quantity').val(d.quantity || '');
         $('#message').val(d.message || '');
-        $('#welcome-text').text('Editing Order ✏️');
 
         availablePin = true;
 
-        // Safe Address Split
+        // Address Parsing
         try {
           let fullAddr = d.addressFull ? String(d.addressFull) : '';
           let addrParts = fullAddr.split(', ');
@@ -249,9 +249,8 @@ function fetchOrderDetails(oid) {
 
         enableInputs();
 
-        // 🔴 IMPORTANT: Auto-Switch to Step 2 for Editing
+        // Auto-Switch to Step 2 for Editing
         proceedToStep2();
-        // Update button text
         $('#submitBtn').text('UPDATE ORDER');
 
       } else {
@@ -263,7 +262,7 @@ function fetchOrderDetails(oid) {
       $('#main-loader').fadeOut();
       alert('Data load error. You can edit manually.');
       enableInputs();
-      proceedToStep2(); // Show form even if error
+      proceedToStep2();
     });
 }
 
@@ -357,7 +356,7 @@ function showSuccess() { $('#showsuccess').show(); }
 function sendToWhatsapp() {
   const phone = '7788990313';
   const orderid = successSubmitData.orderid;
-  const orderTime = successSubmitData.timestamp; // Timestamp
+  const orderTime = successSubmitData.timestamp;
   const d = successSubmitData.data;
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
 
@@ -392,6 +391,81 @@ _(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay �
   window.location.href = `https://wa.me/91${phone}?text=${message}`;
 }
 
+// ==========================================
+// 🌍 LANGUAGE TRANSLATION LOGIC
+// ==========================================
+
+const translations = {
+  ml: {
+    home: "ഹോം",
+    step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?",
+    step1_desc: "ഓർഡർ ചെയ്യാൻ മൊബൈൽ നമ്പർ നൽകുക",
+    new_user_name: "ആദ്യമായിട്ടാണല്ലോ.. പേര് എന്താണ്?",
+    your_name: "നിങ്ങളുടെ പേര്",
+    next_btn: "അടുത്തത് ➔",
+
+    step2_title: "വിലാസം നൽകുക 🏠",
+    label_name: "പേര് (വേണമെങ്കിൽ മാറ്റാം)",
+    label_whatsapp: "വാട്സാപ്പ് നമ്പർ",
+    ph_house: "വീട്ടുപേര്",
+    ph_place: "സ്ഥലം",
+    ph_pincode: "പിൻകോഡ് (6 digits)",
+
+    label_qty: "എത്ര ബോട്ടിൽ വേണം? 👇",
+    select_opt: "തിരഞ്ഞെടുക്കൂ...",
+    ph_msg: "എന്തെങ്കിലും പറയാനുണ്ടോ? (Optional)",
+
+    back_btn: "⬅ പുറകോട്ട്",
+    order_btn: "ഓർഡർ ചെയ്യാം ✅",
+
+    order_success: "ഓർഡർ ലഭിച്ചു!",
+    redirecting: "വാട്സാപ്പിലേക്ക് പോകുന്നു..."
+  },
+  en: {
+    home: "Home",
+    step1_title: "What is your Phone Number?",
+    step1_desc: "Enter mobile number to verify",
+    new_user_name: "First time here? What's your name?",
+    your_name: "Your Name",
+    next_btn: "NEXT STEP ➔",
+
+    step2_title: "Delivery Address 🏠",
+    label_name: "Name (Editable)",
+    label_whatsapp: "WhatsApp Number",
+    ph_house: "House Name / No",
+    ph_place: "Place / Street",
+    ph_pincode: "Pincode (6 digits)",
+
+    label_qty: "Choose Quantity 👇",
+    select_opt: "Select...",
+    ph_msg: "Any message? (Optional)",
+
+    back_btn: "⬅ Back",
+    order_btn: "PLACE ORDER ✅",
+
+    order_success: "Order Placed!",
+    redirecting: "Redirecting to WhatsApp..."
+  }
+};
+
+function changeLanguage(lang) {
+  // 1. Update Texts
+  $('[data-i18n]').each(function () {
+    const key = $(this).data('i18n');
+    if (translations[lang][key]) {
+      $(this).text(translations[lang][key]);
+    }
+  });
+
+  // 2. Update Placeholders
+  $('[data-i18n-ph]').each(function () {
+    const key = $(this).data('i18n-ph');
+    if (translations[lang][key]) {
+      $(this).attr('placeholder', translations[lang][key]);
+    }
+  });
+}
+
 // --- FORM VALIDATION ---
 jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
@@ -400,7 +474,7 @@ jQuery.validator.addMethod("pinavail", function (value, element) {
 $("#order-form").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
-  ignore: ":hidden", // Ignore hidden step 1 inputs when in step 2
+  ignore: ":hidden", // Ignore hidden inputs in Step 1 when in Step 2
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },

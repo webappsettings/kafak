@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Pure Honey | KAFAK</title>
+  <title>KAFAK Honey | Order Now</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
@@ -15,12 +17,11 @@
       --theme-light-green: #43a047;
       --honey-gold: #f5a623;
       --soft-bg: #f1f8e9;
-      /* Light Greenish Bg */
     }
 
     body {
       background: var(--soft-bg);
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
       padding-top: 80px;
       min-height: 100vh;
     }
@@ -48,12 +49,25 @@
       color: white;
     }
 
+    /* Language Selector */
+    .lang-select {
+      border: 2px solid var(--theme-green);
+      color: var(--theme-green);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-weight: 600;
+      font-size: 13px;
+      outline: none;
+      background: white;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
     /* Card */
     .main-card {
       background: #fff;
       border-radius: 25px;
       box-shadow: 0 15px 35px rgba(46, 125, 50, 0.1);
-      /* Green Shadow */
       border: none;
       padding: 30px;
       margin-bottom: 40px;
@@ -81,7 +95,7 @@
       letter-spacing: 2px;
     }
 
-    /* Buttons (GREEN THEME) */
+    /* Buttons */
     .btn-next,
     .btn-submit {
       background: linear-gradient(45deg, var(--theme-green), var(--theme-light-green));
@@ -102,7 +116,7 @@
       color: white;
     }
 
-    /* Steps & Progress */
+    /* Steps & Loader */
     .step-container {
       display: none;
       animation: fadeIn 0.4s ease-in-out;
@@ -172,14 +186,12 @@
       color: var(--honey-gold);
     }
 
-    /* Gold for active step */
     .step-dot.completed {
       background: var(--theme-green);
       border-color: var(--theme-green);
       color: white;
     }
 
-    /* Loader */
     #main-loader {
       position: fixed;
       top: 0;
@@ -213,23 +225,9 @@
       }
     }
 
-    /* Hidden Name Field Animation */
     #name-section {
       display: none;
       margin-top: 15px;
-      animation: slideDown 0.3s ease;
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
 </head>
@@ -238,16 +236,24 @@
 
   <nav class="navbar navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand py-0" href="index.html">
+      <a class="navbar-brand py-0" href="#" onclick="window.location.reload(); return false;" title="Refresh Page">
         <img src="logo-order.png" alt="Kafak Logo" height="45">
       </a>
-      <a href="index.html" class="btn-home-link">🏠 Home</a>
+
+      <div class="d-flex align-items-center">
+        <select class="lang-select" onchange="changeLanguage(this.value)">
+          <option value="ml" selected>Malayalam</option>
+          <option value="en">English</option>
+        </select>
+
+        <a href="index.html" class="btn-home-link">🏠 <span data-i18n="home">Home</span></a>
+      </div>
     </div>
   </nav>
 
   <div id="main-loader">
     <div class="spinner-green"></div>
-    <p class="mt-3 fw-bold text-muted" style="color:var(--theme-green);">Loading...</p>
+    <p class="mt-3 fw-bold text-muted">Loading...</p>
   </div>
 
   <div class="container">
@@ -269,16 +275,16 @@
 
           <div id="showsuccess" class="text-center py-5" style="display:none;">
             <div style="font-size: 60px;">🎉</div>
-            <h3 class="fw-bold text-success mt-3">Order Placed!</h3>
-            <p class="text-muted">Redirecting to WhatsApp...</p>
+            <h3 class="fw-bold text-success mt-3" data-i18n="order_success">ഓർഡർ ലഭിച്ചു!</h3>
+            <p class="text-muted" data-i18n="redirecting">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
           </div>
 
           <form id="order-form">
 
             <div id="step-1" class="step-container active">
               <div class="text-center mb-4">
-                <h4 class="fw-bold" style="color:var(--theme-green);">Login / Signup</h4>
-                <p class="text-muted small">Enter mobile number to continue</p>
+                <h4 class="fw-bold" style="color:var(--theme-green);" data-i18n="step1_title">നിങ്ങളുടെ ഫോൺ നമ്പർ?</h4>
+                <p class="text-muted small" data-i18n="step1_desc">ഓർഡർ ചെയ്യാൻ മൊബൈൽ നമ്പർ നൽകുക</p>
               </div>
 
               <div class="mb-3">
@@ -288,24 +294,29 @@
               </div>
 
               <div id="name-section">
-                <label class="form-label text-success">New here? What's your name?</label>
-                <input type="text" class="form-control form-control-custom" id="name" name="name"
-                  placeholder="Enter Full Name">
+                <label class="form-label text-success" data-i18n="new_user_name">ആദ്യമായിട്ടാണല്ലോ.. പേര്
+                  എന്താണ്?</label>
+                <input type="text" class="form-control form-control-custom" id="temp_name" data-i18n-ph="your_name"
+                  placeholder="നിങ്ങളുടെ പേര്">
               </div>
 
-              <button type="button" id="btnNext" onclick="handleStep1()" class="btn-next mt-3">
-                NEXT ➔
+              <button type="button" id="btnNext" onclick="handleStep1()" class="btn-next mt-3" data-i18n="next_btn">
+                അടുത്തത് ➔
               </button>
             </div>
 
             <div id="step-2" class="step-container">
               <div class="text-center mb-4">
-                <h5 class="fw-bold text-muted">Delivery Details 🏠</h5>
-                <small class="text-success fw-bold" id="welcome-text"></small>
+                <h5 class="fw-bold text-muted" data-i18n="step2_title">വിലാസം നൽകുക 🏠</h5>
               </div>
 
               <div class="mb-3">
-                <label class="form-label">WhatsApp Number</label>
+                <label class="form-label small text-muted" data-i18n="label_name">പേര് (വേണമെങ്കിൽ മാറ്റാം)</label>
+                <input type="text" class="form-control form-control-custom" id="name" name="name" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label small text-muted" data-i18n="label_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
                 <input type="tel" class="form-control form-control-custom" id="whatsapp" name="whatsapp"
                   placeholder="WhatsApp Number" maxlength="10" required
                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
@@ -314,18 +325,17 @@
               <div class="row g-3 mb-3">
                 <div class="col-6">
                   <input type="text" class="form-control form-control-custom" id="house" name="house"
-                    placeholder="House Name" required>
+                    data-i18n-ph="ph_house" placeholder="വീട്ടുപേര്" required>
                 </div>
                 <div class="col-6">
                   <input type="text" class="form-control form-control-custom" id="place" name="place"
-                    placeholder="Place" required>
+                    data-i18n-ph="ph_place" placeholder="സ്ഥലം" required>
                 </div>
               </div>
 
               <div class="mb-3">
-                <label class="form-label">Pincode (Auto-detects Location)</label>
                 <input type="tel" class="form-control form-control-custom" id="pincode" name="pincode"
-                  placeholder="6-digit PIN" maxlength="6" required
+                  data-i18n-ph="ph_pincode" placeholder="പിൻകോഡ് (6 digits)" maxlength="6" required
                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
               </div>
 
@@ -344,10 +354,11 @@
               <input type="hidden" id="state" name="state">
 
               <div class="mb-4 p-3 rounded-4" style="background: #f1f8e9; border: 1px solid #c5e1a5;">
-                <label class="form-label fw-bold" style="color:var(--theme-green);">Choose Quantity 👇</label>
+                <label class="form-label fw-bold" style="color:var(--theme-green);" data-i18n="label_qty">എത്ര ബോട്ടിൽ
+                  വേണം? 👇</label>
                 <select class="form-control form-control-custom" id="quantity" name="quantity" style="background:white;"
                   required disabled>
-                  <option value="" selected disabled>Select Bottles</option>
+                  <option value="" selected disabled data-i18n="select_opt">തിരഞ്ഞെടുക്കൂ...</option>
                   <option value="1">1 Bottle (650g)</option>
                   <option value="2">2 Bottles (1.3 Kg)</option>
                   <option value="3">3 Bottles (1.95 Kg)</option>
@@ -364,15 +375,16 @@
               </div>
 
               <div class="mb-4">
-                <textarea class="form-control form-control-custom" id="message" rows="2"
-                  placeholder="Any message? (Optional)"></textarea>
+                <textarea class="form-control form-control-custom" id="message" rows="2" data-i18n-ph="ph_msg"
+                  placeholder="എന്തെങ്കിലും പറയാനുണ്ടോ? (Optional)"></textarea>
               </div>
 
               <div class="d-flex gap-3">
                 <button type="button" onclick="backToStep1()"
-                  class="btn btn-light flex-fill py-3 rounded-pill fw-bold border">⬅ Back</button>
-                <button type="submit" id="submitBtn" class="btn-submit flex-fill py-3">
-                  PLACE ORDER ✅
+                  class="btn btn-light flex-fill py-3 rounded-pill fw-bold border" data-i18n="back_btn">⬅
+                  പുറകോട്ട്</button>
+                <button type="submit" id="submitBtn" class="btn-submit flex-fill py-3" data-i18n="order_btn">
+                  ഓർഡർ ചെയ്യാം ✅
                 </button>
               </div>
             </div>
