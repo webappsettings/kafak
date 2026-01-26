@@ -1,5 +1,5 @@
 // 🔴 1. UPDATE YOUR GOOGLE SCRIPT ID HERE
-const sc = `https://script.google.com/macros/s/AKfycbzdRTgIlMDs_1A2gX0NBCT5EKXDPfpn1JTrXrGq3xolnEBAy2NXjcbOMfT1zVeUh8ZJSw/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbyrfUiWip0ZOLShneliIeltOSB5_zbpeL2V852UjE8LctIKfUCVQyordfchBU_Quxxylg/exec`;
 
 // Courier Rates
 const courierRates = {
