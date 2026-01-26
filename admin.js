@@ -87,7 +87,7 @@ function renderTabs(orders) {
 
     orders.forEach((d, i) => {
         // ലോക്കൽ മാറ്റം ഉണ്ടോ എന്ന് നോക്കുന്നു
-        let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
+        let localUpdate = [...pendingUpdates].reverse().find(item => item.oid === d.orderid);
 
         // ഷീറ്റിലെ സ്റ്റാറ്റസിനേക്കാൾ മുൻഗണന ലോക്കൽ മാറ്റത്തിന് നൽകുന്നു
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
