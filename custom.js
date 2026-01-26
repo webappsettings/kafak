@@ -243,7 +243,7 @@ function submitOrder() {
     });
 }
 
-// --- FETCH ORDER DETAILS ---
+// --- FETCH ORDER DETAILS (FIXED) ---
 function fetchOrderDetails(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`)
     .then(res => res.json())
@@ -253,37 +253,56 @@ function fetchOrderDetails(oid) {
         const d = response.data;
         editingOrderId = d.orderid;
 
-        $('#name').val(d.name);
-        $('#phone').val(d.phone);
-        $('#pincode').val(d.pincode);
-        $('#state').val(d.state);
-        $('#quantity').val(d.quantity);
-        $('#message').val(d.message);
-        $('#whatsapp').val(d.whatsapp);
+        // 1. Fill Basic Fields
+        $('#name').val(d.name || '');
+        $('#phone').val(d.phone || '');
+        $('#pincode').val(d.pincode || '');
+        $('#state').val(d.state || '');
+        $('#quantity').val(d.quantity || '');
+        $('#message').val(d.message || '');
+        $('#whatsapp').val(d.whatsapp || '');
 
         availablePin = true;
 
-        const addrParts = d.addressFull.split(', ');
-        if (addrParts.length >= 2) {
-          $('#house').val(addrParts[0]);
-          $('#place').val(addrParts[1]);
-          checkPincode(String(d.pincode), addrParts[2] || '');
-          $('#district').val(addrParts[3] || '');
-        } else {
-          $('#house').val(d.addressFull);
+        // 2. Safe Address Parsing (Crash ഒഴിവാക്കാൻ)
+        try {
+          const fullAddr = d.addressFull ? String(d.addressFull) : '';
+          const addrParts = fullAddr.split(', ');
+
+          if (addrParts.length >= 2) {
+            $('#house').val(addrParts[0]);
+            $('#place').val(addrParts[1]);
+            // പോസ്റ്റ് ഓഫീസ് ഓട്ടോമാറ്റിക് ആയി സെലക്ട് ചെയ്യാം
+            checkPincode(String(d.pincode), addrParts[2] || '');
+            $('#district').val(addrParts[3] || '');
+          } else {
+            $('#house').val(fullAddr);
+            checkPincode(String(d.pincode));
+          }
+        } catch (e) {
+          console.log("Address parsing error", e);
+          // അഡ്രസ്സ് ഫിൽ ചെയ്യാൻ പറ്റിയില്ലെങ്കിലും ബാക്കി നടക്കണം
           checkPincode(String(d.pincode));
         }
 
+        // 3. Enable Inputs & Buttons (ഇത് നിർബന്ധമായും നടക്കണം)
         $('#quantity').prop('disabled', false);
         $('#submitBtn').text('UPDATE ORDER').prop('disabled', false);
         $('.price-show').show();
-        $('#quantity').trigger('change');
+        $('#quantity').trigger('change'); // വില കാൽക്കുലേറ്റ് ചെയ്യാൻ
+
       } else {
-        alert('ഈ ഓർഡർ എഡിറ്റ് ചെയ്യാൻ സാധിക്കില്ല.');
+        alert('ഈ ഓർഡർ എഡിറ്റ് ചെയ്യാൻ സാധിക്കില്ല. (ID not found)');
         window.location.href = window.location.pathname.split('?')[0];
       }
     })
-    .catch(err => { $('#main-loader').fadeOut(); alert('നെറ്റ്‌വർക്ക് തകരാർ! വീണ്ടും ശ്രമിക്കുക.'); });
+    .catch(err => {
+      console.error(err);
+      $('#main-loader').fadeOut();
+      // എറർ വന്നാലും ബട്ടൺ എനേബിൾ ചെയ്യാം, അല്ലെങ്കിൽ കസ്റ്റമർക്ക് ഒന്നും ചെയ്യാൻ പറ്റില്ല
+      $('#submitBtn').text('Try Again').prop('disabled', false);
+      alert('ഡാറ്റ ലോഡ് ചെയ്യുന്നതിൽ ചെറിയ തകരാർ (Network/Data Error). പേജ് റീഫ്രഷ് ചെയ്തു നോക്കൂ.');
+    });
 }
 
 // --- HELPER FUNCTIONS ---
