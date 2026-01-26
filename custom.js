@@ -324,10 +324,11 @@ function sendToWhatsapp() {
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  // 🔴 CHANGE: Removed '#' and added 'Order ID:' text
-  // പഴയത്: 🔖 *#${orderid}* // പുതിയത്: 🆔 *Order ID: ${orderid}*
+  // 🔴 CHANGE: ID-ക്ക് ചുറ്റും ``` (backticks) ഇട്ടു.
+  // ഇത് വാട്സാപ്പിൽ അയക്കുമ്പോൾ ഹൈഫൻ ഇട്ടാലും ലിങ്ക് ആകില്ല.
+  // കാണാൻ ഒരു പ്രത്യേക ഫോണ്ടിൽ (Code Style) വരും.
 
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🆔 *Order ID: ${orderid}*\n🔗 _${editLink}_\n(Click link to edit order)`;
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
 
