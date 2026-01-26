@@ -1,5 +1,5 @@
 // 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE (Previously updated one)
-const sc = `https://script.google.com/macros/s/AKfycbwOjgnufnI1mNulCd_inPwOls_AXMJizzUNrkleJFuK24PjlC7uzdXhj-dIu2DadL6cCQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbw0dwetehenomC4ZdLybKbbMufJN76OFDNerISTbFbRm8ffrPhH5NHSUOXdNhBHfsiUnw/exec`;
 
 // Courier Rates
 const courierRates = {
@@ -351,15 +351,18 @@ function showSuccess() { $('#showsuccess').show(); }
 function sendToWhatsapp() {
   const phone = '7788990313';
   const orderid = successSubmitData.orderid;
-  const d = successSubmitData.data;
 
+  // 🔴 Get Timestamp from response
+  const orderTime = successSubmitData.timestamp;
+
+  const d = successSubmitData.data;
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
 
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  // Monospace ID logic
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
+  // 🔴 CHANGE: Added Date & Time in Italics (_${orderTime}_)
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n📅 _${orderTime}_\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
   const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
