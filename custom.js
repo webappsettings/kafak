@@ -15,15 +15,14 @@ $(document).ready(function () {
 
   // --- 1. LANGUAGE & URL CHECK ---
   const urlParams = new URLSearchParams(window.location.search);
-
-  // Check Language Param from URL (&lang=en)
   const langParam = urlParams.get('lang');
+
   if (langParam && translations[langParam]) {
     $('.lang-select').val(langParam);
     changeLanguage(langParam);
   }
 
-  // Check Order ID for Edit Mode
+  // Check Order ID
   const oid = urlParams.get('oid');
   if (oid) {
     $('#main-loader').show();
@@ -38,7 +37,7 @@ $(document).ready(function () {
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
     availablePin = false;
-    $('.pincodeEnable').slideUp(); // Hide details on edit
+    $('.pincodeEnable').slideUp();
     $('#officename').hide();
     $('#postoffice').hide();
     $('#quantity').prop('disabled', true).val('');
@@ -84,7 +83,7 @@ function handleStep1() {
     return;
   }
 
-  // CASE A: New User Step 1
+  // CASE A: New User Step 1 (No API call, instant switch)
   if (nameSection.is(':visible')) {
     if (tempNameInput.val().trim() === "") {
       alert("നിങ്ങളുടെ പേര് നൽകുക");
@@ -97,14 +96,20 @@ function handleStep1() {
     return;
   }
 
-  // CASE B: Checking User
-  const oldText = btn.text();
-  btn.text("Checking...").prop('disabled', true);
+  // CASE B: Checking User (API Call)
+
+  // 🔴 1. Save Original Button Content (Text & Arrow)
+  const originalContent = btn.html();
+
+  // 🔴 2. Show Spinner inside Button
+  btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Checking...')
+    .prop('disabled', true);
 
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
     .then(response => {
-      btn.text(oldText).prop('disabled', false);
+      // 🔴 3. Restore Button
+      btn.html(originalContent).prop('disabled', false);
 
       if (response.result === 'success') {
         const d = response.data;
@@ -125,7 +130,8 @@ function handleStep1() {
       }
     })
     .catch(err => {
-      btn.text(oldText).prop('disabled', false);
+      // Error -> Restore Button & Show Name Field
+      btn.html(originalContent).prop('disabled', false);
       nameSection.slideDown();
       tempNameInput.focus();
     });
@@ -155,6 +161,7 @@ function backToStep1() {
 
 function submitOrder() {
   const btn = $('#submitBtn');
+  // Submit Button Spinner
   btn.prop('disabled', true).html(
     `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`
   );
@@ -281,7 +288,6 @@ async function checkPincode(pinInput, autoSelectPO = null) {
         $('#state').val(data[0].statename || '');
 
         $('.pincodeEnable').slideDown();
-
         $('#quantity').prop('disabled', false);
 
         const officeDropdown = $('#officename');
@@ -319,7 +325,7 @@ function cleanPOName(name) {
   return name;
 }
 
-// --- CALCULATIONS & WHATSAPP ---
+// --- CALCULATIONS ---
 function calculateAmountString(quantityText) {
   const n = parseInt(quantityText);
   if (isNaN(n)) return '';
@@ -347,10 +353,7 @@ function sendToWhatsapp() {
   const orderTime = successSubmitData.timestamp;
   const d = successSubmitData.data;
 
-  // 🔴 1. Get Current Language
   const currentLang = $('.lang-select').val() || 'ml';
-
-  // 🔴 2. Append Language Param to URL
   const editLink = `kafaklife.com/order.html?oid=${orderid}&lang=${currentLang}`;
 
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
