@@ -244,16 +244,30 @@ function submitOrder() {
 }
 
 // --- FETCH ORDER DETAILS (FIXED) ---
+// --- FETCH ORDER DETAILS (ULTIMATE FIX) ---
 function fetchOrderDetails(oid) {
+  // ലോഡർ കാണിക്കുന്നു
+  $('#main-loader').show();
+
   fetch(`${sc}?action=getOrder&oid=${oid}`)
-    .then(res => res.json())
+    .then(res => res.text()) // ആദ്യം ടെക്സ്റ്റ് ആയി എടുക്കുന്നു (JSON എറർ ഒഴിവാക്കാൻ)
+    .then(text => {
+      try {
+        return JSON.parse(text); // ജെയ്‌സൺ ആക്കാൻ ശ്രമിക്കുന്നു
+      } catch (e) {
+        console.error("Server Error:", text);
+        throw new Error("Server returned Invalid Data");
+      }
+    })
     .then(response => {
       $('#main-loader').fadeOut();
+
       if (response.result === 'success') {
         const d = response.data;
         editingOrderId = d.orderid;
 
-        // 1. Fill Basic Fields
+        // 1. Basic Fields Fill (Safe Mode)
+        // ഡാറ്റ ഉണ്ടെങ്കിൽ മാത്രം വാല്യൂ കൊടുക്കും, ഇല്ലെങ്കിൽ എംപ്റ്റി
         $('#name').val(d.name || '');
         $('#phone').val(d.phone || '');
         $('#pincode').val(d.pincode || '');
@@ -262,47 +276,54 @@ function fetchOrderDetails(oid) {
         $('#message').val(d.message || '');
         $('#whatsapp').val(d.whatsapp || '');
 
+        // Pincode validation true ആക്കുന്നു
         availablePin = true;
 
-        // 2. Safe Address Parsing (Crash ഒഴിവാക്കാൻ)
+        // 2. Address Splitting (Extra Safe)
         try {
-          const fullAddr = d.addressFull ? String(d.addressFull) : '';
-          const addrParts = fullAddr.split(', ');
+          let fullAddr = d.addressFull ? String(d.addressFull) : '';
+          let addrParts = fullAddr.split(', ');
 
           if (addrParts.length >= 2) {
             $('#house').val(addrParts[0]);
             $('#place').val(addrParts[1]);
-            // പോസ്റ്റ് ഓഫീസ് ഓട്ടോമാറ്റിക് ആയി സെലക്ട് ചെയ്യാം
+            // പോസ്റ്റ് ഓഫീസ് ഓട്ടോമാറ്റിക് ആയി വരാൻ
             checkPincode(String(d.pincode), addrParts[2] || '');
             $('#district').val(addrParts[3] || '');
           } else {
             $('#house').val(fullAddr);
-            checkPincode(String(d.pincode));
+            // പിൻകോഡ് മാത്രം ചെക്ക് ചെയ്യുന്നു
+            if (d.pincode) checkPincode(String(d.pincode));
           }
-        } catch (e) {
-          console.log("Address parsing error", e);
-          // അഡ്രസ്സ് ഫിൽ ചെയ്യാൻ പറ്റിയില്ലെങ്കിലും ബാക്കി നടക്കണം
-          checkPincode(String(d.pincode));
+        } catch (addrErr) {
+          console.log("Address Error ignored", addrErr);
+          if (d.pincode) checkPincode(String(d.pincode));
         }
 
-        // 3. Enable Inputs & Buttons (ഇത് നിർബന്ധമായും നടക്കണം)
-        $('#quantity').prop('disabled', false);
-        $('#submitBtn').text('UPDATE ORDER').prop('disabled', false);
-        $('.price-show').show();
-        $('#quantity').trigger('change'); // വില കാൽക്കുലേറ്റ് ചെയ്യാൻ
+        // 3. FINAL STEP: Enable Buttons (ഇത് എപ്പോഴും നടക്കണം)
+        enableInputs();
 
       } else {
-        alert('ഈ ഓർഡർ എഡിറ്റ് ചെയ്യാൻ സാധിക്കില്ല. (ID not found)');
-        window.location.href = window.location.pathname.split('?')[0];
+        alert('ഓർഡർ കണ്ടുപിടിക്കാൻ സാധിച്ചില്ല (ID Not Found).');
+        window.location.href = 'order.html'; // തിരിച്ച് വിടുന്നു
       }
     })
     .catch(err => {
-      console.error(err);
+      console.error("Fetch Error:", err);
       $('#main-loader').fadeOut();
-      // എറർ വന്നാലും ബട്ടൺ എനേബിൾ ചെയ്യാം, അല്ലെങ്കിൽ കസ്റ്റമർക്ക് ഒന്നും ചെയ്യാൻ പറ്റില്ല
-      $('#submitBtn').text('Try Again').prop('disabled', false);
-      alert('ഡാറ്റ ലോഡ് ചെയ്യുന്നതിൽ ചെറിയ തകരാർ (Network/Data Error). പേജ് റീഫ്രഷ് ചെയ്തു നോക്കൂ.');
+
+      // എറർ വന്നാലും കസ്റ്റമറെ ബ്ലോക്ക് ചെയ്യരുത്. ബട്ടൺ എനേബിൾ ചെയ്യുന്നു.
+      alert('ഡാറ്റ ലോഡ് ചെയ്യുന്നതിൽ ചെറിയ തടസ്സം. നിങ്ങൾക്ക് മാന്വലായി എഡിറ്റ് ചെയ്യാം.');
+      enableInputs();
     });
+}
+
+// ബട്ടണും ക്വാണ്ടിറ്റിയും എനേബിൾ ചെയ്യാനുള്ള പ്രത്യേക ഫങ്ക്ഷൻ
+function enableInputs() {
+  $('#quantity').prop('disabled', false);
+  $('#submitBtn').text('UPDATE ORDER').prop('disabled', false);
+  $('.price-show').show();
+  $('#quantity').trigger('change');
 }
 
 // --- HELPER FUNCTIONS ---
