@@ -1,7 +1,6 @@
 // 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE
 const sc = `https://script.google.com/macros/s/AKfycbzCFPTGSx7c85ET0bi2RUoKFc6HSZFoMUjDH6G-6c9bvlR6WN5YP1M6HwMmSNqrJdfL3g/exec`;
 
-
 // Courier Rates
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -14,7 +13,7 @@ var successSubmitData;
 
 $(document).ready(function () {
 
-  // --- 1. CHECK LOCAL STORAGE (NEW FEATURE) ---
+  // --- 1. CHECK LOCAL STORAGE ---
   loadUserData();
 
   // --- 2. EDIT MODE HANDLING ---
@@ -23,16 +22,53 @@ $(document).ready(function () {
 
   if (oid) {
     $('#submitBtn').text('ഓർഡർ എടുക്കുന്നു...').prop('disabled', true);
-    // Edit mode-ൽ കാർഡ് കാണിക്കണ്ട, എല്ലാം തുറന്നു വെക്കണം
     enableEditMode();
     fetchOrderDetails(oid);
   } else {
     $('#main-loader').fadeOut();
   }
 
-  // --- 3. PINCODE LOGIC ---
+  // --- 3. AUTO-FILL CUSTOMER DETAILS (SAFE MODE) ---
+  $('#phone').on('keyup', function () {
+    var phone = $(this).val().replace(/\D/g, '');
+
+    if (phone.length === 10 && !editingOrderId) {
+      $('#name').attr('placeholder', 'Searching...');
+
+      fetch(`${sc}?action=getCustomer&phone=${phone}`)
+        .then(res => res.json())
+        .then(response => {
+          $('#name').attr('placeholder', 'Full Name (പേര്)');
+
+          if (response.result === 'success') {
+            var d = response.data;
+
+            // Fill Basic Fields
+            $('#name').val(d.name);
+            $('#whatsapp').val(d.whatsapp);
+
+            // Focus to House Name
+            $('#house').focus();
+
+            // Safe Fill Pincode
+            if (d.pincode) {
+              $('#pincode').val(d.pincode);
+              // 🔴 FIX: Trust DB data initially
+              availablePin = true;
+              checkPincode(d.pincode, d.postoffice);
+            }
+          }
+        });
+    }
+  });
+
+  // --- 4. PINCODE INPUT LISTENER ---
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
+
+    // 🔴 FIX: Reset validation ONLY when user types manually
+    availablePin = false;
+
     checkPincode(this.value.trim());
   });
 
@@ -60,7 +96,6 @@ function loadUserData() {
     try {
       const u = JSON.parse(savedUser);
 
-      // Fill Fields
       $('#name').val(u.name);
       $('#phone').val(u.phone);
       $('#whatsapp').val(u.whatsapp);
@@ -68,18 +103,17 @@ function loadUserData() {
       $('#place').val(u.place);
       $('#pincode').val(u.pincode);
 
-      // Update Summary Card
       $('#summary-name').text(u.name);
       $('#summary-house').text(u.house);
       $('#summary-place').text(u.place);
       $('#summary-pin').text(u.pincode);
       $('#summary-post').text(u.postoffice);
 
-      // Hide Personal Section & Show Summary
       $('#personal-section').slideUp();
       $('#saved-address-card').fadeIn();
 
-      // Important: Trigger Pincode Logic to set State/District & PO Logic behind the scenes
+      // 🔴 FIX: Trust LocalStorage data
+      availablePin = true;
       checkPincode(u.pincode, u.postoffice);
 
     } catch (e) {
@@ -88,16 +122,14 @@ function loadUserData() {
   }
 }
 
-// --- ENABLE EDIT MODE (When clicking Edit button) ---
 function enableEditMode() {
   $('#saved-address-card').hide();
   $('#personal-section').slideDown();
 }
 
-// --- PINCODE FUNCTION ---
+// --- PINCODE FUNCTION (Modified) ---
 async function checkPincode(pin, autoSelectPO = null) {
-  availablePin = false;
-  // Don't disable quantity here if loading from storage, just check validity
+  // 🔴 FIX: Removed 'availablePin = false' from here to prevent overwriting Edit Mode validity
 
   // Hide fields initially
   if (!autoSelectPO) {
@@ -112,7 +144,7 @@ async function checkPincode(pin, autoSelectPO = null) {
       const data = await response.json();
 
       if (Array.isArray(data) && data.length > 0) {
-        availablePin = true;
+        availablePin = true; // Mark as Valid
 
         $('#district').val(data[0].district || '');
         $('#state').val(data[0].statename || '');
@@ -124,7 +156,6 @@ async function checkPincode(pin, autoSelectPO = null) {
         const officeInput = $('#postoffice');
 
         if (data.length === 1) {
-          // Single PO
           let poName = data[0].officename;
           if (poName.match(/(BO|SO|HO)$/)) poName = poName.replace(/\s(BO|SO|HO)$/, ' PO');
 
@@ -132,7 +163,6 @@ async function checkPincode(pin, autoSelectPO = null) {
           officeDropdown.hide().empty();
         }
         else {
-          // Multiple PO
           officeDropdown.empty().append('<option value="">Select Post Office (പോസ്റ്റ് ഓഫീസ്?)</option>');
           data.forEach(item => {
             let label = item.officename;
@@ -142,11 +172,8 @@ async function checkPincode(pin, autoSelectPO = null) {
           officeDropdown.show();
           officeInput.hide().val('');
 
-          // Auto Select PO if available
           if (autoSelectPO) {
-            // Wait a microsecond for dropdown to render
             setTimeout(() => {
-              // Try to match exact value or text
               let match = $("#officename option").filter(function () {
                 return $(this).val() == autoSelectPO || $(this).text() == autoSelectPO;
               }).val();
@@ -154,7 +181,6 @@ async function checkPincode(pin, autoSelectPO = null) {
               if (match) {
                 officeDropdown.val(match).trigger('change');
               } else {
-                // Fallback
                 officeInput.val(autoSelectPO);
               }
             }, 100);
@@ -163,7 +189,8 @@ async function checkPincode(pin, autoSelectPO = null) {
       }
     } catch (err) {
       console.log("Pincode error", err);
-      availablePin = false;
+      // If fetch fails, we leave availablePin as is. 
+      // In Edit Mode, it will remain true. In manual typing, it remains false.
     }
   }
 }
@@ -171,9 +198,6 @@ async function checkPincode(pin, autoSelectPO = null) {
 // --- SUBMIT FUNCTION ---
 function submitOrder() {
   $('#submitBtn').prop('disabled', true).text(editingOrderId ? 'Updating...' : 'Processing...');
-
-  // If section is hidden, jQuery validate might skip hidden fields unless we allow it.
-  // Since we filled them, they should be valid.
 
   const poValue = $('#postoffice').val();
 
@@ -192,7 +216,7 @@ function submitOrder() {
     message: $('#message').val()
   };
 
-  // 🔴 SAVE TO LOCAL STORAGE (Future Use)
+  // Save to Local Storage
   localStorage.setItem('kafakUser', JSON.stringify(formData));
 
   fetch(sc, {
@@ -203,11 +227,11 @@ function submitOrder() {
     .then(data => {
       if (data.result === 'success') {
         successSubmitData = { orderid: data.orderid, timestamp: data.timestamp, data: formData };
-        alert(editingOrderId ? 'ഓർഡർ അപ്ഡേറ്റ് ചെയ്തു! ✅' : 'ഓർഡർ വിജയകരമായി രേഖപ്പെടുത്തി! ✅');
+        // alert(editingOrderId ? 'ഓർഡർ അപ്ഡേറ്റ് ചെയ്തു! ✅' : 'ഓർഡർ വിജയകരമായി രേഖപ്പെടുത്തി! ✅');
         $('#honeyForm').hide();
-        $('#saved-address-card').hide(); // Hide summary too
+        $('#saved-address-card').hide();
         showSuccess();
-        sendToWhatsapp();
+        setTimeout(sendToWhatsapp, 2000); // Wait 2 sec before opening WhatsApp
       } else {
         alert('Error: ' + data.message);
         $('#submitBtn').prop('disabled', false).text('Try Again');
@@ -219,7 +243,7 @@ function submitOrder() {
     });
 }
 
-// --- HELPER FUNCTIONS ---
+// --- FETCH ORDER DETAILS ---
 function fetchOrderDetails(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`)
     .then(res => res.json())
@@ -228,24 +252,35 @@ function fetchOrderDetails(oid) {
       if (response.result === 'success') {
         const d = response.data;
         editingOrderId = d.orderid;
-        $('#name').val(d.name); $('#phone').val(d.phone); $('#pincode').val(d.pincode);
-        $('#state').val(d.state); $('#quantity').val(d.quantity); $('#message').val(d.message);
+
+        $('#name').val(d.name);
+        $('#phone').val(d.phone);
+        $('#pincode').val(d.pincode);
+        $('#state').val(d.state);
+        $('#quantity').val(d.quantity);
+        $('#message').val(d.message);
         $('#whatsapp').val(d.whatsapp);
+
+        // 🔴 FIX: Manually set validation to TRUE because this data is from DB
         availablePin = true;
+
         const addrParts = d.addressFull.split(', ');
         if (addrParts.length >= 2) {
-          $('#house').val(addrParts[0]); $('#place').val(addrParts[1]);
-          checkPincode(d.pincode, addrParts[2] || ''); // Load PO logic
+          $('#house').val(addrParts[0]);
+          $('#place').val(addrParts[1]);
+          checkPincode(d.pincode, addrParts[2] || '');
           $('#district').val(addrParts[3] || '');
         } else {
           $('#house').val(d.addressFull);
           checkPincode(d.pincode);
         }
+
         $('#quantity').prop('disabled', false);
-        $('#submitBtn').text('Update Order').prop('disabled', false);
+        $('#submitBtn').text('UPDATE ORDER').prop('disabled', false);
         $('.price-show').show();
         $('#quantity').trigger('change');
-        alert('എഡിറ്റ് ചെയ്യാൻ ഓർഡർ റെഡിയാണ്.');
+
+        // alert('എഡിറ്റ് ചെയ്യാൻ ഓർഡർ റെഡിയാണ്.');
       } else {
         alert('ഈ ഓർഡർ എഡിറ്റ് ചെയ്യാൻ സാധിക്കില്ല.');
         window.location.href = window.location.pathname.split('?')[0];
@@ -254,6 +289,7 @@ function fetchOrderDetails(oid) {
     .catch(err => { $('#main-loader').fadeOut(); alert('നെറ്റ്‌വർക്ക് തകരാർ! വീണ്ടും ശ്രമിക്കുക.'); });
 }
 
+// --- HELPER FUNCTIONS ---
 function calculateAmountString(quantityText) {
   const numberOfBottles = parseInt(quantityText);
   if (isNaN(numberOfBottles)) return '';
@@ -273,7 +309,7 @@ function calculateTotalString(amountString) {
   return `Total(₹): ${parseInt(numbers[0]) + parseInt(numbers[1])}/-`;
 }
 
-function showSuccess() { $('#response').show(); $('#showsuccess').show(); }
+function showSuccess() { $('#showsuccess').show(); }
 
 function sendToWhatsapp() {
   const phone = '7788990313';
@@ -309,16 +345,10 @@ jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
 }, 'പിൻകോഡ് തെറ്റാണ്!');
 
-// --- VALIDATION & MALAYALAM MESSAGES ---
-jQuery.validator.addMethod("pinavail", function (value, element) {
-  return this.optional(element) || availablePin;
-}, 'പിൻകോഡ് തെറ്റാണ്!');
-
-// 🔴 CHANGE IS HERE: Changed #honeyForm to #order-form
 $("#order-form").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
-  ignore: [], // Don't ignore hidden fields (Required for logic)
+  ignore: [],
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },
@@ -326,42 +356,17 @@ $("#order-form").validate({
     house: { required: true },
     place: { required: true },
     pincode: { required: true, number: true, minlength: 6, pinavail: true },
-
-    // Check if visible to avoid validation error on hidden fields
-    officename: {
-      required: function (element) {
-        return $("#officename").is(':visible');
-      }
-    },
-    postoffice: {
-      required: function (element) {
-        return $("#postoffice").is(':visible');
-      }
-    },
-
+    officename: { required: function () { return $('#officename').is(':visible'); } },
+    postoffice: { required: function () { return $('#postoffice').is(':visible'); } },
     quantity: { required: true }
   },
   messages: {
     name: { required: "നിങ്ങളുടെ പേര് നൽകുക" },
-    phone: {
-      required: "ഫോൺ നമ്പർ നൽകുക",
-      number: "നമ്പറുകൾ മാത്രം നൽകുക",
-      minlength: "10 അക്ക നമ്പർ നൽകുക",
-      maxlength: "10 അക്ക നമ്പർ നൽകുക"
-    },
-    whatsapp: {
-      required: "വാട്സാപ്പ് നമ്പർ നൽകുക",
-      number: "നമ്പറുകൾ മാത്രം നൽകുക",
-      minlength: "10 അക്ക നമ്പർ നൽകുക"
-    },
-    house: { required: "വീട്ടുപേര് / House Name നൽകുക" },
-    place: { required: "സ്ഥലം / Place നൽകുക" },
-    pincode: {
-      required: "പിൻകോഡ് നൽകുക",
-      number: "നമ്പറുകൾ മാത്രം നൽകുക",
-      minlength: "6 അക്ക നമ്പർ നൽകുക",
-      pinavail: "ഈ പിൻകോഡ് ലഭ്യമല്ല / തെറ്റാണ്"
-    },
+    phone: { required: "ഫോൺ നമ്പർ നൽകുക", number: "നമ്പറുകൾ മാത്രം", minlength: "10 അക്ക നമ്പർ", maxlength: "10 അക്ക നമ്പർ" },
+    whatsapp: { required: "വാട്സാപ്പ് നമ്പർ നൽകുക", number: "നമ്പറുകൾ മാത്രം", minlength: "10 അക്ക നമ്പർ" },
+    house: { required: "വീട്ടുപേര് നൽകുക" },
+    place: { required: "സ്ഥലം നൽകുക" },
+    pincode: { required: "പിൻകോഡ് നൽകുക", number: "നമ്പറുകൾ മാത്രം", minlength: "6 അക്ക നമ്പർ", pinavail: "ഈ പിൻകോഡ് ലഭ്യമല്ല / തെറ്റാണ്" },
     officename: { required: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ" },
     postoffice: { required: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കൂ" },
     quantity: { required: "എത്ര ബോട്ടിൽ വേണമെന്ന് തിരഞ്ഞെടുക്കൂ" }
