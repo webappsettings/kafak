@@ -13,10 +13,18 @@ var successSubmitData;
 
 $(document).ready(function () {
 
-  // --- 1. EDIT MODE CHECK ---
+  // --- 1. LANGUAGE & URL CHECK ---
   const urlParams = new URLSearchParams(window.location.search);
-  const oid = urlParams.get('oid');
 
+  // Check Language Param from URL (&lang=en)
+  const langParam = urlParams.get('lang');
+  if (langParam && translations[langParam]) {
+    $('.lang-select').val(langParam);
+    changeLanguage(langParam);
+  }
+
+  // Check Order ID for Edit Mode
+  const oid = urlParams.get('oid');
   if (oid) {
     $('#main-loader').show();
     fetchOrderDetails(oid);
@@ -30,6 +38,12 @@ $(document).ready(function () {
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
     availablePin = false;
+    $('.pincodeEnable').slideUp(); // Hide details on edit
+    $('#officename').hide();
+    $('#postoffice').hide();
+    $('#quantity').prop('disabled', true).val('');
+    $('.price-show').hide();
+
     checkPincode(this.value.trim());
   });
 
@@ -49,45 +63,41 @@ $(document).ready(function () {
     }
   });
 
-  // Ensure Number-Only Inputs (Backup for HTML restrictions)
+  // Ensure Number-Only Inputs
   $('#phone, #whatsapp, #pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
   });
 });
 
 // ==========================================
-// 🚀 SMART WIZARD LOGIC (STEP 1 -> STEP 2)
+// 🚀 SMART WIZARD LOGIC
 // ==========================================
 
 function handleStep1() {
   const phone = $('#phone').val().replace(/\D/g, '');
-  const tempNameInput = $('#temp_name'); // Step 1 Input
+  const tempNameInput = $('#temp_name');
   const nameSection = $('#name-section');
   const btn = $('#btnNext');
 
-  // Validation
   if (phone.length !== 10) {
     alert("ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക");
     return;
   }
 
-  // CASE A: New User entering Name in Step 1
+  // CASE A: New User Step 1
   if (nameSection.is(':visible')) {
     if (tempNameInput.val().trim() === "") {
       alert("നിങ്ങളുടെ പേര് നൽകുക");
       tempNameInput.focus();
       return;
     }
-
-    // Transfer Name to Step 2 Input & Set WhatsApp
     $('#name').val(tempNameInput.val());
     $('#whatsapp').val(phone);
-
     proceedToStep2();
     return;
   }
 
-  // CASE B: Checking User (First Click)
+  // CASE B: Checking User
   const oldText = btn.text();
   btn.text("Checking...").prop('disabled', true);
 
@@ -97,10 +107,7 @@ function handleStep1() {
       btn.text(oldText).prop('disabled', false);
 
       if (response.result === 'success') {
-        // EXISTING USER -> Auto Fill
         const d = response.data;
-
-        // Fill Data in Step 2
         $('#name').val(d.name);
         $('#whatsapp').val(d.whatsapp || phone);
 
@@ -111,17 +118,13 @@ function handleStep1() {
           availablePin = true;
           checkPincode(String(d.pincode), d.postoffice);
         }
-
         proceedToStep2();
-
       } else {
-        // NEW USER -> Show Name Field in Step 1
         nameSection.slideDown();
         tempNameInput.focus();
       }
     })
     .catch(err => {
-      // Network Error -> Treat as New User
       btn.text(oldText).prop('disabled', false);
       nameSection.slideDown();
       tempNameInput.focus();
@@ -131,8 +134,6 @@ function handleStep1() {
 function proceedToStep2() {
   $('#step-1').fadeOut(200, function () {
     $('#step-2').fadeIn(200);
-
-    // Update Progress Bar
     $('#progressBar').css('width', '50%');
     $('#dot-1').addClass('completed').html('✓');
     $('#dot-2').addClass('active');
@@ -142,8 +143,6 @@ function proceedToStep2() {
 function backToStep1() {
   $('#step-2').fadeOut(200, function () {
     $('#step-1').fadeIn(200);
-
-    // Reset Progress
     $('#progressBar').css('width', '0%');
     $('#dot-1').removeClass('completed').html('1');
     $('#dot-2').removeClass('active');
@@ -154,11 +153,8 @@ function backToStep1() {
 // 📦 CORE FUNCTIONS
 // ==========================================
 
-// --- SUBMIT ORDER ---
 function submitOrder() {
   const btn = $('#submitBtn');
-
-  // Disable & Show Spinner
   btn.prop('disabled', true).html(
     `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`
   );
@@ -188,11 +184,9 @@ function submitOrder() {
     .then(data => {
       if (data.result === 'success') {
         successSubmitData = { orderid: data.orderid, timestamp: data.timestamp, data: formData };
-
         $('.main-card').hide();
         showSuccess();
         setTimeout(sendToWhatsapp, 1500);
-
       } else {
         alert('Error: ' + data.message);
         btn.prop('disabled', false).text('Try Again');
@@ -204,7 +198,6 @@ function submitOrder() {
     });
 }
 
-// --- FETCH ORDER DETAILS (For Editing) ---
 function fetchOrderDetails(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`)
     .then(res => res.text())
@@ -219,7 +212,6 @@ function fetchOrderDetails(oid) {
         const d = response.data;
         editingOrderId = d.orderid;
 
-        // Fill Data
         $('#name').val(d.name || '');
         $('#phone').val(d.phone || '');
         $('#whatsapp').val(d.whatsapp || d.phone);
@@ -230,7 +222,6 @@ function fetchOrderDetails(oid) {
 
         availablePin = true;
 
-        // Address Parsing
         try {
           let fullAddr = d.addressFull ? String(d.addressFull) : '';
           let addrParts = fullAddr.split(', ');
@@ -248,8 +239,6 @@ function fetchOrderDetails(oid) {
         }
 
         enableInputs();
-
-        // Auto-Switch to Step 2 for Editing
         proceedToStep2();
         $('#submitBtn').text('UPDATE ORDER');
 
@@ -273,7 +262,6 @@ function enableInputs() {
   $('#quantity').trigger('change');
 }
 
-// --- PINCODE CHECK ---
 async function checkPincode(pinInput, autoSelectPO = null) {
   const pin = String(pinInput).trim();
   if (!autoSelectPO) {
@@ -291,7 +279,9 @@ async function checkPincode(pinInput, autoSelectPO = null) {
         availablePin = true;
         $('#district').val(data[0].district || '');
         $('#state').val(data[0].statename || '');
-        $('.pincodeEnable').show();
+
+        $('.pincodeEnable').slideDown();
+
         $('#quantity').prop('disabled', false);
 
         const officeDropdown = $('#officename');
@@ -302,7 +292,7 @@ async function checkPincode(pinInput, autoSelectPO = null) {
           officeInput.val(poName).show();
           officeDropdown.hide().empty();
         } else {
-          officeDropdown.empty().append('<option value="">Select Post Office</option>');
+          officeDropdown.empty().append('<option value="">തിരഞ്ഞെടുക്കൂ...</option>');
           data.forEach(item => {
             officeDropdown.append(`<option value="${cleanPOName(item.officename)}">${cleanPOName(item.officename)}</option>`);
           });
@@ -329,7 +319,7 @@ function cleanPOName(name) {
   return name;
 }
 
-// --- WHATSAPP & CALCULATIONS ---
+// --- CALCULATIONS & WHATSAPP ---
 function calculateAmountString(quantityText) {
   const n = parseInt(quantityText);
   if (isNaN(n)) return '';
@@ -337,11 +327,9 @@ function calculateAmountString(quantityText) {
   const amount = n * basePrice;
   const stateVal = $('#state').val().trim().toLowerCase();
   let courierCharge = 0;
-
   if (stateVal === 'kerala') courierCharge = courierRates.kerala[n] || 0;
   else if (stateVal === 'lakshadweep') courierCharge = (n * 100) + 20;
   else courierCharge = courierRates.outside[n] || 0;
-
   return `Amount(₹): ${amount} + ${courierCharge}`;
 }
 
@@ -358,12 +346,16 @@ function sendToWhatsapp() {
   const orderid = successSubmitData.orderid;
   const orderTime = successSubmitData.timestamp;
   const d = successSubmitData.data;
-  const editLink = `kafaklife.com/order.html?oid=${orderid}`;
+
+  // 🔴 1. Get Current Language
+  const currentLang = $('.lang-select').val() || 'ml';
+
+  // 🔴 2. Append Language Param to URL
+  const editLink = `kafaklife.com/order.html?oid=${orderid}&lang=${currentLang}`;
 
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  // ⌚ Clock Icon Added
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${orderTime}_\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
@@ -391,10 +383,7 @@ _(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay �
   window.location.href = `https://wa.me/91${phone}?text=${message}`;
 }
 
-// ==========================================
-// 🌍 LANGUAGE TRANSLATION LOGIC
-// ==========================================
-
+// --- TRANSLATION ---
 const translations = {
   ml: {
     home: "ഹോം",
@@ -403,21 +392,17 @@ const translations = {
     new_user_name: "ആദ്യമായിട്ടാണല്ലോ.. പേര് എന്താണ്?",
     your_name: "നിങ്ങളുടെ പേര്",
     next_btn: "അടുത്തത് ➔",
-
     step2_title: "വിലാസം നൽകുക 🏠",
     label_name: "പേര് (വേണമെങ്കിൽ മാറ്റാം)",
     label_whatsapp: "വാട്സാപ്പ് നമ്പർ",
     ph_house: "വീട്ടുപേര്",
     ph_place: "സ്ഥലം",
     ph_pincode: "പിൻകോഡ് (6 digits)",
-
     label_qty: "എത്ര ബോട്ടിൽ വേണം? 👇",
     select_opt: "തിരഞ്ഞെടുക്കൂ...",
     ph_msg: "എന്തെങ്കിലും പറയാനുണ്ടോ? (Optional)",
-
     back_btn: "⬅ പുറകോട്ട്",
     order_btn: "ഓർഡർ ചെയ്യാം ✅",
-
     order_success: "ഓർഡർ ലഭിച്ചു!",
     redirecting: "വാട്സാപ്പിലേക്ക് പോകുന്നു..."
   },
@@ -428,45 +413,34 @@ const translations = {
     new_user_name: "First time here? What's your name?",
     your_name: "Your Name",
     next_btn: "NEXT STEP ➔",
-
     step2_title: "Delivery Address 🏠",
     label_name: "Name (Editable)",
     label_whatsapp: "WhatsApp Number",
     ph_house: "House Name / No",
     ph_place: "Place / Street",
     ph_pincode: "Pincode (6 digits)",
-
     label_qty: "Choose Quantity 👇",
     select_opt: "Select...",
     ph_msg: "Any message? (Optional)",
-
     back_btn: "⬅ Back",
     order_btn: "PLACE ORDER ✅",
-
     order_success: "Order Placed!",
     redirecting: "Redirecting to WhatsApp..."
   }
 };
 
 function changeLanguage(lang) {
-  // 1. Update Texts
   $('[data-i18n]').each(function () {
     const key = $(this).data('i18n');
-    if (translations[lang][key]) {
-      $(this).text(translations[lang][key]);
-    }
+    if (translations[lang][key]) $(this).text(translations[lang][key]);
   });
-
-  // 2. Update Placeholders
   $('[data-i18n-ph]').each(function () {
     const key = $(this).data('i18n-ph');
-    if (translations[lang][key]) {
-      $(this).attr('placeholder', translations[lang][key]);
-    }
+    if (translations[lang][key]) $(this).attr('placeholder', translations[lang][key]);
   });
 }
 
-// --- FORM VALIDATION ---
+// --- VALIDATION ---
 jQuery.validator.addMethod("pinavail", function (value, element) {
   return this.optional(element) || availablePin;
 }, 'പിൻകോഡ് തെറ്റാണ്!');
@@ -474,7 +448,7 @@ jQuery.validator.addMethod("pinavail", function (value, element) {
 $("#order-form").validate({
   errorElement: 'span',
   errorClass: 'error text-danger',
-  ignore: ":hidden", // Ignore hidden inputs in Step 1 when in Step 2
+  ignore: ":hidden:not(#officename)",
   rules: {
     name: { required: true },
     phone: { required: true, number: true, minlength: 10, maxlength: 10 },
@@ -482,6 +456,7 @@ $("#order-form").validate({
     house: { required: true },
     place: { required: true },
     pincode: { required: true, number: true, minlength: 6, pinavail: true },
+    officename: { required: true },
     quantity: { required: true }
   },
   messages: {
@@ -491,6 +466,7 @@ $("#order-form").validate({
     house: { required: "വീട്ടുപേര് നൽകുക" },
     place: { required: "സ്ഥലം നൽകുക" },
     pincode: { required: "പിൻകോഡ് നൽകുക", pinavail: "തെറ്റായ പിൻകോഡ്" },
+    officename: { required: "പോസ്റ്റ് ഓഫീസ് നിർബന്ധമാണ്" },
     quantity: { required: "എണ്ണം തിരഞ്ഞെടുക്കൂ" }
   },
   submitHandler: function (form) {
