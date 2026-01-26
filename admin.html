@@ -265,91 +265,111 @@
 
 <body>
 
-    <nav class="navbar d-flex justify-content-between align-items-center">
-        <span class="navbar-brand mb-0 h1"><i class="fas fa-honey-pot"></i> KAFAK Admin</span>
-        <div class="d-flex gap-2">
-            <button class="btn btn-sm btn-outline-light" onclick="printSelected()"><i class="fas fa-print"></i>
-                Print</button>
-            <button class="btn btn-sm btn-logout" type="button" onclick="logoutAdmin()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </div>
-    </nav>
-
-    <div class="search-area shadow-sm">
-        <div class="input-group">
-            <span class="input-group-text bg-light border-0"><i class="fas fa-search text-muted"></i></span>
-            <input type="text" id="searchInput" class="form-control border-0 bg-light"
-                placeholder="Search by name, phone or ID..." onkeyup="filterOrders()">
+    <div id="login-section">
+        <div class="login-card">
+            <h4 class="fw-bold mb-1" style="color:#1b5e20;">KAFAK Admin</h4>
+            <p class="text-muted small mb-4">Dashboard ആക്സസ് ചെയ്യാൻ ലോഗിൻ ചെയ്യുക</p>
+            <input type="text" id="adminUser" class="form-control mb-3" placeholder="Username">
+            <input type="password" id="adminPass" class="form-control mb-4" placeholder="Password">
+            <button class="btn btn-success w-100 fw-bold" onclick="attemptLogin()">LOGIN</button>
+            <p id="loginMsg" class="text-danger small mt-3"></p>
         </div>
     </div>
 
-    <ul class="nav nav-tabs sticky-top" id="adminTabs" role="tablist">
-        <li class="nav-item flex-fill text-center">
-            <button class="nav-link active w-100" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending-pane"
-                type="button">
-                NEW <span id="count-pending" class="badge bg-danger badge-count">0</span>
-            </button>
-        </li>
-        <li class="nav-item flex-fill text-center">
-            <button class="nav-link w-100" id="paid-tab" data-bs-toggle="tab" data-bs-target="#paid-pane" type="button">
-                PAID <span id="count-paid" class="badge bg-warning text-dark badge-count">0</span>
-            </button>
-        </li>
-        <li class="nav-item flex-fill text-center">
-            <button class="nav-link w-100" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent-pane" type="button">
-                SENT <span id="count-dispatched" class="badge bg-success badge-count">0</span>
-            </button>
-        </li>
-    </ul>
+    <div id="dashboard-section">
 
-    <div class="container-fluid mt-3 tab-content">
-
-        <div id="loader" class="text-center py-5">
-            <div class="spinner-border text-success" role="status"></div>
-            <p class="mt-2 text-muted fw-bold">Fetching Data...</p>
-        </div>
-
-        <div class="tab-pane fade show active" id="pending-pane" role="tabpanel">
-            <div id="list-pending" class="row"></div>
-        </div>
-
-        <div class="tab-pane fade" id="paid-pane" role="tabpanel">
-            <div class="d-grid gap-2 mb-3">
-                <button class="btn btn-success fw-bold p-3 shadow-sm rounded-pill" onclick="startScanner('dispatch')">
-                    <i class="fas fa-qrcode"></i> SCAN TO DISPATCH
+        <nav class="navbar d-flex justify-content-between align-items-center">
+            <span class="navbar-brand mb-0 h1"><i class="fas fa-honey-pot"></i> KAFAK Admin</span>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-light" onclick="printSelected()"><i class="fas fa-print"></i>
+                    Print</button>
+                <button class="btn btn-sm btn-logout" type="button" onclick="logoutAdmin()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
-            <div id="list-paid" class="row"></div>
-        </div>
+        </nav>
 
-        <div class="tab-pane fade" id="sent-pane" role="tabpanel">
-            <div class="d-grid gap-2 mb-3">
-                <button class="btn btn-primary fw-bold p-3 shadow-sm rounded-pill" onclick="startScanner('tracking')">
-                    <i class="fas fa-barcode"></i> SCAN TRACKING SLIP
-                </button>
+        <div class="search-area shadow-sm">
+            <div class="input-group">
+                <span class="input-group-text bg-light border-0"><i class="fas fa-search text-muted"></i></span>
+                <input type="text" id="searchInput" class="form-control border-0 bg-light"
+                    placeholder="Search by name, phone or ID..." onkeyup="filterOrders()">
             </div>
-            <div id="list-dispatched" class="row"></div>
         </div>
 
-    </div>
+        <ul class="nav nav-tabs sticky-top" id="adminTabs" role="tablist">
+            <li class="nav-item flex-fill text-center">
+                <button class="nav-link active w-100" id="pending-tab" data-bs-toggle="tab"
+                    data-bs-target="#pending-pane" type="button">
+                    NEW <span id="count-pending" class="badge bg-danger badge-count">0</span>
+                </button>
+            </li>
+            <li class="nav-item flex-fill text-center">
+                <button class="nav-link w-100" id="paid-tab" data-bs-toggle="tab" data-bs-target="#paid-pane"
+                    type="button">
+                    PAID <span id="count-paid" class="badge bg-warning text-dark badge-count">0</span>
+                </button>
+            </li>
+            <li class="nav-item flex-fill text-center">
+                <button class="nav-link w-100" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent-pane"
+                    type="button">
+                    SENT <span id="count-dispatched" class="badge bg-success badge-count">0</span>
+                </button>
+            </li>
+        </ul>
 
-    <div id="scanner-modal">
-        <div class="text-center mb-4">
-            <h4 id="scan-instruction" class="text-white fw-bold">Point Camera at QR</h4>
-            <div class="spinner-grow text-warning spinner-grow-sm"></div>
+        <div class="container-fluid mt-3 tab-content">
+
+            <div id="loader" class="text-center py-5">
+                <div class="spinner-border text-success" role="status"></div>
+                <p class="mt-2 text-muted fw-bold">Fetching Data...</p>
+            </div>
+
+            <div class="tab-pane fade show active" id="pending-pane" role="tabpanel">
+                <div id="list-pending" class="row"></div>
+            </div>
+
+            <div class="tab-pane fade" id="paid-pane" role="tabpanel">
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-success fw-bold p-3 shadow-sm rounded-pill"
+                        onclick="startScanner('dispatch')">
+                        <i class="fas fa-qrcode"></i> SCAN TO DISPATCH
+                    </button>
+                </div>
+                <div id="list-paid" class="row"></div>
+            </div>
+
+            <div class="tab-pane fade" id="sent-pane" role="tabpanel">
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-primary fw-bold p-3 shadow-sm rounded-pill"
+                        onclick="startScanner('tracking')">
+                        <i class="fas fa-barcode"></i> SCAN TRACKING SLIP
+                    </button>
+                </div>
+                <div id="list-dispatched" class="row"></div>
+            </div>
+
         </div>
-        <div id="reader"></div>
-        <button class="btn btn-outline-light mt-4 rounded-pill px-5 fw-bold" onclick="stopScanner()">CANCEL
-            SCAN</button>
+
+        <div id="scanner-modal">
+            <div class="text-center mb-4">
+                <h4 id="scan-instruction" class="text-white fw-bold">Point Camera at QR</h4>
+                <div class="spinner-grow text-warning spinner-grow-sm"></div>
+            </div>
+            <div id="reader"></div>
+            <button class="btn btn-outline-light mt-4 rounded-pill px-5 fw-bold" onclick="stopScanner()">CANCEL
+                SCAN</button>
+        </div>
+
+        <div id="print-area"></div>
+
+
+        <button class="btn btn-sm btn-outline-warning" onclick="resetAdminStorage()">
+            <i class="fas fa-trash-alt"></i> Reset Storage
+        </button>
+
+
     </div>
-
-    <div id="print-area"></div>
-
-
-    <button class="btn btn-sm btn-outline-warning" onclick="resetAdminStorage()">
-        <i class="fas fa-trash-alt"></i> Reset Storage
-    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin.js"></script>
