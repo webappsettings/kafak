@@ -1,163 +1,255 @@
-// 🔐 PAGE ACCESS SECURITY CHECK
-if (localStorage.getItem('kafakAdminLoggedIn') !== 'true') {
-    window.location.href = "admin.html"; // ലോഗിൻ ചെയ്തിട്ടില്ലെങ്കിൽ ലോഗിൻ സെക്ഷനിലേക്ക് മാറ്റുന്നു
+// 🔴 1. GOOGLE SCRIPT URL
+const scriptURL = "https://script.google.com/macros/s/AKfycbw4fdoIOOqpDJEnIDzJR4BgfvSr5D9X7A-yzsK9EWU4AyGU8sZ6CWnnDcIH6tAN29HaSQ/exec";
+
+window.onload = function () {
+    if (localStorage.getItem('kafakAdminLoggedIn') === 'true') {
+        showDashboard();
+    } else {
+        document.getElementById('login-section').style.display = 'flex';
+        document.getElementById('dashboard-section').style.display = 'none';
+    }
+};
+
+function attemptLogin() {
+    const user = document.getElementById('adminUser').value;
+    const pass = document.getElementById('adminPass').value;
+
+    if (user === "admin" && pass === "kafak123") {
+        localStorage.setItem('kafakAdminLoggedIn', 'true');
+        localStorage.setItem('kafakAdmin', 'true');
+        showDashboard();
+    } else {
+        document.getElementById('loginMsg').innerText = "❌ തെറ്റായ വിവരങ്ങൾ!";
+    }
 }
 
-// 🔴 1. GOOGLE SCRIPT URL (Replace with your deployment URL)
-const scriptURL = "https://script.google.com/macros/s/AKfycbzQErIZrh_LBrysFtBmOrR_kPmHH1nOcW9jy6mfUrKs7IVTvBUBdYGvkenSONYOsFna/exec";
+function showDashboard() {
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('dashboard-section').style.display = 'block';
+    fetchOrders();
+}
 
-let allOrders = [];
-let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+// ലോഗൗട്ട് ഫങ്ക്ഷൻ - ക്ലീൻ ആക്കിയത്
+function logoutAdmin() {
+    if (confirm("Logout ചെയ്യാൻ ഉറപ്പാണോ?")) {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+}
 
-// Courier Rates for display (Optional)
 const courierRates = {
     kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
     outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// --- INITIAL LOAD ---
-document.addEventListener('DOMContentLoaded', () => {
-    fetchOrders();
-});
+let allOrders = [];
+let html5QrCode;
+let scanMode = '';
+let scanStep = 0;
+let tempOid = null;
 
-// 1. ഓർഡറുകൾ സെർവറിൽ നിന്ന് ലോഡ് ചെയ്യുന്നു
 function fetchOrders() {
-    $('#loader').show();
+    document.getElementById('loader').style.display = 'block';
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
         .then(response => {
-            $('#loader').hide();
+            document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 allOrders = response.data;
-                renderTabs(); // ലോഡ് ചെയ്ത ശേഷം ലിസ്റ്റ് കാണിക്കുന്നു
+                renderTabs(allOrders);
             }
         })
         .catch(err => {
-            $('#loader').html(`<p class="text-danger">Error loading data. Check Internet.</p>`);
+            document.getElementById('loader').innerHTML = `<p class="text-danger">Network Error!</p>`;
         });
 }
 
-// 2. ലിസ്റ്റ് റെൻഡർ ചെയ്യുന്നു (സെർച്ച് + ലോക്കൽ ഓവർറൈഡ്)
-function renderTabs() {
-    const term = $('#searchInput').val() ? $('#searchInput').val().toLowerCase() : "";
-    const lists = {
-        pending: $('#list-pending').empty(),
-        sent: $('#list-sent').empty(),
-        paid: $('#list-paid').empty()
-    };
+function renderTabs(orders) {
+    const pendingList = document.getElementById('list-pending');
+    const paidList = document.getElementById('list-paid');
+    const dispatchedList = document.getElementById('list-dispatched');
 
-    let counts = { p: 0, s: 0, pd: 0 };
+    pendingList.innerHTML = ''; paidList.innerHTML = ''; dispatchedList.innerHTML = '';
+    let counts = { pending: 0, paid: 0, dispatched: 0 };
 
-    allOrders.forEach((d, i) => {
-        // ലോക്കൽ മാറ്റം ഉണ്ടോ എന്ന് നോക്കുന്നു
-        let local = pendingUpdates.find(item => item.oid === d.orderid);
-        let status = local ? local.status : (d.Status || 'Pending');
-
-        // സെർച്ച് ഫിൽട്ടർ (Name, Phone, ID)
-        const name = d.name ? d.name.toLowerCase() : "";
-        const phone = d.phone ? d.phone.toString() : "";
-        const oid = d.orderid ? d.orderid.toLowerCase() : "";
-
-        if (name.includes(term) || phone.includes(term) || oid.includes(term)) {
-            let cardHTML = createCardHTML(d, i, status);
-
-            if (status === 'Pending') { counts.p++; lists.pending.append(cardHTML); }
-            else if (status === 'Sent') { counts.s++; lists.sent.append(cardHTML); }
-            else if (status === 'Paid' || status === 'Paided') { counts.pd++; lists.paid.append(cardHTML); }
+    orders.forEach((d, i) => {
+        let status = d.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent') {
+            counts.pending++;
+            pendingList.innerHTML += createCardHTML(d, i, 'pending');
+        } else if (status === 'Paid') {
+            counts.paid++;
+            paidList.innerHTML += createCardHTML(d, i, 'paid');
+        } else if (status === 'Dispatched') {
+            counts.dispatched++;
+            dispatchedList.innerHTML += createCardHTML(d, i, 'dispatched');
         }
     });
 
-    // ബാഡ്ജ് കൗണ്ടുകൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-    $('#count-pending').text(counts.p);
-    $('#count-sent').text(counts.s); // പകരമായി Sent ടാബ് ഉണ്ടെങ്കിൽ
-    $('#count-paid').text(counts.pd);
-
-    // സിങ്ക് ബട്ടൺ അപ്‌ഡേറ്റ്
-    const syncBtn = $('#sync-btn');
-    if (pendingUpdates.length > 0) {
-        syncBtn.show().html(`🔄 SYNC UPDATES (${pendingUpdates.length})`);
-    } else {
-        syncBtn.hide();
-    }
+    document.getElementById('count-pending').innerText = counts.pending;
+    document.getElementById('count-paid').innerText = counts.paid;
+    document.getElementById('count-dispatched').innerText = counts.dispatched;
 }
 
-// 3. കാർഡ് നിർമ്മാണം (Dynamic HTML)
-function createCardHTML(d, index, status) {
-    let priceText = calculatePrice(d.quantity, d.state || "kerala");
-    let editLink = `order.html?oid=${d.orderid}`;
+function createCardHTML(d, index, type) {
+    let priceInfo = calculatePriceInfo(d.quantity, d.state);
+    let safe = (val) => (val || '').toString().toUpperCase();
+    let statusBadge = '', buttons = '', tickMark = '';
+
+    if (type === 'pending') {
+        if (d.Status === 'Sent') {
+            statusBadge = '<span class="badge bg-info text-dark">Invoice Sent ⏳</span>';
+            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
+                       <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
+        } else {
+            statusBadge = '<span class="badge bg-warning text-dark">New</span>';
+            buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+        }
+    } else if (type === 'paid') {
+        statusBadge = '<span class="badge bg-warning text-dark">Paid ✅</span>';
+        buttons = `<button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
+                   <input type="checkbox" class="order-cb ms-2" value="${index}">`;
+    } else if (type === 'dispatched') {
+        statusBadge = '<span class="badge bg-success">Dispatched</span>';
+        tickMark = '<i class="fas fa-check-circle text-success fs-4 position-absolute top-0 end-0 m-2"></i>';
+        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 Add Tracking</button>`;
+    }
 
     return `
-    <div class="col-12 col-md-6 mb-3">
-        <div class="card order-card shadow-sm border-0 rounded-4">
-            <div class="card-body p-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="badge bg-light text-dark fw-bold">#${d.orderid}</span>
-                    <span class="badge ${status === 'Paid' ? 'bg-success' : 'bg-warning text-dark'}">${status.toUpperCase()}</span>
-                </div>
-                <h5 class="fw-bold mb-1">${d.name.toUpperCase()}</h5>
-                <p class="text-muted small mb-2">${d.place}, ${d.district}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-success">${priceText}</span>
-                    <a href="${editLink}" class="btn btn-sm btn-outline-primary rounded-pill px-3">Open Link</a>
-                </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="order-card status-${d.Status}">
+            ${tickMark}
+            <div class="card-header-row">
+                <span class="order-id">#${d.orderid}</span>
+                ${statusBadge}
             </div>
+            <div class="cust-name">${safe(d.name)}</div>
+            <div class="cust-details">${safe(d.place)}, ${safe(d.district)}</div>
+            <div class="info-box">
+                <b>${d.quantity} Bottles</b>
+                <div class="text-success fw-bold">${priceInfo.total}</div>
+            </div>
+            <div class="action-area">${buttons}</div>
         </div>
     </div>`;
 }
 
-// 4. സെർവറിലേക്ക് സിങ്ക് ചെയ്യുന്നു
-function syncWithServer() {
-    if (pendingUpdates.length === 0) return;
-    if (!confirm(`${pendingUpdates.length} മാറ്റങ്ങൾ സെർവറിൽ സേവ് ചെയ്യട്ടെ?`)) return;
+// കൂടുതൽ വിശ്വസനീയമായ അപ്‌ഡേറ്റ് ഫങ്ക്ഷൻ
+async function updateOrder(oid, status) {
+    if (!confirm(`Update #${oid} to ${status}?`)) return;
 
-    const btn = $('#sync-btn');
-    btn.prop('disabled', true).text('Syncing...');
+    // UI പെട്ടെന്ന് മാറ്റുന്നു
+    const order = allOrders.find(o => o.orderid === oid);
+    if (order) order.Status = status;
+    renderTabs(allOrders);
 
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({
-            action: 'bulkUpdateStatus',
-            updates: pendingUpdates
-        })
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.result === 'success') {
-                localStorage.removeItem('pendingUpdates');
-                // ലോക്കൽ ബട്ടൺ സ്റ്റേറ്റുകളും ക്ലിയർ ചെയ്യുന്നു
-                Object.keys(localStorage).forEach(key => {
-                    if (key.startsWith('sent_') || key.startsWith('paid_')) localStorage.removeItem(key);
-                });
-                pendingUpdates = [];
-                alert("വിജയകരമായി സിങ്ക് ചെയ്തു! ✅");
-                fetchOrders();
-            }
-        })
-        .catch(err => {
-            alert("Sync Error! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
-            btn.prop('disabled', false).text('Retry Sync');
+    try {
+        await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'updateStatus', oid: oid, status: status })
         });
+    } catch (e) {
+        alert("Server Update Failed! Please Refresh.");
+    }
 }
 
-// ഹെൽപ്പർ: പ്രൈസ് കാൽക്കുലേഷൻ
-function calculatePrice(qty, state) {
-    let n = parseInt(qty) || 0;
-    let base = n * 650;
-    let s = state.toLowerCase();
-    let courier = s === 'kerala' ? courierRates.kerala[n] : courierRates.outside[n];
-    if (s === 'lakshadweep') courier = (n * 100) + 20;
-    return `₹${base + (courier || 0)}/-`;
+function calculatePriceInfo(qty, state) {
+    const n = parseInt(qty) || 0;
+    const basePrice = n * 650;
+    const s = String(state || '').toLowerCase().trim();
+    let rates = (s === 'kerala') ? courierRates.kerala : courierRates.outside;
+
+    // നിരക്ക് കണ്ടുപിടിക്കുന്നു (ഇല്ലാത്ത എണ്ണം വന്നാൽ അടുത്ത നിരക്ക് എടുക്കും)
+    let courierCharge = rates[n] || rates[n + 1] || rates[n + 2] || rates[10] || 0;
+
+    if (s === 'lakshadweep') courierCharge = (n * 100) + 20;
+    return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// സെർച്ച് ഫങ്ക്ഷൻ
+function printSelected() {
+    const selected = document.querySelectorAll('.order-cb:checked');
+    if (selected.length === 0) { alert("Select orders!"); return; }
+
+    const area = document.getElementById('print-area');
+    area.innerHTML = '';
+
+    selected.forEach(cb => {
+        const d = allOrders[cb.value];
+        const safe = (val) => (val || '').toString().toUpperCase();
+        area.innerHTML += `
+        <div class="label-page">
+            <div class="header-sec"><div id="qrcode-${cb.value}" class="qr-box"></div><svg id="barcode-${cb.value}"></svg></div>
+            <div class="cust-details-print">${safe(d.name)}<br>${safe(d.place)}<br>${safe(d.district)}</div>
+            <div style="font-weight:900;">PIN: ${d.pincode}</div>
+            <div style="border:1px solid black; padding:2px; display:inline-block;">PH: ${d.phone}</div>
+        </div>`;
+    });
+
+    setTimeout(() => {
+        selected.forEach(cb => {
+            const d = allOrders[cb.value];
+            JsBarcode(`#barcode-${cb.value}`, d.orderid, { height: 30, displayValue: false });
+            // QR Code ലിങ്ക് ശരിയാക്കി
+            new QRCode(document.getElementById(`qrcode-${cb.value}`), {
+                text: `https://www.google.com/maps/search/${d.place},${d.district}`,
+                width: 50, height: 50
+            });
+        });
+        setTimeout(() => window.print(), 500);
+    }, 500);
+}
+
+// ബാക്കിയുള്ള Scanner, WhatsApp ഫങ്ക്ഷനുകൾ മാറ്റമില്ലാതെ തുടരാം...
+
+// --- SCANNER LOGIC ---
+function startScanner(mode, specificOid) {
+    scanMode = mode; tempOid = specificOid || null; scanStep = mode === 'tracking' && tempOid ? 2 : 1;
+    document.getElementById('scanner-modal').style.display = 'flex';
+    html5QrCode = new Html5Qrcode("reader");
+    html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
+}
+
+function stopScanner() { if (html5QrCode) html5QrCode.stop().then(() => document.getElementById('scanner-modal').style.display = 'none'); }
+
+function onScanSuccess(decodedText) {
+    if (scanMode === 'dispatch' && decodedText.startsWith("ORD-")) {
+        if (confirm(`Dispatch ${decodedText}?`)) { updateOrder(decodedText, 'Dispatched'); stopScanner(); }
+    } else if (scanMode === 'tracking') {
+        if (scanStep === 2 && !decodedText.startsWith("ORD-")) {
+            if (confirm(`Link Tracking ${decodedText} to ${tempOid}?`)) {
+                fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: tempOid, tracking: decodedText }) })
+                    .then(res => res.json()).then(d => { if (d.result === 'success') { alert("Saved!"); fetchOrders(); stopScanner(); } });
+            }
+        }
+    }
+}
+
+// --- UTILS ---
+function calculatePriceInfo(qty, state) {
+    const n = parseInt(qty) || 0; const basePrice = n * 650; let courierCharge = 0; const s = String(state || '').toLowerCase().trim();
+    if (s === 'lakshadweep') courierCharge = (n * 100) + 20; else if (s === 'kerala') courierCharge = courierRates.kerala[n] || 0; else courierCharge = courierRates.outside[n] || 0;
+    return { total: `₹${basePrice + courierCharge}/-` };
+}
+
 function filterOrders() {
-    renderTabs();
+    const term = document.getElementById('searchInput').value.toLowerCase();
+    renderTabs(allOrders.filter(o => (o.name || '').toLowerCase().includes(term) || String(o.phone).includes(term) || (o.orderid || '').toLowerCase().includes(term)));
 }
 
+// --- അഡ്മിൻ ലോഗൗട്ട് ഫങ്ക്ഷൻ ---
 function logoutAdmin() {
-    if (confirm("Logout ചെയ്യട്ടെ?")) {
+    if (confirm("Logout ചെയ്യാൻ ഉറപ്പാണോ?")) {
+        // 1. അഡ്മിൻ ലോഗിൻ വിവരങ്ങൾ ഒഴിവാക്കുന്നു
         localStorage.removeItem('kafakAdminLoggedIn');
+
+        // 2. ഓർഡർ ലിങ്കുകളിൽ 'Mark Paid' വരുന്നത് ഒഴിവാക്കുന്നു
         localStorage.removeItem('kafakAdmin');
-        location.reload();
+
+        // 3. പേജ് ലോഗിൻ സ്ക്രീനിലേക്ക് കൊണ്ടുപോകുന്നു (ഉദാഹരണത്തിന് login.html ഉണ്ടെങ്കിൽ)
+        // അല്ലെങ്കിൽ ഇൻഡക്സ് പേജിലേക്ക് റീഡയറക്ട് ചെയ്യുക
+        window.location.href = "index.html";
+
+        // ഇൻഡക്സ് പേജ് ഇല്ലെങ്കിൽ മാത്രം താഴെയുള്ളത് ഉപയോഗിക്കുക
+        // location.reload(); 
     }
 }
