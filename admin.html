@@ -3,334 +3,337 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kafak Admin Login</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAFAK Admin | Manage Orders</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
         body {
-            background-color: #eef2f5;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* LOGIN STYLE */
-        .login-container {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .login-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .btn-login {
-            background: linear-gradient(135deg, #2e7d32, #66bb6a);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            width: 100%;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        .btn-login:active {
-            transform: scale(0.98);
-        }
-
-        /* DASHBOARD STYLE */
-        #dashboard-section {
-            display: none;
-            padding-bottom: 100px;
+            background: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .navbar {
-            background: #fff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-            padding: 15px 0;
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            color: #1b5e20 !important;
-            font-size: 20px;
-        }
-
-        /* 🔴 BEAUTIFUL CARD DESIGN */
-        .order-card {
-            border: none;
-            border-radius: 16px;
-            background: #fff;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            margin-bottom: 20px;
-            overflow: hidden;
-            transition: transform 0.2s ease;
-        }
-
-        .order-card:active {
-            transform: scale(0.99);
-        }
-
-        .card-header-custom {
-            background: linear-gradient(to right, #f1f8e9, #fff);
-            padding: 15px 20px;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .order-id {
-            font-weight: 700;
-            color: #37474f;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        .card-body-custom {
-            padding: 20px;
-        }
-
-        .customer-name {
-            font-size: 17px;
-            font-weight: 700;
-            color: #263238;
-            margin-bottom: 2px;
-        }
-
-        .customer-phone {
-            font-size: 13px;
-            color: #78909c;
-            font-weight: 500;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .order-details-box {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border: 1px solid #eef2f3;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .detail-label {
-            color: #90a4ae;
-            font-size: 12px;
-        }
-
-        .detail-value {
-            font-weight: 600;
-            color: #455a64;
-        }
-
-        .price-value {
-            color: #2e7d32;
-            font-weight: 700;
-        }
-
-        .address-text {
-            font-size: 13px;
-            color: #546e7a;
-            line-height: 1.5;
-            margin-top: 10px;
-            border-top: 1px dashed #cfd8dc;
-            padding-top: 10px;
-        }
-
-        /* Badges */
-        .status-badge {
-            font-size: 11px;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .bg-pending {
-            background-color: #fff8e1;
-            color: #fbc02d;
-        }
-
-        .bg-dispatched {
-            background-color: #e1f5fe;
-            color: #039be5;
-        }
-
-        .bg-completed {
-            background-color: #e8f5e9;
-            color: #43a047;
-        }
-
-        /* Buttons */
-        .btn-action {
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 10px;
-            border: none;
-        }
-
-        .btn-whatsapp {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .btn-print {
-            background: #eceff1;
-            color: #455a64;
-        }
-
-        .btn-whatsapp:active,
-        .btn-print:active {
-            filter: brightness(0.95);
-        }
-
-        /* Floating Button */
-        .fab-container {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999;
-            width: 90%;
-            max-width: 400px;
-            background: white;
-            padding: 10px;
-            border-radius: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-scan-fab {
-            border-radius: 30px;
-            height: 50px;
-            font-weight: 700;
-            border: none;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .scan-dispatch {
             background: #2e7d32;
             color: white;
         }
 
-        .scan-tracking {
-            background: #e53935;
-            color: white;
+        .card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
         }
 
-        /* Modal */
-        #scanner-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
+        /* --- A6 PRINT DESIGN (Based on your Image) --- */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #print-area,
+            #print-area * {
+                visibility: visible;
+            }
+
+            #print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+
+            @page {
+                size: A6;
+                margin: 0;
+            }
+
+            /* Set Paper Size to A6 */
+
+            .print-page {
+                width: 105mm;
+                height: 148mm;
+                padding: 10mm;
+                position: relative;
+                background: white;
+                page-break-after: always;
+                /* Force new page for each label */
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            .to-section {
+                flex-grow: 1;
+            }
+
+            .to-label {
+                font-size: 18px;
+                font-weight: 800;
+                margin-bottom: 5px;
+            }
+
+            .cust-name {
+                font-size: 20px;
+                font-weight: 800;
+                text-transform: uppercase;
+                line-height: 1.2;
+            }
+
+            .cust-address {
+                font-size: 15px;
+                font-weight: 600;
+                text-transform: uppercase;
+                line-height: 1.3;
+                margin-top: 5px;
+            }
+
+            .phone-box {
+                border: 2px solid #333;
+                border-radius: 10px;
+                padding: 5px 10px;
+                margin-top: 15px;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background: #fff;
+            }
+
+            .phone-icon {
+                font-size: 24px;
+            }
+
+            .phone-numbers {
+                font-size: 16px;
+                font-weight: 800;
+            }
+
+            .footer-section {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                margin-top: auto;
+                padding-top: 10px;
+            }
+
+            .fragile-icon {
+                color: #d32f2f;
+                text-align: center;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+            .fragile-svg {
+                width: 50px;
+                height: 60px;
+                fill: #d32f2f;
+            }
+
+            .from-address {
+                font-size: 11px;
+                font-weight: 600;
+                text-align: right;
+                width: 60%;
+                line-height: 1.3;
+            }
+        }
+
+        /* Hide Print Area on Screen */
+        #print-area {
             display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
-        #reader {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+        @media print {
+            #print-area {
+                display: block;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div id="login-section" class="login-container">
-        <div class="login-card">
-            <h1 style="font-size: 50px; margin-bottom: 10px;">🍯</h1>
-            <h4 style="font-weight:700; color:#2e7d32; margin-bottom: 5px;">Admin Portal</h4>
-            <p class="text-muted small mb-4">Secure Login</p>
-
-            <div class="mb-3 text-start">
-                <label class="form-label small fw-bold text-muted">Username</label>
-                <input type="text" id="adminUser" class="form-control form-control-lg" placeholder="Enter username">
-            </div>
-            <div class="mb-4 text-start">
-                <label class="form-label small fw-bold text-muted">Password</label>
-                <input type="password" id="adminPass" class="form-control form-control-lg" placeholder="••••••">
-            </div>
-            <button class="btn-login" onclick="attemptLogin()" id="loginBtn">ACCESS DASHBOARD</button>
-            <p id="loginMsg" class="text-danger small mt-3 fw-bold"></p>
+    <nav class="navbar navbar-dark p-3 mb-4">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 fw-bold">KAFAK Admin Panel 🍯</span>
+            <button class="btn btn-light btn-sm fw-bold" onclick="printSelected()">🖨️ Print Selected Labels</button>
         </div>
+    </nav>
+
+    <div class="container-fluid px-4">
+
+        <div class="card p-3">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Location</th>
+                            <th>Contact Mode</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderTableBody">
+                        <tr>
+                            <td colspan="7" class="text-center p-3">Loading Orders...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
-    <div id="dashboard-section">
-        <nav class="navbar sticky-top">
-            <div class="container">
-                <span class="navbar-brand">🍯 KAFAK Admin</span>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="loadOrders()">Sync
-                        🔄</button>
-                    <button class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="logout()">Exit</button>
+    <div id="print-area"></div>
+
+    <script>
+        // 🔴 UPDATE YOUR SCRIPT URL HERE
+        const scriptURL = "https://script.google.com/macros/s/AKfycby_1PorN19SVT-nghojK6v6Qv0vdUUAJx9v5rXlDuQw1ruPXIRTaC-ymjhYGjOszGDkRw/exec";
+
+        let allOrders = [];
+
+        // Load Orders on Page Load
+        fetch(`${scriptURL}?action=getAllOrders`)
+            .then(res => res.json())
+            .then(response => {
+                if (response.result === 'success') {
+                    allOrders = response.data;
+                    renderTable(allOrders);
+                } else {
+                    alert("Failed to load orders");
+                }
+            });
+
+        function renderTable(orders) {
+            const tbody = document.getElementById('orderTableBody');
+            tbody.innerHTML = '';
+
+            orders.forEach((order, index) => {
+                // Formatting Date
+                let dateObj = new Date(order.timestamp);
+                let dateStr = dateObj.toLocaleDateString('en-IN');
+
+                let row = `
+                <tr>
+                    <td><input type="checkbox" class="order-checkbox" value="${index}"></td>
+                    <td><span class="badge bg-secondary">${order.orderid}</span></td>
+                    <td class="small">${dateStr}</td>
+                    <td>
+                        <div class="fw-bold">${order.name}</div>
+                        <div class="small text-muted">${order.phone}</div>
+                    </td>
+                    <td class="small">${order.place}, ${order.district}</td>
+                    
+                    <td>
+                        <select class="form-select form-select-sm" id="contact-select-${index}" style="width: 140px;">
+                            <option value="${order.whatsapp}">WhatsApp (${order.whatsapp})</option>
+                            <option value="${order.phone}">Phone (${order.phone})</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-success btn-sm" onclick="sendWhatsApp(${index})">
+                            <i class="fab fa-whatsapp"></i> Send
+                        </button>
+                    </td>
+                </tr>
+            `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // --- SEND WHATSAPP LOGIC ---
+        function sendWhatsApp(index) {
+            const order = allOrders[index];
+
+            // 🔴 Get the selected number from Dropdown
+            const selectedNumber = document.getElementById(`contact-select-${index}`).value;
+
+            // Message Content
+            const msg = `Hi ${order.name}, your order for Kafak Honey is packed! 🍯\nID: ${order.orderid}\nWe will ship it soon.`;
+
+            // Open WhatsApp
+            window.open(`https://wa.me/91${selectedNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // --- BULK PRINT LOGIC (A6 BEAUTIFUL) ---
+        function toggleSelectAll() {
+            const checkboxes = document.querySelectorAll('.order-checkbox');
+            const selectAll = document.getElementById('selectAll');
+            checkboxes.forEach(cb => cb.checked = selectAll.checked);
+        }
+
+        function printSelected() {
+            const checkboxes = document.querySelectorAll('.order-checkbox:checked');
+            if (checkboxes.length === 0) {
+                alert("Please select at least one order to print!");
+                return;
+            }
+
+            const printArea = document.getElementById('print-area');
+            printArea.innerHTML = ''; // Clear previous
+
+            checkboxes.forEach(cb => {
+                const index = cb.value;
+                const order = allOrders[index];
+                const labelHTML = createA6Label(order);
+                printArea.innerHTML += labelHTML;
+            });
+
+            window.print();
+        }
+
+        // --- GENERATE LABEL HTML (Matches your Image) ---
+        function createA6Label(d) {
+            // Handle undefined postoffice
+            let poText = d.postoffice ? `${d.postoffice},` : '';
+
+            return `
+            <div class="print-page">
+                <div class="to-section">
+                    <div class="to-label">To,</div>
+                    <div class="cust-name">${d.name}</div>
+                    <div class="cust-address">
+                        ${d.house}<br>
+                        ${d.place}, ${poText}<br>
+                        ${d.district}, KERALA<br>
+                        PIN: ${d.pincode}
+                    </div>
+                    
+                    <div class="phone-box">
+                        <span class="phone-icon">📞</span>
+                        <div class="phone-numbers">
+                            ${d.phone}${d.whatsapp && d.whatsapp !== d.phone ? ', ' + d.whatsapp : ''}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="fragile-icon">
+                        <svg class="fragile-svg" viewBox="0 0 24 24">
+                            <path d="M18.1,5.1c0,0-2.2-2.8-2.6-3.2C15.1,1.5,14.6,1.2,14,1.2h-4c-0.6,0-1.1,0.3-1.5,0.7C8.1,2.3,5.9,5.1,5.9,5.1 C5.3,5.8,5,6.7,5,7.6v5.8c0,1.9,1.1,3.6,2.8,4.4v3h-1v2h10.4v-2h-1v-3c1.7-0.8,2.8-2.5,2.8-4.4V7.6C19,6.7,18.7,5.8,18.1,5.1z M10.4,4.2L11,3.5l3.5,6l0.9-0.5L11.5,2.5l0.9-0.5l0.5,0.9l-0.9,0.5L12.5,4l0.6-0.8L10.4,4.2z"/>
+                            <path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/>
+                        </svg>
+                        <br>FRAGILE
+                    </div>
+
+                    <div class="from-address">
+                        From,<br>
+                        KAFAK LLP, 10/174, Kunnathery,<br>
+                        Thaikkattukara P.O, Aluva - 683106,<br>
+                        Ernakulam District, Kerala, India.<br>
+                        Phone: 778899 0 313
+                    </div>
                 </div>
             </div>
-        </nav>
+        `;
+        }
+    </script>
 
-        <div class="container mt-4">
-            <div id="loader" class="text-center py-5">
-                <div class="spinner-border text-success" role="status"></div>
-                <p class="mt-2 text-muted small fw-bold">Fetching Orders...</p>
-            </div>
-            <div id="order-list" class="row"></div>
-        </div>
-
-        <div class="fab-container">
-            <div class="d-flex gap-2 w-100">
-                <button class="btn-scan-fab scan-dispatch flex-grow-1" onclick="startScanner('dispatch')">📦
-                    Dispatch</button>
-                <button class="btn-scan-fab scan-tracking flex-grow-1" onclick="startScanner('tracking')">🚚
-                    Tracking</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="scanner-modal">
-        <button onclick="stopScanner()"
-            style="position:absolute; top:30px; right:30px; background:white; border:none; width:40px; height:40px; border-radius:50%; font-weight:bold;">✕</button>
-        <div class="text-center mb-4">
-            <h4 id="scan-instruction" class="text-white fw-bold">Scanning...</h4>
-            <p id="scan-detail" class="text-white-50 small">Align QR code within frame</p>
-        </div>
-        <div id="reader"></div>
-    </div>
-
-    <script src="https://unpkg.com/html5-qrcode"></script>
-    <script src="admin.js"></script>
 </body>
 
 </html>
