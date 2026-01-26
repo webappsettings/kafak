@@ -1,5 +1,5 @@
-// 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE
-const sc = `https://script.google.com/macros/s/AKfycbzCFPTGSx7c85ET0bi2RUoKFc6HSZFoMUjDH6G-6c9bvlR6WN5YP1M6HwMmSNqrJdfL3g/exec`;
+// 🔴 1. UPDATE YOUR NEW GOOGLE SCRIPT ID HERE (Previously updated one)
+const sc = `https://script.google.com/macros/s/AKfycbw2zFbJuK3KoK1-ga2KYukpFI3XksC1RXae6n_GVcuPee2U8DI3tVZZiNmsLOij-vizxg/exec`;
 
 // Courier Rates
 const courierRates = {
@@ -44,21 +44,20 @@ $(document).ready(function () {
           if (response.result === 'success') {
             var d = response.data;
 
-            // 🔴 CHANGE: Phone First ആയതുകൊണ്ട് പേര് എപ്പോഴും ഫിൽ ചെയ്യുന്നു.
-            // കസ്റ്റമർക്ക് വേണമെങ്കിൽ ഇത് എഡിറ്റ് ചെയ്യാം.
             $('#name').val(d.name);
 
             if ($('#whatsapp').val().trim() === '') {
               $('#whatsapp').val(d.whatsapp);
             }
 
-            // പേര് വന്ന സ്ഥിതിക്ക്, നേരെ വീട്ടുപേരിലേക്ക് ഫോക്കസ് മാറ്റാം
             $('#house').focus();
 
             if (d.pincode) {
               $('#pincode').val(d.pincode);
               availablePin = true;
-              checkPincode(d.pincode, d.postoffice);
+              // 🔴 FIX: Convert pincode to String before calling function
+              // ഇത് നമ്പറിനെ ടെക്സ്റ്റ് ആക്കി മാറ്റുന്നു, അപ്പോൾ വർക്ക് ആകും
+              checkPincode(String(d.pincode), d.postoffice);
             }
           }
         });
@@ -69,7 +68,7 @@ $(document).ready(function () {
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
 
-    // 🔴 FIX: Reset validation ONLY when user types manually
+    // Reset validation ONLY when user types manually
     availablePin = false;
 
     checkPincode(this.value.trim());
@@ -115,9 +114,8 @@ function loadUserData() {
       $('#personal-section').slideUp();
       $('#saved-address-card').fadeIn();
 
-      // 🔴 FIX: Trust LocalStorage data
       availablePin = true;
-      checkPincode(u.pincode, u.postoffice);
+      checkPincode(String(u.pincode), u.postoffice);
 
     } catch (e) {
       console.error("Local storage error", e);
@@ -131,10 +129,10 @@ function enableEditMode() {
 }
 
 // --- PINCODE FUNCTION (Modified) ---
-async function checkPincode(pin, autoSelectPO = null) {
-  // 🔴 FIX: Removed 'availablePin = false' from here to prevent overwriting Edit Mode validity
+async function checkPincode(pinInput, autoSelectPO = null) {
+  // 🔴 FIX: Ensure pin is treated as a string
+  const pin = String(pinInput).trim();
 
-  // Hide fields initially
   if (!autoSelectPO) {
     $('#officename').hide();
     $('#postoffice').hide().val('');
@@ -147,13 +145,13 @@ async function checkPincode(pin, autoSelectPO = null) {
       const data = await response.json();
 
       if (Array.isArray(data) && data.length > 0) {
-        availablePin = true; // Mark as Valid
+        availablePin = true;
 
         $('#district').val(data[0].district || '');
         $('#state').val(data[0].statename || '');
-        $('.pincodeEnable').show();
+        $('.pincodeEnable').show(); // Show District/State
 
-        $('#quantity').prop('disabled', false);
+        $('#quantity').prop('disabled', false); // Enable Quantity
 
         const officeDropdown = $('#officename');
         const officeInput = $('#postoffice');
@@ -192,13 +190,11 @@ async function checkPincode(pin, autoSelectPO = null) {
       }
     } catch (err) {
       console.log("Pincode error", err);
-      // If fetch fails, we leave availablePin as is. 
-      // In Edit Mode, it will remain true. In manual typing, it remains false.
     }
   }
 }
 
-// --- SUBMIT FUNCTION (UPDATED) ---
+// --- SUBMIT FUNCTION ---
 function submitOrder() {
   $('#submitBtn').prop('disabled', true).text(editingOrderId ? 'Updating...' : 'Processing...');
 
@@ -219,7 +215,6 @@ function submitOrder() {
     message: $('#message').val()
   };
 
-  // Save to Local Storage
   localStorage.setItem('kafakUser', JSON.stringify(formData));
 
   fetch(sc, {
@@ -231,13 +226,10 @@ function submitOrder() {
       if (data.result === 'success') {
         successSubmitData = { orderid: data.orderid, timestamp: data.timestamp, data: formData };
 
-        // 🔴 CHANGE: Alert ഒഴിവാക്കി. പകരം നേരെ സ്ക്രീൻ മാറുന്നു.
         $('#honeyForm').hide();
         $('#saved-address-card').hide();
 
         showSuccess();
-
-        // 1.5 സെക്കൻഡ് കഴിഞ്ഞ് വാട്സാപ്പ് ഓപ്പൺ ആകും
         setTimeout(sendToWhatsapp, 1500);
 
       } else {
@@ -269,26 +261,23 @@ function fetchOrderDetails(oid) {
         $('#message').val(d.message);
         $('#whatsapp').val(d.whatsapp);
 
-        // 🔴 FIX: Manually set validation to TRUE because this data is from DB
         availablePin = true;
 
         const addrParts = d.addressFull.split(', ');
         if (addrParts.length >= 2) {
           $('#house').val(addrParts[0]);
           $('#place').val(addrParts[1]);
-          checkPincode(d.pincode, addrParts[2] || '');
+          checkPincode(String(d.pincode), addrParts[2] || '');
           $('#district').val(addrParts[3] || '');
         } else {
           $('#house').val(d.addressFull);
-          checkPincode(d.pincode);
+          checkPincode(String(d.pincode));
         }
 
         $('#quantity').prop('disabled', false);
         $('#submitBtn').text('UPDATE ORDER').prop('disabled', false);
         $('.price-show').show();
         $('#quantity').trigger('change');
-
-        // alert('എഡിറ്റ് ചെയ്യാൻ ഓർഡർ റെഡിയാണ്.');
       } else {
         alert('ഈ ഓർഡർ എഡിറ്റ് ചെയ്യാൻ സാധിക്കില്ല.');
         window.location.href = window.location.pathname.split('?')[0];
@@ -329,14 +318,10 @@ function sendToWhatsapp() {
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  // 🔴 CHANGE: ID-ക്ക് ചുറ്റും ``` (backticks) ഇട്ടു.
-  // ഇത് വാട്സാപ്പിൽ അയക്കുമ്പോൾ ഹൈഫൻ ഇട്ടാലും ലിങ്ക് ആകില്ല.
-  // കാണാൻ ഒരു പ്രത്യേക ഫോണ്ടിൽ (Code Style) വരും.
-
+  // Monospace ID logic
   const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
-
   const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
 
   const wtspformat = `
@@ -358,7 +343,6 @@ _(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay �
 \n*${phone} (KAFAK LLP)*\n`;
 
   const message = encodeURIComponent(extra1 + wtspformat);
-
   window.location.href = `https://wa.me/91${phone}?text=${message}`;
 }
 
