@@ -1,5 +1,5 @@
 // 🔴 1. GOOGLE SCRIPT URL
-const sc = `https://script.google.com/macros/s/AKfycbxU7zcRqyJtGIq422hnS3tIRcNJSRBy6a4Q8f1fLU8IZCNdxPa2VO4tn9uPDyXWZp_4/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxjIUnkqz6zQ9X8mMuymgBMdPAG7K3Ekh0lpOzGPSoNggLGoE4UkfTvknC6LHaqDkeOuQ/exec`;
 
 // Courier Rates
 const courierRates = {
@@ -12,38 +12,23 @@ var availablePin = false;
 var successSubmitData;
 
 $(document).ready(function () {
-
-  // ==========================================
-  // 🔐 ADMIN ONLY: MARK PAID BUTTON
-  // ==========================================
+  // 🔴 FIXED: urlParams Define ചെയ്യണം
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlOid = urlParams.get('oid');
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-  const urlOid = new URLSearchParams(window.location.search).get('oid');
 
+  // ==========================================
+  // 🔐 ADMIN ONLY: SMART FLOW BAR
+  // ==========================================
   if (isAdmin && urlOid) {
-    // സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
     const isWTSent = localStorage.getItem(`sent_${urlOid}`) === 'true';
     const isPaid = localStorage.getItem(`paid_${urlOid}`) === 'true';
-
     let adminHTML = "";
 
-    // ഘട്ടം 1: വാട്സാപ്പ് കൺഫേം ചെയ്തിട്ടില്ലെങ്കിൽ അത് മാത്രം കാണിക്കുക
     if (!isWTSent) {
-      adminHTML = `
-                <button id="btn-sent-${urlOid}" onclick="adminAction('${urlOid}', 'Sent')" 
-                    class="btn btn-success btn-sm fw-bold w-100 py-2 shadow">
-                    💬 CONFIRM SENT (WhatsApp)
-                </button>
-            `;
-    }
-    // ഘട്ടം 2: വാട്സാപ്പ് അയച്ചു കഴിഞ്ഞാൽ പെയ്ഡ് ബട്ടൺ കാണിക്കുക
-    else {
-      adminHTML = `
-                <button id="btn-paid-${urlOid}" onclick="adminAction('${urlOid}', 'Paid')" 
-                    class="btn btn-sm fw-bold w-100 py-2 shadow ${isPaid ? 'btn-secondary opacity-50' : 'btn-warning'}"
-                    ${isPaid ? 'disabled' : ''}>
-                    ${isPaid ? '💰 PAIDED ✅' : '💰 MARK AS PAID'}
-                </button>
-            `;
+      adminHTML = `<button id="btn-sent-${urlOid}" onclick="adminAction('${urlOid}', 'Sent')" class="btn btn-success btn-sm fw-bold w-100 py-2 shadow">💬 CONFIRM SENT (WhatsApp)</button>`;
+    } else {
+      adminHTML = `<button id="btn-paid-${urlOid}" onclick="adminAction('${urlOid}', 'Paid')" class="btn btn-sm fw-bold w-100 py-2 shadow ${isPaid ? 'btn-secondary opacity-50' : 'btn-warning'}" ${isPaid ? 'disabled' : ''}>${isPaid ? '💰 PAIDED ✅' : '💰 MARK AS PAID'}</button>`;
     }
 
     const adminUI = `
@@ -53,18 +38,15 @@ $(document).ready(function () {
                         <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL: #${urlOid}</span>
                         <button onclick="closeAdminBar()" class="btn btn-link text-white p-0" style="text-decoration:none;">✕</button>
                     </div>
-                    <div id="admin-btn-container">
-                        ${adminHTML}
-                    </div>
+                    <div id="admin-btn-container">${adminHTML}</div>
                 </div>
-            </div>
-        `;
+            </div>`;
     $('body').append(adminUI);
     $('body').css('padding-bottom', '100px');
   }
 
   // ==========================================
-  // 🚀 1. AUTO LOGIN (IMPROVED)
+  // 🚀 AUTO LOGIN
   // ==========================================
   const savedData = localStorage.getItem('kafakUser');
   let autoLoggedIn = false;
@@ -78,25 +60,20 @@ $(document).ready(function () {
         $('#whatsapp').val(u.whatsapp || u.phone);
         $('#house').val(u.house || '');
         $('#place').val(u.place || '');
-
         if (u.pincode) {
           $('#pincode').val(u.pincode);
           availablePin = true;
           checkPincode(String(u.pincode), u.postoffice);
         }
-
         $('#step-1').removeClass('active').hide();
         $('#step-2').addClass('active').fadeIn();
         $('#progressBar').css('width', '50%');
         $('#dot-1').addClass('completed').html('✓');
         $('#dot-2').addClass('active');
-
         showSummary(u);
         autoLoggedIn = true;
       }
-    } catch (e) {
-      localStorage.removeItem('kafakUser');
-    }
+    } catch (e) { localStorage.removeItem('kafakUser'); }
   }
 
   if (!autoLoggedIn && !urlOid) {
@@ -298,7 +275,7 @@ async function checkPincode(pinInput, autoSelectPO = null) {
 function calculateAmountString(qty) {
   const n = parseInt(qty);
   const base = n * 650;
-  const s = $('#state').val().toLowerCase();
+  const s = $('#state').val() ? $('#state').val().toLowerCase() : 'kerala';
   let courier = s === 'kerala' ? courierRates.kerala[n] : courierRates.outside[n];
   if (s === 'lakshadweep') courier = (n * 100) + 20;
   return `Amount(₹): ${base} + ${courier || 0}`;
@@ -346,15 +323,6 @@ function fetchOrderDetails(oid) {
     });
 }
 
-function markAsPaid(oid) {
-  if (!confirm(`Confirm payment for Order #${oid}?`)) return;
-  const btn = $('#admin-bar button');
-  btn.text('Updating...').prop('disabled', true);
-  fetch(sc, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: 'updateStatus', oid: oid, status: 'Paid' }) })
-    .then(() => { alert("Payment Updated! ✅"); location.reload(); });
-}
-
-
 function adminAction(oid, status) {
   if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
@@ -367,26 +335,17 @@ function adminAction(oid, status) {
     mode: 'no-cors',
     body: JSON.stringify({ action: 'updateStatus', oid: oid, status: status })
   }).then(() => {
-    // ലോക്കൽ സ്റ്റോറേജിൽ സേവ് ചെയ്യുന്നു
     const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
     localStorage.setItem(storageKey, 'true');
 
     alert(`${status} Updated! ✅`);
 
-    // UI മാറ്റം വരുത്തുന്നു
     if (status === 'Sent') {
-      // Confirm Sent കഴിഞ്ഞാൽ അത് ഹൈഡ് ചെയ്ത് Mark Paid കാണിക്കുന്നു
-      const paidBtn = `
-                <button id="btn-paid-${oid}" onclick="adminAction('${oid}', 'Paid')" 
-                    class="btn btn-warning btn-sm fw-bold w-100 py-2 shadow">
-                    💰 MARK AS PAID
-                </button>
-            `;
+      const paidBtn = `<button id="btn-paid-${oid}" onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 py-2 shadow">💰 MARK AS PAID</button>`;
       btnContainer.fadeOut(300, function () {
         $(this).html(paidBtn).fadeIn();
       });
     } else {
-      // Mark Paid കഴിഞ്ഞാൽ ഗ്രേ ഔട്ട് ആക്കുന്നു
       originalBtn.removeClass('btn-warning').addClass('btn-secondary opacity-50');
       originalBtn.text('💰 PAIDED ✅').prop('disabled', true);
     }
@@ -396,15 +355,32 @@ function adminAction(oid, status) {
   });
 }
 
+function closeAdminBar() {
+  $('#admin-action-bar').fadeOut();
+  $('body').css('padding-bottom', '0');
+}
+
 const translations = {
-  ml: { step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?", next_btn: "അടുത്തത് ➔", order_btn: "ഓർഡർ ചെയ്യാം ✅" },
-  en: { step1_title: "What is your Phone Number?", next_btn: "NEXT STEP ➔", order_btn: "PLACE ORDER ✅" }
+  ml: {
+    step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?",
+    step1_desc: "ഓർഡർ ചെയ്യാൻ മൊബൈൽ നമ്പർ നൽകുക",
+    your_name: "നിങ്ങളുടെ പേര്",
+    next_btn: "അടുത്തത് ➔",
+    order_btn: "ഓർഡർ ചെയ്യാം ✅"
+  },
+  en: {
+    step1_title: "What is your Phone Number?",
+    step1_desc: "Enter mobile number to verify",
+    your_name: "Your Name",
+    next_btn: "NEXT STEP ➔",
+    order_btn: "PLACE ORDER ✅"
+  }
 };
 
 function changeLanguage(lang) {
   $('[data-i18n]').each(function () {
     const key = $(this).data('i18n');
-    if (translations[lang][key]) $(this).text(translations[lang][key]);
+    if (translations[lang] && translations[lang][key]) $(this).text(translations[lang][key]);
   });
 }
 

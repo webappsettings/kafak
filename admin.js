@@ -1,5 +1,5 @@
 // 🔴 1. GOOGLE SCRIPT URL (Replace with your latest deployment URL)
-const scriptURL = "https://script.google.com/macros/s/AKfycbxU7zcRqyJtGIq422hnS3tIRcNJSRBy6a4Q8f1fLU8IZCNdxPa2VO4tn9uPDyXWZp_4/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxjIUnkqz6zQ9X8mMuymgBMdPAG7K3Ekh0lpOzGPSoNggLGoE4UkfTvknC6LHaqDkeOuQ/exec";
 
 window.onload = function () {
     // പേജ് ലോഡ് ആകുമ്പോൾ ലോഗിൻ ചെയ്തിട്ടുണ്ടോ എന്ന് നോക്കുന്നു
