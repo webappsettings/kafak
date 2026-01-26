@@ -7,7 +7,13 @@ let allOrders = [];
 let html5QrCode;
 let scanMode = ''; // 'dispatch' or 'tracking'
 let scanStep = 1;  // 1 = Order QR, 2 = Tracking Barcode
-let tempOrderId = null; // To store Order ID temporarily
+let tempOrderId = null;
+
+// Courier Rates
+const courierRates = {
+  kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
+  outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
+};
 
 // --- LOAD ORDERS ---
 function loadOrders() {
@@ -21,7 +27,7 @@ function loadOrders() {
       allOrders = data.rows || [];
 
       if (allOrders.length === 0) {
-        container.innerHTML = '<p>No pending orders.</p>';
+        container.innerHTML = '<p class="text-center text-muted mt-4">No pending orders found.</p>';
         return;
       }
 
@@ -32,16 +38,16 @@ function loadOrders() {
         const div = document.createElement('div');
         div.className = 'card';
         div.innerHTML = `
-          <div style="display:flex; justify-content:space-between;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
-              <strong>#${row.orderid}</strong> <span class="${statusClass}">[${row.status}]</span><br>
-              👤 ${row.name} - ${row.phone}<br>
-              🍯 Qty: ${row.quantity} | ₹${amount}<br>
-              📍 ${row.state} - ${row.pincode}
+              <strong>${row.orderid}</strong> <span class="badge ${statusClass}">${row.status}</span><br>
+              <small>👤 ${row.name} | 📞 ${row.phone}</small><br>
+              <small>🍯 Qty: ${row.quantity} | 💰 ₹${amount}</small><br>
+              <small>📍 ${row.state} - ${row.pincode}</small>
             </div>
-            <div>
-              <button class="btn btn-print" onclick="printLabel('${row.orderid}')">🖨️ Print</button>
-              <button class="btn btn-whatsapp" onclick="sendWhatsapp('${row.orderid}')">💬 WhatsApp</button>
+            <div style="display:flex; flex-direction:column; gap:5px;">
+              <button class="btn btn-sm btn-outline-dark" onclick="printLabel('${row.orderid}')">🖨️ Print</button>
+              <button class="btn btn-sm btn-success" onclick="sendWhatsapp('${row.orderid}')">💬 WhatsApp</button>
             </div>
           </div>
         `;
@@ -50,7 +56,7 @@ function loadOrders() {
     });
 }
 
-// --- SCANNER LOGIC (DUAL SCAN) ---
+// --- SCANNER LOGIC ---
 function startScanner(mode) {
   scanMode = mode;
   scanStep = 1;
@@ -59,20 +65,24 @@ function startScanner(mode) {
   document.getElementById('scanner-modal').style.display = 'flex';
   updateScanInstruction();
 
-  // 🔴 CHANGE: qrbox size 250-ൽ നിന്ന് 200 ആക്കി കുറച്ചു. 
-  // ഇത് സ്കാനിംഗ് ഏരിയ ചെറുതാക്കാൻ സഹായിക്കും, അപ്പോൾ കൃത്യമായി ഫോക്കസ് ചെയ്യാം.
+  // Reduced qrbox size for better focus
   const config = { fps: 10, qrbox: 200 };
 
   html5QrCode = new Html5Qrcode("reader");
   html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess)
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.error("Camera Error", err);
+      alert("Camera permission denied or error.");
+    });
 }
 
 function stopScanner() {
   if (html5QrCode) {
     html5QrCode.stop().then(() => {
       document.getElementById('scanner-modal').style.display = 'none';
-    });
+    }).catch(err => console.log("Stop failed", err));
+  } else {
+    document.getElementById('scanner-modal').style.display = 'none';
   }
 }
 
@@ -82,18 +92,18 @@ function updateScanInstruction() {
 
   if (scanMode === 'dispatch') {
     title.innerText = "📦 DISPATCH MODE";
-    detail.innerText = "Scan Order QR Code";
+    detail.innerText = "Scan Order QR Code (ORD-...)";
     title.style.color = "#007bff";
   }
   else if (scanMode === 'tracking') {
     if (scanStep === 1) {
       title.innerText = "Step 1: Scan ORDER QR";
       detail.innerText = "Scan the QR code on the address label";
-      title.style.color = "#d63384"; // Pink
+      title.style.color = "#d63384";
     } else {
       title.innerText = "Step 2: Scan TRACKING Barcode";
       detail.innerText = `Order: ${tempOrderId} Found! Now Scan Tracking Label.`;
-      title.style.color = "#198754"; // Green
+      title.style.color = "#198754";
     }
   }
 }
@@ -103,64 +113,58 @@ function onScanSuccess(decodedText) {
 
   // --- DISPATCH MODE ---
   if (scanMode === 'dispatch') {
-    // Dispatch-ൽ "ORD-" എന്ന് തുടങ്ങുന്നവ മാത്രമേ എടുക്കാവൂ
-    if (!decodedText.startsWith("ORD-")) {
-      console.log("Ignored: Not an Order ID");
-      return;
-    }
+    if (!decodedText.startsWith("ORD-")) return; // Ignore non-orders
 
-    stopScanner();
-    if (confirm(`Mark Order ${decodedText} as DISPATCHED?`)) {
-      updateStatus(decodedText, 'Dispatched');
-    }
-    return;
+    html5QrCode.pause(); // Pause camera before confirm alert
+
+    setTimeout(() => {
+      if (confirm(`Mark Order ${decodedText} as DISPATCHED?`)) {
+        stopScanner();
+        updateStatus(decodedText, 'Dispatched');
+      } else {
+        html5QrCode.resume(); // Resume if cancelled
+      }
+    }, 300);
   }
 
-  // --- TRACKING MODE (Smart Dual Scan) ---
-  if (scanMode === 'tracking') {
+  // --- TRACKING MODE ---
+  else if (scanMode === 'tracking') {
 
     // STEP 1: Scan ORDER QR
     if (scanStep === 1) {
-      // 🔴 FILTER: "ORD-" എന്ന് തുടങ്ങുന്നില്ലെങ്കിൽ അത് ബാർകോഡ് ആകാം. അത് ഒഴിവാക്കുക.
       if (!decodedText.startsWith("ORD-")) {
-        console.log("Ignored: Detected Barcode/Other text while waiting for Order QR");
-        // ചെറിയൊരു മുന്നറിയിപ്പ് താഴെ കാണിക്കാം (Optional)
-        document.getElementById('scan-detail').innerText = "❌ That's not the Order QR! Look for 'ORD-...'";
-        document.getElementById('scan-detail').style.color = "red";
+        // Optional: Show UI feedback "Not an Order QR"
         return;
       }
 
-      // If valid Order ID
-      console.log("Order Found:", decodedText);
       tempOrderId = decodedText;
       scanStep = 2;
-
-      // Update UI for Step 2
       updateScanInstruction();
 
-      // Pause briefly (1.5 seconds) to move camera to barcode
+      // Pause briefly to allow user to move to barcode
       html5QrCode.pause();
       setTimeout(() => html5QrCode.resume(), 1500);
     }
 
     // STEP 2: Scan TRACKING Barcode
     else if (scanStep === 2) {
-      // 🔴 FILTER: വീണ്ടും പഴയ QR കോഡ് (ORD-...) ആണ് സ്കാൻ ആയതെങ്കിൽ ഒഴിവാക്കുക.
       if (decodedText.startsWith("ORD-")) {
-        console.log("Ignored: Re-scanned Order QR instead of Tracking ID");
-        document.getElementById('scan-detail').innerText = "⚠️ You scanned Order QR again! Scan the Barcode.";
+        // Ignored: Re-scanned Order QR
         return;
       }
 
-      // Success! It's a tracking ID
-      stopScanner();
+      // Found Tracking ID
+      html5QrCode.pause(); // Pause before confirm
 
-      if (confirm(`Link Tracking ID: ${decodedText} to Order: ${tempOrderId}?`)) {
-        updateTracking(tempOrderId, decodedText);
-      } else {
-        // If cancelled, restart scanner
-        stopScanner();
-      }
+      setTimeout(() => {
+        if (confirm(`Link Tracking ID: ${decodedText}\nTo Order: ${tempOrderId}?`)) {
+          stopScanner();
+          updateTracking(tempOrderId, decodedText);
+        } else {
+          // Cancelled, restart scanning for tracking
+          html5QrCode.resume();
+        }
+      }, 300);
     }
   }
 }
@@ -192,12 +196,7 @@ function updateTracking(orderId, trackingId) {
     });
 }
 
-// --- UTILS (Price & Print & WhatsApp) ---
-const courierRates = {
-  kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
-  outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
-};
-
+// --- UTILS ---
 function calculatePrice(qty, state) {
   const n = parseInt(qty) || 0;
   let charge = 0;
@@ -213,24 +212,46 @@ function printLabel(orderId) {
   const order = allOrders.find(o => o.orderid === orderId);
   if (!order) return;
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${orderId}`;
-  document.getElementById('print-area').innerHTML = `
-    <div class="print-label">
-      <img src="${qrUrl}" class="qr-code">
-      <h3>TO:</h3>
-      <p><b>${order.name.toUpperCase()}</b><br>${order.address.replace(/,/g, '<br>')}<br><b>PH: ${order.phone}</b></p>
-      <hr><small>Order ID: ${order.orderid} | Qty: ${order.quantity}</small><br>
-      <small>From: Kafak LLP, Kerala | Ph: 7788990313</small>
-    </div>`;
-  window.print();
+
+  // Create a hidden print area or new window
+  const printWindow = window.open('', '', 'width=600,height=600');
+  printWindow.document.write(`
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+            .label-box { border: 2px solid #000; padding: 20px; max-width: 350px; margin: auto; }
+            .qr-code { width: 120px; height: 120px; }
+            h2 { margin: 10px 0; }
+            p { font-size: 16px; line-height: 1.4; }
+        </style>
+    </head>
+    <body>
+        <div class="label-box">
+            <img src="${qrUrl}" class="qr-code">
+            <h2>TO:</h2>
+            <p>
+                <b>${order.name.toUpperCase()}</b><br>
+                ${order.address}<br>
+                <b>PH: ${order.phone}</b>
+            </p>
+            <hr>
+            <small>Order ID: ${order.orderid} | Qty: ${order.quantity}</small><br>
+            <small><b>From: KAFAK LLP, Kerala | Ph: 7788990313</b></small>
+        </div>
+        <script>
+            window.onload = function() { window.print(); window.close(); }
+        </script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
 }
 
-// --- WHATSAPP FUNCTION (For Admin Dashboard) ---
+// --- WHATSAPP FUNCTION ---
 function sendWhatsapp(orderId) {
   const row = allOrders.find(o => o.orderid === orderId);
-  if (!row) {
-    alert("Order details not found!");
-    return;
-  }
+  if (!row) { alert("Order details not found!"); return; }
 
   const qty = parseInt(row.quantity);
   const basePrice = qty * 650;
@@ -248,25 +269,28 @@ function sendWhatsapp(orderId) {
 
   const amountText = `Amount(₹): ${basePrice} + ${courierCharge} (Courier)`;
   const totalText = `Total(₹): ${total}/-`;
-  const formattedAddress = row.address.replace(/, /g, '\n').toUpperCase();
-  const submitTime = row.timestamp;
-  const messageContent = row.message ? `\n\n💬 _${row.message}_\n` : '\n';
 
-  // 🔴 CHANGE: Removed ``` and added * for Bold
-  const header = `*✅ Honey order confirmed!* 🍯\n🔖 *#${orderId}*\n🔗 _${editLink}_\n(Click link to edit order)\n⌚ \`\`\`${submitTime}\`\`\``;
+  // Format Address for readability
+  const formattedAddress = row.address.split(',').map(p => p.trim()).join('\n');
+
+  const submitTime = row.timestamp;
+  const messageContent = row.message ? `\n\n💬 *Note:* _${row.message}_` : '';
+
+  // 🔴 UPDATED: Using Monospace for ID (```)
+  const header = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderId}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const details = `
 ____________________________________\n
 *${row.name.trim().toUpperCase()}*
-${formattedAddress}
+${formattedAddress.toUpperCase()}
 *Pin: ${String(row.pincode).trim()}*
 *Ph: ${row.phone}*\n
 *Qty: ${row.quantity}*
 *${amountText}*
 *${totalText}*${messageContent}
 ____________________________________
-
-*Please GPay to the number below...* 👇
+\n*Please GPay to the number below...*
+_(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്യുക)_ 👇
 \n*7788990313 (KAFAK LLP)*\n`;
 
   const finalMsg = encodeURIComponent(header + details);
@@ -274,8 +298,9 @@ ____________________________________
   let customerPhone = String(row.whatsapp || row.phone).replace(/\D/g, '');
   if (customerPhone.length === 10) customerPhone = '91' + customerPhone;
 
-  window.open(`https://api.whatsapp.com/send?phone=${customerPhone}&text=${finalMsg}`, '_blank');
+  // Use wa.me for better compatibility
+  window.open(`https://wa.me/${customerPhone}?text=${finalMsg}`, '_blank');
 }
 
-// Init
+// Initialize
 loadOrders();

@@ -143,8 +143,17 @@
       <img src="success.png" alt="Success" style="width: 80px; margin-bottom: 20px;">
       <h3 style="color:#2ecc71; font-weight:bold;">ഓർഡർ ലഭിച്ചു!</h3>
       <p class="text-muted">Order placed successfully.</p>
-      <p style="font-size:14px;">Redirecting to WhatsApp...</p>
-      <img src="whatsapp--v1.png" style="width: 40px; opacity:0.8;">
+
+      <p style="font-size:14px; margin-top:10px;">Redirecting to WhatsApp...</p>
+
+      <button onclick="sendToWhatsapp()" class="btn btn-success mt-3"
+        style="border-radius:20px; padding:10px 20px; font-weight:bold;">
+        <img src="whatsapp--v1.png" style="width: 20px; margin-right:5px;"> Open WhatsApp Now
+      </button>
+
+      <br><br>
+      <button class="btn btn-link text-muted" onclick="location.reload()" style="font-size:13px;">Place New
+        Order</button>
     </div>
 
     <div class="card" id="honeyForm">

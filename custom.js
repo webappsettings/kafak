@@ -198,7 +198,7 @@ async function checkPincode(pin, autoSelectPO = null) {
   }
 }
 
-// --- SUBMIT FUNCTION ---
+// --- SUBMIT FUNCTION (UPDATED) ---
 function submitOrder() {
   $('#submitBtn').prop('disabled', true).text(editingOrderId ? 'Updating...' : 'Processing...');
 
@@ -230,11 +230,16 @@ function submitOrder() {
     .then(data => {
       if (data.result === 'success') {
         successSubmitData = { orderid: data.orderid, timestamp: data.timestamp, data: formData };
-        // alert(editingOrderId ? 'ഓർഡർ അപ്ഡേറ്റ് ചെയ്തു! ✅' : 'ഓർഡർ വിജയകരമായി രേഖപ്പെടുത്തി! ✅');
+
+        // 🔴 CHANGE: Alert ഒഴിവാക്കി. പകരം നേരെ സ്ക്രീൻ മാറുന്നു.
         $('#honeyForm').hide();
         $('#saved-address-card').hide();
+
         showSuccess();
-        setTimeout(sendToWhatsapp, 2000); // Wait 2 sec before opening WhatsApp
+
+        // 1.5 സെക്കൻഡ് കഴിഞ്ഞ് വാട്സാപ്പ് ഓപ്പൺ ആകും
+        setTimeout(sendToWhatsapp, 1500);
+
       } else {
         alert('Error: ' + data.message);
         $('#submitBtn').prop('disabled', false).text('Try Again');
