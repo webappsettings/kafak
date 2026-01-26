@@ -14,60 +14,61 @@ var successSubmitData;
 $(document).ready(function () {
 
   // ============================================================
-  // 🚀 1. AUTO LOGIN (SKIP STEP 1 IF USER EXISTS)
+  // 🚀 1. AUTO LOGIN (IMPROVED)
   // ============================================================
   const savedData = localStorage.getItem('kafakUser');
   let autoLoggedIn = false;
 
-  // URL-ൽ Edit Mode (oid) ഉണ്ടെങ്കിൽ Auto Login ചെയ്യരുത്
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
 
+  // Edit Mode അല്ലെങ്കിൽ മാത്രം Auto Login നോക്കിയാൽ മതി
   if (savedData && !oid) {
     try {
       const u = JSON.parse(savedData);
-      // പേരും ഫോണും ഉണ്ടെങ്കിൽ മാത്രം Auto Login
-      if (u.phone && u.name) {
 
-        // 1. Fill Hidden Inputs (For Submission)
+      if (u.phone) {
+        // 1. Fill Hidden Inputs
         $('#phone').val(u.phone);
-        $('#name').val(u.name);
+        $('#name').val(u.name || '');
         $('#whatsapp').val(u.whatsapp || u.phone);
-        $('#house').val(u.house);
-        $('#place').val(u.place);
+        $('#house').val(u.house || '');
+        $('#place').val(u.place || '');
 
         if (u.pincode) {
           $('#pincode').val(u.pincode);
           availablePin = true;
-          // Validate pin silently
           checkPincode(String(u.pincode), u.postoffice);
         }
 
-        // 2. UI MAGIC: Hide Step 1 & Show Step 2 Directly! 🎩
-        $('#step-1').hide();      // Hide Phone Entry
-        $('#step-1').removeClass('active');
+        // 2. FORCE UI SWITCH (Hide Step 1, Show Step 2)
+        $('#step-1').removeClass('active').hide();
+        $('#step-2').addClass('active').fadeIn();
 
-        $('#step-2').fadeIn();    // Show Summary
-        $('#step-2').addClass('active');
-
-        // 3. Update Progress Bar to Completed
+        // 3. Update Progress Bar
         $('#progressBar').css('width', '50%');
         $('#dot-1').addClass('completed').html('✓');
         $('#dot-2').addClass('active');
 
         // 4. Show Summary Card
+        u.name = u.name || "Customer";
         showSummary(u);
+
         autoLoggedIn = true;
       }
-    } catch (e) { console.log('Local data error', e); }
+    } catch (e) {
+      console.log('Local data error', e);
+      localStorage.removeItem('kafakUser');
+    }
   }
 
-  // Auto Login നടന്നില്ലെങ്കിൽ മാത്രം Step 1 കാണിക്കുക
+  // Auto Login നടന്നില്ലെങ്കിൽ, Step 1 വ്യക്തമായി കാണിക്കുക
   if (!autoLoggedIn && !oid) {
-    $('#step-1').show();
+    $('#step-1').addClass('active').show();
+    $('#step-2').removeClass('active').hide();
   }
-
   // ============================================================
+
 
   // --- 2. LANGUAGE & URL CHECK ---
   const langParam = urlParams.get('lang');
@@ -79,15 +80,13 @@ $(document).ready(function () {
   // --- 3. EDIT MODE CHECK ---
   if (oid) {
     $('#main-loader').show();
-    $('#step-1').hide(); // Hide step 1 initially for edit mode
+    $('#step-1').hide();
     fetchOrderDetails(oid);
   } else {
     $('#main-loader').fadeOut();
   }
 
   // --- 4. INPUT LISTENERS ---
-
-  // PINCODE EDIT HANDLER
   $('#pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
     availablePin = false;
@@ -106,13 +105,11 @@ $(document).ready(function () {
     checkPincode(this.value.trim());
   });
 
-  // Post Office Change
   $('#officename').change(function () {
     $('#postoffice').val($(this).val());
     $('#officename-error').remove();
   });
 
-  // Price Calculation
   $('#quantity, #state').on('change keyup', function () {
     const qty = $('#quantity').val();
     if (qty) {
@@ -123,7 +120,6 @@ $(document).ready(function () {
     }
   });
 
-  // Ensure Number-Only Inputs
   $('#phone, #whatsapp, #pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
   });
@@ -154,6 +150,13 @@ function handleStep1() {
     $('#name').val(tempNameInput.val());
     $('#whatsapp').val(phone);
 
+    // 🔴 IMPORTANT: Save Data IMMEDIATELY on Next Click
+    saveLocalData({
+      name: tempNameInput.val(),
+      phone: phone,
+      whatsapp: phone
+    });
+
     enableEditMode();
     proceedToStep2();
     return;
@@ -172,7 +175,7 @@ function handleStep1() {
       if (response.result === 'success') {
         const d = response.data;
 
-        // Fill Form Data
+        // Fill Form
         $('#name').val(d.name);
         $('#whatsapp').val(d.whatsapp || phone);
         $('#house').val(d.house);
@@ -184,10 +187,13 @@ function handleStep1() {
           checkPincode(String(d.pincode), d.postoffice);
         }
 
+        // Save & Show Summary
+        saveLocalData(d);
         showSummary(d);
         proceedToStep2();
 
       } else {
+        // New User -> Ask Name
         nameSection.slideDown();
         tempNameInput.focus();
       }
@@ -197,6 +203,13 @@ function handleStep1() {
       nameSection.slideDown();
       tempNameInput.focus();
     });
+}
+
+// Helper to save safely
+function saveLocalData(newData) {
+  let currentData = localStorage.getItem('kafakUser') ? JSON.parse(localStorage.getItem('kafakUser')) : {};
+  const updatedData = { ...currentData, ...newData };
+  localStorage.setItem('kafakUser', JSON.stringify(updatedData));
 }
 
 function proceedToStep2() {
@@ -226,7 +239,7 @@ function showSummary(data) {
   $('#summary-phone').text(data.phone || $('#phone').val());
   $('#summary-whatsapp').text(data.whatsapp || $('#phone').val());
 
-  let addr = `${data.house}, ${data.place}`;
+  let addr = `${data.house || ''}, ${data.place || ''}`;
   if (data.postoffice) addr += `, ${data.postoffice}`;
   if (data.pincode) addr += ` - ${data.pincode}`;
 
@@ -234,7 +247,6 @@ function showSummary(data) {
 
   $('#address-inputs').hide();
   $('#saved-address-card').fadeIn();
-
   $('#quantity').prop('disabled', false);
 }
 
@@ -274,7 +286,8 @@ function submitOrder() {
     message: $('#message').val()
   };
 
-  localStorage.setItem('kafakUser', JSON.stringify(formData));
+  // Save to Local Storage
+  saveLocalData(formData);
 
   fetch(sc, {
     method: 'POST',
@@ -355,7 +368,6 @@ function fetchOrderDetails(oid) {
     });
 }
 
-// 🔴 CHECK PINCODE
 async function checkPincode(pinInput, autoSelectPO = null) {
   const pin = String(pinInput).trim();
   if (!autoSelectPO) {
@@ -376,7 +388,6 @@ async function checkPincode(pinInput, autoSelectPO = null) {
         $('#district').val(data[0].district || '');
         $('#state').val(data[0].statename || '');
 
-        // Show dropdown only if address inputs are visible (Edit Mode)
         if ($('#address-inputs').is(':visible')) {
           $('.pincodeEnable').slideDown();
         }
@@ -555,6 +566,7 @@ $("#order-form").validate({
     house: { required: true },
     place: { required: true },
     pincode: { required: true, number: true, minlength: 6, pinavail: true },
+
     officename: {
       required: function () { return $('#officename').is(':visible'); }
     },
