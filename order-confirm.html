@@ -3,160 +3,229 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kafak Admin Dashboard</title>
-  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f4f4f9;
+      background-color: #f0f2f5;
+      font-family: 'Poppins', sans-serif;
+      padding-bottom: 80px;
     }
 
-    .header {
+    /* Navbar */
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #2e7d32 !important;
+    }
+
+    /* Order Card */
+    .order-card {
+      border: none;
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s;
+      margin-bottom: 15px;
+    }
+
+    .order-card:active {
+      transform: scale(0.98);
+    }
+
+    .card-header-custom {
+      background: #f1f8e9;
+      border-radius: 15px 15px 0 0;
+      padding: 12px 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
     }
 
-    .btn {
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      color: white;
-      font-weight: bold;
-      margin-right: 5px;
+    .card-body {
+      padding: 15px;
     }
 
-    .btn-scan {
-      background: #007bff;
+    /* Badges */
+    .status-badge {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-weight: 600;
     }
 
-    .btn-track {
-      background: #6f42c1;
+    .bg-pending {
+      background-color: #fff3cd;
+      color: #856404;
     }
 
-    .btn-print {
-      background: #6c757d;
+    .bg-dispatched {
+      background-color: #cff4fc;
+      color: #055160;
+    }
+
+    .bg-completed {
+      background-color: #d1e7dd;
+      color: #0f5132;
+    }
+
+    /* Action Buttons */
+    .btn-action {
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .btn-whatsapp {
-      background: #28a745;
+      background-color: #25D366;
+      color: white;
+      border: none;
     }
 
-    .card {
-      background: white;
+    .btn-whatsapp:hover {
+      background-color: #20b858;
+      color: white;
+    }
+
+    .btn-print {
+      background-color: #343a40;
+      color: white;
+      border: none;
+    }
+
+    .btn-print:hover {
+      background-color: #23272b;
+      color: white;
+    }
+
+    /* Floating Scan Button */
+    .fab-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .btn-scan-fab {
+      width: 100%;
       padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 30px;
+      background: linear-gradient(45deg, #2e7d32, #43a047);
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
-    .status-pending {
-      color: orange;
-      font-weight: bold;
-    }
-
-    .status-dispatched {
-      color: #007bff;
-      font-weight: bold;
+    .btn-scan-fab:active {
+      transform: scale(0.95);
     }
 
     /* Scanner Modal */
     #scanner-modal {
-      display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
     }
 
     #reader {
-      width: 300px;
-      background: white;
-      padding: 10px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .scan-header {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .close-scan {
-      margin-top: 20px;
-      background: red;
-      padding: 10px 20px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
       color: white;
       border: none;
-      cursor: pointer;
-    }
-
-    /* Print Layout (Hidden on screen) */
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-
-      #print-area,
-      #print-area * {
-        visibility: visible;
-      }
-
-      #print-area {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-      }
-
-      .print-label {
-        width: 350px;
-        border: 2px solid #000;
-        padding: 20px;
-        margin: 20px;
-        page-break-inside: avoid;
-        font-family: sans-serif;
-      }
-
-      .qr-code {
-        float: right;
-        width: 100px;
-        height: 100px;
-      }
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 20px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="header">
-    <h2>📦 Orders Dashboard</h2>
-    <div>
-      <button class="btn btn-scan" onclick="startScanner('dispatch')">📦 Scan & Dispatch</button>
-      <button class="btn btn-track" onclick="startScanner('tracking')">✏️ Scan & Update Tracking</button>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">🍯 KAFAK Admin</a>
+      <button class="btn btn-sm btn-outline-success" onclick="loadOrders()">🔄 Refresh</button>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div id="loader" class="text-center py-5">
+      <div class="spinner-border text-success" role="status"></div>
+      <p class="mt-2 text-muted">Loading Orders...</p>
+    </div>
+
+    <div id="order-list" class="row">
     </div>
   </div>
 
-  <div id="loader">Loading orders...</div>
-  <div id="order-list"></div>
+  <div class="fab-container">
+    <div class="d-flex gap-2">
+      <button class="btn-scan-fab flex-grow-1" onclick="startScanner('dispatch')">
+        📦 Dispatch
+      </button>
+      <button class="btn-scan-fab flex-grow-1" style="background: linear-gradient(45deg, #d32f2f, #ef5350);"
+        onclick="startScanner('tracking')">
+        🚚 Tracking
+      </button>
+    </div>
+  </div>
 
   <div id="scanner-modal">
-    <div style="background:white; padding:10px; width:300px; text-align:center; border-radius:5px 5px 0 0;">
-      <h3 id="scan-instruction" style="margin:0; color:#333;">Scan Order QR Code</h3>
-      <p id="scan-detail" style="margin:5px 0 0; color:#666; font-size:14px;">Point camera at the Order QR</p>
+    <button class="close-scan" onclick="stopScanner()">✕</button>
+    <div class="scan-header">
+      <h3 id="scan-instruction">Scanning...</h3>
+      <p id="scan-detail" class="text-white-50 small">Point camera at QR Code</p>
     </div>
-
     <div id="reader"></div>
-    <button class="close-scan" onclick="stopScanner()">Close Scanner</button>
   </div>
 
-  <div id="print-area"></div>
-
-  <script src="custom-confirm.js"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script src="admin_script.js"></script>
 </body>
 
 </html>
