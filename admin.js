@@ -1,5 +1,5 @@
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytJW88K8vaC1MOdd2GvEYGXdkLucaTFrpDNCA8XlvPfv1eC-WiW4sd6qSFJH3NFM0tvQ/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbytJW88K8vaC1MOdd2GvEYGXdkLucaTFrpDNCA8XlvPfv1eC-WiW4sd6qSFJH3NFM0tvQ/exec';
 
 let allOrders = [];
 let html5QrCode;
