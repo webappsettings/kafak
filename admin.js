@@ -1,5 +1,5 @@
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0dwetehenomC4ZdLybKbbMufJN76OFDNerISTbFbRm8ffrPhH5NHSUOXdNhBHfsiUnw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_1PorN19SVT-nghojK6v6Qv0vdUUAJx9v5rXlDuQw1ruPXIRTaC-ymjhYGjOszGDkRw/exec';
 
 // --- AUTHENTICATION & IP LOGIC ---
 window.onload = function () {
