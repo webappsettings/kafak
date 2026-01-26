@@ -117,17 +117,20 @@ function updateSyncButtonUI() {
 }
 
 function createCardHTML(d, index, type) {
+    let priceInfo = calculatePriceInfo(d.quantity, d.state);
+    let safe = (val) => (val || '').toString().toUpperCase();
 
+    // 🔴 1. ലോക്കൽ സ്റ്റാറ്റസ് ഉണ്ടോ എന്ന് ആദ്യം പരിശോധിക്കുന്നു
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
     let currentStatus = localUpdate ? localUpdate.status : (d.Status || 'Pending');
 
-    let priceInfo = calculatePriceInfo(d.quantity, d.state);
-    let safe = (val) => (val || '').toString().toUpperCase();
     let statusBadge = '', buttons = '', tickMark = '';
 
+    // 🔴 2. d.Status-ന് പകരം currentStatus ഉപയോഗിക്കുന്നു
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
+            // 'Sent' ആണെങ്കിൽ Invoice Sent എന്ന് കാണിക്കുകയും 'Mark Paid' ബട്ടൺ നൽകുകയും ചെയ്യുന്നു
             statusBadge = '<span class="badge bg-info text-dark">Invoice Sent ⏳</span>';
             buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
                        <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
@@ -145,6 +148,7 @@ function createCardHTML(d, index, type) {
         buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 Add Tracking</button>`;
     }
 
+    // കാർഡിന്റെ ബോർഡർ കളറും currentStatus അനുസരിച്ച് മാറ്റുന്നു
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card status-${currentStatus}">
