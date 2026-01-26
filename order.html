@@ -276,7 +276,22 @@
           <div id="showsuccess" class="text-center py-5" style="display:none;">
             <div style="font-size: 60px;">🎉</div>
             <h3 class="fw-bold text-success mt-3" data-i18n="order_success">ഓർഡർ ലഭിച്ചു!</h3>
-            <p class="text-muted" data-i18n="redirecting">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
+            <p class="text-muted mb-4" data-i18n="redirecting">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
+
+            <div class="d-grid gap-3 col-lg-8 col-10 mx-auto">
+
+              <button onclick="sendToWhatsapp()"
+                class="btn btn-success py-3 rounded-pill fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2">
+                <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
+                <span>WhatsApp-ലേക്ക് അയക്കുക</span>
+              </button>
+
+              <button onclick="window.location.href='order.html'"
+                class="btn btn-outline-dark py-3 rounded-pill fw-bold border-2 d-flex align-items-center justify-content-center gap-2">
+                <span>🔄 പുതിയ ഓർഡർ ചെയ്യാം</span>
+              </button>
+
+            </div>
           </div>
 
           <form id="order-form">

@@ -4,35 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAFAK Admin | Manage Orders</title>
+    <title>KAFAK Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
+        /* --- SCREEN STYLES (Simple & Clean) --- */
         body {
-            background: #f4f6f9;
+            background-color: #f8f9fa;
             font-family: 'Segoe UI', sans-serif;
         }
 
         .navbar {
-            background: #2e7d32;
+            background: #198754;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-print {
+            background: #212529;
+            color: white;
+            border: none;
+        }
+
+        .btn-print:hover {
+            background: #000;
             color: white;
         }
 
-        .card {
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-radius: 12px;
-        }
-
-        .btn-sent {
-            background-color: #e0e0e0;
-            color: #555;
-            border: 1px solid #ccc;
-            cursor: default;
-        }
-
-        /* Print Styles (Same as before) */
+        /* --- PRINT STYLES (A6 LABEL DESIGN) --- */
         @media print {
             body * {
                 visibility: hidden;
@@ -55,132 +63,155 @@
                 margin: 0;
             }
 
-            .print-page {
+            /* Force A6 Paper */
+
+            .label-page {
                 width: 105mm;
                 height: 148mm;
-                padding: 10mm;
+                background: white;
+                padding: 8mm;
+                position: relative;
+                box-sizing: border-box;
                 page-break-after: always;
+                /* New page for each label */
                 display: flex;
                 flex-direction: column;
-                background: white;
                 font-family: Arial, sans-serif;
-                box-sizing: border-box;
+                border: 1px solid #eee;
+                /* Light border just for preview/cutting */
             }
 
-            .to-section {
-                flex-grow: 1;
+            .header-row {
+                margin-bottom: 20px;
             }
 
-            .to-label {
-                font-size: 18px;
-                font-weight: 800;
+            .to-text {
+                font-size: 14px;
+                font-weight: bold;
+                color: #555;
                 margin-bottom: 5px;
             }
 
             .cust-name {
-                font-size: 20px;
+                font-size: 22px;
                 font-weight: 800;
                 text-transform: uppercase;
                 line-height: 1.2;
+                margin-bottom: 5px;
             }
 
             .cust-address {
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: 600;
                 text-transform: uppercase;
-                line-height: 1.3;
-                margin-top: 5px;
+                line-height: 1.4;
+                color: #000;
             }
 
-            .phone-box {
-                border: 2px solid #333;
-                border-radius: 10px;
-                padding: 5px 10px;
+            .phone-container {
                 margin-top: 15px;
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
+                border: 2px solid #000;
+                border-radius: 8px;
+                padding: 5px 10px;
+                display: inline-block;
                 background: #fff;
             }
 
-            .phone-icon {
-                font-size: 24px;
+            .phone-label {
+                font-size: 12px;
+                font-weight: bold;
+                margin-right: 5px;
             }
 
-            .phone-numbers {
-                font-size: 16px;
-                font-weight: 800;
+            .phone-val {
+                font-size: 18px;
+                font-weight: 900;
             }
 
-            .footer-section {
-                display: flex;
-                align-items: flex-end;
-                justify-content: space-between;
+            /* Footer Section (Fragile + From) */
+            .footer {
                 margin-top: auto;
+                /* Push to bottom */
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                border-top: 2px solid #eee;
                 padding-top: 10px;
             }
 
-            .fragile-icon {
-                color: #d32f2f;
+            .fragile-box {
                 text-align: center;
+                color: #d32f2f;
+            }
+
+            .fragile-icon {
+                font-size: 40px;
+                margin-bottom: -5px;
+            }
+
+            .fragile-text {
+                font-weight: 900;
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            .from-box {
+                text-align: right;
+                font-size: 11px;
+                line-height: 1.3;
+                color: #333;
+                font-weight: 600;
+            }
+
+            .from-head {
                 font-weight: bold;
                 font-size: 12px;
-            }
-
-            .fragile-svg {
-                width: 50px;
-                height: 60px;
-                fill: #d32f2f;
-            }
-
-            .from-address {
-                font-size: 11px;
-                font-weight: 600;
-                text-align: right;
-                width: 60%;
-                line-height: 1.3;
+                margin-bottom: 2px;
             }
         }
 
+        /* Hide Print Area on Screen */
         #print-area {
             display: none;
-        }
-
-        @media print {
-            #print-area {
-                display: block;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark p-3 mb-4">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1 fw-bold">KAFAK Admin Panel 🍯</span>
-            <button class="btn btn-light btn-sm fw-bold" onclick="printSelected()">🖨️ Print Selected Labels</button>
+    <nav class="navbar navbar-dark p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <span class="navbar-brand mb-0 h1 fw-bold"><i class="fas fa-boxes"></i> KAFAK Orders</span>
+            <button class="btn btn-light fw-bold shadow-sm" onclick="printSelected()">
+                <i class="fas fa-print"></i> Print Labels (A6)
+            </button>
         </div>
     </nav>
 
     <div class="container-fluid px-4">
-        <div class="card p-3">
+        <div class="table-container">
+            <div class="d-flex justify-content-between mb-3">
+                <h5 class="fw-bold text-secondary">Recent Orders</h5>
+                <button class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Refresh 🔄</button>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"></th>
-                            <th>Order ID</th>
+                            <th style="width: 40px;"><input type="checkbox" id="selectAll"
+                                    style="transform: scale(1.2); cursor: pointer;"></th>
                             <th>Date</th>
+                            <th>Order ID</th>
                             <th>Customer</th>
                             <th>Location</th>
-                            <th>Contact Mode</th>
-                            <th>Status</th>
+                            <th>Select Number</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="orderTableBody">
+                    <tbody id="orderTable">
                         <tr>
-                            <td colspan="7" class="text-center p-3">Loading Orders...</td>
+                            <td colspan="7" class="text-center p-4 text-muted">Loading Orders...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -191,12 +222,12 @@
     <div id="print-area"></div>
 
     <script>
-        // 🔴 UPDATE YOUR SCRIPT URL HERE
+        // 🔴 PASTE YOUR NEW SCRIPT URL HERE
         const scriptURL = "https://script.google.com/macros/s/AKfycby_1PorN19SVT-nghojK6v6Qv0vdUUAJx9v5rXlDuQw1ruPXIRTaC-ymjhYGjOszGDkRw/exec";
 
         let allOrders = [];
 
-        // Load Orders
+        // 1. Load Orders
         fetch(`${scriptURL}?action=getAllOrders`)
             .then(res => res.json())
             .then(response => {
@@ -204,147 +235,131 @@
                     allOrders = response.data;
                     renderTable(allOrders);
                 } else {
-                    alert("Failed to load orders");
+                    alert('Error loading orders!');
                 }
-            });
+            })
+            .catch(err => console.error(err));
 
+        // 2. Render Table
         function renderTable(orders) {
-            const tbody = document.getElementById('orderTableBody');
+            const tbody = document.getElementById('orderTable');
             tbody.innerHTML = '';
 
             orders.forEach((order, index) => {
-                let dateObj = new Date(order.timestamp);
-                let dateStr = dateObj.toLocaleDateString('en-IN');
+                let date = new Date(order.timestamp).toLocaleDateString('en-IN');
 
-                // Check Status from Sheet
-                const isSent = order.Status === 'Sent'; // Column header name match avanam
-
-                // Button Style based on Status
-                const btnClass = isSent ? 'btn-secondary btn-sm' : 'btn-success btn-sm';
-                const btnText = isSent ? 'Sent ✅' : '<i class="fab fa-whatsapp"></i> Send';
-                const btnAction = `sendWhatsApp(${index}, this)`;
+                // Status Check for Button Color
+                let isSent = order.Status === 'Sent';
+                let btnClass = isSent ? 'btn-secondary' : 'btn-success';
+                let btnText = isSent ? 'Sent ✅' : '<i class="fab fa-whatsapp"></i> Send';
 
                 let row = `
-                <tr>
-                    <td><input type="checkbox" class="order-checkbox" value="${index}"></td>
-                    <td><span class="badge bg-secondary">${order.orderid}</span></td>
-                    <td class="small">${dateStr}</td>
-                    <td>
-                        <div class="fw-bold">${order.name}</div>
-                        <div class="small text-muted">${order.phone}</div>
-                    </td>
-                    <td class="small">${order.place}, ${order.district}</td>
-                    
-                    <td>
-                        <select class="form-select form-select-sm" id="contact-select-${index}" style="width: 140px;">
-                            <option value="${order.whatsapp}">WhatsApp (${order.whatsapp})</option>
-                            <option value="${order.phone}">Phone (${order.phone})</option>
-                        </select>
-                    </td>
+                    <tr>
+                        <td><input type="checkbox" class="order-cb" value="${index}" style="transform: scale(1.2); cursor: pointer;"></td>
+                        <td class="small text-muted">${date}</td>
+                        <td class="fw-bold text-primary small">${order.orderid}</td>
+                        <td>
+                            <div class="fw-bold">${order.name}</div>
+                            <div class="small text-muted">${order.phone}</div>
+                        </td>
+                        <td class="small">${order.place}, ${order.district}</td>
+                        
+                        <td>
+                            <select class="form-select form-select-sm" id="contact-${index}" style="width: 140px;">
+                                <option value="${order.whatsapp}">WhatsApp (${order.whatsapp})</option>
+                                <option value="${order.phone}">Phone (${order.phone})</option>
+                            </select>
+                        </td>
 
-                    <td>
-                        <button class="btn ${btnClass}" id="btn-${index}" onclick="${btnAction}">
-                            ${btnText}
-                        </button>
-                    </td>
-                </tr>
-            `;
+                        <td>
+                            <button class="btn ${btnClass} btn-sm" onclick="sendWA(${index}, this)">${btnText}</button>
+                        </td>
+                    </tr>
+                `;
                 tbody.innerHTML += row;
             });
         }
 
-        // --- SEND WHATSAPP & UPDATE STATUS ---
-        function sendWhatsApp(index, btnElement) {
+        // 3. Select All Logic
+        document.getElementById('selectAll').addEventListener('change', function () {
+            const checkboxes = document.querySelectorAll('.order-cb');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+        });
+
+        // 4. Send WhatsApp
+        function sendWA(index, btn) {
             const order = allOrders[index];
-            const selectedNumber = document.getElementById(`contact-select-${index}`).value;
-            const msg = `Hi ${order.name}, your order for Kafak Honey is packed! 🍯\nID: ${order.orderid}\nWe will ship it soon.`;
+            const phone = document.getElementById(`contact-${index}`).value;
+            const msg = `Hi ${order.name}, your order (${order.orderid}) is confirmed & packing started! 🍯\nWe will ship it soon.`;
 
-            // 1. Open WhatsApp
-            window.open(`https://wa.me/91${selectedNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 
-            // 2. Change Button immediately (Visual Feedback)
-            btnElement.className = 'btn btn-secondary btn-sm';
-            btnElement.innerHTML = 'Updating...';
-            btnElement.disabled = true;
+            // Visual Update
+            btn.className = 'btn btn-secondary btn-sm';
+            btn.innerHTML = 'Sent ✅';
+            btn.disabled = true;
 
-            // 3. Update Google Sheet
+            // Background Update (Optional: Update Sheet)
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'updateStatus', oid: order.orderid, status: 'Sent' })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.result === 'success') {
-                        btnElement.innerHTML = 'Sent ✅';
-                        // Update local data to reflect change without reload
-                        allOrders[index].Status = 'Sent';
-                    } else {
-                        btnElement.className = 'btn btn-success btn-sm';
-                        btnElement.innerHTML = 'Try Again';
-                        btnElement.disabled = false;
-                        alert('Failed to update status in sheet');
-                    }
-                });
+            });
         }
 
-        // --- PRINT LOGIC (Same as before) ---
-        function toggleSelectAll() {
-            const checkboxes = document.querySelectorAll('.order-checkbox');
-            const selectAll = document.getElementById('selectAll');
-            checkboxes.forEach(cb => cb.checked = selectAll.checked);
-        }
-
+        // 5. PRINT FUNCTION (The Adipoly Part!)
         function printSelected() {
-            const checkboxes = document.querySelectorAll('.order-checkbox:checked');
-            if (checkboxes.length === 0) {
-                alert("Please select at least one order to print!");
+            const selected = document.querySelectorAll('.order-cb:checked');
+            if (selected.length === 0) {
+                alert('Please select at least one order!');
                 return;
             }
 
             const printArea = document.getElementById('print-area');
-            printArea.innerHTML = '';
+            printArea.innerHTML = ''; // Clear previous
 
-            checkboxes.forEach(cb => {
-                const index = cb.value;
-                const order = allOrders[index];
-                const labelHTML = createA6Label(order);
-                printArea.innerHTML += labelHTML;
+            selected.forEach(cb => {
+                const order = allOrders[cb.value];
+                printArea.innerHTML += createLabel(order);
             });
 
             window.print();
         }
 
-        function createA6Label(d) {
-            let poText = d.postoffice ? `${d.postoffice},` : '';
+        function createLabel(d) {
+            let po = d.postoffice ? `${d.postoffice},` : '';
             return `
-            <div class="print-page">
-                <div class="to-section">
-                    <div class="to-label">To,</div>
-                    <div class="cust-name">${d.name}</div>
-                    <div class="cust-address">
-                        ${d.house}<br>
-                        ${d.place}, ${poText}<br>
-                        ${d.district}, KERALA<br>
-                        PIN: ${d.pincode}
+                <div class="label-page">
+                    <div class="header-row">
+                        <div class="to-text">To,</div>
+                        <div class="cust-name">${d.name}</div>
+                        <div class="cust-address">
+                            ${d.house}<br>
+                            ${d.place}, ${po}<br>
+                            ${d.district}, KERALA<br>
+                            <strong>PIN: ${d.pincode}</strong>
+                        </div>
+                        
+                        <div class="phone-container">
+                            <span class="phone-label">PH:</span>
+                            <span class="phone-val">${d.phone}</span>
+                        </div>
                     </div>
-                    <div class="phone-box">
-                        <span class="phone-icon">📞</span>
-                        <div class="phone-numbers">
-                            ${d.phone}${d.whatsapp && d.whatsapp !== d.phone ? ', ' + d.whatsapp : ''}
+
+                    <div class="footer">
+                        <div class="fragile-box">
+                            <div class="fragile-icon"><i class="fas fa-wine-glass"></i></div>
+                            <div class="fragile-text">FRAGILE</div>
+                        </div>
+                        <div class="from-box">
+                            <div class="from-head">From:</div>
+                            KAFAK LLP<br>
+                            10/174, Kunnathery<br>
+                            Thaikkattukara P.O, Aluva<br>
+                            <strong>Ph: 778899 0313</strong>
                         </div>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <div class="fragile-icon">
-                        <svg class="fragile-svg" viewBox="0 0 24 24"><path d="M18.1,5.1c0,0-2.2-2.8-2.6-3.2C15.1,1.5,14.6,1.2,14,1.2h-4c-0.6,0-1.1,0.3-1.5,0.7C8.1,2.3,5.9,5.1,5.9,5.1 C5.3,5.8,5,6.7,5,7.6v5.8c0,1.9,1.1,3.6,2.8,4.4v3h-1v2h10.4v-2h-1v-3c1.7-0.8,2.8-2.5,2.8-4.4V7.6C19,6.7,18.7,5.8,18.1,5.1z M10.4,4.2L11,3.5l3.5,6l0.9-0.5L11.5,2.5l0.9-0.5l0.5,0.9l-0.9,0.5L12.5,4l0.6-0.8L10.4,4.2z"/><path d="M12,14L12,14c-0.6,0-1-0.4-1-1v-2l-2,3.5l-0.9-0.5L10,10.6L8.8,12.7L7.9,12.2l2-3.5L9,7.3l2.5,4.3l0.9-0.5l-2-3.5 L12,5l1.6,2.7l-2,3.5l0.9,0.5l2.5-4.3l-0.9-1.5l2-3.5l0.9,0.5L15.1,6L14,8v5C14,13.6,13.6,14,12,14z"/></svg>
-                        <br>FRAGILE
-                    </div>
-                    <div class="from-address">
-                        From,<br>KAFAK LLP, 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
-                    </div>
-                </div>
-            </div>
-        `;
+            `;
         }
     </script>
 
