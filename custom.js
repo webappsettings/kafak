@@ -196,7 +196,14 @@ async function checkPincode(pinInput, autoSelectPO = null) {
 
 // --- SUBMIT FUNCTION ---
 function submitOrder() {
-  $('#submitBtn').prop('disabled', true).text(editingOrderId ? 'Updating...' : 'Processing...');
+  // 🔴 CHANGE: Button Text മാറ്റുന്നു, ഒപ്പം Spinner ചേർക്കുന്നു
+  const btn = $('#submitBtn');
+  const originalText = editingOrderId ? 'UPDATE ORDER' : 'PLACE ORDER';
+
+  // Disable button & Show Spinner inside
+  btn.prop('disabled', true).html(
+    `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`
+  );
 
   const poValue = $('#postoffice').val();
 
@@ -228,18 +235,19 @@ function submitOrder() {
 
         $('#honeyForm').hide();
         $('#saved-address-card').hide();
-
         showSuccess();
         setTimeout(sendToWhatsapp, 1500);
 
       } else {
         alert('Error: ' + data.message);
-        $('#submitBtn').prop('disabled', false).text('Try Again');
+        // Revert button if error
+        btn.prop('disabled', false).text('Try Again');
       }
     })
     .catch(err => {
       alert('കണക്ഷൻ തകരാർ! വീണ്ടും ശ്രമിക്കുക.');
-      $('#submitBtn').prop('disabled', false).text('Try Again');
+      // Revert button if error
+      btn.prop('disabled', false).text('Try Again');
     });
 }
 

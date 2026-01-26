@@ -102,16 +102,40 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.9);
       z-index: 9999;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
     }
 
-    .loader-img {
-      width: 60px;
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      /* Light Grey */
+      border-top: 5px solid #2e7d32;
+      /* Green Color */
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      margin-top: 15px;
+      font-weight: 600;
+      color: #2e7d32;
+      font-family: 'Poppins', sans-serif;
     }
 
     /* Saved Address Card */
@@ -133,8 +157,8 @@
 <body>
 
   <div id="main-loader">
-    <img src="loading.gif" alt="Loading..." class="loader-img">
-    <p style="margin-top:15px; color:#888; font-size:14px;">Please wait...</p>
+    <div class="spinner"></div>
+    <div class="loading-text">Please wait...</div>
   </div>
 
   <div class="container">
