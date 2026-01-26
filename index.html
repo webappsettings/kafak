@@ -4,99 +4,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafak Life - Pure Honey</title>
+    <title>KAFAK HONEY - Pure & Natural</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
+        :root {
+            --primary-gold: #f5a623;
+            --dark-green: #2e7d32;
+            --cream-bg: #fffcf5;
+            --text-dark: #37474f;
+        }
+
         body {
-            background-color: #fff9e6;
-            /* Light Honey Color */
             font-family: 'Poppins', sans-serif;
-            height: 100vh;
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+        }
+
+        h1,
+        h2,
+        h3,
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--dark-green) !important;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            color: #555 !important;
+            margin-left: 15px;
+            font-weight: 500;
+        }
+
+        .btn-nav {
+            background-color: var(--primary-gold);
+            color: white !important;
+            border-radius: 50px;
+            padding: 8px 25px;
+            transition: 0.3s;
+        }
+
+        .btn-nav:hover {
+            background-color: #e69100;
+        }
+
+        /* Hero Section (Gradient Background) */
+        .hero-section {
+            /* Beautiful Gradient instead of Image */
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            height: 85vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
+            position: relative;
         }
 
-        .main-card {
-            max-width: 500px;
-            width: 90%;
-            padding: 40px 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(212, 160, 23, 0.15);
-            animation: fadeIn 1s ease-in-out;
+        .hero-title {
+            font-size: 4rem;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        h1 {
-            font-weight: 800;
-            color: #f57f17;
-            margin-bottom: 10px;
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        p {
-            color: #6c757d;
-            margin-bottom: 30px;
-        }
-
-        .btn-order {
-            background: linear-gradient(45deg, #ffb300, #ffca28);
-            color: #fff;
-            font-weight: 700;
-            padding: 15px;
-            width: 100%;
+        .btn-main {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 18px 50px;
+            font-size: 20px;
             border-radius: 50px;
-            border: none;
-            font-size: 18px;
-            box-shadow: 0 5px 15px rgba(255, 179, 0, 0.4);
-            transition: transform 0.2s;
-            margin-bottom: 15px;
-            display: block;
             text-decoration: none;
-        }
-
-        .btn-order:hover {
-            transform: scale(1.02);
-            color: #fff;
-        }
-
-        .btn-admin {
-            background: transparent;
-            color: #2e7d32;
-            border: 2px solid #2e7d32;
             font-weight: 600;
-            padding: 12px;
-            width: 100%;
-            border-radius: 50px;
-            font-size: 16px;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.2);
+            transition: transform 0.3s;
         }
 
-        .btn-admin:hover {
-            background: #2e7d32;
+        .btn-main:hover {
+            transform: translateY(-5px);
             color: white;
         }
 
-        .logo-emoji {
-            font-size: 60px;
-            margin-bottom: 10px;
+        /* Features Cards */
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            height: 100%;
+            border: 1px solid #f0f0f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 0;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .hero-section {
+                height: auto;
+                padding: 100px 0;
             }
         }
     </style>
@@ -104,24 +155,100 @@
 
 <body>
 
-    <div class="main-card">
-        <span class="logo-emoji">🍯</span>
-        <h1>KAFAK HONEY</h1>
-        <p>Pure, Natural & Delicious.<br>Direct from nature to your home.</p>
-
-        <a href="order.html" class="btn-order">
-            🛒 PLACE ORDER NOW
-        </a>
-
-        <a href="admin.html" class="btn-admin">
-            🔐 Admin Dashboard
-        </a>
-
-        <div class="mt-4">
-            <small class="text-muted">© 2026 KAFAK LLP</small>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">🍯 KAFAK LIFE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav ms-2" href="order.html">Order Now</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Pure Honey,<br>Straight from Nature.</h1>
+            <p class="hero-subtitle">Experience the richness of 100% raw, unfiltered honey. No additives, no
+                processing—just pure golden goodness for your health.</p>
+            <a href="order.html" class="btn-main">SHOP NOW ➔</a>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 style="color: var(--dark-green); font-size: 2.5rem;">Why Choose Kafak?</h2>
+                <p class="text-muted">Nature's best, delivered to you.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <span class="feature-icon">🌿</span>
+                        <h3>100% Natural</h3>
+                        <p class="text-muted">Sourced directly from the finest beehives without any artificial
+                            processing.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <span class="feature-icon">🛡️</span>
+                        <h3>Premium Quality</h3>
+                        <p class="text-muted">Lab-tested purity ensuring you get the best nutrients and taste.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center">
+                        <span class="feature-icon">🚚</span>
+                        <h3>Fast Delivery</h3>
+                        <p class="text-muted">Secure packing and quick delivery to your doorstep anywhere in India.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background: white;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h2 style="font-size: 3rem; color: var(--primary-gold);">Taste the <br>Difference.</h2>
+                </div>
+                <div class="col-md-6">
+                    <p class="lead text-muted">Our honey is more than just a sweetener. It's a boost of immunity, a
+                        touch of luxury, and a spoon of health for your family.</p>
+                    <ul class="list-unstyled mt-4 mb-4">
+                        <li class="mb-2">✅ <strong>Raw & Unfiltered</strong></li>
+                        <li class="mb-2">✅ <strong>Rich in Antioxidants</strong></li>
+                        <li class="mb-2">✅ <strong>Perfect Consistency</strong></li>
+                    </ul>
+                    <a href="order.html" class="btn btn-outline-dark rounded-pill px-4 py-2">Order Your Bottle</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="mb-3">Ready to taste pure honey?</h2>
+            <p class="mb-4 opacity-75">Order today and get it delivered fresh.</p>
+            <a href="order.html" class="btn btn-light rounded-pill px-5 py-3 fw-bold"
+                style="color: var(--dark-green);">PLACE ORDER</a>
+        </div>
+    </section>
+
+    <footer class="text-center py-4 mt-auto">
+        <small class="text-muted">© 2026 KAFAK LIFE LLP. All Rights Reserved.</small><br>
+        <small><a href="admin.html" class="text-decoration-none text-muted" style="font-size:12px;">Admin
+                Login</a></small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
