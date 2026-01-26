@@ -231,10 +231,20 @@ function filterOrders() {
     renderTabs(allOrders.filter(o => (o.name || '').toLowerCase().includes(term) || String(o.phone).includes(term) || (o.orderid || '').toLowerCase().includes(term)));
 }
 
-function logout() {
-    if (confirm("Logout?")) {
+// --- അഡ്മിൻ ലോഗൗട്ട് ഫങ്ക്ഷൻ ---
+function logoutAdmin() {
+    if (confirm("Logout ചെയ്യാൻ ഉറപ്പാണോ?")) {
+        // 1. അഡ്മിൻ ലോഗിൻ വിവരങ്ങൾ ഒഴിവാക്കുന്നു
         localStorage.removeItem('kafakAdminLoggedIn');
+
+        // 2. ഓർഡർ ലിങ്കുകളിൽ 'Mark Paid' വരുന്നത് ഒഴിവാക്കുന്നു
         localStorage.removeItem('kafakAdmin');
-        location.reload();
+
+        // 3. പേജ് ലോഗിൻ സ്ക്രീനിലേക്ക് കൊണ്ടുപോകുന്നു (ഉദാഹരണത്തിന് login.html ഉണ്ടെങ്കിൽ)
+        // അല്ലെങ്കിൽ ഇൻഡക്സ് പേജിലേക്ക് റീഡയറക്ട് ചെയ്യുക
+        window.location.href = "index.html";
+
+        // ഇൻഡക്സ് പേജ് ഇല്ലെങ്കിൽ മാത്രം താഴെയുള്ളത് ഉപയോഗിക്കുക
+        // location.reload(); 
     }
 }
