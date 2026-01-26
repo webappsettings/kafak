@@ -76,10 +76,13 @@ function renderTabs(orders) {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     orders.forEach((d, i) => {
-        // 🔴 മാറ്റം ഇവിടെ: ലോക്കൽ സ്റ്റോറേജിൽ ഈ ഓർഡറിന് പുതിയ സ്റ്റാറ്റസ് ഉണ്ടോ എന്ന് നോക്കുന്നു
+        // ലോക്കൽ മാറ്റം ഉണ്ടോ എന്ന് നോക്കുന്നു
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
+
+        // ഷീറ്റിലെ സ്റ്റാറ്റസിനേക്കാൾ മുൻഗണന ലോക്കൽ മാറ്റത്തിന് നൽകുന്നു
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
 
+        // 🔴 ഇവിടെ d.Status-ന് പകരം നമ്മൾ മുകളിൽ കണ്ടുപിടിച്ച status ഉപയോഗിക്കുന്നു
         if (status === 'Pending' || status === 'Sent') {
             counts.pending++;
             pendingList.innerHTML += createCardHTML(d, i, 'pending');
@@ -114,12 +117,17 @@ function updateSyncButtonUI() {
 }
 
 function createCardHTML(d, index, type) {
+
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
+    let currentStatus = localUpdate ? localUpdate.status : (d.Status || 'Pending');
+
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => (val || '').toString().toUpperCase();
     let statusBadge = '', buttons = '', tickMark = '';
 
     if (type === 'pending') {
-        if (d.Status === 'Sent') {
+        if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Invoice Sent ⏳</span>';
             buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
                        <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
@@ -139,7 +147,7 @@ function createCardHTML(d, index, type) {
 
     return `
     <div class="col-12 col-md-6 col-lg-4">
-        <div class="order-card status-${d.Status}">
+        <div class="order-card status-${currentStatus}">
             ${tickMark}
             <div class="card-header-row">
                 <span class="order-id">#${d.orderid}</span>
@@ -156,23 +164,23 @@ function createCardHTML(d, index, type) {
     </div>`;
 }
 
-// കൂടുതൽ വിശ്വസനീയമായ അപ്‌ഡേറ്റ് ഫങ്ക്ഷൻ
-async function updateOrder(oid, status) {
-    if (!confirm(`Update #${oid} to ${status}?`)) return;
+// 🚀 പുതുക്കിയ അപ്‌ഡേറ്റ് ഫങ്ക്ഷൻ: സർവർ ലോഡിംഗ് ഒഴിവാക്കി
+function updateOrder(oid, status) {
+    if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-    // UI പെട്ടെന്ന് മാറ്റുന്നു
-    const order = allOrders.find(o => o.orderid === oid);
-    if (order) order.Status = status;
-    renderTabs(allOrders);
+    // 1. പെൻഡിംഗ് ലിസ്റ്റിലേക്ക് ഡാറ്റ ചേർക്കുന്നു
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    updates = updates.filter(item => item.oid !== oid); // പഴയ സ്റ്റാറ്റസ് ഉണ്ടെങ്കിൽ ഒഴിവാക്കുന്നു
+    updates.push({ oid: oid, status: status, time: new Date().getTime() });
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-    try {
-        await fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify({ action: 'updateStatus', oid: oid, status: status })
-        });
-    } catch (e) {
-        alert("Server Update Failed! Please Refresh.");
-    }
+    // 2. ബട്ടൺ ലേബലുകൾക്കായി മാർക്ക് ചെയ്യുന്നു
+    const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
+    localStorage.setItem(storageKey, 'true');
+
+    // 3. UI ഉടൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നു (സെർവർ മറുപടിക്കായി കാത്തുനിൽക്കില്ല)
+    alert(`Saved Locally: ${status} ✅`);
+    renderTabs(allOrders); // ഇത് വിളിക്കുമ്പോൾ ഓട്ടോമാറ്റിക്കായി ലോക്കൽ സ്റ്റാറ്റസ് എടുക്കും
 }
 
 function calculatePriceInfo(qty, state) {
