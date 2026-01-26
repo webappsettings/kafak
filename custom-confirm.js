@@ -232,35 +232,28 @@ function sendWhatsapp(orderId) {
     return;
   }
 
-  // Calculate Price Dynamic
   const qty = parseInt(row.quantity);
   const basePrice = qty * 650;
   let courierCharge = 0;
   let stateVal = String(row.state).trim().toLowerCase();
 
-  // Price Calculation Logic
-  if (stateVal === 'lakshadweep') {
-    courierCharge = (qty * 100) + 20;
-  } else {
-    // Check global rates, default to 0 if not found
+  if (stateVal === 'lakshadweep') courierCharge = (qty * 100) + 20;
+  else {
     const rates = (stateVal === 'kerala') ? courierRates.kerala : courierRates.outside;
     courierCharge = rates[qty] || 0;
   }
 
   const total = basePrice + courierCharge;
-
-  // Edit Link for Customer
   const editLink = `kafaklife.com/order.html?oid=${orderId}`;
 
-  // Formatting Message
   const amountText = `Amount(₹): ${basePrice} + ${courierCharge} (Courier)`;
   const totalText = `Total(₹): ${total}/-`;
   const formattedAddress = row.address.replace(/, /g, '\n').toUpperCase();
   const submitTime = row.timestamp;
   const messageContent = row.message ? `\n\n💬 _${row.message}_\n` : '\n';
 
-  // Message Body
-  const header = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderId}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)\n⌚ \`\`\`${submitTime}\`\`\``;
+  // 🔴 CHANGE: Removed ``` and added * for Bold
+  const header = `*✅ Honey order confirmed!* 🍯\n🔖 *#${orderId}*\n🔗 _${editLink}_\n(Click link to edit order)\n⌚ \`\`\`${submitTime}\`\`\``;
 
   const details = `
 ____________________________________\n
@@ -273,17 +266,14 @@ ${formattedAddress}
 *${totalText}*${messageContent}
 ____________________________________
 
-*Please GPay to the number below and send the screenshot here. We will pack your order after receiving it.*\n
-*(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്ത് സ്ക്രീന്‍ഷോട്ട് അയക്കൂ.. സ്ക്രീന്‍ഷോട്ട് അയച്ച ശേഷം ഓർഡർ പാക്ക് ചെയ്യും)* 👇
+*Please GPay to the number below...* 👇
 \n*7788990313 (KAFAK LLP)*\n`;
 
   const finalMsg = encodeURIComponent(header + details);
 
-  // Phone Handling (Admin sends TO Customer)
   let customerPhone = String(row.whatsapp || row.phone).replace(/\D/g, '');
   if (customerPhone.length === 10) customerPhone = '91' + customerPhone;
 
-  // 🔴 CHANGE: Using universal API link
   window.open(`https://api.whatsapp.com/send?phone=${customerPhone}&text=${finalMsg}`, '_blank');
 }
 

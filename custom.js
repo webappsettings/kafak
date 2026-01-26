@@ -210,7 +210,7 @@ function showSuccess() {
 }
 
 function sendToWhatsapp() {
-  const phone = '7788990313'; // Admin Phone Number
+  const phone = '7788990313';
   const orderid = successSubmitData.orderid;
   const d = successSubmitData.data;
 
@@ -220,7 +220,8 @@ function sendToWhatsapp() {
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 \`\`\`#${orderid}\`\`\`\n🔗 _${editLink}_\n(Click link to edit order)`;
+  // 🔴 CHANGE: Removed ``` and added * for Bold
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 *#${orderid}*\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
 
@@ -242,8 +243,6 @@ ____________________________________
 \n*${phone} (KAFAK LLP)*\n`;
 
   const message = encodeURIComponent(extra1 + wtspformat);
-
-  // 🔴 CHANGE IS HERE: Used universal API link instead of whatsapp://
   window.open(`https://api.whatsapp.com/send?phone=91${phone}&text=${message}`, '_blank');
 }
 
