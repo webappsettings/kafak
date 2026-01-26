@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap"
     rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <style>
     :root {
@@ -23,6 +24,8 @@
       background: var(--soft-bg);
       font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
       padding-top: 80px;
+      padding-bottom: 100px;
+      /* Space for Admin Bar */
       min-height: 100vh;
     }
 
@@ -33,59 +36,20 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
-    .btn-home-link {
-      color: var(--theme-green);
-      border: 2px solid var(--theme-green);
-      border-radius: 30px;
-      padding: 6px 15px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .btn-home-link:hover {
-      background: var(--theme-green);
-      color: white;
-    }
-
-    /* Language Selector */
-    .lang-select {
-      border: 2px solid var(--theme-green);
-      color: var(--theme-green);
-      border-radius: 20px;
-      padding: 4px 10px;
-      font-weight: 600;
-      font-size: 13px;
-      outline: none;
-      background: white;
-      margin-right: 10px;
-      cursor: pointer;
-    }
-
-    /* Card */
+    /* Card & Inputs */
     .main-card {
       background: #fff;
       border-radius: 25px;
       box-shadow: 0 15px 35px rgba(46, 125, 50, 0.1);
       border: none;
       padding: 30px;
-      margin-bottom: 40px;
     }
 
-    /* Inputs */
     .form-control-custom {
       border-radius: 15px;
       padding: 12px 15px;
       border: 2px solid #eee;
       font-weight: 500;
-      transition: all 0.3s;
-    }
-
-    .form-control-custom:focus {
-      border-color: var(--theme-green);
-      box-shadow: 0 0 10px rgba(46, 125, 50, 0.2);
-      outline: none;
     }
 
     .big-input {
@@ -95,49 +59,7 @@
       letter-spacing: 2px;
     }
 
-    /* Buttons */
-    .btn-next,
-    .btn-submit {
-      background: linear-gradient(45deg, var(--theme-green), var(--theme-light-green));
-      border: none;
-      color: white;
-      font-weight: 700;
-      padding: 15px;
-      border-radius: 50px;
-      width: 100%;
-      font-size: 18px;
-      box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
-      transition: transform 0.2s;
-    }
-
-    .btn-next:hover,
-    .btn-submit:hover {
-      transform: scale(1.02);
-      color: white;
-    }
-
-    /* Steps & Loader */
-    .step-container {
-      display: none;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .step-container.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    /* Steps & Progress */
     .progress-track {
       display: flex;
       margin-bottom: 30px;
@@ -178,7 +100,6 @@
       justify-content: center;
       font-weight: bold;
       color: #ccc;
-      transition: all 0.4s;
     }
 
     .step-dot.active {
@@ -192,6 +113,7 @@
       color: white;
     }
 
+    /* Loader */
     #main-loader {
       position: fixed;
       top: 0;
@@ -216,18 +138,21 @@
     }
 
     @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
       100% {
         transform: rotate(360deg);
       }
     }
 
-    #name-section {
-      display: none;
-      margin-top: 15px;
+    .btn-next,
+    .btn-submit {
+      background: linear-gradient(45deg, var(--theme-green), var(--theme-light-green));
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 15px;
+      border-radius: 50px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
     }
   </style>
 </head>
@@ -236,17 +161,16 @@
 
   <nav class="navbar navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand py-0" href="#" onclick="window.location.reload(); return false;" title="Refresh Page">
+      <a class="navbar-brand py-0" href="index.html">
         <img src="logo-order.png" alt="Kafak Logo" height="45">
       </a>
-
       <div class="d-flex align-items-center">
-        <select class="lang-select" onchange="changeLanguage(this.value)">
+        <select class="lang-select me-2" onchange="changeLanguage(this.value)"
+          style="border-radius:20px; padding:5px; border:2px solid var(--theme-green);">
           <option value="ml" selected>Malayalam</option>
           <option value="en">English</option>
         </select>
-
-        <a href="index.html" class="btn-home-link">🏠 <span data-i18n="home">Home</span></a>
+        <a href="index.html" class="btn btn-outline-success btn-sm rounded-pill px-3 fw-bold">🏠 Home</a>
       </div>
     </div>
   </nav>
@@ -259,7 +183,6 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8">
-
         <div class="card main-card">
 
           <div class="progress-track">
@@ -273,189 +196,113 @@
             </div>
           </div>
 
-          <div id="showsuccess" class="text-center py-5" style="display:none;">
+          <div id="showsuccess" class="text-center py-4" style="display:none;">
             <div style="font-size: 60px;">🎉</div>
-            <h3 class="fw-bold text-success mt-3" data-i18n="order_success">ഓർഡർ ലഭിച്ചു!</h3>
-            <p class="text-muted mb-4" data-i18n="redirecting">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
-
-            <div class="d-grid gap-3 col-lg-8 col-10 mx-auto">
-
-              <button onclick="sendToWhatsapp()"
-                class="btn btn-success py-3 rounded-pill fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2">
-                <i class="fab fa-whatsapp" style="font-size: 20px;"></i>
-                <span>WhatsApp-ലേക്ക് അയക്കുക</span>
-              </button>
-
-              <button onclick="window.location.href='order.html'"
-                class="btn btn-outline-dark py-3 rounded-pill fw-bold border-2 d-flex align-items-center justify-content-center gap-2">
-                <span>🔄 പുതിയ ഓർഡർ ചെയ്യാം</span>
-              </button>
-
-            </div>
+            <h3 class="fw-bold text-success mt-3">ഓർഡർ ലഭിച്ചു!</h3>
+            <p class="text-muted">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
+            <button onclick="sendToWhatsapp()" class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow-sm">
+              <i class="fab fa-whatsapp me-2"></i> WhatsApp-ലേക്ക് അയക്കുക
+            </button>
           </div>
 
           <form id="order-form">
-
             <div id="step-1" class="step-container active">
               <div class="text-center mb-4">
-                <h4 class="fw-bold" style="color:var(--theme-green);" data-i18n="step1_title">നിങ്ങളുടെ ഫോൺ നമ്പർ?</h4>
+                <h4 class="fw-bold text-success" data-i18n="step1_title">നിങ്ങളുടെ ഫോൺ നമ്പർ?</h4>
                 <p class="text-muted small" data-i18n="step1_desc">ഓർഡർ ചെയ്യാൻ മൊബൈൽ നമ്പർ നൽകുക</p>
               </div>
+              <input type="tel" class="form-control form-control-custom big-input mb-3" id="phone" name="phone"
+                placeholder="Mobile Number" maxlength="10" required>
 
-              <div class="mb-3">
-                <input type="tel" class="form-control form-control-custom big-input" id="phone" name="phone"
-                  placeholder="Mobile Number" maxlength="10" required
-                  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              <div id="name-section" style="display:none;">
+                <label class="form-label text-success small fw-bold">പേര് എന്താണ്?</label>
+                <input type="text" class="form-control form-control-custom" id="temp_name" placeholder="നിങ്ങളുടെ പേര്">
               </div>
 
-              <div id="name-section">
-                <label class="form-label text-success" data-i18n="new_user_name">ആദ്യമായിട്ടാണല്ലോ.. പേര്
-                  എന്താണ്?</label>
-                <input type="text" class="form-control form-control-custom" id="temp_name" data-i18n-ph="your_name"
-                  placeholder="നിങ്ങളുടെ പേര്">
-              </div>
-
-              <button type="button" id="btnNext" onclick="handleStep1()" class="btn-next mt-3" data-i18n="next_btn">
-                അടുത്തത് ➔
-              </button>
+              <button type="button" id="btnNext" onclick="handleStep1()" class="btn-next mt-3">അടുത്തത് ➔</button>
             </div>
 
-            <div id="step-2" class="step-container">
-              <div class="text-center mb-4">
-                <h5 class="fw-bold text-muted" data-i18n="step2_title">വിലാസം നൽകുക 🏠</h5>
-              </div>
+            <div id="step-2" class="step-container" style="display:none;">
 
-              <div id="saved-address-card" class="card p-3 mb-3 border-success"
-                style="display:none; background: #f1f8e9; border-radius: 15px;">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <small class="text-muted fw-bold">Delivery Details ✅</small>
-                  <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="enableEditMode()"
-                    style="font-size:12px;">
-                    Edit Details ✏️
-                  </button>
+              <div id="saved-address-card" class="card p-3 mb-3 border-success shadow-sm"
+                style="display:none; background: #f9fff9; border-radius: 15px;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <small class="text-success fw-bold"><i class="fas fa-user-check me-1"></i> Delivery Details</small>
+                  <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-2 py-0"
+                    onclick="enableEditMode()" style="font-size:11px;">Edit ✏️</button>
                 </div>
-
-                <h6 class="fw-bold text-dark mb-1" id="summary-name">User Name</h6>
-                <p class="small text-muted mb-2" id="summary-address" style="line-height: 1.4;">House, Place, Pin</p>
-                <hr style="margin: 8px 0; border-color: #c8e6c9;">
-
-                <div class="d-flex align-items-center justify-content-between mb-1">
-                  <span class="small text-muted">📞 Phone: <strong id="summary-phone" class="text-dark"></strong></span>
-                  <a href="#" onclick="backToStep1(); return false;"
-                    class="small text-success text-decoration-none fw-bold">Change</a>
-                </div>
-                <div class="d-flex align-items-center">
-                  <span class="small text-muted">💬 WhatsApp: <strong id="summary-whatsapp"
-                      class="text-dark"></strong></span>
-                </div>
+                <h6 class="fw-bold mb-0" id="summary-name">User</h6>
+                <p class="small text-muted mb-0" id="summary-address"></p>
+                <div class="small mt-1"><i class="fas fa-phone-alt me-1"></i> <span id="summary-phone"></span></div>
               </div>
 
               <div id="address-inputs">
-                <div class="mb-3">
-                  <label class="form-label small text-muted" data-i18n="label_name">പേര് (വേണമെങ്കിൽ മാറ്റാം)</label>
-                  <input type="text" class="form-control form-control-custom" id="name" name="name" required>
+                <input type="text" class="form-control form-control-custom mb-2" id="name" name="name"
+                  placeholder="Name" required>
+                <input type="tel" class="form-control form-control-custom mb-2" id="whatsapp" name="whatsapp"
+                  placeholder="WhatsApp Number" maxlength="10" required>
+
+                <div class="row g-2 mb-2">
+                  <div class="col-6"><input type="text" class="form-control form-control-custom" id="house" name="house"
+                      placeholder="വീട്ടുപേര്" required></div>
+                  <div class="col-6"><input type="text" class="form-control form-control-custom" id="place" name="place"
+                      placeholder="സ്ഥലം" required></div>
                 </div>
 
-                <div class="mb-3">
-                  <label class="form-label small text-muted" data-i18n="label_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
-                  <input type="tel" class="form-control form-control-custom" id="whatsapp" name="whatsapp"
-                    placeholder="WhatsApp Number" maxlength="10" required
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                </div>
+                <input type="tel" class="form-control form-control-custom mb-2" id="pincode" name="pincode"
+                  placeholder="പിൻകോഡ്" maxlength="6" required>
 
-                <div class="row g-3 mb-3">
+                <div class="row g-2 mb-3 pincodeEnable" style="display:none;">
                   <div class="col-6">
-                    <input type="text" class="form-control form-control-custom" id="house" name="house"
-                      data-i18n-ph="ph_house" placeholder="വീട്ടുപേര്" required>
+                    <select class="form-control form-control-custom" id="officename" style="display:none;"></select>
+                    <input type="text" class="form-control form-control-custom" id="postoffice" placeholder="PO"
+                      readonly>
                   </div>
-                  <div class="col-6">
-                    <input type="text" class="form-control form-control-custom" id="place" name="place"
-                      data-i18n-ph="ph_place" placeholder="സ്ഥലം" required>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <input type="tel" class="form-control form-control-custom" id="pincode" name="pincode"
-                    data-i18n-ph="ph_pincode" placeholder="പിൻകോഡ് (6 digits)" maxlength="6" required
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                </div>
-
-                <div class="row g-3 mb-3 pincodeEnable" style="display:none;">
-                  <div class="col-6">
-                    <select class="form-control form-control-custom" id="officename" name="officename"
-                      style="display:none;"></select>
-                    <input type="text" class="form-control form-control-custom" id="postoffice" name="postoffice"
-                      placeholder="Post Office" readonly>
-                  </div>
-                  <div class="col-6">
-                    <input type="text" class="form-control form-control-custom" id="district" name="district"
-                      placeholder="District" readonly>
-                  </div>
+                  <div class="col-6"><input type="text" class="form-control form-control-custom" id="district"
+                      placeholder="District" readonly></div>
                 </div>
                 <input type="hidden" id="state" name="state">
               </div>
-              <div class="mb-4 p-3 rounded-4" style="background: #fffDE7; border: 1px solid #FFD54F;">
-                <label class="form-label fw-bold" style="color:var(--theme-green);" data-i18n="label_qty">എത്ര ബോട്ടിൽ
-                  വേണം? 👇</label>
-                <select class="form-control form-control-custom" id="quantity" name="quantity" style="background:white;"
-                  required disabled>
-                  <option value="" selected disabled data-i18n="select_opt">തിരഞ്ഞെടുക്കൂ...</option>
+
+              <div class="p-3 rounded-4 mb-3" style="background: #fffdf0; border: 1px solid #ffe082;">
+                <label class="form-label fw-bold text-success small">എത്ര ബോട്ടിൽ വേണം? 👇</label>
+                <select class="form-control form-control-custom mb-2" id="quantity" name="quantity" required disabled>
+                  <option value="" selected disabled>തിരഞ്ഞെടുക്കൂ...</option>
                   <option value="1">1 Bottle (650g)</option>
                   <option value="2">2 Bottles (1.3 Kg)</option>
                   <option value="3">3 Bottles (1.95 Kg)</option>
-                  <option value="4">4 Bottles (2.6 Kg)</option>
-                  <option value="5">5 Bottles (3.25 Kg)</option>
-                  <option value="6">6 Bottles (3.9 Kg)</option>
-                  <option value="8">8 Bottles (5.2 Kg)</option>
-                  <option value="10">10 Bottles (6.5 Kg)</option>
                 </select>
-                <div class="mt-3 text-end price-show" style="display:none;">
+                <div class="price-show text-end" style="display:none;">
                   <div id="totalAmt" class="fw-bold text-success fs-5"></div>
-                  <small class="text-muted" id="amt"></small>
+                  <small id="amt" class="text-muted"></small>
                 </div>
               </div>
 
-              <div class="mb-4">
-                <textarea class="form-control form-control-custom" id="message" rows="2" data-i18n-ph="ph_msg"
-                  placeholder="എന്തെങ്കിലും പറയാനുണ്ടോ? (Optional)"></textarea>
-              </div>
+              <textarea class="form-control form-control-custom mb-4" id="message" rows="2"
+                placeholder="മെസ്സേജ് (Optional)"></textarea>
 
-              <div class="d-flex gap-3">
+              <div class="d-flex gap-2">
                 <button type="button" onclick="backToStep1()"
-                  class="btn btn-light flex-fill py-3 rounded-pill fw-bold border d-flex align-items-center justify-content-center gap-2">
-                  <span style="font-size: 24px; line-height: 1;">&#8592;</span>
-                  <span data-i18n="back_btn">പുറകോട്ട്</span>
-                </button>
-                <button type="submit" id="submitBtn" class="btn-submit flex-fill py-3" data-i18n="order_btn">
-                  ഓർഡർ ചെയ്യാം ✅
-                </button>
+                  class="btn btn-light flex-fill rounded-pill border fw-bold">⬅️ Back</button>
+                <button type="submit" id="submitBtn" class="btn-submit flex-fill">ഓർഡർ ചെയ്യാം ✅</button>
               </div>
             </div>
-
           </form>
+
         </div>
       </div>
     </div>
   </div>
 
-  <div class="text-center mt-3">
-    <button onclick="clearMyData()" class="btn btn-sm btn-outline-danger" style="font-size: 10px; opacity: 0.6;">
-      🛠️ Clear Local Data
-    </button>
-  </div>
-
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-  <script src="custom.js"></script>
+
   <script>
-    function clearMyData() {
-      if (confirm("നിങ്ങളുടെ ഫോണിലെ സേവ് ചെയ്ത വിവരങ്ങൾ (Name, Phone etc.) ക്ലിയർ ചെയ്യട്ടെ?")) {
-        localStorage.removeItem('kafakUser');
-        alert("Data Cleared! ✅");
-        location.reload();
-      }
-    }
+    // 🔴 FIXED: Define urlParams at start
+    const urlParams = new URLSearchParams(window.location.search);
   </script>
+  <script src="custom.js"></script>
+
 </body>
 
 </html>
