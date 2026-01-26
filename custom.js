@@ -324,26 +324,29 @@ function fetchOrderDetails(oid) {
     });
 }
 
-// 🚀 UPDATED ADMIN ACTION: Local Sync Logic (No Server Wait)
+// 🚀 UPDATED ADMIN ACTION: Local Sync Logic (സെർവർ വെയിറ്റിംഗ് ഒഴിവാക്കി)
 function adminAction(oid, status) {
+  // 1. യൂസറോട് ചോദിക്കുന്നു
   if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-  // 1. പെൻഡിംഗ് അപ്‌ഡേറ്റ് ലിസ്റ്റിലേക്ക് ആഡ് ചെയ്യുന്നു
+  // 2. പെൻഡിംഗ് അപ്‌ഡേറ്റ് ലിസ്റ്റിലേക്ക് ഡാറ്റ ചേർക്കുന്നു
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-  // പഴയ ഡാറ്റ ഉണ്ടെങ്കിൽ അത് കളഞ്ഞിട്ട് പുതിയത് വെക്കുന്നു
+  // പഴയ എൻട്രി ഉണ്ടെങ്കിൽ അത് കളഞ്ഞ് പുതിയത് ചേർക്കുന്നു
   updates = updates.filter(item => item.oid !== oid || item.status !== status);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // 2. ബട്ടൺ ലേബൽ മാറാൻ ലോക്കലായി മാർക്ക് ചെയ്യുന്നു
+  // 3. ബട്ടൺ ലേബൽ മാറാൻ വേണ്ടി ലോക്കലായി മാർക്ക് ചെയ്യുന്നു
   const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
   localStorage.setItem(storageKey, 'true');
 
-  alert(`Saved Locally: ${status} ✅\nAdmin Panel തുറക്കുമ്പോൾ ഇത് Sync ചെയ്യുക.`);
+  // 4. സർവറിലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നില്ല, പകരം ഉടൻ അറിയിപ്പ് നൽകുന്നു
+  alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅\nഅഡ്മിൻ പാനലിൽ പോയി സിങ്ക് ചെയ്യുക.`);
 
-  location.reload(); // ബട്ടൺ മാറാൻ പേജ് റിഫ്രഷ് ചെയ്യുന്നു
+  // 5. ലോഡിംഗ് ഇല്ലാതെ പേജ് ഉടൻ റിഫ്രഷ് ചെയ്യുന്നു (ബട്ടൺ അപ്ഡേറ്റ് ആകാൻ)
+  location.reload();
 }
 
 function closeAdminBar() {
