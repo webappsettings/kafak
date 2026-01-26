@@ -1,5 +1,5 @@
 // 🔴 1. GOOGLE SCRIPT URL
-const sc = `https://script.google.com/macros/s/AKfycbzzBowat6eZU-1IWFvxK8Beqi_mfgWx2DAae8NhYEGQ1pohBciil9ULNXb7UnDV61g1fA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxU7zcRqyJtGIq422hnS3tIRcNJSRBy6a4Q8f1fLU8IZCNdxPa2VO4tn9uPDyXWZp_4/exec`;
 
 // Courier Rates
 const courierRates = {
@@ -16,21 +16,51 @@ $(document).ready(function () {
   // ==========================================
   // 🔐 ADMIN ONLY: MARK PAID BUTTON
   // ==========================================
-  const isAdminDevice = localStorage.getItem('kafakAdmin') === 'true';
-  const urlParams = new URLSearchParams(window.location.search);
-  const urlOid = urlParams.get('oid');
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const urlOid = new URLSearchParams(window.location.search).get('oid');
 
-  if (isAdminDevice && urlOid) {
-    const adminBar = `
-          <div id="admin-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #212529; padding: 15px; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); z-index: 9999; display: flex; gap: 10px; align-items: center; justify-content: center;">
-              <span class="text-white fw-bold small">ADMIN:</span>
-              <button onclick="markAsPaid('${urlOid}')" class="btn btn-warning fw-bold btn-sm flex-grow-1" style="max-width: 200px;">
-                  💰 MARK AS PAID
-              </button>
-          </div>
-      `;
-    $('body').append(adminBar);
-    $('body').css('padding-bottom', '80px');
+  if (isAdmin && urlOid) {
+    // സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
+    const isWTSent = localStorage.getItem(`sent_${urlOid}`) === 'true';
+    const isPaid = localStorage.getItem(`paid_${urlOid}`) === 'true';
+
+    let adminHTML = "";
+
+    // ഘട്ടം 1: വാട്സാപ്പ് കൺഫേം ചെയ്തിട്ടില്ലെങ്കിൽ അത് മാത്രം കാണിക്കുക
+    if (!isWTSent) {
+      adminHTML = `
+                <button id="btn-sent-${urlOid}" onclick="adminAction('${urlOid}', 'Sent')" 
+                    class="btn btn-success btn-sm fw-bold w-100 py-2 shadow">
+                    💬 CONFIRM SENT (WhatsApp)
+                </button>
+            `;
+    }
+    // ഘട്ടം 2: വാട്സാപ്പ് അയച്ചു കഴിഞ്ഞാൽ പെയ്ഡ് ബട്ടൺ കാണിക്കുക
+    else {
+      adminHTML = `
+                <button id="btn-paid-${urlOid}" onclick="adminAction('${urlOid}', 'Paid')" 
+                    class="btn btn-sm fw-bold w-100 py-2 shadow ${isPaid ? 'btn-secondary opacity-50' : 'btn-warning'}"
+                    ${isPaid ? 'disabled' : ''}>
+                    ${isPaid ? '💰 PAIDED ✅' : '💰 MARK AS PAID'}
+                </button>
+            `;
+    }
+
+    const adminUI = `
+            <div id="admin-action-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 15px; z-index: 10000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL: #${urlOid}</span>
+                        <button onclick="closeAdminBar()" class="btn btn-link text-white p-0" style="text-decoration:none;">✕</button>
+                    </div>
+                    <div id="admin-btn-container">
+                        ${adminHTML}
+                    </div>
+                </div>
+            </div>
+        `;
+    $('body').append(adminUI);
+    $('body').css('padding-bottom', '100px');
   }
 
   // ==========================================
@@ -322,6 +352,48 @@ function markAsPaid(oid) {
   btn.text('Updating...').prop('disabled', true);
   fetch(sc, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: 'updateStatus', oid: oid, status: 'Paid' }) })
     .then(() => { alert("Payment Updated! ✅"); location.reload(); });
+}
+
+
+function adminAction(oid, status) {
+  if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+
+  const btnContainer = $('#admin-btn-container');
+  const originalBtn = btnContainer.find('button');
+  originalBtn.prop('disabled', true).text('Updating...');
+
+  fetch(sc, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify({ action: 'updateStatus', oid: oid, status: status })
+  }).then(() => {
+    // ലോക്കൽ സ്റ്റോറേജിൽ സേവ് ചെയ്യുന്നു
+    const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
+    localStorage.setItem(storageKey, 'true');
+
+    alert(`${status} Updated! ✅`);
+
+    // UI മാറ്റം വരുത്തുന്നു
+    if (status === 'Sent') {
+      // Confirm Sent കഴിഞ്ഞാൽ അത് ഹൈഡ് ചെയ്ത് Mark Paid കാണിക്കുന്നു
+      const paidBtn = `
+                <button id="btn-paid-${oid}" onclick="adminAction('${oid}', 'Paid')" 
+                    class="btn btn-warning btn-sm fw-bold w-100 py-2 shadow">
+                    💰 MARK AS PAID
+                </button>
+            `;
+      btnContainer.fadeOut(300, function () {
+        $(this).html(paidBtn).fadeIn();
+      });
+    } else {
+      // Mark Paid കഴിഞ്ഞാൽ ഗ്രേ ഔട്ട് ആക്കുന്നു
+      originalBtn.removeClass('btn-warning').addClass('btn-secondary opacity-50');
+      originalBtn.text('💰 PAIDED ✅').prop('disabled', true);
+    }
+  }).catch(err => {
+    alert("Error updating status.");
+    originalBtn.prop('disabled', false).text('Retry');
+  });
 }
 
 const translations = {
