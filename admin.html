@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAFAK Admin | Full Control</title>
-
+    <title>KAFAK Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
@@ -14,134 +13,232 @@
 
     <style>
         body {
-            background-color: #f0f2f5;
-            font-family: 'Segoe UI', sans-serif;
-            padding-bottom: 80px;
+            background-color: #f1f5f9;
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 100px;
         }
 
         /* NAVBAR */
         .navbar {
-            background: #1b5e20;
-            color: white;
-            padding: 12px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px;
         }
 
-        .btn-nav {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            margin-left: 5px;
+        .navbar-brand {
+            font-weight: 700;
+            color: #1b5e20 !important;
+            font-size: 1.2rem;
         }
 
-        /* CARD DESIGN (Your Favorite Old Style) */
+        /* SEARCH & FILTER */
+        .filter-section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+
+        /* CARD DESIGN (From your Screenshot) */
         .order-card {
             background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #ccc;
+            border-radius: 16px;
+            border: none;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             position: relative;
-            transition: all 0.2s;
+            transition: transform 0.2s;
         }
 
         .order-card.selected {
-            background-color: #e8f5e9;
-            border: 2px solid #1b5e20;
+            border: 2px solid #2e7d32;
+            background: #f1f8e9;
         }
 
-        /* Status Badges */
+        /* ID & Status */
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .order-id {
+            font-weight: 800;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
         .status-badge {
-            font-size: 12px;
-            padding: 4px 10px;
+            font-size: 11px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .bg-pending {
-            background-color: #fff3cd;
-            color: #856404;
-            border-left-color: #ffc107;
+            background: #fff7ed;
+            color: #c2410c;
         }
 
         .bg-dispatched {
-            background-color: #cff4fc;
-            color: #055160;
-            border-left-color: #0dcaf0;
+            background: #ecfdf5;
+            color: #047857;
         }
 
         .bg-sent {
-            background-color: #d1e7dd;
-            color: #0f5132;
-            border-left-color: #198754;
+            background: #eff6ff;
+            color: #1d4ed8;
         }
 
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .badge-id {
-            background: #eee;
-            color: #333;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-
-        .date-text {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
+        /* Customer Info */
         .cust-name {
             font-size: 1.1rem;
-            font-weight: 800;
-            color: #000;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 2px;
         }
 
-        .action-area {
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 8px;
+        .cust-phone {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Gray Box (Qty & Amount) */
+        .info-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 2px;
+        }
+
+        .info-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .amount-val {
+            color: #059669;
+        }
+
+        /* Address */
+        .address-sec {
+            font-size: 0.85rem;
+            color: #4b5563;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            border-top: 1px dashed #e5e7eb;
+            padding-top: 10px;
+        }
+
+        .pin-code {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        /* Action Buttons */
+        .btn-action-row {
+            display: flex;
+            gap: 10px;
             margin-top: 10px;
         }
 
-        /* Checkbox */
-        .custom-check {
-            transform: scale(1.4);
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        /* Scanner Modal */
-        #scanner-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            display: none;
-            flex-direction: column;
+        .btn-card {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            display: flex;
             align-items: center;
             justify-content: center;
+            gap: 6px;
         }
 
-        #reader {
+        .btn-print {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-whatsapp {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        /* Dropdown Style */
+        .contact-select {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 5px;
+            font-size: 12px;
             width: 100%;
-            max-width: 500px;
-            background: black;
+            margin-bottom: 8px;
+            background: #fff;
         }
 
-        /* Print Styles (A6) */
+        /* Floating Action Buttons (FAB) */
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .fab-btn {
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .fab-dispatch {
+            background: #2e7d32;
+        }
+
+        .fab-tracking {
+            background: #ea4335;
+        }
+
+        /* Checkbox */
+        .custom-cb {
+            transform: scale(1.3);
+        }
+
+        /* Print Area */
+        #print-area {
+            display: none;
+        }
+
         @media print {
             body * {
                 visibility: hidden;
@@ -208,16 +305,6 @@
                 color: #000;
             }
 
-            .phone-display {
-                margin-top: 8px;
-                border: 2px solid #000;
-                border-radius: 6px;
-                padding: 4px 8px;
-                display: inline-block;
-                font-weight: 900;
-                font-size: 16px;
-            }
-
             .footer {
                 margin-top: auto;
                 display: flex;
@@ -225,11 +312,6 @@
                 align-items: flex-end;
                 border-top: 1px solid #eee;
                 padding-top: 5px;
-            }
-
-            .fragile-svg {
-                width: 40px;
-                fill: #d32f2f;
             }
 
             .from-sec {
@@ -240,36 +322,55 @@
             }
         }
 
-        #print-area {
+        /* Modal */
+        #scanner-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
             display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #reader {
+            width: 100%;
+            max-width: 500px;
+            background: black;
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar d-flex justify-content-between align-items-center">
-        <span class="navbar-brand mb-0 h1 fw-bold"><i class="fas fa-boxes"></i> KAFAK Admin</span>
-        <div>
-            <button class="btn btn-nav btn-sm" onclick="startScanner('dispatch')"><i class="fas fa-check-circle"></i>
-                Dispatch</button>
-            <button class="btn btn-nav btn-sm" onclick="startScanner('tracking')"><i class="fas fa-camera"></i>
-                Tracking</button>
-            <button class="btn btn-nav btn-sm" onclick="printSelected()"><i class="fas fa-print"></i> Print</button>
-            <button class="btn btn-nav btn-sm" onclick="location.reload()"><i class="fas fa-sync"></i></button>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand">🍯 KAFAK Admin</span>
+            <button class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Refresh 🔄</button>
         </div>
     </nav>
 
-    <div class="container-fluid mt-3">
-        <div class="card p-3 mb-3 shadow-sm border-0">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-8 mb-2 mb-md-0">
+    <div class="container mt-3">
+        <div class="filter-section">
+            <div class="row align-items-center g-2">
+                <div class="col-12 col-md-8">
                     <input type="text" id="searchInput" class="form-control"
                         placeholder="🔍 Search Order ID, Name, Phone..." onkeyup="filterOrders()">
                 </div>
-                <div class="col-12 col-md-4 d-flex align-items-center">
-                    <input type="checkbox" id="selectAll" class="custom-check" onchange="toggleAll(this.checked)">
-                    <label for="selectAll" class="fw-bold text-muted small">Select All</label>
+                <div class="col-6 col-md-2">
+                    <div class="form-check">
+                        <input class="form-check-input custom-cb" type="checkbox" id="selectAll"
+                            onchange="toggleAll(this.checked)">
+                        <label class="form-check-label fw-bold small text-muted" for="selectAll">Select All</label>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2 text-end">
+                    <button class="btn btn-dark btn-sm w-100 fw-bold" onclick="printSelected()"><i
+                            class="fas fa-print"></i> Print (A6)</button>
                 </div>
             </div>
         </div>
@@ -282,15 +383,22 @@
         <div id="ordersContainer" class="row"></div>
     </div>
 
+    <div class="fab-container">
+        <button class="fab-btn fab-dispatch" onclick="startScanner('dispatch')">
+            <i class="fas fa-box"></i> Dispatch
+        </button>
+        <button class="fab-btn fab-tracking" onclick="startScanner('tracking')">
+            <i class="fas fa-truck"></i> Tracking
+        </button>
+    </div>
+
     <div id="scanner-modal">
         <h3 id="scan-instruction" class="text-white text-center fw-bold">Scan QR</h3>
-        <p id="scan-detail" class="text-white-50 text-center small mb-3">...</p>
         <div id="reader"></div>
-        <button class="btn btn-light mt-4 rounded-pill px-4 fw-bold" onclick="stopScanner()">CLOSE CAMERA</button>
+        <button class="btn btn-light mt-4 rounded-pill px-4 fw-bold" onclick="stopScanner()">CLOSE</button>
     </div>
 
     <div id="print-area"></div>
-
     <script src="admin.js"></script>
 
 </body>
