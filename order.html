@@ -3,96 +3,180 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Honey Order - KAFAK LLP</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Pure Honey | KAFAK</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* GREEN THEME CSS */
+    :root {
+      --theme-green: #2e7d32;
+      --theme-light-green: #43a047;
+      --honey-gold: #f5a623;
+      --soft-bg: #f1f8e9;
+      /* Light Greenish Bg */
+    }
+
     body {
-      background-color: #f8fcf8;
-      font-family: 'Segoe UI', sans-serif;
+      background: var(--soft-bg);
+      font-family: 'Poppins', sans-serif;
+      padding-top: 80px;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 600px;
-      margin-top: 20px;
-      margin-bottom: 50px;
+    /* Navbar */
+    .navbar-custom {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
-    /* Card Styling */
-    .card {
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-
-    .card-header {
-      background-color: #fff;
-      border-bottom: 1px solid #f0f0f0;
-      border-radius: 20px 20px 0 0 !important;
-      padding: 25px 20px;
-      text-align: center;
-    }
-
-    /* Logo & Header */
-    .main-logo {
-      max-width: 180px;
-      margin-bottom: 2px;
-    }
-
-    .badge-img {
-      width: 100px;
-      margin-top: 2px;
-    }
-
-    /* Form Fields */
-    .form-control {
-      border-radius: 10px;
-      height: 50px;
-      border: 1px solid #e0e0e0;
-      background: #fafafa;
-    }
-
-    .form-control:focus {
-      background: #fff;
-      border-color: #43a047;
-      box-shadow: none;
-    }
-
-    /* Green Focus */
-
-    /* Buttons (Natural Green Gradient) */
-    .btn-primary {
-      background: linear-gradient(45deg, #43a047, #2e7d32);
-      border: none;
-      border-radius: 10px;
-      padding: 15px;
-      font-weight: bold;
-      font-size: 16px;
-      width: 100%;
-      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(45deg, #2e7d32, #1b5e20);
-    }
-
-    /* Links */
-    .btn-link {
-      color: #2e7d32 !important;
-      text-decoration: none;
+    .btn-home-link {
+      color: var(--theme-green);
+      border: 2px solid var(--theme-green);
+      border-radius: 30px;
+      padding: 6px 15px;
       font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
     }
 
-    /* Validation Error */
-    .error {
-      color: #d32f2f;
-      font-size: 13px;
-      margin-top: 5px;
+    .btn-home-link:hover {
+      background: var(--theme-green);
+      color: white;
+    }
+
+    /* Card */
+    .main-card {
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(46, 125, 50, 0.1);
+      /* Green Shadow */
+      border: none;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* Inputs */
+    .form-control-custom {
+      border-radius: 15px;
+      padding: 12px 15px;
+      border: 2px solid #eee;
       font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .form-control-custom:focus {
+      border-color: var(--theme-green);
+      box-shadow: 0 0 10px rgba(46, 125, 50, 0.2);
+      outline: none;
+    }
+
+    .big-input {
+      height: 60px;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+
+    /* Buttons (GREEN THEME) */
+    .btn-next,
+    .btn-submit {
+      background: linear-gradient(45deg, var(--theme-green), var(--theme-light-green));
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 15px;
+      border-radius: 50px;
+      width: 100%;
+      font-size: 18px;
+      box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .btn-next:hover,
+    .btn-submit:hover {
+      transform: scale(1.02);
+      color: white;
+    }
+
+    /* Steps & Progress */
+    .step-container {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .step-container.active {
       display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .progress-track {
+      display: flex;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .progress-line {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #e0e0e0;
+      z-index: 1;
+    }
+
+    .progress-bar-custom {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      height: 4px;
+      background: var(--honey-gold);
+      z-index: 2;
+      width: 0%;
+      transition: width 0.4s;
+    }
+
+    .step-dot {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid #e0e0e0;
+      z-index: 3;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #ccc;
+      transition: all 0.4s;
+    }
+
+    .step-dot.active {
+      border-color: var(--honey-gold);
+      color: var(--honey-gold);
+    }
+
+    /* Gold for active step */
+    .step-dot.completed {
+      background: var(--theme-green);
+      border-color: var(--theme-green);
+      color: white;
     }
 
     /* Loader */
@@ -102,7 +186,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -110,13 +194,11 @@
       align-items: center;
     }
 
-    .spinner {
+    .spinner-green {
       width: 50px;
       height: 50px;
-      border: 5px solid #f3f3f3;
-      /* Light Grey */
-      border-top: 5px solid #2e7d32;
-      /* Green Color */
+      border: 5px solid #eee;
+      border-top: 5px solid var(--theme-green);
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
@@ -131,182 +213,178 @@
       }
     }
 
-    .loading-text {
+    /* Hidden Name Field Animation */
+    #name-section {
+      display: none;
       margin-top: 15px;
-      font-weight: 600;
-      color: #2e7d32;
-      font-family: 'Poppins', sans-serif;
+      animation: slideDown 0.3s ease;
     }
 
-    /* Saved Address Card */
-    #saved-address-card {
-      background: #e8f5e9;
-      border: 1px solid #c8e6c9;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
 
-    #saved-address-card h6 {
-      color: #2e7d32;
-      font-weight: bold;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <nav class="navbar navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand py-0" href="index.html">
+        <img src="logo-order.png" alt="Kafak Logo" height="45">
+      </a>
+      <a href="index.html" class="btn-home-link">🏠 Home</a>
+    </div>
+  </nav>
+
   <div id="main-loader">
-    <div class="spinner"></div>
-    <div class="loading-text">Please wait...</div>
+    <div class="spinner-green"></div>
+    <p class="mt-3 fw-bold text-muted" style="color:var(--theme-green);">Loading...</p>
   </div>
 
   <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
 
-    <div id="showsuccess" style="display:none; text-align:center; padding: 50px 20px;">
-      <img src="success.png" alt="Success" style="width: 80px; margin-bottom: 20px;">
-      <h3 style="color:#2ecc71; font-weight:bold;">ഓർഡർ ലഭിച്ചു!</h3>
-      <p class="text-muted">Order placed successfully.</p>
+        <div class="card main-card">
 
-      <p style="font-size:14px; margin-top:10px;">Redirecting to WhatsApp...</p>
-
-      <button onclick="sendToWhatsapp()" class="btn btn-success mt-3"
-        style="border-radius:20px; padding:10px 20px; font-weight:bold;">
-        <img src="whatsapp--v1.png" style="width: 20px; margin-right:5px;"> Open WhatsApp Now
-      </button>
-
-      <br><br>
-      <button class="btn btn-link text-muted" onclick="location.reload()" style="font-size:13px;">Place New
-        Order</button>
-    </div>
-
-    <div class="card" id="honeyForm">
-      <div class="card-header">
-        <img src="logo-order.png" alt="Kafak Life" class="main-logo"><br>
-        <img src="raw-honey.png" alt="100% Raw Honey" class="badge-img">
-      </div>
-
-      <div class="card-body p-4">
-        <form id="order-form" novalidate>
-
-          <div id="saved-address-card" style="display:none;">
-            <h6 style="margin-bottom:5px;">📍 Delivering to: <span id="summary-name"></span></h6>
-            <p style="margin:0; font-size:14px; color:#555; line-height:1.6;">
-              <span id="summary-house"></span>, <span id="summary-place"></span><br>
-              <span id="summary-post"></span> - <b><span id="summary-pin"></span></b>
-            </p>
-            <button type="button" class="btn btn-link btn-sm p-0 mt-2" onclick="enableEditMode()">✏️ Change
-              Address</button>
+          <div class="progress-track">
+            <div class="progress-line"></div>
+            <div id="progressBar" class="progress-bar-custom"></div>
+            <div class="flex-fill d-flex justify-content-center position-relative">
+              <div id="dot-1" class="step-dot active">1</div>
+            </div>
+            <div class="flex-fill d-flex justify-content-center position-relative">
+              <div id="dot-2" class="step-dot">2</div>
+            </div>
           </div>
 
-          <div id="personal-section">
-            <h6 class="text-muted mb-3"
-              style="font-size:12px; text-transform:uppercase; letter-spacing:1px; font-weight:bold;">Personal Details
-            </h6>
+          <div id="showsuccess" class="text-center py-5" style="display:none;">
+            <div style="font-size: 60px;">🎉</div>
+            <h3 class="fw-bold text-success mt-3">Order Placed!</h3>
+            <p class="text-muted">Redirecting to WhatsApp...</p>
+          </div>
 
-            <div class="row">
-              <div class="col-6 form-group">
-                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number" maxlength="10"
-                  required>
-              </div>
-              <div class="col-6 form-group">
-                <input type="tel" class="form-control" name="whatsapp" id="whatsapp" placeholder="WhatsApp No."
-                  maxlength="10" required>
-              </div>
-            </div>
+          <form id="order-form">
 
-            <div class="form-group">
-              <input type="text" class="form-control" name="name" id="name" placeholder="Full Name (പേര്)" required>
-            </div>
-
-            <h6 class="text-muted mb-3 mt-2"
-              style="font-size:12px; text-transform:uppercase; letter-spacing:1px; font-weight:bold;">Delivery Address
-            </h6>
-
-            <div class="form-group">
-              <input type="text" class="form-control" name="house" id="house" placeholder="House Name / No (വീട്ടുപേര്)"
-                required>
-            </div>
-
-            <div class="form-group">
-              <input type="text" class="form-control" name="place" id="place" placeholder="Place / Street (സ്ഥലം)"
-                required>
-            </div>
-
-            <div class="row">
-              <div class="col-6 form-group">
-                <input type="tel" class="form-control" name="pincode" id="pincode" placeholder="Pincode" maxlength="6"
-                  required>
+            <div id="step-1" class="step-container active">
+              <div class="text-center mb-4">
+                <h4 class="fw-bold" style="color:var(--theme-green);">Login / Signup</h4>
+                <p class="text-muted small">Enter mobile number to continue</p>
               </div>
 
-              <div class="col-6 form-group">
-                <select class="form-control" name="officename" id="officename" style="display:none;">
-                  <option value="">Select PO</option>
+              <div class="mb-3">
+                <input type="tel" class="form-control form-control-custom big-input" id="phone" name="phone"
+                  placeholder="Mobile Number" maxlength="10" required
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              </div>
+
+              <div id="name-section">
+                <label class="form-label text-success">New here? What's your name?</label>
+                <input type="text" class="form-control form-control-custom" id="name" name="name"
+                  placeholder="Enter Full Name">
+              </div>
+
+              <button type="button" id="btnNext" onclick="handleStep1()" class="btn-next mt-3">
+                NEXT ➔
+              </button>
+            </div>
+
+            <div id="step-2" class="step-container">
+              <div class="text-center mb-4">
+                <h5 class="fw-bold text-muted">Delivery Details 🏠</h5>
+                <small class="text-success fw-bold" id="welcome-text"></small>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">WhatsApp Number</label>
+                <input type="tel" class="form-control form-control-custom" id="whatsapp" name="whatsapp"
+                  placeholder="WhatsApp Number" maxlength="10" required
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-6">
+                  <input type="text" class="form-control form-control-custom" id="house" name="house"
+                    placeholder="House Name" required>
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control form-control-custom" id="place" name="place"
+                    placeholder="Place" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Pincode (Auto-detects Location)</label>
+                <input type="tel" class="form-control form-control-custom" id="pincode" name="pincode"
+                  placeholder="6-digit PIN" maxlength="6" required
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              </div>
+
+              <div class="row g-3 mb-3 pincodeEnable" style="display:none;">
+                <div class="col-6">
+                  <select class="form-control form-control-custom" id="officename" name="officename"
+                    style="display:none;"></select>
+                  <input type="text" class="form-control form-control-custom" id="postoffice" name="postoffice"
+                    placeholder="Post Office" readonly>
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control form-control-custom" id="district" name="district"
+                    placeholder="District" readonly>
+                </div>
+              </div>
+              <input type="hidden" id="state" name="state">
+
+              <div class="mb-4 p-3 rounded-4" style="background: #f1f8e9; border: 1px solid #c5e1a5;">
+                <label class="form-label fw-bold" style="color:var(--theme-green);">Choose Quantity 👇</label>
+                <select class="form-control form-control-custom" id="quantity" name="quantity" style="background:white;"
+                  required disabled>
+                  <option value="" selected disabled>Select Bottles</option>
+                  <option value="1">1 Bottle (650g)</option>
+                  <option value="2">2 Bottles (1.3 Kg)</option>
+                  <option value="3">3 Bottles (1.95 Kg)</option>
+                  <option value="4">4 Bottles (2.6 Kg)</option>
+                  <option value="5">5 Bottles (3.25 Kg)</option>
+                  <option value="6">6 Bottles (3.9 Kg)</option>
+                  <option value="8">8 Bottles (5.2 Kg)</option>
+                  <option value="10">10 Bottles (6.5 Kg)</option>
                 </select>
-                <input type="text" class="form-control" name="postoffice" id="postoffice" placeholder="Post Office"
-                  style="display:none;" readonly>
+                <div class="mt-3 text-end price-show" style="display:none;">
+                  <div id="totalAmt" class="fw-bold text-success fs-5"></div>
+                  <small class="text-muted" id="amt"></small>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <textarea class="form-control form-control-custom" id="message" rows="2"
+                  placeholder="Any message? (Optional)"></textarea>
+              </div>
+
+              <div class="d-flex gap-3">
+                <button type="button" onclick="backToStep1()"
+                  class="btn btn-light flex-fill py-3 rounded-pill fw-bold border">⬅ Back</button>
+                <button type="submit" id="submitBtn" class="btn-submit flex-fill py-3">
+                  PLACE ORDER ✅
+                </button>
               </div>
             </div>
 
-            <div class="row pincodeEnable" style="display:none;">
-              <div class="col-6 form-group">
-                <input type="text" class="form-control" name="district" id="district" readonly>
-              </div>
-              <div class="col-6 form-group">
-                <input type="text" class="form-control" name="state" id="state" readonly>
-              </div>
-            </div>
-          </div>
-
-          <div id="order-section" class="mt-4 pt-3" style="border-top: 2px dashed #f0f0f0;">
-            <div class="form-group">
-              <label style="font-weight:600; color:#333; font-size:15px;">
-                Select Quantity <img src="downhand.png" style="width:20px; vertical-align:middle;">
-              </label>
-              <select class="form-control" name="quantity" id="quantity" required disabled
-                style="border: 2px solid #e0e0e0;">
-                <option value="" selected disabled>എത്ര ബോട്ടിൽ വേണം?</option>
-                <option value="1">1 Bottle (650g)</option>
-                <option value="2">2 Bottles (1.3 Kg)</option>
-                <option value="3">3 Bottles (1.95 Kg)</option>
-                <option value="4">4 Bottles (2.6 Kg)</option>
-                <option value="5">5 Bottles (3.25 Kg)</option>
-                <option value="6">6 Bottles (3.9 Kg)</option>
-                <option value="8">8 Bottles (5.2 Kg)</option>
-                <option value="10">10 Bottles (6.5 Kg)</option>
-              </select>
-            </div>
-
-            <div class="price-show mb-3"
-              style="display:none; background: #f1f8e9; padding: 15px; border-radius: 12px; text-align: center; border: 1px dashed #a5d6a7;">
-              <p style="margin:0; font-size:14px; color:#558b2f;" id="amt"></p>
-              <h4 style="margin:5px 0 0; font-weight:bold; color:#2e7d32;" id="totalAmt"></h4>
-            </div>
-
-            <div class="form-group">
-              <textarea class="form-control" name="message" id="message" rows="2"
-                placeholder="പ്രത്യേകം എന്തെങ്കിലും പറയാനുണ്ടെങ്കിൽ ഇവിടെ എഴുതാം.."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" id="submitBtn">CONFIRM ORDER</button>
-          </div>
-
-        </form>
+          </form>
+        </div>
       </div>
-      <div class="card-footer text-center text-muted small"
-        style="background:#fff; border-top:none; padding-bottom:20px;">
-        KAFAK LLP &copy; 2026
-      </div>
-
-      <button type="button" class="btn btn-sm btn-danger mt-2" onclick="localStorage.clear(); location.reload();">
-        🔄 Reset User Data
-      </button>
     </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-
   <script src="custom.js"></script>
 
 </body>
