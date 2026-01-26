@@ -72,8 +72,14 @@ function renderTabs(orders) {
     pendingList.innerHTML = ''; paidList.innerHTML = ''; dispatchedList.innerHTML = '';
     let counts = { pending: 0, paid: 0, dispatched: 0 };
 
+    // ലോക്കൽ അപ്ഡേറ്റുകൾ എടുക്കുന്നു
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
     orders.forEach((d, i) => {
-        let status = d.Status || 'Pending';
+        // 🔴 മാറ്റം ഇവിടെ: ലോക്കൽ സ്റ്റോറേജിൽ ഈ ഓർഡറിന് പുതിയ സ്റ്റാറ്റസ് ഉണ്ടോ എന്ന് നോക്കുന്നു
+        let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
+        let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
+
         if (status === 'Pending' || status === 'Sent') {
             counts.pending++;
             pendingList.innerHTML += createCardHTML(d, i, 'pending');
@@ -89,6 +95,22 @@ function renderTabs(orders) {
     document.getElementById('count-pending').innerText = counts.pending;
     document.getElementById('count-paid').innerText = counts.paid;
     document.getElementById('count-dispatched').innerText = counts.dispatched;
+
+    updateSyncButtonUI();
+}
+
+// 2. സിങ്ക് ബട്ടൺ എപ്പോൾ കാണിക്കണം എന്ന് തീരുമാനിക്കുന്ന ലോജിക്
+// ഈ ഫങ്ക്ഷൻ നിങ്ങളുടെ നിലവിലുള്ള renderTabs-നുള്ളിൽ അവസാനം ചേർക്കുക
+function updateSyncButtonUI() {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    const syncBtn = $('#sync-btn');
+
+    if (pendingUpdates.length > 0) {
+        syncBtn.show(); // 🔴 ഇവിടെയാണ് display:none മാറുന്നത്
+        syncBtn.html(`🔄 SYNC UPDATES (${pendingUpdates.length})`);
+    } else {
+        syncBtn.hide();
+    }
 }
 
 function createCardHTML(d, index, type) {
@@ -253,3 +275,49 @@ function logoutAdmin() {
         // location.reload(); 
     }
 }
+
+
+// 1. സെർവറിലേക്ക് ലോക്കൽ മാറ്റങ്ങൾ ഒന്നിച്ച് അയക്കുന്നു
+function syncWithServer() {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+    if (pendingUpdates.length === 0) {
+        alert("സിങ്ക് ചെയ്യാൻ മാറ്റങ്ങൾ ഒന്നുമില്ല!");
+        return;
+    }
+
+    if (!confirm(`${pendingUpdates.length} മാറ്റങ്ങൾ സെർവറിലേക്ക് സേവ് ചെയ്യട്ടെ?`)) return;
+
+    // ബട്ടൺ ലോഡിംഗ് സ്റ്റേറ്റിലേക്ക് മാറ്റുന്നു
+    $('#sync-btn').prop('disabled', true).text('Syncing...');
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({
+            action: 'bulkUpdateStatus', // GS-ൽ ഈ ആക്ഷൻ ഉണ്ടെന്ന് ഉറപ്പാക്കുക
+            updates: pendingUpdates
+        })
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success') {
+                // ലോക്കൽ ഡാറ്റ ക്ലിയർ ചെയ്യുന്നു
+                localStorage.removeItem('pendingUpdates');
+
+                // അഡ്മിൻ പേജിലെ മറ്റ് ലോക്കൽ മാർക്കിംഗുകളും ഒഴിവാക്കാം
+                Object.keys(localStorage).forEach(key => {
+                    if (key.startsWith('sent_') || key.startsWith('paid_')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+
+                alert("എല്ലാം വിജയകരമായി സെർവറിൽ സേവ് ചെയ്തു! ✅");
+                location.reload(); // പുതിയ ഡാറ്റ ലോഡ് ചെയ്യാൻ പേജ് റിഫ്രഷ് ചെയ്യുന്നു
+            }
+        })
+        .catch(err => {
+            alert("Sync Error! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
+            $('#sync-btn').prop('disabled', false).text('Retry Sync');
+        });
+}
+
