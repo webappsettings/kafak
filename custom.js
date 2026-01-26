@@ -324,11 +324,13 @@ function sendToWhatsapp() {
   const amountTextW = calculateAmountString(d.quantity) + ' (Courier)';
   const totalTextW = calculateTotalString(amountTextW);
 
-  const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 *#${orderid}*\n🔗 _${editLink}_\n(Click link to edit order)`;
+  // 🔴 CHANGE: Removed '#' and added 'Order ID:' text
+  // പഴയത്: 🔖 *#${orderid}* // പുതിയത്: 🆔 *Order ID: ${orderid}*
+
+  const extra1 = `*✅ Honey order confirmed!* 🍯\n🆔 *Order ID: ${orderid}*\n🔗 _${editLink}_\n(Click link to edit order)`;
 
   const postLabel = d.postoffice || '';
 
-  // Customer Message
   const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
 
   const wtspformat = `
@@ -351,7 +353,6 @@ _(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay �
 
   const message = encodeURIComponent(extra1 + wtspformat);
 
-  // Mobile friendly link
   window.location.href = `https://wa.me/91${phone}?text=${message}`;
 }
 
