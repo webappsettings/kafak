@@ -1,8 +1,7 @@
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbytJW88K8vaC1MOdd2GvEYGXdkLucaTFrpDNCA8XlvPfv1eC-WiW4sd6qSFJH3NFM0tvQ/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbytJW88K8vaC1MOdd2GvEYGXdkLucaTFrpDNCA8XlvPfv1eC-WiW4sd6qSFJH3NFM0tvQ/exe
 
-
-// Courier Rates (For Price Calculation)
+// Courier Rates
 const courierRates = {
     kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
     outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -25,7 +24,12 @@ function fetchOrders() {
             if (response.result === 'success') {
                 allOrders = response.data;
                 renderOrders(allOrders);
+            } else {
+                alert('Error Loading: ' + response.message);
             }
+        })
+        .catch(err => {
+            document.getElementById('loader').innerHTML = `<p class="text-danger">Network Error. Check URL.</p>`;
         });
 }
 
@@ -33,6 +37,11 @@ function fetchOrders() {
 function renderOrders(orders) {
     const container = document.getElementById('ordersContainer');
     container.innerHTML = '';
+
+    if (!orders || orders.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center mt-5">No orders found.</div>';
+        return;
+    }
 
     orders.forEach((d, i) => {
         let date = new Date(d.timestamp).toLocaleDateString('en-IN');
@@ -46,10 +55,10 @@ function renderOrders(orders) {
             statusClass = 'bg-sent'; statusText = 'Sent ✅'; borderStyle = 'border-left: 5px solid #198754;';
         } else if (d.Status === 'Dispatched') {
             statusClass = 'bg-dispatched'; statusText = '🚚 DISPATCHED';
-            borderStyle = 'border-left: 5px solid #0dcaf0; background: #f8fdff;'; // Bold Blue Look
+            borderStyle = 'border-left: 5px solid #0dcaf0; background: #f8fdff;';
         }
 
-        // Calculate Price for display
+        // Calculate Price
         let priceInfo = calculatePriceInfo(d.quantity, d.state);
 
         let html = `
@@ -66,8 +75,8 @@ function renderOrders(orders) {
                 <div class="d-flex align-items-start mt-2">
                     <input type="checkbox" class="custom-check mt-1 order-cb" value="${i}" onchange="highlightCard(${i}, this.checked)">
                     <div class="w-100 ms-2">
-                        <div class="cust-name">${d.name}</div>
-                        <div class="text-muted small">${d.place}, ${d.district}</div>
+                        <div class="cust-name">${d.name || 'Unknown'}</div>
+                        <div class="text-muted small">${d.place || ''}, ${d.district || ''}</div>
                         
                         <div class="bg-light p-2 rounded mt-2 small">
                              <div class="d-flex justify-content-between"><span>Quantity:</span> <b>${d.quantity} Bottles</b></div>
@@ -95,40 +104,44 @@ function renderOrders(orders) {
     });
 }
 
-// --- 3. WHATSAPP LOGIC (Your Requested Code Integrated) ---
+// --- 3. WHATSAPP LOGIC (Fixed Error) ---
 function sendWA(index, btn) {
-    const d = allOrders[index]; // Get Order Data
-
-    // Get Selected Phone Number (Phone or WhatsApp) from Dropdown
+    const d = allOrders[index];
     const selectedPhone = document.getElementById(`contact-${index}`).value;
-
-    // Admin Phone (Payment Number)
     const adminPhone = '7788990313';
 
-    // Calculate Amounts
     const priceData = calculatePriceInfo(d.quantity, d.state);
     const amountTextW = `Amount(₹): ${priceData.base} + ${priceData.courier} (Courier)`;
     const totalTextW = `Total(₹): ${priceData.numTotal}/-`;
 
-    const currentLang = 'ml'; // Default to Malayalam
+    const currentLang = 'ml';
     const editLink = `kafaklife.com/order.html?oid=${d.orderid}&lang=${currentLang}`;
     const orderTime = new Date(d.timestamp).toLocaleString();
-    const postLabel = d.postoffice || '';
+
+    // 🔴 SAFETY FIX: Use (value || '') to prevent errors if empty
+    const name = (d.name || '').trim().toUpperCase();
+    const house = (d.house || '').trim().toUpperCase();
+    const place = (d.place || '').trim().toUpperCase();
+    const postLabel = (d.postoffice || '').trim().toUpperCase();
+    const district = (d.district || '').trim().toUpperCase();
+    const state = (d.state || '').trim().toUpperCase();
+    const pin = (d.pincode || '').toString().trim();
+    const phone = (d.phone || '').toString().trim();
+
     const customerMsg = d.message ? `\n\n💬 *Note:* _${d.message}_` : '';
 
-    // --- YOUR FORMAT START ---
     const extra1 = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${orderTime}_\n🔗 _${editLink}_\n(Click link to edit order)`;
 
     const wtspformat = `
 ____________________________________\n
-*${d.name.trim().toUpperCase()}*
-*${d.house.trim().toUpperCase()}*
-*${d.place.trim().toUpperCase()}*
-*${postLabel.trim().toUpperCase()}*
-*${d.district.trim().toUpperCase()}*
-*${d.state.trim().toUpperCase()}*
-*Pin: ${d.pincode.trim()}*
-*Ph: ${d.phone.trim()}*\n
+*${name}*
+*${house}*
+*${place}*
+*${postLabel}*
+*${district}*
+*${state}*
+*Pin: ${pin}*
+*Ph: ${phone}*\n
 *Qty: ${d.quantity}*
 *${amountTextW}*\n
 *${totalTextW}*${customerMsg}
@@ -136,25 +149,21 @@ ____________________________________
 \n*Please GPay to the number below...*
 _(താഴെ കാണുന്ന നമ്പറിലേക്ക് GPay ചെയ്യുക)_ 👇
 \n*${adminPhone} (KAFAK LLP)*\n`;
-    // --- YOUR FORMAT END ---
 
     const message = encodeURIComponent(extra1 + wtspformat);
 
-    // Send to SELECTED Customer Number
     window.open(`https://wa.me/91${selectedPhone}?text=${message}`, '_blank');
 
-    // Update Status
     btn.className = 'btn btn-secondary btn-sm w-100 fw-bold';
     btn.innerText = 'Sent ✅';
     fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: 'updateStatus', oid: d.orderid, status: 'Sent' }) });
 }
 
-// Helper for Price Calculation
 function calculatePriceInfo(qty, state) {
     const n = parseInt(qty) || 0;
     const basePrice = n * 650;
     let courierCharge = 0;
-    const s = String(state).toLowerCase().trim();
+    const s = String(state || '').toLowerCase().trim();
 
     if (s === 'lakshadweep') courierCharge = (n * 100) + 20;
     else if (s === 'kerala') courierCharge = courierRates.kerala[n] || 0;
@@ -168,7 +177,7 @@ function calculatePriceInfo(qty, state) {
     };
 }
 
-// --- 4. SCANNER LOGIC (Dispatch & Tracking) ---
+// --- 4. SCANNER LOGIC ---
 function startScanner(mode) {
     scanMode = mode; scanStep = 1; tempOid = null;
     document.getElementById('scanner-modal').style.display = 'flex';
@@ -180,6 +189,7 @@ function startScanner(mode) {
 
 function stopScanner() {
     if (html5QrCode) html5QrCode.stop().then(() => document.getElementById('scanner-modal').style.display = 'none');
+    else document.getElementById('scanner-modal').style.display = 'none';
 }
 
 function onScanSuccess(decodedText) {
@@ -216,7 +226,7 @@ function updateServer(oid, action, status, tracking) {
         });
 }
 
-// --- 5. PRINT & UTILS ---
+// --- 5. PRINT & UTILS (Safe Printing) ---
 function toggleAll(checked) {
     document.querySelectorAll('.order-cb').forEach(cb => { cb.checked = checked; highlightCard(cb.value, checked); });
 }
@@ -226,7 +236,11 @@ function highlightCard(i, c) {
 }
 function filterOrders() {
     const term = document.getElementById('searchInput').value.toLowerCase();
-    renderOrders(allOrders.filter(o => o.name.toLowerCase().includes(term) || String(o.phone).includes(term) || String(o.orderid).toLowerCase().includes(term)));
+    renderOrders(allOrders.filter(o =>
+        (o.name || '').toLowerCase().includes(term) ||
+        String(o.phone || '').includes(term) ||
+        String(o.orderid || '').toLowerCase().includes(term)
+    ));
 }
 
 function printSelected() {
@@ -236,10 +250,18 @@ function printSelected() {
     const area = document.getElementById('print-area');
     area.innerHTML = '';
 
+    // Create HTML first
     selected.forEach(cb => {
         const idx = cb.value;
         const d = allOrders[idx];
+        if (!d) return; // Skip if data missing
+
         let po = d.postoffice ? `${d.postoffice}` : '';
+        // Handle undefined fields for print
+        let name = (d.name || '').toUpperCase();
+        let house = (d.house || '').toUpperCase();
+        let place = (d.place || '').toUpperCase();
+        let district = (d.district || '').toUpperCase();
 
         area.innerHTML += `
         <div class="label-page">
@@ -249,7 +271,7 @@ function printSelected() {
             </div>
             <div class="to-label">To,</div>
             <div class="cust-details">
-                ${d.name}<br>${d.house}<br>${d.place} ${po ? ',' + po : ''}<br>${d.district}, KERALA
+                ${name}<br>${house}<br>${place} ${po ? ',' + po : ''}<br>${district}, KERALA
             </div>
             <div class="cust-pin">PIN: ${d.pincode}</div>
             <div class="phone-display">PH: ${d.phone}</div>
@@ -269,13 +291,16 @@ function printSelected() {
         </div>`;
     });
 
+    // Generate Codes & Print
     setTimeout(() => {
         selected.forEach(cb => {
             const idx = cb.value;
             const d = allOrders[idx];
-            JsBarcode(`#barcode-${idx}`, d.orderid, { format: "CODE128", height: 30, displayValue: false, margin: 0 });
-            new QRCode(document.getElementById(`qrcode-${idx}`), { text: `http://googleusercontent.com/maps.google.com/?q=${d.place},${d.district}`, width: 50, height: 50 });
+            try {
+                JsBarcode(`#barcode-${idx}`, d.orderid, { format: "CODE128", height: 30, displayValue: false, margin: 0 });
+                new QRCode(document.getElementById(`qrcode-${idx}`), { text: `http://googleusercontent.com/maps.google.com/?q=${d.place},${d.district}`, width: 50, height: 50 });
+            } catch (e) { console.log("Code Gen Error", e); }
         });
         setTimeout(() => window.print(), 500);
-    }, 100);
+    }, 200);
 }
