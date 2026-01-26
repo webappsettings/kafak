@@ -172,19 +172,23 @@ function createCardHTML(d, index, type) {
 function updateOrder(oid, status) {
     if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-    // 1. പെൻഡിംഗ് ലിസ്റ്റിലേക്ക് ഡാറ്റ ചേർക്കുന്നു
-    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    updates = updates.filter(item => item.oid !== oid); // പഴയ സ്റ്റാറ്റസ് ഉണ്ടെങ്കിൽ ഒഴിവാക്കുന്നു
-    updates.push({ oid: oid, status: status, time: new Date().getTime() });
+    // 1. ലോക്കൽ സ്റ്റോറേജ് അപ്‌ഡേറ്റ് (Sync ബട്ടണിനായി)
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    pendingUpdates = pendingUpdates.filter(item => item.oid !== oid);
+    pendingUpdates.push({ oid: oid, status: status, time: new Date().getTime() });
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-    // 2. ബട്ടൺ ലേബലുകൾക്കായി മാർക്ക് ചെയ്യുന്നു
-    const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
-    localStorage.setItem(storageKey, 'true');
+    // 2. 🔴 പ്രധാന മാറ്റം: പേജ് റീലോഡ് ചെയ്യാതെ UI മാറ്റാൻ allOrders അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+    const orderIndex = allOrders.findIndex(o => o.orderid === oid);
+    if (orderIndex !== -1) {
+        // താൽക്കാലികമായി മെയിൻ ലിസ്റ്റിലെ സ്റ്റാറ്റസ് മാറ്റുന്നു
+        allOrders[orderIndex].Status = status;
+    }
 
-    // 3. UI ഉടൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നു (സെർവർ മറുപടിക്കായി കാത്തുനിൽക്കില്ല)
     alert(`Saved Locally: ${status} ✅`);
-    renderTabs(allOrders); // ഇത് വിളിക്കുമ്പോൾ ഓട്ടോമാറ്റിക്കായി ലോക്കൽ സ്റ്റാറ്റസ് എടുക്കും
+
+    // 3. പേജ് റിഫ്രഷ് ചെയ്യാതെ ലിസ്റ്റ് വീണ്ടും കാണിക്കുന്നു
+    renderTabs(allOrders);
 }
 
 function calculatePriceInfo(qty, state) {
