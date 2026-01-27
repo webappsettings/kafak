@@ -222,7 +222,7 @@ function updateOrder(oid, status) {
     renderTabs(allOrders); // UI Refresh (No Reload)
 }
 
-// 🔴 SYNC FUNCTION (NO PAGE RELOAD)
+// 🔴 SYNC FUNCTION (Updated for Auto Refresh)
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
@@ -255,12 +255,17 @@ function syncWithServer() {
 
                 alert("എല്ലാം വിജയകരമായി സെർവറിൽ സേവ് ചെയ്തു! ✅");
 
-                // സിങ്ക് ബട്ടൺ ഹൈഡ് ചെയ്യാൻ വീണ്ടും റെൻഡർ ചെയ്യുന്നു
-                renderTabs(allOrders);
+                // 3. 🔴 പ്രധാന മാറ്റം: സിങ്ക് കഴിഞ്ഞാൽ ഉടൻ പുതിയ ഡാറ്റ സെർവറിൽ നിന്ന് എടുക്കുന്നു
+                // ഇത് 'Load' ബട്ടൺ അമർത്തുന്നതിന് തുല്യമാണ്.
+                fetchOrders(true);
+
+                // സിങ്ക് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
+                $('#sync-btn').hide();
+                $('#sync-btn').prop('disabled', false);
             }
         })
         .catch(err => {
-            alert("Sync Error! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
+            alert("Sync Failed! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
             $('#sync-btn').prop('disabled', false).text('Retry Sync');
         });
 }
