@@ -15,9 +15,8 @@ $(document).ready(function () {
   const urlOid = urlParams.get('oid');
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // --- ADMIN BAR SETUP ---
+  // --- ADMIN BAR SETUP (Instant Load from Cache) ---
   if (isAdmin && urlOid) {
-    // ആദ്യം ഒരു കണ്ടെയ്നർ ഉണ്ടാക്കുന്നു
     const adminUI = `
             <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 15px; z-index: 10000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
                 <div class="container">
@@ -25,14 +24,19 @@ $(document).ready(function () {
                         <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL: #${urlOid}</span>
                         <button onclick="closeAdminBar()" class="btn btn-link text-white p-0" style="text-decoration:none;">✕</button>
                     </div>
-                    <div id="admin-btn-container">
-                        </div>
+                    <div id="admin-btn-container"></div>
                 </div>
             </div>`;
     $('body').append(adminUI);
 
-    // പേജ് ലോഡ് ആകുമ്പോൾ തന്നെ ലോക്കൽ ഡാറ്റ വെച്ച് ഒന്ന് റെൻഡർ ചെയ്യുന്നു (സ്പീഡിന് വേണ്ടി)
-    updateAdminUI('Pending', urlOid);
+    // 🔴 പ്രധാന മാറ്റം: അഡ്മിൻ പാനലിലെ Cache ഉപയോഗിച്ച് ബട്ടൺ ഉടൻ ശരിയാക്കുന്നു
+    let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    let cachedOrder = cachedOrders.find(o => o.orderid === urlOid);
+    // Cache-ൽ ഡാറ്റ ഉണ്ടെങ്കിൽ അത് എടുക്കും, അല്ലെങ്കിൽ 'Pending' എന്ന് വിചാരിക്കും
+    let initialStatus = cachedOrder ? cachedOrder.Status : 'Pending';
+
+    // ഇത് വിളിക്കുന്നതോടെ സെർവർ ലോഡിംഗിന് മുൻപേ ബട്ടൺ ശരിയായിട്ടുണ്ടാകും
+    updateAdminUI(initialStatus, urlOid);
   }
 
   // --- AUTO LOGIN & FORM LOGIC ---
