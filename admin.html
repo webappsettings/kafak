@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Fixed Alignment, Overlap & Centering) */
+        /* PRINT SETTINGS (With Order ID & All Fixes) */
         #print-area {
             display: none;
         }
@@ -314,7 +314,7 @@
                 margin-top: 2px;
             }
 
-            /* --- 2. META SECTION (Qty & QR) --- */
+            /* --- 2. META SECTION (Qty, QR & Order ID) --- */
             .meta-sec {
                 position: absolute;
                 top: 10mm;
@@ -324,7 +324,6 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                /* 🔴 Right Alignment Fix */
             }
 
             .qty-text {
@@ -333,19 +332,14 @@
                 font-weight: 900;
                 line-height: 1;
                 margin-bottom: 15px;
-                /* 🔴 Space കൂട്ടാൻ (Qty & QR ഇടയിൽ) */
-                margin-right: 0;
-                /* Align with QR */
+                /* QR-മായി അകലം */
             }
 
             .qr-box {
                 width: 90px;
                 height: 90px;
-                margin-top: 5px;
-                /* QR അല്പം താഴേക്ക് */
                 background: white;
                 padding: 0;
-                /* Padding ഒഴിവാക്കി */
             }
 
             .qr-box img {
@@ -358,30 +352,35 @@
                 display: none !important;
             }
 
+            /* 🔴 NEW: Order ID Style */
+            .qr-oid {
+                font-size: 10px;
+                font-weight: 700;
+                color: #000;
+                text-align: center;
+                width: 90px;
+                /* QR-ന്റെ അതേ വീതി */
+                margin-top: 2px;
+            }
 
-            /* --- 3. CONTACT BOX (Perfectly Centered) --- */
+
+            /* --- 3. CONTACT BOX --- */
             .contact-box {
                 position: absolute;
                 top: 68mm;
-                /* ഓവർലാപ്പ് ഒഴിവാക്കാൻ അല്പം താഴേക്ക് */
                 left: 50%;
                 transform: translateX(-50%);
                 width: 94mm;
                 height: 14mm;
-                /* 🔴 Fixed Height for Vertical Centering */
                 border: 2px solid #333;
                 border-radius: 8px;
-
-                /* Flexbox Alignment */
                 display: flex;
                 align-items: center;
                 /* Vertical Center */
                 justify-content: center;
-                /* Horizontal Center */
                 gap: 10px;
                 background: white;
                 z-index: 10;
-                /* മറ്റുള്ളവയുടെ മുകളിൽ വരാൻ */
             }
 
             .contact-icon svg {
@@ -396,9 +395,7 @@
                 line-height: 1.1;
                 text-align: left;
                 margin: 0;
-                /* 🔴 Margin ഒഴിവാക്കി (Center ആവാൻ) */
                 padding-top: 2px;
-                /* Visual Adjustment */
             }
 
 
@@ -406,7 +403,6 @@
             .fragile-sec {
                 position: absolute;
                 bottom: 8mm;
-                /* താഴേക്ക് ഇറക്കി */
                 left: 5mm;
                 width: 40mm;
                 text-align: center;
@@ -418,16 +414,13 @@
             }
 
 
-            /* --- 5. FROM ADDRESS (Fixed Overlap) --- */
+            /* --- 5. FROM ADDRESS --- */
             .from-sec {
                 position: absolute;
                 bottom: 8mm;
-                /* താഴേക്ക് ഇറക്കി */
                 right: 6mm;
                 width: 60mm;
                 text-align: left;
-
-                /* 🔴 Font Size & Line Height കുറച്ചു */
                 font-size: 11px;
                 line-height: 1.3;
                 font-weight: 600;

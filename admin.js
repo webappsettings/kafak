@@ -325,6 +325,7 @@ function printSelected() {
                 <div class="meta-sec">
                     <div class="qty-text">x${d.quantity}</div>
                     <div id="qrcode-${cb.value}" class="qr-box"></div>
+                    <div class="qr-oid">${d.orderid}</div>
                 </div>
 
                 <div class="contact-box">
