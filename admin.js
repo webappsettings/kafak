@@ -360,7 +360,12 @@ function printSelected() {
             const safe = (val) => (val || '').toString().toUpperCase();
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
 
-            const phoneIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
+            const phoneIcon = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; float:left; margin-top:12px; padding-left:10px;">
+                <path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/>
+                
+                <path d="M15 9C15 9 16.5 10 16.5 12C16.5 14 15 15 15 15" stroke="#007bff" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 6C18 6 20.5 8 20.5 12C20.5 16 18 18 18 18" stroke="#007bff" stroke-width="2" stroke-linecap="round"/>
+            </svg>`;
 
             htmlContent += `
             <div class="label-page">
@@ -386,7 +391,7 @@ function printSelected() {
                 <div class="contact-box">
                     <div class="contact-icon">${phoneIcon}</div>
                     <div class="contact-text">
-                        7788990313, 9895082689<br>
+                        <span>7788990313, 9895082689</span>
                         If unreachable, call or WhatsApp us
                     </div>
                 </div>
