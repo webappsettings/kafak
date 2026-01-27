@@ -247,7 +247,7 @@
                 margin: 0;
                 padding: 0;
                 width: 105mm;
-                height: 148mm;
+                height: auto;
                 background: white;
             }
 
@@ -262,7 +262,8 @@
 
             .label-page {
                 width: 105mm;
-                height: 148mm;
+                height: 140mm;
+                /* 🔴 മാറ്റം 2: 148mm മാറ്റി 140mm ആക്കുക */
                 position: relative;
                 background: white !important;
                 page-break-after: always;
@@ -270,6 +271,10 @@
                 overflow: hidden;
                 -webkit-print-color-adjust: exact;
                 border: none;
+            }
+
+            .label-page:last-child {
+                page-break-after: auto;
             }
 
             /* --- 1. ADDRESS SECTION --- */
@@ -455,7 +460,7 @@
         <nav class="navbar d-flex justify-content-between align-items-center">
             <span class="navbar-brand mb-0 h1"><i class="fas fa-honey-pot"></i> KAFAK Admin</span>
             <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-outline-light" onclick="toggleSelectAll()">
+                <button id="btn-select-all" class="btn btn-sm btn-outline-light" onclick="toggleSelectAll()">
                     <i class="fas fa-check-square"></i> Select All
                 </button>
 

@@ -424,10 +424,27 @@ function onScanSuccess(decodedText) {
     }
 }
 
-// 🔴 SELECT ALL FUNCTION
+// 🔴 UPDATED SELECT ALL FUNCTION
 function toggleSelectAll() {
+    const btn = document.getElementById('btn-select-all');
     const checkboxes = document.querySelectorAll('.order-cb');
-    // ഏതെങ്കിലും ഒന്ന് അൺചെക്ക് ആണെങ്കിൽ എല്ലാം ചെക്ക് ആക്കും. അല്ലെങ്കിൽ എല്ലാം അൺചെക്ക് ആക്കും.
+
+    // നിലവിൽ എല്ലാം സെലക്ട് ആണോ എന്ന് നോക്കുന്നു
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
-    checkboxes.forEach(cb => cb.checked = !isAllChecked);
+    const newState = !isAllChecked; // നേരെ തിരിച്ചാക്കുന്നു
+
+    checkboxes.forEach(cb => cb.checked = newState);
+
+    // 🔴 BUTTON STYLE CHANGE
+    if (newState) {
+        // Checked ആകുമ്പോൾ (Solid White Background)
+        btn.classList.remove('btn-outline-light');
+        btn.classList.add('btn-light', 'text-success', 'fw-bold');
+        btn.innerHTML = '<i class="fas fa-check-square"></i> All Selected';
+    } else {
+        // Unchecked ആകുമ്പോൾ (Outline Only)
+        btn.classList.add('btn-outline-light');
+        btn.classList.remove('btn-light', 'text-success', 'fw-bold');
+        btn.innerHTML = '<i class="far fa-square"></i> Select All';
+    }
 }
