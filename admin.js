@@ -223,6 +223,8 @@ function updateOrder(oid, status) {
 }
 
 // 🔴 SYNC FUNCTION (Updated for Auto Refresh)
+// 🔴 SYNC FUNCTION (Super Fast - No Fetch)
+// 🔴 SYNC FUNCTION (Super Fast - No Fetch)
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
@@ -253,14 +255,15 @@ function syncWithServer() {
                     }
                 });
 
-                alert("എല്ലാം വിജയകരമായി സെർവറിൽ സേവ് ചെയ്തു! ✅");
+                alert("Sync Complete! ✅");
 
-                // 3. 🔴 പ്രധാന മാറ്റം: സിങ്ക് കഴിഞ്ഞാൽ ഉടൻ പുതിയ ഡാറ്റ സെർവറിൽ നിന്ന് എടുക്കുന്നു
-                // ഇത് 'Load' ബട്ടൺ അമർത്തുന്നതിന് തുല്യമാണ്.
-                fetchOrders(true);
+                // 3. 🔴 മാറ്റം: ഇവിടെ fetchOrders(true) വിളിക്കുന്നില്ല.
+                // പകരം ബട്ടൺ ഹൈഡ് ചെയ്യുകയും UI ഒന്ന് പുതുക്കുകയും ചെയ്യുന്നു.
 
-                // സിങ്ക് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
-                $('#sync-btn').hide();
+                updateSyncButtonUI();
+                // വേണമെങ്കിൽ renderTabs(allOrders) വിളിക്കാം, പക്ഷെ അത് നിർബന്ധമില്ല 
+                // കാരണം updateOrder ചെയ്തപ്പോൾ തന്നെ ലിസ്റ്റ് മാറിയതാണ്.
+
                 $('#sync-btn').prop('disabled', false);
             }
         })
