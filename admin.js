@@ -360,15 +360,10 @@ function printSelected() {
             const safe = (val) => (val || '').toString().toUpperCase();
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
 
-            const phoneIcon = `<svg width="200" height="200" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z"
-        fill="black"
-        transform="translate(10,18) scale(1.9)" />
-  <g transform="translate(-6,3) rotate(-45 40 20)">
-    <path d="M38 22c3 3 3 8 0 11" stroke="#008CFF" stroke-width="3" stroke-linecap="round" fill="none"/>
-    <path d="M43 18c5 5 5 14 0 19" stroke="#008CFF" stroke-width="3" stroke-linecap="round" fill="none"/>
-    <path d="M48 14c7 7 7 20 0 27" stroke="#008CFF" stroke-width="3" stroke-linecap="round" fill="none"/>
-  </g></svg>`;
+            const phoneIcon = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="float:left; margin-top:12px; padding-left:10px;">
+  <path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/>
+  <path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
 
             htmlContent += `
             <div class="label-page">
