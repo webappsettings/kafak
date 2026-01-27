@@ -377,10 +377,10 @@ function printSelected() {
                     <div class="cust-ph">PH: ${d.phone}</div>
                 </div>
 
-                <div class="meta-sec">
-                    ${qtyHTML}
+                <div class="meta-sec">                   
                     <div class="qr-box"><img src="${item.qrSrc}"></div>
                     <div class="qr-oid">${d.orderid}</div>
+                    ${qtyHTML}
                 </div>
 
                 <div class="contact-box">
