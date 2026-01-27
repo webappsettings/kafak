@@ -53,17 +53,22 @@ let tempOid = null;
 // --- CORE FUNCTIONS (OFFLINE FIRST) ---
 
 function fetchOrders(forceLoad = false) {
-    // 1. ഫോണിൽ നേരത്തെ സേവ് ചെയ്ത ലിസ്റ്റ് ഉണ്ടോ എന്ന് നോക്കുന്നു
+    // 1. ആദ്യം ഫോണിൽ സേവ് ചെയ്ത ഡാറ്റ ഉണ്ടോ എന്ന് നോക്കുന്നു
     let savedOrders = localStorage.getItem('allOrdersCache');
 
-    // 2. ഡാറ്റ ഉണ്ടെങ്കിൽ, 'Load' (forceLoad) ബട്ടൺ അമർത്താത്ത പക്ഷം അത് തന്നെ കാണിക്കുന്നു
-    if (savedOrders && !forceLoad) {
+    // ഡാറ്റ ഉണ്ടെങ്കിൽ അത് സ്ക്രീനിൽ കാണിക്കുന്നു
+    if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
         renderTabs(allOrders);
-        return; // 🛑 സെർവറിലേക്ക് പോകുന്നില്ല
     }
 
-    // 3. ബട്ടൺ അമർത്തിയാൽ മാത്രം ലോഡിംഗ് കാണിച്ച് സെർവറിലേക്ക് പോകുന്നു
+    // 2. 🔴 പ്രധാന മാറ്റം: 'Load' ബട്ടൺ (forceLoad) അമർത്തിയിട്ടില്ലെങ്കിൽ
+    // ഇവിടെ വെച്ച് പ്രവർത്തനം നിർത്തുന്നു. സെർവറിലേക്ക് പോകുന്നില്ല.
+    if (!forceLoad) {
+        return;
+    }
+
+    // 3. ബട്ടൺ അമർത്തിയാൽ മാത്രം താഴേക്ക് വരുന്നു (സെർവർ കോൾ)
     document.getElementById('loader').style.display = 'block';
 
     fetch(`${scriptURL}?action=getAllOrders`)
@@ -72,14 +77,17 @@ function fetchOrders(forceLoad = false) {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 allOrders = response.data;
-                // പുതിയ ഡാറ്റ ഫോണിൽ സേവ് ചെയ്യുന്നു (Cache Update)
+                // പുതിയ ഡാറ്റ ഫോണിൽ സേവ് ചെയ്യുന്നു
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 renderTabs(allOrders);
+
+                // പെൻഡിംഗ് അപ്ഡേറ്റ് ഉണ്ടെങ്കിൽ സിങ്ക് ബട്ടൺ കാണിക്കുന്നു
+                updateSyncButtonUI();
             }
         })
         .catch(err => {
             document.getElementById('loader').style.display = 'none';
-            alert("നെറ്റ്‌വർക്ക് എറർ! പഴയ ഡാറ്റ കാണിക്കുന്നു.");
+            alert("നെറ്റ്‌വർക്ക് എറർ! പുതിയ ഡാറ്റ എടുക്കാൻ സാധിച്ചില്ല.");
         });
 }
 
