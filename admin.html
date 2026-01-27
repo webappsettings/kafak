@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Final Fix: Height Reduced to 135mm) */
+        /* PRINT SETTINGS (Perfect Fit: 147mm) */
         #print-area {
             display: none;
         }
@@ -237,7 +237,7 @@
                 display: block !important;
             }
 
-            /* 🔴 1. പേജ് മാർജിൻ സീറോ ആക്കുന്നു */
+            /* 1. പേജ് സെറ്റപ്പ് */
             @page {
                 size: A6;
                 margin: 0mm;
@@ -249,8 +249,10 @@
                 padding: 0 !important;
                 width: 105mm;
                 height: auto !important;
-                /* Auto ആക്കുന്നത് പ്രധാനം */
+                /* 🔴 100% പാടില്ല, Auto മതി */
                 background: white;
+                overflow: visible;
+                /* Hidden വേണ്ട */
             }
 
             #print-area {
@@ -259,36 +261,35 @@
                 top: 0;
                 width: 100%;
                 height: auto;
+                /* 🔴 ഇതും Auto ആക്കുക */
                 background: white;
             }
 
             .label-page {
                 width: 105mm;
-
-                /* 🔴 2. HEIGHT 135mm ആക്കി കുറച്ചു (ഇതാണ് മെയിൻ സൊല്യൂഷൻ) */
-                /* 148mm കൊടുത്താൽ ബോർഡർ കാരണം അടുത്ത പേജ് വരും. 135mm സേഫ് ആണ്. */
-                height: 135mm;
+                /* 🔴 Height 147mm ആക്കി (1mm സേഫ്റ്റി മാർജിൻ) */
+                /* ഇത് Fragile സെക്ഷനെ താഴെ തന്നെ എത്തിക്കും */
+                height: 147mm;
 
                 position: relative;
                 background: white !important;
 
-                /* 🔴 3. Default ആയി Page Break വേണ്ട */
+                /* Default: No Page Break */
                 page-break-after: auto;
                 break-after: auto;
 
                 font-family: Arial, sans-serif;
                 overflow: hidden;
                 border: none;
-                /* ബോർഡർ ഒഴിവാക്കി */
             }
 
-            /* 🔴 4. JS വഴി മാത്രം ബ്രേക്ക് ആഡ് ചെയ്യും (ഇടയിലുള്ള പേജുകൾക്ക്) */
+            /* JS വഴി മാത്രം ബ്രേക്ക് ആഡ് ചെയ്യുന്നു */
             .label-page.has-break {
                 page-break-after: always !important;
                 break-after: always !important;
             }
 
-            /* --- ബാക്കി ഡിസൈൻ പഴയത് തന്നെ --- */
+            /* --- ബാക്കി ഡിസൈൻ --- */
             .address-sec {
                 position: absolute;
                 top: 10mm;
@@ -415,8 +416,7 @@
                 float: left;
             }
 
-            /* 🔴 5. Bottom 0mm ആക്കി. (135mm ബോക്സിന്റെ അടിയിൽ വരും) */
-            /* ഇത് പേപ്പറിന്റെ അടിയിൽ നിന്ന് ഏകദേശം 10mm മുകളിലായിരിക്കും. */
+            /* 🔴 Bottom 0mm - 147mm-ന്റെ അടിയിൽ വരും (കറക്റ്റ് പൊസിഷൻ) */
             .fragile-sec {
                 position: absolute;
                 bottom: 0mm;
