@@ -53,41 +53,49 @@ let tempOid = null;
 // --- CORE FUNCTIONS (OFFLINE FIRST) ---
 
 function fetchOrders(forceLoad = false) {
-    // 1. ആദ്യം ഫോണിൽ സേവ് ചെയ്ത ഡാറ്റ ഉണ്ടോ എന്ന് നോക്കുന്നു
+    // 1. ഫോണിലെ ഡാറ്റ എടുക്കുന്നു
     let savedOrders = localStorage.getItem('allOrdersCache');
+    let hasData = false;
 
-    // ഡാറ്റ ഉണ്ടെങ്കിൽ അത് സ്ക്രീനിൽ കാണിക്കുന്നു
+    // 2. ഡാറ്റ ഉണ്ടെങ്കിൽ അത് ഉടൻ റെൻഡർ ചെയ്യുന്നു & ലോഡർ മാറ്റുന്നു
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
         renderTabs(allOrders);
+        hasData = true;
+
+        // 🔴 പ്രധാനം: ഡാറ്റ ഉണ്ടെങ്കിൽ ലോഡർ ഇവിടെ വെച്ച് തന്നെ ഓഫ് ചെയ്യുന്നു
+        document.getElementById('loader').style.display = 'none';
     }
 
-    // 2. 🔴 പ്രധാന മാറ്റം: 'Load' ബട്ടൺ (forceLoad) അമർത്തിയിട്ടില്ലെങ്കിൽ
-    // ഇവിടെ വെച്ച് പ്രവർത്തനം നിർത്തുന്നു. സെർവറിലേക്ക് പോകുന്നില്ല.
-    if (!forceLoad) {
+    // 3. ഡാറ്റ കയ്യിലുണ്ടെങ്കിൽ, റിഫ്രഷ് ബട്ടൺ (forceLoad) അമർത്താതെ മുന്നോട്ട് പോകില്ല
+    if (hasData && !forceLoad) {
         return;
     }
 
-    // 3. ബട്ടൺ അമർത്തിയാൽ മാത്രം താഴേക്ക് വരുന്നു (സെർവർ കോൾ)
+    // 4. ഡാറ്റ ഇല്ലെങ്കിലോ (ആദ്യത്തെ തവണ), റിഫ്രഷ് അടിച്ചാലോ മാത്രം ലോഡർ കാണിച്ച് സെർവർ വിളിക്കുന്നു
     document.getElementById('loader').style.display = 'block';
 
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
         .then(response => {
+            // സെർവറിൽ നിന്ന് മറുപടി വന്നാലുടൻ ലോഡർ ഓഫ് ചെയ്യുന്നു
             document.getElementById('loader').style.display = 'none';
+
             if (response.result === 'success') {
                 allOrders = response.data;
                 // പുതിയ ഡാറ്റ ഫോണിൽ സേവ് ചെയ്യുന്നു
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 renderTabs(allOrders);
-
-                // പെൻഡിംഗ് അപ്ഡേറ്റ് ഉണ്ടെങ്കിൽ സിങ്ക് ബട്ടൺ കാണിക്കുന്നു
-                updateSyncButtonUI();
             }
         })
         .catch(err => {
+            // എറർ വന്നാലും ലോഡർ ഓഫ് ചെയ്യണം
             document.getElementById('loader').style.display = 'none';
-            alert("നെറ്റ്‌വർക്ക് എറർ! പുതിയ ഡാറ്റ എടുക്കാൻ സാധിച്ചില്ല.");
+
+            // ഫോണിൽ ഡാറ്റ ഇല്ലെങ്കിൽ മാത്രം എറർ കാണിക്കുന്നു
+            if (!hasData) {
+                alert("നെറ്റ്‌വർക്ക് എറർ! കണക്ഷൻ പരിശോധിക്കുക.");
+            }
         });
 }
 
