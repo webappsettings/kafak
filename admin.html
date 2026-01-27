@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Single Page Fix & Adjusted Bottom) */
+        /* PRINT SETTINGS (With Order ID & All Fixes) */
         #print-area {
             display: none;
         }
@@ -247,8 +247,7 @@
                 margin: 0;
                 padding: 0;
                 width: 105mm;
-                height: auto;
-                /* ഉയരം ഓട്ടോ ആക്കുന്നു */
+                height: 148mm;
                 background: white;
             }
 
@@ -259,12 +258,12 @@
                 width: 100%;
                 height: 100%;
                 background: white;
+                overflow: hidden;
             }
 
             .label-page {
                 width: 105mm;
-                /* 🔴 മാറ്റം 1: ഉയരം 138mm ആക്കി കുറച്ചു (Wrapper Height Reduced) */
-                height: 138mm;
+                height: 145mm;
                 position: relative;
                 background: white !important;
                 page-break-after: always;
@@ -272,13 +271,6 @@
                 overflow: hidden;
                 -webkit-print-color-adjust: exact;
                 border: none;
-                /* Debugging വേണ്ടെങ്കിൽ താഴെയുള്ള ബോർഡർ കളയാം */
-                /* border-bottom: 1px dashed #ccc; */
-            }
-
-            /* അവസാന പേജിന് ശേഷം ബ്ലാങ്ക് പേജ് വരാതിരിക്കാൻ */
-            .label-page:last-child {
-                page-break-after: auto;
             }
 
             /* --- 1. ADDRESS SECTION --- */
@@ -297,7 +289,7 @@
             }
 
             .cust-name {
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 900;
                 text-transform: uppercase;
                 line-height: 1.1;
@@ -323,11 +315,11 @@
                 margin-top: 2px;
             }
 
-            /* --- 2. META SECTION --- */
+            /* --- 2. META SECTION (Qty, QR & Order ID) --- */
             .meta-sec {
                 position: absolute;
                 top: 10mm;
-                right: 6mm;
+                right: 0mm;
                 width: 30mm;
                 text-align: right;
                 display: flex;
@@ -337,10 +329,14 @@
 
             .qty-text {
                 color: #00bcd4 !important;
-                font-size: 20px;
+                font-size: 18px;
                 font-weight: 900;
                 line-height: 1;
+                margin-top: 5px;
                 margin-bottom: 15px;
+                text-align: right;
+                padding-right: 20px;
+                /* QR-മായി അകലം */
             }
 
             .qr-box {
@@ -360,14 +356,17 @@
                 display: none !important;
             }
 
+            /* 🔴 NEW: Order ID Style */
             .qr-oid {
-                font-size: 10px;
-                font-weight: 700;
+                font-size: 9px;
+                font-weight: 500;
                 color: #000;
                 text-align: center;
                 width: 90px;
+                /* QR-ന്റെ അതേ വീതി */
                 margin-top: 2px;
             }
+
 
             /* --- 3. CONTACT BOX --- */
             .contact-box {
@@ -377,10 +376,11 @@
                 transform: translateX(-50%);
                 width: 94mm;
                 height: 14mm;
-                border: 2px solid #333;
+                border: 2px solid #707070;
                 border-radius: 8px;
-                display: flex;
+                display: block;
                 align-items: center;
+                /* Vertical Center */
                 justify-content: center;
                 gap: 10px;
                 background: white;
@@ -391,22 +391,27 @@
                 width: 26px;
                 height: 26px;
                 display: block;
+                float: left;
+                margin-top: 12px;
+                padding-left: 10px;
             }
 
             .contact-text {
-                font-size: 15px;
+                font-size: 13px;
                 font-weight: 700;
                 line-height: 1.1;
                 text-align: left;
                 margin: 0;
-                padding-top: 2px;
+                padding-top: 12px;
+                padding-left: 6px;
+                float: left;
             }
+
 
             /* --- 4. FRAGILE IMAGE --- */
             .fragile-sec {
                 position: absolute;
-                /* 🔴 മാറ്റം 2: ഇത് 138mm ബോക്സിന്റെ ഏറ്റവും അടിയിൽ വരും (പേപ്പറിന്റെ 10mm മുകളിൽ) */
-                bottom: 0mm;
+                bottom: 8mm;
                 left: 5mm;
                 width: 40mm;
                 text-align: center;
@@ -417,11 +422,11 @@
                 height: auto;
             }
 
+
             /* --- 5. FROM ADDRESS --- */
             .from-sec {
                 position: absolute;
-                /* 🔴 മാറ്റം 3: ഇതും ബോക്സിന്റെ അടിയിൽ വരും */
-                bottom: 0mm;
+                bottom: 8mm;
                 right: 6mm;
                 width: 60mm;
                 text-align: left;
