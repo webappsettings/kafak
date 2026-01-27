@@ -301,15 +301,14 @@ function printSelected() {
 
     selected.forEach(cb => {
         const d = allOrders[cb.value];
-
         if (d) {
             const safe = (val) => (val || '').toString().toUpperCase();
 
+            // ഫോൺ ഐക്കൺ
             const phoneIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
 
             area.innerHTML += `
             <div class="label-page">
-                
                 <div class="top-row">
                     <div class="address-col">
                         <div class="to-label">To,</div>
@@ -323,7 +322,6 @@ function printSelected() {
                         <div class="cust-pin">PIN: ${d.pincode}</div>
                         <div class="cust-ph">PH: ${d.phone}</div>
                     </div>
-
                     <div class="meta-col">
                         <div class="qty-text">x${d.quantity}</div>
                         <div id="qrcode-${cb.value}" class="qr-box"></div>
@@ -343,7 +341,6 @@ function printSelected() {
                         <img src="fragile.png" class="fragile-img" alt="Fragile">
                         <div class="fragile-text">FRAGILE</div>
                     </div>
-
                     <div class="from-col">
                         <span style="font-weight:bold; font-size:12px;">From,</span><br>
                         <b>KAFAK LLP</b>, 10/174, Kunnathery,<br>
@@ -352,7 +349,6 @@ function printSelected() {
                         Phone: 778899 0 313
                     </div>
                 </div>
-
             </div>`;
         }
     });
@@ -364,19 +360,30 @@ function printSelected() {
 
             if (d && qrContainer) {
                 try {
-                    qrContainer.innerHTML = ""; // Clear Previous
+                    qrContainer.innerHTML = ""; // പഴയത് ക്ലിയർ ചെയ്യുന്നു
+
+                    // QR Code ഉണ്ടാക്കുന്നു
                     new QRCode(qrContainer, {
                         text: d.orderid,
-                        width: 95,
-                        height: 95,
+                        width: 90, // സൈസ് അല്പം കുറച്ചു (ഫിറ്റ് ആകാൻ)
+                        height: 90,
                         colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.H
                     });
+
+                    // 🔴 DOUBLE QR FIX: കാൻവാസ് നിർബന്ധമായും നീക്കം ചെയ്യുന്നു
+                    // ഇത് ചേർത്താൽ 100% ഡബിൾ ക്യുആർ വരില്ല.
+                    setTimeout(() => {
+                        const canvas = qrContainer.querySelector('canvas');
+                        if (canvas) canvas.remove();
+                    }, 50);
+
                 } catch (e) { console.error("QR Error", e); }
             }
         });
 
+        // പ്രിന്റ് വരാൻ സമയം കൊടുക്കുന്നു
         setTimeout(() => window.print(), 800);
     }, 100);
 }

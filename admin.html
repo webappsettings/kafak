@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Fixed: Double QR & Width) */
+        /* PRINT SETTINGS (Perfect A6 Fit) */
         #print-area {
             display: none;
         }
@@ -261,9 +261,9 @@
 
             .label-page {
                 width: 105mm;
-                height: 147mm;
+                /* 🔴 Height കുറച്ചു (140mm). ഇത് 2nd Page വരുന്നത് ഒഴിവാക്കും */
+                height: 140mm;
                 padding: 5mm;
-                /* പാഡിംഗ് കുറച്ചു (8mm -> 5mm) സ്ഥലം കിട്ടാൻ */
                 box-sizing: border-box;
                 page-break-after: always;
                 position: relative;
@@ -271,6 +271,8 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                overflow: hidden;
+                /* കണ്ടന്റ് പുറത്തു ചാടാതിരിക്കാൻ */
             }
 
             /* --- TOP SECTION --- */
@@ -279,20 +281,19 @@
                 justify-content: space-between;
                 align-items: flex-start;
                 flex-wrap: nowrap;
-                /* 🔴 താഴേക്ക് പോകാതിരിക്കാൻ */
                 margin-bottom: 5px;
                 width: 100%;
             }
 
             .address-col {
-                width: 60%;
+                width: 62%;
+                /* അഡ്രസ്സിന് കൂടുതൽ സ്ഥലം */
                 text-align: left;
                 overflow: hidden;
-                /* ടെക്സ്റ്റ് പുറത്തേക്ക് പോകാതിരിക്കാൻ */
             }
 
             .meta-col {
-                width: 40%;
+                width: 36%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
@@ -334,18 +335,18 @@
 
             .qty-text {
                 color: #00bcd4;
-                font-size: 38px;
+                font-size: 34px;
                 font-weight: 900;
                 line-height: 1;
                 margin-bottom: 5px;
-                margin-top: 5px;
+                margin-top: 10px;
             }
 
-            /* 🔴 2nd QR Code പ്രശ്നം ഇവിടെ മാറും */
             .qr-box {
-                width: 95px;
-                height: 95px;
+                width: 90px;
+                height: 90px;
                 position: relative;
+                margin-top: 5px;
             }
 
             .qr-box img {
@@ -354,34 +355,30 @@
                 display: block;
             }
 
-            .qr-box canvas {
-                display: none !important;
-            }
-
-            /* Canvas ഹൈഡ് ചെയ്യുന്നു */
-
             /* --- MIDDLE SECTION --- */
             .contact-box {
                 border: 2px solid #333;
                 border-radius: 8px;
-                padding: 5px;
+                padding: 4px;
                 display: flex;
                 align-items: center;
                 gap: 5px;
                 margin: 5px 0;
                 justify-content: center;
                 background: #fff;
+                white-space: nowrap;
+                /* ടെക്സ്റ്റ് പൊട്ടാതിരിക്കാൻ */
             }
 
             .contact-icon svg {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
             }
 
             .contact-text {
-                font-size: 11px;
+                font-size: 10px;
                 font-weight: 700;
-                line-height: 1.3;
+                line-height: 1.2;
             }
 
             /* --- BOTTOM SECTION --- */
@@ -393,27 +390,27 @@
             }
 
             .fragile-col {
-                width: 30%;
+                width: 25%;
                 text-align: center;
             }
 
             .fragile-img {
-                width: 50px;
+                width: 45px;
                 height: auto;
             }
 
             .fragile-text {
                 color: red;
                 font-weight: 900;
-                font-size: 12px;
+                font-size: 11px;
                 letter-spacing: 1px;
                 margin-top: 2px;
             }
 
             .from-col {
-                width: 68%;
+                width: 73%;
                 font-size: 10px;
-                line-height: 1.4;
+                line-height: 1.3;
                 font-weight: 600;
                 text-align: left;
             }
