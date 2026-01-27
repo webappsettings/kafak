@@ -300,7 +300,6 @@ function printSelected() {
     area.innerHTML = ''; // പഴയത് കളയുന്നു
 
     selected.forEach(cb => {
-        // ചെക്ക്ബോക്സിന്റെ വാല്യൂ ഇൻഡക്സ് (index) ആണെന്ന് കരുതുന്നു
         const d = allOrders[cb.value];
 
         if (d) {
@@ -339,12 +338,12 @@ function printSelected() {
         }
     });
 
-    // 🔴 പ്രിന്റ് ചെയ്യുന്നതിന് മുൻപ് ലേബലുകൾ ജനറേറ്റ് ചെയ്യാൻ സമയം കൊടുക്കുന്നു
+    // പ്രിന്റ് വിൻഡോ വരുന്നതിന് മുൻപ് QR ജനറേറ്റ് ചെയ്യാൻ സമയം കൊടുക്കുന്നു
     setTimeout(() => {
         selected.forEach(cb => {
             const d = allOrders[cb.value];
             if (d) {
-                // Barcode Generation
+                // 1. Barcode Generation
                 try {
                     JsBarcode(`#barcode-${cb.value}`, d.orderid, {
                         format: "CODE128",
@@ -353,11 +352,11 @@ function printSelected() {
                     });
                 } catch (e) { console.error("Barcode Error", e); }
 
-                // QR Code Generation
+                // 2. QR Code Generation (🔴 Order ID നൽകുന്നു)
                 try {
-                    document.getElementById(`qrcode-${cb.value}`).innerHTML = ""; // Clear div
+                    document.getElementById(`qrcode-${cb.value}`).innerHTML = "";
                     new QRCode(document.getElementById(`qrcode-${cb.value}`), {
-                        text: `https://www.google.com/maps/search/?api=1&query=${d.place},${d.district}`,
+                        text: d.orderid, // 🔴 മാപ്പ് ലിങ്കിന് പകരം ഓർഡർ ഐഡി
                         width: 100,
                         height: 100
                     });
@@ -365,7 +364,7 @@ function printSelected() {
             }
         });
 
-        // എല്ലാം റെഡിയാകാൻ 800ms കാത്തിരിക്കുന്നു (നേരത്തെ 500ms ആയിരുന്നു)
+        // എല്ലാം റെഡിയാകാൻ അല്പം കാത്തിരിക്കുന്നു
         setTimeout(() => window.print(), 800);
 
     }, 100);
