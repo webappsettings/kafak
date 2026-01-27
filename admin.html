@@ -222,6 +222,7 @@
         }
 
         /* PRINT SETTINGS (Perfect Fit: 147mm) */
+        /* PRINT SETTINGS (SAFE MODE: 130mm Height) */
         #print-area {
             display: none;
         }
@@ -237,7 +238,7 @@
                 display: block !important;
             }
 
-            /* 1. പേജ് സെറ്റപ്പ് */
+            /* 1. പേജ് മാർജിൻ സീറോ */
             @page {
                 size: A6;
                 margin: 0mm;
@@ -248,11 +249,9 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 width: 105mm;
+                /* Height Auto കൊടുക്കുന്നു */
                 height: auto !important;
-                /* 🔴 100% പാടില്ല, Auto മതി */
                 background: white;
-                overflow: visible;
-                /* Hidden വേണ്ട */
             }
 
             #print-area {
@@ -261,29 +260,30 @@
                 top: 0;
                 width: 100%;
                 height: auto;
-                /* 🔴 ഇതും Auto ആക്കുക */
                 background: white;
             }
 
             .label-page {
                 width: 105mm;
-                /* 🔴 Height 147mm ആക്കി (1mm സേഫ്റ്റി മാർജിൻ) */
-                /* ഇത് Fragile സെക്ഷനെ താഴെ തന്നെ എത്തിക്കും */
-                height: 147mm;
+                /* 🔴 HEIGHT 130mm (Drastic Reduction) */
+                /* ഇത് 100% സേഫ് ആണ്. ബ്ലാങ്ക് പേജ് വരില്ല. */
+                height: 130mm;
 
                 position: relative;
                 background: white !important;
 
-                /* Default: No Page Break */
+                /* പേജ് ബ്രേക്ക് JS വഴി മാത്രം */
                 page-break-after: auto;
                 break-after: auto;
 
                 font-family: Arial, sans-serif;
                 overflow: hidden;
-                border: none;
+
+                /* ബോക്സ് എവിടെ അവസാനിക്കുന്നു എന്ന് കാണാൻ ബോർഡർ (Test only) */
+                border-bottom: 1px dashed #ccc;
             }
 
-            /* JS വഴി മാത്രം ബ്രേക്ക് ആഡ് ചെയ്യുന്നു */
+            /* മൾട്ടിപ്പിൾ പ്രിന്റിന് മാത്രം ബ്രേക്ക് */
             .label-page.has-break {
                 page-break-after: always !important;
                 break-after: always !important;
@@ -416,7 +416,7 @@
                 float: left;
             }
 
-            /* 🔴 Bottom 0mm - 147mm-ന്റെ അടിയിൽ വരും (കറക്റ്റ് പൊസിഷൻ) */
+            /* 🔴 Bottom 0mm - 130mm-ന്റെ അടിയിൽ വരും (പേപ്പറിന്റെ 18mm മുകളിൽ) */
             .fragile-sec {
                 position: absolute;
                 bottom: 0mm;
