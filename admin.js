@@ -299,21 +299,22 @@ function printSelected() {
     const area = document.getElementById('print-area');
     area.innerHTML = '';
 
-    // Loop through selected items with INDEX
     selected.forEach((cb, index) => {
         const d = allOrders[cb.value];
         if (d) {
             const safe = (val) => (val || '').toString().toUpperCase();
 
-            // 🔴 അവസാനത്തെ ആളല്ലെങ്കിൽ മാത്രം 'has-break' ക്ലാസ് ചേർക്കും
-            // ഇതാണ് ബ്ലാങ്ക് പേജ് ഒഴിവാക്കുന്ന മാജിക്
+            // 🔴 1. അവസാനത്തെ പേജ് ആണെങ്കിൽ 'has-break' കൊടുക്കില്ല (NO BLANK PAGE)
+            // അവസാനത്തെ ആളല്ലെങ്കിൽ മാത്രം 'has-break' കൊടുക്കും
             const breakClass = (index < selected.length - 1) ? 'has-break' : '';
 
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
 
             area.innerHTML += `
-            <div class="label-page ${breakClass}"> <div class="address-sec">
+            <div class="label-page ${breakClass}"> 
+                
+                <div class="address-sec">
                     <div class="to-label">To,</div>
                     <div class="cust-name">${safe(d.name)}</div>
                     <div class="cust-addr">
@@ -356,7 +357,6 @@ function printSelected() {
         }
     });
 
-    // QR Code Generation Part (No Changes Needed Here)
     setTimeout(() => {
         const promises = [];
         selected.forEach(cb => {

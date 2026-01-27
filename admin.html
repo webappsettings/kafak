@@ -237,17 +237,18 @@
                 display: block !important;
             }
 
+            /* 🔴 1. Page Margin Zero */
             @page {
                 size: A6;
-                margin: 0;
+                margin: 0mm;
             }
 
             html,
             body {
-                margin: 0;
-                padding: 0;
+                margin: 0 !important;
+                padding: 0 !important;
                 width: 105mm;
-                height: 148mm;
+                height: auto;
                 background: white;
             }
 
@@ -256,32 +257,33 @@
                 left: 0;
                 top: 0;
                 width: 100%;
-                height: 100%;
+                height: auto;
                 background: white;
             }
 
             .label-page {
                 width: 105mm;
-                height: 148mm;
-                /* 🔴 148mm തന്നെ നിലനിർത്തുന്നു */
+                /* 🔴 2. HEIGHT REDUCED TO 146mm (Safe Zone) */
+                height: 146mm;
                 position: relative;
                 background: white !important;
 
-                /* 🔴 മാറ്റം: ഇവിടെ Always കൊടുക്കുന്നില്ല. JS വഴി നിയന്ത്രിക്കും */
+                /* 🔴 3. Default: No Page Break */
                 page-break-after: auto;
+                break-after: auto;
 
                 font-family: Arial, sans-serif;
                 overflow: hidden;
-                -webkit-print-color-adjust: exact;
                 border: none;
             }
 
-            /* 🔴 പുതിയ ക്ലാസ്: ഇത് ഉള്ളവർക്ക് മാത്രം ബ്രേക്ക് വരും */
+            /* 🔴 4. Only add break when JS says so */
             .label-page.has-break {
                 page-break-after: always !important;
+                break-after: always !important;
             }
 
-            /* --- ബാക്കി ഡിസൈൻ നിങ്ങൾ അയച്ചത് പോലെ തന്നെ --- */
+            /* --- ബാക്കി ഡിസൈൻ പഴയത് പോലെ --- */
             .address-sec {
                 position: absolute;
                 top: 10mm;
