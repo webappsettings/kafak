@@ -364,11 +364,11 @@ function printSelected() {
 
             if (d && qrContainer) {
                 try {
-                    qrContainer.innerHTML = "";
+                    qrContainer.innerHTML = ""; // Clear Previous
                     new QRCode(qrContainer, {
                         text: d.orderid,
-                        width: 90,
-                        height: 90,
+                        width: 95,
+                        height: 95,
                         colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.H
