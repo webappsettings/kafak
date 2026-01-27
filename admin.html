@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (With Order ID & All Fixes) */
+        /* PRINT SETTINGS (Final Fix: Height Reduced to 135mm) */
         #print-area {
             display: none;
         }
@@ -237,7 +237,7 @@
                 display: block !important;
             }
 
-            /* 🔴 1. Page Margin Zero */
+            /* 🔴 1. പേജ് മാർജിൻ സീറോ ആക്കുന്നു */
             @page {
                 size: A6;
                 margin: 0mm;
@@ -248,7 +248,8 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 width: 105mm;
-                height: auto;
+                height: auto !important;
+                /* Auto ആക്കുന്നത് പ്രധാനം */
                 background: white;
             }
 
@@ -263,27 +264,31 @@
 
             .label-page {
                 width: 105mm;
-                /* 🔴 2. HEIGHT REDUCED TO 146mm (Safe Zone) */
-                height: 146mm;
+
+                /* 🔴 2. HEIGHT 135mm ആക്കി കുറച്ചു (ഇതാണ് മെയിൻ സൊല്യൂഷൻ) */
+                /* 148mm കൊടുത്താൽ ബോർഡർ കാരണം അടുത്ത പേജ് വരും. 135mm സേഫ് ആണ്. */
+                height: 135mm;
+
                 position: relative;
                 background: white !important;
 
-                /* 🔴 3. Default: No Page Break */
+                /* 🔴 3. Default ആയി Page Break വേണ്ട */
                 page-break-after: auto;
                 break-after: auto;
 
                 font-family: Arial, sans-serif;
                 overflow: hidden;
                 border: none;
+                /* ബോർഡർ ഒഴിവാക്കി */
             }
 
-            /* 🔴 4. Only add break when JS says so */
+            /* 🔴 4. JS വഴി മാത്രം ബ്രേക്ക് ആഡ് ചെയ്യും (ഇടയിലുള്ള പേജുകൾക്ക്) */
             .label-page.has-break {
                 page-break-after: always !important;
                 break-after: always !important;
             }
 
-            /* --- ബാക്കി ഡിസൈൻ പഴയത് പോലെ --- */
+            /* --- ബാക്കി ഡിസൈൻ പഴയത് തന്നെ --- */
             .address-sec {
                 position: absolute;
                 top: 10mm;
@@ -410,9 +415,11 @@
                 float: left;
             }
 
+            /* 🔴 5. Bottom 0mm ആക്കി. (135mm ബോക്സിന്റെ അടിയിൽ വരും) */
+            /* ഇത് പേപ്പറിന്റെ അടിയിൽ നിന്ന് ഏകദേശം 10mm മുകളിലായിരിക്കും. */
             .fragile-sec {
                 position: absolute;
-                bottom: 8mm;
+                bottom: 0mm;
                 left: 5mm;
                 width: 40mm;
                 text-align: center;
@@ -425,7 +432,7 @@
 
             .from-sec {
                 position: absolute;
-                bottom: 8mm;
+                bottom: 0mm;
                 right: 6mm;
                 width: 60mm;
                 text-align: left;
