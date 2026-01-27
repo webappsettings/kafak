@@ -321,19 +321,26 @@ function fetchOrderDetails(oid) {
     });
 }
 
-
-// --- ADMIN ACTION (Customer Facing) ---
+// 🚀 UPDATED ADMIN ACTION (Fix for Status Overlap)
 function adminAction(oid, status) {
+  // 1. യൂസറോട് ചോദിക്കുന്നു
   if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-  // 1. പെൻഡിംഗ് അപ്‌ഡേറ്റ് ലിസ്റ്റിലേക്ക് ചേർക്കുന്നു
+  // 2. പെൻഡിംഗ് ലിസ്റ്റ് എടുക്കുന്നു
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+  // 🔴 തിരുത്തൽ: പഴയ എൻട്രി (Sent/Paid ഏതായാലും) ആ ഐഡിയിൽ ഉള്ളത് കളയുന്നു
+  updates = updates.filter(item => item.oid !== oid);
+
+  // പുതിയ സ്റ്റാറ്റസ് ചേർക്കുന്നു
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
+
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // 2. ബട്ടൺ ലേബൽ മാറാൻ വേണ്ടി
+  // 3. ബട്ടൺ ലേബൽ മാറാൻ വേണ്ടി
   localStorage.setItem(`${status === 'Sent' ? 'sent' : 'paid'}_${oid}`, 'true');
 
+  // 4. അറിയിപ്പ് നൽകി റീലോഡ് ചെയ്യുന്നു
   alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅`);
   location.reload();
 }
