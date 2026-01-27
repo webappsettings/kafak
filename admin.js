@@ -296,7 +296,11 @@ function printSelected() {
     const selected = document.querySelectorAll('.order-cb:checked');
     if (selected.length === 0) { alert("പ്രിന്റ് ചെയ്യാൻ ഓർഡറുകൾ സെലക്ട് ചെയ്യൂ!"); return; }
 
-    // 1. QR കോഡ് ജനറേറ്റ് ചെയ്യാൻ ഒരു താൽക്കാലിക കണ്ടെയ്നർ ഉണ്ടാക്കുന്നു
+    // 1. HTML-ൽ നിന്ന് ഡിസൈൻ കോഡ് വലിച്ചെടുക്കുന്നു
+    // 🔴 ഇതാണ് പ്രധാന മാറ്റം
+    const styles = document.getElementById('label-css').innerHTML;
+
+    // QR Generate ചെയ്യാൻ Temp Div
     const tempDiv = document.createElement('div');
     tempDiv.style.position = 'absolute';
     tempDiv.style.left = '-9999px';
@@ -305,15 +309,12 @@ function printSelected() {
     const promises = [];
     const labelsData = [];
 
-    // 2. ഓരോ ഓർഡറിനും QR കോഡ് ഉണ്ടാക്കി ഡാറ്റ ശേഖരിക്കുന്നു
     selected.forEach((cb, index) => {
         const d = allOrders[cb.value];
         if (d) {
             const safe = (val) => (val || '').toString().toUpperCase();
 
-            // പ്രോമിസ് ഉപയോഗിച്ച് ക്യുആർ ഇമേജ് ഉണ്ടാക്കുന്നു
             const p = new Promise((resolve) => {
-                // QR Container
                 const qrNode = document.createElement('div');
                 tempDiv.appendChild(qrNode);
 
@@ -324,19 +325,15 @@ function printSelected() {
                     correctLevel: QRCode.CorrectLevel.H
                 });
 
-                // Canvas റെൻഡർ ആകാൻ അല്പം സമയം കൊടുക്കുന്നു
                 setTimeout(() => {
                     const canvas = qrNode.querySelector('canvas');
                     let qrImgSrc = '';
                     if (canvas) {
                         qrImgSrc = canvas.toDataURL("image/png");
                     }
-
-                    // ഡാറ്റ ലിസ്റ്റിലേക്ക് ചേർക്കുന്നു
                     labelsData.push({
                         details: d,
-                        qrSrc: qrImgSrc,
-                        isLast: index === selected.length - 1 // അവസാന പേജാണോ എന്ന് അറിയാൻ
+                        qrSrc: qrImgSrc
                     });
                     resolve();
                 }, 50);
@@ -345,61 +342,19 @@ function printSelected() {
         }
     });
 
-    // 3. എല്ലാം റെഡിയായാൽ പുതിയ വിൻഡോ തുറക്കുന്നു
     Promise.all(promises).then(() => {
-        document.body.removeChild(tempDiv); // ക്ലീൻ ചെയ്യുന്നു
+        document.body.removeChild(tempDiv);
 
-        // പുതിയ വിൻഡോ
         const printWin = window.open('', '', 'width=600,height=800');
 
         let htmlContent = `
         <html>
         <head>
             <title>KAFAK Print</title>
-            <style>
-                @page { size: A6; margin: 0; }
-                body { margin: 0; padding: 0; background: white; }
-                
-                .label-page {
-                    width: 105mm;
-                    height: 147mm; /* Perfect A6 Height */
-                    position: relative;
-                    page-break-after: always;
-                    font-family: Arial, sans-serif;
-                    overflow: hidden;
-                    box-sizing: border-box;
-                }
-                
-                /* അവസാന പേജിന് ബ്രേക്ക് വേണ്ട */
-                .label-page:last-child { page-break-after: auto; }
-
-                /* --- COMPONENTS --- */
-                .address-sec { position: absolute; top: 10mm; left: 6mm; width: 62mm; text-align: left; }
-                .to-label { font-size: 14px; font-weight: 900; margin-bottom: 2px; }
-                .cust-name { font-size: 16px; font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 3px; }
-                .cust-addr { font-size: 13px; font-weight: 700; text-transform: uppercase; line-height: 1.3; margin-bottom: 5px; }
-                .cust-pin { font-size: 16px; font-weight: 900; }
-                .cust-ph { font-size: 15px; font-weight: 900; margin-top: 2px; }
-
-                .meta-sec { position: absolute; top: 10mm; right: 0mm; width: 30mm; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
-                .qty-text { color: #00bcd4; font-size: 18px; font-weight: 900; line-height: 1; margin-top: 5px; margin-bottom: 15px; text-align: right; padding-right: 20px; }
-                .qr-box { width: 90px; height: 90px; background: white; }
-                .qr-box img { width: 100%; height: auto; display: block; }
-                .qr-oid { font-size: 9px; font-weight: 500; color: #000; text-align: center; width: 90px; margin-top: 2px; }
-
-                .contact-box { position: absolute; top: 68mm; left: 50%; transform: translateX(-50%); width: 94mm; height: 14mm; border: 2px solid #707070; border-radius: 8px; display: block; align-items: center; justify-content: center; gap: 10px; background: white; z-index: 10; }
-                .contact-icon svg { width: 26px; height: 26px; display: block; float: left; margin-top: 12px; padding-left: 10px; }
-                .contact-text { font-size: 13px; font-weight: 700; line-height: 1.1; text-align: left; margin: 0; padding-top: 12px; padding-left: 6px; float: left; }
-
-                .fragile-sec { position: absolute; bottom: 0mm; left: 5mm; width: 40mm; text-align: center; }
-                .fragile-img { width: 85px; height: auto; }
-
-                .from-sec { position: absolute; bottom: 0mm; right: 6mm; width: 60mm; text-align: left; font-size: 11px; line-height: 1.3; font-weight: 600; }
-            </style>
+            <style>${styles}</style>
         </head>
         <body>`;
 
-        // ലൂപ്പ് ചെയ്ത് കണ്ടന്റ് ചേർക്കുന്നു
         labelsData.forEach(item => {
             const d = item.details;
             const safe = (val) => (val || '').toString().toUpperCase();
@@ -452,15 +407,12 @@ function printSelected() {
 
         htmlContent += `</body></html>`;
 
-        // 4. പുതിയ വിൻഡോയിൽ എഴുതുന്നു, പ്രിന്റ് ചെയ്യുന്നു
         printWin.document.write(htmlContent);
         printWin.document.close();
 
-        // ഇമേജ് ലോഡ് ആകാൻ അല്പം സമയം കൊടുക്കുന്നു
         setTimeout(() => {
             printWin.focus();
             printWin.print();
-            // printWin.close(); // പ്രിന്റ് കഴിഞ്ഞാൽ ക്ലോസ് ചെയ്യണമെങ്കിൽ ഇത് അൺകമെന്റ് ചെയ്യാം
         }, 500);
     });
 }
