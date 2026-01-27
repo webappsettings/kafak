@@ -221,8 +221,7 @@
             overflow: hidden;
         }
 
-
-        /* PRINT SETTINGS (A6 Fit with Padding) */
+        /* PRINT SETTINGS (Fixed Alignment & Double QR) */
         #print-area {
             display: none;
         }
@@ -238,11 +237,9 @@
                 display: block !important;
             }
 
-            /* A6 പേപ്പർ സൈസ് സെറ്റ് ചെയ്യുന്നു */
             @page {
                 size: A6;
                 margin: 0;
-                /* പ്രിന്ററിന്റെ ഓട്ടോമാറ്റിക് മാർജിൻ ഒഴിവാക്കുന്നു */
             }
 
             html,
@@ -258,28 +255,23 @@
                 left: 0;
                 top: 0;
                 width: 100%;
+                height: 100%;
                 background: white;
             }
 
-            /* ഒരു പേജിൽ ഒരു ലേബൽ മാത്രം */
             .label-page {
                 width: 105mm;
-                /* A6 Width */
                 height: 147mm;
-                /* A6 Height (1mm കുറച്ചു, ബ്ലാങ്ക് പേജ് വരാതിരിക്കാൻ) */
-                padding: 10mm;
-                /* 🔴 ഇതാണ് പാഡിംഗ് (ഉള്ളിലെ സ്പേസ്) */
+                padding: 8mm;
+                /* പാഡിംഗ് അല്പം കുറച്ചു */
                 box-sizing: border-box;
-                /* പാഡിംഗ് വലിപ്പത്തെ ബാധിക്കാതിരിക്കാൻ */
                 page-break-after: always;
-                /* അടുത്ത ലേബൽ അടുത്ത പേജിൽ */
                 position: relative;
                 font-family: sans-serif;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                border: none;
-                /* ബോർഡർ വേണ്ടെങ്കിൽ ഇത് നിലനിർത്താം */
+                /* മുകളിലും താഴെയും കൃത്യമായി അകലം വരാൻ */
             }
 
             /* --- TOP SECTION --- */
@@ -287,11 +279,25 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
+                flex-wrap: nowrap;
+                /* താഴേക്ക് പോകാതിരിക്കാൻ */
+                margin-bottom: 10px;
             }
 
             .address-col {
-                width: 60%;
+                width: 58%;
+                /* വീതി കുറച്ചു (65-ൽ നിന്ന് 58-ലേക്ക്) */
                 text-align: left;
+                word-wrap: break-word;
+            }
+
+            .meta-col {
+                width: 40%;
+                /* ബാക്കി സ്ഥലം */
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                text-align: right;
             }
 
             .to-label {
@@ -327,33 +333,33 @@
                 margin-top: 5px;
             }
 
-            .meta-col {
-                width: 40%;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                text-align: right;
-            }
-
             .qty-text {
                 color: #00bcd4;
                 font-size: 38px;
                 font-weight: 900;
                 line-height: 1;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
                 margin-top: 20px;
             }
 
-            /* QR Code Size */
+            /* 🔴 QR Code Fixes */
             .qr-box {
                 width: 90px;
                 height: 90px;
+                position: relative;
             }
 
             .qr-box img {
                 width: 100% !important;
                 height: auto !important;
+                display: block;
             }
+
+            .qr-box canvas {
+                display: none !important;
+            }
+
+            /* 🔴 ഇത് ഡബിൾ ക്യുആർ ഒഴിവാക്കും */
 
             /* --- MIDDLE SECTION --- */
             .contact-box {
@@ -363,9 +369,11 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                margin: 10px 0;
+                margin: 15px 0;
                 justify-content: center;
                 background: #fff;
+                position: relative;
+                z-index: 10;
             }
 
             .contact-icon svg {
@@ -384,6 +392,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
+                margin-top: auto;
             }
 
             .fragile-col {
@@ -392,7 +401,7 @@
             }
 
             .fragile-img {
-                width: 65px;
+                width: 60px;
                 height: auto;
             }
 
