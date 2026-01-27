@@ -200,28 +200,28 @@ function createCardHTML(d, index, type, currentStatus) {
 function updateOrder(oid, status) {
     if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-    // 1. പെൻഡിംഗ് ലിസ്റ്റ് അപ്‌ഡേറ്റ്
+    // 1. പെൻഡിംഗ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് (Sync-ന് വേണ്ടി)
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
-    // 🔴 പഴയ എൻട്രി ഉണ്ടെങ്കിൽ അത് കളയുന്നു (Sent മാറ്റി Paid ആക്കാൻ ഇത് സഹായിക്കും)
     updates = updates.filter(item => item.oid !== oid);
-
-    // പുതിയ (Final) സ്റ്റാറ്റസ് ചേർക്കുന്നു
     updates.push({ oid: oid, status: status, time: new Date().getTime() });
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
     // 2. ബട്ടൺ ഫ്ലാഗ് സേവ് ചെയ്യുന്നു
     localStorage.setItem(`${status === 'Sent' ? 'sent' : 'paid'}_${oid}`, 'true');
 
-    // 3. മെയിൻ ലിസ്റ്റും കാഷെയും അപ്‌ഡേറ്റ് ചെയ്യുന്നു (Instant UI Change)
+    // 3. മെയിൻ ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
     const orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex !== -1) {
-        allOrders[orderIndex].Status = status; // Memory Update
-        localStorage.setItem('allOrdersCache', JSON.stringify(allOrders)); // Cache Update
+        allOrders[orderIndex].Status = status; // മെമ്മറിയിൽ മാറ്റുന്നു
+
+        // 🔴 ഈ വരിയാണ് വിട്ടുപോയത്! 
+        // മാറ്റം വന്ന ലിസ്റ്റ് അപ്പോൾ തന്നെ ഫോണിലെ Cache-ലേക്ക് സേവ് ചെയ്യുന്നു.
+        // ഇത് ചെയ്താൽ പേജ് റിഫ്രഷ് ചെയ്താലും പുതിയ സ്റ്റാറ്റസ് തന്നെ നിൽക്കും.
+        localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
     alert(`Saved Locally: ${status} ✅`);
-    renderTabs(allOrders); // UI Refresh (No Reload)
+    renderTabs(allOrders);
 }
 
 // 🔴 SYNC FUNCTION (Updated for Auto Refresh)
