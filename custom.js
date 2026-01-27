@@ -15,7 +15,7 @@ $(document).ready(function () {
   const urlOid = urlParams.get('oid');
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // --- ADMIN BAR SETUP (Instant Load from Cache) ---
+  // --- ADMIN BAR SETUP ---
   if (isAdmin && urlOid) {
     const adminUI = `
             <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 15px; z-index: 10000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
@@ -29,13 +29,9 @@ $(document).ready(function () {
             </div>`;
     $('body').append(adminUI);
 
-    // 🔴 പ്രധാന മാറ്റം: അഡ്മിൻ പാനലിലെ Cache ഉപയോഗിച്ച് ബട്ടൺ ഉടൻ ശരിയാക്കുന്നു
     let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
     let cachedOrder = cachedOrders.find(o => o.orderid === urlOid);
-    // Cache-ൽ ഡാറ്റ ഉണ്ടെങ്കിൽ അത് എടുക്കും, അല്ലെങ്കിൽ 'Pending' എന്ന് വിചാരിക്കും
     let initialStatus = cachedOrder ? cachedOrder.Status : 'Pending';
-
-    // ഇത് വിളിക്കുന്നതോടെ സെർവർ ലോഡിംഗിന് മുൻപേ ബട്ടൺ ശരിയായിട്ടുണ്ടാകും
     updateAdminUI(initialStatus, urlOid);
   }
 
@@ -64,6 +60,9 @@ $(document).ready(function () {
         $('#dot-2').addClass('active');
         showSummary(u);
         autoLoggedIn = true;
+
+        // 🔴 NEW FIX: Auto Login ചെയ്യുന്നവർക്ക് ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് ബാക്ക്ഗ്രൗണ്ടിൽ നോക്കുന്നു
+        checkForActiveOrder(u.phone);
       }
     } catch (e) { localStorage.removeItem('kafakUser'); }
   }
@@ -118,18 +117,37 @@ $(document).ready(function () {
 
 // --- HELPER FUNCTIONS ---
 
-// 🔴 പുതിയ അഡ്മിൻ UI അപ്‌ഡേറ്റ് ഫങ്ക്ഷൻ (ഇതാണ് പ്രധാനം)
+// 🔴 പുതിയ ഫങ്ക്ഷൻ: ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് നോക്കാൻ (Auto Login-ന് വേണ്ടി)
+function checkForActiveOrder(phone) {
+  fetch(`${sc}?action=getCustomer&phone=${phone}`)
+    .then(res => res.json())
+    .then(response => {
+      if (response.result === 'success') {
+        const d = response.data;
+        // Dispatch ചെയ്യാത്ത ഓർഡർ ഉണ്ടെങ്കിൽ അത് ലിങ്ക് ചെയ്യുന്നു
+        if (d.orderid && d.Status && d.Status !== 'Dispatched') {
+          editingOrderId = d.orderid;
+          console.log("Active order linked:", editingOrderId);
+
+          // പഴയ ക്വാണ്ടിറ്റി ഓട്ടോമാറ്റിക് ആയി സെലക്ട് ചെയ്യുന്നു
+          if (d.quantity) {
+            // UI റെഡി ആകാൻ അല്പം സമയം കൊടുക്കുന്നു
+            setTimeout(() => {
+              $('#quantity').val(d.quantity).trigger('change');
+            }, 1000);
+          }
+          if (d.message) $('#message').val(d.message);
+        }
+      }
+    });
+}
+
 function updateAdminUI(serverStatus, oid) {
-  // 1. ലോക്കൽ പെൻഡിംഗ് മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് നോക്കുന്നു
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
-
-  // 2. ലോക്കൽ മാറ്റത്തിനാണ് മുൻഗണന. അതില്ലെങ്കിൽ സെർവർ സ്റ്റാറ്റസ് എടുക്കും.
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
-
   let btnHTML = '';
 
-  // 3. സ്റ്റാറ്റസ് അനുസരിച്ച് ബട്ടൺ മാറ്റുന്നു
   if (currentStatus === 'Pending') {
     btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-success btn-sm fw-bold w-100 py-2 shadow">💬 CONFIRM SENT (WhatsApp)</button>`;
   } else if (currentStatus === 'Sent') {
@@ -138,7 +156,6 @@ function updateAdminUI(serverStatus, oid) {
     btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 py-2 shadow opacity-50" disabled>💰 PAID / DISPATCHED ✅</button>`;
   }
 
-  // 4. UI അപ്‌ഡേറ്റ് ചെയ്യുന്നു
   $('#admin-btn-container').html(btnHTML);
   $('#admin-action-bar').fadeIn();
   $('body').css('padding-bottom', '100px');
@@ -161,20 +178,11 @@ function fetchOrderDetails(oid) {
         $('#house').val(d.house);
         $('#place').val(d.place);
 
-        // 🔴 ഇവിടെ നമ്മൾ സെർവറിൽ നിന്ന് കിട്ടിയ സ്റ്റാറ്റസ് വെച്ച് അഡ്മിൻ ബാർ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-        // d.Status ഇല്ലെങ്കിൽ അത് പഴയ ഷീറ്റിൽ കോളം ഇല്ലാത്തത് കൊണ്ടാകാം, അതുകൊണ്ട് ഡിഫോൾട്ട് 'Pending' കൊടുക്കുന്നു.
-        // ഷീറ്റിൽ നിന്ന് സ്റ്റാറ്റസ് കിട്ടാൻ Google Script-ൽ 'getAllOrders' പോലെ 'getOrderDetails'-ലും Status അയക്കുന്നുണ്ടെന്ന് ഉറപ്പാക്കണം.
-        // അല്ലെങ്കിൽ fetchOrders-ൽ നിന്ന് കിട്ടുന്ന ലിസ്റ്റ് വെച്ച് നോക്കേണ്ടി വരും. 
-        // തൽക്കാലം 'fetchOrderDetails' response-ൽ Status ഉണ്ടെന്ന് കരുതുന്നു. (ഇല്ലെങ്കിൽ താഴെ ഒരു Fix ഉണ്ട്)
-
-        // Fix: getOrderDetails-ൽ നിലവിൽ Status ഫീൽഡ് ഇല്ല. 
-        // അതിനാൽ ഫോണിലെ allOrdersCache-ൽ നിന്ന് ഈ ഓർഡറിന്റെ സ്റ്റാറ്റസ് കണ്ടുപിടിക്കുന്നു.
         let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
         let cachedOrder = cachedOrders.find(o => o.orderid === oid);
         let serverStatus = cachedOrder ? cachedOrder.Status : 'Pending';
 
         updateAdminUI(serverStatus, oid);
-
         checkPincode(d.pincode, d.postoffice);
         enableEditMode();
         proceedToStep2();
@@ -182,24 +190,17 @@ function fetchOrderDetails(oid) {
     });
 }
 
-// 🔴 അഡ്മിൻ ആക്ഷൻ (Local Save First)
 function adminAction(oid, status) {
   if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
-
-  // 1. പെൻഡിംഗ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് (പഴയത് കളയുന്നു)
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-  // 2. UI ഉടൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നു (Reload വേണ്ട)
   alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅`);
-
-  // Reload ചെയ്യുന്നതിന് പകരം UI മാറ്റുന്നു (Smooth Experience)
   updateAdminUI(status, oid);
 }
 
-// --- STANDARD FUNCTIONS (No Changes) ---
+// 🔴 UPDATED HANDLE STEP 1 (Duplicate Prevention)
 function handleStep1() {
   const phone = $('#phone').val().replace(/\D/g, '');
   const tempNameInput = $('#temp_name');
@@ -227,6 +228,20 @@ function handleStep1() {
       btn.html(originalContent).prop('disabled', false);
       if (response.result === 'success') {
         const d = response.data;
+
+        // 🔴 DUPLICATE CHECK: നിലവിൽ ഓർഡർ ഉണ്ടെങ്കിൽ അത് എഡിറ്റ് ചെയ്യുന്നു
+        if (d.orderid && d.Status && d.Status !== 'Dispatched') {
+          editingOrderId = d.orderid;
+          // പഴയ ക്വാണ്ടിറ്റി ലോഡ് ചെയ്യുന്നു
+          if (d.quantity) {
+            setTimeout(() => { $('#quantity').val(d.quantity).trigger('change'); }, 500);
+          }
+          if (d.message) $('#message').val(d.message);
+        } else {
+          editingOrderId = null; // New Order
+          $('#quantity').val('').trigger('change');
+        }
+
         $('#name').val(d.name);
         $('#whatsapp').val(d.whatsapp || phone);
         $('#house').val(d.house);
@@ -240,6 +255,8 @@ function handleStep1() {
         showSummary(d);
         proceedToStep2();
       } else {
+        // New User
+        editingOrderId = null;
         nameSection.slideDown();
         tempNameInput.focus();
       }
@@ -291,7 +308,7 @@ function submitOrder() {
   const btn = $('#submitBtn');
   btn.prop('disabled', true).html('Processing...');
   const formData = {
-    orderid: editingOrderId || null,
+    orderid: editingOrderId || null, // 🔴 ID ഉണ്ടെങ്കിൽ അപ്‌ഡേറ്റ് ചെയ്യും, ഇല്ലെങ്കിൽ പുതിയത്
     name: $('#name').val(),
     phone: $('#phone').val(),
     house: $('#house').val(),
@@ -369,7 +386,7 @@ function sendToWhatsapp() {
   const totalText = calculateTotalString(amountText);
 
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successSubmitData.timestamp}_\n🔗 _${editLink}_`;
-  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
