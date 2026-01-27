@@ -351,6 +351,9 @@ function printSelected() {
         <html>
         <head>
             <title>KAFAK Print</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet">
             <style>${styles}</style>
         </head>
         <body>`;
