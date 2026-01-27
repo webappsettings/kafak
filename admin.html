@@ -279,18 +279,16 @@
             font-weight: 700;
             text-transform: uppercase;
             line-height: 1.3;
-            margin-bottom: 5px;
         }
 
         .cust-pin {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 900;
         }
 
         .cust-ph {
             font-size: 15px;
             font-weight: 900;
-            margin-top: 2px;
         }
 
         /* --- 2. META SECTION WRAPPER (No Layout, just a wrapper) --- */
@@ -301,11 +299,11 @@
         /* QUANTITY (Moved to Right Side, opposite to Phone) */
         .qty-text {
             position: absolute;
-            top: 32mm;
+            top: 50mm;
             right: 8mm;
             color: #00bcd4;
             font-size: 28px;
-            font-weight: 900;
+            font-weight: 700;
             line-height: 1;
         }
 
@@ -340,21 +338,21 @@
         /* --- 3. CONTACT BOX (Middle Center) --- */
         .contact-box {
             position: absolute;
-            top: 50mm;
+            top: 62mm;
             left: 50%;
             transform: translateX(-50%);
-            width: 96mm;
+            width: 89mm;
             height: 15mm;
-            border: 2px solid #555;
-            border-radius: 12px;
+            border: 2px solid #d9d9d9;
+            border-radius: 9px;
             display: block;
             background: white;
             z-index: 10;
         }
 
         .contact-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             display: block;
             float: left;
             margin-top: 8px;
@@ -367,18 +365,22 @@
             line-height: 1.1;
             text-align: left;
             margin: 0;
-            padding-top: 10px;
+            padding-top: 12px;
             padding-left: 8px;
             float: left;
+        }
+
+        .contact-text span {
+            display: block;
+            font-size: 16px;
         }
 
         /* --- 4. FROM ADDRESS (Bottom Center - Between QR & Fragile) --- */
         .from-sec {
             position: absolute;
-            bottom: 12mm;
-            left: 38mm;
-            /* QR കഴിഞ്ഞ് വരാൻ */
-            width: 50mm;
+            bottom: 10mm;
+            left: 8mm;
+            width: 54mm;
             text-align: left;
             font-size: 11px;
             line-height: 1.3;
@@ -389,8 +391,8 @@
         .fragile-sec {
             position: absolute;
             bottom: 12mm;
-            right: 8mm;
-            width: 20mm;
+            right: 7mm;
+            width: 25mm;
             text-align: center;
         }
 
