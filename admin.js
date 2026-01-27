@@ -297,7 +297,7 @@ function printSelected() {
     if (selected.length === 0) { alert("പ്രിന്റ് ചെയ്യാൻ ഓർഡറുകൾ സെലക്ട് ചെയ്യൂ!"); return; }
 
     const area = document.getElementById('print-area');
-    area.innerHTML = ''; // മുഴുവൻ ഏരിയയും ക്ലിയർ ചെയ്യുന്നു
+    area.innerHTML = '';
 
     selected.forEach(cb => {
         const d = allOrders[cb.value];
@@ -306,7 +306,7 @@ function printSelected() {
             const safe = (val) => (val || '').toString().toUpperCase();
 
             // ഫോൺ ഐക്കൺ (SVG)
-            const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
+            const phoneIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
 
             area.innerHTML += `
             <div class="label-page">
@@ -358,7 +358,7 @@ function printSelected() {
         }
     });
 
-    // QR ജനറേഷൻ (ഡ്യൂപ്ലിക്കേറ്റ് ഒഴിവാക്കാൻ ശ്രദ്ധിക്കുന്നു)
+    // QR ജനറേഷൻ
     setTimeout(() => {
         selected.forEach(cb => {
             const d = allOrders[cb.value];
@@ -366,12 +366,11 @@ function printSelected() {
 
             if (d && qrContainer) {
                 try {
-                    qrContainer.innerHTML = ""; // 🔴 പഴയത് നിർബന്ധമായും ക്ലിയർ ചെയ്യുന്നു
-
+                    qrContainer.innerHTML = "";
                     new QRCode(qrContainer, {
                         text: d.orderid,
-                        width: 100,
-                        height: 100,
+                        width: 90,
+                        height: 90,
                         colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.H
@@ -380,7 +379,6 @@ function printSelected() {
             }
         });
 
-        // പ്രിന്റ് ഡയലോഗ് വരാൻ സമയം കൊടുക്കുന്നു
         setTimeout(() => window.print(), 800);
     }, 100);
 }

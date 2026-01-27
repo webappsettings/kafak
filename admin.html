@@ -221,8 +221,8 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Updated for Label Design) */
-        /* PRINT SETTINGS (Perfect Label Design) */
+
+        /* PRINT SETTINGS (A6 Fit with Padding) */
         #print-area {
             display: none;
         }
@@ -238,34 +238,48 @@
                 display: block !important;
             }
 
+            /* A6 പേപ്പർ സൈസ് സെറ്റ് ചെയ്യുന്നു */
+            @page {
+                size: A6;
+                margin: 0;
+                /* പ്രിന്ററിന്റെ ഓട്ടോമാറ്റിക് മാർജിൻ ഒഴിവാക്കുന്നു */
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 105mm;
+                height: 148mm;
+            }
+
             #print-area {
                 position: absolute;
                 left: 0;
                 top: 0;
                 width: 100%;
-                height: 100%;
                 background: white;
             }
 
-            @page {
-                size: A6;
-                margin: 0;
-            }
-
+            /* ഒരു പേജിൽ ഒരു ലേബൽ മാത്രം */
             .label-page {
-                width: 100mm;
-                height: 145mm;
-                /* A6 Size */
-                padding: 5mm;
+                width: 105mm;
+                /* A6 Width */
+                height: 147mm;
+                /* A6 Height (1mm കുറച്ചു, ബ്ലാങ്ക് പേജ് വരാതിരിക്കാൻ) */
+                padding: 10mm;
+                /* 🔴 ഇതാണ് പാഡിംഗ് (ഉള്ളിലെ സ്പേസ്) */
                 box-sizing: border-box;
+                /* പാഡിംഗ് വലിപ്പത്തെ ബാധിക്കാതിരിക്കാൻ */
                 page-break-after: always;
+                /* അടുത്ത ലേബൽ അടുത്ത പേജിൽ */
                 position: relative;
                 font-family: sans-serif;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                border: 1px dotted #ccc;
-                /* മുറിക്കാൻ പാകത്തിന് */
+                border: none;
+                /* ബോർഡർ വേണ്ടെങ്കിൽ ഇത് നിലനിർത്താം */
             }
 
             /* --- TOP SECTION --- */
@@ -273,22 +287,21 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
-                height: 60%;
             }
 
             .address-col {
-                width: 65%;
+                width: 60%;
                 text-align: left;
             }
 
             .to-label {
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 900;
                 margin-bottom: 5px;
             }
 
             .cust-name {
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 900;
                 text-transform: uppercase;
                 line-height: 1.1;
@@ -296,7 +309,7 @@
             }
 
             .cust-addr {
-                font-size: 15px;
+                font-size: 14px;
                 font-weight: 700;
                 text-transform: uppercase;
                 line-height: 1.3;
@@ -304,18 +317,18 @@
             }
 
             .cust-pin {
-                font-size: 20px;
+                font-size: 18px;
                 font-weight: 900;
             }
 
             .cust-ph {
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 900;
                 margin-top: 5px;
             }
 
             .meta-col {
-                width: 35%;
+                width: 40%;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
@@ -324,18 +337,17 @@
 
             .qty-text {
                 color: #00bcd4;
-                /* Cyan Color */
-                font-size: 40px;
+                font-size: 38px;
                 font-weight: 900;
                 line-height: 1;
                 margin-bottom: 10px;
-                margin-top: 50px;
-                /* വിലാസത്തിന് നേരെ വരാൻ */
+                margin-top: 20px;
             }
 
+            /* QR Code Size */
             .qr-box {
-                width: 100px;
-                height: 100px;
+                width: 90px;
+                height: 90px;
             }
 
             .qr-box img {
@@ -345,24 +357,26 @@
 
             /* --- MIDDLE SECTION --- */
             .contact-box {
-                border: 1px solid #777;
-                border-radius: 10px;
-                padding: 5px 10px;
+                border: 2px solid #555;
+                border-radius: 12px;
+                padding: 8px;
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                margin: 5px 0;
+                margin: 10px 0;
                 justify-content: center;
+                background: #fff;
             }
 
-            .contact-icon img {
-                width: 30px;
-                height: 30px;
+            .contact-icon svg {
+                width: 28px;
+                height: 28px;
             }
 
             .contact-text {
-                font-size: 14px;
+                font-size: 13px;
                 font-weight: 700;
+                line-height: 1.3;
             }
 
             /* --- BOTTOM SECTION --- */
@@ -370,29 +384,28 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
-                margin-top: 10px;
             }
 
             .fragile-col {
-                width: 30%;
+                width: 35%;
                 text-align: center;
             }
 
             .fragile-img {
-                width: 80px;
-                /* ചിത്രത്തിന്റെ വലിപ്പം */
+                width: 65px;
                 height: auto;
             }
 
             .fragile-text {
                 color: red;
                 font-weight: 900;
-                font-size: 14px;
+                font-size: 13px;
                 letter-spacing: 1px;
+                margin-top: 5px;
             }
 
             .from-col {
-                width: 68%;
+                width: 63%;
                 font-size: 11px;
                 line-height: 1.4;
                 font-weight: 600;
