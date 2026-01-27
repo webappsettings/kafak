@@ -224,16 +224,20 @@
         /* PRINT SETTINGS */
         #print-area {
             display: none;
+            /* നോർമൽ സമയത്ത് ഇത് കാണില്ല */
         }
 
         @media print {
             body * {
                 visibility: hidden;
+                /* ബാക്കിയെല്ലാം മറയ്ക്കുന്നു */
             }
 
             #print-area,
             #print-area * {
                 visibility: visible;
+                display: block !important;
+                /* 🔴 ഇതാണ് വിട്ടുപോയത്. ഇത് ചേർത്താൽ ശരിയാകും */
             }
 
             #print-area {
@@ -241,6 +245,8 @@
                 left: 0;
                 top: 0;
                 width: 100%;
+                background: white;
+                /* പശ്ചാത്തലം വെള്ളയാക്കുന്നു */
             }
 
             @page {
@@ -249,15 +255,27 @@
             }
 
             .label-page {
-                width: 105mm;
-                height: 148mm;
-                background: white;
-                padding: 6mm;
+                width: 100mm;
+                /* A6 ഏകദേശം */
+                height: 145mm;
+                border: 1px dashed #ccc;
+                /* മുറിക്കാൻ എളുപ്പത്തിന് */
+                padding: 5mm;
                 page-break-after: always;
                 display: flex;
                 flex-direction: column;
+                align-items: center;
+                /* സെന്റർ ആക്കുന്നു */
+                justify-content: center;
+                text-align: center;
                 font-family: Arial, sans-serif;
-                box-sizing: border-box;
+            }
+
+            /* പ്രിന്റിംഗിൽ അക്ഷരങ്ങൾ വ്യക്തമാകാൻ */
+            .cust-details-print {
+                font-size: 18px;
+                margin: 10px 0;
+                line-height: 1.4;
             }
         }
     </style>
