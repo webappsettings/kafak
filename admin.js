@@ -340,8 +340,8 @@ function printSelected() {
                 </div>
 
                 <div class="from-sec">
-                    <span style="font-weight:bold; font-size:13px;">From,</span><br>
-                    <b>KAFAK LLP</b>, 10/174, Kunnathery,<br>
+                    <span style="font-weight:bold; font-size:14px;">From,</span><br>
+                    <b>KAFAK LLP,</b> 10/174, Kunnathery,<br>
                     Thaikkattukara P.O, Aluva - 683106,<br>
                     Ernakulam District, Kerala, India.<br>
                     Phone: 778899 0 313
@@ -359,7 +359,6 @@ function printSelected() {
             const qrContainer = document.getElementById(`qrcode-${cb.value}`);
 
             if (d && qrContainer) {
-                // QR Generate ചെയ്യുമ്പോൾ Promise ഉപയോഗിക്കുന്നു (ഉറപ്പാക്കാൻ)
                 const p = new Promise((resolve) => {
                     qrContainer.innerHTML = "";
                     new QRCode(qrContainer, {
@@ -371,7 +370,7 @@ function printSelected() {
                         correctLevel: QRCode.CorrectLevel.H
                     });
 
-                    // 🔴 Mobile Fix: അല്പം കഴിഞ്ഞ് Canvas-നെ Image ആക്കി മാറ്റുന്നു
+                    // Mobile Image Fix
                     setTimeout(() => {
                         const canvas = qrContainer.querySelector('canvas');
                         if (canvas) {
@@ -379,8 +378,8 @@ function printSelected() {
                             img.src = canvas.toDataURL("image/png");
                             img.style.width = "100%";
                             img.style.display = "block";
-                            qrContainer.innerHTML = ""; // പഴയത് കളയുന്നു
-                            qrContainer.appendChild(img); // ഇമേജ് വെക്കുന്നു
+                            qrContainer.innerHTML = "";
+                            qrContainer.appendChild(img);
                         }
                         resolve();
                     }, 50);
@@ -389,7 +388,6 @@ function printSelected() {
             }
         });
 
-        // എല്ലാ QR കോഡും ഇമേജ് ആയി മാറിയെന്ന് ഉറപ്പാക്കിയ ശേഷം പ്രിന്റ്
         Promise.all(promises).then(() => {
             setTimeout(() => window.print(), 800);
         });

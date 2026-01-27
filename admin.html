@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Mobile Fix & Updated Layout) */
+        /* PRINT SETTINGS (Final Perfection) */
         #print-area {
             display: none;
         }
@@ -272,7 +272,7 @@
                 border: none;
             }
 
-            /* --- 1. ADDRESS SECTION (Top Left) --- */
+            /* --- 1. ADDRESS SECTION --- */
             .address-sec {
                 position: absolute;
                 top: 10mm;
@@ -314,28 +314,26 @@
                 margin-top: 2px;
             }
 
-            /* --- 2. META SECTION (Top Right) --- */
+            /* --- 2. META SECTION (Qty & QR) --- */
             .meta-sec {
                 position: absolute;
                 top: 10mm;
                 right: 8mm;
                 width: 32mm;
-                /* വീതി അല്പം കൂട്ടി */
                 text-align: right;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
             }
 
+            /* 🔴 Qty Size കുറച്ചു (20px) & Alignment ശരിയാക്കി */
             .qty-text {
                 color: #00bcd4 !important;
-                font-size: 28px;
-                /* 🔴 വലിപ്പം കുറച്ചു (38 -> 28) */
+                font-size: 20px;
                 font-weight: 900;
                 line-height: 1;
-                margin-bottom: 8px;
-                margin-right: 5px;
-                /* 🔴 Right Alignment Fix */
+                margin-bottom: 5px;
+                margin-right: 2px;
             }
 
             .qr-box {
@@ -343,7 +341,6 @@
                 height: 90px;
                 margin-top: 2px;
                 background: white;
-                /* Mobile Fix Background */
             }
 
             .qr-box img {
@@ -352,74 +349,71 @@
                 display: block;
             }
 
-            /* Mobile-ൽ Canvas പ്രശ്നം വരാതിരിക്കാൻ */
             .qr-box canvas {
                 display: none !important;
             }
 
-            /* --- 3. CONTACT BOX (Middle) --- */
+            /* --- 3. CONTACT BOX (Vertically Centered) --- */
             .contact-box {
                 position: absolute;
-                top: 62mm;
-                /* അല്പം മുകളിലേക്ക് ആക്കി */
+                top: 65mm;
                 left: 50%;
                 transform: translateX(-50%);
-                width: 90mm;
+                width: 92mm;
+                /* വീതി അല്പം കൂട്ടി */
                 border: 2px solid #333;
                 border-radius: 8px;
-                padding: 8px 10px;
-                /* പാഡിംഗ് കൂട്ടി */
+                padding: 5px 10px;
+
+                /* 🔴 Flexbox Alignment (Vertical Center) */
                 display: flex;
                 align-items: center;
-                /* 🔴 Vertically Center ആകാൻ */
                 justify-content: center;
-                gap: 12px;
+                gap: 15px;
+                /* ഐക്കണും ടെക്സ്റ്റും തമ്മിലുള്ള അകലം */
                 background: white;
-                height: auto;
             }
 
             .contact-icon svg {
-                width: 24px;
-                height: 24px;
+                width: 28px;
+                height: 28px;
                 display: block;
             }
 
+            /* 🔴 Text Size കൂട്ടി (approx 5px increase) */
             .contact-text {
-                font-size: 11px;
+                font-size: 15px;
                 font-weight: 700;
-                line-height: 1.3;
-                margin: 0;
-                /* അലൈൻമെന്റ് ശരിയാക്കാൻ */
+                line-height: 1.2;
+                text-align: left;
+                margin-top: 2px;
+                /* മൈക്രോ അഡ്ജസ്റ്റ്മെന്റ് */
             }
 
-            /* --- 4. FRAGILE IMAGE (Bottom Left) --- */
+            /* --- 4. FRAGILE IMAGE (Increased Size) --- */
             .fragile-sec {
                 position: absolute;
-                bottom: 15mm;
-                /* മുകളിലേക്ക് നീക്കി */
+                bottom: 12mm;
                 left: 5mm;
-                width: 35mm;
-                /* വലിപ്പം കൂട്ടി */
+                width: 40mm;
                 text-align: center;
             }
 
+            /* 🔴 15px കൂട്ടി (70px -> 85px) */
             .fragile-img {
-                width: 70px;
+                width: 85px;
                 height: auto;
             }
 
-            /* വലിപ്പം കൂട്ടി */
-
-            /* --- 5. FROM ADDRESS (Bottom Right) --- */
+            /* --- 5. FROM ADDRESS (Increased Size) --- */
             .from-sec {
                 position: absolute;
                 bottom: 15mm;
-                /* മുകളിലേക്ക് നീക്കി */
                 right: 8mm;
                 width: 60mm;
                 text-align: left;
-                font-size: 11px;
-                /* ഫോണ്ട് കൂട്ടി */
+                /* 🔴 Font Size കൂട്ടി */
+                font-size: 15px;
                 line-height: 1.4;
                 font-weight: 600;
             }
