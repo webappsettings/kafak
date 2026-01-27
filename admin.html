@@ -221,7 +221,7 @@
             overflow: hidden;
         }
 
-        /* PRINT SETTINGS (Fix for Blank 2nd Page) */
+        /* PRINT SETTINGS (Single Page Fix & Adjusted Bottom) */
         #print-area {
             display: none;
         }
@@ -248,7 +248,7 @@
                 padding: 0;
                 width: 105mm;
                 height: auto;
-                /* 🔴 Fixed: 148mm മാറ്റി auto ആക്കി */
+                /* ഉയരം ഓട്ടോ ആക്കുന്നു */
                 background: white;
             }
 
@@ -263,8 +263,8 @@
 
             .label-page {
                 width: 105mm;
-                /* 🔴 Fixed: ഉയരം 140mm ആക്കി കുറച്ചു (സേഫ് സോൺ) */
-                height: 140mm;
+                /* 🔴 മാറ്റം 1: ഉയരം 138mm ആക്കി കുറച്ചു (Wrapper Height Reduced) */
+                height: 138mm;
                 position: relative;
                 background: white !important;
                 page-break-after: always;
@@ -272,6 +272,8 @@
                 overflow: hidden;
                 -webkit-print-color-adjust: exact;
                 border: none;
+                /* Debugging വേണ്ടെങ്കിൽ താഴെയുള്ള ബോർഡർ കളയാം */
+                /* border-bottom: 1px dashed #ccc; */
             }
 
             /* അവസാന പേജിന് ശേഷം ബ്ലാങ്ക് പേജ് വരാതിരിക്കാൻ */
@@ -403,7 +405,7 @@
             /* --- 4. FRAGILE IMAGE --- */
             .fragile-sec {
                 position: absolute;
-                /* 🔴 Fixed: 140mm ബോക്സിന്റെ ഏറ്റവും അടിയിലേക്ക് മാറ്റി */
+                /* 🔴 മാറ്റം 2: ഇത് 138mm ബോക്സിന്റെ ഏറ്റവും അടിയിൽ വരും (പേപ്പറിന്റെ 10mm മുകളിൽ) */
                 bottom: 0mm;
                 left: 5mm;
                 width: 40mm;
@@ -418,7 +420,7 @@
             /* --- 5. FROM ADDRESS --- */
             .from-sec {
                 position: absolute;
-                /* 🔴 Fixed: 140mm ബോക്സിന്റെ ഏറ്റവും അടിയിലേക്ക് മാറ്റി */
+                /* 🔴 മാറ്റം 3: ഇതും ബോക്സിന്റെ അടിയിൽ വരും */
                 bottom: 0mm;
                 right: 6mm;
                 width: 60mm;
