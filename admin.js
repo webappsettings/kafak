@@ -297,7 +297,7 @@ function printSelected() {
     if (selected.length === 0) { alert("പ്രിന്റ് ചെയ്യാൻ ഓർഡറുകൾ സെലക്ട് ചെയ്യൂ!"); return; }
 
     const area = document.getElementById('print-area');
-    area.innerHTML = '';
+    area.innerHTML = ''; // മുഴുവൻ ഏരിയയും ക്ലിയർ ചെയ്യുന്നു
 
     selected.forEach(cb => {
         const d = allOrders[cb.value];
@@ -305,37 +305,34 @@ function printSelected() {
         if (d) {
             const safe = (val) => (val || '').toString().toUpperCase();
 
-            // Fragile Icon SVG (Red Glass)
-            const fragileSVG = `<svg class="fragile-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M432,64H80A48,48,0,0,0,32,112V464a48,48,0,0,0,48,48H432a48,48,0,0,0,48-48V112A48,48,0,0,0,432,64ZM325.3,277.3l-10.7,32,32,10.7-58.6,69.3-32-42.7L224,378.7l-42.7-53.3,42.7-10.7-32-42.7,69.3-21.3Z" fill="#ff0000"/></svg>`;
-
-            // Phone Icon SVG
-            const phoneSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="phone-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
+            // ഫോൺ ഐക്കൺ (SVG)
+            const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
 
             area.innerHTML += `
             <div class="label-page">
                 
                 <div class="top-row">
-                    <div class="to-address-sec">
-                        <span class="to-label">To,</span>
-                        <span class="cust-name">${safe(d.name)}</span>
+                    <div class="address-col">
+                        <div class="to-label">To,</div>
+                        <div class="cust-name">${safe(d.name)}</div>
                         <div class="cust-addr">
                             ${safe(d.house)}<br>
                             ${safe(d.place)}<br>
                             ${safe(d.postoffice)}<br>
-                            ${safe(d.district)}, ${safe(d.state)}<br>
-                            PIN: <b>${d.pincode}</b>
+                            ${safe(d.district)}, ${safe(d.state)}
                         </div>
-                        <span class="cust-ph">PH: ${d.phone}</span>
+                        <div class="cust-pin">PIN: ${d.pincode}</div>
+                        <div class="cust-ph">PH: ${d.phone}</div>
                     </div>
 
-                    <div class="qty-qr-sec">
+                    <div class="meta-col">
                         <div class="qty-text">x${d.quantity}</div>
                         <div id="qrcode-${cb.value}" class="qr-box"></div>
                     </div>
                 </div>
 
                 <div class="contact-box">
-                    ${phoneSVG}
+                    <div class="contact-icon">${phoneIcon}</div>
                     <div class="contact-text">
                         7788990313, 9895082689<br>
                         If unreachable, call or WhatsApp us
@@ -343,13 +340,13 @@ function printSelected() {
                 </div>
 
                 <div class="bottom-row">
-                    <div class="fragile-sec">
-                        ${fragileSVG}
+                    <div class="fragile-col">
+                        <img src="fragile.png" class="fragile-img" alt="Fragile">
                         <div class="fragile-text">FRAGILE</div>
                     </div>
 
-                    <div class="from-sec">
-                        <span class="from-label">From,</span><br>
+                    <div class="from-col">
+                        <span style="font-weight:bold; font-size:12px;">From,</span><br>
                         <b>KAFAK LLP</b>, 10/174, Kunnathery,<br>
                         Thaikkattukara P.O, Aluva - 683106,<br>
                         Ernakulam District, Kerala, India.<br>
@@ -361,17 +358,20 @@ function printSelected() {
         }
     });
 
-    // QR Generate ചെയ്യാൻ സമയം കൊടുക്കുന്നു
+    // QR ജനറേഷൻ (ഡ്യൂപ്ലിക്കേറ്റ് ഒഴിവാക്കാൻ ശ്രദ്ധിക്കുന്നു)
     setTimeout(() => {
         selected.forEach(cb => {
             const d = allOrders[cb.value];
-            if (d) {
+            const qrContainer = document.getElementById(`qrcode-${cb.value}`);
+
+            if (d && qrContainer) {
                 try {
-                    document.getElementById(`qrcode-${cb.value}`).innerHTML = "";
-                    new QRCode(document.getElementById(`qrcode-${cb.value}`), {
-                        text: d.orderid, // QR contains Order ID
-                        width: 90,
-                        height: 90,
+                    qrContainer.innerHTML = ""; // 🔴 പഴയത് നിർബന്ധമായും ക്ലിയർ ചെയ്യുന്നു
+
+                    new QRCode(qrContainer, {
+                        text: d.orderid,
+                        width: 100,
+                        height: 100,
                         colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.H
@@ -379,6 +379,8 @@ function printSelected() {
                 } catch (e) { console.error("QR Error", e); }
             }
         });
+
+        // പ്രിന്റ് ഡയലോഗ് വരാൻ സമയം കൊടുക്കുന്നു
         setTimeout(() => window.print(), 800);
     }, 100);
 }
