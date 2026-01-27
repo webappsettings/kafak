@@ -1,7 +1,6 @@
-// 🔴 1. GOOGLE SCRIPT URL
-const sc = `https://script.google.com/macros/s/AKfycbw4fdoIOOqpDJEnIDzJR4BgfvSr5D9X7A-yzsK9EWU4AyGU8sZ6CWnnDcIH6tAN29HaSQ/exec`;
+// 🔴 1. ഇവിടെ നിങ്ങളുടെ പുതിയ GOOGLE SCRIPT URL നൽകുക
+const sc = `https://script.google.com/macros/s/AKfycbzVBmDpR4byla5f6Sdxa7tqi125PlbP4SgqkR9xdQkdop6eBAHNPS6qn5pRz899TZ9DSQ/exec`;
 
-// Courier Rates
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -12,16 +11,12 @@ var availablePin = false;
 var successSubmitData;
 
 $(document).ready(function () {
-  // 🔴 FIXED: urlParams Define ചെയ്യണം
   const urlParams = new URLSearchParams(window.location.search);
   const urlOid = urlParams.get('oid');
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // ==========================================
-  // 🔐 ADMIN ONLY: SMART FLOW BAR
-  // ==========================================
+  // --- ADMIN BAR LOGIC ---
   if (isAdmin && urlOid) {
-    // ലോക്കൽ സ്റ്റോറേജിൽ നിന്ന് സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
     const isWTSent = localStorage.getItem(`sent_${urlOid}`) === 'true';
     const isPaid = localStorage.getItem(`paid_${urlOid}`) === 'true';
     let adminHTML = "";
@@ -36,7 +31,7 @@ $(document).ready(function () {
             <div id="admin-action-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 15px; z-index: 10000; border-radius: 20px 20px 0 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL (LOCAL): #${urlOid}</span>
+                        <span class="fw-bold small text-warning" style="font-size:10px;">ADMIN TOOL: #${urlOid}</span>
                         <button onclick="closeAdminBar()" class="btn btn-link text-white p-0" style="text-decoration:none;">✕</button>
                     </div>
                     <div id="admin-btn-container">${adminHTML}</div>
@@ -46,6 +41,8 @@ $(document).ready(function () {
     $('body').css('padding-bottom', '100px');
   }
 
+  // --- AUTO LOGIN & FORM LOGIC (No changes needed here, keep your existing logic) ---
+  // ... (നിങ്ങളുടെ പഴയ കോഡിലെ Auto Login, Input Listeners തുടങ്ങിയവ ഇവിടെ നിലനിർത്താം) ...
   // ==========================================
   // 🚀 AUTO LOGIN
   // ==========================================
@@ -123,10 +120,10 @@ $(document).ready(function () {
   $('#phone, #whatsapp, #pincode').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
   });
+
 });
 
-// --- CORE FUNCTIONS ---
-
+// --- HELPER FUNCTIONS (HandleStep1, etc. - Keep existing) ---
 function handleStep1() {
   const phone = $('#phone').val().replace(/\D/g, '');
   const tempNameInput = $('#temp_name');
@@ -324,28 +321,20 @@ function fetchOrderDetails(oid) {
     });
 }
 
-// 🚀 UPDATED ADMIN ACTION: Local Sync Logic (സെർവർ വെയിറ്റിംഗ് ഒഴിവാക്കി)
+
+// --- ADMIN ACTION (Customer Facing) ---
 function adminAction(oid, status) {
-  // 1. യൂസറോട് ചോദിക്കുന്നു
   if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-  // 2. പെൻഡിംഗ് അപ്‌ഡേറ്റ് ലിസ്റ്റിലേക്ക് ഡാറ്റ ചേർക്കുന്നു
+  // 1. പെൻഡിംഗ് അപ്‌ഡേറ്റ് ലിസ്റ്റിലേക്ക് ചേർക്കുന്നു
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
-  // പഴയ എൻട്രി ഉണ്ടെങ്കിൽ അത് കളഞ്ഞ് പുതിയത് ചേർക്കുന്നു
-  updates = updates.filter(item => item.oid !== oid || item.status !== status);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
-
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // 3. ബട്ടൺ ലേബൽ മാറാൻ വേണ്ടി ലോക്കലായി മാർക്ക് ചെയ്യുന്നു
-  const storageKey = status === 'Sent' ? `sent_${oid}` : `paid_${oid}`;
-  localStorage.setItem(storageKey, 'true');
+  // 2. ബട്ടൺ ലേബൽ മാറാൻ വേണ്ടി
+  localStorage.setItem(`${status === 'Sent' ? 'sent' : 'paid'}_${oid}`, 'true');
 
-  // 4. സർവറിലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നില്ല, പകരം ഉടൻ അറിയിപ്പ് നൽകുന്നു
-  alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅\nഅഡ്മിൻ പാനലിൽ പോയി സിങ്ക് ചെയ്യുക.`);
-
-  // 5. ലോഡിംഗ് ഇല്ലാതെ പേജ് ഉടൻ റിഫ്രഷ് ചെയ്യുന്നു (ബട്ടൺ അപ്ഡേറ്റ് ആകാൻ)
+  alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅`);
   location.reload();
 }
 
