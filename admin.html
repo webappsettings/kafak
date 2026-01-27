@@ -455,8 +455,13 @@
         <nav class="navbar d-flex justify-content-between align-items-center">
             <span class="navbar-brand mb-0 h1"><i class="fas fa-honey-pot"></i> KAFAK Admin</span>
             <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-outline-light" onclick="printSelected()"><i class="fas fa-print"></i>
-                    Print</button>
+                <button class="btn btn-sm btn-outline-light" onclick="toggleSelectAll()">
+                    <i class="fas fa-check-square"></i> Select All
+                </button>
+
+                <button class="btn btn-sm btn-outline-light" onclick="printSelected()">
+                    <i class="fas fa-print"></i> Print
+                </button>
                 <button class="btn btn-sm btn-logout" type="button" onclick="logoutAdmin()">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>

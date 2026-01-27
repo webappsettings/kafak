@@ -306,6 +306,9 @@ function printSelected() {
 
             const phoneIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
 
+            // 🔴 QUANTITY LOGIC: 1 ആണെങ്കിൽ ഒന്നും കാണിക്കില്ല, അല്ലെങ്കിൽ മാത്രം കാണിക്കും
+            let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
+
             area.innerHTML += `
             <div class="label-page">
                 
@@ -323,7 +326,8 @@ function printSelected() {
                 </div>
 
                 <div class="meta-sec">
-                    <div class="qty-text">x${d.quantity}</div>
+                    ${qtyHTML}
+                    
                     <div id="qrcode-${cb.value}" class="qr-box"></div>
                     <div class="qr-oid">${d.orderid}</div>
                 </div>
@@ -341,7 +345,7 @@ function printSelected() {
                 </div>
 
                 <div class="from-sec">
-                    <span style="font-weight:bold; font-size:14px;">From,</span><br>
+                    <span style="font-weight:bold; font-size:11px;">From,</span><br>
                     <b>KAFAK LLP,</b> 10/174, Kunnathery,<br>
                     Thaikkattukara P.O, Aluva - 683106,<br>
                     Ernakulam District, Kerala, India.<br>
@@ -371,7 +375,6 @@ function printSelected() {
                         correctLevel: QRCode.CorrectLevel.H
                     });
 
-                    // Mobile Image Fix
                     setTimeout(() => {
                         const canvas = qrContainer.querySelector('canvas');
                         if (canvas) {
@@ -419,4 +422,12 @@ function onScanSuccess(decodedText) {
             }
         }
     }
+}
+
+// 🔴 SELECT ALL FUNCTION
+function toggleSelectAll() {
+    const checkboxes = document.querySelectorAll('.order-cb');
+    // ഏതെങ്കിലും ഒന്ന് അൺചെക്ക് ആണെങ്കിൽ എല്ലാം ചെക്ക് ആക്കും. അല്ലെങ്കിൽ എല്ലാം അൺചെക്ക് ആക്കും.
+    const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
+    checkboxes.forEach(cb => cb.checked = !isAllChecked);
 }
