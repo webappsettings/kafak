@@ -57,43 +57,45 @@ function fetchOrders(forceLoad = false) {
     let savedOrders = localStorage.getItem('allOrdersCache');
     let hasData = false;
 
-    // 2. ഡാറ്റ ഉണ്ടെങ്കിൽ അത് ഉടൻ റെൻഡർ ചെയ്യുന്നു & ലോഡർ മാറ്റുന്നു
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
         renderTabs(allOrders);
         hasData = true;
-
-        // 🔴 പ്രധാനം: ഡാറ്റ ഉണ്ടെങ്കിൽ ലോഡർ ഇവിടെ വെച്ച് തന്നെ ഓഫ് ചെയ്യുന്നു
         document.getElementById('loader').style.display = 'none';
     }
 
-    // 3. ഡാറ്റ കയ്യിലുണ്ടെങ്കിൽ, റിഫ്രഷ് ബട്ടൺ (forceLoad) അമർത്താതെ മുന്നോട്ട് പോകില്ല
     if (hasData && !forceLoad) {
         return;
     }
 
-    // 4. ഡാറ്റ ഇല്ലെങ്കിലോ (ആദ്യത്തെ തവണ), റിഫ്രഷ് അടിച്ചാലോ മാത്രം ലോഡർ കാണിച്ച് സെർവർ വിളിക്കുന്നു
+    // 2. 🔴 UI FIX: ലോഡ് ബട്ടൺ അമർത്തിയാൽ ഉടൻ പഴയ ലിസ്റ്റ് ക്ലിയർ ചെയ്യുന്നു
+    // ഇതോടെ പഴയ ബാഡ്ജുകൾ കാണിക്കുന്നത് ഒഴിവാക്കാം.
+    document.getElementById('list-pending').innerHTML = '';
+    document.getElementById('list-paid').innerHTML = '';
+    document.getElementById('list-dispatched').innerHTML = '';
+
+    // 3. ലോഡർ കാണിക്കുന്നു
     document.getElementById('loader').style.display = 'block';
 
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
         .then(response => {
-            // സെർവറിൽ നിന്ന് മറുപടി വന്നാലുടൻ ലോഡർ ഓഫ് ചെയ്യുന്നു
             document.getElementById('loader').style.display = 'none';
-
             if (response.result === 'success') {
                 allOrders = response.data;
-                // പുതിയ ഡാറ്റ ഫോണിൽ സേവ് ചെയ്യുന്നു
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-                renderTabs(allOrders);
+                renderTabs(allOrders); // പുതിയ ഡാറ്റ വെച്ച് ലിസ്റ്റ് ഉണ്ടാക്കുന്നു
+                updateSyncButtonUI();
             }
         })
         .catch(err => {
-            // എറർ വന്നാലും ലോഡർ ഓഫ് ചെയ്യണം
             document.getElementById('loader').style.display = 'none';
 
-            // ഫോണിൽ ഡാറ്റ ഇല്ലെങ്കിൽ മാത്രം എറർ കാണിക്കുന്നു
-            if (!hasData) {
+            // എറർ വന്നാൽ പഴയ ഡാറ്റ തിരികെ കാണിക്കുന്നു (അല്ലെങ്കിൽ സ്ക്രീൻ കാലിയാകും)
+            if (hasData) {
+                renderTabs(allOrders);
+                alert("നെറ്റ്‌വർക്ക് എറർ! പഴയ ഡാറ്റ റീസ്റ്റോർ ചെയ്തു.");
+            } else {
                 alert("നെറ്റ്‌വർക്ക് എറർ! കണക്ഷൻ പരിശോധിക്കുക.");
             }
         });
