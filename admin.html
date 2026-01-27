@@ -247,8 +247,7 @@
                 margin: 0;
                 padding: 0;
                 width: 105mm;
-                /* 🔴 CHANGE 1: ഉയരം Auto ആക്കി */
-                height: auto;
+                height: 148mm;
                 background: white;
             }
 
@@ -263,25 +262,26 @@
 
             .label-page {
                 width: 105mm;
-                /* 🔴 CHANGE 2: ഉയരം 140mm ആക്കി കുറച്ചു (ബ്ലാങ്ക് പേജ് ഒഴിവാക്കാൻ) */
-                height: 140mm;
+                height: 148mm;
+                /* 🔴 148mm തന്നെ നിലനിർത്തുന്നു */
                 position: relative;
                 background: white !important;
-                page-break-after: always;
+
+                /* 🔴 മാറ്റം: ഇവിടെ Always കൊടുക്കുന്നില്ല. JS വഴി നിയന്ത്രിക്കും */
+                page-break-after: auto;
+
                 font-family: Arial, sans-serif;
                 overflow: hidden;
                 -webkit-print-color-adjust: exact;
                 border: none;
             }
 
-            /* 🔴 CHANGE 3: അവസാനത്തെ പേജിന് ശേഷം ബ്ലാങ്ക് പേജ് വേണ്ട */
-            .label-page:last-child {
-                page-break-after: auto;
+            /* 🔴 പുതിയ ക്ലാസ്: ഇത് ഉള്ളവർക്ക് മാത്രം ബ്രേക്ക് വരും */
+            .label-page.has-break {
+                page-break-after: always !important;
             }
 
-            /* --- ബാക്കി ഡിസൈൻ കോഡുകൾ പഴയത് പോലെ തന്നെ --- */
-
-            /* 1. ADDRESS SECTION */
+            /* --- ബാക്കി ഡിസൈൻ നിങ്ങൾ അയച്ചത് പോലെ തന്നെ --- */
             .address-sec {
                 position: absolute;
                 top: 10mm;
@@ -323,7 +323,6 @@
                 margin-top: 2px;
             }
 
-            /* 2. META SECTION */
             .meta-sec {
                 position: absolute;
                 top: 10mm;
@@ -372,7 +371,6 @@
                 margin-top: 2px;
             }
 
-            /* 3. CONTACT BOX */
             .contact-box {
                 position: absolute;
                 top: 68mm;
@@ -410,11 +408,9 @@
                 float: left;
             }
 
-            /* 4. FRAGILE IMAGE (Bottom 0mm) */
             .fragile-sec {
                 position: absolute;
-                bottom: 0mm;
-                /* 🔴 140mm ബോക്സിന്റെ താഴെ */
+                bottom: 8mm;
                 left: 5mm;
                 width: 40mm;
                 text-align: center;
@@ -425,11 +421,9 @@
                 height: auto;
             }
 
-            /* 5. FROM ADDRESS (Bottom 0mm) */
             .from-sec {
                 position: absolute;
-                bottom: 0mm;
-                /* 🔴 140mm ബോക്സിന്റെ താഴെ */
+                bottom: 8mm;
                 right: 6mm;
                 width: 60mm;
                 text-align: left;

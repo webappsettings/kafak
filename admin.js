@@ -299,20 +299,21 @@ function printSelected() {
     const area = document.getElementById('print-area');
     area.innerHTML = '';
 
-    selected.forEach(cb => {
+    // Loop through selected items with INDEX
+    selected.forEach((cb, index) => {
         const d = allOrders[cb.value];
         if (d) {
             const safe = (val) => (val || '').toString().toUpperCase();
 
+            // 🔴 അവസാനത്തെ ആളല്ലെങ്കിൽ മാത്രം 'has-break' ക്ലാസ് ചേർക്കും
+            // ഇതാണ് ബ്ലാങ്ക് പേജ് ഒഴിവാക്കുന്ന മാജിക്
+            const breakClass = (index < selected.length - 1) ? 'has-break' : '';
+
+            let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`;
 
-            // 🔴 QUANTITY LOGIC: 1 ആണെങ്കിൽ ഒന്നും കാണിക്കില്ല, അല്ലെങ്കിൽ മാത്രം കാണിക്കും
-            let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
-
             area.innerHTML += `
-            <div class="label-page">
-                
-                <div class="address-sec">
+            <div class="label-page ${breakClass}"> <div class="address-sec">
                     <div class="to-label">To,</div>
                     <div class="cust-name">${safe(d.name)}</div>
                     <div class="cust-addr">
@@ -327,7 +328,6 @@ function printSelected() {
 
                 <div class="meta-sec">
                     ${qtyHTML}
-                    
                     <div id="qrcode-${cb.value}" class="qr-box"></div>
                     <div class="qr-oid">${d.orderid}</div>
                 </div>
@@ -356,34 +356,27 @@ function printSelected() {
         }
     });
 
+    // QR Code Generation Part (No Changes Needed Here)
     setTimeout(() => {
         const promises = [];
-
         selected.forEach(cb => {
             const d = allOrders[cb.value];
             const qrContainer = document.getElementById(`qrcode-${cb.value}`);
-
             if (d && qrContainer) {
                 const p = new Promise((resolve) => {
                     qrContainer.innerHTML = "";
                     new QRCode(qrContainer, {
-                        text: d.orderid,
-                        width: 90,
-                        height: 90,
-                        colorDark: "#000000",
-                        colorLight: "#ffffff",
+                        text: d.orderid, width: 90, height: 90,
+                        colorDark: "#000000", colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.H
                     });
-
                     setTimeout(() => {
                         const canvas = qrContainer.querySelector('canvas');
                         if (canvas) {
                             const img = document.createElement("img");
                             img.src = canvas.toDataURL("image/png");
-                            img.style.width = "100%";
-                            img.style.display = "block";
-                            qrContainer.innerHTML = "";
-                            qrContainer.appendChild(img);
+                            img.style.width = "100%"; img.style.display = "block";
+                            qrContainer.innerHTML = ""; qrContainer.appendChild(img);
                         }
                         resolve();
                     }, 50);
@@ -391,11 +384,9 @@ function printSelected() {
                 promises.push(p);
             }
         });
-
         Promise.all(promises).then(() => {
             setTimeout(() => window.print(), 800);
         });
-
     }, 100);
 }
 
