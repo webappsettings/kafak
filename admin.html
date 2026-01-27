@@ -247,7 +247,8 @@
                 margin: 0;
                 padding: 0;
                 width: 105mm;
-                height: 148mm;
+                /* 🔴 CHANGE 1: ഉയരം Auto ആക്കി */
+                height: auto;
                 background: white;
             }
 
@@ -262,7 +263,8 @@
 
             .label-page {
                 width: 105mm;
-                height: 148mm;
+                /* 🔴 CHANGE 2: ഉയരം 140mm ആക്കി കുറച്ചു (ബ്ലാങ്ക് പേജ് ഒഴിവാക്കാൻ) */
+                height: 140mm;
                 position: relative;
                 background: white !important;
                 page-break-after: always;
@@ -272,7 +274,14 @@
                 border: none;
             }
 
-            /* --- 1. ADDRESS SECTION --- */
+            /* 🔴 CHANGE 3: അവസാനത്തെ പേജിന് ശേഷം ബ്ലാങ്ക് പേജ് വേണ്ട */
+            .label-page:last-child {
+                page-break-after: auto;
+            }
+
+            /* --- ബാക്കി ഡിസൈൻ കോഡുകൾ പഴയത് പോലെ തന്നെ --- */
+
+            /* 1. ADDRESS SECTION */
             .address-sec {
                 position: absolute;
                 top: 10mm;
@@ -288,7 +297,7 @@
             }
 
             .cust-name {
-                font-size: 1px;
+                font-size: 16px;
                 font-weight: 900;
                 text-transform: uppercase;
                 line-height: 1.1;
@@ -314,7 +323,7 @@
                 margin-top: 2px;
             }
 
-            /* --- 2. META SECTION (Qty, QR & Order ID) --- */
+            /* 2. META SECTION */
             .meta-sec {
                 position: absolute;
                 top: 10mm;
@@ -335,7 +344,6 @@
                 margin-bottom: 15px;
                 text-align: right;
                 padding-right: 20px;
-                /* QR-മായി അകലം */
             }
 
             .qr-box {
@@ -355,19 +363,16 @@
                 display: none !important;
             }
 
-            /* 🔴 NEW: Order ID Style */
             .qr-oid {
                 font-size: 9px;
                 font-weight: 500;
                 color: #000;
                 text-align: center;
                 width: 90px;
-                /* QR-ന്റെ അതേ വീതി */
                 margin-top: 2px;
             }
 
-
-            /* --- 3. CONTACT BOX --- */
+            /* 3. CONTACT BOX */
             .contact-box {
                 position: absolute;
                 top: 68mm;
@@ -379,7 +384,6 @@
                 border-radius: 8px;
                 display: block;
                 align-items: center;
-                /* Vertical Center */
                 justify-content: center;
                 gap: 10px;
                 background: white;
@@ -406,11 +410,11 @@
                 float: left;
             }
 
-
-            /* --- 4. FRAGILE IMAGE --- */
+            /* 4. FRAGILE IMAGE (Bottom 0mm) */
             .fragile-sec {
                 position: absolute;
-                bottom: 8mm;
+                bottom: 0mm;
+                /* 🔴 140mm ബോക്സിന്റെ താഴെ */
                 left: 5mm;
                 width: 40mm;
                 text-align: center;
@@ -421,11 +425,11 @@
                 height: auto;
             }
 
-
-            /* --- 5. FROM ADDRESS --- */
+            /* 5. FROM ADDRESS (Bottom 0mm) */
             .from-sec {
                 position: absolute;
-                bottom: 8mm;
+                bottom: 0mm;
+                /* 🔴 140mm ബോക്സിന്റെ താഴെ */
                 right: 6mm;
                 width: 60mm;
                 text-align: left;
