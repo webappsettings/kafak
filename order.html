@@ -94,12 +94,11 @@
       margin-top: 10px;
     }
 
-    /* 🔴 UPDATED SELECT & INPUT STYLE (Border for All) */
+    /* 🔴 DROPDOWN BORDER FIX */
     .regular-input,
     select.regular-input,
     select.huge-input {
       border: 2px solid #eee !important;
-      /* Force Border */
       border-radius: 12px;
       padding: 15px;
       width: 100%;
@@ -367,6 +366,11 @@
 
               <div class="address-box" id="address-edit-box">
                 <hr>
+
+                <label class="form-label" data-i18n="lbl_phone">ഫോൺ നമ്പർ</label>
+                <input type="tel" id="edit-phone" class="regular-input mb-2" maxlength="10"
+                  oninput="updateSummaryDisplay()">
+
                 <label class="form-label" data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label>
                 <input type="text" id="edit-house" class="regular-input mb-2" oninput="updateSummaryDisplay()">
 
