@@ -6,83 +6,37 @@ const courierRates = {
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// 🔴 MOVED TRANSLATIONS TO TOP (Fixes Console Error)
+// TRANSLATIONS (Moved to Top)
 const translations = {
   ml: {
-    lbl_phone: "ഫോൺ നമ്പർ",
-    ph_phone: "മൊബൈൽ നമ്പർ",
-    btn_next: "തുടരുക",
-    welcome_back: "സ്വാഗതം!",
-    btn_edit: "വിലാസം മാറ്റാം",
-    lbl_house: "വീട്ടുപേര് / നമ്പർ",
-    ph_house: "വീട്ടുപേര്",
-    lbl_place: "സ്ഥലം",
-    lbl_pincode: "പിൻകോഡ്",
-    lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
-    lbl_msg: "മെസ്സേജ് (ആവശ്യമെങ്കിൽ)",
-    courier_included: "(കൂരിയർ ചാർജ് ഉൾപ്പെടെ)",
-    btn_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം",
-    btn_order: "ഓർഡർ ചെയ്യാം",
-    lbl_name: "നിങ്ങളുടെ പേര്",
-    ph_name: "പേര്",
-    lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ",
-    lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
-    lbl_altphone: "വിളിച്ചാൽ കിട്ടുന്ന മറ്റൊരു നമ്പർ (Optional)",
-    lbl_summary: "ഓർഡർ വിവരങ്ങൾ",
-    lbl_address: "വിലാസം",
-    order_success: "ഓർഡർ ലഭിച്ചു!",
-    redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...",
-    open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
-    loading: "വിവരങ്ങൾ എടുക്കുന്നു...",
-    err_phone: "ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക!",
-    err_name: "പേര് നൽകുക",
-    err_whatsapp: "ശരിയായ 10 അക്ക വാട്സാപ്പ് നമ്പർ നൽകുക",
-    err_pincode: "ശരിയായ 6 അക്ക പിൻകോഡ് നൽകുക",
-    err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...",
-    err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല. ദയവായി നേരിട്ട് ടൈപ്പ് ചെയ്യുക.",
-    err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
-    err_house: "വീട്ടുപേര് നൽകുക",
-    err_qty: "എത്ര ബോട്ടിൽ വേണമെന്ന് തിരഞ്ഞെടുക്കുക",
-    confirm_home: "ഓർഡർ ചെയ്യാതെ ഹോമിലേക്ക് പോകണോ? ചെയ്ത വിവരങ്ങൾ നഷ്ടപ്പെടും.",
-    alert_title: "ശ്രദ്ധിക്കുക"
+    lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
+    btn_edit: "വിലാസം മാറ്റാം", lbl_house: "വീട്ടുപേര് / നമ്പർ", ph_house: "വീട്ടുപേര്",
+    lbl_place: "സ്ഥലം", lbl_pincode: "പിൻകോഡ്", lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
+    lbl_msg: "മെസ്സേജ് (ആവശ്യമെങ്കിൽ)", courier_included: "(കൂരിയർ ചാർജ് ഉൾപ്പെടെ)",
+    btn_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം", btn_order: "ഓർഡർ ചെയ്യാം", lbl_name: "നിങ്ങളുടെ പേര്",
+    ph_name: "പേര്", lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ", lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
+    lbl_altphone: "മറ്റൊരു നമ്പർ (Optional)", lbl_summary: "ഓർഡർ വിവരങ്ങൾ", lbl_address: "വിലാസം",
+    order_success: "ഓർഡർ ലഭിച്ചു!", redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...", open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
+    loading: "വിവരങ്ങൾ എടുക്കുന്നു...", err_phone: "10 അക്ക മൊബൈൽ നമ്പർ നൽകുക!", err_name: "പേര് നൽകുക",
+    err_whatsapp: "ശരിയായ 10 അക്ക വാട്സാപ്പ് നമ്പർ നൽകുക", err_pincode: "ശരിയായ 6 അക്ക പിൻകോഡ് നൽകുക",
+    err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...", err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല.",
+    err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക", err_house: "വീട്ടുപേര് നൽകുക", err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
+    confirm_home: "ഹോമിലേക്ക് പോകണോ? വിവരങ്ങൾ നഷ്ടപ്പെടും.", alert_title: "ശ്രദ്ധിക്കുക"
   },
   en: {
-    lbl_phone: "Phone Number",
-    ph_phone: "Enter Mobile Number",
-    btn_next: "CONTINUE",
-    welcome_back: "Welcome Back!",
-    btn_edit: "EDIT ADDRESS",
-    lbl_house: "House Name / No",
-    ph_house: "House Name",
-    lbl_place: "Place / Area",
-    lbl_pincode: "Pincode",
-    lbl_qty: "Select Quantity",
-    lbl_msg: "Message (Optional)",
-    courier_included: "(Courier Charge Included)",
-    btn_update: "UPDATE ORDER",
-    btn_order: "PLACE ORDER",
-    lbl_name: "Full Name",
-    ph_name: "Your Name",
-    lbl_whatsapp: "WhatsApp Number",
-    lbl_select_po: "Select Post Office",
-    lbl_altphone: "Alternate Phone (Optional)",
-    lbl_summary: "Order Summary",
-    lbl_address: "Address",
-    order_success: "Order Placed!",
-    redirect_wa: "Redirecting to WhatsApp...",
-    open_wa: "Open WhatsApp",
-    loading: "Fetching details...",
-    err_phone: "Please enter valid 10 digit number!",
-    err_name: "Please enter your name",
-    err_whatsapp: "Please enter valid 10 digit WhatsApp number",
-    err_pincode: "Please enter valid 6 digit Pincode",
-    err_checking_pin: "Checking Pincode...",
-    err_pin_not_found: "Pincode not found. Please enter manually.",
-    err_select_po: "Please select Post Office",
-    err_house: "Please enter House Name",
-    err_qty: "Please select quantity",
-    confirm_home: "Go home without ordering? Data will be lost.",
-    alert_title: "Alert"
+    lbl_phone: "Phone Number", ph_phone: "Enter Mobile Number", btn_next: "CONTINUE", welcome_back: "Welcome Back!",
+    btn_edit: "EDIT ADDRESS", lbl_house: "House Name / No", ph_house: "House Name",
+    lbl_place: "Place / Area", lbl_pincode: "Pincode", lbl_qty: "Select Quantity",
+    lbl_msg: "Message (Optional)", courier_included: "(Courier Charge Included)",
+    btn_update: "UPDATE ORDER", btn_order: "PLACE ORDER", lbl_name: "Full Name",
+    ph_name: "Your Name", lbl_whatsapp: "WhatsApp Number", lbl_select_po: "Select Post Office",
+    lbl_altphone: "Alternate Phone (Optional)", lbl_summary: "Order Summary", lbl_address: "Address",
+    order_success: "Order Placed!", redirect_wa: "Redirecting to WhatsApp...", open_wa: "Open WhatsApp",
+    loading: "Fetching details...", err_phone: "Please enter valid 10 digit number!", err_name: "Please enter your name",
+    err_whatsapp: "Please enter valid 10 digit WhatsApp number", err_pincode: "Please enter valid 6 digit Pincode",
+    err_checking_pin: "Checking Pincode...", err_pin_not_found: "Pincode not found.",
+    err_select_po: "Please select Post Office", err_house: "Please enter House Name", err_qty: "Please select quantity",
+    confirm_home: "Go home? Data will be lost.", alert_title: "Alert"
   }
 };
 
@@ -106,18 +60,35 @@ $(document).ready(function () {
   $('#quantity').append(qtyOpts);
   $('#quick-qty').append(qtyOpts);
 
-  // Listeners
   $('#phone').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#whatsapp').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#altphone').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
+  // 🔴 CHECK LOCAL STORAGE & URL
   const urlParams = new URLSearchParams(window.location.search);
 
   if (urlParams.get('oid')) {
     fetchOrder(urlParams.get('oid'));
   } else {
+    // 🔴 AUTO LOGIN CHECK
+    const saved = localStorage.getItem('kafakUser');
+    if (saved) {
+      try {
+        const u = JSON.parse(saved);
+        if (u.name && u.phone && u.house) {
+          // Found Data -> Skip to Returning View
+          userData = u;
+          editingOrderId = null; // New Order
+          showLoader(false);
+          showReturningUserView(u, false);
+          return; // Stop here
+        }
+      } catch (e) { }
+    }
+
+    // No Data -> Show Phone
     showLoader(false);
     $('#step-0').fadeIn();
     updateFooterButtons('step-0');
@@ -131,12 +102,7 @@ function updateFooterButtons(view) {
   $('#btn-group-returning').hide();
 
   if (view === 'step-0') $('#btn-group-0').show();
-
-  if (view === 'wizard') {
-    // 🔴 CSS Display Flex ensures buttons are side-by-side
-    $('#btn-group-wizard').css({ 'display': 'flex', 'gap': '1rem' });
-  }
-
+  if (view === 'wizard') $('#btn-group-wizard').css({ 'display': 'flex' });
   if (view === 'returning') $('#btn-group-returning').show();
 }
 
@@ -145,7 +111,6 @@ function changeLanguage(lang) {
     const key = $(this).data('i18n');
     if (translations[lang][key]) $(this).text(translations[lang][key]);
   });
-
   if (lang === 'ml') {
     $('#phone').attr('placeholder', translations.ml.ph_phone);
     $('#name').attr('placeholder', translations.ml.ph_name);
@@ -159,18 +124,7 @@ function changeLanguage(lang) {
 
 function showAlert(msg) {
   const lang = $('.form-select').val();
-  Swal.fire({
-    text: msg,
-    icon: 'warning',
-    confirmButtonText: 'OK',
-    confirmButtonColor: '#000',
-    customClass: {
-      popup: 'ios-popup',
-      title: 'ios-title',
-      content: 'ios-content',
-      confirmButton: 'ios-btn'
-    }
-  });
+  Swal.fire({ text: msg, icon: 'warning', confirmButtonText: 'OK', confirmButtonColor: '#000', customClass: { popup: 'ios-popup', confirmButton: 'ios-btn' } });
 }
 
 function getAlert(key) {
@@ -180,41 +134,20 @@ function getAlert(key) {
 
 function confirmHome() {
   const lang = $('.form-select').val();
-  Swal.fire({
-    text: translations[lang].confirm_home,
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'No',
-    confirmButtonColor: '#000',
-    cancelButtonColor: '#f2f2f2',
-    customClass: {
-      popup: 'ios-popup',
-      content: 'ios-content',
-      confirmButton: 'ios-btn',
-      cancelButton: 'ios-btn-cancel'
-    }
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = "index.html";
-    }
-  });
+  Swal.fire({ text: translations[lang].confirm_home, icon: 'question', showCancelButton: true, confirmButtonText: 'Yes', cancelButtonText: 'No', confirmButtonColor: '#000', cancelButtonColor: '#f2f2f2', customClass: { popup: 'ios-popup', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' } }).then((result) => { if (result.isConfirmed) window.location.href = "index.html"; });
 }
 
 function showLoader(show) {
   const lang = $('.form-select').val();
-  // 🔴 Check if translations exists to prevent error
   if (translations && translations[lang]) {
-    const txt = translations[lang].loading || "Loading...";
-    $('#loader-text').text(txt);
+    $('#loader-text').text(translations[lang].loading || "Loading...");
   }
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
 function handlePhoneNext() {
   const phone = $('#phone').val();
-  const regex = /^[0-9]{10}$/;
-  if (!regex.test(phone)) { showAlert(getAlert('err_phone')); return; }
+  if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
   showLoader(true);
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
@@ -226,21 +159,17 @@ function handlePhoneNext() {
       if (res.result === 'success') {
         const d = res.data;
         userData = d;
+        localStorage.setItem('kafakUser', JSON.stringify(d)); // SAVE
 
         if (d.orderid && d.Status && d.Status !== 'Dispatched') {
           editingOrderId = d.orderid;
-          showReturningUserView(d);
+          showReturningUserView(d, true);
+        } else if (d.name) {
+          editingOrderId = null;
+          showReturningUserView(d, false);
         } else {
           editingOrderId = null;
-          if (d.name) {
-            $('#name').val(d.name);
-            $('#whatsapp').val(d.whatsapp);
-            $('#pincode').val(d.pincode);
-            $('#house').val(d.house);
-            $('#altphone').val(d.altphone);
-          } else {
-            $('#whatsapp').val(phone);
-          }
+          $('#whatsapp').val(phone);
           startWizard();
         }
       } else {
@@ -262,44 +191,101 @@ function fetchOrder(oid) {
       if (res.result === 'success') {
         const d = res.data;
         userData = d;
+        localStorage.setItem('kafakUser', JSON.stringify(d)); // SAVE
 
         if (d.Status === 'Dispatched') {
           editingOrderId = null;
-          startWizard();
+          showReturningUserView(d, false);
         } else {
           editingOrderId = d.orderid;
-          showReturningUserView(d);
+          showReturningUserView(d, true);
         }
       } else {
         $('#step-0').fadeIn();
         updateFooterButtons('step-0');
       }
     })
-    .catch(() => {
-      showLoader(false);
-      $('#step-0').fadeIn();
-      updateFooterButtons('step-0');
-    });
+    .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-function showReturningUserView(d) {
+// 🔴 SHOW RETURNING (COLLAPSED)
+function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
 
   $('#saved-name').text(d.name);
-  let addr = `${d.house}, ${d.place}`;
-  if (d.postoffice) addr += `, ${d.postoffice}`;
-  addr += ` - ${d.pincode}`;
-  $('#saved-address-text').text(addr);
-  $('#quick-qty').val(d.quantity).trigger('change');
-  $('#quick-msg').val(d.message);
-
+  // Fill Inputs
   $('#edit-house').val(d.house);
   $('#edit-place').val(d.place);
   $('#edit-pincode').val(d.pincode);
   $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district);
   $('#edit-state').val(d.state);
+  $('#edit-whatsapp').val(d.whatsapp || d.phone);
+  $('#edit-altphone').val(d.altphone || '');
+
+  // Update Summary
+  updateSummaryDisplay();
+
+  if (isActiveOrder) {
+    $('#quick-qty').val(d.quantity).trigger('change');
+    $('#quick-msg').val(d.message);
+    const lang = $('.form-select').val();
+    $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
+  } else {
+    $('#quick-qty').val('').trigger('change');
+    $('#quick-msg').val('');
+    $('#quick-price').text('₹0');
+    const lang = $('.form-select').val();
+    $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ ചെയ്യാം" : "PLACE ORDER");
+  }
+}
+
+// 🔴 LIVE UPDATE SUMMARY
+function updateSummaryDisplay() {
+  const house = $('#edit-house').val() || '';
+  const place = $('#edit-place').val() || '';
+  const po = $('#edit-postoffice').val() || '';
+  const pin = $('#edit-pincode').val() || '';
+  const wa = $('#edit-whatsapp').val() || $('#phone').val();
+
+  let addr = `${house}, ${place}`;
+  if (po) addr += `, ${po}`;
+  addr += ` - ${pin}`;
+
+  $('#saved-address-text').text(addr);
+  $('#saved-phone-text').text($('#phone').val());
+  $('#saved-wa-text span').text(wa);
+}
+
+// 🔴 EDIT PINCODE LOGIC
+async function handleEditPincode(pin) {
+  if (pin.length === 6) {
+    try {
+      const res = await fetch(`pincode_json_files/${pin}.json`);
+      const data = await res.json();
+      if (data && data.length > 0) {
+        $('#edit-district').val(data[0].district);
+        $('#edit-state').val(data[0].statename);
+
+        if (data.length > 1) {
+          const dd = $('#edit-postoffice-select');
+          dd.empty().append('<option value="">Select PO...</option>');
+          data.forEach(p => dd.append(`<option value="${p.officename}">${p.officename}</option>`));
+          $('#edit-po-wrapper').show();
+        } else {
+          $('#edit-postoffice').val(data[0].officename);
+          $('#edit-po-wrapper').hide();
+          updateSummaryDisplay();
+        }
+      }
+    } catch (e) { }
+  }
+}
+
+function selectEditPO(val) {
+  $('#edit-postoffice').val(val);
+  updateSummaryDisplay();
 }
 
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
@@ -307,25 +293,27 @@ function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function submitQuickOrder() {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  const isEdit = $('.address-box').is(':visible');
   const finalData = {
     orderid: editingOrderId,
-    name: userData.name,
-    phone: userData.phone,
-    whatsapp: userData.whatsapp,
-    altphone: userData.altphone,
-    house: isEdit ? $('#edit-house').val() : userData.house,
-    place: isEdit ? $('#edit-place').val() : userData.place,
-    pincode: isEdit ? $('#edit-pincode').val() : userData.pincode,
-    postoffice: isEdit ? $('#edit-postoffice').val() : userData.postoffice,
-    district: isEdit ? $('#edit-district').val() : userData.district,
-    state: isEdit ? $('#edit-state').val() : userData.state,
+    name: $('#saved-name').text(),
+    phone: userData.phone || $('#phone').val(), // Ensure Phone Exists
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: $('#edit-pincode').val(),
+    postoffice: $('#edit-postoffice').val(),
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     message: $('#quick-msg').val()
   };
+
+  localStorage.setItem('kafakUser', JSON.stringify(finalData)); // SAVE
   postOrder(finalData);
 }
 
+// --- WIZARD ---
 function startWizard() {
   $('#wizard-view').fadeIn();
   updateFooterButtons('wizard');
@@ -338,39 +326,25 @@ function showStep(s) {
   $(`.wiz-step[data-step="${s}"]`).fadeIn();
   const pct = (s / 7) * 100;
   $('#wiz-progress').css('width', `${pct}%`);
-
   const btn = $('#btn-wiz-next');
   const lang = $('.form-select').val();
-
-  if (s === 7) {
-    btn.html(translations[lang].btn_order);
-    btn.addClass('btn-brand-green');
-  } else {
-    btn.html(translations[lang].btn_next);
-    btn.removeClass('btn-brand-green');
-  }
-
+  if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); }
+  else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
   setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
 }
 
 async function nextStep() {
   if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name'));
-
-  if (currentStep === 2) {
-    const wa = $('#whatsapp').val();
-    if (!/^[0-9]{10}$/.test(wa)) return showAlert(getAlert('err_whatsapp'));
-  }
+  if (currentStep === 2 && !/^[0-9]{10}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
 
   if (currentStep === 3) {
     const pin = $('#pincode').val();
     if (!/^[0-9]{6}$/.test(pin)) return showAlert(getAlert('err_pincode'));
-
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`);
       const data = await res.json();
       $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next);
-
       if (data && data.length > 0) {
         poList = data;
         $('#edit-district').val(data[0].district);
@@ -387,33 +361,22 @@ async function nextStep() {
           userData.state = data[0].statename;
         }
       } else { showAlert(getAlert('err_pin_not_found')); }
-    } catch (e) {
-      $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next);
-      showAlert(getAlert('err_pincode')); return;
-    }
+    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next); showAlert(getAlert('err_pincode')); return; }
   }
 
   if (currentStep === 3.5) {
     if (!$('#po-select').val()) return showAlert(getAlert('err_select_po'));
     userData.postoffice = $('#po-select').val();
-    userData.district = poList[0].district;
-    userData.state = poList[0].statename;
     $('#display-place').text(userData.postoffice);
     $('#display-dist').text(userData.district);
     currentStep = 4; showStep(4); return;
   }
 
   if (currentStep === 4 && !$('#house').val()) return showAlert(getAlert('err_house'));
-
-  if (currentStep === 5) {
-    const alt = $('#altphone').val();
-    if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone'));
-  }
-
+  if (currentStep === 5) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
   if (currentStep === 6 && !$('#quantity').val()) return showAlert(getAlert('err_qty'));
   if (currentStep === 6) { renderReview(); currentStep = 7; showStep(7); return; }
   if (currentStep === 7) { submitWizardOrder(); return; }
-
   currentStep++; showStep(currentStep);
 }
 
@@ -441,15 +404,16 @@ function submitWizardOrder() {
     phone: $('#phone').val(),
     whatsapp: $('#whatsapp').val(),
     altphone: $('#altphone').val(),
-    pincode: $('#pincode').val(),
     house: $('#house').val(),
     place: userData.postoffice,
+    pincode: $('#pincode').val(),
     postoffice: userData.postoffice,
     district: userData.district,
     state: userData.state || 'Kerala',
     quantity: $('#quantity').val(),
     message: $('#message').val()
   };
+  localStorage.setItem('kafakUser', JSON.stringify(finalData)); // SAVE
   postOrder(finalData);
 }
 
@@ -485,16 +449,12 @@ function sendToWhatsapp() {
   const orderid = successData.orderid;
   const d = successData;
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
-
   const n = parseInt(d.quantity);
   const base = n * 650;
   const courier = courierRates.kerala[n] || 0;
   const amountText = `Amount(₹): ${base} + ${courier}`;
   const totalText = `Total(₹): ${base + courier}/-`;
-
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
-
   const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
-
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }

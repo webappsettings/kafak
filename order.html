@@ -38,7 +38,6 @@
       height: 100dvh;
     }
 
-    /* Header */
     .navbar {
       flex: 0 0 auto;
       background: rgba(255, 255, 255, 0.98);
@@ -53,7 +52,6 @@
       cursor: pointer;
     }
 
-    /* Content Area */
     .scroll-content {
       flex: 1 1 auto;
       overflow-y: auto;
@@ -62,7 +60,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Footer Button Area */
     .footer-action {
       flex: 0 0 auto;
       background: white;
@@ -71,7 +68,6 @@
       z-index: 20;
     }
 
-    /* Inputs */
     .huge-input {
       border: none;
       border-bottom: 2px solid #eee;
@@ -112,7 +108,6 @@
       border-color: var(--brand-green);
     }
 
-    /* Buttons */
     .btn-black {
       background: black;
       color: white;
@@ -160,7 +155,6 @@
       font-size: 20px;
     }
 
-    /* Cards */
     .summary-card {
       background: #fdfdfd;
       border-radius: 16px;
@@ -274,11 +268,11 @@
       }
     }
 
-    /* 🔴 IPHONE STYLE ALERTS */
+    /* Alerts */
     .ios-popup {
       border-radius: 25px !important;
       padding: 20px !important;
-      font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif !important;
+      font-family: 'Manrope', sans-serif !important;
     }
 
     .ios-title {
@@ -297,7 +291,6 @@
       border-radius: 12px !important;
       padding: 12px 25px !important;
       font-weight: 700 !important;
-      font-size: 16px !important;
       background: black !important;
     }
 
@@ -305,14 +298,8 @@
       border-radius: 12px !important;
       padding: 12px 25px !important;
       font-weight: 700 !important;
-      font-size: 16px !important;
       background: #f2f2f2 !important;
       color: #000 !important;
-    }
-
-    #btn-group-wizard {
-      display: none;
-      gap: 15px;
     }
   </style>
 </head>
@@ -325,7 +312,6 @@
   </div>
 
   <div id="app-layout">
-
     <nav class="navbar">
       <div class="container d-flex justify-content-between align-items-center">
         <a href="#" class="navbar-brand d-flex align-items-center" onclick="confirmHome()">
@@ -362,7 +348,6 @@
 
           <div id="returning-user-view" class="step-section">
             <h4 class="fw-bold mb-3" data-i18n="welcome_back">സ്വാഗതം!</h4>
-
             <div class="summary-card">
               <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">മാറ്റാം ✏️</span>
 
@@ -405,7 +390,7 @@
             </div>
 
             <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-            <select id="quick-qty" class="regular-input mb-3">
+            <select id="quick-qty" class="huge-input mb-3" style="background: white;">
               <option value="" disabled selected>Select...</option>
             </select>
 
@@ -416,15 +401,6 @@
               <div class="fw-bold fs-4 text-dark" id="quick-price">₹0</div>
               <small class="text-muted" style="font-size:11px;" data-i18n="courier_included">(കൂരിയർ ചാർജ്
                 ഉൾപ്പെടെ)</small>
-            </div>
-
-            <div class="footer-action">
-              <div class="container p-0" style="max-width: 500px;">
-                <button type="button" class="btn-black btn-brand-green" onclick="submitQuickOrder()"
-                  id="btn-quick-submit">
-                  <span data-i18n="btn_update">ഓർഡർ ചെയ്യാം</span>
-                </button>
-              </div>
             </div>
           </div>
 
@@ -509,14 +485,14 @@
           <button type="button" class="btn-back" onclick="prevStep()">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button type="button" class="btn-black flex-grow-1" onclick="nextStep()" id="btn-wiz-next">
+          <button type="button" class="btn-black flex-grow-1 ms-3" onclick="nextStep()" id="btn-wiz-next">
             <span data-i18n="btn_next">തുടരുക</span>
           </button>
         </div>
 
         <div id="btn-group-returning" style="display:none;">
           <button type="button" class="btn-black btn-brand-green" onclick="submitQuickOrder()" id="btn-quick-submit">
-            <span data-i18n="btn_update">ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം</span>
+            <span data-i18n="btn_update">ഓർഡർ ചെയ്യാം</span>
           </button>
         </div>
       </div>
@@ -534,24 +510,16 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="custom.js"></script>
   <script>
-    // 🔴 REFACTORED CLEAR DATA WITH IPHONE UI
     function clearMyData() {
       Swal.fire({
         title: 'Reset App?',
-        text: "നിങ്ങളുടെ ഫോണിലെ സേവ് ചെയ്ത വിവരങ്ങൾ (Name, Phone etc.) ക്ലിയർ ചെയ്യും.",
+        text: "വിവരങ്ങൾ ക്ലിയർ ചെയ്യും.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#000',
         cancelButtonColor: '#f2f2f2',
-        confirmButtonText: 'Yes, Reset',
-        cancelButtonText: 'Cancel',
-        customClass: {
-          popup: 'ios-popup',
-          title: 'ios-title',
-          content: 'ios-content',
-          confirmButton: 'ios-btn',
-          cancelButton: 'ios-btn-cancel'
-        }
+        confirmButtonText: 'Yes',
+        customClass: { popup: 'ios-popup', title: 'ios-title', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' }
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem('kafakUser');
