@@ -306,22 +306,43 @@ function updateSummaryDisplay() {
   if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
 }
 
+// 🔴 UPDATED: Global PO Rename + Single PO Display Logic
 async function handleEditPincode(pin) {
   if (pin.length === 6) {
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`);
-      const data = await res.json();
+      let data = await res.json();
+
+      // ✅ GLOBAL FIX: Replace BO/SO with PO instantly
+      data = data.map(item => ({
+        ...item,
+        officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO')
+      }));
+
       if (data && data.length > 0) {
         $('#edit-district').val(data[0].district);
         $('#edit-state').val(data[0].statename);
+
         if (data.length > 1) {
+          // MULTIPLE: Show Dropdown, Hide Single Display
           const dd = $('#edit-postoffice-select');
           dd.empty().append('<option value="">Select PO...</option>');
           data.forEach(p => dd.append(`<option value="${p.officename}">${p.officename}</option>`));
+
           $('#edit-po-wrapper').show();
+          $('#edit-single-po').hide(); // Hide Box
         } else {
-          $('#edit-postoffice').val(data[0].officename);
-          $('#edit-po-wrapper').hide();
+          // SINGLE: Show Beautiful Box, Hide Dropdown
+          const poName = data[0].officename;
+          $('#edit-postoffice').val(poName);
+
+          $('#edit-po-wrapper').hide(); // Hide Dropdown
+
+          // Show in Loc Box
+          $('#edit-single-po')
+            .html(`<i class="fas fa-map-marker-alt loc-icon"></i> <span class="fw-bold text-dark">${poName}</span>`)
+            .fadeIn();
+
           updateSummaryDisplay();
         }
       }
@@ -398,7 +419,14 @@ async function nextStep() {
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`);
-      const data = await res.json();
+      let data = await res.json(); // Note: Changed 'const' to 'let'
+
+      // ✅ ഈ വരി ഇവിടെയും ചേർക്കുക (Global PO Fix for Wizard)
+      data = data.map(item => ({
+        ...item,
+        officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO')
+      }));
+
       $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next);
       if (data && data.length > 0) {
         poList = data;
