@@ -10,7 +10,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Noto+Sans+Malayalam:wght@400;700&display=swap"
     rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
     :root {
@@ -20,14 +21,12 @@
       --brand-green: #2e7d32;
     }
 
-    /* 🔴 FLEXBOX LAYOUT SETUP */
     html,
     body {
       height: 100%;
       margin: 0;
       padding: 0;
       overflow: hidden;
-      /* Prevent double scroll */
       background: var(--secondary);
       font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
       color: var(--primary);
@@ -37,13 +36,11 @@
       display: flex;
       flex-direction: column;
       height: 100dvh;
-      /* Dynamic Height for Mobile */
     }
 
-    /* 1. HEADER */
+    /* Header */
     .navbar {
       flex: 0 0 auto;
-      /* Don't shrink */
       background: rgba(255, 255, 255, 0.98);
       padding: 10px 0;
       border-bottom: 1px solid #f0f0f0;
@@ -53,30 +50,28 @@
     .brand-logo-img {
       height: 40px;
       width: auto;
+      cursor: pointer;
     }
 
-    /* 2. SCROLLABLE CONTENT */
+    /* Content Area */
     .scroll-content {
       flex: 1 1 auto;
-      /* Grow to fill space */
       overflow-y: auto;
-      /* Scroll inside this area */
       padding: 20px;
       padding-bottom: 40px;
       -webkit-overflow-scrolling: touch;
     }
 
-    /* 3. FOOTER BUTTON (Floating on Keyboard) */
+    /* Footer Button Area */
     .footer-action {
       flex: 0 0 auto;
-      /* Don't shrink */
       background: white;
       padding: 15px 20px;
       border-top: 1px solid #eee;
       z-index: 20;
     }
 
-    /* ELEMENTS */
+    /* Inputs */
     .huge-input {
       border: none;
       border-bottom: 2px solid #eee;
@@ -117,6 +112,7 @@
       border-color: var(--brand-green);
     }
 
+    /* Buttons */
     .btn-black {
       background: black;
       color: white;
@@ -131,12 +127,40 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
     }
 
     .btn-black:active {
       transform: scale(0.98);
     }
 
+    .btn-brand-green {
+      background: var(--brand-green) !important;
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-back {
+      width: 55px;
+      height: 55px;
+      border-radius: 14px;
+      background: #f5f5f5;
+      border: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .btn-back:active {
+      background: #e0e0e0;
+    }
+
+    .btn-back i {
+      font-size: 20px;
+    }
+
+    /* Cards */
     .summary-card {
       background: #fdfdfd;
       border-radius: 16px;
@@ -249,6 +273,42 @@
         transform: translateY(0);
       }
     }
+
+    /* 🔴 IPHONE STYLE ALERTS */
+    .ios-popup {
+      border-radius: 25px !important;
+      padding: 20px !important;
+      font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif !important;
+    }
+
+    .ios-title {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #000 !important;
+    }
+
+    .ios-content {
+      font-size: 16px !important;
+      color: #555 !important;
+      font-weight: 500 !important;
+    }
+
+    .ios-btn {
+      border-radius: 12px !important;
+      padding: 12px 25px !important;
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      background: black !important;
+    }
+
+    .ios-btn-cancel {
+      border-radius: 12px !important;
+      padding: 12px 25px !important;
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      background: #f2f2f2 !important;
+      color: #000 !important;
+    }
   </style>
 </head>
 
@@ -263,7 +323,7 @@
 
     <nav class="navbar">
       <div class="container d-flex justify-content-between align-items-center">
-        <a href="#" class="navbar-brand d-flex align-items-center">
+        <a href="#" class="navbar-brand d-flex align-items-center" onclick="confirmHome()">
           <img src="logo.png" alt="KAFAK" class="brand-logo-img"
             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <span style="display:none; font-weight:900; font-size:24px; color:black;">KAFAK.</span>
@@ -314,7 +374,7 @@
               </div>
             </div>
             <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-            <select id="quick-qty" class="regular-input mb-3">
+            <select id="quick-qty" class="huge-input mb-3" style="background: white;">
               <option value="" disabled selected>Select...</option>
             </select>
             <label class="form-label" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
@@ -337,7 +397,7 @@
             </div>
             <div class="wiz-step" data-step="2" style="display:none;">
               <label class="form-label" data-i18n="lbl_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
-              <input type="tel" id="whatsapp" class="huge-input" placeholder="WhatsApp">
+              <input type="tel" id="whatsapp" class="huge-input" placeholder="WhatsApp" maxlength="10">
             </div>
             <div class="wiz-step" data-step="3" style="display:none;">
               <label class="form-label" data-i18n="lbl_pincode">പിൻകോഡ്</label>
@@ -359,7 +419,7 @@
             </div>
             <div class="wiz-step" data-step="5" style="display:none;">
               <label class="form-label" data-i18n="lbl_altphone">വിളിച്ചാൽ കിട്ടുന്ന മറ്റൊരു നമ്പർ (Optional)</label>
-              <input type="tel" id="altphone" class="huge-input" placeholder="Alternate Phone">
+              <input type="tel" id="altphone" class="huge-input" placeholder="Alternate Phone" maxlength="10">
             </div>
             <div class="wiz-step" data-step="6" style="display:none;">
               <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
@@ -397,22 +457,23 @@
 
     <div class="footer-action">
       <div class="container p-0" style="max-width: 500px;">
-        <div id="btn-group-0">
+        <div id="btn-group-0" style="display:none;">
           <button type="button" class="btn-black" onclick="handlePhoneNext()">
             <span data-i18n="btn_next">തുടരുക</span>
           </button>
         </div>
 
-        <div id="btn-group-wizard" style="display:none;" class="d-flex gap-2">
-          <button type="button" class="btn btn-light border fw-bold" style="width: 50px; border-radius:12px;"
-            onclick="prevStep()">←</button>
-          <button type="button" class="btn-black" onclick="nextStep()" id="btn-wiz-next">
+        <div id="btn-group-wizard" style="display:none;" class="d-flex gap-3">
+          <button type="button" class="btn-back" onclick="prevStep()">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button type="button" class="btn-black flex-grow-1" onclick="nextStep()" id="btn-wiz-next">
             <span data-i18n="btn_next">തുടരുക</span>
           </button>
         </div>
 
         <div id="btn-group-returning" style="display:none;">
-          <button type="button" class="btn-black" onclick="submitQuickOrder()" id="btn-quick-submit">
+          <button type="button" class="btn-black btn-brand-green" onclick="submitQuickOrder()" id="btn-quick-submit">
             <span data-i18n="btn_update">ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം</span>
           </button>
         </div>
@@ -421,8 +482,42 @@
 
   </div>
 
+  <div class="text-center mt-3 pb-5">
+    <button onclick="clearMyData()" class="btn btn-sm btn-light text-muted"
+      style="font-size: 10px; border-radius:20px;">
+      🛠️ Reset App
+    </button>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="custom.js"></script>
+  <script>
+    // 🔴 REFACTORED CLEAR DATA WITH IPHONE UI
+    function clearMyData() {
+      Swal.fire({
+        title: 'Reset App?',
+        text: "നിങ്ങളുടെ ഫോണിലെ സേവ് ചെയ്ത വിവരങ്ങൾ (Name, Phone etc.) ക്ലിയർ ചെയ്യും.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#000',
+        cancelButtonColor: '#f2f2f2',
+        confirmButtonText: 'Yes, Reset',
+        cancelButtonText: 'Cancel',
+        customClass: {
+          popup: 'ios-popup',
+          title: 'ios-title',
+          content: 'ios-content',
+          confirmButton: 'ios-btn',
+          cancelButton: 'ios-btn-cancel'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem('kafakUser');
+          location.reload();
+        }
+      })
+    }
+  </script>
 </body>
 
 </html>
