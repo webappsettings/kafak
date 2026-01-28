@@ -688,7 +688,7 @@ function sendToWhatsapp() {
   const courier = courierRates.kerala[n] || 0;
   const amountText = `Amount(₹): ${base} + ${courier}`;
   const totalText = `Total(₹): ${base + courier}/-`;
-  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
+  const extra = `*✅ Honey order confirmed!* 🍯\n🔖_${orderid}_\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
   const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }

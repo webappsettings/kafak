@@ -92,7 +92,7 @@
             color: white;
         }
 
-        /* CARD STYLE MATCHING ORDER UI */
+        /* CARD STYLE */
         .order-card {
             background: white;
             border-radius: 16px;
@@ -119,7 +119,7 @@
         .card-header-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 10px;
         }
 
@@ -188,6 +188,30 @@
             color: white;
         }
 
+        /* 🔴 SMALL TOP BUTTONS */
+        .btn-top-action {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid #eee;
+            background: #fff;
+            color: #555;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .btn-top-action:hover {
+            background: #f0f0f0;
+        }
+
+        .btn-print-mini {
+            background: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
         .search-bar {
             width: 100%;
             padding: 15px;
@@ -220,6 +244,16 @@
             width: 100%;
             max-width: 400px;
         }
+
+        #search-results-area {
+            display: none;
+        }
+
+        .search-header {
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -245,7 +279,7 @@
         </nav>
 
         <div class="container dashboard-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search Order, Name, Phone..."
+            <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search Globally..."
                 onkeyup="filterOrders()">
 
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -254,35 +288,45 @@
                     class="btn btn-warning btn-sm rounded-pill px-3 fw-bold" style="display:none;">Sync</button>
             </div>
 
-            <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab">
-                <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill"
-                        data-bs-target="#tab-pending">New (<span id="count-pending">0</span>)</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-paid">Paid
-                        (<span id="count-paid">0</span>)</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="pill"
-                        data-bs-target="#tab-dispatched">Sent (<span id="count-dispatched">0</span>)</button></li>
-            </ul>
+            <div id="tabs-container">
+                <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab">
+                    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill"
+                            data-bs-target="#tab-pending">New (<span id="count-pending">0</span>)</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-paid">Paid
+                            (<span id="count-paid">0</span>)</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill"
+                            data-bs-target="#tab-dispatched">Dispatched (<span id="count-dispatched">0</span>)</button>
+                    </li>
+                </ul>
 
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab-pending">
-                    <div class="row g-3" id="list-pending"></div>
-                </div>
-                <div class="tab-pane fade" id="tab-paid">
-                    <div class="text-end mb-2">
-                        <button id="btn-select-all" onclick="toggleSelectAll()"
-                            class="btn btn-outline-light btn-sm text-dark border-secondary">Select All</button>
-                        <button onclick="printSelected()" class="btn btn-dark btn-sm ms-2">🖨️ Print Labels</button>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pending">
+                        <div class="row g-3" id="list-pending"></div>
                     </div>
-                    <div class="row g-3" id="list-paid"></div>
-                </div>
-                <div class="tab-pane fade" id="tab-dispatched">
-                    <div class="text-center mb-3">
-                        <button onclick="startScanner('dispatch')" class="btn btn-outline-dark rounded-pill px-4">📷
-                            Scan Dispatch</button>
+                    <div class="tab-pane fade" id="tab-paid">
+                        <div class="text-end mb-2">
+                            <button id="btn-select-all" onclick="toggleSelectAll()"
+                                class="btn btn-outline-light btn-sm text-dark border-secondary">Select All</button>
+                            <button onclick="printSelected()" class="btn btn-dark btn-sm ms-2">🖨️ Print
+                                Selected</button>
+                        </div>
+                        <div class="row g-3" id="list-paid"></div>
                     </div>
-                    <div class="row g-3" id="list-dispatched"></div>
+                    <div class="tab-pane fade" id="tab-dispatched">
+                        <div class="text-center mb-3">
+                            <button onclick="startScanner('dispatch')" class="btn btn-outline-dark rounded-pill px-4">📷
+                                Scan Dispatch</button>
+                        </div>
+                        <div class="row g-3" id="list-dispatched"></div>
+                    </div>
                 </div>
             </div>
+
+            <div id="search-results-area">
+                <div class="search-header">Search Results</div>
+                <div class="row g-3" id="list-search"></div>
+            </div>
+
         </div>
     </div>
 
