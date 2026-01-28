@@ -53,7 +53,7 @@ let currentLoginPhone = null;
 let isEditMode = false;
 
 $(document).ready(function () {
-  // ... (qtyOpts appending code) ...
+  // Qty Options Appending...
   const qtyOpts = `
         <option value="1">1 Bottle (650g)</option>
         <option value="2">2 Bottles (1.30 kg)</option>
@@ -98,29 +98,26 @@ $(document).ready(function () {
   if (oid) {
     // 🔴 INSTANT ADMIN LOAD LOGIC
     if (localStorage.getItem('kafakAdmin') === 'true') {
-      // Try finding order in Admin Cache
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
       if (cachedOrder) {
-        // Found in cache! Load instantly without network call
         console.log("Loaded from Admin Cache instantly!");
-        $('#main-loader').hide(); // Hide loader immediately
-        // Ensure fields are lowercase for mapping
+
+        // ✅ FIX IS HERE: Correctly hide the loader
+        showLoader(false);
+
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
         cachedOrder.district = cachedOrder.district || '';
         cachedOrder.state = cachedOrder.state || '';
 
-        // Render directly
         loadOrderData(cachedOrder, true);
       } else {
-        // Not in cache, fetch normally
         fetchOrder(oid);
       }
     } else {
-      // Normal User
       fetchOrder(oid);
     }
   } else {
