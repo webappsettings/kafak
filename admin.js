@@ -278,20 +278,48 @@ function updateOrder(oid, status) {
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     if (pendingUpdates.length === 0) return;
-    if (!confirm("Sync changes to server?")) return;
 
-    $('#sync-btn').prop('disabled', true).text('Syncing...');
-    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: pendingUpdates }) })
+    if (!confirm(`${pendingUpdates.length} മാറ്റങ്ങൾ സെർവറിലേക്ക് സേവ് ചെയ്യട്ടെ?`)) return;
+
+    // 🔴 CHANGE: Show Spinning Icon instead of Text
+    // പഴയ കണ്ടന്റ് സേവ് ചെയ്യുന്നു (എറർ വന്നാൽ തിരിച്ചിടാൻ)
+    const originalContent = $('#sync-btn').html();
+
+    // സ്പിന്നർ കാണിക്കുന്നു
+    $('#sync-btn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin" style="font-size:20px;"></i>');
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({
+            action: 'bulkUpdateStatus',
+            updates: pendingUpdates
+        })
+    })
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success') {
                 localStorage.removeItem('pendingUpdates');
-                alert("Synced! ✅");
+
+                // Clean up local flags
+                Object.keys(localStorage).forEach(key => {
+                    if (key.startsWith('sent_') || key.startsWith('paid_')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+
+                alert("Sync Complete! ✅");
+
+                // റീസെറ്റ് ചെയ്യുന്നു (Success ആയതുകൊണ്ട് ബട്ടൺ ഹൈഡ് ആകും)
+                $('#sync-btn').html(`<i class="fas fa-cloud-upload-alt"></i><span class="sync-badge" id="sync-badge-count">0</span>`);
                 updateSyncButtonUI();
                 $('#sync-btn').prop('disabled', false);
             }
         })
-        .catch(() => { alert("Sync Failed!"); $('#sync-btn').prop('disabled', false).text('Retry Sync'); });
+        .catch(err => {
+            alert("Sync Failed! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
+            // എറർ വന്നാൽ പഴയ ഐക്കണും നമ്പറും തിരികെ കൊണ്ടുവരുന്നു
+            $('#sync-btn').prop('disabled', false).html(originalContent);
+        });
 }
 
 function discardLocalChanges() {
