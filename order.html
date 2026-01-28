@@ -363,16 +363,13 @@
       transform: scale(0.98);
     }
 
-    /* 🔴 NEW COLORS */
     .btn-sent {
       background-color: #0d6efd;
-      /* Blue */
       color: white;
     }
 
     .btn-paid {
       background-color: #ffc107;
-      /* Yellow */
       color: black;
     }
 
@@ -380,6 +377,21 @@
       background-color: #e0e0e0;
       color: #888;
       cursor: not-allowed;
+    }
+
+    /* 🔴 ORDER ID BADGE */
+    .oid-badge {
+      background: #f0f2f5;
+      color: #555;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-bottom: 8px;
+      border: 1px solid #e1e4e8;
+      font-family: 'Monaco', 'Courier New', monospace;
     }
   </style>
 </head>
@@ -430,6 +442,8 @@
             <h4 class="fw-bold mb-3" data-i18n="welcome_back">സ്വാഗതം!</h4>
             <div class="summary-card">
               <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">മാറ്റാം ✏️</span>
+
+              <div id="display-oid" class="oid-badge" style="display:none;"></div>
 
               <div class="fw-bold fs-5" id="saved-name">User Name</div>
               <div class="text-muted small mt-1">
@@ -498,13 +512,7 @@
               </div>
             </div>
 
-            <div id="admin-controls" style="display:none;">
-              <div class="admin-title">👮‍♂️ Admin Actions</div>
-              <button type="button" class="btn-admin btn-sent" onclick="adminUpdateStatus('Sent')">⏳ Mark as Invoice
-                Sent</button>
-              <button type="button" class="btn-admin btn-paid" onclick="adminUpdateStatus('Paid')">💰 Mark as
-                Paid</button>
-            </div>
+            <div id="admin-controls" style="display:none;"></div>
 
             <div class="mb-4"></div>
           </div>

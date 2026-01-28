@@ -219,7 +219,8 @@ function fetchOrder(oid) {
       $('#step-0').hide();
 
       if (res.result === 'success') {
-        let d = res.data;
+        const d = res.data;
+        editingOrderId = d.orderid;
 
         if (d.custId) { myCustId = d.custId; }
 
@@ -237,6 +238,14 @@ function fetchOrder(oid) {
           localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
         }
 
+        // 🔴 ADMIN CHECK: Update UI based on cache if available
+        if (localStorage.getItem('kafakAdmin') === 'true') {
+          let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let cachedOrder = cachedOrders.find(o => o.orderid === oid);
+          let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending');
+          updateAdminUI(status, oid);
+        }
+
         if (d.Status === 'Dispatched') {
           editingOrderId = null;
           showReturningUserView(d, false);
@@ -252,17 +261,93 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
+// 🔴 1. ADMIN UI (Single Button Flow)
+function updateAdminUI(serverStatus, oid) {
+  let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let localUpdate = pendingUpdates.find(item => item.oid === oid);
+
+  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
+
+  let btnHTML = '';
+
+  if (currentStatus === 'Pending') {
+    btnHTML = `
+      <div class="admin-title">ACTION: SEND INVOICE</div>
+      <button onclick="adminAction('${oid}', 'Sent')" class="btn-admin btn-sent">
+        💬 MARK AS SENT
+      </button>`;
+  }
+  else if (currentStatus === 'Sent') {
+    btnHTML = `
+      <div class="admin-title">ACTION: PAYMENT RECEIVED?</div>
+      <button onclick="adminAction('${oid}', 'Paid')" class="btn-admin btn-paid">
+        💰 MARK AS PAID
+      </button>`;
+  }
+  else {
+    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED 📦' : 'PAID ✅';
+    btnHTML = `
+      <div class="admin-title">STATUS</div>
+      <button class="btn-admin btn-disabled" disabled>
+        ${statusText}
+      </button>`;
+  }
+
+  // Display
+  if ($('#admin-controls').length) {
+    $('#admin-controls').html(btnHTML).show();
+  } else {
+    if (!$('#admin-action-bar').length) {
+      $('body').append(`<div id="admin-action-bar" style="position:fixed; bottom:0; left:0; width:100%; background:white; padding:15px; border-top:1px solid #eee; z-index:1000;"></div>`);
+    }
+    $('#admin-action-bar').html(btnHTML).show();
+    $('body').css('padding-bottom', '80px');
+  }
+}
+
+// 🔴 2. ADMIN ACTION (Local Update)
+function adminAction(oid, status) {
+  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  updates = updates.filter(item => item.oid !== oid);
+  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  // Update Cache for immediate reflection
+  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let orderIndex = allOrders.findIndex(o => o.orderid === oid);
+  if (orderIndex !== -1) {
+    allOrders[orderIndex].Status = status;
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+  }
+
+  updateAdminUI(status, oid);
+
+  const Toast = Swal.mixin({
+    toast: true, position: 'top-end', showConfirmButton: false, timer: 2000,
+    didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
+  });
+  Toast.fire({ icon: 'success', title: `Saved: ${status}` });
+}
+
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
 
   isEditMode = isActiveOrder;
 
-  // 🔴 ADMIN CHECK: IF LOGGED IN & EDITING, SHOW CONTROLS
-  if (isActiveOrder && localStorage.getItem('kafakAdminLoggedIn') === 'true') {
+  if (isActiveOrder && localStorage.getItem('kafakAdmin') === 'true') {
     $('#admin-controls').show();
   } else {
     $('#admin-controls').hide();
+  }
+
+  // 🔴 SHOW ORDER ID BADGE (FOR EVERYONE)
+  if (d.orderid) {
+    $('#display-oid').text('#' + d.orderid).show();
+  } else {
+    $('#display-oid').hide();
   }
 
   $('#saved-name').text(d.name);
@@ -422,32 +507,6 @@ function submitQuickOrder() {
   localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
   postOrder(finalData);
-}
-
-// 🔴 ADMIN ACTION HANDLER
-function adminUpdateStatus(status) {
-  if (!editingOrderId) return;
-  if (!confirm(`Mark Order ${editingOrderId} as ${status}?`)) return;
-
-  showLoader(true);
-  fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({
-      action: 'updateStatus',
-      oid: editingOrderId,
-      status: status
-    })
-  })
-    .then(res => res.json())
-    .then(d => {
-      showLoader(false);
-      if (d.result === 'success') {
-        alert("Updated Successfully! ✅");
-        location.reload();
-      } else {
-        alert("Failed!");
-      }
-    });
 }
 
 // --- WIZARD ---
@@ -624,79 +683,6 @@ function postOrder(data) {
       }
     })
     .catch(() => { showLoader(false); showAlert("Failed. Try again."); });
-}
-
-
-// 🔴 1. UPDATE ADMIN UI (With Blue/Yellow Buttons & Logic)
-function updateAdminUI(serverStatus, oid) {
-  // 1. ലോക്കൽ അഡ്മിൻ അപ്ഡേറ്റുകൾ ഉണ്ടോ എന്ന് നോക്കുന്നു
-  let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let localUpdate = pendingUpdates.find(item => item.oid === oid);
-
-  // 2. മുൻഗണന: Local Update > Server Status > Default 'Pending'
-  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
-
-  let btnHTML = '';
-
-  // 3. LOGIC: 
-  // Pending -> Show 'Mark Sent' (Blue)
-  // Sent -> Show 'Mark Paid' (Yellow)
-  // Paid/Dispatched -> Show Status (Grey)
-
-  if (currentStatus === 'Pending') {
-    btnHTML = `
-      <div class="text-white small fw-bold mb-2">ACTION REQUIRED:</div>
-      <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 py-2 shadow">
-        💬 MARK INVOICE SENT (Blue)
-      </button>`;
-  }
-  else if (currentStatus === 'Sent') {
-    btnHTML = `
-      <div class="text-white small fw-bold mb-2">PAYMENT PENDING:</div>
-      <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 py-2 shadow text-dark">
-        💰 MARK AS PAID (Yellow)
-      </button>`;
-  }
-  else {
-    // Paid or Dispatched (Greyed Out)
-    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED 📦' : 'PAID ✅';
-    btnHTML = `
-      <div class="text-white small fw-bold mb-2">STATUS:</div>
-      <button class="btn btn-secondary btn-sm fw-bold w-100 py-2 shadow" disabled style="opacity:0.6;">
-        ${statusText}
-      </button>`;
-  }
-
-  // 4. UI അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-  $('#admin-btn-container').html(btnHTML);
-  $('#admin-action-bar').fadeIn();
-  $('body').css('padding-bottom', '100px');
-}
-
-// 🔴 2. ADMIN ACTION (Save to 'pendingUpdates' LocalStorage)
-function adminAction(oid, status) {
-  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
-
-  // 1. പെൻഡിംഗ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു (Separate Data Set)
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
-  // പഴയ എൻട്രി ഉണ്ടെങ്കിൽ കളയുന്നു (Duplicate വരാതിരിക്കാൻ)
-  updates = updates.filter(item => item.oid !== oid);
-
-  // പുതിയ സ്റ്റാറ്റസ് ചേർക്കുന്നു
-  updates.push({
-    oid: oid,
-    status: status,
-    time: new Date().getTime()
-  });
-
-  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-  // 2. UI ഉടൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നു (Reload വേണ്ട)
-  // അഡ്മിന് അപ്പോൾ തന്നെ മാറ്റം കാണാൻ സാധിക്കും
-  updateAdminUI(status, oid);
-
-  alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅`);
 }
 
 function sendToWhatsapp() {
