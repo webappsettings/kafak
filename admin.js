@@ -345,7 +345,7 @@ function sendWA(index) {
         updateOrder(d.orderid, 'Sent');
     }
 
-    // 2. Price Calculation (Based on State)
+    // 2. Price Calculation
     const base = n * 650;
     let courier = 0;
     const s = String(d.state || '').toLowerCase().trim();
@@ -360,20 +360,20 @@ function sendWA(index) {
 
     const total = base + courier;
 
-    // 3. Text Formatting (Same as Custom.js)
+    // 3. Text Formatting
     const amountText = `Amount(₹): ${base} + ${courier}`;
     const totalText = `Total(₹): ${total}/-`;
     const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
 
-    // Timestamp Handling (Optional fallback)
+    // Timestamp fallback
     const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
 
     const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
 
     const format = `\n____________________________________\n*${(d.name || '').trim().toUpperCase()}*\n*${(d.house || '').trim().toUpperCase()}*\n*${(d.place || '').trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${(d.pincode || '').trim()}*\n*Ph: ${(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: 7788990313 (KAFAK LLP)*\n\nPay ചെയ്ത് സ്ക്രീൻഷോട്ട് അയക്കുക. ✅`;
 
-    // 4. Send to Customer (Using d.phone)
-    // 10 അക്ക നമ്പറാണെങ്കിൽ 91 ചേർക്കുന്നു
+    // 🔴 4. FIX: Send to Customer (Clean Phone Number)
+    // Strip non-digits and ensure 91 is present
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 

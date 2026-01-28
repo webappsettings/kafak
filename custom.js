@@ -6,7 +6,7 @@ const courierRates = {
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// TRANSLATIONS
+// ... (Translations same as before) ...
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -96,10 +96,10 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN SETUP (FIXED TOP BAR)
+    // 🔴 1. ADMIN SETUP (FIXED BOTTOM BAR)
     if (isAdmin) {
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 10px 15px; z-index: 10000; border-bottom: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 10px 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:10px;"></div>
                     <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:40px; height:40px; border:1px solid #eee;">
@@ -109,7 +109,7 @@ $(document).ready(function () {
             </div>`;
 
       $('body').append(adminUI);
-      $('body').css('padding-top', '80px');
+      $('body').css('padding-bottom', '100px'); // Ensure content isn't hidden
 
       // Clear Cache Button at Bottom
       $('.footer-action').after(`
@@ -126,6 +126,8 @@ $(document).ready(function () {
 
       if (cachedOrder) {
         console.log("Loaded from Admin Cache instantly!");
+
+        // ✅ FIX: HIDE LOADER CORRECTLY
         showLoader(false);
 
         // Initial Status Update for Admin Bar
