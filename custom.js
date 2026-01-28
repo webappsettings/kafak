@@ -6,7 +6,7 @@ const courierRates = {
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// TRANSLATIONS (Moved to Top)
+// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -48,6 +48,8 @@ let userData = {};
 let successData = null;
 let poList = [];
 let myCustId = null;
+let localUsersMap = {};
+let currentLoginPhone = null; // 🔴 To Track Phone Changes
 
 $(document).ready(function () {
   const qtyOpts = `
@@ -70,13 +72,22 @@ $(document).ready(function () {
   $('#pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // 🔴 LOAD CUST ID FROM LOCAL
-  const saved = localStorage.getItem('kafakUser');
+  // LOAD USERS
+  const saved = localStorage.getItem('kafakUsers');
   if (saved) {
-    try {
-      const u = JSON.parse(saved);
-      if (u.custId) myCustId = u.custId;
-    } catch (e) { }
+    try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
+  } else {
+    const oldUser = localStorage.getItem('kafakUser');
+    if (oldUser) {
+      try {
+        const u = JSON.parse(oldUser);
+        if (u.phone) {
+          localUsersMap[u.phone] = u;
+          localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+          localStorage.removeItem('kafakUser');
+        }
+      } catch (e) { }
+    }
   }
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -84,7 +95,6 @@ $(document).ready(function () {
   if (urlParams.get('oid')) {
     fetchOrder(urlParams.get('oid'));
   } else {
-    // 🔴 ALWAYS START WITH PHONE INPUT (No Auto-Skip)
     showLoader(false);
     $('#step-0').fadeIn();
     updateFooterButtons('step-0');
@@ -145,9 +155,12 @@ function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
+  currentLoginPhone = phone; // 🔴 TRACK LOGIN PHONE
   showLoader(true);
 
-  // Pass custId for security check
+  let localData = localUsersMap[phone] || null;
+  myCustId = localData ? localData.custId : null;
+
   const idParam = myCustId ? `&custId=${myCustId}` : '';
 
   fetch(`${sc}?action=getCustomer&phone=${phone}${idParam}`)
@@ -156,57 +169,33 @@ function handlePhoneNext() {
       showLoader(false);
       $('#step-0').hide();
 
-      let localData = null;
-      try {
-        const u = JSON.parse(localStorage.getItem('kafakUser'));
-        if (u && u.phone === phone) localData = u;
-      } catch (e) { }
-
       if (res.result === 'success') {
         const d = res.data;
 
-        // 🔴 SECURITY LOGIC
         if (d.authorized === false) {
-          // ID Mismatch (Someone else's number) -> Privacy Mode (Show Wizard)
           editingOrderId = null;
           $('#whatsapp').val(phone);
           startWizard();
           return;
         }
 
-        // Merge Data (Prefer Local Address if authorized)
         const finalUser = localData ? { ...d, ...localData } : d;
         userData = finalUser;
 
-        // 🔴 STATUS LOGIC
         if (d.Status === 'Dispatched') {
-          // Dispatched -> New Order (Clean Qty)
           editingOrderId = null;
-          if (finalUser.name) {
-            showReturningUserView(finalUser, false);
-          } else {
-            startWizard();
-          }
+          if (finalUser.name) { showReturningUserView(finalUser, false); }
+          else { startWizard(); }
         } else if (d.Status && d.Status !== 'Dispatched') {
-          // Active -> Edit Mode
-          editingOrderId = d.orderid; // Server sends ID only if authorized
-          if (editingOrderId) {
-            showReturningUserView(finalUser, true);
-          } else {
-            // Should not happen if authorized, but fallback
-            startWizard();
-          }
+          editingOrderId = d.orderid;
+          if (editingOrderId) { showReturningUserView(finalUser, true); }
+          else { startWizard(); }
         } else {
-          // New/No Order -> New
           editingOrderId = null;
-          if (finalUser.name) {
-            showReturningUserView(finalUser, false);
-          } else {
-            startWizard();
-          }
+          if (finalUser.name) { showReturningUserView(finalUser, false); }
+          else { startWizard(); }
         }
       } else {
-        // Not in Server
         if (localData) {
           userData = localData;
           editingOrderId = null;
@@ -231,7 +220,12 @@ function fetchOrder(oid) {
       if (res.result === 'success') {
         const d = res.data;
         userData = d;
-        localStorage.setItem('kafakUser', JSON.stringify(d));
+        currentLoginPhone = d.phone; // 🔴 TRACK PHONE
+
+        if (d.phone) {
+          localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
+          localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+        }
 
         if (d.Status === 'Dispatched') {
           editingOrderId = null;
@@ -254,7 +248,6 @@ function showReturningUserView(d, isActiveOrder) {
 
   $('#saved-name').text(d.name);
 
-  // Fill Inputs
   $('#edit-phone').val(d.phone);
   $('#edit-house').val(d.house);
   $('#edit-place').val(d.place);
@@ -300,12 +293,8 @@ function updateSummaryDisplay() {
   $('#saved-phone-text').text(phone);
   $('#saved-wa-text span').text(wa);
 
-  if (alt) {
-    $('#saved-alt-text span').text(alt);
-    $('#saved-alt-text').show();
-  } else {
-    $('#saved-alt-text').hide();
-  }
+  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); }
+  else { $('#saved-alt-text').hide(); }
 }
 
 async function handleEditPincode(pin) {
@@ -316,7 +305,6 @@ async function handleEditPincode(pin) {
       if (data && data.length > 0) {
         $('#edit-district').val(data[0].district);
         $('#edit-state').val(data[0].statename);
-
         if (data.length > 1) {
           const dd = $('#edit-postoffice-select');
           dd.empty().append('<option value="">Select PO...</option>');
@@ -346,10 +334,12 @@ function submitQuickOrder() {
     showAlert(getAlert('err_select_po')); return;
   }
 
+  const newPhone = $('#edit-phone').val(); // Get potentially changed phone
+
   const finalData = {
     orderid: editingOrderId,
     name: $('#saved-name').text(),
-    phone: $('#edit-phone').val(),
+    phone: newPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
     house: $('#edit-house').val(),
@@ -360,14 +350,20 @@ function submitQuickOrder() {
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     message: $('#quick-msg').val(),
-    custId: myCustId // Send ID back to server
+    custId: myCustId
   };
 
-  // Save ID if server returns new one
+  // 🔴 PHONE NUMBER CHANGE LOGIC
+  if (currentLoginPhone && currentLoginPhone !== newPhone) {
+    delete localUsersMap[currentLoginPhone]; // Remove old Key
+  }
+  localUsersMap[newPhone] = finalData; // Add New Key
+  localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+
   postOrder(finalData);
 }
 
-// ... (WIZARD FUNCTIONS SAME AS BEFORE) ...
+// --- WIZARD ---
 function startWizard() {
   $('#wizard-view').fadeIn();
   updateFooterButtons('wizard');
@@ -404,6 +400,11 @@ async function nextStep() {
         userData.district = data[0].district;
         userData.state = data[0].statename;
 
+        // 🔴 FILL SUGGESTIONS
+        const dl = $('#place-list');
+        dl.empty();
+        data.forEach(p => dl.append(`<option value="${p.officename}">`));
+
         if (data.length > 1) {
           $('#po-select').empty().append('<option value="">Select...</option>');
           data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`));
@@ -425,8 +426,9 @@ async function nextStep() {
   if (currentStep === 4) {
     if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; }
     if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
-    $('#display-po').text(userData.postoffice);
-    $('#display-dist').text(userData.district);
+
+    // 🔴 WIZARD LOCATION DISPLAY UPDATE
+    updateWizardLocDisplay();
   }
 
   if (currentStep === 5) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
@@ -434,6 +436,12 @@ async function nextStep() {
   if (currentStep === 6) { renderReview(); currentStep = 7; showStep(7); return; }
   if (currentStep === 7) { submitWizardOrder(); return; }
   currentStep++; showStep(currentStep);
+}
+
+// 🔴 WIZARD LOCATION DISPLAY HELPER
+function updateWizardLocDisplay() {
+  $('#display-po').text(userData.postoffice || '');
+  $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`);
 }
 
 function prevStep() {
@@ -470,6 +478,10 @@ function submitWizardOrder() {
     message: $('#message').val(),
     custId: myCustId
   };
+
+  localUsersMap[finalData.phone] = finalData;
+  localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+
   postOrder(finalData);
 }
 
@@ -491,14 +503,12 @@ function postOrder(data) {
       showLoader(false);
       if (res.result === 'success') {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
-
-        // 🔴 SAVE NEW CUST ID
         if (res.custId) {
           data.custId = res.custId;
           myCustId = res.custId;
+          localUsersMap[data.phone] = data;
+          localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
         }
-        localStorage.setItem('kafakUser', JSON.stringify(data));
-
         $('#order-form').hide();
         $('#showsuccess').fadeIn();
         updateFooterButtons('none');

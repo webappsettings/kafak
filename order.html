@@ -94,7 +94,7 @@
       margin-top: 10px;
     }
 
-    /* 🔴 DROPDOWN BORDER FIX */
+    /* Input & Select Style */
     .regular-input,
     select.regular-input,
     select.huge-input {
@@ -305,6 +305,25 @@
       background: #f2f2f2 !important;
       color: #000 !important;
     }
+
+    /* 🔴 LOCATION BOX STYLE */
+    .loc-box {
+      margin-top: 15px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border: 1px dashed #ccc;
+      font-size: 13px;
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .loc-icon {
+      color: #d32f2f;
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -366,7 +385,6 @@
 
               <div class="address-box" id="address-edit-box">
                 <hr>
-
                 <label class="form-label" data-i18n="lbl_phone">ഫോൺ നമ്പർ</label>
                 <input type="tel" id="edit-phone" class="regular-input mb-2" maxlength="10"
                   oninput="updateSummaryDisplay()">
@@ -445,11 +463,16 @@
               <input type="text" id="house" class="huge-input" placeholder="House Name">
 
               <label class="form-label mt-4" data-i18n="lbl_place">സ്ഥലം</label>
-              <input type="text" id="place" class="huge-input" placeholder="Place">
+              <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list"
+                oninput="updateWizardLocDisplay()">
+              <datalist id="place-list"></datalist>
 
-              <div class="mt-3 text-muted small fw-bold">
-                <i class="fas fa-map-marker-alt text-success"></i> <span id="display-po"></span>, <span
-                  id="display-dist"></span>
+              <div class="loc-box">
+                <i class="fas fa-map-marker-alt loc-icon"></i>
+                <div>
+                  <div style="font-weight:700; color:#000;" id="display-po"></div>
+                  <div id="display-dist-state"></div>
+                </div>
               </div>
             </div>
 
@@ -540,7 +563,7 @@
         customClass: { popup: 'ios-popup', title: 'ios-title', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' }
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.removeItem('kafakUser');
+          localStorage.removeItem('kafakUsers');
           location.reload();
         }
       })
