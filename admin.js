@@ -149,12 +149,20 @@ function renderTabs(orders) {
 function updateSyncButtonUI() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     const syncBtn = $('#sync-btn');
+    const logoPlaceholder = $('#logo-placeholder');
+    const headerLogo = $('#header-logo');
+    const badge = $('#sync-badge-count');
 
     if (pendingUpdates.length > 0) {
-        syncBtn.show();
-        syncBtn.html(`🔄 SYNC (${pendingUpdates.length})`);
+        // Show Sync Button
+        syncBtn.css('display', 'flex'); // Flex to center icon
+        logoPlaceholder.hide(); // Hide logo placeholder to make space
+        badge.text(pendingUpdates.length); // Update Count
     } else {
+        // Hide Sync Button
         syncBtn.hide();
+        logoPlaceholder.show();
+        headerLogo.show(); // Show logo when sync is hidden
     }
 }
 
