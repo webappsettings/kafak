@@ -183,33 +183,6 @@
       float: right;
     }
 
-    .review-card {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
-    }
-
-    .review-item {
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .review-label {
-      font-size: 12px;
-      color: #888;
-      font-weight: 600;
-    }
-
-    .review-val {
-      font-weight: 700;
-      text-align: right;
-      font-size: 15px;
-    }
-
     #full-loader {
       position: fixed;
       top: 0;
@@ -306,6 +279,7 @@
     }
 
     .loc-box {
+      display: none;
       margin-top: 15px;
       padding: 12px;
       background: #f8f9fa;
@@ -313,7 +287,6 @@
       border: 1px dashed #ccc;
       font-size: 13px;
       color: #555;
-      display: flex;
       align-items: center;
       gap: 10px;
     }
@@ -323,6 +296,7 @@
       font-size: 18px;
     }
 
+    /* 🔴 NEW PRICE CARD STYLE */
     .price-card {
       background: #f8f9fa;
       border: 1px dashed #ced4da;
@@ -521,6 +495,7 @@
               <label class="form-label" data-i18n="lbl_altphone">വിളിച്ചാൽ കിട്ടുന്ന മറ്റൊരു നമ്പർ (Optional)</label>
               <input type="tel" id="altphone" class="huge-input" placeholder="Alternate Phone" maxlength="10">
             </div>
+
             <div class="wiz-step" data-step="7" style="display:none;">
               <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
               <select id="quantity" class="huge-input border-0 bg-transparent">
@@ -528,6 +503,7 @@
               </select>
               <label class="form-label mt-4" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
               <input type="text" id="message" class="regular-input" placeholder="...">
+
               <div id="wiz-price-box" class="price-card" style="display:none;">
                 <div class="price-row">
                   <span>Honey Price (<span class="qty-count">0</span>)</span>
@@ -542,22 +518,6 @@
                   <span>Total Amount</span>
                   <span class="text-success">₹<span class="val-total">0</span></span>
                 </div>
-              </div>
-            </div>
-            <div class="wiz-step" data-step="8" style="display:none;">
-              <h4 class="fw-bold mb-3" data-i18n="lbl_summary">ഓർഡർ വിവരങ്ങൾ</h4>
-              <div class="review-card">
-                <div class="review-item"><span class="review-label" data-i18n="lbl_name">പേര്</span><span
-                    class="review-val" id="rev-name"></span></div>
-                <div class="review-item"><span class="review-label" data-i18n="lbl_phone">ഫോൺ</span><span
-                    class="review-val" id="rev-phone"></span></div>
-                <div class="review-item"><span class="review-label" data-i18n="lbl_address">വിലാസം</span><span
-                    class="review-val text-end" id="rev-address"></span></div>
-                <hr style="border-color:#eee;">
-                <div class="review-item"><span class="review-label" data-i18n="lbl_qty">സാധനം</span><span
-                    class="review-val" id="rev-qty"></span></div>
-                <div class="review-item"><span class="review-label">Total</span><span
-                    class="review-val fs-5 text-success" id="rev-total"></span></div>
               </div>
             </div>
           </div>

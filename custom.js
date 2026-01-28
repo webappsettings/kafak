@@ -1,4 +1,4 @@
-
+// 🔴 GOOGLE SCRIPT URL
 const sc = `https://script.google.com/macros/s/AKfycbzExF2yFhT02II5c2XZcNVbh9UcCYQonwolBX_mcrKaeWmLbVQx58fgrs36ZrZcY2VrFA/exec`;
 
 const courierRates = {
@@ -170,7 +170,6 @@ function handlePhoneNext() {
       if (res.result === 'success') {
         const d = res.data;
 
-        // 🔴 CRITICAL FIX: Capture ID from Server
         if (d.custId) { myCustId = d.custId; }
 
         if (d.authorized === false) {
@@ -221,7 +220,6 @@ function fetchOrder(oid) {
       if (res.result === 'success') {
         let d = res.data;
 
-        // 🔴 CRITICAL FIX: Capture ID from Server
         if (d.custId) { myCustId = d.custId; }
 
         if (d.phone && localUsersMap[d.phone]) {
@@ -279,7 +277,8 @@ function showReturningUserView(d, isActiveOrder) {
   } else {
     $('#quick-qty').val('').trigger('change');
     $('#quick-msg').val('');
-    $('#quick-price').text('₹0');
+    // Reset Price
+    $('#quick-price-box').hide();
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ ചെയ്യാം" : "PLACE ORDER");
   }
@@ -306,14 +305,12 @@ function updateSummaryDisplay() {
   if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
 }
 
-// 🔴 UPDATED: Global PO Rename + Single PO Display Logic
 async function handleEditPincode(pin) {
   if (pin.length === 6) {
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`);
       let data = await res.json();
 
-      // ✅ GLOBAL FIX: Replace BO/SO with PO instantly
       data = data.map(item => ({
         ...item,
         officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO')
@@ -324,25 +321,18 @@ async function handleEditPincode(pin) {
         $('#edit-state').val(data[0].statename);
 
         if (data.length > 1) {
-          // MULTIPLE: Show Dropdown, Hide Single Display
           const dd = $('#edit-postoffice-select');
           dd.empty().append('<option value="">Select PO...</option>');
           data.forEach(p => dd.append(`<option value="${p.officename}">${p.officename}</option>`));
-
           $('#edit-po-wrapper').show();
-          $('#edit-single-po').hide(); // Hide Box
+          $('#edit-single-po').hide();
         } else {
-          // SINGLE: Show Beautiful Box, Hide Dropdown
           const poName = data[0].officename;
           $('#edit-postoffice').val(poName);
-
-          $('#edit-po-wrapper').hide(); // Hide Dropdown
-
-          // Show in Loc Box
+          $('#edit-po-wrapper').hide();
           $('#edit-single-po')
             .html(`<i class="fas fa-map-marker-alt loc-icon"></i> <span class="fw-bold text-dark">${poName}</span>`)
             .fadeIn();
-
           updateSummaryDisplay();
         }
       }
@@ -400,13 +390,20 @@ function startWizard() {
 function showStep(s) {
   $('.wiz-step').hide();
   $(`.wiz-step[data-step="${s}"]`).fadeIn();
-  const pct = (s / 8) * 100; // 🔴 Updated to 8 Steps
+  const pct = (s / 7) * 100; // 🔴 Now 7 Steps max
   $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next');
   const lang = $('.form-select').val();
-  if (s === 8) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); }
-  else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
-  if (s !== 7) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
+
+  if (s === 7) {
+    btn.html(translations[lang].btn_order);
+    btn.addClass('btn-brand-green');
+  } else {
+    btn.html(translations[lang].btn_next);
+    btn.removeClass('btn-brand-green');
+  }
+
+  if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
 }
 
 async function nextStep() {
@@ -419,9 +416,8 @@ async function nextStep() {
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`);
-      let data = await res.json(); // Note: Changed 'const' to 'let'
+      let data = await res.json();
 
-      // ✅ ഈ വരി ഇവിടെയും ചേർക്കുക (Global PO Fix for Wizard)
       data = data.map(item => ({
         ...item,
         officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO')
@@ -433,7 +429,6 @@ async function nextStep() {
         userData.district = data[0].district;
         userData.state = data[0].statename;
 
-        // 🔴 FILL SUGGESTIONS
         const dl = $('#place-list');
         dl.empty();
         data.forEach(p => dl.append(`<option value="${p.officename}">`));
@@ -458,20 +453,23 @@ async function nextStep() {
 
   if (currentStep === 4) {
     if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; }
-    currentStep = 5; showStep(5); return; // 🔴 NEW STEP FOR PLACE
+    currentStep = 5; showStep(5); return;
   }
 
   if (currentStep === 5) {
     if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
-    // Update Location Display
     $('#display-po').text(userData.postoffice);
     $('#display-dist-state').text(`${$('#place').val()}, ${userData.district}`);
   }
 
   if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
-  if (currentStep === 7 && !$('#quantity').val()) return showAlert(getAlert('err_qty'));
-  if (currentStep === 7) { renderReview(); currentStep = 8; showStep(8); return; }
-  if (currentStep === 8) { submitWizardOrder(); return; }
+
+  if (currentStep === 7) {
+    if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; }
+    submitWizardOrder(); // 🔴 SUBMIT DIRECTLY AT STEP 7
+    return;
+  }
+
   currentStep++; showStep(currentStep);
 }
 
@@ -486,15 +484,6 @@ function prevStep() {
   if (currentStep === 4 && poList.length <= 1) { currentStep = 3; showStep(3); return; }
   if (currentStep === 3.5) { currentStep = 3; showStep(3); return; }
   currentStep--; showStep(currentStep);
-}
-
-function renderReview() {
-  $('#rev-name').text($('#name').val());
-  $('#rev-phone').text($('#phone').val());
-  let addr = `${$('#house').val()}, ${$('#place').val()}\n${userData.postoffice}\n${userData.district} - ${$('#pincode').val()}`;
-  $('#rev-address').text(addr);
-  $('#rev-qty').text(`${$('#quantity').val()} Bottle(s)`);
-  $('#rev-total').text($('#wiz-price').text());
 }
 
 function submitWizardOrder() {
@@ -521,16 +510,17 @@ function submitWizardOrder() {
   postOrder(finalData);
 }
 
+// 🔴 UPDATED PRICE BREAKDOWN FUNCTION
 function updatePrice(qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
 
   // Calculate
   const base = n * 650;
-  const courier = courierRates.kerala[n] || 0; // Default Kerala Rates
+  const courier = courierRates.kerala[n] || 0;
   const total = base + courier;
 
-  // Select Container (Quick View or Wizard)
+  // Select Container (Quick or Wizard)
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
 
   // Update Values
