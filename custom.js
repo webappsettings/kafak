@@ -271,12 +271,12 @@ function showReturningUserView(d, isActiveOrder) {
 
   if (isActiveOrder) {
     $('#quick-qty').val(d.quantity).trigger('change');
-    $('#quick-msg').val(d.message);
+    // $('#quick-msg').val(d.message);
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
   } else {
     $('#quick-qty').val('').trigger('change');
-    $('#quick-msg').val('');
+    // $('#quick-msg').val('');
     // Reset Price
     $('#quick-price-box').hide();
     const lang = $('.form-select').val();
@@ -366,7 +366,7 @@ function submitQuickOrder() {
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
-    message: $('#quick-msg').val(),
+    // message: $('#quick-msg').val(),
     custId: myCustId
   };
 
@@ -500,7 +500,7 @@ function submitWizardOrder() {
     district: userData.district,
     state: userData.state || 'Kerala',
     quantity: $('#quantity').val(),
-    message: $('#message').val(),
+    // message: $('#message').val(),
     custId: myCustId
   };
 
