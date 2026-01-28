@@ -120,10 +120,9 @@ $(document).ready(function () {
 
 // --- HELPER FUNCTIONS ---
 
-// 🔴 BUTTON TEXT UPDATE FUNCTION
 function updateSubmitButton() {
   const lang = $('.lang-select').val() || 'ml';
-  const key = editingOrderId ? 'update_btn' : 'order_btn'; // Edit ആണെങ്കിൽ update_btn എടുക്കും
+  const key = editingOrderId ? 'update_btn' : 'order_btn';
   if (translations[lang] && translations[lang][key]) {
     $('#submitBtn').html(translations[lang][key]);
   }
@@ -159,7 +158,7 @@ function checkForActiveOrder(phone) {
         }
       }
       toggleOrderInputs(true);
-      updateSubmitButton(); // 🔴 Update Button Text
+      updateSubmitButton();
     })
     .catch(() => {
       toggleOrderInputs(true);
@@ -218,9 +217,12 @@ function fetchOrderDetails(oid) {
 
         updateAdminUI(serverStatus, oid);
         checkPincode(d.pincode, d.postoffice);
-        enableEditMode();
+
+        // 🔴 CHANGED: Now shows Summary Card instead of Edit Mode
+        showSummary(d);
+
         proceedToStep2();
-        updateSubmitButton(); // 🔴 Update Button Text
+        updateSubmitButton();
       }
     });
 }
@@ -292,13 +294,13 @@ function handleStep1() {
         }
 
         toggleOrderInputs(true);
-        updateSubmitButton(); // 🔴 Update Button Text
+        updateSubmitButton();
 
       } else {
         editingOrderId = null;
         nameSection.slideDown();
         tempNameInput.focus();
-        updateSubmitButton(); // 🔴 Reset Button Text
+        updateSubmitButton();
       }
     });
 }
@@ -427,7 +429,6 @@ function sendToWhatsapp() {
 
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successSubmitData.timestamp}_\n🔗 _${editLink}_`;
 
-  // 🔴 WHATSAPP FORMAT
   const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
@@ -438,7 +439,6 @@ function closeAdminBar() {
   $('body').css('padding-bottom', '0');
 }
 
-// 🔴 TRANSLATIONS UPDATED
 const translations = {
   ml: {
     step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?",
@@ -462,12 +462,11 @@ function changeLanguage(lang) {
   $('[data-i18n]').each(function () {
     const key = $(this).data('i18n');
     if (translations[lang] && translations[lang][key]) {
-      // ബട്ടൺ ടെക്സ്റ്റ് updateSubmitButton വഴി മാത്രം മാറ്റുന്നു
       if ($(this).attr('id') === 'submitBtn') return;
       $(this).text(translations[lang][key]);
     }
   });
-  updateSubmitButton(); // ഭാഷ മാറുമ്പോൾ ബട്ടണും മാറും
+  updateSubmitButton();
 }
 
 $("#order-form").validate({
