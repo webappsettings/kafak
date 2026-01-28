@@ -1,5 +1,5 @@
 // 🔴 1. GOOGLE SCRIPT URL
-const sc = `https://script.google.com/macros/s/AKfycby-SFsZfynD-PIsgT59Bl1Trl6z2ehltQ9lK2GKImABVkAgrwjNKFpAvVUTiDnRqKjTzQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwFovDSdxs53GgixjNkOCOiG1npBdKNYIsym6A4q4SiGJrGV20LN3OuKU8e6SY8WBXSZQ/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -48,21 +48,25 @@ $(document).ready(function () {
         $('#whatsapp').val(u.whatsapp || u.phone);
         $('#house').val(u.house || '');
         $('#place').val(u.place || '');
-        if (u.pincode) {
-          $('#pincode').val(u.pincode);
-          availablePin = true;
-          checkPincode(String(u.pincode), u.postoffice);
-        }
+
+        toggleOrderInputs(false);
+
         $('#step-1').removeClass('active').hide();
         $('#step-2').addClass('active').fadeIn();
         $('#progressBar').css('width', '50%');
         $('#dot-1').addClass('completed').html('✓');
         $('#dot-2').addClass('active');
+
         showSummary(u);
         autoLoggedIn = true;
 
-        // 🔴 NEW FIX: Auto Login ചെയ്യുന്നവർക്ക് ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് ബാക്ക്ഗ്രൗണ്ടിൽ നോക്കുന്നു
-        checkForActiveOrder(u.phone);
+        (async () => {
+          if (u.pincode) {
+            $('#pincode').val(u.pincode);
+            await checkPincode(String(u.pincode), u.postoffice);
+          }
+          checkForActiveOrder(u.phone);
+        })();
       }
     } catch (e) { localStorage.removeItem('kafakUser'); }
   }
@@ -71,7 +75,6 @@ $(document).ready(function () {
     $('#step-1').addClass('active').show();
   }
 
-  // --- LANGUAGE & EDIT MODE CHECK ---
   const langParam = urlParams.get('lang');
   if (langParam && translations[langParam]) {
     $('.lang-select').val(langParam);
@@ -117,28 +120,50 @@ $(document).ready(function () {
 
 // --- HELPER FUNCTIONS ---
 
-// 🔴 പുതിയ ഫങ്ക്ഷൻ: ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് നോക്കാൻ (Auto Login-ന് വേണ്ടി)
+// 🔴 BUTTON TEXT UPDATE FUNCTION
+function updateSubmitButton() {
+  const lang = $('.lang-select').val() || 'ml';
+  const key = editingOrderId ? 'update_btn' : 'order_btn'; // Edit ആണെങ്കിൽ update_btn എടുക്കും
+  if (translations[lang] && translations[lang][key]) {
+    $('#submitBtn').html(translations[lang][key]);
+  }
+}
+
+function toggleOrderInputs(show) {
+  if (show) {
+    $('#order-loading-msg').hide();
+    $('.order-inputs-wrapper').fadeIn();
+  } else {
+    if ($('#order-loading-msg').length === 0) {
+      $('#quantity').parent().parent().before('<div id="order-loading-msg" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm text-warning" role="status"></div> <span class="small fw-bold ms-2">Fetching Details... Please wait...</span></div>');
+      $('#quantity').parent().parent().addClass('order-inputs-wrapper');
+      $('#message').parent().addClass('order-inputs-wrapper');
+    }
+    $('.order-inputs-wrapper').hide();
+    $('#order-loading-msg').show();
+  }
+}
+
 function checkForActiveOrder(phone) {
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
     .then(response => {
       if (response.result === 'success') {
         const d = response.data;
-        // Dispatch ചെയ്യാത്ത ഓർഡർ ഉണ്ടെങ്കിൽ അത് ലിങ്ക് ചെയ്യുന്നു
         if (d.orderid && d.Status && d.Status !== 'Dispatched') {
           editingOrderId = d.orderid;
-          console.log("Active order linked:", editingOrderId);
-
-          // പഴയ ക്വാണ്ടിറ്റി ഓട്ടോമാറ്റിക് ആയി സെലക്ട് ചെയ്യുന്നു
           if (d.quantity) {
-            // UI റെഡി ആകാൻ അല്പം സമയം കൊടുക്കുന്നു
-            setTimeout(() => {
-              $('#quantity').val(d.quantity).trigger('change');
-            }, 1000);
+            $('#quantity').val(d.quantity).trigger('change');
           }
           if (d.message) $('#message').val(d.message);
         }
       }
+      toggleOrderInputs(true);
+      updateSubmitButton(); // 🔴 Update Button Text
+    })
+    .catch(() => {
+      toggleOrderInputs(true);
+      updateSubmitButton();
     });
 }
 
@@ -168,13 +193,22 @@ function fetchOrderDetails(oid) {
       $('#main-loader').fadeOut();
       if (response.result === 'success') {
         const d = response.data;
-        editingOrderId = d.orderid;
+
+        if (d.Status === 'Dispatched') {
+          editingOrderId = null;
+          $('#quantity').val('').trigger('change');
+          $('#message').val('');
+        } else {
+          editingOrderId = d.orderid;
+          $('#quantity').val(d.quantity).trigger('change');
+          $('#message').val(d.message);
+        }
+
         $('#name').val(d.name);
         $('#phone').val(d.phone);
         $('#whatsapp').val(d.whatsapp || d.phone);
         $('#pincode').val(d.pincode);
         $('#state').val(d.state);
-        $('#quantity').val(d.quantity);
         $('#house').val(d.house);
         $('#place').val(d.place);
 
@@ -186,6 +220,7 @@ function fetchOrderDetails(oid) {
         checkPincode(d.pincode, d.postoffice);
         enableEditMode();
         proceedToStep2();
+        updateSubmitButton(); // 🔴 Update Button Text
       }
     });
 }
@@ -200,7 +235,6 @@ function adminAction(oid, status) {
   updateAdminUI(status, oid);
 }
 
-// 🔴 UPDATED HANDLE STEP 1 (Duplicate Prevention)
 function handleStep1() {
   const phone = $('#phone').val().replace(/\D/g, '');
   const tempNameInput = $('#temp_name');
@@ -224,41 +258,47 @@ function handleStep1() {
 
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
-    .then(response => {
+    .then(async response => {
       btn.html(originalContent).prop('disabled', false);
+
       if (response.result === 'success') {
         const d = response.data;
 
-        // 🔴 DUPLICATE CHECK: നിലവിൽ ഓർഡർ ഉണ്ടെങ്കിൽ അത് എഡിറ്റ് ചെയ്യുന്നു
+        toggleOrderInputs(false);
+
         if (d.orderid && d.Status && d.Status !== 'Dispatched') {
           editingOrderId = d.orderid;
-          // പഴയ ക്വാണ്ടിറ്റി ലോഡ് ചെയ്യുന്നു
-          if (d.quantity) {
-            setTimeout(() => { $('#quantity').val(d.quantity).trigger('change'); }, 500);
-          }
+          if (d.quantity) $('#quantity').val(d.quantity).trigger('change');
           if (d.message) $('#message').val(d.message);
         } else {
-          editingOrderId = null; // New Order
+          editingOrderId = null;
           $('#quantity').val('').trigger('change');
+          $('#message').val('');
         }
 
         $('#name').val(d.name);
         $('#whatsapp').val(d.whatsapp || phone);
         $('#house').val(d.house);
         $('#place').val(d.place);
-        if (d.pincode) {
-          $('#pincode').val(d.pincode);
-          availablePin = true;
-          checkPincode(String(d.pincode), d.postoffice);
-        }
+
         saveLocalData(d);
         showSummary(d);
         proceedToStep2();
+
+        if (d.pincode) {
+          $('#pincode').val(d.pincode);
+          availablePin = true;
+          await checkPincode(String(d.pincode), d.postoffice);
+        }
+
+        toggleOrderInputs(true);
+        updateSubmitButton(); // 🔴 Update Button Text
+
       } else {
-        // New User
         editingOrderId = null;
         nameSection.slideDown();
         tempNameInput.focus();
+        updateSubmitButton(); // 🔴 Reset Button Text
       }
     });
 }
@@ -308,7 +348,7 @@ function submitOrder() {
   const btn = $('#submitBtn');
   btn.prop('disabled', true).html('Processing...');
   const formData = {
-    orderid: editingOrderId || null, // 🔴 ID ഉണ്ടെങ്കിൽ അപ്‌ഡേറ്റ് ചെയ്യും, ഇല്ലെങ്കിൽ പുതിയത്
+    orderid: editingOrderId || null,
     name: $('#name').val(),
     phone: $('#phone').val(),
     house: $('#house').val(),
@@ -386,7 +426,9 @@ function sendToWhatsapp() {
   const totalText = calculateTotalString(amountText);
 
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successSubmitData.timestamp}_\n🔗 _${editLink}_`;
-  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+
+  // 🔴 WHATSAPP FORMAT
+  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
@@ -396,28 +438,36 @@ function closeAdminBar() {
   $('body').css('padding-bottom', '0');
 }
 
+// 🔴 TRANSLATIONS UPDATED
 const translations = {
   ml: {
     step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?",
     step1_desc: "ഓർഡർ ചെയ്യാൻ മൊബൈൽ നമ്പർ നൽകുക",
     your_name: "നിങ്ങളുടെ പേര്",
     next_btn: "അടുത്തത് ➔",
-    order_btn: "ഓർഡർ ചെയ്യാം ✅"
+    order_btn: "ഓർഡർ ചെയ്യാം ✅",
+    update_btn: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം 🔄"
   },
   en: {
     step1_title: "What is your Phone Number?",
     step1_desc: "Enter mobile number to verify",
     your_name: "Your Name",
     next_btn: "NEXT STEP ➔",
-    order_btn: "PLACE ORDER ✅"
+    order_btn: "PLACE ORDER ✅",
+    update_btn: "UPDATE ORDER 🔄"
   }
 };
 
 function changeLanguage(lang) {
   $('[data-i18n]').each(function () {
     const key = $(this).data('i18n');
-    if (translations[lang] && translations[lang][key]) $(this).text(translations[lang][key]);
+    if (translations[lang] && translations[lang][key]) {
+      // ബട്ടൺ ടെക്സ്റ്റ് updateSubmitButton വഴി മാത്രം മാറ്റുന്നു
+      if ($(this).attr('id') === 'submitBtn') return;
+      $(this).text(translations[lang][key]);
+    }
   });
+  updateSubmitButton(); // ഭാഷ മാറുമ്പോൾ ബട്ടണും മാറും
 }
 
 $("#order-form").validate({
