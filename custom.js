@@ -170,6 +170,9 @@ function handlePhoneNext() {
       if (res.result === 'success') {
         const d = res.data;
 
+        // 🔴 CRITICAL FIX: Capture ID from Server
+        if (d.custId) { myCustId = d.custId; }
+
         if (d.authorized === false) {
           editingOrderId = null;
           $('#whatsapp').val(phone);
@@ -218,10 +221,11 @@ function fetchOrder(oid) {
       if (res.result === 'success') {
         let d = res.data;
 
-        // 🔴 MERGE WITH LOCAL DATA IF AVAILABLE (To fix missing fields like District)
+        // 🔴 CRITICAL FIX: Capture ID from Server
+        if (d.custId) { myCustId = d.custId; }
+
         if (d.phone && localUsersMap[d.phone]) {
           const local = localUsersMap[d.phone];
-          // If server data is missing district but local has it, use local
           if (!d.district && local.district) d.district = local.district;
           if (!d.custId && local.custId) d.custId = local.custId;
         }
@@ -229,7 +233,6 @@ function fetchOrder(oid) {
         userData = d;
         currentLoginPhone = d.phone;
 
-        // Save back merged data
         if (d.phone) {
           localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
           localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
