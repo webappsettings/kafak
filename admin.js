@@ -288,28 +288,46 @@ function calculatePriceInfo(qty, state) {
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
-    const price = calculatePriceInfo(n, d.state);
 
-    if (d.Status === 'Pending') updateOrder(d.orderid, 'Sent');
+    // 1. Auto Update Status to 'Sent' if Pending
+    if (d.Status === 'Pending') {
+        updateOrder(d.orderid, 'Sent');
+    }
 
-    const msg = `
-*INVOICE: KAFAK HONEY* 🍯
----------------------------------
-Name: *${d.name}*
-Order ID: ${d.orderid}
-Quantity: ${d.quantity} Bottles
-Total: *${price.total}*
----------------------------------
-*Google Pay: 7788990313*
-(KAFAK LLP)
+    // 2. Price Calculation (Same logic as Custom.js)
+    const base = n * 650;
+    let courier = 0;
+    const s = String(d.state || '').toLowerCase().trim();
 
-Pay ചെയ്ത് സ്ക്രീൻഷോട്ട് അയക്കുക. ✅`;
+    if (s === 'lakshadweep') {
+        courier = (n * 100) + 20;
+    } else if (s === 'kerala') {
+        courier = courierRates.kerala[n] || 0;
+    } else {
+        courier = courierRates.outside[n] || 0;
+    }
 
+    const total = base + courier;
+    const amountText = `Amount(₹): ${base} + ${courier}`;
+    const totalText = `Total(₹): ${total}/-`;
+
+    // 3. Message Construction (Exact match with Custom.js)
+    const adminPhone = '7788990313';
+    const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
+
+    // Timestamp Handling
+    const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
+
+    const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
+
+    const format = `\n____________________________________\n*${(d.name || '').trim().toUpperCase()}*\n*${(d.house || '').trim().toUpperCase()}*\n*${(d.place || '').trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${(d.pincode || '').trim()}*\n*Ph: ${(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+
+    // 4. Send to Customer
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    // 🔴 Using window.location.href to fix block issue
-    window.location.href = `https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`;
+    // Open WhatsApp
+    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
