@@ -1,5 +1,5 @@
-// 🔴 GOOGLE SCRIPT URL
-const sc = `https://script.google.com/macros/s/AKfycbwJWObfZdwgh30HAOPaGhjunhtFGpqlmMk9QgfsH7cloCxKwtukr2QMWkZ3lxg-FwEZdg/exec`;
+
+const sc = `https://script.google.com/macros/s/AKfycby_Ju8fR6emPAF9MMOULRZfnQDmODOju38I4Mjfo-yt1FZjgtud6Q42-YALC0KUCo-fwg/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -49,7 +49,7 @@ let successData = null;
 let poList = [];
 let myCustId = null;
 let localUsersMap = {};
-let currentLoginPhone = null; // 🔴 To Track Phone Changes
+let currentLoginPhone = null;
 
 $(document).ready(function () {
   const qtyOpts = `
@@ -72,7 +72,6 @@ $(document).ready(function () {
   $('#pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // LOAD USERS
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -91,7 +90,6 @@ $(document).ready(function () {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-
   if (urlParams.get('oid')) {
     fetchOrder(urlParams.get('oid'));
   } else {
@@ -155,7 +153,7 @@ function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
-  currentLoginPhone = phone; // 🔴 TRACK LOGIN PHONE
+  currentLoginPhone = phone;
   showLoader(true);
 
   let localData = localUsersMap[phone] || null;
@@ -220,7 +218,7 @@ function fetchOrder(oid) {
       if (res.result === 'success') {
         const d = res.data;
         userData = d;
-        currentLoginPhone = d.phone; // 🔴 TRACK PHONE
+        currentLoginPhone = d.phone;
 
         if (d.phone) {
           localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
@@ -292,9 +290,7 @@ function updateSummaryDisplay() {
   $('#saved-place-dist').text(dist);
   $('#saved-phone-text').text(phone);
   $('#saved-wa-text span').text(wa);
-
-  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); }
-  else { $('#saved-alt-text').hide(); }
+  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
 }
 
 async function handleEditPincode(pin) {
@@ -329,12 +325,9 @@ function toggleAddressEdit() { $('.address-box').slideToggle(); }
 
 function submitQuickOrder() {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+  if ($('#edit-po-wrapper').is(':visible') && !$('#edit-postoffice-select').val()) { showAlert(getAlert('err_select_po')); return; }
 
-  if ($('#edit-po-wrapper').is(':visible') && !$('#edit-postoffice-select').val()) {
-    showAlert(getAlert('err_select_po')); return;
-  }
-
-  const newPhone = $('#edit-phone').val(); // Get potentially changed phone
+  const newPhone = $('#edit-phone').val();
 
   const finalData = {
     orderid: editingOrderId,
@@ -353,11 +346,10 @@ function submitQuickOrder() {
     custId: myCustId
   };
 
-  // 🔴 PHONE NUMBER CHANGE LOGIC
   if (currentLoginPhone && currentLoginPhone !== newPhone) {
-    delete localUsersMap[currentLoginPhone]; // Remove old Key
+    delete localUsersMap[currentLoginPhone];
   }
-  localUsersMap[newPhone] = finalData; // Add New Key
+  localUsersMap[newPhone] = finalData;
   localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
   postOrder(finalData);
@@ -374,13 +366,13 @@ function startWizard() {
 function showStep(s) {
   $('.wiz-step').hide();
   $(`.wiz-step[data-step="${s}"]`).fadeIn();
-  const pct = (s / 7) * 100;
+  const pct = (s / 8) * 100; // 🔴 Updated to 8 Steps
   $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next');
   const lang = $('.form-select').val();
-  if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); }
+  if (s === 8) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); }
   else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
-  if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
+  if (s !== 7) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
 }
 
 async function nextStep() {
@@ -425,20 +417,23 @@ async function nextStep() {
 
   if (currentStep === 4) {
     if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; }
-    if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
-
-    // 🔴 WIZARD LOCATION DISPLAY UPDATE
-    updateWizardLocDisplay();
+    currentStep = 5; showStep(5); return; // 🔴 NEW STEP FOR PLACE
   }
 
-  if (currentStep === 5) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
-  if (currentStep === 6 && !$('#quantity').val()) return showAlert(getAlert('err_qty'));
-  if (currentStep === 6) { renderReview(); currentStep = 7; showStep(7); return; }
-  if (currentStep === 7) { submitWizardOrder(); return; }
+  if (currentStep === 5) {
+    if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
+    // Update Location Display
+    $('#display-po').text(userData.postoffice);
+    $('#display-dist-state').text(`${$('#place').val()}, ${userData.district}`);
+  }
+
+  if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
+  if (currentStep === 7 && !$('#quantity').val()) return showAlert(getAlert('err_qty'));
+  if (currentStep === 7) { renderReview(); currentStep = 8; showStep(8); return; }
+  if (currentStep === 8) { submitWizardOrder(); return; }
   currentStep++; showStep(currentStep);
 }
 
-// 🔴 WIZARD LOCATION DISPLAY HELPER
 function updateWizardLocDisplay() {
   $('#display-po').text(userData.postoffice || '');
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`);
@@ -503,12 +498,14 @@ function postOrder(data) {
       showLoader(false);
       if (res.result === 'success') {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
+
         if (res.custId) {
           data.custId = res.custId;
           myCustId = res.custId;
           localUsersMap[data.phone] = data;
           localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
         }
+
         $('#order-form').hide();
         $('#showsuccess').fadeIn();
         updateFooterButtons('none');
