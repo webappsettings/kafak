@@ -13,43 +13,61 @@
 
     <style>
         :root {
-            --brand-dark: #1a1a1a;
             --brand-green: #2e7d32;
-            --light-bg: #f4f6f8;
+            --light-bg: #f8f9fa;
         }
 
         body {
             background: var(--light-bg);
             font-family: 'Manrope', sans-serif;
-            color: #333;
-            padding-bottom: 100px;
+            padding-bottom: 80px;
         }
 
-        /* NAVBAR */
         .navbar {
             background: white;
             padding: 15px 0;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid #eee;
         }
 
         .brand-text {
             font-weight: 900;
             font-size: 20px;
-            color: black;
-            letter-spacing: -0.5px;
         }
 
-        /* TABS */
+        /* 🔴 SEARCH BAR MARGIN */
+        .search-container {
+            padding: 10px 0 10px 0;
+            background: var(--light-bg);
+            margin-top: 10px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            background: white;
+            border-radius: 12px;
+            font-weight: 600;
+            outline: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        /* 🔴 STICKY TABS */
+        #tabs-container {
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: var(--light-bg);
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
         .nav-pills {
             background: #e9ecef;
             padding: 5px;
             border-radius: 50px;
             display: inline-flex;
             width: auto;
-            margin-bottom: 25px;
         }
 
         .nav-pills .nav-link {
@@ -58,28 +76,19 @@
             border-radius: 40px;
             padding: 8px 20px;
             font-size: 13px;
-            transition: 0.3s;
         }
 
         .nav-pills .nav-link.active {
-            background-color: white;
-            color: black;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: black;
+            color: white;
         }
 
-        /* CARD STYLE */
         .order-card {
             background: white;
             border-radius: 16px;
             padding: 18px;
             margin-bottom: 15px;
             border: 1px solid #edf2f7;
-            position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .order-card:active {
-            transform: scale(0.99);
         }
 
         .status-Pending {
@@ -92,13 +101,13 @@
 
         .status-Dispatched {
             border-left: 4px solid #2196f3;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         .card-header-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 8px;
         }
 
@@ -113,7 +122,6 @@
             font-size: 16px;
             font-weight: 800;
             color: #1a1a1a;
-            margin-bottom: 4px;
         }
 
         .cust-details {
@@ -129,16 +137,10 @@
             border-radius: 10px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             font-size: 13px;
             font-weight: 700;
             color: #444;
             border: 1px dashed #dee2e6;
-        }
-
-        .price-tag {
-            color: var(--brand-green);
-            font-size: 15px;
         }
 
         .action-area {
@@ -155,7 +157,6 @@
             font-weight: 800;
             border: none;
             cursor: pointer;
-            transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -163,36 +164,26 @@
         }
 
         .btn-wa {
-            background: #f0fdf4;
+            background: #dcfce7;
             color: #15803d;
-            border: 1px solid #dcfce7;
         }
 
         .btn-paid {
-            background: #fffbeb;
+            background: #fef3c7;
             color: #b45309;
-            border: 1px solid #fcd34d;
         }
 
         .btn-dispatch {
             background: #1a1a1a;
             color: white;
-            border: 1px solid #1a1a1a;
         }
 
         .btn-track {
-            background: #eff6ff;
+            background: #dbeafe;
             color: #1d4ed8;
-            border: 1px solid #dbeafe;
         }
 
-        /* MINI BUTTONS */
-        .top-actions {
-            display: flex;
-            gap: 5px;
-        }
-
-        .btn-mini {
+        .btn-top-action {
             font-size: 10px;
             padding: 3px 8px;
             border-radius: 6px;
@@ -201,23 +192,11 @@
             border: 1px solid #eee;
             background: white;
             color: #555;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
         }
 
-        .btn-mini:hover {
-            background: #f8f9fa;
-            color: black;
-            border-color: #ddd;
-        }
-
-        /* BOTTOM ACTIONS */
         .bottom-panel {
             text-align: center;
             margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px dashed #ccc;
         }
 
         .btn-discard {
@@ -228,23 +207,6 @@
             font-weight: 700;
             padding: 8px 20px;
             border-radius: 30px;
-        }
-
-        .btn-discard:active {
-            background: #fff1f2;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 12px 20px;
-            border: none;
-            background: white;
-            border-radius: 12px;
-            font-weight: 600;
-            outline: none;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
 
         #scanner-modal {
@@ -266,8 +228,18 @@
             max-width: 400px;
             border-radius: 20px;
             overflow: hidden;
+            background: black;
         }
 
+        #scan-msg {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* Loader & Login Styles */
         .login-card {
             max-width: 350px;
             margin: 10vh auto;
@@ -284,9 +256,9 @@
             margin-bottom: 15px;
             border: 2px solid #f1f3f5;
             border-radius: 12px;
+            text-align: center;
             font-weight: 600;
             outline: none;
-            text-align: center;
         }
 
         .btn-black-login {
@@ -298,14 +270,27 @@
             font-weight: 800;
             border: none;
         }
+
+        #loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
 <body>
 
-    <div id="login-section" style="display: flex;">
+    <div id="login-section" style="display: flex; height:100vh; align-items:center; justify-content:center;">
         <div class="login-card">
-            <img src="logo.png" style="height: 40px; margin-bottom: 20px; opacity: 0.8;">
             <h5 class="fw-bold mb-4">Admin Access</h5>
             <input type="text" id="adminUser" class="admin-input" placeholder="Username">
             <input type="password" id="adminPass" class="admin-input" placeholder="Password">
@@ -317,17 +302,18 @@
     <div id="dashboard-section" style="display: none;">
         <nav class="navbar">
             <div class="container d-flex justify-content-between">
-                <span class="brand-text">KAFAK.</span>
-                <button onclick="logoutAdmin()"
-                    class="btn btn-sm btn-light fw-bold text-danger border-0 bg-transparent">Logout</button>
+                <span class="brand-text">KAFAK ADMIN</span>
+                <button onclick="logoutAdmin()" class="btn btn-sm text-danger fw-bold border-0">Logout</button>
             </div>
         </nav>
 
-        <div class="container dashboard-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="🔍  Search by Name, Phone or ID..."
-                onkeyup="filterOrders()">
+        <div class="container" style="max-width: 800px;">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search..."
+                    onkeyup="filterOrders()">
+            </div>
 
-            <div class="d-flex justify-content-center mb-4">
+            <div class="d-flex justify-content-center mb-3">
                 <button onclick="fetchOrders(true)"
                     class="btn btn-white btn-sm rounded-pill px-3 fw-bold border me-2">🔄 Refresh</button>
                 <button id="sync-btn" onclick="syncWithServer()"
@@ -341,7 +327,7 @@
                             id="count-pending" class="badge bg-dark rounded-pill ms-1">0</span></button>
                     <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-paid">Paid <span id="count-paid"
                             class="badge bg-secondary rounded-pill ms-1">0</span></button>
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-dispatched">Sent <span
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-dispatched">Dispatch <span
                             id="count-dispatched" class="badge bg-secondary rounded-pill ms-1">0</span></button>
                 </div>
 
@@ -349,21 +335,26 @@
                     <div class="tab-pane fade show active" id="tab-pending">
                         <div class="row g-3" id="list-pending"></div>
                     </div>
+
                     <div class="tab-pane fade" id="tab-paid">
                         <div class="d-flex justify-content-between align-items-center mb-3 px-1">
                             <button id="btn-select-all" onclick="toggleSelectAll()"
                                 class="btn btn-sm btn-light fw-bold text-secondary border-0"><i
                                     class="far fa-square"></i> Select All</button>
-                            <button onclick="printSelected()" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold"><i
-                                    class="fas fa-print"></i> Print Labels</button>
+                            <button onclick="startScanner('dispatch')"
+                                class="btn btn-sm btn-dark rounded-pill px-3 fw-bold"><i class="fas fa-qrcode"></i> Scan
+                                to Dispatch</button>
+                            <button onclick="printSelected()"
+                                class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-bold">🖨️ Print</button>
                         </div>
                         <div class="row g-3" id="list-paid"></div>
                     </div>
+
                     <div class="tab-pane fade" id="tab-dispatched">
                         <div class="text-center mb-4">
-                            <button onclick="startScanner('dispatch')"
-                                class="btn btn-outline-dark rounded-pill px-4 py-2 fw-bold border-2"><i
-                                    class="fas fa-qrcode"></i> Scan to Dispatch</button>
+                            <button onclick="startScanner('tracking')"
+                                class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2"><i
+                                    class="fas fa-barcode"></i> Scan Courier Tracking</button>
                         </div>
                         <div class="row g-3" id="list-dispatched"></div>
                     </div>
@@ -376,23 +367,21 @@
             </div>
 
             <div class="bottom-panel">
-                <button onclick="discardLocalChanges()" class="btn-discard">
-                    <i class="fas fa-trash-alt"></i> Discard Local Changes
-                </button>
+                <button onclick="discardLocalChanges()" class="btn-discard"><i class="fas fa-trash-alt"></i> Discard
+                    Local Changes</button>
             </div>
-
         </div>
     </div>
 
-    <div id="loader"
-        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div id="loader" style="display:none;">
         <div class="spinner-border text-success" role="status"></div>
     </div>
 
     <div id="scanner-modal">
-        <div style="background:white; padding:15px; border-radius:20px; width:90%; max-width:400px;">
+        <div id="scan-msg">Scan Order QR</div>
+        <div style="background:white; padding:10px; border-radius:15px; width:90%; max-width:400px;">
             <div id="reader"></div>
-            <button onclick="stopScanner()" class="btn btn-danger w-100 mt-3 rounded-pill fw-bold">CLOSE CAMERA</button>
+            <button onclick="stopScanner()" class="btn btn-danger w-100 mt-3 rounded-pill fw-bold">CLOSE</button>
         </div>
     </div>
 

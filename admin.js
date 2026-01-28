@@ -68,8 +68,7 @@ function fetchOrders(forceLoad = false) {
     document.getElementById('list-pending').innerHTML = '';
     document.getElementById('list-paid').innerHTML = '';
     document.getElementById('list-dispatched').innerHTML = '';
-
-    document.getElementById('loader').style.display = 'block';
+    document.getElementById('loader').style.display = 'flex';
 
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
@@ -86,9 +85,9 @@ function fetchOrders(forceLoad = false) {
             document.getElementById('loader').style.display = 'none';
             if (hasData) {
                 renderTabs(allOrders);
-                alert("നെറ്റ്‌വർക്ക് എറർ! പഴയ ഡാറ്റ റീസ്റ്റോർ ചെയ്തു.");
+                alert("Network Error! Using offline data.");
             } else {
-                alert("നെറ്റ്‌വർക്ക് എറർ! കണക്ഷൻ പരിശോധിക്കുക.");
+                alert("Network Error!");
             }
         });
 }
@@ -107,7 +106,6 @@ function renderTabs(orders) {
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
 
-        // Pass 'i' (index in allOrders) correctly
         if (status === 'Pending' || status === 'Sent') {
             counts.pending++;
             pendingList.innerHTML += createCardHTML(d, i, 'pending', status);
@@ -133,64 +131,45 @@ function updateSyncButtonUI() {
 
     if (pendingUpdates.length > 0) {
         syncBtn.show();
-        syncBtn.html(`🔄 SYNC UPDATES (${pendingUpdates.length})`);
+        syncBtn.html(`🔄 SYNC (${pendingUpdates.length})`);
     } else {
         syncBtn.hide();
     }
 }
 
-function discardLocalChanges() {
-    if (!confirm("ഉറപ്പാണോ? ലോക്കൽ മാറ്റങ്ങൾ എല്ലാം പോകും!")) return;
-
-    // Clear Local Storage
-    localStorage.removeItem('pendingUpdates');
-
-    // Re-render tabs with Original Data
-    renderTabs(allOrders);
-
-    alert("Local changes discarded! ✅");
-}
-
-// 🔴 UPDATED CARD DESIGN (Print Logic Fixed)
 function createCardHTML(d, index, type, currentStatus) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => (val || '').toString().toUpperCase();
     let statusBadge = '', buttons = '', tickMark = '';
     let topButtons = '';
 
-    // EDIT LINK BADGE
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-mini">✏️ EDIT</a>`;
-
-    // PRINT BUTTON (Only for Paid & Dispatched)
-    let printBtn = `<button onclick="printSingle(${index})" class="btn-mini">🖨️ PRINT</button>`;
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
-            statusBadge = '<span class="badge bg-info text-dark">Invoice Sent ⏳</span>';
+            statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
             buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
                        <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
-            // NO PRINT BUTTON HERE
         } else {
             statusBadge = '<span class="badge bg-warning text-dark">New</span>';
             buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
         }
     } else if (type === 'paid') {
-        statusBadge = '<span class="badge bg-success">Paid ✅</span>';
+        statusBadge = '<span class="badge bg-success">Paid</span>';
         buttons = `<button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
                    <div style="display:flex; align-items:center; justify-content:center; width:40px;">
                        <input type="checkbox" class="order-cb" value="${index}" onchange="checkSelectAllStatus()" style="width:20px; height:20px;">
                    </div>`;
-
-        // REVERT & PRINT
-        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-mini">↩ REVERT</button>` + printBtn;
+        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">↩ REVERT</button>` + printBtn;
 
     } else if (type === 'dispatched') {
         statusBadge = '<span class="badge bg-primary">Dispatched</span>';
         tickMark = '<i class="fas fa-check-circle text-primary fs-4 position-absolute top-0 end-0 m-2"></i>';
-        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 Add Tracking</button>`;
-
-        // REVERT & PRINT
-        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-mini">↩ REVERT</button>` + printBtn;
+        // Check if tracking exists (Assuming it might be in column 'tracking' from server)
+        let trackLabel = d.tracking ? `TRK: ${d.tracking}` : 'Add Tracking';
+        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>`;
+        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
     let addressBlock = `
@@ -207,17 +186,11 @@ function createCardHTML(d, index, type, currentStatus) {
         <div class="order-card status-${currentStatus}">
             ${tickMark}
             <div class="card-header-row">
-                <div class="top-actions">
-                    <span class="order-id">#${d.orderid.split('-')[1]}</span>
-                    ${editLink} 
-                    ${topButtons}
-                </div>
+                <div><span class="order-id">#${d.orderid.split('-')[1]}</span> ${editLink} ${topButtons}</div>
                 ${statusBadge}
             </div>
             <div class="cust-name">${safe(d.name)}</div>
-            
             ${addressBlock}
-
             <div class="info-box">
                 <span>${d.quantity} Bottles</span>
                 <span class="price-tag">${priceInfo.total}</span>
@@ -227,7 +200,6 @@ function createCardHTML(d, index, type, currentStatus) {
     </div>`;
 }
 
-// 🔴 GLOBAL SEARCH FUNCTION
 function filterOrders() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const tabsContainer = document.getElementById('tabs-container');
@@ -235,45 +207,31 @@ function filterOrders() {
     const searchList = document.getElementById('list-search');
 
     if (term.length > 0) {
-        // Hide Tabs, Show Search Area
         tabsContainer.style.display = 'none';
         searchResultsArea.style.display = 'block';
-
         searchList.innerHTML = '';
 
         let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
         let matches = allOrders.filter(o => (o.name || '').toLowerCase().includes(term) || String(o.phone).includes(term) || (o.orderid || '').toLowerCase().includes(term));
 
-        if (matches.length === 0) {
-            searchList.innerHTML = '<div class="text-center text-muted">No results found.</div>';
-        } else {
-            matches.forEach(d => {
-                // Find correct index in master list
-                let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
-
-                let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
-                let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
-
-                // Determine type for styling logic
-                let type = 'pending';
-                if (status === 'Paid') type = 'paid';
-                if (status === 'Dispatched') type = 'dispatched';
-
-                searchList.innerHTML += createCardHTML(d, originalIndex, type, status);
-            });
-        }
-
+        if (matches.length === 0) searchList.innerHTML = '<div class="text-center text-muted">No results found.</div>';
+        else matches.forEach(d => {
+            let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
+            let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
+            let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
+            let type = 'pending';
+            if (status === 'Paid') type = 'paid';
+            if (status === 'Dispatched') type = 'dispatched';
+            searchList.innerHTML += createCardHTML(d, originalIndex, type, status);
+        });
     } else {
-        // Show Tabs, Hide Search
         tabsContainer.style.display = 'block';
         searchResultsArea.style.display = 'none';
     }
 }
 
 function updateOrder(oid, status) {
-    if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാറ്റട്ടെ?`)) return;
-
+    if (!confirm(`Mark '${status}'?`)) return;
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     updates = updates.filter(item => item.oid !== oid);
     updates.push({ oid: oid, status: status, time: new Date().getTime() });
@@ -285,44 +243,34 @@ function updateOrder(oid, status) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
-    alert(`Saved Locally: ${status} ✅`);
-
-    // Refresh View
-    if (document.getElementById('searchInput').value.length > 0) {
-        filterOrders(); // Refresh search view
-    } else {
-        renderTabs(allOrders); // Refresh tabs
-    }
+    if (document.getElementById('searchInput').value.length > 0) filterOrders();
+    else renderTabs(allOrders);
 }
 
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     if (pendingUpdates.length === 0) return;
-
-    if (!confirm(`${pendingUpdates.length} മാറ്റങ്ങൾ സെർവറിലേക്ക് സേവ് ചെയ്യട്ടെ?`)) return;
+    if (!confirm("Sync changes to server?")) return;
 
     $('#sync-btn').prop('disabled', true).text('Syncing...');
-
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({
-            action: 'bulkUpdateStatus',
-            updates: pendingUpdates
-        })
-    })
+    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: pendingUpdates }) })
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success') {
                 localStorage.removeItem('pendingUpdates');
-                alert("Sync Complete! ✅");
+                alert("Synced! ✅");
                 updateSyncButtonUI();
                 $('#sync-btn').prop('disabled', false);
             }
         })
-        .catch(err => {
-            alert("Sync Failed! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
-            $('#sync-btn').prop('disabled', false).text('Retry Sync');
-        });
+        .catch(() => { alert("Sync Failed!"); $('#sync-btn').prop('disabled', false).text('Retry Sync'); });
+}
+
+function discardLocalChanges() {
+    if (!confirm("Discard all local changes?")) return;
+    localStorage.removeItem('pendingUpdates');
+    renderTabs(allOrders);
+    alert("Discarded.");
 }
 
 function calculatePriceInfo(qty, state) {
@@ -336,74 +284,47 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
+// 🔴 WHATSAPP FIX
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
+    const price = calculatePriceInfo(n, d.state);
 
-    // 1. Auto Update Status
-    if (d.Status === 'Pending') {
-        updateOrder(d.orderid, 'Sent');
-    }
+    if (d.Status === 'Pending') updateOrder(d.orderid, 'Sent');
 
-    // 2. Price Calculation
-    const base = n * 650;
-    let courier = 0;
-    const s = String(d.state || '').toLowerCase().trim();
+    const msg = `
+*INVOICE: KAFAK HONEY* 🍯
+---------------------------------
+Name: *${d.name}*
+Order ID: ${d.orderid}
+Quantity: ${d.quantity} Bottles
+Total: *${price.total}*
+---------------------------------
+*Google Pay: 7788990313*
+(KAFAK LLP)
 
-    if (s === 'lakshadweep') {
-        courier = (n * 100) + 20;
-    } else if (s === 'kerala') {
-        courier = courierRates.kerala[n] || 0;
-    } else {
-        courier = courierRates.outside[n] || 0;
-    }
+Pay ചെയ്ത് സ്ക്രീൻഷോട്ട് അയക്കുക. ✅`;
 
-    const total = base + courier;
-
-    // 3. Text Formatting
-    const amountText = `Amount(₹): ${base} + ${courier}`;
-    const totalText = `Total(₹): ${total}/-`;
-    const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
-
-    // Timestamp fallback
-    const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
-
-    const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
-
-    const format = `\n____________________________________\n*${(d.name || '').trim().toUpperCase()}*\n*${(d.house || '').trim().toUpperCase()}*\n*${(d.place || '').trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${(d.pincode || '').trim()}*\n*Ph: ${(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: 7788990313 (KAFAK LLP)*\n\nPay ചെയ്ത് സ്ക്രീൻഷോട്ട് അയക്കുക. ✅`;
-
-    // 🔴 4. FIX: Send to Customer (Clean Phone Number)
-    // Strip non-digits and ensure 91 is present
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
+    // 🔴 Using window.location.href to fix block issue
+    window.location.href = `https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`;
 }
 
-// 🔴 INDIVIDUAL PRINT (Reusable)
-function printSingle(index) {
-    // Fake 'Selected' logic just for reuse
-    const fakeCheckbox = { value: index };
-    runPrintLogic([fakeCheckbox]);
-}
-
-// 🔴 BULK PRINT
+function printSingle(index) { runPrintLogic([{ value: index }]); }
 function printSelected() {
     const selected = document.querySelectorAll('.order-cb:checked');
-    if (selected.length === 0) { alert("പ്രിന്റ് ചെയ്യാൻ ഓർഡറുകൾ സെലക്ട് ചെയ്യൂ!"); return; }
+    if (selected.length === 0) { alert("Select orders!"); return; }
     runPrintLogic(selected);
 }
 
-// 🔴 CORE PRINT LOGIC
 function runPrintLogic(selectedItems) {
     const styles = document.getElementById('label-css').innerHTML;
     const tempDiv = document.createElement('div');
-    tempDiv.style.position = 'absolute';
-    tempDiv.style.left = '-9999px';
+    tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px';
     document.body.appendChild(tempDiv);
-
-    const promises = [];
-    const labelsData = [];
+    const promises = []; const labelsData = [];
 
     selectedItems.forEach((cb) => {
         const d = allOrders[cb.value];
@@ -411,9 +332,7 @@ function runPrintLogic(selectedItems) {
             const p = new Promise((resolve) => {
                 const qrNode = document.createElement('div');
                 tempDiv.appendChild(qrNode);
-
                 new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
-
                 setTimeout(() => {
                     const canvas = qrNode.querySelector('canvas');
                     let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
@@ -429,21 +348,12 @@ function runPrintLogic(selectedItems) {
         document.body.removeChild(tempDiv);
         const printWin = window.open('', '', 'width=600,height=800');
         let htmlContent = `<html><head><title>KAFAK Print</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
-
         labelsData.forEach(item => {
             const d = item.details;
             const safe = (val) => (val || '').toString().toUpperCase();
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
-
-            htmlContent += `
-            <div class="label-page">
-                <div class="address-sec"><div class="to-label">To,</div><div class="cust-name">${safe(d.name)}</div><div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div><div class="cust-pin">PIN: ${d.pincode}</div><div class="cust-ph">PH: ${d.phone}</div></div>
-                <div class="meta-sec"><div class="qr-box"><img src="${item.qrSrc}"></div><div class="qr-oid">${d.orderid}</div>${qtyHTML}</div>
-                <div class="contact-box"><div class="contact-icon">${phoneIcon}</div><div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div></div>
-                <div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div>
-                <div class="from-sec"><span style="font-weight:bold; font-size:11px;">From,</span><br><b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313</div>
-            </div>`;
+            htmlContent += `<div class="label-page"><div class="address-sec"><div class="to-label">To,</div><div class="cust-name">${safe(d.name)}</div><div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div><div class="cust-pin">PIN: ${d.pincode}</div><div class="cust-ph">PH: ${d.phone}</div></div><div class="meta-sec"><div class="qr-box"><img src="${item.qrSrc}"></div><div class="qr-oid">${d.orderid}</div>${qtyHTML}</div><div class="contact-box"><div class="contact-icon">${phoneIcon}</div><div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div></div><div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div><div class="from-sec"><span style="font-weight:bold; font-size:11px;">From,</span><br><b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313</div></div>`;
         });
         htmlContent += `</body></html>`;
         printWin.document.write(htmlContent); printWin.document.close();
@@ -451,9 +361,15 @@ function runPrintLogic(selectedItems) {
     });
 }
 
+// 🔴 UPDATED SCANNER (2-STEP)
 function startScanner(mode, specificOid) {
-    scanMode = mode; tempOid = specificOid || null; scanStep = mode === 'tracking' && tempOid ? 2 : 1;
+    scanMode = mode;
+    tempOid = specificOid || null;
+    scanStep = (mode === 'tracking') ? 1 : 0;
+
     document.getElementById('scanner-modal').style.display = 'flex';
+    document.getElementById('scan-msg').innerText = (mode === 'dispatch') ? "Scan Order QR (ORD-..)" : "STEP 1: Scan Order QR";
+
     html5QrCode = new Html5Qrcode("reader");
     html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
 }
@@ -463,20 +379,41 @@ function stopScanner() {
 }
 
 function onScanSuccess(decodedText) {
-    if (scanMode === 'dispatch' && decodedText.startsWith("ORD-")) {
-        if (confirm(`Dispatch ${decodedText}?`)) { updateOrder(decodedText, 'Dispatched'); stopScanner(); }
+    if (scanMode === 'dispatch') {
+        if (decodedText.startsWith("ORD-")) {
+            if (confirm(`Dispatch ${decodedText}?`)) { updateOrder(decodedText, 'Dispatched'); stopScanner(); }
+        }
     } else if (scanMode === 'tracking') {
-        if (scanStep === 2 && !decodedText.startsWith("ORD-")) {
-            if (confirm(`Link Tracking ${decodedText} to ${tempOid}?`)) {
-                fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: tempOid, tracking: decodedText }) })
-                    .then(res => res.json())
-                    .then(d => { if (d.result === 'success') { alert("Saved!"); fetchOrders(true); stopScanner(); } });
+        // STEP 1: Scan Order ID
+        if (scanStep === 1) {
+            if (decodedText.startsWith("ORD-")) {
+                tempOid = decodedText;
+                scanStep = 2;
+                document.getElementById('scan-msg').innerText = `STEP 2: Scan Courier Barcode for ${tempOid}`;
+                alert("Order ID OK! Now scan Courier Barcode.");
+                // Pause slightly to avoid double reading
+                html5QrCode.pause();
+                setTimeout(() => html5QrCode.resume(), 1000);
+            }
+        }
+        // STEP 2: Scan Tracking ID
+        else if (scanStep === 2) {
+            if (!decodedText.startsWith("ORD-")) {
+                if (confirm(`Link Tracking ${decodedText} to ${tempOid}?`)) {
+                    stopScanner(); // Stop camera
+                    // Save to server
+                    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: tempOid, tracking: decodedText }) })
+                        .then(res => res.json())
+                        .then(d => {
+                            if (d.result === 'success') { alert("Saved! ✅"); fetchOrders(true); }
+                            else { alert("Failed to save!"); }
+                        });
+                }
             }
         }
     }
 }
 
-// 🔴 SMART SELECT ALL
 function toggleSelectAll() {
     const btn = document.getElementById('btn-select-all');
     const checkboxes = document.querySelectorAll('.order-cb');
@@ -486,25 +423,18 @@ function toggleSelectAll() {
     updateSelectAllButton();
 }
 
-// 🔴 CHECK INDIVIDUAL STATUS
-function checkSelectAllStatus() {
-    updateSelectAllButton();
-}
+function checkSelectAllStatus() { updateSelectAllButton(); }
 
 function updateSelectAllButton() {
     const btn = document.getElementById('btn-select-all');
     const checkboxes = document.querySelectorAll('.order-cb');
     if (checkboxes.length === 0) return;
-
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
-
     if (isAllChecked) {
-        btn.classList.remove('btn-outline-light');
-        btn.classList.add('btn-light', 'text-success', 'fw-bold');
+        btn.classList.remove('btn-outline-light'); btn.classList.add('btn-light', 'text-success', 'fw-bold');
         btn.innerHTML = '<i class="fas fa-check-square"></i> All Selected';
     } else {
-        btn.classList.add('btn-outline-light');
-        btn.classList.remove('btn-light', 'text-success', 'fw-bold');
+        btn.classList.add('btn-outline-light'); btn.classList.remove('btn-light', 'text-success', 'fw-bold');
         btn.innerHTML = '<i class="far fa-square"></i> Select All';
     }
 }
