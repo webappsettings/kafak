@@ -296,7 +296,6 @@
       font-size: 18px;
     }
 
-    /* 🔴 NEW PRICE CARD STYLE */
     .price-card {
       background: #f8f9fa;
       border: 1px dashed #ced4da;
@@ -324,6 +323,44 @@
       font-weight: 800;
       font-size: 18px;
       color: #000;
+    }
+
+    /* 🔴 ADMIN ACTIONS STYLE */
+    #admin-controls {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+    }
+
+    .admin-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #2e7d32;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .btn-admin {
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      margin-bottom: 8px;
+    }
+
+    .btn-sent {
+      background: #ff9800;
+      color: white;
+    }
+
+    .btn-paid {
+      background: #4caf50;
+      color: white;
     }
   </style>
 </head>
@@ -407,11 +444,11 @@
                     onchange="selectEditPO(this.value)"></select>
                 </div>
 
-                <label class="form-label">WhatsApp Number</label>
+                <label class="form-label" data-i18n="lbl_whatsapp">WhatsApp Number</label>
                 <input type="tel" id="edit-whatsapp" class="regular-input mb-2" maxlength="10"
                   oninput="updateSummaryDisplay()">
 
-                <label class="form-label">Alt Phone (Optional)</label>
+                <label class="form-label" data-i18n="lbl_altphone">Alt Phone (Optional)</label>
                 <input type="tel" id="edit-altphone" class="regular-input mb-2" maxlength="10"
                   oninput="updateSummaryDisplay()">
 
@@ -425,9 +462,6 @@
             <select id="quick-qty" class="regular-input mb-3">
               <option value="" disabled selected>Select...</option>
             </select>
-
-            <!-- <label class="form-label" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
-            <textarea id="quick-msg" class="regular-input mb-3" rows="1"></textarea> -->
 
             <div id="quick-price-box" class="price-card" style="display:none;">
               <div class="price-row">
@@ -444,6 +478,15 @@
                 <span class="text-success">₹<span class="val-total">0</span></span>
               </div>
             </div>
+
+            <div id="admin-controls" style="display:none;">
+              <div class="admin-title">👮‍♂️ Admin Actions</div>
+              <button type="button" class="btn-admin btn-sent" onclick="adminUpdateStatus('Sent')">⏳ Mark as Invoice
+                Sent</button>
+              <button type="button" class="btn-admin btn-paid" onclick="adminUpdateStatus('Paid')">💰 Mark as
+                Paid</button>
+            </div>
+
             <div class="mb-4"></div>
           </div>
 
@@ -481,7 +524,6 @@
               <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list"
                 oninput="updateWizardLocDisplay()">
               <datalist id="place-list"></datalist>
-
               <div class="loc-box">
                 <i class="fas fa-map-marker-alt loc-icon"></i>
                 <div>
@@ -501,8 +543,6 @@
               <select id="quantity" class="huge-input border-0 bg-transparent">
                 <option value="" disabled selected>Select...</option>
               </select>
-              <!-- <label class="form-label mt-4" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
-              <input type="text" id="message" class="regular-input" placeholder="..."> -->
 
               <div id="wiz-price-box" class="price-card" style="display:none;">
                 <div class="price-row">

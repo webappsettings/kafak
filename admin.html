@@ -4,206 +4,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAFAK Admin | Pro Dashboard</title>
-
+    <title>KAFAK Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet">
-
     <style>
+        :root {
+            --brand-green: #2e7d32;
+            --light-bg: #f8f9fa;
+        }
+
         body {
-            background-color: #f4f7f6;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding-bottom: 80px;
+            background: var(--light-bg);
+            font-family: 'Manrope', sans-serif;
         }
 
-        /* NAVBAR */
         .navbar {
-            background: #1b5e20;
-            padding: 12px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
         }
 
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
+        .brand-text {
+            font-weight: 900;
+            font-size: 24px;
+            color: black;
+            letter-spacing: -1px;
         }
 
-        .btn-logout {
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: white;
+        .login-card {
+            max-width: 400px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-weight: 600;
+            outline: none;
             transition: 0.3s;
         }
 
-        .btn-logout:hover {
-            background: #d32f2f;
-            border-color: #d32f2f;
+        .admin-input:focus {
+            border-color: var(--brand-green);
         }
 
-        /* TABS NAVIGATION */
-        .nav-tabs {
-            background: white;
-            border-bottom: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-link {
-            color: #666;
-            font-weight: 600;
-            border: none !important;
-            border-bottom: 3px solid transparent !important;
-            padding: 12px;
-        }
-
-        .nav-link.active {
-            color: #1b5e20 !important;
-            border-bottom: 3px solid #1b5e20 !important;
-            background: none !important;
-        }
-
-        .badge-count {
-            font-size: 11px;
-            margin-left: 5px;
-        }
-
-        /* SEARCH SECTION */
-        .search-area {
-            background: white;
+        .btn-black {
+            background: black;
+            color: white;
+            width: 100%;
             padding: 15px;
-            border-bottom: 1px solid #eee;
+            border-radius: 12px;
+            font-weight: 700;
+            border: none;
         }
 
-        /* ORDER CARD DESIGN */
+        .btn-black:active {
+            transform: scale(0.98);
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding-bottom: 80px;
+        }
+
+        .nav-pills .nav-link {
+            color: #666;
+            font-weight: 700;
+            border-radius: 30px;
+            padding: 10px 20px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: black;
+            color: white;
+        }
+
+        /* CARD STYLE MATCHING ORDER UI */
         .order-card {
             background: white;
-            border-radius: 15px;
-            padding: 18px;
+            border-radius: 16px;
+            padding: 20px;
             margin-bottom: 15px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eee;
             position: relative;
-            border-left: 6px solid #ccc;
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
 
-        .order-card.status-Paid {
-            border-left-color: #ffc107;
+        .status-Pending {
+            border-left: 5px solid #ff9800;
         }
 
-        /* Yellow */
-        .order-card.status-Dispatched {
-            border-left-color: #198754;
-            background: #f9fffb;
+        .status-Paid {
+            border-left: 5px solid #2e7d32;
         }
 
-        /* Green */
+        .status-Dispatched {
+            border-left: 5px solid #2196f3;
+            opacity: 0.8;
+        }
 
         .card-header-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
             align-items: center;
+            margin-bottom: 10px;
         }
 
         .order-id {
-            background: #f0f0f0;
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: #444;
+            font-size: 12px;
+            font-weight: 700;
+            color: #999;
         }
 
         .cust-name {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 800;
-            color: #111;
-            margin-bottom: 2px;
+            color: black;
         }
 
         .cust-details {
-            font-size: 0.9rem;
+            font-size: 13px;
             color: #555;
-            margin-bottom: 8px;
-        }
-
-        .state-badge {
-            background: #e3f2fd;
-            color: #0d47a1;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 800;
+            margin-top: 5px;
+            line-height: 1.5;
         }
 
         .info-box {
-            background: #f8fafc;
-            border-radius: 10px;
+            background: #f9f9f9;
             padding: 10px;
-            margin: 12px 0;
+            border-radius: 8px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: 14px;
         }
 
-        /* ACTION BUTTONS */
         .action-area {
-            display: flex;
-            gap: 8px;
             margin-top: 15px;
+            display: flex;
+            gap: 10px;
         }
 
         .btn-custom {
             flex: 1;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.85rem;
             padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
             border: none;
-            transition: 0.2s;
-        }
-
-        .btn-custom:active {
-            transform: scale(0.95);
+            cursor: pointer;
         }
 
         .btn-wa {
-            background: #e8f5e9;
-            color: #2e7d32;
+            background: #25D366;
+            color: white;
         }
 
         .btn-paid {
-            background: #fff8e1;
-            color: #f57f17;
+            background: black;
+            color: white;
         }
 
         .btn-dispatch {
-            background: #e8f5e9;
-            color: #1b5e20;
-            border: 1px solid #1b5e20;
+            background: #2e7d32;
+            color: white;
         }
 
         .btn-track {
-            background: #e3f2fd;
-            color: #1565c0;
+            background: #2196f3;
+            color: white;
         }
 
-        .btn-remove {
-            background: #ffebee;
-            color: #c62828;
-            max-width: 45px;
+        .search-bar {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-weight: 600;
+            outline: none;
+            margin-bottom: 20px;
         }
 
-        /* SCANNER MODAL */
+        .search-bar:focus {
+            border-color: black;
+        }
+
         #scanner-modal {
             position: fixed;
             top: 0;
@@ -213,345 +211,118 @@
             background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             display: none;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
 
         #reader {
-            width: 90%;
-            max-width: 450px;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-    </style>
-
-    <style id="label-css">
-        @page {
-            size: A6;
-            margin: 0;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: #c8c8c8;
-            font-family: "Anek Malayalam", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .label-page {
-            width: 105mm;
-            height: 147mm;
-            /* A6 Size */
-            position: relative;
-            page-break-after: always;
-            /* font-family: Arial, sans-serif; */
-            font-family: 'Anek Malayalam', sans-serif;
-            font-weight: 600;
-            overflow: hidden;
-            box-sizing: border-box;
-            background: white;
-            margin: 0 auto;
-        }
-
-        .label-page:last-child {
-            page-break-after: auto;
-        }
-
-        /* --- 1. ADDRESS SECTION (Top Left) --- */
-        .address-sec {
-            position: absolute;
-            top: 8mm;
-            left: 8mm;
-            width: 75mm;
-            text-align: left;
-        }
-
-        .to-label {
-            font-size: 14px;
-            font-weight: 900;
-            margin-bottom: 2px;
-        }
-
-        .cust-name {
-            font-size: 17px;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .cust-addr {
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.25;
-        }
-
-        .cust-pin {
-            font-size: 19px;
-            font-weight: 700;
-            line-height: 1.25;
-        }
-
-        .cust-ph {
-            font-size: 21px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        /* --- 2. META SECTION WRAPPER (No Layout, just a wrapper) --- */
-        .meta-sec {
-            position: static;
-        }
-
-        /* QUANTITY (Moved to Right Side, opposite to Phone) */
-        .qty-text {
-            position: absolute;
-            top: 12mm;
-            right: 7mm;
-            color: #07cbe4;
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        /* QR CODE (Moved to Bottom Left) */
-        .qr-box {
-            position: absolute;
-            bottom: 39mm;
-            left: 8mm;
-            width: 25mm;
-            height: 25mm;
-            background: white;
-        }
-
-        .qr-box img {
             width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ORDER ID (Below QR) */
-        .qr-oid {
-            position: absolute;
-            bottom: 35mm;
-            left: 8mm;
-            width: 25mm;
-            font-size: 10px;
-            font-weight: 500;
-            color: #000;
-            text-align: center;
-        }
-
-        /* --- 3. CONTACT BOX (Middle Center) --- */
-        .contact-box {
-            position: absolute;
-            top: 61mm;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 82mm;
-            height: 15mm;
-            border: 2px solid #d9d9d9;
-            border-radius: 9px;
-            display: block;
-            background: white;
-            z-index: 10;
-            padding-left: 6mm;
-        }
-
-        .contact-icon svg {
-            width: 30px;
-            height: 30px;
-            display: block;
-            float: left;
-            margin-top: 14px;
-            padding-left: 10px;
-        }
-
-        .contact-text {
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 1.1;
-            text-align: left;
-            margin: 0;
-            padding-top: 12px;
-            padding-left: 8px;
-            float: left;
-        }
-
-        .contact-text span {
-            display: block;
-            font-size: 19px;
-        }
-
-        /* --- 4. FROM ADDRESS (Bottom Center - Between QR & Fragile) --- */
-        .from-sec {
-            position: absolute;
-            bottom: 10mm;
-            left: 8mm;
-            width: 54mm;
-            text-align: left;
-            font-size: 12px;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-
-        /* --- 5. FRAGILE ICON (Bottom Right) --- */
-        .fragile-sec {
-            position: absolute;
-            bottom: 11mm;
-            height: 53.5mm;
-            right: 7mm;
-            width: 32mm;
-            text-align: center;
-        }
-
-        .fragile-img {
-            width: 100%;
-            height: 100%;
+            max-width: 400px;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="login-section">
+    <div id="login-section" style="height: 100vh; display: flex; align-items: center; justify-content: center;">
         <div class="login-card">
-            <h4 class="fw-bold mb-1" style="color:#1b5e20;">KAFAK Admin</h4>
-            <p class="text-muted small mb-4">Dashboard ആക്സസ് ചെയ്യാൻ ലോഗിൻ ചെയ്യുക</p>
-            <input type="text" id="adminUser" class="form-control mb-3" placeholder="Username">
-            <input type="password" id="adminPass" class="form-control mb-4" placeholder="Password">
-            <button class="btn btn-success w-100 fw-bold" onclick="attemptLogin()">LOGIN</button>
-            <p id="loginMsg" class="text-danger small mt-3"></p>
+            <img src="logo.png" style="height: 50px; margin-bottom: 20px;">
+            <h4 class="fw-bold mb-4">Admin Login</h4>
+            <input type="text" id="adminUser" class="admin-input" placeholder="Username">
+            <input type="password" id="adminPass" class="admin-input" placeholder="Password">
+            <button onclick="attemptLogin()" class="btn-black">LOGIN</button>
+            <p id="loginMsg" class="text-danger mt-3 small fw-bold"></p>
         </div>
     </div>
 
-    <div id="dashboard-section">
-
-        <nav class="navbar d-flex justify-content-between align-items-center">
-            <span class="navbar-brand mb-0 h1"><i class="fas fa-honey-pot"></i> KAFAK Admin</span>
-            <div class="d-flex gap-2">
-                <button id="btn-select-all" class="btn btn-sm btn-outline-light" onclick="toggleSelectAll()">
-                    <i class="far fa-square"></i> Select All
-                </button>
-
-                <button class="btn btn-sm btn-outline-light" onclick="printSelected()">
-                    <i class="fas fa-print"></i> Print
-                </button>
-                <button class="btn btn-sm btn-logout" type="button" onclick="logoutAdmin()">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+    <div id="dashboard-section" style="display: none;">
+        <nav class="navbar">
+            <div class="container">
+                <span class="brand-text">KAFAK ADMIN</span>
+                <button onclick="logoutAdmin()" class="btn btn-sm btn-light fw-bold text-danger">Logout</button>
             </div>
         </nav>
 
+        <div class="container dashboard-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search Order, Name, Phone..."
+                onkeyup="filterOrders()">
 
-        <div class="search-area shadow-sm">
-            <div class="d-flex gap-2 mb-2">
-                <input type="text" id="searchInput" class="form-control border-0 bg-light" placeholder="Search..."
-                    onkeyup="filterOrders()">
-                <button class="btn btn-success" onclick="fetchOrders(true)" title="Fetch New Data">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-            </div>
-            <button id="sync-btn" class="btn btn-primary w-100 shadow-sm fw-bold" style="display:none;"
-                onclick="syncWithServer()">
-                🔄 SYNC UPDATES (0)
-            </button>
-        </div>
-
-        <ul class="nav nav-tabs sticky-top" id="adminTabs" role="tablist">
-            <li class="nav-item flex-fill text-center">
-                <button class="nav-link active w-100" id="pending-tab" data-bs-toggle="tab"
-                    data-bs-target="#pending-pane" type="button">
-                    NEW <span id="count-pending" class="badge bg-danger badge-count">0</span>
-                </button>
-            </li>
-            <li class="nav-item flex-fill text-center">
-                <button class="nav-link w-100" id="paid-tab" data-bs-toggle="tab" data-bs-target="#paid-pane"
-                    type="button">
-                    PAID <span id="count-paid" class="badge bg-warning text-dark badge-count">0</span>
-                </button>
-            </li>
-            <li class="nav-item flex-fill text-center">
-                <button class="nav-link w-100" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent-pane"
-                    type="button">
-                    DISPATCHED <span id="count-dispatched" class="badge bg-success badge-count">0</span>
-                </button>
-            </li>
-        </ul>
-
-        <div class="container-fluid mt-3 tab-content">
-
-            <div id="loader" class="text-center py-5">
-                <div class="spinner-border text-success" role="status"></div>
-                <p class="mt-2 text-muted fw-bold">Fetching Data...</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button onclick="fetchOrders(true)" class="btn btn-dark btn-sm rounded-pill px-3">🔄 Refresh</button>
+                <button id="sync-btn" onclick="syncWithServer()"
+                    class="btn btn-warning btn-sm rounded-pill px-3 fw-bold" style="display:none;">Sync</button>
             </div>
 
-            <div class="tab-pane fade show active" id="pending-pane" role="tabpanel">
-                <div id="list-pending" class="row"></div>
-            </div>
+            <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill"
+                        data-bs-target="#tab-pending">New (<span id="count-pending">0</span>)</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-paid">Paid
+                        (<span id="count-paid">0</span>)</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="pill"
+                        data-bs-target="#tab-dispatched">Sent (<span id="count-dispatched">0</span>)</button></li>
+            </ul>
 
-            <div class="tab-pane fade" id="paid-pane" role="tabpanel">
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-success fw-bold p-3 shadow-sm rounded-pill"
-                        onclick="startScanner('dispatch')">
-                        <i class="fas fa-qrcode"></i> SCAN TO DISPATCH
-                    </button>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-pending">
+                    <div class="row g-3" id="list-pending"></div>
                 </div>
-                <div id="list-paid" class="row"></div>
-            </div>
-
-            <div class="tab-pane fade" id="sent-pane" role="tabpanel">
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-primary fw-bold p-3 shadow-sm rounded-pill"
-                        onclick="startScanner('tracking')">
-                        <i class="fas fa-barcode"></i> SCAN TRACKING SLIP
-                    </button>
+                <div class="tab-pane fade" id="tab-paid">
+                    <div class="text-end mb-2">
+                        <button id="btn-select-all" onclick="toggleSelectAll()"
+                            class="btn btn-outline-light btn-sm text-dark border-secondary">Select All</button>
+                        <button onclick="printSelected()" class="btn btn-dark btn-sm ms-2">🖨️ Print Labels</button>
+                    </div>
+                    <div class="row g-3" id="list-paid"></div>
                 </div>
-                <div id="list-dispatched" class="row"></div>
+                <div class="tab-pane fade" id="tab-dispatched">
+                    <div class="text-center mb-3">
+                        <button onclick="startScanner('dispatch')" class="btn btn-outline-dark rounded-pill px-4">📷
+                            Scan Dispatch</button>
+                    </div>
+                    <div class="row g-3" id="list-dispatched"></div>
+                </div>
             </div>
-
         </div>
-
-        <div id="scanner-modal">
-            <div class="text-center mb-4">
-                <h4 id="scan-instruction" class="text-white fw-bold">Point Camera at QR</h4>
-                <div class="spinner-grow text-warning spinner-grow-sm"></div>
-            </div>
-            <div id="reader"></div>
-            <button class="btn btn-outline-light mt-4 rounded-pill px-5 fw-bold" onclick="stopScanner()">CANCEL
-                SCAN</button>
-        </div>
-
-
-
-
-        <button class="btn btn-sm btn-outline-warning" onclick="resetAdminStorage()">
-            <i class="fas fa-trash-alt"></i> Reset Storage
-        </button>
-
-
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div id="loader"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.8); z-index:9999; text-align:center; padding-top:40vh;">
+        <div class="spinner-border text-success" role="status"></div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="scanner-modal">
+        <div style="background:white; padding:10px; border-radius:10px; width:90%; max-width:400px;">
+            <div id="reader"></div>
+            <button onclick="stopScanner()" class="btn btn-danger w-100 mt-2">CLOSE</button>
+        </div>
+    </div>
 
-    <script src="admin.js"></script>
-
-    <script>
-        function resetAdminStorage() {
-            if (confirm("അഡ്മിൻ ലോഗിൻ ഉൾപ്പെടെ എല്ലാ വിവരങ്ങളും ക്ലിയർ ചെയ്യട്ടെ?")) {
-                localStorage.clear();
-                alert("All Admin Data Cleared! ✅");
-                window.location.href = "index.html";
-            }
-        }
+    <script type="text/template" id="label-css">
+        @page { size: 100mm 150mm; margin: 0; }
+        body { font-family: 'Anek Malayalam', sans-serif; margin: 0; padding: 5mm; }
+        .label-page { width: 90mm; height: 140mm; border: 2px solid black; padding: 10px; position: relative; page-break-after: always; box-sizing: border-box; }
+        .address-sec { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 10px; }
+        .to-label { font-size: 14px; font-weight: bold; margin-bottom: 5px; }
+        .cust-name { font-size: 22px; font-weight: 800; text-transform: uppercase; line-height: 1.1; }
+        .cust-addr { font-size: 16px; font-weight: 600; margin-top: 5px; line-height: 1.3; }
+        .cust-pin { font-size: 18px; font-weight: 800; margin-top: 5px; }
+        .cust-ph { font-size: 18px; font-weight: 800; margin-top: 5px; }
+        .meta-sec { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 10px; }
+        .qr-box img { width: 80px; height: 80px; }
+        .qr-oid { font-size: 12px; font-weight: bold; text-align: center; margin-top: 2px; }
+        .contact-box { display: flex; align-items: center; border: 2px solid #000; padding: 5px; border-radius: 8px; margin-bottom: 10px; }
+        .contact-icon { width: 40px; text-align: center; }
+        .contact-text { font-size: 12px; font-weight: 700; }
+        .fragile-sec { text-align: center; margin-bottom: 10px; }
+        .fragile-img { height: 40px; }
+        .from-sec { font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px; line-height: 1.3; }
+        .qty-text { font-size: 24px; font-weight: 900; border: 3px solid black; padding: 5px 10px; border-radius: 5px; }
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="admin.js"></script>
 </body>
 
 </html>

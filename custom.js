@@ -50,7 +50,7 @@ let poList = [];
 let myCustId = null;
 let localUsersMap = {};
 let currentLoginPhone = null;
-let isEditMode = false; // 🔴 NEW FLAG TO TRACK EDIT MODE
+let isEditMode = false;
 
 $(document).ready(function () {
   const qtyOpts = `
@@ -256,8 +256,14 @@ function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
 
-  // 🔴 SET EDIT MODE FLAG
   isEditMode = isActiveOrder;
+
+  // 🔴 ADMIN CHECK: IF LOGGED IN & EDITING, SHOW CONTROLS
+  if (isActiveOrder && localStorage.getItem('kafakAdminLoggedIn') === 'true') {
+    $('#admin-controls').show();
+  } else {
+    $('#admin-controls').hide();
+  }
 
   $('#saved-name').text(d.name);
 
@@ -275,18 +281,15 @@ function showReturningUserView(d, isActiveOrder) {
 
   if (isActiveOrder) {
     $('#quick-qty').val(d.quantity).trigger('change');
-    // Removed message pre-fill as per request
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
   } else {
     $('#quick-qty').val('').trigger('change');
-    // Removed message reset
     $('#quick-price-box').hide();
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ ചെയ്യാം" : "PLACE ORDER");
   }
 
-  // 🔴 CHECK FOR CHANGES INITIALLY (Will disable button if matching)
   checkForChanges();
 }
 
@@ -310,21 +313,15 @@ function updateSummaryDisplay() {
   $('#saved-wa-text span').text(wa);
   if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
 
-  // 🔴 CALL CHECK ON EVERY INPUT
   checkForChanges();
 }
 
-// 🔴 NEW FUNCTION: SMART BUTTON DISABLE/ENABLE
 function checkForChanges() {
   const btn = $('#btn-quick-submit');
-
-  // If New Order mode, button is active (validation handled on click)
   if (!isEditMode) {
     btn.prop('disabled', false).css('opacity', '1');
     return;
   }
-
-  // Compare Current Inputs vs Saved Data
   const current = {
     phone: $('#edit-phone').val(),
     house: $('#edit-house').val(),
@@ -335,10 +332,7 @@ function checkForChanges() {
     altphone: $('#edit-altphone').val(),
     quantity: $('#quick-qty').val()
   };
-
-  // Helper to compare values loosely (handles null vs "")
   const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
-
   const hasChanges =
     isDiff('phone', current.phone) ||
     isDiff('house', current.house) ||
@@ -352,7 +346,7 @@ function checkForChanges() {
   if (hasChanges) {
     btn.prop('disabled', false).css('opacity', '1');
   } else {
-    btn.prop('disabled', true).css('opacity', '0.5'); // Dimmed when disabled
+    btn.prop('disabled', true).css('opacity', '0.5');
   }
 }
 
@@ -417,7 +411,7 @@ function submitQuickOrder() {
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
-    message: '', // Message removed
+    message: '',
     custId: myCustId
   };
 
@@ -428,6 +422,32 @@ function submitQuickOrder() {
   localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
   postOrder(finalData);
+}
+
+// 🔴 ADMIN ACTION HANDLER
+function adminUpdateStatus(status) {
+  if (!editingOrderId) return;
+  if (!confirm(`Mark Order ${editingOrderId} as ${status}?`)) return;
+
+  showLoader(true);
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'updateStatus',
+      oid: editingOrderId,
+      status: status
+    })
+  })
+    .then(res => res.json())
+    .then(d => {
+      showLoader(false);
+      if (d.result === 'success') {
+        alert("Updated Successfully! ✅");
+        location.reload();
+      } else {
+        alert("Failed!");
+      }
+    });
 }
 
 // --- WIZARD ---
@@ -578,7 +598,6 @@ function updatePrice(qty, isQuick) {
 
   container.fadeIn();
 
-  // 🔴 CALL CHECK ON PRICE CHANGE
   if (isQuick) checkForChanges();
 }
 
