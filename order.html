@@ -362,32 +362,69 @@
 
           <div id="returning-user-view" class="step-section">
             <h4 class="fw-bold mb-3" data-i18n="welcome_back">സ്വാഗതം!</h4>
+
             <div class="summary-card">
-              <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">വിലാസം മാറ്റാം</span>
+              <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">മാറ്റാം ✏️</span>
+
               <div class="fw-bold fs-5" id="saved-name">User Name</div>
-              <div class="text-muted small mt-1" id="saved-address-text">Address...</div>
+              <div class="text-muted small mt-1">
+                <span id="saved-address-text">Address...</span><br>
+                <span id="saved-phone-text" class="fw-bold text-dark"></span> |
+                <span id="saved-wa-text" class="text-success"><i class="fab fa-whatsapp"></i> <span></span></span>
+              </div>
+
               <div class="address-box" id="address-edit-box">
+                <hr>
                 <label class="form-label" data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label>
-                <input type="text" id="edit-house" class="regular-input mb-2">
+                <input type="text" id="edit-house" class="regular-input mb-2" oninput="updateSummaryDisplay()">
+
                 <label class="form-label" data-i18n="lbl_place">സ്ഥലം</label>
-                <input type="text" id="edit-place" class="regular-input mb-2">
+                <input type="text" id="edit-place" class="regular-input mb-2" oninput="updateSummaryDisplay()">
+
                 <label class="form-label" data-i18n="lbl_pincode">പിൻകോഡ്</label>
-                <input type="tel" id="edit-pincode" class="regular-input mb-2" maxlength="6">
+                <input type="tel" id="edit-pincode" class="regular-input mb-2" maxlength="6"
+                  oninput="handleEditPincode(this.value)">
+
+                <div id="edit-po-wrapper" style="display:none;">
+                  <label class="form-label">പോസ്റ്റ് ഓഫീസ്</label>
+                  <select id="edit-postoffice-select" class="regular-input mb-2"
+                    onchange="selectEditPO(this.value)"></select>
+                </div>
+
+                <label class="form-label">WhatsApp Number</label>
+                <input type="tel" id="edit-whatsapp" class="regular-input mb-2" maxlength="10"
+                  oninput="updateSummaryDisplay()">
+
+                <label class="form-label">Alt Phone (Optional)</label>
+                <input type="tel" id="edit-altphone" class="regular-input mb-2" maxlength="10">
+
                 <input type="hidden" id="edit-postoffice">
                 <input type="hidden" id="edit-district">
                 <input type="hidden" id="edit-state">
               </div>
             </div>
+
             <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-            <select id="quick-qty" class="huge-input mb-3" style="background: white;">
+            <select id="quick-qty" class="regular-input mb-3">
               <option value="" disabled selected>Select...</option>
             </select>
+
             <label class="form-label" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
             <textarea id="quick-msg" class="regular-input mb-3" rows="1"></textarea>
-            <div class="text-end mb-2">
+
+            <div class="text-end mb-4">
               <div class="fw-bold fs-4 text-dark" id="quick-price">₹0</div>
               <small class="text-muted" style="font-size:11px;" data-i18n="courier_included">(കൂരിയർ ചാർജ്
                 ഉൾപ്പെടെ)</small>
+            </div>
+
+            <div class="footer-action">
+              <div class="container p-0" style="max-width: 500px;">
+                <button type="button" class="btn-black btn-brand-green" onclick="submitQuickOrder()"
+                  id="btn-quick-submit">
+                  <span data-i18n="btn_update">ഓർഡർ ചെയ്യാം</span>
+                </button>
+              </div>
             </div>
           </div>
 
