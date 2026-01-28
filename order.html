@@ -94,18 +94,24 @@
       margin-top: 10px;
     }
 
-    .regular-input {
-      border: 2px solid #eee;
+    /* 🔴 UPDATED SELECT & INPUT STYLE (Border for All) */
+    .regular-input,
+    select.regular-input,
+    select.huge-input {
+      border: 2px solid #eee !important;
+      /* Force Border */
       border-radius: 12px;
       padding: 15px;
       width: 100%;
       font-weight: 600;
       outline: none;
+      background: white;
       transition: border-color 0.3s;
     }
 
-    .regular-input:focus {
-      border-color: var(--brand-green);
+    .regular-input:focus,
+    select:focus {
+      border-color: var(--brand-green) !important;
     }
 
     .btn-black {
@@ -268,7 +274,6 @@
       }
     }
 
-    /* Alerts */
     .ios-popup {
       border-radius: 25px !important;
       padding: 20px !important;
@@ -354,8 +359,10 @@
               <div class="fw-bold fs-5" id="saved-name">User Name</div>
               <div class="text-muted small mt-1">
                 <span id="saved-address-text">Address...</span><br>
+                <span id="saved-place-dist"></span><br>
                 <span id="saved-phone-text" class="fw-bold text-dark"></span> |
                 <span id="saved-wa-text" class="text-success"><i class="fab fa-whatsapp"></i> <span></span></span>
+                <span id="saved-alt-text" style="display:none;"> | Alt: <span></span></span>
               </div>
 
               <div class="address-box" id="address-edit-box">
@@ -371,7 +378,7 @@
                   oninput="handleEditPincode(this.value)">
 
                 <div id="edit-po-wrapper" style="display:none;">
-                  <label class="form-label">പോസ്റ്റ് ഓഫീസ്</label>
+                  <label class="form-label">പോസ്റ്റ് ഓഫീസ് (Select)</label>
                   <select id="edit-postoffice-select" class="regular-input mb-2"
                     onchange="selectEditPO(this.value)"></select>
                 </div>
@@ -381,7 +388,8 @@
                   oninput="updateSummaryDisplay()">
 
                 <label class="form-label">Alt Phone (Optional)</label>
-                <input type="tel" id="edit-altphone" class="regular-input mb-2" maxlength="10">
+                <input type="tel" id="edit-altphone" class="regular-input mb-2" maxlength="10"
+                  oninput="updateSummaryDisplay()">
 
                 <input type="hidden" id="edit-postoffice">
                 <input type="hidden" id="edit-district">
@@ -390,7 +398,7 @@
             </div>
 
             <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-            <select id="quick-qty" class="huge-input mb-3" style="background: white;">
+            <select id="quick-qty" class="regular-input mb-3">
               <option value="" disabled selected>Select...</option>
             </select>
 
@@ -427,14 +435,20 @@
                 <option value="">Select...</option>
               </select>
             </div>
+
             <div class="wiz-step" data-step="4" style="display:none;">
               <label class="form-label" data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label>
               <input type="text" id="house" class="huge-input" placeholder="House Name">
+
+              <label class="form-label mt-4" data-i18n="lbl_place">സ്ഥലം</label>
+              <input type="text" id="place" class="huge-input" placeholder="Place">
+
               <div class="mt-3 text-muted small fw-bold">
-                <i class="fas fa-map-marker-alt text-success"></i> <span id="display-place"></span>, <span
+                <i class="fas fa-map-marker-alt text-success"></i> <span id="display-po"></span>, <span
                   id="display-dist"></span>
               </div>
             </div>
+
             <div class="wiz-step" data-step="5" style="display:none;">
               <label class="form-label" data-i18n="lbl_altphone">വിളിച്ചാൽ കിട്ടുന്ന മറ്റൊരു നമ്പർ (Optional)</label>
               <input type="tel" id="altphone" class="huge-input" placeholder="Alternate Phone" maxlength="10">
