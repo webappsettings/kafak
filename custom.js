@@ -52,7 +52,11 @@ function updateFooterButtons(view) {
   $('#btn-group-returning').hide();
 
   if (view === 'step-0') $('#btn-group-0').show();
-  if (view === 'wizard') $('#btn-group-wizard').css('display', 'flex');
+
+  if (view === 'wizard') {
+    $('#btn-group-wizard').css('display', 'flex');
+  }
+
   if (view === 'returning') $('#btn-group-returning').show();
 }
 
