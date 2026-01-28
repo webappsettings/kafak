@@ -292,7 +292,7 @@ function printSelected() {
     if (selected.length === 0) { alert("പ്രിന്റ് ചെയ്യാൻ ഓർഡറുകൾ സെലക്ട് ചെയ്യൂ!"); return; }
 
     // 1. HTML-ൽ നിന്ന് ഡിസൈൻ കോഡ് വലിച്ചെടുക്കുന്നു
-    // 🔴 ഇതാണ് പ്രധാന മാറ്റം
+
     const styles = document.getElementById('label-css').innerHTML;
 
     // QR Generate ചെയ്യാൻ Temp Div
