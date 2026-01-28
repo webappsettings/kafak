@@ -6,7 +6,7 @@ const courierRates = {
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// ... (Translations same as before) ...
+// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -53,7 +53,6 @@ let currentLoginPhone = null;
 let isEditMode = false;
 
 $(document).ready(function () {
-  // Qty Options Appending...
   const qtyOpts = `
         <option value="1">1 Bottle (650g)</option>
         <option value="2">2 Bottles (1.30 kg)</option>
@@ -94,30 +93,58 @@ $(document).ready(function () {
 
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 INSTANT ADMIN LOAD LOGIC
-    if (localStorage.getItem('kafakAdmin') === 'true') {
+    // 🔴 1. ADMIN SETUP (FIXED TOP BAR)
+    if (isAdmin) {
+      const adminUI = `
+            <div id="admin-action-bar" style="display:none; position: fixed; top: 0; left: 0; width: 100%; background: white; padding: 10px 15px; z-index: 10000; border-bottom: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div class="container p-0 d-flex justify-content-between align-items-center">
+                    <div id="admin-btn-container" style="flex-grow:1; margin-right:10px;"></div>
+                    <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:40px; height:40px; border:1px solid #eee;">
+                        <i class="fas fa-times text-danger"></i>
+                    </button>
+                </div>
+            </div>`;
+
+      $('body').append(adminUI);
+      $('body').css('padding-top', '80px');
+
+      // Clear Cache Button at Bottom
+      $('.footer-action').after(`
+            <div class="text-center py-4">
+                <button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">
+                    🛠️ Admin: Clear Cache
+                </button>
+            </div>
+        `);
+
+      // Instant Load from Cache
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
       if (cachedOrder) {
         console.log("Loaded from Admin Cache instantly!");
-
-        // ✅ FIX IS HERE: Correctly hide the loader
         showLoader(false);
 
+        // Initial Status Update for Admin Bar
+        let initialStatus = cachedOrder.Status || 'Pending';
+        updateAdminUI(initialStatus, oid);
+
+        // Fix potential nulls
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
         cachedOrder.district = cachedOrder.district || '';
         cachedOrder.state = cachedOrder.state || '';
 
-        loadOrderData(cachedOrder, true);
+        loadOrderData(cachedOrder);
       } else {
         fetchOrder(oid);
       }
     } else {
+      // Normal User
       fetchOrder(oid);
     }
   } else {
@@ -128,8 +155,63 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 HELPER TO LOAD DATA (Reused by Fetch & Cache)
-function loadOrderData(d, isAdminCache = false) {
+// 🔴 ADMIN UI UPDATE (Blue -> Yellow -> Grey)
+function updateAdminUI(serverStatus, oid) {
+  let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let localUpdate = pendingUpdates.find(item => item.oid === oid);
+  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
+
+  let btnHTML = '';
+
+  if (currentStatus === 'Pending') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
+  } else if (currentStatus === 'Sent') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
+  } else {
+    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : 'PAID';
+    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`;
+  }
+
+  $('#admin-btn-container').html(btnHTML);
+  $('#admin-action-bar').slideDown();
+}
+
+// 🔴 ADMIN ACTION (Local Save)
+function adminAction(oid, status) {
+  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  updates = updates.filter(item => item.oid !== oid);
+  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  // Update Cache
+  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let orderIndex = allOrders.findIndex(o => o.orderid === oid);
+  if (orderIndex !== -1) {
+    allOrders[orderIndex].Status = status;
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+  }
+
+  updateAdminUI(status, oid);
+
+  const Toast = Swal.mixin({
+    toast: true, position: 'top-end', showConfirmButton: false, timer: 2000,
+    didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
+  });
+  Toast.fire({ icon: 'success', title: `Saved: ${status}` });
+}
+
+// Clear Cache Function
+function clearAdminCache() {
+  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) {
+    localStorage.removeItem('allOrdersCache');
+    location.reload();
+  }
+}
+
+// 🔴 HELPER TO LOAD DATA
+function loadOrderData(d) {
   $('#step-0').hide();
   userData = d;
   editingOrderId = d.orderid;
@@ -140,21 +222,14 @@ function loadOrderData(d, isAdminCache = false) {
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
-  if (localStorage.getItem('kafakAdmin') === 'true') {
-    // If loaded from admin cache, 'd.Status' is likely correct. 
-    // If loaded from fetch, we check local pending updates.
-    updateAdminUI(d.Status || 'Pending', d.orderid);
-  }
-
   if (d.Status === 'Dispatched') {
-    editingOrderId = null; // Disable editing if dispatched
+    editingOrderId = null;
     showReturningUserView(d, false);
   } else {
     showReturningUserView(d, true);
   }
 }
 
-// ... (Functions: updateFooterButtons, changeLanguage, showAlert, getAlert, confirmHome, showLoader same as before) ...
 function updateFooterButtons(view) {
   $('#btn-group-0').hide();
   $('#btn-group-wizard').hide();
@@ -234,7 +309,7 @@ function handlePhoneNext() {
         }
 
         const finalUser = localData ? { ...d, ...localData } : d;
-        loadOrderData(finalUser); // 🔴 Reusing Load Logic
+        loadOrderData(finalUser);
       } else {
         if (localData) {
           userData = localData;
@@ -265,7 +340,15 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
-        loadOrderData(d); // 🔴 Reusing Load Logic
+        // 🔴 Admin Check on Fetch
+        if (localStorage.getItem('kafakAdmin') === 'true') {
+          let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let cachedOrder = cachedOrders.find(o => o.orderid === oid);
+          let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending');
+          updateAdminUI(status, oid);
+        }
+
+        loadOrderData(d);
       } else {
         $('#step-0').fadeIn();
         updateFooterButtons('step-0');
@@ -274,79 +357,17 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// 🔴 ADMIN UI WITH CLOSE BUTTON
-function updateAdminUI(serverStatus, oid) {
-  let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let localUpdate = pendingUpdates.find(item => item.oid === oid);
-  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
-
-  let btnHTML = '';
-
-  if (currentStatus === 'Pending') {
-    btnHTML = `
-      <div class="admin-title">ACTION REQUIRED</div>
-      <button onclick="adminAction('${oid}', 'Sent')" class="btn-admin btn-sent">💬 MARK INVOICE SENT</button>`;
-  } else if (currentStatus === 'Sent') {
-    btnHTML = `
-      <div class="admin-title">PAYMENT PENDING</div>
-      <button onclick="adminAction('${oid}', 'Paid')" class="btn-admin btn-paid">💰 MARK AS PAID</button>`;
-  } else {
-    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED 📦' : 'PAID ✅';
-    btnHTML = `
-      <div class="admin-title">STATUS</div>
-      <button class="btn-admin btn-disabled" disabled>${statusText}</button>`;
-  }
-
-  // 🔴 ADD CLOSE BUTTON
-  btnHTML += `<button onclick="window.close()" class="btn btn-sm btn-outline-danger w-100 mt-2 fw-bold">❌ CLOSE WINDOW</button>`;
-
-  if ($('#admin-controls').length) {
-    $('#admin-controls').html(btnHTML).show();
-  } else {
-    if (!$('#admin-action-bar').length) {
-      $('body').append(`<div id="admin-action-bar" style="position:fixed; bottom:0; left:0; width:100%; background:white; padding:15px; border-top:1px solid #eee; z-index:1000; box-shadow:0 -5px 15px rgba(0,0,0,0.1);"></div>`);
-    }
-    $('#admin-action-bar').html(btnHTML).show();
-    $('body').css('padding-bottom', '120px');
-  }
-}
-
-function adminAction(oid, status) {
-  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  updates = updates.filter(item => item.oid !== oid);
-  updates.push({ oid: oid, status: status, time: new Date().getTime() });
-  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-  // Update Main Cache Instant
-  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-  let orderIndex = allOrders.findIndex(o => o.orderid === oid);
-  if (orderIndex !== -1) {
-    allOrders[orderIndex].Status = status;
-    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-  }
-
-  updateAdminUI(status, oid);
-}
-
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
 
   isEditMode = isActiveOrder;
 
-  if (isActiveOrder && localStorage.getItem('kafakAdmin') === 'true') {
-    $('#admin-controls').show();
-  } else {
-    $('#admin-controls').hide();
-  }
-
+  // 🔴 ORDER ID BADGE
   if (d.orderid) { $('#display-oid').text('#' + d.orderid).show(); }
   else { $('#display-oid').hide(); }
 
   $('#saved-name').text(d.name);
-
   $('#edit-phone').val(d.phone);
   $('#edit-house').val(d.house);
   $('#edit-place').val(d.place);
@@ -500,8 +521,6 @@ function submitQuickOrder() {
   postOrder(finalData);
 }
 
-// ... (Remaining Wizard Functions: startWizard, showStep, nextStep, prevStep, updateWizardLocDisplay, renderReview(Removed), submitWizardOrder, updatePrice, postOrder, sendToWhatsapp - SAME AS BEFORE) ...
-// 🔴 Note: Just copy-paste the rest of the functions from previous correct version.
 // --- WIZARD ---
 function startWizard() {
   $('#wizard-view').fadeIn();
@@ -513,7 +532,7 @@ function startWizard() {
 function showStep(s) {
   $('.wiz-step').hide();
   $(`.wiz-step[data-step="${s}"]`).fadeIn();
-  const pct = (s / 7) * 100; // 🔴 Now 7 Steps max
+  const pct = (s / 7) * 100; // 7 Steps
   $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next');
   const lang = $('.form-select').val();
@@ -688,7 +707,7 @@ function sendToWhatsapp() {
   const courier = courierRates.kerala[n] || 0;
   const amountText = `Amount(₹): ${base} + ${courier}`;
   const totalText = `Total(₹): ${base + courier}/-`;
-  const extra = `*✅ Honey order confirmed!* 🍯\n🔖_${orderid}_\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
+  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
   const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }

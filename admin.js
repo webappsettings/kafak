@@ -139,25 +139,37 @@ function updateSyncButtonUI() {
     }
 }
 
-// 🔴 UPDATED CARD DESIGN
+function discardLocalChanges() {
+    if (!confirm("ഉറപ്പാണോ? ലോക്കൽ മാറ്റങ്ങൾ എല്ലാം പോകും!")) return;
+
+    // Clear Local Storage
+    localStorage.removeItem('pendingUpdates');
+
+    // Re-render tabs with Original Data
+    renderTabs(allOrders);
+
+    alert("Local changes discarded! ✅");
+}
+
+// 🔴 UPDATED CARD DESIGN (Print Logic Fixed)
 function createCardHTML(d, index, type, currentStatus) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => (val || '').toString().toUpperCase();
     let statusBadge = '', buttons = '', tickMark = '';
     let topButtons = '';
 
-    // 🔴 TOP ACTION BUTTONS (REVERT & EDIT)
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
+    // EDIT LINK BADGE
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-mini">✏️ EDIT</a>`;
 
-    // Individual Print for Sent & Dispatched
-    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
+    // PRINT BUTTON (Only for Paid & Dispatched)
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-mini">🖨️ PRINT</button>`;
 
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Invoice Sent ⏳</span>';
             buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
                        <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
-            topButtons = printBtn; // Show Print for Sent
+            // NO PRINT BUTTON HERE
         } else {
             statusBadge = '<span class="badge bg-warning text-dark">New</span>';
             buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
@@ -169,24 +181,24 @@ function createCardHTML(d, index, type, currentStatus) {
                        <input type="checkbox" class="order-cb" value="${index}" onchange="checkSelectAllStatus()" style="width:20px; height:20px;">
                    </div>`;
 
-        // 🔴 REVERT BUTTON (Paid -> Sent)
-        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">↩ To Sent</button>`;
+        // REVERT & PRINT
+        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-mini">↩ REVERT</button>` + printBtn;
 
     } else if (type === 'dispatched') {
         statusBadge = '<span class="badge bg-primary">Dispatched</span>';
         tickMark = '<i class="fas fa-check-circle text-primary fs-4 position-absolute top-0 end-0 m-2"></i>';
         buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 Add Tracking</button>`;
 
-        // 🔴 REVERT BUTTON (Dispatched -> Paid) + PRINT
-        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ To Paid</button>` + printBtn;
+        // REVERT & PRINT
+        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-mini">↩ REVERT</button>` + printBtn;
     }
 
     let addressBlock = `
         <div class="cust-details">
-            <div style="font-weight:700; color:#333;">${safe(d.house)}</div>
+            <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
             <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
             <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
-            <div class="mt-1 text-primary"><i class="fas fa-phone-alt small"></i> ${d.phone}</div>
+            <div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${d.phone}</div>
         </div>
     `;
 
@@ -195,10 +207,11 @@ function createCardHTML(d, index, type, currentStatus) {
         <div class="order-card status-${currentStatus}">
             ${tickMark}
             <div class="card-header-row">
-                <div>
-                    <span class="order-id">#${d.orderid}</span>
+                <div class="top-actions">
+                    <span class="order-id">#${d.orderid.split('-')[1]}</span>
                     ${editLink} 
-                    ${topButtons} </div>
+                    ${topButtons}
+                </div>
                 ${statusBadge}
             </div>
             <div class="cust-name">${safe(d.name)}</div>
@@ -206,8 +219,8 @@ function createCardHTML(d, index, type, currentStatus) {
             ${addressBlock}
 
             <div class="info-box">
-                <b>${d.quantity} Bottles</b>
-                <div class="text-success fw-bold">${priceInfo.total}</div>
+                <span>${d.quantity} Bottles</span>
+                <span class="price-tag">${priceInfo.total}</span>
             </div>
             <div class="action-area">${buttons}</div>
         </div>
