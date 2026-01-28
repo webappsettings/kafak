@@ -1,6 +1,7 @@
 // 🔴 GOOGLE SCRIPT URL
 const sc = `https://script.google.com/macros/s/AKfycby_Ju8fR6emPAF9MMOULRZfnQDmODOju38I4Mjfo-yt1FZjgtud6Q42-YALC0KUCo-fwg/exec`;
 
+
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -11,7 +12,7 @@ let currentStep = 0; // 0=Phone, 1-7=Wizard
 let editingOrderId = null;
 let userData = {};
 let successData = null;
-let poList = []; // To store multiple POs
+let poList = [];
 
 $(document).ready(function () {
   // Fill Quantity Options
@@ -28,7 +29,7 @@ $(document).ready(function () {
   $('#quantity').append(qtyOpts);
   $('#quick-qty').append(qtyOpts);
 
-  // Initial Load
+  // Initial Load - Loader Hide
   showLoader(false);
 
   // Listeners
@@ -36,7 +37,7 @@ $(document).ready(function () {
   $('#pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // Check URL for Edit
+  // Check URL for Edit Link
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('oid')) {
     showLoader(true);
@@ -44,14 +45,16 @@ $(document).ready(function () {
   }
 });
 
-// --- TRANSLATIONS ---
+// --- TRANSLATIONS & PLACEHOLDERS ---
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ",
+    ph_phone: "മൊബൈൽ നമ്പർ",
     btn_next: "തുടരുക",
     welcome_back: "സ്വാഗതം!",
     btn_edit: "വിലാസം മാറ്റാം",
     lbl_house: "വീട്ടുപേര് / നമ്പർ",
+    ph_house: "വീട്ടുപേര്",
     lbl_place: "സ്ഥലം",
     lbl_pincode: "പിൻകോഡ്",
     lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
@@ -60,6 +63,7 @@ const translations = {
     btn_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം",
     btn_order: "ഓർഡർ ചെയ്യാം",
     lbl_name: "നിങ്ങളുടെ പേര്",
+    ph_name: "പേര്",
     lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ",
     lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
     lbl_altphone: "വിളിച്ചാൽ കിട്ടുന്ന മറ്റൊരു നമ്പർ (Optional)",
@@ -68,14 +72,16 @@ const translations = {
     order_success: "ഓർഡർ ലഭിച്ചു!",
     redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...",
     open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
-    loading: "ലോഡ് ചെയ്യുന്നു... കാത്തിരിക്കൂ..."
+    loading: "വിവരങ്ങൾ എടുക്കുന്നു..."
   },
   en: {
     lbl_phone: "Phone Number",
+    ph_phone: "Enter Mobile Number",
     btn_next: "CONTINUE",
     welcome_back: "Welcome Back!",
     btn_edit: "EDIT ADDRESS",
     lbl_house: "House Name / No",
+    ph_house: "House Name",
     lbl_place: "Place / Area",
     lbl_pincode: "Pincode",
     lbl_qty: "Select Quantity",
@@ -84,6 +90,7 @@ const translations = {
     btn_update: "UPDATE ORDER",
     btn_order: "PLACE ORDER",
     lbl_name: "Full Name",
+    ph_name: "Your Name",
     lbl_whatsapp: "WhatsApp Number",
     lbl_select_po: "Select Post Office",
     lbl_altphone: "Alternate Phone (Optional)",
@@ -92,15 +99,27 @@ const translations = {
     order_success: "Order Placed!",
     redirect_wa: "Redirecting to WhatsApp...",
     open_wa: "Open WhatsApp",
-    loading: "Loading... Please wait..."
+    loading: "Fetching details..."
   }
 };
 
 function changeLanguage(lang) {
+  // 1. Text Content
   $('[data-i18n]').each(function () {
     const key = $(this).data('i18n');
     if (translations[lang][key]) $(this).text(translations[lang][key]);
   });
+
+  // 2. Placeholders (Fix for Point 4)
+  if (lang === 'ml') {
+    $('#phone').attr('placeholder', translations.ml.ph_phone);
+    $('#name').attr('placeholder', translations.ml.ph_name);
+    $('#house').attr('placeholder', translations.ml.ph_house);
+  } else {
+    $('#phone').attr('placeholder', translations.en.ph_phone);
+    $('#name').attr('placeholder', translations.en.ph_name);
+    $('#house').attr('placeholder', translations.en.ph_house);
+  }
 }
 
 // --- LOADER ---
@@ -115,7 +134,7 @@ function showLoader(show) {
 
 function handlePhoneNext() {
   const phone = $('#phone').val();
-  if (phone.length !== 10) { alert("Enter valid 10 digit number"); return; }
+  if (phone.length !== 10) { alert("Please enter 10 digit number"); return; }
 
   showLoader(true);
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
@@ -141,8 +160,6 @@ function handlePhoneNext() {
             $('#name').val(d.name);
             $('#whatsapp').val(d.whatsapp);
             $('#pincode').val(d.pincode);
-            // Just jump to summary flow? No, let's verify details in wizard
-            // Pre-fill wizard inputs
             $('#house').val(d.house);
             $('#altphone').val(d.altphone);
           } else {
@@ -210,7 +227,6 @@ function toggleAddressEdit() {
 function submitQuickOrder() {
   if (!$('#quick-qty').val()) { alert("Select Quantity"); return; }
 
-  // Use edit fields if visible, else user cached data
   const isEdit = $('.address-box').is(':visible');
 
   const finalData = {
@@ -281,10 +297,10 @@ async function nextStep() {
 
       if (data && data.length > 0) {
         poList = data;
-        $('#edit-district').val(data[0].district); // Store temporarily
+        $('#edit-district').val(data[0].district);
         $('#edit-state').val(data[0].statename);
 
-        // LOGIC: If multiple, go to 3.5, else go to 4
+        // MULTIPLE POST OFFICE CHECK (Point 6)
         if (data.length > 1) {
           $('#po-select').empty().append('<option value="">Select...</option>');
           data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`));
@@ -295,13 +311,13 @@ async function nextStep() {
           // Only 1 PO
           $('#display-place').text(data[0].officename);
           $('#display-dist').text(data[0].district);
-          // Store
+
           userData.postoffice = data[0].officename;
           userData.district = data[0].district;
           userData.state = data[0].statename;
         }
       } else {
-        alert("Pincode not found. Please enter manually if needed.");
+        alert("Pincode not found. Please enter manually.");
       }
     } catch (e) {
       $('#btn-wiz-next').prop('disabled', false).text('NEXT');
@@ -376,7 +392,7 @@ function submitWizardOrder() {
     altphone: $('#altphone').val(),
     pincode: $('#pincode').val(),
     house: $('#house').val(),
-    place: userData.postoffice, // Use PO as place for simplicity
+    place: userData.postoffice,
     postoffice: userData.postoffice,
     district: userData.district,
     state: userData.state || 'Kerala',
@@ -417,17 +433,23 @@ function postOrder(data) {
     .catch(() => { showLoader(false); alert("Failed. Try again."); });
 }
 
+// 🔴 RESTORED WHATSAPP LOGIC (Point 6)
 function sendToWhatsapp() {
-  const d = successData;
   const phone = '7788990313';
+  const orderid = successData.orderid;
+  const d = successData;
+  const editLink = `kafaklife.com/order.html?oid=${orderid}`;
 
-  let msg = `*ORDER: ${successData.orderid}*\n`;
-  msg += `Name: ${d.name}\n`;
-  msg += `Phone: ${d.phone}\n`;
-  msg += `Address: ${d.house}, ${d.postoffice}, ${d.pincode}\n`;
-  if (d.altphone) msg += `Alt Ph: ${d.altphone}\n`;
-  msg += `\n*QTY: ${d.quantity} Bottles*\n`;
-  if (d.message) msg += `Note: ${d.message}\n`;
+  // Recalculate amounts for text
+  const n = parseInt(d.quantity);
+  const base = n * 650;
+  const courier = courierRates.kerala[n] || 0;
+  const amountText = `Amount(₹): ${base} + ${courier}`;
+  const totalText = `Total(₹): ${base + courier}/-`;
 
-  window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`;
+  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
+
+  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${d.district.trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+
+  window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }

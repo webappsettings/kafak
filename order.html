@@ -16,48 +16,56 @@
       --primary: #000;
       --secondary: #fff;
       --text-gray: #666;
+      --brand-green: #2e7d32;
+      /* KAFAK Green */
     }
 
     body {
       background: var(--secondary);
       font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
       color: var(--primary);
-      padding-top: 80px;
-      padding-bottom: 100px;
+      padding-top: 70px;
+      /* Logo Header Height */
+      padding-bottom: 90px;
+      /* Footer Button Space */
+      overflow-x: hidden;
     }
 
-    /* Logo & Nav */
+    /* Navbar & Logo */
     .navbar {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
-      padding: 15px 0;
-      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     }
 
-    .brand-logo {
-      font-weight: 900;
-      font-size: 26px;
-      letter-spacing: -1px;
-      text-decoration: none;
-      color: black;
+    .brand-logo-img {
+      height: 40px;
+      width: auto;
     }
+
+    /* Logo Size */
 
     /* Inputs */
     .huge-input {
       border: none;
       border-bottom: 2px solid #eee;
       padding: 15px 0;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       width: 100%;
       outline: none;
       border-radius: 0;
       background: transparent;
+      transition: border-color 0.3s;
     }
 
     .huge-input:focus {
-      border-color: black;
+      border-color: var(--brand-green);
     }
+
+    /* Green Focus */
 
     .form-label {
       font-weight: 700;
@@ -65,6 +73,7 @@
       color: var(--text-gray);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-top: 10px;
     }
 
     .regular-input {
@@ -74,10 +83,11 @@
       width: 100%;
       font-weight: 600;
       outline: none;
+      transition: border-color 0.3s;
     }
 
     .regular-input:focus {
-      border-color: black;
+      border-color: var(--brand-green);
     }
 
     /* Buttons */
@@ -88,23 +98,43 @@
       padding: 16px;
       border-radius: 12px;
       font-weight: 700;
+      font-size: 16px;
       border: none;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.1s;
     }
 
     .btn-black:active {
       transform: scale(0.98);
     }
 
-    /* Summary Card (Returning User) */
+    /* Footer Button Container (Stable) */
+    .footer-action {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 15px 20px;
+      border-top: 1px solid #eee;
+      z-index: 1050;
+      /* Above Keyboard */
+      padding-bottom: max(15px, env(safe-area-inset-bottom));
+      /* iPhone Safe Area */
+    }
+
+    /* Summary Card */
     .summary-card {
-      background: #f9f9f9;
+      background: #fdfdfd;
       border-radius: 16px;
       padding: 20px;
       border: 1px solid #eee;
+      border-left: 4px solid var(--brand-green);
+      /* Minimal Green Accent */
       margin-bottom: 20px;
     }
 
@@ -118,35 +148,38 @@
     .edit-link {
       font-size: 12px;
       font-weight: 700;
-      color: black;
-      text-decoration: underline;
+      color: var(--brand-green);
+      text-decoration: none;
       cursor: pointer;
       float: right;
     }
 
-    /* Final Review Card (New User) */
+    /* Review Card */
     .review-card {
       background: #fff;
-      border: 2px solid #000;
+      border: 1px solid #eee;
       border-radius: 16px;
       padding: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
     }
 
     .review-item {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     .review-label {
       font-size: 12px;
-      color: #666;
+      color: #888;
       font-weight: 600;
     }
 
     .review-val {
       font-weight: 700;
       text-align: right;
+      font-size: 15px;
     }
 
     /* Loader */
@@ -165,10 +198,10 @@
     }
 
     .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #eee;
-      border-top-color: black;
+      width: 45px;
+      height: 45px;
+      border: 4px solid #f0f0f0;
+      border-top-color: var(--brand-green);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -179,13 +212,30 @@
       }
     }
 
-    /* Sections */
-    .step-section {
-      display: none;
-      animation: fadeIn 0.4s ease;
+    /* Progress Bar */
+    .progress-bar-custom {
+      height: 4px;
+      background: #f0f0f0;
+      width: 100%;
+      margin-bottom: 25px;
+      border-radius: 2px;
+      overflow: hidden;
     }
 
-    @keyframes fadeIn {
+    .progress-fill {
+      height: 100%;
+      background: var(--brand-green);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Sections Animation */
+    .step-section {
+      display: none;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
       from {
         opacity: 0;
         transform: translateY(10px);
@@ -203,15 +253,20 @@
 
   <div id="full-loader">
     <div class="spinner"></div>
-    <p class="mt-3 fw-bold small text-muted" id="loader-text">Loading...</p>
+    <p class="mt-3 fw-bold small text-muted" id="loader-text">വിവരങ്ങൾ എടുക്കുന്നു...</p>
   </div>
 
   <nav class="navbar fixed-top">
-    <div class="container">
-      <a href="#" class="brand-logo">KAFAK.</a>
-      <select class="form-select form-select-sm border-0 bg-light fw-bold" style="width:auto;"
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="logo.png" alt="KAFAK" class="brand-logo-img"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none; font-weight:900; font-size:24px;">KAFAK.</span>
+      </a>
+
+      <select class="form-select form-select-sm border-0 bg-light fw-bold text-secondary" style="width:auto;"
         onchange="changeLanguage(this.value)">
-        <option value="ml">MALAYALAM</option>
+        <option value="ml" selected>മലയാളം</option>
         <option value="en">ENGLISH</option>
       </select>
     </div>
@@ -220,42 +275,43 @@
   <div class="container" style="max-width: 500px;">
 
     <div id="showsuccess" class="text-center" style="display:none; padding-top: 50px;">
-      <div style="font-size: 60px;">🎉</div>
-      <h2 class="fw-bold mt-3 mb-2" data-i18n="order_success">Order Placed!</h2>
-      <p class="text-muted mb-4" data-i18n="redirect_wa">Redirecting to WhatsApp...</p>
+      <div style="font-size: 60px; color: var(--brand-green);">Verified</div>
+      <h2 class="fw-bold mt-3 mb-2" data-i18n="order_success">ഓർഡർ ലഭിച്ചു!</h2>
+      <p class="text-muted mb-4" data-i18n="redirect_wa">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
       <button onclick="sendToWhatsapp()" class="btn-black">
-        <i class="fab fa-whatsapp"></i> <span data-i18n="open_wa">Open WhatsApp</span>
+        <i class="fab fa-whatsapp"></i> <span data-i18n="open_wa">വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം</span>
       </button>
     </div>
 
-    <form id="order-form">
+    <form id="order-form" onsubmit="return false;">
 
       <div id="step-0" class="step-section" style="display:block;">
-        <label class="form-label" data-i18n="lbl_phone">Phone Number</label>
-        <input type="tel" id="phone" class="huge-input" placeholder="9876543210" maxlength="10">
-        <div class="fixed-bottom p-3 bg-white border-top">
+        <label class="form-label" data-i18n="lbl_phone">ഫോൺ നമ്പർ</label>
+        <input type="tel" id="phone" class="huge-input" placeholder="മൊബൈൽ നമ്പർ" maxlength="10" autofocus>
+
+        <div class="footer-action">
           <div class="container p-0" style="max-width: 500px;">
             <button type="button" class="btn-black" onclick="handlePhoneNext()">
-              <span data-i18n="btn_next">CONTINUE</span>
+              <span data-i18n="btn_next">തുടരുക</span>
             </button>
           </div>
         </div>
       </div>
 
       <div id="returning-user-view" class="step-section">
-        <h3 class="fw-bold mb-3" data-i18n="welcome_back">Welcome Back!</h3>
+        <h4 class="fw-bold mb-3" data-i18n="welcome_back">സ്വാഗതം!</h4>
 
         <div class="summary-card">
-          <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">EDIT ADDRESS</span>
-          <div class="fw-bold" id="saved-name">User Name</div>
+          <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">വിലാസം മാറ്റാം</span>
+          <div class="fw-bold fs-5" id="saved-name">User Name</div>
           <div class="text-muted small mt-1" id="saved-address-text">Address Line 1...</div>
 
           <div class="address-box" id="address-edit-box">
-            <label class="form-label" data-i18n="lbl_house">House Name / No</label>
+            <label class="form-label" data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label>
             <input type="text" id="edit-house" class="regular-input mb-2">
-            <label class="form-label" data-i18n="lbl_place">Place</label>
+            <label class="form-label" data-i18n="lbl_place">സ്ഥലം</label>
             <input type="text" id="edit-place" class="regular-input mb-2">
-            <label class="form-label" data-i18n="lbl_pincode">Pincode</label>
+            <label class="form-label" data-i18n="lbl_pincode">പിൻകോഡ്</label>
             <input type="tel" id="edit-pincode" class="regular-input mb-2" maxlength="6">
             <input type="hidden" id="edit-postoffice">
             <input type="hidden" id="edit-district">
@@ -263,23 +319,23 @@
           </div>
         </div>
 
-        <label class="form-label" data-i18n="lbl_qty">Select Quantity</label>
+        <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
         <select id="quick-qty" class="regular-input mb-3">
           <option value="" disabled selected>Select...</option>
         </select>
 
-        <label class="form-label" data-i18n="lbl_msg">Message (Optional)</label>
+        <label class="form-label" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
         <textarea id="quick-msg" class="regular-input mb-3" rows="1"></textarea>
 
         <div class="text-end mb-4">
-          <div class="fw-bold fs-4" id="quick-price">₹0</div>
-          <small class="text-muted" data-i18n="courier_included">(Courier Charge Included)</small>
+          <div class="fw-bold fs-4 text-dark" id="quick-price">₹0</div>
+          <small class="text-muted" style="font-size:11px;" data-i18n="courier_included">(കൂരിയർ ചാർജ് ഉൾപ്പെടെ)</small>
         </div>
 
-        <div class="fixed-bottom p-3 bg-white border-top">
+        <div class="footer-action">
           <div class="container p-0" style="max-width: 500px;">
             <button type="button" class="btn-black" onclick="submitQuickOrder()" id="btn-quick-submit">
-              <span data-i18n="btn_update">UPDATE ORDER</span>
+              <span data-i18n="btn_update">ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം</span>
             </button>
           </div>
         </div>
@@ -287,83 +343,85 @@
 
       <div id="wizard-view" class="step-section">
 
-        <div class="progress mb-4" style="height: 4px;">
-          <div class="progress-bar bg-dark" id="wiz-progress" style="width: 10%;"></div>
+        <div class="progress-bar-custom">
+          <div class="progress-fill" id="wiz-progress" style="width: 10%;"></div>
         </div>
 
         <div class="wiz-step" data-step="1">
-          <label class="form-label" data-i18n="lbl_name">Full Name</label>
-          <input type="text" id="name" class="huge-input" autofocus>
+          <label class="form-label" data-i18n="lbl_name">നിങ്ങളുടെ പേര്</label>
+          <input type="text" id="name" class="huge-input" placeholder="പേര്" autofocus>
         </div>
 
         <div class="wiz-step" data-step="2" style="display:none;">
-          <label class="form-label" data-i18n="lbl_whatsapp">WhatsApp Number</label>
-          <input type="tel" id="whatsapp" class="huge-input">
+          <label class="form-label" data-i18n="lbl_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
+          <input type="tel" id="whatsapp" class="huge-input" placeholder="WhatsApp">
         </div>
 
         <div class="wiz-step" data-step="3" style="display:none;">
-          <label class="form-label" data-i18n="lbl_pincode">Pincode</label>
-          <input type="tel" id="pincode" class="huge-input" maxlength="6">
-          <p id="pin-error" class="text-danger small mt-2" style="display:none;">Invalid Pincode</p>
+          <label class="form-label" data-i18n="lbl_pincode">പിൻകോഡ്</label>
+          <input type="tel" id="pincode" class="huge-input" maxlength="6" placeholder="000000">
+          <p id="pin-error" class="text-danger small mt-2 fw-bold" style="display:none;">പിൻകോഡ് തെറ്റാണ്!</p>
         </div>
 
         <div class="wiz-step" data-step="3.5" style="display:none;">
-          <label class="form-label" data-i18n="lbl_select_po">Select Post Office</label>
+          <label class="form-label" data-i18n="lbl_select_po">പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക</label>
           <select id="po-select" class="huge-input border-0 bg-transparent">
             <option value="">Select...</option>
           </select>
         </div>
 
         <div class="wiz-step" data-step="4" style="display:none;">
-          <label class="form-label" data-i18n="lbl_house">House Name / Number</label>
-          <input type="text" id="house" class="huge-input">
-          <div class="mt-3 text-muted small">
-            <span id="display-place"></span>, <span id="display-dist"></span>
+          <label class="form-label" data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label>
+          <input type="text" id="house" class="huge-input" placeholder="House Name">
+          <div class="mt-3 text-muted small fw-bold">
+            <i class="fas fa-map-marker-alt text-success"></i> <span id="display-place"></span>, <span
+              id="display-dist"></span>
           </div>
         </div>
 
         <div class="wiz-step" data-step="5" style="display:none;">
-          <label class="form-label" data-i18n="lbl_altphone">Alternate Phone (Optional)</label>
-          <input type="tel" id="altphone" class="huge-input" placeholder="Optional">
+          <label class="form-label" data-i18n="lbl_altphone">വിളിച്ചാൽ കിട്ടുന്ന മറ്റൊരു നമ്പർ (Optional)</label>
+          <input type="tel" id="altphone" class="huge-input" placeholder="Alternate Phone">
         </div>
 
         <div class="wiz-step" data-step="6" style="display:none;">
-          <label class="form-label" data-i18n="lbl_qty">Select Quantity</label>
+          <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
           <select id="quantity" class="huge-input border-0 bg-transparent">
             <option value="" disabled selected>Select...</option>
           </select>
-          <label class="form-label mt-4" data-i18n="lbl_msg">Message (Optional)</label>
+          <label class="form-label mt-4" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
           <input type="text" id="message" class="regular-input" placeholder="...">
 
           <div class="mt-4 text-end">
             <div class="fw-bold fs-3" id="wiz-price">₹0</div>
-            <small class="text-muted" data-i18n="courier_included">(Courier Charge Included)</small>
+            <small class="text-muted" style="font-size:11px;" data-i18n="courier_included">(കൂരിയർ ചാർജ്
+              ഉൾപ്പെടെ)</small>
           </div>
         </div>
 
         <div class="wiz-step" data-step="7" style="display:none;">
-          <h3 class="fw-bold mb-3" data-i18n="lbl_summary">Order Summary</h3>
+          <h4 class="fw-bold mb-3" data-i18n="lbl_summary">ഓർഡർ വിവരങ്ങൾ</h4>
           <div class="review-card">
-            <div class="review-item"><span class="review-label" data-i18n="lbl_name">Name</span><span class="review-val"
+            <div class="review-item"><span class="review-label" data-i18n="lbl_name">പേര്</span><span class="review-val"
                 id="rev-name"></span></div>
-            <div class="review-item"><span class="review-label" data-i18n="lbl_phone">Phone</span><span
-                class="review-val" id="rev-phone"></span></div>
-            <div class="review-item"><span class="review-label" data-i18n="lbl_address">Address</span><span
+            <div class="review-item"><span class="review-label" data-i18n="lbl_phone">ഫോൺ</span><span class="review-val"
+                id="rev-phone"></span></div>
+            <div class="review-item"><span class="review-label" data-i18n="lbl_address">വിലാസം</span><span
                 class="review-val text-end" id="rev-address"></span></div>
-            <hr>
-            <div class="review-item"><span class="review-label" data-i18n="lbl_qty">Item</span><span class="review-val"
+            <hr style="border-color:#eee;">
+            <div class="review-item"><span class="review-label" data-i18n="lbl_qty">സാധനം</span><span class="review-val"
                 id="rev-qty"></span></div>
-            <div class="review-item"><span class="review-label">Total</span><span class="review-val fs-5"
+            <div class="review-item"><span class="review-label">Total</span><span class="review-val fs-5 text-success"
                 id="rev-total"></span></div>
           </div>
         </div>
 
-        <div class="fixed-bottom p-3 bg-white border-top">
+        <div class="footer-action">
           <div class="container p-0 d-flex gap-2" style="max-width: 500px;">
-            <button type="button" class="btn btn-light border fw-bold" style="width: 50px;"
+            <button type="button" class="btn btn-light border fw-bold" style="width: 50px; border-radius:12px;"
               onclick="prevStep()">←</button>
             <button type="button" class="btn-black" onclick="nextStep()" id="btn-wiz-next">
-              <span data-i18n="btn_next">NEXT</span>
+              <span data-i18n="btn_next">തുടരുക</span>
             </button>
           </div>
         </div>
