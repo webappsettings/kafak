@@ -49,6 +49,7 @@ $(document).ready(function () {
         $('#house').val(u.house || '');
         $('#place').val(u.place || '');
 
+        // 🔴 FULL LOADER START: ഓട്ടോ ലോഗിൻ സമയത്ത് ലോഡർ കാണിക്കുന്നു
         toggleOrderInputs(false);
 
         $('#step-1').removeClass('active').hide();
@@ -128,18 +129,18 @@ function updateSubmitButton() {
   }
 }
 
+// 🔴 UPDATED: Full Screen Loader Logic
 function toggleOrderInputs(show) {
   if (show) {
-    $('#order-loading-msg').hide();
-    $('.order-inputs-wrapper').fadeIn();
+    // Hide Loader (Show Content)
+    $('#main-loader').fadeOut();
   } else {
-    if ($('#order-loading-msg').length === 0) {
-      $('#quantity').parent().parent().before('<div id="order-loading-msg" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm text-warning" role="status"></div> <span class="small fw-bold ms-2">Fetching Details... Please wait...</span></div>');
-      $('#quantity').parent().parent().addClass('order-inputs-wrapper');
-      $('#message').parent().addClass('order-inputs-wrapper');
-    }
-    $('.order-inputs-wrapper').hide();
-    $('#order-loading-msg').show();
+    // Show Loader (Full Screen)
+    const lang = $('.lang-select').val() || 'ml';
+    const text = (translations[lang] && translations[lang].loading_msg) ? translations[lang].loading_msg : "Loading... Please wait...";
+
+    $('#main-loader p').text(text);
+    $('#main-loader').css('display', 'flex').show();
   }
 }
 
@@ -189,7 +190,7 @@ function fetchOrderDetails(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`)
     .then(res => res.json())
     .then(response => {
-      $('#main-loader').fadeOut();
+      $('#main-loader').fadeOut(); // Fallback
       if (response.result === 'success') {
         const d = response.data;
 
@@ -218,7 +219,6 @@ function fetchOrderDetails(oid) {
         updateAdminUI(serverStatus, oid);
         checkPincode(d.pincode, d.postoffice);
 
-        // 🔴 CHANGED: Now shows Summary Card instead of Edit Mode
         showSummary(d);
 
         proceedToStep2();
@@ -255,18 +255,15 @@ function handleStep1() {
     return;
   }
 
-  const originalContent = btn.html();
-  btn.html('Checking...').prop('disabled', true);
+  // 🔴 SHOW FULL LOADER BEFORE FETCH
+  toggleOrderInputs(false);
 
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
     .then(async response => {
-      btn.html(originalContent).prop('disabled', false);
 
       if (response.result === 'success') {
         const d = response.data;
-
-        toggleOrderInputs(false);
 
         if (d.orderid && d.Status && d.Status !== 'Dispatched') {
           editingOrderId = d.orderid;
@@ -293,10 +290,12 @@ function handleStep1() {
           await checkPincode(String(d.pincode), d.postoffice);
         }
 
-        toggleOrderInputs(true);
+        toggleOrderInputs(true); // Hide Loader
         updateSubmitButton();
 
       } else {
+        // New User Case: Hide loader to show Name input
+        toggleOrderInputs(true);
         editingOrderId = null;
         nameSection.slideDown();
         tempNameInput.focus();
@@ -439,6 +438,7 @@ function closeAdminBar() {
   $('body').css('padding-bottom', '0');
 }
 
+// 🔴 TRANSLATIONS UPDATED WITH LOADING MESSAGE
 const translations = {
   ml: {
     step1_title: "നിങ്ങളുടെ ഫോൺ നമ്പർ?",
@@ -446,7 +446,8 @@ const translations = {
     your_name: "നിങ്ങളുടെ പേര്",
     next_btn: "അടുത്തത് ➔",
     order_btn: "ഓർഡർ ചെയ്യാം ✅",
-    update_btn: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം 🔄"
+    update_btn: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം 🔄",
+    loading_msg: "ലോഡ് ചെയ്യുന്നു... കാത്തിരിക്കൂ..."
   },
   en: {
     step1_title: "What is your Phone Number?",
@@ -454,7 +455,8 @@ const translations = {
     your_name: "Your Name",
     next_btn: "NEXT STEP ➔",
     order_btn: "PLACE ORDER ✅",
-    update_btn: "UPDATE ORDER 🔄"
+    update_btn: "UPDATE ORDER 🔄",
+    loading_msg: "Loading... Please wait..."
   }
 };
 
