@@ -1,6 +1,7 @@
 // 🔴 GOOGLE SCRIPT URL
 const sc = `https://script.google.com/macros/s/AKfycby_Ju8fR6emPAF9MMOULRZfnQDmODOju38I4Mjfo-yt1FZjgtud6Q42-YALC0KUCo-fwg/exec`;
 
+
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -13,28 +14,7 @@ let successData = null;
 let poList = [];
 
 $(document).ready(function () {
-  // 🔴 1. VISUAL VIEWPORT FIX FOR FLOATING BUTTON
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', () => {
-      const footer = document.querySelectorAll('.footer-action');
-      // Calculate if keyboard is up (Viewport height < Window height)
-      const heightDiff = window.innerHeight - window.visualViewport.height;
-
-      // Adjust bottom position if keyboard is present
-      footer.forEach(f => {
-        // If diff > 100, assume keyboard is open. 
-        // We set bottom to 0 relative to the VISUAL viewport
-        if (heightDiff > 100) {
-          // This pushes it up to sit on top of keyboard
-          f.style.bottom = `${heightDiff}px`;
-        } else {
-          f.style.bottom = '0';
-        }
-      });
-    });
-  }
-
-  // Fill Quantity Options
+  // Fill Quantity
   const qtyOpts = `
         <option value="1">1 Bottle (650g)</option>
         <option value="2">2 Bottles (1.30 kg)</option>
@@ -53,20 +33,33 @@ $(document).ready(function () {
   $('#pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // 🔴 2. INITIAL LOADING LOGIC
+  // 🔴 INITIAL LOAD LOGIC
   const urlParams = new URLSearchParams(window.location.search);
 
   if (urlParams.get('oid')) {
-    // Edit Mode: Keep loader visible until fetch completes
+    // Edit Link -> Fetch details first
     fetchOrder(urlParams.get('oid'));
   } else {
-    // New User Mode: Hide loader, show Phone input smoothly
+    // Normal Load -> Show Phone
     showLoader(false);
-    $('#step-0').addClass('fade-in-up').show();
+    $('#step-0').fadeIn();
+    updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
 });
 
+// --- HELPER: FOOTER TOGGLER ---
+function updateFooterButtons(view) {
+  $('#btn-group-0').hide();
+  $('#btn-group-wizard').hide();
+  $('#btn-group-returning').hide();
+
+  if (view === 'step-0') $('#btn-group-0').show();
+  if (view === 'wizard') $('#btn-group-wizard').show();
+  if (view === 'returning') $('#btn-group-returning').show();
+}
+
+// --- TRANSLATIONS ---
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ",
@@ -207,18 +200,21 @@ function fetchOrder(oid) {
           showReturningUserView(d);
         }
       } else {
-        // Invalid Link -> Show Phone
-        $('#step-0').addClass('fade-in-up').show();
+        $('#step-0').fadeIn();
+        updateFooterButtons('step-0');
       }
     })
     .catch(() => {
       showLoader(false);
-      $('#step-0').addClass('fade-in-up').show();
+      $('#step-0').fadeIn();
+      updateFooterButtons('step-0');
     });
 }
 
 function showReturningUserView(d) {
-  $('#returning-user-view').addClass('fade-in-up').show();
+  $('#returning-user-view').fadeIn();
+  updateFooterButtons('returning'); // Show specific button
+
   $('#saved-name').text(d.name);
   let addr = `${d.house}, ${d.place}`;
   if (d.postoffice) addr += `, ${d.postoffice}`;
@@ -260,7 +256,8 @@ function submitQuickOrder() {
 }
 
 function startWizard() {
-  $('#wizard-view').addClass('fade-in-up').show();
+  $('#wizard-view').fadeIn();
+  updateFooterButtons('wizard'); // Show Wizard buttons
   currentStep = 1;
   showStep(1);
 }
