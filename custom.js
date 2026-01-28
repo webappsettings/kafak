@@ -12,7 +12,7 @@ const translations = {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
     btn_edit: "വിലാസം മാറ്റാം", lbl_house: "വീട്ടുപേര് / നമ്പർ", ph_house: "വീട്ടുപേര്",
     lbl_place: "സ്ഥലം", lbl_pincode: "പിൻകോഡ്", lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
-    lbl_msg: "മെസ്സേജ് (ആവശ്യമെങ്കിൽ)", courier_included: "(കൂരിയർ ചാർജ് ഉൾപ്പെടെ)",
+    lbl_msg: "മെസ്സേജ് (ആവശ്യമെങ്കിൽ)", courier_included: "(കൊറിയര്‍ ചാർജ് ഉൾപ്പെടെ)",
     btn_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം", btn_order: "ഓർഡർ ചെയ്യാം", lbl_name: "നിങ്ങളുടെ പേര്",
     ph_name: "പേര്", lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ", lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
     lbl_altphone: "മറ്റൊരു നമ്പർ (Optional)", lbl_summary: "ഓർഡർ വിവരങ്ങൾ", lbl_address: "വിലാസം",
@@ -524,11 +524,23 @@ function submitWizardOrder() {
 function updatePrice(qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
+
+  // Calculate
   const base = n * 650;
-  const rate = courierRates.kerala[n] || 0;
-  const total = base + rate;
-  const txt = `Total: ₹${total}/-`;
-  if (isQuick) $('#quick-price').text(txt); else $('#wiz-price').text(txt);
+  const courier = courierRates.kerala[n] || 0; // Default Kerala Rates
+  const total = base + courier;
+
+  // Select Container (Quick View or Wizard)
+  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
+
+  // Update Values
+  container.find('.qty-count').text(n);
+  container.find('.val-base').text(base);
+  container.find('.val-courier').text(courier);
+  container.find('.val-total').text(total);
+
+  // Show Box
+  container.fadeIn();
 }
 
 function postOrder(data) {

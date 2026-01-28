@@ -322,6 +322,35 @@
       color: #d32f2f;
       font-size: 18px;
     }
+
+    .price-card {
+      background: #f8f9fa;
+      border: 1px dashed #ced4da;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .price-divider {
+      border-top: 1px dashed #ccc;
+      margin: 10px 0;
+    }
+
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 18px;
+      color: #000;
+    }
   </style>
 </head>
 
@@ -426,11 +455,22 @@
             <label class="form-label" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
             <textarea id="quick-msg" class="regular-input mb-3" rows="1"></textarea>
 
-            <div class="text-end mb-4">
-              <div class="fw-bold fs-4 text-dark" id="quick-price">₹0</div>
-              <small class="text-muted" style="font-size:11px;" data-i18n="courier_included">(കൊറിയര്‍ ചാർജ്
-                ഉൾപ്പെടെ)</small>
+            <div id="quick-price-box" class="price-card" style="display:none;">
+              <div class="price-row">
+                <span>Honey Price (<span class="qty-count">0</span>)</span>
+                <span>₹<span class="val-base">0</span></span>
+              </div>
+              <div class="price-row">
+                <span>Courier Charge</span>
+                <span>₹<span class="val-courier">0</span></span>
+              </div>
+              <div class="price-divider"></div>
+              <div class="price-total">
+                <span>Total Amount</span>
+                <span class="text-success">₹<span class="val-total">0</span></span>
+              </div>
             </div>
+            <div class="mb-4"></div>
           </div>
 
           <div id="wizard-view" class="step-section">
@@ -488,9 +528,20 @@
               </select>
               <label class="form-label mt-4" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
               <input type="text" id="message" class="regular-input" placeholder="...">
-              <div class="mt-4 text-end">
-                <div class="fw-bold fs-3" id="wiz-price">₹0</div>
-                <small class="text-muted" data-i18n="courier_included">(കൊറിയര്‍ ചാർജ് ഉൾപ്പെടെ)</small>
+              <div id="wiz-price-box" class="price-card" style="display:none;">
+                <div class="price-row">
+                  <span>Honey Price (<span class="qty-count">0</span>)</span>
+                  <span>₹<span class="val-base">0</span></span>
+                </div>
+                <div class="price-row">
+                  <span>Courier Charge</span>
+                  <span>₹<span class="val-courier">0</span></span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="price-total">
+                  <span>Total Amount</span>
+                  <span class="text-success">₹<span class="val-total">0</span></span>
+                </div>
               </div>
             </div>
             <div class="wiz-step" data-step="8" style="display:none;">
