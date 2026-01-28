@@ -50,6 +50,7 @@ let poList = [];
 let myCustId = null;
 let localUsersMap = {};
 let currentLoginPhone = null;
+let isEditMode = false; // 🔴 NEW FLAG TO TRACK EDIT MODE
 
 $(document).ready(function () {
   const qtyOpts = `
@@ -255,6 +256,9 @@ function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
 
+  // 🔴 SET EDIT MODE FLAG
+  isEditMode = isActiveOrder;
+
   $('#saved-name').text(d.name);
 
   $('#edit-phone').val(d.phone);
@@ -271,17 +275,19 @@ function showReturningUserView(d, isActiveOrder) {
 
   if (isActiveOrder) {
     $('#quick-qty').val(d.quantity).trigger('change');
-    // $('#quick-msg').val(d.message);
+    // Removed message pre-fill as per request
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
   } else {
     $('#quick-qty').val('').trigger('change');
-    // $('#quick-msg').val('');
-    // Reset Price
+    // Removed message reset
     $('#quick-price-box').hide();
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ ചെയ്യാം" : "PLACE ORDER");
   }
+
+  // 🔴 CHECK FOR CHANGES INITIALLY (Will disable button if matching)
+  checkForChanges();
 }
 
 function updateSummaryDisplay() {
@@ -303,6 +309,51 @@ function updateSummaryDisplay() {
   $('#saved-phone-text').text(phone);
   $('#saved-wa-text span').text(wa);
   if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
+
+  // 🔴 CALL CHECK ON EVERY INPUT
+  checkForChanges();
+}
+
+// 🔴 NEW FUNCTION: SMART BUTTON DISABLE/ENABLE
+function checkForChanges() {
+  const btn = $('#btn-quick-submit');
+
+  // If New Order mode, button is active (validation handled on click)
+  if (!isEditMode) {
+    btn.prop('disabled', false).css('opacity', '1');
+    return;
+  }
+
+  // Compare Current Inputs vs Saved Data
+  const current = {
+    phone: $('#edit-phone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: $('#edit-pincode').val(),
+    postoffice: $('#edit-postoffice').val(),
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    quantity: $('#quick-qty').val()
+  };
+
+  // Helper to compare values loosely (handles null vs "")
+  const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
+
+  const hasChanges =
+    isDiff('phone', current.phone) ||
+    isDiff('house', current.house) ||
+    isDiff('place', current.place) ||
+    isDiff('pincode', current.pincode) ||
+    isDiff('postoffice', current.postoffice) ||
+    isDiff('whatsapp', current.whatsapp) ||
+    isDiff('altphone', current.altphone) ||
+    isDiff('quantity', current.quantity);
+
+  if (hasChanges) {
+    btn.prop('disabled', false).css('opacity', '1');
+  } else {
+    btn.prop('disabled', true).css('opacity', '0.5'); // Dimmed when disabled
+  }
 }
 
 async function handleEditPincode(pin) {
@@ -366,7 +417,7 @@ function submitQuickOrder() {
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
-    // message: $('#quick-msg').val(),
+    message: '', // Message removed
     custId: myCustId
   };
 
@@ -390,7 +441,7 @@ function startWizard() {
 function showStep(s) {
   $('.wiz-step').hide();
   $(`.wiz-step[data-step="${s}"]`).fadeIn();
-  const pct = (s / 7) * 100; // 🔴 Now 7 Steps max
+  const pct = (s / 7) * 100;
   $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next');
   const lang = $('.form-select').val();
@@ -466,7 +517,7 @@ async function nextStep() {
 
   if (currentStep === 7) {
     if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; }
-    submitWizardOrder(); // 🔴 SUBMIT DIRECTLY AT STEP 7
+    submitWizardOrder();
     return;
   }
 
@@ -500,7 +551,7 @@ function submitWizardOrder() {
     district: userData.district,
     state: userData.state || 'Kerala',
     quantity: $('#quantity').val(),
-    // message: $('#message').val(),
+    message: '',
     custId: myCustId
   };
 
@@ -510,27 +561,25 @@ function submitWizardOrder() {
   postOrder(finalData);
 }
 
-// 🔴 UPDATED PRICE BREAKDOWN FUNCTION
 function updatePrice(qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
 
-  // Calculate
   const base = n * 650;
   const courier = courierRates.kerala[n] || 0;
   const total = base + courier;
 
-  // Select Container (Quick or Wizard)
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
 
-  // Update Values
   container.find('.qty-count').text(n);
   container.find('.val-base').text(base);
   container.find('.val-courier').text(courier);
   container.find('.val-total').text(total);
 
-  // Show Box
   container.fadeIn();
+
+  // 🔴 CALL CHECK ON PRICE CHANGE
+  if (isQuick) checkForChanges();
 }
 
 function postOrder(data) {
