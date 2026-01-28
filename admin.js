@@ -1,5 +1,5 @@
 // 🔴 1. NEW GOOGLE SCRIPT URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbzVBmDpR4byla5f6Sdxa7tqi125PlbP4SgqkR9xdQkdop6eBAHNPS6qn5pRz899TZ9DSQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby-SFsZfynD-PIsgT59Bl1Trl6z2ehltQ9lK2GKImABVkAgrwjNKFpAvVUTiDnRqKjTzQ/exec";
 
 // --- LOGIN LOGIC ---
 window.onload = function () {
