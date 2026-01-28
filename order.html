@@ -325,19 +325,20 @@
       color: #000;
     }
 
-    /* 🔴 ADMIN ACTIONS STYLE */
+    /* 🔴 ADMIN CONTROLS STYLE */
     #admin-controls {
       margin-top: 20px;
       padding: 15px;
-      border-radius: 12px;
-      background: #e8f5e9;
-      border: 1px solid #c8e6c9;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     .admin-title {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      color: #2e7d32;
+      color: #999;
       text-transform: uppercase;
       margin-bottom: 10px;
       letter-spacing: 1px;
@@ -346,21 +347,39 @@
     .btn-admin {
       font-size: 14px;
       font-weight: 700;
-      border-radius: 8px;
-      padding: 10px;
+      border-radius: 10px;
+      padding: 12px;
       width: 100%;
       border: none;
       margin-bottom: 8px;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
+    .btn-admin:active {
+      transform: scale(0.98);
+    }
+
+    /* 🔴 NEW COLORS */
     .btn-sent {
-      background: #ff9800;
+      background-color: #0d6efd;
+      /* Blue */
       color: white;
     }
 
     .btn-paid {
-      background: #4caf50;
-      color: white;
+      background-color: #ffc107;
+      /* Yellow */
+      color: black;
+    }
+
+    .btn-disabled {
+      background-color: #e0e0e0;
+      color: #888;
+      cursor: not-allowed;
     }
   </style>
 </head>

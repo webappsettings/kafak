@@ -626,6 +626,79 @@ function postOrder(data) {
     .catch(() => { showLoader(false); showAlert("Failed. Try again."); });
 }
 
+
+// 🔴 1. UPDATE ADMIN UI (With Blue/Yellow Buttons & Logic)
+function updateAdminUI(serverStatus, oid) {
+  // 1. ലോക്കൽ അഡ്മിൻ അപ്ഡേറ്റുകൾ ഉണ്ടോ എന്ന് നോക്കുന്നു
+  let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let localUpdate = pendingUpdates.find(item => item.oid === oid);
+
+  // 2. മുൻഗണന: Local Update > Server Status > Default 'Pending'
+  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
+
+  let btnHTML = '';
+
+  // 3. LOGIC: 
+  // Pending -> Show 'Mark Sent' (Blue)
+  // Sent -> Show 'Mark Paid' (Yellow)
+  // Paid/Dispatched -> Show Status (Grey)
+
+  if (currentStatus === 'Pending') {
+    btnHTML = `
+      <div class="text-white small fw-bold mb-2">ACTION REQUIRED:</div>
+      <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 py-2 shadow">
+        💬 MARK INVOICE SENT (Blue)
+      </button>`;
+  }
+  else if (currentStatus === 'Sent') {
+    btnHTML = `
+      <div class="text-white small fw-bold mb-2">PAYMENT PENDING:</div>
+      <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 py-2 shadow text-dark">
+        💰 MARK AS PAID (Yellow)
+      </button>`;
+  }
+  else {
+    // Paid or Dispatched (Greyed Out)
+    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED 📦' : 'PAID ✅';
+    btnHTML = `
+      <div class="text-white small fw-bold mb-2">STATUS:</div>
+      <button class="btn btn-secondary btn-sm fw-bold w-100 py-2 shadow" disabled style="opacity:0.6;">
+        ${statusText}
+      </button>`;
+  }
+
+  // 4. UI അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+  $('#admin-btn-container').html(btnHTML);
+  $('#admin-action-bar').fadeIn();
+  $('body').css('padding-bottom', '100px');
+}
+
+// 🔴 2. ADMIN ACTION (Save to 'pendingUpdates' LocalStorage)
+function adminAction(oid, status) {
+  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+
+  // 1. പെൻഡിംഗ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു (Separate Data Set)
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+  // പഴയ എൻട്രി ഉണ്ടെങ്കിൽ കളയുന്നു (Duplicate വരാതിരിക്കാൻ)
+  updates = updates.filter(item => item.oid !== oid);
+
+  // പുതിയ സ്റ്റാറ്റസ് ചേർക്കുന്നു
+  updates.push({
+    oid: oid,
+    status: status,
+    time: new Date().getTime()
+  });
+
+  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  // 2. UI ഉടൻ അപ്‌ഡേറ്റ് ചെയ്യുന്നു (Reload വേണ്ട)
+  // അഡ്മിന് അപ്പോൾ തന്നെ മാറ്റം കാണാൻ സാധിക്കും
+  updateAdminUI(status, oid);
+
+  alert(`ലോക്കലായി സേവ് ചെയ്തു: ${status} ✅`);
+}
+
 function sendToWhatsapp() {
   const phone = '7788990313';
   const orderid = successData.orderid;
