@@ -298,27 +298,194 @@
         </div>
     </div>
 
-    <script type="text/template" id="label-css">
-        @page { size: 100mm 150mm; margin: 0; }
-        body { font-family: 'Anek Malayalam', sans-serif; margin: 0; padding: 5mm; }
-        .label-page { width: 90mm; height: 140mm; border: 2px solid black; padding: 10px; position: relative; page-break-after: always; box-sizing: border-box; }
-        .address-sec { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 10px; }
-        .to-label { font-size: 14px; font-weight: bold; margin-bottom: 5px; }
-        .cust-name { font-size: 22px; font-weight: 800; text-transform: uppercase; line-height: 1.1; }
-        .cust-addr { font-size: 16px; font-weight: 600; margin-top: 5px; line-height: 1.3; }
-        .cust-pin { font-size: 18px; font-weight: 800; margin-top: 5px; }
-        .cust-ph { font-size: 18px; font-weight: 800; margin-top: 5px; }
-        .meta-sec { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 10px; }
-        .qr-box img { width: 80px; height: 80px; }
-        .qr-oid { font-size: 12px; font-weight: bold; text-align: center; margin-top: 2px; }
-        .contact-box { display: flex; align-items: center; border: 2px solid #000; padding: 5px; border-radius: 8px; margin-bottom: 10px; }
-        .contact-icon { width: 40px; text-align: center; }
-        .contact-text { font-size: 12px; font-weight: 700; }
-        .fragile-sec { text-align: center; margin-bottom: 10px; }
-        .fragile-img { height: 40px; }
-        .from-sec { font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px; line-height: 1.3; }
-        .qty-text { font-size: 24px; font-weight: 900; border: 3px solid black; padding: 5px 10px; border-radius: 5px; }
-    </script>
+    <style id="label-css">
+        @page {
+            size: A6;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #c8c8c8;
+            font-family: "Anek Malayalam", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .label-page {
+            width: 105mm;
+            height: 147mm;
+            /* A6 Size */
+            position: relative;
+            page-break-after: always;
+            /* font-family: Arial, sans-serif; */
+            font-family: 'Anek Malayalam', sans-serif;
+            font-weight: 600;
+            overflow: hidden;
+            box-sizing: border-box;
+            background: white;
+            margin: 0 auto;
+        }
+
+        .label-page:last-child {
+            page-break-after: auto;
+        }
+
+        /* --- 1. ADDRESS SECTION (Top Left) --- */
+        .address-sec {
+            position: absolute;
+            top: 8mm;
+            left: 8mm;
+            width: 75mm;
+            text-align: left;
+        }
+
+        .to-label {
+            font-size: 14px;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .cust-name {
+            font-size: 17px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .cust-addr {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.25;
+        }
+
+        .cust-pin {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .cust-ph {
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* --- 2. META SECTION WRAPPER (No Layout, just a wrapper) --- */
+        .meta-sec {
+            position: static;
+        }
+
+        /* QUANTITY (Moved to Right Side, opposite to Phone) */
+        .qty-text {
+            position: absolute;
+            top: 12mm;
+            right: 7mm;
+            color: #07cbe4;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* QR CODE (Moved to Bottom Left) */
+        .qr-box {
+            position: absolute;
+            bottom: 39mm;
+            left: 8mm;
+            width: 25mm;
+            height: 25mm;
+            background: white;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ORDER ID (Below QR) */
+        .qr-oid {
+            position: absolute;
+            bottom: 35mm;
+            left: 8mm;
+            width: 25mm;
+            font-size: 10px;
+            font-weight: 500;
+            color: #000;
+            text-align: center;
+        }
+
+        /* --- 3. CONTACT BOX (Middle Center) --- */
+        .contact-box {
+            position: absolute;
+            top: 61mm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 82mm;
+            height: 15mm;
+            border: 2px solid #d9d9d9;
+            border-radius: 9px;
+            display: block;
+            background: white;
+            z-index: 10;
+            padding-left: 6mm;
+        }
+
+        .contact-icon svg {
+            width: 30px;
+            height: 30px;
+            display: block;
+            float: left;
+            margin-top: 14px;
+            padding-left: 10px;
+        }
+
+        .contact-text {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: left;
+            margin: 0;
+            padding-top: 12px;
+            padding-left: 8px;
+            float: left;
+        }
+
+        .contact-text span {
+            display: block;
+            font-size: 19px;
+        }
+
+        /* --- 4. FROM ADDRESS (Bottom Center - Between QR & Fragile) --- */
+        .from-sec {
+            position: absolute;
+            bottom: 10mm;
+            left: 8mm;
+            width: 54mm;
+            text-align: left;
+            font-size: 12px;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        /* --- 5. FRAGILE ICON (Bottom Right) --- */
+        .fragile-sec {
+            position: absolute;
+            bottom: 11mm;
+            height: 53.5mm;
+            right: 7mm;
+            width: 32mm;
+            text-align: center;
+        }
+
+        .fragile-img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
