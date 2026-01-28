@@ -17,7 +17,6 @@
       --secondary: #fff;
       --text-gray: #666;
       --brand-green: #2e7d32;
-      /* KAFAK Green */
     }
 
     body {
@@ -25,27 +24,24 @@
       font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
       color: var(--primary);
       padding-top: 70px;
-      /* Logo Header Height */
-      padding-bottom: 90px;
-      /* Footer Button Space */
+      padding-bottom: 100px;
+      /* Space for fixed button */
       overflow-x: hidden;
     }
 
-    /* Navbar & Logo */
+    /* Navbar */
     .navbar {
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       padding: 10px 0;
       border-bottom: 1px solid #f0f0f0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      z-index: 1040;
     }
 
     .brand-logo-img {
       height: 40px;
       width: auto;
     }
-
-    /* Logo Size */
 
     /* Inputs */
     .huge-input {
@@ -64,8 +60,6 @@
     .huge-input:focus {
       border-color: var(--brand-green);
     }
-
-    /* Green Focus */
 
     .form-label {
       font-weight: 700;
@@ -105,14 +99,13 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.1s;
     }
 
     .btn-black:active {
       transform: scale(0.98);
     }
 
-    /* Footer Button Container (Stable) */
+    /* 🔴 FLOATING FOOTER FIX (Keyboard Issue) */
     .footer-action {
       position: fixed;
       bottom: 0;
@@ -121,20 +114,18 @@
       background: white;
       padding: 15px 20px;
       border-top: 1px solid #eee;
-      z-index: 1050;
-      /* Above Keyboard */
+      z-index: 9999;
+      /* Ensure it stays on top */
       padding-bottom: max(15px, env(safe-area-inset-bottom));
-      /* iPhone Safe Area */
     }
 
-    /* Summary Card */
+    /* Cards */
     .summary-card {
       background: #fdfdfd;
       border-radius: 16px;
       padding: 20px;
       border: 1px solid #eee;
       border-left: 4px solid var(--brand-green);
-      /* Minimal Green Accent */
       margin-bottom: 20px;
     }
 
@@ -154,7 +145,6 @@
       float: right;
     }
 
-    /* Review Card */
     .review-card {
       background: #fff;
       border: 1px solid #eee;
@@ -190,7 +180,8 @@
       width: 100%;
       height: 100%;
       background: white;
-      z-index: 9999;
+      z-index: 10000;
+      /* Highest Priority */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -212,7 +203,6 @@
       }
     }
 
-    /* Progress Bar */
     .progress-bar-custom {
       height: 4px;
       background: #f0f0f0;
@@ -229,7 +219,7 @@
       transition: width 0.3s ease;
     }
 
-    /* Sections Animation */
+    /* 🔴 HIDE ALL SECTIONS INITIALLY (Prevents flickering) */
     .step-section {
       display: none;
       animation: slideUp 0.3s ease-out;
@@ -263,7 +253,6 @@
           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span style="display:none; font-weight:900; font-size:24px;">KAFAK.</span>
       </a>
-
       <select class="form-select form-select-sm border-0 bg-light fw-bold text-secondary" style="width:auto;"
         onchange="changeLanguage(this.value)">
         <option value="ml" selected>മലയാളം</option>
@@ -274,7 +263,7 @@
 
   <div class="container" style="max-width: 500px;">
 
-    <div id="showsuccess" class="text-center" style="display:none; padding-top: 50px;">
+    <div id="showsuccess" class="text-center step-section" style="padding-top: 50px;">
       <div style="font-size: 60px; color: var(--brand-green);">Verified</div>
       <h2 class="fw-bold mt-3 mb-2" data-i18n="order_success">ഓർഡർ ലഭിച്ചു!</h2>
       <p class="text-muted mb-4" data-i18n="redirect_wa">വാട്സാപ്പിലേക്ക് പോകുന്നു...</p>
@@ -285,9 +274,9 @@
 
     <form id="order-form" onsubmit="return false;">
 
-      <div id="step-0" class="step-section" style="display:block;">
+      <div id="step-0" class="step-section">
         <label class="form-label" data-i18n="lbl_phone">ഫോൺ നമ്പർ</label>
-        <input type="tel" id="phone" class="huge-input" placeholder="മൊബൈൽ നമ്പർ" maxlength="10" autofocus>
+        <input type="tel" id="phone" class="huge-input" placeholder="മൊബൈൽ നമ്പർ" maxlength="10">
 
         <div class="footer-action">
           <div class="container p-0" style="max-width: 500px;">
@@ -304,7 +293,7 @@
         <div class="summary-card">
           <span class="edit-link" onclick="toggleAddressEdit()" data-i18n="btn_edit">വിലാസം മാറ്റാം</span>
           <div class="fw-bold fs-5" id="saved-name">User Name</div>
-          <div class="text-muted small mt-1" id="saved-address-text">Address Line 1...</div>
+          <div class="text-muted small mt-1" id="saved-address-text">Address...</div>
 
           <div class="address-box" id="address-edit-box">
             <label class="form-label" data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label>
@@ -360,7 +349,6 @@
         <div class="wiz-step" data-step="3" style="display:none;">
           <label class="form-label" data-i18n="lbl_pincode">പിൻകോഡ്</label>
           <input type="tel" id="pincode" class="huge-input" maxlength="6" placeholder="000000">
-          <p id="pin-error" class="text-danger small mt-2 fw-bold" style="display:none;">പിൻകോഡ് തെറ്റാണ്!</p>
         </div>
 
         <div class="wiz-step" data-step="3.5" style="display:none;">
@@ -391,11 +379,9 @@
           </select>
           <label class="form-label mt-4" data-i18n="lbl_msg">മെസ്സേജ് (ആവശ്യമെങ്കിൽ)</label>
           <input type="text" id="message" class="regular-input" placeholder="...">
-
           <div class="mt-4 text-end">
             <div class="fw-bold fs-3" id="wiz-price">₹0</div>
-            <small class="text-muted" style="font-size:11px;" data-i18n="courier_included">(കൂരിയർ ചാർജ്
-              ഉൾപ്പെടെ)</small>
+            <small class="text-muted" data-i18n="courier_included">(കൂരിയർ ചാർജ് ഉൾപ്പെടെ)</small>
           </div>
         </div>
 
