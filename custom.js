@@ -1,5 +1,5 @@
 
-const sc = `https://script.google.com/macros/s/AKfycbwsWfz2vYHcnSI8Cp58aUT1oBhCBdUqKuEhXK4n5LxSKR2VHYeuuj8IhvSs6Ft5EVoVLg/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbyyQqIQ2qFva34Q3c8nwdGEPjWP1g0Wh6xZv95hf2bMpHhhZJ1ZuwhSvQvkFQFDvac5nA/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
