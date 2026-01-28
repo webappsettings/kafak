@@ -165,7 +165,9 @@ function createCardHTML(d, index, type, currentStatus) {
         buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 Add Tracking</button>`;
     }
 
-    // Full Address Block
+    // 🔴 EDIT BADGE LINK
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="badge bg-white text-secondary border text-decoration-none ms-2" style="font-size:10px;">✏️ EDIT</a>`;
+
     let addressBlock = `
         <div class="cust-details">
             <div style="font-weight:700; color:#333;">${safe(d.house)}</div>
@@ -180,7 +182,9 @@ function createCardHTML(d, index, type, currentStatus) {
         <div class="order-card status-${currentStatus}">
             ${tickMark}
             <div class="card-header-row">
-                <span class="order-id">#${d.orderid}</span>
+                <div>
+                    <span class="order-id">#${d.orderid}</span>
+                    ${editLink} </div>
                 ${statusBadge}
             </div>
             <div class="cust-name">${safe(d.name)}</div>
@@ -195,6 +199,8 @@ function createCardHTML(d, index, type, currentStatus) {
         </div>
     </div>`;
 }
+
+
 
 function updateOrder(oid, status) {
     if (!confirm(`ഈ ഓർഡർ ${status} ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;

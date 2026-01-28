@@ -6,7 +6,7 @@ const courierRates = {
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// TRANSLATIONS
+// ... (Translations same as before) ...
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -53,6 +53,7 @@ let currentLoginPhone = null;
 let isEditMode = false;
 
 $(document).ready(function () {
+  // ... (qtyOpts appending code) ...
   const qtyOpts = `
         <option value="1">1 Bottle (650g)</option>
         <option value="2">2 Bottles (1.30 kg)</option>
@@ -73,6 +74,7 @@ $(document).ready(function () {
   $('#pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
+  // Load Users
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -91,8 +93,36 @@ $(document).ready(function () {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('oid')) {
-    fetchOrder(urlParams.get('oid'));
+  const oid = urlParams.get('oid');
+
+  if (oid) {
+    // 🔴 INSTANT ADMIN LOAD LOGIC
+    if (localStorage.getItem('kafakAdmin') === 'true') {
+      // Try finding order in Admin Cache
+      let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+      let cachedOrder = cachedOrders.find(o => o.orderid === oid);
+
+      if (cachedOrder) {
+        // Found in cache! Load instantly without network call
+        console.log("Loaded from Admin Cache instantly!");
+        $('#main-loader').hide(); // Hide loader immediately
+        // Ensure fields are lowercase for mapping
+        cachedOrder.house = cachedOrder.house || '';
+        cachedOrder.place = cachedOrder.place || '';
+        cachedOrder.postoffice = cachedOrder.postoffice || '';
+        cachedOrder.district = cachedOrder.district || '';
+        cachedOrder.state = cachedOrder.state || '';
+
+        // Render directly
+        loadOrderData(cachedOrder, true);
+      } else {
+        // Not in cache, fetch normally
+        fetchOrder(oid);
+      }
+    } else {
+      // Normal User
+      fetchOrder(oid);
+    }
   } else {
     showLoader(false);
     $('#step-0').fadeIn();
@@ -101,6 +131,33 @@ $(document).ready(function () {
   }
 });
 
+// 🔴 HELPER TO LOAD DATA (Reused by Fetch & Cache)
+function loadOrderData(d, isAdminCache = false) {
+  $('#step-0').hide();
+  userData = d;
+  editingOrderId = d.orderid;
+  currentLoginPhone = d.phone;
+
+  if (d.phone) {
+    localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
+    localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+  }
+
+  if (localStorage.getItem('kafakAdmin') === 'true') {
+    // If loaded from admin cache, 'd.Status' is likely correct. 
+    // If loaded from fetch, we check local pending updates.
+    updateAdminUI(d.Status || 'Pending', d.orderid);
+  }
+
+  if (d.Status === 'Dispatched') {
+    editingOrderId = null; // Disable editing if dispatched
+    showReturningUserView(d, false);
+  } else {
+    showReturningUserView(d, true);
+  }
+}
+
+// ... (Functions: updateFooterButtons, changeLanguage, showAlert, getAlert, confirmHome, showLoader same as before) ...
 function updateFooterButtons(view) {
   $('#btn-group-0').hide();
   $('#btn-group-wizard').hide();
@@ -170,7 +227,6 @@ function handlePhoneNext() {
 
       if (res.result === 'success') {
         const d = res.data;
-
         if (d.custId) { myCustId = d.custId; }
 
         if (d.authorized === false) {
@@ -181,21 +237,7 @@ function handlePhoneNext() {
         }
 
         const finalUser = localData ? { ...d, ...localData } : d;
-        userData = finalUser;
-
-        if (d.Status === 'Dispatched') {
-          editingOrderId = null;
-          if (finalUser.name) { showReturningUserView(finalUser, false); }
-          else { startWizard(); }
-        } else if (d.Status && d.Status !== 'Dispatched') {
-          editingOrderId = d.orderid;
-          if (editingOrderId) { showReturningUserView(finalUser, true); }
-          else { startWizard(); }
-        } else {
-          editingOrderId = null;
-          if (finalUser.name) { showReturningUserView(finalUser, false); }
-          else { startWizard(); }
-        }
+        loadOrderData(finalUser); // 🔴 Reusing Load Logic
       } else {
         if (localData) {
           userData = localData;
@@ -216,12 +258,8 @@ function fetchOrder(oid) {
     .then(res => res.json())
     .then(res => {
       showLoader(false);
-      $('#step-0').hide();
-
       if (res.result === 'success') {
-        const d = res.data;
-        editingOrderId = d.orderid;
-
+        let d = res.data;
         if (d.custId) { myCustId = d.custId; }
 
         if (d.phone && localUsersMap[d.phone]) {
@@ -230,29 +268,7 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
-        userData = d;
-        currentLoginPhone = d.phone;
-
-        if (d.phone) {
-          localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
-          localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        }
-
-        // 🔴 ADMIN CHECK: Update UI based on cache if available
-        if (localStorage.getItem('kafakAdmin') === 'true') {
-          let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-          let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-          let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending');
-          updateAdminUI(status, oid);
-        }
-
-        if (d.Status === 'Dispatched') {
-          editingOrderId = null;
-          showReturningUserView(d, false);
-        } else {
-          editingOrderId = d.orderid;
-          showReturningUserView(d, true);
-        }
+        loadOrderData(d); // 🔴 Reusing Load Logic
       } else {
         $('#step-0').fadeIn();
         updateFooterButtons('step-0');
@@ -261,51 +277,43 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// 🔴 1. ADMIN UI (Single Button Flow)
+// 🔴 ADMIN UI WITH CLOSE BUTTON
 function updateAdminUI(serverStatus, oid) {
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
-
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
 
   let btnHTML = '';
 
   if (currentStatus === 'Pending') {
     btnHTML = `
-      <div class="admin-title">ACTION: SEND INVOICE</div>
-      <button onclick="adminAction('${oid}', 'Sent')" class="btn-admin btn-sent">
-        💬 MARK AS SENT
-      </button>`;
-  }
-  else if (currentStatus === 'Sent') {
+      <div class="admin-title">ACTION REQUIRED</div>
+      <button onclick="adminAction('${oid}', 'Sent')" class="btn-admin btn-sent">💬 MARK INVOICE SENT</button>`;
+  } else if (currentStatus === 'Sent') {
     btnHTML = `
-      <div class="admin-title">ACTION: PAYMENT RECEIVED?</div>
-      <button onclick="adminAction('${oid}', 'Paid')" class="btn-admin btn-paid">
-        💰 MARK AS PAID
-      </button>`;
-  }
-  else {
+      <div class="admin-title">PAYMENT PENDING</div>
+      <button onclick="adminAction('${oid}', 'Paid')" class="btn-admin btn-paid">💰 MARK AS PAID</button>`;
+  } else {
     let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED 📦' : 'PAID ✅';
     btnHTML = `
       <div class="admin-title">STATUS</div>
-      <button class="btn-admin btn-disabled" disabled>
-        ${statusText}
-      </button>`;
+      <button class="btn-admin btn-disabled" disabled>${statusText}</button>`;
   }
 
-  // Display
+  // 🔴 ADD CLOSE BUTTON
+  btnHTML += `<button onclick="window.close()" class="btn btn-sm btn-outline-danger w-100 mt-2 fw-bold">❌ CLOSE WINDOW</button>`;
+
   if ($('#admin-controls').length) {
     $('#admin-controls').html(btnHTML).show();
   } else {
     if (!$('#admin-action-bar').length) {
-      $('body').append(`<div id="admin-action-bar" style="position:fixed; bottom:0; left:0; width:100%; background:white; padding:15px; border-top:1px solid #eee; z-index:1000;"></div>`);
+      $('body').append(`<div id="admin-action-bar" style="position:fixed; bottom:0; left:0; width:100%; background:white; padding:15px; border-top:1px solid #eee; z-index:1000; box-shadow:0 -5px 15px rgba(0,0,0,0.1);"></div>`);
     }
     $('#admin-action-bar').html(btnHTML).show();
-    $('body').css('padding-bottom', '80px');
+    $('body').css('padding-bottom', '120px');
   }
 }
 
-// 🔴 2. ADMIN ACTION (Local Update)
 function adminAction(oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
@@ -314,7 +322,7 @@ function adminAction(oid, status) {
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // Update Cache for immediate reflection
+  // Update Main Cache Instant
   let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
   let orderIndex = allOrders.findIndex(o => o.orderid === oid);
   if (orderIndex !== -1) {
@@ -323,12 +331,6 @@ function adminAction(oid, status) {
   }
 
   updateAdminUI(status, oid);
-
-  const Toast = Swal.mixin({
-    toast: true, position: 'top-end', showConfirmButton: false, timer: 2000,
-    didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
-  });
-  Toast.fire({ icon: 'success', title: `Saved: ${status}` });
 }
 
 function showReturningUserView(d, isActiveOrder) {
@@ -343,12 +345,8 @@ function showReturningUserView(d, isActiveOrder) {
     $('#admin-controls').hide();
   }
 
-  // 🔴 SHOW ORDER ID BADGE (FOR EVERYONE)
-  if (d.orderid) {
-    $('#display-oid').text('#' + d.orderid).show();
-  } else {
-    $('#display-oid').hide();
-  }
+  if (d.orderid) { $('#display-oid').text('#' + d.orderid).show(); }
+  else { $('#display-oid').hide(); }
 
   $('#saved-name').text(d.name);
 
@@ -440,7 +438,6 @@ async function handleEditPincode(pin) {
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`);
       let data = await res.json();
-
       data = data.map(item => ({
         ...item,
         officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO')
@@ -449,7 +446,6 @@ async function handleEditPincode(pin) {
       if (data && data.length > 0) {
         $('#edit-district').val(data[0].district);
         $('#edit-state').val(data[0].statename);
-
         if (data.length > 1) {
           const dd = $('#edit-postoffice-select');
           dd.empty().append('<option value="">Select PO...</option>');
@@ -460,9 +456,7 @@ async function handleEditPincode(pin) {
           const poName = data[0].officename;
           $('#edit-postoffice').val(poName);
           $('#edit-po-wrapper').hide();
-          $('#edit-single-po')
-            .html(`<i class="fas fa-map-marker-alt loc-icon"></i> <span class="fw-bold text-dark">${poName}</span>`)
-            .fadeIn();
+          $('#edit-single-po').html(`<i class="fas fa-map-marker-alt loc-icon"></i> <span class="fw-bold text-dark">${poName}</span>`).fadeIn();
           updateSummaryDisplay();
         }
       }
@@ -509,6 +503,8 @@ function submitQuickOrder() {
   postOrder(finalData);
 }
 
+// ... (Remaining Wizard Functions: startWizard, showStep, nextStep, prevStep, updateWizardLocDisplay, renderReview(Removed), submitWizardOrder, updatePrice, postOrder, sendToWhatsapp - SAME AS BEFORE) ...
+// 🔴 Note: Just copy-paste the rest of the functions from previous correct version.
 // --- WIZARD ---
 function startWizard() {
   $('#wizard-view').fadeIn();
@@ -520,7 +516,7 @@ function startWizard() {
 function showStep(s) {
   $('.wiz-step').hide();
   $(`.wiz-step[data-step="${s}"]`).fadeIn();
-  const pct = (s / 7) * 100;
+  const pct = (s / 7) * 100; // 🔴 Now 7 Steps max
   $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next');
   const lang = $('.form-select').val();
