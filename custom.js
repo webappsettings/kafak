@@ -1,5 +1,5 @@
 
-const sc = `https://script.google.com/macros/s/AKfycby_Ju8fR6emPAF9MMOULRZfnQDmODOju38I4Mjfo-yt1FZjgtud6Q42-YALC0KUCo-fwg/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwsWfz2vYHcnSI8Cp58aUT1oBhCBdUqKuEhXK4n5LxSKR2VHYeuuj8IhvSs6Ft5EVoVLg/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -216,10 +216,20 @@ function fetchOrder(oid) {
       $('#step-0').hide();
 
       if (res.result === 'success') {
-        const d = res.data;
+        let d = res.data;
+
+        // 🔴 MERGE WITH LOCAL DATA IF AVAILABLE (To fix missing fields like District)
+        if (d.phone && localUsersMap[d.phone]) {
+          const local = localUsersMap[d.phone];
+          // If server data is missing district but local has it, use local
+          if (!d.district && local.district) d.district = local.district;
+          if (!d.custId && local.custId) d.custId = local.custId;
+        }
+
         userData = d;
         currentLoginPhone = d.phone;
 
+        // Save back merged data
         if (d.phone) {
           localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
           localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));

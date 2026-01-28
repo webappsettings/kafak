@@ -1,5 +1,5 @@
 // 🔴 1. NEW GOOGLE SCRIPT URL
-const scriptURL = "https://script.google.com/macros/s/AKfycbwJWObfZdwgh30HAOPaGhjunhtFGpqlmMk9QgfsH7cloCxKwtukr2QMWkZ3lxg-FwEZdg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwsWfz2vYHcnSI8Cp58aUT1oBhCBdUqKuEhXK4n5LxSKR2VHYeuuj8IhvSs6Ft5EVoVLg/exec";
 
 
 const courierRates = {
