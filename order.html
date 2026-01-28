@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
   <title>KAFAK | Premium Honey</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link
@@ -25,8 +26,9 @@
       color: var(--primary);
       padding-top: 70px;
       padding-bottom: 100px;
-      /* Space for fixed button */
       overflow-x: hidden;
+      /* Prevent elastic scrolling */
+      overscroll-behavior-y: none;
     }
 
     /* Navbar */
@@ -105,7 +107,7 @@
       transform: scale(0.98);
     }
 
-    /* 🔴 FLOATING FOOTER FIX (Keyboard Issue) */
+    /* 🔴 FLOATING FOOTER FIX */
     .footer-action {
       position: fixed;
       bottom: 0;
@@ -115,8 +117,10 @@
       padding: 15px 20px;
       border-top: 1px solid #eee;
       z-index: 9999;
-      /* Ensure it stays on top */
+      /* iOS Safe Area */
       padding-bottom: max(15px, env(safe-area-inset-bottom));
+      transition: bottom 0.2s ease-out;
+      /* Smooth transition for JS fix */
     }
 
     /* Cards */
@@ -181,7 +185,6 @@
       height: 100%;
       background: white;
       z-index: 10000;
-      /* Highest Priority */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -219,16 +222,20 @@
       transition: width 0.3s ease;
     }
 
-    /* 🔴 HIDE ALL SECTIONS INITIALLY (Prevents flickering) */
+    /* Hide sections initially to prevent flickering */
     .step-section {
       display: none;
-      animation: slideUp 0.3s ease-out;
+    }
+
+    /* Animation class called by JS */
+    .fade-in-up {
+      animation: slideUp 0.4s ease-out forwards;
     }
 
     @keyframes slideUp {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
       }
 
       to {
