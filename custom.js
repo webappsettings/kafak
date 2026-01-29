@@ -97,21 +97,21 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN UI INJECTION (FIXED & HIGH Z-INDEX)
+    // 🔴 1. ADMIN UI INJECTION (FIXED)
     if (isAdmin) {
-      // Inject Bottom Bar HTML (Fixed mobile close)
+      // Inject Bottom Bar HTML
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 999999; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 11000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
-                    <button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
+                    <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
                         <i class="fas fa-times text-danger" style="font-size:20px;"></i>
                     </button>
                 </div>
             </div>`;
 
       $('body').append(adminUI);
-      $('body').css('padding-bottom', '100px'); // Add padding for bottom bar
+      $('body').css('padding-bottom', '100px');
 
       // Clear Cache Button
       $('.footer-action').after(`
@@ -133,7 +133,6 @@ $(document).ready(function () {
         let initialStatus = cachedOrder.Status || 'Pending';
         updateAdminUI(initialStatus, oid);
 
-        // Fix potential nulls to avoid errors
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
@@ -142,7 +141,7 @@ $(document).ready(function () {
 
         loadOrderData(cachedOrder);
       } else {
-        // If not in cache, fetch from server
+        // Not in cache, fetch from server
         fetchOrder(oid);
       }
     } else {
@@ -222,7 +221,6 @@ function loadOrderData(d) {
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
-  // Handle Completed or Dispatched same way (New Order Mode)
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     editingOrderId = null;
     showReturningUserView(d, false);
@@ -397,7 +395,7 @@ function showReturningUserView(d, isActiveOrder) {
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
 
-    // 🔴 DISABLE LOWER QTY IF PAID
+    // 🔴 3. DISABLE LOWER QTY IF PAID
     if (d.Status === 'Paid') {
       const currentQty = parseInt(d.quantity);
       $('#quick-qty option').each(function () {
@@ -526,9 +524,9 @@ function submitQuickOrder() {
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
     pincode: $('#edit-pincode').val(),
-    postoffice: $('#edit-postoffice').val(),
-    district: $('#edit-district').val(),
-    state: $('#edit-state').val(),
+    postoffice: userData.postoffice,
+    district: userData.district,
+    state: userData.state || 'Kerala',
     quantity: $('#quick-qty').val(),
     message: '',
     custId: myCustId
