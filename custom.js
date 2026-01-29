@@ -644,7 +644,6 @@ function prevStep() {
 
 function submitWizardOrder() {
   const finalData = {
-    orderid: editingOrderId,
     name: $('#name').val(),
     phone: $('#phone').val(),
     whatsapp: $('#whatsapp').val(),
@@ -669,19 +668,28 @@ function submitWizardOrder() {
 function updatePrice(qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
-
   const base = n * 650;
   const courier = courierRates.kerala[n] || 0;
   const total = base + courier;
 
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-
   container.find('.qty-count').text(n);
   container.find('.val-base').text(base);
   container.find('.val-courier').text(courier);
   container.find('.val-total').text(total);
-
   container.fadeIn();
+
+  // WIZARD FINAL PAGE ADDRESS BOX
+  if (!isQuick) {
+    const addrStr = `
+          ${$('#name').val()}, ${$('#house').val()}, ${$('#place').val()}, 
+          ${userData.postoffice || ''}, ${userData.district || ''}, 
+          ${userData.state || ''} - ${$('#pincode').val()}
+      `.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' '); // Clean up
+
+    $('#wiz-final-addr').text(addrStr);
+    $('#wiz-deliver-box').fadeIn();
+  }
 
   if (isQuick) checkForChanges();
 }

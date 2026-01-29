@@ -1,34 +1,14 @@
 // 🔴 1. NEW GOOGLE SCRIPT URL
 const scriptURL = "https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec";
 
-
-// --- LOGIN LOGIC & TAB PERSISTENCE ---
+// --- LOGIN LOGIC ---
 window.onload = function () {
-    // 1. Check Login
     if (localStorage.getItem('kafakAdminLoggedIn') === 'true') {
         showDashboard();
-
-        // 🔴 RESTORE ACTIVE TAB (Reload ചെയ്താലും ടാബ് മാറില്ല)
-        const savedTab = localStorage.getItem('activeAdminTab');
-        if (savedTab) {
-            const tabTrigger = document.querySelector(`button[data-bs-target="${savedTab}"]`);
-            if (tabTrigger) {
-                const tab = new bootstrap.Tab(tabTrigger);
-                tab.show();
-            }
-        }
     } else {
         document.getElementById('login-section').style.display = 'flex';
         document.getElementById('dashboard-section').style.display = 'none';
     }
-
-    // 🔴 SAVE TAB ON CLICK (ടാബ് മാറ്റുമ്പോൾ സേവ് ചെയ്യുന്നു)
-    const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
-    tabEls.forEach(tabEl => {
-        tabEl.addEventListener('shown.bs.tab', function (event) {
-            localStorage.setItem('activeAdminTab', event.target.getAttribute('data-bs-target'));
-        });
-    });
 };
 
 function attemptLogin() {
@@ -47,16 +27,15 @@ function attemptLogin() {
 function showDashboard() {
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('dashboard-section').style.display = 'block';
-    fetchOrders(); // Load data
+    fetchOrders();
 }
 
 function logoutAdmin() {
-    if (confirm("Logout ചെയ്യാൻ ഉറപ്പാണോ?")) {
+    confirmAction("Logout ചെയ്യാൻ ഉറപ്പാണോ?", () => {
         localStorage.removeItem('kafakAdminLoggedIn');
         localStorage.removeItem('kafakAdmin');
-        localStorage.removeItem('activeAdminTab'); // Clear tab preference
         window.location.href = "index.html";
-    }
+    });
 }
 
 // --- CONFIG & VARIABLES ---
@@ -70,6 +49,22 @@ let html5QrCode;
 let scanMode = '';
 let scanStep = 0;
 let tempOid = null;
+
+// --- HELPERS (SWEET ALERT) ---
+function showToast(icon, title) {
+    Swal.fire({
+        toast: true, position: 'top-end', showConfirmButton: false, timer: 1500,
+        icon: icon, title: title,
+        didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
+    });
+}
+
+function confirmAction(text, callback) {
+    Swal.fire({
+        text: text, icon: 'question', showCancelButton: true, confirmButtonColor: '#000', cancelButtonColor: '#f2f2f2', confirmButtonText: 'Yes',
+        customClass: { popup: 'ios-popup', title: 'ios-title', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' }
+    }).then((result) => { if (result.isConfirmed) callback(); });
+}
 
 // --- CORE FUNCTIONS ---
 
@@ -106,7 +101,7 @@ function fetchOrders(forceLoad = false) {
             document.getElementById('loader').style.display = 'none';
             if (hasData) {
                 renderTabs(allOrders);
-                alert("Network Error! Using offline data.");
+                showToast("warning", "Offline Mode Enabled");
             } else {
                 alert("Network Error!");
             }
@@ -154,15 +149,13 @@ function updateSyncButtonUI() {
     const badge = $('#sync-badge-count');
 
     if (pendingUpdates.length > 0) {
-        // Show Sync Button
-        syncBtn.css('display', 'flex'); // Flex to center icon
-        logoPlaceholder.hide(); // Hide logo placeholder to make space
-        badge.text(pendingUpdates.length); // Update Count
+        syncBtn.css('display', 'flex');
+        logoPlaceholder.hide();
+        badge.text(pendingUpdates.length);
     } else {
-        // Hide Sync Button
         syncBtn.hide();
         logoPlaceholder.show();
-        headerLogo.show(); // Show logo when sync is hidden
+        headerLogo.show();
     }
 }
 
@@ -195,7 +188,12 @@ function createCardHTML(d, index, type, currentStatus) {
     } else if (type === 'dispatched') {
         statusBadge = '<span class="badge bg-primary">Dispatched</span>';
         tickMark = '<i class="fas fa-check-circle text-primary fs-4 position-absolute top-0 end-0 m-2"></i>';
-        let trackLabel = d.tracking ? `TRK: ${d.tracking}` : 'Add Tracking';
+
+        // Tracking info from local or server
+        let localUpdate = JSON.parse(localStorage.getItem('pendingUpdates') || "[]").find(u => u.oid === d.orderid);
+        let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
+        let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
+
         buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>`;
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
@@ -258,75 +256,87 @@ function filterOrders() {
     }
 }
 
-function updateOrder(oid, status) {
-    if (!confirm(`Mark '${status}'?`)) return;
+// 🔴 OFFLINE TRACKING & STATUS UPDATE
+function updateOrder(oid, status, trackingNum = null) {
+    // Determine context for confirmation
+    let confirmMsg = `Mark '${status}'?`;
+    if (trackingNum) confirmMsg = `Save Tracking: ${trackingNum}?`;
+
+    // Only confirm if it's a manual click, not automated
+    if (!trackingNum && !confirm(confirmMsg)) return;
+
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     updates = updates.filter(item => item.oid !== oid);
-    updates.push({ oid: oid, status: status, time: new Date().getTime() });
+
+    let updateObj = { oid: oid, status: status, time: new Date().getTime() };
+    if (trackingNum) updateObj.tracking = trackingNum;
+
+    updates.push(updateObj);
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
     const orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex !== -1) {
         allOrders[orderIndex].Status = status;
+        if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
+    // Refresh UI
     if (document.getElementById('searchInput').value.length > 0) filterOrders();
     else renderTabs(allOrders);
+
+    updateSyncButtonUI();
+    if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
 }
 
+// 🔴 SYNC LOGIC (STATUS + TRACKING)
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     if (pendingUpdates.length === 0) return;
 
-    if (!confirm(`${pendingUpdates.length} മാറ്റങ്ങൾ സെർവറിലേക്ക് സേവ് ചെയ്യട്ടെ?`)) return;
+    confirmAction(`${pendingUpdates.length} മാറ്റങ്ങൾ അപ്‌ലോഡ് ചെയ്യട്ടെ?`, () => {
+        $('#sync-btn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
 
-    // 🔴 CHANGE: Show Spinning Icon instead of Text
-    // പഴയ കണ്ടന്റ് സേവ് ചെയ്യുന്നു (എറർ വന്നാൽ തിരിച്ചിടാൻ)
-    const originalContent = $('#sync-btn').html();
+        let trackingUpdates = pendingUpdates.filter(u => u.tracking);
+        let statusUpdates = pendingUpdates.filter(u => !u.tracking);
 
-    // സ്പിന്നർ കാണിക്കുന്നു
-    $('#sync-btn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin" style="font-size:20px;"></i>');
+        let promises = [];
 
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({
-            action: 'bulkUpdateStatus',
-            updates: pendingUpdates
-        })
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.result === 'success') {
-                localStorage.removeItem('pendingUpdates');
+        // 1. Bulk Status Update
+        if (statusUpdates.length > 0) {
+            promises.push(fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates })
+            }));
+        }
 
-                // Clean up local flags
-                Object.keys(localStorage).forEach(key => {
-                    if (key.startsWith('sent_') || key.startsWith('paid_')) {
-                        localStorage.removeItem(key);
-                    }
-                });
-
-                alert("Sync Complete! ✅");
-
-                // റീസെറ്റ് ചെയ്യുന്നു (Success ആയതുകൊണ്ട് ബട്ടൺ ഹൈഡ് ആകും)
-                $('#sync-btn').html(`<i class="fas fa-cloud-upload-alt"></i><span class="sync-badge" id="sync-badge-count">0</span>`);
-                updateSyncButtonUI();
-                $('#sync-btn').prop('disabled', false);
-            }
-        })
-        .catch(err => {
-            alert("Sync Failed! ഇന്റർനെറ്റ് പരിശോധിക്കുക.");
-            // എറർ വന്നാൽ പഴയ ഐക്കണും നമ്പറും തിരികെ കൊണ്ടുവരുന്നു
-            $('#sync-btn').prop('disabled', false).html(originalContent);
+        // 2. Individual Tracking Updates
+        trackingUpdates.forEach(u => {
+            promises.push(fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking })
+            }));
         });
+
+        Promise.all(promises).then(() => {
+            localStorage.removeItem('pendingUpdates');
+            showToast('success', 'Synced Successfully!');
+            updateSyncButtonUI();
+            $('#sync-btn').prop('disabled', false).html('<i class="fas fa-cloud-upload-alt"></i>');
+        }).catch(() => {
+            showToast('error', 'Sync Failed!');
+            $('#sync-btn').prop('disabled', false).html('<i class="fas fa-cloud-upload-alt"></i>');
+        });
+    });
 }
 
 function discardLocalChanges() {
-    if (!confirm("Discard all local changes?")) return;
-    localStorage.removeItem('pendingUpdates');
-    renderTabs(allOrders);
-    alert("Discarded.");
+    confirmAction("ലോക്കൽ മാറ്റങ്ങൾ കളയണോ?", () => {
+        localStorage.removeItem('pendingUpdates');
+        renderTabs(allOrders);
+        updateSyncButtonUI();
+        showToast("info", "Discarded");
+    });
 }
 
 function calculatePriceInfo(qty, state) {
@@ -340,49 +350,41 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// 🔴 FIXED WHATSAPP (Immediate Open + Silent Update)
+// 🔴 FULL SEND WA FUNCTION (FIXED)
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
+    const price = calculatePriceInfo(n, d.state);
 
-    // 1. Price Calculation
     const base = n * 650;
     let courier = 0;
-    // Safe string conversion for state
     const s = String(d.state || '').toLowerCase().trim();
-
-    if (s === 'lakshadweep') {
-        courier = (n * 100) + 20;
-    } else if (s === 'kerala') {
-        courier = courierRates.kerala[n] || 0;
-    } else {
-        courier = courierRates.outside[n] || 0;
-    }
+    if (s === 'lakshadweep') courier = (n * 100) + 20;
+    else if (s === 'kerala') courier = courierRates.kerala[n] || 0;
+    else courier = courierRates.outside[n] || 0;
 
     const total = base + courier;
     const amountText = `Amount(₹): ${base} + ${courier}`;
     const totalText = `Total(₹): ${total}/-`;
 
-    // 2. Message Construction
     const adminPhone = '7788990313';
     const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
     const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
 
     const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
 
-    // 🔴 FIX: Convert everything to String before trimming
+    // SAFE STRING CONVERSION
     const safe = (val) => String(val || '').trim().toUpperCase();
 
     const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
-    // 3. Customer Phone Logic
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    // 4. Open WhatsApp
+    // 1. OPEN WHATSAPP
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
 
-    // 5. Silent Status Update
+    // 2. SILENT UPDATE
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
@@ -395,17 +397,14 @@ function sendWA(index) {
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         }
 
-        setTimeout(() => {
-            renderTabs(allOrders);
-            updateSyncButtonUI();
-        }, 1000);
+        setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
     }
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
 function printSelected() {
     const selected = document.querySelectorAll('.order-cb:checked');
-    if (selected.length === 0) { alert("Select orders!"); return; }
+    if (selected.length === 0) { showToast("warning", "Select orders first!"); return; }
     runPrintLogic(selected);
 }
 
@@ -440,7 +439,7 @@ function runPrintLogic(selectedItems) {
         let htmlContent = `<html><head><title>KAFAK Print</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
         labelsData.forEach(item => {
             const d = item.details;
-            const safe = (val) => (val || '').toString().toUpperCase();
+            const safe = (val) => String(val || '').toUpperCase();
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
             htmlContent += `<div class="label-page"><div class="address-sec"><div class="to-label">To,</div><div class="cust-name">${safe(d.name)}</div><div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div><div class="cust-pin">PIN: ${d.pincode}</div><div class="cust-ph">PH: ${d.phone}</div></div><div class="meta-sec"><div class="qr-box"><img src="${item.qrSrc}"></div><div class="qr-oid">${d.orderid}</div>${qtyHTML}</div><div class="contact-box"><div class="contact-icon">${phoneIcon}</div><div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div></div><div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div><div class="from-sec"><span style="font-weight:bold; font-size:11px;">From,</span><br><b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313</div></div>`;
@@ -451,51 +450,98 @@ function runPrintLogic(selectedItems) {
     });
 }
 
+// 🔴 UPDATED SCANNER LOGIC (CONTINUOUS + 2-STEP)
 function startScanner(mode, specificOid) {
-    scanMode = mode; tempOid = specificOid || null; scanStep = (mode === 'tracking') ? 1 : 0;
+    scanMode = mode;
+    tempOid = specificOid || null;
+    scanStep = (mode === 'tracking') ? 1 : 0;
 
-    document.getElementById('scanner-modal').style.display = 'flex';
-    document.getElementById('scan-msg').innerText = (mode === 'dispatch') ? "Scan Order QR to Dispatch" : "STEP 1: Scan Order QR";
+    $('#scanner-modal').css('display', 'flex');
+    $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR TO DISPATCH" : "SCAN ORDER QR");
+    $('#scan-result-box').hide();
+
+    // PREVENT BACK BUTTON CLOSING
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () { stopScanner(); };
 
     html5QrCode = new Html5Qrcode("reader");
     html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
 }
 
 function stopScanner() {
-    if (html5QrCode) html5QrCode.stop().then(() => document.getElementById('scanner-modal').style.display = 'none');
+    if (html5QrCode) html5QrCode.stop().then(() => {
+        $('#scanner-modal').hide();
+        window.onpopstate = null; // Reset back button behavior
+    });
 }
 
 function onScanSuccess(decodedText) {
+    // 1. DISPATCH SCAN
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
-            if (confirm(`Dispatch ${decodedText}?`)) { updateOrder(decodedText, 'Dispatched'); stopScanner(); }
+            let order = allOrders.find(o => o.orderid === decodedText);
+            if (order) {
+                // Update Local directly (no confirm box for continuous scan flow)
+                updateOrder(decodedText, 'Dispatched');
+
+                showScanFeedback("DISPATCHED ✅", order);
+                html5QrCode.pause();
+                setTimeout(() => html5QrCode.resume(), 1500);
+            } else {
+                showScanFeedback("ORDER NOT FOUND ❌", null);
+            }
         }
-    } else if (scanMode === 'tracking') {
+    }
+    // 2. TRACKING SCAN
+    else if (scanMode === 'tracking') {
+        // Step 1: Scan Order ID
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-")) {
                 tempOid = decodedText;
+                let order = allOrders.find(o => o.orderid === tempOid);
                 scanStep = 2;
-                document.getElementById('scan-msg').innerText = `STEP 2: Scan Tracking for ${tempOid}`;
-                alert("Order ID OK! Now scan Courier Barcode.");
+                $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
+                showScanFeedback("ORDER OK! SCAN BARCODE 📦", order);
+
                 html5QrCode.pause();
                 setTimeout(() => html5QrCode.resume(), 1000);
             }
-        } else if (scanStep === 2) {
+        }
+        // Step 2: Scan Tracking ID
+        else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
-                if (confirm(`Link Tracking ${decodedText} to ${tempOid}?`)) {
-                    stopScanner();
-                    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: tempOid, tracking: decodedText }) })
-                        .then(res => res.json())
-                        .then(d => {
-                            if (d.result === 'success') { alert("Saved! ✅"); fetchOrders(true); }
-                            else { alert("Failed to save!"); }
-                        });
-                }
+                // Save Tracking Locally
+                updateOrder(tempOid, 'Dispatched', decodedText);
+
+                let order = allOrders.find(o => o.orderid === tempOid);
+                showScanFeedback("TRACKING SAVED ✅", order);
+
+                // Reset for next order
+                scanStep = 1;
+                setTimeout(() => {
+                    $('#scan-mode-title').text("SCAN NEXT ORDER QR");
+                    html5QrCode.resume();
+                }, 1500);
+                html5QrCode.pause();
             }
         }
     }
 }
 
+function showScanFeedback(status, order) {
+    $('#scan-status-text').text(status);
+    if (order) {
+        $('#scan-info-text').html(`
+            <b>${order.name}</b> (${order.phone})<br>
+            <span style="font-size:11px; opacity:0.8;">${order.house}, ${order.place}</span>
+        `);
+    } else {
+        $('#scan-info-text').text("");
+    }
+    $('#scan-result-box').slideDown();
+}
+
+// Select All Toggle
 function toggleSelectAll() {
     const btn = document.getElementById('btn-select-all');
     const checkboxes = document.querySelectorAll('.order-cb');
@@ -513,10 +559,10 @@ function updateSelectAllButton() {
     if (checkboxes.length === 0) return;
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
     if (isAllChecked) {
-        btn.classList.remove('btn-outline-light'); btn.classList.add('btn-light', 'text-success', 'fw-bold');
-        btn.innerHTML = '<i class="fas fa-check-square"></i> All Selected';
+        btn.classList.remove('btn-light', 'text-secondary'); btn.classList.add('btn-dark', 'text-white');
+        btn.innerHTML = '<i class="fas fa-check-square"></i> All';
     } else {
-        btn.classList.add('btn-outline-light'); btn.classList.remove('btn-light', 'text-success', 'fw-bold');
-        btn.innerHTML = '<i class="far fa-square"></i> Select All';
+        btn.classList.add('btn-light', 'text-secondary'); btn.classList.remove('btn-dark', 'text-white');
+        btn.innerHTML = '<i class="far fa-square"></i> All';
     }
 }

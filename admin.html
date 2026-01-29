@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAFAK Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -25,7 +26,6 @@
             padding-bottom: 100px;
         }
 
-        /* 🔴 APP HEADER STYLES */
         .sticky-app-header {
             position: sticky;
             top: 0;
@@ -35,7 +35,6 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             padding: 10px 15px 0 15px;
-            /* Slight bottom padding handled by tabs margin */
         }
 
         .header-top {
@@ -46,14 +45,12 @@
             gap: 10px;
         }
 
-        /* Logo */
         .logo-img {
             height: 28px;
             width: auto;
             opacity: 0.9;
         }
 
-        /* Search Bar (Middle) */
         .search-wrapper {
             flex-grow: 1;
             position: relative;
@@ -69,16 +66,8 @@
             font-weight: 700;
             color: #333;
             outline: none;
-            transition: 0.2s;
         }
 
-        .search-compact:focus {
-            background: white;
-            border-color: #ccc;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Refresh Button (Left) */
         .btn-refresh {
             width: 42px;
             height: 42px;
@@ -89,58 +78,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            transition: 0.2s;
-            cursor: pointer;
         }
 
-        .btn-refresh:active {
-            background: #f3f4f6;
-            transform: scale(0.95);
-        }
-
-        /* Sync Button (Right - Yellow) */
         .btn-sync {
             width: 42px;
             height: 42px;
             border-radius: 12px;
             background: var(--brand-yellow);
-            /* Yellow */
             border: none;
             color: white;
-            /* White Icon */
             display: none;
-            /* Hidden by default */
             align-items: center;
             justify-content: center;
-            font-size: 18px;
             position: relative;
             box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
         }
 
-        .btn-sync:active {
-            transform: scale(0.9);
-        }
-
-        /* Sync Badge (Number) */
         .sync-badge {
             position: absolute;
             top: -5px;
             right: -5px;
             background: #ef4444;
-            /* Red */
             color: white;
             font-size: 10px;
             font-weight: 800;
             padding: 2px 6px;
             border-radius: 10px;
             border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* TABS */
         .nav-pills {
             background: transparent;
             padding: 0;
@@ -160,7 +126,6 @@
             text-align: center;
             background: transparent;
             border-bottom: 3px solid transparent;
-            transition: 0.2s;
         }
 
         .nav-pills .nav-link.active {
@@ -169,7 +134,6 @@
             border-bottom: 3px solid black;
         }
 
-        /* Badge in Tabs */
         .tab-badge {
             font-size: 10px;
             opacity: 0.6;
@@ -186,7 +150,6 @@
             opacity: 1;
         }
 
-        /* CARD STYLE */
         .order-card {
             background: white;
             border-radius: 16px;
@@ -274,11 +237,6 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
-            transition: 0.2s;
-        }
-
-        .btn-custom:active {
-            transform: scale(0.98);
         }
 
         .btn-wa {
@@ -323,7 +281,6 @@
             border-color: #e5e7eb;
         }
 
-        /* FOOTER & MODALS */
         .bottom-panel {
             display: flex;
             justify-content: center;
@@ -345,11 +302,6 @@
             align-items: center;
             gap: 6px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-            transition: 0.2s;
-        }
-
-        .btn-footer:active {
-            transform: scale(0.95);
         }
 
         .btn-footer-danger {
@@ -358,129 +310,140 @@
             background: #fff1f2;
         }
 
+        /* 🔴 10. BEAUTIFUL SCANNER UI */
         #scanner-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: #000;
             z-index: 2000;
             display: none;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
         }
 
         #reader {
             width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: black;
-            border: 2px solid #333;
+            flex: 1;
+            background: #000;
+            object-fit: cover;
         }
 
-        #scan-msg {
-            color: white;
-            font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        #loader {
-            display: none;
-            position: fixed;
+        .scan-overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 9999;
+            pointer-events: none;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            z-index: 2001;
         }
 
-        .login-card {
-            max-width: 320px;
-            margin: 15vh auto;
-            background: white;
-            padding: 30px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-            text-align: center;
-        }
-
-        .admin-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 2px solid #f3f4f6;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .admin-input:focus {
-            border-color: black;
-            background: #fff;
-        }
-
-        .btn-black-login {
-            background: black;
+        .scan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             color: white;
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        .scan-title {
             font-weight: 800;
+            font-size: 18px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-close-scan {
+            background: rgba(255, 255, 255, 0.2);
             border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            backdrop-filter: blur(5px);
+            pointer-events: auto;
+        }
+
+        .scan-footer {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            pointer-events: auto;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .last-scan-info {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .scan-status {
+            font-weight: 800;
+            color: var(--brand-green);
             font-size: 14px;
-            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .ios-popup {
+            border-radius: 20px !important;
+            padding: 20px !important;
+            font-family: 'Manrope', sans-serif !important;
+        }
+
+        .ios-title {
+            font-size: 18px !important;
+            font-weight: 800 !important;
+            color: #000 !important;
+        }
+
+        .ios-btn {
+            border-radius: 12px !important;
+            background: black !important;
+            color: white !important;
+        }
+
+        .ios-btn-cancel {
+            border-radius: 12px !important;
+            background: #f2f2f2 !important;
+            color: #000 !important;
+        }
+
+        /* 🔴 7. YELLOW PRINT BUTTON */
+        .btn-print-yellow {
+            background: #facc15;
+            color: black;
+            border: none;
+        }
+
+        .btn-print-yellow:hover {
+            background: #eab308;
         }
     </style>
 </head>
 
 <body>
-
-    <div id="login-section" style="display: flex; height:100vh; align-items:center; justify-content:center;">
-        <div class="login-card">
-            <img src="logo.png" style="height: 35px; margin-bottom: 20px; opacity: 0.9;">
-            <h6 class="fw-bold mb-4 text-secondary text-uppercase" style="letter-spacing: 1px; font-size: 12px;">Admin
-                Access</h6>
-            <input type="text" id="adminUser" class="admin-input" placeholder="Username">
-            <input type="password" id="adminPass" class="admin-input" placeholder="Password">
-            <button onclick="attemptLogin()" class="btn-black-login">LOGIN</button>
-            <p id="loginMsg" class="text-danger mt-3 small fw-bold"></p>
-        </div>
-    </div>
-
     <div id="dashboard-section" style="display: none;">
-
         <div class="sticky-app-header">
             <div class="header-top">
                 <button onclick="fetchOrders(true)" class="btn-refresh"><i class="fas fa-sync-alt"></i></button>
-
-                <div class="search-wrapper">
-                    <input type="text" id="searchInput" class="search-compact" placeholder="Search orders..."
-                        onkeyup="filterOrders()">
-                </div>
-
-                <button id="sync-btn" onclick="syncWithServer()" class="btn-sync">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <span class="sync-badge" id="sync-badge-count">0</span>
-                </button>
-
-                <div id="logo-placeholder"
-                    style="width:42px; display:flex; justify-content:center; align-items:center;">
-                    <img src="logo.png" class="logo-img" style="display:none;" id="header-logo">
-                </div>
+                <div class="search-wrapper"><input type="text" id="searchInput" class="search-compact"
+                        placeholder="Search..." onkeyup="filterOrders()"></div>
+                <button id="sync-btn" onclick="syncWithServer()" class="btn-sync"><i
+                        class="fas fa-cloud-upload-alt"></i><span class="sync-badge"
+                        id="sync-badge-count">0</span></button>
+                <div id="logo-placeholder" style="width:42px; display:flex; justify-content:center;"><img src="logo.png"
+                        class="logo-img" id="header-logo"></div>
             </div>
-
             <div class="nav nav-pills" id="pills-tab">
                 <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-pending">New <span
                         id="count-pending" class="tab-badge">0</span></button>
@@ -490,6 +453,7 @@
                         id="count-dispatched" class="tab-badge">0</span></button>
             </div>
         </div>
+
         <div class="container" style="max-width: 800px; padding-top: 15px;">
             <div id="tabs-container">
                 <div class="tab-content">
@@ -499,15 +463,15 @@
 
                     <div class="tab-pane fade" id="tab-paid">
                         <div class="d-flex justify-content-between align-items-center mb-3 px-1">
-                            <button id="btn-select-all" onclick="toggleSelectAll()"
-                                class="btn btn-sm btn-light fw-bold text-secondary border-0 small"><i
-                                    class="far fa-square"></i> Select All</button>
+                            <button onclick="startScanner('dispatch')"
+                                class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i
+                                    class="fas fa-qrcode"></i> Scan</button>
                             <div class="d-flex gap-2">
-                                <button onclick="startScanner('dispatch')"
-                                    class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i
-                                        class="fas fa-qrcode"></i> Scan</button>
+                                <button id="btn-select-all" onclick="toggleSelectAll()"
+                                    class="btn btn-sm btn-light fw-bold text-secondary border-0 small"><i
+                                        class="far fa-square"></i> All</button>
                                 <button onclick="printSelected()"
-                                    class="btn btn-sm btn-white border rounded-pill px-3 fw-bold small text-dark">🖨️
+                                    class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️
                                     Print</button>
                             </div>
                         </div>
@@ -515,43 +479,31 @@
                     </div>
 
                     <div class="tab-pane fade" id="tab-dispatched">
-                        <div class="text-center mb-3">
-                            <button onclick="startScanner('tracking')"
+                        <div class="text-center mb-3"><button onclick="startScanner('tracking')"
                                 class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small"><i
-                                    class="fas fa-barcode"></i> Courier Scan</button>
-                        </div>
+                                    class="fas fa-barcode"></i> Courier Scan</button></div>
                         <div class="row g-2" id="list-dispatched"></div>
                     </div>
                 </div>
             </div>
-
-            <div id="search-results-area" style="display: none;">
-                <h6 class="fw-bold mb-3 text-muted text-center small" style="font-size:10px; letter-spacing:1px;">SEARCH
-                    RESULTS</h6>
-                <div class="row g-2" id="list-search"></div>
-            </div>
-
-            <div class="bottom-panel">
-                <button onclick="discardLocalChanges()" class="btn-footer btn-footer-danger"><i
-                        class="fas fa-trash-alt"></i> Discard</button>
-                <button onclick="logoutAdmin()" class="btn-footer"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
         </div>
-    </div>
-
-    <div id="loader" style="display:none;">
-        <div class="spinner-border text-success" role="status" style="width: 2rem; height: 2rem;"></div>
     </div>
 
     <div id="scanner-modal">
-        <div id="scan-msg">Scan QR</div>
-        <div
-            style="background:white; padding:10px; border-radius:16px; width:90%; max-width:400px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-            <div id="reader"></div>
-            <button onclick="stopScanner()" class="btn btn-danger w-100 mt-3 rounded-pill fw-bold small py-2">STOP
-                CAMERA</button>
+        <div id="reader"></div>
+        <div class="scan-overlay">
+            <div class="scan-header">
+                <div class="scan-title" id="scan-mode-title">SCANNING...</div>
+                <button onclick="stopScanner()" class="btn-close-scan"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="scan-footer" id="scan-result-box" style="display:none;">
+                <span class="scan-status" id="scan-status-text">SUCCESS</span>
+                <div class="last-scan-info" id="scan-info-text"></div>
+            </div>
         </div>
     </div>
+
+    <script src="admin.js"></script>
 
     <style id="label-css">
         @page {
@@ -741,10 +693,6 @@
             height: 100%;
         }
     </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="admin.js"></script>
 </body>
 
 </html>
