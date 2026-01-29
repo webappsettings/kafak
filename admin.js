@@ -344,9 +344,8 @@ function calculatePriceInfo(qty, state) {
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
-    const price = calculatePriceInfo(n, d.state);
 
-    // 2. Price Calculation (Same logic as Custom.js)
+    // 1. Price Calculation (Same logic as Custom.js)
     const base = n * 650;
     let courier = 0;
     const s = String(d.state || '').toLowerCase().trim();
@@ -363,35 +362,42 @@ function sendWA(index) {
     const amountText = `Amount(₹): ${base} + ${courier}`;
     const totalText = `Total(₹): ${total}/-`;
 
-    // 3. Message Construction
-    const adminPhone = '7788990313';
+    // 2. Message Construction (Full Details Format)
     const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
     const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
 
     const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
-    const format = `\n____________________________________\n*${(d.name || '').trim().toUpperCase()}*\n*${(d.house || '').trim().toUpperCase()}*\n*${(d.place || '').trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${(d.pincode || '').trim()}*\n*Ph: ${(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
+    const format = `\n____________________________________\n*${(d.name || '').trim().toUpperCase()}*\n*${(d.house || '').trim().toUpperCase()}*\n*${(d.place || '').trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${(d.pincode || '').trim()}*\n*Ph: ${(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: 7788990313 (KAFAK LLP)*\n\nPay ചെയ്ത് സ്ക്രീൻഷോട്ട് അയക്കുക. ✅`;
+
+    // 3. Customer Phone Logic (To Customer)
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    // 1. OPEN WHATSAPP FIRST (To prevent block)
-    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
+    // 4. OPEN WHATSAPP FIRST (Critical Fix: No confirm box blocking)
+    const url = `https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`;
+    window.open(url, '_blank');
 
-    // 2. UPDATE STATUS SILENTLY (No Confirm Box)
+    // 5. SILENT STATUS UPDATE (Change to 'Sent' automatically)
     if (d.Status === 'Pending') {
+        // Local Queue Update
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
         updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
+        // Cache Update (For Instant UI Change)
         const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = 'Sent';
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         }
 
-        // Slight delay to refresh UI
-        setTimeout(() => renderTabs(allOrders), 500);
+        // Refresh UI after a small delay
+        setTimeout(() => {
+            renderTabs(allOrders);
+            updateSyncButtonUI();
+        }, 1000);
     }
 }
 
