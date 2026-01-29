@@ -510,23 +510,78 @@ function selectEditPO(val) {
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
 
 function submitQuickOrder() {
+  // 1. Quantity Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-  if ($('#edit-po-wrapper').is(':visible') && !$('#edit-postoffice-select').val()) { showAlert(getAlert('err_select_po')); return; }
 
+  // 2. Main Phone Validation
   const newPhone = $('#edit-phone').val();
+  if (!newPhone || newPhone.length !== 10 || isNaN(newPhone)) {
+    showAlert(getAlert('err_phone'));
+    $('#edit-phone').focus();
+    return;
+  }
 
+  // 3. House Name Validation
+  if (!$('#edit-house').val().trim()) {
+    showAlert(getAlert('err_house'));
+    $('#edit-house').focus();
+    return;
+  }
+
+  // 4. Place Validation
+  if (!$('#edit-place').val().trim()) {
+    showAlert(getAlert('err_place'));
+    $('#edit-place').focus();
+    return;
+  }
+
+  // 5. Pincode Validation
+  const pin = $('#edit-pincode').val();
+  if (!pin || pin.length !== 6 || isNaN(pin)) {
+    showAlert(getAlert('err_pincode'));
+    $('#edit-pincode').focus();
+    return;
+  }
+
+  // 6. Post Office Validation
+  if ($('#edit-po-wrapper').is(':visible') && !$('#edit-postoffice-select').val()) {
+    showAlert(getAlert('err_select_po'));
+    return;
+  }
+  if (!$('#edit-postoffice').val()) {
+    showAlert(getAlert('err_select_po'));
+    return;
+  }
+
+  // 7. WhatsApp Number Validation
+  const wa = $('#edit-whatsapp').val();
+  if (!wa || wa.length !== 10 || isNaN(wa)) {
+    showAlert(getAlert('err_whatsapp'));
+    $('#edit-whatsapp').focus();
+    return;
+  }
+
+  // 8. Alt Phone Validation (Optional but must be 10 digits if provided)
+  const alt = $('#edit-altphone').val();
+  if (alt && (alt.length !== 10 || isNaN(alt))) {
+    showAlert(getAlert('err_phone')); // Reusing phone error message
+    $('#edit-altphone').focus();
+    return;
+  }
+
+  // If all validations pass, proceed to submit
   const finalData = {
     orderid: editingOrderId,
     name: $('#saved-name').text(),
     phone: newPhone,
-    whatsapp: $('#edit-whatsapp').val(),
-    altphone: $('#edit-altphone').val(),
+    whatsapp: wa,
+    altphone: alt,
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
-    pincode: $('#edit-pincode').val(),
-    postoffice: userData.postoffice,
-    district: userData.district,
-    state: userData.state || 'Kerala',
+    pincode: pin,
+    postoffice: $('#edit-postoffice').val(),
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     message: '',
     custId: myCustId
@@ -536,7 +591,7 @@ function submitQuickOrder() {
     delete localUsersMap[currentLoginPhone];
   }
   localUsersMap[newPhone] = finalData;
-  localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+  SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
   postOrder(finalData);
 }
