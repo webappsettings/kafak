@@ -1,7 +1,6 @@
 // 🔴 GOOGLE SCRIPT URL
 const sc = `https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec`;
 
-
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -75,6 +74,7 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
+  // Load Users
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -97,7 +97,7 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 ADMIN BAR SETUP
+    // 🔴 1. ADMIN UI INJECTION (FIXED BOTTOM BAR)
     if (isAdmin) {
       const adminUI = `
             <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
@@ -123,15 +123,18 @@ $(document).ready(function () {
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
+      // 🔴 2. INSTANT LOADING (SKIP LOADER FOR ADMIN)
       if (cachedOrder) {
         showLoader(false);
-        let initialStatus = cachedOrder.Status || 'Pending';
-        updateAdminUI(initialStatus, oid);
+        // Fix potential nulls
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
         cachedOrder.district = cachedOrder.district || '';
         cachedOrder.state = cachedOrder.state || '';
+
+        let initialStatus = cachedOrder.Status || 'Pending';
+        updateAdminUI(initialStatus, oid);
         loadOrderData(cachedOrder);
       } else {
         fetchOrder(oid);
@@ -268,6 +271,7 @@ function showLoader(show) {
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
+// 🔴 HANDLE NEW USER FIX
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -354,7 +358,7 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// 🔴 UPDATED: RESTRICT QUANTITY IF PAID
+// 🔴 PAID QTY RESTRICTION
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
@@ -385,7 +389,7 @@ function showReturningUserView(d, isActiveOrder) {
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
 
-    // 🔴 3. DISABLE LOWER QTY IF PAID
+    // Disable lower options if Paid
     if (d.Status === 'Paid') {
       const currentQty = parseInt(d.quantity);
       $('#quick-qty option').each(function () {
@@ -514,9 +518,9 @@ function submitQuickOrder() {
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
     pincode: $('#edit-pincode').val(),
-    postoffice: $('#edit-postoffice').val(),
-    district: $('#edit-district').val(),
-    state: $('#edit-state').val(),
+    postoffice: userData.postoffice,
+    district: userData.district,
+    state: userData.state || 'Kerala',
     quantity: $('#quick-qty').val(),
     message: '',
     custId: myCustId
@@ -550,7 +554,7 @@ function showStep(s) {
   if (s === 7) {
     btn.html(translations[lang].btn_order);
     btn.addClass('btn-brand-green');
-    // 🔴 1. LIVE UPDATION FIX
+    // Live update price on final page
     updatePrice($('#quantity').val(), false);
   } else {
     btn.html(translations[lang].btn_next);
@@ -628,7 +632,6 @@ async function nextStep() {
 }
 
 function updateWizardLocDisplay() {
-  // 🔴 2. UPPERCASE PO
   $('#display-po').text((userData.postoffice || '').toUpperCase());
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
