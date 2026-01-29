@@ -1,4 +1,4 @@
-
+// 🔴 GOOGLE SCRIPT URL
 const sc = `https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec`;
 
 const courierRates = {
@@ -97,14 +97,14 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 ADMIN FEATURES IN ORDER PAGE
+    // 🔴 ADMIN FEATURES IN ORDER PAGE (Bottom Bar)
     if (isAdmin) {
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 10px 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.05);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
-                    <div id="admin-btn-container" style="flex-grow:1; margin-right:10px;"></div>
-                    <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:40px; height:40px; border:1px solid #eee;">
-                        <i class="fas fa-times text-danger"></i>
+                    <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
+                    <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-times text-danger" style="font-size:20px;"></i>
                     </button>
                 </div>
             </div>`;
@@ -123,16 +123,18 @@ $(document).ready(function () {
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
+      // 🔴 INSTANT LOAD (NO LOADER)
       if (cachedOrder) {
         showLoader(false);
-        let initialStatus = cachedOrder.Status || 'Pending';
-        updateAdminUI(initialStatus, oid);
         // Fix potential nulls
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
         cachedOrder.district = cachedOrder.district || '';
         cachedOrder.state = cachedOrder.state || '';
+
+        let initialStatus = cachedOrder.Status || 'Pending';
+        updateAdminUI(initialStatus, oid);
         loadOrderData(cachedOrder);
       } else {
         fetchOrder(oid);
@@ -148,7 +150,7 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN FUNCTIONS (Required for Edit View)
+// 🔴 ADMIN FUNCTIONS
 function updateAdminUI(serverStatus, oid) {
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
@@ -212,6 +214,7 @@ function loadOrderData(d) {
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
+  // Handle Completed or Dispatched same way (New Order Mode)
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     editingOrderId = null;
     showReturningUserView(d, false);
@@ -269,6 +272,7 @@ function showLoader(show) {
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
+// 🔴 HANDLE PHONE NEXT (NEW USER FIX)
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -287,7 +291,7 @@ function handlePhoneNext() {
       showLoader(false);
       $('#step-0').hide();
 
-      // 🔴 FIX: Check name to confirm existing user
+      // 🔴 FIX: Check res.data.name to confirm existing user
       if (res.result === 'success' && res.data && res.data.name) {
         const d = res.data;
         if (d.custId) { myCustId = d.custId; }
@@ -302,6 +306,7 @@ function handlePhoneNext() {
         const finalUser = localData ? { ...d, ...localData } : d;
         loadOrderData(finalUser);
       } else {
+        // Not existing user
         if (localData && localData.name) {
           userData = localData;
           editingOrderId = null;
@@ -406,7 +411,7 @@ function updateSummaryDisplay() {
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
 
   $('#saved-address-text').text(addr);
-  $('#saved-place-dist').text(''); // Cleared as it's merged in addr
+  $('#saved-place-dist').text('');
   $('#saved-phone-text').text(phone);
   $('#saved-wa-text span').text(wa);
   if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
@@ -598,7 +603,7 @@ async function nextStep() {
   if (currentStep === 5) {
     if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
     $('#display-po').text(userData.postoffice);
-    $('#display-dist-state').text(`${$('#place').val()}, ${userData.district}`);
+    $('#display-dist-state').text(`${$('#place').val()}, ${userData.district}`.toUpperCase());
   }
 
   if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
@@ -649,7 +654,7 @@ function submitWizardOrder() {
   postOrder(finalData);
 }
 
-// 🔴 BEAUTIFUL DELIVER TO BOX
+// 🔴 UPDATE PRICE & SHOW BEAUTIFUL DELIVER BOX
 function updatePrice(qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
@@ -664,6 +669,7 @@ function updatePrice(qty, isQuick) {
   container.find('.val-total').text(total);
   container.fadeIn();
 
+  // WIZARD FINAL PAGE ADDRESS BOX
   if (!isQuick) {
     let altHtml = $('#altphone').val() ? `, ${$('#altphone').val()}` : '';
     let addrHtml = `
