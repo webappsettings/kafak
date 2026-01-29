@@ -74,7 +74,6 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
-  // Load Users
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -97,7 +96,7 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN UI INJECTION (FIXED BOTTOM BAR)
+    // 🔴 1. ADMIN FEATURES (FIXED BOTTOM BAR + FAST LOAD)
     if (isAdmin) {
       const adminUI = `
             <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
@@ -123,10 +122,10 @@ $(document).ready(function () {
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
-      // 🔴 2. INSTANT LOADING (SKIP LOADER FOR ADMIN)
+      // 🔴 INSTANT LOAD (NO LOADER)
       if (cachedOrder) {
         showLoader(false);
-        // Fix potential nulls
+        // Fix potential nulls to avoid errors
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
@@ -150,7 +149,7 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN FUNCTIONS
+// 🔴 ADMIN FUNCTIONS (Must be defined for Edit View)
 function updateAdminUI(serverStatus, oid) {
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
@@ -271,7 +270,6 @@ function showLoader(show) {
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
-// 🔴 HANDLE NEW USER FIX
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -358,7 +356,7 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// 🔴 PAID QTY RESTRICTION
+// 🔴 UPDATED: RESTRICT QUANTITY IF PAID
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
@@ -389,7 +387,7 @@ function showReturningUserView(d, isActiveOrder) {
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
 
-    // Disable lower options if Paid
+    // 🔴 3. DISABLE LOWER QTY IF PAID
     if (d.Status === 'Paid') {
       const currentQty = parseInt(d.quantity);
       $('#quick-qty option').each(function () {
@@ -518,9 +516,9 @@ function submitQuickOrder() {
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
     pincode: $('#edit-pincode').val(),
-    postoffice: userData.postoffice,
-    district: userData.district,
-    state: userData.state || 'Kerala',
+    postoffice: $('#edit-postoffice').val(),
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     message: '',
     custId: myCustId
