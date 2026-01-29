@@ -95,7 +95,6 @@
       margin-top: 8px;
     }
 
-    /* 🔴 INPUT HINT STYLE */
     .form-hint {
       font-size: 11px;
       color: #d63031;
@@ -311,7 +310,6 @@
       font-family: monospace;
     }
 
-    /* 🔴 BEAUTIFUL DELIVER TO BOX */
     .deliver-to-box {
       margin-top: 15px;
       background: #fff;
@@ -419,8 +417,10 @@
               <div class="text-muted mt-1" style="font-size:13px; line-height:1.4;">
                 <span id="saved-address-text">Address...</span><br>
                 <span id="saved-place-dist"></span><br>
-                <span id="saved-phone-text" class="fw-bold text-dark"></span> | <span id="saved-wa-text"
-                  class="text-success"><i class="fab fa-whatsapp"></i> <span></span></span>
+                <span id="saved-phone-text" class="fw-bold text-dark"></span>
+                <span id="saved-alt-text" style="display:none; color:#555;">, <span></span></span>
+                <br>
+                <span id="saved-wa-text" class="text-success"><i class="fab fa-whatsapp"></i> <span></span></span>
               </div>
               <div class="address-box" id="address-edit-box">
                 <hr><label class="form-label" data-i18n="lbl_phone">ഫോൺ നമ്പർ</label><input type="tel" id="edit-phone"
@@ -483,10 +483,8 @@
               <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list"
                 oninput="updateWizardLocDisplay()">
               <datalist id="place-list"></datalist>
-
               <div class="form-hint">ശ്രദ്ധിക്കുക: ഇവിടെ സ്ഥലം മാത്രം നൽകുക (ഉദാ: ആലുവ). ജില്ലയും സംസ്ഥാനവും
                 നൽകേണ്ടതില്ല.</div>
-
               <div class="mt-2 text-muted small fw-bold" id="display-po"></div>
               <div class="text-muted small" id="display-dist-state"></div>
             </div>
@@ -506,7 +504,6 @@
                 <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
                       class="val-total">0</span></span></div>
               </div>
-
               <div id="wiz-deliver-box" class="deliver-to-box" style="display:none;">
                 <div class="deliver-label">DELIVER TO:</div>
                 <div id="wiz-final-addr"></div>

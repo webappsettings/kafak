@@ -1,0 +1,259 @@
+var scriptProp = PropertiesService.getScriptProperties();
+
+function setup() {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty("key", doc.getId());
+}
+
+function doGet(e) {
+  var action = e.parameter.action;
+  if (action == 'getCustomer') return getCustomer(e);
+  if (action == 'getOrder') return getOrderDetails(e);
+  if (action == 'getAllOrders') return getAllOrders();
+  return ContentService.createTextOutput("KAFAK Server Running...");
+}
+
+function doPost(e) {
+  try {
+    var params = (typeof e.postData.contents === 'string') ? JSON.parse(e.postData.contents) : e.postData.contents;
+    
+    if (params.action === "bulkUpdateStatus") return bulkUpdateStatus(params);
+    if (params.action === "updateTracking") return updateTracking(params);
+    if (params.action === "submit") return submitOrder(params);
+    
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'message': err.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// 🚀 HELPER: Advanced Search (No For Loops)
+function findRowIndex(sheet, searchText, columnIndex) {
+  var range = sheet.getRange(1, columnIndex, sheet.getLastRow(), 1);
+  var finder = range.createTextFinder(searchText).matchEntireCell(true).findNext();
+  return finder ? finder.getRow() : -1;
+}
+
+// --- CORE FUNCTIONS ---
+
+function submitOrder(params) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var doc = SpreadsheetApp.getActiveSpreadsheet();
+    var orderSheet = doc.getSheetByName("Orders");
+    var custSheet = doc.getSheetByName("Customers");
+    var data = params.orderData;
+    var timestamp = new Date();
+    
+    // Order ID
+    var orderId = data.orderid;
+    if (!orderId) {
+      var timeString = Utilities.formatDate(timestamp, Session.getScriptTimeZone(), "yyyyMMddHHmmss");
+      orderId = "ORD-" + timeString;
+    }
+
+    // Customer ID
+    var custId = data.custId; 
+    if(!custId) {
+        custId = "USER-" + Math.floor(100000 + Math.random() * 900000);
+    }
+
+    // Orders Row [ID, Time, Name, Phone, House, Place, PO, Pin, Dist, State, WA, Alt, Qty, Msg, Status]
+    var newOrderRow = [
+      orderId, timestamp, data.name, "'" + data.phone, data.house, 
+      data.place, data.postoffice, data.pincode, data.district, 
+      data.state, "'" + data.whatsapp, "'" + (data.altphone || ""), 
+      data.quantity, data.message, "Pending"
+    ];
+    
+    // 🚀 Optimize: Find existing order using TextFinder
+    var rowIndex = findRowIndex(orderSheet, orderId, 1);
+    
+    if (rowIndex > -1) {
+      var currentStatus = orderSheet.getRange(rowIndex, 15).getValue(); 
+      newOrderRow[14] = currentStatus;
+      orderSheet.getRange(rowIndex, 1, 1, newOrderRow.length).setValues([newOrderRow]);
+    } else {
+      orderSheet.appendRow(newOrderRow);
+    }
+
+    // Update Customer
+    updateCustomerData(custSheet, data, custId);
+
+    return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'orderid': orderId, 'custId': custId, 'timestamp': timestamp.toLocaleString() })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function updateCustomerData(sheet, data, custId) {
+  var phone = String(data.phone);
+  var rowIndex = -1;
+  
+  // 🚀 Optimize: Check by CustID (Col 11) FIRST
+  if(custId) {
+      rowIndex = findRowIndex(sheet, custId, 11);
+  }
+  
+  // 🚀 Optimize: If not found, Check by Phone (Col 1)
+  if(rowIndex === -1) {
+      rowIndex = findRowIndex(sheet, "'" + phone, 1); // Note: Phone stores with '
+      if(rowIndex === -1) rowIndex = findRowIndex(sheet, phone, 1); // Try without ' just in case
+  }
+
+  // Row: [Phone, Name, House, Place, PO, Pin, Dist, State, WA, Alt, CustID]
+  var custRow = ["'" + phone, data.name, data.house, data.place, data.postoffice, data.pincode, data.district, data.state, "'" + data.whatsapp, "'" + (data.altphone || ""), custId];
+  
+  if (rowIndex > -1) { 
+      sheet.getRange(rowIndex, 1, 1, custRow.length).setValues([custRow]); 
+  } else { 
+      sheet.appendRow(custRow); 
+  }
+}
+
+function getCustomer(e) {
+  var phone = e.parameter.phone;
+  var incomingCustId = e.parameter.custId;
+  
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var custSheet = doc.getSheetByName("Customers");
+  var orderSheet = doc.getSheetByName("Orders");
+  
+  var responseData = {};
+  
+  // 🚀 Optimize: Find Customer
+  var rowIndex = findRowIndex(custSheet, "'" + phone, 1);
+  if(rowIndex === -1) rowIndex = findRowIndex(custSheet, phone, 1);
+
+  if(rowIndex > -1) {
+      var r = custSheet.getRange(rowIndex, 1, 1, 11).getValues()[0];
+      var dbCustId = r[10]; // CustID in Col 11 (Index 10)
+      
+      if(dbCustId && dbCustId === incomingCustId) {
+          responseData = { 
+              phone: r[0], name: r[1], house: r[2], place: r[3], 
+              postoffice: r[4], pincode: r[5], district: r[6], state: r[7], 
+              whatsapp: r[8], altphone: r[9], custId: r[10], authorized: true
+          };
+      } else {
+          if(!dbCustId) { 
+              // Migrate old user
+              responseData = { 
+                  phone: r[0], name: r[1], house: r[2], place: r[3], 
+                  postoffice: r[4], pincode: r[5], district: r[6], state: r[7], 
+                  whatsapp: r[8], altphone: r[9], custId: incomingCustId, authorized: true 
+              };
+          } else {
+              responseData = { phone: phone, authorized: false };
+          }
+      }
+  }
+
+  // 🚀 Optimize: Find LAST active order for this phone
+  // TextFinder.findAll() returns all matches. We pick the last one.
+  var phoneFinder = orderSheet.getRange("D:D").createTextFinder("'" + phone).matchEntireCell(true).findAll();
+  
+  if(phoneFinder.length > 0) {
+      // Get the last match (Latest order)
+      var lastMatchRow = phoneFinder[phoneFinder.length - 1].getRow();
+      var ordData = orderSheet.getRange(lastMatchRow, 1, 1, 15).getValues()[0];
+      
+      var status = ordData[14]; // Status Col 15
+      if(status !== 'Dispatched') {
+          responseData.Status = status;
+          if(responseData.authorized) {
+              responseData.orderid = ordData[0];
+              responseData.quantity = ordData[12];
+              responseData.message = ordData[13];
+          }
+      } else {
+          responseData.Status = 'Dispatched';
+      }
+  }
+
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: responseData })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function getOrderDetails(e) {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName("Orders");
+  var custSheet = doc.getSheetByName("Customers");
+  
+  // 🚀 Optimize: Find Order directly
+  var rowIndex = findRowIndex(sheet, e.parameter.oid, 1);
+  
+  if(rowIndex > -1) {
+      var r = sheet.getRange(rowIndex, 1, 1, 15).getValues()[0];
+      var orderPhone = String(r[3]).replace("'","");
+      var custId = null;
+
+      // 🚀 Optimize: Find Customer ID directly
+      var custRow = findRowIndex(custSheet, "'" + orderPhone, 1);
+      if(custRow === -1) custRow = findRowIndex(custSheet, orderPhone, 1);
+      
+      if(custRow > -1) {
+          custId = custSheet.getRange(custRow, 11).getValue();
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({ 
+        result: 'success', 
+        data: { 
+            orderid: r[0], name: r[2], phone: r[3], house: r[4], 
+            place: r[5], postoffice: r[6], pincode: r[7], 
+            district: r[8], state: r[9], whatsapp: r[10], 
+            altphone: r[11], quantity: r[12], message: r[13], 
+            Status: r[14], custId: custId 
+        } 
+      })).setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput(JSON.stringify({ result: 'error' })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// --- ADMIN FUNCTIONS ---
+
+function getAllOrders() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Orders");
+  if (sheet.getLastRow() < 2) return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: [] })).setMimeType(ContentService.MimeType.JSON);
+  
+  var data = sheet.getDataRange().getValues();
+  var headers = data.shift(); // Remove headers
+  
+  // Manual Mapping is safer than index search for stability
+  // Col 1=ID, 2=Time, 3=Name, 4=Phone, 5=House, 6=Place, 7=PO, 8=Pin, 9=Dist, 10=State, 11=WA, 12=Alt, 13=Qty, 14=Msg, 15=Status, 16=Track
+  
+  var orders = data.map(row => ({
+    orderid: row[0], timestamp: row[1], name: row[2], phone: row[3],
+    house: row[4], place: row[5], postoffice: row[6], pincode: row[7],
+    district: row[8], state: row[9], whatsapp: row[10], quantity: row[12], 
+    Status: row[14], tracking: row[15] || ""
+  })).reverse(); // Show latest first
+  
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: orders })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function bulkUpdateStatus(params) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Orders");
+  var updates = params.updates; 
+  
+  updates.forEach(function(item) {
+    // 🚀 Optimize: Find row directly
+    var rowIndex = findRowIndex(sheet, item.oid, 1);
+    if (rowIndex > -1) {
+        sheet.getRange(rowIndex, 15).setValue(item.status); // Col 15 is Status
+    }
+  });
+  return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'count': updates.length })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function updateTracking(params) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Orders");
+  // 🚀 Optimize: Find row directly
+  var rowIndex = findRowIndex(sheet, params.oid, 1);
+
+  if (rowIndex > -1) {
+    sheet.getRange(rowIndex, 16).setValue(params.tracking); // Tracking in Col 16
+    sheet.getRange(rowIndex, 15).setValue("Dispatched"); // Status in Col 15
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput(JSON.stringify({ result: 'error' })).setMimeType(ContentService.MimeType.JSON);
+}
