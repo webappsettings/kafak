@@ -26,6 +26,7 @@
             padding-bottom: 100px;
         }
 
+        /* STICKY HEADER */
         .sticky-app-header {
             position: sticky;
             top: 0;
@@ -107,6 +108,7 @@
             border: 2px solid white;
         }
 
+        /* TABS */
         .nav-pills {
             background: transparent;
             padding: 0;
@@ -150,6 +152,7 @@
             opacity: 1;
         }
 
+        /* CARDS */
         .order-card {
             background: white;
             border-radius: 16px;
@@ -212,11 +215,6 @@
             font-weight: 700;
             color: #374151;
             border: 1px dashed #e5e7eb;
-        }
-
-        .price-tag {
-            color: var(--brand-green);
-            font-size: 13px;
         }
 
         .action-area {
@@ -310,7 +308,7 @@
             background: #fff1f2;
         }
 
-        /* 🔴 10. BEAUTIFUL SCANNER UI */
+        /* SCANNER UI */
         #scanner-modal {
             position: fixed;
             top: 0;
@@ -394,44 +392,73 @@
             display: block;
         }
 
-        .ios-popup {
-            border-radius: 20px !important;
-            padding: 20px !important;
-            font-family: 'Manrope', sans-serif !important;
-        }
-
-        .ios-title {
-            font-size: 18px !important;
-            font-weight: 800 !important;
-            color: #000 !important;
-        }
-
-        .ios-btn {
-            border-radius: 12px !important;
-            background: black !important;
-            color: white !important;
-        }
-
-        .ios-btn-cancel {
-            border-radius: 12px !important;
-            background: #f2f2f2 !important;
-            color: #000 !important;
-        }
-
-        /* 🔴 7. YELLOW PRINT BUTTON */
         .btn-print-yellow {
             background: #facc15;
             color: black;
             border: none;
         }
 
-        .btn-print-yellow:hover {
-            background: #eab308;
+        .login-card {
+            max-width: 320px;
+            margin: 15vh auto;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #f3f4f6;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .btn-black-login {
+            background: black;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            border: none;
+        }
+
+        #loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 
 <body>
+
+    <div id="login-section" style="display: flex; height:100vh; align-items:center; justify-content:center;">
+        <div class="login-card">
+            <img src="logo.png" style="height: 35px; margin-bottom: 20px; opacity: 0.9;">
+            <h6 class="fw-bold mb-4 text-secondary text-uppercase" style="letter-spacing: 1px; font-size: 12px;">Admin
+                Access</h6>
+            <input type="text" id="adminUser" class="admin-input" placeholder="Username">
+            <input type="password" id="adminPass" class="admin-input" placeholder="Password">
+            <button onclick="attemptLogin()" class="btn-black-login">LOGIN</button>
+            <p id="loginMsg" class="text-danger mt-3 small fw-bold"></p>
+        </div>
+    </div>
+
     <div id="dashboard-section" style="display: none;">
         <div class="sticky-app-header">
             <div class="header-top">
@@ -486,6 +513,18 @@
                     </div>
                 </div>
             </div>
+
+            <div id="search-results-area" style="display: none;">
+                <h6 class="fw-bold mb-3 text-muted text-center small" style="font-size:10px; letter-spacing:1px;">SEARCH
+                    RESULTS</h6>
+                <div class="row g-2" id="list-search"></div>
+            </div>
+
+            <div class="bottom-panel">
+                <button onclick="discardLocalChanges()" class="btn-footer btn-footer-danger"><i
+                        class="fas fa-trash-alt"></i> Discard</button>
+                <button onclick="logoutAdmin()" class="btn-footer"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
         </div>
     </div>
 
@@ -503,6 +542,12 @@
         </div>
     </div>
 
+    <div id="loader" style="display:none;">
+        <div class="spinner-border text-success" role="status"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="admin.js"></script>
 
     <style id="label-css">

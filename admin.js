@@ -1,23 +1,21 @@
 // 🔴 1. NEW GOOGLE SCRIPT URL
 const scriptURL = "https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec";
 
-// --- LOGIN LOGIC ---
-window.onload = function () {
+// 🔴 FIX: USE DOM CONTENT LOADED
+document.addEventListener('DOMContentLoaded', function () {
     if (localStorage.getItem('kafakAdminLoggedIn') === 'true') {
         showDashboard();
     } else {
         document.getElementById('login-section').style.display = 'flex';
         document.getElementById('dashboard-section').style.display = 'none';
     }
-};
+});
 
 function attemptLogin() {
     const user = document.getElementById('adminUser').value;
     const pass = document.getElementById('adminPass').value;
-
     if (user === "admin" && pass === "kafak123") {
         localStorage.setItem('kafakAdminLoggedIn', 'true');
-        localStorage.setItem('kafakAdmin', 'true');
         showDashboard();
     } else {
         document.getElementById('loginMsg').innerText = "❌ തെറ്റായ വിവരങ്ങൾ!";
@@ -33,7 +31,6 @@ function showDashboard() {
 function logoutAdmin() {
     confirmAction("Logout ചെയ്യാൻ ഉറപ്പാണോ?", () => {
         localStorage.removeItem('kafakAdminLoggedIn');
-        localStorage.removeItem('kafakAdmin');
         window.location.href = "index.html";
     });
 }
@@ -50,7 +47,7 @@ let scanMode = '';
 let scanStep = 0;
 let tempOid = null;
 
-// --- HELPERS (SWEET ALERT) ---
+// --- HELPERS ---
 function showToast(icon, title) {
     Swal.fire({
         toast: true, position: 'top-end', showConfirmButton: false, timer: 1500,
@@ -67,25 +64,17 @@ function confirmAction(text, callback) {
 }
 
 // --- CORE FUNCTIONS ---
-
 function fetchOrders(forceLoad = false) {
     let savedOrders = localStorage.getItem('allOrdersCache');
     let hasData = false;
-
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
         renderTabs(allOrders);
         hasData = true;
-        document.getElementById('loader').style.display = 'none';
     }
-
     if (hasData && !forceLoad) return;
 
-    document.getElementById('list-pending').innerHTML = '';
-    document.getElementById('list-paid').innerHTML = '';
-    document.getElementById('list-dispatched').innerHTML = '';
     document.getElementById('loader').style.display = 'flex';
-
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
         .then(response => {
@@ -99,12 +88,7 @@ function fetchOrders(forceLoad = false) {
         })
         .catch(err => {
             document.getElementById('loader').style.display = 'none';
-            if (hasData) {
-                renderTabs(allOrders);
-                showToast("warning", "Offline Mode Enabled");
-            } else {
-                alert("Network Error!");
-            }
+            if (!hasData) alert("Network Error!");
         });
 }
 
@@ -137,7 +121,6 @@ function renderTabs(orders) {
     document.getElementById('count-pending').innerText = counts.pending;
     document.getElementById('count-paid').innerText = counts.paid;
     document.getElementById('count-dispatched').innerText = counts.dispatched;
-
     updateSyncButtonUI();
 }
 
@@ -149,21 +132,16 @@ function updateSyncButtonUI() {
     const badge = $('#sync-badge-count');
 
     if (pendingUpdates.length > 0) {
-        syncBtn.css('display', 'flex');
-        logoPlaceholder.hide();
-        badge.text(pendingUpdates.length);
+        syncBtn.css('display', 'flex'); logoPlaceholder.hide(); badge.text(pendingUpdates.length);
     } else {
-        syncBtn.hide();
-        logoPlaceholder.show();
-        headerLogo.show();
+        syncBtn.hide(); logoPlaceholder.show(); headerLogo.show();
     }
 }
 
 function createCardHTML(d, index, type, currentStatus) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
-    let safe = (val) => (val || '').toString().toUpperCase();
-    let statusBadge = '', buttons = '', tickMark = '';
-    let topButtons = '';
+    let safe = (val) => String(val || '').toUpperCase();
+    let statusBadge = '', buttons = '', topButtons = '';
 
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
@@ -171,59 +149,25 @@ function createCardHTML(d, index, type, currentStatus) {
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
-            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
-                       <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
+            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
         } else {
             statusBadge = '<span class="badge bg-warning text-dark">New</span>';
             buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
         }
     } else if (type === 'paid') {
         statusBadge = '<span class="badge bg-success">Paid</span>';
-        buttons = `<button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
-                   <div style="display:flex; align-items:center; justify-content:center; width:40px;">
-                       <input type="checkbox" class="order-cb" value="${index}" onchange="checkSelectAllStatus()" style="width:20px; height:20px;">
-                   </div>`;
+        buttons = `<button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><div style="display:flex; align-items:center; justify-content:center; width:40px;"><input type="checkbox" class="order-cb" value="${index}" onchange="checkSelectAllStatus()" style="width:20px; height:20px;"></div>`;
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">↩ REVERT</button>` + printBtn;
-
     } else if (type === 'dispatched') {
         statusBadge = '<span class="badge bg-primary">Dispatched</span>';
-        tickMark = '<i class="fas fa-check-circle text-primary fs-4 position-absolute top-0 end-0 m-2"></i>';
-
-        // Tracking info from local or server
         let localUpdate = JSON.parse(localStorage.getItem('pendingUpdates') || "[]").find(u => u.oid === d.orderid);
         let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
         let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
-
         buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>`;
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
-    let addressBlock = `
-        <div class="cust-details">
-            <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
-            <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
-            <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
-            <div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${d.phone}</div>
-        </div>
-    `;
-
-    return `
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="order-card status-${currentStatus}">
-            ${tickMark}
-            <div class="card-header-row">
-                <div><span class="order-id">#${d.orderid.split('-')[1]}</span> ${editLink} ${topButtons}</div>
-                ${statusBadge}
-            </div>
-            <div class="cust-name">${safe(d.name)}</div>
-            ${addressBlock}
-            <div class="info-box">
-                <span>${d.quantity} Bottles</span>
-                <span class="price-tag">${priceInfo.total}</span>
-            </div>
-            <div class="action-area">${buttons}</div>
-        </div>
-    </div>`;
+    return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card status-${currentStatus}"><div class="card-header-row"><div><span class="order-id">#${d.orderid.split('-')[1]}</span> ${editLink} ${topButtons}</div>${statusBadge}</div><div class="cust-name">${safe(d.name)}</div><div class="cust-details"><div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div><div>${safe(d.place)}, ${safe(d.postoffice)}</div><div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div><div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${d.phone}</div></div><div class="info-box"><span>${d.quantity} Bottles</span><span class="price-tag">${priceInfo.total}</span></div><div class="action-area">${buttons}</div></div></div>`;
 }
 
 function filterOrders() {
@@ -236,10 +180,8 @@ function filterOrders() {
         tabsContainer.style.display = 'none';
         searchResultsArea.style.display = 'block';
         searchList.innerHTML = '';
-
         let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         let matches = allOrders.filter(o => (o.name || '').toLowerCase().includes(term) || String(o.phone).includes(term) || (o.orderid || '').toLowerCase().includes(term));
-
         if (matches.length === 0) searchList.innerHTML = '<div class="text-center text-muted">No results found.</div>';
         else matches.forEach(d => {
             let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
@@ -256,21 +198,14 @@ function filterOrders() {
     }
 }
 
-// 🔴 OFFLINE TRACKING & STATUS UPDATE
+// 🔴 OFFLINE TRACKING
 function updateOrder(oid, status, trackingNum = null) {
-    // Determine context for confirmation
-    let confirmMsg = `Mark '${status}'?`;
-    if (trackingNum) confirmMsg = `Save Tracking: ${trackingNum}?`;
-
-    // Only confirm if it's a manual click, not automated
-    if (!trackingNum && !confirm(confirmMsg)) return;
+    if (!trackingNum && !confirm(`Mark '${status}'?`)) return;
 
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     updates = updates.filter(item => item.oid !== oid);
-
     let updateObj = { oid: oid, status: status, time: new Date().getTime() };
     if (trackingNum) updateObj.tracking = trackingNum;
-
     updates.push(updateObj);
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
@@ -281,7 +216,6 @@ function updateOrder(oid, status, trackingNum = null) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
-    // Refresh UI
     if (document.getElementById('searchInput').value.length > 0) filterOrders();
     else renderTabs(allOrders);
 
@@ -289,34 +223,19 @@ function updateOrder(oid, status, trackingNum = null) {
     if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
 }
 
-// 🔴 SYNC LOGIC (STATUS + TRACKING)
+// 🔴 SYNC
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     if (pendingUpdates.length === 0) return;
 
     confirmAction(`${pendingUpdates.length} മാറ്റങ്ങൾ അപ്‌ലോഡ് ചെയ്യട്ടെ?`, () => {
         $('#sync-btn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
-
         let trackingUpdates = pendingUpdates.filter(u => u.tracking);
         let statusUpdates = pendingUpdates.filter(u => !u.tracking);
-
         let promises = [];
 
-        // 1. Bulk Status Update
-        if (statusUpdates.length > 0) {
-            promises.push(fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates })
-            }));
-        }
-
-        // 2. Individual Tracking Updates
-        trackingUpdates.forEach(u => {
-            promises.push(fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking })
-            }));
-        });
+        if (statusUpdates.length > 0) promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates }) }));
+        trackingUpdates.forEach(u => promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking }) })));
 
         Promise.all(promises).then(() => {
             localStorage.removeItem('pendingUpdates');
@@ -350,53 +269,41 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// 🔴 FULL SEND WA FUNCTION (FIXED)
+// 🔴 SEND WA FIX (SAFE STRING & OPEN FIRST)
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
     const price = calculatePriceInfo(n, d.state);
-
     const base = n * 650;
     let courier = 0;
     const s = String(d.state || '').toLowerCase().trim();
     if (s === 'lakshadweep') courier = (n * 100) + 20;
     else if (s === 'kerala') courier = courierRates.kerala[n] || 0;
     else courier = courierRates.outside[n] || 0;
-
     const total = base + courier;
     const amountText = `Amount(₹): ${base} + ${courier}`;
     const totalText = `Total(₹): ${total}/-`;
-
     const adminPhone = '7788990313';
     const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
     const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
-
     const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
-
-    // SAFE STRING CONVERSION
     const safe = (val) => String(val || '').trim().toUpperCase();
-
     const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
-
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    // 1. OPEN WHATSAPP
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
 
-    // 2. SILENT UPDATE
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
         updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
         const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = 'Sent';
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         }
-
         setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
     }
 }
@@ -414,7 +321,6 @@ function runPrintLogic(selectedItems) {
     tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px';
     document.body.appendChild(tempDiv);
     const promises = []; const labelsData = [];
-
     selectedItems.forEach((cb) => {
         const d = allOrders[cb.value];
         if (d) {
@@ -432,7 +338,6 @@ function runPrintLogic(selectedItems) {
             promises.push(p);
         }
     });
-
     Promise.all(promises).then(() => {
         document.body.removeChild(tempDiv);
         const printWin = window.open('', '', 'width=600,height=800');
@@ -450,20 +355,14 @@ function runPrintLogic(selectedItems) {
     });
 }
 
-// 🔴 UPDATED SCANNER LOGIC (CONTINUOUS + 2-STEP)
+// 🔴 CONTINUOUS SCANNER
 function startScanner(mode, specificOid) {
-    scanMode = mode;
-    tempOid = specificOid || null;
-    scanStep = (mode === 'tracking') ? 1 : 0;
-
+    scanMode = mode; tempOid = specificOid || null; scanStep = (mode === 'tracking') ? 1 : 0;
     $('#scanner-modal').css('display', 'flex');
     $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR TO DISPATCH" : "SCAN ORDER QR");
     $('#scan-result-box').hide();
-
-    // PREVENT BACK BUTTON CLOSING
     history.pushState(null, null, location.href);
     window.onpopstate = function () { stopScanner(); };
-
     html5QrCode = new Html5Qrcode("reader");
     html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
 }
@@ -471,30 +370,23 @@ function startScanner(mode, specificOid) {
 function stopScanner() {
     if (html5QrCode) html5QrCode.stop().then(() => {
         $('#scanner-modal').hide();
-        window.onpopstate = null; // Reset back button behavior
+        window.onpopstate = null;
     });
 }
 
 function onScanSuccess(decodedText) {
-    // 1. DISPATCH SCAN
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
             let order = allOrders.find(o => o.orderid === decodedText);
             if (order) {
-                // Update Local directly (no confirm box for continuous scan flow)
                 updateOrder(decodedText, 'Dispatched');
-
                 showScanFeedback("DISPATCHED ✅", order);
-                html5QrCode.pause();
-                setTimeout(() => html5QrCode.resume(), 1500);
+                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
             } else {
                 showScanFeedback("ORDER NOT FOUND ❌", null);
             }
         }
-    }
-    // 2. TRACKING SCAN
-    else if (scanMode === 'tracking') {
-        // Step 1: Scan Order ID
+    } else if (scanMode === 'tracking') {
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-")) {
                 tempOid = decodedText;
@@ -502,26 +394,15 @@ function onScanSuccess(decodedText) {
                 scanStep = 2;
                 $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
                 showScanFeedback("ORDER OK! SCAN BARCODE 📦", order);
-
-                html5QrCode.pause();
-                setTimeout(() => html5QrCode.resume(), 1000);
+                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1000);
             }
-        }
-        // Step 2: Scan Tracking ID
-        else if (scanStep === 2) {
+        } else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
-                // Save Tracking Locally
                 updateOrder(tempOid, 'Dispatched', decodedText);
-
                 let order = allOrders.find(o => o.orderid === tempOid);
                 showScanFeedback("TRACKING SAVED ✅", order);
-
-                // Reset for next order
                 scanStep = 1;
-                setTimeout(() => {
-                    $('#scan-mode-title').text("SCAN NEXT ORDER QR");
-                    html5QrCode.resume();
-                }, 1500);
+                setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); html5QrCode.resume(); }, 1500);
                 html5QrCode.pause();
             }
         }
@@ -531,23 +412,18 @@ function onScanSuccess(decodedText) {
 function showScanFeedback(status, order) {
     $('#scan-status-text').text(status);
     if (order) {
-        $('#scan-info-text').html(`
-            <b>${order.name}</b> (${order.phone})<br>
-            <span style="font-size:11px; opacity:0.8;">${order.house}, ${order.place}</span>
-        `);
+        $('#scan-info-text').html(`<b>${order.name}</b> (${order.phone})<br><span style="font-size:11px; opacity:0.8;">${order.house}, ${order.place}</span>`);
     } else {
         $('#scan-info-text').text("");
     }
     $('#scan-result-box').slideDown();
 }
 
-// Select All Toggle
 function toggleSelectAll() {
     const btn = document.getElementById('btn-select-all');
     const checkboxes = document.querySelectorAll('.order-cb');
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
-    const newState = !isAllChecked;
-    checkboxes.forEach(cb => cb.checked = newState);
+    checkboxes.forEach(cb => cb.checked = !isAllChecked);
     updateSelectAllButton();
 }
 
