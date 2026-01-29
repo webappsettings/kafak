@@ -74,7 +74,7 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
-  // Load Users
+  // Load Users from LocalStorage
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -97,11 +97,11 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN UI INJECTION & FAST LOAD LOGIC
+    // 🔴 1. ADMIN UI INJECTION (FIXED & HIGH Z-INDEX)
     if (isAdmin) {
       // Inject Bottom Bar HTML
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 11000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
                     <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
@@ -111,7 +111,7 @@ $(document).ready(function () {
             </div>`;
 
       $('body').append(adminUI);
-      $('body').css('padding-bottom', '100px');
+      $('body').css('padding-bottom', '100px'); // Add padding for bottom bar
 
       // Clear Cache Button
       $('.footer-action').after(`
@@ -122,21 +122,18 @@ $(document).ready(function () {
             </div>
         `);
 
-      // 🔴 FAST LOAD: CHECK CACHE FIRST
+      // 🔴 2. INSTANT LOAD FROM CACHE (FAST LOADING)
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
       if (cachedOrder) {
-        console.log("Fast loading from cache");
         // HIDE LOADER IMMEDIATELY
-        showLoader(false);
         $('#full-loader').hide();
 
-        // Show Admin Controls immediately
         let initialStatus = cachedOrder.Status || 'Pending';
         updateAdminUI(initialStatus, oid);
 
-        // Fix potential nulls
+        // Fix potential nulls to avoid errors
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
@@ -145,11 +142,11 @@ $(document).ready(function () {
 
         loadOrderData(cachedOrder);
       } else {
-        // Not in cache? Fetch from server
+        // If not in cache, fetch from server
         fetchOrder(oid);
       }
     } else {
-      // Not Admin? Normal Fetch
+      // Not admin, just fetch order
       fetchOrder(oid);
     }
   } else {
@@ -225,7 +222,6 @@ function loadOrderData(d) {
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
-  // Handle Completed or Dispatched same way (New Order Mode)
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     editingOrderId = null;
     showReturningUserView(d, false);
@@ -353,7 +349,6 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
-        // Even if fetched from server, if Admin, update UI
         if (localStorage.getItem('kafakAdmin') === 'true') {
           let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
           let cachedOrder = cachedOrders.find(o => o.orderid === oid);
@@ -370,7 +365,7 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// 🔴 RESTRICT QUANTITY IF PAID
+// 🔴 UPDATED: RESTRICT QUANTITY IF PAID
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
@@ -401,7 +396,7 @@ function showReturningUserView(d, isActiveOrder) {
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
 
-    // 🔴 DISABLE LOWER QTY IF PAID
+    // 🔴 3. DISABLE LOWER QTY IF PAID
     if (d.Status === 'Paid') {
       const currentQty = parseInt(d.quantity);
       $('#quick-qty option').each(function () {
@@ -751,12 +746,9 @@ function sendToWhatsapp() {
   const totalText = `Total(₹): ${base + courier}/-`;
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
 
-  // SAFE STRING HANDLING FOR PINCODE AND OTHER FIELDS
   const safe = (val) => String(val || '').trim().toUpperCase();
-  const pincode = String(d.pincode || '').trim();
-  const userPhone = String(d.phone || '').trim();
 
-  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${pincode}*\n*Ph: ${userPhone}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
