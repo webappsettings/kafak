@@ -1,6 +1,4 @@
-// 🔴 GOOGLE SCRIPT URL
-const sc = `https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec`;
-// 🔴 GOOGLE SCRIPT URL
+
 const sc = `https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec`;
 
 const courierRates = {
