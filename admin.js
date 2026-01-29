@@ -345,9 +345,10 @@ function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
 
-    // 1. Price Calculation (Same logic as Custom.js)
+    // 1. Price Calculation
     const base = n * 650;
     let courier = 0;
+    // Safe string conversion for state
     const s = String(d.state || '').toLowerCase().trim();
 
     if (s === 'lakshadweep') {
@@ -362,38 +363,38 @@ function sendWA(index) {
     const amountText = `Amount(₹): ${base} + ${courier}`;
     const totalText = `Total(₹): ${total}/-`;
 
-    // 2. Message Construction (Full Details Format)
+    // 2. Message Construction
+    const adminPhone = '7788990313';
     const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
     const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
 
     const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
 
-    const format = `\n____________________________________\n*${(d.name || '').trim().toUpperCase()}*\n*${(d.house || '').trim().toUpperCase()}*\n*${(d.place || '').trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${(d.pincode || '').trim()}*\n*Ph: ${(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: 7788990313 (KAFAK LLP)*\n\nPay ചെയ്ത് സ്ക്രീൻഷോട്ട് അയക്കുക. ✅`;
+    // 🔴 FIX: Convert everything to String before trimming
+    const safe = (val) => String(val || '').trim().toUpperCase();
 
-    // 3. Customer Phone Logic (To Customer)
+    const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+
+    // 3. Customer Phone Logic
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    // 4. OPEN WHATSAPP FIRST (Critical Fix: No confirm box blocking)
-    const url = `https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`;
-    window.open(url, '_blank');
+    // 4. Open WhatsApp
+    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
 
-    // 5. SILENT STATUS UPDATE (Change to 'Sent' automatically)
+    // 5. Silent Status Update
     if (d.Status === 'Pending') {
-        // Local Queue Update
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
         updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-        // Cache Update (For Instant UI Change)
         const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = 'Sent';
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         }
 
-        // Refresh UI after a small delay
         setTimeout(() => {
             renderTabs(allOrders);
             updateSyncButtonUI();
