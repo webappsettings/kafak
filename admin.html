@@ -26,7 +26,7 @@
             padding-bottom: 100px;
         }
 
-        /* STICKY HEADER */
+        /* HEADER */
         .sticky-app-header {
             position: sticky;
             top: 0;
@@ -261,6 +261,12 @@
             border: 1px solid #bfdbfe;
         }
 
+        .btn-complete {
+            background: #ffffff;
+            color: #2e7d32;
+            border: 1px solid #2e7d32;
+        }
+
         .btn-top-action {
             font-size: 9px;
             padding: 3px 8px;
@@ -277,6 +283,12 @@
             background: white;
             color: #374151;
             border-color: #e5e7eb;
+        }
+
+        .btn-print-yellow {
+            background: #facc15;
+            color: black;
+            border: none;
         }
 
         .bottom-panel {
@@ -308,7 +320,7 @@
             background: #fff1f2;
         }
 
-        /* SCANNER UI */
+        /* 🔴 SCANNER UI UPDATED */
         #scanner-modal {
             position: fixed;
             top: 0;
@@ -368,34 +380,63 @@
             pointer-events: auto;
         }
 
+        /* RESULT BOX STYLES */
         .scan-footer {
             background: white;
             border-radius: 20px;
-            padding: 15px;
+            padding: 20px;
             pointer-events: auto;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .last-scan-info {
-            font-size: 13px;
-            color: #333;
-            line-height: 1.4;
-        }
-
         .scan-status {
-            font-weight: 800;
+            font-weight: 900;
             color: var(--brand-green);
-            font-size: 14px;
+            font-size: 22px;
             margin-bottom: 5px;
             display: block;
+            letter-spacing: -0.5px;
         }
 
-        .btn-print-yellow {
-            background: #facc15;
+        .last-scan-info {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .last-scan-info b {
+            font-size: 18px;
             color: black;
-            border: none;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* SweetAlert & Login */
+        .ios-popup {
+            border-radius: 20px !important;
+            padding: 20px !important;
+            font-family: 'Manrope', sans-serif !important;
+        }
+
+        .ios-title {
+            font-size: 18px !important;
+            font-weight: 800 !important;
+            color: #000 !important;
+        }
+
+        .ios-btn {
+            border-radius: 12px !important;
+            background: black !important;
+            color: white !important;
+        }
+
+        .ios-btn-cancel {
+            border-radius: 12px !important;
+            background: #f2f2f2 !important;
+            color: #000 !important;
         }
 
         .login-card {

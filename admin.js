@@ -1,14 +1,28 @@
 // 🔴 1. NEW GOOGLE SCRIPT URL
 const scriptURL = "https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec";
 
-// 🔴 FIX: USE DOM CONTENT LOADED
+// 🔴 TAB PERSISTENCE & LOGIN CHECK
 document.addEventListener('DOMContentLoaded', function () {
     if (localStorage.getItem('kafakAdminLoggedIn') === 'true') {
         showDashboard();
+        // Restore active tab
+        const savedTab = localStorage.getItem('activeAdminTab');
+        if (savedTab) {
+            const tabTrigger = document.querySelector(`button[data-bs-target="${savedTab}"]`);
+            if (tabTrigger) { const tab = new bootstrap.Tab(tabTrigger); tab.show(); }
+        }
     } else {
         document.getElementById('login-section').style.display = 'flex';
         document.getElementById('dashboard-section').style.display = 'none';
     }
+
+    // Save tab on click
+    const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
+    tabEls.forEach(tabEl => {
+        tabEl.addEventListener('shown.bs.tab', function (event) {
+            localStorage.setItem('activeAdminTab', event.target.getAttribute('data-bs-target'));
+        });
+    });
 });
 
 function attemptLogin() {
@@ -31,11 +45,12 @@ function showDashboard() {
 function logoutAdmin() {
     confirmAction("Logout ചെയ്യാൻ ഉറപ്പാണോ?", () => {
         localStorage.removeItem('kafakAdminLoggedIn');
+        localStorage.removeItem('activeAdminTab');
         window.location.href = "index.html";
     });
 }
 
-// --- CONFIG & VARIABLES ---
+// CONFIG
 const courierRates = {
     kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
     outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -47,7 +62,7 @@ let scanMode = '';
 let scanStep = 0;
 let tempOid = null;
 
-// --- HELPERS ---
+// HELPERS
 function showToast(icon, title) {
     Swal.fire({
         toast: true, position: 'top-end', showConfirmButton: false, timer: 1500,
@@ -63,7 +78,7 @@ function confirmAction(text, callback) {
     }).then((result) => { if (result.isConfirmed) callback(); });
 }
 
-// --- CORE FUNCTIONS ---
+// CORE
 function fetchOrders(forceLoad = false) {
     let savedOrders = localStorage.getItem('allOrdersCache');
     let hasData = false;
@@ -80,7 +95,8 @@ function fetchOrders(forceLoad = false) {
         .then(response => {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
-                allOrders = response.data;
+                // 🔴 FILTER OUT COMPLETED ORDERS
+                allOrders = response.data.filter(o => o.Status !== 'Completed');
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 renderTabs(allOrders);
                 updateSyncButtonUI();
@@ -105,6 +121,9 @@ function renderTabs(orders) {
     orders.forEach((d, i) => {
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
+
+        // Skip Completed
+        if (status === 'Completed') return;
 
         if (status === 'Pending' || status === 'Sent') {
             counts.pending++;
@@ -163,7 +182,11 @@ function createCardHTML(d, index, type, currentStatus) {
         let localUpdate = JSON.parse(localStorage.getItem('pendingUpdates') || "[]").find(u => u.oid === d.orderid);
         let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
         let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
-        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>`;
+
+        // 🔴 ADD COMPLETE BUTTON
+        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>
+                   <button class="btn-custom btn-complete" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
@@ -190,7 +213,7 @@ function filterOrders() {
             let type = 'pending';
             if (status === 'Paid') type = 'paid';
             if (status === 'Dispatched') type = 'dispatched';
-            searchList.innerHTML += createCardHTML(d, originalIndex, type, status);
+            if (status !== 'Completed') searchList.innerHTML += createCardHTML(d, originalIndex, type, status);
         });
     } else {
         tabsContainer.style.display = 'block';
@@ -198,7 +221,6 @@ function filterOrders() {
     }
 }
 
-// 🔴 OFFLINE TRACKING
 function updateOrder(oid, status, trackingNum = null) {
     if (!trackingNum && !confirm(`Mark '${status}'?`)) return;
 
@@ -223,7 +245,6 @@ function updateOrder(oid, status, trackingNum = null) {
     if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
 }
 
-// 🔴 SYNC
 function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     if (pendingUpdates.length === 0) return;
@@ -269,7 +290,6 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// 🔴 SEND WA FIX (SAFE STRING & OPEN FIRST)
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
@@ -291,9 +311,7 @@ function sendWA(index) {
     const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
-
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
-
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
@@ -355,7 +373,6 @@ function runPrintLogic(selectedItems) {
     });
 }
 
-// 🔴 CONTINUOUS SCANNER
 function startScanner(mode, specificOid) {
     scanMode = mode; tempOid = specificOid || null; scanStep = (mode === 'tracking') ? 1 : 0;
     $('#scanner-modal').css('display', 'flex');
@@ -374,9 +391,33 @@ function stopScanner() {
     });
 }
 
+// 🔴 DUPLICATE CHECK & FEEDBACK
+function isAlreadyScanned(val, mode) {
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    if (mode === 'dispatch') {
+        // Check if already dispatched locally or on server
+        let local = updates.find(u => u.oid === val && u.status === 'Dispatched');
+        let server = allOrders.find(o => o.orderid === val && o.Status === 'Dispatched');
+        return local || server;
+    }
+    if (mode === 'tracking') {
+        // Check if tracking exists
+        let local = updates.find(u => u.tracking === val);
+        let server = allOrders.find(o => o.tracking === val);
+        return local || server;
+    }
+    return false;
+}
+
 function onScanSuccess(decodedText) {
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
+            if (isAlreadyScanned(decodedText, 'dispatch')) {
+                showScanFeedback("ALREADY SCANNED ⚠️", allOrders.find(o => o.orderid === decodedText));
+                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
+                return;
+            }
+
             let order = allOrders.find(o => o.orderid === decodedText);
             if (order) {
                 updateOrder(decodedText, 'Dispatched');
@@ -398,6 +439,12 @@ function onScanSuccess(decodedText) {
             }
         } else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
+                if (isAlreadyScanned(decodedText, 'tracking')) {
+                    showScanFeedback("TRACKING USED ⚠️", allOrders.find(o => o.orderid === tempOid));
+                    html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
+                    return;
+                }
+
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
                 showScanFeedback("TRACKING SAVED ✅", order);
@@ -412,7 +459,7 @@ function onScanSuccess(decodedText) {
 function showScanFeedback(status, order) {
     $('#scan-status-text').text(status);
     if (order) {
-        $('#scan-info-text').html(`<b>${order.name}</b> (${order.phone})<br><span style="font-size:11px; opacity:0.8;">${order.house}, ${order.place}</span>`);
+        $('#scan-info-text').html(`<b>${order.name}</b> (${order.phone})<br><span style="font-size:16px;">${order.house}, ${order.place}</span>`);
     } else {
         $('#scan-info-text').text("");
     }
