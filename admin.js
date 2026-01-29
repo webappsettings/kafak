@@ -1,6 +1,5 @@
 const scriptURL = "https://script.google.com/macros/s/AKfycbzRsrkXLcDErdii0vWDwSqrgUz7h4AKFXS2nQiIeQSsfkJ68NV_XgAAx9Me8sTCcsoefQ/exec";
-
-// 🔴 1. SAFE STORAGE CHECK (Prevents Script Crash)
+// 🔴 1. SAFE STORAGE CHECK
 function isStorageAvailable() {
     try {
         localStorage.setItem('test', 'test');
@@ -11,9 +10,9 @@ function isStorageAvailable() {
     }
 }
 
-// 🔴 2. EXPOSE LOGIN FUNCTION TO WINDOW (Fixes 'not defined' error)
+// 🔴 2. EXPOSE LOGIN FUNCTION
 window.attemptLogin = function () {
-    console.log("Login button clicked"); // Debugging check
+    console.log("Login button clicked");
 
     if (!isStorageAvailable()) {
         alert("ബ്രൗസർ സെറ്റിംഗ്സ് കാരണം ലോഗിൻ വിവരങ്ങൾ സേവ് ചെയ്യാൻ പറ്റുന്നില്ല. ദയവായി 'Private Mode' മാറ്റുക അല്ലെങ്കിൽ Cookies allow ചെയ്യുക.");
@@ -71,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('dashboard-section').style.display = 'none';
         }
 
-        // Tab Listeners
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
         tabEls.forEach(tabEl => {
             tabEl.addEventListener('shown.bs.tab', function (event) {
@@ -194,7 +192,7 @@ function updateSyncButtonUI() {
     }
 }
 
-// 🔴 UPDATED CARD WITH ALT PHONE & WA
+// 🔴 UPDATED CARD WITH SEPARATE BUTTONS
 function createCardHTML(d, index, type, currentStatus) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
@@ -203,25 +201,21 @@ function createCardHTML(d, index, type, currentStatus) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
-    // 🔴 PHONE DISPLAY LOGIC (Main + Alt)
     let phoneDisplay = d.phone;
-    if (d.altphone) {
-        phoneDisplay += `, ${d.altphone}`;
-    }
+    if (d.altphone) { phoneDisplay += `, ${d.altphone}`; }
 
-    // 🔴 WHATSAPP DISPLAY LOGIC
-    let waDisplay = '';
-    if (d.whatsapp) {
-        waDisplay = `<div class="mt-1 text-success fw-bold small"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</div>`;
-    }
+    let waDisplay = d.whatsapp ? `<div class="mt-1 text-success fw-bold small"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</div>` : '';
 
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
-            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
+            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
+                       <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
         } else {
             statusBadge = '<span class="badge bg-warning text-dark">New</span>';
-            buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+            // 🔴 CHANGED: Separate Buttons for 'Invoice' and 'Mark Sent'
+            buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Invoice</button>
+                       <button class="btn-custom btn-paid" style="background-color: #0dcaf0; color: black; border: none;" onclick="updateOrder('${d.orderid}', 'Sent')">💬 Mark Sent</button>`;
         }
     } else if (type === 'paid') {
         statusBadge = '<span class="badge bg-success">Paid</span>';
@@ -339,6 +333,7 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
+// 🔴 UPDATED: sendWA ONLY SENDS MESSAGE, NO STATUS UPDATE
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
@@ -361,18 +356,8 @@ function sendWA(index) {
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
-    if (d.Status === 'Pending') {
-        let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-        updates = updates.filter(item => item.oid !== d.orderid);
-        updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
-        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-        const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
-        if (orderIndex !== -1) {
-            allOrders[orderIndex].Status = 'Sent';
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-        }
-        setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
-    }
+
+    // Status update removed from here.
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
@@ -382,7 +367,6 @@ function printSelected() {
     runPrintLogic(selected);
 }
 
-// 🔴 UPDATED PRINT LOGIC WITH ALT PHONE
 function runPrintLogic(selectedItems) {
     const styles = document.getElementById('label-css').innerHTML;
     const tempDiv = document.createElement('div');
@@ -416,8 +400,6 @@ function runPrintLogic(selectedItems) {
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
 
-            // 🔴 UPDATED PRINT PHONE LOGIC
-            // Checks if altphone exists AND is different from main phone
             let printPhone = d.phone;
             if (d.altphone && String(d.altphone).trim() !== String(d.phone).trim()) {
                 printPhone += `, ${d.altphone}`;
