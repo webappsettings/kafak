@@ -99,12 +99,12 @@ $(document).ready(function () {
   if (oid) {
     // 🔴 1. ADMIN UI INJECTION (FIXED & HIGH Z-INDEX)
     if (isAdmin) {
-      // Inject Bottom Bar HTML
+      // Inject Bottom Bar HTML (Fixed mobile close)
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 11000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 999999; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
-                    <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
+                    <button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
                         <i class="fas fa-times text-danger" style="font-size:20px;"></i>
                     </button>
                 </div>
@@ -222,6 +222,7 @@ function loadOrderData(d) {
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
+  // Handle Completed or Dispatched same way (New Order Mode)
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     editingOrderId = null;
     showReturningUserView(d, false);
@@ -396,7 +397,7 @@ function showReturningUserView(d, isActiveOrder) {
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
 
-    // 🔴 3. DISABLE LOWER QTY IF PAID
+    // 🔴 DISABLE LOWER QTY IF PAID
     if (d.Status === 'Paid') {
       const currentQty = parseInt(d.quantity);
       $('#quick-qty option').each(function () {
