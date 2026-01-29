@@ -6,7 +6,7 @@ const courierRates = {
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// ... (Translations same as before) ...
+// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -109,7 +109,7 @@ $(document).ready(function () {
             </div>`;
 
       $('body').append(adminUI);
-      $('body').css('padding-bottom', '100px'); // Ensure content isn't hidden
+      $('body').css('padding-bottom', '100px');
 
       // Clear Cache Button at Bottom
       $('.footer-action').after(`
@@ -126,11 +126,9 @@ $(document).ready(function () {
 
       if (cachedOrder) {
         console.log("Loaded from Admin Cache instantly!");
-
-        // ✅ FIX: HIDE LOADER CORRECTLY
         showLoader(false);
 
-        // Initial Status Update for Admin Bar
+        // Initial Status Update
         let initialStatus = cachedOrder.Status || 'Pending';
         updateAdminUI(initialStatus, oid);
 
@@ -157,7 +155,7 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN UI UPDATE (Blue -> Yellow -> Grey)
+// 🔴 ADMIN UI UPDATE
 function updateAdminUI(serverStatus, oid) {
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
@@ -178,7 +176,7 @@ function updateAdminUI(serverStatus, oid) {
   $('#admin-action-bar').slideDown();
 }
 
-// 🔴 ADMIN ACTION (Local Save)
+// 🔴 ADMIN ACTION
 function adminAction(oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
@@ -281,6 +279,7 @@ function showLoader(show) {
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
+// 🔴 CRITICAL FIX: Handle New Number Logic
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -299,8 +298,11 @@ function handlePhoneNext() {
       showLoader(false);
       $('#step-0').hide();
 
-      if (res.result === 'success') {
+      // 🔴 FIX: Check if data actually contains a name. 
+      // If result is 'success' but name is missing, it's a new user.
+      if (res.result === 'success' && res.data && res.data.name) {
         const d = res.data;
+
         if (d.custId) { myCustId = d.custId; }
 
         if (d.authorized === false) {
@@ -313,7 +315,8 @@ function handlePhoneNext() {
         const finalUser = localData ? { ...d, ...localData } : d;
         loadOrderData(finalUser);
       } else {
-        if (localData) {
+        // Not found or Empty data -> New User
+        if (localData && localData.name) {
           userData = localData;
           editingOrderId = null;
           showReturningUserView(localData, false);
@@ -324,7 +327,18 @@ function handlePhoneNext() {
         }
       }
     })
-    .catch(e => { showLoader(false); showAlert("Network Error!"); });
+    .catch(e => {
+      showLoader(false);
+      // Network Error Fallback
+      if (localData && localData.name) {
+        userData = localData;
+        showReturningUserView(localData, false);
+      } else {
+        // New user offline
+        $('#whatsapp').val(phone);
+        startWizard();
+      }
+    });
 }
 
 function fetchOrder(oid) {
@@ -342,7 +356,6 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
-        // 🔴 Admin Check on Fetch
         if (localStorage.getItem('kafakAdmin') === 'true') {
           let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
           let cachedOrder = cachedOrders.find(o => o.orderid === oid);
@@ -365,7 +378,6 @@ function showReturningUserView(d, isActiveOrder) {
 
   isEditMode = isActiveOrder;
 
-  // 🔴 ORDER ID BADGE
   if (d.orderid) { $('#display-oid').text('#' + d.orderid).show(); }
   else { $('#display-oid').hide(); }
 
@@ -710,6 +722,6 @@ function sendToWhatsapp() {
   const amountText = `Amount(₹): ${base} + ${courier}`;
   const totalText = `Total(₹): ${base + courier}/-`;
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
-  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${d.state.trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+  const format = `\n____________________________________\n*${d.name.trim().toUpperCase()}*\n*${d.house.trim().toUpperCase()}*\n*${d.place.trim().toUpperCase()}*\n*${(d.postoffice || '').trim().toUpperCase()}*\n*${(d.district || '').trim().toUpperCase()}*\n*${(d.state || '').trim().toUpperCase()}*\n*Pin: ${d.pincode.trim()}*\n*Ph: ${d.phone.trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
