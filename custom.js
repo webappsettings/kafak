@@ -1,4 +1,4 @@
-// 🔴 GOOGLE SCRIPT URL
+
 const sc = `https://script.google.com/macros/s/AKfycbzRsrkXLcDErdii0vWDwSqrgUz7h4AKFXS2nQiIeQSsfkJ68NV_XgAAx9Me8sTCcsoefQ/exec`;
 
 const courierRates = {
@@ -52,6 +52,19 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
+// 🛡️ SAFE STORAGE WRAPPER
+const SafeStorage = {
+  getItem: function (key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  },
+  setItem: function (key, val) {
+    try { localStorage.setItem(key, val); } catch (e) { }
+  },
+  removeItem: function (key) {
+    try { localStorage.removeItem(key); } catch (e) { }
+  }
+};
+
 $(document).ready(function () {
   const qtyOpts = `
         <option value="1">1 Bottle (650g)</option>
@@ -74,19 +87,18 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
-  // Load Users from LocalStorage
-  const saved = localStorage.getItem('kafakUsers');
+  const saved = SafeStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
   } else {
-    const oldUser = localStorage.getItem('kafakUser');
+    const oldUser = SafeStorage.getItem('kafakUser');
     if (oldUser) {
       try {
         const u = JSON.parse(oldUser);
         if (u.phone) {
           localUsersMap[u.phone] = u;
-          localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-          localStorage.removeItem('kafakUser');
+          SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+          SafeStorage.removeItem('kafakUser');
         }
       } catch (e) { }
     }
@@ -94,17 +106,16 @@ $(document).ready(function () {
 
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN UI INJECTION (FIXED)
     if (isAdmin) {
-      // Inject Bottom Bar HTML
+      // 🔴 ADMIN BAR INJECTION
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 11000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
-                    <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
+                    <button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
                         <i class="fas fa-times text-danger" style="font-size:20px;"></i>
                     </button>
                 </div>
@@ -113,7 +124,6 @@ $(document).ready(function () {
       $('body').append(adminUI);
       $('body').css('padding-bottom', '100px');
 
-      // Clear Cache Button
       $('.footer-action').after(`
             <div class="text-center py-4">
                 <button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">
@@ -122,13 +132,12 @@ $(document).ready(function () {
             </div>
         `);
 
-      // 🔴 2. INSTANT LOAD FROM CACHE (FAST LOADING)
-      let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+      let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
       if (cachedOrder) {
-        // HIDE LOADER IMMEDIATELY
         $('#full-loader').hide();
+        showLoader(false);
 
         let initialStatus = cachedOrder.Status || 'Pending';
         updateAdminUI(initialStatus, oid);
@@ -141,15 +150,12 @@ $(document).ready(function () {
 
         loadOrderData(cachedOrder);
       } else {
-        // Not in cache, fetch from server
         fetchOrder(oid);
       }
     } else {
-      // Not admin, just fetch order
       fetchOrder(oid);
     }
   } else {
-    // New Order Mode
     showLoader(false);
     $('#step-0').fadeIn();
     updateFooterButtons('step-0');
@@ -157,9 +163,9 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN FUNCTIONS (Must be globally accessible)
-function updateAdminUI(serverStatus, oid) {
-  let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+// 🔴 ADMIN FUNCTIONS (Globally Accessible)
+window.updateAdminUI = function (serverStatus, oid) {
+  let pendingUpdates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
 
@@ -178,19 +184,19 @@ function updateAdminUI(serverStatus, oid) {
   $('#admin-action-bar').slideDown();
 }
 
-function adminAction(oid, status) {
+window.adminAction = function (oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
-  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+  SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let allOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let orderIndex = allOrders.findIndex(o => o.orderid === oid);
   if (orderIndex !== -1) {
     allOrders[orderIndex].Status = status;
-    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+    SafeStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
   }
 
   updateAdminUI(status, oid);
@@ -202,9 +208,9 @@ function adminAction(oid, status) {
   Toast.fire({ icon: 'success', title: `Saved: ${status}` });
 }
 
-function clearAdminCache() {
+window.clearAdminCache = function () {
   if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) {
-    localStorage.removeItem('allOrdersCache');
+    SafeStorage.removeItem('allOrdersCache');
     location.reload();
   }
 }
@@ -218,7 +224,7 @@ function loadOrderData(d) {
 
   if (d.phone) {
     localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
-    localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+    SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
@@ -348,8 +354,8 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
-        if (localStorage.getItem('kafakAdmin') === 'true') {
-          let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+        if (SafeStorage.getItem('kafakAdmin') === 'true') {
+          let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
           let cachedOrder = cachedOrders.find(o => o.orderid === oid);
           let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending');
           updateAdminUI(status, oid);
@@ -432,7 +438,13 @@ function updateSummaryDisplay() {
   $('#saved-place-dist').text('');
   $('#saved-phone-text').text(phone);
   $('#saved-wa-text span').text(wa);
-  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
+
+  if (alt) {
+    $('#saved-alt-text span').text(alt);
+    $('#saved-alt-text').show();
+  } else {
+    $('#saved-alt-text').hide();
+  }
 
   checkForChanges();
 }
@@ -510,66 +522,26 @@ function selectEditPO(val) {
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
 
 function submitQuickOrder() {
-  // 1. Quantity Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  // 2. Main Phone Validation
   const newPhone = $('#edit-phone').val();
-  if (!newPhone || newPhone.length !== 10 || isNaN(newPhone)) {
-    showAlert(getAlert('err_phone'));
-    $('#edit-phone').focus();
-    return;
-  }
+  if (!newPhone || newPhone.length !== 10 || isNaN(newPhone)) { showAlert(getAlert('err_phone')); $('#edit-phone').focus(); return; }
 
-  // 3. House Name Validation
-  if (!$('#edit-house').val().trim()) {
-    showAlert(getAlert('err_house'));
-    $('#edit-house').focus();
-    return;
-  }
+  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); $('#edit-house').focus(); return; }
+  if (!$('#edit-place').val().trim()) { showAlert(getAlert('err_place')); $('#edit-place').focus(); return; }
 
-  // 4. Place Validation
-  if (!$('#edit-place').val().trim()) {
-    showAlert(getAlert('err_place'));
-    $('#edit-place').focus();
-    return;
-  }
-
-  // 5. Pincode Validation
   const pin = $('#edit-pincode').val();
-  if (!pin || pin.length !== 6 || isNaN(pin)) {
-    showAlert(getAlert('err_pincode'));
-    $('#edit-pincode').focus();
-    return;
-  }
+  if (!pin || pin.length !== 6 || isNaN(pin)) { showAlert(getAlert('err_pincode')); $('#edit-pincode').focus(); return; }
 
-  // 6. Post Office Validation
-  if ($('#edit-po-wrapper').is(':visible') && !$('#edit-postoffice-select').val()) {
-    showAlert(getAlert('err_select_po'));
-    return;
-  }
-  if (!$('#edit-postoffice').val()) {
-    showAlert(getAlert('err_select_po'));
-    return;
-  }
+  if ($('#edit-po-wrapper').is(':visible') && !$('#edit-postoffice-select').val()) { showAlert(getAlert('err_select_po')); return; }
+  if (!$('#edit-postoffice').val()) { showAlert(getAlert('err_select_po')); return; }
 
-  // 7. WhatsApp Number Validation
   const wa = $('#edit-whatsapp').val();
-  if (!wa || wa.length !== 10 || isNaN(wa)) {
-    showAlert(getAlert('err_whatsapp'));
-    $('#edit-whatsapp').focus();
-    return;
-  }
+  if (!wa || wa.length !== 10 || isNaN(wa)) { showAlert(getAlert('err_whatsapp')); $('#edit-whatsapp').focus(); return; }
 
-  // 8. Alt Phone Validation (Optional but must be 10 digits if provided)
   const alt = $('#edit-altphone').val();
-  if (alt && (alt.length !== 10 || isNaN(alt))) {
-    showAlert(getAlert('err_phone')); // Reusing phone error message
-    $('#edit-altphone').focus();
-    return;
-  }
+  if (alt && (alt.length !== 10 || isNaN(alt))) { showAlert(getAlert('err_phone')); $('#edit-altphone').focus(); return; }
 
-  // If all validations pass, proceed to submit
   const finalData = {
     orderid: editingOrderId,
     name: $('#saved-name').text(),
@@ -615,7 +587,6 @@ function showStep(s) {
   if (s === 7) {
     btn.html(translations[lang].btn_order);
     btn.addClass('btn-brand-green');
-    // 🔴 4. LIVE UPDATE ON FINAL PAGE
     updatePrice($('#quantity').val(), false);
   } else {
     btn.html(translations[lang].btn_next);
@@ -693,7 +664,6 @@ async function nextStep() {
 }
 
 function updateWizardLocDisplay() {
-  // 🔴 UPPERCASE PO & PLACE
   $('#display-po').text((userData.postoffice || '').toUpperCase());
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
@@ -725,7 +695,7 @@ function submitWizardOrder() {
   };
 
   localUsersMap[finalData.phone] = finalData;
-  localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+  SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
   postOrder(finalData);
 }
@@ -776,7 +746,7 @@ function postOrder(data) {
           data.custId = res.custId;
           myCustId = res.custId;
           localUsersMap[data.phone] = data;
-          localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+          SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
         }
 
         $('#order-form').hide();
