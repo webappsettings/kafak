@@ -1,4 +1,5 @@
 const scriptURL = "https://script.google.com/macros/s/AKfycbzRsrkXLcDErdii0vWDwSqrgUz7h4AKFXS2nQiIeQSsfkJ68NV_XgAAx9Me8sTCcsoefQ/exec";
+
 // 🔴 1. SAFE STORAGE CHECK
 function isStorageAvailable() {
     try {
@@ -192,7 +193,7 @@ function updateSyncButtonUI() {
     }
 }
 
-// 🔴 UPDATED CARD WITH SEPARATE BUTTONS
+// 🔴 UPDATED CARD: Smaller 'Mark Sent' Button
 function createCardHTML(d, index, type, currentStatus) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
@@ -213,9 +214,9 @@ function createCardHTML(d, index, type, currentStatus) {
                        <button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
         } else {
             statusBadge = '<span class="badge bg-warning text-dark">New</span>';
-            // 🔴 CHANGED: Separate Buttons for 'Invoice' and 'Mark Sent'
+            // 🔴 CHANGED: Smaller Mark Sent Button
             buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Invoice</button>
-                       <button class="btn-custom btn-paid" style="background-color: #0dcaf0; color: black; border: none;" onclick="updateOrder('${d.orderid}', 'Sent')">💬 Mark Sent</button>`;
+                       <button class="btn-custom btn-paid" style="background-color: #0dcaf0; color: black; border: none; font-size: 11px; padding: 6px; height: 35px; margin-top: 5px;" onclick="updateOrder('${d.orderid}', 'Sent')">💬 Mark Sent</button>`;
         }
     } else if (type === 'paid') {
         statusBadge = '<span class="badge bg-success">Paid</span>';
@@ -333,7 +334,7 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// 🔴 UPDATED: sendWA ONLY SENDS MESSAGE, NO STATUS UPDATE
+// 🔴 sendWA ONLY SENDS MESSAGE (Status not changed)
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
@@ -356,8 +357,6 @@ function sendWA(index) {
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
-
-    // Status update removed from here.
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
