@@ -74,6 +74,7 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
+  // Load Users from LocalStorage
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -96,10 +97,11 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN FEATURES (FIXED BOTTOM BAR + FAST LOAD)
+    // 🔴 1. ADMIN UI INJECTION (CRITICAL)
     if (isAdmin) {
+      // Inject Bottom Bar HTML
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
                     <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
@@ -107,10 +109,10 @@ $(document).ready(function () {
                     </button>
                 </div>
             </div>`;
-
       $('body').append(adminUI);
-      $('body').css('padding-bottom', '100px');
+      $('body').css('padding-bottom', '100px'); // Add padding for bottom bar
 
+      // Clear Cache Button
       $('.footer-action').after(`
             <div class="text-center py-4">
                 <button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">
@@ -119,29 +121,35 @@ $(document).ready(function () {
             </div>
         `);
 
+      // 🔴 2. INSTANT LOAD FROM CACHE (FAST LOADING)
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
-      // 🔴 INSTANT LOAD (NO LOADER)
       if (cachedOrder) {
-        showLoader(false);
-        // Fix potential nulls to avoid errors
+        // HIDE LOADER IMMEDIATELY
+        $('#full-loader').hide();
+
+        let initialStatus = cachedOrder.Status || 'Pending';
+        updateAdminUI(initialStatus, oid);
+
+        // Prevent null errors
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
         cachedOrder.district = cachedOrder.district || '';
         cachedOrder.state = cachedOrder.state || '';
 
-        let initialStatus = cachedOrder.Status || 'Pending';
-        updateAdminUI(initialStatus, oid);
         loadOrderData(cachedOrder);
       } else {
+        // If not in cache, fetch from server
         fetchOrder(oid);
       }
     } else {
+      // Not admin, just fetch order
       fetchOrder(oid);
     }
   } else {
+    // New Order Mode
     showLoader(false);
     $('#step-0').fadeIn();
     updateFooterButtons('step-0');
@@ -149,8 +157,9 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN FUNCTIONS (Must be defined for Edit View)
+// 🔴 ADMIN FUNCTIONS (Globally Defined)
 function updateAdminUI(serverStatus, oid) {
+  // Check local updates first
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
@@ -173,11 +182,13 @@ function updateAdminUI(serverStatus, oid) {
 function adminAction(oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
+  // 1. Update Local Queue
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
+  // 2. Update Main Cache (For Instant Reflection)
   let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
   let orderIndex = allOrders.findIndex(o => o.orderid === oid);
   if (orderIndex !== -1) {
@@ -185,6 +196,7 @@ function adminAction(oid, status) {
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
   }
 
+  // 3. Update UI
   updateAdminUI(status, oid);
 
   const Toast = Swal.mixin({
@@ -208,6 +220,7 @@ function loadOrderData(d) {
   editingOrderId = d.orderid;
   currentLoginPhone = d.phone;
 
+  // Save to local user map for future auto-fill
   if (d.phone) {
     localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
@@ -340,6 +353,7 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
+        // Update Admin UI even if fetched from server
         if (localStorage.getItem('kafakAdmin') === 'true') {
           let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
           let cachedOrder = cachedOrders.find(o => o.orderid === oid);
@@ -387,7 +401,7 @@ function showReturningUserView(d, isActiveOrder) {
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
 
-    // 🔴 3. DISABLE LOWER QTY IF PAID
+    // 🔴 DISABLE LOWER QTY IF PAID
     if (d.Status === 'Paid') {
       const currentQty = parseInt(d.quantity);
       $('#quick-qty option').each(function () {
@@ -552,7 +566,7 @@ function showStep(s) {
   if (s === 7) {
     btn.html(translations[lang].btn_order);
     btn.addClass('btn-brand-green');
-    // Live update price on final page
+    // 🔴 4. LIVE UPDATE ON FINAL PAGE
     updatePrice($('#quantity').val(), false);
   } else {
     btn.html(translations[lang].btn_next);
@@ -630,6 +644,7 @@ async function nextStep() {
 }
 
 function updateWizardLocDisplay() {
+  // 🔴 UPPERCASE PO & PLACE
   $('#display-po').text((userData.postoffice || '').toUpperCase());
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
