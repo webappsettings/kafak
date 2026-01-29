@@ -1,6 +1,7 @@
 // 🔴 GOOGLE SCRIPT URL
 const sc = `https://script.google.com/macros/s/AKfycbxpPZ3Ou_pVIEuVy0P4KemyklbI1jVNpXzkDKtFjBHgcetKl6UqwgJIFFYlYN3GVyUhYA/exec`;
 
+
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -74,7 +75,6 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
-  // Load Users
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -97,7 +97,7 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 ADMIN FEATURES IN ORDER PAGE (Bottom Bar)
+    // 🔴 ADMIN BAR SETUP
     if (isAdmin) {
       const adminUI = `
             <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
@@ -123,18 +123,15 @@ $(document).ready(function () {
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
-      // 🔴 INSTANT LOAD (NO LOADER)
       if (cachedOrder) {
         showLoader(false);
-        // Fix potential nulls
+        let initialStatus = cachedOrder.Status || 'Pending';
+        updateAdminUI(initialStatus, oid);
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
         cachedOrder.district = cachedOrder.district || '';
         cachedOrder.state = cachedOrder.state || '';
-
-        let initialStatus = cachedOrder.Status || 'Pending';
-        updateAdminUI(initialStatus, oid);
         loadOrderData(cachedOrder);
       } else {
         fetchOrder(oid);
@@ -214,7 +211,6 @@ function loadOrderData(d) {
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
-  // Handle Completed or Dispatched same way (New Order Mode)
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     editingOrderId = null;
     showReturningUserView(d, false);
@@ -272,7 +268,6 @@ function showLoader(show) {
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
-// 🔴 HANDLE PHONE NEXT (NEW USER FIX)
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -291,7 +286,6 @@ function handlePhoneNext() {
       showLoader(false);
       $('#step-0').hide();
 
-      // 🔴 FIX: Check res.data.name to confirm existing user
       if (res.result === 'success' && res.data && res.data.name) {
         const d = res.data;
         if (d.custId) { myCustId = d.custId; }
@@ -306,7 +300,6 @@ function handlePhoneNext() {
         const finalUser = localData ? { ...d, ...localData } : d;
         loadOrderData(finalUser);
       } else {
-        // Not existing user
         if (localData && localData.name) {
           userData = localData;
           editingOrderId = null;
@@ -361,6 +354,7 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
+// 🔴 UPDATED: RESTRICT QUANTITY IF PAID
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
@@ -383,10 +377,24 @@ function showReturningUserView(d, isActiveOrder) {
 
   updateSummaryDisplay();
 
+  // Reset options first
+  $('#quick-qty option').prop('disabled', false);
+
   if (isActiveOrder) {
     $('#quick-qty').val(d.quantity).trigger('change');
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(lang === 'ml' ? "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം" : "UPDATE ORDER");
+
+    // 🔴 3. DISABLE LOWER QTY IF PAID
+    if (d.Status === 'Paid') {
+      const currentQty = parseInt(d.quantity);
+      $('#quick-qty option').each(function () {
+        if (parseInt($(this).val()) < currentQty) {
+          $(this).prop('disabled', true);
+        }
+      });
+    }
+
   } else {
     $('#quick-qty').val('').trigger('change');
     $('#quick-price-box').hide();
@@ -542,6 +550,8 @@ function showStep(s) {
   if (s === 7) {
     btn.html(translations[lang].btn_order);
     btn.addClass('btn-brand-green');
+    // 🔴 1. LIVE UPDATION FIX
+    updatePrice($('#quantity').val(), false);
   } else {
     btn.html(translations[lang].btn_next);
     btn.removeClass('btn-brand-green');
@@ -618,7 +628,8 @@ async function nextStep() {
 }
 
 function updateWizardLocDisplay() {
-  $('#display-po').text(userData.postoffice || '');
+  // 🔴 2. UPPERCASE PO
+  $('#display-po').text((userData.postoffice || '').toUpperCase());
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
@@ -654,7 +665,7 @@ function submitWizardOrder() {
   postOrder(finalData);
 }
 
-// 🔴 UPDATE PRICE & SHOW BEAUTIFUL DELIVER BOX
+// 🔴 BEAUTIFUL DELIVER TO BOX
 function updatePrice(qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
@@ -675,8 +686,8 @@ function updatePrice(qty, isQuick) {
     let addrHtml = `
           <span class="dt-name">${$('#name').val()}</span>
           <span class="dt-addr">${$('#house').val()}, ${$('#place').val()}<br>
-          ${userData.postoffice || ''}, ${userData.district || ''}<br>
-          ${userData.state || ''} - ${$('#pincode').val()}</span>
+          ${(userData.postoffice || '').toUpperCase()}, ${(userData.district || '').toUpperCase()}<br>
+          ${(userData.state || '').toUpperCase()} - ${$('#pincode').val()}</span>
           <div class="dt-phone"><i class="fas fa-phone-alt"></i> ${$('#phone').val()}${altHtml}</div>
           <div class="dt-wa"><i class="fab fa-whatsapp"></i> ${$('#whatsapp').val()}</div>
       `;
