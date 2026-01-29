@@ -74,7 +74,7 @@ $(document).ready(function () {
     updatePrice($(this).val(), $(this).attr('id') === 'quick-qty');
   });
 
-  // Load Users from LocalStorage
+  // Load Users
   const saved = localStorage.getItem('kafakUsers');
   if (saved) {
     try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; }
@@ -97,11 +97,11 @@ $(document).ready(function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (oid) {
-    // 🔴 1. ADMIN UI INJECTION (CRITICAL)
+    // 🔴 1. ADMIN UI INJECTION & FAST LOAD LOGIC
     if (isAdmin) {
       // Inject Bottom Bar HTML
       const adminUI = `
-            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);">
+            <div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 10000; border-top: 1px solid #ddd; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
                 <div class="container p-0 d-flex justify-content-between align-items-center">
                     <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div>
                     <button onclick="window.close()" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;">
@@ -109,8 +109,9 @@ $(document).ready(function () {
                     </button>
                 </div>
             </div>`;
+
       $('body').append(adminUI);
-      $('body').css('padding-bottom', '100px'); // Add padding for bottom bar
+      $('body').css('padding-bottom', '100px');
 
       // Clear Cache Button
       $('.footer-action').after(`
@@ -121,18 +122,21 @@ $(document).ready(function () {
             </div>
         `);
 
-      // 🔴 2. INSTANT LOAD FROM CACHE (FAST LOADING)
+      // 🔴 FAST LOAD: CHECK CACHE FIRST
       let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
       let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
       if (cachedOrder) {
+        console.log("Fast loading from cache");
         // HIDE LOADER IMMEDIATELY
+        showLoader(false);
         $('#full-loader').hide();
 
+        // Show Admin Controls immediately
         let initialStatus = cachedOrder.Status || 'Pending';
         updateAdminUI(initialStatus, oid);
 
-        // Prevent null errors
+        // Fix potential nulls
         cachedOrder.house = cachedOrder.house || '';
         cachedOrder.place = cachedOrder.place || '';
         cachedOrder.postoffice = cachedOrder.postoffice || '';
@@ -141,11 +145,11 @@ $(document).ready(function () {
 
         loadOrderData(cachedOrder);
       } else {
-        // If not in cache, fetch from server
+        // Not in cache? Fetch from server
         fetchOrder(oid);
       }
     } else {
-      // Not admin, just fetch order
+      // Not Admin? Normal Fetch
       fetchOrder(oid);
     }
   } else {
@@ -157,9 +161,8 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN FUNCTIONS (Globally Defined)
+// 🔴 ADMIN FUNCTIONS (Must be globally accessible)
 function updateAdminUI(serverStatus, oid) {
-  // Check local updates first
   let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
@@ -182,13 +185,11 @@ function updateAdminUI(serverStatus, oid) {
 function adminAction(oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
 
-  // 1. Update Local Queue
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // 2. Update Main Cache (For Instant Reflection)
   let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
   let orderIndex = allOrders.findIndex(o => o.orderid === oid);
   if (orderIndex !== -1) {
@@ -196,7 +197,6 @@ function adminAction(oid, status) {
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
   }
 
-  // 3. Update UI
   updateAdminUI(status, oid);
 
   const Toast = Swal.mixin({
@@ -220,12 +220,12 @@ function loadOrderData(d) {
   editingOrderId = d.orderid;
   currentLoginPhone = d.phone;
 
-  // Save to local user map for future auto-fill
   if (d.phone) {
     localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
     localStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
+  // Handle Completed or Dispatched same way (New Order Mode)
   if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     editingOrderId = null;
     showReturningUserView(d, false);
@@ -353,7 +353,7 @@ function fetchOrder(oid) {
           if (!d.custId && local.custId) d.custId = local.custId;
         }
 
-        // Update Admin UI even if fetched from server
+        // Even if fetched from server, if Admin, update UI
         if (localStorage.getItem('kafakAdmin') === 'true') {
           let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
           let cachedOrder = cachedOrders.find(o => o.orderid === oid);
@@ -370,7 +370,7 @@ function fetchOrder(oid) {
     .catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// 🔴 UPDATED: RESTRICT QUANTITY IF PAID
+// 🔴 RESTRICT QUANTITY IF PAID
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn();
   updateFooterButtons('returning');
@@ -751,9 +751,12 @@ function sendToWhatsapp() {
   const totalText = `Total(₹): ${base + courier}/-`;
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
 
+  // SAFE STRING HANDLING FOR PINCODE AND OTHER FIELDS
   const safe = (val) => String(val || '').trim().toUpperCase();
+  const pincode = String(d.pincode || '').trim();
+  const userPhone = String(d.phone || '').trim();
 
-  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${pincode}*\n*Ph: ${userPhone}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
