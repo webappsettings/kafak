@@ -284,59 +284,27 @@ function showLoader(show) {
   if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
 }
 
+// 🔴 UPDATED: INSTANT START LOGIC (No Server Delay)
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
   currentLoginPhone = phone;
-  showLoader(true);
+  // Note: Loader removed here for instant UX
 
-  let localData = localUsersMap[phone] || null;
-  myCustId = localData ? localData.custId : null;
+  // 1. CHECK LOCAL STORAGE (Instant for Old Users)
+  if (localUsersMap[phone]) {
+    console.log("Local data found. Loading...");
+    loadOrderData(localUsersMap[phone]);
+    return;
+  }
 
-  const idParam = myCustId ? `&custId=${myCustId}` : '';
-
-  fetch(`${sc}?action=getCustomer&phone=${phone}${idParam}`)
-    .then(res => res.json())
-    .then(res => {
-      showLoader(false);
-      $('#step-0').hide();
-
-      if (res.result === 'success' && res.data && res.data.name) {
-        const d = res.data;
-        if (d.custId) { myCustId = d.custId; }
-
-        if (d.authorized === false) {
-          editingOrderId = null;
-          $('#whatsapp').val(phone);
-          startWizard();
-          return;
-        }
-
-        const finalUser = localData ? { ...d, ...localData } : d;
-        loadOrderData(finalUser);
-      } else {
-        if (localData && localData.name) {
-          userData = localData;
-          editingOrderId = null;
-          showReturningUserView(localData, false);
-        } else {
-          editingOrderId = null;
-          $('#whatsapp').val(phone);
-          startWizard();
-        }
-      }
-    })
-    .catch(e => {
-      showLoader(false);
-      if (localData && localData.name) {
-        userData = localData;
-        showReturningUserView(localData, false);
-      } else {
-        $('#whatsapp').val(phone);
-        startWizard();
-      }
-    });
+  // 2. IF NOT LOCAL, ASSUME NEW USER (Instant for New Users)
+  console.log("No local data. Starting fresh wizard.");
+  editingOrderId = null;
+  $('#step-0').hide();
+  $('#whatsapp').val(phone); // Auto-fill WhatsApp
+  startWizard();
 }
 
 function fetchOrder(oid) {
