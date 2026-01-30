@@ -1,7 +1,9 @@
-
+// ------------------------------------------------------------------------------
+// 🔴 CONFIGURATION & GLOBALS
+// ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
 
-// CLIENT SIDE ESTIMATION
+// Client-side estimation (Server does final calc)
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -60,7 +62,10 @@ const SafeStorage = {
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
 
-// 🔴 UTILITY FUNCTIONS (Defined early to avoid ReferenceError)
+// ------------------------------------------------------------------------------
+// 🔴 GLOBAL HELPERS (Fixed Scope Issue)
+// ------------------------------------------------------------------------------
+
 function showLoader(show) {
   const lang = $('.form-select').val() || 'en';
   if (translations && translations[lang]) {
@@ -78,8 +83,11 @@ function getAlert(key) {
   return translations[lang][key] || key;
 }
 
+// ------------------------------------------------------------------------------
+// 🔴 DOCUMENT READY (Initialization)
+// ------------------------------------------------------------------------------
 $(document).ready(function () {
-  injectAnimationCSS(); // Inject CSS for Animation Modal
+  injectAnimationCSS(); // Inject Canvas CSS
 
   const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
   $('#quantity').append(qtyOpts);
@@ -96,6 +104,7 @@ $(document).ready(function () {
     if (oldUser) { try { const u = JSON.parse(oldUser); if (u.phone) { localUsersMap[u.phone] = u; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); SafeStorage.removeItem('kafakUser'); } } catch (e) { } }
   }
 
+  // URL Params Check
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
@@ -136,7 +145,9 @@ $(document).ready(function () {
   }
 });
 
-// 🔴 ADMIN FUNCTIONS
+// ------------------------------------------------------------------------------
+// 🔴 ADMIN LOGIC
+// ------------------------------------------------------------------------------
 window.updateAdminUI = function (serverStatus, oid) {
   let pendingUpdates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
@@ -166,7 +177,10 @@ window.clearAdminCache = function () {
   if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
 
-// 🔴 LOAD DATA
+// ------------------------------------------------------------------------------
+// 🔴 CORE APP LOGIC (Instant Load & Sync)
+// ------------------------------------------------------------------------------
+
 function loadOrderData(d) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
   if (d.phone) { localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d }; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
@@ -174,7 +188,7 @@ function loadOrderData(d) {
   else { showReturningUserView(d, true); }
 }
 
-// 🔴 INSTANT LOAD + BACKGROUND SYNC
+// 🔥 INSTANT LOAD + BACKGROUND SYNC
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -184,10 +198,12 @@ function handlePhoneNext() {
   if (localUsersMap[phone]) {
     console.log("Local data found. Loading UI instantly...");
     loadOrderData(localUsersMap[phone]);
+    // ⚠️ No Loader here - Pure Speed
     syncUserDataBackground(phone); // 🔄 Check server silently
     return;
   }
-  // 2. NEW USER
+
+  // 2. NEW USER (Requires Server)
   showLoader(true);
   fetchCustomerData(phone);
 }
@@ -197,7 +213,7 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // Show small checking indicator near Qty
+  // Show small checking indicator near Qty (Non-intrusive)
   $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking status...</small>');
 
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
@@ -415,9 +431,9 @@ function sendToWhatsapp() {
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
 
-// --------------------------------------------------
+// ------------------------------------------------------------------------------
 // 🍯 HONEY FILLING ANIMATION (CANVAS + LOGO)
-// --------------------------------------------------
+// ------------------------------------------------------------------------------
 
 function injectAnimationCSS() {
   $('body').append(`
@@ -555,15 +571,18 @@ if (CanvasRenderingContext2D.prototype.roundRect === undefined) {
   };
 }
 
-// --------------------------------------------------
-// WIZARD FUNCTIONS
-// --------------------------------------------------
+// ------------------------------------------------------------------------------
+// 🔴 WIZARD FUNCTIONS
+// ------------------------------------------------------------------------------
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
   if (view === 'step-0') $('#btn-group-0').show(); if (view === 'wizard') $('#btn-group-wizard').css({ 'display': 'flex', 'gap': '1rem' }); if (view === 'returning') $('#btn-group-returning').show();
 }
+
 function startWizard() { $('#wizard-view').fadeIn(); updateFooterButtons('wizard'); currentStep = 1; showStep(1); }
+
 function showStep(s) { $('.wiz-step').hide(); $(`.wiz-step[data-step="${s}"]`).fadeIn(); const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`); const btn = $('#btn-wiz-next'); const lang = $('.form-select').val(); if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); } else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); } if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300); }
+
 async function nextStep() {
   if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name')); if (currentStep === 2 && !/^[0-9]{10}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
   if (currentStep === 3) { const pin = $('#pincode').val(); if (!/^[0-9]{6}$/.test(pin)) return showAlert(getAlert('err_pincode')); $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin')); try { const res = await fetch(`pincode_json_files/${pin}.json`); let data = await res.json(); data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO') })); $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next); if (data && data.length > 0) { poList = data; userData.district = data[0].district; userData.state = data[0].statename; const dl = $('#place-list'); dl.empty(); data.forEach(p => dl.append(`<option value="${p.officename}">`)); if (data.length > 1) { $('#po-select').empty().append('<option value="">Select...</option>'); data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`)); currentStep = 3.5; showStep(3.5); return; } else { userData.postoffice = data[0].officename; currentStep = 4; showStep(4); return; } } else { showAlert(getAlert('err_pin_not_found')); } } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next); showAlert(getAlert('err_pincode')); return; } }
@@ -574,12 +593,50 @@ async function nextStep() {
   if (currentStep === 7) { if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; } submitWizardOrder(); return; }
   currentStep++; showStep(currentStep);
 }
+
 function updateWizardLocDisplay() { $('#display-po').text((userData.postoffice || '').toUpperCase()); $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase()); }
+
 function prevStep() { if (currentStep === 1) return location.reload(); if (currentStep === 4 && poList.length > 1) { currentStep = 3.5; showStep(3.5); return; } if (currentStep === 4 && poList.length <= 1) { currentStep = 3; showStep(3); return; } if (currentStep === 3.5) { currentStep = 3; showStep(3); return; } currentStep--; showStep(currentStep); }
+
 function submitWizardOrder() {
   const finalData = { orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(), altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: $('#pincode').val(), postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala', quantity: $('#quantity').val(), message: '', custId: myCustId };
   localUsersMap[finalData.phone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
   // 🔥 START ANIMATION FOR WIZARD TOO
   startHoneyAnimation(finalData.name, () => postOrder(finalData));
+}
+
+// ------------------------------------------------------------------------------
+// 🔴 BEAUTIFUL DELIVER TO BOX (Moved to Global)
+// ------------------------------------------------------------------------------
+function updatePrice(qty, isQuick) {
+  if (!qty) return;
+  const n = parseInt(qty);
+  const base = n * 650;
+  const courier = courierRates.kerala[n] || 0;
+  const total = base + courier;
+
+  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
+  container.find('.qty-count').text(n);
+  container.find('.val-base').text(base);
+  container.find('.val-courier').text(courier);
+  container.find('.val-total').text(total);
+  container.fadeIn();
+
+  // WIZARD FINAL PAGE ADDRESS BOX
+  if (!isQuick) {
+    let altHtml = $('#altphone').val() ? `, ${$('#altphone').val()}` : '';
+    let addrHtml = `
+          <span class="dt-name">${$('#name').val()}</span>
+          <span class="dt-addr">${$('#house').val()}, ${$('#place').val()}<br>
+          ${(userData.postoffice || '').toUpperCase()}, ${(userData.district || '').toUpperCase()}<br>
+          ${(userData.state || '').toUpperCase()} - ${$('#pincode').val()}</span>
+          <div class="dt-phone"><i class="fas fa-phone-alt"></i> ${$('#phone').val()}${altHtml}</div>
+          <div class="dt-wa"><i class="fab fa-whatsapp"></i> ${$('#whatsapp').val()}</div>
+      `;
+    $('#wiz-final-addr').html(addrHtml);
+    $('#wiz-deliver-box').fadeIn();
+  }
+
+  if (isQuick) checkForChanges();
 }
