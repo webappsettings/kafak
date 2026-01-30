@@ -1,8 +1,7 @@
 
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
 
-
-// CLIENT SIDE ESTIMATION (Actual calc happens on Server)
+// CLIENT SIDE ESTIMATION
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -53,7 +52,6 @@ let myCustId = null;
 let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
-let honeyAnimFrame = null; // For Animation
 
 // 🛡️ SAFE STORAGE WRAPPER
 const SafeStorage = {
@@ -61,6 +59,24 @@ const SafeStorage = {
   setItem: function (key, val) { try { localStorage.setItem(key, val); } catch (e) { } },
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
+
+// 🔴 UTILITY FUNCTIONS (Defined early to avoid ReferenceError)
+function showLoader(show) {
+  const lang = $('.form-select').val() || 'en';
+  if (translations && translations[lang]) {
+    $('#loader-text').text(translations[lang].loading || "Loading...");
+  }
+  if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
+}
+
+function showAlert(msg) {
+  Swal.fire({ text: msg, icon: 'warning', confirmButtonText: 'OK', confirmButtonColor: '#000', customClass: { popup: 'ios-popup', confirmButton: 'ios-btn' } });
+}
+
+function getAlert(key) {
+  const lang = $('.form-select').val() || 'en';
+  return translations[lang][key] || key;
+}
 
 $(document).ready(function () {
   injectAnimationCSS(); // Inject CSS for Animation Modal
@@ -72,6 +88,7 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
+  // Load Local Users
   const saved = SafeStorage.getItem('kafakUsers');
   if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
   else {
@@ -97,11 +114,10 @@ $(document).ready(function () {
         $('#full-loader').hide(); showLoader(false);
         let initialStatus = cachedOrder.Status || 'Pending';
         updateAdminUI(initialStatus, oid);
-        cachedOrder.house = cachedOrder.house || ''; cachedOrder.place = cachedOrder.place || ''; cachedOrder.postoffice = cachedOrder.postoffice || ''; cachedOrder.district = cachedOrder.district || ''; cachedOrder.state = cachedOrder.state || '';
         loadOrderData(cachedOrder);
       } else { fetchOrder(oid); }
     } else {
-      // CUSTOMER EDIT LOGIC
+      // CUSTOMER EDIT LOGIC (Hybrid Check)
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
       for (let ph of phones) {
@@ -158,7 +174,7 @@ function loadOrderData(d) {
   else { showReturningUserView(d, true); }
 }
 
-// 🔴 UPDATED: INSTANT LOAD + BACKGROUND SYNC
+// 🔴 INSTANT LOAD + BACKGROUND SYNC
 function handlePhoneNext() {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -257,7 +273,7 @@ function showReturningUserView(d, isActiveOrder) {
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
   updateSummaryDisplay();
-  updateStatusUI(d); // 🌟 NEW: Show Status Cards
+  updateStatusUI(d); // Show Status Cards
 
   $('#quick-qty option').prop('disabled', false);
   if (isActiveOrder) {
@@ -278,9 +294,9 @@ function showReturningUserView(d, isActiveOrder) {
   checkForChanges();
 }
 
-// 🌟 NEW: STATUS UI LOGIC
+// 🌟 STATUS UI LOGIC
 function updateStatusUI(d) {
-  $('#status-card-container').remove(); // Clear old
+  $('#status-card-container').remove();
   let html = '';
 
   // 1. Offer Card (Platinum)
@@ -305,7 +321,6 @@ function updateStatusUI(d) {
             <small>Your honey is on the way.</small>
             ${trackingHtml}
         </div>`;
-    // Hide Edit button if dispatched
     $('#btn-edit-address').hide();
   } else {
     $('#btn-edit-address').show();
@@ -346,7 +361,6 @@ function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function submitQuickOrder() {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  // Validation
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10 || isNaN(newPhone)) { showAlert(getAlert('err_phone')); return; }
   if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; }
@@ -369,7 +383,6 @@ function submitQuickOrder() {
 }
 
 function postOrder(data) {
-  // NOTE: Animation is already running. We just call fetch.
   fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
     .then(res => res.json())
     .then(res => {
@@ -386,7 +399,7 @@ function postOrder(data) {
           $('#showsuccess').fadeIn();
           updateFooterButtons('none');
           setTimeout(sendToWhatsapp, 1500);
-        }, 3500); // Wait for label animation to finish
+        }, 3500); // Wait for label animation
       }
     })
     .catch(() => {
@@ -403,7 +416,7 @@ function sendToWhatsapp() {
 }
 
 // --------------------------------------------------
-// 🍯 HONEY FILLING ANIMATION (CANVAS)
+// 🍯 HONEY FILLING ANIMATION (CANVAS + LOGO)
 // --------------------------------------------------
 
 function injectAnimationCSS() {
@@ -424,11 +437,14 @@ function startHoneyAnimation(userName, apiCallback) {
 
   const cvs = document.getElementById('honeyCanvas');
   const ctx = cvs.getContext('2d');
-  let fillLevel = 0; // 0 to 100
+  let fillLevel = 0;
   let waveOffset = 0;
   let particles = [];
 
-  // Create random bubbles
+  // Preload Logo
+  const logoImg = new Image();
+  logoImg.src = 'images/kafak_logo.png'; // ⚠️ ENSURE THIS FILE EXISTS
+
   for (let i = 0; i < 15; i++) particles.push({ x: 50 + Math.random() * 200, y: 380, s: 2 + Math.random() * 3, v: 1 + Math.random() });
 
   // Start API Call
@@ -437,57 +453,72 @@ function startHoneyAnimation(userName, apiCallback) {
   function draw() {
     ctx.clearRect(0, 0, 300, 400);
 
-    // 1. Draw Bottle Outline
+    // 1. Draw Bottle Outline (Glass)
     ctx.strokeStyle = "#333";
     ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.moveTo(110, 50); ctx.lineTo(110, 100); // Neck L
-    ctx.quadraticCurveTo(50, 120, 50, 180); // Shoulder L
-    ctx.lineTo(50, 380); // Body L
-    ctx.quadraticCurveTo(150, 400, 250, 380); // Bottom
-    ctx.lineTo(250, 180); // Body R
-    ctx.quadraticCurveTo(250, 120, 190, 100); // Shoulder R
-    ctx.lineTo(190, 50); // Neck R
+    ctx.moveTo(110, 50); ctx.lineTo(110, 100);
+    ctx.quadraticCurveTo(50, 120, 50, 180);
+    ctx.lineTo(50, 380);
+    ctx.quadraticCurveTo(150, 400, 250, 380);
+    ctx.lineTo(250, 180);
+    ctx.quadraticCurveTo(250, 120, 190, 100);
+    ctx.lineTo(190, 50);
     ctx.stroke();
 
-    // 2. Determine Fill Speed
-    if (!window.honeyAnimSuccess && fillLevel < 85) fillLevel += 0.5; // Slow fill
-    if (window.honeyAnimSuccess && fillLevel < 100) fillLevel += 2.0; // Fast finish
+    // Clip to Bottle Shape for Liquid
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(110, 100); ctx.quadraticCurveTo(50, 120, 50, 180);
+    ctx.lineTo(50, 380); ctx.quadraticCurveTo(150, 400, 250, 380);
+    ctx.lineTo(250, 180); ctx.quadraticCurveTo(250, 120, 190, 100);
+    ctx.closePath();
+    ctx.clip();
 
-    // 3. Draw Liquid with Wave
+    // 2. Liquid Fill
+    if (!window.honeyAnimSuccess && fillLevel < 85) fillLevel += 0.5;
+    if (window.honeyAnimSuccess && fillLevel < 100) fillLevel += 2.0;
+
     if (fillLevel > 0) {
       ctx.fillStyle = "#FFD700"; // Gold
       ctx.beginPath();
+      let h = 380 - (fillLevel * 2.8);
+      if (h < 100) h = 100;
 
-      let h = 380 - (fillLevel * 2.8); // Calculate height
-      if (h < 100) h = 100; // Cap limit
-
-      // Wave Top
-      ctx.moveTo(50, h);
-      for (let x = 50; x <= 250; x += 5) {
+      ctx.moveTo(0, h);
+      for (let x = 0; x <= 300; x += 5) {
         let y = h + Math.sin((x + waveOffset) * 0.05) * 5;
         ctx.lineTo(x, y);
       }
-      ctx.lineTo(250, 380); // R Bottom
-      ctx.quadraticCurveTo(150, 400, 50, 380); // Bottom Curve
+      ctx.lineTo(300, 400); ctx.lineTo(0, 400);
       ctx.fill();
     }
 
-    // 4. Draw Falling Stream (If not full)
+    // 3. Bubbles
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    particles.forEach(p => {
+      p.y -= p.v;
+      if (p.y < 380 - (fillLevel * 2.8)) p.y = 380;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2); ctx.fill();
+    });
+
+    ctx.restore(); // Restore clipping
+
+    // 4. Draw Logo (On Top of Liquid for Visibility)
+    if (logoImg.complete) {
+      // Draw logo centered
+      ctx.globalAlpha = 0.9;
+      ctx.drawImage(logoImg, 100, 180, 100, 80);
+      ctx.globalAlpha = 1.0;
+    }
+
+    // 5. Draw Pouring Stream
     if (fillLevel < 98) {
       ctx.fillStyle = "#D4AF37";
       ctx.fillRect(140, 0, 20, 380 - (fillLevel * 2.8));
     }
 
-    // 5. Draw Bubbles
-    ctx.fillStyle = "rgba(255,255,255,0.5)";
-    particles.forEach(p => {
-      p.y -= p.v;
-      if (p.y < 380 - (fillLevel * 2.8)) p.y = 380; // Reset if hits top
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2); ctx.fill();
-    });
-
-    // 6. Draw Label (Magic Moment)
+    // 6. Label (Success)
     if (fillLevel >= 99) {
       ctx.fillStyle = "#fff";
       ctx.shadowBlur = 10; ctx.shadowColor = "rgba(0,0,0,0.2)";
@@ -499,14 +530,14 @@ function startHoneyAnimation(userName, apiCallback) {
       ctx.font = "12px Arial"; ctx.textAlign = "center";
       ctx.fillText("Freshly Packed For:", 150, 230);
       ctx.font = "bold 18px Arial";
-      ctx.fillText(userName.toUpperCase().split(' ')[0], 150, 255); // Show First Name
+      ctx.fillText(userName.toUpperCase().split(' ')[0], 150, 255);
 
-      // Lid Close
+      // Lid
       ctx.fillStyle = "#000";
       ctx.fillRect(105, 40, 90, 15);
 
       $('.anim-text').text("ORDER SUCCESS!");
-      return; // Stop animation loop
+      return;
     }
 
     waveOffset += 2;
@@ -515,7 +546,6 @@ function startHoneyAnimation(userName, apiCallback) {
   draw();
 }
 
-// POLYFILL for roundRect
 if (CanvasRenderingContext2D.prototype.roundRect === undefined) {
   CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
     if (w < 2 * r) r = w / 2; if (h < 2 * r) r = h / 2;
@@ -526,7 +556,7 @@ if (CanvasRenderingContext2D.prototype.roundRect === undefined) {
 }
 
 // --------------------------------------------------
-// WIZARD FUNCTIONS (Helper needed for new users)
+// WIZARD FUNCTIONS
 // --------------------------------------------------
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
