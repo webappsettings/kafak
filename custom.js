@@ -3,11 +3,13 @@
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
 
+// Client-side estimation
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
+// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -52,7 +54,6 @@ let myCustId = null;
 let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
-let logoImageObj = new Image();
 
 // 🛡️ SAFE STORAGE
 const SafeStorage = {
@@ -62,7 +63,7 @@ const SafeStorage = {
 };
 
 // ------------------------------------------------------------------------------
-// 🔴 GLOBAL HELPERS (Must be defined first)
+// 🔴 GLOBAL HELPERS
 // ------------------------------------------------------------------------------
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
@@ -83,21 +84,7 @@ window.getAlert = function (key) {
 // 🔴 DOCUMENT READY
 // ------------------------------------------------------------------------------
 $(document).ready(function () {
-  injectAnimationCSS();
-
-  // 🔥 PRELOAD LOGO 
-  logoImageObj.src = 'images/kafak_logo.png';
-
-  // 🧪 TEST MODE CHECK (Add ?mode=test to URL)
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('mode') === 'test') {
-    $('body').append('<button onclick="testAnimation()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST ANIMATION</button>');
-    window.testAnimation = function () {
-      startHoneyAnimation("TEST USER", () => {
-        setTimeout(() => { window.honeyAnimSuccess = true; }, 3000);
-      });
-    }
-  }
+  injectVideoCSS(); // 🔥 Inject Video CSS
 
   const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
   $('#quantity').append(qtyOpts);
@@ -113,8 +100,17 @@ $(document).ready(function () {
     if (oldUser) { try { const u = JSON.parse(oldUser); if (u.phone) { localUsersMap[u.phone] = u; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); SafeStorage.removeItem('kafakUser'); } } catch (e) { } }
   }
 
+  const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
+
+  // 🧪 TEST MODE CHECK (Use ?mode=test)
+  if (urlParams.get('mode') === 'test') {
+    $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
+    window.testVideo = function () {
+      playVideoAnimation("MANAF", () => { console.log("Video Test Started"); });
+    }
+  }
 
   if (oid) {
     if (isAdmin) {
@@ -149,14 +145,15 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
+  // 🔥 PRELOAD VIDEO IMMEDIATELY (Zero Lag)
+  preloadHoneyVideo();
+
   if (localUsersMap[phone]) {
-    console.log("🚀 Local data found. Loading UI instantly...");
     loadOrderData(localUsersMap[phone]);
     syncUserDataBackground(phone);
     return;
   }
 
-  console.log("🚀 No local data. Showing Wizard instantly...");
   editingOrderId = null;
   $('#step-0').hide();
   $('#whatsapp').val(phone);
@@ -191,13 +188,16 @@ function syncUserDataBackground(phone) {
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
         updateStatusUI(mergedData);
       }
-    }).catch(err => $('#status-checker').remove());
+    })
+    .catch(err => $('#status-checker').remove());
 }
 
 function backgroundUserCheck(phone) {
-  fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()).then(res => {
-    if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId;
-  }).catch(e => console.log("Bg check fail"));
+  fetch(`${sc}?action=getCustomer&phone=${phone}`)
+    .then(res => res.json())
+    .then(res => {
+      if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId;
+    }).catch(e => console.log("Bg check fail"));
 }
 
 // ------------------------------------------------------------------------------
@@ -263,17 +263,25 @@ function submitWizardOrder() {
     quantity: $('#quantity').val(), message: '', custId: myCustId
   };
   localUsersMap[finalData.phone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-  startHoneyAnimation(finalData.name, () => postOrder(finalData));
+
+  // 🔥 PLAY VIDEO ANIMATION
+  playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
+// ------------------------------------------------------------------------------
+// 🔴 RETURNING USER & STATUS
+// ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn(); updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
+
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
+
   updateSummaryDisplay(); updateStatusUI(d);
+
   $('#quick-qty option').prop('disabled', false);
   if (isActiveOrder) {
     $('#quick-qty').val(d.quantity).trigger('change');
@@ -289,16 +297,29 @@ function showReturningUserView(d, isActiveOrder) {
 }
 
 function updateStatusUI(d) {
-  $('#status-card-container').remove(); let html = '';
-  if (d.offer === true) { html += `<div class="p-3 mb-3 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h5 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h5><small class="text-dark">You have unlocked special priority packing!</small></div>`; }
-  if (d.Status === 'Paid') { html += `<div class="p-3 mb-3 rounded shadow-sm bg-success text-white text-center"><h5 class="fw-bold mb-1">✅ Payment Received!</h5><small>Your honey is being freshly packed.</small></div>`; }
-  else if (d.Status === 'Dispatched' || d.Status === 'Completed') { let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-1 rounded fw-bold" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:14px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : ''; html += `<div class="p-3 mb-3 rounded shadow-sm bg-primary text-white text-center"><h5 class="fw-bold mb-1">🚚 Order Dispatched!</h5><small>Your honey is on the way.</small>${trackingHtml}</div>`; $('#btn-edit-address').hide(); }
-  else { $('#btn-edit-address').show(); }
+  $('#status-card-container').remove();
+  let html = '';
+  if (d.offer === true) {
+    html += `<div class="p-3 mb-3 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h5 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h5><small class="text-dark">You have unlocked special priority packing!</small></div>`;
+  }
+  if (d.Status === 'Paid') {
+    html += `<div class="p-3 mb-3 rounded shadow-sm bg-success text-white text-center"><h5 class="fw-bold mb-1">✅ Payment Received!</h5><small>Your honey is being freshly packed.</small></div>`;
+  } else if (d.Status === 'Dispatched' || d.Status === 'Completed') {
+    let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-1 rounded fw-bold" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:14px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
+    html += `<div class="p-3 mb-3 rounded shadow-sm bg-primary text-white text-center"><h5 class="fw-bold mb-1">🚚 Order Dispatched!</h5><small>Your honey is on the way.</small>${trackingHtml}</div>`;
+    $('#btn-edit-address').hide();
+  } else {
+    $('#btn-edit-address').show();
+  }
   if (html) $('#returning-user-view').prepend(`<div id="status-card-container">${html}</div>`);
 }
 
+// ------------------------------------------------------------------------------
+// 🔴 PRICE & VALIDATION
+// ------------------------------------------------------------------------------
 window.updatePrice = function (qty, isQuick) {
-  if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
+  if (!qty) return;
+  const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
   container.find('.qty-count').text(n); container.find('.val-base').text(base); container.find('.val-courier').text(courier); container.find('.val-total').text(total); container.fadeIn();
   if (!isQuick) {
@@ -311,255 +332,321 @@ window.updatePrice = function (qty, isQuick) {
 
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-  const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
-  const finalData = { orderid: editingOrderId, name: $('#saved-name').text(), phone: newPhone, whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: pin, postoffice: $('#edit-postoffice').val(), district: $('#edit-district').val(), state: $('#edit-state').val(), quantity: $('#quick-qty').val(), message: '', custId: myCustId };
+  const newPhone = $('#edit-phone').val();
+  if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; }
+  const pin = $('#edit-pincode').val();
+  if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
+  if (!$('#edit-postoffice').val()) { showAlert(getAlert('err_select_po')); return; }
+  const wa = $('#edit-whatsapp').val();
+  if (!wa || wa.length !== 10) { showAlert(getAlert('err_whatsapp')); return; }
+
+  const finalData = { orderid: editingOrderId, name: $('#saved-name').text(), phone: newPhone, whatsapp: wa, altphone: $('#edit-altphone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: pin, postoffice: $('#edit-postoffice').val(), district: $('#edit-district').val(), state: $('#edit-state').val(), quantity: $('#quick-qty').val(), message: '', custId: myCustId };
+
   if (currentLoginPhone && currentLoginPhone !== newPhone) delete localUsersMap[currentLoginPhone];
-  localUsersMap[newPhone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-  startHoneyAnimation(finalData.name, () => postOrder(finalData));
+  localUsersMap[newPhone] = finalData;
+  SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+
+  // 🔥 PLAY VIDEO ANIMATION
+  playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
 // ------------------------------------------------------------------------------
-// 🍯 SKETCH STYLE HONEY JAR ANIMATION (CUSTOM PATH)
+// 🎥 VIDEO ANIMATION LOGIC (WITH OVERLAY)
 // ------------------------------------------------------------------------------
-function injectAnimationCSS() {
+function injectVideoCSS() {
   $('body').append(`
     <style>
-        #honeyModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at center, #ffffff 0%, #f8f9fa 100%); z-index:99999; flex-direction:column; align-items:center; justify-content:center; }
-        #honeyCanvas { width: 320px; height: 420px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
-        .anim-text { margin-top:25px; font-weight:bold; color:#8B4513; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing:2px; text-transform:uppercase; font-size:14px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+        #videoModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; }
+        
+        .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
+        video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 🏷️ THE BADGE (Hidden initially) */
+        .digital-label {
+            position: absolute;
+            top: 50%; left: 50%;
+            /* START POS: Shifted Right & Small */
+            transform: translate(-30%, -50%) scale(0.8); 
+            
+            width: 150px; height: 150px; border-radius: 50%;
+            background: radial-gradient(circle, #fffdf5 40%, #ebdcb2 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,0,0,0.1);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            z-index: 10;
+            opacity: 0; 
+            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* SHOW STATE: Center & Full Size */
+        .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        .digital-label img { width: 55px; opacity: 0.95; margin-bottom: 4px; }
+        .digital-label .packed-text { font-size: 8px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 2px; }
+        .digital-label .name-text { font-size: 16px; font-weight: 900; color: #2c1e1a; text-transform: uppercase; font-family: 'Courier New', monospace; border-bottom: 2px dashed #8d6e63; padding-bottom: 2px; }
+
+        .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
     </style>
-    <div id="honeyModal"><canvas id="honeyCanvas" width="320" height="420"></canvas><div class="anim-text">FILLING YOUR BOTTLE...</div></div>
+    
+    <div id="videoModal">
+        <div class="video-container">
+            <video id="honeyVideo" muted playsinline preload="auto">
+                <source src="honey_rotate.mp4" type="video/mp4">
+            </video>
+            
+            <div class="digital-label" id="customLabel">
+                <img src="images/kafak_logo.png" alt="Kafak">
+                <div class="packed-text">RESERVED FOR</div>
+                <div class="name-text" id="vid-username">User</div>
+            </div>
+        </div>
+        <div class="loading-txt">PREPARING YOUR ORDER...</div>
+    </div>
     `);
 }
 
-function startHoneyAnimation(userName, apiCallback) {
-  $('#honeyModal').css('display', 'flex').fadeIn();
-  window.honeyAnimSuccess = false;
-  const cvs = document.getElementById('honeyCanvas');
-  const ctx = cvs.getContext('2d');
-  let fillLevel = 0; let waveOffset = 0; let particles = []; let isAnimating = true;
-  for (let i = 0; i < 25; i++) particles.push({ x: 70 + Math.random() * 180, y: 400, s: 1 + Math.random() * 2.5, v: 0.5 + Math.random() });
-
-  apiCallback(); // Trigger Server
-
-  // 🟢 CUSTOM PATH: MATCHING THE UPLOADED SKETCH IMAGE
-  function drawJarPath(ctx) {
-    ctx.beginPath();
-    // Top Rim
-    ctx.moveTo(90, 80);
-    ctx.lineTo(230, 80);
-
-    // Right Side (Bump, Curve, Bottom)
-    ctx.bezierCurveTo(235, 90, 240, 100, 230, 110); // R Neck Bump
-    ctx.bezierCurveTo(250, 130, 290, 250, 280, 320); // R Body (Wide)
-    ctx.bezierCurveTo(270, 380, 220, 390, 160, 390); // Bottom Right Corner
-
-    // Bottom Flat
-    ctx.lineTo(160, 390);
-
-    // Left Side (Bottom, Curve, Bump)
-    ctx.bezierCurveTo(100, 390, 50, 380, 40, 320); // Bottom Left Corner
-    ctx.bezierCurveTo(30, 250, 70, 130, 90, 110); // L Body (Wide)
-    ctx.bezierCurveTo(80, 100, 85, 90, 90, 80); // L Neck Bump
-
-    ctx.closePath();
-  }
-
-  function draw() {
-    if (!isAnimating) return;
-    ctx.clearRect(0, 0, 320, 420);
-
-    // 1. Draw Jar Outline (Thick Glass with Highlights)
-    ctx.save();
-    ctx.strokeStyle = "rgba(60, 60, 60, 0.3)"; ctx.lineWidth = 5; drawJarPath(ctx); ctx.stroke();
-    // White Highlights for Glass effect
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.7)"; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.moveTo(80, 120); ctx.bezierCurveTo(50, 160, 50, 300, 70, 350); ctx.stroke(); // Left Glint
-    ctx.beginPath(); ctx.moveTo(240, 120); ctx.bezierCurveTo(270, 160, 270, 200, 260, 220); ctx.stroke(); // Right Glint
-    ctx.restore();
-
-    // 2. Clip for Honey
-    ctx.save();
-    drawJarPath(ctx);
-    ctx.clip();
-
-    // 3. Honey Fill (Realistic Dark Amber Gradient)
-    if (!window.honeyAnimSuccess && fillLevel < 85) fillLevel += 0.4;
-    if (window.honeyAnimSuccess && fillLevel < 100) fillLevel += 1.5;
-
-    if (fillLevel > 0) {
-      let h = 390 - (fillLevel * 2.8); if (h < 90) h = 90; // Stop at neck
-
-      // RICH AMBER GRADIENT (KERALA HONEY COLOR)
-      let grad = ctx.createLinearGradient(0, 400, 0, h);
-      grad.addColorStop(0, "#3E2723"); // Deep Brown
-      grad.addColorStop(0.3, "#BF360C"); // Dark Amber
-      grad.addColorStop(0.7, "#FF8F00"); // Gold
-      grad.addColorStop(1, "#FFCA28"); // Light Gold Top
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.moveTo(0, h);
-      for (let x = 0; x <= 320; x += 5) { let y = h + Math.sin((x + waveOffset) * 0.04) * 3; ctx.lineTo(x, y); }
-      ctx.lineTo(320, 420); ctx.lineTo(0, 420); ctx.fill();
-    }
-
-    // 4. Bubbles (Subtle)
-    ctx.fillStyle = "rgba(255,255,255,0.2)";
-    particles.forEach(p => {
-      p.y -= p.v; if (p.y < 390 - (fillLevel * 2.8)) p.y = 390;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2); ctx.fill();
-    });
-
-    ctx.restore(); // End Clip
-
-    // 5. Draw Logo (IN FRONT & VISIBLE)
-    if (logoImageObj.complete && logoImageObj.naturalHeight !== 0) {
-      ctx.globalAlpha = 0.95;
-      // Centered in the widest part
-      ctx.drawImage(logoImageObj, 110, 180, 100, 80);
-      ctx.globalAlpha = 1.0;
-    }
-
-    // 6. Pouring Stream
-    if (fillLevel < 98) {
-      ctx.fillStyle = "#FF8F00"; ctx.fillRect(150, 0, 20, 390 - (fillLevel * 2.8));
-    }
-
-    // 7. Completion Label
-    if (fillLevel >= 99) {
-      ctx.fillStyle = "#fff"; ctx.shadowBlur = 10; ctx.shadowColor = "rgba(0,0,0,0.2)";
-      ctx.roundRect(50, 220, 220, 85, 8); ctx.fill(); ctx.shadowBlur = 0;
-
-      ctx.fillStyle = "#333"; ctx.font = "10px sans-serif"; ctx.textAlign = "center";
-      ctx.fillText("FRESHLY PACKED FOR:", 160, 245);
-
-      let displayName = userName.toUpperCase();
-      let fontSize = 22; ctx.font = `bold ${fontSize}px sans-serif`;
-      while (ctx.measureText(displayName).width > 200) { fontSize--; ctx.font = `bold ${fontSize}px sans-serif`; }
-      ctx.fillStyle = "#000"; ctx.fillText(displayName, 160, 275);
-
-      $('.anim-text').text("ORDER SUCCESS!");
-      isAnimating = false; return;
-    }
-
-    waveOffset += 2;
-    requestAnimationFrame(draw);
-  }
-  draw();
+function preloadHoneyVideo() {
+  const v = document.getElementById('honeyVideo');
+  if (v) v.load();
 }
 
-if (CanvasRenderingContext2D.prototype.roundRect === undefined) {
-  CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-    if (w < 2 * r) r = w / 2; if (h < 2 * r) r = h / 2;
-    this.beginPath(); this.moveTo(x + r, y);
-    this.arcTo(x + w, y, x + w, y + h, r); this.arcTo(x + w, y + h, x, y + h, r);
-    this.arcTo(x, y + h, x, y, r); this.arcTo(x, y, x + w, y, r); this.closePath(); return this;
-  };
+function playVideoAnimation(userName, apiCallback) {
+  $('#videoModal').css('display', 'flex').fadeIn();
+
+  const video = document.getElementById('honeyVideo');
+  const label = document.getElementById('customLabel');
+
+  $('#vid-username').text(userName);
+  label.classList.remove('visible'); // Reset
+
+  video.currentTime = 0;
+  video.play().catch(e => console.log("Auto-play blocked", e));
+
+  apiCallback(); // POST to server
+
+  // ⏱️ TIMING: Badge Slides in when bottle faces front
+  setTimeout(() => {
+    label.classList.add('visible');
+  }, 3000); // 3 Seconds (Adjust if needed)
+
+  setTimeout(() => {
+    if (window.orderSuccess === true) {
+      // Logic continued in postOrder
+    }
+  }, 8000);
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 ADMIN & SERVER
+// 🔴 SERVER POST
+// ------------------------------------------------------------------------------
+function postOrder(data) {
+  window.orderSuccess = false;
+  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
+    .then(res => res.json())
+    .then(res => {
+      if (res.result === 'success') {
+        successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
+        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
+
+        window.orderSuccess = true;
+
+        // Wait 6 seconds min for video to play
+        setTimeout(() => {
+          $('#videoModal').fadeOut();
+          $('#order-form').hide();
+          $('#showsuccess').fadeIn();
+          updateFooterButtons('none');
+          setTimeout(sendToWhatsapp, 1500);
+        }, 6000);
+      }
+    })
+    .catch(() => {
+      $('#videoModal').fadeOut();
+      showAlert("Connection failed. Try again.");
+    });
+}
+
+function sendToWhatsapp() {
+  const phone = '7788990313';
+  const orderid = successData.orderid;
+  const d = successData;
+  const editLink = `kafaklife.com/order.html?oid=${orderid}`;
+  const n = parseInt(d.quantity);
+  const base = n * 650;
+  const courier = courierRates.kerala[n] || 0;
+  const amountText = `Amount(₹): ${base} + ${courier}`;
+  const totalText = `Total(₹): ${base + courier}/-`;
+  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
+
+  const safe = (val) => String(val || '').trim().toUpperCase();
+
+  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+
+  window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
+}
+
+// ------------------------------------------------------------------------------
+// 🔴 ADMIN LOGIC & HELPERS
 // ------------------------------------------------------------------------------
 function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
   $('.footer-action').after(`<div class="text-center py-4"><button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">🛠️ Admin: Clear Cache</button></div>`);
+
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-  if (cachedOrder) { showLoader(false); updateAdminUI(cachedOrder.Status || 'Pending', oid); loadOrderData(cachedOrder); }
-  else { fetchOrder(oid); }
+
+  if (cachedOrder) {
+    showLoader(false);
+    updateAdminUI(cachedOrder.Status || 'Pending', oid);
+    loadOrderData(cachedOrder);
+  } else {
+    fetchOrder(oid);
+  }
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
   let pendingUpdates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
+
   let btnHTML = '';
-  if (currentStatus === 'Pending') btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
-  else if (currentStatus === 'Sent') btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
-  else { let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : (currentStatus === 'Completed' ? 'COMPLETED' : 'PAID'); btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`; }
-  $('#admin-btn-container').html(btnHTML); $('#admin-action-bar').slideDown();
+
+  if (currentStatus === 'Pending') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
+  } else if (currentStatus === 'Sent') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
+  } else {
+    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : (currentStatus === 'Completed' ? 'COMPLETED' : 'PAID');
+    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`;
+  }
+
+  $('#admin-btn-container').html(btnHTML);
+  $('#admin-action-bar').slideDown();
 }
 
 window.adminAction = function (oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+
   let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
   let allOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let orderIndex = allOrders.findIndex(o => o.orderid === oid);
-  if (orderIndex !== -1) { allOrders[orderIndex].Status = status; SafeStorage.setItem('allOrdersCache', JSON.stringify(allOrders)); }
+  if (orderIndex !== -1) {
+    allOrders[orderIndex].Status = status;
+    SafeStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+  }
+
   updateAdminUI(status, oid);
-  const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); } });
+
+  const Toast = Swal.mixin({
+    toast: true, position: 'top-end', showConfirmButton: false, timer: 2000,
+    didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
+  });
   Toast.fire({ icon: 'success', title: `Saved: ${status}` });
 }
 
 window.clearAdminCache = function () {
-  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
+  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) {
+    SafeStorage.removeItem('allOrdersCache');
+    location.reload();
+  }
 }
 
 function fetchOrder(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`).then(res => res.json()).then(res => {
     showLoader(false);
     if (res.result === 'success') {
-      let d = res.data; if (d.custId) myCustId = d.custId;
-      if (d.phone && localUsersMap[d.phone]) { const local = localUsersMap[d.phone]; d = { ...local, ...d }; }
+      let d = res.data;
+      if (d.custId) { myCustId = d.custId; }
+
+      if (d.phone && localUsersMap[d.phone]) {
+        const local = localUsersMap[d.phone];
+        if (!d.district && local.district) d.district = local.district;
+        if (!d.custId && local.custId) d.custId = local.custId;
+      }
+
       if (SafeStorage.getItem('kafakAdmin') === 'true') {
         let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
         let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-        updateAdminUI(cachedOrder ? cachedOrder.Status : (d.Status || 'Pending'), oid);
+        let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending');
+        updateAdminUI(status, oid);
       }
+
       loadOrderData(d);
-    } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
+    } else {
+      $('#step-0').fadeIn();
+      updateFooterButtons('step-0');
+    }
   }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
-}
-
-function postOrder(data) {
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
-    .then(res => res.json()).then(res => {
-      if (res.result === 'success') {
-        successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
-        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
-        window.honeyAnimSuccess = true;
-        setTimeout(() => {
-          $('#honeyModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
-        }, 3500);
-      }
-    }).catch(() => { $('#honeyModal').fadeOut(); showAlert("Connection failed. Try again."); });
-}
-
-function sendToWhatsapp() {
-  const phone = '7788990313'; const orderid = successData.orderid; const d = successData;
-  const n = parseInt(d.quantity); const base = n * 650; const courier = courierRates.kerala[n] || 0;
-  const amountText = `Amount(₹): ${base} + ${courier}`; const totalText = `Total(₹): ${base + courier}/-`;
-  const editLink = `kafaklife.com/order.html?oid=${orderid}`;
-  const safe = (val) => String(val || '').trim().toUpperCase();
-  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
-  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
-  window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
 
 // ------------------------------------------------------------------------------
 // 🔴 HELPER UPDATES
 // ------------------------------------------------------------------------------
 function updateSummaryDisplay() {
-  const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
+  const house = $('#edit-house').val() || '';
+  const place = $('#edit-place').val() || '';
+  const po = $('#edit-postoffice').val() || '';
+  const pin = $('#edit-pincode').val() || '';
+  const dist = $('#edit-district').val() || '';
+  const wa = $('#edit-whatsapp').val() || '';
+  const alt = $('#edit-altphone').val();
+  const phone = $('#edit-phone').val() || '';
+
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  $('#saved-address-text').text(addr); $('#saved-place-dist').text(''); $('#saved-phone-text').text(phone); $('#saved-wa-text span').text(wa);
-  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
+
+  $('#saved-address-text').text(addr);
+  $('#saved-place-dist').text('');
+  $('#saved-phone-text').text(phone);
+  $('#saved-wa-text span').text(wa);
+
+  if (alt) {
+    $('#saved-alt-text span').text(alt);
+    $('#saved-alt-text').show();
+  } else {
+    $('#saved-alt-text').hide();
+  }
+
   checkForChanges();
 }
 
 function checkForChanges() {
-  const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
-  const current = { phone: $('#edit-phone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: $('#edit-pincode').val(), postoffice: $('#edit-postoffice').val(), whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), quantity: $('#quick-qty').val() };
+  const btn = $('#btn-quick-submit');
+  if (!isEditMode) {
+    btn.prop('disabled', false).css('opacity', '1');
+    return;
+  }
+  const current = {
+    phone: $('#edit-phone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: $('#edit-pincode').val(),
+    postoffice: $('#edit-postoffice').val(),
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    quantity: $('#quick-qty').val()
+  };
   const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
-  const hasChanges = isDiff('phone', current.phone) || isDiff('house', current.house) || isDiff('place', current.place) || isDiff('pincode', current.pincode) || isDiff('postoffice', current.postoffice) || isDiff('whatsapp', current.whatsapp) || isDiff('altphone', current.altphone) || isDiff('quantity', current.quantity);
-  if (hasChanges) { btn.prop('disabled', false).css('opacity', '1'); } else { btn.prop('disabled', true).css('opacity', '0.5'); }
+  const hasChanges =
+    isDiff('phone', current.phone) ||
+    isDiff('house', current.house) ||
+    isDiff('place', current.place) ||
+    isDiff('pincode', current.pincode) ||
+    isDiff('postoffice', current.postoffice) ||
+    isDiff('whatsapp', current.whatsapp) ||
+    isDiff('altphone', current.altphone) ||
+    isDiff('quantity', current.quantity);
+
+  if (hasChanges) {
+    btn.prop('disabled', false).css('opacity', '1');
+  } else {
+    btn.prop('disabled', true).css('opacity', '0.5');
+  }
 }
 
 function toggleAddressEdit() { $('.address-box').slideToggle(); }

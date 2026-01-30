@@ -1,26 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>SVG Preview</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafak Vertical Video Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* 🎥 VIDEO CONTAINER (Vertical 9:16 Ratio) */
+        .video-wrapper {
+            position: relative;
+            width: 320px;
+            height: 576px;
+            /* Exactly matches 9:16 ratio for mobile */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            background: #000;
+            border: 2px solid #333;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures full screen fill */
+        }
+
+        /* 🏷️ THE BADGE (Hidden initially) */
+        .digital-label {
+            position: absolute;
+            top: 67%;
+            left: 53%;
+            transform: translate(-30%, -50%) scale(0.7);
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+
+
+            /* 🔥 CHANGE 2: Smooth Transition for movement & scale */
+            /* Increased duration to 1s for smoother slide */
+            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Show Class (Added via JS) */
+        .digital-label.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .digital-label img {
+            width: 55px;
+            opacity: 0.95;
+            margin-bottom: 4px;
+        }
+
+        .packed-text {
+            font-size: 8px;
+            color: #5d4037;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .user-name {
+            font-size: 16px;
+            font-weight: 900;
+            color: #2c1e1a;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+            border-bottom: 2px dashed #8d6e63;
+            padding-bottom: 2px;
+        }
+
+        .status-txt {
+            color: #d4a017;
+            margin-top: 25px;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0;">
+<body>
 
-    <div style="background: white; padding: 50px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <div class="video-wrapper">
+        <video id="honeyVideo" muted playsinline>
+            <source src="honey_rotate.mp4" type="video/mp4">
+        </video>
 
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style="float:left; margin-top:12px; padding-left:10px;">
-            <path
-                d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z"
-                fill="black" />
-            <path
-                d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15"
-                stroke="#008CFF" stroke-width="2" stroke-linecap="round" />
-        </svg>
-
-        <p style="text-align:center; font-family: sans-serif; margin-top: 20px;">Phone Icon Preview</p>
+        <div class="digital-label" id="customLabel">
+            <img src="kafak_logo.png" alt="Kafak">
+            <div class="packed-text">RESERVED FOR</div>
+            <div class="user-name">MANAF</div>
+        </div>
     </div>
+
+    <div class="status-txt" id="statusText">TAP TO PLAY</div>
+
+    <script>
+        $(document).click(function () {
+            const video = document.getElementById('honeyVideo');
+            const label = $('#customLabel');
+            const txt = $('#statusText');
+
+            // Reset
+            label.removeClass('visible');
+            txt.text("FILLING BOTTLE...");
+
+            video.currentTime = 0;
+            video.play();
+
+            // ⏱️ TIMING ADJUSTMENT (പ്രധാനം!)
+            // കുപ്പി കറങ്ങി നേരെ നിൽക്കുന്ന സമയം ഇവിടെ കൊടുക്കുക.
+            // 3000 ms = 3 seconds. വീഡിയോ നോക്കി ഇത് മാറ്റുക.
+            setTimeout(() => {
+                label.addClass('visible'); // Badge Pops in
+                txt.text("ORDER READY!");
+            }, 4700);
+
+            video.onended = () => {
+                // Video Ends
+            };
+        });
+    </script>
 
 </body>
 
