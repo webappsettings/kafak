@@ -2,8 +2,6 @@
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
-// ------------------------------------------------------------------------------
-
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -87,7 +85,7 @@ window.getAlert = function (key) {
 $(document).ready(function () {
   injectAnimationCSS();
 
-  // 🔥 PRELOAD LOGO (Important for Canvas)
+  // 🔥 PRELOAD LOGO 
   logoImageObj.src = 'images/kafak_logo.png';
 
   // 🧪 TEST MODE CHECK (Add ?mode=test to URL)
@@ -96,7 +94,7 @@ $(document).ready(function () {
     $('body').append('<button onclick="testAnimation()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST ANIMATION</button>');
     window.testAnimation = function () {
       startHoneyAnimation("TEST USER", () => {
-        setTimeout(() => { window.honeyAnimSuccess = true; }, 3000); // Simulate success after 3s
+        setTimeout(() => { window.honeyAnimSuccess = true; }, 3000);
       });
     }
   }
@@ -322,7 +320,7 @@ window.submitQuickOrder = function () {
 }
 
 // ------------------------------------------------------------------------------
-// 🍯 IMPROVED REALISTIC JAR ANIMATION
+// 🍯 SKETCH STYLE HONEY JAR ANIMATION (CUSTOM PATH)
 // ------------------------------------------------------------------------------
 function injectAnimationCSS() {
   $('body').append(`
@@ -346,16 +344,26 @@ function startHoneyAnimation(userName, apiCallback) {
 
   apiCallback(); // Trigger Server
 
+  // 🟢 CUSTOM PATH: MATCHING THE UPLOADED SKETCH IMAGE
   function drawJarPath(ctx) {
     ctx.beginPath();
-    // New Squat Round Jar Shape (Similar to your photo)
-    ctx.moveTo(100, 80); ctx.lineTo(220, 80); // Rim
-    ctx.bezierCurveTo(230, 80, 240, 90, 245, 110); // R Neck
-    ctx.bezierCurveTo(280, 130, 300, 250, 290, 320); // R Body (Round)
-    ctx.bezierCurveTo(280, 380, 200, 390, 160, 390); // Bottom Right
-    ctx.bezierCurveTo(120, 390, 40, 380, 30, 320); // Bottom Left
-    ctx.bezierCurveTo(20, 250, 40, 130, 75, 110); // L Body
-    ctx.bezierCurveTo(80, 90, 90, 80, 100, 80); // L Neck
+    // Top Rim
+    ctx.moveTo(90, 80);
+    ctx.lineTo(230, 80);
+
+    // Right Side (Bump, Curve, Bottom)
+    ctx.bezierCurveTo(235, 90, 240, 100, 230, 110); // R Neck Bump
+    ctx.bezierCurveTo(250, 130, 290, 250, 280, 320); // R Body (Wide)
+    ctx.bezierCurveTo(270, 380, 220, 390, 160, 390); // Bottom Right Corner
+
+    // Bottom Flat
+    ctx.lineTo(160, 390);
+
+    // Left Side (Bottom, Curve, Bump)
+    ctx.bezierCurveTo(100, 390, 50, 380, 40, 320); // Bottom Left Corner
+    ctx.bezierCurveTo(30, 250, 70, 130, 90, 110); // L Body (Wide)
+    ctx.bezierCurveTo(80, 100, 85, 90, 90, 80); // L Neck Bump
+
     ctx.closePath();
   }
 
@@ -363,12 +371,13 @@ function startHoneyAnimation(userName, apiCallback) {
     if (!isAnimating) return;
     ctx.clearRect(0, 0, 320, 420);
 
-    // 1. Draw Jar Outline (Thick Glass)
+    // 1. Draw Jar Outline (Thick Glass with Highlights)
     ctx.save();
-    ctx.strokeStyle = "rgba(60, 60, 60, 0.2)"; ctx.lineWidth = 6; drawJarPath(ctx); ctx.stroke();
-    // Shine/Gloss
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.6)"; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.moveTo(80, 120); ctx.bezierCurveTo(40, 160, 40, 300, 70, 350); ctx.stroke();
+    ctx.strokeStyle = "rgba(60, 60, 60, 0.3)"; ctx.lineWidth = 5; drawJarPath(ctx); ctx.stroke();
+    // White Highlights for Glass effect
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.7)"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(80, 120); ctx.bezierCurveTo(50, 160, 50, 300, 70, 350); ctx.stroke(); // Left Glint
+    ctx.beginPath(); ctx.moveTo(240, 120); ctx.bezierCurveTo(270, 160, 270, 200, 260, 220); ctx.stroke(); // Right Glint
     ctx.restore();
 
     // 2. Clip for Honey
@@ -381,15 +390,18 @@ function startHoneyAnimation(userName, apiCallback) {
     if (window.honeyAnimSuccess && fillLevel < 100) fillLevel += 1.5;
 
     if (fillLevel > 0) {
-      let h = 390 - (fillLevel * 2.8); if (h < 100) h = 100;
+      let h = 390 - (fillLevel * 2.8); if (h < 90) h = 90; // Stop at neck
+
+      // RICH AMBER GRADIENT (KERALA HONEY COLOR)
       let grad = ctx.createLinearGradient(0, 400, 0, h);
-      grad.addColorStop(0, "#4E342E"); // Deep Brown
+      grad.addColorStop(0, "#3E2723"); // Deep Brown
       grad.addColorStop(0.3, "#BF360C"); // Dark Amber
       grad.addColorStop(0.7, "#FF8F00"); // Gold
       grad.addColorStop(1, "#FFCA28"); // Light Gold Top
 
       ctx.fillStyle = grad;
-      ctx.beginPath(); ctx.moveTo(0, h);
+      ctx.beginPath();
+      ctx.moveTo(0, h);
       for (let x = 0; x <= 320; x += 5) { let y = h + Math.sin((x + waveOffset) * 0.04) * 3; ctx.lineTo(x, y); }
       ctx.lineTo(320, 420); ctx.lineTo(0, 420); ctx.fill();
     }
@@ -403,12 +415,15 @@ function startHoneyAnimation(userName, apiCallback) {
 
     ctx.restore(); // End Clip
 
-    // 5. Draw Logo (Centered & Visible)
+    // 5. Draw Logo (IN FRONT & VISIBLE)
     if (logoImageObj.complete && logoImageObj.naturalHeight !== 0) {
+      ctx.globalAlpha = 0.95;
+      // Centered in the widest part
       ctx.drawImage(logoImageObj, 110, 180, 100, 80);
+      ctx.globalAlpha = 1.0;
     }
 
-    // 6. Pouring Effect
+    // 6. Pouring Stream
     if (fillLevel < 98) {
       ctx.fillStyle = "#FF8F00"; ctx.fillRect(150, 0, 20, 390 - (fillLevel * 2.8));
     }
