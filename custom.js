@@ -62,7 +62,7 @@ const SafeStorage = {
 };
 
 // ------------------------------------------------------------------------------
-// 🔴 GLOBAL HELPERS
+// 🔴 GLOBAL HELPERS (Must be defined first)
 // ------------------------------------------------------------------------------
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
