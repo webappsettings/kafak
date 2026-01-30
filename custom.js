@@ -3,11 +3,13 @@
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
 
+// Client-side estimation (Server does final calc)
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
+// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -62,7 +64,7 @@ const SafeStorage = {
 };
 
 // ------------------------------------------------------------------------------
-// 🔴 GLOBAL HELPERS
+// 🔴 GLOBAL HELPERS (Fixing Reference Errors)
 // ------------------------------------------------------------------------------
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
@@ -85,9 +87,9 @@ window.getAlert = function (key) {
 $(document).ready(function () {
   injectAnimationCSS();
 
-  // 🔥 PRELOAD LOGO (Use SVG for best clarity, fallback to PNG)
-  logoImageObj.src = 'images/kafak_logo.svg';
-  logoImageObj.onerror = function () { logoImageObj.src = 'images/kafak_logo.png'; };
+  // 🔥 PRELOAD LOGO (Try SVG first, then PNG)
+  logoImageObj.src = 'images/kafak_logo.png';
+  // logoImageObj.src = 'images/kafak_logo.svg'; // Use this if you have SVG
 
   const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
   $('#quantity').append(qtyOpts);
@@ -96,6 +98,7 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
+  // Load Local Data
   const saved = SafeStorage.getItem('kafakUsers');
   if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
   else {
@@ -103,6 +106,7 @@ $(document).ready(function () {
     if (oldUser) { try { const u = JSON.parse(oldUser); if (u.phone) { localUsersMap[u.phone] = u; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); SafeStorage.removeItem('kafakUser'); } } catch (e) { } }
   }
 
+  // URL Params Check
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
@@ -111,6 +115,7 @@ $(document).ready(function () {
     if (isAdmin) {
       setupAdminView(oid);
     } else {
+      // CUSTOMER EDIT: Hybrid Local First
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
       for (let ph of phones) {
@@ -133,44 +138,60 @@ $(document).ready(function () {
 });
 
 // ------------------------------------------------------------------------------
-// 🔴 CORE APP LOGIC (INSTANT LOAD)
+// 🔴 CORE APP LOGIC (ZERO LOADING)
 // ------------------------------------------------------------------------------
 window.handlePhoneNext = function () {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
+  // 1. OLD USER: Show Edit View Instantly
   if (localUsersMap[phone]) {
     console.log("🚀 Local data found. Loading UI instantly...");
     loadOrderData(localUsersMap[phone]);
-    syncUserDataBackground(phone);
+    syncUserDataBackground(phone); // Background check
     return;
   }
 
+  // 2. NEW USER: Show Wizard Instantly (Don't wait for server)
   console.log("🚀 No local data. Showing Wizard instantly...");
   editingOrderId = null;
   $('#step-0').hide();
   $('#whatsapp').val(phone);
   startWizard();
+
+  // Background check for 'Forgot Device' scenario
   backgroundUserCheck(phone);
 }
 
 function loadOrderData(d) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
   if (d.phone) { localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d }; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
-  if (d.Status === 'Dispatched' || d.Status === 'Completed') { editingOrderId = null; showReturningUserView(d, false); } else { showReturningUserView(d, true); }
+
+  if (d.Status === 'Dispatched' || d.Status === 'Completed') {
+    editingOrderId = null;
+    showReturningUserView(d, false); // New Order Mode
+  } else {
+    showReturningUserView(d, true); // Edit Mode
+  }
 }
 
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-  $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking status...</small>');
+
+  // Tiny indicator
+  if ($('#status-checker').length === 0) {
+    $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking status...</small>');
+  }
+
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
     .then(res => res.json())
     .then(res => {
       $('#status-checker').remove();
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
+        // If dispatched on server, force new order on client
         if (serverData.Status === 'Dispatched' || serverData.Status === 'Completed') {
           editingOrderId = null; $('#display-oid').hide();
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
@@ -190,7 +211,7 @@ function backgroundUserCheck(phone) {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 WIZARD & UI HELPERS
+// 🔴 WIZARD FUNCTIONS
 // ------------------------------------------------------------------------------
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
@@ -255,6 +276,9 @@ function submitWizardOrder() {
   startHoneyAnimation(finalData.name, () => postOrder(finalData));
 }
 
+// ------------------------------------------------------------------------------
+// 🔴 RETURNING USER VIEW
+// ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').fadeIn(); updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
@@ -286,6 +310,9 @@ function updateStatusUI(d) {
   if (html) $('#returning-user-view').prepend(`<div id="status-card-container">${html}</div>`);
 }
 
+// ------------------------------------------------------------------------------
+// 🔴 PRICE & FORM
+// ------------------------------------------------------------------------------
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
@@ -309,7 +336,7 @@ window.submitQuickOrder = function () {
 }
 
 // ------------------------------------------------------------------------------
-// 🍯 PROFESSIONAL HONEY ANIMATION (FIXED)
+// 🍯 PROFESSIONAL HONEY JAR ANIMATION (FIXED & UPGRADED)
 // ------------------------------------------------------------------------------
 function injectAnimationCSS() {
   $('body').append(`
@@ -330,21 +357,18 @@ function startHoneyAnimation(userName, apiCallback) {
   const ctx = cvs.getContext('2d');
   let fillLevel = 0; let waveOffset = 0; let particles = []; let isAnimating = true;
   for (let i = 0; i < 20; i++) particles.push({ x: 60 + Math.random() * 200, y: 400, s: 1 + Math.random() * 3, v: 0.5 + Math.random() });
-  apiCallback();
+
+  apiCallback(); // Call Server
 
   function drawJarPath(ctx) {
     ctx.beginPath();
+    // Beautiful Rounded Jar Shape
     ctx.moveTo(100, 60); ctx.lineTo(220, 60); // Top Rim
-    // Rounded Neck & Shoulders
-    ctx.bezierCurveTo(230, 60, 240, 80, 240, 100);
-    // Wide Rounded Body
-    ctx.bezierCurveTo(290, 130, 290, 320, 240, 360);
-    // Rounded Bottom
-    ctx.bezierCurveTo(200, 390, 120, 390, 80, 360);
-    // Left Body
-    ctx.bezierCurveTo(30, 320, 30, 130, 80, 100);
-    // Left Neck
-    ctx.bezierCurveTo(80, 80, 90, 60, 100, 60);
+    ctx.bezierCurveTo(230, 60, 240, 80, 240, 100); // R Neck
+    ctx.bezierCurveTo(290, 130, 290, 320, 240, 360); // R Body (Fat)
+    ctx.bezierCurveTo(200, 390, 120, 390, 80, 360); // Bottom
+    ctx.bezierCurveTo(30, 320, 30, 130, 80, 100); // L Body (Fat)
+    ctx.bezierCurveTo(80, 80, 90, 60, 100, 60); // L Neck
     ctx.closePath();
   }
 
@@ -352,14 +376,15 @@ function startHoneyAnimation(userName, apiCallback) {
     if (!isAnimating) return;
     ctx.clearRect(0, 0, 320, 420);
 
-    // 1. Draw Realistic Glass Jar Outline & Reflection
+    // 1. Draw Jar Outline (Thick Glass Effect)
     ctx.save();
-    ctx.strokeStyle = "rgba(100, 100, 100, 0.3)"; ctx.lineWidth = 5; drawJarPath(ctx); ctx.stroke(); // Thick outer glass
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.8)"; ctx.lineWidth = 2; // Inner subtle highlight
+    ctx.strokeStyle = "rgba(80, 80, 80, 0.4)"; ctx.lineWidth = 5; drawJarPath(ctx); ctx.stroke();
+    // Reflection Highlight
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.7)"; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(90, 110); ctx.bezierCurveTo(50, 150, 50, 300, 90, 350); ctx.stroke();
     ctx.restore();
 
-    // 2. Clip Liquid inside Jar
+    // 2. Clip Content to Jar
     ctx.save();
     drawJarPath(ctx);
     ctx.clip();
@@ -369,12 +394,13 @@ function startHoneyAnimation(userName, apiCallback) {
     if (window.honeyAnimSuccess && fillLevel < 100) fillLevel += 1.5;
 
     if (fillLevel > 0) {
-      let h = 380 - (fillLevel * 3.0); if (h < 90) h = 90;
-      // Dark Rich Gradient
+      let h = 380 - (fillLevel * 3.0); if (h < 80) h = 80;
+
+      // RICH AMBER GRADIENT (KERALA HONEY COLOR)
       let grad = ctx.createLinearGradient(0, 400, 0, h);
-      grad.addColorStop(0, "#4A2500"); // Deep brown bottom
-      grad.addColorStop(0.5, "#A05A00"); // Rich amber middle
-      grad.addColorStop(1, "#D48F15"); // Golden top
+      grad.addColorStop(0, "#3E2723"); // Dark Brown Bottom
+      grad.addColorStop(0.4, "#A05A00"); // Rich Amber
+      grad.addColorStop(1, "#D48F15"); // Golden Top
 
       ctx.fillStyle = grad;
       ctx.beginPath();
@@ -384,16 +410,20 @@ function startHoneyAnimation(userName, apiCallback) {
     }
 
     // 4. Bubbles
-    ctx.fillStyle = "rgba(255,255,255,0.3)";
+    ctx.fillStyle = "rgba(255,255,255,0.25)";
     particles.forEach(p => {
       p.y -= p.v; if (p.y < 380 - (fillLevel * 3.0)) p.y = 380;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2); ctx.fill();
     });
+
     ctx.restore(); // End Clip
 
-    // 5. Draw Logo (NOW IN FRONT)
+    // 5. Draw Logo (IN FRONT & VISIBLE)
     if (logoImageObj.complete && logoImageObj.naturalHeight !== 0) {
+      ctx.globalAlpha = 0.95;
+      // Draw centered on jar body
       ctx.drawImage(logoImageObj, 110, 170, 100, 80);
+      ctx.globalAlpha = 1.0;
     }
 
     // 6. Pouring Stream
@@ -402,18 +432,24 @@ function startHoneyAnimation(userName, apiCallback) {
       ctx.fillRect(150, 0, 20, 380 - (fillLevel * 3.0));
     }
 
-    // 7. Success Label (Professional)
+    // 7. Success Label
     if (fillLevel >= 99) {
       ctx.fillStyle = "#fff";
-      ctx.shadowBlur = 15; ctx.shadowColor = "rgba(0,0,0,0.15)";
-      ctx.roundRect(40, 210, 240, 90, 12); ctx.fill(); ctx.shadowBlur = 0;
+      ctx.shadowBlur = 15; ctx.shadowColor = "rgba(0,0,0,0.2)";
+      ctx.roundRect(40, 210, 240, 90, 10); ctx.fill(); ctx.shadowBlur = 0;
 
       ctx.fillStyle = "#333";
       ctx.font = "11px 'Helvetica Neue', Arial"; ctx.textAlign = "center";
-      ctx.fillText("FRESHLY PACKED FOR:", 160, 240);
-      ctx.font = "bold 22px 'Helvetica Neue', Arial"; ctx.fillStyle = "#000";
+      ctx.fillText("FRESHLY PACKED FOR:", 160, 235);
+
+      // Auto-scale Name Font
+      let fontSize = 24;
+      ctx.font = `bold ${fontSize}px 'Helvetica Neue', Arial`;
       let displayName = userName.toUpperCase();
-      if (displayName.length > 18) displayName = displayName.substring(0, 16) + '..';
+      while (ctx.measureText(displayName).width > 220 && fontSize > 14) {
+        fontSize--; ctx.font = `bold ${fontSize}px 'Helvetica Neue', Arial`;
+      }
+      ctx.fillStyle = "#000";
       ctx.fillText(displayName, 160, 270);
 
       $('.anim-text').text("ORDER SUCCESS!");
@@ -436,27 +472,8 @@ if (CanvasRenderingContext2D.prototype.roundRect === undefined) {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 HELPERS & ADMIN SETUP
+// 🔴 SERVER & ADMIN
 // ------------------------------------------------------------------------------
-function updateSummaryDisplay() {
-  const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
-  let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  $('#saved-address-text').text(addr); $('#saved-place-dist').text(''); $('#saved-phone-text').text(phone); $('#saved-wa-text span').text(wa);
-  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
-  checkForChanges();
-}
-
-function checkForChanges() {
-  const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
-  const current = { phone: $('#edit-phone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: $('#edit-pincode').val(), postoffice: $('#edit-postoffice').val(), whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), quantity: $('#quick-qty').val() };
-  const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
-  const hasChanges = isDiff('phone', current.phone) || isDiff('house', current.house) || isDiff('place', current.place) || isDiff('pincode', current.pincode) || isDiff('postoffice', current.postoffice) || isDiff('whatsapp', current.whatsapp) || isDiff('altphone', current.altphone) || isDiff('quantity', current.quantity);
-  if (hasChanges) { btn.prop('disabled', false).css('opacity', '1'); } else { btn.prop('disabled', true).css('opacity', '0.5'); }
-}
-
-function toggleAddressEdit() { $('.address-box').slideToggle(); }
-function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
-
 function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
@@ -465,6 +482,35 @@ function setupAdminView(oid) {
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
   if (cachedOrder) { showLoader(false); updateAdminUI(cachedOrder.Status || 'Pending', oid); loadOrderData(cachedOrder); }
   else { fetchOrder(oid); }
+}
+
+window.updateAdminUI = function (serverStatus, oid) {
+  let pendingUpdates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
+  let localUpdate = pendingUpdates.find(item => item.oid === oid);
+  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
+  let btnHTML = '';
+  if (currentStatus === 'Pending') btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
+  else if (currentStatus === 'Sent') btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
+  else { let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : (currentStatus === 'Completed' ? 'COMPLETED' : 'PAID'); btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`; }
+  $('#admin-btn-container').html(btnHTML); $('#admin-action-bar').slideDown();
+}
+
+window.adminAction = function (oid, status) {
+  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+  let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
+  updates = updates.filter(item => item.oid !== oid);
+  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+  SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
+  let allOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
+  let orderIndex = allOrders.findIndex(o => o.orderid === oid);
+  if (orderIndex !== -1) { allOrders[orderIndex].Status = status; SafeStorage.setItem('allOrdersCache', JSON.stringify(allOrders)); }
+  updateAdminUI(status, oid);
+  const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); } });
+  Toast.fire({ icon: 'success', title: `Saved: ${status}` });
+}
+
+window.clearAdminCache = function () {
+  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
 
 function fetchOrder(oid) {
@@ -507,3 +553,25 @@ function sendToWhatsapp() {
   const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
+
+// ------------------------------------------------------------------------------
+// 🔴 HELPER UPDATES
+// ------------------------------------------------------------------------------
+function updateSummaryDisplay() {
+  const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
+  let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
+  $('#saved-address-text').text(addr); $('#saved-place-dist').text(''); $('#saved-phone-text').text(phone); $('#saved-wa-text span').text(wa);
+  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
+  checkForChanges();
+}
+
+function checkForChanges() {
+  const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
+  const current = { phone: $('#edit-phone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: $('#edit-pincode').val(), postoffice: $('#edit-postoffice').val(), whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), quantity: $('#quick-qty').val() };
+  const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
+  const hasChanges = isDiff('phone', current.phone) || isDiff('house', current.house) || isDiff('place', current.place) || isDiff('pincode', current.pincode) || isDiff('postoffice', current.postoffice) || isDiff('whatsapp', current.whatsapp) || isDiff('altphone', current.altphone) || isDiff('quantity', current.quantity);
+  if (hasChanges) { btn.prop('disabled', false).css('opacity', '1'); } else { btn.prop('disabled', true).css('opacity', '0.5'); }
+}
+
+function toggleAddressEdit() { $('.address-box').slideToggle(); }
+function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
