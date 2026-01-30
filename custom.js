@@ -3,13 +3,11 @@
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
 
-// Client-side estimation
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
-// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -68,7 +66,7 @@ const SafeStorage = {
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
   if (translations && translations[lang]) $('#loader-text').text(translations[lang].loading || "Loading...");
-  if (show) $('#full-loader').fadeIn(); else $('#full-loader').fadeOut();
+  if (show) $('#full-loader').show(); else $('#full-loader').hide(); // 🔥 No Fade, Instant Hide
 }
 
 window.showAlert = function (msg) {
@@ -116,7 +114,7 @@ $(document).ready(function () {
     }
   }
 
-  // 🔥 FIXED EDIT VIEW LOGIC (NO RELOAD)
+  // 🔥 INSTANT EDIT LOAD (NO RELOAD EFFECT)
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
@@ -124,35 +122,34 @@ $(document).ready(function () {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
 
-      // 1. Check Local First & STOP LOADER IMMEDIATELY
+      // 1. Check Local First -> SHOW INSTANTLY
       for (let ph of phones) {
         if (localUsersMap[ph].orderid === oid) {
-          showLoader(false); // Stop loading immediately
-          $('#step-0').hide(); // Hide phone input
-          loadOrderData(localUsersMap[ph]);
+          showLoader(false);
+          $('#step-0').hide(); // Ensure step-0 is gone
+          loadOrderData(localUsersMap[ph]); // Instant Load
           foundLocally = true;
-
-          // Silent Background Sync
-          syncUserDataBackground(ph);
+          syncUserDataBackground(ph); // Background Update
           break;
         }
       }
 
-      // 2. Only fetch if NOT found locally
+      // 2. Only fetch from server if NOT local
       if (!foundLocally) {
         fetchOrder(oid);
       }
     }
   } else {
+    // Normal Visit
     showLoader(false);
-    $('#step-0').fadeIn(); // Normal Start
+    $('#step-0').show(); // 🔥 CHANGED: .show() instead of .fadeIn() to stop flicker
     updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
 });
 
 // ------------------------------------------------------------------------------
-// 🔴 CORE APP LOGIC (FIXED FLICKER)
+// 🔴 CORE APP LOGIC
 // ------------------------------------------------------------------------------
 window.handlePhoneNext = function () {
   const phone = $('#phone').val();
@@ -167,11 +164,11 @@ window.handlePhoneNext = function () {
     return;
   }
 
-  // 🔥 FLICKER FIX: Hide step-0 AND Show Wizard Instantly
+  // 🔥 FLICKER FIX: Use .hide() and .show() instantly
   editingOrderId = null;
-  $('#step-0').hide(); // Immediate hide
+  $('#step-0').hide();
   $('#whatsapp').val(phone);
-  startWizard(); // Immediate show
+  startWizard(); // Shows #wizard-view instantly
 
   backgroundUserCheck(phone);
 }
@@ -188,12 +185,9 @@ function loadOrderData(d) {
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-
-  // Checking indicator only if needed
   if ($('#quick-qty').length > 0 && $('#status-checker').length === 0) {
     $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking...</small>');
   }
-
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
     .then(res => res.json())
     .then(res => {
@@ -222,7 +216,7 @@ function backgroundUserCheck(phone) {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 WIZARD FUNCTIONS (FIXED FLICKER)
+// 🔴 WIZARD FUNCTIONS (FLICKER FIX)
 // ------------------------------------------------------------------------------
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
@@ -231,9 +225,8 @@ function updateFooterButtons(view) {
   if (view === 'returning') $('#btn-group-returning').show();
 }
 
-// 🔥 FLICKER FIX: Use .show() instead of .fadeIn() for initial load
 window.startWizard = function () {
-  $('#wizard-view').show(); // Instant show
+  $('#wizard-view').show(); // 🔥 CHANGED: Instant Show
   updateFooterButtons('wizard');
   currentStep = 1;
   showStep(1);
@@ -241,7 +234,8 @@ window.startWizard = function () {
 
 window.showStep = function (s) {
   $('.wiz-step').hide();
-  // Only fade if it's NOT the first step to prevent initial flicker
+
+  // 🔥 FLICKER FIX: First step shows instantly, subsequent steps fade
   if (s === 1) {
     $(`.wiz-step[data-step="${s}"]`).show();
   } else {
@@ -312,10 +306,12 @@ function submitWizardOrder() {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 RETURNING USER & STATUS
+// 🔴 RETURNING USER (INSTANT LOAD)
 // ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder) {
-  $('#returning-user-view').fadeIn(); updateFooterButtons('returning'); isEditMode = isActiveOrder;
+  // 🔥 CHANGED: .show() instead of .fadeIn()
+  $('#returning-user-view').show();
+  updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
@@ -394,7 +390,7 @@ window.submitQuickOrder = function () {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION LOGIC (UPDATED WITH YOUR CSS & TIMING)
+// 🎥 VIDEO ANIMATION LOGIC (WITH SLIDE-IN BADGE)
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('body').append(`
@@ -404,38 +400,32 @@ function injectVideoCSS() {
         .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
         video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 🏷️ YOUR FINAL BADGE CSS */
+        /* 🏷️ FINAL BADGE CSS */
         .digital-label {
             position: absolute;
-            top: 67%; /* Updated */
-            left: 53%; /* Updated */
-            
-            /* Start Position: Shifted Right & Small */
+            top: 67%; 
+            left: 53%; 
+            /* Start: Shifted Right (-30%) & Small */
             transform: translate(-30%, -50%) scale(0.7); 
             
-            width: 128px; /* Updated */
-            height: 128px; /* Updated */
+            width: 128px; 
+            height: 128px; 
             border-radius: 50%;
-            background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); /* Updated */
+            background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(0, 0, 0, 0.1);
             
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
             z-index: 10;
             opacity: 0; 
             
-            /* Smooth Slide-in Transition */
+            /* Slide Animation */
             transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* SHOW STATE: Center & Full Size */
+        /* Visible State */
         .digital-label.visible { 
             opacity: 1; 
-            /* Moves back to center (-50%) */
             transform: translate(-50%, -50%) scale(1); 
         }
 
@@ -480,16 +470,16 @@ function playVideoAnimation(userName, apiCallback) {
   video.currentTime = 0;
   video.play().catch(e => console.log("Auto-play blocked", e));
 
-  apiCallback(); // POST to server
+  apiCallback();
 
-  // ⏱️ UPDATED TIMING (4.7 Seconds)
+  // ⏱️ TIMING (4.7s)
   setTimeout(() => {
     label.classList.add('visible');
   }, 4700);
 
   setTimeout(() => {
     if (window.orderSuccess === true) {
-      // Logic continued in postOrder
+      // Continue
     }
   }, 8000);
 }
@@ -508,7 +498,6 @@ function postOrder(data) {
 
         window.orderSuccess = true;
 
-        // Wait 6 seconds min for video to play
         setTimeout(() => {
           $('#videoModal').fadeOut();
           $('#order-form').hide();
