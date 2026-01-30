@@ -80,7 +80,6 @@ window.getAlert = function (key) {
   return translations[lang][key] || key;
 }
 
-// 🔥 FIXED: Added missing function
 window.updateWizardLocDisplay = function () {
   $('#display-po').text((userData.postoffice || '').toUpperCase());
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
@@ -110,6 +109,7 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
+  // 🧪 TEST MODE CHECK (Use ?mode=test)
   if (urlParams.get('mode') === 'test') {
     $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
     window.testVideo = function () {
@@ -117,22 +117,31 @@ $(document).ready(function () {
     }
   }
 
+  // 🔥 EDIT VIEW LOGIC (Local First)
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
+
+      // 1. Check Local Storage First (Fastest)
       for (let ph of phones) {
         if (localUsersMap[ph].orderid === oid) {
+          console.log("🚀 Order found locally. Loading...");
           loadOrderData(localUsersMap[ph]);
           foundLocally = true;
           showLoader(false);
-          syncUserDataBackground(ph);
+          syncUserDataBackground(ph); // Update from server in background
           break;
         }
       }
-      if (!foundLocally) fetchOrder(oid);
+
+      // 2. Fetch from Server only if not local
+      if (!foundLocally) {
+        console.log("⚠️ Order not local. Fetching from server...");
+        fetchOrder(oid);
+      }
     }
   } else {
     showLoader(false);
@@ -150,6 +159,7 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
+  // 🔥 PRELOAD VIDEO IMMEDIATELY (Zero Lag)
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
@@ -167,7 +177,11 @@ window.handlePhoneNext = function () {
 
 function loadOrderData(d) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
-  if (d.phone) { localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d }; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
+  // Save to Local on Load
+  if (d.phone) {
+    localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
+    SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+  }
   if (d.Status === 'Dispatched' || d.Status === 'Completed') { editingOrderId = null; showReturningUserView(d, false); } else { showReturningUserView(d, true); }
 }
 
@@ -247,7 +261,6 @@ window.nextStep = async function () {
   if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
   if (currentStep === 5) {
     if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
-    // Update display here as well
     updateWizardLocDisplay();
     currentStep = 6; showStep(6); return;
   }
@@ -358,7 +371,7 @@ window.submitQuickOrder = function () {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION LOGIC (WITH OVERLAY)
+// 🎥 VIDEO ANIMATION LOGIC (UPDATED WITH YOUR CSS)
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('body').append(`
@@ -368,29 +381,43 @@ function injectVideoCSS() {
         .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
         video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 🏷️ THE BADGE (Hidden initially) */
+        /* 🏷️ YOUR UPDATED BADGE CSS */
         .digital-label {
             position: absolute;
-            top: 50%; left: 50%;
-            /* START POS: Shifted Right & Small */
-            transform: translate(-30%, -50%) scale(0.8); 
+            top: 67%; /* Your update */
+            left: 53%; /* Your update */
+            /* Start Position: Shifted Right (-30%) & Small */
+            transform: translate(-30%, -50%) scale(0.7); 
             
-            width: 150px; height: 150px; border-radius: 50%;
-            background: radial-gradient(circle, #fffdf5 40%, #ebdcb2 100%);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 1px solid rgba(0,0,0,0.1);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            width: 128px; /* Your update */
+            height: 128px; /* Your update */
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); /* Your update */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             z-index: 10;
             opacity: 0; 
+            
+            /* Smooth Slide-in Transition */
             transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         /* SHOW STATE: Center & Full Size */
-        .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .digital-label.visible { 
+            opacity: 1; 
+            /* Moves back to center (-50%) */
+            transform: translate(-50%, -50%) scale(1); 
+        }
 
-        .digital-label img { width: 55px; opacity: 0.95; margin-bottom: 4px; }
+        .digital-label img { width: 50px; opacity: 0.95; margin-bottom: 3px; }
         .digital-label .packed-text { font-size: 8px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 2px; }
-        .digital-label .name-text { font-size: 16px; font-weight: 900; color: #2c1e1a; text-transform: uppercase; font-family: 'Courier New', monospace; border-bottom: 2px dashed #8d6e63; padding-bottom: 2px; }
+        .digital-label .name-text { font-size: 14px; font-weight: 900; color: #2c1e1a; text-transform: uppercase; font-family: 'Courier New', monospace; border-bottom: 2px dashed #8d6e63; padding-bottom: 2px; }
 
         .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
     </style>
@@ -431,10 +458,10 @@ function playVideoAnimation(userName, apiCallback) {
 
   apiCallback(); // POST to server
 
-  // ⏱️ TIMING: Badge Slides in when bottle faces front
+  // ⏱️ UPDATED TIMING (4.7 Seconds)
   setTimeout(() => {
     label.classList.add('visible');
-  }, 3000); // 3 Seconds (Adjust if needed)
+  }, 4700);
 
   setTimeout(() => {
     if (window.orderSuccess === true) {
@@ -583,6 +610,7 @@ function fetchOrder(oid) {
         updateAdminUI(status, oid);
       }
 
+      // 🔥 LOAD & SAVE TO LOCAL
       loadOrderData(d);
     } else {
       $('#step-0').fadeIn();
