@@ -80,11 +80,17 @@ window.getAlert = function (key) {
   return translations[lang][key] || key;
 }
 
+// 🔥 FIXED: Added missing function
+window.updateWizardLocDisplay = function () {
+  $('#display-po').text((userData.postoffice || '').toUpperCase());
+  $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
+}
+
 // ------------------------------------------------------------------------------
 // 🔴 DOCUMENT READY
 // ------------------------------------------------------------------------------
 $(document).ready(function () {
-  injectVideoCSS(); // 🔥 Inject Video CSS
+  injectVideoCSS();
 
   const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
   $('#quantity').append(qtyOpts);
@@ -104,7 +110,6 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
-  // 🧪 TEST MODE CHECK (Use ?mode=test)
   if (urlParams.get('mode') === 'test') {
     $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
     window.testVideo = function () {
@@ -145,7 +150,6 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
-  // 🔥 PRELOAD VIDEO IMMEDIATELY (Zero Lag)
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
@@ -241,7 +245,12 @@ window.nextStep = async function () {
   }
   if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
   if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
-  if (currentStep === 5) { if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; } $('#display-po').text(userData.postoffice); $('#display-dist-state').text(`${$('#place').val()}, ${userData.district}`.toUpperCase()); }
+  if (currentStep === 5) {
+    if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
+    // Update display here as well
+    updateWizardLocDisplay();
+    currentStep = 6; showStep(6); return;
+  }
   if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
   if (currentStep === 7) { if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; } submitWizardOrder(); return; }
   currentStep++; showStep(currentStep);
@@ -263,8 +272,6 @@ function submitWizardOrder() {
     quantity: $('#quantity').val(), message: '', custId: myCustId
   };
   localUsersMap[finalData.phone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-
-  // 🔥 PLAY VIDEO ANIMATION
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
@@ -347,7 +354,6 @@ window.submitQuickOrder = function () {
   localUsersMap[newPhone] = finalData;
   SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
-  // 🔥 PLAY VIDEO ANIMATION
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
