@@ -109,7 +109,6 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
-  // 🧪 TEST MODE CHECK (Use ?mode=test)
   if (urlParams.get('mode') === 'test') {
     $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
     window.testVideo = function () {
@@ -117,7 +116,7 @@ $(document).ready(function () {
     }
   }
 
-  // 🔥 EDIT VIEW LOGIC (Local First)
+  // 🔥 FIXED EDIT VIEW LOGIC (NO RELOAD)
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
@@ -125,41 +124,41 @@ $(document).ready(function () {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
 
-      // 1. Check Local Storage First (Fastest)
+      // 1. Check Local First & STOP LOADER IMMEDIATELY
       for (let ph of phones) {
         if (localUsersMap[ph].orderid === oid) {
-          console.log("🚀 Order found locally. Loading...");
+          showLoader(false); // Stop loading immediately
+          $('#step-0').hide(); // Hide phone input
           loadOrderData(localUsersMap[ph]);
           foundLocally = true;
-          showLoader(false);
-          syncUserDataBackground(ph); // Update from server in background
+
+          // Silent Background Sync
+          syncUserDataBackground(ph);
           break;
         }
       }
 
-      // 2. Fetch from Server only if not local
+      // 2. Only fetch if NOT found locally
       if (!foundLocally) {
-        console.log("⚠️ Order not local. Fetching from server...");
         fetchOrder(oid);
       }
     }
   } else {
     showLoader(false);
-    $('#step-0').fadeIn();
+    $('#step-0').fadeIn(); // Normal Start
     updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
 });
 
 // ------------------------------------------------------------------------------
-// 🔴 CORE APP LOGIC (ZERO LOADING)
+// 🔴 CORE APP LOGIC (FIXED FLICKER)
 // ------------------------------------------------------------------------------
 window.handlePhoneNext = function () {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
-  // 🔥 PRELOAD VIDEO IMMEDIATELY (Zero Lag)
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
@@ -168,16 +167,17 @@ window.handlePhoneNext = function () {
     return;
   }
 
+  // 🔥 FLICKER FIX: Hide step-0 AND Show Wizard Instantly
   editingOrderId = null;
-  $('#step-0').hide();
+  $('#step-0').hide(); // Immediate hide
   $('#whatsapp').val(phone);
-  startWizard();
+  startWizard(); // Immediate show
+
   backgroundUserCheck(phone);
 }
 
 function loadOrderData(d) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
-  // Save to Local on Load
   if (d.phone) {
     localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
     SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
@@ -188,9 +188,12 @@ function loadOrderData(d) {
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-  if ($('#status-checker').length === 0) {
-    $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking status...</small>');
+
+  // Checking indicator only if needed
+  if ($('#quick-qty').length > 0 && $('#status-checker').length === 0) {
+    $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking...</small>');
   }
+
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
     .then(res => res.json())
     .then(res => {
@@ -219,7 +222,7 @@ function backgroundUserCheck(phone) {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 WIZARD FUNCTIONS
+// 🔴 WIZARD FUNCTIONS (FIXED FLICKER)
 // ------------------------------------------------------------------------------
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
@@ -228,14 +231,34 @@ function updateFooterButtons(view) {
   if (view === 'returning') $('#btn-group-returning').show();
 }
 
-window.startWizard = function () { $('#wizard-view').fadeIn(); updateFooterButtons('wizard'); currentStep = 1; showStep(1); }
+// 🔥 FLICKER FIX: Use .show() instead of .fadeIn() for initial load
+window.startWizard = function () {
+  $('#wizard-view').show(); // Instant show
+  updateFooterButtons('wizard');
+  currentStep = 1;
+  showStep(1);
+}
 
 window.showStep = function (s) {
-  $('.wiz-step').hide(); $(`.wiz-step[data-step="${s}"]`).fadeIn();
+  $('.wiz-step').hide();
+  // Only fade if it's NOT the first step to prevent initial flicker
+  if (s === 1) {
+    $(`.wiz-step[data-step="${s}"]`).show();
+  } else {
+    $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
+  }
+
   const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next'); const lang = $('.form-select').val();
-  if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
-  else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
+
+  if (s === 7) {
+    btn.html(translations[lang].btn_order);
+    btn.addClass('btn-brand-green');
+    updatePrice($('#quantity').val(), false);
+  } else {
+    btn.html(translations[lang].btn_next);
+    btn.removeClass('btn-brand-green');
+  }
   if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
 }
 
@@ -371,7 +394,7 @@ window.submitQuickOrder = function () {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION LOGIC (UPDATED WITH YOUR CSS)
+// 🎥 VIDEO ANIMATION LOGIC (UPDATED WITH YOUR CSS & TIMING)
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('body').append(`
@@ -381,18 +404,19 @@ function injectVideoCSS() {
         .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
         video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 🏷️ YOUR UPDATED BADGE CSS */
+        /* 🏷️ YOUR FINAL BADGE CSS */
         .digital-label {
             position: absolute;
-            top: 67%; /* Your update */
-            left: 53%; /* Your update */
-            /* Start Position: Shifted Right (-30%) & Small */
+            top: 67%; /* Updated */
+            left: 53%; /* Updated */
+            
+            /* Start Position: Shifted Right & Small */
             transform: translate(-30%, -50%) scale(0.7); 
             
-            width: 128px; /* Your update */
-            height: 128px; /* Your update */
+            width: 128px; /* Updated */
+            height: 128px; /* Updated */
             border-radius: 50%;
-            background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); /* Your update */
+            background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); /* Updated */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(0, 0, 0, 0.1);
             
@@ -610,7 +634,6 @@ function fetchOrder(oid) {
         updateAdminUI(status, oid);
       }
 
-      // 🔥 LOAD & SAVE TO LOCAL
       loadOrderData(d);
     } else {
       $('#step-0').fadeIn();
