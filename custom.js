@@ -415,6 +415,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     // FINISHED MODE: Show New Order Button
     $('.qty-label').hide();
     $('#quick-price-box').hide();
+    $('#quick-qty').hide();
     $('#btn-quick-submit').hide();
     $('#btn-edit-address').hide();
 
