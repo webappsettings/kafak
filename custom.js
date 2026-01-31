@@ -242,8 +242,9 @@ function syncUserDataBackground(phone) {
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         let s = mergedData.Status.toLowerCase();
-        // If finished, reset ID to allow New Order
-        if (['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s)) {
+
+        // 🔥 മാറ്റം 1: ഇവിടെ 'paid' ഒഴിവാക്കി. (Paid ആയാലും പഴയ ഓർഡർ തന്നെ എഡിറ്റ് ചെയ്യാം)
+        if (['dispatched', 'completed', 'archive', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
         }
@@ -251,7 +252,8 @@ function syncUserDataBackground(phone) {
         userData = mergedData;
         saveToLocal(phone, mergedData);
 
-        let isActive = !(['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s));
+        // 🔥 മാറ്റം 2: Paid സ്റ്റാറ്റസ് 'Active' ആയി കണക്കാക്കുന്നു
+        let isActive = !(['dispatched', 'completed', 'archive', 'delivered'].includes(s));
         showReturningUserView(mergedData, isActive, true);
       }
     })
@@ -375,6 +377,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
+  // Date UI
   if (d.date) {
     if ($('#display-date').length === 0) {
       $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px; font-weight:600;"></div>').insertAfter('#display-oid');
@@ -399,21 +402,22 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateSummaryDisplay();
   $('#status-area').empty();
 
-  // 🔥 STATUS LOGIC
+  // STATUS LOGIC
   if (isServerData) { updateStatusUI(d); }
 
   const status = String(d.Status || '').trim().toLowerCase();
-  const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive' || status === 'delivered');
+
+  // 🔥 മാറ്റം 3: ഇവിടെയും 'paid' ഒഴിവാക്കി. (Paid വന്നാൽ ഫിനിഷ്ഡ് അല്ല)
+  const isFinished = (status === 'dispatched' || status === 'completed' || status === 'archive' || status === 'delivered');
   const lang = $('.form-select').val() || 'en';
 
   if (isFinished && isServerData) {
-    // FINISHED MODE: Hide actions, show New Order button
+    // FINISHED MODE: Show New Order Button
     $('.qty-label').hide();
     $('#quick-price-box').hide();
     $('#btn-quick-submit').hide();
-    $('#btn-edit-address').hide(); // Collapse Edit
+    $('#btn-edit-address').hide();
 
-    // Inject New Order Button in the QTY slot
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
@@ -422,13 +426,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                     <i class="fas fa-plus-circle me-1"></i> ${btnText}
                 </button>
             </div>
-          `).insertAfter('#status-area');
+          `).insertBefore('#status-area');
     }
     $('#btn-new-order-mode').show();
   } else {
-    // NORMAL MODE
+    // NORMAL MODE (Pending / Paid)
     $('.qty-label').show();
-    // Show Price UNLESS Dispatched/Completed/Delivered
+
+    // Show Price Box? (Hide only if Dispatched/Completed)
     if (status === 'dispatched' || status === 'completed' || status === 'delivered') {
       $('#quick-price-box').hide();
     } else {
@@ -443,8 +448,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     if (isActiveOrder) {
       $('#quick-qty').val(d.quantity).trigger('change');
       $('#btn-quick-submit span').text(translations[lang].btn_update);
-      // Paid Logic: Disable lower qty
+
+      // 🔥 മാറ്റം 4: Paid ആണെങ്കിൽ കുറഞ്ഞ ക്വാണ്ടിറ്റി Disable ചെയ്യുന്നു
       if (status === 'paid') {
+        $('#quick-qty').hide();
         const currentQty = parseInt(d.quantity);
         $('#quick-qty option').each(function () {
           if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
