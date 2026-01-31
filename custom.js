@@ -4,6 +4,7 @@
 const sc = `https://script.google.com/macros/s/AKfycbyzdH9lsX47-P6nATPf3VDRDuTydIEavI8p-OBylwILettoXNecRk06QAAaLMXtciVh9g/exec`;
 // ------------------------------------------------------------------------------
 
+
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -56,6 +57,7 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
+// Separate Key for Customer Data
 const STORAGE_KEY = 'kafakCustomerData';
 
 // 🛡️ SAFE STORAGE
@@ -88,6 +90,7 @@ window.updateWizardLocDisplay = function () {
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
+// 🔥 Pretty Date Format (10 Oct, 04:30 PM)
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
@@ -212,7 +215,7 @@ function loadOrderData(d, isServerData = false) {
   showReturningUserView(d, true, isServerData);
 }
 
-// 🔥 REFRESH BUTTON LOGIC
+// 🔥 REFRESH BUTTON LOGIC (LOADER)
 window.manualRefresh = function () {
   setRefreshLoading(true);
   const phone = currentLoginPhone;
@@ -257,7 +260,8 @@ function syncUserDataBackground(phone) {
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         // If finished status, prepare UI for new order potentially
-        if (['dispatched', 'completed', 'paid', 'archive'].includes(mergedData.Status.toLowerCase())) {
+        let s = mergedData.Status.toLowerCase();
+        if (s === 'dispatched' || s === 'completed' || s === 'paid' || s === 'archive') {
           editingOrderId = null;
           $('#display-oid').hide();
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
@@ -269,10 +273,7 @@ function syncUserDataBackground(phone) {
         saveToLocal(phone, mergedData);
 
         // 🔥 UPDATE UI with Server Flag = TRUE
-        // Logic for active order: If status is finalized, show "New Order" mode
-        let s = mergedData.Status.toLowerCase();
         let isActive = !(s === 'dispatched' || s === 'completed' || s === 'paid' || s === 'archive');
-
         showReturningUserView(mergedData, isActive, true);
 
       }
@@ -351,7 +352,7 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-// 🔥 DEFINED: submitQuickOrder
+// 🔥 DEFINED: submitQuickOrder (Fixes ReferenceError)
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
@@ -387,11 +388,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
-  // 🔥 DATE UI
+  // 🔥 DATE UI (Fixes Missing Date)
   if (d.date) {
+    if ($('#display-date').length === 0) {
+      $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px; font-weight:600;"></div>').insertAfter('#display-oid');
+    }
     $('#display-date').text(formatPrettyDate(d.date)).show();
   } else {
-    $('#display-date').hide(); // Hide if no date
+    $('#display-date').hide();
   }
 
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
@@ -404,10 +408,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-    // Inject Date UI placeholder if missing
-    if ($('#display-date').length === 0) {
-      $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px;"></div>').insertAfter('#display-oid');
-    }
+    // Placeholder for Status Area
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
@@ -429,8 +430,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   if (isFinished && isServerData) {
     $('#quick-price-box').hide();
     $('#btn-quick-submit').hide();
-    $('#btn-edit-address').hide();
+    $('#btn-edit-address').hide(); // Collapse Edit
 
+    // Inject New Order Button if missing
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
@@ -528,6 +530,7 @@ function updateSummaryDisplay() {
   $('#saved-address-text').text(addr).css('margin-bottom', '5px');
   $('#saved-place-dist').text('');
 
+  // 🔥 COMPACT PHONE UI
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${phone}`;
   if (alt) phoneHtml += `, ${alt}`;
   if (wa) phoneHtml += ` &nbsp;<span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
@@ -538,6 +541,19 @@ function updateSummaryDisplay() {
   $('#saved-alt-text').hide();
 
   checkForChanges();
+}
+
+// 🔥 DEFINED: updatePrice (Fixes ReferenceError)
+window.updatePrice = function (qty, isQuick) {
+  if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
+  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
+  container.find('.qty-count').text(n); container.find('.val-base').text(base); container.find('.val-courier').text(courier); container.find('.val-total').text(total); container.fadeIn();
+  if (!isQuick) {
+    let altHtml = $('#altphone').val() ? `, ${$('#altphone').val()}` : '';
+    let addrHtml = `<span class="dt-name">${$('#name').val()}</span><span class="dt-addr">${$('#house').val()}, ${$('#place').val()}<br>${(userData.postoffice || '').toUpperCase()}, ${(userData.district || '').toUpperCase()}<br>${(userData.state || '').toUpperCase()} - ${$('#pincode').val()}</span><div class="dt-phone"><i class="fas fa-phone-alt"></i> ${$('#phone').val()}${altHtml}</div><div class="dt-wa"><i class="fab fa-whatsapp"></i> ${$('#whatsapp').val()}</div>`;
+    $('#wiz-final-addr').html(addrHtml); $('#wiz-deliver-box').fadeIn();
+  }
+  if (isQuick) checkForChanges();
 }
 
 function checkForChanges() {
@@ -571,8 +587,7 @@ function setupAdminView(oid) {
 
 window.updateAdminUI = function (serverStatus, oid) {
   let status = String(serverStatus || '').trim();
-  // Standardize first char upper
-  status = status.charAt(0).toUpperCase() + status.slice(1);
+  status = status.charAt(0).toUpperCase() + status.slice(1); // Standardize
 
   let btnHTML = '';
   // 🔥 Handle Archive Logic for Admin
@@ -606,10 +621,10 @@ window.adminAction = function (oid, status) {
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // Local UI Update immediate
+  // Update Admin UI immediately
   updateAdminUI(status, oid);
 
-  // Force sync
+  // Force sync background
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let co = cachedOrders.find(o => o.orderid === oid);
   if (co && co.phone) syncUserDataBackground(co.phone);
@@ -631,7 +646,7 @@ function fetchOrder(oid) {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION (INJECTED)
+// 🎥 VIDEO ANIMATION (INJECTED) - 🔥 Fixed ReferenceError
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
