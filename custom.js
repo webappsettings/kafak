@@ -2,6 +2,7 @@
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbyzdH9lsX47-P6nATPf3VDRDuTydIEavI8p-OBylwILettoXNecRk06QAAaLMXtciVh9g/exec`;
+// ------------------------------------------------------------------------------
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -23,7 +24,8 @@ const translations = {
     err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...", err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല.",
     err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക", err_house: "വീട്ടുപേര് നൽകുക", err_place: "സ്ഥലം നൽകുക",
     err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
-    confirm_home: "ഹോമിലേക്ക് പോകണോ? വിവരങ്ങൾ നഷ്ടപ്പെടും.", alert_title: "ശ്രദ്ധിക്കുക"
+    confirm_home: "ഹോമിലേക്ക് പോകണോ? വിവരങ്ങൾ നഷ്ടപ്പെടും.", alert_title: "ശ്രദ്ധിക്കുക",
+    btn_new_order: "പുതിയ ഓർഡർ ചെയ്യാം"
   },
   en: {
     lbl_phone: "Phone Number", ph_phone: "Enter Mobile Number", btn_next: "CONTINUE", welcome_back: "Welcome Back!",
@@ -39,7 +41,8 @@ const translations = {
     err_checking_pin: "Checking Pincode...", err_pin_not_found: "Pincode not found.",
     err_select_po: "Please select Post Office", err_house: "Please enter House Name", err_place: "Please enter Place",
     err_qty: "Please select quantity",
-    confirm_home: "Go home? Data will be lost.", alert_title: "Alert"
+    confirm_home: "Go home? Data will be lost.", alert_title: "Alert",
+    btn_new_order: "PLACE NEW ORDER"
   }
 };
 
@@ -53,7 +56,6 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
-// 🔥 SEPARATE KEY FOR CUSTOMER DATA
 const STORAGE_KEY = 'kafakCustomerData';
 
 // 🛡️ SAFE STORAGE
@@ -84,6 +86,13 @@ window.getAlert = function (key) {
 window.updateWizardLocDisplay = function () {
   $('#display-po').text((userData.postoffice || '').toUpperCase());
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
+}
+
+function formatPrettyDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return "";
+  return d.toLocaleString('en-US', { day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric', hour12: true });
 }
 
 // ------------------------------------------------------------------------------
@@ -128,23 +137,29 @@ $(document).ready(function () {
     }
   }
 
-  // INSTANT EDIT LOAD LOGIC
+  // 🔥 INSTANT EDIT LOAD LOGIC
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
+
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
           $('#step-0').hide();
+
+          // Load FORM Data Only (No Status)
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
+
+          // Sync Status (Fresh from Server)
           syncUserDataBackground(ph);
           break;
         }
       }
+
       if (!foundLocally) fetchOrder(oid);
     }
   } else {
@@ -166,6 +181,7 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
+    // Load Form Instantly, Status "Checking..."
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -178,12 +194,14 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
+// 🔥 SAVE ONLY CLEAN DATA (Contact Info)
 function saveToLocal(phone, data) {
   let cleanData = { ...data };
   delete cleanData.Status; delete cleanData.status;
   delete cleanData.tracking; delete cleanData.courier;
   delete cleanData.provider; delete cleanData.offer;
   delete cleanData.grandTotal;
+
   localUsersMap[phone] = cleanData;
   SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 }
@@ -194,7 +212,7 @@ function loadOrderData(d, isServerData = false) {
   showReturningUserView(d, true, isServerData);
 }
 
-// 🔥 REFRESH BUTTON LOGIC (This is now the LOADER)
+// 🔥 REFRESH BUTTON LOGIC
 window.manualRefresh = function () {
   setRefreshLoading(true);
   const phone = currentLoginPhone;
@@ -224,21 +242,39 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
+  // Trigger Button Loader
   setRefreshLoading(true);
 
+  // Cache busting
   return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
         let mergedData = { ...localData, ...serverData };
+
+        // Ensure Status Key Consistency
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
+        // If finished status, prepare UI for new order potentially
+        if (['dispatched', 'completed', 'paid', 'archive'].includes(mergedData.Status.toLowerCase())) {
+          editingOrderId = null;
+          $('#display-oid').hide();
+          if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
+        }
+
         userData = mergedData;
+
+        // Save ONLY basic info to local
         saveToLocal(phone, mergedData);
 
-        let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed' || mergedData.Status === 'Paid');
+        // 🔥 UPDATE UI with Server Flag = TRUE
+        // Logic for active order: If status is finalized, show "New Order" mode
+        let s = mergedData.Status.toLowerCase();
+        let isActive = !(s === 'dispatched' || s === 'completed' || s === 'paid' || s === 'archive');
+
         showReturningUserView(mergedData, isActive, true);
+
       }
     })
     .catch(err => { console.log("Sync error"); })
@@ -272,8 +308,10 @@ window.showStep = function (s) {
   $('.wiz-step').hide();
   if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
   else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
+
   const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next'); const lang = $('.form-select').val();
+
   if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
   else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
   if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
@@ -313,8 +351,30 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-function submitWizardOrder() {
-  const finalData = { orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(), altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: $('#pincode').val(), postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala', quantity: $('#quantity').val(), message: '', custId: myCustId };
+// 🔥 DEFINED: submitQuickOrder
+window.submitQuickOrder = function () {
+  if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+  const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
+
+  const finalData = {
+    orderid: editingOrderId, // Null if new order
+    name: $('#saved-name').text(),
+    phone: newPhone,
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: pin,
+    postoffice: $('#edit-postoffice').val(),
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
+    quantity: $('#quick-qty').val(),
+    message: '',
+    custId: myCustId
+  };
+
+  // Save contact info only
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -327,11 +387,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
-  // 🔥 SHOW DATE (AM/PM) UI
+  // 🔥 DATE UI
   if (d.date) {
-    $('#display-date').text(formatOrderDate(d.date)).show();
+    $('#display-date').text(formatPrettyDate(d.date)).show();
   } else {
-    $('#display-date').hide();
+    $('#display-date').hide(); // Hide if no date
   }
 
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
@@ -339,16 +399,66 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
+  // 1. Structure Check
+  if ($('.qty-action-group').length === 0) {
+    $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
+    $('#quick-qty').css('flex-grow', '1');
+    $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
+    // Inject Date UI placeholder if missing
+    if ($('#display-date').length === 0) {
+      $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px;"></div>').insertAfter('#display-oid');
+    }
+    $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
+  }
+
   updateSummaryDisplay();
 
   $('#status-area').empty();
 
+  // 🔥 STATUS LOGIC: Server Priority
   if (isServerData) {
     updateStatusUI(d);
   }
 
-  if ($('#status-area').length === 0) {
-    $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
+  // "NEW ORDER" LOGIC
+  const status = String(d.Status || '').trim().toLowerCase();
+  const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive');
+  const lang = $('.form-select').val() || 'en';
+
+  // Only show "New Order" button if data came from server AND is finished
+  if (isFinished && isServerData) {
+    $('#quick-price-box').hide();
+    $('#btn-quick-submit').hide();
+    $('#btn-edit-address').hide();
+
+    if ($('#btn-new-order-mode').length === 0) {
+      const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
+      $(`
+            <div id="btn-new-order-mode" class="mt-3 text-center fade-in">
+                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px;">
+                    <i class="fas fa-plus-circle me-1"></i> ${btnText}
+                </button>
+            </div>
+          `).insertAfter('#status-area');
+    }
+    $('#btn-new-order-mode').show();
+  } else {
+    // Normal / Active Order
+    $('#quick-price-box').show();
+    $('#btn-quick-submit').show();
+    $('#btn-edit-address').show();
+    $('#btn-new-order-mode').hide();
+
+    $('#quick-qty option').prop('disabled', false);
+    if (isActiveOrder) {
+      $('#quick-qty').val(d.quantity).trigger('change');
+      $('#btn-quick-submit span').text(translations[lang].btn_update);
+    } else {
+      // Reset view for new order input
+      $('#quick-qty').val('').trigger('change');
+      $('#quick-price-box').hide();
+      $('#btn-quick-submit span').text(translations[lang].btn_order);
+    }
   }
 
   // 4. REFRESH BUTTON (Bottom)
@@ -366,46 +476,49 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   checkForChanges();
 }
 
+window.enableNewOrderMode = function () {
+  $('#btn-new-order-mode').hide();
+  $('#quick-price-box').fadeIn();
+  $('#quick-qty').val('').trigger('change').focus();
+  $('#btn-quick-submit').fadeIn();
+  $('#btn-edit-address').fadeIn();
+
+  const lang = $('.form-select').val() || 'en';
+  $('#btn-quick-submit span').text(translations[lang].btn_order);
+
+  isEditMode = false;
+  editingOrderId = null;
+  $('#display-oid').hide();
+  $('#display-date').hide(); // Hide old date
+}
+
 function updateStatusUI(d) {
   $('#status-area').empty();
   let html = '';
 
-  if (d.offer === true || String(d.offer).toUpperCase() === 'TRUE') {
+  if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
   let status = String(d.Status || d.status || '').trim().toLowerCase();
 
-  // 🔥 ARCHIVE STATUS LOGIC (Treated as Sent for Customer)
-  if (status === 'archive') status = 'sent';
-
-  if (status === 'paid') {
+  // 🔥 Handle Archive Logic for Customer (Treat as Sent/Pending)
+  if (status === 'archive') {
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
+  }
+  else if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
   }
   else if (status === 'dispatched' || status === 'completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
-    let courierName = d.courier ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier}</div>` : '';
+    let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
-    $('#btn-edit-address').hide();
-  } else if (status === 'sent' || status === 'pending') {
+  }
+  else if (status === 'sent' || status === 'pending') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
   }
 
   $('#status-area').html(html);
-}
-
-// 🔥 Date Helper
-function formatOrderDate(dateStr) {
-  if (!dateStr) return "";
-  let d = new Date(dateStr);
-  let hours = d.getHours();
-  let minutes = d.getMinutes();
-  let ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  let strTime = hours + ':' + minutes + ' ' + ampm;
-  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " " + strTime;
 }
 
 function updateSummaryDisplay() {
@@ -425,18 +538,6 @@ function updateSummaryDisplay() {
   $('#saved-alt-text').hide();
 
   checkForChanges();
-}
-
-window.updatePrice = function (qty, isQuick) {
-  if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
-  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-  container.find('.qty-count').text(n); container.find('.val-base').text(base); container.find('.val-courier').text(courier); container.find('.val-total').text(total); container.fadeIn();
-  if (!isQuick) {
-    let altHtml = $('#altphone').val() ? `, ${$('#altphone').val()}` : '';
-    let addrHtml = `<span class="dt-name">${$('#name').val()}</span><span class="dt-addr">${$('#house').val()}, ${$('#place').val()}<br>${(userData.postoffice || '').toUpperCase()}, ${(userData.district || '').toUpperCase()}<br>${(userData.state || '').toUpperCase()} - ${$('#pincode').val()}</span><div class="dt-phone"><i class="fas fa-phone-alt"></i> ${$('#phone').val()}${altHtml}</div><div class="dt-wa"><i class="fab fa-whatsapp"></i> ${$('#whatsapp').val()}</div>`;
-    $('#wiz-final-addr').html(addrHtml); $('#wiz-deliver-box').fadeIn();
-  }
-  if (isQuick) checkForChanges();
 }
 
 function checkForChanges() {
@@ -469,28 +570,49 @@ function setupAdminView(oid) {
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
+  let status = String(serverStatus || '').trim();
+  // Standardize first char upper
+  status = status.charAt(0).toUpperCase() + status.slice(1);
+
   let btnHTML = '';
-  // 🔥 Handle Archive Button for Admin
-  if (serverStatus === 'Archive') {
+  // 🔥 Handle Archive Logic for Admin
+  if (status === 'Archive') {
     btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-dark btn-sm fw-bold w-100 shadow-sm" style="background:#444; border:none;">📂 (Archived) CHANGE TO PAID</button>`;
-  } else if (serverStatus === 'Pending') {
-    btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
-  } else if (serverStatus === 'Sent') {
-    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
+  } else if (status === 'Pending') {
+    btnHTML = `
+      <div class="d-flex gap-2 w-100">
+        <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT</button>
+        <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
+      </div>`;
+  } else if (status === 'Sent') {
+    btnHTML = `
+      <div class="d-flex gap-2 w-100">
+        <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID</button>
+        <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
+      </div>`;
   } else {
-    let statusText = serverStatus === 'Dispatched' ? 'DISPATCHED' : (serverStatus === 'Completed' ? 'COMPLETED' : 'PAID');
-    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`;
+    let displayTxt = status === 'Dispatched' ? 'DISPATCHED' : (status === 'Completed' ? 'COMPLETED' : status.toUpperCase());
+    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${displayTxt} ✅</button>`;
   }
   $('#admin-btn-container').html(btnHTML); $('#admin-action-bar').slideDown();
 }
 
 window.adminAction = function (oid, status) {
-  if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
+  if (status === 'Archive' && !confirm(`Move this order to Archive?`)) return;
+  if (status !== 'Archive' && !confirm(`Change status to '${status}'?`)) return;
+
   let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  // Local UI Update immediate
   updateAdminUI(status, oid);
+
+  // Force sync
+  let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
+  let co = cachedOrders.find(o => o.orderid === oid);
+  if (co && co.phone) syncUserDataBackground(co.phone);
 }
 
 window.clearAdminCache = function () {
