@@ -108,7 +108,7 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // LOAD & CLEAN LOCAL DATA
+  // LOAD LOCAL DATA
   const saved = SafeStorage.getItem(STORAGE_KEY);
   if (saved) {
     try {
@@ -144,7 +144,6 @@ $(document).ready(function () {
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
-
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
@@ -155,7 +154,6 @@ $(document).ready(function () {
           break;
         }
       }
-
       if (!foundLocally) fetchOrder(oid);
     }
   } else {
@@ -219,7 +217,6 @@ window.manualRefresh = function () {
 function setRefreshLoading(isLoading) {
   const btn = $('#refresh-btn');
   if (btn.length === 0) return;
-
   if (isLoading) {
     btn.prop('disabled', true).css('opacity', '0.7');
     btn.find('i').addClass('fa-spin');
@@ -245,7 +242,6 @@ function syncUserDataBackground(phone) {
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         let s = mergedData.Status.toLowerCase();
-        // If finished, clear ID to allow new order logic
         if (['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
@@ -270,7 +266,6 @@ function backgroundUserCheck(phone) {
 // ------------------------------------------------------------------------------
 // 🔴 WIZARD FUNCTIONS
 // ------------------------------------------------------------------------------
-// 🔥 DEFINED: submitWizardOrder (Fixes ReferenceError)
 window.submitWizardOrder = function () {
   const finalData = {
     orderid: editingOrderId,
@@ -292,7 +287,6 @@ window.submitWizardOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-// Dummy handler for inline calls (Fixes 'handleEditPincode' error)
 window.handleEditPincode = function (el) {
   checkForChanges();
 }
@@ -356,7 +350,7 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-// 🔥 DEFINED: submitQuickOrder (Fixes ReferenceError)
+// 🔥 DEFINED: submitQuickOrder
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
@@ -378,7 +372,6 @@ window.submitQuickOrder = function () {
     message: '',
     custId: myCustId
   };
-
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -406,42 +399,39 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // 1. Structure Check
   if ($('.qty-action-group').length === 0) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-    // Placeholder for Status Area
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
   updateSummaryDisplay();
-
   $('#status-area').empty();
 
-  // 🔥 STATUS LOGIC: Server Priority
+  // 🔥 STATUS LOGIC
   if (isServerData) {
     updateStatusUI(d);
   }
 
-  // 🔥 "NEW ORDER" LOGIC & FINISHED STATE
+  // "NEW ORDER" LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
   const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive' || status === 'delivered');
   const lang = $('.form-select').val() || 'en';
 
   if (isFinished && isServerData) {
-    // HIDE QTY & EDIT FOR FINISHED ORDERS
+    // HIDE ACTIONS
+    $('.qty-label').hide();
     $('#quick-price-box').hide();
     $('#btn-quick-submit').hide();
     $('#btn-edit-address').hide(); // Collapse Edit
-    $('.qty-label').hide(); // HIDE QTY LABEL
 
-    // Inject New Order Button in the QTY slot
+    // SHOW NEW ORDER BUTTON
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
-            <div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in">
-                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px; width:100%;">
+            <div id="btn-new-order-mode" class="mt-3 text-center fade-in">
+                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px;">
                     <i class="fas fa-plus-circle me-1"></i> ${btnText}
                 </button>
             </div>
@@ -449,18 +439,30 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     }
     $('#btn-new-order-mode').show();
   } else {
-    // Normal / Active Order
-    $('#quick-price-box').show();
+    // NORMAL MODE
     $('.qty-label').show();
+    // 🔥 Price logic: Show UNLESS dispatched (Requested)
+    if (status === 'dispatched' || status === 'completed' || status === 'delivered') {
+      $('#quick-price-box').hide();
+    } else {
+      $('#quick-price-box').show();
+    }
+
     $('#btn-quick-submit').show();
     $('#btn-edit-address').show();
-    $('.address-box').hide();
     $('#btn-new-order-mode').hide();
 
     $('#quick-qty option').prop('disabled', false);
     if (isActiveOrder) {
       $('#quick-qty').val(d.quantity).trigger('change');
       $('#btn-quick-submit span').text(translations[lang].btn_update);
+      // 🔥 PAID LOGIC: Disable lower qty
+      if (status === 'paid') {
+        const currentQty = parseInt(d.quantity);
+        $('#quick-qty option').each(function () {
+          if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
+        });
+      }
     } else {
       $('#quick-qty').val('').trigger('change');
       $('#quick-price-box').hide();
@@ -468,7 +470,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     }
   }
 
-  // 4. REFRESH BUTTON
   if ($('#refresh-btn').length === 0) {
     $('#refresh-btn-container').remove();
     $('#returning-user-view').append(`
@@ -489,8 +490,10 @@ window.enableNewOrderMode = function () {
   $('.qty-label').fadeIn();
   $('#quick-qty').val('').trigger('change').focus();
   $('#btn-quick-submit').fadeIn();
-  $('#btn-edit-address').fadeIn();
-  $('.address-box').fadeIn();
+  $('#btn-edit-address').fadeIn(); // Enable edit
+
+  // Do NOT expand address-box automatically (Requested)
+  // $('.address-box').fadeIn(); <--- REMOVED
 
   const lang = $('.form-select').val() || 'en';
   $('#btn-quick-submit span').text(translations[lang].btn_order);
@@ -504,10 +507,8 @@ window.enableNewOrderMode = function () {
 // 🔥 MARK DELIVERED LOGIC
 window.markOrderDelivered = function (oid) {
   if (!confirm("Have you received the order?")) return;
-
   const btn = $('#btn-mark-delivered');
   btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
-
   fetch(sc, {
     method: 'POST',
     body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
@@ -517,7 +518,7 @@ window.markOrderDelivered = function (oid) {
       if (data.result === 'success') {
         const Toast = Swal.mixin({ toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
         Toast.fire({ icon: 'success', title: 'Thank You!' });
-        manualRefresh(); // Reload to show New Order button
+        manualRefresh();
       }
     });
 }
@@ -532,13 +533,8 @@ function updateStatusUI(d) {
 
   let status = String(d.Status || d.status || '').trim().toLowerCase();
 
-  // 🔥 NEW "Delivered" STATUS UI
   if (status === 'delivered') {
-    html += `<div class="p-4 mb-2 rounded shadow-sm bg-white text-center border">
-                 <div class="mb-2"><i class="fas fa-check-circle text-success" style="font-size:30px;"></i></div>
-                 <h6 class="fw-bold mb-1">Order Delivered!</h6>
-                 <small class="text-muted">Enjoy your honey! 🍯</small>
-               </div>`;
+    html += `<div class="p-4 mb-2 rounded shadow-sm bg-white text-center border"><div class="mb-2"><i class="fas fa-check-circle text-success" style="font-size:30px;"></i></div><h6 class="fw-bold mb-1">Order Delivered!</h6><small class="text-muted">Enjoy your honey! 🍯</small></div>`;
   }
   else if (status === 'archive') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
@@ -549,10 +545,7 @@ function updateStatusUI(d) {
   else if (status === 'dispatched') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
     let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
-
-    // 🔥 Mark as Delivered Button
     let markBtn = `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-light btn-sm fw-bold shadow-sm w-100" style="color:#0d6efd; border:1px solid #cce5ff;">✅ I RECEIVED THIS ORDER</button></div>`;
-
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}${markBtn}</div>`;
   }
   else if (status === 'completed') {
@@ -572,20 +565,16 @@ function updateSummaryDisplay() {
   $('#saved-address-text').text(addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
   $('#saved-place-dist').text('');
 
-  // 🔥 COMPACT PHONE UI
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
   if (alt) phoneHtml += ` <span class="text-muted">|</span> ${alt}`;
   if (wa) phoneHtml += ` <span class="text-muted">|</span> <span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
   $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '2px' });
-
-  $('#saved-wa-text').hide();
-  $('#saved-alt-text').hide();
-
+  $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
   checkForChanges();
 }
 
-// 🔥 DEFINED: updatePrice
+// 🔥 DEFINED: updatePrice (Fixes ReferenceError)
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
@@ -610,15 +599,15 @@ function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
 
 // ------------------------------------------------------------------------------
-// 🔴 ADMIN LOGIC & HELPERS
+// 🔴 ADMIN LOGIC
 // ------------------------------------------------------------------------------
 function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-
   if (cachedOrder) {
+    showLoader(false); // 🔥 FIX: Loader disappear for admin
     loadOrderData(cachedOrder, false);
     updateAdminUI(cachedOrder.Status || 'Pending', oid);
     syncUserDataBackground(cachedOrder.phone);
@@ -630,23 +619,13 @@ function setupAdminView(oid) {
 window.updateAdminUI = function (serverStatus, oid) {
   let status = String(serverStatus || '').trim();
   status = status.charAt(0).toUpperCase() + status.slice(1);
-
   let btnHTML = '';
-  // 🔥 Handle Archive Logic for Admin
   if (status === 'Archive') {
     btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-dark btn-sm fw-bold w-100 shadow-sm" style="background:#444; border:none;">📂 (Archived) CHANGE TO PAID</button>`;
   } else if (status === 'Pending') {
-    btnHTML = `
-      <div class="d-flex gap-2 w-100">
-        <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT</button>
-        <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
-      </div>`;
+    btnHTML = `<div class="d-flex gap-2 w-100"><button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT</button><button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button></div>`;
   } else if (status === 'Sent') {
-    btnHTML = `
-      <div class="d-flex gap-2 w-100">
-        <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID</button>
-        <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
-      </div>`;
+    btnHTML = `<div class="d-flex gap-2 w-100"><button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID</button><button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button></div>`;
   } else if (status === 'Delivered') {
     btnHTML = `<button class="btn btn-success btn-sm fw-bold w-100 shadow-sm" disabled>DELIVERED BY CUSTOMER ✅</button>`;
   } else {
@@ -659,39 +638,23 @@ window.updateAdminUI = function (serverStatus, oid) {
 window.adminAction = function (oid, status) {
   if (status === 'Archive' && !confirm(`Move this order to Archive?`)) return;
   if (status !== 'Archive' && !confirm(`Change status to '${status}'?`)) return;
-
-  // Show Loader in Button
   const btnContainer = $('#admin-btn-container');
   const originalContent = btnContainer.html();
   btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Saving...</div>');
-
-  // 🔥 SAVE TO SERVER
-  fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
-  })
+  fetch(sc, { method: 'POST', body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] }) })
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success') {
-        // Update Local
         let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== oid);
         updates.push({ oid: oid, status: status, time: new Date().getTime() });
         SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-        // Show Success & Update UI
         const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
         Toast.fire({ icon: 'success', title: `Saved: ${status}` });
         updateAdminUI(status, oid);
-      } else {
-        alert("Save Failed!");
-        btnContainer.html(originalContent);
-      }
+      } else { alert("Save Failed!"); btnContainer.html(originalContent); }
     })
-    .catch(err => {
-      alert("Network Error");
-      btnContainer.html(originalContent);
-    });
+    .catch(err => { alert("Network Error"); btnContainer.html(originalContent); });
 }
 
 window.clearAdminCache = function () {
