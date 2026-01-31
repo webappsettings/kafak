@@ -4,7 +4,6 @@
 const sc = `https://script.google.com/macros/s/AKfycbyzdH9lsX47-P6nATPf3VDRDuTydIEavI8p-OBylwILettoXNecRk06QAAaLMXtciVh9g/exec`;
 // ------------------------------------------------------------------------------
 
-
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
@@ -33,7 +32,7 @@ const translations = {
     btn_edit: "EDIT ADDRESS", lbl_house: "House Name / No", ph_house: "House Name",
     lbl_place: "Place / Area", lbl_pincode: "Pincode", lbl_qty: "Select Quantity",
     lbl_msg: "Message (Optional)", courier_included: "(Courier Charge Included)",
-    btn_update: "UPDATE", btn_order: "PLACE ORDER", lbl_name: "Full Name",
+    btn_update: "UPDATE ORDER", btn_order: "PLACE ORDER", lbl_name: "Full Name",
     ph_name: "Your Name", lbl_whatsapp: "WhatsApp Number", lbl_select_po: "Select Post Office",
     lbl_altphone: "Alternate Phone (Optional)", lbl_summary: "Order Summary", lbl_address: "Address",
     order_success: "Order Placed!", redirect_wa: "Redirecting to WhatsApp...", open_wa: "Open WhatsApp",
@@ -57,7 +56,6 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
-// 🔥 SEPARATE KEY FOR CUSTOMER DATA
 const STORAGE_KEY = 'kafakCustomerData';
 
 // 🛡️ SAFE STORAGE
@@ -90,7 +88,6 @@ window.updateWizardLocDisplay = function () {
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
-// 🔥 Pretty Date Format
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
@@ -111,7 +108,7 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // 🔥 LOAD & AUTO-CLEAN LOCAL DATA
+  // LOAD & CLEAN LOCAL DATA
   const saved = SafeStorage.getItem(STORAGE_KEY);
   if (saved) {
     try {
@@ -140,13 +137,14 @@ $(document).ready(function () {
     }
   }
 
-  // INSTANT EDIT LOAD LOGIC
+  // INSTANT EDIT LOAD
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
+
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
@@ -157,6 +155,7 @@ $(document).ready(function () {
           break;
         }
       }
+
       if (!foundLocally) fetchOrder(oid);
     }
   } else {
@@ -190,7 +189,6 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
-// 🔥 SAVE ONLY CLEAN DATA
 function saveToLocal(phone, data) {
   let cleanData = { ...data };
   delete cleanData.Status; delete cleanData.status;
@@ -207,7 +205,7 @@ function loadOrderData(d, isServerData = false) {
   showReturningUserView(d, true, isServerData);
 }
 
-// 🔥 REFRESH BUTTON LOGIC (LOADER)
+// 🔥 REFRESH BUTTON LOGIC
 window.manualRefresh = function () {
   setRefreshLoading(true);
   const phone = currentLoginPhone;
@@ -221,6 +219,7 @@ window.manualRefresh = function () {
 function setRefreshLoading(isLoading) {
   const btn = $('#refresh-btn');
   if (btn.length === 0) return;
+
   if (isLoading) {
     btn.prop('disabled', true).css('opacity', '0.7');
     btn.find('i').addClass('fa-spin');
@@ -249,7 +248,7 @@ function syncUserDataBackground(phone) {
         if (['dispatched', 'completed', 'paid', 'archive'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
-          // Dont force reset qty here, view handles it
+          if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
         }
 
         userData = mergedData;
@@ -288,10 +287,8 @@ window.showStep = function (s) {
   $('.wiz-step').hide();
   if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
   else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
-
   const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next'); const lang = $('.form-select').val();
-
   if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
   else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
   if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
@@ -331,14 +328,14 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-// 🔥 DEFINED: submitQuickOrder
+// 🔥 DEFINED: submitQuickOrder (Fixes ReferenceError)
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
   if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
 
   const finalData = {
-    orderid: editingOrderId, // Null if new order
+    orderid: editingOrderId,
     name: $('#saved-name').text(),
     phone: newPhone,
     whatsapp: $('#edit-whatsapp').val(),
@@ -353,6 +350,7 @@ window.submitQuickOrder = function () {
     message: '',
     custId: myCustId
   };
+
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -393,28 +391,24 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   $('#status-area').empty();
 
-  // 🔥 STATUS LOGIC
+  // 🔥 STATUS LOGIC: Server Priority
   if (isServerData) {
     updateStatusUI(d);
   }
 
-  // 🔥 "NEW ORDER" LOGIC
+  // "NEW ORDER" LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
   const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive');
   const lang = $('.form-select').val() || 'en';
 
-  // HIDE QTY LABEL (User Requirement)
-  // Ensure the label for qty is hidden when finished
+  // Only show "New Order" button if data came from server AND is finished
   if (isFinished && isServerData) {
-    $('#quick-price-box').hide(); // Hides Qty & Price
-    $('.qty-label').hide(); // Hides label if exists
+    $('#quick-price-box').hide();
     $('#btn-quick-submit').hide();
+    $('#btn-edit-address').hide(); // Collapse Edit
+    $('.qty-label').hide(); // HIDE QTY LABEL
 
-    // Hide Address Edit (Collapse)
-    $('.address-box').hide();
-    $('#btn-edit-address').hide();
-
-    // Show New Order Button
+    // Inject New Order Button if missing
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
@@ -429,10 +423,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   } else {
     // Normal / Active Order
     $('#quick-price-box').show();
-    $('.qty-label').show();
     $('#btn-quick-submit').show();
     $('#btn-edit-address').show();
-    $('.address-box').hide(); // collapsed by default until clicked
+    $('.qty-label').show();
     $('#btn-new-order-mode').hide();
 
     $('#quick-qty option').prop('disabled', false);
@@ -440,13 +433,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#quick-qty').val(d.quantity).trigger('change');
       $('#btn-quick-submit span').text(translations[lang].btn_update);
     } else {
+      // Reset view for new order input
       $('#quick-qty').val('').trigger('change');
       $('#quick-price-box').hide();
       $('#btn-quick-submit span').text(translations[lang].btn_order);
     }
   }
 
-  // 4. REFRESH BUTTON
+  // 4. REFRESH BUTTON (Bottom)
   if ($('#refresh-btn').length === 0) {
     $('#refresh-btn-container').remove();
     $('#returning-user-view').append(`
@@ -468,7 +462,6 @@ window.enableNewOrderMode = function () {
   $('#quick-qty').val('').trigger('change').focus();
   $('#btn-quick-submit').fadeIn();
   $('#btn-edit-address').fadeIn();
-  $('.address-box').fadeIn(); // Open address edit for new order
 
   const lang = $('.form-select').val() || 'en';
   $('#btn-quick-submit span').text(translations[lang].btn_order);
@@ -476,7 +469,7 @@ window.enableNewOrderMode = function () {
   isEditMode = false;
   editingOrderId = null;
   $('#display-oid').hide();
-  $('#display-date').hide();
+  $('#display-date').hide(); // Hide old date
 }
 
 function updateStatusUI(d) {
@@ -515,16 +508,20 @@ function updateSummaryDisplay() {
   $('#saved-address-text').text(addr).css('margin-bottom', '5px');
   $('#saved-place-dist').text('');
 
-  // Compact Phone UI
+  // 🔥 COMPACT PHONE UI (One Line)
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${phone}`;
-  if (alt) phoneHtml += `, ${alt}`;
-  if (wa) phoneHtml += ` &nbsp;<span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
+  if (alt) phoneHtml += ` <span class="text-muted">|</span> <i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${alt}`;
+  if (wa) phoneHtml += ` <span class="text-muted">|</span> <span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
-  $('#saved-phone-text').html(phoneHtml).css('font-weight', '500');
-  $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
+  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '13px' });
+
+  $('#saved-wa-text').hide();
+  $('#saved-alt-text').hide();
+
   checkForChanges();
 }
 
+// 🔥 DEFINED: updatePrice
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
@@ -597,12 +594,12 @@ window.adminAction = function (oid, status) {
   if (status === 'Archive' && !confirm(`Move this order to Archive?`)) return;
   if (status !== 'Archive' && !confirm(`Change status to '${status}'?`)) return;
 
-  // Show Loader
+  // Show Loader in Button
   const btnContainer = $('#admin-btn-container');
   const originalContent = btnContainer.html();
-  btnContainer.html('<div class="text-center"><i class="fas fa-spinner fa-spin"></i> Saving...</div>');
+  btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Saving...</div>');
 
-  // SERVER SAVE
+  // 🔥 SAVE TO SERVER
   fetch(sc, {
     method: 'POST',
     body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
@@ -610,11 +607,18 @@ window.adminAction = function (oid, status) {
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success') {
+        // Update Local
+        let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
+        updates = updates.filter(item => item.oid !== oid);
+        updates.push({ oid: oid, status: status, time: new Date().getTime() });
+        SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+        // Show Success & Update UI
         const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
         Toast.fire({ icon: 'success', title: `Saved: ${status}` });
-        updateAdminUI(status, oid); // Update UI
+        updateAdminUI(status, oid);
       } else {
-        alert("Save Failed");
+        alert("Save Failed!");
         btnContainer.html(originalContent);
       }
     })
@@ -640,7 +644,7 @@ function fetchOrder(oid) {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION
+// 🎥 VIDEO ANIMATION (INJECTED)
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
