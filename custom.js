@@ -63,10 +63,39 @@ const SafeStorage = {
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
 
+// --- NEW LOADER LOGIC WITH COUNTER ---
+let loaderInterval;
+
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
-  if (translations && translations[lang]) $('#loader-text').text(translations[lang].loading || "Loading...");
-  if (show) $('#full-loader').show(); else $('#full-loader').hide();
+  if (translations && translations[lang]) {
+    $('#loader-text').text(translations[lang].loading || "LOADING...");
+  }
+
+  if (show) {
+    $('#full-loader').fadeIn(200);
+
+    // Reset & Start Counter
+    let percent = 0;
+    $('#loader-percent').text('0%');
+    clearInterval(loaderInterval);
+
+    // Count up to 95% naturally
+    loaderInterval = setInterval(() => {
+      if (percent < 95) {
+        percent++;
+        $('#loader-percent').text(percent + '%');
+      }
+    }, 30); // Speed of counting
+
+  } else {
+    // Finish to 100% and hide
+    clearInterval(loaderInterval);
+    $('#loader-percent').text('100%');
+    setTimeout(() => {
+      $('#full-loader').fadeOut(300);
+    }, 200); // Small delay to see 100%
+  }
 }
 
 window.showAlert = function (msg) {
