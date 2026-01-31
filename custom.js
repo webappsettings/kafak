@@ -151,7 +151,7 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
-  preloadHoneyVideo(); // 🔥 Zero Lag Video
+  preloadHoneyVideo(); // Zero Lag Video
 
   if (localUsersMap[phone]) {
     loadOrderData(localUsersMap[phone]);
@@ -179,9 +179,9 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 🔥 LOADER IN STATUS AREA (No Jumping)
+  // 🔥 LOADER IN STATUS AREA (Below Price Box)
   if ($('#status-area').length > 0) {
-    $('#status-area').html(`<div class="text-center py-2"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
+    $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
@@ -196,14 +196,15 @@ function syncUserDataBackground(phone) {
         let mergedData = { ...localData, ...serverData };
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        updateStatusUI(mergedData); // Will update #status-area
+        updateStatusUI(mergedData); // Will update #status-area below price
       } else {
-        // If no update, just clear loader if checking
-        if ($('#status-area').text().includes('Checking')) $('#status-area').empty();
+        // If no update, show local status (remove loader)
+        updateStatusUI(localData);
       }
     })
     .catch(err => {
-      if ($('#status-area').text().includes('Checking')) $('#status-area').empty();
+      // On error, show local status
+      updateStatusUI(localData);
     });
 }
 
@@ -282,34 +283,33 @@ function submitWizardOrder() {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 RETURNING USER (RESTRUCTURED LAYOUT)
+// 🔴 RETURNING USER (PERFECTED LAYOUT)
 // ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
-  // Populate Fields
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // 🔥 1. UI RESTRUCTURE (Compact Layout)
-  // Check if we already restructured
+  // 🔥 1. COMPACT UI STRUCTURE
+  // Check if structure exists, if not create it
   if ($('.qty-action-group').length === 0) {
-    // Wrap Qty and Button in a flex container
-    $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:15px;"></div>');
+    // Wrap Qty & Button side-by-side
+    $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
-    $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 20px', 'white-space': 'nowrap' });
+    $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
 
-    // Create Status Area BELOW this group
-    $('.qty-action-group').after('<div id="status-area"></div>');
+    // 🔥 2. INSERT STATUS AREA BELOW PRICE BOX
+    // Price box is inside #quick-price-box. We insert status area AFTER it.
+    $('<div id="status-area" class="mt-3"></div>').insertAfter('#quick-price-box');
   }
 
-  // 🔥 2. Initial Local Status Load
   updateSummaryDisplay();
-  updateStatusUI(d);
+  updateStatusUI(d); // Populate status area
 
   $('#quick-qty option').prop('disabled', false);
   if (isActiveOrder) {
@@ -326,30 +326,30 @@ function showReturningUserView(d, isActiveOrder) {
 }
 
 function updateStatusUI(d) {
-  // Clear old status (but keep structure)
+  // Clear old status
   $('#status-area').empty();
 
   let html = '';
   // Offer Card
   if (d.offer === true) {
-    html += `<div class="p-3 mb-3 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h5 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h5><small class="text-dark">Special priority packing enabled!</small></div>`;
+    html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
   // Paid Status
   if (d.Status === 'Paid') {
-    html += `<div class="p-3 mb-3 rounded shadow-sm bg-success text-white text-center"><h5 class="fw-bold mb-1">✅ Payment Received!</h5><small>Your honey is being freshly packed.</small></div>`;
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
   }
   // Dispatched Status
   else if (d.Status === 'Dispatched' || d.Status === 'Completed') {
-    let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
+    let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
     let courierName = d.courier ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier}</div>` : '';
-    html += `<div class="p-3 mb-3 rounded shadow-sm bg-primary text-white text-center"><h5 class="fw-bold mb-1">🚚 Order Dispatched!</h5>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
     $('#btn-edit-address').hide();
   } else {
     $('#btn-edit-address').show();
   }
 
-  // Inject into the new area below qty
+  // Inject into the new area below price
   $('#status-area').html(html);
 }
 
@@ -388,31 +388,102 @@ function injectVideoCSS() {
         .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
         video { width: 100%; height: 100%; object-fit: cover; }
 
+        /* 🏷️ ROUND LABEL */
         .digital-label {
-            position: absolute; top: 67%; left: 53%; transform: translate(-30%, -50%) scale(0.7); 
-            width: 128px; height: 128px; border-radius: 50%;
+            position: absolute;
+            top: 67%; left: 53%;
+            transform: translate(-30%, -50%) scale(0.7); 
+            
+            width: 128px; height: 128px;
+            border-radius: 50%;
             background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-            z-index: 10; opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 10;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
         .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-        .content-group { display: flex; flex-direction: column; align-items: center; transition: transform 0.8s ease-in-out; }
+        .content-group {
+            display: flex; flex-direction: column; align-items: center;
+            transition: transform 0.8s ease-in-out;
+        }
+
         .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
         
-        .packed-text { font-family: 'Montserrat', sans-serif; font-size: 10px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
-        .digital-label.final-state .content-group { transform: translateY(-18px) scale(0.9); }
+        /* PREMIUM FONT */
+        .packed-text { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px; color: #5d4037; 
+            text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; 
+        }
 
-        .check-wrapper { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scale(0); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); }
+        /* Move Up Adjustment */
+        .digital-label.final-state .content-group { 
+            transform: translateY(-18px) scale(0.9); 
+        }
+
+        /* 🔥 GREEN TICK MARK */
+        .check-wrapper {
+            position: absolute;
+            bottom: 4px; 
+            left: 50%;
+            transform: translateX(-50%) scale(0); 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); 
+        }
+
         .check-wrapper.show { transform: translateX(-50%) scale(1); }
-        .checkmark-svg { width: 28px; height: 28px; stroke: #28a745; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; transition: stroke-dashoffset 0.4s ease-in-out; }
+
+        .checkmark-svg {
+            width: 28px; height: 28px;
+            stroke: #28a745; stroke-width: 5; 
+            stroke-linecap: round; stroke-linejoin: round;
+            fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; 
+            transition: stroke-dashoffset 0.4s ease-in-out;
+        }
+
         .check-wrapper.draw .checkmark-svg { stroke-dashoffset: 0; }
 
-        .name-wrapper { position: absolute; top: 50%; left: 50%; z-index: 999; transform: translate(-100%, -250%) scale(1.2); opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); display: flex; justify-content: center; align-items: center; width: 100%; }
-        .user-name { font-family: 'Courier New', monospace; font-size: 25px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding-bottom: 2px; background-color: #000000; height: 32px; display: flex; align-items: center; justify-content: center; width: auto; min-width: 163px; padding-left: 15px; padding-right: 15px; padding-top: 2px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.3); white-space: nowrap; }
+        /* 🔥 BLACK NAME BADGE */
+        .name-wrapper {
+            position: absolute;
+            top: 50%; left: 50%;
+            z-index: 999;
+            transform: translate(-100%, -250%) scale(1.2); 
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex; justify-content: center; align-items: center; width: 100%;
+        }
+
+        .user-name {
+            font-family: 'Courier New', monospace; /* Or 'Montserrat' if preferred */
+            font-size: 25px; font-weight: 900;
+            color: #ffffff; 
+            text-transform: uppercase;
+            padding-bottom: 2px;
+            background-color: #000000; 
+            
+            height: 32px; 
+            display: flex; align-items: center; justify-content: center;
+            
+            width: auto; min-width: 163px;
+            padding-left: 15px; padding-right: 15px; padding-top: 2px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+            white-space: nowrap; 
+        }
+
         .name-wrapper.show-big { opacity: 1; transform: translate(-50%, -250%) scale(1.2); }
-        .name-wrapper.docked { top: 67%; left: 53%; transform: translate(-50%, 2px) scale(0.5); opacity: 1; }
+
+        .name-wrapper.docked {
+            top: 67%; left: 53%; 
+            transform: translate(-50%, 2px) scale(0.5); 
+            opacity: 1;
+        }
 
         .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
     </style>
@@ -422,55 +493,91 @@ function injectVideoCSS() {
             <video id="honeyVideo" muted playsinline preload="auto">
                 <source src="honey_rotate.mp4" type="video/mp4">
             </video>
+            
             <div class="digital-label" id="customLabel">
                 <div class="content-group">
                     <img src="images/kafak_logo.png" alt="Kafak">
                     <div class="packed-text">RESERVED FOR</div>
                 </div>
                 <div class="check-wrapper" id="finalCheck">
-                    <svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg>
+                    <svg class="checkmark-svg" viewBox="0 0 24 24">
+                        <path d="M4 12l5 5L20 6"></path>
+                    </svg>
                 </div>
             </div>
-            <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
+
+            <div class="name-wrapper" id="nameBadge">
+                <div class="user-name" id="vid-username"></div>
+            </div>
         </div>
         <div class="loading-txt">PREPARING YOUR ORDER...</div>
     </div>
     `);
 }
 
-function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
+function preloadHoneyVideo() {
+  const v = document.getElementById('honeyVideo');
+  if (v) v.load();
+}
 
 function playVideoAnimation(userName, apiCallback) {
   $('#videoModal').css('display', 'flex').fadeIn();
+
   const video = document.getElementById('honeyVideo');
   const label = $('#customLabel');
   const nameBadge = $('#nameBadge');
   const checkWrapper = $('#finalCheck');
   const nameBox = document.getElementById('vid-username');
 
+  // RESET
   label.removeClass('visible final-state');
   nameBadge.removeClass('show-big docked');
   checkWrapper.removeClass('show draw');
   nameBox.innerText = "";
 
+  // Smart Font Logic
   let fontSize = 25;
-  if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
+  if (userName.length > 20) fontSize = 16;
+  else if (userName.length > 12) fontSize = 20;
   $('#vid-username').css('font-size', fontSize + 'px');
 
   video.currentTime = 0;
   video.play().catch(e => console.log("Auto-play blocked", e));
 
-  apiCallback();
+  apiCallback(); // POST to server
 
+  // 1. Label Appears
   setTimeout(() => { label.addClass('visible'); }, 4700);
+
+  // 2. Name Slides In
   setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
+
+  // 3. Typewriter
   setTimeout(() => {
-    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
-    let typeInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(typeInterval); } }, 80);
+    let i = 0;
+    let text = userName.replace(/ /g, "\u00A0");
+    nameBox.innerText = "";
+    let typeInterval = setInterval(() => {
+      if (i < text.length) { nameBox.innerText += text.charAt(i); i++; }
+      else { clearInterval(typeInterval); }
+    }, 80);
   }, 5800);
-  setTimeout(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
-  setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
-  setTimeout(() => { if (window.orderSuccess === true) { /* done */ } }, 8000);
+
+  // 4. Zoom Out & Dock
+  setTimeout(() => {
+    nameBadge.removeClass('show-big').addClass('docked');
+    label.addClass('final-state');
+  }, 7800);
+
+  // 5. Green Tick
+  setTimeout(() => {
+    checkWrapper.addClass('show');
+    setTimeout(() => { checkWrapper.addClass('draw'); }, 100);
+  }, 8300);
+
+  setTimeout(() => {
+    if (window.orderSuccess === true) { /* Done */ }
+  }, 8000);
 }
 
 // ------------------------------------------------------------------------------
@@ -479,12 +586,15 @@ function playVideoAnimation(userName, apiCallback) {
 function postOrder(data) {
   window.orderSuccess = false;
   fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
-    .then(res => res.json()).then(res => {
+    .then(res => res.json())
+    .then(res => {
       if (res.result === 'success') {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
         if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
         window.orderSuccess = true;
-        setTimeout(() => { $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500); }, 9000);
+        setTimeout(() => {
+          $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
+        }, 9000); // Allow animation to finish
       }
     }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
 }
