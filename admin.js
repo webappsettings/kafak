@@ -305,11 +305,14 @@ function createCardHTML(d, index, type, currentStatus) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
-    // NEW: Archive Button logic
-    let archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
+    // 🔥 CHANGE: Archive Button for both 'Sent' and 'Pending' (New)
+    let archiveBtn = '';
+    if (currentStatus === 'Sent' || currentStatus === 'Pending') {
+        archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
+    }
 
-    // NEW: Full Date Header
     let dateHeader = `<span class="card-timestamp">${formatFullDate(d.timestamp)}</span>`;
+    let oidClass = `oid-bg-${currentStatus}`;
 
     let phoneDisplay = d.phone;
     if (d.altphone) { phoneDisplay += `, ${d.altphone}`; }
@@ -343,14 +346,13 @@ function createCardHTML(d, index, type, currentStatus) {
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
-    // Structure Updated: Date Header added, Archive Button added
     return `<div class="col-12 col-md-6 col-lg-4">
-                <div class="order-card status-${currentStatus}" id="card-${d.orderid}">
+                <div class="order-card" id="card-${d.orderid}">
                     ${dateHeader}
                     <div class="card-header-row">
                         <div style="display:flex; align-items:center;">
                             ${archiveBtn} 
-                            <span class="order-id">#${d.orderid.split('-')[1]}</span> 
+                            <span class="order-id ${oidClass}">#${d.orderid.split('-')[1]}</span> 
                             ${editLink} 
                             ${topButtons}
                         </div>
