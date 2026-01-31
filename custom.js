@@ -57,7 +57,7 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
-// Separate Key for Customer Data
+// 🔥 SEPARATE KEY FOR CUSTOMER DATA
 const STORAGE_KEY = 'kafakCustomerData';
 
 // 🛡️ SAFE STORAGE
@@ -90,7 +90,7 @@ window.updateWizardLocDisplay = function () {
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
-// 🔥 Pretty Date Format (10 Oct, 04:30 PM)
+// 🔥 Pretty Date Format
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
@@ -140,29 +140,23 @@ $(document).ready(function () {
     }
   }
 
-  // 🔥 INSTANT EDIT LOAD LOGIC
+  // INSTANT EDIT LOAD LOGIC
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
-
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
           $('#step-0').hide();
-
-          // Load FORM Data Only (No Status)
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
-
-          // Sync Status (Fresh from Server)
           syncUserDataBackground(ph);
           break;
         }
       }
-
       if (!foundLocally) fetchOrder(oid);
     }
   } else {
@@ -184,7 +178,6 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
-    // Load Form Instantly, Status "Checking..."
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -197,14 +190,13 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
-// 🔥 SAVE ONLY CLEAN DATA (Contact Info)
+// 🔥 SAVE ONLY CLEAN DATA
 function saveToLocal(phone, data) {
   let cleanData = { ...data };
   delete cleanData.Status; delete cleanData.status;
   delete cleanData.tracking; delete cleanData.courier;
   delete cleanData.provider; delete cleanData.offer;
   delete cleanData.grandTotal;
-
   localUsersMap[phone] = cleanData;
   SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 }
@@ -229,7 +221,6 @@ window.manualRefresh = function () {
 function setRefreshLoading(isLoading) {
   const btn = $('#refresh-btn');
   if (btn.length === 0) return;
-
   if (isLoading) {
     btn.prop('disabled', true).css('opacity', '0.7');
     btn.find('i').addClass('fa-spin');
@@ -244,44 +235,32 @@ function setRefreshLoading(isLoading) {
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-
-  // Trigger Button Loader
   setRefreshLoading(true);
 
-  // Cache busting
   return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
         let mergedData = { ...localData, ...serverData };
-
-        // Ensure Status Key Consistency
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
-        // If finished status, prepare UI for new order potentially
         let s = mergedData.Status.toLowerCase();
-        if (s === 'dispatched' || s === 'completed' || s === 'paid' || s === 'archive') {
+        if (['dispatched', 'completed', 'paid', 'archive'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
-          if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
+          // Dont force reset qty here, view handles it
         }
 
         userData = mergedData;
-
-        // Save ONLY basic info to local
         saveToLocal(phone, mergedData);
 
-        // 🔥 UPDATE UI with Server Flag = TRUE
-        let isActive = !(s === 'dispatched' || s === 'completed' || s === 'paid' || s === 'archive');
+        let isActive = !(['dispatched', 'completed', 'paid', 'archive'].includes(s));
         showReturningUserView(mergedData, isActive, true);
-
       }
     })
     .catch(err => { console.log("Sync error"); })
-    .finally(() => {
-      setRefreshLoading(false);
-    });
+    .finally(() => { setRefreshLoading(false); });
 }
 
 function backgroundUserCheck(phone) {
@@ -352,7 +331,7 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-// 🔥 DEFINED: submitQuickOrder (Fixes ReferenceError)
+// 🔥 DEFINED: submitQuickOrder
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
@@ -374,8 +353,6 @@ window.submitQuickOrder = function () {
     message: '',
     custId: myCustId
   };
-
-  // Save contact info only
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -388,7 +365,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
-  // 🔥 DATE UI (Fixes Missing Date)
+  // DATE UI
   if (d.date) {
     if ($('#display-date').length === 0) {
       $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px; font-weight:600;"></div>').insertAfter('#display-oid');
@@ -416,23 +393,28 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   $('#status-area').empty();
 
-  // 🔥 STATUS LOGIC: Server Priority
+  // 🔥 STATUS LOGIC
   if (isServerData) {
     updateStatusUI(d);
   }
 
-  // "NEW ORDER" LOGIC
+  // 🔥 "NEW ORDER" LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
   const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive');
   const lang = $('.form-select').val() || 'en';
 
-  // Only show "New Order" button if data came from server AND is finished
+  // HIDE QTY LABEL (User Requirement)
+  // Ensure the label for qty is hidden when finished
   if (isFinished && isServerData) {
-    $('#quick-price-box').hide();
+    $('#quick-price-box').hide(); // Hides Qty & Price
+    $('.qty-label').hide(); // Hides label if exists
     $('#btn-quick-submit').hide();
-    $('#btn-edit-address').hide(); // Collapse Edit
 
-    // Inject New Order Button if missing
+    // Hide Address Edit (Collapse)
+    $('.address-box').hide();
+    $('#btn-edit-address').hide();
+
+    // Show New Order Button
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
@@ -447,8 +429,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   } else {
     // Normal / Active Order
     $('#quick-price-box').show();
+    $('.qty-label').show();
     $('#btn-quick-submit').show();
     $('#btn-edit-address').show();
+    $('.address-box').hide(); // collapsed by default until clicked
     $('#btn-new-order-mode').hide();
 
     $('#quick-qty option').prop('disabled', false);
@@ -456,14 +440,13 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#quick-qty').val(d.quantity).trigger('change');
       $('#btn-quick-submit span').text(translations[lang].btn_update);
     } else {
-      // Reset view for new order input
       $('#quick-qty').val('').trigger('change');
       $('#quick-price-box').hide();
       $('#btn-quick-submit span').text(translations[lang].btn_order);
     }
   }
 
-  // 4. REFRESH BUTTON (Bottom)
+  // 4. REFRESH BUTTON
   if ($('#refresh-btn').length === 0) {
     $('#refresh-btn-container').remove();
     $('#returning-user-view').append(`
@@ -481,9 +464,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 window.enableNewOrderMode = function () {
   $('#btn-new-order-mode').hide();
   $('#quick-price-box').fadeIn();
+  $('.qty-label').fadeIn();
   $('#quick-qty').val('').trigger('change').focus();
   $('#btn-quick-submit').fadeIn();
   $('#btn-edit-address').fadeIn();
+  $('.address-box').fadeIn(); // Open address edit for new order
 
   const lang = $('.form-select').val() || 'en';
   $('#btn-quick-submit span').text(translations[lang].btn_order);
@@ -491,7 +476,7 @@ window.enableNewOrderMode = function () {
   isEditMode = false;
   editingOrderId = null;
   $('#display-oid').hide();
-  $('#display-date').hide(); // Hide old date
+  $('#display-date').hide();
 }
 
 function updateStatusUI(d) {
@@ -504,7 +489,7 @@ function updateStatusUI(d) {
 
   let status = String(d.Status || d.status || '').trim().toLowerCase();
 
-  // 🔥 Handle Archive Logic for Customer (Treat as Sent/Pending)
+  // 🔥 STATUS UI
   if (status === 'archive') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
   }
@@ -530,20 +515,16 @@ function updateSummaryDisplay() {
   $('#saved-address-text').text(addr).css('margin-bottom', '5px');
   $('#saved-place-dist').text('');
 
-  // 🔥 COMPACT PHONE UI
+  // Compact Phone UI
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${phone}`;
   if (alt) phoneHtml += `, ${alt}`;
   if (wa) phoneHtml += ` &nbsp;<span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
   $('#saved-phone-text').html(phoneHtml).css('font-weight', '500');
-
-  $('#saved-wa-text').hide();
-  $('#saved-alt-text').hide();
-
+  $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
   checkForChanges();
 }
 
-// 🔥 DEFINED: updatePrice (Fixes ReferenceError)
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
@@ -587,7 +568,7 @@ function setupAdminView(oid) {
 
 window.updateAdminUI = function (serverStatus, oid) {
   let status = String(serverStatus || '').trim();
-  status = status.charAt(0).toUpperCase() + status.slice(1); // Standardize
+  status = status.charAt(0).toUpperCase() + status.slice(1);
 
   let btnHTML = '';
   // 🔥 Handle Archive Logic for Admin
@@ -616,18 +597,31 @@ window.adminAction = function (oid, status) {
   if (status === 'Archive' && !confirm(`Move this order to Archive?`)) return;
   if (status !== 'Archive' && !confirm(`Change status to '${status}'?`)) return;
 
-  let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
-  updates = updates.filter(item => item.oid !== oid);
-  updates.push({ oid: oid, status: status, time: new Date().getTime() });
-  SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
+  // Show Loader
+  const btnContainer = $('#admin-btn-container');
+  const originalContent = btnContainer.html();
+  btnContainer.html('<div class="text-center"><i class="fas fa-spinner fa-spin"></i> Saving...</div>');
 
-  // Update Admin UI immediately
-  updateAdminUI(status, oid);
-
-  // Force sync background
-  let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
-  let co = cachedOrders.find(o => o.orderid === oid);
-  if (co && co.phone) syncUserDataBackground(co.phone);
+  // SERVER SAVE
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+        Toast.fire({ icon: 'success', title: `Saved: ${status}` });
+        updateAdminUI(status, oid); // Update UI
+      } else {
+        alert("Save Failed");
+        btnContainer.html(originalContent);
+      }
+    })
+    .catch(err => {
+      alert("Network Error");
+      btnContainer.html(originalContent);
+    });
 }
 
 window.clearAdminCache = function () {
@@ -646,7 +640,7 @@ function fetchOrder(oid) {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION (INJECTED) - 🔥 Fixed ReferenceError
+// 🎥 VIDEO ANIMATION
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
