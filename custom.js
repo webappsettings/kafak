@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwkpmuisLYXFAAxrZTsEpLagcPsGzEcV58hCFc4Hz5NA2smRJAyxn1-YFwpOqyf2FYOdA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -96,7 +96,6 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // LOAD LOCAL DATA
   const saved = SafeStorage.getItem('kafakUsers');
   if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
 
@@ -104,7 +103,6 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
-  // TEST MODE
   if (urlParams.get('mode') === 'test') {
     $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
     window.testVideo = function () {
@@ -130,7 +128,7 @@ $(document).ready(function () {
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // 🔥 2. Sync Status in Background (This will overwrite old cache)
+          // 🔥 2. Sync Status in Background (With Cache Busting)
           syncUserDataBackground(ph);
           break;
         }
@@ -160,6 +158,7 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
+    // 🔥 Local Hit: Load Form Instantly, Status Later
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -172,6 +171,7 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
+// 🔥 UPDATED: Added isServerData flag
 function loadOrderData(d, isServerData = false) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
   if (d.phone) {
@@ -192,35 +192,36 @@ function syncUserDataBackground(phone) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
-  fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
+  // 🔥 IMPORTANT FIX: Added '&t=' + Date.now() to prevent Browser Caching
+  fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
 
-        // 🔥 FORCE OVERWRITE LOCAL STATUS
-        // Ensure we use the Server's "Status" key regardless of what local had
-        let freshData = { ...localData, ...serverData };
+        // Merge data
+        let mergedData = { ...localData, ...serverData };
 
-        // Explicitly fix potential case-mismatch (Status vs status)
-        freshData.Status = serverData.Status || serverData.status || "Pending";
+        // Fix Status Key mismatch (Status vs status)
+        mergedData.Status = serverData.Status || serverData.status || "Pending";
 
-        if (freshData.Status === 'Dispatched' || freshData.Status === 'Completed') {
+        if (mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed') {
           editingOrderId = null; $('#display-oid').hide();
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
         }
 
         // Save fresh data to local
-        userData = freshData;
-        localUsersMap[phone] = freshData;
+        userData = mergedData;
+        localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
+        // 🔥 Calculate Active State correctly
+        let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed');
+
         // 🔥 RE-RENDER UI WITH SERVER DATA = TRUE
-        showReturningUserView(freshData, true, true);
+        showReturningUserView(mergedData, isActive, true);
 
       } else {
-        // If server returns empty/fail, we stick to loader or show simple error
-        // Do NOT show local status to avoid confusion
         $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Connection issue. Retry later.</small></div>`);
       }
     })
@@ -298,7 +299,7 @@ window.prevStep = function () {
 }
 
 function submitWizardOrder() {
-  const finalData = { orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(), altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: $('#pincode').val(), postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala', quantity: $('#quantity').val(), message: '', custId: myCustId };
+  const finalData = { orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(), altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: pin, postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala', quantity: $('#quantity').val(), message: '', custId: myCustId };
   localUsersMap[finalData.phone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -375,6 +376,11 @@ function updateStatusUI(d) {
     $('#btn-edit-address').hide();
     $('#btn-quick-submit').hide(); // Hide update button
     $('#quick-qty').prop('disabled', true);
+  } else if (status === 'sent' || status === 'pending') {
+    // 🔥 5. ADDED EXPLICIT UI FOR 'Sent' / 'Pending'
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
+    $('#btn-edit-address').show();
+    $('#btn-quick-submit').show();
   } else {
     $('#btn-edit-address').show();
     $('#btn-quick-submit').show();
