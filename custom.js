@@ -2,6 +2,8 @@
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
+// ------------------------------------------------------------------------------
+
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -53,6 +55,9 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
+// 🔥 KEY CHANGE: New Key for Customer Data (Separated from Admin)
+const STORAGE_KEY = 'kafakCustomerData';
+
 // 🛡️ SAFE STORAGE
 const SafeStorage = {
   getItem: function (key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
@@ -96,8 +101,8 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // LOAD LOCAL DATA
-  const saved = SafeStorage.getItem('kafakUsers');
+  // 🔥 LOAD LOCAL DATA (Renamed Key)
+  const saved = SafeStorage.getItem(STORAGE_KEY);
   if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -124,17 +129,19 @@ $(document).ready(function () {
           showLoader(false);
           $('#step-0').hide();
 
-          // Load Form Local
+          // Load FORM Data Only (No Status)
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // Sync Status
+          // Sync Status (Fresh from Server)
           syncUserDataBackground(ph);
           break;
         }
       }
 
-      if (!foundLocally) fetchOrder(oid);
+      if (!foundLocally) {
+        fetchOrder(oid);
+      }
     }
   } else {
     showLoader(false);
@@ -155,6 +162,7 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
+    // Load Form Instantly, Status "Checking..."
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -167,37 +175,52 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
-// 🔥 UPDATED: Added isServerData flag
+// 🔥 Helper to Clean Data before Saving (Removes Status, Offer, etc)
+function saveToLocal(phone, data) {
+  // Clone data to avoid messing up current view
+  let cleanData = { ...data };
+
+  // DELETE Dynamic Fields (Never save these to local storage)
+  delete cleanData.Status;
+  delete cleanData.status;
+  delete cleanData.tracking;
+  delete cleanData.courier;
+  delete cleanData.provider;
+  delete cleanData.offer;
+  delete cleanData.grandTotal;
+
+  // Update Map
+  localUsersMap[phone] = cleanData;
+
+  // Save to Separate Customer Key
+  SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+}
+
 function loadOrderData(d, isServerData = false) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
+
+  // Save Contact Info Only (Strip status)
   if (d.phone) {
-    localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
-    SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+    saveToLocal(d.phone, d);
   }
 
-  // Show View (Status logic handles inside)
   showReturningUserView(d, true, isServerData);
 }
 
-// 🔥 NEW: MANUAL REFRESH BUTTON HANDLER
 window.manualRefresh = function () {
   const btn = $('#refresh-btn-container button');
   const icon = btn.find('i');
 
-  // UI Loading State
   btn.prop('disabled', true).css('opacity', '0.7');
   icon.addClass('fa-spin');
 
   const phone = currentLoginPhone;
   if (phone) {
-    // Force sync
     syncUserDataBackground(phone)
       .finally(() => {
-        // Reset UI after delay
         setTimeout(() => {
           btn.prop('disabled', false).css('opacity', '1');
           icon.removeClass('fa-spin');
-          // Optional: Show simplified toast
           const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
           Toast.fire({ icon: 'success', title: 'Updated' });
         }, 800);
@@ -206,14 +229,14 @@ window.manualRefresh = function () {
 }
 
 function syncUserDataBackground(phone) {
-  let localData = localUsersMap[phone];
+  let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
   if ($('#status-area').length > 0 && $('#status-area').is(':empty')) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
-  // 🔥 Return Promise for Manual Refresh to wait
+  // Fetch Fresh Data
   return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
@@ -229,11 +252,16 @@ function syncUserDataBackground(phone) {
         }
 
         userData = mergedData;
-        localUsersMap[phone] = mergedData;
-        SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
+        // 🔥 Save ONLY contact info (Clean save)
+        saveToLocal(phone, mergedData);
+
+        // 🔥 Render View with Server Data
         let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed');
         showReturningUserView(mergedData, isActive, true);
+
+      } else {
+        $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Connection issue. Retry later.</small></div>`);
       }
     })
     .catch(err => {
@@ -311,7 +339,8 @@ window.prevStep = function () {
 
 function submitWizardOrder() {
   const finalData = { orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(), altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: pin, postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala', quantity: $('#quantity').val(), message: '', custId: myCustId };
-  localUsersMap[finalData.phone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+  // Save only contact info
+  saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
@@ -328,19 +357,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // 1. Compact UI Structure
   if ($('.qty-action-group').length === 0) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-
-    // Inject Status Area below price
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
-  // 🔥 2. INJECT BEAUTIFUL REFRESH BUTTON (If missing)
   if ($('#refresh-btn-container').length === 0) {
-    // Add a Flex container at the top of the Returning View
     $('#returning-user-view').prepend(`
           <div id="refresh-btn-container" class="d-flex justify-content-end mb-2">
               <button onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-primary border" style="font-weight: 700; font-size: 11px; padding: 6px 15px;">
@@ -422,8 +446,9 @@ window.submitQuickOrder = function () {
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
   if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
   const finalData = { orderid: editingOrderId, name: $('#saved-name').text(), phone: newPhone, whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: pin, postoffice: $('#edit-postoffice').val(), district: $('#edit-district').val(), state: $('#edit-state').val(), quantity: $('#quick-qty').val(), message: '', custId: myCustId };
-  if (currentLoginPhone && currentLoginPhone !== newPhone) delete localUsersMap[currentLoginPhone];
-  localUsersMap[newPhone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
+
+  // Save Contact info only
+  saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
@@ -587,6 +612,7 @@ function playVideoAnimation(userName, apiCallback) {
   checkWrapper.removeClass('show draw');
   nameBox.innerText = "";
 
+  // Smart Font Logic
   let fontSize = 25;
   if (userName.length > 20) fontSize = 16;
   else if (userName.length > 12) fontSize = 20;
@@ -639,7 +665,7 @@ function postOrder(data) {
     .then(res => {
       if (res.result === 'success') {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
-        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
+        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap)); }
         window.orderSuccess = true;
 
         // 🔥 SMART TIMING
