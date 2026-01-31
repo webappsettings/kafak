@@ -3,11 +3,13 @@
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbwGuY0HqWoZeVZ9R30-GAghp6gpxa5l9uLwilp-AxrI1gCrlHPFxKmpplmwNXqtjSRqcg/exec`;
 
+// Client-side estimation
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
   outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
 };
 
+// TRANSLATIONS
 const translations = {
   ml: {
     lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
@@ -66,7 +68,7 @@ const SafeStorage = {
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
   if (translations && translations[lang]) $('#loader-text').text(translations[lang].loading || "Loading...");
-  if (show) $('#full-loader').show(); else $('#full-loader').hide(); // 🔥 No Fade, Instant Hide
+  if (show) $('#full-loader').show(); else $('#full-loader').hide();
 }
 
 window.showAlert = function (msg) {
@@ -114,7 +116,7 @@ $(document).ready(function () {
     }
   }
 
-  // 🔥 INSTANT EDIT LOAD (NO RELOAD EFFECT)
+  // 🔥 INSTANT EDIT LOAD (Priority: Local -> Then Server)
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
@@ -122,27 +124,29 @@ $(document).ready(function () {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
 
-      // 1. Check Local First -> SHOW INSTANTLY
       for (let ph of phones) {
         if (localUsersMap[ph].orderid === oid) {
-          showLoader(false);
-          $('#step-0').hide(); // Ensure step-0 is gone
-          loadOrderData(localUsersMap[ph]); // Instant Load
+          showLoader(false); // Stop loader instantly
+          $('#step-0').hide();
+
+          // Show Local Data Immediately
+          loadOrderData(localUsersMap[ph]);
           foundLocally = true;
-          syncUserDataBackground(ph); // Background Update
+
+          // Sync only Status/Qty in Background
+          syncUserDataBackground(ph);
           break;
         }
       }
 
-      // 2. Only fetch from server if NOT local
+      // Only full fetch if NOT found locally
       if (!foundLocally) {
         fetchOrder(oid);
       }
     }
   } else {
-    // Normal Visit
     showLoader(false);
-    $('#step-0').show(); // 🔥 CHANGED: .show() instead of .fadeIn() to stop flicker
+    $('#step-0').show();
     updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
@@ -156,6 +160,7 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
+  // 🔥 INSTANT VIDEO PRELOAD (No Lag)
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
@@ -164,12 +169,10 @@ window.handlePhoneNext = function () {
     return;
   }
 
-  // 🔥 FLICKER FIX: Use .hide() and .show() instantly
   editingOrderId = null;
   $('#step-0').hide();
   $('#whatsapp').val(phone);
-  startWizard(); // Shows #wizard-view instantly
-
+  startWizard();
   backgroundUserCheck(phone);
 }
 
@@ -185,15 +188,18 @@ function loadOrderData(d) {
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-  if ($('#quick-qty').length > 0 && $('#status-checker').length === 0) {
-    $('#quick-qty').parent().append('<small id="status-checker" class="text-muted ms-2" style="font-size:10px;"><i class="fas fa-circle-notch fa-spin"></i> Checking...</small>');
+
+  // 🔥 Beautiful Mini-Animation for Status Checking
+  if ($('#status-card-container').length === 0) {
+    $('#returning-user-view').prepend(`<div id="status-card-container" class="fade-in"><div class="p-3 mb-3 rounded shadow-sm text-center" style="background:#f8f9fa; border:1px dashed #ccc;"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Updating status...</small></div></div>`);
   }
+
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
     .then(res => res.json())
     .then(res => {
-      $('#status-checker').remove();
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
+        // Logic to clear old quantity if status changed
         if (serverData.Status === 'Dispatched' || serverData.Status === 'Completed') {
           editingOrderId = null; $('#display-oid').hide();
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
@@ -201,22 +207,24 @@ function syncUserDataBackground(phone) {
         let mergedData = { ...localData, ...serverData };
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        updateStatusUI(mergedData);
+        updateStatusUI(mergedData); // Updates the mini-loader with actual status
+      } else {
+        // If no update, remove the loader, keep local
+        if ($('#status-card-container small').text().includes('Updating')) $('#status-card-container').remove();
       }
     })
-    .catch(err => $('#status-checker').remove());
+    .catch(err => {
+      // On error, just remove loader
+      if ($('#status-card-container small').text().includes('Updating')) $('#status-card-container').remove();
+    });
 }
 
 function backgroundUserCheck(phone) {
-  fetch(`${sc}?action=getCustomer&phone=${phone}`)
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId;
-    }).catch(e => console.log("Bg check fail"));
+  fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()).then(res => { if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId; }).catch(e => console.log("Bg check fail"));
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 WIZARD FUNCTIONS (FLICKER FIX)
+// 🔴 WIZARD FUNCTIONS
 // ------------------------------------------------------------------------------
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
@@ -226,7 +234,7 @@ function updateFooterButtons(view) {
 }
 
 window.startWizard = function () {
-  $('#wizard-view').show(); // 🔥 CHANGED: Instant Show
+  $('#wizard-view').show();
   updateFooterButtons('wizard');
   currentStep = 1;
   showStep(1);
@@ -234,25 +242,14 @@ window.startWizard = function () {
 
 window.showStep = function (s) {
   $('.wiz-step').hide();
-
-  // 🔥 FLICKER FIX: First step shows instantly, subsequent steps fade
-  if (s === 1) {
-    $(`.wiz-step[data-step="${s}"]`).show();
-  } else {
-    $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
-  }
+  if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
+  else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
 
   const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
   const btn = $('#btn-wiz-next'); const lang = $('.form-select').val();
 
-  if (s === 7) {
-    btn.html(translations[lang].btn_order);
-    btn.addClass('btn-brand-green');
-    updatePrice($('#quantity').val(), false);
-  } else {
-    btn.html(translations[lang].btn_next);
-    btn.removeClass('btn-brand-green');
-  }
+  if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
+  else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
   if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
 }
 
@@ -276,11 +273,7 @@ window.nextStep = async function () {
   }
   if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
   if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
-  if (currentStep === 5) {
-    if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; }
-    updateWizardLocDisplay();
-    currentStep = 6; showStep(6); return;
-  }
+  if (currentStep === 5) { if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; } updateWizardLocDisplay(); currentStep = 6; showStep(6); return; }
   if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
   if (currentStep === 7) { if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; } submitWizardOrder(); return; }
   currentStep++; showStep(currentStep);
@@ -295,21 +288,15 @@ window.prevStep = function () {
 }
 
 function submitWizardOrder() {
-  const finalData = {
-    orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(),
-    altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: $('#pincode').val(),
-    postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala',
-    quantity: $('#quantity').val(), message: '', custId: myCustId
-  };
+  const finalData = { orderid: editingOrderId, name: $('#name').val(), phone: $('#phone').val(), whatsapp: $('#whatsapp').val(), altphone: $('#altphone').val(), house: $('#house').val(), place: $('#place').val(), pincode: $('#pincode').val(), postoffice: userData.postoffice, district: userData.district, state: userData.state || 'Kerala', quantity: $('#quantity').val(), message: '', custId: myCustId };
   localUsersMap[finalData.phone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 RETURNING USER (INSTANT LOAD)
+// 🔴 RETURNING USER
 // ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder) {
-  // 🔥 CHANGED: .show() instead of .fadeIn()
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
@@ -336,29 +323,19 @@ function showReturningUserView(d, isActiveOrder) {
 }
 
 function updateStatusUI(d) {
-  $('#status-card-container').remove();
-  let html = '';
-  if (d.offer === true) {
-    html += `<div class="p-3 mb-3 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h5 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h5><small class="text-dark">You have unlocked special priority packing!</small></div>`;
-  }
-  if (d.Status === 'Paid') {
-    html += `<div class="p-3 mb-3 rounded shadow-sm bg-success text-white text-center"><h5 class="fw-bold mb-1">✅ Payment Received!</h5><small>Your honey is being freshly packed.</small></div>`;
-  } else if (d.Status === 'Dispatched' || d.Status === 'Completed') {
+  $('#status-card-container').remove(); let html = '';
+  if (d.offer === true) html += `<div class="p-3 mb-3 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h5 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h5><small class="text-dark">You have unlocked special priority packing!</small></div>`;
+  if (d.Status === 'Paid') html += `<div class="p-3 mb-3 rounded shadow-sm bg-success text-white text-center"><h5 class="fw-bold mb-1">✅ Payment Received!</h5><small>Your honey is being freshly packed.</small></div>`;
+  else if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-1 rounded fw-bold" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:14px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
     html += `<div class="p-3 mb-3 rounded shadow-sm bg-primary text-white text-center"><h5 class="fw-bold mb-1">🚚 Order Dispatched!</h5><small>Your honey is on the way.</small>${trackingHtml}</div>`;
     $('#btn-edit-address').hide();
-  } else {
-    $('#btn-edit-address').show();
-  }
+  } else $('#btn-edit-address').show();
   if (html) $('#returning-user-view').prepend(`<div id="status-card-container">${html}</div>`);
 }
 
-// ------------------------------------------------------------------------------
-// 🔴 PRICE & VALIDATION
-// ------------------------------------------------------------------------------
 window.updatePrice = function (qty, isQuick) {
-  if (!qty) return;
-  const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
+  if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
   container.find('.qty-count').text(n); container.find('.val-base').text(base); container.find('.val-courier').text(courier); container.find('.val-total').text(total); container.fadeIn();
   if (!isQuick) {
@@ -371,28 +348,20 @@ window.updatePrice = function (qty, isQuick) {
 
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-  const newPhone = $('#edit-phone').val();
-  if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; }
-  const pin = $('#edit-pincode').val();
-  if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
-  if (!$('#edit-postoffice').val()) { showAlert(getAlert('err_select_po')); return; }
-  const wa = $('#edit-whatsapp').val();
-  if (!wa || wa.length !== 10) { showAlert(getAlert('err_whatsapp')); return; }
-
-  const finalData = { orderid: editingOrderId, name: $('#saved-name').text(), phone: newPhone, whatsapp: wa, altphone: $('#edit-altphone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: pin, postoffice: $('#edit-postoffice').val(), district: $('#edit-district').val(), state: $('#edit-state').val(), quantity: $('#quick-qty').val(), message: '', custId: myCustId };
-
+  const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
+  const finalData = { orderid: editingOrderId, name: $('#saved-name').text(), phone: newPhone, whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: pin, postoffice: $('#edit-postoffice').val(), district: $('#edit-district').val(), state: $('#edit-state').val(), quantity: $('#quick-qty').val(), message: '', custId: myCustId };
   if (currentLoginPhone && currentLoginPhone !== newPhone) delete localUsersMap[currentLoginPhone];
-  localUsersMap[newPhone] = finalData;
-  SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-
+  localUsersMap[newPhone] = finalData; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION LOGIC (WITH SLIDE-IN BADGE)
+// 🎥 VIDEO ANIMATION (BLACK BADGE, TICK, PREMIUM FONT)
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
+  $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
+
   $('body').append(`
     <style>
         #videoModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; }
@@ -400,16 +369,13 @@ function injectVideoCSS() {
         .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
         video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 🏷️ FINAL BADGE CSS */
+        /* 🏷️ ROUND LABEL */
         .digital-label {
             position: absolute;
-            top: 67%; 
-            left: 53%; 
-            /* Start: Shifted Right (-30%) & Small */
+            top: 67%; left: 53%;
             transform: translate(-30%, -50%) scale(0.7); 
             
-            width: 128px; 
-            height: 128px; 
+            width: 128px; height: 128px;
             border-radius: 50%;
             background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -417,21 +383,88 @@ function injectVideoCSS() {
             
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
             z-index: 10;
-            opacity: 0; 
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        .content-group {
+            display: flex; flex-direction: column; align-items: center;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
+        
+        /* PREMIUM FONT */
+        .packed-text { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px; color: #5d4037; 
+            text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; 
+        }
+
+        /* Move Up Adjustment */
+        .digital-label.final-state .content-group { 
+            transform: translateY(-18px) scale(0.9); 
+        }
+
+        /* 🔥 GREEN TICK MARK */
+        .check-wrapper {
+            position: absolute;
+            bottom: 4px; 
+            left: 50%;
+            transform: translateX(-50%) scale(0); 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); 
+        }
+
+        .check-wrapper.show { transform: translateX(-50%) scale(1); }
+
+        .checkmark-svg {
+            width: 28px; height: 28px;
+            stroke: #28a745; stroke-width: 5; 
+            stroke-linecap: round; stroke-linejoin: round;
+            fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; 
+            transition: stroke-dashoffset 0.4s ease-in-out;
+        }
+
+        .check-wrapper.draw .checkmark-svg { stroke-dashoffset: 0; }
+
+        /* 🔥 BLACK NAME BADGE */
+        .name-wrapper {
+            position: absolute;
+            top: 50%; left: 50%;
+            z-index: 999;
+            transform: translate(-100%, -250%) scale(1.2); 
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex; justify-content: center; align-items: center; width: 100%;
+        }
+
+        .user-name {
+            font-family: 'Courier New', monospace; /* Or 'Montserrat' if preferred */
+            font-size: 25px; font-weight: 900;
+            color: #ffffff; 
+            text-transform: uppercase;
+            padding-bottom: 2px;
+            background-color: #000000; 
             
-            /* Slide Animation */
-            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 32px; 
+            display: flex; align-items: center; justify-content: center;
+            
+            width: auto; min-width: 163px;
+            padding-left: 15px; padding-right: 15px; padding-top: 2px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+            white-space: nowrap; 
         }
 
-        /* Visible State */
-        .digital-label.visible { 
-            opacity: 1; 
-            transform: translate(-50%, -50%) scale(1); 
-        }
+        .name-wrapper.show-big { opacity: 1; transform: translate(-50%, -250%) scale(1.2); }
 
-        .digital-label img { width: 50px; opacity: 0.95; margin-bottom: 3px; }
-        .digital-label .packed-text { font-size: 8px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 2px; }
-        .digital-label .name-text { font-size: 14px; font-weight: 900; color: #2c1e1a; text-transform: uppercase; font-family: 'Courier New', monospace; border-bottom: 2px dashed #8d6e63; padding-bottom: 2px; }
+        .name-wrapper.docked {
+            top: 67%; left: 53%; 
+            transform: translate(-50%, 2px) scale(0.5); 
+            opacity: 1;
+        }
 
         .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
     </style>
@@ -443,9 +476,19 @@ function injectVideoCSS() {
             </video>
             
             <div class="digital-label" id="customLabel">
-                <img src="images/kafak_logo.png" alt="Kafak">
-                <div class="packed-text">RESERVED FOR</div>
-                <div class="name-text" id="vid-username">User</div>
+                <div class="content-group">
+                    <img src="images/kafak_logo.png" alt="Kafak">
+                    <div class="packed-text">RESERVED FOR</div>
+                </div>
+                <div class="check-wrapper" id="finalCheck">
+                    <svg class="checkmark-svg" viewBox="0 0 24 24">
+                        <path d="M4 12l5 5L20 6"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="name-wrapper" id="nameBadge">
+                <div class="user-name" id="vid-username"></div>
             </div>
         </div>
         <div class="loading-txt">PREPARING YOUR ORDER...</div>
@@ -462,25 +505,59 @@ function playVideoAnimation(userName, apiCallback) {
   $('#videoModal').css('display', 'flex').fadeIn();
 
   const video = document.getElementById('honeyVideo');
-  const label = document.getElementById('customLabel');
+  const label = $('#customLabel');
+  const nameBadge = $('#nameBadge');
+  const checkWrapper = $('#finalCheck');
+  const nameBox = document.getElementById('vid-username');
 
-  $('#vid-username').text(userName);
-  label.classList.remove('visible'); // Reset
+  // RESET
+  label.removeClass('visible final-state');
+  nameBadge.removeClass('show-big docked');
+  checkWrapper.removeClass('show draw');
+  nameBox.innerText = "";
+
+  // Smart Font Logic
+  let fontSize = 25;
+  if (userName.length > 20) fontSize = 16;
+  else if (userName.length > 12) fontSize = 20;
+  $('#vid-username').css('font-size', fontSize + 'px');
 
   video.currentTime = 0;
   video.play().catch(e => console.log("Auto-play blocked", e));
 
-  apiCallback();
+  apiCallback(); // POST to server
 
-  // ⏱️ TIMING (4.7s)
+  // 1. Label Appears
+  setTimeout(() => { label.addClass('visible'); }, 4700);
+
+  // 2. Name Slides In
+  setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
+
+  // 3. Typewriter
   setTimeout(() => {
-    label.classList.add('visible');
-  }, 4700);
+    let i = 0;
+    let text = userName.replace(/ /g, "\u00A0");
+    nameBox.innerText = "";
+    let typeInterval = setInterval(() => {
+      if (i < text.length) { nameBox.innerText += text.charAt(i); i++; }
+      else { clearInterval(typeInterval); }
+    }, 80);
+  }, 5800);
+
+  // 4. Zoom Out & Dock
+  setTimeout(() => {
+    nameBadge.removeClass('show-big').addClass('docked');
+    label.addClass('final-state');
+  }, 7800);
+
+  // 5. Green Tick
+  setTimeout(() => {
+    checkWrapper.addClass('show');
+    setTimeout(() => { checkWrapper.addClass('draw'); }, 100);
+  }, 8300);
 
   setTimeout(() => {
-    if (window.orderSuccess === true) {
-      // Continue
-    }
+    if (window.orderSuccess === true) { /* Done */ }
   }, 8000);
 }
 
@@ -495,40 +572,22 @@ function postOrder(data) {
       if (res.result === 'success') {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
         if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
-
         window.orderSuccess = true;
-
         setTimeout(() => {
-          $('#videoModal').fadeOut();
-          $('#order-form').hide();
-          $('#showsuccess').fadeIn();
-          updateFooterButtons('none');
-          setTimeout(sendToWhatsapp, 1500);
-        }, 6000);
+          $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
+        }, 9000); // Allow animation to finish
       }
-    })
-    .catch(() => {
-      $('#videoModal').fadeOut();
-      showAlert("Connection failed. Try again.");
-    });
+    }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
 }
 
 function sendToWhatsapp() {
-  const phone = '7788990313';
-  const orderid = successData.orderid;
-  const d = successData;
+  const phone = '7788990313'; const orderid = successData.orderid; const d = successData;
+  const n = parseInt(d.quantity); const base = n * 650; const courier = courierRates.kerala[n] || 0;
+  const amountText = `Amount(₹): ${base} + ${courier}`; const totalText = `Total(₹): ${base + courier}/-`;
   const editLink = `kafaklife.com/order.html?oid=${orderid}`;
-  const n = parseInt(d.quantity);
-  const base = n * 650;
-  const courier = courierRates.kerala[n] || 0;
-  const amountText = `Amount(₹): ${base} + ${courier}`;
-  const totalText = `Total(₹): ${base + courier}/-`;
-  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
-
   const safe = (val) => String(val || '').trim().toUpperCase();
-
+  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
   const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
-
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
 
@@ -539,160 +598,67 @@ function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
   $('.footer-action').after(`<div class="text-center py-4"><button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">🛠️ Admin: Clear Cache</button></div>`);
-
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-
-  if (cachedOrder) {
-    showLoader(false);
-    updateAdminUI(cachedOrder.Status || 'Pending', oid);
-    loadOrderData(cachedOrder);
-  } else {
-    fetchOrder(oid);
-  }
+  if (cachedOrder) { showLoader(false); updateAdminUI(cachedOrder.Status || 'Pending', oid); loadOrderData(cachedOrder); }
+  else { fetchOrder(oid); }
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
   let pendingUpdates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   let localUpdate = pendingUpdates.find(item => item.oid === oid);
   let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
-
   let btnHTML = '';
-
-  if (currentStatus === 'Pending') {
-    btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
-  } else if (currentStatus === 'Sent') {
-    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
-  } else {
-    let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : (currentStatus === 'Completed' ? 'COMPLETED' : 'PAID');
-    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`;
-  }
-
-  $('#admin-btn-container').html(btnHTML);
-  $('#admin-action-bar').slideDown();
+  if (currentStatus === 'Pending') btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
+  else if (currentStatus === 'Sent') btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
+  else { let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : (currentStatus === 'Completed' ? 'COMPLETED' : 'PAID'); btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`; }
+  $('#admin-btn-container').html(btnHTML); $('#admin-action-bar').slideDown();
 }
 
 window.adminAction = function (oid, status) {
   if (!confirm(`ഈ ഓർഡർ '${status}' ആയി മാർക്ക് ചെയ്യട്ടെ?`)) return;
-
   let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
   updates.push({ oid: oid, status: status, time: new Date().getTime() });
   SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
   let allOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let orderIndex = allOrders.findIndex(o => o.orderid === oid);
-  if (orderIndex !== -1) {
-    allOrders[orderIndex].Status = status;
-    SafeStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-  }
-
+  if (orderIndex !== -1) { allOrders[orderIndex].Status = status; SafeStorage.setItem('allOrdersCache', JSON.stringify(allOrders)); }
   updateAdminUI(status, oid);
-
-  const Toast = Swal.mixin({
-    toast: true, position: 'top-end', showConfirmButton: false, timer: 2000,
-    didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); }
-  });
+  const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, didOpen: (toast) => { toast.addEventListener('mouseenter', Swal.stopTimer); toast.addEventListener('mouseleave', Swal.resumeTimer); } });
   Toast.fire({ icon: 'success', title: `Saved: ${status}` });
 }
 
 window.clearAdminCache = function () {
-  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) {
-    SafeStorage.removeItem('allOrdersCache');
-    location.reload();
-  }
+  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
 
 function fetchOrder(oid) {
   fetch(`${sc}?action=getOrder&oid=${oid}`).then(res => res.json()).then(res => {
     showLoader(false);
     if (res.result === 'success') {
-      let d = res.data;
-      if (d.custId) { myCustId = d.custId; }
-
-      if (d.phone && localUsersMap[d.phone]) {
-        const local = localUsersMap[d.phone];
-        if (!d.district && local.district) d.district = local.district;
-        if (!d.custId && local.custId) d.custId = local.custId;
-      }
-
-      if (SafeStorage.getItem('kafakAdmin') === 'true') {
-        let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
-        let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-        let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending');
-        updateAdminUI(status, oid);
-      }
-
+      let d = res.data; if (d.custId) { myCustId = d.custId; }
+      if (d.phone && localUsersMap[d.phone]) { const local = localUsersMap[d.phone]; if (!d.district && local.district) d.district = local.district; if (!d.custId && local.custId) d.custId = local.custId; }
+      if (SafeStorage.getItem('kafakAdmin') === 'true') { let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]"); let cachedOrder = cachedOrders.find(o => o.orderid === oid); let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending'); updateAdminUI(status, oid); }
       loadOrderData(d);
-    } else {
-      $('#step-0').fadeIn();
-      updateFooterButtons('step-0');
-    }
+    } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
   }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// ------------------------------------------------------------------------------
-// 🔴 HELPER UPDATES
-// ------------------------------------------------------------------------------
 function updateSummaryDisplay() {
-  const house = $('#edit-house').val() || '';
-  const place = $('#edit-place').val() || '';
-  const po = $('#edit-postoffice').val() || '';
-  const pin = $('#edit-pincode').val() || '';
-  const dist = $('#edit-district').val() || '';
-  const wa = $('#edit-whatsapp').val() || '';
-  const alt = $('#edit-altphone').val();
-  const phone = $('#edit-phone').val() || '';
-
+  const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-
-  $('#saved-address-text').text(addr);
-  $('#saved-place-dist').text('');
-  $('#saved-phone-text').text(phone);
-  $('#saved-wa-text span').text(wa);
-
-  if (alt) {
-    $('#saved-alt-text span').text(alt);
-    $('#saved-alt-text').show();
-  } else {
-    $('#saved-alt-text').hide();
-  }
-
+  $('#saved-address-text').text(addr); $('#saved-place-dist').text(''); $('#saved-phone-text').text(phone); $('#saved-wa-text span').text(wa);
+  if (alt) { $('#saved-alt-text span').text(alt); $('#saved-alt-text').show(); } else { $('#saved-alt-text').hide(); }
   checkForChanges();
 }
 
 function checkForChanges() {
-  const btn = $('#btn-quick-submit');
-  if (!isEditMode) {
-    btn.prop('disabled', false).css('opacity', '1');
-    return;
-  }
-  const current = {
-    phone: $('#edit-phone').val(),
-    house: $('#edit-house').val(),
-    place: $('#edit-place').val(),
-    pincode: $('#edit-pincode').val(),
-    postoffice: $('#edit-postoffice').val(),
-    whatsapp: $('#edit-whatsapp').val(),
-    altphone: $('#edit-altphone').val(),
-    quantity: $('#quick-qty').val()
-  };
+  const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
+  const current = { phone: $('#edit-phone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: $('#edit-pincode').val(), postoffice: $('#edit-postoffice').val(), whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), quantity: $('#quick-qty').val() };
   const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
-  const hasChanges =
-    isDiff('phone', current.phone) ||
-    isDiff('house', current.house) ||
-    isDiff('place', current.place) ||
-    isDiff('pincode', current.pincode) ||
-    isDiff('postoffice', current.postoffice) ||
-    isDiff('whatsapp', current.whatsapp) ||
-    isDiff('altphone', current.altphone) ||
-    isDiff('quantity', current.quantity);
-
-  if (hasChanges) {
-    btn.prop('disabled', false).css('opacity', '1');
-  } else {
-    btn.prop('disabled', true).css('opacity', '0.5');
-  }
+  const hasChanges = isDiff('phone', current.phone) || isDiff('house', current.house) || isDiff('place', current.place) || isDiff('pincode', current.pincode) || isDiff('postoffice', current.postoffice) || isDiff('whatsapp', current.whatsapp) || isDiff('altphone', current.altphone) || isDiff('quantity', current.quantity);
+  if (hasChanges) { btn.prop('disabled', false).css('opacity', '1'); } else { btn.prop('disabled', true).css('opacity', '0.5'); }
 }
 
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
