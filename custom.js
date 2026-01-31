@@ -426,7 +426,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                     <i class="fas fa-plus-circle me-1"></i> ${btnText}
                 </button>
             </div>
-          `).insertBefore('#status-area');
+          `).insertAfter('#status-area');
     }
     $('#btn-new-order-mode').show();
   } else {
