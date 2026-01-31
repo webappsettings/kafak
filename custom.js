@@ -1,9 +1,7 @@
-// ------------------------------------------------------------------------------
+
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxAonOYSAaj8GVyp5EXrA9XPY8XfX9rfGKkPF4RHVSTBc1tkBae455dquqD7YL0b3Pg2A/exec`;
-// ------------------------------------------------------------------------------
-
+const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -59,16 +57,12 @@ let isEditMode = false;
 
 const STORAGE_KEY = 'kafakCustomerData';
 
-// 🛡️ SAFE STORAGE
 const SafeStorage = {
   getItem: function (key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
   setItem: function (key, val) { try { localStorage.setItem(key, val); } catch (e) { } },
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
 
-// ------------------------------------------------------------------------------
-// 🔴 GLOBAL HELPERS
-// ------------------------------------------------------------------------------
 window.showLoader = function (show) {
   const lang = $('.form-select').val() || 'en';
   if (translations && translations[lang]) $('#loader-text').text(translations[lang].loading || "Loading...");
@@ -96,9 +90,6 @@ function formatPrettyDate(dateStr) {
   return d.toLocaleString('en-US', { day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric', hour12: true });
 }
 
-// ------------------------------------------------------------------------------
-// 🔴 DOCUMENT READY
-// ------------------------------------------------------------------------------
 $(document).ready(function () {
   injectVideoCSS();
 
@@ -109,7 +100,6 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // LOAD LOCAL DATA
   const saved = SafeStorage.getItem(STORAGE_KEY);
   if (saved) {
     try {
@@ -117,6 +107,7 @@ $(document).ready(function () {
       let isDirty = false;
       Object.keys(localUsersMap).forEach(key => {
         let u = localUsersMap[key];
+        // CLEANUP OLD STATUS
         if (u.Status || u.status || u.tracking || u.offer || u.courier) {
           delete u.Status; delete u.status;
           delete u.tracking; delete u.offer; delete u.courier; delete u.provider;
@@ -145,12 +136,15 @@ $(document).ready(function () {
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
+
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
           $('#step-0').hide();
+          // 🔥 SHOW LOCAL UI, HIDE LOADER
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
+          // 🔥 FETCH SERVER DATA IN BACKGROUND
           syncUserDataBackground(ph);
           break;
         }
@@ -165,9 +159,6 @@ $(document).ready(function () {
   }
 });
 
-// ------------------------------------------------------------------------------
-// 🔴 CORE APP LOGIC
-// ------------------------------------------------------------------------------
 window.handlePhoneNext = function () {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
@@ -204,7 +195,6 @@ function loadOrderData(d, isServerData = false) {
   showReturningUserView(d, true, isServerData);
 }
 
-// 🔥 REFRESH BUTTON LOGIC
 window.manualRefresh = function () {
   setRefreshLoading(true);
   const phone = currentLoginPhone;
@@ -243,6 +233,7 @@ function syncUserDataBackground(phone) {
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         let s = mergedData.Status.toLowerCase();
+        // If finished, reset ID to allow New Order
         if (['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
@@ -251,7 +242,6 @@ function syncUserDataBackground(phone) {
         userData = mergedData;
         saveToLocal(phone, mergedData);
 
-        // Active if NOT finished
         let isActive = !(['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s));
         showReturningUserView(mergedData, isActive, true);
       }
@@ -264,9 +254,6 @@ function backgroundUserCheck(phone) {
   fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()).then(res => { if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId; }).catch(e => console.log("Bg check fail"));
 }
 
-// ------------------------------------------------------------------------------
-// 🔴 WIZARD FUNCTIONS
-// ------------------------------------------------------------------------------
 window.submitWizardOrder = function () {
   const finalData = {
     orderid: editingOrderId,
@@ -288,9 +275,7 @@ window.submitWizardOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-window.handleEditPincode = function (el) {
-  checkForChanges();
-}
+window.handleEditPincode = function (el) { checkForChanges(); }
 
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
@@ -351,7 +336,6 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-// 🔥 DEFINED: submitQuickOrder
 window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
@@ -377,9 +361,6 @@ window.submitQuickOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-// ------------------------------------------------------------------------------
-// 🔴 RETURNING USER (COMPACT UI & LOGIC)
-// ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
@@ -411,28 +392,25 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#status-area').empty();
 
   // 🔥 STATUS LOGIC
-  if (isServerData) {
-    updateStatusUI(d);
-  }
+  if (isServerData) { updateStatusUI(d); }
 
-  // "NEW ORDER" LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
   const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive' || status === 'delivered');
   const lang = $('.form-select').val() || 'en';
 
   if (isFinished && isServerData) {
-    // HIDE ACTIONS
+    // FINISHED MODE: Hide actions, show New Order button
     $('.qty-label').hide();
     $('#quick-price-box').hide();
     $('#btn-quick-submit').hide();
     $('#btn-edit-address').hide(); // Collapse Edit
 
-    // SHOW NEW ORDER BUTTON
+    // Inject New Order Button in the QTY slot
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
-            <div id="btn-new-order-mode" class="mt-3 text-center fade-in">
-                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px;">
+            <div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in">
+                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px; width:100%;">
                     <i class="fas fa-plus-circle me-1"></i> ${btnText}
                 </button>
             </div>
@@ -442,7 +420,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   } else {
     // NORMAL MODE
     $('.qty-label').show();
-    // 🔥 Price logic: Show UNLESS dispatched (Requested)
+    // Show Price UNLESS Dispatched/Completed/Delivered
     if (status === 'dispatched' || status === 'completed' || status === 'delivered') {
       $('#quick-price-box').hide();
     } else {
@@ -457,7 +435,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     if (isActiveOrder) {
       $('#quick-qty').val(d.quantity).trigger('change');
       $('#btn-quick-submit span').text(translations[lang].btn_update);
-      // 🔥 PAID LOGIC: Disable lower qty
+      // Paid Logic: Disable lower qty
       if (status === 'paid') {
         const currentQty = parseInt(d.quantity);
         $('#quick-qty option').each(function () {
@@ -491,10 +469,7 @@ window.enableNewOrderMode = function () {
   $('.qty-label').fadeIn();
   $('#quick-qty').val('').trigger('change').focus();
   $('#btn-quick-submit').fadeIn();
-  $('#btn-edit-address').fadeIn(); // Enable edit
-
-  // Do NOT expand address-box automatically (Requested)
-  // $('.address-box').fadeIn(); <--- REMOVED
+  $('#btn-edit-address').fadeIn();
 
   const lang = $('.form-select').val() || 'en';
   $('#btn-quick-submit span').text(translations[lang].btn_order);
@@ -505,7 +480,6 @@ window.enableNewOrderMode = function () {
   $('#display-date').hide();
 }
 
-// 🔥 MARK DELIVERED LOGIC
 window.markOrderDelivered = function (oid) {
   if (!confirm("Have you received the order?")) return;
   const btn = $('#btn-mark-delivered');
@@ -563,19 +537,21 @@ function updateSummaryDisplay() {
   const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
 
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  $('#saved-address-text').text(addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
+  // 🔥 FIX: NAME BOLD & SEPARATED WITH COMMA
+  let nameBold = `<b>${$('#saved-name').text()}</b>, `;
+  $('#saved-address-text').html(nameBold + addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
   $('#saved-place-dist').text('');
 
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
   if (alt) phoneHtml += ` <span class="text-muted">|</span> ${alt}`;
-  if (wa) phoneHtml += ` <span class="text-muted">|</span> <span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
+  if (wa) phoneHtml += ` <span class="text-muted">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`; // WhatsApp Color Fix
 
   $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '2px' });
   $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
   checkForChanges();
 }
 
-// 🔥 DEFINED: updatePrice (Fixes ReferenceError)
+// 🔥 DEFINED: updatePrice
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
@@ -599,16 +575,13 @@ function checkForChanges() {
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
 
-// ------------------------------------------------------------------------------
-// 🔴 ADMIN LOGIC
-// ------------------------------------------------------------------------------
 function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
   if (cachedOrder) {
-    showLoader(false); // 🔥 FIX: Loader disappear for admin
+    showLoader(false);
     loadOrderData(cachedOrder, false);
     updateAdminUI(cachedOrder.Status || 'Pending', oid);
     syncUserDataBackground(cachedOrder.phone);
@@ -673,9 +646,6 @@ function fetchOrder(oid) {
   }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-// ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION
-// ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
   $('body').append(`
@@ -746,7 +716,6 @@ function playVideoAnimation(userName, apiCallback) {
   setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
 }
 
-// 🔥 DEFINED: postOrder (Fixes ReferenceError)
 function postOrder(data) {
   const startTime = Date.now();
   window.orderSuccess = false;
