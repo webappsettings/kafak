@@ -96,6 +96,7 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
+  // LOAD LOCAL DATA
   const saved = SafeStorage.getItem('kafakUsers');
   if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
 
@@ -123,21 +124,17 @@ $(document).ready(function () {
           showLoader(false);
           $('#step-0').hide();
 
-          // 🔥 1. Load FORM from Local (Instant)
-          // Pass 'false' for isServerData -> This forces Status Area to show "Checking..."
+          // Load Form Local
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // 🔥 2. Sync Status in Background (With Cache Busting)
+          // Sync Status
           syncUserDataBackground(ph);
           break;
         }
       }
 
-      // If not found locally, fetch everything from server
-      if (!foundLocally) {
-        fetchOrder(oid);
-      }
+      if (!foundLocally) fetchOrder(oid);
     }
   } else {
     showLoader(false);
@@ -158,7 +155,6 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
-    // 🔥 Local Hit: Load Form Instantly, Status Later
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -179,30 +175,52 @@ function loadOrderData(d, isServerData = false) {
     SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
-  // Always allow view initially, check status inside view
+  // Show View (Status logic handles inside)
   showReturningUserView(d, true, isServerData);
+}
+
+// 🔥 NEW: MANUAL REFRESH BUTTON HANDLER
+window.manualRefresh = function () {
+  const btn = $('#refresh-btn-container button');
+  const icon = btn.find('i');
+
+  // UI Loading State
+  btn.prop('disabled', true).css('opacity', '0.7');
+  icon.addClass('fa-spin');
+
+  const phone = currentLoginPhone;
+  if (phone) {
+    // Force sync
+    syncUserDataBackground(phone)
+      .finally(() => {
+        // Reset UI after delay
+        setTimeout(() => {
+          btn.prop('disabled', false).css('opacity', '1');
+          icon.removeClass('fa-spin');
+          // Optional: Show simplified toast
+          const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
+          Toast.fire({ icon: 'success', title: 'Updated' });
+        }, 800);
+      });
+  }
 }
 
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // Ensure Status Area shows "Checking..." if it exists
-  if ($('#status-area').length > 0) {
+  if ($('#status-area').length > 0 && $('#status-area').is(':empty')) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
-  // 🔥 IMPORTANT FIX: Added '&t=' + Date.now() to prevent Browser Caching
-  fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
+  // 🔥 Return Promise for Manual Refresh to wait
+  return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
-
-        // Merge data
         let mergedData = { ...localData, ...serverData };
 
-        // Fix Status Key mismatch (Status vs status)
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         if (mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed') {
@@ -210,19 +228,12 @@ function syncUserDataBackground(phone) {
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
         }
 
-        // Save fresh data to local
         userData = mergedData;
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
-        // 🔥 Calculate Active State correctly
         let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed');
-
-        // 🔥 RE-RENDER UI WITH SERVER DATA = TRUE
         showReturningUserView(mergedData, isActive, true);
-
-      } else {
-        $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Connection issue. Retry later.</small></div>`);
       }
     })
     .catch(err => {
@@ -327,13 +338,23 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
+  // 🔥 2. INJECT BEAUTIFUL REFRESH BUTTON (If missing)
+  if ($('#refresh-btn-container').length === 0) {
+    // Add a Flex container at the top of the Returning View
+    $('#returning-user-view').prepend(`
+          <div id="refresh-btn-container" class="d-flex justify-content-end mb-2">
+              <button onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-primary border" style="font-weight: 700; font-size: 11px; padding: 6px 15px;">
+                  <i class="fas fa-sync-alt me-1"></i> REFRESH STATUS
+              </button>
+          </div>
+      `);
+  }
+
   updateSummaryDisplay();
 
-  // 🔥 STATUS LOGIC: 
   if (isServerData) {
     updateStatusUI(d);
   } else {
-    // FORCE LOADING (Don't show local status)
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
@@ -354,30 +375,25 @@ function updateStatusUI(d) {
   $('#status-area').empty();
   let html = '';
 
-  // 🔥 3. OFFER CHECK (Case Insensitive & String Safe)
   if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
-  // 🔥 4. STATUS CHECK (Check both 'Status' and 'status')
   let status = String(d.Status || d.status || '').trim().toLowerCase();
 
   if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
-    // Disable Qty Edit if Paid
     const currentQty = parseInt(d.quantity);
     $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); });
   }
   else if (status === 'dispatched' || status === 'completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
-    // Check 'courier' or 'provider' key
     let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
     $('#btn-edit-address').hide();
-    $('#btn-quick-submit').hide(); // Hide update button
+    $('#btn-quick-submit').hide();
     $('#quick-qty').prop('disabled', true);
   } else if (status === 'sent' || status === 'pending') {
-    // 🔥 5. ADDED EXPLICIT UI FOR 'Sent' / 'Pending'
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
     $('#btn-edit-address').show();
     $('#btn-quick-submit').show();
@@ -424,30 +440,102 @@ function injectVideoCSS() {
         .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
         video { width: 100%; height: 100%; object-fit: cover; }
 
+        /* 🏷️ ROUND LABEL */
         .digital-label {
-            position: absolute; top: 67%; left: 53%; transform: translate(-30%, -50%) scale(0.7); 
-            width: 128px; height: 128px; border-radius: 50%;
+            position: absolute;
+            top: 67%; left: 53%;
+            transform: translate(-30%, -50%) scale(0.7); 
+            
+            width: 128px; height: 128px;
+            border-radius: 50%;
             background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
-            z-index: 10; opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 10;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
         .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-        .content-group { display: flex; flex-direction: column; align-items: center; transition: transform 0.8s ease-in-out; }
-        .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
-        .packed-text { font-family: 'Montserrat', sans-serif; font-size: 10px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
-        .digital-label.final-state .content-group { transform: translateY(-18px) scale(0.9); }
+        .content-group {
+            display: flex; flex-direction: column; align-items: center;
+            transition: transform 0.8s ease-in-out;
+        }
 
-        .check-wrapper { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scale(0); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); }
+        .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
+        
+        /* PREMIUM FONT */
+        .packed-text { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px; color: #5d4037; 
+            text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; 
+        }
+
+        /* Move Up Adjustment */
+        .digital-label.final-state .content-group { 
+            transform: translateY(-18px) scale(0.9); 
+        }
+
+        /* 🔥 GREEN TICK MARK */
+        .check-wrapper {
+            position: absolute;
+            bottom: 4px; 
+            left: 50%;
+            transform: translateX(-50%) scale(0); 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); 
+        }
+
         .check-wrapper.show { transform: translateX(-50%) scale(1); }
-        .checkmark-svg { width: 28px; height: 28px; stroke: #28a745; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; transition: stroke-dashoffset 0.4s ease-in-out; }
+
+        .checkmark-svg {
+            width: 28px; height: 28px;
+            stroke: #28a745; stroke-width: 5; 
+            stroke-linecap: round; stroke-linejoin: round;
+            fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; 
+            transition: stroke-dashoffset 0.4s ease-in-out;
+        }
+
         .check-wrapper.draw .checkmark-svg { stroke-dashoffset: 0; }
 
-        .name-wrapper { position: absolute; top: 50%; left: 50%; z-index: 999; transform: translate(-100%, -250%) scale(1.2); opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); display: flex; justify-content: center; align-items: center; width: 100%; }
-        .user-name { font-family: 'Courier New', monospace; font-size: 25px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding-bottom: 2px; background-color: #000000; height: 32px; display: flex; align-items: center; justify-content: center; width: auto; min-width: 163px; padding-left: 15px; padding-right: 15px; padding-top: 2px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.3); white-space: nowrap; }
+        /* 🔥 BLACK NAME BADGE */
+        .name-wrapper {
+            position: absolute;
+            top: 50%; left: 50%;
+            z-index: 999;
+            transform: translate(-100%, -250%) scale(1.2); 
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex; justify-content: center; align-items: center; width: 100%;
+        }
+
+        .user-name {
+            font-family: 'Courier New', monospace; /* Or 'Montserrat' if preferred */
+            font-size: 25px; font-weight: 900;
+            color: #ffffff; 
+            text-transform: uppercase;
+            padding-bottom: 2px;
+            background-color: #000000; 
+            
+            height: 32px; 
+            display: flex; align-items: center; justify-content: center;
+            
+            width: auto; min-width: 163px;
+            padding-left: 15px; padding-right: 15px; padding-top: 2px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+            white-space: nowrap; 
+        }
+
         .name-wrapper.show-big { opacity: 1; transform: translate(-50%, -250%) scale(1.2); }
-        .name-wrapper.docked { top: 67%; left: 53%; transform: translate(-50%, 2px) scale(0.5); opacity: 1; }
+
+        .name-wrapper.docked {
+            top: 67%; left: 53%; 
+            transform: translate(-50%, 2px) scale(0.5); 
+            opacity: 1;
+        }
 
         .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
     </style>
@@ -457,16 +545,22 @@ function injectVideoCSS() {
             <video id="honeyVideo" muted playsinline preload="auto">
                 <source src="honey_rotate.mp4" type="video/mp4">
             </video>
+            
             <div class="digital-label" id="customLabel">
                 <div class="content-group">
                     <img src="images/kafak_logo.png" alt="Kafak">
                     <div class="packed-text">RESERVED FOR</div>
                 </div>
                 <div class="check-wrapper" id="finalCheck">
-                    <svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg>
+                    <svg class="checkmark-svg" viewBox="0 0 24 24">
+                        <path d="M4 12l5 5L20 6"></path>
+                    </svg>
                 </div>
             </div>
-            <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
+
+            <div class="name-wrapper" id="nameBadge">
+                <div class="user-name" id="vid-username"></div>
+            </div>
         </div>
         <div class="loading-txt">PREPARING YOUR ORDER...</div>
     </div>
@@ -487,6 +581,7 @@ function playVideoAnimation(userName, apiCallback) {
   const checkWrapper = $('#finalCheck');
   const nameBox = document.getElementById('vid-username');
 
+  // RESET
   label.removeClass('visible final-state');
   nameBadge.removeClass('show-big docked');
   checkWrapper.removeClass('show draw');
@@ -500,17 +595,36 @@ function playVideoAnimation(userName, apiCallback) {
   video.currentTime = 0;
   video.play().catch(e => console.log("Auto-play blocked", e));
 
-  apiCallback(); // POST to server (This sets start time)
+  apiCallback(); // POST to server
 
-  // Animation Timings
+  // 1. Label Appears
   setTimeout(() => { label.addClass('visible'); }, 4700);
+
+  // 2. Name Slides In
   setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
+
+  // 3. Typewriter
   setTimeout(() => {
-    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
-    let typeInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(typeInterval); } }, 80);
+    let i = 0;
+    let text = userName.replace(/ /g, "\u00A0");
+    nameBox.innerText = "";
+    let typeInterval = setInterval(() => {
+      if (i < text.length) { nameBox.innerText += text.charAt(i); i++; }
+      else { clearInterval(typeInterval); }
+    }, 80);
   }, 5800);
-  setTimeout(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
-  setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
+
+  // 4. Zoom Out & Dock
+  setTimeout(() => {
+    nameBadge.removeClass('show-big').addClass('docked');
+    label.addClass('final-state');
+  }, 7800);
+
+  // 5. Green Tick
+  setTimeout(() => {
+    checkWrapper.addClass('show');
+    setTimeout(() => { checkWrapper.addClass('draw'); }, 100);
+  }, 8300);
 }
 
 // ------------------------------------------------------------------------------
