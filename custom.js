@@ -1,4 +1,4 @@
-
+// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
@@ -107,7 +107,6 @@ $(document).ready(function () {
       let isDirty = false;
       Object.keys(localUsersMap).forEach(key => {
         let u = localUsersMap[key];
-        // CLEANUP OLD STATUS
         if (u.Status || u.status || u.tracking || u.offer || u.courier) {
           delete u.Status; delete u.status;
           delete u.tracking; delete u.offer; delete u.courier; delete u.provider;
@@ -366,7 +365,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
-  // DATE UI
   if (d.date) {
     if ($('#display-date').length === 0) {
       $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px; font-weight:600;"></div>').insertAfter('#display-oid');
@@ -551,7 +549,6 @@ function updateSummaryDisplay() {
   checkForChanges();
 }
 
-// 🔥 DEFINED: updatePrice
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');

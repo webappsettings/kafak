@@ -20,10 +20,7 @@
       --secondary: #fff;
       --text-gray: #666;
       --brand-green: #2e7d32;
-      --wa-green: #25D366;
-      /* WhatsApp Brand Color */
       --bg-light: #f8f9fa;
-      --border-color: #e0e0e0;
     }
 
     html,
@@ -53,7 +50,7 @@
     }
 
     .brand-logo-img {
-      height: 35px;
+      height: 38px;
       width: auto;
     }
 
@@ -66,7 +63,7 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* --- INPUT STYLES --- */
+    /* --- OLD STYLE INPUTS (For Wizard - Create View) --- */
     .huge-input {
       border: none;
       border-bottom: 2px solid #ddd;
@@ -85,7 +82,7 @@
       border-color: var(--brand-green);
     }
 
-    /* Wizard Select Border */
+    /* Wizard Select Fix */
     select.huge-input {
       border: 1px solid #ddd !important;
       border-radius: 8px !important;
@@ -93,19 +90,19 @@
       margin-top: 5px;
     }
 
+    /* --- NEW STYLE INPUTS (For Edit View) --- */
     .regular-input {
-      border: 1px solid var(--border-color);
+      border: 1px solid #e0e0e0;
       border-radius: 10px;
       padding: 12px;
       width: 100%;
       font-weight: 600;
       outline: none;
-      background: #f9f9f9;
+      background: #fff;
     }
 
     .regular-input:focus {
       border-color: var(--brand-green);
-      background: #fff;
     }
 
     .form-label {
@@ -152,7 +149,7 @@
       justify-content: center;
     }
 
-    /* EDIT CARD */
+    /* EDIT CARD (PROFESSIONAL STYLE) */
     .summary-card {
       background: #fff;
       border-radius: 18px;
@@ -175,13 +172,6 @@
       line-height: 1.5;
       font-weight: 500;
       margin-bottom: 10px;
-    }
-
-    /* Bold Name inside Address Text */
-    .address-text b {
-      font-weight: 800;
-      color: #000;
-      font-size: 14px;
     }
 
     .phone-row {
@@ -242,7 +232,7 @@
       border-top: 1px dashed #ddd;
     }
 
-    /* HEADER META */
+    /* HEADER META (Right Side Date) */
     .header-meta {
       display: flex;
       justify-content: space-between;
