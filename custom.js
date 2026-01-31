@@ -114,7 +114,7 @@ $(document).ready(function () {
     }
   }
 
-  // 🔥 INSTANT EDIT LOAD
+  // 🔥 INSTANT EDIT LOAD LOGIC
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
@@ -126,14 +126,21 @@ $(document).ready(function () {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
           $('#step-0').hide();
-          loadOrderData(localUsersMap[ph]); // Instant UI
+
+          // 🔥 Load FORM from Local (Instant), but Status from Server
+          loadOrderData(localUsersMap[ph], false); // false = don't show status yet
           foundLocally = true;
-          syncUserDataBackground(ph); // Silent Sync
+
+          // 🔥 Sync Status in Background
+          syncUserDataBackground(ph);
           break;
         }
       }
 
-      if (!foundLocally) fetchOrder(oid);
+      // If not found locally, fetch everything from server
+      if (!foundLocally) {
+        fetchOrder(oid);
+      }
     }
   } else {
     showLoader(false);
@@ -154,7 +161,8 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
-    loadOrderData(localUsersMap[phone]);
+    // 🔥 Local Hit: Load Form Instantly, Status Later
+    loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
   }
@@ -166,30 +174,30 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
-function loadOrderData(d) {
+// 🔥 UPDATED: Added isServerData flag
+function loadOrderData(d, isServerData = false) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
   if (d.phone) {
     localUsersMap[d.phone] = { ...localUsersMap[d.phone], ...d };
     SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
-  if (d.Status === 'Dispatched' || d.Status === 'Completed') { editingOrderId = null; showReturningUserView(d, false); } else { showReturningUserView(d, true); }
+
+  // Pass isServerData to view
+  if (d.Status === 'Dispatched' || d.Status === 'Completed') {
+    showReturningUserView(d, false, isServerData);
+  } else {
+    showReturningUserView(d, true, isServerData);
+  }
 }
 
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 🔥 ROBUST LOADER INJECTION (Checks if box exists, else appends)
-  if ($('#status-area').length === 0) {
-    // If status area is missing, inject it safely
-    if ($('#quick-price-box').length > 0) {
-      $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
-    } else {
-      // Fallback: append to main container
-      $('#returning-user-view').append('<div id="status-area" class="mt-2"></div>');
-    }
+  // Loader is already set by showReturningUserView, but ensures it here too
+  if ($('#status-area').length > 0 && $('#status-area').is(':empty')) {
+    $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
-  $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
 
   fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}`)
     .then(res => res.json())
@@ -203,13 +211,13 @@ function syncUserDataBackground(phone) {
         let mergedData = { ...localData, ...serverData };
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        updateStatusUI(mergedData);
+        updateStatusUI(mergedData); // 🔥 Update Status with Server Data
       } else {
-        updateStatusUI(localData);
+        updateStatusUI(localData); // Fallback
       }
     })
     .catch(err => {
-      updateStatusUI(localData);
+      updateStatusUI(localData); // Fallback
     });
 }
 
@@ -288,9 +296,10 @@ function submitWizardOrder() {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 RETURNING USER (COMPACT UI)
+// 🔴 RETURNING USER (COMPACT UI & SERVER PRIORITY)
 // ------------------------------------------------------------------------------
-function showReturningUserView(d, isActiveOrder) {
+// 🔥 Added isServerData param
+function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
@@ -300,32 +309,32 @@ function showReturningUserView(d, isActiveOrder) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // 🔥 1. STRUCTURE: Qty & Button SIDE-BY-SIDE
+  // 1. Compact UI Structure
   if ($('.qty-action-group').length === 0) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-  }
 
-  // 🔥 2. ENSURE STATUS AREA EXISTS (Safe Injection)
-  if ($('#status-area').length === 0) {
-    if ($('#quick-price-box').length > 0) {
-      $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
-    } else {
-      // Fallback if price box is hidden/missing, append to main view
-      $('#returning-user-view').append('<div id="status-area" class="mt-2"></div>');
-    }
+    // Inject Status Area below price
+    $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
   updateSummaryDisplay();
-  updateStatusUI(d);
+
+  // 🔥 STATUS LOGIC: Show Loader if Local, Show Data if Server
+  if (isServerData) {
+    updateStatusUI(d);
+  } else {
+    // Show Loader (Don't show potentially old status)
+    $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
+  }
 
   $('#quick-qty option').prop('disabled', false);
   if (isActiveOrder) {
     $('#quick-qty').val(d.quantity).trigger('change');
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(translations[lang].btn_update);
-    if (d.Status === 'Paid') { const currentQty = parseInt(d.quantity); $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); }); }
+    // Note: We might want to disable edit if Paid, but we wait for Server status to decide fully
   } else {
     $('#quick-qty').val('').trigger('change'); $('#quick-price-box').hide();
     const lang = $('.form-select').val();
@@ -338,16 +347,17 @@ function updateStatusUI(d) {
   $('#status-area').empty();
   let html = '';
 
-  // 🔥 3. OFFER CHECK (Robust)
   if (d.offer === true || String(d.offer).toUpperCase() === 'TRUE') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
-  // 🔥 4. PAID / DISPATCHED STATUS (Case Insensitive)
   let status = String(d.Status || '').trim().toLowerCase();
 
   if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
+    // Optionally disable qty edit here
+    const currentQty = parseInt(d.quantity);
+    $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); });
   }
   else if (status === 'dispatched' || status === 'completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
@@ -627,7 +637,9 @@ function setupAdminView(oid) {
   $('.footer-action').after(`<div class="text-center py-4"><button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">🛠️ Admin: Clear Cache</button></div>`);
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-  if (cachedOrder) { showLoader(false); updateAdminUI(cachedOrder.Status || 'Pending', oid); loadOrderData(cachedOrder); }
+
+  // Admin always wants fresh data, but cache is fallback
+  if (cachedOrder) { showLoader(false); updateAdminUI(cachedOrder.Status || 'Pending', oid); loadOrderData(cachedOrder, true); }
   else { fetchOrder(oid); }
 }
 
@@ -667,7 +679,7 @@ function fetchOrder(oid) {
       let d = res.data; if (d.custId) { myCustId = d.custId; }
       if (d.phone && localUsersMap[d.phone]) { const local = localUsersMap[d.phone]; if (!d.district && local.district) d.district = local.district; if (!d.custId && local.custId) d.custId = local.custId; }
       if (SafeStorage.getItem('kafakAdmin') === 'true') { let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]"); let cachedOrder = cachedOrders.find(o => o.orderid === oid); let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending'); updateAdminUI(status, oid); }
-      loadOrderData(d);
+      loadOrderData(d, true); // Server Data = True
     } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
   }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
