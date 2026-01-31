@@ -114,7 +114,7 @@ $(document).ready(function () {
     }
   }
 
-  // 🔥 INSTANT EDIT LOAD
+  // 🔥 INSTANT EDIT LOAD LOGIC
   if (oid) {
     if (isAdmin) {
       setupAdminView(oid);
@@ -123,18 +123,24 @@ $(document).ready(function () {
       const phones = Object.keys(localUsersMap);
 
       for (let ph of phones) {
-        // Safe check for ID
         if (String(localUsersMap[ph].orderid) === String(oid)) {
-          showLoader(false);
+          showLoader(false); // 🔥 STOP LOADER INSTANTLY
           $('#step-0').hide();
-          loadOrderData(localUsersMap[ph]); // Instant UI
+
+          // Show Local Data Immediately
+          loadOrderData(localUsersMap[ph]);
           foundLocally = true;
-          syncUserDataBackground(ph); // Silent Sync
+
+          // Sync Status & Qty in Background (No Full Loader)
+          syncUserDataBackground(ph);
           break;
         }
       }
 
-      if (!foundLocally) fetchOrder(oid);
+      // Fetch from server ONLY if NOT found locally
+      if (!foundLocally) {
+        fetchOrder(oid);
+      }
     }
   } else {
     showLoader(false);
@@ -180,7 +186,7 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 🔥 COMPACT LOADER BELOW PRICE BOX (Prevents Jumping)
+  // 🔥 LOADER BELOW PRICE BOX (Prevents Jumping)
   if ($('#status-area').length > 0) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
@@ -197,7 +203,7 @@ function syncUserDataBackground(phone) {
         let mergedData = { ...localData, ...serverData };
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        updateStatusUI(mergedData);
+        updateStatusUI(mergedData); // Will update #status-area below price
       } else {
         updateStatusUI(localData);
       }
@@ -295,13 +301,14 @@ function showReturningUserView(d, isActiveOrder) {
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
   // 🔥 1. STRUCTURE: Qty & Button SIDE-BY-SIDE
+  // This ensures the button doesn't take a whole new line
   if ($('.qty-action-group').length === 0) {
     // Wrap Qty & Button
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
 
-    // 🔥 2. PLACEHOLDER FOR STATUS BELOW PRICE
+    // 🔥 2. PLACEHOLDER FOR STATUS BELOW PRICE (Not top)
     // Insert status area AFTER the price box container
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
@@ -324,7 +331,9 @@ function showReturningUserView(d, isActiveOrder) {
 }
 
 function updateStatusUI(d) {
+  // Clear old status (removes "Checking status..." loader too)
   $('#status-area').empty();
+
   let html = '';
 
   // 🔥 3. OFFER CHECK (Robust: Supports Boolean & String)
@@ -332,7 +341,7 @@ function updateStatusUI(d) {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
-  // 🔥 4. PAID STATUS
+  // 🔥 4. PAID STATUS (Ensures it shows up)
   if (d.Status === 'Paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
   }
