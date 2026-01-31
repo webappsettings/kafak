@@ -2,8 +2,6 @@
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
-// ------------------------------------------------------------------------------
-
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -55,7 +53,7 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
-// 🔥 KEY CHANGE: New Key for Customer Data (Separated from Admin)
+// 🔥 SEPARATE KEY FOR CUSTOMER DATA
 const STORAGE_KEY = 'kafakCustomerData';
 
 // 🛡️ SAFE STORAGE
@@ -101,9 +99,27 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // 🔥 LOAD LOCAL DATA (Renamed Key)
+  // 🔥 LOAD & AUTO-CLEAN LOCAL DATA
+  // This fixes the issue of old status stuck in cache
   const saved = SafeStorage.getItem(STORAGE_KEY);
-  if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
+  if (saved) {
+    try {
+      localUsersMap = JSON.parse(saved);
+
+      // 🔥 AUTO-CLEAN: Remove any 'Status', 'status', 'tracking' from local storage on load
+      let isDirty = false;
+      Object.keys(localUsersMap).forEach(key => {
+        let u = localUsersMap[key];
+        if (u.Status || u.status || u.tracking || u.offer || u.courier) {
+          delete u.Status; delete u.status;
+          delete u.tracking; delete u.offer; delete u.courier; delete u.provider;
+          isDirty = true;
+        }
+      });
+      if (isDirty) SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+
+    } catch (e) { localUsersMap = {}; }
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
@@ -129,19 +145,17 @@ $(document).ready(function () {
           showLoader(false);
           $('#step-0').hide();
 
-          // Load FORM Data Only (No Status)
+          // Load Form (No Status)
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // Sync Status (Fresh from Server)
+          // Sync Status
           syncUserDataBackground(ph);
           break;
         }
       }
 
-      if (!foundLocally) {
-        fetchOrder(oid);
-      }
+      if (!foundLocally) fetchOrder(oid);
     }
   } else {
     showLoader(false);
@@ -162,7 +176,6 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
-    // Load Form Instantly, Status "Checking..."
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -175,38 +188,31 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
-// 🔥 Helper to Clean Data before Saving (Removes Status, Offer, etc)
+// 🔥 SAVE ONLY CLEAN DATA (Contact Info)
 function saveToLocal(phone, data) {
-  // Clone data to avoid messing up current view
   let cleanData = { ...data };
 
-  // DELETE Dynamic Fields (Never save these to local storage)
-  delete cleanData.Status;
-  delete cleanData.status;
-  delete cleanData.tracking;
-  delete cleanData.courier;
-  delete cleanData.provider;
-  delete cleanData.offer;
+  // Remove all dynamic fields before saving
+  delete cleanData.Status; delete cleanData.status;
+  delete cleanData.tracking; delete cleanData.courier;
+  delete cleanData.provider; delete cleanData.offer;
   delete cleanData.grandTotal;
 
-  // Update Map
   localUsersMap[phone] = cleanData;
-
-  // Save to Separate Customer Key
   SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 }
 
 function loadOrderData(d, isServerData = false) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
 
-  // Save Contact Info Only (Strip status)
   if (d.phone) {
-    saveToLocal(d.phone, d);
+    saveToLocal(d.phone, d); // Ensure we only store clean data
   }
 
   showReturningUserView(d, true, isServerData);
 }
 
+// 🔥 MANUAL REFRESH
 window.manualRefresh = function () {
   const btn = $('#refresh-btn-container button');
   const icon = btn.find('i');
@@ -222,7 +228,7 @@ window.manualRefresh = function () {
           btn.prop('disabled', false).css('opacity', '1');
           icon.removeClass('fa-spin');
           const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-          Toast.fire({ icon: 'success', title: 'Updated' });
+          Toast.fire({ icon: 'success', title: 'Status Updated' });
         }, 800);
       });
   }
@@ -236,14 +242,17 @@ function syncUserDataBackground(phone) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
-  // Fetch Fresh Data
+  // Cache busting with timestamp
   return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
+
+        // Merge: Local Contact Info + Server Status
         let mergedData = { ...localData, ...serverData };
 
+        // Ensure Status Key Consistency
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         if (mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed') {
@@ -253,15 +262,15 @@ function syncUserDataBackground(phone) {
 
         userData = mergedData;
 
-        // 🔥 Save ONLY contact info (Clean save)
+        // Save ONLY basic info to local
         saveToLocal(phone, mergedData);
 
-        // 🔥 Render View with Server Data
+        // 🔥 UPDATE UI (Server Data is TRUE)
         let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed');
         showReturningUserView(mergedData, isActive, true);
 
       } else {
-        $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Connection issue. Retry later.</small></div>`);
+        $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Connection issue.</small></div>`);
       }
     })
     .catch(err => {
@@ -357,13 +366,17 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
+  // 1. Compact UI Structure
   if ($('.qty-action-group').length === 0) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
+
+    // Inject Status Area below price
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
+  // 2. REFRESH BUTTON
   if ($('#refresh-btn-container').length === 0) {
     $('#returning-user-view').prepend(`
           <div id="refresh-btn-container" class="d-flex justify-content-end mb-2">
@@ -376,9 +389,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
+  // 🔥 STATUS LOGIC: 
   if (isServerData) {
     updateStatusUI(d);
   } else {
+    // FORCE LOADING (Don't show local status)
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
@@ -399,10 +414,12 @@ function updateStatusUI(d) {
   $('#status-area').empty();
   let html = '';
 
+  // Offer
   if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
+  // Status Handling
   let status = String(d.Status || d.status || '').trim().toLowerCase();
 
   if (status === 'paid') {
@@ -417,7 +434,7 @@ function updateStatusUI(d) {
     $('#btn-edit-address').hide();
     $('#btn-quick-submit').hide();
     $('#quick-qty').prop('disabled', true);
-  } else if (status === 'sent' || status === 'pending') {
+  } else if (status === 'sent' || status === 'pending' || status === 'received') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
     $('#btn-edit-address').show();
     $('#btn-quick-submit').show();
@@ -446,8 +463,7 @@ window.submitQuickOrder = function () {
   const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
   if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
   const finalData = { orderid: editingOrderId, name: $('#saved-name').text(), phone: newPhone, whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: pin, postoffice: $('#edit-postoffice').val(), district: $('#edit-district').val(), state: $('#edit-state').val(), quantity: $('#quick-qty').val(), message: '', custId: myCustId };
-
-  // Save Contact info only
+  // Save contact info only
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -612,7 +628,6 @@ function playVideoAnimation(userName, apiCallback) {
   checkWrapper.removeClass('show draw');
   nameBox.innerText = "";
 
-  // Smart Font Logic
   let fontSize = 25;
   if (userName.length > 20) fontSize = 16;
   else if (userName.length > 12) fontSize = 20;
