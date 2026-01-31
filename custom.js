@@ -123,6 +123,7 @@ $(document).ready(function () {
       const phones = Object.keys(localUsersMap);
 
       for (let ph of phones) {
+        // Safe check for ID
         if (String(localUsersMap[ph].orderid) === String(oid)) {
           showLoader(false);
           $('#step-0').hide();
@@ -151,7 +152,7 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
   currentLoginPhone = phone;
 
-  preloadHoneyVideo(); // Zero Lag Video
+  preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
     loadOrderData(localUsersMap[phone]);
@@ -179,7 +180,7 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 🔥 LOADER IN STATUS AREA (Below Price Box)
+  // 🔥 COMPACT LOADER BELOW PRICE BOX (Prevents Jumping)
   if ($('#status-area').length > 0) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
@@ -196,14 +197,12 @@ function syncUserDataBackground(phone) {
         let mergedData = { ...localData, ...serverData };
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        updateStatusUI(mergedData); // Will update #status-area below price
+        updateStatusUI(mergedData);
       } else {
-        // If no update, show local status (remove loader)
         updateStatusUI(localData);
       }
     })
     .catch(err => {
-      // On error, show local status
       updateStatusUI(localData);
     });
 }
@@ -283,7 +282,7 @@ function submitWizardOrder() {
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 RETURNING USER (PERFECTED LAYOUT)
+// 🔴 RETURNING USER (COMPACT UI)
 // ------------------------------------------------------------------------------
 function showReturningUserView(d, isActiveOrder) {
   $('#returning-user-view').show();
@@ -295,21 +294,20 @@ function showReturningUserView(d, isActiveOrder) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // 🔥 1. COMPACT UI STRUCTURE
-  // Check if structure exists, if not create it
+  // 🔥 1. STRUCTURE: Qty & Button SIDE-BY-SIDE
   if ($('.qty-action-group').length === 0) {
-    // Wrap Qty & Button side-by-side
+    // Wrap Qty & Button
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
 
-    // 🔥 2. INSERT STATUS AREA BELOW PRICE BOX
-    // Price box is inside #quick-price-box. We insert status area AFTER it.
-    $('<div id="status-area" class="mt-3"></div>').insertAfter('#quick-price-box');
+    // 🔥 2. PLACEHOLDER FOR STATUS BELOW PRICE
+    // Insert status area AFTER the price box container
+    $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
   updateSummaryDisplay();
-  updateStatusUI(d); // Populate status area
+  updateStatusUI(d);
 
   $('#quick-qty option').prop('disabled', false);
   if (isActiveOrder) {
@@ -326,20 +324,19 @@ function showReturningUserView(d, isActiveOrder) {
 }
 
 function updateStatusUI(d) {
-  // Clear old status
   $('#status-area').empty();
-
   let html = '';
-  // Offer Card
-  if (d.offer === true) {
+
+  // 🔥 3. OFFER CHECK (Robust: Supports Boolean & String)
+  if (d.offer === true || String(d.offer).toUpperCase() === 'TRUE') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
-  // Paid Status
+  // 🔥 4. PAID STATUS
   if (d.Status === 'Paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
   }
-  // Dispatched Status
+  // 🔥 5. DISPATCHED STATUS
   else if (d.Status === 'Dispatched' || d.Status === 'Completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
     let courierName = d.courier ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier}</div>` : '';
@@ -349,7 +346,7 @@ function updateStatusUI(d) {
     $('#btn-edit-address').show();
   }
 
-  // Inject into the new area below price
+  // Inject below price
   $('#status-area').html(html);
 }
 
