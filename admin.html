@@ -837,6 +837,119 @@
             transition: all 0.2s ease-in-out;
             background: #ffffff;
         }
+
+        /* --- NEW FEATURES CSS --- */
+
+        /* 1. Sticky Timeline Badge (WhatsApp Style) */
+        .sticky-date-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 130px;
+            /* Header Height-ന് അനുസരിച്ച് അഡ്ജസ്റ്റ് ചെയ്തു */
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 10px;
+            pointer-events: none;
+            /* സ്ക്രോൾ ചെയ്യുമ്പോൾ തടസ്സമാകാതിരിക്കാൻ */
+        }
+
+        .timeline-badge {
+            background: #e1f5fe;
+            color: #444;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            pointer-events: auto;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        /* 2. Full Date on Card */
+        .card-timestamp {
+            font-size: 10px;
+            color: #999;
+            font-weight: 600;
+            text-align: right;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* 3. Active Card Highlight (Pop-up Effect) */
+        .order-card {
+            cursor: pointer;
+            /* Clickable ആണെന്ന് കാണിക്കാൻ */
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f0f0f0;
+        }
+
+        .order-card.active-highlight {
+            transform: scale(1.03);
+            /* കാർഡ് ഉയർന്നു നിൽക്കും */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+            border: 1.5px solid #000 !important;
+            z-index: 10;
+            background: #fff;
+        }
+
+        /* 4. Order ID Colored Backgrounds */
+        .order-id {
+            color: white !important;
+            border: none !important;
+            padding: 4px 8px !important;
+            font-size: 11px !important;
+        }
+
+        /* Status Colors from Border */
+        .oid-bg-Pending {
+            background: #ff9800 !important;
+        }
+
+        .oid-bg-Sent {
+            background: #0dcaf0 !important;
+            color: #000 !important;
+        }
+
+        .oid-bg-Paid {
+            background: #2e7d32 !important;
+        }
+
+        .oid-bg-Dispatched {
+            background: #2196f3 !important;
+        }
+
+        /* Remove Old Border Lines */
+        .status-Pending,
+        .status-Paid,
+        .status-Dispatched {
+            border-left: none !important;
+        }
+
+        /* Archive Button */
+        .btn-archive-mini {
+            background: #f1f1f1;
+            border: none;
+            color: #666;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-archive-mini:hover {
+            background: #ffebee;
+            color: #d32f2f;
+            transform: scale(1.1);
+        }
     </style>
 </body>
 

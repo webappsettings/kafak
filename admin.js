@@ -156,20 +156,17 @@ function renderTabs(orders) {
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // SORT ORDERS: LATEST FIRST
+    // Sort: Latest First
     orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    // Timeline Trackers
     let lastDateMap = { pending: '', paid: '', dispatched: '' };
 
     orders.forEach((d, i) => {
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
 
-        // Ignore Archive or Completed for main tabs
         if (status === 'Completed' || status === 'Archive') return;
 
-        // Determine which list to add to
         let targetList = null;
         let type = '';
         let listKey = '';
@@ -186,10 +183,10 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
-            // Timeline Logic
+            // WhatsApp Style Sticky Timeline
             let orderDate = d.timestamp ? getTimelineLabel(d.timestamp) : "Unknown Date";
             if (orderDate !== lastDateMap[listKey]) {
-                targetList.innerHTML += `<div class="timeline-badge shadow-sm border">${orderDate}</div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${orderDate}</div></div>`;
                 lastDateMap[listKey] = orderDate;
             }
             targetList.innerHTML += createCardHTML(d, i, type, status);
@@ -201,6 +198,89 @@ function renderTabs(orders) {
     document.getElementById('count-dispatched').innerText = counts.dispatched;
     updateSyncButtonUI();
 }
+
+function createCardHTML(d, index, type, currentStatus) {
+    let priceInfo = calculatePriceInfo(d.quantity, d.state);
+    let safe = (val) => String(val || '').toUpperCase();
+    let statusBadge = '', buttons = '', topButtons = '';
+
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
+
+    // 🔥 CHANGE: Archive Button only for 'Sent' status
+    let archiveBtn = '';
+    if (currentStatus === 'Sent') {
+        archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
+    }
+
+    // Date Header
+    let dateHeader = `<span class="card-timestamp">${formatFullDate(d.timestamp)}</span>`;
+
+    // Background Color Class for ID
+    let oidClass = `oid-bg-${currentStatus}`;
+
+    let phoneDisplay = d.phone;
+    if (d.altphone) { phoneDisplay += `, ${d.altphone}`; }
+
+    let waDisplay = '';
+    if (d.whatsapp) {
+        waDisplay = `<div class="mt-1 text-success fw-bold small"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</div>`;
+    }
+
+    if (type === 'pending') {
+        if (currentStatus === 'Sent') {
+            statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
+            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
+        } else {
+            statusBadge = '<span class="badge bg-warning text-dark">New</span>';
+            buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+        }
+    } else if (type === 'paid') {
+        statusBadge = '<span class="badge bg-success">Paid</span>';
+        buttons = `<button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><div style="display:flex; align-items:center; justify-content:center; width:40px;"><input type="checkbox" class="order-cb" value="${index}" onchange="checkSelectAllStatus()" style="width:20px; height:20px;"></div>`;
+        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">↩ REVERT</button>` + printBtn;
+    } else if (type === 'dispatched') {
+        statusBadge = '<span class="badge bg-primary">Dispatched</span>';
+        let localUpdate = JSON.parse(localStorage.getItem('pendingUpdates') || "[]").find(u => u.oid === d.orderid);
+        let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
+        let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
+
+        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>
+                   <button class="btn-custom btn-complete" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+
+        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
+    }
+
+    return `<div class="col-12 col-md-6 col-lg-4">
+                <div class="order-card" id="card-${d.orderid}">
+                    ${dateHeader}
+                    <div class="card-header-row">
+                        <div style="display:flex; align-items:center;">
+                            ${archiveBtn} 
+                            <span class="order-id ${oidClass}">#${d.orderid.split('-')[1]}</span> 
+                            ${editLink} 
+                            ${topButtons}
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <div class="cust-name">${safe(d.name)}</div>
+                    <div class="cust-details">
+                        <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
+                        <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
+                        <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
+                        <div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${phoneDisplay}</div>
+                        ${waDisplay}
+                    </div>
+                    <div class="info-box">
+                        <span>${d.quantity} Bottles</span>
+                        <span class="price-tag">${priceInfo.total}</span>
+                    </div>
+                    <div class="action-area">${buttons}</div>
+                </div>
+            </div>`;
+}
+
+
 
 function updateSyncButtonUI() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -600,13 +680,13 @@ function updateSelectAllButton() {
 // --- NEW HELPER FUNCTIONS (Add to top or bottom of JS) ---
 
 // 1. Format Date for Header (Jan 31, 2026, 9:17 PM)
+// Helpers for Date
 function formatFullDate(dateStr) {
     if (!dateStr) return "";
     const d = new Date(dateStr);
     return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
 }
 
-// 2. Format Date for Timeline (Today, Yesterday, etc.)
 function getTimelineLabel(dateStr) {
     const d = new Date(dateStr);
     const today = new Date();
@@ -616,14 +696,7 @@ function getTimelineLabel(dateStr) {
     if (d.toDateString() === today.toDateString()) return "Today";
     if (d.toDateString() === yesterday.toDateString()) return "Yesterday";
 
-    // Check for days of the week (within last 7 days)
-    const diffTime = Math.abs(today - d);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays < 7) {
-        return d.toLocaleDateString('en-US', { weekday: 'long' });
-    }
-
-    return d.toLocaleDateString('en-GB'); // DD/MM/YYYY
+    return d.toLocaleDateString('en-GB');
 }
 
 // 3. Highlight Logic (Click Listener)
@@ -634,5 +707,14 @@ document.addEventListener('click', function (e) {
             document.querySelectorAll('.order-card').forEach(c => c.classList.remove('active-highlight'));
             card.classList.add('active-highlight');
         }
+    }
+});
+
+// Highlight Card on Click (Anywhere)
+document.addEventListener('click', function (e) {
+    const card = e.target.closest('.order-card');
+    if (card) {
+        document.querySelectorAll('.order-card').forEach(c => c.classList.remove('active-highlight'));
+        card.classList.add('active-highlight');
     }
 });
