@@ -1,8 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbyzdH9lsX47-P6nATPf3VDRDuTydIEavI8p-OBylwILettoXNecRk06QAAaLMXtciVh9g/exec`;
-// ------------------------------------------------------------------------------
+const sc = `https://script.google.com/macros/s/AKfycbxAonOYSAaj8GVyp5EXrA9XPY8XfX9rfGKkPF4RHVSTBc1tkBae455dquqD7YL0b3Pg2A/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -245,16 +244,17 @@ function syncUserDataBackground(phone) {
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         let s = mergedData.Status.toLowerCase();
-        if (['dispatched', 'completed', 'paid', 'archive'].includes(s)) {
+        // If finished, clear ID to allow new order
+        if (['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
-          if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
         }
 
         userData = mergedData;
         saveToLocal(phone, mergedData);
 
-        let isActive = !(['dispatched', 'completed', 'paid', 'archive'].includes(s));
+        // Active if NOT finished
+        let isActive = !(['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s));
         showReturningUserView(mergedData, isActive, true);
       }
     })
@@ -383,7 +383,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-    // Placeholder for Status Area
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
@@ -391,41 +390,43 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   $('#status-area').empty();
 
-  // 🔥 STATUS LOGIC: Server Priority
+  // 🔥 STATUS LOGIC
   if (isServerData) {
     updateStatusUI(d);
   }
 
-  // "NEW ORDER" LOGIC
+  // 🔥 "NEW ORDER" LOGIC & FINISHED STATE
   const status = String(d.Status || '').trim().toLowerCase();
-  const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive');
+  const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed' || status === 'archive' || status === 'delivered');
   const lang = $('.form-select').val() || 'en';
 
-  // Only show "New Order" button if data came from server AND is finished
   if (isFinished && isServerData) {
+    // HIDE QTY & EDIT FOR FINISHED ORDERS
     $('#quick-price-box').hide();
     $('#btn-quick-submit').hide();
     $('#btn-edit-address').hide(); // Collapse Edit
     $('.qty-label').hide(); // HIDE QTY LABEL
 
-    // Inject New Order Button if missing
+    // Inject New Order Button in the QTY slot
     if ($('#btn-new-order-mode').length === 0) {
       const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
       $(`
-            <div id="btn-new-order-mode" class="mt-3 text-center fade-in">
-                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px;">
+            <div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in">
+                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px; width:100%;">
                     <i class="fas fa-plus-circle me-1"></i> ${btnText}
                 </button>
             </div>
           `).insertAfter('#status-area');
+      // Note: Inserted after status-area so it sits below status card
     }
     $('#btn-new-order-mode').show();
   } else {
     // Normal / Active Order
     $('#quick-price-box').show();
+    $('.qty-label').show();
     $('#btn-quick-submit').show();
     $('#btn-edit-address').show();
-    $('.qty-label').show();
+    $('.address-box').hide();
     $('#btn-new-order-mode').hide();
 
     $('#quick-qty option').prop('disabled', false);
@@ -433,14 +434,13 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#quick-qty').val(d.quantity).trigger('change');
       $('#btn-quick-submit span').text(translations[lang].btn_update);
     } else {
-      // Reset view for new order input
       $('#quick-qty').val('').trigger('change');
       $('#quick-price-box').hide();
       $('#btn-quick-submit span').text(translations[lang].btn_order);
     }
   }
 
-  // 4. REFRESH BUTTON (Bottom)
+  // 4. REFRESH BUTTON
   if ($('#refresh-btn').length === 0) {
     $('#refresh-btn-container').remove();
     $('#returning-user-view').append(`
@@ -462,6 +462,7 @@ window.enableNewOrderMode = function () {
   $('#quick-qty').val('').trigger('change').focus();
   $('#btn-quick-submit').fadeIn();
   $('#btn-edit-address').fadeIn();
+  $('.address-box').fadeIn();
 
   const lang = $('.form-select').val() || 'en';
   $('#btn-quick-submit span').text(translations[lang].btn_order);
@@ -469,7 +470,28 @@ window.enableNewOrderMode = function () {
   isEditMode = false;
   editingOrderId = null;
   $('#display-oid').hide();
-  $('#display-date').hide(); // Hide old date
+  $('#display-date').hide();
+}
+
+// 🔥 MARK DELIVERED LOGIC
+window.markOrderDelivered = function (oid) {
+  if (!confirm("Have you received the order?")) return;
+
+  const btn = $('#btn-mark-delivered');
+  btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
+
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        const Toast = Swal.mixin({ toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
+        Toast.fire({ icon: 'success', title: 'Thank You!' });
+        manualRefresh(); // Reload to show New Order button
+      }
+    });
 }
 
 function updateStatusUI(d) {
@@ -482,17 +504,31 @@ function updateStatusUI(d) {
 
   let status = String(d.Status || d.status || '').trim().toLowerCase();
 
-  // 🔥 STATUS UI
-  if (status === 'archive') {
+  // 🔥 NEW "Delivered" STATUS UI
+  if (status === 'delivered') {
+    html += `<div class="p-4 mb-2 rounded shadow-sm bg-white text-center border">
+                 <div class="mb-2"><i class="fas fa-check-circle text-success" style="font-size:30px;"></i></div>
+                 <h6 class="fw-bold mb-1">Order Delivered!</h6>
+                 <small class="text-muted">Enjoy your honey! 🍯</small>
+               </div>`;
+  }
+  else if (status === 'archive') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
   }
   else if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
   }
-  else if (status === 'dispatched' || status === 'completed') {
+  else if (status === 'dispatched') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
     let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
+
+    // 🔥 Mark as Delivered Button
+    let markBtn = `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-light btn-sm fw-bold shadow-sm w-100" style="color:#0d6efd; border:1px solid #cce5ff;">✅ I RECEIVED THIS ORDER</button></div>`;
+
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}${markBtn}</div>`;
+  }
+  else if (status === 'completed') {
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Completed!</h6><small>Order delivered successfully.</small></div>`;
   }
   else if (status === 'sent' || status === 'pending') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
@@ -505,15 +541,15 @@ function updateSummaryDisplay() {
   const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
 
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  $('#saved-address-text').text(addr).css('margin-bottom', '5px');
+  $('#saved-address-text').text(addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
   $('#saved-place-dist').text('');
 
-  // 🔥 COMPACT PHONE UI (One Line)
-  let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${phone}`;
-  if (alt) phoneHtml += ` <span class="text-muted">|</span> <i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${alt}`;
+  // 🔥 COMPACT PHONE UI
+  let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
+  if (alt) phoneHtml += ` <span class="text-muted">|</span> ${alt}`;
   if (wa) phoneHtml += ` <span class="text-muted">|</span> <span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
-  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '13px' });
+  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '2px' });
 
   $('#saved-wa-text').hide();
   $('#saved-alt-text').hide();
@@ -583,6 +619,8 @@ window.updateAdminUI = function (serverStatus, oid) {
         <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID</button>
         <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
       </div>`;
+  } else if (status === 'Delivered') {
+    btnHTML = `<button class="btn btn-success btn-sm fw-bold w-100 shadow-sm" disabled>DELIVERED BY CUSTOMER ✅</button>`;
   } else {
     let displayTxt = status === 'Dispatched' ? 'DISPATCHED' : (status === 'Completed' ? 'COMPLETED' : status.toUpperCase());
     btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${displayTxt} ✅</button>`;
@@ -644,7 +682,7 @@ function fetchOrder(oid) {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION (INJECTED)
+// 🎥 VIDEO ANIMATION
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
