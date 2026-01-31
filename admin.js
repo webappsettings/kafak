@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzRsrkXLcDErdii0vWDwSqrgUz7h4AKFXS2nQiIeQSsfkJ68NV_XgAAx9Me8sTCcsoefQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwkpmuisLYXFAAxrZTsEpLagcPsGzEcV58hCFc4Hz5NA2smRJAyxn1-YFwpOqyf2FYOdA/exec";
 
 // 🔴 1. SAFE STORAGE CHECK (Prevents Script Crash)
 function isStorageAvailable() {
