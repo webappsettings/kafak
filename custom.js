@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwkpmuisLYXFAAxrZTsEpLagcPsGzEcV58hCFc4Hz5NA2smRJAyxn1-YFwpOqyf2FYOdA/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -127,11 +127,12 @@ $(document).ready(function () {
           showLoader(false);
           $('#step-0').hide();
 
-          // 🔥 Load FORM from Local (Instant), but Status from Server
-          loadOrderData(localUsersMap[ph], false); // false = don't show status yet
+          // 🔥 1. Load FORM from Local (Instant)
+          // BUT pass 'false' for isServerData so Status/Offer WON'T show yet
+          loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // 🔥 Sync Status in Background
+          // 🔥 2. Sync Status in Background (This will refresh UI on success)
           syncUserDataBackground(ph);
           break;
         }
@@ -194,7 +195,7 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // Loader is already set by showReturningUserView, but ensures it here too
+  // 🔥 Loader ensures it's visible if empty
   if ($('#status-area').length > 0 && $('#status-area').is(':empty')) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
@@ -209,15 +210,26 @@ function syncUserDataBackground(phone) {
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
         }
         let mergedData = { ...localData, ...serverData };
+
+        // 🔥 CRITICAL: Update Global Reference & Storage
+        userData = mergedData;
         localUsersMap[phone] = mergedData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
-        updateStatusUI(mergedData); // 🔥 Update Status with Server Data
+
+        // 🔥 RE-RENDER VIEW WITH SERVER DATA (TRUE)
+        // This fixes "always local status" issue. We force a refresh with server data.
+        let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed');
+        showReturningUserView(mergedData, isActive, true);
+
       } else {
-        updateStatusUI(localData); // Fallback
+        // If server fails/empty, maybe show local status? 
+        // But user wants strict server. Let's keep loader or show error.
+        // Fallback: Show local status if server fails
+        updateStatusUI(localData);
       }
     })
     .catch(err => {
-      updateStatusUI(localData); // Fallback
+      updateStatusUI(localData); // Fallback on network error
     });
 }
 
@@ -298,7 +310,6 @@ function submitWizardOrder() {
 // ------------------------------------------------------------------------------
 // 🔴 RETURNING USER (COMPACT UI & SERVER PRIORITY)
 // ------------------------------------------------------------------------------
-// 🔥 Added isServerData param
 function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
@@ -321,11 +332,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // 🔥 STATUS LOGIC: Show Loader if Local, Show Data if Server
+  // 🔥 STATUS LOGIC: Show Loader if Local, Show Data ONLY if Server
   if (isServerData) {
     updateStatusUI(d);
   } else {
-    // Show Loader (Don't show potentially old status)
+    // Clear status area and show loader. DO NOT show local status.
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
@@ -334,7 +345,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#quick-qty').val(d.quantity).trigger('change');
     const lang = $('.form-select').val();
     $('#btn-quick-submit span').text(translations[lang].btn_update);
-    // Note: We might want to disable edit if Paid, but we wait for Server status to decide fully
   } else {
     $('#quick-qty').val('').trigger('change'); $('#quick-price-box').hide();
     const lang = $('.form-select').val();
@@ -394,7 +404,7 @@ window.submitQuickOrder = function () {
 }
 
 // ------------------------------------------------------------------------------
-// 🎥 VIDEO ANIMATION (BLACK BADGE, TICK, PREMIUM FONT)
+// 🎥 VIDEO ANIMATION (SMART TIMING & BLACK BADGE)
 // ------------------------------------------------------------------------------
 function injectVideoCSS() {
   $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
@@ -592,17 +602,15 @@ function playVideoAnimation(userName, apiCallback) {
     checkWrapper.addClass('show');
     setTimeout(() => { checkWrapper.addClass('draw'); }, 100);
   }, 8300);
-
-  setTimeout(() => {
-    if (window.orderSuccess === true) { /* Done */ }
-  }, 8000);
 }
 
 // ------------------------------------------------------------------------------
-// 🔴 SERVER POST
+// 🔴 SERVER POST (WITH SMART TIMING)
 // ------------------------------------------------------------------------------
 function postOrder(data) {
+  const startTime = Date.now(); // Record start time
   window.orderSuccess = false;
+
   fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
     .then(res => res.json())
     .then(res => {
@@ -610,9 +618,16 @@ function postOrder(data) {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
         if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); }
         window.orderSuccess = true;
+
+        // 🔥 SMART TIMING: Calculate how much animation time is left
+        const elapsed = Date.now() - startTime;
+        const minAnimationTime = 8800; // Total animation ~8.8s
+        let waitTime = minAnimationTime - elapsed;
+        if (waitTime < 0) waitTime = 0; // If upload took longer, go instantly
+
         setTimeout(() => {
           $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
-        }, 9000); // Allow animation to finish
+        }, waitTime);
       }
     }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
 }
@@ -637,8 +652,6 @@ function setupAdminView(oid) {
   $('.footer-action').after(`<div class="text-center py-4"><button onclick="clearAdminCache()" class="btn btn-sm btn-outline-secondary" style="font-size:10px; opacity:0.7;">🛠️ Admin: Clear Cache</button></div>`);
   let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-
-  // Admin always wants fresh data, but cache is fallback
   if (cachedOrder) { showLoader(false); updateAdminUI(cachedOrder.Status || 'Pending', oid); loadOrderData(cachedOrder, true); }
   else { fetchOrder(oid); }
 }
@@ -679,7 +692,7 @@ function fetchOrder(oid) {
       let d = res.data; if (d.custId) { myCustId = d.custId; }
       if (d.phone && localUsersMap[d.phone]) { const local = localUsersMap[d.phone]; if (!d.district && local.district) d.district = local.district; if (!d.custId && local.custId) d.custId = local.custId; }
       if (SafeStorage.getItem('kafakAdmin') === 'true') { let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]"); let cachedOrder = cachedOrders.find(o => o.orderid === oid); let status = cachedOrder ? cachedOrder.Status : (d.Status || 'Pending'); updateAdminUI(status, oid); }
-      loadOrderData(d, true); // Server Data = True
+      loadOrderData(d, true);
     } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
   }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
