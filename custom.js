@@ -253,7 +253,7 @@ function syncUserDataBackground(phone) {
         saveToLocal(phone, mergedData);
 
         // 🔥 മാറ്റം 2: Paid സ്റ്റാറ്റസ് 'Active' ആയി കണക്കാക്കുന്നു
-        let isActive = !(['dispatched', 'completed', 'archive', 'delivered'].includes(s));
+        let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
         showReturningUserView(mergedData, isActive, true);
       }
     })
