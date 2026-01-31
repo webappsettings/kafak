@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxAonOYSAaj8GVyp5EXrA9XPY8XfX9rfGKkPF4RHVSTBc1tkBae455dquqD7YL0b3Pg2A/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -83,11 +83,21 @@ window.updateWizardLocDisplay = function () {
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
+// 🔥 Pretty Date Format with Year (e.g., 10 Oct 2023, 04:30 PM)
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return "";
-  return d.toLocaleString('en-US', { day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric', hour12: true });
+
+  // Added year: 'numeric'
+  return d.toLocaleString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  });
 }
 
 $(document).ready(function () {
@@ -532,17 +542,26 @@ function updateStatusUI(d) {
 }
 
 function updateSummaryDisplay() {
-  const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
+  const house = $('#edit-house').val() || '';
+  const place = $('#edit-place').val() || '';
+  const po = $('#edit-postoffice').val() || '';
+  const pin = $('#edit-pincode').val() || '';
+  const dist = $('#edit-district').val() || '';
+  const wa = $('#edit-whatsapp').val() || '';
+  const alt = $('#edit-altphone').val();
+  const phone = $('#edit-phone').val() || '';
 
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  // 🔥 FIX: NAME BOLD & SEPARATED WITH COMMA
-  let nameBold = `<b>${$('#saved-name').text()}</b>, `;
-  $('#saved-address-text').html(nameBold + addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
+
+  // 🔥 CHANGE: പേര് ഇവിടെ നിന്ന് ഒഴിവാക്കി (മുകളിൽ Title ആയി വരുന്നത് കൊണ്ട്)
+  $('#saved-address-text').text(addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
+
   $('#saved-place-dist').text('');
 
+  // Compact Phone UI
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
   if (alt) phoneHtml += ` <span class="text-muted">|</span> ${alt}`;
-  if (wa) phoneHtml += ` <span class="text-muted">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`; // WhatsApp Color Fix
+  if (wa) phoneHtml += ` <span class="text-muted">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
   $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '2px' });
   $('#saved-wa-text').hide(); $('#saved-alt-text').hide();

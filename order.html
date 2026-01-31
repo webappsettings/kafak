@@ -233,40 +233,51 @@
     }
 
     /* HEADER META (Right Side Date) */
+    /* HEADER META STYLES */
     .header-meta {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 18px;
+      /* Aligns text neatly */
+      margin-bottom: 20px;
+      padding: 0 2px;
     }
 
     .welcome-text {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
+      color: #000;
+      line-height: 1;
     }
 
     .meta-right {
       text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      /* Forces right alignment */
     }
 
     .oid-pill {
       font-family: monospace;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--brand-green);
       background: #e8f5e9;
       padding: 4px 8px;
       border-radius: 6px;
-      display: inline-block;
+      border: 1px solid #c8e6c9;
       margin-bottom: 4px;
+      /* Gap between ID and Date */
     }
 
     .date-text {
-      font-size: 11px;
-      color: #999;
+      font-size: 10px;
+      color: #888;
       font-weight: 600;
-      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     /* LOADER */
@@ -388,6 +399,7 @@
 
             <div class="header-meta">
               <div class="welcome-text" data-i18n="welcome_back">സ്വാഗതം!</div>
+
               <div class="meta-right">
                 <div id="display-oid" class="oid-pill"></div>
                 <div id="display-date" class="date-text"></div>
@@ -398,7 +410,8 @@
               <div class="d-flex justify-content-between align-items-start">
                 <div class="user-name-title" id="saved-name"></div>
                 <div class="edit-link" id="btn-edit-address" onclick="toggleAddressEdit()" data-i18n="btn_edit">മാറ്റാം
-                  <i class="fas fa-pen"></i></div>
+                  <i class="fas fa-pen"></i>
+                </div>
               </div>
 
               <div class="address-text" id="saved-address-text"></div>
