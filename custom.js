@@ -244,7 +244,7 @@ function syncUserDataBackground(phone) {
         let s = mergedData.Status.toLowerCase();
 
         // 🔥 മാറ്റം 1: ഇവിടെ 'paid' ഒഴിവാക്കി. (Paid ആയാലും പഴയ ഓർഡർ തന്നെ എഡിറ്റ് ചെയ്യാം)
-        if (['dispatched', 'completed', 'archive', 'delivered'].includes(s)) {
+        if (['dispatched', 'completed', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
         }
@@ -408,7 +408,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   const status = String(d.Status || '').trim().toLowerCase();
 
   // 🔥 മാറ്റം 3: ഇവിടെയും 'paid' ഒഴിവാക്കി. (Paid വന്നാൽ ഫിനിഷ്ഡ് അല്ല)
-  const isFinished = (status === 'dispatched' || status === 'completed' || status === 'archive' || status === 'delivered');
+  const isFinished = (status === 'dispatched' || status === 'completed' || status === 'delivered');
   const lang = $('.form-select').val() || 'en';
 
   if (isFinished && isServerData) {
@@ -484,6 +484,7 @@ window.enableNewOrderMode = function () {
   $('#status-area').hide();
   $('#quick-price-box').fadeIn();
   $('.qty-label').fadeIn();
+  $('#quick-qty').fadeIn();
   $('#quick-qty').val('').trigger('change').focus();
   $('#btn-quick-submit').fadeIn();
   $('#btn-edit-address').fadeIn();
