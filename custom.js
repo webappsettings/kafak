@@ -435,6 +435,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
     // Show Price Box? (Hide only if Dispatched/Completed)
     if (status === 'dispatched' || status === 'completed' || status === 'delivered') {
+      $('#quick-qty').hide();
       $('#quick-price-box').hide();
     } else {
       $('#quick-price-box').show();
@@ -451,7 +452,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
       // 🔥 മാറ്റം 4: Paid ആണെങ്കിൽ കുറഞ്ഞ ക്വാണ്ടിറ്റി Disable ചെയ്യുന്നു
       if (status === 'paid') {
-        $('#quick-qty').hide();
         const currentQty = parseInt(d.quantity);
         $('#quick-qty option').each(function () {
           if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
@@ -480,6 +480,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
 window.enableNewOrderMode = function () {
   $('#btn-new-order-mode').hide();
+  $('#status-area').hide();
   $('#quick-price-box').fadeIn();
   $('.qty-label').fadeIn();
   $('#quick-qty').val('').trigger('change').focus();
