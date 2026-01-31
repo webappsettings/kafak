@@ -156,21 +156,43 @@ function renderTabs(orders) {
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
+    // SORT ORDERS: LATEST FIRST
+    orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    // Timeline Trackers
+    let lastDateMap = { pending: '', paid: '', dispatched: '' };
+
     orders.forEach((d, i) => {
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
 
-        if (status === 'Completed') return;
+        // Ignore Archive or Completed for main tabs
+        if (status === 'Completed' || status === 'Archive') return;
+
+        // Determine which list to add to
+        let targetList = null;
+        let type = '';
+        let listKey = '';
 
         if (status === 'Pending' || status === 'Sent') {
+            targetList = pendingList; type = 'pending'; listKey = 'pending';
             counts.pending++;
-            pendingList.innerHTML += createCardHTML(d, i, 'pending', status);
         } else if (status === 'Paid') {
+            targetList = paidList; type = 'paid'; listKey = 'paid';
             counts.paid++;
-            paidList.innerHTML += createCardHTML(d, i, 'paid', status);
         } else if (status === 'Dispatched') {
+            targetList = dispatchedList; type = 'dispatched'; listKey = 'dispatched';
             counts.dispatched++;
-            dispatchedList.innerHTML += createCardHTML(d, i, 'dispatched', status);
+        }
+
+        if (targetList) {
+            // Timeline Logic
+            let orderDate = d.timestamp ? getTimelineLabel(d.timestamp) : "Unknown Date";
+            if (orderDate !== lastDateMap[listKey]) {
+                targetList.innerHTML += `<div class="timeline-badge shadow-sm border">${orderDate}</div>`;
+                lastDateMap[listKey] = orderDate;
+            }
+            targetList.innerHTML += createCardHTML(d, i, type, status);
         }
     });
 
@@ -203,13 +225,15 @@ function createCardHTML(d, index, type, currentStatus) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
-    // 🔴 PHONE DISPLAY LOGIC (Main + Alt)
-    let phoneDisplay = d.phone;
-    if (d.altphone) {
-        phoneDisplay += `, ${d.altphone}`;
-    }
+    // NEW: Archive Button logic
+    let archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
 
-    // 🔴 WHATSAPP DISPLAY LOGIC
+    // NEW: Full Date Header
+    let dateHeader = `<span class="card-timestamp">${formatFullDate(d.timestamp)}</span>`;
+
+    let phoneDisplay = d.phone;
+    if (d.altphone) { phoneDisplay += `, ${d.altphone}`; }
+
     let waDisplay = '';
     if (d.whatsapp) {
         waDisplay = `<div class="mt-1 text-success fw-bold small"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</div>`;
@@ -239,7 +263,34 @@ function createCardHTML(d, index, type, currentStatus) {
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
-    return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card status-${currentStatus}"><div class="card-header-row"><div><span class="order-id">#${d.orderid.split('-')[1]}</span> ${editLink} ${topButtons}</div>${statusBadge}</div><div class="cust-name">${safe(d.name)}</div><div class="cust-details"><div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div><div>${safe(d.place)}, ${safe(d.postoffice)}</div><div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div><div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${phoneDisplay}</div>${waDisplay}</div><div class="info-box"><span>${d.quantity} Bottles</span><span class="price-tag">${priceInfo.total}</span></div><div class="action-area">${buttons}</div></div></div>`;
+    // Structure Updated: Date Header added, Archive Button added
+    return `<div class="col-12 col-md-6 col-lg-4">
+                <div class="order-card status-${currentStatus}" id="card-${d.orderid}">
+                    ${dateHeader}
+                    <div class="card-header-row">
+                        <div style="display:flex; align-items:center;">
+                            ${archiveBtn} 
+                            <span class="order-id">#${d.orderid.split('-')[1]}</span> 
+                            ${editLink} 
+                            ${topButtons}
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <div class="cust-name">${safe(d.name)}</div>
+                    <div class="cust-details">
+                        <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
+                        <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
+                        <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
+                        <div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${phoneDisplay}</div>
+                        ${waDisplay}
+                    </div>
+                    <div class="info-box">
+                        <span>${d.quantity} Bottles</span>
+                        <span class="price-tag">${priceInfo.total}</span>
+                    </div>
+                    <div class="action-area">${buttons}</div>
+                </div>
+            </div>`;
 }
 
 function filterOrders() {
@@ -544,3 +595,44 @@ function updateSelectAllButton() {
         btn.innerHTML = '<i class="far fa-square"></i> All';
     }
 }
+
+
+// --- NEW HELPER FUNCTIONS (Add to top or bottom of JS) ---
+
+// 1. Format Date for Header (Jan 31, 2026, 9:17 PM)
+function formatFullDate(dateStr) {
+    if (!dateStr) return "";
+    const d = new Date(dateStr);
+    return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
+}
+
+// 2. Format Date for Timeline (Today, Yesterday, etc.)
+function getTimelineLabel(dateStr) {
+    const d = new Date(dateStr);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (d.toDateString() === today.toDateString()) return "Today";
+    if (d.toDateString() === yesterday.toDateString()) return "Yesterday";
+
+    // Check for days of the week (within last 7 days)
+    const diffTime = Math.abs(today - d);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays < 7) {
+        return d.toLocaleDateString('en-US', { weekday: 'long' });
+    }
+
+    return d.toLocaleDateString('en-GB'); // DD/MM/YYYY
+}
+
+// 3. Highlight Logic (Click Listener)
+document.addEventListener('click', function (e) {
+    if (e.target.closest('button') || e.target.closest('a')) {
+        const card = e.target.closest('.order-card');
+        if (card) {
+            document.querySelectorAll('.order-card').forEach(c => c.classList.remove('active-highlight'));
+            card.classList.add('active-highlight');
+        }
+    }
+});
