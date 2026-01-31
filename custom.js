@@ -2,6 +2,7 @@
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
 const sc = `https://script.google.com/macros/s/AKfycbxAonOYSAaj8GVyp5EXrA9XPY8XfX9rfGKkPF4RHVSTBc1tkBae455dquqD7YL0b3Pg2A/exec`;
+// ------------------------------------------------------------------------------
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -244,7 +245,7 @@ function syncUserDataBackground(phone) {
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
         let s = mergedData.Status.toLowerCase();
-        // If finished, clear ID to allow new order
+        // If finished, clear ID to allow new order logic
         if (['dispatched', 'completed', 'paid', 'archive', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
@@ -269,6 +270,33 @@ function backgroundUserCheck(phone) {
 // ------------------------------------------------------------------------------
 // 🔴 WIZARD FUNCTIONS
 // ------------------------------------------------------------------------------
+// 🔥 DEFINED: submitWizardOrder (Fixes ReferenceError)
+window.submitWizardOrder = function () {
+  const finalData = {
+    orderid: editingOrderId,
+    name: $('#name').val(),
+    phone: $('#phone').val(),
+    whatsapp: $('#whatsapp').val(),
+    altphone: $('#altphone').val(),
+    house: $('#house').val(),
+    place: $('#place').val(),
+    pincode: $('#pincode').val(),
+    postoffice: userData.postoffice,
+    district: userData.district,
+    state: userData.state || 'Kerala',
+    quantity: $('#quantity').val(),
+    message: '',
+    custId: myCustId
+  };
+  saveToLocal(finalData.phone, finalData);
+  playVideoAnimation(finalData.name, () => postOrder(finalData));
+}
+
+// Dummy handler for inline calls (Fixes 'handleEditPincode' error)
+window.handleEditPincode = function (el) {
+  checkForChanges();
+}
+
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
   if (view === 'step-0') $('#btn-group-0').show();
@@ -383,6 +411,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
     $('#quick-qty').css('flex-grow', '1');
     $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
+    // Placeholder for Status Area
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
@@ -390,7 +419,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   $('#status-area').empty();
 
-  // 🔥 STATUS LOGIC
+  // 🔥 STATUS LOGIC: Server Priority
   if (isServerData) {
     updateStatusUI(d);
   }
@@ -417,7 +446,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                 </button>
             </div>
           `).insertAfter('#status-area');
-      // Note: Inserted after status-area so it sits below status card
     }
     $('#btn-new-order-mode').show();
   } else {
@@ -752,4 +780,40 @@ function playVideoAnimation(userName, apiCallback) {
   }, 5800);
   setTimeout(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
   setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
+}
+
+// 🔥 DEFINED: postOrder (Fixes ReferenceError)
+function postOrder(data) {
+  const startTime = Date.now();
+  window.orderSuccess = false;
+
+  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
+    .then(res => res.json())
+    .then(res => {
+      if (res.result === 'success') {
+        successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
+        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap)); }
+        window.orderSuccess = true;
+
+        const elapsed = Date.now() - startTime;
+        const minAnimationTime = 8800;
+        let waitTime = minAnimationTime - elapsed;
+        if (waitTime < 0) waitTime = 0;
+
+        setTimeout(() => {
+          $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
+        }, waitTime);
+      }
+    }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
+}
+
+function sendToWhatsapp() {
+  const phone = '7788990313'; const orderid = successData.orderid; const d = successData;
+  const n = parseInt(d.quantity); const base = n * 650; const courier = courierRates.kerala[n] || 0;
+  const amountText = `Amount(₹): ${base} + ${courier}`; const totalText = `Total(₹): ${base + courier}/-`;
+  const editLink = `kafaklife.com/order.html?oid=${orderid}`;
+  const safe = (val) => String(val || '').trim().toUpperCase();
+  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
+  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
+  window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
 }
