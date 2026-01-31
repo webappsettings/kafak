@@ -227,8 +227,6 @@ window.manualRefresh = function () {
         setTimeout(() => {
           btn.prop('disabled', false).css('opacity', '1');
           icon.removeClass('fa-spin');
-          const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-          Toast.fire({ icon: 'success', title: 'Status Updated' });
         }, 800);
       });
   }
@@ -242,18 +240,19 @@ function syncUserDataBackground(phone) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
-  // Cache busting with timestamp
+  // Cache busting
   return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
 
-        // Merge: Local Contact Info + Server Status
-        let mergedData = { ...localData, ...serverData };
+        // 🔴 DEBUG ALERT: SERVER STATUS
+        // This will show you exactly what the Google Sheet is sending back
+        alert("Debug Check:\n\nServer Status: " + serverData.Status + "\nServer Offer: " + serverData.offer);
 
-        // Ensure Status Key Consistency
-        mergedData.Status = serverData.Status || serverData.status || "Pending";
+        let mergedData = { ...localData, ...serverData };
+        mergedData.Status = serverData.Status || "Pending";
 
         if (mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed') {
           editingOrderId = null; $('#display-oid').hide();
@@ -261,11 +260,8 @@ function syncUserDataBackground(phone) {
         }
 
         userData = mergedData;
-
-        // Save ONLY basic info to local
         saveToLocal(phone, mergedData);
 
-        // 🔥 UPDATE UI (Server Data is TRUE)
         let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed');
         showReturningUserView(mergedData, isActive, true);
 
@@ -274,6 +270,7 @@ function syncUserDataBackground(phone) {
       }
     })
     .catch(err => {
+      alert("Error: " + err.message);
       $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Network error.</small></div>`);
     });
 }
