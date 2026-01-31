@@ -1,8 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-// 🔥 Updated Script URL
-const sc = `https://script.google.com/macros/s/AKfycbw-poOAbxXhfXvfXB1OWBAAzvwTBKJu9wyXu3pIu9ov0Z_Mqh0VGPjviXG6KzVFB1e_LQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwkpmuisLYXFAAxrZTsEpLagcPsGzEcV58hCFc4Hz5NA2smRJAyxn1-YFwpOqyf2FYOdA/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -97,17 +96,15 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
+  // LOAD LOCAL DATA
   const saved = SafeStorage.getItem('kafakUsers');
   if (saved) { try { localUsersMap = JSON.parse(saved); } catch (e) { localUsersMap = {}; } }
-  else {
-    const oldUser = SafeStorage.getItem('kafakUser');
-    if (oldUser) { try { const u = JSON.parse(oldUser); if (u.phone) { localUsersMap[u.phone] = u; SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap)); SafeStorage.removeItem('kafakUser'); } } catch (e) { } }
-  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
+  // TEST MODE
   if (urlParams.get('mode') === 'test') {
     $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
     window.testVideo = function () {
@@ -129,11 +126,11 @@ $(document).ready(function () {
           $('#step-0').hide();
 
           // 🔥 1. Load FORM from Local (Instant)
-          // BUT pass 'false' for isServerData so Status/Offer WON'T show yet
+          // Pass 'false' for isServerData -> This forces Status Area to show "Checking..."
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // 🔥 2. Sync Status in Background (This will refresh UI on success)
+          // 🔥 2. Sync Status in Background (This will overwrite old cache)
           syncUserDataBackground(ph);
           break;
         }
@@ -163,7 +160,6 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
-    // 🔥 Local Hit: Load Form Instantly, Status Later
     loadOrderData(localUsersMap[phone], false);
     syncUserDataBackground(phone);
     return;
@@ -176,7 +172,6 @@ window.handlePhoneNext = function () {
   backgroundUserCheck(phone);
 }
 
-// 🔥 UPDATED: Added isServerData flag
 function loadOrderData(d, isServerData = false) {
   $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
   if (d.phone) {
@@ -184,7 +179,7 @@ function loadOrderData(d, isServerData = false) {
     SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
   }
 
-  // Pass isServerData to view
+  // Always allow view initially, check status inside view
   showReturningUserView(d, true, isServerData);
 }
 
@@ -192,8 +187,8 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone];
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 🔥 Loader ensures it's visible if empty
-  if ($('#status-area').length > 0 && $('#status-area').is(':empty')) {
+  // Ensure Status Area shows "Checking..." if it exists
+  if ($('#status-area').length > 0) {
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
@@ -202,29 +197,35 @@ function syncUserDataBackground(phone) {
     .then(res => {
       if (res.result === 'success' && res.data) {
         let serverData = res.data;
-        if (serverData.Status === 'Dispatched' || serverData.Status === 'Completed') {
+
+        // 🔥 FORCE OVERWRITE LOCAL STATUS
+        // Ensure we use the Server's "Status" key regardless of what local had
+        let freshData = { ...localData, ...serverData };
+
+        // Explicitly fix potential case-mismatch (Status vs status)
+        freshData.Status = serverData.Status || serverData.status || "Pending";
+
+        if (freshData.Status === 'Dispatched' || freshData.Status === 'Completed') {
           editingOrderId = null; $('#display-oid').hide();
           if ($('#quick-qty').val() == localData.quantity) $('#quick-qty').val('').trigger('change');
         }
-        let mergedData = { ...localData, ...serverData };
 
-        // 🔥 CRITICAL: Update Global Reference & Storage
-        userData = mergedData;
-        localUsersMap[phone] = mergedData;
+        // Save fresh data to local
+        userData = freshData;
+        localUsersMap[phone] = freshData;
         SafeStorage.setItem('kafakUsers', JSON.stringify(localUsersMap));
 
-        // 🔥 RE-RENDER VIEW WITH SERVER DATA (TRUE)
-        // This fixes "always local status" issue. We force a refresh with server data.
-        showReturningUserView(mergedData, true, true);
+        // 🔥 RE-RENDER UI WITH SERVER DATA = TRUE
+        showReturningUserView(freshData, true, true);
 
       } else {
-        // If server fails/empty, DO NOT SHOW LOCAL STATUS. Keep Loading or Show Error.
-        // This forces "Server Only" logic.
-        // updateStatusUI(localData); // Removed to prevent confusion
+        // If server returns empty/fail, we stick to loader or show simple error
+        // Do NOT show local status to avoid confusion
+        $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Connection issue. Retry later.</small></div>`);
       }
     })
     .catch(err => {
-      // updateStatusUI(localData); // Removed
+      $('#status-area').html(`<div class="text-center py-2 text-danger"><small>Network error.</small></div>`);
     });
 }
 
@@ -327,38 +328,24 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // 🔥 STATUS LOGIC: Show Loader if Local, Show Data ONLY if Server
+  // 🔥 STATUS LOGIC: 
   if (isServerData) {
     updateStatusUI(d);
   } else {
-    // Clear status area and show loader. DO NOT show local status.
+    // FORCE LOADING (Don't show local status)
     $('#status-area').html(`<div class="text-center py-2 fade-in"><small class="text-muted"><i class="fas fa-sync fa-spin"></i> Checking status...</small></div>`);
   }
 
   $('#quick-qty option').prop('disabled', false);
-  const lang = $('.form-select').val() || 'en'; // Safe default
+  const lang = $('.form-select').val() || 'en';
 
-  // Determine button text and visibility based on SERVER STATUS
-  if (d.Status === 'Dispatched' || d.Status === 'Completed') {
-    $('#btn-quick-submit').hide(); // Hide update button if dispatched
-    $('#quick-qty').prop('disabled', true); // Disable qty
+  if (isActiveOrder) {
+    $('#quick-qty').val(d.quantity).trigger('change');
+    $('#btn-quick-submit span').text(translations[lang].btn_update);
   } else {
-    $('#btn-quick-submit').show();
-    $('#quick-qty').prop('disabled', false);
-    if (isActiveOrder) {
-      $('#quick-qty').val(d.quantity).trigger('change');
-      $('#btn-quick-submit span').text(translations[lang].btn_update);
-      // If Paid, disable Qty reduce
-      if (d.Status === 'Paid') {
-        const currentQty = parseInt(d.quantity);
-        $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); });
-      }
-    } else {
-      $('#quick-qty').val('').trigger('change'); $('#quick-price-box').hide();
-      $('#btn-quick-submit span').text(translations[lang].btn_order);
-    }
+    $('#quick-qty').val('').trigger('change'); $('#quick-price-box').hide();
+    $('#btn-quick-submit span').text(translations[lang].btn_order);
   }
-
   checkForChanges();
 }
 
@@ -366,22 +353,31 @@ function updateStatusUI(d) {
   $('#status-area').empty();
   let html = '';
 
-  if (d.offer === true || String(d.offer).toUpperCase() === 'TRUE') {
+  // 🔥 3. OFFER CHECK (Case Insensitive & String Safe)
+  if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
-  let status = String(d.Status || '').trim().toLowerCase();
+  // 🔥 4. STATUS CHECK (Check both 'Status' and 'status')
+  let status = String(d.Status || d.status || '').trim().toLowerCase();
 
   if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
+    // Disable Qty Edit if Paid
+    const currentQty = parseInt(d.quantity);
+    $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); });
   }
   else if (status === 'dispatched' || status === 'completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
-    let courierName = d.courier ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier}</div>` : '';
+    // Check 'courier' or 'provider' key
+    let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
     $('#btn-edit-address').hide();
+    $('#btn-quick-submit').hide(); // Hide update button
+    $('#quick-qty').prop('disabled', true);
   } else {
     $('#btn-edit-address').show();
+    $('#btn-quick-submit').show();
   }
 
   $('#status-area').html(html);
