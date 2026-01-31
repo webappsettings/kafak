@@ -1,9 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwdAMjRsCAGpaBn8I75V1Oo0kRTs7avUU4Q6WNuySM3eSKnN1K78BMWGPkJeUM2xEfXGw/exec`;
-// ------------------------------------------------------------------------------
-
+const sc = `https://script.google.com/macros/s/AKfycbyzdH9lsX47-P6nATPf3VDRDuTydIEavI8p-OBylwILettoXNecRk06QAAaLMXtciVh9g/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -25,8 +23,7 @@ const translations = {
     err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...", err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല.",
     err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക", err_house: "വീട്ടുപേര് നൽകുക", err_place: "സ്ഥലം നൽകുക",
     err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
-    confirm_home: "ഹോമിലേക്ക് പോകണോ? വിവരങ്ങൾ നഷ്ടപ്പെടും.", alert_title: "ശ്രദ്ധിക്കുക",
-    btn_new_order: "പുതിയ ഓർഡർ ചെയ്യാം"
+    confirm_home: "ഹോമിലേക്ക് പോകണോ? വിവരങ്ങൾ നഷ്ടപ്പെടും.", alert_title: "ശ്രദ്ധിക്കുക"
   },
   en: {
     lbl_phone: "Phone Number", ph_phone: "Enter Mobile Number", btn_next: "CONTINUE", welcome_back: "Welcome Back!",
@@ -42,8 +39,7 @@ const translations = {
     err_checking_pin: "Checking Pincode...", err_pin_not_found: "Pincode not found.",
     err_select_po: "Please select Post Office", err_house: "Please enter House Name", err_place: "Please enter Place",
     err_qty: "Please select quantity",
-    confirm_home: "Go home? Data will be lost.", alert_title: "Alert",
-    btn_new_order: "PLACE NEW ORDER"
+    confirm_home: "Go home? Data will be lost.", alert_title: "Alert"
   }
 };
 
@@ -57,7 +53,7 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 
-// 🔥 KEY CHANGE: New Key for Customer Data
+// 🔥 SEPARATE KEY FOR CUSTOMER DATA
 const STORAGE_KEY = 'kafakCustomerData';
 
 // 🛡️ SAFE STORAGE
@@ -103,7 +99,7 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
-  // LOAD & CLEAN LOCAL DATA
+  // 🔥 LOAD & AUTO-CLEAN LOCAL DATA
   const saved = SafeStorage.getItem(STORAGE_KEY);
   if (saved) {
     try {
@@ -216,7 +212,7 @@ function setRefreshLoading(isLoading) {
   if (isLoading) {
     btn.prop('disabled', true).css('opacity', '0.7');
     btn.find('i').addClass('fa-spin');
-    btn.find('span').text("CHECKING..."); // Change text while loading
+    btn.find('span').text("CHECKING...");
   } else {
     btn.prop('disabled', false).css('opacity', '1');
     btn.find('i').removeClass('fa-spin');
@@ -228,7 +224,6 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 🔥 Trigger Button Loader
   setRefreshLoading(true);
 
   return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
@@ -239,17 +234,16 @@ function syncUserDataBackground(phone) {
         let mergedData = { ...localData, ...serverData };
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
-        // Save cleaned data
         userData = mergedData;
         saveToLocal(phone, mergedData);
 
         let isActive = !(mergedData.Status === 'Dispatched' || mergedData.Status === 'Completed' || mergedData.Status === 'Paid');
-        showReturningUserView(mergedData, isActive, true); // Server Data = True
+        showReturningUserView(mergedData, isActive, true);
       }
     })
     .catch(err => { console.log("Sync error"); })
     .finally(() => {
-      setRefreshLoading(false); // Stop Button Loader
+      setRefreshLoading(false);
     });
 }
 
@@ -333,81 +327,33 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
+  // 🔥 SHOW DATE (AM/PM) UI
+  if (d.date) {
+    $('#display-date').text(formatOrderDate(d.date)).show();
+  } else {
+    $('#display-date').hide();
+  }
+
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  updateSummaryDisplay(); // Update compact address UI
+  updateSummaryDisplay();
 
-  // 🔥 CLEAR OLD STATUS AREA
   $('#status-area').empty();
 
-  // 🔥 1. STATUS LOGIC (Server Priority)
-  // Ensure status only shows if data came from Server
   if (isServerData) {
     updateStatusUI(d);
-  } else {
-    // Do nothing (wait for button click/auto-load)
   }
 
-  // 🔥 2. PLACEHOLDER FOR STATUS
   if ($('#status-area').length === 0) {
     $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
   }
 
-  // 🔥 3. "NEW ORDER" LOGIC
-  const status = String(d.Status || '').trim().toLowerCase();
-  const isFinished = (status === 'paid' || status === 'dispatched' || status === 'completed');
-  const lang = $('.form-select').val() || 'en';
-
-  if (isFinished && isServerData) {
-    // HIDE Qty & Update Button
-    $('#quick-price-box').hide();
-    $('#btn-quick-submit').hide();
-    $('#btn-edit-address').hide(); // Disable address edit initially
-
-    // SHOW "Place New Order" Button (if not already there)
-    if ($('#btn-new-order-mode').length === 0) {
-      const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
-      $(`
-            <div id="btn-new-order-mode" class="mt-3 text-center fade-in">
-                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px;">
-                    <i class="fas fa-plus-circle me-1"></i> ${btnText}
-                </button>
-            </div>
-          `).insertAfter('#status-area');
-    }
-  } else {
-    // NORMAL MODE (Pending/Sent or New Order Mode)
-    $('#quick-price-box').show();
-    $('#btn-quick-submit').show();
-    $('#btn-edit-address').show();
-    $('#btn-new-order-mode').remove(); // Remove New Order button if present
-
-    if ($('.qty-action-group').length === 0) {
-      $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
-      $('#quick-qty').css('flex-grow', '1');
-      $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-    }
-
-    $('#quick-qty option').prop('disabled', false);
-    if (isActiveOrder) {
-      $('#quick-qty').val(d.quantity).trigger('change');
-      $('#btn-quick-submit span').text(translations[lang].btn_update);
-    } else {
-      // Reset for New Order
-      $('#quick-qty').val('').trigger('change');
-      $('#quick-price-box').hide();
-      $('#btn-quick-submit span').text(translations[lang].btn_order);
-    }
-  }
-
-  // 🔥 4. REFRESH BUTTON (Bottom)
+  // 4. REFRESH BUTTON (Bottom)
   if ($('#refresh-btn').length === 0) {
-    // Remove old container if any
     $('#refresh-btn-container').remove();
-    // Append to the VERY BOTTOM of returning view
     $('#returning-user-view').append(`
           <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
               <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
@@ -420,39 +366,27 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   checkForChanges();
 }
 
-// 🔥 Function to Enable New Order Mode
-window.enableNewOrderMode = function () {
-  $('#btn-new-order-mode').hide(); // Hide the "New Order" button
-  $('#quick-price-box').fadeIn(); // Show Price Box (Qty will be visible inside)
-  $('#quick-qty').val('').trigger('change').focus(); // Reset Qty
-  $('#btn-quick-submit').fadeIn(); // Show Order Button
-  $('#btn-edit-address').fadeIn(); // Allow Address Edit
-
-  const lang = $('.form-select').val() || 'en';
-  $('#btn-quick-submit span').text(translations[lang].btn_order);
-
-  isEditMode = false; // Treat as new order
-  editingOrderId = null; // Clear ID
-  $('#display-oid').hide();
-}
-
 function updateStatusUI(d) {
   $('#status-area').empty();
   let html = '';
 
-  if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
+  if (d.offer === true || String(d.offer).toUpperCase() === 'TRUE') {
     html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
   }
 
   let status = String(d.Status || d.status || '').trim().toLowerCase();
+
+  // 🔥 ARCHIVE STATUS LOGIC (Treated as Sent for Customer)
+  if (status === 'archive') status = 'sent';
 
   if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
   }
   else if (status === 'dispatched' || status === 'completed') {
     let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
-    let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
+    let courierName = d.courier ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier}</div>` : '';
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}</div>`;
+    $('#btn-edit-address').hide();
   } else if (status === 'sent' || status === 'pending') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
   }
@@ -460,23 +394,33 @@ function updateStatusUI(d) {
   $('#status-area').html(html);
 }
 
+// 🔥 Date Helper
+function formatOrderDate(dateStr) {
+  if (!dateStr) return "";
+  let d = new Date(dateStr);
+  let hours = d.getHours();
+  let minutes = d.getMinutes();
+  let ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  let strTime = hours + ':' + minutes + ' ' + ampm;
+  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " " + strTime;
+}
+
 function updateSummaryDisplay() {
   const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
 
-  // 🔥 COMPACT ADDRESS UI
-  // Address Line
   let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  $('#saved-address-text').text(addr).css('margin-bottom', '5px'); // Reduced Gap
+  $('#saved-address-text').text(addr).css('margin-bottom', '5px');
   $('#saved-place-dist').text('');
 
-  // Phone Line (Compact with Icons)
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${phone}`;
   if (alt) phoneHtml += `, ${alt}`;
   if (wa) phoneHtml += ` &nbsp;<span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
   $('#saved-phone-text').html(phoneHtml).css('font-weight', '500');
 
-  // Hide old separate elements
   $('#saved-wa-text').hide();
   $('#saved-alt-text').hide();
 
@@ -507,7 +451,7 @@ function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
 
 // ------------------------------------------------------------------------------
-// 🔴 ADMIN LOGIC & HELPERS (Keep existing)
+// 🔴 ADMIN LOGIC & HELPERS
 // ------------------------------------------------------------------------------
 function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
@@ -516,9 +460,8 @@ function setupAdminView(oid) {
   let cachedOrder = cachedOrders.find(o => o.orderid === oid);
 
   if (cachedOrder) {
-    loadOrderData(cachedOrder, false); // Load Local
+    loadOrderData(cachedOrder, false);
     updateAdminUI(cachedOrder.Status || 'Pending', oid);
-    // 🔥 Trigger Background Sync for Fresh Status
     syncUserDataBackground(cachedOrder.phone);
   } else {
     fetchOrder(oid);
@@ -526,13 +469,18 @@ function setupAdminView(oid) {
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
-  let pendingUpdates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
-  let localUpdate = pendingUpdates.find(item => item.oid === oid);
-  let currentStatus = localUpdate ? localUpdate.status : (serverStatus || 'Pending');
   let btnHTML = '';
-  if (currentStatus === 'Pending') btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
-  else if (currentStatus === 'Sent') btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
-  else { let statusText = currentStatus === 'Dispatched' ? 'DISPATCHED' : (currentStatus === 'Completed' ? 'COMPLETED' : 'PAID'); btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`; }
+  // 🔥 Handle Archive Button for Admin
+  if (serverStatus === 'Archive') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-dark btn-sm fw-bold w-100 shadow-sm" style="background:#444; border:none;">📂 (Archived) CHANGE TO PAID</button>`;
+  } else if (serverStatus === 'Pending') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT (BLUE)</button>`;
+  } else if (serverStatus === 'Sent') {
+    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID (YELLOW)</button>`;
+  } else {
+    let statusText = serverStatus === 'Dispatched' ? 'DISPATCHED' : (serverStatus === 'Completed' ? 'COMPLETED' : 'PAID');
+    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${statusText} ✅</button>`;
+  }
   $('#admin-btn-container').html(btnHTML); $('#admin-action-bar').slideDown();
 }
 
@@ -555,31 +503,80 @@ function fetchOrder(oid) {
     if (res.result === 'success') {
       let d = res.data;
       if (SafeStorage.getItem('kafakAdmin') === 'true') { updateAdminUI(d.Status || 'Pending', oid); }
-      loadOrderData(d, true); // Server Data = True
+      loadOrderData(d, true);
     } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
   }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
 }
 
-function updateSummaryDisplay() {
-  const house = $('#edit-house').val() || ''; const place = $('#edit-place').val() || ''; const po = $('#edit-postoffice').val() || ''; const pin = $('#edit-pincode').val() || ''; const dist = $('#edit-district').val() || ''; const wa = $('#edit-whatsapp').val() || ''; const alt = $('#edit-altphone').val(); const phone = $('#edit-phone').val() || '';
-  let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
-  $('#saved-address-text').text(addr).css('margin-bottom', '5px');
-  $('#saved-place-dist').text('');
-  let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:12px;"></i> ${phone}`;
-  if (alt) phoneHtml += `, ${alt}`;
-  if (wa) phoneHtml += ` &nbsp;<span class="text-success"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
-  $('#saved-phone-text').html(phoneHtml).css('font-weight', '500');
-  $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
-  checkForChanges();
+// ------------------------------------------------------------------------------
+// 🎥 VIDEO ANIMATION (INJECTED)
+// ------------------------------------------------------------------------------
+function injectVideoCSS() {
+  $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
+  $('body').append(`
+    <style>
+        #videoModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; }
+        .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
+        video { width: 100%; height: 100%; object-fit: cover; }
+        .digital-label { position: absolute; top: 67%; left: 53%; transform: translate(-30%, -50%) scale(0.7); width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10; opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .content-group { display: flex; flex-direction: column; align-items: center; transition: transform 0.8s ease-in-out; }
+        .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
+        .packed-text { font-family: 'Montserrat', sans-serif; font-size: 10px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
+        .digital-label.final-state .content-group { transform: translateY(-18px) scale(0.9); }
+        .check-wrapper { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scale(0); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); }
+        .check-wrapper.show { transform: translateX(-50%) scale(1); }
+        .checkmark-svg { width: 28px; height: 28px; stroke: #28a745; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; transition: stroke-dashoffset 0.4s ease-in-out; }
+        .check-wrapper.draw .checkmark-svg { stroke-dashoffset: 0; }
+        .name-wrapper { position: absolute; top: 50%; left: 50%; z-index: 999; transform: translate(-100%, -250%) scale(1.2); opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); display: flex; justify-content: center; align-items: center; width: 100%; }
+        .user-name { font-family: 'Courier New', monospace; font-size: 25px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding-bottom: 2px; background-color: #000000; height: 32px; display: flex; align-items: center; justify-content: center; width: auto; min-width: 163px; padding-left: 15px; padding-right: 15px; padding-top: 2px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.3); white-space: nowrap; }
+        .name-wrapper.show-big { opacity: 1; transform: translate(-50%, -250%) scale(1.2); }
+        .name-wrapper.docked { top: 67%; left: 53%; transform: translate(-50%, 2px) scale(0.5); opacity: 1; }
+        .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
+    </style>
+    <div id="videoModal">
+        <div class="video-container">
+            <video id="honeyVideo" muted playsinline preload="auto"><source src="honey_rotate.mp4" type="video/mp4"></video>
+            <div class="digital-label" id="customLabel">
+                <div class="content-group"><img src="images/kafak_logo.png" alt="Kafak"><div class="packed-text">RESERVED FOR</div></div>
+                <div class="check-wrapper" id="finalCheck"><svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg></div>
+            </div>
+            <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
+        </div>
+        <div class="loading-txt">PREPARING YOUR ORDER...</div>
+    </div>`);
 }
 
-function checkForChanges() {
-  const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
-  const current = { phone: $('#edit-phone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: $('#edit-pincode').val(), postoffice: $('#edit-postoffice').val(), whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), quantity: $('#quick-qty').val() };
-  const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
-  const hasChanges = isDiff('phone', current.phone) || isDiff('house', current.house) || isDiff('place', current.place) || isDiff('pincode', current.pincode) || isDiff('postoffice', current.postoffice) || isDiff('whatsapp', current.whatsapp) || isDiff('altphone', current.altphone) || isDiff('quantity', current.quantity);
-  if (hasChanges) { btn.prop('disabled', false).css('opacity', '1'); } else { btn.prop('disabled', true).css('opacity', '0.5'); }
-}
+function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
 
-function toggleAddressEdit() { $('.address-box').slideToggle(); }
-function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
+function playVideoAnimation(userName, apiCallback) {
+  $('#videoModal').css('display', 'flex').fadeIn();
+  const video = document.getElementById('honeyVideo');
+  const label = $('#customLabel');
+  const nameBadge = $('#nameBadge');
+  const checkWrapper = $('#finalCheck');
+  const nameBox = document.getElementById('vid-username');
+
+  label.removeClass('visible final-state');
+  nameBadge.removeClass('show-big docked');
+  checkWrapper.removeClass('show draw');
+  nameBox.innerText = "";
+
+  let fontSize = 25;
+  if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
+  $('#vid-username').css('font-size', fontSize + 'px');
+
+  video.currentTime = 0;
+  video.play().catch(e => console.log("Auto-play blocked", e));
+
+  apiCallback();
+
+  setTimeout(() => { label.addClass('visible'); }, 4700);
+  setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
+  setTimeout(() => {
+    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
+    let typeInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(typeInterval); } }, 80);
+  }, 5800);
+  setTimeout(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
+  setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
+}
