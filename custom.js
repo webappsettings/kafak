@@ -217,25 +217,7 @@ $(document).ready(function () {
     setTimeout(() => $('#phone').focus(), 500);
   }
 
-  setTimeout(() => {
-    $('#place-warn').remove();
 
-    // Check current language (assuming .form-select holds the language)
-    let lang = $('.form-select').val() || 'en';
-
-    let msgText = "Enter Place only (Don't add District/PO)"; // Default English
-
-    if (lang === 'ml') {
-      msgText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
-    }
-
-    const msg = `<div id="place-warn" class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> ${msgText}</div>`;
-
-    // Wizard View-ൽ മാത്രം കാണിക്കും
-    if ($('#place').length > 0) {
-      $(msg).insertAfter('#place');
-    }
-  }, 1500);
 
 });
 
@@ -765,6 +747,50 @@ window.updatePrice = function (qty, isQuick) {
 
   if (isQuick) checkForChanges();
 }
+
+// 🔥 Live Address Preview & Warning (Replaces old warning code)
+$('#place').on('input keyup focus', function () {
+  updateLiveAddressPreview();
+});
+
+function updateLiveAddressPreview() {
+  // 1. Get Values directly from Inputs (Populated from pincode.json)
+  let place = $('#place').val() || '';
+  let po = $('#postoffice').val() || '';      // Auto-filled from Pincode
+  let dist = $('#district').val() || '';      // Auto-filled from Pincode
+  let state = $('#state').val() || 'KERALA';  // Auto-filled from Pincode
+  let pin = $('#pincode').val() || '';
+
+  // 2. Warning Message Text (Language check)
+  let lang = $('.form-select').val() || 'en';
+  let warnText = "Enter Place only (Don't add District/PO)";
+  if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
+
+  // 3. HTML Content
+  let previewHtml = `
+        <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">
+            <i class="fas fa-info-circle"></i> ${warnText}
+        </div>
+        <div style="font-weight: 700; color: #333; text-transform: uppercase;">${po}</div>
+        <div style="color: #444; text-transform: capitalize;">
+            ${place ? place + ', ' : ''}<span style="text-transform: uppercase;">${dist}</span>
+        </div>
+        <div style="color: #666; font-size: 11px; margin-top:2px; text-transform: uppercase;">
+            ${state} - <span style="font-weight:800; color:#000;">${pin}</span>
+        </div>
+    `;
+
+  // 4. Insert or Update Preview Box
+  if ($('#live-addr-preview').length === 0) {
+    $('<div id="live-addr-preview" class="mt-2 p-3 bg-light rounded border border-light" style="font-size:12px; line-height:1.5;"></div>')
+      .insertAfter('#place');
+  }
+
+  $('#live-addr-preview').html(previewHtml);
+}
+
+// പേജ് ലോഡ് ആകുമ്പോൾ തന്നെ ഒന്ന് കാണിക്കാൻ
+setTimeout(updateLiveAddressPreview, 1000);
 
 function checkForChanges() {
   const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
