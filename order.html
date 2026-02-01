@@ -492,6 +492,84 @@
         padding: 20px 15px;
       }
     }
+
+    /* --- WIZARD SUMMARY CARD STYLE --- */
+    .wiz-addr-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 20px 20px 25px;
+      /* Left padding extra for border */
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      border: 1px solid #fff;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    /* Theme Color Touch (Left Bar) */
+    .wiz-addr-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(to bottom, var(--brand-green), #4ade80);
+    }
+
+    .wiz-label-sm {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .wiz-name-lg {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 6px;
+      text-transform: capitalize;
+    }
+
+    .wiz-addr-txt {
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .wiz-pin-badge {
+      display: inline-block;
+      background: #f3f4f6;
+      color: #1f2937;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 11px;
+      margin-left: 5px;
+    }
+
+    .wiz-contact-row {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed #e5e7eb;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .wiz-ph-item {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
   </style>
 </head>
 

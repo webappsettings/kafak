@@ -216,15 +216,10 @@ $(document).ready(function () {
     updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
-  // 🔴 Warning Message below Place Input
+  // 🔴 Warning Message (Only for Wizard 'Place' Input)
   setTimeout(() => {
     const msg = '<div class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)</div>';
-
-    // For Wizard View
     if ($('#place-warn').length === 0) $(msg).attr('id', 'place-warn').insertAfter('#place');
-
-    // For Edit View
-    if ($('#edit-place-warn').length === 0) $(msg).attr('id', 'edit-place-warn').insertAfter('#edit-place');
   }, 1000);
 
 });
@@ -700,14 +695,61 @@ function updateSummaryDisplay() {
 }
 
 window.updatePrice = function (qty, isQuick) {
-  if (!qty) return; const n = parseInt(qty); const base = n * 650; const courier = courierRates.kerala[n] || 0; const total = base + courier;
+  if (!qty) return;
+  const n = parseInt(qty);
+  const base = n * 650;
+  const courier = courierRates.kerala[n] || 0;
+  const total = base + courier;
+
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-  container.find('.qty-count').text(n); container.find('.val-base').text(base); container.find('.val-courier').text(courier); container.find('.val-total').text(total); container.fadeIn();
+  container.find('.qty-count').text(n);
+  container.find('.val-base').text(base);
+  container.find('.val-courier').text(courier);
+  container.find('.val-total').text(total);
+  container.fadeIn();
+
+  // 🔥 WIZARD SUMMARY UPDATE (Simple View - No Card)
   if (!isQuick) {
-    let altHtml = $('#altphone').val() ? `, ${$('#altphone').val()}` : '';
-    let addrHtml = `<span class="dt-name">${$('#name').val()}</span><span class="dt-addr">${$('#house').val()}, ${$('#place').val()}<br>${(userData.postoffice || '').toUpperCase()}, ${(userData.district || '').toUpperCase()}<br>${(userData.state || '').toUpperCase()} - ${$('#pincode').val()}</span><div class="dt-phone"><i class="fas fa-phone-alt"></i> ${$('#phone').val()}${altHtml}</div><div class="dt-wa"><i class="fab fa-whatsapp"></i> ${$('#whatsapp').val()}</div>`;
-    $('#wiz-final-addr').html(addrHtml); $('#wiz-deliver-box').fadeIn();
+    let name = $('#name').val() || '';
+    let house = $('#house').val() || '';
+    let place = $('#place').val() || '';
+    let po = (userData.postoffice || '').toUpperCase();
+    let dist = (userData.district || '').toUpperCase();
+    let state = (userData.state || 'KERALA').toUpperCase();
+    let pin = $('#pincode').val();
+    let phone = $('#phone').val();
+    let wa = $('#whatsapp').val();
+    let alt = $('#altphone').val();
+
+    let altHtml = alt ? `<span class="text-muted">|</span> ${alt}` : '';
+
+    // Card Style ഒഴിവാക്കി Simple Layout ആക്കി
+    let prettyHtml = `
+        <div style="padding: 5px 0; margin-bottom: 15px;">
+            <div style="font-size: 11px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; margin-bottom: 5px;">DELIVER TO:</div>
+            
+            <div style="font-size: 17px; font-weight: 800; color: #000; text-transform: capitalize;">${name}</div>
+            
+            <div style="font-size: 13px; color: #4b5563; line-height: 1.4; margin-top: 4px;">
+                ${house}, ${place}<br>
+                ${po}, ${dist}<br>
+                ${state} - <span style="font-weight:700; color:#000;">${pin}</span>
+            </div>
+            
+            <div style="margin-top: 8px; font-size: 12px; font-weight: 600; color: #374151;">
+                <i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone} ${altHtml}
+            </div>
+            <div style="margin-top: 3px; font-size: 12px; font-weight: 600; color: #25D366;">
+                <i class="fab fa-whatsapp" style="font-size:13px;"></i> ${wa}
+            </div>
+        </div>
+        <hr style="border-top: 1px dashed #ddd; margin-bottom: 15px;">
+    `;
+
+    $('#wiz-final-addr').html(prettyHtml);
+    $('#wiz-deliver-box').fadeIn();
   }
+
   if (isQuick) checkForChanges();
 }
 
