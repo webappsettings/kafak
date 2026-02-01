@@ -748,29 +748,43 @@ window.updatePrice = function (qty, isQuick) {
   if (isQuick) checkForChanges();
 }
 
-// 🔥 Live Address Preview (Fix: Calls data fetching logic manually)
+// 🔥 Live Address Preview (Auto-Restores Hidden Elements)
 $('#place').on('input keyup focus', function () {
-  // 1. പഴയ ഫംഗ്‌ഷൻ വിളിച്ച് ഡാറ്റ എടുക്കുന്നു (PO & District വരാൻ ഇത് നിർബന്ധമാണ്)
+
+  // 1. പഴയ ഫംഗ്‌ഷന് ഡാറ്റ എഴുതാൻ ആവശ്യമായ Hidden Divs ഇല്ലെങ്കിൽ ഉണ്ടാക്കുന്നു
+  if ($('#display-po').length === 0) {
+    $('<div id="display-po" style="display:none;"></div>').insertAfter('#place');
+  }
+  if ($('#display-dist-state').length === 0) {
+    $('<div id="display-dist-state" style="display:none;"></div>').insertAfter('#place');
+  }
+
+  // 2. പഴയ ഫംഗ്‌ഷൻ വിളിച്ച് ഡാറ്റ ഈ Hidden Div-ലേക്ക് എഴുതിക്കുന്നു
   try {
     if (typeof updateWizardLocDisplay === 'function') {
       updateWizardLocDisplay();
     }
-  } catch (e) { } // പഴയ എലമെന്റ് ഇല്ലെങ്കിലും എറർ വരാതിരിക്കാൻ
+  } catch (e) { }
 
-  // 2. പുതിയ പ്രിവ്യൂ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+  // 3. പുതിയ പ്രിവ്യൂ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
   updateLiveAddressPreview();
 });
 
 function updateLiveAddressPreview() {
-  // 3. പഴയ ഡ്യൂപ്ലിക്കേറ്റ് ടെക്സ്റ്റുകൾ ഹൈഡ് ചെയ്യുന്നു
-  $('#display-po, #display-dist-state').hide();
+  // 4. Hidden Div-ൽ നിന്നും ടെക്സ്റ്റ് എടുക്കുന്നു (ഇതാണ് ശരിക്കുള്ള ഡാറ്റ)
+  let poRaw = $('#display-po').text() || '';
+  let distStateRaw = $('#display-dist-state').text() || '';
 
-  // 4. Get Values
+  // Data Cleaning
   let place = $('#place').val() || '';
-  let po = $('#postoffice').val() || '';
-  let dist = $('#district').val() || '';
+  let po = poRaw.replace('PO', '').trim() + ' PO'; // Format PO
+  let dist = distStateRaw.split(',')[0] || ''; // Get District part
   let state = $('#state').val() || 'KERALA';
   let pin = $('#pincode').val() || '';
+
+  // If no data found yet, use empty
+  if (poRaw === '') po = '';
+  if (distStateRaw === '') dist = '';
 
   // 5. Language Check
   let lang = $('.form-select').val() || 'en';
@@ -779,10 +793,11 @@ function updateLiveAddressPreview() {
 
   // 6. HTML Content
   let previewHtml = `
-        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
-            <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
+  <div class="text-danger fw-bold mb-2" style="nargin-top: 5px;font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
                 <i class="fas fa-info-circle"></i> ${warnText}
             </div>
+        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
+            
             <div style="font-size: 13px; line-height: 1.6; color: #333;">
                 <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
                 <div style="text-transform: capitalize;">${place ? place + ', ' : ''}<span style="text-transform: uppercase;">${dist}</span></div>
