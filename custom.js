@@ -749,43 +749,44 @@ window.updatePrice = function (qty, isQuick) {
 }
 
 // 🔥 Live Address Preview & Warning (Replaces old warning code)
+// 🔥 Live Address Preview (All inside one clean box)
 $('#place').on('input keyup focus', function () {
   updateLiveAddressPreview();
 });
 
 function updateLiveAddressPreview() {
-  // 1. Get Values directly from Inputs (Populated from pincode.json)
+  // 1. Get Values
   let place = $('#place').val() || '';
-  let po = $('#postoffice').val() || '';      // Auto-filled from Pincode
-  let dist = $('#district').val() || '';      // Auto-filled from Pincode
-  let state = $('#state').val() || 'KERALA';  // Auto-filled from Pincode
+  let po = $('#postoffice').val() || '';
+  let dist = $('#district').val() || '';
+  let state = $('#state').val() || 'KERALA';
   let pin = $('#pincode').val() || '';
 
-  // 2. Warning Message Text (Language check)
+  // 2. Language Check for Warning
   let lang = $('.form-select').val() || 'en';
   let warnText = "Enter Place only (Don't add District/PO)";
   if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
 
-  // 3. HTML Content
+  // 3. HTML Content (Unified Box)
   let previewHtml = `
-        <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">
-            <i class="fas fa-info-circle"></i> ${warnText}
-        </div>
-        <div style="font-weight: 700; color: #333; text-transform: uppercase;">${po}</div>
-        <div style="color: #444; text-transform: capitalize;">
-            ${place ? place + ', ' : ''}<span style="text-transform: uppercase;">${dist}</span>
-        </div>
-        <div style="color: #666; font-size: 11px; margin-top:2px; text-transform: uppercase;">
-            ${state} - <span style="font-weight:800; color:#000;">${pin}</span>
+  <div class="text-danger fw-bold mb-2" style="margin-top: 5px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
+                <i class="fas fa-info-circle"></i> ${warnText}
+            </div>
+        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
+            <div style="font-size: 13px; line-height: 1.6; color: #333;">
+                <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
+                <div style="text-transform: capitalize;">${place}, <span style="text-transform: uppercase;">${dist}</span></div>
+                <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
+                    ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
+                </div>
+            </div>
         </div>
     `;
 
-  // 4. Insert or Update Preview Box
+  // 4. Update UI
   if ($('#live-addr-preview').length === 0) {
-    $('<div id="live-addr-preview" class="mt-2 p-3 bg-light rounded border border-light" style="font-size:12px; line-height:1.5;"></div>')
-      .insertAfter('#place');
+    $('<div id="live-addr-preview"></div>').insertAfter('#place');
   }
-
   $('#live-addr-preview').html(previewHtml);
 }
 
