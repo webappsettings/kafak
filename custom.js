@@ -217,7 +217,9 @@ $(document).ready(function () {
     setTimeout(() => $('#phone').focus(), 500);
   }
 
-
+  $('.form-select').on('change', function () {
+    updateLiveAddressPreview();
+  });
 
 });
 
