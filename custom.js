@@ -580,7 +580,7 @@ function updateStatusUI(d) {
     html += `<div class="p-4 mb-2 rounded shadow-sm bg-white text-center border"><div class="mb-2"><i class="fas fa-check-circle text-success" style="font-size:30px;"></i></div><h6 class="fw-bold mb-1">Order Delivered!</h6><small class="text-muted">Enjoy your honey! 🍯</small></div>`;
   }
   else if (status === 'archive' || status === 'sent') {
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">⏳ Payment Pending</h6><small>Please check WhatsApp for payment details</small></div>`;
+    html += `<div class="p-3 mb-2 rounded shadow-sm bg-warning-subtle text-center border"><h6 class="fw-bold mb-1">⏳ Payment Pending</h6><small>Please check WhatsApp for payment details</small></div>`;
   }
   else if (status === 'paid') {
     html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
