@@ -812,7 +812,7 @@ function updateLiveAddressPreview() {
             <div style="font-size: 13px; line-height: 1.6; color: #333;">
                 <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
                 
-                <div style="text-transform: capitalize;">
+                <div style="text-transform: uppercase;">
                     ${place ? place : ''}${place && dist ? ', ' : ''}
                     <span style="text-transform: uppercase; font-weight:600;">${dist}</span>
                 </div>
