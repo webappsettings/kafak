@@ -94,7 +94,7 @@
     .regular-input {
       border: 1px solid #e0e0e0;
       border-radius: 10px;
-      padding: 12px;
+      padding: 9px;
       width: 100%;
       font-weight: 600;
       outline: none;
@@ -391,6 +391,7 @@
     .track-tl-item {
       position: relative;
       padding-bottom: 25px;
+      padding-left: 15px;
     }
 
     .track-tl-item:last-child {
@@ -455,6 +456,41 @@
       color: #aaa;
       float: right;
       font-weight: 600;
+    }
+
+    /* --- BEAUTIFUL BACKGROUND UPDATE --- */
+    body {
+      background-color: #f0f2f5 !important;
+      /* Modern Light Gray */
+    }
+
+    /* Main Content Card Style */
+    #returning-user-view,
+    #wizard-view,
+    .login-card {
+      background: #ffffff;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      /* Soft Shadow for depth */
+      margin-top: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #fff;
+    }
+
+    /* Mobile Adjustment */
+    @media (max-width: 576px) {
+      body {
+        background-color: #f8f9fa !important;
+        /* Lighter gray for mobile */
+      }
+
+      #returning-user-view,
+      #wizard-view {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        margin-top: 10px;
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
