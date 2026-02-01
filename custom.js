@@ -731,6 +731,7 @@ window.updatePrice = function (qty, isQuick) {
 
     let altHtml = alt ? `<span class="text-muted">|</span> ${alt}` : '';
 
+    // കീബോർഡ് വരുമ്പോൾ സ്ഥലം പോകാതിരിക്കാൻ വശങ്ങളിലേക്ക് ഒതുക്കിയ ഡിസൈൻ
     let prettyHtml = `
         <div style="padding: 8px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
