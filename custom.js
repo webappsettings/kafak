@@ -655,18 +655,16 @@ function updateSummaryDisplay() {
   const po = $('#edit-postoffice').val() || '';
   const pin = $('#edit-pincode').val() || '';
   const dist = $('#edit-district').val() || '';
-  const state = $('#edit-state').val() || 'KERALA'; // Default State
+  const state = $('#edit-state').val() || 'KERALA';
+
+  // Contact Details
   const wa = $('#edit-whatsapp').val() || '';
   const alt = $('#edit-altphone').val();
   const phone = $('#edit-phone').val() || '';
 
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // 🔥 NEW BEAUTIFUL ADDRESS LAYOUT
-  // Line 1: House Name (Bold)
-  // Line 2: Place, PO
-  // Line 3: District, State - PINCODE (Highlighted)
-
+  // Address HTML (No Change)
   let addrHtml = `
       <div style="font-weight:800; font-size:15px; color:#1a1a1a; margin-bottom:3px;">${safe(house)}</div>
       <div style="font-size:13px; color:#444; margin-bottom:2px;">${safe(place)}, ${safe(po)}</div>
@@ -676,17 +674,33 @@ function updateSummaryDisplay() {
       </div>
   `;
 
-  // Note: Using .html() instead of .text() to render styles
   $('#saved-address-text').html(addrHtml).css({ 'line-height': '1.4', 'margin-bottom': '5px' });
-  $('#saved-place-dist').text(''); // Clear old separate fields
+  $('#saved-place-dist').text('');
 
-  // Phone Logic
-  let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
-  if (alt) phoneHtml += ` <span class="text-muted">|</span> ${alt}`;
-  if (wa) phoneHtml += ` <span class="text-muted">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
+  // 🔥 PHONE LOGIC UPDATE (Conditional Line Break)
+  let phoneHtml = '';
 
-  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '5px' });
-  $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
+  // Line 1: Phone (+ Alt Phone if exists)
+  phoneHtml += `<div><i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
+
+  if (alt) {
+    phoneHtml += ` <span class="text-muted mx-1">|</span> ${alt}`;
+  }
+
+  // If NO Alt Phone, put WhatsApp on the SAME line
+  if (!alt && wa) {
+    phoneHtml += ` <span class="text-muted mx-1">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
+  }
+  phoneHtml += `</div>`;
+
+  // Line 2: WhatsApp (Only comes down if Alt Phone exists)
+  if (alt && wa) {
+    phoneHtml += `<div style="margin-top:4px; color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</div>`;
+  }
+
+  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '8px' });
+  $('#saved-wa-text').hide();
+  $('#saved-alt-text').hide();
 
   checkForChanges();
 }
