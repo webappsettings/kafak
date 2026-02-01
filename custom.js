@@ -216,11 +216,19 @@ $(document).ready(function () {
     updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
-  // 🔴 Warning Message (Only for Wizard 'Place' Input)
+
+  // 🔴 Warning below Place Input (Only in Wizard)
   setTimeout(() => {
-    const msg = '<div class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)</div>';
-    if ($('#place-warn').length === 0) $(msg).attr('id', 'place-warn').insertAfter('#place');
-  }, 1000);
+    // പഴയ വാർണിംഗ് ഉണ്ടെങ്കിൽ കളയുന്നു (ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ)
+    $('#place-warn').remove();
+
+    const msg = '<div id="place-warn" class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)</div>';
+
+    // Wizard View-ലെ Place Input-ന് താഴെ മാത്രം ഇത് വരും
+    if ($('#place').length > 0) {
+      $(msg).insertAfter('#place');
+    }
+  }, 1500);
 
 });
 
@@ -708,7 +716,7 @@ window.updatePrice = function (qty, isQuick) {
   container.find('.val-total').text(total);
   container.fadeIn();
 
-  // 🔥 WIZARD SUMMARY UPDATE (Simple View - No Card)
+  // 🔥 WIZARD SUMMARY - HORIZONTAL COMPACT STYLE
   if (!isQuick) {
     let name = $('#name').val() || '';
     let house = $('#house').val() || '';
@@ -723,27 +731,24 @@ window.updatePrice = function (qty, isQuick) {
 
     let altHtml = alt ? `<span class="text-muted">|</span> ${alt}` : '';
 
-    // Card Style ഒഴിവാക്കി Simple Layout ആക്കി
     let prettyHtml = `
-        <div style="padding: 5px 0; margin-bottom: 15px;">
-            <div style="font-size: 11px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; margin-bottom: 5px;">DELIVER TO:</div>
-            
-            <div style="font-size: 17px; font-weight: 800; color: #000; text-transform: capitalize;">${name}</div>
-            
-            <div style="font-size: 13px; color: #4b5563; line-height: 1.4; margin-top: 4px;">
-                ${house}, ${place}<br>
-                ${po}, ${dist}<br>
-                ${state} - <span style="font-weight:700; color:#000;">${pin}</span>
+        <div style="padding: 8px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                 <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">DELIVER TO</div>
+                 <div style="font-size: 11px; font-weight: 700; color: #25D366;"><i class="fab fa-whatsapp"></i> ${wa}</div>
             </div>
             
-            <div style="margin-top: 8px; font-size: 12px; font-weight: 600; color: #374151;">
-                <i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone} ${altHtml}
+            <div style="font-size: 16px; font-weight: 800; color: #1a1a1a; text-transform: capitalize; margin-bottom: 2px;">${name}</div>
+            
+            <div style="font-size: 13px; color: #4b5563; line-height: 1.4;">
+                <span style="font-weight: 600; color: #222;">${house}</span>, ${place}, ${po}, 
+                ${dist}, ${state} - <b>${pin}</b>
             </div>
-            <div style="margin-top: 3px; font-size: 12px; font-weight: 600; color: #25D366;">
-                <i class="fab fa-whatsapp" style="font-size:13px;"></i> ${wa}
+            
+            <div style="margin-top: 5px; font-size: 12px; font-weight: 600; color: #555;">
+                <i class="fas fa-phone-alt" style="font-size:10px; color:#888; margin-right:4px;"></i> ${phone} ${altHtml}
             </div>
         </div>
-        <hr style="border-top: 1px dashed #ddd; margin-bottom: 15px;">
     `;
 
     $('#wiz-final-addr').html(prettyHtml);
