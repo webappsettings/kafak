@@ -370,6 +370,92 @@
       border-top: 1px solid #eee;
       z-index: 20;
     }
+
+    /* --- TIMELINE TRACKING STYLE --- */
+    .tracking-wrapper {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 15px;
+      border: 1px solid #eee;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+
+    .track-tl {
+      position: relative;
+      padding-left: 30px;
+      list-style: none;
+      margin: 0;
+    }
+
+    .track-tl-item {
+      position: relative;
+      padding-bottom: 25px;
+    }
+
+    .track-tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    /* Vertical Line */
+    .track-tl-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 2px;
+      height: 100%;
+      background: #e0e0e0;
+    }
+
+    .track-tl-item:last-child::before {
+      display: none;
+    }
+
+    /* The Dot */
+    .track-tl-dot {
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px #e0e0e0;
+      z-index: 1;
+    }
+
+    /* Active State (Green) */
+    .track-tl-item.active .track-tl-dot {
+      background: #2e7d32;
+      box-shadow: 0 0 0 2px #dcfce7;
+    }
+
+    .track-tl-item.active::before {
+      background: #2e7d32;
+      /* Green Line for finished steps */
+    }
+
+    .track-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      line-height: 1.2;
+    }
+
+    .track-desc {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .track-date {
+      font-size: 10px;
+      color: #aaa;
+      float: right;
+      font-weight: 600;
+    }
   </style>
 </head>
 

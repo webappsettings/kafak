@@ -568,37 +568,82 @@ window.markOrderDelivered = function (oid) {
 
 function updateStatusUI(d) {
   $('#status-area').empty();
-  let html = '';
 
+  // Status Priority for Timeline (Order of progress)
+  const steps = ['pending', 'sent', 'paid', 'dispatched', 'delivered'];
+  let currentStatus = String(d.Status || d.status || 'pending').toLowerCase();
+
+  // Normalize Status
+  if (currentStatus === 'archive') currentStatus = 'pending';
+  if (currentStatus === 'completed') currentStatus = 'delivered';
+
+  let currentIndex = steps.indexOf(currentStatus);
+  if (currentIndex === -1) currentIndex = 0; // Default if unknown
+
+  // HTML Generator for Timeline
+  let timelineHTML = `<div class="tracking-wrapper"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">ORDER STATUS</h6><ul class="track-tl">`;
+
+  // 1. Order Placed (Always Active)
+  timelineHTML += `
+      <li class="track-tl-item active">
+          <div class="track-tl-dot"></div>
+          <div class="track-date">${formatPrettyDate(d.timestamp) || ''}</div>
+          <div class="track-title">Order Placed</div>
+          <div class="track-desc">Order details received.</div>
+      </li>`;
+
+  // 2. Payment (Active if Paid or above)
+  let isPaid = currentIndex >= 2;
+  timelineHTML += `
+      <li class="track-tl-item ${isPaid ? 'active' : ''}">
+          <div class="track-tl-dot"></div>
+          <div class="track-title">${isPaid ? 'Payment Received' : 'Payment Pending'}</div>
+          <div class="track-desc">${isPaid ? 'Order confirmed & Packing started.' : 'Waiting for payment confirmation.'}</div>
+      </li>`;
+
+  // 3. Dispatched (Active if Dispatched or Delivered)
+  let isDispatched = currentIndex >= 3;
+  let trackBtn = '';
+
+  if (d.tracking) {
+    // Direct Link Logic
+    let courierName = d.courier || d.provider || "Courier";
+    let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
+    trackBtn = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3" style="font-size:11px; border-radius:50px;">Track Item <i class="fas fa-external-link-alt"></i></a></div>`;
+  }
+
+  timelineHTML += `
+      <li class="track-tl-item ${isDispatched ? 'active' : ''}">
+          <div class="track-tl-dot"></div>
+          <div class="track-title">${isDispatched ? 'Dispatched' : 'Packing'}</div>
+          <div class="track-desc">
+            ${isDispatched ? `Shipped via ${d.courier || 'Courier'}. <br><b>ID: ${d.tracking || ''}</b>` : 'Item is being packed.'}
+            ${isDispatched && d.tracking ? trackBtn : ''}
+          </div>
+      </li>`;
+
+  // 4. Delivered
+  let isDelivered = currentIndex >= 4;
+  timelineHTML += `
+      <li class="track-tl-item ${isDelivered ? 'active' : ''}">
+          <div class="track-tl-dot"></div>
+          <div class="track-title">${isDelivered ? 'Delivered' : 'On the Way'}</div>
+          <div class="track-desc">${isDelivered ? 'Item successfully delivered.' : 'Estimated delivery within 3-5 days.'}</div>
+      </li>`;
+
+  timelineHTML += `</ul></div>`;
+
+  // Add "Mark as Received" Button only if Dispatched but not Delivered
+  if (currentStatus === 'dispatched') {
+    timelineHTML += `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-2">✅ I RECEIVED THE ORDER</button></div>`;
+  }
+
+  // Display Platinum Customer Badge if applicable
   if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
-    html += `<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`;
+    $('#status-area').prepend(`<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`);
   }
 
-  let status = String(d.Status || d.status || '').trim().toLowerCase();
-
-  if (status === 'delivered') {
-    html += `<div class="p-4 mb-2 rounded shadow-sm bg-white text-center border"><div class="mb-2"><i class="fas fa-check-circle text-success" style="font-size:30px;"></i></div><h6 class="fw-bold mb-1">Order Delivered!</h6><small class="text-muted">Enjoy your honey! 🍯</small></div>`;
-  }
-  else if (status === 'archive' || status === 'sent') {
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-warning-subtle text-center border"><h6 class="fw-bold mb-1">⏳ Payment Pending</h6><small>Please check WhatsApp for payment details</small></div>`;
-  }
-  else if (status === 'paid') {
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Payment Received!</h6><small>Order accepted. Packing in progress.</small></div>`;
-  }
-  else if (status === 'dispatched') {
-    let trackingHtml = d.tracking ? `<div class="mt-2 bg-white text-primary p-2 rounded fw-bold shadow-sm" onclick="navigator.clipboard.writeText('${d.tracking}')" style="cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center; gap:5px;">📦 Track: ${d.tracking} <i class="far fa-copy"></i></div>` : '';
-    let courierName = (d.courier || d.provider) ? `<div style="font-size:12px; margin-top:2px; opacity:0.9;">Via ${d.courier || d.provider}</div>` : '';
-    let markBtn = `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-light btn-sm fw-bold shadow-sm w-100" style="color:#0d6efd; border:1px solid #cce5ff;">✅ I RECEIVED THIS ORDER</button></div>`;
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-primary text-white text-center"><h6 class="fw-bold mb-1">🚚 Order Dispatched!</h6>${courierName}<small>Your honey is on the way.</small>${trackingHtml}${markBtn}</div>`;
-  }
-  else if (status === 'completed') {
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-success text-white text-center"><h6 class="fw-bold mb-1">✅ Completed!</h6><small>Order delivered successfully.</small></div>`;
-  }
-  else if (status === 'pending') {
-    html += `<div class="p-3 mb-2 rounded shadow-sm bg-light text-center border"><h6 class="fw-bold mb-1">📦 Order Received</h6><small>We will contact you soon for payment.</small></div>`;
-  }
-
-  $('#status-area').html(html);
+  $('#status-area').append(timelineHTML);
 }
 
 function updateSummaryDisplay() {
