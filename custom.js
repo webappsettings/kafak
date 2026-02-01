@@ -686,25 +686,66 @@ window.updateAdminUI = function (serverStatus, oid) {
 }
 
 window.adminAction = function (oid, status) {
-  if (status === 'Archive' && !confirm(`Move this order to Archive?`)) return;
-  if (status !== 'Archive' && !confirm(`Change status to '${status}'?`)) return;
+  // 1. CONFIRMATION
+  if (status === 'Archive' && !confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
+  if (status !== 'Archive' && !confirm(`Mark as '${status}'? (Saved Locally)`)) return;
+
   const btnContainer = $('#admin-btn-container');
-  const originalContent = btnContainer.html();
-  btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Saving...</div>');
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] }) })
-    .then(res => res.json())
-    .then(data => {
-      if (data.result === 'success') {
-        let updates = JSON.parse(SafeStorage.getItem('pendingUpdates') || "[]");
-        updates = updates.filter(item => item.oid !== oid);
-        updates.push({ oid: oid, status: status, time: new Date().getTime() });
-        SafeStorage.setItem('pendingUpdates', JSON.stringify(updates));
-        const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
-        Toast.fire({ icon: 'success', title: `Saved: ${status}` });
-        updateAdminUI(status, oid);
-      } else { alert("Save Failed!"); btnContainer.html(originalContent); }
+
+  // 🔥 CASE 1: ARCHIVE -> DIRECT SERVER UPDATE
+  // ആർക്കൈവ് ആണെങ്കിൽ നേരിട്ട് സെർവറിലേക്ക് അയക്കുന്നു
+  if (status === 'Archive') {
+    const originalContent = btnContainer.html();
+    btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Archiving...</div>');
+
+    fetch(sc, {
+      method: 'POST',
+      body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
     })
-    .catch(err => { alert("Network Error"); btnContainer.html(originalContent); });
+      .then(res => res.json())
+      .then(data => {
+        if (data.result === 'success') {
+          // Local Cache Update (Optional but good for immediate UI sync)
+          let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+          updates = updates.filter(item => item.oid !== oid); // Remove if any local pending exists
+          localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+          Swal.fire({ icon: 'success', title: 'Archived!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
+          updateAdminUI(status, oid);
+        } else {
+          alert("Failed to Archive!");
+          btnContainer.html(originalContent);
+        }
+      })
+      .catch(err => {
+        alert("Network Error");
+        btnContainer.html(originalContent);
+      });
+    return;
+  }
+
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+  // Remove any existing update for this Order ID to avoid duplicates
+  updates = updates.filter(item => item.oid !== oid);
+
+  // Add new update
+  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  // Show success message
+  Swal.fire({
+    icon: 'success',
+    title: `Saved: ${status}`,
+    text: 'Saved locally. Please Sync from Admin Dashboard.',
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000
+  });
+
+  // Update the UI immediately to reflect the change
+  updateAdminUI(status, oid);
 }
 
 window.clearAdminCache = function () {
