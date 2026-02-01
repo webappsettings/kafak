@@ -216,6 +216,17 @@ $(document).ready(function () {
     updateFooterButtons('step-0');
     setTimeout(() => $('#phone').focus(), 500);
   }
+  // 🔴 Warning Message below Place Input
+  setTimeout(() => {
+    const msg = '<div class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)</div>';
+
+    // For Wizard View
+    if ($('#place-warn').length === 0) $(msg).attr('id', 'place-warn').insertAfter('#place');
+
+    // For Edit View
+    if ($('#edit-place-warn').length === 0) $(msg).attr('id', 'edit-place-warn').insertAfter('#edit-place');
+  }, 1000);
+
 });
 
 window.handlePhoneNext = function () {
@@ -652,24 +663,39 @@ function updateSummaryDisplay() {
   const po = $('#edit-postoffice').val() || '';
   const pin = $('#edit-pincode').val() || '';
   const dist = $('#edit-district').val() || '';
+  const state = $('#edit-state').val() || 'KERALA'; // Default State
   const wa = $('#edit-whatsapp').val() || '';
   const alt = $('#edit-altphone').val();
   const phone = $('#edit-phone').val() || '';
 
-  let addr = `${house}, ${place}, ${po}, ${dist}, ${pin}`.toUpperCase().replace(/,\s*,/g, ',').replace(/\s\s+/g, ' ');
+  const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // 🔥 CHANGE: പേര് ഇവിടെ നിന്ന് ഒഴിവാക്കി (മുകളിൽ Title ആയി വരുന്നത് കൊണ്ട്)
-  $('#saved-address-text').text(addr).css({ 'margin-bottom': '2px', 'line-height': '1.3', 'font-size': '13px', 'color': '#555' });
+  // 🔥 NEW BEAUTIFUL ADDRESS LAYOUT
+  // Line 1: House Name (Bold)
+  // Line 2: Place, PO
+  // Line 3: District, State - PINCODE (Highlighted)
 
-  $('#saved-place-dist').text('');
+  let addrHtml = `
+      <div style="font-weight:800; font-size:15px; color:#1a1a1a; margin-bottom:3px;">${safe(house)}</div>
+      <div style="font-size:13px; color:#444; margin-bottom:2px;">${safe(place)}, ${safe(po)}</div>
+      <div style="font-size:11px; font-weight:700; color:#777; letter-spacing:0.5px; text-transform:uppercase;">
+          ${safe(dist)}, ${safe(state)} 
+          <span style="background:#eee; padding:2px 6px; border-radius:4px; color:#000; margin-left:4px; font-weight:800;">${safe(pin)}</span>
+      </div>
+  `;
 
-  // Compact Phone UI
+  // Note: Using .html() instead of .text() to render styles
+  $('#saved-address-text').html(addrHtml).css({ 'line-height': '1.4', 'margin-bottom': '5px' });
+  $('#saved-place-dist').text(''); // Clear old separate fields
+
+  // Phone Logic
   let phoneHtml = `<i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
   if (alt) phoneHtml += ` <span class="text-muted">|</span> ${alt}`;
   if (wa) phoneHtml += ` <span class="text-muted">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
 
-  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '2px' });
+  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '5px' });
   $('#saved-wa-text').hide(); $('#saved-alt-text').hide();
+
   checkForChanges();
 }
 
