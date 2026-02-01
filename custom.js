@@ -747,11 +747,10 @@ window.updatePrice = function (qty, isQuick) {
 
   if (isQuick) checkForChanges();
 }
-
-// 🔥 Live Address Preview (Auto-Restores Hidden Elements)
+// 🔥 Live Address Preview (Fix: Correctly splits Place & District)
 $('#place').on('input keyup focus', function () {
 
-  // 1. പഴയ ഫംഗ്‌ഷന് ഡാറ്റ എഴുതാൻ ആവശ്യമായ Hidden Divs ഇല്ലെങ്കിൽ ഉണ്ടാക്കുന്നു
+  // 1. Create hidden divs if missing
   if ($('#display-po').length === 0) {
     $('<div id="display-po" style="display:none;"></div>').insertAfter('#place');
   }
@@ -759,48 +758,65 @@ $('#place').on('input keyup focus', function () {
     $('<div id="display-dist-state" style="display:none;"></div>').insertAfter('#place');
   }
 
-  // 2. പഴയ ഫംഗ്‌ഷൻ വിളിച്ച് ഡാറ്റ ഈ Hidden Div-ലേക്ക് എഴുതിക്കുന്നു
+  // 2. Fetch Data using old function
   try {
     if (typeof updateWizardLocDisplay === 'function') {
       updateWizardLocDisplay();
     }
   } catch (e) { }
 
-  // 3. പുതിയ പ്രിവ്യൂ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+  // 3. Update Preview
   updateLiveAddressPreview();
 });
 
 function updateLiveAddressPreview() {
-  // 4. Hidden Div-ൽ നിന്നും ടെക്സ്റ്റ് എടുക്കുന്നു (ഇതാണ് ശരിക്കുള്ള ഡാറ്റ)
+  // 4. Get raw text from hidden divs
   let poRaw = $('#display-po').text() || '';
-  let distStateRaw = $('#display-dist-state').text() || '';
+  let distStateRaw = $('#display-dist-state').text() || ''; // e.g., "ALUVA, ERNAKULAM"
 
-  // Data Cleaning
+  // 5. Data Cleaning (Updated Logic)
   let place = $('#place').val() || '';
-  let po = poRaw.replace('PO', '').trim() + ' PO'; // Format PO
-  let dist = distStateRaw.split(',')[0] || ''; // Get District part
+  let po = poRaw.replace('PO', '').trim();
+  if (po) po += ' PO'; // Add 'PO' only if data exists
+
+  // 🔥 FIX: Split by comma and take the LAST part (which is District)
+  let distParts = distStateRaw.split(',');
+  let dist = '';
+
+  if (distParts.length > 1) {
+    dist = distParts[1].trim(); // Take part after comma (District)
+  } else {
+    dist = distStateRaw.trim(); // Fallback
+  }
+
+  // Safety: If district is mistakenly same as place, clear it from district var
+  if (dist.toLowerCase() === place.toLowerCase()) {
+    dist = '';
+  }
+
   let state = $('#state').val() || 'KERALA';
   let pin = $('#pincode').val() || '';
 
-  // If no data found yet, use empty
-  if (poRaw === '') po = '';
-  if (distStateRaw === '') dist = '';
-
-  // 5. Language Check
+  // 6. Language Check
   let lang = $('.form-select').val() || 'en';
   let warnText = "Enter Place only (Don't add District/PO)";
   if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
 
-  // 6. HTML Content
+  // 7. HTML Content
   let previewHtml = `
-  <div class="text-danger fw-bold mb-2" style="nargin-top: 5px;font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
+  <div class="text-danger fw-bold mb-2" style="margin-top: 5px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
                 <i class="fas fa-info-circle"></i> ${warnText}
             </div>
         <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
             
             <div style="font-size: 13px; line-height: 1.6; color: #333;">
                 <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
-                <div style="text-transform: capitalize;">${place ? place + ', ' : ''}<span style="text-transform: uppercase;">${dist}</span></div>
+                
+                <div style="text-transform: capitalize;">
+                    ${place ? place : ''}${place && dist ? ', ' : ''}
+                    <span style="text-transform: uppercase; font-weight:600;">${dist}</span>
+                </div>
+
                 <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
                     ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
                 </div>
@@ -808,7 +824,7 @@ function updateLiveAddressPreview() {
         </div>
     `;
 
-  // 7. Update UI
+  // 8. Update UI
   if ($('#live-addr-preview').length === 0) {
     $('<div id="live-addr-preview"></div>').insertAfter('#place');
   }
