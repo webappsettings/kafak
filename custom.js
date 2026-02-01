@@ -98,6 +98,27 @@ window.showLoader = function (show) {
   }
 }
 
+// LANGUAGE CHANGER FUNCTION
+window.changeLanguage = function (lang) {
+  const t = translations[lang];
+  if (!t) return;
+
+  // Update Text Content
+  $('[data-i18n]').each(function () {
+    const key = $(this).attr('data-i18n');
+    if (t[key]) {
+      $(this).text(t[key]);
+    }
+  });
+
+  // Update Placeholders (Inputs)
+  $('#phone').attr('placeholder', t.ph_phone);
+  $('#name').attr('placeholder', t.ph_name);
+  $('#house').attr('placeholder', t.ph_house);
+  $('#whatsapp').attr('placeholder', t.lbl_whatsapp); // or specific placeholder key
+  $('#altphone').attr('placeholder', t.lbl_altphone);
+}
+
 window.showAlert = function (msg) {
   Swal.fire({ text: msg, icon: 'warning', confirmButtonText: 'OK', confirmButtonColor: '#000', customClass: { popup: 'ios-popup', confirmButton: 'ios-btn' } });
 }
