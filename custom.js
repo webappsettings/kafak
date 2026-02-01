@@ -217,14 +217,21 @@ $(document).ready(function () {
     setTimeout(() => $('#phone').focus(), 500);
   }
 
-  // 🔴 Warning below Place Input (Only in Wizard)
   setTimeout(() => {
-    // പഴയ വാർണിംഗ് ഉണ്ടെങ്കിൽ കളയുന്നു (ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ)
     $('#place-warn').remove();
 
-    const msg = '<div id="place-warn" class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)</div>';
+    // Check current language (assuming .form-select holds the language)
+    let lang = $('.form-select').val() || 'en';
 
-    // Wizard View-ലെ Place Input-ന് താഴെ മാത്രം ഇത് വരും
+    let msgText = "Enter Place only (Don't add District/PO)"; // Default English
+
+    if (lang === 'ml') {
+      msgText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
+    }
+
+    const msg = `<div id="place-warn" class="text-danger fw-bold mt-1 fade-in" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-info-circle"></i> ${msgText}</div>`;
+
+    // Wizard View-ൽ മാത്രം കാണിക്കും
     if ($('#place').length > 0) {
       $(msg).insertAfter('#place');
     }
