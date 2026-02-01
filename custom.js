@@ -748,34 +748,37 @@ window.updatePrice = function (qty, isQuick) {
   if (isQuick) checkForChanges();
 }
 
-// 🔥 Live Address Preview & Warning (Replaces old warning code)
-// 🔥 Live Address Preview (All inside one clean box)
+// 🔥 Live Address Preview (Auto-removes old elements)
 $('#place').on('input keyup focus', function () {
   updateLiveAddressPreview();
 });
 
 function updateLiveAddressPreview() {
-  // 1. Get Values
+  // 1. പഴയ ഡ്യൂപ്ലിക്കേറ്റുകൾ ഉണ്ടെങ്കിൽ അവയെ നിർബന്ധമായി നീക്കം ചെയ്യുന്നു
+  $('#display-po, #display-dist-state').remove();
+
+  // 2. Get Values
   let place = $('#place').val() || '';
   let po = $('#postoffice').val() || '';
   let dist = $('#district').val() || '';
   let state = $('#state').val() || 'KERALA';
   let pin = $('#pincode').val() || '';
 
-  // 2. Language Check for Warning
+  // 3. Language Check
   let lang = $('.form-select').val() || 'en';
   let warnText = "Enter Place only (Don't add District/PO)";
   if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
 
-  // 3. HTML Content (Unified Box)
+  // 4. HTML Content (Clean Single Box)
   let previewHtml = `
-  <div class="text-danger fw-bold mb-2" style="margin-top: 5px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
+  <div class="text-danger fw-bold mb-2" style="margin-top:6px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
                 <i class="fas fa-info-circle"></i> ${warnText}
             </div>
         <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
+            
             <div style="font-size: 13px; line-height: 1.6; color: #333;">
                 <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
-                <div style="text-transform: capitalize;">${place}, <span style="text-transform: uppercase;">${dist}</span></div>
+                <div style="text-transform: capitalize;">${place ? place + ', ' : ''}<span style="text-transform: uppercase;">${dist}</span></div>
                 <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
                     ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
                 </div>
@@ -783,7 +786,7 @@ function updateLiveAddressPreview() {
         </div>
     `;
 
-  // 4. Update UI
+  // 5. Update UI
   if ($('#live-addr-preview').length === 0) {
     $('<div id="live-addr-preview"></div>').insertAfter('#place');
   }

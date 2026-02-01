@@ -207,25 +207,27 @@ function createCardHTML(d, index, type, currentStatus) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
-    // 🔥 CHANGE: Archive Button only for 'Sent' status
+    // Archive Button Logic
     let archiveBtn = '';
-    if (currentStatus === 'Sent') {
+    if (currentStatus === 'Sent' || currentStatus === 'Pending') {
         archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
     }
 
-    // Date Header
     let dateHeader = `<span class="card-timestamp">${formatFullDate(d.timestamp)}</span>`;
-
-    // Background Color Class for ID
     let oidClass = `oid-bg-${currentStatus}`;
 
-    let phoneDisplay = d.phone;
-    if (d.altphone) { phoneDisplay += `, ${d.altphone}`; }
+    // 🔥 NEW: COMBINED CONTACT LINE (Phone + WhatsApp in one line)
+    let contactHtml = `<i class="fas fa-phone-alt small text-primary"></i> <span class="fw-bold text-primary">${d.phone}</span>`;
 
-    let waDisplay = '';
-    if (d.whatsapp) {
-        waDisplay = `<div class="mt-1 text-success fw-bold small"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</div>`;
+    if (d.altphone) {
+        contactHtml += `, <span class="fw-bold text-primary">${d.altphone}</span>`;
     }
+
+    if (d.whatsapp) {
+        // Separator pipe symbol (|) added
+        contactHtml += ` <span class="text-muted mx-1">|</span> <i class="fab fa-whatsapp text-success"></i> <span class="fw-bold text-success">${d.whatsapp}</span>`;
+    }
+    // -----------------------------------------------------------
 
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
@@ -268,8 +270,11 @@ function createCardHTML(d, index, type, currentStatus) {
                         <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
                         <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
                         <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
-                        <div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${phoneDisplay}</div>
-                        ${waDisplay}
+                        
+                        <div class="mt-2" style="font-size:11px;">
+                            ${contactHtml}
+                        </div>
+                        
                     </div>
                     <div class="info-box">
                         <span>${d.quantity} Bottles</span>
