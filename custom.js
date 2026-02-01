@@ -695,7 +695,7 @@ function updateSummaryDisplay() {
 
   // Line 2: WhatsApp (Only comes down if Alt Phone exists)
   if (alt && wa) {
-    phoneHtml += `<span class="text-muted mx-1">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
+    phoneHtml += `<div style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</div>`;
   }
 
   $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '8px' });
