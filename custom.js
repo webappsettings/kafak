@@ -748,34 +748,41 @@ window.updatePrice = function (qty, isQuick) {
   if (isQuick) checkForChanges();
 }
 
-// 🔥 Live Address Preview (Auto-removes old elements)
+// 🔥 Live Address Preview (Fix: Calls data fetching logic manually)
 $('#place').on('input keyup focus', function () {
+  // 1. പഴയ ഫംഗ്‌ഷൻ വിളിച്ച് ഡാറ്റ എടുക്കുന്നു (PO & District വരാൻ ഇത് നിർബന്ധമാണ്)
+  try {
+    if (typeof updateWizardLocDisplay === 'function') {
+      updateWizardLocDisplay();
+    }
+  } catch (e) { } // പഴയ എലമെന്റ് ഇല്ലെങ്കിലും എറർ വരാതിരിക്കാൻ
+
+  // 2. പുതിയ പ്രിവ്യൂ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
   updateLiveAddressPreview();
 });
 
 function updateLiveAddressPreview() {
-  // 1. പഴയ ഡ്യൂപ്ലിക്കേറ്റുകൾ ഉണ്ടെങ്കിൽ അവയെ നിർബന്ധമായി നീക്കം ചെയ്യുന്നു
-  $('#display-po, #display-dist-state').remove();
+  // 3. പഴയ ഡ്യൂപ്ലിക്കേറ്റ് ടെക്സ്റ്റുകൾ ഹൈഡ് ചെയ്യുന്നു
+  $('#display-po, #display-dist-state').hide();
 
-  // 2. Get Values
+  // 4. Get Values
   let place = $('#place').val() || '';
   let po = $('#postoffice').val() || '';
   let dist = $('#district').val() || '';
   let state = $('#state').val() || 'KERALA';
   let pin = $('#pincode').val() || '';
 
-  // 3. Language Check
+  // 5. Language Check
   let lang = $('.form-select').val() || 'en';
   let warnText = "Enter Place only (Don't add District/PO)";
   if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
 
-  // 4. HTML Content (Clean Single Box)
+  // 6. HTML Content
   let previewHtml = `
-  <div class="text-danger fw-bold mb-2" style="margin-top:6px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
+        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
+            <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
                 <i class="fas fa-info-circle"></i> ${warnText}
             </div>
-        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
-            
             <div style="font-size: 13px; line-height: 1.6; color: #333;">
                 <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
                 <div style="text-transform: capitalize;">${place ? place + ', ' : ''}<span style="text-transform: uppercase;">${dist}</span></div>
@@ -786,7 +793,7 @@ function updateLiveAddressPreview() {
         </div>
     `;
 
-  // 5. Update UI
+  // 7. Update UI
   if ($('#live-addr-preview').length === 0) {
     $('<div id="live-addr-preview"></div>').insertAfter('#place');
   }
