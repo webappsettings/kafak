@@ -310,23 +310,34 @@ function createCardHTML(d, index, type, currentStatus) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
-    // 🔥 CHANGE: Archive Button for both 'Sent' and 'Pending' (New)
+    // Archive Button
     let archiveBtn = '';
     if (currentStatus === 'Sent' || currentStatus === 'Pending') {
         archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
     }
 
-    let dateHeader = `<span class="card-timestamp">${formatFullDate(d.timestamp)}</span>`;
-    let oidClass = `oid-bg-${currentStatus}`;
+    // 🔥 NEW: Single Line Contact Info Logic
+    // -----------------------------------------------------------
+    let contactHtml = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt" style="font-size:11px;"></i> ${d.phone}</span>`;
 
-    let phoneDisplay = d.phone;
-    if (d.altphone) { phoneDisplay += `, ${d.altphone}`; }
-
-    let waDisplay = '';
-    if (d.whatsapp) {
-        waDisplay = `<div class="mt-1 text-success fw-bold small"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</div>`;
+    // Add Alt Phone if exists
+    if (d.altphone && String(d.altphone).trim() !== "") {
+        contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
     }
 
+    // Add WhatsApp with Separator (|)
+    if (d.whatsapp && String(d.whatsapp).trim() !== "") {
+        contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
+    }
+    // -----------------------------------------------------------
+
+    let oidBg = 'bg-light text-dark';
+    if (currentStatus === 'Pending') oidBg = 'bg-warning text-dark';
+    if (currentStatus === 'Sent') oidBg = 'bg-info text-dark';
+    if (currentStatus === 'Paid') oidBg = 'bg-success text-white';
+    if (currentStatus === 'Dispatched') oidBg = 'bg-primary text-white';
+
+    // Button Configurations based on Type
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
@@ -347,17 +358,15 @@ function createCardHTML(d, index, type, currentStatus) {
 
         buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>
                    <button class="btn-custom btn-complete" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
-
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
     return `<div class="col-12 col-md-6 col-lg-4">
-                <div class="order-card" id="card-${d.orderid}">
-                    ${dateHeader}
+                <div class="order-card status-${currentStatus}">
                     <div class="card-header-row">
                         <div style="display:flex; align-items:center;">
                             ${archiveBtn} 
-                            <span class="order-id ${oidClass}">#${d.orderid.split('-')[1]}</span> 
+                            <span class="order-id ${oidBg}" style="padding:2px 6px; border-radius:4px; font-size:10px;">#${d.orderid.split('-')[1]}</span> 
                             ${editLink} 
                             ${topButtons}
                         </div>
@@ -368,8 +377,11 @@ function createCardHTML(d, index, type, currentStatus) {
                         <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
                         <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
                         <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
-                        <div class="mt-1 text-primary fw-bold"><i class="fas fa-phone-alt small"></i> ${phoneDisplay}</div>
-                        ${waDisplay}
+                        
+                        <div class="mt-2" style="font-size:12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            ${contactHtml}
+                        </div>
+                        
                     </div>
                     <div class="info-box">
                         <span>${d.quantity} Bottles</span>
