@@ -569,6 +569,67 @@
       align-items: center;
       gap: 6px;
     }
+
+    /* --- WIZARD PROGRESS BEAUTIFICATION --- */
+
+    /* 1. The Container (Track) */
+    .progress-container {
+      background-color: #f1f3f5;
+      /* Light Gray Background */
+      height: 8px;
+      /* Slim and Sleek */
+      border-radius: 20px;
+      /* Fully Rounded */
+      margin: 25px 0 30px 0;
+      /* Spacing */
+      overflow: hidden;
+      /* Keep the bar inside */
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      /* Slight inner depth */
+      position: relative;
+    }
+
+    /* 2. The Moving Bar */
+    #wiz-progress {
+      background: linear-gradient(90deg, #4ade80, #16a34a);
+      /* Fresh Green Gradient */
+      height: 100%;
+      width: 0%;
+      /* JS controls this */
+      border-radius: 20px;
+      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      /* Smooth "Bouncy" Animation */
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+      /* Glowing Effect */
+      position: relative;
+    }
+
+    /* 3. Shine Effect (Optional: A light reflection moving across) */
+    #wiz-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(45deg,
+          rgba(255, 255, 255, 0) 25%,
+          rgba(255, 255, 255, 0.3) 50%,
+          rgba(255, 255, 255, 0) 75%);
+      background-size: 20px 20px;
+      opacity: 0.6;
+    }
+
+    /* 4. Step Label (Optional - e.g., "Step 1 of 5") */
+    .wiz-step-label {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: #9ca3af;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 
@@ -681,9 +742,10 @@
           </div>
 
           <div id="wizard-view" class="step-section">
-            <div style="height:3px; background:#f0f0f0; width:100%; margin-bottom:25px; border-radius:2px;">
-              <div id="wiz-progress"
-                style="height:100%; background:var(--brand-green); width:10%; transition:width 0.3s ease;"></div>
+            <div class="wiz-step-label">ORDER PROGRESS</div>
+
+            <div class="progress-container">
+              <div id="wiz-progress"></div>
             </div>
 
             <div class="wiz-step" data-step="1"><label class="form-label" data-i18n="lbl_name">നിങ്ങളുടെ

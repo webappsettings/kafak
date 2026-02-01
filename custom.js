@@ -731,8 +731,8 @@ window.updatePrice = function (qty, isQuick) {
             <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase; margin-bottom: 2px;">${name}</div>
             
             <div style="font-size: 12px; color: #4b5563; line-height: 1.6;text-transform: uppercase;">
-                <span style="font-weight: 600; color: #222;">${house}</span>, ${place}, ${po}, 
-                ${dist},<br/> ${state} - <b>${pin}</b>
+                <span style="font-weight: 600; color: #222;">${house}</span>, ${place}, ${po},<br/>
+                ${dist}, ${state} - <b>${pin}</b>
             </div>
             
             <div style="margin-top: 5px; font-size: 12px; font-weight: 600; color: #555;">
