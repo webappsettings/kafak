@@ -930,25 +930,33 @@ function updateLiveAddressPreview() {
 setTimeout(updateLiveAddressPreview, 1000);
 
 function checkForChanges() {
-  // 1. Current Values എടുക്കുന്നു
-  var currQty = $('#quick-qty').val();
-  var currPhone = $('#edit-phone').val();
-  var currHouse = $('#edit-house').val();
-  var currPlace = $('#edit-place').val();
-  var currPin = $('#edit-pincode').val();
-  var currAlt = $('#edit-altphone').val();
+  // 1. Current Values (നിലവിൽ സ്ക്രീനിലുള്ളത്)
+  var currQty = $('#quick-qty').val() || '';
+  var currPhone = $('#edit-phone').val() || '';
+  var currHouse = $('#edit-house').val() || '';
+  var currPlace = $('#edit-place').val() || '';
+  var currPin = $('#edit-pincode').val() || '';
+  var currAlt = $('#edit-altphone').val() || '';
 
-  // 2. പഴയ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുന്നു
+  // 2. Saved Values (നേരത്തെ സേവ് ചെയ്തത് - null ആണെങ്കിൽ '' എന്ന് കണക്കാക്കും)
+  var savedQty = (savedOrderData.quantity || '') + '';
+  var savedPhone = (savedOrderData.phone || '') + '';
+  var savedHouse = (savedOrderData.house || '') + '';
+  var savedPlace = (savedOrderData.place || '') + '';
+  var savedPin = (savedOrderData.pincode || '') + '';
+  var savedAlt = (savedOrderData.altphone || '') + '';
+
+  // 3. Compare (താരതമ്യം ചെയ്യുന്നു)
   var isChanged = false;
 
-  if (savedOrderData.quantity && String(currQty) !== String(savedOrderData.quantity)) isChanged = true;
-  if (savedOrderData.phone && String(currPhone) !== String(savedOrderData.phone)) isChanged = true;
-  if (savedOrderData.house && String(currHouse).trim() !== String(savedOrderData.house).trim()) isChanged = true;
-  if (savedOrderData.place && String(currPlace).trim() !== String(savedOrderData.place).trim()) isChanged = true;
-  if (savedOrderData.pincode && String(currPin) !== String(savedOrderData.pincode)) isChanged = true;
-  if (String(currAlt) !== String(savedOrderData.altphone || '')) isChanged = true;
+  if (String(currQty) !== String(savedQty)) isChanged = true;
+  if (String(currPhone) !== String(savedPhone)) isChanged = true;
+  if (String(currHouse).trim().toUpperCase() !== String(savedHouse).trim().toUpperCase()) isChanged = true;
+  if (String(currPlace).trim().toUpperCase() !== String(savedPlace).trim().toUpperCase()) isChanged = true;
+  if (String(currPin) !== String(savedPin)) isChanged = true;
+  if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
-  // 3. Button Logic (രണ്ട് ബട്ടണുകളും സെലക്ട് ചെയ്യുന്നു)
+  // 4. Button Logic
   var btnUpdate = $('.btn-update-sage');       // Update Order Button
   var btnSave = $('#address-edit-box button'); // Save Changes Button
 
