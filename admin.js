@@ -357,35 +357,76 @@ function updateSyncButtonUI() {
     }
 }
 
-// 🔴 UPDATED CARD WITH ALT PHONE & WA
 function createCardHTML(d, index, type, currentStatus) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
     let statusBadge = '', buttons = '', topButtons = '';
 
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
-    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
+    // --- 📅 1. DATE FORMATTING (DD/MM/YYYY H:MM PM) ---
+    // Example: 24/12/2024 3:00 PM
+    let dateObj = new Date(d.timestamp);
+    let day = String(dateObj.getDate()).padStart(2, '0');
+    let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    let year = dateObj.getFullYear();
 
-    // Archive Button
+    let hours = dateObj.getHours();
+    let minutes = String(dateObj.getMinutes()).padStart(2, '0');
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 should be 12
+
+    let formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+    // --------------------------------------------------
+
+    // --- 📊 2. CUSTOMER STATS (Robust Calculation) ---
+    let totalOrders = 0, totalBottles = 0, sinceDate = '';
+
+    // Helper to clean phone numbers (removes symbols, spaces, quotes)
+    let cleanPhone = (p) => String(p || '').replace(/[^0-9]/g, '');
+    let currentPhone = cleanPhone(d.phone);
+
+    if (typeof allOrders !== 'undefined' && currentPhone.length > 5) {
+        // Compare only digits
+        let custHistory = allOrders.filter(o => cleanPhone(o.phone) === currentPhone);
+
+        totalOrders = custHistory.length;
+        totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
+
+        // Find Oldest Order for "Since" Date
+        if (custHistory.length > 0) {
+            // Sort by time just in case
+            custHistory.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+            let firstOrder = custHistory[0];
+            let fd = new Date(firstOrder.timestamp);
+            sinceDate = `${String(fd.getDate()).padStart(2, '0')}/${String(fd.getMonth() + 1).padStart(2, '0')}/${fd.getFullYear()}`;
+        }
+    }
+    // ---------------------------------------------
+
+    // --- 🎨 3. STYLES & HIGHLIGHTS ---
+    // Date Color: Red & Bold only in 'Pending' (New) tab
+    let dateStyle = "color: #6c757d;";
+    if (type === 'pending') {
+        dateStyle = "color: #dc3545; font-weight: 800;";
+    }
+
+    // Contact Logic (Single Line)
+    let contactHtml = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt" style="font-size:11px;"></i> ${d.phone}</span>`;
+    if (d.altphone && String(d.altphone).trim() !== "") {
+        contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
+    }
+    if (d.whatsapp && String(d.whatsapp).trim() !== "") {
+        contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
+    }
+
+    // Buttons Logic
     let archiveBtn = '';
     if (currentStatus === 'Sent' || currentStatus === 'Pending') {
         archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
     }
 
-    // 🔥 NEW: Single Line Contact Info Logic
-    // -----------------------------------------------------------
-    let contactHtml = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt" style="font-size:11px;"></i> ${d.phone}</span>`;
-
-    // Add Alt Phone if exists
-    if (d.altphone && String(d.altphone).trim() !== "") {
-        contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
-    }
-
-    // Add WhatsApp with Separator (|)
-    if (d.whatsapp && String(d.whatsapp).trim() !== "") {
-        contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
-    }
-    // -----------------------------------------------------------
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
     let oidBg = 'bg-light text-dark';
     if (currentStatus === 'Pending') oidBg = 'bg-warning text-dark';
@@ -393,7 +434,6 @@ function createCardHTML(d, index, type, currentStatus) {
     if (currentStatus === 'Paid') oidBg = 'bg-success text-white';
     if (currentStatus === 'Dispatched') oidBg = 'bg-primary text-white';
 
-    // Button Configurations based on Type
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
@@ -419,6 +459,16 @@ function createCardHTML(d, index, type, currentStatus) {
 
     return `<div class="col-12 col-md-6 col-lg-4">
                 <div class="order-card status-${currentStatus}">
+                    
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:5px; border-bottom:1px dashed #eee;">
+                        <div style="font-size:10px; color:#adb5bd; font-weight:600;">
+                            <i class="fas fa-history"></i> Since: ${sinceDate}
+                        </div>
+                        <div style="font-size:11px; ${dateStyle}">
+                            ${formattedDate}
+                        </div>
+                    </div>
+
                     <div class="card-header-row">
                         <div style="display:flex; align-items:center;">
                             ${archiveBtn} 
@@ -428,7 +478,18 @@ function createCardHTML(d, index, type, currentStatus) {
                         </div>
                         ${statusBadge}
                     </div>
+
                     <div class="cust-name">${safe(d.name)}</div>
+                    
+                    <div style="margin-top:4px; margin-bottom:10px; display:flex; gap:5px;">
+                        <span style="background:#f0f9ff; color:#0369a1; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #bae6fd; display:flex; align-items:center;">
+                            📦 <span style="margin-left:3px;">${totalBottles} Btls</span>
+                        </span>
+                        <span style="background:#fdf4ff; color:#a21caf; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #f0abfc; display:flex; align-items:center;">
+                            🛍️ <span style="margin-left:3px;">${totalOrders} Ords</span>
+                        </span>
+                    </div>
+
                     <div class="cust-details">
                         <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
                         <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
@@ -437,8 +498,8 @@ function createCardHTML(d, index, type, currentStatus) {
                         <div class="mt-2" style="font-size:12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                             ${contactHtml}
                         </div>
-                        
                     </div>
+
                     <div class="info-box">
                         <span>${d.quantity} Bottles</span>
                         <span class="price-tag">${priceInfo.total}</span>
