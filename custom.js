@@ -54,6 +54,7 @@ let myCustId = null;
 let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
+var savedOrderData = {};
 
 const STORAGE_KEY = 'kafakCustomerData';
 
@@ -306,6 +307,8 @@ function syncUserDataBackground(phone) {
         }
 
         userData = mergedData;
+        savedOrderData = JSON.parse(JSON.stringify(mergedData));
+
         saveToLocal(phone, mergedData);
 
         // 🔥 മാറ്റം 2: Paid സ്റ്റാറ്റസ് 'Active' ആയി കണക്കാക്കുന്നു
@@ -404,28 +407,74 @@ window.prevStep = function () {
 }
 
 window.submitQuickOrder = function () {
-  if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-  const newPhone = $('#edit-phone').val(); if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; } const pin = $('#edit-pincode').val(); if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
+  // 1. ബട്ടൺ ഡിസേബിൾ ആണെങ്കിൽ ഒന്നും ചെയ്യണ്ട
+  if ($('.btn-update-sage').prop('disabled')) return;
 
+  // 2. വാലിഡേഷൻ
+  if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+  const newPhone = $('#edit-phone').val();
+  if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; }
+  const pin = $('#edit-pincode').val();
+  if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
+
+  // 3. ലോഡിംഗ് കാണിക്കുക
+  Swal.fire({
+    title: 'Updating...',
+    text: 'Please wait while we update your order.',
+    allowOutsideClick: false,
+    didOpen: () => Swal.showLoading()
+  });
+
+  // 4. പുതിയ ഡാറ്റ സെറ്റ് ചെയ്യുന്നു
   const finalData = {
-    orderid: editingOrderId,
-    name: $('#saved-name').text(),
-    phone: newPhone,
-    whatsapp: $('#edit-whatsapp').val(),
-    altphone: $('#edit-altphone').val(),
-    house: $('#edit-house').val(),
-    place: $('#edit-place').val(),
-    pincode: pin,
-    postoffice: $('#edit-postoffice').val(),
-    district: $('#edit-district').val(),
-    state: $('#edit-state').val(),
-    quantity: $('#quick-qty').val(),
-    message: '',
-    custId: myCustId
+    action: 'submit', // സെർവറിലെ ആക്ഷൻ
+    orderData: {
+      orderid: editingOrderId, // നിലവിലുള്ള ഓർഡർ ഐഡി
+      name: $('#saved-name').text(),
+      phone: newPhone,
+      whatsapp: $('#edit-whatsapp').val(),
+      altphone: $('#edit-altphone').val(),
+      house: $('#edit-house').val(),
+      place: $('#edit-place').val(),
+      pincode: pin,
+      postoffice: $('#edit-postoffice').val(),
+      district: $('#edit-district').val(),
+      state: $('#edit-state').val(),
+      quantity: $('#quick-qty').val(),
+      message: '',
+      custId: myCustId
+    }
   };
-  saveToLocal(finalData.phone, finalData);
-  playVideoAnimation(finalData.name, () => postOrder(finalData));
+
+  // 5. സെർവറിലേക്ക് അയക്കുന്നു (AJAX)
+  $.post(sc, JSON.stringify(finalData))
+    .done(function (response) {
+      if (response.result === 'success') {
+        // വിജയിച്ചു! മെസ്സേജ് കാണിക്കുക
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated!',
+          text: 'Order details updated successfully.',
+          timer: 2000,
+          showConfirmButton: false
+        });
+
+        // 6. ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+        userData = { ...userData, ...finalData.orderData };
+        savedOrderData = JSON.parse(JSON.stringify(userData)); // പുതിയ സ്റ്റേറ്റ് സേവ് ചെയ്യുന്നു
+        saveToLocal(finalData.orderData.phone, userData);
+
+        // 7. UI റിഫ്രഷ് ചെയ്യുന്നു
+        updateSummaryDisplay();
+        checkForChanges(); // ബട്ടൺ വീണ്ടും 'NO CHANGES' എന്നാക്കാൻ
+      } else {
+        Swal.fire('Error', 'Update പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.', 'error');
+      }
+    })
+    .fail(function () {
+      Swal.fire('Network Error', 'ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക.', 'error');
+    });
 }
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
@@ -886,11 +935,36 @@ function updateLiveAddressPreview() {
 setTimeout(updateLiveAddressPreview, 1000);
 
 function checkForChanges() {
-  const btn = $('#btn-quick-submit'); if (!isEditMode) { btn.prop('disabled', false).css('opacity', '1'); return; }
-  const current = { phone: $('#edit-phone').val(), house: $('#edit-house').val(), place: $('#edit-place').val(), pincode: $('#edit-pincode').val(), postoffice: $('#edit-postoffice').val(), whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(), quantity: $('#quick-qty').val() };
-  const isDiff = (key, val) => String(userData[key] || '').trim() !== String(val || '').trim();
-  const hasChanges = isDiff('phone', current.phone) || isDiff('house', current.house) || isDiff('place', current.place) || isDiff('pincode', current.pincode) || isDiff('postoffice', current.postoffice) || isDiff('whatsapp', current.whatsapp) || isDiff('altphone', current.altphone) || isDiff('quantity', current.quantity);
-  if (hasChanges) { btn.prop('disabled', false).css('opacity', '1'); } else { btn.prop('disabled', true).css('opacity', '0.5'); }
+  // 1. Get Current Values
+  var currQty = $('#quick-qty').val();
+  var currPhone = $('#edit-phone').val();
+  var currHouse = $('#edit-house').val();
+  var currPlace = $('#edit-place').val();
+  var currPin = $('#edit-pincode').val();
+  var currAlt = $('#edit-altphone').val();
+
+  // 2. Compare with Saved Data (തുടക്കത്തിൽ ലോഡ് ചെയ്ത ഡാറ്റ)
+  var isChanged = false;
+
+  if (savedOrderData.quantity && String(currQty) !== String(savedOrderData.quantity)) isChanged = true;
+  if (savedOrderData.phone && String(currPhone) !== String(savedOrderData.phone)) isChanged = true;
+  if (savedOrderData.house && String(currHouse).trim() !== String(savedOrderData.house).trim()) isChanged = true;
+  if (savedOrderData.place && String(currPlace).trim() !== String(savedOrderData.place).trim()) isChanged = true;
+  if (savedOrderData.pincode && String(currPin) !== String(savedOrderData.pincode)) isChanged = true;
+  if (String(currAlt) !== String(savedOrderData.altphone || '')) isChanged = true;
+
+  // 3. Button Logic (Smart Update)
+  var btn = $('.btn-update-sage'); // നമ്മുടെ പുതിയ പച്ച ബട്ടൺ
+
+  if (isChanged) {
+    // മാറ്റങ്ങൾ ഉണ്ട് - ബട്ടൺ എനേബിൾ ചെയ്യുക
+    btn.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
+    btn.html('UPDATE ORDER'); // Text
+  } else {
+    // മാറ്റങ്ങൾ ഇല്ല - ബട്ടൺ ഡിസേബിൾ ചെയ്യുക
+    btn.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' });
+    btn.html('NO CHANGES'); // Text
+  }
 }
 
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
