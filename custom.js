@@ -414,23 +414,22 @@ window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-  if (!$('#edit-house').val().trim()) { showAlert(getAlert('err_house')); return; }
   const pin = $('#edit-pincode').val();
   if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
 
-  // 3. ലോഡിംഗ് കാണിക്കുക
+  // 3. ലോഡിംഗ് കാണിക്കുന്നു
   Swal.fire({
     title: 'Updating...',
-    text: 'Please wait while we update your order.',
+    text: 'Updating details & opening WhatsApp...',
     allowOutsideClick: false,
     didOpen: () => Swal.showLoading()
   });
 
-  // 4. പുതിയ ഡാറ്റ സെറ്റ് ചെയ്യുന്നു
+  // 4. പുതിയ ഡാറ്റ തയ്യാറാക്കുന്നു
   const finalData = {
-    action: 'submit', // സെർവറിലെ ആക്ഷൻ
+    action: 'submit',
     orderData: {
-      orderid: editingOrderId, // നിലവിലുള്ള ഓർഡർ ഐഡി
+      orderid: editingOrderId,
       name: $('#saved-name').text(),
       phone: newPhone,
       whatsapp: $('#edit-whatsapp').val(),
@@ -447,33 +446,30 @@ window.submitQuickOrder = function () {
     }
   };
 
-  // 5. സെർവറിലേക്ക് അയക്കുന്നു (AJAX)
+  // 5. സെർവറിലേക്ക് അയക്കുന്നു (Update Server)
   $.post(sc, JSON.stringify(finalData))
     .done(function (response) {
       if (response.result === 'success') {
-        // വിജയിച്ചു! മെസ്സേജ് കാണിക്കുക
-        Swal.fire({
-          icon: 'success',
-          title: 'Updated!',
-          text: 'Order details updated successfully.',
-          timer: 2000,
-          showConfirmButton: false
-        });
 
-        // 6. ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+        // വിജയിച്ചു! ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
         userData = { ...userData, ...finalData.orderData };
-        savedOrderData = JSON.parse(JSON.stringify(userData)); // പുതിയ സ്റ്റേറ്റ് സേവ് ചെയ്യുന്നു
+        savedOrderData = JSON.parse(JSON.stringify(userData)); // Update Local State
         saveToLocal(finalData.orderData.phone, userData);
 
-        // 7. UI റിഫ്രഷ് ചെയ്യുന്നു
         updateSummaryDisplay();
-        checkForChanges(); // ബട്ടൺ വീണ്ടും 'NO CHANGES' എന്നാക്കാൻ
+        checkForChanges(); // ബട്ടൺ റീസെറ്റ് ചെയ്യുന്നു
+
+        // 6. വാട്സാപ്പിലേക്ക് അയക്കുന്നു (Open WhatsApp)
+        sendUpdateToWhatsapp(userData);
+
+        Swal.close(); // ലോഡർ മാറ്റുന്നു
+
       } else {
         Swal.fire('Error', 'Update പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.', 'error');
       }
     })
     .fail(function () {
-      Swal.fire('Network Error', 'ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക.', 'error');
+      Swal.fire('Connection Error', 'ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക.', 'error');
     });
 }
 
@@ -1185,4 +1181,36 @@ function sendToWhatsapp() {
   const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
   const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
   window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
+}
+
+function sendUpdateToWhatsapp(d) {
+  const adminPhone = '7788990313'; // അഡ്മിൻ നമ്പർ
+
+  // കണക്കുകൂട്ടൽ
+  const n = parseInt(d.quantity);
+  const base = n * 650;
+  const courier = courierRates.kerala[n] || 0;
+  const total = base + courier;
+
+  const safe = (val) => String(val || '').trim().toUpperCase();
+
+  // മെസ്സേജ് ഫോർമാറ്റ്
+  const msg = `*🔄 ORDER UPDATED* 🆔 ID: ${d.orderid}
+
+*${safe(d.name)}*
+${safe(d.house)}
+${safe(d.place)}
+${safe(d.postoffice)}
+${safe(d.district)}
+Pin: ${d.pincode}
+Ph: ${d.phone}
+
+*Qty: ${d.quantity} Bottles*
+Amount: ₹${base} + ${courier}
+*Total: ₹${total}/-*
+
+_Updated via Web_`;
+
+  // വാട്സാപ്പ് ഓപ്പൺ ചെയ്യുന്നു
+  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(msg)}`;
 }
