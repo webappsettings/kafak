@@ -610,66 +610,41 @@ function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
 
-    // --- 💰 PRICE LOGIC ---
-    const base = n * 650;
-
-    // Server Data Check
-    let total = parseInt(d.grandTotal);
-    let courier = 0;
-
-    if (total > 0) {
-        courier = total - base;
-    } else {
-        const s = String(d.state || '').toLowerCase().trim();
-        if (s === 'lakshadweep') courier = (n * 100) + 20;
-        else if (s === 'kerala') courier = courierRates.kerala[n] || 0;
-        else courier = courierRates.outside[n] || 0;
-        total = base + courier;
-    }
+    // --- 💰 PRICE LOGIC (Original Method) ---
+    // Server Total ഉണ്ടെങ്കിൽ അത് എടുക്കുന്നു, ഇല്ലെങ്കിൽ പഴയ കണക്ക്
+    let priceInfo = calculatePriceInfo(n, d.state);
+    let total = d.grandTotal ? parseInt(d.grandTotal) : parseInt(priceInfo.total.replace(/[^0-9]/g, ''));
 
     // --- 🔗 Link & Helpers ---
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+    const time = d.timestamp ? new Date(d.timestamp).toLocaleString() : new Date().toLocaleString();
     const safe = (val) => String(val || '').trim().toUpperCase();
 
-    // --- 💸 UPI PAYMENT LINK (KAFAK OFFICIAL) ---
-    // pa = UPI ID, pn = Payee Name, am = Amount
-    const upiLink = `upi://pay?pa=kafak313@fbl&pn=KAFAK LLP&am=${total}&cu=INR`;
+    // --- ✨ OLD MESSAGE FORMAT (With Updates) ---
+    // 1. Greeting & ID (ID Removed as per request)
+    const extra = `*✅ Honey order confirmed!* 🍯\n⌚ _${time}_\n`;
 
-    // --- ✨ BEAUTIFUL MESSAGE FORMAT ---
-    let msg = `*✅ ORDER CONFIRMED!* 🍯\n`;
-    msg += `Thank you for choosing KAFAK Natural Honey.\n\n`;
+    // 2. Link Section (Updated Text: English + Malayalam)
+    const linkSection = `🔍 *Check Status / Edit Address:* 👇\n(ഓർഡർ സ്റ്റാറ്റസ് അറിയാൻ താഴെ ക്ലിക്ക് ചെയ്യുക)\n🔗 _${editLink}_`;
 
-    // 📍 Address Section
-    msg += `👤 *${safe(d.name)}*\n`;
-    msg += `🏠 ${safe(d.house)}\n`;
-    msg += `📍 ${safe(d.place)}, ${safe(d.postoffice)}\n`;
-    msg += `🌍 ${safe(d.district)}\n`;
-    msg += `📮 PIN: *${d.pincode}*\n\n`;
+    // 3. Address & Details Format (Original Layout)
+    // Calculate split for display
+    const base = n * 650;
+    const courier = total - base;
+    const amountText = `Amount(₹): ${base} + ${courier}`;
+    const totalText = `Total(₹): ${total}/-`;
+    const adminPhone = '7788990313';
 
-    // 📦 Order Summary
-    msg += `📦 *Order Summary:*\n`;
-    msg += `▪️ Qty: *${d.quantity} Bottles*\n`;
-    msg += `▪️ Bill: ₹${base} + ₹${courier} (Del)\n`;
-    msg += `▪️ *Total: ₹${total}/-*\n\n`;
-
-    // 💳 Payment Section (Clickable Link)
-    msg += `💳 *Tap to Pay (GPay / PhonePe):* 👇\n`;
-    msg += `(താഴെയുള്ള ലിങ്കിൽ ക്ലിക്ക് ചെയ്ത് പണമടയ്ക്കാം)\n`;
-    msg += `${upiLink}\n\n`;
-
-    // Manual GPay Option
-    msg += `_Or GPay Number: 9895082689 (Abdul Samad)_\n`;
-    msg += `_(UPI: eiabdulsamad@oksbi)_\n\n`;
-
-    // 🚚 Status Check Message
-    msg += `🔍 *To Check Order Status & Tracking:* 👇\n`;
-    msg += `${editLink}`;
+    const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
     // --- 🚀 Sending Logic ---
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
+    // Combine Everything
+    const finalMsg = extra + "\n" + linkSection + format;
+
+    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(finalMsg)}`, '_blank');
 
     // --- 🔄 Auto-Update Status ---
     if (d.Status === 'Pending') {
