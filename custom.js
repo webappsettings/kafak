@@ -476,98 +476,74 @@ window.submitQuickOrder = function () {
 function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
-  if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
 
-  // Date UI
+  // 1. Show Order ID & Date
+  if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
-      $('<div id="display-date" style="font-size:11px; color:#888; margin-top:-5px; margin-bottom:10px; font-weight:600;"></div>').insertAfter('#display-oid');
+      $('<div id="display-date" class="text-muted fw-bold small mt-1" style="font-size:10px;"></div>').insertAfter('#display-oid');
     }
     $('#display-date').text(formatPrettyDate(d.date)).show();
-  } else {
-    $('#display-date').hide();
-  }
+  } else { $('#display-date').hide(); }
 
+  // 2. Populate User Data
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  if ($('.qty-action-group').length === 0) {
-    $('#quick-qty').add('#btn-quick-submit').wrapAll('<div class="qty-action-group" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;"></div>');
-    $('#quick-qty').css('flex-grow', '1');
-    $('#btn-quick-submit').css({ 'width': 'auto', 'padding': '0 25px', 'white-space': 'nowrap', 'height': '45px' });
-    $('<div id="status-area" class="mt-2"></div>').insertAfter('#quick-price-box');
-  }
+  // Save Data for comparison
+  savedOrderData = JSON.parse(JSON.stringify(d));
 
+  // 3. Update Address & Phone UI
   updateSummaryDisplay();
   $('#status-area').empty();
 
-  // STATUS LOGIC
+  // 4. Update Status Timeline (Server Data Only)
   if (isServerData) { updateStatusUI(d); }
 
   const status = String(d.Status || '').trim().toLowerCase();
 
-  // 🔥 മാറ്റം 3: ഇവിടെയും 'paid' ഒഴിവാക്കി. (Paid വന്നാൽ ഫിനിഷ്ഡ് അല്ല)
-  const isFinished = (status === 'dispatched' || status === 'completed' || status === 'delivered');
-  const lang = $('.form-select').val() || 'en';
+  // 🔥 STATUS LOGIC: Hide Quantity/Update for Paid & Dispatched
+  const hideControls = ['paid', 'dispatched', 'completed', 'delivered'].includes(status);
 
-  if (isFinished && isServerData) {
-    // FINISHED MODE: Show New Order Button
-    $('.qty-label').hide();
-    $('#quick-price-box').hide();
-    $('#quick-qty').hide();
-    $('#btn-quick-submit').hide();
-    $('#btn-edit-address').hide();
+  if (hideControls) {
+    // HIDE MODE (Paid, Dispatched, etc.)
+    $('label[data-i18n="lbl_qty"]').hide();  // Hide Label
+    $('.qty-action-row').hide();             // Hide Qty Dropdown & Update Button
+    $('#quick-price-box').hide();            // Hide Price Box
+    $('#btn-edit-addr').hide();              // Hide Edit Address Button
 
-    if ($('#btn-new-order-mode').length === 0) {
-      const btnText = translations[lang].btn_new_order || "PLACE NEW ORDER";
-      $(`
-            <div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in">
-                <button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; letter-spacing:1px; width:100%;">
-                    <i class="fas fa-plus-circle me-1"></i> ${btnText}
-                </button>
-            </div>
-          `).insertAfter('#status-area');
-    }
-    $('#btn-new-order-mode').show();
-  } else {
-    // NORMAL MODE (Pending / Paid)
-    $('.qty-label').show();
-
-    // Show Price Box? (Hide only if Dispatched/Completed)
-    if (status === 'dispatched' || status === 'completed' || status === 'delivered') {
-      $('#quick-qty').hide();
-      $('#quick-price-box').hide();
+    // Show "Place New Order" button only if finished (Delivered/Completed)
+    if (['completed', 'delivered'].includes(status)) {
+      if ($('#btn-new-order-mode').length === 0) {
+        const btnText = "PLACE NEW ORDER";
+        $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
+      }
+      $('#btn-new-order-mode').show();
     } else {
-      $('#quick-price-box').show();
+      $('#btn-new-order-mode').hide();
     }
 
-    $('#btn-quick-submit').show();
-    $('#btn-edit-address').show();
+  } else {
+    // SHOW MODE (Pending, Sent)
+    $('label[data-i18n="lbl_qty"]').show();       // Show Label
+    $('.qty-action-row').css('display', 'flex');  // Show Selector & Button
+    $('#quick-price-box').show();                 // Show Price Box
+    $('#btn-edit-addr').css('display', 'inline-block'); // Show Edit Address
     $('#btn-new-order-mode').hide();
 
+    // Reset Values
     $('#quick-qty option').prop('disabled', false);
     if (isActiveOrder) {
       $('#quick-qty').val(d.quantity).trigger('change');
-      $('#btn-quick-submit span').text(translations[lang].btn_update);
-
-      // 🔥 മാറ്റം 4: Paid ആണെങ്കിൽ കുറഞ്ഞ ക്വാണ്ടിറ്റി Disable ചെയ്യുന്നു
-      if (status === 'paid') {
-        const currentQty = parseInt(d.quantity);
-        $('#quick-qty option').each(function () {
-          if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
-        });
-      }
     } else {
       $('#quick-qty').val('').trigger('change');
-      $('#quick-price-box').hide();
-      $('#btn-quick-submit span').text(translations[lang].btn_order);
     }
   }
 
+  // Refresh Button Logic
   if ($('#refresh-btn').length === 0) {
-    $('#refresh-btn-container').remove();
     $('#returning-user-view').append(`
           <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
               <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
@@ -697,12 +673,19 @@ function updateStatusUI(d) {
   $('#status-area').append(timelineHTML);
 }
 
-// Function to update the Address & Phone display with the new HTML structure
 function updateSummaryDisplay() {
-  // 1. Get Values from Hidden/Edit Inputs
+  // 1. Get Values
   const house = $('#edit-house').val() || '';
   const place = $('#edit-place').val() || '';
-  const po = $('#edit-postoffice').val() || '';
+
+  // 🔥 FIX: Check Dropdown first, then Hidden Input
+  let po = '';
+  if ($('#edit-postoffice-select').is(':visible') && $('#edit-postoffice-select').val()) {
+    po = $('#edit-postoffice-select').val(); // Dropdown Value
+  } else {
+    po = $('#edit-postoffice').val() || ''; // Hidden Input Value
+  }
+
   const pin = $('#edit-pincode').val() || '';
   const dist = $('#edit-district').val() || '';
   const state = $('#edit-state').val() || 'KERALA';
@@ -717,37 +700,35 @@ function updateSummaryDisplay() {
   let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
   if (poClean) poClean += ' PO';
 
-  // 3. Generate NEW Address HTML
+  // 3. Generate Address HTML
   let addrHtml = `
       <span class="addr-house">${safe(house)}</span>
-      ${safe(place)}${place && poClean ? ',' : ''} ${poClean}
+      ${safe(place)}${place && poClean ? ',' : ''} <b>${poClean}</b>
       <br>
       <span style="font-weight:600;">${safe(dist)}, ${safe(state)}</span> 
       <span class="pin-box">${safe(pin)}</span>
   `;
-  // Update the DIV
   $('#saved-address-text').html(addrHtml);
 
-  // 4. Generate NEW Phone Box HTML (Grey Box)
+  // 4. Phone Box
   let phoneHtml = `
       <div class="phone-grey-box">
           <div class="ph-row">
               <i class="fas fa-phone-alt text-secondary" style="width:20px; text-align:center;"></i> 
-              <span style="color:#111; font-weight:800; font-size:15px;">${phone}</span>
+              <span style="color:#374151; font-weight:700; font-size:14px;">${phone}</span>
               ${alt ? `<span style="color:#ccc; margin:0 5px;">|</span> <span style="color:#666;">${alt}</span>` : ''}
           </div>
-          
           ${wa ? `
           <div class="ph-row">
               <i class="fab fa-whatsapp" style="color:#25D366; font-size:18px; width:20px; text-align:center;"></i> 
-              <span style="color:#25D366; font-weight:800; font-size:15px;">${wa}</span>
+              <span style="color:#25D366; font-weight:700; font-size:14px;">${wa}</span>
           </div>` : ''}
       </div>
   `;
-  // Update the DIV
   $('#saved-phone-text').html(phoneHtml);
+  $('#saved-wa-text, #saved-alt-text').hide();
 
-  // 5. Hide Edit Button if status is Locked (Paid/Dispatched)
+  // Hide Edit Button Logic
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
     if (['paid', 'dispatched', 'completed', 'delivered'].includes(s)) {
@@ -757,7 +738,6 @@ function updateSummaryDisplay() {
     }
   }
 
-  // Trigger changes check (Original Logic)
   if (typeof checkForChanges === 'function') checkForChanges();
 }
 
@@ -931,7 +911,7 @@ function updateLiveAddressPreview() {
 setTimeout(updateLiveAddressPreview, 1000);
 
 function checkForChanges() {
-  // 1. Get Current Values
+  // 1. Current Values എടുക്കുന്നു
   var currQty = $('#quick-qty').val();
   var currPhone = $('#edit-phone').val();
   var currHouse = $('#edit-house').val();
@@ -939,7 +919,7 @@ function checkForChanges() {
   var currPin = $('#edit-pincode').val();
   var currAlt = $('#edit-altphone').val();
 
-  // 2. Compare with Saved Data (തുടക്കത്തിൽ ലോഡ് ചെയ്ത ഡാറ്റ)
+  // 2. പഴയ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുന്നു
   var isChanged = false;
 
   if (savedOrderData.quantity && String(currQty) !== String(savedOrderData.quantity)) isChanged = true;
@@ -949,17 +929,18 @@ function checkForChanges() {
   if (savedOrderData.pincode && String(currPin) !== String(savedOrderData.pincode)) isChanged = true;
   if (String(currAlt) !== String(savedOrderData.altphone || '')) isChanged = true;
 
-  // 3. Button Logic (Smart Update)
-  var btn = $('.btn-update-sage'); // നമ്മുടെ പുതിയ പച്ച ബട്ടൺ
+  // 3. Button Logic (രണ്ട് ബട്ടണുകളും സെലക്ട് ചെയ്യുന്നു)
+  var btnUpdate = $('.btn-update-sage');       // Update Order Button
+  var btnSave = $('#address-edit-box button'); // Save Changes Button
 
   if (isChanged) {
-    // മാറ്റങ്ങൾ ഉണ്ട് - ബട്ടൺ എനേബിൾ ചെയ്യുക
-    btn.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
-    btn.html('UPDATE ORDER'); // Text
+    // മാറ്റങ്ങൾ ഉണ്ട്: Enable Both
+    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text('UPDATE ORDER');
+    btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text('SAVE CHANGES');
   } else {
-    // മാറ്റങ്ങൾ ഇല്ല - ബട്ടൺ ഡിസേബിൾ ചെയ്യുക
-    btn.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' });
-    btn.html('NO CHANGES'); // Text
+    // മാറ്റങ്ങൾ ഇല്ല: Disable Both
+    btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text('NO CHANGES');
+    btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text('NO CHANGES');
   }
 }
 
@@ -1184,33 +1165,58 @@ function sendToWhatsapp() {
 }
 
 function sendUpdateToWhatsapp(d) {
-  const adminPhone = '7788990313'; // അഡ്മിൻ നമ്പർ
+  const adminPhone = '7788990313'; // Admin Phone
+  const safe = (val) => String(val || '').trim();
 
-  // കണക്കുകൂട്ടൽ
+  // 1. പഴയ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുന്നു (Find Changes)
+  let changes = [];
+
+  // Qty Change
+  if (savedOrderData.quantity != d.quantity) {
+    changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
+  }
+  // Phone Change
+  if (savedOrderData.phone != d.phone) {
+    changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
+  }
+  // Address Changes
+  if (safe(savedOrderData.house) !== safe(d.house)) {
+    changes.push(`🏠 HOUSE: *${safe(d.house).toUpperCase()}*`);
+  }
+  if (safe(savedOrderData.place) !== safe(d.place)) {
+    changes.push(`📍 PLACE: *${safe(d.place).toUpperCase()}*`);
+  }
+  if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) {
+    changes.push(`📮 PO: *${safe(d.postoffice).toUpperCase()}*`);
+  }
+  if (safe(savedOrderData.pincode) !== safe(d.pincode)) {
+    changes.push(`🔢 PIN: ${savedOrderData.pincode} ➡️ *${d.pincode}*`);
+  }
+
+  // 2. മെസ്സേജ് നിർമ്മിക്കുന്നു
+  let msg = `*⚠️ ORDER UPDATED* (ID: ${d.orderid})\n`;
+
+  if (changes.length > 0) {
+    msg += `\n*🔥 WHAT CHANGED:* \n`;
+    msg += changes.join('\n'); // മാറ്റങ്ങൾ മാത്രം ഇവിടെ വരും
+    msg += `\n__________________\n`;
+  } else {
+    msg += `\n(No major details changed)\n`;
+  }
+
+  // 3. Current Summary
   const n = parseInt(d.quantity);
   const base = n * 650;
   const courier = courierRates.kerala[n] || 0;
   const total = base + courier;
 
-  const safe = (val) => String(val || '').trim().toUpperCase();
+  msg += `\n*CURRENT DETAILS:*`;
+  msg += `\n👤 ${safe(d.name)}`;
+  msg += `\n📍 ${safe(d.place)}, ${safe(d.postoffice)}`;
+  msg += `\n📱 ${d.phone}`;
+  msg += `\n\n*🛒 Qty: ${d.quantity}*`;
+  msg += `\n💰 Total: ₹${total}/-`;
 
-  // മെസ്സേജ് ഫോർമാറ്റ്
-  const msg = `*🔄 ORDER UPDATED* 🆔 ID: ${d.orderid}
-
-*${safe(d.name)}*
-${safe(d.house)}
-${safe(d.place)}
-${safe(d.postoffice)}
-${safe(d.district)}
-Pin: ${d.pincode}
-Ph: ${d.phone}
-
-*Qty: ${d.quantity} Bottles*
-Amount: ₹${base} + ${courier}
-*Total: ₹${total}/-*
-
-_Updated via Web_`;
-
-  // വാട്സാപ്പ് ഓപ്പൺ ചെയ്യുന്നു
+  // 4. Send
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(msg)}`;
 }
