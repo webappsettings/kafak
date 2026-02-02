@@ -670,70 +670,71 @@ function updateSummaryDisplay() {
   let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
   if (poClean) poClean += ' PO';
 
-  // 3. Address HTML (House Name Size Reduced)
+  // 3. Address HTML
   let addrHtml = `
-      <div style="font-weight:700; font-size:13px; color:#111; text-transform:uppercase; margin-bottom:3px; line-height:1.4;">
+      <div style="font-weight:700; font-size:14px; color:#111; text-transform:uppercase; margin-bottom:4px; line-height:1.3;">
           ${safe(house)}
       </div>
-      
-      <div style="font-size:13px; color:#444; margin-bottom:3px; text-transform:capitalize;">
+      <div style="font-size:13px; color:#444; margin-bottom:4px; text-transform:capitalize;">
           ${safe(place)}${place && poClean ? ',' : ''} <span style="text-transform:uppercase;">${poClean}</span>
       </div>
-      
-      <div style="font-size:12px; font-weight:600; color:#666; text-transform:uppercase; letter-spacing:0.3px;">
-          ${safe(dist)}, ${safe(state)} <span style="color:#000; font-weight:700; background:#f5f5f5; padding:2px 6px; border-radius:4px; margin-left:4px;">${safe(pin)}</span>
+      <div style="font-size:12px; font-weight:600; color:#666; text-transform:uppercase;">
+          ${safe(dist)}, ${safe(state)} <span style="color:#000; font-weight:700; background:#eee; padding:1px 5px; border-radius:4px; margin-left:5px;">${safe(pin)}</span>
       </div>
   `;
 
-  $('#saved-address-text').html(addrHtml).css({ 'margin-bottom': '10px' });
+  $('#saved-address-text').html(addrHtml);
   $('#saved-place-dist').hide();
 
-  // 4. Phone Layout (Clean)
+  // 4. Phone Layout (Clean Single Line)
   let phoneHtml = '';
   if (alt && String(alt).trim() !== "") {
     phoneHtml = `
-        <div style="background:#fcfcfc; padding:8px 12px; border-radius:8px; border:1px solid #f0f0f0;">
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; font-size:12px;">
-                 <i class="fas fa-phone-alt text-secondary"></i> 
-                 <span style="font-weight:700; color:#333;">${phone}</span>
-                 <span style="color:#999;">|</span> 
-                 <span style="color:#555;">${alt}</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
-                 <i class="fab fa-whatsapp" style="color:#25D366;"></i> 
-                 <span style="font-weight:700; color:#25D366;">${wa}</span>
-            </div>
+        <div style="display:flex; align-items:center; gap:10px; font-size:12px; padding-top:5px;">
+             <span style="font-weight:700; color:#333;"><i class="fas fa-phone-alt text-muted"></i> ${phone}</span>
+             <span style="color:#ccc;">|</span> 
+             <span style="color:#555;">${alt}</span>
         </div>`;
   } else {
     phoneHtml = `
-        <div style="background:#fcfcfc; padding:10px 12px; border-radius:8px; border:1px solid #f0f0f0; display:flex; align-items:center; gap:15px; flex-wrap:wrap; font-size:12px;">
-            <div style="display:flex; align-items:center; gap:6px;">
-                <i class="fas fa-phone-alt text-secondary"></i> 
-                <span style="font-weight:700; color:#333;">${phone}</span>
-            </div>
-            <div style="width:1px; height:12px; background:#e0e0e0;"></div>
-            <div style="display:flex; align-items:center; gap:6px;">
-                <i class="fab fa-whatsapp" style="color:#25D366;"></i> 
-                <span style="font-weight:700; color:#25D366;">${wa}</span>
-            </div>
+        <div style="display:flex; align-items:center; gap:10px; font-size:12px; padding-top:5px;">
+            <span style="font-weight:700; color:#333;"><i class="fas fa-phone-alt text-muted"></i> ${phone}</span>
+            <span style="color:#ccc;">|</span> 
+            <span style="font-weight:700; color:#25D366;"><i class="fab fa-whatsapp"></i> ${wa}</span>
         </div>`;
   }
 
-  $('#saved-phone-text').html(phoneHtml).css('margin-top', '12px');
+  $('#saved-phone-text').html(phoneHtml);
   $('#saved-wa-text, #saved-alt-text').hide();
 
-  // 5. 🔥 HIDE EDIT BUTTON IF PAID / DISPATCHED
-  // (Checks userData.Status from server)
+  // 5. 🔥 FORCE HIDE EDIT BUTTON (Robust Check)
+  checkAndHideEditButton();
+}
+
+// 🔥 പുതിയ ഫംഗ്‌ഷൻ: സ്റ്റാറ്റസ് കൃത്യമായി ചെക്ക് ചെയ്യാൻ
+function checkAndHideEditButton() {
+  // 1. Check Global userData (If available)
   if (typeof userData !== 'undefined' && userData.Status) {
-    let s = String(userData.Status).toLowerCase().trim();
-    if (s === 'paid' || s === 'dispatched' || s === 'completed' || s === 'delivered') {
-      $('#btn-edit-addr').hide(); // Hide button
-    } else {
-      $('#btn-edit-addr').css('display', 'inline-block'); // Show button (using flex/inline-block)
-    }
+    applyHideLogic(userData.Status);
+    return;
   }
 
-  checkForChanges();
+  // 2. Fallback: Check Hidden Input (HTML-ൽ സ്റ്റാറ്റസ് സേവ് ചെയ്തിട്ടുണ്ടെങ്കിൽ)
+  let hiddenStatus = $('#order-status-hidden').val();
+  if (hiddenStatus) {
+    applyHideLogic(hiddenStatus);
+  }
+}
+
+function applyHideLogic(status) {
+  let s = String(status).toLowerCase().trim();
+  // ഈ സ്റ്റാറ്റസുകൾ ആണെങ്കിൽ ബട്ടൺ കാണിക്കില്ല
+  if (['paid', 'dispatched'].includes(s)) {
+    $('#btn-edit-addr').hide();
+    console.log("Edit Button Hidden for Status:", s);
+  } else {
+    $('#btn-edit-addr').css('display', 'inline-flex');
+  }
 }
 
 window.updatePrice = function (qty, isQuick) {
