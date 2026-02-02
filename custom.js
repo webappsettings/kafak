@@ -346,29 +346,33 @@ window.submitWizardOrder = function () {
 }
 
 window.handleEditPincode = async function (val) {
-  // 6 അക്കമുണ്ടെങ്കിൽ മാത്രം സെർച്ച് ചെയ്യുക
-  if (!/^[0-9]{6}$/.test(val)) return;
+  // 6 അക്കം തികഞ്ഞില്ലെങ്കിൽ എല്ലാം ഹൈഡ് ചെയ്യുക
+  if (!/^[0-9]{6}$/.test(val)) {
+    $('#edit-po-wrapper').slideUp();
+    $('#single-po-display').hide();
+    return;
+  }
 
-  // ബട്ടൺ സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
-  checkForChanges();
+  checkForChanges(); // ബട്ടൺ ചെക്ക് ചെയ്യുന്നു
 
   try {
-    // പിൻകോഡ് ഫയൽ എടുക്കുന്നു
     const res = await fetch(`pincode_json_files/${val}.json`);
     if (!res.ok) throw new Error("Not Found");
 
     let data = await res.json();
 
-    // പേര് ശരിയാക്കുന്നു (Aluva B.O -> Aluva PO)
+    // പേര് ഫോർമാറ്റ് ചെയ്യുന്നു
     data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO') }));
 
     if (data && data.length > 0) {
-      // ജില്ലയും സംസ്ഥാനവും ഓട്ടോമാറ്റിക് ആയി വരുന്നു
+      // District & State Auto-fill
       $('#edit-district').val(data[0].district);
       $('#edit-state').val(data[0].statename);
 
       if (data.length > 1) {
-        // ഒന്നിൽ കൂടുതൽ ഉണ്ടെങ്കിൽ: Dropdown കാണിക്കുക
+        // === MULTIPLE POST OFFICES ===
+        $('#single-po-display').hide(); // ടെക്സ്റ്റ് ഹൈഡ് ചെയ്യുന്നു
+
         const sel = $('#edit-postoffice-select');
         sel.empty().append('<option value="">Select Post Office...</option>');
 
@@ -376,21 +380,27 @@ window.handleEditPincode = async function (val) {
           sel.append(`<option value="${p.officename}">${p.officename}</option>`);
         });
 
-        $('#edit-po-wrapper').slideDown(); // Dropdown Visible ആകുന്നു
-        $('#edit-postoffice').val(''); // പഴയ വാല്യൂ കളയുന്നു (പുതിയത് സെലക്ട് ചെയ്യാൻ)
+        $('#edit-po-wrapper').slideDown(); // ഡ്രോപ്പ്ഡൗൺ കാണിക്കുന്നു
+        $('#edit-postoffice').val(''); // വാല്യൂ ക്ലിയർ ചെയ്യുന്നു (സെലക്ട് ചെയ്യാൻ)
+
       } else {
-        // ഒരെണ്ണം മാത്രമേ ഉള്ളൂവെങ്കിൽ: Dropdown വേണ്ട
-        $('#edit-po-wrapper').slideUp();
-        $('#edit-postoffice').val(data[0].officename); // നേരിട്ട് സെറ്റ് ചെയ്യുന്നു
+        // === SINGLE POST OFFICE ===
+        $('#edit-po-wrapper').slideUp(); // ഡ്രോപ്പ്ഡൗൺ ഹൈഡ് ചെയ്യുന്നു
+
+        const poName = data[0].officename;
+        $('#edit-postoffice').val(poName); // നേരിട്ട് സെറ്റ് ചെയ്യുന്നു
+
+        // താഴെ ചെറിയ ടെക്സ്റ്റ് ആയി കാണിക്കുന്നു
+        $('#single-po-display').html(`<i class="fas fa-check-circle"></i> ${poName}`).fadeIn();
       }
 
-      // UI അപ്ഡേറ്റ് ചെയ്യുന്നു
       updateSummaryDisplay();
       checkForChanges();
     }
   } catch (e) {
     console.log("Pincode not found");
-    // പിൻകോഡ് തെറ്റാണെങ്കിൽ PO ക്ലിയർ ചെയ്യാം (Optional)
+    $('#edit-po-wrapper').slideUp();
+    $('#single-po-display').hide();
   }
 }
 
@@ -454,25 +464,37 @@ window.prevStep = function () {
 }
 
 window.submitQuickOrder = function () {
-  // 1. ബട്ടൺ ഡിസേബിൾ ആണെങ്കിൽ ഒന്നും ചെയ്യണ്ട
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 2. വാലിഡേഷൻ
+  // 1. Basic Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
   const pin = $('#edit-pincode').val();
   if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
 
-  // 3. ലോഡിംഗ് കാണിക്കുന്നു
-  Swal.fire({
-    title: 'Updating...',
-    text: 'Updating details & opening WhatsApp...',
-    allowOutsideClick: false,
-    didOpen: () => Swal.showLoading()
-  });
+  // 🔥 2. Post Office Validation (ഇതാണ് ചോദിക്കുന്നത്)
+  let finalPO = $('#edit-postoffice').val();
 
-  // 4. പുതിയ ഡാറ്റ തയ്യാറാക്കുന്നു
+  // ഡ്രോപ്പ്ഡൗൺ ബോക്സ് കാണുന്നുണ്ടെങ്കിൽ, അതിലെ വാല്യൂ ആണ് എടുക്കുന്നത്
+  if ($('#edit-postoffice-select').is(':visible')) {
+    finalPO = $('#edit-postoffice-select').val();
+  }
+
+  // വാല്യൂ ഇല്ലെങ്കിൽ Alert കാണിക്കും
+  if (!finalPO) {
+    showAlert(getAlert('err_select_po') || "Please Select Post Office");
+    if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
+    return; // ഇവിടെ വെച്ച് തടയുന്നു
+  }
+
+  $('#edit-postoffice').val(finalPO);
+
+  // ... (ബാക്കി അപ്‌ഡേറ്റ് കോഡുകൾ) ...
+
+  // 3. Start Update
+  Swal.fire({ title: 'Updating...', text: 'Updating details...', didOpen: () => Swal.showLoading() });
+
   const finalData = {
     action: 'submit',
     orderData: {
@@ -484,7 +506,7 @@ window.submitQuickOrder = function () {
       house: $('#edit-house').val(),
       place: $('#edit-place').val(),
       pincode: pin,
-      postoffice: $('#edit-postoffice').val(),
+      postoffice: finalPO,
       district: $('#edit-district').val(),
       state: $('#edit-state').val(),
       quantity: $('#quick-qty').val(),
@@ -493,31 +515,7 @@ window.submitQuickOrder = function () {
     }
   };
 
-  // 5. സെർവറിലേക്ക് അയക്കുന്നു (Update Server)
-  $.post(sc, JSON.stringify(finalData))
-    .done(function (response) {
-      if (response.result === 'success') {
-
-        // വിജയിച്ചു! ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
-        userData = { ...userData, ...finalData.orderData };
-        savedOrderData = JSON.parse(JSON.stringify(userData)); // Update Local State
-        saveToLocal(finalData.orderData.phone, userData);
-
-        updateSummaryDisplay();
-        checkForChanges(); // ബട്ടൺ റീസെറ്റ് ചെയ്യുന്നു
-
-        // 6. വാട്സാപ്പിലേക്ക് അയക്കുന്നു (Open WhatsApp)
-        sendUpdateToWhatsapp(userData);
-
-        Swal.close(); // ലോഡർ മാറ്റുന്നു
-
-      } else {
-        Swal.fire('Error', 'Update പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.', 'error');
-      }
-    })
-    .fail(function () {
-      Swal.fire('Connection Error', 'ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക.', 'error');
-    });
+  playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
@@ -579,6 +577,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#quick-price-box').show();
     $('#btn-edit-addr').css('display', 'inline-block');
     $('#btn-new-order-mode').hide();
+
+    // 👇 ഈ വരി നിർബന്ധമായും ചേർക്കുക (ഇതാണ് ലോക്ക് മാറ്റുന്നത്) 👇
+    $('#quick-qty').prop('disabled', false);
 
     $('#quick-qty option').prop('disabled', false);
     if (isActiveOrder) {
@@ -987,39 +988,40 @@ function checkForChanges() {
   // 1. Current Values (നിലവിൽ സ്ക്രീനിലുള്ളത്)
   var currQty = $('#quick-qty').val() || '';
   var currPhone = $('#edit-phone').val() || '';
+  var currWa = $('#edit-whatsapp').val() || ''; // 🔥 New: WhatsApp Value
   var currHouse = $('#edit-house').val() || '';
   var currPlace = $('#edit-place').val() || '';
   var currPin = $('#edit-pincode').val() || '';
   var currAlt = $('#edit-altphone').val() || '';
 
-  // 2. Saved Values (നേരത്തെ സേവ് ചെയ്തത് - null ആണെങ്കിൽ '' എന്ന് കണക്കാക്കും)
+  // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
   var savedPhone = (savedOrderData.phone || '') + '';
+  var savedWa = (savedOrderData.whatsapp || savedOrderData.phone || '') + ''; // 🔥 New: Saved WhatsApp
   var savedHouse = (savedOrderData.house || '') + '';
   var savedPlace = (savedOrderData.place || '') + '';
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
 
-  // 3. Compare (താരതമ്യം ചെയ്യുന്നു)
+  // 3. Compare
   var isChanged = false;
 
   if (String(currQty) !== String(savedQty)) isChanged = true;
   if (String(currPhone) !== String(savedPhone)) isChanged = true;
+  if (String(currWa) !== String(savedWa)) isChanged = true; // 🔥 Check WhatsApp Change
   if (String(currHouse).trim().toUpperCase() !== String(savedHouse).trim().toUpperCase()) isChanged = true;
   if (String(currPlace).trim().toUpperCase() !== String(savedPlace).trim().toUpperCase()) isChanged = true;
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
   // 4. Button Logic
-  var btnUpdate = $('.btn-update-sage');       // Update Order Button
-  var btnSave = $('#address-edit-box button'); // Save Changes Button
+  var btnUpdate = $('.btn-update-sage');
+  var btnSave = $('#address-edit-box button');
 
   if (isChanged) {
-    // മാറ്റങ്ങൾ ഉണ്ട്: Enable Both
     btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text('UPDATE ORDER');
     btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text('SAVE CHANGES');
   } else {
-    // മാറ്റങ്ങൾ ഇല്ല: Disable Both
     btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text('NO CHANGES');
     btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text('NO CHANGES');
   }
