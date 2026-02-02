@@ -652,6 +652,7 @@ function updateStatusUI(d) {
 }
 
 function updateSummaryDisplay() {
+  // 1. Get Values
   const house = $('#edit-house').val() || '';
   const place = $('#edit-place').val() || '';
   const po = $('#edit-postoffice').val() || '';
@@ -659,48 +660,61 @@ function updateSummaryDisplay() {
   const dist = $('#edit-district').val() || '';
   const state = $('#edit-state').val() || 'KERALA';
 
-  // Contact Details
   const wa = $('#edit-whatsapp').val() || '';
   const alt = $('#edit-altphone').val();
   const phone = $('#edit-phone').val() || '';
 
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // Address HTML (No Change)
+  // 2. Clean PO Logic (PO PO എന്ന് വരാതിരിക്കാൻ)
+  let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
+  if (poClean) poClean += ' PO';
+
+  // 3. Address Layout (Arrangement Fix)
   let addrHtml = `
-      <div style="font-weight:800; font-size:15px; color:#1a1a1a; margin-bottom:3px;">${safe(house)}</div>
-      <div style="font-size:13px; color:#444; margin-bottom:2px;">${safe(place)}, ${safe(po)}</div>
-      <div style="font-size:11px; font-weight:700; color:#777; letter-spacing:0.5px; text-transform:uppercase;">
-          ${safe(dist)}, ${safe(state)} 
-          <span style="background:#eee; padding:2px 6px; border-radius:4px; color:#000; margin-left:4px; font-weight:800;">${safe(pin)}</span>
+      <div style="font-weight:800; font-size:15px; color:#1a1a1a; text-transform:uppercase; margin-bottom:4px; line-height:1.2;">
+          ${safe(house)}
+      </div>
+      
+      <div style="font-size:13px; color:#444; margin-bottom:3px; text-transform:capitalize;">
+          ${safe(place)}${place && poClean ? ',' : ''} <span style="text-transform:uppercase;">${poClean}</span>
+      </div>
+      
+      <div style="font-size:12px; font-weight:600; color:#666; text-transform:uppercase; letter-spacing:0.3px;">
+          ${safe(dist)}, ${safe(state)} - <b style="color:#000; font-size:13px;">${safe(pin)}</b>
       </div>
   `;
 
-  $('#saved-address-text').html(addrHtml).css({ 'line-height': '1.4', 'margin-bottom': '5px' });
-  $('#saved-place-dist').text('');
+  // Apply Address HTML
+  $('#saved-address-text').html(addrHtml).css({ 'margin-bottom': '5px' });
+  $('#saved-place-dist').text('').hide(); // Hide old duplicate elements if any
 
-  // 🔥 PHONE LOGIC UPDATE (Conditional Line Break)
+  // 4. Contact Logic (Smart Layout)
   let phoneHtml = '';
 
-  // Line 1: Phone (+ Alt Phone if exists)
-  phoneHtml += `<div><i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}`;
-
-  if (alt) {
-    phoneHtml += ` <span class="text-muted mx-1">|</span> ${alt}`;
+  // Case A: Alt Phone ഉണ്ട് (Two Lines)
+  if (alt && String(alt).trim() !== "") {
+    phoneHtml += `
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #eee; padding-bottom:4px; margin-bottom:4px;">
+            <div class="text-dark"><i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}</div>
+            <div class="text-dark" style="font-size:12px;">${alt}</div>
+        </div>
+        <div style="color:#25D366; font-weight:700;">
+            <i class="fab fa-whatsapp"></i> ${wa}
+        </div>`;
+  }
+  // Case B: Alt Phone ഇല്ല (Single Line)
+  else {
+    phoneHtml += `
+        <div>
+            <i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> <span class="text-dark fw-bold">${phone}</span>
+            <span class="text-muted mx-2">|</span> 
+            <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>
+        </div>`;
   }
 
-  // If NO Alt Phone, put WhatsApp on the SAME line
-  if (!alt && wa) {
-    phoneHtml += ` <span class="text-muted mx-1">|</span> <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>`;
-  }
-  phoneHtml += `</div>`;
-
-  // Line 2: WhatsApp (Only comes down if Alt Phone exists)
-  if (alt && wa) {
-    phoneHtml += `<div style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</div>`;
-  }
-
-  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '12px', 'margin-top': '8px' });
+  // Apply Phone HTML
+  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '13px', 'margin-top': '10px' });
   $('#saved-wa-text').hide();
   $('#saved-alt-text').hide();
 
