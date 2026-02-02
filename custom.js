@@ -345,7 +345,54 @@ window.submitWizardOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-window.handleEditPincode = function (el) { checkForChanges(); }
+window.handleEditPincode = async function (val) {
+  // 6 അക്കമുണ്ടെങ്കിൽ മാത്രം സെർച്ച് ചെയ്യുക
+  if (!/^[0-9]{6}$/.test(val)) return;
+
+  // ബട്ടൺ സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
+  checkForChanges();
+
+  try {
+    // പിൻകോഡ് ഫയൽ എടുക്കുന്നു
+    const res = await fetch(`pincode_json_files/${val}.json`);
+    if (!res.ok) throw new Error("Not Found");
+
+    let data = await res.json();
+
+    // പേര് ശരിയാക്കുന്നു (Aluva B.O -> Aluva PO)
+    data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO') }));
+
+    if (data && data.length > 0) {
+      // ജില്ലയും സംസ്ഥാനവും ഓട്ടോമാറ്റിക് ആയി വരുന്നു
+      $('#edit-district').val(data[0].district);
+      $('#edit-state').val(data[0].statename);
+
+      if (data.length > 1) {
+        // ഒന്നിൽ കൂടുതൽ ഉണ്ടെങ്കിൽ: Dropdown കാണിക്കുക
+        const sel = $('#edit-postoffice-select');
+        sel.empty().append('<option value="">Select Post Office...</option>');
+
+        data.forEach(p => {
+          sel.append(`<option value="${p.officename}">${p.officename}</option>`);
+        });
+
+        $('#edit-po-wrapper').slideDown(); // Dropdown Visible ആകുന്നു
+        $('#edit-postoffice').val(''); // പഴയ വാല്യൂ കളയുന്നു (പുതിയത് സെലക്ട് ചെയ്യാൻ)
+      } else {
+        // ഒരെണ്ണം മാത്രമേ ഉള്ളൂവെങ്കിൽ: Dropdown വേണ്ട
+        $('#edit-po-wrapper').slideUp();
+        $('#edit-postoffice').val(data[0].officename); // നേരിട്ട് സെറ്റ് ചെയ്യുന്നു
+      }
+
+      // UI അപ്ഡേറ്റ് ചെയ്യുന്നു
+      updateSummaryDisplay();
+      checkForChanges();
+    }
+  } catch (e) {
+    console.log("Pincode not found");
+    // പിൻകോഡ് തെറ്റാണെങ്കിൽ PO ക്ലിയർ ചെയ്യാം (Optional)
+  }
+}
 
 function updateFooterButtons(view) {
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
@@ -492,7 +539,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // Save Data for comparison
+  // Save Data
   savedOrderData = JSON.parse(JSON.stringify(d));
 
   // 3. Update Address & Phone UI
@@ -508,13 +555,13 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   const hideControls = ['paid', 'dispatched', 'completed', 'delivered'].includes(status);
 
   if (hideControls) {
-    // HIDE MODE (Paid, Dispatched, etc.)
-    $('label[data-i18n="lbl_qty"]').hide();  // Hide Label
-    $('.qty-action-row').hide();             // Hide Qty Dropdown & Update Button
-    $('#quick-price-box').hide();            // Hide Price Box
-    $('#btn-edit-addr').hide();              // Hide Edit Address Button
+    // HIDE MODE (Paid, Dispatched...)
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('.qty-action-row').hide();
+    $('#quick-price-box').hide();
+    $('#btn-edit-addr').hide();
 
-    // Show "Place New Order" button only if finished (Delivered/Completed)
+    // New Order Button Logic
     if (['completed', 'delivered'].includes(status)) {
       if ($('#btn-new-order-mode').length === 0) {
         const btnText = "PLACE NEW ORDER";
@@ -527,13 +574,12 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   } else {
     // SHOW MODE (Pending, Sent)
-    $('label[data-i18n="lbl_qty"]').show();       // Show Label
-    $('.qty-action-row').css('display', 'flex');  // Show Selector & Button
-    $('#quick-price-box').show();                 // Show Price Box
-    $('#btn-edit-addr').css('display', 'inline-block'); // Show Edit Address
+    $('label[data-i18n="lbl_qty"]').show();
+    $('.qty-action-row').css('display', 'flex');
+    $('#quick-price-box').show();
+    $('#btn-edit-addr').css('display', 'inline-block');
     $('#btn-new-order-mode').hide();
 
-    // Reset Values
     $('#quick-qty option').prop('disabled', false);
     if (isActiveOrder) {
       $('#quick-qty').val(d.quantity).trigger('change');
@@ -554,6 +600,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   }
 
   checkForChanges();
+
+  // 🔥🔥🔥 NEW CHANGE: Disable Controls until Server Sync is Complete 🔥🔥🔥
+  // സെർവറിൽ നിന്ന് ഡാറ്റ വരുന്നത് വരെ (isServerData = false) എഡിറ്റ് ചെയ്യാൻ സമ്മതിക്കില്ല.
+  if (!isServerData && !hideControls) {
+    $('#quick-qty').prop('disabled', true); // ക്വാണ്ടിറ്റി ലോക്ക് ചെയ്യുന്നു
+    $('.btn-update-sage').prop('disabled', true).text('CHECKING STATUS...'); // ബട്ടൺ മാറ്റുന്നു
+    $('#btn-edit-addr').hide(); // അഡ്രസ്സ് എഡിറ്റ് ഒളിപ്പിക്കുന്നു
+  }
 }
 
 window.enableNewOrderMode = function () {
