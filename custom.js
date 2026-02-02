@@ -241,6 +241,7 @@ window.handlePhoneNext = function () {
   $('#whatsapp').val(phone);
   startWizard();
   backgroundUserCheck(phone);
+  $('#top-progress-container').fadeIn();
 }
 
 function saveToLocal(phone, data) {

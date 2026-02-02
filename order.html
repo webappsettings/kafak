@@ -30,7 +30,6 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      /* Main Background Color set to Light Gray as per new design */
       background-color: #f0f2f5 !important;
       font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
       color: var(--primary);
@@ -40,6 +39,27 @@
       display: flex;
       flex-direction: column;
       height: 100dvh;
+    }
+
+    /* --- CHROME STYLE TOP LOADER --- */
+    #top-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      /* Thin line like Chrome/YouTube */
+      background: transparent;
+      z-index: 9999;
+    }
+
+    #wiz-progress {
+      background: linear-gradient(90deg, #4ade80, #2e7d32);
+      height: 100%;
+      width: 0%;
+      border-radius: 0 4px 4px 0;
+      transition: width 0.4s ease-out;
+      box-shadow: 0 2px 10px rgba(46, 125, 50, 0.4);
     }
 
     /* NAVBAR */
@@ -146,21 +166,16 @@
       justify-content: center;
     }
 
-    /* --- NEW EDIT VIEW DESIGN (SCREENSHOT MATCH) --- */
-
-    /* 1. Main Background Container */
+    /* --- EDIT VIEW DESIGN --- */
     #returning-user-view {
       background-color: #f3f4f6 !important;
-      /* Light Gray Background */
-      padding: 20px;
+      /* padding: 20px; */
       border-radius: 24px;
       margin-top: 10px;
-      /* Remove default card styles to allow separate white cards */
       box-shadow: none !important;
       border: none !important;
     }
 
-    /* 2. White Cards */
     .white-card {
       background: #ffffff;
       border-radius: 20px;
@@ -170,7 +185,6 @@
       border: 1px solid #fff;
     }
 
-    /* 3. Header Typography */
     .welcome-header {
       font-size: 28px;
       font-weight: 800;
@@ -180,12 +194,9 @@
       margin: 0;
     }
 
-    /* 4. Green Order ID Badge */
     .badge-oid-green {
       background-color: #dcfce7;
-      /* Light Green */
       color: #15803d;
-      /* Dark Green Text */
       font-family: monospace;
       font-size: 11px;
       padding: 6px 12px;
@@ -196,20 +207,18 @@
       border: 1px solid #bbf7d0;
     }
 
-    /* 5. Name Tag (Black Pill Style) */
     .user-name-tag {
       background: #000;
       color: #fff;
-      padding: 4px 12px;
+      padding: 2px 10px;
       border-radius: 6px;
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 800;
       display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    /* 6. Edit Button (Capsule) */
     .btn-edit-capsule {
       background: #ecfdf5;
       color: #15803d;
@@ -229,11 +238,10 @@
       transform: translateY(-1px);
     }
 
-    /* 7. Address Styling */
     .addr-block {
-      margin-top: 15px;
+      margin-top: 9px;
       color: #4b5563;
-      font-size: 14px;
+      font-size: 12px;
       line-height: 1.5;
       font-weight: 500;
     }
@@ -252,14 +260,12 @@
       padding: 2px 8px;
       border-radius: 6px;
       font-weight: 800;
-      font-size: 12px;
+      font-size: 10px;
       margin-left: 5px;
     }
 
-    /* 8. Phone Box (Grey) */
     .phone-grey-box {
       background-color: #f9fafb;
-      /* Very Light Grey */
       border-radius: 12px;
       padding: 15px;
       margin-top: 20px;
@@ -277,7 +283,6 @@
       color: #374151;
     }
 
-    /* 9. Action Area (Quantity & Button) */
     .qty-action-row {
       display: flex;
       gap: 10px;
@@ -286,7 +291,6 @@
 
     #quick-qty {
       flex: 1;
-      /* Takes available space */
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       font-weight: 700;
@@ -297,7 +301,6 @@
 
     .btn-update-sage {
       background-color: #8ab68a !important;
-      /* Muted Green from Screenshot */
       color: white;
       font-weight: 800;
       border: none;
@@ -310,7 +313,6 @@
       box-shadow: 0 4px 6px rgba(138, 182, 138, 0.2);
     }
 
-    /* Price Card (New) */
     .price-card {
       background: #f9fafb;
       border: 1px dashed #e5e7eb;
@@ -338,12 +340,11 @@
       border-top: 1px dashed #ddd;
     }
 
-    /* 10. Hide Footer in Edit View */
     #returning-user-view~.footer-action {
       display: none !important;
     }
 
-    /* --- OLD WIZARD STYLES (Preserved) --- */
+    /* --- WIZARD STYLES --- */
     #wizard-view {
       background: #fff;
       border-radius: 16px;
@@ -352,34 +353,7 @@
       margin-top: 20px;
     }
 
-    .wiz-step-label {
-      text-align: center;
-      font-size: 10px;
-      font-weight: 800;
-      color: #9ca3af;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .progress-container {
-      background-color: #e9ecef;
-      height: 8px;
-      border-radius: 20px;
-      margin: 25px 0 30px 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    #wiz-progress {
-      background: linear-gradient(90deg, #4ade80, #16a34a);
-      height: 100%;
-      width: 0%;
-      border-radius: 20px;
-      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    /* LOADER */
+    /* LOADER & ANIMATION */
     #full-loader {
       position: fixed;
       top: 0;
@@ -435,7 +409,7 @@
       z-index: 20;
     }
 
-    /* --- TIMELINE STYLES --- */
+    /* TRACKING TIMELINE */
     .tracking-wrapper {
       background: #fff;
       border-radius: 12px;
@@ -522,6 +496,10 @@
 
 <body>
   <input type="hidden" id="order-status-hidden" value="">
+
+  <div id="top-progress-container" style="display:none;">
+    <div id="wiz-progress"></div>
+  </div>
 
   <div id="full-loader">
     <div class="loader-wrapper">
@@ -653,11 +631,6 @@
           </div>
 
           <div id="wizard-view" class="step-section">
-            <div class="wiz-step-label">ORDER PROGRESS</div>
-            <div class="progress-container">
-              <div id="wiz-progress"></div>
-            </div>
-
             <div class="wiz-step" data-step="1"><label class="form-label" data-i18n="lbl_name">നിങ്ങളുടെ
                 പേര്</label><input type="text" id="name" class="huge-input" placeholder="Name" autofocus></div>
             <div class="wiz-step" data-step="2" style="display:none;"><label class="form-label"
@@ -719,6 +692,17 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="custom.js"></script>
+
+  <script>
+    // Monitor styling to show progress bar only when Wizard is visible
+    setInterval(function () {
+      if ($('#wizard-view').is(':visible')) {
+        $('#top-progress-container').show();
+      } else {
+        $('#top-progress-container').hide();
+      }
+    }, 500);
+  </script>
 </body>
 
 </html>
