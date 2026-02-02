@@ -666,57 +666,73 @@ function updateSummaryDisplay() {
 
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // 2. Clean PO Logic (PO PO എന്ന് വരാതിരിക്കാൻ)
+  // 2. Clean PO Logic
   let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
   if (poClean) poClean += ' PO';
 
-  // 3. Address Layout (Arrangement Fix)
+  // 3. Address HTML
   let addrHtml = `
-      <div style="font-weight:800; font-size:15px; color:#1a1a1a; text-transform:uppercase; margin-bottom:4px; line-height:1.2;">
+      <div style="font-weight:800; font-size:16px; color:#111; text-transform:uppercase; margin-bottom:4px; line-height:1.2;">
           ${safe(house)}
       </div>
-      
       <div style="font-size:13px; color:#444; margin-bottom:3px; text-transform:capitalize;">
           ${safe(place)}${place && poClean ? ',' : ''} <span style="text-transform:uppercase;">${poClean}</span>
       </div>
-      
       <div style="font-size:12px; font-weight:600; color:#666; text-transform:uppercase; letter-spacing:0.3px;">
           ${safe(dist)}, ${safe(state)} - <b style="color:#000; font-size:13px;">${safe(pin)}</b>
       </div>
   `;
 
-  // Apply Address HTML
-  $('#saved-address-text').html(addrHtml).css({ 'margin-bottom': '5px' });
-  $('#saved-place-dist').text('').hide(); // Hide old duplicate elements if any
+  $('#saved-address-text').html(addrHtml).css({ 'margin-bottom': '8px' });
+  $('#saved-place-dist').hide();
 
-  // 4. Contact Logic (Smart Layout)
+  // 4. 🔥 PHONE LAYOUT FIX (Clean & Non-overlapping)
   let phoneHtml = '';
 
   // Case A: Alt Phone ഉണ്ട് (Two Lines)
   if (alt && String(alt).trim() !== "") {
-    phoneHtml += `
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #eee; padding-bottom:4px; margin-bottom:4px;">
-            <div class="text-dark"><i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> ${phone}</div>
-            <div class="text-dark" style="font-size:12px;">${alt}</div>
-        </div>
-        <div style="color:#25D366; font-weight:700;">
-            <i class="fab fa-whatsapp"></i> ${wa}
+    phoneHtml = `
+        <div style="background:#f9f9f9; padding:8px; border-radius:8px; border:1px solid #eee;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                 <i class="fas fa-phone-alt text-secondary" style="font-size:11px;"></i> 
+                 <span style="font-weight:700; color:#333;">${phone}</span>
+                 <span style="font-size:11px; color:#777;">| ${alt}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                 <i class="fab fa-whatsapp" style="color:#25D366; font-size:13px;"></i> 
+                 <span style="font-weight:700; color:#25D366;">${wa}</span>
+            </div>
         </div>`;
   }
-  // Case B: Alt Phone ഇല്ല (Single Line)
+  // Case B: Single Line (Clean Flexbox)
   else {
-    phoneHtml += `
-        <div>
-            <i class="fas fa-phone-alt text-muted" style="font-size:11px;"></i> <span class="text-dark fw-bold">${phone}</span>
-            <span class="text-muted mx-2">|</span> 
-            <span style="color:#25D366; font-weight:700;"><i class="fab fa-whatsapp"></i> ${wa}</span>
+    phoneHtml = `
+        <div style="background:#f9f9f9; padding:10px; border-radius:8px; border:1px solid #eee; display:flex; align-items:center; gap:15px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:6px;">
+                <i class="fas fa-phone-alt text-secondary" style="font-size:11px;"></i> 
+                <span style="font-weight:700; color:#333;">${phone}</span>
+            </div>
+            <div style="width:1px; height:12px; background:#ccc;"></div>
+            <div style="display:flex; align-items:center; gap:6px;">
+                <i class="fab fa-whatsapp" style="color:#25D366; font-size:13px;"></i> 
+                <span style="font-weight:700; color:#25D366;">${wa}</span>
+            </div>
         </div>`;
   }
 
-  // Apply Phone HTML
-  $('#saved-phone-text').html(phoneHtml).css({ 'font-weight': '500', 'font-size': '13px', 'margin-top': '10px' });
-  $('#saved-wa-text').hide();
-  $('#saved-alt-text').hide();
+  $('#saved-phone-text').html(phoneHtml).css('margin-top', '10px');
+  $('#saved-wa-text, #saved-alt-text').hide();
+
+  // 5. 🔒 HIDE EDIT BUTTON IF PAID OR DISPATCHED
+  // (Assuming 'userData' holds the order status from server)
+  if (typeof userData !== 'undefined' && userData.Status) {
+    let s = userData.Status.toLowerCase();
+    if (s === 'paid' || s === 'dispatched' || s === 'completed') {
+      $('#btn-edit-addr').hide(); // Hide Edit Button
+    } else {
+      $('#btn-edit-addr').show(); // Show otherwise
+    }
+  }
 
   checkForChanges();
 }

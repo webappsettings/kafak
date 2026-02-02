@@ -630,6 +630,50 @@
       text-transform: uppercase;
       margin-bottom: 8px;
     }
+
+    /* --- WELCOME SCREEN FIXES --- */
+
+    /* 1. Header Size Fix (Welcome Back ചെറുതാക്കാൻ) */
+    h2,
+    .welcome-header {
+      font-size: 24px !important;
+      /* വലുപ്പം കുറച്ചു */
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+
+    /* 2. Beautiful Edit Button */
+    #btn-edit-addr {
+      background: #f1f8e9;
+      /* Light Green Bg */
+      color: #33691e;
+      /* Dark Green Text */
+      border: 1px solid #dcedc8;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 20px;
+      /* Capsule Shape */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    #btn-edit-addr:hover {
+      background: #33691e;
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    /* 3. Phone Box Alignment Fix */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      color: #333;
+    }
   </style>
 </head>
 
