@@ -609,35 +609,77 @@ function calculatePriceInfo(qty, state) {
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
-    const price = calculatePriceInfo(n, d.state);
+
+    // --- 💰 PRICE LOGIC (SERVER SYNCED) ---
+    // 1. Base Price (Always 650 per bottle)
     const base = n * 650;
+
+    // 2. Grand Total (Taken directly from Server/Sheet Data)
+    // d.grandTotal ഇല്ലെങ്കിൽ മാത്രം (പഴയ ഡാറ്റ) നമ്മൾ പഴയ രീതിയിൽ കണക്കുകൂട്ടും
+    let total = parseInt(d.grandTotal);
     let courier = 0;
-    const s = String(d.state || '').toLowerCase().trim();
-    if (s === 'lakshadweep') courier = (n * 100) + 20;
-    else if (s === 'kerala') courier = courierRates.kerala[n] || 0;
-    else courier = courierRates.outside[n] || 0;
-    const total = base + courier;
-    const amountText = `Amount(₹): ${base} + ${courier}`;
-    const totalText = `Total(₹): ${total}/-`;
-    const adminPhone = '7788990313';
-    const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
-    const time = d.timestamp ? d.timestamp : new Date().toLocaleString();
-    const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_`;
+
+    if (total > 0) {
+        // Server Data Available
+        courier = total - base;
+    } else {
+        // Fallback (If server data is missing for old orders)
+        const s = String(d.state || '').toLowerCase().trim();
+        if (s === 'lakshadweep') courier = (n * 100) + 20;
+        else if (s === 'kerala') courier = courierRates.kerala[n] || 0;
+        else courier = courierRates.outside[n] || 0;
+        total = base + courier;
+    }
+
+    // --- 🔗 Link & Helpers ---
+    const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
     const safe = (val) => String(val || '').trim().toUpperCase();
-    const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+
+    // --- ✨ BEAUTIFUL MESSAGE FORMAT ---
+    let msg = `*✅ ORDER CONFIRMED!* 🍯\n`;
+    msg += `Thank you for choosing KAFAK Natural Honey.\n\n`;
+
+    // 📍 Address Section
+    msg += `👤 *${safe(d.name)}*\n`;
+    msg += `🏠 ${safe(d.house)}\n`;
+    msg += `📍 ${safe(d.place)}, ${safe(d.postoffice)}\n`;
+    msg += `🌍 ${safe(d.district)}\n`;
+    msg += `📮 PIN: *${d.pincode}*\n\n`;
+
+    // 📦 Order Summary
+    msg += `📦 *Order Summary:*\n`;
+    msg += `▪️ Qty: *${d.quantity} Bottles*\n`;
+    msg += `▪️ Bill: ₹${base} + ₹${courier} (Del)\n`;
+    msg += `▪️ *Total: ₹${total}/-*\n\n`;
+
+    // 💳 Payment Section
+    msg += `💳 *Payment Options:*\n`;
+    msg += `GPay / PhonePe: *7788990313* (KAFAK LLP)\n\n`;
+
+    // 🚚 Status Check Message (Updated)
+    msg += `🔍 *To Check Order Status & Tracking:* 👇\n`;
+    msg += `(നിങ്ങളുടെ ഓർഡർ സ്റ്റാറ്റസ് അറിയാൻ താഴെ ക്ലിക്ക് ചെയ്യുക)\n`;
+    msg += `${editLink}`;
+
+    // --- 🚀 Sending Logic ---
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
-    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(extra + format)}`, '_blank');
+
+    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
+
+    // --- 🔄 Auto-Update Status to 'Sent' ---
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
         updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
         const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = 'Sent';
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         }
+
         setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
     }
 }
