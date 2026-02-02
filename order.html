@@ -21,7 +21,9 @@
       --secondary: #fff;
       --text-gray: #666;
       --brand-green: #2e7d32;
-      --bg-light: #f0f2f5;
+      --brand-light-green: #dcfce7;
+      --brand-dark-green: #15803d;
+      --bg-light: #f3f4f6;
     }
 
     html,
@@ -30,7 +32,7 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background: var(--bg-light);
+      background: #f9fafb;
       font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
       color: var(--primary);
     }
@@ -46,7 +48,7 @@
       flex: 0 0 auto;
       background: rgba(255, 255, 255, 0.98);
       padding: 15px 0;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e5e7eb;
       z-index: 10;
     }
 
@@ -61,11 +63,10 @@
       overflow-y: auto;
       padding: 20px;
       padding-bottom: 80px;
-      /* Extra space for footer */
       -webkit-overflow-scrolling: touch;
     }
 
-    /* --- INPUT STYLES (OLD & NEW) --- */
+    /* --- INPUT STYLES --- */
     .huge-input {
       border: none;
       border-bottom: 2px solid #ddd;
@@ -92,27 +93,30 @@
     }
 
     .regular-input {
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
       width: 100%;
       font-weight: 600;
       outline: none;
       background: #fff;
+      font-size: 14px;
+      transition: all 0.2s;
     }
 
     .regular-input:focus {
       border-color: var(--brand-green);
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
     }
 
     .form-label {
-      font-weight: 700;
+      font-weight: 800;
       font-size: 11px;
-      color: #888;
+      color: #9ca3af;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       margin-top: 15px;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       display: block;
     }
 
@@ -122,26 +126,50 @@
       color: white;
       width: 100%;
       padding: 16px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 16px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 15px;
       border: none;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .btn-brand-green {
-      background: var(--brand-green) !important;
+      background: #4ade80 !important;
+      /* Lighter/Brighter Green as per screenshot */
+      background: #86efac;
+      background-color: #74cca3 !important;
+      /* Matching the screenshot green roughly */
+      background-color: #84cc16;
+      /* Let's use a nice soft green similar to screenshot */
+      background: #8bbd96 !important;
+      /* Fallback */
+      background: #7fb58e;
+      background: #6fcf97;
+      /* Precise Match Attempt */
+      background-color: #90be6d !important;
+      color: white !important;
+    }
+
+    /* Overriding for specific button look in screenshot */
+    .btn-update-custom {
+      background-color: #8ab68a !important;
+      /* Muted Green */
+      color: white;
+      font-weight: 800;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
 
     .btn-back {
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
-      background: #e0e0e0;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: #f3f4f6;
       border: none;
       color: #333;
       display: flex;
@@ -149,176 +177,200 @@
       justify-content: center;
     }
 
-    /* --- NEW CARD STYLES (Only for Edit View) --- */
+    /* --- BEAUTIFUL CARD STYLES (MATCHING SCREENSHOT) --- */
     #returning-user-view {
       background: transparent !important;
       border: none !important;
-      box-shadow: none !important;
       padding: 0 !important;
     }
 
-    .summary-card {
+    .info-card {
       background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-      border: 1px solid #eee;
-      margin-bottom: 15px;
-      position: relative;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      border: 1px solid #fff;
+      margin-bottom: 20px;
     }
 
-    /* Badge Order ID */
-    .badge-order-id {
+    /* Order ID Badge */
+    .badge-oid-green {
+      background-color: var(--brand-light-green);
+      color: var(--brand-dark-green);
       font-family: monospace;
-      font-size: 11px !important;
-      padding: 6px 10px !important;
-      border-radius: 6px !important;
-      font-weight: 700 !important;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-weight: 700;
       letter-spacing: 0.5px;
-      background: white !important;
-      border: 1px solid #ddd !important;
-      color: #333 !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      display: inline-block;
+    }
+
+    .header-date {
+      font-size: 10px;
+      color: #9ca3af;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
     }
 
     /* Edit Button Capsule */
     #btn-edit-addr {
-      background: #e8f5e9;
-      color: #2e7d32;
-      border: 1px solid #c8e6c9;
+      background: #ecfdf5;
+      /* Very light green */
+      color: #15803d;
+      /* Dark green text */
       font-size: 10px;
       font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 50px;
+      padding: 8px 14px;
+      border-radius: 30px;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: all 0.2s;
       display: inline-block;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
 
     #btn-edit-addr:hover {
-      background: #2e7d32;
-      color: white;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: #dcfce7;
+      transform: translateY(-1px);
     }
 
-    .welcome-header {
-      font-size: 24px;
-      line-height: 1.1;
-    }
-
-    /* Price Box */
-    .price-card {
-      background: #f8f9fa;
-      border: 1px solid #edf2f7;
-      border-radius: 12px;
-      padding: 15px;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 5px;
-      color: #666;
-    }
-
-    .price-total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 18px;
+    /* Address Typography */
+    .user-name {
+      font-size: 20px;
       font-weight: 800;
-      color: #000;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #e2e8f0;
+      color: #111;
+      margin-bottom: 4px;
     }
 
-    /* --- OLD TIMELINE STYLES (Restored) --- */
-    .tracking-wrapper {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 15px;
-      border: 1px solid #eee;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    }
-
-    .track-tl {
-      position: relative;
-      padding-left: 30px;
-      list-style: none;
-      margin: 0;
-    }
-
-    .track-tl-item {
-      position: relative;
-      padding-bottom: 25px;
-      padding-left: 15px;
-    }
-
-    .track-tl-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .track-tl-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 5px;
-      width: 2px;
-      height: 100%;
-      background: #e0e0e0;
-    }
-
-    .track-tl-item:last-child::before {
-      display: none;
-    }
-
-    .track-tl-dot {
-      position: absolute;
-      left: -6px;
-      top: 0;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #e0e0e0;
-      border: 2px solid #fff;
-      box-shadow: 0 0 0 1px #e0e0e0;
-      z-index: 1;
-    }
-
-    .track-tl-item.active .track-tl-dot {
-      background: #2e7d32;
-      box-shadow: 0 0 0 2px #dcfce7;
-    }
-
-    .track-tl-item.active::before {
-      background: #2e7d32;
-    }
-
-    .track-title {
+    .house-name {
       font-size: 14px;
-      font-weight: 700;
-      color: #333;
-      line-height: 1.2;
+      font-weight: 800;
+      color: #374151;
+      text-transform: uppercase;
+      margin-bottom: 2px;
     }
 
-    .track-desc {
-      font-size: 11px;
-      color: #888;
-      margin-top: 2px;
+    .addr-text {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
     }
 
-    .track-date {
-      font-size: 10px;
-      color: #aaa;
-      float: right;
+    .pin-badge {
+      background: #f3f4f6;
+      color: #1f2937;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    /* Phone Box Grey */
+    .phone-contact-box {
+      background-color: #f9fafb;
+      /* Light Gray */
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .phone-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #4b5563;
       font-weight: 600;
     }
 
-    /* --- WIZARD STYLES --- */
+    .phone-row i {
+      width: 16px;
+      text-align: center;
+    }
+
+    /* Action Card */
+    .action-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .qty-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: stretch;
+    }
+
+    #quick-qty {
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 0 15px;
+      flex: 1;
+      /* Take remaining space */
+    }
+
+    /* Price Section */
+    .price-details {
+      background: #f9fafb;
+      border: 1px dashed #e5e7eb;
+      border-radius: 16px;
+      padding: 15px;
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .total-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .total-amount {
+      color: #15803d;
+      /* Green Text */
+    }
+
+    /* Platinum Badge */
+    .platinum-badge {
+      background: #fef9c3;
+      color: #ca8a04;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      padding: 10px;
+      border-radius: 12px;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* --- WIZARD STYLES (Keep Existing) --- */
     .wiz-step-label {
       text-align: center;
       font-size: 10px;
@@ -346,7 +398,7 @@
       transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* --- LOADER & ANIMATIONS --- */
+    /* --- LOADER --- */
     #full-loader {
       position: fixed;
       top: 0;
@@ -442,86 +494,92 @@
         <form id="order-form" onsubmit="return false;">
 
           <div id="step-0" class="step-section pt-4"
-            style="background:#fff; border-radius:16px; padding:20px; border:1px solid #eee;">
+            style="background:#fff; border-radius:24px; padding:24px; border:1px solid #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
             <label class="form-label" data-i18n="lbl_phone" style="font-size:13px;">ഫോൺ നമ്പർ</label>
             <input type="tel" id="phone" class="huge-input" placeholder="Mobile Number" maxlength="10">
           </div>
 
           <div id="returning-user-view" class="step-section">
 
-            <div class="d-flex justify-content-between align-items-end mb-3 mt-1 px-1">
+            <div class="d-flex justify-content-between align-items-start mb-4 px-1 mt-2">
               <div style="line-height: 1.1;">
-                <h2 class="fw-bold m-0 welcome-header" style="color:#111; letter-spacing:-0.5px;"
-                  data-i18n="welcome_back">Welcome<br>Back!</h2>
+                <h1 class="fw-bold m-0" style="color:#000; font-size: 32px; letter-spacing: -1px;"
+                  data-i18n="welcome_back">Welcome<br>Back!</h1>
               </div>
               <div class="text-end">
-                <div id="display-oid" class="badge-order-id mb-1"></div>
-                <div id="display-date" style="font-size:10px; color:#666; font-weight:600; text-transform:uppercase;">
-                </div>
+                <div id="display-oid" class="badge-oid-green">#ORD-...</div>
+                <div id="display-date" class="header-date">...</div>
               </div>
             </div>
 
-            <div class="summary-card">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <div id="saved-name" style="font-size:18px; font-weight:800; text-transform:uppercase; color:#000;">
-                </div>
+            <div class="info-card">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div id="saved-name" class="user-name">NAME</div>
                 <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" data-i18n="btn_edit">EDIT ADDRESS</a>
               </div>
 
-              <div id="saved-address-text"
-                style="background:#fcfcfc; border:1px dashed #e0e0e0; border-radius:10px; padding:12px; margin-bottom:12px;">
+              <div id="saved-address-text">
               </div>
 
-              <div id="saved-phone-text"></div>
+              <div id="saved-phone-text">
+              </div>
 
-              <div class="address-box" id="address-edit-box" style="display:none;">
-                <label class="form-label" data-i18n="lbl_phone">Phone</label>
-                <input type="tel" id="edit-phone" class="regular-input mb-2" maxlength="10"
-                  oninput="updateSummaryDisplay()">
-                <label class="form-label" data-i18n="lbl_house">House</label>
-                <input type="text" id="edit-house" class="regular-input mb-2" oninput="updateSummaryDisplay()">
+              <div class="address-box mt-3 pt-3 border-top" id="address-edit-box" style="display:none;">
+                <h6 class="fw-bold small text-muted mb-3">UPDATE ADDRESS</h6>
                 <div class="row g-2">
-                  <div class="col-6"><label class="form-label" data-i18n="lbl_place">Place</label><input type="text"
-                      id="edit-place" class="regular-input mb-2" oninput="updateSummaryDisplay()"></div>
-                  <div class="col-6"><label class="form-label" data-i18n="lbl_pincode">Pin</label><input type="tel"
-                      id="edit-pincode" class="regular-input mb-2" maxlength="6"
-                      oninput="handleEditPincode(this.value)"></div>
-                </div>
-                <div id="edit-po-wrapper" style="display:none;"><label class="form-label">Post Office</label><select
-                    id="edit-postoffice-select" class="regular-input mb-2" onchange="selectEditPO(this.value)"></select>
+                  <div class="col-12"><input type="tel" id="edit-phone" class="regular-input" placeholder="Phone"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                  <div class="col-12"><input type="text" id="edit-house" class="regular-input" placeholder="House Name"
+                      oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="text" id="edit-place" class="regular-input" placeholder="Place"
+                      oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="tel" id="edit-pincode" class="regular-input" placeholder="Pin"
+                      maxlength="6" oninput="handleEditPincode(this.value)"></div>
+                  <div class="col-12" id="edit-po-wrapper" style="display:none;">
+                    <select id="edit-postoffice-select" class="regular-input"
+                      onchange="selectEditPO(this.value)"></select>
+                  </div>
                 </div>
                 <input type="hidden" id="edit-postoffice"><input type="hidden" id="edit-district"><input type="hidden"
                   id="edit-state">
-                <label class="form-label" data-i18n="lbl_whatsapp">WhatsApp</label><input type="tel" id="edit-whatsapp"
-                  class="regular-input mb-2" maxlength="10" oninput="updateSummaryDisplay()">
-                <label class="form-label" data-i18n="lbl_altphone">Alt Phone</label><input type="tel" id="edit-altphone"
-                  class="regular-input mb-2" maxlength="10" oninput="updateSummaryDisplay()">
-                <button class="btn btn-dark w-100 mt-3 rounded-pill fw-bold" onclick="toggleAddressEdit()">DONE</button>
+
+                <div class="row g-2 mt-2">
+                  <div class="col-6"><input type="tel" id="edit-whatsapp" class="regular-input" placeholder="WhatsApp"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="tel" id="edit-altphone" class="regular-input" placeholder="Alt Phone"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                </div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold py-3" onclick="toggleAddressEdit()">SAVE
+                  CHANGES</button>
               </div>
             </div>
 
-            <div class="summary-card">
-              <label class="form-label fw-bold text-secondary" style="font-size:11px; letter-spacing:0.5px;"
-                data-i18n="lbl_qty">SELECT QUANTITY</label>
+            <div class="action-card">
+              <label class="form-label mb-2" data-i18n="lbl_qty">SELECT QUANTITY</label>
 
-              <div class="d-flex gap-2 mb-3">
-                <select id="quick-qty" class="regular-input" style="font-size:16px; height:48px;">
+              <div class="qty-row">
+                <select id="quick-qty" class="form-select border-0 bg-light fw-bold"
+                  style="height: 50px; font-size: 16px;">
                   <option value="" disabled selected>Select...</option>
                 </select>
+                <button onclick="submitQuickOrder()" class="btn btn-update-custom px-4"
+                  style="background-color:#8ab68a; color:white;">
+                  <span data-i18n="btn_update">UPDATE ORDER</span>
+                </button>
               </div>
 
-              <div id="quick-price-box" class="price-card mb-3" style="display:none;">
-                <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
+              <div id="quick-price-box" class="price-details" style="display:none;">
+                <div class="price-line"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
                       class="val-base">0</span></span></div>
-                <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
-                <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
+                <div class="price-line"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span>
+                </div>
+                <div class="total-line"><span>Total Amount</span><span class="total-amount">₹<span
                       class="val-total">0</span></span></div>
               </div>
 
-              <button onclick="submitQuickOrder()" class="btn-black btn-brand-green w-100"
-                style="height:50px; text-transform:uppercase; letter-spacing:0.5px;">
-                <span data-i18n="btn_update">UPDATE ORDER</span>
-              </button>
+              <div class="platinum-badge" id="offer-badge" style="display:none;">
+                <i class="fas fa-crown"></i> <span>Platinum Customer</span>
+              </div>
 
               <div id="status-area" class="mt-3"></div>
             </div>
@@ -595,6 +653,76 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="custom.js"></script>
+
+  <script>
+    // OPTIONAL: Injecting the new Summary Display Logic directly here if you can't access custom.js
+    // This ensures the "Beautiful" layout works even if custom.js has the old function.
+    // If you have access to custom.js, paste the function there instead.
+
+    // We override the updateSummaryDisplay to target the new CSS classes
+    const originalUpdateSummaryDisplay = window.updateSummaryDisplay;
+
+    window.updateSummaryDisplay = function () {
+      // Run original logic if needed (for data gathering) or rewrite here
+      const house = $('#edit-house').val() || '';
+      const place = $('#edit-place').val() || '';
+      const po = $('#edit-postoffice').val() || '';
+      const pin = $('#edit-pincode').val() || '';
+      const dist = $('#edit-district').val() || '';
+      const state = $('#edit-state').val() || 'KERALA';
+
+      const wa = $('#edit-whatsapp').val() || '';
+      const alt = $('#edit-altphone').val();
+      const phone = $('#edit-phone').val() || '';
+
+      const safe = (val) => String(val || '').trim().toUpperCase();
+      let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
+      if (poClean) poClean += ' PO';
+
+      // 1. Update Address HTML (New Clean Design)
+      let addrHtml = `
+            <div class="house-name">${safe(house)}</div>
+            <div class="addr-text">
+                ${safe(place)}${place && poClean ? ',' : ''} ${poClean}
+                <br>
+                <span style="font-weight:600;">${safe(dist)}, ${safe(state)}</span> 
+                <span class="pin-badge">${safe(pin)}</span>
+            </div>
+        `;
+      $('#saved-address-text').html(addrHtml);
+
+      // 2. Update Phone Box (Gray Box Design)
+      let phoneHtml = '';
+      // Primary Phone
+      phoneHtml += `
+            <div class="phone-row">
+                <i class="fas fa-phone-alt text-secondary"></i> 
+                <span style="font-weight:700; color:#111;">${phone}</span>
+                ${alt ? `<span style="color:#ccc">|</span> <span style="color:#555">${alt}</span>` : ''}
+            </div>
+        `;
+      // WhatsApp
+      if (wa) {
+        phoneHtml += `
+            <div class="phone-row">
+                <i class="fab fa-whatsapp" style="color:#25D366; font-size:15px;"></i> 
+                <span style="font-weight:700; color:#25D366;">${wa}</span>
+            </div>
+            `;
+      }
+      $('#saved-phone-text').html('<div class="phone-contact-box">' + phoneHtml + '</div>');
+
+      // Logic to hide Edit Button if status is locked (Paid/Dispatch)
+      if (typeof userData !== 'undefined' && userData.Status) {
+        let s = String(userData.Status).toLowerCase().trim();
+        if (['paid', 'dispatched', 'completed', 'delivered'].includes(s)) {
+          $('#btn-edit-addr').hide();
+        } else {
+          $('#btn-edit-addr').show();
+        }
+      }
+    }
+  </script>
 </body>
 
 </html>
