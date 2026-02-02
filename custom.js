@@ -557,22 +557,36 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 }
 
 window.enableNewOrderMode = function () {
+  // 1. Hide "New Order" button & Status Timeline
   $('#btn-new-order-mode').hide();
-  $('#status-area').hide();
+  $('#status-area').empty(); // ടൈംലൈൻ ക്ലിയർ ചെയ്യുന്നു
+
+  // 2. Show Controls (ലേബൽ, ബട്ടൺ, അഡ്രസ്സ് എഡിറ്റ് എന്നിവ തിരികെ കൊണ്ടുവരുന്നു)
+  $('label[data-i18n="lbl_qty"]').fadeIn();
+  $('.qty-action-row').css('display', 'flex').hide().fadeIn();
   $('#quick-price-box').fadeIn();
-  $('.qty-label').fadeIn();
-  $('#quick-qty').fadeIn();
-  $('#quick-qty').val('').trigger('change').focus();
-  $('#btn-quick-submit').fadeIn();
-  $('#btn-edit-address').fadeIn();
+  $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
 
-  const lang = $('.form-select').val() || 'en';
-  $('#btn-quick-submit span').text(translations[lang].btn_order);
-
+  // 3. Reset State for New Order
   isEditMode = false;
-  editingOrderId = null;
+  editingOrderId = null; // പുതിയ ഓർഡർ ആയതുകൊണ്ട് ID മാറ്റുന്നു
   $('#display-oid').hide();
   $('#display-date').hide();
+
+  // 4. Reset Inputs
+  $('#quick-qty').val('').trigger('change'); // ക്വാണ്ടിറ്റി ക്ലിയർ ചെയ്യുന്നു
+  $('#quick-qty option').prop('disabled', false); // എല്ലാ ഓപ്ഷനും എനേബിൾ ചെയ്യുന്നു
+
+  // 5. Update Button Text to "PLACE ORDER"
+  const lang = $('.form-select').val() || 'en';
+  const btnText = translations[lang].btn_order || "PLACE ORDER";
+  $('.btn-update-sage').text(btnText);
+
+  // 6. Button Logic Fix
+  // പഴയ ക്വാണ്ടിറ്റി ഡാറ്റ ക്ലിയർ ചെയ്യുന്നു (എങ്കിലേ പുതിയത് സെലക്ട് ചെയ്യുമ്പോൾ ബട്ടൺ തെളിയൂ)
+  if (savedOrderData) savedOrderData.quantity = null;
+
+  checkForChanges(); // ബട്ടൺ സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
 }
 
 window.markOrderDelivered = function (oid) {
