@@ -889,141 +889,142 @@
 
           <div id="returning-user-view" class="step-section">
 
-            div class="welcome-section">
-            <div class="welcome-title" data-i18n="welcome_back">Welcome<br>Back!</div>
-            <div class="ord-badge-box">
-              <div id="display-oid" class="ord-badge">#ORD-...</div>
-              <div id="display-date" class="ord-date">...</div>
-            </div>
-          </div>
-
-          <div class="user-card">
-            <div class="uc-header">
-              <div id="saved-name" class="uc-name">NAME</div>
-              <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" class="btn-edit-capsule"
-                data-i18n="btn_edit">EDIT ADDRESS</a>
+            <div class="welcome-section">
+              <div class="welcome-title" data-i18n="welcome_back">Welcome<br>Back!</div>
+              <div class="ord-badge-box">
+                <div id="display-oid" class="ord-badge">#ORD-...</div>
+                <div id="display-date" class="ord-date">...</div>
+              </div>
             </div>
 
-            <div id="saved-address-text"></div>
+            <div class="user-card">
+              <div class="uc-header">
+                <div id="saved-name" class="uc-name">NAME</div>
+                <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" class="btn-edit-capsule"
+                  data-i18n="btn_edit">EDIT ADDRESS</a>
+              </div>
 
-            <div id="saved-phone-text"></div>
+              <div id="saved-address-text"></div>
 
-            <div class="address-box mt-3 pt-3 border-top" id="address-edit-box" style="display:none;">
-              <h6 class="fw-bold small text-muted mb-3">UPDATE ADDRESS</h6>
-              <div class="row g-2">
-                <div class="col-12"><input type="tel" id="edit-phone" class="regular-input" placeholder="Phone"
-                    maxlength="10" oninput="updateSummaryDisplay()"></div>
-                <div class="col-12"><input type="text" id="edit-house" class="regular-input" placeholder="House Name"
-                    oninput="updateSummaryDisplay()"></div>
-                <div class="col-6"><input type="text" id="edit-place" class="regular-input" placeholder="Place"
-                    oninput="updateSummaryDisplay()"></div>
-                <div class="col-6"><input type="tel" id="edit-pincode" class="regular-input" placeholder="Pin"
-                    maxlength="6" oninput="handleEditPincode(this.value)"></div>
-                <div class="col-12" id="edit-po-wrapper" style="display:none;">
-                  <select id="edit-postoffice-select" class="regular-input"
-                    onchange="selectEditPO(this.value)"></select>
+              <div id="saved-phone-text"></div>
+
+              <div class="address-box mt-3 pt-3 border-top" id="address-edit-box" style="display:none;">
+                <h6 class="fw-bold small text-muted mb-3">UPDATE ADDRESS</h6>
+                <div class="row g-2">
+                  <div class="col-12"><input type="tel" id="edit-phone" class="regular-input" placeholder="Phone"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                  <div class="col-12"><input type="text" id="edit-house" class="regular-input" placeholder="House Name"
+                      oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="text" id="edit-place" class="regular-input" placeholder="Place"
+                      oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="tel" id="edit-pincode" class="regular-input" placeholder="Pin"
+                      maxlength="6" oninput="handleEditPincode(this.value)"></div>
+                  <div class="col-12" id="edit-po-wrapper" style="display:none;">
+                    <select id="edit-postoffice-select" class="regular-input"
+                      onchange="selectEditPO(this.value)"></select>
+                  </div>
                 </div>
-              </div>
-              <input type="hidden" id="edit-postoffice"><input type="hidden" id="edit-district"><input type="hidden"
-                id="edit-state">
+                <input type="hidden" id="edit-postoffice"><input type="hidden" id="edit-district"><input type="hidden"
+                  id="edit-state">
 
-              <div class="row g-2 mt-2">
-                <div class="col-6"><input type="tel" id="edit-whatsapp" class="regular-input" placeholder="WhatsApp"
-                    maxlength="10" oninput="updateSummaryDisplay()"></div>
-                <div class="col-6"><input type="tel" id="edit-altphone" class="regular-input" placeholder="Alt Phone"
-                    maxlength="10" oninput="updateSummaryDisplay()"></div>
+                <div class="row g-2 mt-2">
+                  <div class="col-6"><input type="tel" id="edit-whatsapp" class="regular-input" placeholder="WhatsApp"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="tel" id="edit-altphone" class="regular-input" placeholder="Alt Phone"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                </div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold py-3" onclick="toggleAddressEdit()">SAVE
+                  CHANGES</button>
               </div>
-              <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold py-3" onclick="toggleAddressEdit()">SAVE
-                CHANGES</button>
+            </div>
+
+
+            <div class="mt-4">
+              <label class="form-label qty-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
+              <select id="quick-qty" class="regular-input" style="font-size:16px;">
+                <option value="" disabled selected>Select...</option>
+              </select>
+
+              <div id="quick-price-box" class="price-card" style="display:none;">
+                <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
+                      class="val-base">0</span></span></div>
+                <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
+                <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
+                      class="val-total">0</span></span></div>
+              </div>
+
+              <div id="status-area" class="mt-3"></div>
             </div>
           </div>
 
+          <div id="wizard-view" class="step-section">
+            <div class="wiz-step-label">ORDER PROGRESS</div>
 
-          <div class="mt-4">
-            <label class="form-label qty-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-            <select id="quick-qty" class="regular-input" style="font-size:16px;">
-              <option value="" disabled selected>Select...</option>
-            </select>
-
-            <div id="quick-price-box" class="price-card" style="display:none;">
-              <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
-                    class="val-base">0</span></span></div>
-              <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
-              <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
-                    class="val-total">0</span></span></div>
+            <div class="progress-container">
+              <div id="wiz-progress"></div>
             </div>
 
-            <div id="status-area" class="mt-3"></div>
+            <div class="wiz-step" data-step="1"><label class="form-label" data-i18n="lbl_name">നിങ്ങളുടെ
+                പേര്</label><input type="text" id="name" class="huge-input" placeholder="Name" autofocus></div>
+            <div class="wiz-step" data-step="2" style="display:none;"><label class="form-label"
+                data-i18n="lbl_whatsapp">വാട്സാപ്പ് നമ്പർ</label><input type="tel" id="whatsapp" class="huge-input"
+                placeholder="WhatsApp" maxlength="10"></div>
+            <div class="wiz-step" data-step="3" style="display:none;"><label class="form-label"
+                data-i18n="lbl_pincode">പിൻകോഡ്</label><input type="tel" id="pincode" class="huge-input" maxlength="6"
+                placeholder="000000"></div>
+            <div class="wiz-step" data-step="3.5" style="display:none;"><label class="form-label"
+                data-i18n="lbl_select_po">പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക</label><select id="po-select"
+                class="huge-input">
+                <option value="">Select...</option>
+              </select></div>
+            <div class="wiz-step" data-step="4" style="display:none;"><label class="form-label"
+                data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label><input type="text" id="house" class="huge-input"
+                placeholder="House Name"></div>
+            <div class="wiz-step" data-step="5" style="display:none;">
+              <label class="form-label" data-i18n="lbl_place">സ്ഥലം</label>
+              <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list">
+              <datalist id="place-list"></datalist>
+
+            </div>
+            <div class="wiz-step" data-step="6" style="display:none;"><label class="form-label"
+                data-i18n="lbl_altphone">മറ്റൊരു നമ്പർ (Optional)</label><input type="tel" id="altphone"
+                class="huge-input" placeholder="Alternate Phone" maxlength="10"></div>
+            <div class="wiz-step" data-step="7" style="display:none;">
+              <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
+              <select id="quantity" class="huge-input">
+                <option value="" disabled selected>Select...</option>
+              </select>
+              <div id="wiz-price-box" class="price-card" style="display:none;">
+                <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
+                      class="val-base">0</span></span></div>
+                <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
+                <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
+                      class="val-total">0</span></span></div>
+              </div>
+              <div id="wiz-deliver-box" class="mt-3 p-3 bg-white border rounded"
+                style="display:none; border-left:4px solid black !important;">
+                <!-- <div class="small fw-bold text-muted mb-1">DELIVER TO:</div> -->
+                <div id="wiz-final-addr" style="font-size:13px; line-height:1.4;"></div>
+              </div>
+            </div>
           </div>
-      </div>
 
-      <div id="wizard-view" class="step-section">
-        <div class="wiz-step-label">ORDER PROGRESS</div>
-
-        <div class="progress-container">
-          <div id="wiz-progress"></div>
-        </div>
-
-        <div class="wiz-step" data-step="1"><label class="form-label" data-i18n="lbl_name">നിങ്ങളുടെ
-            പേര്</label><input type="text" id="name" class="huge-input" placeholder="Name" autofocus></div>
-        <div class="wiz-step" data-step="2" style="display:none;"><label class="form-label"
-            data-i18n="lbl_whatsapp">വാട്സാപ്പ് നമ്പർ</label><input type="tel" id="whatsapp" class="huge-input"
-            placeholder="WhatsApp" maxlength="10"></div>
-        <div class="wiz-step" data-step="3" style="display:none;"><label class="form-label"
-            data-i18n="lbl_pincode">പിൻകോഡ്</label><input type="tel" id="pincode" class="huge-input" maxlength="6"
-            placeholder="000000"></div>
-        <div class="wiz-step" data-step="3.5" style="display:none;"><label class="form-label"
-            data-i18n="lbl_select_po">പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക</label><select id="po-select" class="huge-input">
-            <option value="">Select...</option>
-          </select></div>
-        <div class="wiz-step" data-step="4" style="display:none;"><label class="form-label"
-            data-i18n="lbl_house">വീട്ടുപേര് / നമ്പർ</label><input type="text" id="house" class="huge-input"
-            placeholder="House Name"></div>
-        <div class="wiz-step" data-step="5" style="display:none;">
-          <label class="form-label" data-i18n="lbl_place">സ്ഥലം</label>
-          <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list">
-          <datalist id="place-list"></datalist>
-
-        </div>
-        <div class="wiz-step" data-step="6" style="display:none;"><label class="form-label"
-            data-i18n="lbl_altphone">മറ്റൊരു നമ്പർ (Optional)</label><input type="tel" id="altphone" class="huge-input"
-            placeholder="Alternate Phone" maxlength="10"></div>
-        <div class="wiz-step" data-step="7" style="display:none;">
-          <label class="form-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-          <select id="quantity" class="huge-input">
-            <option value="" disabled selected>Select...</option>
-          </select>
-          <div id="wiz-price-box" class="price-card" style="display:none;">
-            <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
-                  class="val-base">0</span></span></div>
-            <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
-            <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
-                  class="val-total">0</span></span></div>
-          </div>
-          <div id="wiz-deliver-box" class="mt-3 p-3 bg-white border rounded"
-            style="display:none; border-left:4px solid black !important;">
-            <!-- <div class="small fw-bold text-muted mb-1">DELIVER TO:</div> -->
-            <div id="wiz-final-addr" style="font-size:13px; line-height:1.4;"></div>
-          </div>
-        </div>
-      </div>
-
-      </form>
-    </div>
-  </div>
-
-  <div class="footer-action">
-    <div class="container p-0" style="max-width: 500px;">
-      <div id="btn-group-0" style="display:none;"><button type="button" class="btn-black"
-          onclick="handlePhoneNext()"><span data-i18n="btn_next">തുടരുക</span></button></div>
-      <div id="btn-group-wizard" style="display:none;"><button type="button" class="btn-back" onclick="prevStep()"><i
-            class="fas fa-chevron-left"></i></button><button type="button" class="btn-black flex-grow-1 ms-3"
-          onclick="nextStep()" id="btn-wiz-next"><span data-i18n="btn_next">തുടരുക</span></button></div>
-      <div id="btn-group-returning" style="display:none;"><button type="button" class="btn-black btn-brand-green"
-          onclick="submitQuickOrder()" id="btn-quick-submit"><span data-i18n="btn_update">ഓർഡർ ചെയ്യാം</span></button>
+        </form>
       </div>
     </div>
-  </div>
+
+    <div class="footer-action">
+      <div class="container p-0" style="max-width: 500px;">
+        <div id="btn-group-0" style="display:none;"><button type="button" class="btn-black"
+            onclick="handlePhoneNext()"><span data-i18n="btn_next">തുടരുക</span></button></div>
+        <div id="btn-group-wizard" style="display:none;"><button type="button" class="btn-back" onclick="prevStep()"><i
+              class="fas fa-chevron-left"></i></button><button type="button" class="btn-black flex-grow-1 ms-3"
+            onclick="nextStep()" id="btn-wiz-next"><span data-i18n="btn_next">തുടരുക</span></button></div>
+        <div id="btn-group-returning" style="display:none;"><button type="button" class="btn-black btn-brand-green"
+            onclick="submitQuickOrder()" id="btn-quick-submit"><span data-i18n="btn_update">ഓർഡർ ചെയ്യാം</span></button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

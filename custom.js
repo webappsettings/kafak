@@ -670,45 +670,55 @@ function updateSummaryDisplay() {
   let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
   if (poClean) poClean += ' PO';
 
-  // 3. Address HTML
+  // 3. Address HTML (New Clean Design)
   let addrHtml = `
-      <div style="font-weight:700; font-size:14px; color:#111; text-transform:uppercase; margin-bottom:4px; line-height:1.3;">
-          ${safe(house)}
+      <div class="uc-house">${safe(house)}</div>
+      <div class="uc-details">
+          ${safe(place)}${place && poClean ? ',' : ''} ${poClean}
+          <br>
+          <span style="font-weight:600;">${safe(dist)}, ${safe(state)}</span> 
+          <span class="pin-tag">${safe(pin)}</span>
       </div>
-      <div style="font-size:13px; color:#444; margin-bottom:4px; text-transform:capitalize;">
-          ${safe(place)}${place && poClean ? ',' : ''} <span style="text-transform:uppercase;">${poClean}</span>
-      </div>
-      <div style="font-size:12px; font-weight:600; color:#666; text-transform:uppercase;">
-          ${safe(dist)}, ${safe(state)} <span style="color:#000; font-weight:700; background:#eee; padding:1px 5px; border-radius:4px; margin-left:5px;">${safe(pin)}</span>
+  `;
+  $('#saved-address-text').html(addrHtml);
+  $('#saved-place-dist').hide(); // Hide old element if exists
+
+  // 4. Phone Box Logic (Grey Box)
+  let phoneHtml = '';
+
+  // Row 1: Main Phone & Alt Phone
+  phoneHtml += `
+      <div class="pb-row">
+           <i class="fas fa-phone-alt text-secondary"></i> 
+           <span style="color:#222; font-weight:700;">${phone}</span>
+           ${alt ? `<span style="color:#ccc">|</span> <span>${alt}</span>` : ''}
       </div>
   `;
 
-  $('#saved-address-text').html(addrHtml);
-  $('#saved-place-dist').hide();
-
-  // 4. Phone Layout (Clean Single Line)
-  let phoneHtml = '';
-  if (alt && String(alt).trim() !== "") {
-    phoneHtml = `
-        <div style="display:flex; align-items:center; gap:10px; font-size:12px; padding-top:5px;">
-             <span style="font-weight:700; color:#333;"><i class="fas fa-phone-alt text-muted"></i> ${phone}</span>
-             <span style="color:#ccc;">|</span> 
-             <span style="color:#555;">${alt}</span>
-        </div>`;
-  } else {
-    phoneHtml = `
-        <div style="display:flex; align-items:center; gap:10px; font-size:12px; padding-top:5px;">
-            <span style="font-weight:700; color:#333;"><i class="fas fa-phone-alt text-muted"></i> ${phone}</span>
-            <span style="color:#ccc;">|</span> 
-            <span style="font-weight:700; color:#25D366;"><i class="fab fa-whatsapp"></i> ${wa}</span>
-        </div>`;
+  // Row 2: WhatsApp (if exists)
+  if (wa) {
+    phoneHtml += `
+      <div class="pb-row">
+           <i class="fab fa-whatsapp" style="color:#25D366; font-size:15px;"></i> 
+           <span style="color:#25D366; font-weight:700;">${wa}</span>
+      </div>`;
   }
 
-  $('#saved-phone-text').html(phoneHtml);
+  // Wrap in Grey Box
+  $('#saved-phone-text').html(`<div class="phone-box-grey">${phoneHtml}</div>`);
   $('#saved-wa-text, #saved-alt-text').hide();
 
-  // 5. 🔥 FORCE HIDE EDIT BUTTON (Robust Check)
-  checkAndHideEditButton();
+  // 5. Hide Edit Button if Paid/Dispatched (Safety Check)
+  if (typeof userData !== 'undefined' && userData.Status) {
+    let s = String(userData.Status).toLowerCase().trim();
+    if (['paid', 'dispatched', 'completed', 'delivered'].includes(s)) {
+      $('#btn-edit-addr').hide();
+    } else {
+      $('#btn-edit-addr').show();
+    }
+  }
+
+  checkForChanges();
 }
 
 // 🔥 പുതിയ ഫംഗ്‌ഷൻ: സ്റ്റാറ്റസ് കൃത്യമായി ചെക്ക് ചെയ്യാൻ
