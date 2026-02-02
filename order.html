@@ -710,6 +710,127 @@
       color: white;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     }
+
+    /* --- 1. HEADER STYLES --- */
+
+    /* Order ID Badge (Green Pill) */
+    .badge-oid-green {
+      background-color: #dcfce7;
+      /* Light Green */
+      color: #15803d;
+      /* Dark Green Text */
+      font-family: monospace;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: inline-block;
+    }
+
+    /* Date Text below Order ID */
+    .header-date {
+      font-size: 10px;
+      color: #9ca3af;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* --- 2. INFO CARD STYLES --- */
+
+    /* Main White Card Box */
+    .info-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      border: 1px solid #fff;
+      margin-bottom: 20px;
+    }
+
+    /* User Name Title */
+    .user-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    /* Edit Address Button (Capsule Style) */
+    #btn-edit-addr {
+      background: #ecfdf5;
+      /* Very Light Green */
+      color: #15803d;
+      /* Dark Green Text */
+      font-size: 10px;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 30px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      display: inline-block;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    #btn-edit-addr:hover {
+      background: #dcfce7;
+      transform: translateY(-1px);
+    }
+
+    /* Address Text Styles */
+    .house-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #374151;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .addr-text {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .pin-badge {
+      background: #f3f4f6;
+      color: #1f2937;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    /* Phone Contact Box (Grey Box) */
+    .phone-contact-box {
+      background-color: #f9fafb;
+      /* Light Gray */
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .phone-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #4b5563;
+      font-weight: 600;
+    }
+
+    .phone-row i {
+      width: 16px;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -757,50 +878,59 @@
 
           <div id="returning-user-view" class="step-section">
 
-            <div class="header-meta">
-              <div class="welcome-text" data-i18n="welcome_back">സ്വാഗതം!</div>
 
-              <div class="meta-right">
-                <div id="display-oid" class="oid-pill badge-order-id"></div>
 
-                <div id="display-date" class="date-text"></div>
+            <div class="d-flex justify-content-between align-items-start mb-4 px-1 mt-2">
+              <div style="line-height: 1.1;">
+                <h1 class="fw-bold m-0" style="color:#000; font-size: 32px; letter-spacing: -1px;"
+                  data-i18n="welcome_back">സ്വാഗതം!</h1>
+              </div>
+              <div class="text-end">
+                <div id="display-oid" class="badge-oid-green">#ORD-...</div>
+                <div id="display-date" class="header-date">...</div>
               </div>
             </div>
 
-            <div class="summary-card">
-              <div class="d-flex justify-content-between align-items-start">
-                <div class="user-name-title" id="saved-name"></div>
-                <div class="edit-link" id="btn-edit-address" onclick="toggleAddressEdit()" data-i18n="btn_edit">മാറ്റാം
-                  <i class="fas fa-pen"></i>
-                </div>
+            <div class="info-card">
+
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div id="saved-name" class="user-name">NAME</div>
+                <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" data-i18n="btn_edit">വിലാസം മാറ്റാം</a>
               </div>
 
-              <div class="address-text" id="saved-address-text"></div>
+              <div id="saved-address-text">
+              </div>
 
-              <div class="phone-row" id="saved-phone-text"></div>
+              <div id="saved-phone-text">
+              </div>
 
-              <div class="address-box" id="address-edit-box">
-                <label class="form-label" data-i18n="lbl_phone">Phone</label>
-                <input type="tel" id="edit-phone" class="regular-input mb-2" maxlength="10"
-                  oninput="updateSummaryDisplay()">
-                <label class="form-label" data-i18n="lbl_house">House</label>
-                <input type="text" id="edit-house" class="regular-input mb-2" oninput="updateSummaryDisplay()">
+              <div class="address-box mt-3 pt-3 border-top" id="address-edit-box" style="display:none;">
+                <h6 class="fw-bold small text-muted mb-3">UPDATE ADDRESS</h6>
                 <div class="row g-2">
-                  <div class="col-6"><label class="form-label" data-i18n="lbl_place">Place</label><input type="text"
-                      id="edit-place" class="regular-input mb-2" oninput="updateSummaryDisplay()"></div>
-                  <div class="col-6"><label class="form-label" data-i18n="lbl_pincode">Pin</label><input type="tel"
-                      id="edit-pincode" class="regular-input mb-2" maxlength="6"
-                      oninput="handleEditPincode(this.value)"></div>
-                </div>
-                <div id="edit-po-wrapper" style="display:none;"><label class="form-label">Post Office</label><select
-                    id="edit-postoffice-select" class="regular-input mb-2" onchange="selectEditPO(this.value)"></select>
+                  <div class="col-12"><input type="tel" id="edit-phone" class="regular-input" placeholder="Phone"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                  <div class="col-12"><input type="text" id="edit-house" class="regular-input" placeholder="House Name"
+                      oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="text" id="edit-place" class="regular-input" placeholder="Place"
+                      oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="tel" id="edit-pincode" class="regular-input" placeholder="Pin"
+                      maxlength="6" oninput="handleEditPincode(this.value)"></div>
+                  <div class="col-12" id="edit-po-wrapper" style="display:none;">
+                    <select id="edit-postoffice-select" class="regular-input"
+                      onchange="selectEditPO(this.value)"></select>
+                  </div>
                 </div>
                 <input type="hidden" id="edit-postoffice"><input type="hidden" id="edit-district"><input type="hidden"
                   id="edit-state">
-                <label class="form-label" data-i18n="lbl_whatsapp">WhatsApp</label><input type="tel" id="edit-whatsapp"
-                  class="regular-input mb-2" maxlength="10" oninput="updateSummaryDisplay()">
-                <label class="form-label" data-i18n="lbl_altphone">Alt Phone</label><input type="tel" id="edit-altphone"
-                  class="regular-input mb-2" maxlength="10" oninput="updateSummaryDisplay()">
+
+                <div class="row g-2 mt-2">
+                  <div class="col-6"><input type="tel" id="edit-whatsapp" class="regular-input" placeholder="WhatsApp"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                  <div class="col-6"><input type="tel" id="edit-altphone" class="regular-input" placeholder="Alt Phone"
+                      maxlength="10" oninput="updateSummaryDisplay()"></div>
+                </div>
+                <button class="btn btn-dark w-100 mt-3 rounded-3 fw-bold py-3" onclick="toggleAddressEdit()">SAVE
+                  CHANGES</button>
               </div>
             </div>
 
