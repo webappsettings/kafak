@@ -670,67 +670,66 @@ function updateSummaryDisplay() {
   let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
   if (poClean) poClean += ' PO';
 
-  // 3. Address HTML
+  // 3. Address HTML (House Name Size Reduced)
   let addrHtml = `
-      <div style="font-weight:800; font-size:16px; color:#111; text-transform:uppercase; margin-bottom:4px; line-height:1.2;">
+      <div style="font-weight:700; font-size:13px; color:#111; text-transform:uppercase; margin-bottom:3px; line-height:1.4;">
           ${safe(house)}
       </div>
+      
       <div style="font-size:13px; color:#444; margin-bottom:3px; text-transform:capitalize;">
           ${safe(place)}${place && poClean ? ',' : ''} <span style="text-transform:uppercase;">${poClean}</span>
       </div>
+      
       <div style="font-size:12px; font-weight:600; color:#666; text-transform:uppercase; letter-spacing:0.3px;">
-          ${safe(dist)}, ${safe(state)} - <b style="color:#000; font-size:13px;">${safe(pin)}</b>
+          ${safe(dist)}, ${safe(state)} <span style="color:#000; font-weight:700; background:#f5f5f5; padding:2px 6px; border-radius:4px; margin-left:4px;">${safe(pin)}</span>
       </div>
   `;
 
-  $('#saved-address-text').html(addrHtml).css({ 'margin-bottom': '8px' });
+  $('#saved-address-text').html(addrHtml).css({ 'margin-bottom': '10px' });
   $('#saved-place-dist').hide();
 
-  // 4. 🔥 PHONE LAYOUT FIX (Clean & Non-overlapping)
+  // 4. Phone Layout (Clean)
   let phoneHtml = '';
-
-  // Case A: Alt Phone ഉണ്ട് (Two Lines)
   if (alt && String(alt).trim() !== "") {
     phoneHtml = `
-        <div style="background:#f9f9f9; padding:8px; border-radius:8px; border:1px solid #eee;">
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
-                 <i class="fas fa-phone-alt text-secondary" style="font-size:11px;"></i> 
+        <div style="background:#fcfcfc; padding:8px 12px; border-radius:8px; border:1px solid #f0f0f0;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; font-size:12px;">
+                 <i class="fas fa-phone-alt text-secondary"></i> 
                  <span style="font-weight:700; color:#333;">${phone}</span>
-                 <span style="font-size:11px; color:#777;">| ${alt}</span>
+                 <span style="color:#999;">|</span> 
+                 <span style="color:#555;">${alt}</span>
             </div>
-            <div style="display:flex; align-items:center; gap:8px;">
-                 <i class="fab fa-whatsapp" style="color:#25D366; font-size:13px;"></i> 
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+                 <i class="fab fa-whatsapp" style="color:#25D366;"></i> 
                  <span style="font-weight:700; color:#25D366;">${wa}</span>
             </div>
         </div>`;
-  }
-  // Case B: Single Line (Clean Flexbox)
-  else {
+  } else {
     phoneHtml = `
-        <div style="background:#f9f9f9; padding:10px; border-radius:8px; border:1px solid #eee; display:flex; align-items:center; gap:15px; flex-wrap:wrap;">
+        <div style="background:#fcfcfc; padding:10px 12px; border-radius:8px; border:1px solid #f0f0f0; display:flex; align-items:center; gap:15px; flex-wrap:wrap; font-size:12px;">
             <div style="display:flex; align-items:center; gap:6px;">
-                <i class="fas fa-phone-alt text-secondary" style="font-size:11px;"></i> 
+                <i class="fas fa-phone-alt text-secondary"></i> 
                 <span style="font-weight:700; color:#333;">${phone}</span>
             </div>
-            <div style="width:1px; height:12px; background:#ccc;"></div>
+            <div style="width:1px; height:12px; background:#e0e0e0;"></div>
             <div style="display:flex; align-items:center; gap:6px;">
-                <i class="fab fa-whatsapp" style="color:#25D366; font-size:13px;"></i> 
+                <i class="fab fa-whatsapp" style="color:#25D366;"></i> 
                 <span style="font-weight:700; color:#25D366;">${wa}</span>
             </div>
         </div>`;
   }
 
-  $('#saved-phone-text').html(phoneHtml).css('margin-top', '10px');
+  $('#saved-phone-text').html(phoneHtml).css('margin-top', '12px');
   $('#saved-wa-text, #saved-alt-text').hide();
 
-  // 5. 🔒 HIDE EDIT BUTTON IF PAID OR DISPATCHED
-  // (Assuming 'userData' holds the order status from server)
+  // 5. 🔥 HIDE EDIT BUTTON IF PAID / DISPATCHED
+  // (Checks userData.Status from server)
   if (typeof userData !== 'undefined' && userData.Status) {
-    let s = userData.Status.toLowerCase();
-    if (s === 'paid' || s === 'dispatched' || s === 'completed') {
-      $('#btn-edit-addr').hide(); // Hide Edit Button
+    let s = String(userData.Status).toLowerCase().trim();
+    if (s === 'paid' || s === 'dispatched' || s === 'completed' || s === 'delivered') {
+      $('#btn-edit-addr').hide(); // Hide button
     } else {
-      $('#btn-edit-addr').show(); // Show otherwise
+      $('#btn-edit-addr').css('display', 'inline-block'); // Show button (using flex/inline-block)
     }
   }
 
