@@ -610,20 +610,16 @@ function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
 
-    // --- 💰 PRICE LOGIC (SERVER SYNCED) ---
-    // 1. Base Price (Always 650 per bottle)
+    // --- 💰 PRICE LOGIC ---
     const base = n * 650;
 
-    // 2. Grand Total (Taken directly from Server/Sheet Data)
-    // d.grandTotal ഇല്ലെങ്കിൽ മാത്രം (പഴയ ഡാറ്റ) നമ്മൾ പഴയ രീതിയിൽ കണക്കുകൂട്ടും
+    // Server Data Check
     let total = parseInt(d.grandTotal);
     let courier = 0;
 
     if (total > 0) {
-        // Server Data Available
         courier = total - base;
     } else {
-        // Fallback (If server data is missing for old orders)
         const s = String(d.state || '').toLowerCase().trim();
         if (s === 'lakshadweep') courier = (n * 100) + 20;
         else if (s === 'kerala') courier = courierRates.kerala[n] || 0;
@@ -634,6 +630,10 @@ function sendWA(index) {
     // --- 🔗 Link & Helpers ---
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
     const safe = (val) => String(val || '').trim().toUpperCase();
+
+    // --- 💸 UPI PAYMENT LINK (KAFAK OFFICIAL) ---
+    // pa = UPI ID, pn = Payee Name, am = Amount
+    const upiLink = `upi://pay?pa=kafak313@fbl&pn=KAFAK LLP&am=${total}&cu=INR`;
 
     // --- ✨ BEAUTIFUL MESSAGE FORMAT ---
     let msg = `*✅ ORDER CONFIRMED!* 🍯\n`;
@@ -652,13 +652,17 @@ function sendWA(index) {
     msg += `▪️ Bill: ₹${base} + ₹${courier} (Del)\n`;
     msg += `▪️ *Total: ₹${total}/-*\n\n`;
 
-    // 💳 Payment Section
-    msg += `💳 *Payment Options:*\n`;
-    msg += `GPay / PhonePe: *7788990313* (KAFAK LLP)\n\n`;
+    // 💳 Payment Section (Clickable Link)
+    msg += `💳 *Tap to Pay (GPay / PhonePe):* 👇\n`;
+    msg += `(താഴെയുള്ള ലിങ്കിൽ ക്ലിക്ക് ചെയ്ത് പണമടയ്ക്കാം)\n`;
+    msg += `${upiLink}\n\n`;
 
-    // 🚚 Status Check Message (Updated)
+    // Manual GPay Option
+    msg += `_Or GPay Number: 9895082689 (Abdul Samad)_\n`;
+    msg += `_(UPI: eiabdulsamad@oksbi)_\n\n`;
+
+    // 🚚 Status Check Message
     msg += `🔍 *To Check Order Status & Tracking:* 👇\n`;
-    msg += `(നിങ്ങളുടെ ഓർഡർ സ്റ്റാറ്റസ് അറിയാൻ താഴെ ക്ലിക്ക് ചെയ്യുക)\n`;
     msg += `${editLink}`;
 
     // --- 🚀 Sending Logic ---
@@ -667,7 +671,7 @@ function sendWA(index) {
 
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
 
-    // --- 🔄 Auto-Update Status to 'Sent' ---
+    // --- 🔄 Auto-Update Status ---
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
