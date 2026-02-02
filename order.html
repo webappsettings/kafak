@@ -15,6 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
+    /* --- CORE VARIABLES & RESET --- */
     :root {
       --primary: #000;
       --secondary: #fff;
@@ -29,7 +30,8 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background: var(--secondary);
+      /* Main Background Color set to Light Gray as per new design */
+      background-color: #f0f2f5 !important;
       font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
       color: var(--primary);
     }
@@ -45,7 +47,7 @@
       flex: 0 0 auto;
       background: rgba(255, 255, 255, 0.98);
       padding: 15px 0;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #e5e7eb;
       z-index: 10;
     }
 
@@ -63,7 +65,7 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* --- OLD STYLE INPUTS (For Wizard - Create View) --- */
+    /* --- INPUT STYLES --- */
     .huge-input {
       border: none;
       border-bottom: 2px solid #ddd;
@@ -82,7 +84,6 @@
       border-color: var(--brand-green);
     }
 
-    /* Wizard Select Fix */
     select.huge-input {
       border: 1px solid #ddd !important;
       border-radius: 8px !important;
@@ -90,15 +91,15 @@
       margin-top: 5px;
     }
 
-    /* --- NEW STYLE INPUTS (For Edit View) --- */
     .regular-input {
       border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 9px;
+      border-radius: 12px;
+      padding: 12px;
       width: 100%;
       font-weight: 600;
       outline: none;
       background: #fff;
+      font-size: 14px;
     }
 
     .regular-input:focus {
@@ -133,10 +134,6 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-brand-green {
-      background: var(--brand-green) !important;
-    }
-
     .btn-back {
       width: 54px;
       height: 54px;
@@ -149,68 +146,177 @@
       justify-content: center;
     }
 
-    /* EDIT CARD (PROFESSIONAL STYLE) */
-    .summary-card {
-      background: #fff;
-      border-radius: 18px;
+    /* --- NEW EDIT VIEW DESIGN (SCREENSHOT MATCH) --- */
+
+    /* 1. Main Background Container */
+    #returning-user-view {
+      background-color: #f3f4f6 !important;
+      /* Light Gray Background */
       padding: 20px;
-      border: 1px solid #f0f0f0;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
-      position: relative;
+      border-radius: 24px;
+      margin-top: 10px;
+      /* Remove default card styles to allow separate white cards */
+      box-shadow: none !important;
+      border: none !important;
     }
 
-    .user-name-title {
-      font-size: 20px;
+    /* 2. White Cards */
+    .white-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      border: 1px solid #fff;
+    }
+
+    /* 3. Header Typography */
+    .welcome-header {
+      font-size: 28px;
       font-weight: 800;
-      color: #000;
-      margin-bottom: 5px;
+      color: #111;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin: 0;
     }
 
-    .address-text {
-      font-size: 13px;
-      color: #555;
+    /* 4. Green Order ID Badge */
+    .badge-oid-green {
+      background-color: #dcfce7;
+      /* Light Green */
+      color: #15803d;
+      /* Dark Green Text */
+      font-family: monospace;
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* 5. Name Tag (Black Pill Style) */
+    .user-name-tag {
+      background: #000;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 800;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* 6. Edit Button (Capsule) */
+    .btn-edit-capsule {
+      background: #ecfdf5;
+      color: #15803d;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-edit-capsule:hover {
+      background: #dcfce7;
+      transform: translateY(-1px);
+    }
+
+    /* 7. Address Styling */
+    .addr-block {
+      margin-top: 15px;
+      color: #4b5563;
+      font-size: 14px;
       line-height: 1.5;
       font-weight: 500;
-      margin-bottom: 10px;
     }
 
-    .phone-row {
-      font-size: 12px;
-      font-weight: 600;
-      color: #333;
-      background: #f5f5f5;
-      padding: 8px 12px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .edit-link {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--brand-green);
+    .addr-house {
+      font-weight: 800;
+      color: #374151;
       text-transform: uppercase;
-      cursor: pointer;
-      background: #e8f5e9;
-      padding: 5px 10px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .pin-box {
+      background: #e5e7eb;
+      color: #1f2937;
+      padding: 2px 8px;
       border-radius: 6px;
+      font-weight: 800;
+      font-size: 12px;
+      margin-left: 5px;
     }
 
-    .address-box {
-      display: none;
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px dashed #eee;
-    }
-
-    /* PRICE CARD */
-    .price-card {
-      background: #f8f8f8;
-      border: 1px dashed #ccc;
+    /* 8. Phone Box (Grey) */
+    .phone-grey-box {
+      background-color: #f9fafb;
+      /* Very Light Grey */
       border-radius: 12px;
       padding: 15px;
       margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ph-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    /* 9. Action Area (Quantity & Button) */
+    .qty-action-row {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    #quick-qty {
+      flex: 1;
+      /* Takes available space */
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      font-weight: 700;
+      padding: 0 15px;
+      height: 54px;
+      background: #fff;
+    }
+
+    .btn-update-sage {
+      background-color: #8ab68a !important;
+      /* Muted Green from Screenshot */
+      color: white;
+      font-weight: 800;
+      border: none;
+      border-radius: 12px;
+      padding: 0 25px;
+      font-size: 14px;
+      height: 54px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 6px rgba(138, 182, 138, 0.2);
+    }
+
+    /* Price Card (New) */
+    .price-card {
+      background: #f9fafb;
+      border: 1px dashed #e5e7eb;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
     }
 
     .price-row {
@@ -232,55 +338,48 @@
       border-top: 1px dashed #ddd;
     }
 
-    /* HEADER META (Right Side Date) */
-    /* HEADER META STYLES */
-    .header-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      /* Aligns text neatly */
-      margin-bottom: 20px;
-      padding: 0 2px;
+    /* 10. Hide Footer in Edit View */
+    #returning-user-view~.footer-action {
+      display: none !important;
     }
 
-    .welcome-text {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: #000;
-      line-height: 1;
+    /* --- OLD WIZARD STYLES (Preserved) --- */
+    #wizard-view {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #eee;
+      margin-top: 20px;
     }
 
-    .meta-right {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      /* Forces right alignment */
-    }
-
-    .oid-pill {
-      font-family: monospace;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--brand-green);
-      background: #e8f5e9;
-      padding: 4px 8px;
-      border-radius: 6px;
-      border: 1px solid #c8e6c9;
-      margin-bottom: 4px;
-      /* Gap between ID and Date */
-    }
-
-    .date-text {
+    .wiz-step-label {
+      text-align: center;
       font-size: 10px;
-      color: #888;
-      font-weight: 600;
+      font-weight: 800;
+      color: #9ca3af;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
 
-    /* --- NEW LOADER STYLE --- */
+    .progress-container {
+      background-color: #e9ecef;
+      height: 8px;
+      border-radius: 20px;
+      margin: 25px 0 30px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #wiz-progress {
+      background: linear-gradient(90deg, #4ade80, #16a34a);
+      height: 100%;
+      width: 0%;
+      border-radius: 20px;
+      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* LOADER */
     #full-loader {
       position: fixed;
       top: 0;
@@ -295,30 +394,13 @@
       justify-content: center;
     }
 
-    .loader-wrapper {
-      position: relative;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     .modern-spinner {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+      width: 50px;
+      height: 50px;
       border: 4px solid #f0f0f0;
       border-top-color: var(--brand-green);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-    }
-
-    .count-text {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--brand-green);
-      font-family: 'Manrope', sans-serif;
     }
 
     @keyframes spin {
@@ -344,24 +426,6 @@
       }
     }
 
-    /* SWEETALERT */
-    .ios-popup {
-      border-radius: 20px !important;
-      font-family: 'Manrope', sans-serif !important;
-    }
-
-    .ios-btn {
-      border-radius: 10px !important;
-      background: black !important;
-      color: white !important;
-    }
-
-    .ios-btn-cancel {
-      border-radius: 10px !important;
-      background: #eee !important;
-      color: #333 !important;
-    }
-
     /* FOOTER */
     .footer-action {
       flex: 0 0 auto;
@@ -371,7 +435,7 @@
       z-index: 20;
     }
 
-    /* --- TIMELINE TRACKING STYLE --- */
+    /* --- TIMELINE STYLES --- */
     .tracking-wrapper {
       background: #fff;
       border-radius: 12px;
@@ -398,7 +462,6 @@
       padding-bottom: 0;
     }
 
-    /* Vertical Line */
     .track-tl-item::before {
       content: '';
       position: absolute;
@@ -413,7 +476,6 @@
       display: none;
     }
 
-    /* The Dot */
     .track-tl-dot {
       position: absolute;
       left: -6px;
@@ -427,7 +489,6 @@
       z-index: 1;
     }
 
-    /* Active State (Green) */
     .track-tl-item.active .track-tl-dot {
       background: #2e7d32;
       box-shadow: 0 0 0 2px #dcfce7;
@@ -435,7 +496,6 @@
 
     .track-tl-item.active::before {
       background: #2e7d32;
-      /* Green Line for finished steps */
     }
 
     .track-title {
@@ -457,391 +517,17 @@
       float: right;
       font-weight: 600;
     }
-
-    /* --- BEAUTIFUL BACKGROUND UPDATE --- */
-    body {
-      background-color: #f0f2f5 !important;
-      /* Modern Light Gray */
-    }
-
-    /* Main Content Card Style */
-    #returning-user-view,
-    .login-card {
-      background: #ffffff;
-      padding: 25px 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      /* Soft Shadow for depth */
-      margin-top: 20px;
-      margin-bottom: 30px;
-      border: 1px solid #fff;
-    }
-
-    /* Mobile Adjustment */
-    @media (max-width: 576px) {
-      body {
-        background-color: #f8f9fa !important;
-        /* Lighter gray for mobile */
-      }
-
-      #returning-user-view,
-      #wizard-view {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        margin-top: 10px;
-        padding: 20px 15px;
-      }
-    }
-
-    /* --- WIZARD SUMMARY CARD STYLE --- */
-    .wiz-addr-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 20px 20px 20px 25px;
-      /* Left padding extra for border */
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-      border: 1px solid #fff;
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
-
-    /* Theme Color Touch (Left Bar) */
-    .wiz-addr-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 6px;
-      background: linear-gradient(to bottom, var(--brand-green), #4ade80);
-    }
-
-    .wiz-label-sm {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .wiz-name-lg {
-      font-size: 18px;
-      font-weight: 800;
-      color: #111;
-      margin-bottom: 6px;
-      text-transform: capitalize;
-    }
-
-    .wiz-addr-txt {
-      font-size: 13px;
-      color: #4b5563;
-      line-height: 1.5;
-      font-weight: 500;
-    }
-
-    .wiz-pin-badge {
-      display: inline-block;
-      background: #f3f4f6;
-      color: #1f2937;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 11px;
-      margin-left: 5px;
-    }
-
-    .wiz-contact-row {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed #e5e7eb;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .wiz-ph-item {
-      font-size: 12px;
-      font-weight: 600;
-      color: #374151;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* --- WIZARD PROGRESS BEAUTIFICATION --- */
-
-    /* 1. The Container (Track) */
-    .progress-container {
-      background-color: #f1f3f5;
-      /* Light Gray Background */
-      height: 8px;
-      /* Slim and Sleek */
-      border-radius: 20px;
-      /* Fully Rounded */
-      margin: 25px 0 30px 0;
-      /* Spacing */
-      overflow: hidden;
-      /* Keep the bar inside */
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-      /* Slight inner depth */
-      position: relative;
-    }
-
-    /* 2. The Moving Bar */
-    #wiz-progress {
-      background: linear-gradient(90deg, #4ade80, #16a34a);
-      /* Fresh Green Gradient */
-      height: 100%;
-      width: 0%;
-      /* JS controls this */
-      border-radius: 20px;
-      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      /* Smooth "Bouncy" Animation */
-      box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-      /* Glowing Effect */
-      position: relative;
-    }
-
-    /* 3. Shine Effect (Optional: A light reflection moving across) */
-    #wiz-progress::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: linear-gradient(45deg,
-          rgba(255, 255, 255, 0) 25%,
-          rgba(255, 255, 255, 0.3) 50%,
-          rgba(255, 255, 255, 0) 75%);
-      background-size: 20px 20px;
-      opacity: 0.6;
-    }
-
-    /* 4. Step Label (Optional - e.g., "Step 1 of 5") */
-    .wiz-step-label {
-      text-align: center;
-      font-size: 10px;
-      font-weight: 800;
-      color: #9ca3af;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    /* --- WELCOME SCREEN FIXES --- */
-
-    /* 1. Header Size Fix (Welcome Back ചെറുതാക്കാൻ) */
-    h2,
-    .welcome-header {
-      font-size: 24px !important;
-      /* വലുപ്പം കുറച്ചു */
-      line-height: 1.2;
-      margin-bottom: 5px;
-    }
-
-    /* 2. Beautiful Edit Button */
-    #btn-edit-addr {
-      background: #f1f8e9;
-      /* Light Green Bg */
-      color: #33691e;
-      /* Dark Green Text */
-      border: 1px solid #dcedc8;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 20px;
-      /* Capsule Shape */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: all 0.2s;
-      letter-spacing: 0.5px;
-    }
-
-    #btn-edit-addr:hover {
-      background: #33691e;
-      color: white;
-      transform: translateY(-1px);
-    }
-
-    /* 3. Phone Box Alignment Fix */
-    .contact-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 13px;
-      color: #333;
-    }
-
-    /* --- UI FIXES FOR WELCOME SCREEN --- */
-
-    /* 1. Order ID Badge Small Size */
-    .badge-order-id {
-      font-size: 11px !important;
-      /* Small size */
-      padding: 5px 10px !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.5px;
-    }
-
-    /* 2. Beautiful Edit Button */
-    #btn-edit-addr {
-      background: #e8f5e9;
-      /* Light Green */
-      color: #2e7d32;
-      /* Dark Green */
-      border: 1px solid #c8e6c9;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 50px;
-      /* Capsule Shape */
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-
-    #btn-edit-addr:hover {
-      background: #2e7d32;
-      color: white;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-    }
-
-    /* --- 1. HEADER STYLES --- */
-
-    /* Order ID Badge (Green Pill) */
-    .badge-oid-green {
-      background-color: #dcfce7;
-      /* Light Green */
-      color: #15803d;
-      /* Dark Green Text */
-      font-family: monospace;
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      display: inline-block;
-    }
-
-    /* Date Text below Order ID */
-    .header-date {
-      font-size: 10px;
-      color: #9ca3af;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-top: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    /* --- 2. INFO CARD STYLES --- */
-
-    /* Main White Card Box */
-    .info-card {
-      background: #fff;
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      border: 1px solid #fff;
-      margin-bottom: 20px;
-    }
-
-    /* User Name Title */
-    .user-name {
-      font-size: 20px;
-      font-weight: 800;
-      color: #111;
-      margin-bottom: 4px;
-    }
-
-    /* Edit Address Button (Capsule Style) */
-    #btn-edit-addr {
-      background: #ecfdf5;
-      /* Very Light Green */
-      color: #15803d;
-      /* Dark Green Text */
-      font-size: 10px;
-      font-weight: 800;
-      padding: 8px 14px;
-      border-radius: 30px;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.2s;
-      display: inline-block;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-    }
-
-    #btn-edit-addr:hover {
-      background: #dcfce7;
-      transform: translateY(-1px);
-    }
-
-    /* Address Text Styles */
-    .house-name {
-      font-size: 14px;
-      font-weight: 800;
-      color: #374151;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
-
-    .addr-text {
-      font-size: 13px;
-      color: #6b7280;
-      line-height: 1.5;
-    }
-
-    .pin-badge {
-      background: #f3f4f6;
-      color: #1f2937;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 12px;
-      margin-left: 5px;
-    }
-
-    /* Phone Contact Box (Grey Box) */
-    .phone-contact-box {
-      background-color: #f9fafb;
-      /* Light Gray */
-      border-radius: 12px;
-      padding: 12px 16px;
-      margin-top: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .phone-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: #4b5563;
-      font-weight: 600;
-    }
-
-    .phone-row i {
-      width: 16px;
-      text-align: center;
-    }
   </style>
 </head>
 
 <body>
+  <input type="hidden" id="order-status-hidden" value="">
 
   <div id="full-loader">
     <div class="loader-wrapper">
       <div class="modern-spinner"></div>
-      <div class="count-text" id="loader-percent">0%</div>
     </div>
-    <p class="mt-3 fw-bold small text-muted" id="loader-text" style="letter-spacing:1px;">LOADING...</p>
+    <p class="mt-3 fw-bold small text-muted">LOADING...</p>
   </div>
 
   <div id="app-layout">
@@ -871,41 +557,37 @@
 
         <form id="order-form" onsubmit="return false;">
 
-          <div id="step-0" class="step-section pt-4">
+          <div id="step-0" class="step-section pt-4"
+            style="background:#fff; border-radius:24px; padding:24px; border:1px solid #eee;">
             <label class="form-label" data-i18n="lbl_phone" style="font-size:13px;">ഫോൺ നമ്പർ</label>
             <input type="tel" id="phone" class="huge-input" placeholder="Mobile Number" maxlength="10">
           </div>
 
           <div id="returning-user-view" class="step-section">
 
-
-
-            <div class="d-flex justify-content-between align-items-start mb-4 px-1 mt-2">
-              <div style="line-height: 1.1;">
-                <h1 class="fw-bold m-0" style="color:#000; font-size: 32px; letter-spacing: -1px;"
-                  data-i18n="welcome_back">സ്വാഗതം!</h1>
+            <div class="d-flex justify-content-between align-items-start mb-4 px-1">
+              <div>
+                <h1 class="welcome-header" data-i18n="welcome_back">Welcome<br>Back!</h1>
               </div>
               <div class="text-end">
                 <div id="display-oid" class="badge-oid-green">#ORD-...</div>
-                <div id="display-date" class="header-date">...</div>
+                <div id="display-date" class="text-muted fw-bold small mt-1" style="font-size:10px;">...</div>
               </div>
             </div>
 
-            <div class="info-card">
-
+            <div class="white-card">
               <div class="d-flex justify-content-between align-items-center mb-2">
-                <div id="saved-name" class="user-name">NAME</div>
-                <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" data-i18n="btn_edit">വിലാസം മാറ്റാം</a>
+                <div id="saved-name" class="user-name-tag">NAME</div>
+                <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" class="btn-edit-capsule"
+                  data-i18n="btn_edit">EDIT ADDRESS</a>
               </div>
 
-              <div id="saved-address-text">
-              </div>
+              <div id="saved-address-text" class="addr-block"></div>
 
-              <div id="saved-phone-text">
-              </div>
+              <div id="saved-phone-text"></div>
 
-              <div class="address-box mt-3 pt-3 border-top" id="address-edit-box" style="display:none;">
-                <h6 class="fw-bold small text-muted mb-3">UPDATE ADDRESS</h6>
+              <div class="address-box" id="address-edit-box" style="display:none;">
+                <h6 class="fw-bold small text-muted mb-3 pt-3 border-top">UPDATE DETAILS</h6>
                 <div class="row g-2">
                   <div class="col-12"><input type="tel" id="edit-phone" class="regular-input" placeholder="Phone"
                       maxlength="10" oninput="updateSummaryDisplay()"></div>
@@ -922,7 +604,6 @@
                 </div>
                 <input type="hidden" id="edit-postoffice"><input type="hidden" id="edit-district"><input type="hidden"
                   id="edit-state">
-
                 <div class="row g-2 mt-2">
                   <div class="col-6"><input type="tel" id="edit-whatsapp" class="regular-input" placeholder="WhatsApp"
                       maxlength="10" oninput="updateSummaryDisplay()"></div>
@@ -934,18 +615,37 @@
               </div>
             </div>
 
-            <div class="mt-4">
-              <label class="form-label qty-label" data-i18n="lbl_qty">എത്ര ബോട്ടിൽ വേണം?</label>
-              <select id="quick-qty" class="regular-input" style="font-size:16px;">
-                <option value="" disabled selected>Select...</option>
-              </select>
+            <div class="white-card">
+              <label class="form-label mb-2" data-i18n="lbl_qty" style="color:#6b7280; font-size:12px;">SELECT
+                QUANTITY</label>
 
-              <div id="quick-price-box" class="price-card" style="display:none;">
+              <div class="qty-action-row mb-3">
+                <select id="quick-qty" class="form-select border-0 bg-light fw-bold" style="font-size: 16px;">
+                  <option value="" disabled selected>Select...</option>
+                  <option value="1">1 Bottle (650g)</option>
+                  <option value="2">2 Bottles (1.30 kg)</option>
+                  <option value="3">3 Bottles (1.95 kg)</option>
+                  <option value="4">4 Bottles (2.60 kg)</option>
+                  <option value="5">5 Bottles (3.25 kg)</option>
+                  <option value="6">6 Bottles (3.90 kg)</option>
+                  <option value="8">8 Bottles (5.20 kg)</option>
+                  <option value="10">10 Bottles (6.50 kg)</option>
+                </select>
+                <button onclick="submitQuickOrder()" class="btn-update-sage">
+                  <span data-i18n="btn_update">UPDATE ORDER</span>
+                </button>
+              </div>
+
+              <div id="quick-price-box" class="price-card mb-3" style="display:none;">
                 <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
                       class="val-base">0</span></span></div>
                 <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
                 <div class="price-total"><span>Total Amount</span><span class="text-success">₹<span
                       class="val-total">0</span></span></div>
+              </div>
+
+              <div class="platinum-badge" id="offer-badge" style="display:none;">
+                <i class="fas fa-crown"></i> <span>Platinum Customer</span>
               </div>
 
               <div id="status-area" class="mt-3"></div>
@@ -954,7 +654,6 @@
 
           <div id="wizard-view" class="step-section">
             <div class="wiz-step-label">ORDER PROGRESS</div>
-
             <div class="progress-container">
               <div id="wiz-progress"></div>
             </div>
@@ -977,9 +676,8 @@
                 placeholder="House Name"></div>
             <div class="wiz-step" data-step="5" style="display:none;">
               <label class="form-label" data-i18n="lbl_place">സ്ഥലം</label>
-              <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list">
-              <datalist id="place-list"></datalist>
-
+              <input type="text" id="place" class="huge-input" placeholder="Place" list="place-list"><datalist
+                id="place-list"></datalist>
             </div>
             <div class="wiz-step" data-step="6" style="display:none;"><label class="form-label"
                 data-i18n="lbl_altphone">മറ്റൊരു നമ്പർ (Optional)</label><input type="tel" id="altphone"
@@ -989,7 +687,7 @@
               <select id="quantity" class="huge-input">
                 <option value="" disabled selected>Select...</option>
               </select>
-              <div id="wiz-price-box" class="price-card" style="display:none;">
+              <div id="wiz-price-box" class="price-card" style="display:none; background:#fff; border:1px solid #eee;">
                 <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
                       class="val-base">0</span></span></div>
                 <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
@@ -998,7 +696,6 @@
               </div>
               <div id="wiz-deliver-box" class="mt-3 p-3 bg-white border rounded"
                 style="display:none; border-left:4px solid black !important;">
-                <!-- <div class="small fw-bold text-muted mb-1">DELIVER TO:</div> -->
                 <div id="wiz-final-addr" style="font-size:13px; line-height:1.4;"></div>
               </div>
             </div>
@@ -1015,9 +712,7 @@
         <div id="btn-group-wizard" style="display:none;"><button type="button" class="btn-back" onclick="prevStep()"><i
               class="fas fa-chevron-left"></i></button><button type="button" class="btn-black flex-grow-1 ms-3"
             onclick="nextStep()" id="btn-wiz-next"><span data-i18n="btn_next">തുടരുക</span></button></div>
-        <div id="btn-group-returning" style="display:none;"><button type="button" class="btn-black btn-brand-green"
-            onclick="submitQuickOrder()" id="btn-quick-submit"><span data-i18n="btn_update">ഓർഡർ ചെയ്യാം</span></button>
-        </div>
+        <div id="btn-group-returning" style="display:none !important;"></div>
       </div>
     </div>
   </div>

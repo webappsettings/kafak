@@ -651,8 +651,9 @@ function updateStatusUI(d) {
   $('#status-area').append(timelineHTML);
 }
 
+// Function to update the Address & Phone display with the new HTML structure
 function updateSummaryDisplay() {
-  // 1. Get Values
+  // 1. Get Values from Hidden/Edit Inputs
   const house = $('#edit-house').val() || '';
   const place = $('#edit-place').val() || '';
   const po = $('#edit-postoffice').val() || '';
@@ -670,55 +671,48 @@ function updateSummaryDisplay() {
   let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
   if (poClean) poClean += ' PO';
 
-  // 3. Address HTML (New Clean Design)
+  // 3. Generate NEW Address HTML
   let addrHtml = `
-      <div class="uc-house">${safe(house)}</div>
-      <div class="uc-details">
-          ${safe(place)}${place && poClean ? ',' : ''} ${poClean}
-          <br>
-          <span style="font-weight:600;">${safe(dist)}, ${safe(state)}</span> 
-          <span class="pin-tag">${safe(pin)}</span>
-      </div>
+      <span class="addr-house">${safe(house)}</span>
+      ${safe(place)}${place && poClean ? ',' : ''} ${poClean}
+      <br>
+      <span style="font-weight:600;">${safe(dist)}, ${safe(state)}</span> 
+      <span class="pin-box">${safe(pin)}</span>
   `;
+  // Update the DIV
   $('#saved-address-text').html(addrHtml);
-  $('#saved-place-dist').hide(); // Hide old element if exists
 
-  // 4. Phone Box Logic (Grey Box)
-  let phoneHtml = '';
-
-  // Row 1: Main Phone & Alt Phone
-  phoneHtml += `
-      <div class="pb-row">
-           <i class="fas fa-phone-alt text-secondary"></i> 
-           <span style="color:#222; font-weight:700;">${phone}</span>
-           ${alt ? `<span style="color:#ccc">|</span> <span>${alt}</span>` : ''}
+  // 4. Generate NEW Phone Box HTML (Grey Box)
+  let phoneHtml = `
+      <div class="phone-grey-box">
+          <div class="ph-row">
+              <i class="fas fa-phone-alt text-secondary" style="width:20px; text-align:center;"></i> 
+              <span style="color:#111; font-weight:800; font-size:15px;">${phone}</span>
+              ${alt ? `<span style="color:#ccc; margin:0 5px;">|</span> <span style="color:#666;">${alt}</span>` : ''}
+          </div>
+          
+          ${wa ? `
+          <div class="ph-row">
+              <i class="fab fa-whatsapp" style="color:#25D366; font-size:18px; width:20px; text-align:center;"></i> 
+              <span style="color:#25D366; font-weight:800; font-size:15px;">${wa}</span>
+          </div>` : ''}
       </div>
   `;
+  // Update the DIV
+  $('#saved-phone-text').html(phoneHtml);
 
-  // Row 2: WhatsApp (if exists)
-  if (wa) {
-    phoneHtml += `
-      <div class="pb-row">
-           <i class="fab fa-whatsapp" style="color:#25D366; font-size:15px;"></i> 
-           <span style="color:#25D366; font-weight:700;">${wa}</span>
-      </div>`;
-  }
-
-  // Wrap in Grey Box
-  $('#saved-phone-text').html(`<div class="phone-box-grey">${phoneHtml}</div>`);
-  $('#saved-wa-text, #saved-alt-text').hide();
-
-  // 5. Hide Edit Button if Paid/Dispatched (Safety Check)
+  // 5. Hide Edit Button if status is Locked (Paid/Dispatched)
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
     if (['paid', 'dispatched', 'completed', 'delivered'].includes(s)) {
       $('#btn-edit-addr').hide();
     } else {
-      $('#btn-edit-addr').show();
+      $('#btn-edit-addr').css('display', 'inline-block');
     }
   }
 
-  checkForChanges();
+  // Trigger changes check (Original Logic)
+  if (typeof checkForChanges === 'function') checkForChanges();
 }
 
 // 🔥 പുതിയ ഫംഗ്‌ഷൻ: സ്റ്റാറ്റസ് കൃത്യമായി ചെക്ക് ചെയ്യാൻ
