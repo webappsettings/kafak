@@ -204,31 +204,43 @@ function createCardHTML(d, index, type, currentStatus) {
     let safe = (val) => String(val || '').toUpperCase();
     let statusBadge = '', buttons = '', topButtons = '';
 
-    // --- 📊 CUSTOMER STATS CALCULATION (On the fly) ---
-    // ഒരേ ഫോൺ നമ്പറിലുള്ള എല്ലാ ഓർഡറുകളും എടുക്കുന്നു
-    let custHistory = allOrders.filter(o => o.phone === d.phone);
-    let totalOrders = custHistory.length;
-    let totalBottles = custHistory.reduce((sum, o) => sum + parseInt(o.quantity || 0), 0);
+    // --- 📅 DATE FORMATTING (DD/MM/YYYY H:MM PM) ---
+    let dateObj = new Date(d.timestamp);
+    let day = String(dateObj.getDate()).padStart(2, '0');
+    let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    let year = dateObj.getFullYear();
 
-    // First Seen Date (ഏറ്റവും പഴയ ഓർഡറിന്റെ തീയതി)
-    let firstOrder = custHistory[custHistory.length - 1]; // Assuming sorted Newest -> Oldest
-    let sinceDate = firstOrder ? formatPrettyDate(firstOrder.timestamp) : '';
+    let hours = dateObj.getHours();
+    let minutes = String(dateObj.getMinutes()).padStart(2, '0');
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 should be 12
+
+    // Result: 24/12/2024 3:00 PM
+    let formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
     // --------------------------------------------------
 
-    // --- 📅 DATE HIGHLIGHT LOGIC ---
-    let dateStyle = "color: #6c757d;"; // Default Grey
-    if (type === 'pending') {
-        dateStyle = "color: #dc3545; font-weight: 800;"; // Red & Bold for New Orders
+    // --- 📊 CUSTOMER STATS (Live Calculation) ---
+    let totalOrders = 0, totalBottles = 0, sinceDate = '';
+
+    if (typeof allOrders !== 'undefined') {
+        let custHistory = allOrders.filter(o => String(o.phone) === String(d.phone));
+        totalOrders = custHistory.length;
+        totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
+
+        // Since Date (Oldest Order)
+        if (custHistory.length > 0) {
+            let firstOrder = custHistory[custHistory.length - 1];
+            let fd = new Date(firstOrder.timestamp);
+            sinceDate = `${String(fd.getDate()).padStart(2, '0')}/${String(fd.getMonth() + 1).padStart(2, '0')}/${fd.getFullYear()}`;
+        }
     }
-    // -------------------------------
+    // ---------------------------------------------
 
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
-    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
-
-    // Archive Button
-    let archiveBtn = '';
-    if (currentStatus === 'Sent' || currentStatus === 'Pending') {
-        archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
+    // Highlight Date Logic (Red for Pending)
+    let dateStyle = "color: #6c757d;";
+    if (type === 'pending') {
+        dateStyle = "color: #dc3545; font-weight: 800;";
     }
 
     // Contact Logic (Single Line)
@@ -240,14 +252,21 @@ function createCardHTML(d, index, type, currentStatus) {
         contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
     }
 
-    // Status Colors
+    // Buttons & Status Logic
+    let archiveBtn = '';
+    if (currentStatus === 'Sent' || currentStatus === 'Pending') {
+        archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
+    }
+
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
+
     let oidBg = 'bg-light text-dark';
     if (currentStatus === 'Pending') oidBg = 'bg-warning text-dark';
     if (currentStatus === 'Sent') oidBg = 'bg-info text-dark';
     if (currentStatus === 'Paid') oidBg = 'bg-success text-white';
     if (currentStatus === 'Dispatched') oidBg = 'bg-primary text-white';
 
-    // Button Logic
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
@@ -279,7 +298,7 @@ function createCardHTML(d, index, type, currentStatus) {
                             <i class="fas fa-history"></i> Since: ${sinceDate}
                         </div>
                         <div style="font-size:11px; ${dateStyle}">
-                            ${formatFullDate(d.timestamp)}
+                            ${formattedDate}
                         </div>
                     </div>
 
@@ -295,12 +314,12 @@ function createCardHTML(d, index, type, currentStatus) {
 
                     <div class="cust-name">${safe(d.name)}</div>
                     
-                    <div style="margin-top:2px; margin-bottom:8px;">
-                        <span style="background:#f3f4f6; color:#4b5563; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:600; border:1px solid #e5e7eb;">
-                            📦 ${totalBottles} Bottles
+                    <div style="margin-top:4px; margin-bottom:10px; display:flex; gap:5px;">
+                        <span style="background:#f0f9ff; color:#0369a1; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:700; border:1px solid #bae6fd;">
+                            📦 ${totalBottles} Btls
                         </span>
-                        <span style="background:#f3f4f6; color:#4b5563; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:600; border:1px solid #e5e7eb; margin-left:4px;">
-                            🛍️ ${totalOrders} Orders
+                        <span style="background:#fdf4ff; color:#a21caf; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:700; border:1px solid #f0abfc;">
+                            🛍️ ${totalOrders} Ords
                         </span>
                     </div>
 
