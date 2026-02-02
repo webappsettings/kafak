@@ -557,36 +557,41 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 }
 
 window.enableNewOrderMode = function () {
-  // 1. Hide "New Order" button & Status Timeline
+  // 1. Hide "New Order" button & Timeline
   $('#btn-new-order-mode').hide();
-  $('#status-area').empty(); // ടൈംലൈൻ ക്ലിയർ ചെയ്യുന്നു
+  $('#status-area').empty();
 
-  // 2. Show Controls (ലേബൽ, ബട്ടൺ, അഡ്രസ്സ് എഡിറ്റ് എന്നിവ തിരികെ കൊണ്ടുവരുന്നു)
+  // 2. Show Controls (കൃത്യമായ ക്ലാസുകൾ ഉപയോഗിക്കുന്നു)
   $('label[data-i18n="lbl_qty"]').fadeIn();
+
+  // Flex Box ആയതുകൊണ്ട് display:flex എന്ന് പ്രത്യേകം പറയണം
   $('.qty-action-row').css('display', 'flex').hide().fadeIn();
+
   $('#quick-price-box').fadeIn();
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
 
-  // 3. Reset State for New Order
+  // 3. Reset State
   isEditMode = false;
-  editingOrderId = null; // പുതിയ ഓർഡർ ആയതുകൊണ്ട് ID മാറ്റുന്നു
+  editingOrderId = null;
   $('#display-oid').hide();
   $('#display-date').hide();
 
   // 4. Reset Inputs
-  $('#quick-qty').val('').trigger('change'); // ക്വാണ്ടിറ്റി ക്ലിയർ ചെയ്യുന്നു
-  $('#quick-qty option').prop('disabled', false); // എല്ലാ ഓപ്ഷനും എനേബിൾ ചെയ്യുന്നു
+  $('#quick-qty').val('').trigger('change');
+  $('#quick-qty option').prop('disabled', false);
 
-  // 5. Update Button Text to "PLACE ORDER"
+  // 5. Update Button Text
   const lang = $('.form-select').val() || 'en';
   const btnText = translations[lang].btn_order || "PLACE ORDER";
-  $('.btn-update-sage').text(btnText);
 
-  // 6. Button Logic Fix
-  // പഴയ ക്വാണ്ടിറ്റി ഡാറ്റ ക്ലിയർ ചെയ്യുന്നു (എങ്കിലേ പുതിയത് സെലക്ട് ചെയ്യുമ്പോൾ ബട്ടൺ തെളിയൂ)
-  if (savedOrderData) savedOrderData.quantity = null;
+  // പുതിയ ബട്ടൺ ക്ലാസ്സ് ഉപയോഗിക്കുന്നു
+  $('.btn-update-sage').text(btnText).prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
 
-  checkForChanges(); // ബട്ടൺ സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നു
+  // 6. Logic Fix
+  if (typeof savedOrderData !== 'undefined') savedOrderData.quantity = null;
+
+  // ബട്ടൺ എനേബിൾ ആക്കാൻ
+  checkForChanges();
 }
 
 window.markOrderDelivered = function (oid) {
