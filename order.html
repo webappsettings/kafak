@@ -665,7 +665,7 @@
                 placeholder="WhatsApp" maxlength="10"></div>
             <div class="wiz-step" data-step="3" style="display:none;"><label class="form-label"
                 data-i18n="lbl_pincode">പിൻകോഡ്</label><input type="tel" id="pincode" class="huge-input" maxlength="6"
-                placeholder="000000"></div>
+                placeholder="000000" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></div>
             <div class="wiz-step" data-step="3.5" style="display:none;"><label class="form-label"
                 data-i18n="lbl_select_po">പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക</label><select id="po-select"
                 class="huge-input">
