@@ -464,16 +464,19 @@ window.prevStep = function () {
 }
 
 window.submitQuickOrder = function () {
+  // 1. Check if button is disabled
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 1. Basic Validation
+  // 2. Basic Validation (Qty, Phone, Pin)
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+
   const pin = $('#edit-pincode').val();
   if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
 
-  // 🔥 2. Post Office Validation (ഇതാണ് ചോദിക്കുന്നത്)
+  // 🔥 3. Post Office Validation
   let finalPO = $('#edit-postoffice').val();
 
   // ഡ്രോപ്പ്ഡൗൺ ബോക്സ് കാണുന്നുണ്ടെങ്കിൽ, അതിലെ വാല്യൂ ആണ് എടുക്കുന്നത്
@@ -481,40 +484,35 @@ window.submitQuickOrder = function () {
     finalPO = $('#edit-postoffice-select').val();
   }
 
-  // വാല്യൂ ഇല്ലെങ്കിൽ Alert കാണിക്കും
+  // വാല്യൂ ഇല്ലെങ്കിൽ Alert കാണിക്കും, എഡിറ്റ് ബോക്സ് തുറക്കും
   if (!finalPO) {
     showAlert(getAlert('err_select_po') || "Please Select Post Office");
     if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
     return; // ഇവിടെ വെച്ച് തടയുന്നു
   }
 
-  $('#edit-postoffice').val(finalPO);
+  $('#edit-postoffice').val(finalPO); // Hidden input update
 
-  // ... (ബാക്കി അപ്‌ഡേറ്റ് കോഡുകൾ) ...
-
-  // 3. Start Update
-  Swal.fire({ title: 'Updating...', text: 'Updating details...', didOpen: () => Swal.showLoading() });
-
+  // 4. Prepare Data Object
   const finalData = {
-    action: 'submit',
-    orderData: {
-      orderid: editingOrderId,
-      name: $('#saved-name').text(),
-      phone: newPhone,
-      whatsapp: $('#edit-whatsapp').val(),
-      altphone: $('#edit-altphone').val(),
-      house: $('#edit-house').val(),
-      place: $('#edit-place').val(),
-      pincode: pin,
-      postoffice: finalPO,
-      district: $('#edit-district').val(),
-      state: $('#edit-state').val(),
-      quantity: $('#quick-qty').val(),
-      message: '',
-      custId: myCustId
-    }
+    orderid: editingOrderId,
+    name: $('#saved-name').text(),
+    phone: newPhone,
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: pin,
+    postoffice: finalPO,
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
+    quantity: $('#quick-qty').val(),
+    message: '',
+    custId: myCustId
   };
 
+  // 5. Play Video & Then Submit
+  // വീഡിയോ കാണിച്ച ശേഷം postOrder ഫംഗ്‌ഷൻ വിളിക്കുന്നു
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
@@ -1237,14 +1235,64 @@ function postOrder(data) {
 }
 
 function sendToWhatsapp() {
-  const phone = '7788990313'; const orderid = successData.orderid; const d = successData;
-  const n = parseInt(d.quantity); const base = n * 650; const courier = courierRates.kerala[n] || 0;
-  const amountText = `Amount(₹): ${base} + ${courier}`; const totalText = `Total(₹): ${base + courier}/-`;
-  const editLink = `kafaklife.com/order.html?oid=${orderid}`;
+  const d = successData; // postOrder സെറ്റ് ചെയ്യുന്ന ഗ്ലോബൽ ഡാറ്റ
+  const adminPhone = '7788990313';
   const safe = (val) => String(val || '').trim().toUpperCase();
-  const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${orderid}\`\`\`\n⌚ _${successData.timestamp}_\n🔗 _${editLink}_`;
-  const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${phone} (KAFAK LLP)*`;
-  window.location.href = `https://wa.me/91${phone}?text=${encodeURIComponent(extra + format)}`;
+
+  // --- CHECK FOR UPDATES (മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് നോക്കുന്നു) ---
+  let isUpdate = false;
+  let changes = [];
+
+  if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
+    isUpdate = true; // ഇതൊരു അപ്ഡേറ്റ് ആണ്
+
+    if (String(savedOrderData.quantity) !== String(d.quantity))
+      changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
+
+    if (String(savedOrderData.phone) !== String(d.phone))
+      changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
+
+    if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
+    if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
+    if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
+    if (String(savedOrderData.pincode) !== String(d.pincode)) changes.push(`🔢 PIN: *${d.pincode}*`);
+  }
+
+  // --- CALCULATE TOTAL ---
+  const n = parseInt(d.quantity);
+  const base = n * 650;
+  const courier = courierRates.kerala[n] || 0;
+  const total = base + courier;
+
+  // --- GENERATE MESSAGE ---
+  let msg = "";
+
+  if (isUpdate) {
+    // 🔄 UPDATE MESSAGE FORMAT (Changes Bold)
+    msg = `*⚠️ ORDER UPDATED* (ID: ${d.orderid})\n`;
+    if (changes.length > 0) {
+      msg += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n__________________\n`;
+    } else {
+      msg += `\n(No major details changed)\n`;
+    }
+    msg += `\n*CURRENT DETAILS:*`;
+    msg += `\n👤 ${safe(d.name)}`;
+    msg += `\n📍 ${safe(d.place)}, ${safe(d.postoffice)}`;
+    msg += `\n📱 ${d.phone}`;
+    msg += `\n\n*🛒 Qty: ${d.quantity}*`;
+    msg += `\n💰 Total: ₹${total}/-`;
+    msg += `\n_Updated via Web_`;
+
+  } else {
+    // ✅ NEW ORDER FORMAT (Old Style)
+    const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
+    const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${d.timestamp}_\n🔗 _${editLink}_\n`;
+    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+    msg = extra + details + `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+  }
+
+  // വാട്സാപ്പിലേക്ക് അയക്കുന്നു
+  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(msg)}`;
 }
 
 function sendUpdateToWhatsapp(d) {
