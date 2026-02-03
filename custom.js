@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxAonOYSAaj8GVyp5EXrA9XPY8XfX9rfGKkPF4RHVSTBc1tkBae455dquqD7YL0b3Pg2A/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzUXnxP898uwNpDjww_3THiNH-ipri-fuvF5ikKrAO1K11yqNv9YahdwlOvc00IdasX6g/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -152,6 +152,7 @@ function formatPrettyDate(dateStr) {
 }
 
 $(document).ready(function () {
+  fetchCourierRates();
   injectVideoCSS();
 
   const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
@@ -1232,6 +1233,23 @@ function postOrder(data) {
         }, waitTime);
       }
     }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
+}
+
+function fetchCourierRates() {
+  // Action 'getRates' വിളിച്ച് ഷീറ്റിലെ ഡാറ്റ എടുക്കുന്നു
+  fetch(`${sc}?action=getRates`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success' && data.rates) {
+        // ഷീറ്റിലെ ഡാറ്റ വെച്ച് റേറ്റ് അപ്ഡേറ്റ് ചെയ്യുന്നു
+        courierRates = data.rates;
+        console.log("Rates updated from Sheet:", courierRates);
+
+        // വില സ്ക്രീനിൽ കാണിക്കുന്നുണ്ടെങ്കിൽ അത് പുതുക്കുന്നു
+        if ($('#quantity').val()) updatePrice($('#quantity').val(), $('#quick-price-box').is(':visible'));
+      }
+    })
+    .catch(err => console.log("Failed to fetch rates, using default."));
 }
 
 function sendToWhatsapp() {
