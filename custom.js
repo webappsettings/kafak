@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzUXnxP898uwNpDjww_3THiNH-ipri-fuvF5ikKrAO1K11yqNv9YahdwlOvc00IdasX6g/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxSEehazTZrXsydIUPnTXhFJx8ZCkzsmaMZll0bH1LqQvTzoE0KnqCo7XEh0OdAxLlQpQ/exec`;
 
 const courierRates = {
   kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
@@ -1279,7 +1279,8 @@ function sendToWhatsapp() {
   // --- CALCULATE TOTAL ---
   const n = parseInt(d.quantity);
   const base = n * 650;
-  const courier = courierRates.kerala[n] || 0;
+  const zone = (d.state && d.state.toLowerCase() === 'kerala') ? 'kerala' : 'outside';
+  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
   // --- GENERATE MESSAGE ---
@@ -1354,7 +1355,8 @@ function sendUpdateToWhatsapp(d) {
   // 3. Current Summary
   const n = parseInt(d.quantity);
   const base = n * 650;
-  const courier = courierRates.kerala[n] || 0;
+  const zone = (d.state && d.state.toLowerCase() === 'kerala') ? 'kerala' : 'outside';
+  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
   msg += `\n*CURRENT DETAILS:*`;
