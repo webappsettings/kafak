@@ -234,116 +234,87 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let safe = (val) => String(val || '').toUpperCase();
     let statusBadge = '', buttons = '', topButtons = '';
 
+    // Date & Time Formatting
     let dateObj = new Date(d.timestamp);
-    let day = String(dateObj.getDate()).padStart(2, '0');
-    let month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    let year = dateObj.getFullYear();
-    let hours = dateObj.getHours();
-    let minutes = String(dateObj.getMinutes()).padStart(2, '0');
-    let ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12; hours = hours ? hours : 12;
-    let formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+    let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    let totalOrders = 0, totalBottles = 0, sinceDate = '';
-    let cleanPhone = (p) => String(p || '').replace(/[^0-9]/g, '');
-    let currentPhone = cleanPhone(d.phone);
-    if (typeof allOrders !== 'undefined' && currentPhone.length > 5) {
-        let custHistory = allOrders.filter(o => cleanPhone(o.phone) === currentPhone);
-        totalOrders = custHistory.length;
-        totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
-        if (custHistory.length > 0) {
-            custHistory.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-            let fd = new Date(custHistory[0].timestamp);
-            sinceDate = `${String(fd.getDate()).padStart(2, '0')}/${String(fd.getMonth() + 1).padStart(2, '0')}/${fd.getFullYear()}`;
-        }
-    }
+    // Customer History Stats
+    let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
+    let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
+    let totalOrders = custHistory.length;
+    let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    let dateStyle = (type === 'pending') ? "color: #dc3545; font-weight: 800;" : "color: #6c757d;";
-    let contactHtml = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt" style="font-size:11px;"></i> ${d.phone}</span>`;
-    if (d.altphone && String(d.altphone).trim() !== "") contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
-    if (d.whatsapp && String(d.whatsapp).trim() !== "") contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
-
-    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>` : '';
+    // Common Buttons
+    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini"><i class="fas fa-archive"></i></button>` : '';
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
-    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
-
-    let oidBg = 'bg-light text-dark';
-    if (currentStatus === 'Pending') oidBg = 'bg-warning text-dark';
-    if (currentStatus === 'Sent') oidBg = 'bg-info text-dark';
-    if (currentStatus === 'Paid') oidBg = 'bg-success text-white';
-    if (currentStatus === 'Dispatched') oidBg = 'bg-primary text-white';
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
     if (type === 'pending') {
-        if (currentStatus === 'Sent') {
-            statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
-            buttons = `<button class="btn-custom btn-paid" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`;
-        } else {
-            statusBadge = '<span class="badge bg-warning text-dark">New</span>';
-            buttons = `<button class="btn-custom btn-wa" onclick="sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
-        }
+        buttons = (currentStatus === 'Sent')
+            ? `<button class="btn-custom btn-paid" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`
+            : `<button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
     } else if (type === 'paid') {
-        statusBadge = '<span class="badge bg-success">Paid</span>';
-        buttons = `<button class="btn-custom btn-dispatch" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><div style="display:flex; align-items:center; justify-content:center; width:40px;"><input type="checkbox" class="order-cb" value="${index}" onchange="checkSelectAllStatus()" style="width:20px; height:20px;"></div>`;
-        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">↩ REVERT</button>` + printBtn;
+        buttons = `<button class="btn-custom btn-dispatch" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><input type="checkbox" class="order-cb ms-2" value="${index}" onclick="event.stopPropagation();">`;
+        topButtons = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + printBtn;
     } else if (type === 'dispatched') {
-        statusBadge = '<span class="badge bg-primary">Dispatched</span>';
-        let localUpdate = JSON.parse(localStorage.getItem('pendingUpdates') || "[]").find(u => u.oid === d.orderid);
-        let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
-        let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
+        let trackNum = d.tracking || '';
+        let courierName = d.provider || "DTDC";
 
-        buttons = `<button class="btn-custom btn-track" onclick="editTracking('${d.orderid}', '${d.tracking || ''}')">🚚 ${trackLabel}</button>
-                   <button class="btn-custom btn-complete" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
-        topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
+        // 🔥 Admin Tracking Button Logic
+        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${courierName}+tracking+${trackNum}" target="_blank" class="ms-1 text-primary" style="font-size:10px;" onclick="event.stopPropagation();"><i class="fas fa-external-link-alt"></i></a>` : '';
+
+        buttons = `<button class="btn-custom btn-track" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
+                   <button class="btn-custom btn-complete" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+        topButtons = trackCheckBtn + `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + printBtn;
     }
 
+    // 📦 COMPACT VIEW RENDER
     if (isCompact) {
-        let trackLabel = d.tracking ? `<span class="badge bg-light text-dark border">TRK: ${d.tracking}</span>` : '<span class="text-danger small">No Trk</span>';
+        let trackNum = d.tracking || '';
+        let courierName = d.provider || "DTDC";
+        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${courierName}+tracking+${trackNum}" target="_blank" class="badge bg-info text-dark ms-1" style="text-decoration:none;" onclick="event.stopPropagation();"><i class="fas fa-search"></i></a>` : '';
+
         return `
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #0d6efd;">
+            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3; cursor:pointer;">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div style="font-size:12px; line-height:1.4;">
-                        <span class="fw-bold">${d.name}</span> <span class="text-muted">(${d.phone})</span><br>
-                        <span class="badge bg-secondary" style="font-size:9px;">#${d.orderid.split('-')[1]}</span> ${trackLabel}
+                    <div style="font-size:12px; flex-grow:1;">
+                        <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted small">(${d.phone})</span><br>
+                        <span class="badge bg-light text-dark border" style="font-size:9px;">#${d.orderid.split('-')[1]}</span>
+                        ${trackNum ? `<span class="badge bg-light text-dark border ms-1" style="font-size:9px;">TRK: ${trackNum}</span>` : ''}
+                        ${trackCheckBtn}
                     </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-success" style="padding: 2px 8px;" onclick="updateOrder('${d.orderid}', 'Completed')">✔</button>
-                        <button class="btn btn-sm btn-light border" style="padding: 2px 6px;" onclick="toggleCard(this)">▼</button>
+                    <div class="d-flex gap-2 align-items-center">
+                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✔ Done</button>
+                        <i class="fas fa-chevron-down text-muted small ms-1"></i>
                     </div>
                 </div>
-                <div class="full-card-view mt-3 pt-3 border-top" style="display:none;">
-                    ${createCardHTML(d, index, type, currentStatus, false)} </div>
+                <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">
+                    ${createCardHTML(d, index, type, currentStatus, false)}
+                </div>
             </div>
         </div>`;
     }
 
-    return `<div class="col-12 col-md-6 col-lg-4">
-            <div class="order-card status-${currentStatus}">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:5px; border-bottom:1px dashed #eee;">
-                    <div style="font-size:10px; color:#adb5bd; font-weight:600;"><i class="fas fa-history"></i> Since: ${sinceDate}</div>
-                    <div style="font-size:11px; ${dateStyle}">${formattedDate}</div>
-                </div>
-                <div class="card-header-row">
-                    <div style="display:flex; align-items:center;">
-                        ${archiveBtn} <span class="order-id ${oidBg}" style="padding:2px 6px; border-radius:4px; font-size:10px;">#${d.orderid.split('-')[1]}</span> ${editLink} ${topButtons}
-                    </div>
-                    ${statusBadge}
-                </div>
-                <div class="cust-name">${safe(d.name)}</div>
-                <div style="margin-top:4px; margin-bottom:10px; display:flex; gap:5px;">
-                    <span style="background:#f0f9ff; color:#0369a1; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #bae6fd;">📦 ${totalBottles} Btls</span>
-                    <span style="background:#fdf4ff; color:#a21caf; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #f0abfc;">🛍️ ${totalOrders} Ords</span>
-                </div>
-                <div class="cust-details">
-                    <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
-                    <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
-                    <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
-                    <div class="mt-2" style="font-size:12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${contactHtml}</div>
-                </div>
-                <div class="info-box"><span>${d.quantity} Bottles</span><span class="price-tag">${priceInfo.total}</span></div>
-                <div class="action-area">${buttons}</div>
+    // 📱 FULL VIEW RENDER
+    return `
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="order-card status-${currentStatus} p-3">
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted small" style="font-size:9px;">${formattedDate}</span>
+                <div>${archiveBtn} ${editLink} ${topButtons}</div>
             </div>
-        </div>`;
+            <div class="cust-name">${safe(d.name)}</div>
+            <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
+            <div class="cust-details">
+                <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
+                ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
+                <span class="text-primary"><i class="fas fa-phone-alt"></i> ${d.phone}</span>
+            </div>
+            <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
+            <div class="action-area mt-3">${buttons}</div>
+        </div>
+    </div>`;
 }
 
 function updateSyncButtonUI() {
@@ -735,14 +706,16 @@ document.addEventListener('click', function (e) {
     }
 });
 
-function toggleCard(btn) {
-    let card = btn.closest('.order-card');
-    let fullView = card.querySelector('.full-card-view');
-    if (fullView.style.display === 'none') {
-        fullView.style.display = 'block';
-        btn.innerHTML = '▲';
+
+function toggleCardUI(cardElement) {
+    let fullContent = cardElement.querySelector('.full-card-content');
+    let icon = cardElement.querySelector('.fa-chevron-down, .fa-chevron-up');
+
+    if (fullContent.style.display === 'none') {
+        fullContent.style.display = 'block';
+        if (icon) { icon.classList.replace('fa-chevron-down', 'fa-chevron-up'); }
     } else {
-        fullView.style.display = 'none';
-        btn.innerHTML = '▼';
+        fullContent.style.display = 'none';
+        if (icon) { icon.classList.replace('fa-chevron-up', 'fa-chevron-down'); }
     }
 }
