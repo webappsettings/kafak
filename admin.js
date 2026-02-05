@@ -152,7 +152,10 @@ function renderTabs(orders) {
     const dispatchedList = document.getElementById('list-dispatched');
 
     pendingList.innerHTML = ''; paidList.innerHTML = ''; dispatchedList.innerHTML = '';
+
+    // 🔥 1. Bottle Count സൂക്ഷിക്കാൻ വേരിയബിൾ ഉണ്ടാക്കുന്നു
     let counts = { pending: 0, paid: 0, dispatched: 0 };
+    let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
@@ -183,6 +186,10 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
+            // 🔥 2. ബോട്ടിൽ എണ്ണം കൂട്ടുന്നു
+            let qty = parseInt(d.quantity) || 0;
+            btlCounts[type] += qty;
+
             // WhatsApp Style Sticky Timeline
             let orderDate = d.timestamp ? getTimelineLabel(d.timestamp) : "Unknown Date";
             if (orderDate !== lastDateMap[listKey]) {
@@ -193,10 +200,39 @@ function renderTabs(orders) {
         }
     });
 
-    document.getElementById('count-pending').innerText = counts.pending;
-    document.getElementById('count-paid').innerText = counts.paid;
-    document.getElementById('count-dispatched').innerText = counts.dispatched;
+    // 🔥 3. UI അപ്ഡേറ്റ് ചെയ്യാൻ പുതിയ ഫംഗ്‌ഷൻ വിളിക്കുന്നു
+    updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
+    updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
+    updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
+
     updateSyncButtonUI();
+}
+
+// 🔥 Helper to show Order Count & Bottle Count
+function updateBadgeUI(elementId, orderCount, bottleCount) {
+    const el = document.getElementById(elementId);
+    if (el) {
+        // ഓർഡർ എണ്ണം സെറ്റ് ചെയ്യുന്നു
+        el.innerText = orderCount;
+
+        // ബോട്ടിൽ ബാഡ്ജ് ഉണ്ടോ എന്ന് നോക്കുന്നു (ഇല്ലെങ്കിൽ ഉണ്ടാക്കും)
+        let btlId = elementId + '-btl';
+        let btlEl = document.getElementById(btlId);
+
+        if (!btlEl) {
+            btlEl = document.createElement('span');
+            btlEl.id = btlId;
+            // പുതിയ ബാഡ്ജിന്റെ ഡിസൈൻ
+            btlEl.className = "badge rounded-pill bg-light text-dark border ms-2";
+            btlEl.style.fontSize = "10px";
+            btlEl.style.fontWeight = "700";
+            // നിലവിലെ ബാഡ്ജിന് തൊട്ടടുത്ത് ചേർക്കുന്നു
+            el.insertAdjacentElement('afterend', btlEl);
+        }
+
+        // ബോട്ടിൽ എണ്ണം കാണിക്കുന്നു
+        btlEl.innerHTML = `<i class="fas fa-wine-bottle" style="color:#888;"></i> ${bottleCount}`;
+    }
 }
 
 function createCardHTML(d, index, type, currentStatus) {
