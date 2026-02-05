@@ -538,28 +538,22 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
-
-  // 🔥 പഴയ സ്റ്റാറ്റസ് ക്ലിയർ ചെയ്യുന്നു (ഇതോടെ പഴയത് പോകും)
   $('#status-area').empty();
 
-  // 3. Status Logic
-  if (isServerData) {
-    updateStatusUI(d);
-  } else {
-    // 🔥 സെർവർ ഡാറ്റ വരുന്നത് വരെ ഇവിടെ ലോഡിംഗ് കാണിക്കും
-    $('#status-area').html(`
-          <div class="d-flex flex-column align-items-center justify-content-center py-5">
-              <div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div>
-              <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">CHECKING LIVE STATUS...</div>
-          </div>
-      `);
-  }
-
+  // 3. Check Status
   const status = String(d.Status || '').trim().toLowerCase();
-  const hideControls = ['paid', 'dispatched', 'completed', 'delivered'].includes(status);
+  const isPaid = status === 'paid';
+
+  // 'paid' സ്റ്റാറ്റസിനെ ഇവിടെ നിന്ന് ഒഴിവാക്കി (അപ്പോൾ താഴെ Show Mode-ൽ വരും)
+  const hideControls = ['dispatched', 'completed', 'delivered'].includes(status);
 
   if (hideControls) {
-    $('label[data-i18n="lbl_qty"]').hide(); $('.qty-action-row').hide(); $('#quick-price-box').hide(); $('#btn-edit-addr').hide();
+    // === HIDE MODE (Dispatched, Delivered...) ===
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('.qty-action-row').hide();
+    $('#quick-price-box').hide();
+    $('#btn-edit-addr').hide();
+
     if (['completed', 'delivered'].includes(status)) {
       if ($('#btn-new-order-mode').length === 0) {
         const btnText = "PLACE NEW ORDER";
@@ -569,16 +563,47 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     } else {
       $('#btn-new-order-mode').hide();
     }
+
   } else {
-    $('label[data-i18n="lbl_qty"]').show(); $('.qty-action-row').css('display', 'flex'); $('#quick-price-box').show(); $('#btn-edit-addr').css('display', 'inline-block'); $('#btn-new-order-mode').hide();
-    $('#quick-qty').prop('disabled', false); $('#quick-qty option').prop('disabled', false);
-    if (isActiveOrder) { $('#quick-qty').val(d.quantity).trigger('change'); } else { $('#quick-qty').val('').trigger('change'); }
+    // === SHOW MODE (Pending, Sent, Paid) ===
+    $('label[data-i18n="lbl_qty"]').show();
+    $('.qty-action-row').css('display', 'flex');
+    $('#quick-price-box').show();
+    $('#btn-new-order-mode').hide();
+
+    // Unlock Quantity Dropdown
+    $('#quick-qty').prop('disabled', false);
+    $('#quick-qty option').prop('disabled', false); // Reset options first
+
+    if (isPaid) {
+      // 🔥 PAID MODE LOGIC:
+      // 1. Address Edit ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു (Optional - അഡ്രസ്സ് മാറ്റാതിരിക്കാൻ)
+      $('#btn-edit-addr').hide();
+
+      // 2. നിലവിലുള്ള ക്വാണ്ടിറ്റിയേക്കാൾ കുറഞ്ഞത് ഡിസേബിൾ ചെയ്യുന്നു
+      let currentQty = parseInt(d.quantity) || 0;
+      $('#quick-qty option').each(function () {
+        if (parseInt($(this).val()) < currentQty) {
+          $(this).prop('disabled', true);
+        }
+      });
+    } else {
+      // Pending/Sent: അഡ്രസ്സ് മാറ്റാൻ അനുവദിക്കുന്നു
+      $('#btn-edit-addr').css('display', 'inline-block');
+    }
+
+    // Set Quantity Value
+    if (isActiveOrder || isPaid) {
+      $('#quick-qty').val(d.quantity).trigger('change');
+    } else {
+      $('#quick-qty').val('').trigger('change');
+    }
   }
 
-  // 🔥 REFRESH BUTTON LOGIC (മാറ്റം വരുത്തിയത്)
-  // സെർവർ ഡാറ്റ വന്ന ശേഷം മാത്രം Refresh ബട്ടൺ കാണിക്കുന്നു.
-  // അതുകൊണ്ട് "Checking Status" സമയത്ത് 2 ലോഡിംഗ് കാണില്ല.
+  // 4. Status Loading or Timeline
   if (isServerData) {
+    updateStatusUI(d);
+    // Refresh Button only after sync
     if ($('#refresh-btn').length === 0) {
       $('#returning-user-view').append(`
               <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
@@ -588,10 +613,19 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
               </div>
           `);
     }
+  } else {
+    // 🔥 ലോക്കൽ ഡാറ്റ കാണിക്കുമ്പോൾ താഴെ ലോഡിംഗ് കാണിക്കുന്നു
+    $('#status-area').html(`
+          <div class="d-flex flex-column align-items-center justify-content-center py-5">
+              <div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div>
+              <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">CHECKING LIVE STATUS...</div>
+          </div>
+      `);
   }
 
   checkForChanges();
 
+  // ലോഡിംഗ് സമയത്ത് ബട്ടൺ ഡിസേബിൾ ചെയ്യുന്നു (സുരക്ഷയ്ക്ക്)
   if (!isServerData && !hideControls) {
     $('#quick-qty').prop('disabled', true);
     $('.btn-update-sage').prop('disabled', true).text('CHECKING STATUS...');
