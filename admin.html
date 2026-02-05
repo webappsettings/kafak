@@ -547,10 +547,12 @@
                     </div>
 
                     <div class="tab-pane fade" id="tab-dispatched">
-                        <div class="text-center mb-3"><button
-                                onclick="editTracking('${d.orderid}', '${d.tracking || ''}')"
-                                class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small"><i
-                                    class="fas fa-barcode"></i> Courier Scan</button></div>
+                        <div class="text-center mb-3">
+                            <button onclick="startScanner('dispatch')"
+                                class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
+                                <i class="fas fa-barcode"></i> Courier Scan
+                            </button>
+                        </div>
                         <div class="row g-2" id="list-dispatched"></div>
                     </div>
                 </div>
