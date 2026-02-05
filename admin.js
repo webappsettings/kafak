@@ -153,13 +153,22 @@ function renderTabs(orders) {
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
+    // Sort: Latest First
     orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    // 🔥 ഏറ്റവും പുതിയ തീയതി (Latest Date) ഏതാണെന്ന് കണ്ടുപിടിക്കുന്നു
+    let latestDateLabel = "";
+    if (orders.length > 0) {
+        latestDateLabel = getTimelineLabel(orders[0].timestamp);
+    }
+
     let lastDateMap = { pending: '', paid: '', dispatched: '' };
 
     orders.forEach((d, i) => {
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
         let isCompact = false;
+
         if (status === 'Completed' || status === 'Archive') return;
 
         let targetList = null;
@@ -175,9 +184,11 @@ function renderTabs(orders) {
         } else if (status === 'Dispatched') {
             targetList = dispatchedList; type = 'dispatched'; listKey = 'dispatched';
             counts.dispatched++;
-            if (type === 'dispatched') {
-                let orderDate = getTimelineLabel(d.timestamp);
-                if (orderDate !== 'Today') isCompact = true;
+
+            // 🔥 Compact Logic: ഏറ്റവും പുതിയ തീയതിയല്ലെങ്കിൽ മാത്രം Compact ആക്കുക
+            let orderDateLabel = getTimelineLabel(d.timestamp);
+            if (orderDateLabel !== latestDateLabel) {
+                isCompact = true;
             }
         }
 
