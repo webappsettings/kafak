@@ -622,15 +622,36 @@ function onScanSuccess(decodedText) {
             }
         }
     } else if (scanMode === 'tracking') {
-        // (Tracking Mode Logic - ഇതിലും showScanFeedback വിളിക്കുന്നുണ്ടെങ്കിൽ decodedText പാസ് ചെയ്യുക)
+        // Step 1: Scan Order QR Code first
         if (scanStep === 1) {
-            // ... existing code ...
-        } else if (scanStep === 2) {
+            if (decodedText.startsWith("ORD-")) {
+                tempOid = decodedText;
+                let order = allOrders.find(o => o.orderid === tempOid);
+                scanStep = 2;
+                $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
+
+                // 🔥 Show Feedback
+                showScanFeedback("ORDER OK! SCAN BARCODE 📦", order, decodedText);
+
+                html5QrCode.pause();
+                setTimeout(() => html5QrCode.resume(), 1000);
+            }
+        }
+        // Step 2: Scan Courier Barcode next
+        else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
-                showScanFeedback("TRACKING SAVED ✅", order, decodedText); // 🔥 Pass Code
-                // ... existing code ...
+
+                // 🔥 Show Success
+                showScanFeedback("TRACKING SAVED ✅", order, decodedText);
+
+                scanStep = 1; // Reset to Step 1
+                setTimeout(() => {
+                    $('#scan-mode-title').text("SCAN NEXT ORDER QR");
+                    html5QrCode.resume();
+                }, 1500);
+                html5QrCode.pause();
             }
         }
     }
