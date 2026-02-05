@@ -636,21 +636,50 @@ function onScanSuccess(decodedText) {
     }
 }
 
-// 🔥 Added 'code' parameter to show scanned number
 function showScanFeedback(status, order, code = "") {
-    $('#scan-status-text').text(status);
+    // 1. Update Status Title
+    $('#scan-status-text').html(status); // Use .html() to support icons if any
 
     let htmlContent = "";
 
-    // 🔥 Show Scanned Code BIG
+    // 2. 🔥 Scanned Code Section (Highlighted Box)
     if (code) {
-        htmlContent += `<div style="font-size: 20px; font-weight: 800; color: #333; margin-bottom: 8px; font-family: monospace; letter-spacing: 1px; background: #f3f4f6; padding: 5px; border-radius: 8px;">${code}</div>`;
+        htmlContent += `
+            <div style="background:#f8f9fa; padding:10px; border-radius:10px; margin-bottom:15px; border:1px dashed #ced4da;">
+                <div style="font-size:10px; color:#6c757d; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">SCANNED CODE</div>
+                <div style="font-size:18px; font-weight:800; color:#212529; font-family:monospace; letter-spacing:0.5px;">${code}</div>
+            </div>`;
     }
 
+    // 3. 👤 Customer Details Section (Card Style)
     if (order) {
-        htmlContent += `<b>${order.name}</b> (${order.phone})<br><span style="font-size:16px;">${order.house}, ${order.place}</span>`;
+        htmlContent += `
+            <div style="text-align:left; background:#fff; border:1px solid #e9ecef; padding:15px; border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
+                
+                <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
+                    <div>
+                        <div style="font-size:11px; color:#adb5bd; font-weight:700; text-transform:uppercase;">CUSTOMER</div>
+                        <div style="font-size:16px; font-weight:800; color:#000; line-height:1.2;">${order.name}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <span style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:6px; font-size:12px; font-weight:700; display:inline-block;">
+                            <i class="fas fa-phone-alt" style="font-size:10px;"></i> ${order.phone}
+                        </span>
+                    </div>
+                </div>
+
+                <div style="font-size:13px; color:#495057; line-height:1.5; border-top:1px dashed #e9ecef; padding-top:10px; margin-top:5px;">
+                    <span style="font-weight:700;">${order.house}</span>, ${order.place}<br>
+                    ${order.postoffice} <span style="color:#adb5bd;">|</span> <span style="font-weight:700;">${order.pincode}</span>
+                </div>
+
+            </div>`;
+    } else {
+        // Order not found case
+        htmlContent += `<div style="color:#dc3545; font-weight:700; font-size:13px; margin-top:10px;">⛔ Order Details Not Found</div>`;
     }
 
+    // 4. Render & Show
     $('#scan-info-text').html(htmlContent);
     $('#scan-result-box').slideDown();
 }
