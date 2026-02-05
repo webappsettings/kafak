@@ -276,8 +276,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
         return `
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3; cursor:pointer;" onclick="toggleCardUI(this)">
-                <div class="d-flex justify-content-between align-items-center">
+            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3;">
+                
+                <div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))">
                     <div style="font-size:12px; flex-grow:1;">
                         <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted small">(${d.phone})</span><br>
                         <span class="badge bg-light text-dark border" style="font-size:9px;">#${d.orderid.split('-')[1]}</span>
@@ -285,10 +286,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                         ${trackCheckBtn}
                     </div>
                     <div class="d-flex gap-2 align-items-center">
-                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
-                        
+                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✔ Done</button>
                     </div>
                 </div>
+
                 <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">
                     ${createCardHTML(d, index, type, currentStatus, false)}
                 </div>
@@ -718,15 +719,13 @@ function toggleCard(btn) {
     }
 }
 
+// 🔥 Toggle Card Expand/Collapse
 function toggleCardUI(cardElement) {
     let fullContent = cardElement.querySelector('.full-card-content');
-    let icon = cardElement.querySelector('.fa-chevron-down, .fa-chevron-up');
 
     if (fullContent.style.display === 'none') {
         fullContent.style.display = 'block';
-        if (icon) { icon.classList.replace('fa-chevron-down', 'fa-chevron-up'); }
     } else {
         fullContent.style.display = 'none';
-        if (icon) { icon.classList.replace('fa-chevron-up', 'fa-chevron-down'); }
     }
 }
