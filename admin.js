@@ -607,7 +607,7 @@ function onScanSuccess(decodedText) {
                 showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
             }
         } else {
-            // Case B: Tracking Barcode Scanned (Search by Track ID)
+            // Case B: Tracking Barcode Scanned
             let order = allOrders.find(o => o.tracking === decodedText);
             if (order) {
                 if (order.Status === 'Dispatched') {
@@ -623,20 +623,26 @@ function onScanSuccess(decodedText) {
         }
     }
 
-    // 🚚 MODE 2: TRACKING (Double Scan: QR -> Barcode -> Next QR)
+    // 🚚 MODE 2: TRACKING (Double Scan: QR -> Barcode)
     else if (scanMode === 'tracking') {
 
-        // STEP 1: Scan Order QR Code first
+        // STEP 1: Scan Order QR Code
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-")) {
                 tempOid = decodedText;
                 let order = allOrders.find(o => o.orderid === tempOid);
 
                 if (order) {
-                    scanStep = 2; // Move to Step 2
-                    $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE"); // Change Title
+                    // 🔥 CHECK 1: Already Dispatched ആണോ എന്ന് നോക്കുന്നു
+                    if (order.Status === 'Dispatched') {
+                        showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText);
+                        html5QrCode.pause();
+                        setTimeout(() => html5QrCode.resume(), 2000);
+                        return;
+                    }
 
-                    // Show Feedback (Wait for Barcode)
+                    scanStep = 2; // അടുത്ത ഘട്ടത്തിലേക്ക് (Barcode Scan)
+                    $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
                     showScanFeedback("QR OK! SCAN BARCODE NOW 📦", order, decodedText);
 
                     html5QrCode.pause();
@@ -647,17 +653,26 @@ function onScanSuccess(decodedText) {
             }
         }
 
-        // STEP 2: Scan Courier Barcode next
+        // STEP 2: Scan Courier Barcode
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
-                // Save Tracking Number
+
+                // 🔥 CHECK 2: ഈ ബാർകോഡ് വേറെ ആർക്കെങ്കിലും ഉണ്ടോ എന്ന് നോക്കുന്നു
+                let existing = isAlreadyScanned(decodedText, 'tracking');
+                if (existing && existing.orderid !== tempOid) {
+                    showScanFeedback("BARCODE ALREADY USED ⚠️", existing, decodedText);
+                    html5QrCode.pause();
+                    setTimeout(() => html5QrCode.resume(), 2000);
+                    return;
+                }
+
+                // സേവ് ചെയ്യുന്നു
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
 
-                // Show Success
                 showScanFeedback("TRACKING SAVED ✅", order, decodedText);
 
-                // Reset to Step 1 (Next Customer)
+                // Reset for next customer
                 scanStep = 1;
                 setTimeout(() => {
                     $('#scan-mode-title').text("SCAN NEXT ORDER QR");
@@ -665,7 +680,6 @@ function onScanSuccess(decodedText) {
                 }, 2000);
                 html5QrCode.pause();
             } else {
-                // If scanned QR again by mistake
                 showScanFeedback("SCAN BARCODE, NOT QR ⚠️", null, decodedText);
             }
         }
