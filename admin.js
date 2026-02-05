@@ -589,11 +589,11 @@ function editTracking(oid, currentVal) {
 function onScanSuccess(decodedText) {
     playBeep();
 
+    // 📦 MODE 1: DISPATCH (Single Scan)
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
             // Case A: QR Code Scanned
             if (isAlreadyScanned(decodedText, 'dispatch')) {
-                // 🔥 Pass 'decodedText' as 3rd argument
                 showScanFeedback("ALREADY SCANNED ⚠️", allOrders.find(o => o.orderid === decodedText), decodedText);
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                 return;
@@ -601,57 +601,72 @@ function onScanSuccess(decodedText) {
             let order = allOrders.find(o => o.orderid === decodedText);
             if (order) {
                 updateOrder(decodedText, 'Dispatched');
-                showScanFeedback("DISPATCHED ✅", order, decodedText); // 🔥 Pass Code
+                showScanFeedback("DISPATCHED ✅", order, decodedText);
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
             } else {
-                showScanFeedback("ORDER NOT FOUND ❌", null, decodedText); // 🔥 Pass Code
+                showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
             }
         } else {
-            // Case B: Tracking Barcode Scanned
+            // Case B: Tracking Barcode Scanned (Search by Track ID)
             let order = allOrders.find(o => o.tracking === decodedText);
             if (order) {
                 if (order.Status === 'Dispatched') {
-                    showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText); // 🔥 Pass Code
+                    showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText);
                 } else {
                     updateOrder(order.orderid, 'Dispatched');
-                    showScanFeedback("DISPATCHED (Via TrackID) ✅", order, decodedText); // 🔥 Pass Code
+                    showScanFeedback("DISPATCHED (Via TrackID) ✅", order, decodedText);
                 }
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
             } else {
-                showScanFeedback("UNKNOWN BARCODE ❌", null, decodedText); // 🔥 Pass Code
+                showScanFeedback("UNKNOWN BARCODE ❌", null, decodedText);
             }
         }
-    } else if (scanMode === 'tracking') {
-        // Step 1: Scan Order QR Code first
+    }
+
+    // 🚚 MODE 2: TRACKING (Double Scan: QR -> Barcode -> Next QR)
+    else if (scanMode === 'tracking') {
+
+        // STEP 1: Scan Order QR Code first
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-")) {
                 tempOid = decodedText;
                 let order = allOrders.find(o => o.orderid === tempOid);
-                scanStep = 2;
-                $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
 
-                // 🔥 Show Feedback
-                showScanFeedback("ORDER OK! SCAN BARCODE 📦", order, decodedText);
+                if (order) {
+                    scanStep = 2; // Move to Step 2
+                    $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE"); // Change Title
 
-                html5QrCode.pause();
-                setTimeout(() => html5QrCode.resume(), 1000);
+                    // Show Feedback (Wait for Barcode)
+                    showScanFeedback("QR OK! SCAN BARCODE NOW 📦", order, decodedText);
+
+                    html5QrCode.pause();
+                    setTimeout(() => html5QrCode.resume(), 1500);
+                } else {
+                    showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
+                }
             }
         }
-        // Step 2: Scan Courier Barcode next
+
+        // STEP 2: Scan Courier Barcode next
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
+                // Save Tracking Number
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
 
-                // 🔥 Show Success
+                // Show Success
                 showScanFeedback("TRACKING SAVED ✅", order, decodedText);
 
-                scanStep = 1; // Reset to Step 1
+                // Reset to Step 1 (Next Customer)
+                scanStep = 1;
                 setTimeout(() => {
                     $('#scan-mode-title').text("SCAN NEXT ORDER QR");
                     html5QrCode.resume();
-                }, 1500);
+                }, 2000);
                 html5QrCode.pause();
+            } else {
+                // If scanned QR again by mistake
+                showScanFeedback("SCAN BARCODE, NOT QR ⚠️", null, decodedText);
             }
         }
     }
