@@ -525,13 +525,17 @@ function runPrintLogic(selectedItems) {
 
 function startScanner(mode, specificOid) {
     scanMode = mode; tempOid = specificOid || null; scanStep = (mode === 'tracking') ? 1 : 0;
+
     $('#scanner-modal').css('display', 'flex');
     $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
     $('#scan-result-box').hide();
 
+    // 🔥 1. CAMERA VIEW SHAPE LOGIC
+    // QR Code: Square (250x250)
+    // Barcode: Wide & Short (320x150) -> Height കുറച്ച് Wide ആക്കി
     let boxConfig = { width: 250, height: 250 };
-    if (mode === 'tracking' || mode === 'barcode') {
-        boxConfig = { width: 300, height: 150 };
+    if (mode === 'tracking' || mode === 'barcode' || mode === 'courier') { // 'courier' mode ഉണ്ടെങ്കിൽ അതും
+        boxConfig = { width: 320, height: 150 };
     }
 
     history.pushState(null, null, location.href);
@@ -587,63 +591,67 @@ function onScanSuccess(decodedText) {
 
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
+            // Case A: QR Code Scanned
             if (isAlreadyScanned(decodedText, 'dispatch')) {
-                showScanFeedback("ALREADY SCANNED ⚠️", allOrders.find(o => o.orderid === decodedText));
+                // 🔥 Pass 'decodedText' as 3rd argument
+                showScanFeedback("ALREADY SCANNED ⚠️", allOrders.find(o => o.orderid === decodedText), decodedText);
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                 return;
             }
             let order = allOrders.find(o => o.orderid === decodedText);
             if (order) {
                 updateOrder(decodedText, 'Dispatched');
-                showScanFeedback("DISPATCHED ✅", order);
+                showScanFeedback("DISPATCHED ✅", order, decodedText); // 🔥 Pass Code
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
             } else {
-                showScanFeedback("ORDER NOT FOUND ❌", null);
+                showScanFeedback("ORDER NOT FOUND ❌", null, decodedText); // 🔥 Pass Code
             }
         } else {
+            // Case B: Tracking Barcode Scanned
             let order = allOrders.find(o => o.tracking === decodedText);
             if (order) {
                 if (order.Status === 'Dispatched') {
-                    showScanFeedback("ALREADY DISPATCHED ⚠️", order);
+                    showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText); // 🔥 Pass Code
                 } else {
                     updateOrder(order.orderid, 'Dispatched');
-                    showScanFeedback("DISPATCHED (Via TrackID) ✅", order);
+                    showScanFeedback("DISPATCHED (Via TrackID) ✅", order, decodedText); // 🔥 Pass Code
                 }
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
             } else {
-                showScanFeedback("UNKNOWN BARCODE ❌", null);
+                showScanFeedback("UNKNOWN BARCODE ❌", null, decodedText); // 🔥 Pass Code
             }
         }
     } else if (scanMode === 'tracking') {
+        // (Tracking Mode Logic - ഇതിലും showScanFeedback വിളിക്കുന്നുണ്ടെങ്കിൽ decodedText പാസ് ചെയ്യുക)
         if (scanStep === 1) {
-            if (decodedText.startsWith("ORD-")) {
-                tempOid = decodedText;
-                let order = allOrders.find(o => o.orderid === tempOid);
-                scanStep = 2;
-                $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
-                showScanFeedback("ORDER OK! SCAN BARCODE 📦", order);
-                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1000);
-            }
+            // ... existing code ...
         } else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
-                showScanFeedback("TRACKING SAVED ✅", order);
-                scanStep = 1;
-                setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); html5QrCode.resume(); }, 1500);
-                html5QrCode.pause();
+                showScanFeedback("TRACKING SAVED ✅", order, decodedText); // 🔥 Pass Code
+                // ... existing code ...
             }
         }
     }
 }
 
-function showScanFeedback(status, order) {
+// 🔥 Added 'code' parameter to show scanned number
+function showScanFeedback(status, order, code = "") {
     $('#scan-status-text').text(status);
-    if (order) {
-        $('#scan-info-text').html(`<b>${order.name}</b> (${order.phone})<br><span style="font-size:16px;">${order.house}, ${order.place}</span>`);
-    } else {
-        $('#scan-info-text').text("");
+
+    let htmlContent = "";
+
+    // 🔥 Show Scanned Code BIG
+    if (code) {
+        htmlContent += `<div style="font-size: 20px; font-weight: 800; color: #333; margin-bottom: 8px; font-family: monospace; letter-spacing: 1px; background: #f3f4f6; padding: 5px; border-radius: 8px;">${code}</div>`;
     }
+
+    if (order) {
+        htmlContent += `<b>${order.name}</b> (${order.phone})<br><span style="font-size:16px;">${order.house}, ${order.place}</span>`;
+    }
+
+    $('#scan-info-text').html(htmlContent);
     $('#scan-result-box').slideDown();
 }
 
