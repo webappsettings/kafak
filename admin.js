@@ -1,5 +1,17 @@
 const scriptURL = "https://script.google.com/macros/s/AKfycbxSEehazTZrXsydIUPnTXhFJx8ZCkzsmaMZll0bH1LqQvTzoE0KnqCo7XEh0OdAxLlQpQ/exec";
 
+
+// Beep Sound for Scanner
+const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
+function playBeep() {
+    // Simple Beep logic
+    let ctx = new (window.AudioContext || window.webkitAudioContext)();
+    let osc = ctx.createOscillator();
+    osc.type = "sine"; osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.connect(ctx.destination); osc.start();
+    setTimeout(() => osc.stop(), 100);
+}
+
 // 🔴 1. SAFE STORAGE CHECK (Prevents Script Crash)
 function isStorageAvailable() {
     try {
@@ -167,7 +179,7 @@ function renderTabs(orders) {
     orders.forEach((d, i) => {
         let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
         let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
-
+        let isCompact = false;
         if (status === 'Completed' || status === 'Archive') return;
 
         let targetList = null;
@@ -183,6 +195,12 @@ function renderTabs(orders) {
         } else if (status === 'Dispatched') {
             targetList = dispatchedList; type = 'dispatched'; listKey = 'dispatched';
             counts.dispatched++;
+            if (type === 'dispatched') {
+                let orderDate = getTimelineLabel(d.timestamp);
+                if (orderDate !== 'Today') {
+                    isCompact = true; // ഇന്നത്തെത് അല്ലെങ്കിൽ Compact ആക്കുക
+                }
+            }
         }
 
         if (targetList) {
@@ -196,7 +214,7 @@ function renderTabs(orders) {
                 targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${orderDate}</div></div>`;
                 lastDateMap[listKey] = orderDate;
             }
-            targetList.innerHTML += createCardHTML(d, i, type, status);
+            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
         }
     });
 
@@ -235,65 +253,45 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-function createCardHTML(d, index, type, currentStatus) {
+function createCardHTML(d, index, type, currentStatus, isCompact = false) { // 🔥 FIX 1: isCompact ചേർത്തു
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
     let statusBadge = '', buttons = '', topButtons = '';
 
-    // --- 📅 DATE FORMATTING (DD/MM/YYYY H:MM PM) ---
+    // --- 📅 DATE FORMATTING ---
     let dateObj = new Date(d.timestamp);
     let day = String(dateObj.getDate()).padStart(2, '0');
     let month = String(dateObj.getMonth() + 1).padStart(2, '0');
     let year = dateObj.getFullYear();
-
     let hours = dateObj.getHours();
     let minutes = String(dateObj.getMinutes()).padStart(2, '0');
     let ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // 0 should be 12
-
-    // Result: 24/12/2024 3:00 PM
+    hours = hours % 12; hours = hours ? hours : 12;
     let formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
-    // --------------------------------------------------
 
-    // --- 📊 CUSTOMER STATS (Live Calculation) ---
+    // --- 📊 CUSTOMER STATS ---
     let totalOrders = 0, totalBottles = 0, sinceDate = '';
-
-    if (typeof allOrders !== 'undefined') {
-        let custHistory = allOrders.filter(o => String(o.phone) === String(d.phone));
+    let cleanPhone = (p) => String(p || '').replace(/[^0-9]/g, '');
+    let currentPhone = cleanPhone(d.phone);
+    if (typeof allOrders !== 'undefined' && currentPhone.length > 5) {
+        let custHistory = allOrders.filter(o => cleanPhone(o.phone) === currentPhone);
         totalOrders = custHistory.length;
         totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
-
-        // Since Date (Oldest Order)
         if (custHistory.length > 0) {
-            let firstOrder = custHistory[custHistory.length - 1];
-            let fd = new Date(firstOrder.timestamp);
+            custHistory.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+            let fd = new Date(custHistory[0].timestamp);
             sinceDate = `${String(fd.getDate()).padStart(2, '0')}/${String(fd.getMonth() + 1).padStart(2, '0')}/${fd.getFullYear()}`;
         }
     }
-    // ---------------------------------------------
 
-    // Highlight Date Logic (Red for Pending)
-    let dateStyle = "color: #6c757d;";
-    if (type === 'pending') {
-        dateStyle = "color: #dc3545; font-weight: 800;";
-    }
+    // --- 🎨 STYLES ---
+    let dateStyle = (type === 'pending') ? "color: #dc3545; font-weight: 800;" : "color: #6c757d;";
 
-    // Contact Logic (Single Line)
     let contactHtml = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt" style="font-size:11px;"></i> ${d.phone}</span>`;
-    if (d.altphone && String(d.altphone).trim() !== "") {
-        contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
-    }
-    if (d.whatsapp && String(d.whatsapp).trim() !== "") {
-        contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
-    }
+    if (d.altphone && String(d.altphone).trim() !== "") contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
+    if (d.whatsapp && String(d.whatsapp).trim() !== "") contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
 
-    // Buttons & Status Logic
-    let archiveBtn = '';
-    if (currentStatus === 'Sent' || currentStatus === 'Pending') {
-        archiveBtn = `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`;
-    }
-
+    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>` : '';
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action btn-print-mini">🖨️</button>`;
 
@@ -303,6 +301,7 @@ function createCardHTML(d, index, type, currentStatus) {
     if (currentStatus === 'Paid') oidBg = 'bg-success text-white';
     if (currentStatus === 'Dispatched') oidBg = 'bg-primary text-white';
 
+    // BUTTONS LOGIC
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
@@ -321,61 +320,62 @@ function createCardHTML(d, index, type, currentStatus) {
         let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
         let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
 
-        buttons = `<button class="btn-custom btn-track" onclick="startScanner('tracking', '${d.orderid}')">🚚 ${trackLabel}</button>
+        // 🔥 FIX 2: startScanner മാറ്റി editTracking ആക്കി
+        buttons = `<button class="btn-custom btn-track" onclick="editTracking('${d.orderid}', '${d.tracking || ''}')">🚚 ${trackLabel}</button>
                    <button class="btn-custom btn-complete" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
-    return `<div class="col-12 col-md-6 col-lg-4">
-                <div class="order-card status-${currentStatus}">
-                    
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:5px; border-bottom:1px dashed #eee;">
-                        <div style="font-size:10px; color:#adb5bd; font-weight:600;">
-                            <i class="fas fa-history"></i> Since: ${sinceDate}
-                        </div>
-                        <div style="font-size:11px; ${dateStyle}">
-                            ${formattedDate}
-                        </div>
+    // COMPACT VIEW RENDER
+    if (isCompact) {
+        let trackLabel = d.tracking ? `<span class="badge bg-light text-dark border">TRK: ${d.tracking}</span>` : '<span class="text-danger small">No Trk</span>';
+        return `
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #0d6efd;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div style="font-size:12px; line-height:1.4;">
+                        <span class="fw-bold">${d.name}</span> <span class="text-muted">(${d.phone})</span><br>
+                        <span class="badge bg-secondary" style="font-size:9px;">#${d.orderid.split('-')[1]}</span> ${trackLabel}
                     </div>
-
-                    <div class="card-header-row">
-                        <div style="display:flex; align-items:center;">
-                            ${archiveBtn} 
-                            <span class="order-id ${oidBg}" style="padding:2px 6px; border-radius:4px; font-size:10px;">#${d.orderid.split('-')[1]}</span> 
-                            ${editLink} 
-                            ${topButtons}
-                        </div>
-                        ${statusBadge}
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-success" style="padding: 2px 8px;" onclick="updateOrder('${d.orderid}', 'Completed')">✔</button>
+                        <button class="btn btn-sm btn-light border" style="padding: 2px 6px;" onclick="toggleCard(this)">▼</button>
                     </div>
-
-                    <div class="cust-name">${safe(d.name)}</div>
-                    
-                    <div style="margin-top:4px; margin-bottom:10px; display:flex; gap:5px;">
-                        <span style="background:#f0f9ff; color:#0369a1; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:700; border:1px solid #bae6fd;">
-                            📦 ${totalBottles} Btls
-                        </span>
-                        <span style="background:#fdf4ff; color:#a21caf; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:700; border:1px solid #f0abfc;">
-                            🛍️ ${totalOrders} Ords
-                        </span>
-                    </div>
-
-                    <div class="cust-details">
-                        <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
-                        <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
-                        <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
-                        
-                        <div class="mt-2" style="font-size:12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                            ${contactHtml}
-                        </div>
-                    </div>
-
-                    <div class="info-box">
-                        <span>${d.quantity} Bottles</span>
-                        <span class="price-tag">${priceInfo.total}</span>
-                    </div>
-                    <div class="action-area">${buttons}</div>
                 </div>
-            </div>`;
+                <div class="full-card-view mt-3 pt-3 border-top" style="display:none;">
+                    ${createCardHTML(d, index, type, currentStatus, false)} </div>
+            </div>
+        </div>`;
+    }
+
+    // FULL VIEW RENDER
+    return `<div class="col-12 col-md-6 col-lg-4">
+            <div class="order-card status-${currentStatus}">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:5px; border-bottom:1px dashed #eee;">
+                    <div style="font-size:10px; color:#adb5bd; font-weight:600;"><i class="fas fa-history"></i> Since: ${sinceDate}</div>
+                    <div style="font-size:11px; ${dateStyle}">${formattedDate}</div>
+                </div>
+                <div class="card-header-row">
+                    <div style="display:flex; align-items:center;">
+                        ${archiveBtn} <span class="order-id ${oidBg}" style="padding:2px 6px; border-radius:4px; font-size:10px;">#${d.orderid.split('-')[1]}</span> ${editLink} ${topButtons}
+                    </div>
+                    ${statusBadge}
+                </div>
+                <div class="cust-name">${safe(d.name)}</div>
+                <div style="margin-top:4px; margin-bottom:10px; display:flex; gap:5px;">
+                    <span style="background:#f0f9ff; color:#0369a1; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #bae6fd;">📦 ${totalBottles} Btls</span>
+                    <span style="background:#fdf4ff; color:#a21caf; padding:3px 8px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #f0abfc;">🛍️ ${totalOrders} Ords</span>
+                </div>
+                <div class="cust-details">
+                    <div style="font-weight:800; color:#1a1a1a;">${safe(d.house)}</div>
+                    <div>${safe(d.place)}, ${safe(d.postoffice)}</div>
+                    <div>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b></div>
+                    <div class="mt-2" style="font-size:12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${contactHtml}</div>
+                </div>
+                <div class="info-box"><span>${d.quantity} Bottles</span><span class="price-tag">${priceInfo.total}</span></div>
+                <div class="action-area">${buttons}</div>
+            </div>
+        </div>`;
 }
 
 
@@ -757,13 +757,23 @@ function runPrintLogic(selectedItems) {
 
 function startScanner(mode, specificOid) {
     scanMode = mode; tempOid = specificOid || null; scanStep = (mode === 'tracking') ? 1 : 0;
+
     $('#scanner-modal').css('display', 'flex');
-    $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR TO DISPATCH" : "SCAN ORDER QR");
+    $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
     $('#scan-result-box').hide();
+
+    // 🔥 1. SCANNER BOX SHAPE LOGIC
+    // QR ആണെങ്കിൽ Square (250x250), Barcode ആണെങ്കിൽ Wide (300x150)
+    let boxConfig = { width: 250, height: 250 };
+    if (mode === 'tracking' || mode === 'barcode') {
+        boxConfig = { width: 300, height: 150 };
+    }
+
     history.pushState(null, null, location.href);
     window.onpopstate = function () { stopScanner(); };
+
     html5QrCode = new Html5Qrcode("reader");
-    html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, onScanSuccess);
+    html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: boxConfig }, onScanSuccess);
 }
 
 function stopScanner() {
@@ -788,15 +798,38 @@ function isAlreadyScanned(val, mode) {
     return false;
 }
 
+// 🔴 NEW: Add/Edit Tracking Manually (Uppercase)
+function editTracking(oid, currentVal) {
+    Swal.fire({
+        title: 'ENTER TRACKING ID',
+        input: 'text',
+        inputValue: currentVal,
+        inputAttributes: { autocapitalize: 'characters' }, // Force Uppercase Keyboard
+        showCancelButton: true,
+        confirmButtonText: 'SAVE',
+        confirmButtonColor: '#000'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let trackId = result.value.trim().toUpperCase(); // Convert to Uppercase
+            if (trackId) {
+                updateOrder(oid, 'Dispatched', trackId);
+            }
+        }
+    });
+}
+
 function onScanSuccess(decodedText) {
+    playBeep();
+
     if (scanMode === 'dispatch') {
+        // 🔥 FIX 3: ORD- QR കോഡും, ബാർകോഡും (Tracking ID) സപ്പോർട്ട് ചെയ്യുന്നു
         if (decodedText.startsWith("ORD-")) {
+            // Case A: QR Code Scanned
             if (isAlreadyScanned(decodedText, 'dispatch')) {
                 showScanFeedback("ALREADY SCANNED ⚠️", allOrders.find(o => o.orderid === decodedText));
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                 return;
             }
-
             let order = allOrders.find(o => o.orderid === decodedText);
             if (order) {
                 updateOrder(decodedText, 'Dispatched');
@@ -805,8 +838,24 @@ function onScanSuccess(decodedText) {
             } else {
                 showScanFeedback("ORDER NOT FOUND ❌", null);
             }
+        } else {
+            // Case B: Tracking Barcode Scanned
+            let order = allOrders.find(o => o.tracking === decodedText);
+            if (order) {
+                if (order.Status === 'Dispatched') {
+                    showScanFeedback("ALREADY DISPATCHED ⚠️", order);
+                } else {
+                    updateOrder(order.orderid, 'Dispatched');
+                    showScanFeedback("DISPATCHED (Via TrackID) ✅", order);
+                }
+                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
+            } else {
+                showScanFeedback("UNKNOWN BARCODE ❌", null);
+            }
         }
     } else if (scanMode === 'tracking') {
+        // This block is mostly unused now since we moved to Manual Entry, 
+        // but kept for compatibility if needed.
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-")) {
                 tempOid = decodedText;
@@ -818,12 +867,6 @@ function onScanSuccess(decodedText) {
             }
         } else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
-                if (isAlreadyScanned(decodedText, 'tracking')) {
-                    showScanFeedback("TRACKING USED ⚠️", allOrders.find(o => o.orderid === tempOid));
-                    html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
-                    return;
-                }
-
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
                 showScanFeedback("TRACKING SAVED ✅", order);
@@ -911,3 +954,15 @@ document.addEventListener('click', function (e) {
         card.classList.add('active-highlight');
     }
 });
+
+function toggleCard(btn) {
+    let card = btn.closest('.order-card');
+    let fullView = card.querySelector('.full-card-view');
+    if (fullView.style.display === 'none') {
+        fullView.style.display = 'block';
+        btn.innerHTML = '▲';
+    } else {
+        fullView.style.display = 'none';
+        btn.innerHTML = '▼';
+    }
+}
