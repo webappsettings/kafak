@@ -276,7 +276,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
         return `
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3; cursor:pointer;">
+            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3; cursor:pointer;" onclick="toggleCardUI(this)">
                 <div class="d-flex justify-content-between align-items-center">
                     <div style="font-size:12px; flex-grow:1;">
                         <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted small">(${d.phone})</span><br>
@@ -285,8 +285,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                         ${trackCheckBtn}
                     </div>
                     <div class="d-flex gap-2 align-items-center">
-                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✔ Done</button>
-                        <i class="fas fa-chevron-down text-muted small ms-1"></i>
+                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
+                        
                     </div>
                 </div>
                 <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">
@@ -706,6 +706,17 @@ document.addEventListener('click', function (e) {
     }
 });
 
+function toggleCard(btn) {
+    let card = btn.closest('.order-card');
+    let fullView = card.querySelector('.full-card-view');
+    if (fullView.style.display === 'none') {
+        fullView.style.display = 'block';
+        btn.innerHTML = '▲';
+    } else {
+        fullView.style.display = 'none';
+        btn.innerHTML = '▼';
+    }
+}
 
 function toggleCardUI(cardElement) {
     let fullContent = cardElement.querySelector('.full-card-content');
