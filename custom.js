@@ -521,7 +521,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
-  // 1. Show Order ID & Date
+  // 1. Order ID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
@@ -536,29 +536,30 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
 
-  // Save Data
   savedOrderData = JSON.parse(JSON.stringify(d));
-
-  // 3. Update Address & Phone UI
   updateSummaryDisplay();
+
+  // 🔥 പഴയ സ്റ്റാറ്റസ് ക്ലിയർ ചെയ്യുന്നു (ഇതോടെ പഴയത് പോകും)
   $('#status-area').empty();
 
-  // 4. Update Status Timeline (Server Data Only)
-  if (isServerData) { updateStatusUI(d); }
+  // 3. Status Logic
+  if (isServerData) {
+    updateStatusUI(d);
+  } else {
+    // 🔥 സെർവർ ഡാറ്റ വരുന്നത് വരെ ഇവിടെ ലോഡിംഗ് കാണിക്കും
+    $('#status-area').html(`
+          <div class="d-flex flex-column align-items-center justify-content-center py-5">
+              <div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div>
+              <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">CHECKING LIVE STATUS...</div>
+          </div>
+      `);
+  }
 
   const status = String(d.Status || '').trim().toLowerCase();
-
-  // 🔥 STATUS LOGIC: Hide Quantity/Update for Paid & Dispatched
   const hideControls = ['paid', 'dispatched', 'completed', 'delivered'].includes(status);
 
   if (hideControls) {
-    // HIDE MODE (Paid, Dispatched...)
-    $('label[data-i18n="lbl_qty"]').hide();
-    $('.qty-action-row').hide();
-    $('#quick-price-box').hide();
-    $('#btn-edit-addr').hide();
-
-    // New Order Button Logic
+    $('label[data-i18n="lbl_qty"]').hide(); $('.qty-action-row').hide(); $('#quick-price-box').hide(); $('#btn-edit-addr').hide();
     if (['completed', 'delivered'].includes(status)) {
       if ($('#btn-new-order-mode').length === 0) {
         const btnText = "PLACE NEW ORDER";
@@ -568,45 +569,33 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     } else {
       $('#btn-new-order-mode').hide();
     }
-
   } else {
-    // SHOW MODE (Pending, Sent)
-    $('label[data-i18n="lbl_qty"]').show();
-    $('.qty-action-row').css('display', 'flex');
-    $('#quick-price-box').show();
-    $('#btn-edit-addr').css('display', 'inline-block');
-    $('#btn-new-order-mode').hide();
-
-    // 👇 ഈ വരി നിർബന്ധമായും ചേർക്കുക (ഇതാണ് ലോക്ക് മാറ്റുന്നത്) 👇
-    $('#quick-qty').prop('disabled', false);
-
-    $('#quick-qty option').prop('disabled', false);
-    if (isActiveOrder) {
-      $('#quick-qty').val(d.quantity).trigger('change');
-    } else {
-      $('#quick-qty').val('').trigger('change');
-    }
+    $('label[data-i18n="lbl_qty"]').show(); $('.qty-action-row').css('display', 'flex'); $('#quick-price-box').show(); $('#btn-edit-addr').css('display', 'inline-block'); $('#btn-new-order-mode').hide();
+    $('#quick-qty').prop('disabled', false); $('#quick-qty option').prop('disabled', false);
+    if (isActiveOrder) { $('#quick-qty').val(d.quantity).trigger('change'); } else { $('#quick-qty').val('').trigger('change'); }
   }
 
-  // Refresh Button Logic
-  if ($('#refresh-btn').length === 0) {
-    $('#returning-user-view').append(`
-          <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
-              <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
-                  <i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span>
-              </button>
-          </div>
-      `);
+  // 🔥 REFRESH BUTTON LOGIC (മാറ്റം വരുത്തിയത്)
+  // സെർവർ ഡാറ്റ വന്ന ശേഷം മാത്രം Refresh ബട്ടൺ കാണിക്കുന്നു.
+  // അതുകൊണ്ട് "Checking Status" സമയത്ത് 2 ലോഡിംഗ് കാണില്ല.
+  if (isServerData) {
+    if ($('#refresh-btn').length === 0) {
+      $('#returning-user-view').append(`
+              <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
+                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
+                      <i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span>
+                  </button>
+              </div>
+          `);
+    }
   }
 
   checkForChanges();
 
-  // 🔥🔥🔥 NEW CHANGE: Disable Controls until Server Sync is Complete 🔥🔥🔥
-  // സെർവറിൽ നിന്ന് ഡാറ്റ വരുന്നത് വരെ (isServerData = false) എഡിറ്റ് ചെയ്യാൻ സമ്മതിക്കില്ല.
   if (!isServerData && !hideControls) {
-    $('#quick-qty').prop('disabled', true); // ക്വാണ്ടിറ്റി ലോക്ക് ചെയ്യുന്നു
-    $('.btn-update-sage').prop('disabled', true).text('CHECKING STATUS...'); // ബട്ടൺ മാറ്റുന്നു
-    $('#btn-edit-addr').hide(); // അഡ്രസ്സ് എഡിറ്റ് ഒളിപ്പിക്കുന്നു
+    $('#quick-qty').prop('disabled', true);
+    $('.btn-update-sage').prop('disabled', true).text('CHECKING STATUS...');
+    $('#btn-edit-addr').hide();
   }
 }
 
@@ -919,61 +908,52 @@ $('#place').on('input keyup focus', function () {
 });
 
 function updateLiveAddressPreview() {
-  // 4. Get raw text from hidden divs
+  // 1. Get raw text for PO (Hidden Div-ൽ നിന്ന്)
   let poRaw = $('#display-po').text() || '';
-  let distStateRaw = $('#display-dist-state').text() || ''; // e.g., "ALUVA, ERNAKULAM"
 
-  // 5. Data Cleaning (Updated Logic)
+  // 2. Data Cleaning
   let place = $('#place').val() || '';
   let po = poRaw.replace('PO', '').trim();
-  if (po) po += ' PO'; // Add 'PO' only if data exists
+  if (po) po += ' PO';
 
-  // 🔥 FIX: Split by comma and take the LAST part (which is District)
-  let distParts = distStateRaw.split(',');
-  let dist = '';
+  // 🔥 FIX: Split Logic ഒഴിവാക്കി, നേരിട്ട് Global Data-യിൽ നിന്ന് എടുക്കുന്നു
+  // പഴയ split(',') കോഡ് പ്രശ്നക്കാരായത് കൊണ്ട് ഇത് ഉപയോഗിക്കുക:
+  let dist = userData.district || '';
+  let state = userData.state || $('#state').val() || 'KERALA';
+  let pin = $('#pincode').val() || '';
 
-  if (distParts.length > 1) {
-    dist = distParts[1].trim(); // Take part after comma (District)
-  } else {
-    dist = distStateRaw.trim(); // Fallback
-  }
-
-  // Safety: If district is mistakenly same as place, clear it from district var
+  // Safety: ജില്ലയുടെ പേരും സ്ഥലത്തിന്റെ പേരും ഒന്നാണെങ്കിൽ ജില്ല കാണിക്കേണ്ട
   if (dist.toLowerCase() === place.toLowerCase()) {
     dist = '';
   }
 
-  let state = $('#state').val() || 'KERALA';
-  let pin = $('#pincode').val() || '';
-
-  // 6. Language Check
+  // 3. Language Check
   let lang = $('.form-select').val() || 'en';
   let warnText = "Enter Place only (Don't add District/PO)";
   if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
 
-  // 7. HTML Content
+  // 4. HTML Content
   let previewHtml = `
   <div class="text-danger fw-bold mb-2" style="margin-top: 5px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
-                <i class="fas fa-info-circle"></i> ${warnText}
-            </div>
-        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
+        <i class="fas fa-info-circle"></i> ${warnText}
+    </div>
+    <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
+        <div style="font-size: 13px; line-height: 1.6; color: #333;">
+            <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
             
-            <div style="font-size: 13px; line-height: 1.6; color: #333;">
-                <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
-                
-                <div style="text-transform: uppercase;">
-                    ${place ? place : ''}${place && dist ? ', ' : ''}
-                    <span style="text-transform: uppercase; font-weight:600;">${dist}</span>
-                </div>
+            <div style="text-transform: uppercase;">
+                ${place ? place : ''}${place && dist ? ', ' : ''}
+                <span style="text-transform: uppercase; font-weight:600;">${dist}</span>
+            </div>
 
-                <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
-                    ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
-                </div>
+            <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
+                ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
             </div>
         </div>
+    </div>
     `;
 
-  // 8. Update UI
+  // 5. Update UI
   if ($('#live-addr-preview').length === 0) {
     $('<div id="live-addr-preview"></div>').insertAfter('#place');
   }
