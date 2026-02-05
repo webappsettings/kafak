@@ -253,12 +253,11 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-function createCardHTML(d, index, type, currentStatus, isCompact = false) { // 🔥 FIX 1: isCompact ചേർത്തു
+function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
     let statusBadge = '', buttons = '', topButtons = '';
 
-    // --- 📅 DATE FORMATTING ---
     let dateObj = new Date(d.timestamp);
     let day = String(dateObj.getDate()).padStart(2, '0');
     let month = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -269,7 +268,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) { // �
     hours = hours % 12; hours = hours ? hours : 12;
     let formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 
-    // --- 📊 CUSTOMER STATS ---
     let totalOrders = 0, totalBottles = 0, sinceDate = '';
     let cleanPhone = (p) => String(p || '').replace(/[^0-9]/g, '');
     let currentPhone = cleanPhone(d.phone);
@@ -284,9 +282,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) { // �
         }
     }
 
-    // --- 🎨 STYLES ---
     let dateStyle = (type === 'pending') ? "color: #dc3545; font-weight: 800;" : "color: #6c757d;";
-
     let contactHtml = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt" style="font-size:11px;"></i> ${d.phone}</span>`;
     if (d.altphone && String(d.altphone).trim() !== "") contactHtml += `, <span class="text-primary fw-bold">${d.altphone}</span>`;
     if (d.whatsapp && String(d.whatsapp).trim() !== "") contactHtml += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp" style="font-size:12px;"></i> ${d.whatsapp}</span>`;
@@ -301,7 +297,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) { // �
     if (currentStatus === 'Paid') oidBg = 'bg-success text-white';
     if (currentStatus === 'Dispatched') oidBg = 'bg-primary text-white';
 
-    // BUTTONS LOGIC
     if (type === 'pending') {
         if (currentStatus === 'Sent') {
             statusBadge = '<span class="badge bg-info text-dark">Sent</span>';
@@ -320,13 +315,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) { // �
         let trackNum = (localUpdate && localUpdate.tracking) ? localUpdate.tracking : (d.tracking || '');
         let trackLabel = trackNum ? `TRK: ${trackNum}` : 'Add Tracking';
 
-        // 🔥 FIX 2: startScanner മാറ്റി editTracking ആക്കി
         buttons = `<button class="btn-custom btn-track" onclick="editTracking('${d.orderid}', '${d.tracking || ''}')">🚚 ${trackLabel}</button>
                    <button class="btn-custom btn-complete" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
         topButtons = `<button onclick="updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">↩ REVERT</button>` + printBtn;
     }
 
-    // COMPACT VIEW RENDER
     if (isCompact) {
         let trackLabel = d.tracking ? `<span class="badge bg-light text-dark border">TRK: ${d.tracking}</span>` : '<span class="text-danger small">No Trk</span>';
         return `
@@ -348,7 +341,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) { // �
         </div>`;
     }
 
-    // FULL VIEW RENDER
     return `<div class="col-12 col-md-6 col-lg-4">
             <div class="order-card status-${currentStatus}">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:5px; border-bottom:1px dashed #eee;">
