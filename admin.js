@@ -592,7 +592,7 @@ function editTracking(oid, currentVal) {
 function onScanSuccess(decodedText) {
     playBeep();
 
-    // 📦 MODE 1: DISPATCH (Single Scan - Normal Dispatch)
+    // 📦 MODE 1: DISPATCH
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
             if (isAlreadyScanned(decodedText, 'dispatch')) {
@@ -610,7 +610,6 @@ function onScanSuccess(decodedText) {
                 showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
             }
         } else {
-            // Barcode Search in Dispatch Mode
             let order = allOrders.find(o => o.tracking === decodedText);
             if (order) {
                 if (order.Status === 'Dispatched') {
@@ -626,7 +625,7 @@ function onScanSuccess(decodedText) {
         }
     }
 
-    // 🚚 MODE 2: COURIER SCAN (Smart Logic for Paid/Dispatched)
+    // 🚚 MODE 2: TRACKING (With Beautiful Confirmation UI)
     else if (scanMode === 'tracking') {
 
         // STEP 1: Scan Order QR
@@ -637,57 +636,54 @@ function onScanSuccess(decodedText) {
 
                 if (order) {
 
-                    // 👉 CONDITION 1: Order is PAID (Not Dispatched)
-                    if (order.Status === 'Paid' || order.Status === 'Sent') { // Considering 'Sent' as eligible too
-                        html5QrCode.pause(); // Pause camera for confirmation
+                    // 👉 CONDITION 1: Order is PAID -> SHOW CONFIRMATION UI
+                    if (order.Status === 'Paid' || order.Status === 'Sent') {
+                        html5QrCode.pause(); // Pause Camera
 
-                        Swal.fire({
-                            title: 'Mark Dispatched?',
-                            html: `Customer: <b>${order.name}</b><br>Proceed to tracking scan?`,
-                            icon: 'question',
-                            showCancelButton: true,
-                            confirmButtonColor: '#000',
-                            confirmButtonText: 'YES, SCAN BARCODE',
-                            cancelButtonText: 'NO'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // 1. Mark as Dispatched
-                                updateOrder(tempOid, 'Dispatched');
+                        // 🔥 Custom Beautiful Confirmation UI
+                        let confirmHTML = `
+                            <div style="background:#fff3cd; color:#856404; padding:10px; border-radius:10px; margin-bottom:10px; border:1px solid #ffeeba; font-weight:bold;">
+                                ❓ MARK AS DISPATCHED?
+                            </div>
+                            
+                            <div style="text-align:left; background:#fff; border:1px solid #e9ecef; padding:15px; border-radius:12px; margin-bottom:15px;">
+                                <div style="font-size:16px; font-weight:800; color:#000;">${order.name}</div>
+                                <div style="font-size:13px; color:#555;">${order.house}, ${order.place}</div>
+                            </div>
 
-                                // 2. Go to Step 2 (Barcode Scan)
-                                scanStep = 2;
-                                $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
-                                showScanFeedback("MARKED DISPATCHED ✅ SCAN BARCODE", order, decodedText);
-                                html5QrCode.resume();
-                            } else {
-                                // User Cancelled
-                                showScanFeedback("ACTION CANCELLED ❌", order, decodedText);
-                                setTimeout(() => html5QrCode.resume(), 1000);
-                            }
-                        });
+                            <div style="display:flex; gap:10px;">
+                                <button onclick="confirmDispatchAction('${tempOid}', '${decodedText}')" style="flex:1; background:#000; color:white; border:none; padding:12px; border-radius:10px; font-weight:bold; font-size:14px;">
+                                    ✅ YES, SCAN BARCODE
+                                </button>
+                                <button onclick="cancelDispatchAction()" style="flex:1; background:#f1f3f5; color:#333; border:1px solid #ddd; padding:12px; border-radius:10px; font-weight:bold; font-size:14px;">
+                                    ❌ NO
+                                </button>
+                            </div>
+                        `;
+
+                        $('#scan-status-text').html(""); // Clear old status
+                        $('#scan-info-text').html(confirmHTML);
+                        $('#scan-result-box').slideDown();
                         return;
                     }
 
-                    // 👉 CONDITION 2: Order is ALREADY DISPATCHED
+                    // 👉 CONDITION 2: ALREADY DISPATCHED -> Show Red Alert & Barcode
                     if (order.Status === 'Dispatched') {
-                        // Show "Already Dispatched" in RED with Linked ID
                         let existingTrack = order.tracking || "No Tracking";
                         showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, existingTrack);
 
-                        // Don't stop! Continue to Step 2 to Update/Verify Barcode
-                        scanStep = 2;
+                        scanStep = 2; // Auto move to barcode scan
                         $('#scan-mode-title').text("UPDATE TRACKING BARCODE");
 
                         html5QrCode.pause();
-                        setTimeout(() => html5QrCode.resume(), 2000); // Give time to read warning
+                        setTimeout(() => html5QrCode.resume(), 2500); // Give 2.5s to read, then resume
                         return;
                     }
 
-                    // Normal Flow (If any other case)
+                    // Normal Flow
                     scanStep = 2;
                     $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
                     showScanFeedback("QR OK! SCAN BARCODE NOW 📦", order, decodedText);
-
                     html5QrCode.pause();
                     setTimeout(() => html5QrCode.resume(), 1500);
 
@@ -697,27 +693,18 @@ function onScanSuccess(decodedText) {
             }
         }
 
-        // STEP 2: Scan Courier Barcode
+        // STEP 2: Scan Courier Barcode (No Changes needed here)
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
-
-                // Check if Barcode is used by ANOTHER order
                 let existing = isAlreadyScanned(decodedText, 'tracking');
                 if (existing && existing.orderid !== tempOid) {
                     showScanFeedback("BARCODE ALREADY USED ⚠️", existing, decodedText, existing.orderid);
-                    html5QrCode.pause();
-                    setTimeout(() => html5QrCode.resume(), 2000);
+                    html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                     return;
                 }
-
-                // Save Tracking
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
-
-                // Show Success with QR Code Linked
                 showScanFeedback("TRACKING SAVED ✅", order, decodedText, tempOid);
-
-                // Reset for next customer
                 scanStep = 1;
                 setTimeout(() => {
                     $('#scan-mode-title').text("SCAN NEXT ORDER QR");
@@ -873,4 +860,24 @@ function toggleCardUI(cardElement) {
     } else {
         fullContent.style.display = 'none';
     }
+}
+
+// ✅ Helper: Confirm Dispatch Click
+function confirmDispatchAction(oid, code) {
+    updateOrder(oid, 'Dispatched');
+    scanStep = 2; // Move to Barcode Scan
+    $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
+
+    // Show success & prepare for barcode
+    let order = allOrders.find(o => o.orderid === oid);
+    showScanFeedback("MARKED DISPATCHED ✅", order, code);
+
+    // Resume camera
+    html5QrCode.resume();
+}
+
+// ❌ Helper: Cancel Dispatch Click
+function cancelDispatchAction() {
+    $('#scan-result-box').slideUp(); // Hide box
+    setTimeout(() => html5QrCode.resume(), 500); // Resume camera
 }
