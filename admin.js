@@ -2,6 +2,8 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbxSEehazTZrXsydIUPnTX
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
+let isScanProcessing = false;
+
 function playBeep() {
     let ctx = new (window.AudioContext || window.webkitAudioContext)();
     let osc = ctx.createOscillator();
@@ -590,6 +592,10 @@ function editTracking(oid, currentVal) {
 }
 
 function onScanSuccess(decodedText) {
+    // 🔥 1. Ignore if already processing (Single Beep Logic)
+    if (isScanProcessing) return;
+    isScanProcessing = true;
+
     playBeep();
 
     // 📦 MODE 1: DISPATCH
@@ -598,16 +604,22 @@ function onScanSuccess(decodedText) {
             if (isAlreadyScanned(decodedText, 'dispatch')) {
                 let order = allOrders.find(o => o.orderid === decodedText);
                 showScanFeedback("ALREADY SCANNED ⚠️", order, decodedText, order ? (order.tracking || "No Tracking") : "");
-                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
+
+                html5QrCode.pause();
+                setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000); // 🔥 Reset Flag
                 return;
             }
             let order = allOrders.find(o => o.orderid === decodedText);
             if (order) {
                 updateOrder(decodedText, 'Dispatched');
                 showScanFeedback("DISPATCHED ✅", order, decodedText);
-                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
+
+                html5QrCode.pause();
+                setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500); // 🔥 Reset Flag
             } else {
                 showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
+                // Error case-ilum reset venam
+                setTimeout(() => { isScanProcessing = false; }, 1500);
             }
         } else {
             let order = allOrders.find(o => o.tracking === decodedText);
@@ -618,14 +630,16 @@ function onScanSuccess(decodedText) {
                     updateOrder(order.orderid, 'Dispatched');
                     showScanFeedback("DISPATCHED (Via TrackID) ✅", order, decodedText, order.orderid);
                 }
-                html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
+                html5QrCode.pause();
+                setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500); // 🔥 Reset Flag
             } else {
                 showScanFeedback("UNKNOWN BARCODE ❌", null, decodedText);
+                setTimeout(() => { isScanProcessing = false; }, 1500);
             }
         }
     }
 
-    // 🚚 MODE 2: TRACKING (With Beautiful Confirmation UI)
+    // 🚚 MODE 2: TRACKING
     else if (scanMode === 'tracking') {
 
         // STEP 1: Scan Order QR
@@ -635,48 +649,40 @@ function onScanSuccess(decodedText) {
                 let order = allOrders.find(o => o.orderid === tempOid);
 
                 if (order) {
-
-                    // 👉 CONDITION 1: Order is PAID -> SHOW CONFIRMATION UI
+                    // 👉 CONDITION 1: Paid Order -> ASK CONFIRMATION
                     if (order.Status === 'Paid' || order.Status === 'Sent') {
-                        html5QrCode.pause(); // Pause Camera
+                        html5QrCode.pause();
 
-                        // 🔥 Custom Beautiful Confirmation UI
+                        // Confirmation UI
                         let confirmHTML = `
                             <div style="background:#fff3cd; color:#856404; padding:10px; border-radius:10px; margin-bottom:10px; border:1px solid #ffeeba; font-weight:bold;">
                                 ❓ MARK AS DISPATCHED?
                             </div>
-                            
                             <div style="text-align:left; background:#fff; border:1px solid #e9ecef; padding:15px; border-radius:12px; margin-bottom:15px;">
                                 <div style="font-size:16px; font-weight:800; color:#000;">${order.name}</div>
                                 <div style="font-size:13px; color:#555;">${order.house}, ${order.place}</div>
                             </div>
-
                             <div style="display:flex; gap:10px;">
-                                <button onclick="confirmDispatchAction('${tempOid}', '${decodedText}')" style="flex:1; background:#000; color:white; border:none; padding:12px; border-radius:10px; font-weight:bold; font-size:14px;">
-                                    ✅ YES, SCAN BARCODE
-                                </button>
-                                <button onclick="cancelDispatchAction()" style="flex:1; background:#f1f3f5; color:#333; border:1px solid #ddd; padding:12px; border-radius:10px; font-weight:bold; font-size:14px;">
-                                    ❌ NO
-                                </button>
-                            </div>
-                        `;
+                                <button onclick="confirmDispatchAction('${tempOid}', '${decodedText}')" style="flex:1; background:#000; color:white; border:none; padding:12px; border-radius:10px; font-weight:bold; font-size:13px;">YES, SCAN BARCODE</button>
+                                <button onclick="cancelDispatchAction()" style="flex:1; background:#f1f3f5; color:#333; border:1px solid #ddd; padding:12px; border-radius:10px; font-weight:bold; font-size:13px;">NO, CANCEL</button>
+                            </div>`;
 
-                        $('#scan-status-text').html(""); // Clear old status
+                        $('#scan-status-text').html("");
                         $('#scan-info-text').html(confirmHTML);
                         $('#scan-result-box').slideDown();
-                        return;
+                        return; // Note: Flag is NOT reset here, it waits for Yes/No click
                     }
 
-                    // 👉 CONDITION 2: ALREADY DISPATCHED -> Show Red Alert & Barcode
+                    // 👉 CONDITION 2: Already Dispatched -> Show Warning & Barcode
                     if (order.Status === 'Dispatched') {
                         let existingTrack = order.tracking || "No Tracking";
                         showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, existingTrack);
 
-                        scanStep = 2; // Auto move to barcode scan
+                        scanStep = 2;
                         $('#scan-mode-title').text("UPDATE TRACKING BARCODE");
 
                         html5QrCode.pause();
-                        setTimeout(() => html5QrCode.resume(), 2500); // Give 2.5s to read, then resume
+                        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2500); // 🔥 Reset Flag
                         return;
                     }
 
@@ -685,21 +691,25 @@ function onScanSuccess(decodedText) {
                     $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
                     showScanFeedback("QR OK! SCAN BARCODE NOW 📦", order, decodedText);
                     html5QrCode.pause();
-                    setTimeout(() => html5QrCode.resume(), 1500);
+                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500); // 🔥 Reset Flag
 
                 } else {
                     showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
+                    setTimeout(() => { isScanProcessing = false; }, 1500);
                 }
+            } else {
+                setTimeout(() => { isScanProcessing = false; }, 500); // Not a valid QR
             }
         }
 
-        // STEP 2: Scan Courier Barcode (No Changes needed here)
+        // STEP 2: Scan Courier Barcode
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
                 let existing = isAlreadyScanned(decodedText, 'tracking');
                 if (existing && existing.orderid !== tempOid) {
                     showScanFeedback("BARCODE ALREADY USED ⚠️", existing, decodedText, existing.orderid);
-                    html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
+                    html5QrCode.pause();
+                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000); // 🔥 Reset Flag
                     return;
                 }
                 updateOrder(tempOid, 'Dispatched', decodedText);
@@ -709,10 +719,12 @@ function onScanSuccess(decodedText) {
                 setTimeout(() => {
                     $('#scan-mode-title').text("SCAN NEXT ORDER QR");
                     html5QrCode.resume();
+                    isScanProcessing = false; // 🔥 Reset Flag
                 }, 2000);
                 html5QrCode.pause();
             } else {
                 showScanFeedback("SCAN BARCODE, NOT QR ⚠️", null, decodedText);
+                setTimeout(() => { isScanProcessing = false; }, 1500);
             }
         }
     }
@@ -865,19 +877,28 @@ function toggleCardUI(cardElement) {
 // ✅ Helper: Confirm Dispatch Click
 function confirmDispatchAction(oid, code) {
     updateOrder(oid, 'Dispatched');
-    scanStep = 2; // Move to Barcode Scan
+    scanStep = 2;
     $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
 
-    // Show success & prepare for barcode
     let order = allOrders.find(o => o.orderid === oid);
-    showScanFeedback("MARKED DISPATCHED ✅", order, code);
+    showScanFeedback("MARKED DISPATCHED ✅ SCAN BARCODE", order, code);
 
-    // Resume camera
     html5QrCode.resume();
+    isScanProcessing = false; // 🔥 Unlock Scanner for next scan
+}
+
+// ❌ Helper: Cancel Dispatch Click
+function cancelDispatchAction() {
+    $('#scan-result-box').slideUp();
+    setTimeout(() => {
+        html5QrCode.resume();
+        isScanProcessing = false; // 🔥 Unlock Scanner
+    }, 1000);
 }
 
 // ❌ Helper: Cancel Dispatch Click
 function cancelDispatchAction() {
     $('#scan-result-box').slideUp(); // Hide box
-    setTimeout(() => html5QrCode.resume(), 500); // Resume camera
+    // ഡിസ്പാച്ച് ആക്കണ്ട, വെറുതെ ബോക്സ് ക്ലോസ് ചെയ്ത് ക്യാമറ ഓൺ ആക്കുന്നു
+    setTimeout(() => html5QrCode.resume(), 1000);
 }

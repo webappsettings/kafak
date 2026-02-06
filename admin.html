@@ -381,23 +381,22 @@
         }
 
         /* RESULT BOX STYLES */
+        /* 🔥 Result Box Style - Fix for Z-Index Overlay */
         .scan-footer {
             background: white;
             border-radius: 20px 20px 0 0;
-            /* Top rounded corners */
             padding: 20px;
             pointer-events: auto;
             box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
             position: absolute;
-            /* Fixed position bottom */
+            /* Fix: Absolute position */
             bottom: 0;
             left: 0;
             width: 100%;
             z-index: 2005;
-            /* High z-index */
+            /* Fix: High Z-Index to show above camera */
             max-height: 80vh;
-            /* Too much height avathirikkan */
             overflow-y: auto;
         }
 
