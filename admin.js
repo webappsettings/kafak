@@ -220,11 +220,11 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
         if (!btlEl) {
             btlEl = document.createElement('span');
             btlEl.id = btlId;
-            btlEl.className = "badge rounded-pill bg-light text-dark border ms-2";
+            btlEl.className = "badge bg-primary ms-1 rounded-pill text-white";
             btlEl.style.fontSize = "10px"; btlEl.style.fontWeight = "700";
             el.insertAdjacentElement('afterend', btlEl);
         }
-        btlEl.innerHTML = `<i class="fas fa-wine-bottle" style="color:#888;"></i> ${bottleCount}`;
+        btlEl.innerHTML = `<i class="fas fa-wine-bottle" style="color:#98b9ff;"></i> ${bottleCount}`;
     }
 }
 
@@ -286,7 +286,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                         ${trackCheckBtn}
                     </div>
                     <div class="d-flex gap-2 align-items-center">
-                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✔ Done</button>
+                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
                     </div>
                 </div>
 
@@ -530,12 +530,15 @@ function startScanner(mode, specificOid) {
     $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
     $('#scan-result-box').hide();
 
-    // 🔥 1. CAMERA VIEW SHAPE LOGIC
-    // QR Code: Square (250x250)
-    // Barcode: Wide & Short (320x150) -> Height കുറച്ച് Wide ആക്കി
-    let boxConfig = { width: 250, height: 250 };
-    if (mode === 'tracking' || mode === 'barcode' || mode === 'courier') { // 'courier' mode ഉണ്ടെങ്കിൽ അതും
+    // 🔥 CAMERA SHAPE LOGIC (Fixed)
+    let boxConfig;
+
+    if (mode === 'tracking' || mode === 'barcode') {
+        // Barcode: Wide Box (320x150)
         boxConfig = { width: 320, height: 150 };
+    } else {
+        // Dispatch / QR: Square Box (250x250)
+        boxConfig = { width: 250, height: 250 };
     }
 
     history.pushState(null, null, location.href);
@@ -623,61 +626,39 @@ function onScanSuccess(decodedText) {
         }
     }
 
-    // 🚚 MODE 2: TRACKING (Double Scan: QR -> Barcode)
+    // 🚚 MODE 2: TRACKING (Double Scan)
     else if (scanMode === 'tracking') {
-
-        // STEP 1: Scan Order QR Code
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-")) {
                 tempOid = decodedText;
                 let order = allOrders.find(o => o.orderid === tempOid);
-
                 if (order) {
-                    // 🔥 CHECK 1: Already Dispatched ആണോ എന്ന് നോക്കുന്നു
                     if (order.Status === 'Dispatched') {
                         showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText);
-                        html5QrCode.pause();
-                        setTimeout(() => html5QrCode.resume(), 2000);
+                        html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                         return;
                     }
-
-                    scanStep = 2; // അടുത്ത ഘട്ടത്തിലേക്ക് (Barcode Scan)
+                    scanStep = 2;
                     $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
                     showScanFeedback("QR OK! SCAN BARCODE NOW 📦", order, decodedText);
-
-                    html5QrCode.pause();
-                    setTimeout(() => html5QrCode.resume(), 1500);
+                    html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
                 } else {
                     showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
                 }
             }
-        }
-
-        // STEP 2: Scan Courier Barcode
-        else if (scanStep === 2) {
+        } else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
-
-                // 🔥 CHECK 2: ഈ ബാർകോഡ് വേറെ ആർക്കെങ്കിലും ഉണ്ടോ എന്ന് നോക്കുന്നു
                 let existing = isAlreadyScanned(decodedText, 'tracking');
                 if (existing && existing.orderid !== tempOid) {
                     showScanFeedback("BARCODE ALREADY USED ⚠️", existing, decodedText);
-                    html5QrCode.pause();
-                    setTimeout(() => html5QrCode.resume(), 2000);
+                    html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                     return;
                 }
-
-                // സേവ് ചെയ്യുന്നു
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
-
                 showScanFeedback("TRACKING SAVED ✅", order, decodedText);
-
-                // Reset for next customer
                 scanStep = 1;
-                setTimeout(() => {
-                    $('#scan-mode-title').text("SCAN NEXT ORDER QR");
-                    html5QrCode.resume();
-                }, 2000);
+                setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); html5QrCode.resume(); }, 2000);
                 html5QrCode.pause();
             } else {
                 showScanFeedback("SCAN BARCODE, NOT QR ⚠️", null, decodedText);
@@ -688,48 +669,45 @@ function onScanSuccess(decodedText) {
 
 function showScanFeedback(status, order, code = "") {
     // 1. Update Status Title
-    $('#scan-status-text').html(status); // Use .html() to support icons if any
+    $('#scan-status-text').html(status);
 
     let htmlContent = "";
 
     // 2. 🔥 Scanned Code Section (Highlighted Box)
     if (code) {
         htmlContent += `
-            <div style="background:#f8f9fa; padding:10px; border-radius:10px; margin-bottom:15px; border:1px dashed #ced4da;">
-                <div style="font-size:10px; color:#6c757d; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;">SCANNED CODE</div>
-                <div style="font-size:18px; font-weight:800; color:#212529; font-family:monospace; letter-spacing:0.5px;">${code}</div>
+            <div style="background:#f1f3f5; padding:8px 12px; border-radius:8px; margin-bottom:12px; border:1px dashed #ced4da; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:10px; color:#6c757d; font-weight:700; letter-spacing:0.5px;">CODE:</span>
+                <span style="font-size:16px; font-weight:800; color:#212529; font-family:monospace;">${code}</span>
             </div>`;
     }
 
     // 3. 👤 Customer Details Section (Card Style)
     if (order) {
         htmlContent += `
-            <div style="text-align:left; background:#fff; border:1px solid #e9ecef; padding:15px; border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
+            <div style="text-align:left; background:#fff; border:1px solid #e9ecef; padding:12px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
                 
-                <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
+                <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
                     <div>
-                        <div style="font-size:11px; color:#adb5bd; font-weight:700; text-transform:uppercase;">CUSTOMER</div>
-                        <div style="font-size:16px; font-weight:800; color:#000; line-height:1.2;">${order.name}</div>
+                        <div style="font-size:16px; font-weight:800; color:#000;">${order.name}</div>
+                        <div style="font-size:11px; color:#6c757d; margin-top:2px;">${order.orderid}</div>
                     </div>
-                    <div style="text-align:right;">
-                        <span style="background:#e8f5e9; color:#2e7d32; padding:4px 8px; border-radius:6px; font-size:12px; font-weight:700; display:inline-block;">
-                            <i class="fas fa-phone-alt" style="font-size:10px;"></i> ${order.phone}
-                        </span>
-                    </div>
+                    <span style="background:#e8f5e9; color:#1b5e20; padding:4px 8px; border-radius:6px; font-size:12px; font-weight:700;">
+                        <i class="fas fa-phone-alt" style="font-size:10px;"></i> ${order.phone}
+                    </span>
                 </div>
 
-                <div style="font-size:13px; color:#495057; line-height:1.5; border-top:1px dashed #e9ecef; padding-top:10px; margin-top:5px;">
+                <div style="font-size:12px; color:#495057; line-height:1.4; border-top:1px solid #f1f3f5; padding-top:8px; margin-top:8px;">
                     <span style="font-weight:700;">${order.house}</span>, ${order.place}<br>
-                    ${order.postoffice} <span style="color:#adb5bd;">|</span> <span style="font-weight:700;">${order.pincode}</span>
+                    ${order.postoffice}, ${order.district}<br>
+                    PIN: <span style="font-weight:700;">${order.pincode}</span>
                 </div>
-
             </div>`;
     } else {
         // Order not found case
-        htmlContent += `<div style="color:#dc3545; font-weight:700; font-size:13px; margin-top:10px;">⛔ Order Details Not Found</div>`;
+        htmlContent += `<div style="color:#dc3545; font-weight:700; font-size:13px; margin-top:10px; background:#fff5f5; padding:10px; border-radius:8px;">⛔ Order Details Not Found</div>`;
     }
 
-    // 4. Render & Show
     $('#scan-info-text').html(htmlContent);
     $('#scan-result-box').slideDown();
 }
