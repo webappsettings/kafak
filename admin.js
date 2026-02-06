@@ -592,13 +592,11 @@ function editTracking(oid, currentVal) {
 function onScanSuccess(decodedText) {
     playBeep();
 
-    // 📦 MODE 1: DISPATCH (Single Scan)
+    // 📦 MODE 1: DISPATCH (Single Scan - Normal Dispatch)
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
-            // Case A: QR Code Scanned
             if (isAlreadyScanned(decodedText, 'dispatch')) {
                 let order = allOrders.find(o => o.orderid === decodedText);
-                // 🔥 Show Secondary Barcode if exists
                 showScanFeedback("ALREADY SCANNED ⚠️", order, decodedText, order ? (order.tracking || "No Tracking") : "");
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 2000);
                 return;
@@ -612,15 +610,13 @@ function onScanSuccess(decodedText) {
                 showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
             }
         } else {
-            // Case B: Tracking Barcode Scanned
+            // Barcode Search in Dispatch Mode
             let order = allOrders.find(o => o.tracking === decodedText);
             if (order) {
                 if (order.Status === 'Dispatched') {
-                    // 🔥 Show Secondary QR Code
                     showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, order.orderid);
                 } else {
                     updateOrder(order.orderid, 'Dispatched');
-                    // 🔥 Show Secondary QR Code
                     showScanFeedback("DISPATCHED (Via TrackID) ✅", order, decodedText, order.orderid);
                 }
                 html5QrCode.pause(); setTimeout(() => html5QrCode.resume(), 1500);
@@ -630,7 +626,7 @@ function onScanSuccess(decodedText) {
         }
     }
 
-    // 🚚 MODE 2: TRACKING (Double Scan)
+    // 🚚 MODE 2: COURIER SCAN (Smart Logic for Paid/Dispatched)
     else if (scanMode === 'tracking') {
 
         // STEP 1: Scan Order QR
@@ -640,20 +636,61 @@ function onScanSuccess(decodedText) {
                 let order = allOrders.find(o => o.orderid === tempOid);
 
                 if (order) {
-                    if (order.Status === 'Dispatched') {
-                        // 🔥 Show Secondary Barcode
-                        showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, order.tracking || "No Tracking");
-                        html5QrCode.pause();
-                        setTimeout(() => html5QrCode.resume(), 2000);
+
+                    // 👉 CONDITION 1: Order is PAID (Not Dispatched)
+                    if (order.Status === 'Paid' || order.Status === 'Sent') { // Considering 'Sent' as eligible too
+                        html5QrCode.pause(); // Pause camera for confirmation
+
+                        Swal.fire({
+                            title: 'Mark Dispatched?',
+                            html: `Customer: <b>${order.name}</b><br>Proceed to tracking scan?`,
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonColor: '#000',
+                            confirmButtonText: 'YES, SCAN BARCODE',
+                            cancelButtonText: 'NO'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // 1. Mark as Dispatched
+                                updateOrder(tempOid, 'Dispatched');
+
+                                // 2. Go to Step 2 (Barcode Scan)
+                                scanStep = 2;
+                                $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
+                                showScanFeedback("MARKED DISPATCHED ✅ SCAN BARCODE", order, decodedText);
+                                html5QrCode.resume();
+                            } else {
+                                // User Cancelled
+                                showScanFeedback("ACTION CANCELLED ❌", order, decodedText);
+                                setTimeout(() => html5QrCode.resume(), 1000);
+                            }
+                        });
                         return;
                     }
 
+                    // 👉 CONDITION 2: Order is ALREADY DISPATCHED
+                    if (order.Status === 'Dispatched') {
+                        // Show "Already Dispatched" in RED with Linked ID
+                        let existingTrack = order.tracking || "No Tracking";
+                        showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, existingTrack);
+
+                        // Don't stop! Continue to Step 2 to Update/Verify Barcode
+                        scanStep = 2;
+                        $('#scan-mode-title').text("UPDATE TRACKING BARCODE");
+
+                        html5QrCode.pause();
+                        setTimeout(() => html5QrCode.resume(), 2000); // Give time to read warning
+                        return;
+                    }
+
+                    // Normal Flow (If any other case)
                     scanStep = 2;
                     $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
                     showScanFeedback("QR OK! SCAN BARCODE NOW 📦", order, decodedText);
 
                     html5QrCode.pause();
                     setTimeout(() => html5QrCode.resume(), 1500);
+
                 } else {
                     showScanFeedback("ORDER NOT FOUND ❌", null, decodedText);
                 }
@@ -664,21 +701,23 @@ function onScanSuccess(decodedText) {
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
 
+                // Check if Barcode is used by ANOTHER order
                 let existing = isAlreadyScanned(decodedText, 'tracking');
                 if (existing && existing.orderid !== tempOid) {
-                    // 🔥 Show Secondary QR Code of the existing order
                     showScanFeedback("BARCODE ALREADY USED ⚠️", existing, decodedText, existing.orderid);
                     html5QrCode.pause();
                     setTimeout(() => html5QrCode.resume(), 2000);
                     return;
                 }
 
+                // Save Tracking
                 updateOrder(tempOid, 'Dispatched', decodedText);
                 let order = allOrders.find(o => o.orderid === tempOid);
 
-                // 🔥 Show Secondary QR Code
+                // Show Success with QR Code Linked
                 showScanFeedback("TRACKING SAVED ✅", order, decodedText, tempOid);
 
+                // Reset for next customer
                 scanStep = 1;
                 setTimeout(() => {
                     $('#scan-mode-title').text("SCAN NEXT ORDER QR");
