@@ -26,7 +26,7 @@ const SafeStorage = {
 let loaderInterval;
 
 window.showLoader = function (show) {
-  const lang = $('.form-select').val() || 'en';
+  const lang = $('#language-select').val() || 'en';
   if (translations && translations[lang]) {
     $('#loader-text').text(translations[lang].loading || "LOADING...");
   }
@@ -57,25 +57,37 @@ window.showLoader = function (show) {
   }
 }
 
-// LANGUAGE CHANGER FUNCTION
 window.changeLanguage = function (lang) {
+  localStorage.setItem('activeLang', lang);
   const t = translations[lang];
   if (!t) return;
 
   // Update Text Content
   $('[data-i18n]').each(function () {
     const key = $(this).attr('data-i18n');
-    if (t[key]) {
-      $(this).text(t[key]);
-    }
+    if (t[key]) $(this).text(t[key]);
   });
 
-  // Update Placeholders (Inputs)
+  // Update Placeholders
   $('#phone').attr('placeholder', t.ph_phone);
   $('#name').attr('placeholder', t.ph_name);
   $('#house').attr('placeholder', t.ph_house);
-  $('#whatsapp').attr('placeholder', t.lbl_whatsapp); // or specific placeholder key
-  $('#altphone').attr('placeholder', t.lbl_altphone);
+  // ... other placeholders
+
+  // 🔥 Update Wizard Buttons Live
+  const wizBtn = $('#btn-wiz-next');
+  if (wizBtn.length > 0) {
+    if (currentStep === 7) wizBtn.text(t.btn_order);
+    else wizBtn.text(t.btn_next);
+  }
+
+  // 🔥 Update Price Box Text Immediately
+  let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
+  if (qtyVal) {
+    // Pass boolean true if quick-qty is visible
+    updatePrice(qtyVal, $('#quick-qty').is(':visible'));
+  }
+
   checkForChanges();
 }
 
@@ -84,7 +96,7 @@ window.showAlert = function (msg) {
 }
 
 window.getAlert = function (key) {
-  const lang = $('.form-select').val() || 'en';
+  const lang = $('#language-select').val() || 'en';
   return translations[lang][key] || key;
 }
 
@@ -127,10 +139,12 @@ function getZoneKey(stateName) {
 
 $(document).ready(function () {
 
-  const savedLang = localStorage.getItem('activeLang');
+  const savedLang = localStorage.getItem('activeLang') || 'ml';
   if (savedLang) {
     // ഡ്രോപ്പ്ഡൗണിൽ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
-    $('.form-select').val(savedLang);
+    if ($('#language-select').length > 0) {
+      $('#language-select').val(savedLang);
+    }
     // ഭാഷ മാറ്റുന്നു
     changeLanguage(savedLang);
   } else {
@@ -421,13 +435,12 @@ window.startWizard = function () {
   currentStep = 1;
   showStep(1);
 }
-
 window.showStep = function (s) {
   $('.wiz-step').hide();
   if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
   else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
   const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
-  const btn = $('#btn-wiz-next'); const lang = $('.form-select').val();
+  const btn = $('#btn-wiz-next'); const lang = $('#language-select').val();
   if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
   else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
   if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
@@ -442,14 +455,14 @@ window.nextStep = async function () {
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
       data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
-      $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next);
+      $('#btn-wiz-next').prop('disabled', false).text(translations[$('#language-select').val()].btn_next);
       if (data && data.length > 0) {
         poList = data; userData.district = data[0].district; userData.state = data[0].statename;
         const dl = $('#place-list'); dl.empty(); data.forEach(p => dl.append(`<option value="${p.officename}">`));
         if (data.length > 1) { $('#po-select').empty().append('<option value="">Select...</option>'); data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`)); currentStep = 3.5; showStep(3.5); return; }
         else { userData.postoffice = data[0].officename; currentStep = 4; showStep(4); return; }
       } else { showAlert(getAlert('err_pin_not_found')); }
-    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next); showAlert(getAlert('err_pincode')); return; }
+    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(translations[$('#language-select').val()].btn_next); showAlert(getAlert('err_pincode')); return; }
   }
   if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
   if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
@@ -672,7 +685,7 @@ window.markOrderDelivered = function (oid) {
 
 function updateStatusUI(d) {
   $('#status-area').empty();
-  const lang = $('.form-select').val() || 'en';
+  const lang = $('#language-select').val() || 'en';
   const t = translations[lang]; // Get translations
 
   const steps = ['pending', 'sent', 'paid', 'dispatched', 'delivered'];
@@ -833,36 +846,33 @@ function applyHideLogic(status) {
 
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return;
+
+  // 1. Get Language using ID instead of Class
+  const lang = $('#language-select').val() || 'ml';
+  const t = translations[lang];
+
   const n = parseInt(qty);
-  const base = n * 650; // Honey Price
+  const base = n * 650;
 
-  // 1. Get State
-  let currentState = "";
-  if (isQuick) {
-    currentState = $('#edit-state').val(); // Edit Mode
-  } else {
-    // Wizard Mode (From global variable or input)
-    currentState = (userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA');
-  }
-
-  // 2. Identify Zone
+  // State Logic
+  let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
   const zone = getZoneKey(currentState);
-
-  // 3. Get Courier Rate
-  // courierRates object now has keys: kerala, tn, ka, ap, ts, lakshadweep, north
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-
   const total = base + courier;
 
-  // 4. Update UI
+  // 2. Select Container
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-  container.find('.qty-count').text(n);
-  container.find('.val-base').text(base);
-  container.find('.val-courier').text(courier);
-  container.find('.val-total').text(total);
+
+  // 3. Generate HTML with Translations (Malayalam/English)
+  let htmlContent = `
+      <div class="price-row"><span>${t.lbl_honey_price} (<span class="qty-count">${n}</span>)</span><span>₹<span class="val-base">${base}</span></span></div>
+      <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${courier}</span></span></div>
+      <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
+  `;
+  container.html(htmlContent);
   container.fadeIn();
 
-  // 🔥 WIZARD SUMMARY - HORIZONTAL COMPACT STYLE
+  // 4. Update "Deliver To" Section (For Wizard View)
   if (!isQuick) {
     let name = $('#name').val() || '';
     let house = $('#house').val() || '';
@@ -873,31 +883,20 @@ window.updatePrice = function (qty, isQuick) {
     let pin = $('#pincode').val();
     let phone = $('#phone').val();
     let wa = $('#whatsapp').val();
-    let alt = $('#altphone').val();
 
-    let altHtml = alt ? `<span class="text-muted">|</span> ${alt}` : '';
-
-    // കീബോർഡ് വരുമ്പോൾ സ്ഥലം പോകാതിരിക്കാൻ വശങ്ങളിലേക്ക് ഒതുക്കിയ ഡിസൈൻ
     let prettyHtml = `
         <div style="padding: 8px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                 <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">DELIVER TO</div>
+                 <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">${t.lbl_deliver_to}</div>
                  <div style="font-size: 11px; font-weight: 700; color: #25D366;"><i class="fab fa-whatsapp"></i> ${wa}</div>
             </div>
-            
-            <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase; margin-bottom: 2px;">${name}</div>
-            
-            <div style="font-size: 12px; color: #4b5563; line-height: 1.6;text-transform: uppercase;">
-                <span style="font-weight: 600; color: #222;">${house}</span>, ${place}, ${po},<br/>
+            <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase;">${name}</div>
+            <div style="font-size: 12px; color: #4b5563; line-height: 1.6; text-transform: uppercase;">
+                <span style="font-weight: 600;">${house}</span>, ${place}, ${po},<br/>
                 ${dist}, ${state} - <b>${pin}</b>
-            </div>
-            
-            <div style="margin-top: 5px; font-size: 12px; font-weight: 600; color: #555;">
-                <i class="fas fa-phone-alt" style="font-size:10px; color:#888; margin-right:4px;"></i> ${phone} ${altHtml}
             </div>
         </div>
     `;
-
     $('#wiz-final-addr').html(prettyHtml);
     $('#wiz-deliver-box').fadeIn();
   }
@@ -947,7 +946,7 @@ function updateLiveAddressPreview() {
   }
 
   // 3. Language Check
-  let lang = $('.form-select').val() || 'en';
+  let lang = $('#language-select').val() || 'en';
   let warnText = "Enter Place only (Don't add District/PO)";
   if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
 
@@ -1016,7 +1015,7 @@ function checkForChanges() {
   var btnSave = $('#address-edit-box button');
 
   // Language Setup
-  const lang = $('.form-select').val() || 'en';
+  const lang = $('#language-select').val() || 'en';
   const t = translations[lang];
 
   // ബട്ടൺ 2 വരിയിൽ വരാനുള്ള സ്റ്റൈൽ
@@ -1047,7 +1046,7 @@ function checkForChanges() {
     } else {
       // ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ: "ORDER NOW" + Subtext
       // മലയാളത്തിൽ "ഓർഡർ ചെയ്യാം" + "(അളവ് തിരഞ്ഞെടുക്കൂ)"
-      let subText = (lang === 'ml') ? "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)" : "(PLEASE SELECT QUANTITY)";
+      let subText = t.lbl_select_qty_subtext || "(Select Quantity)";
 
       btnUpdate.html(`
               <span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>
@@ -1337,7 +1336,7 @@ function sendToWhatsapp() {
   const safe = (val) => String(val || '').trim().toUpperCase();
 
   // 1. ഭാഷ തിരിച്ചറിയുന്നു & പുതിയ ടെക്സ്റ്റ്
-  const lang = $('.form-select').val() || 'en';
+  const lang = $('#language-select').val() || 'en';
 
   // 🔥 ഇവിടെയാണ് മാറ്റം വരുത്തിയത്:
   const editText = (lang === 'ml')

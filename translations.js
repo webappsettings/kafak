@@ -1,67 +1,141 @@
-
 const translations = {
     ml: {
-        lbl_phone: "ഫോൺ നമ്പർ", ph_phone: "മൊബൈൽ നമ്പർ", btn_next: "തുടരുക", welcome_back: "സ്വാഗതം!",
-        btn_edit: "വിലാസം മാറ്റാം", lbl_house: "വീട്ടുപേര് / നമ്പർ", ph_house: "വീട്ടുപേര്",
-        lbl_place: "സ്ഥലം", lbl_pincode: "പിൻകോഡ്", lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
-        lbl_msg: "മെസ്സേജ് (ആവശ്യമെങ്കിൽ)", courier_included: "(കൊറിയര്‍ ചാർജ് ഉൾപ്പെടെ)",
-        btn_update: "ഓർഡർ അപ്‌ഡേറ്റ്", btn_order: "ഓർഡർ ചെയ്യാം", lbl_name: "നിങ്ങളുടെ പേര്",
-        ph_name: "പേര്", lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ", lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
-        lbl_altphone: "മറ്റൊരു നമ്പർ (Optional)", lbl_summary: "ഓർഡർ വിവരങ്ങൾ", lbl_address: "വിലാസം",
-        order_success: "ഓർഡർ ലഭിച്ചു!", redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...", open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
-        loading: "വിവരങ്ങൾ എടുക്കുന്നു...", err_phone: "10 അക്ക മൊബൈൽ നമ്പർ നൽകുക!", err_name: "പേര് നൽകുക",
-        err_whatsapp: "ശരിയായ 10 അക്ക വാട്സാപ്പ് നമ്പർ നൽകുക", err_pincode: "ശരിയായ 6 അക്ക പിൻകോഡ് നൽകുക",
-        err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...", err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല.",
-        err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക", err_house: "വീട്ടുപേര് നൽകുക", err_place: "സ്ഥലം നൽകുക",
-        err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
-        confirm_home: "ഹോമിലേക്ക് പോകണോ?", alert_title: "ശ്രദ്ധിക്കുക",
-        btn_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
+        // --- LABELS & HEADERS ---
+        lbl_phone: "ഫോൺ നമ്പർ",
+        ph_phone: "മൊബൈൽ നമ്പർ നൽകുക", // Updated placeholder
+        lbl_name: "നിങ്ങളുടെ പേര്",
+        ph_name: "പേര്",
+        lbl_house: "വീട്ടുപേര് / നമ്പർ",
+        ph_house: "വീട്ടുപേര്",
+        lbl_place: "സ്ഥലം",
+        lbl_pincode: "പിൻകോഡ്",
+        lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
+        lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ",
+        lbl_altphone: "മറ്റൊരു നമ്പർ (Optional)",
+        lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
+        lbl_msg: "മെസ്സേജ് (ആവശ്യമെങ്കിൽ)",
+        lbl_address: "വിലാസം",
+        lbl_summary: "ഓർഡർ വിവരങ്ങൾ",
+        lbl_order_status: "ഓർഡർ സ്റ്റാറ്റസ്",
+        lbl_honey_price: "തേൻ വില",
+        lbl_courier_charge: "കൊറിയർ ചാർജ്",
+        lbl_total_amount: "ആകെ തുക",
+        lbl_deliver_to: "ഡെലിവറി അഡ്രസ്സ്",
+        lbl_update_details: "വിവരങ്ങൾ പുതുക്കാം",
+        lbl_track_item: "ട്രാക്ക് ചെയ്യാം",
+        welcome_back: "സ്വാഗതം!",
+
+        // --- BUTTONS ---
+        btn_next: "തുടരുക",
+        btn_edit: "വിലാസം മാറ്റാം",
+        btn_update: "ഓർഡർ അപ്‌ഡേറ്റ്",
+        btn_order: "ഓർഡർ ചെയ്യാം", // Wizard End Button
         btn_order_now: "ഓർഡർ ചെയ്യാം", // New Order Button
+        btn_place_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
+        btn_received: "ഓർഡർ കൈപ്പറ്റി (Received)",
         txt_no_changes: "മാറ്റങ്ങൾ വരുത്തൂ", // Disabled Button Text
         txt_save_changes: "സേവ് ചെയ്യാം",
-        lbl_order_status: "ഓർഡർ സ്റ്റാറ്റസ്",
-        lbl_track_item: "ട്രാക്ക് ചെയ്യാം",
+        txt_refresh: "റീഫ്രഷ് ചെയ്യാം",
+        open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
+
+        // --- STATUS MESSAGES ---
         lbl_payment_pending: "പേയ്‌മെന്റ് പെൻഡിംഗ്",
         lbl_payment_received: "പേയ്‌മെന്റ് ലഭിച്ചു",
         lbl_packing: "പാക്കിംഗ് നടക്കുന്നു",
         lbl_dispatched: "അയച്ചു (Dispatched)",
         lbl_delivered: "ലഭിച്ചു (Delivered)",
         lbl_on_the_way: "വഴിയിലാണ്",
-        btn_place_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
-        btn_received: "ഓർഡർ കൈപ്പറ്റി (Received)",
+        order_success: "ഓർഡർ ലഭിച്ചു!",
+        redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...",
+        courier_included: "(കൊറിയര്‍ ചാർജ് ഉൾപ്പെടെ)",
+        loading: "വിവരങ്ങൾ എടുക്കുന്നു...",
         status_check: "സ്റ്റാറ്റസ് നോക്കുന്നു...",
-        txt_refresh: "റീഫ്രഷ് ചെയ്യാം"
+
+        // --- ALERTS & ERRORS ---
+        alert_title: "ശ്രദ്ധിക്കുക",
+        confirm_home: "ഹോമിലേക്ക് പോകണോ?",
+        err_phone: "10 അക്ക മൊബൈൽ നമ്പർ നൽകുക!",
+        err_name: "പേര് നൽകുക",
+        err_whatsapp: "ശരിയായ 10 അക്ക വാട്സാപ്പ് നമ്പർ നൽകുക",
+        err_pincode: "ശരിയായ 6 അക്ക പിൻകോഡ് നൽകുക",
+        err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...",
+        err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല.",
+        err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
+        err_house: "വീട്ടുപേര് നൽകുക",
+        err_place: "സ്ഥലം നൽകുക",
+        err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
+
+        // 🔥 NEW: Button Subtext
+        lbl_select_qty_subtext: "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)"
     },
+
     en: {
-        lbl_phone: "Phone Number", ph_phone: "Enter Mobile Number", btn_next: "CONTINUE", welcome_back: "Welcome Back!",
-        btn_edit: "EDIT ADDRESS", lbl_house: "House Name / No", ph_house: "House Name",
-        lbl_place: "Place / Area", lbl_pincode: "Pincode", lbl_qty: "Select Quantity",
-        lbl_msg: "Message (Optional)", courier_included: "(Courier Charge Included)",
-        btn_update: "UPDATE ORDER", btn_order: "PLACE ORDER", lbl_name: "Full Name",
-        ph_name: "Your Name", lbl_whatsapp: "WhatsApp Number", lbl_select_po: "Select Post Office",
-        lbl_altphone: "Alternate Phone (Optional)", lbl_summary: "Order Summary", lbl_address: "Address",
-        order_success: "Order Placed!", redirect_wa: "Redirecting to WhatsApp...", open_wa: "Open WhatsApp",
-        loading: "Fetching details...", err_phone: "Please enter valid 10 digit number!", err_name: "Please enter your name",
-        err_whatsapp: "Please enter valid 10 digit WhatsApp number", err_pincode: "Please enter valid 6 digit Pincode",
-        err_checking_pin: "Checking Pincode...", err_pin_not_found: "Pincode not found.",
-        err_select_po: "Please select Post Office", err_house: "Please enter House Name", err_place: "Please enter Place",
-        err_qty: "Please select quantity",
-        confirm_home: "Go home?", alert_title: "Alert",
-        btn_new_order: "PLACE NEW ORDER",
-        btn_order_now: "ORDER NOW", // New Order Button
-        txt_no_changes: "MAKE CHANGES", // Disabled Button Text
-        txt_save_changes: "SAVE CHANGES",
+        // --- LABELS & HEADERS ---
+        lbl_phone: "Phone Number",
+        ph_phone: "Enter Mobile Number",
+        lbl_name: "Full Name",
+        ph_name: "Your Name",
+        lbl_house: "House Name / No",
+        ph_house: "House Name",
+        lbl_place: "Place / Area",
+        lbl_pincode: "Pincode",
+        lbl_select_po: "Select Post Office",
+        lbl_whatsapp: "WhatsApp Number",
+        lbl_altphone: "Alternate Phone (Optional)",
+        lbl_qty: "Select Quantity",
+        lbl_msg: "Message (Optional)",
+        lbl_address: "Address",
+        lbl_summary: "Order Summary",
         lbl_order_status: "ORDER STATUS",
+        lbl_honey_price: "Honey Price",
+        lbl_courier_charge: "Courier Charge",
+        lbl_total_amount: "Total Amount",
+        lbl_deliver_to: "DELIVER TO",
+        lbl_update_details: "UPDATE DETAILS",
         lbl_track_item: "Track Item",
+        welcome_back: "Welcome Back!",
+
+        // --- BUTTONS ---
+        btn_next: "CONTINUE",
+        btn_edit: "EDIT ADDRESS",
+        btn_update: "UPDATE ORDER",
+        btn_order: "PLACE ORDER",
+        btn_order_now: "ORDER NOW",
+        btn_place_new_order: "PLACE NEW ORDER",
+        btn_received: "✅ I RECEIVED THE ORDER",
+        txt_no_changes: "MAKE CHANGES",
+        txt_save_changes: "SAVE CHANGES",
+        txt_refresh: "REFRESH STATUS",
+        open_wa: "Open WhatsApp",
+
+        // --- STATUS MESSAGES ---
         lbl_payment_pending: "Payment Pending",
         lbl_payment_received: "Payment Received",
         lbl_packing: "Packing",
         lbl_dispatched: "Dispatched",
         lbl_delivered: "Delivered",
         lbl_on_the_way: "On the Way",
-        btn_place_new_order: "PLACE NEW ORDER",
-        btn_received: "✅ I RECEIVED THE ORDER",
+        order_success: "Order Placed!",
+        redirect_wa: "Redirecting to WhatsApp...",
+        courier_included: "(Courier Charge Included)",
+        loading: "Fetching details...",
         status_check: "CHECKING STATUS...",
-        txt_refresh: "REFRESH STATUS"
+
+        // --- ALERTS & ERRORS ---
+        alert_title: "Alert",
+        confirm_home: "Go home?",
+        err_phone: "Please enter valid 10 digit number!",
+        err_name: "Please enter your name",
+        err_whatsapp: "Please enter valid 10 digit WhatsApp number",
+        err_pincode: "Please enter valid 6 digit Pincode",
+        err_checking_pin: "Checking Pincode...",
+        err_pin_not_found: "Pincode not found.",
+        err_select_po: "Please select Post Office",
+        err_house: "Please enter House Name",
+        err_place: "Please enter Place",
+        err_qty: "Please select quantity",
+
+        // 🔥 NEW: Button Subtext
+        lbl_select_qty_subtext: "(PLEASE SELECT QUANTITY)"
     }
 };
