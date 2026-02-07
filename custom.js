@@ -1340,122 +1340,67 @@ function sendToWhatsapp() {
   const adminPhone = '7788990313';
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // --- CHECK FOR UPDATES (മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് നോക്കുന്നു) ---
+  // --- 1. CHECK FOR UPDATES (മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് നോക്കുന്നു) ---
   let isUpdate = false;
   let changes = [];
 
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
     isUpdate = true; // ഇതൊരു അപ്ഡേറ്റ് ആണ്
 
+    // Qty Change
     if (String(savedOrderData.quantity) !== String(d.quantity))
       changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
 
+    // Phone Change
     if (String(savedOrderData.phone) !== String(d.phone))
       changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
 
+    // Address Changes
     if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
     if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
     if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
     if (String(savedOrderData.pincode) !== String(d.pincode)) changes.push(`🔢 PIN: *${d.pincode}*`);
+    if (safe(savedOrderData.state) !== safe(d.state)) changes.push(`🌍 STATE: *${safe(d.state)}*`);
   }
 
-  // --- CALCULATE TOTAL ---
+  // --- 2. CALCULATE TOTAL (🔥 FIXED LOGIC) ---
   const n = parseInt(d.quantity);
   const base = n * 650;
-  const zone = (d.state && d.state.toLowerCase() === 'kerala') ? 'kerala' : 'outside';
+
+  // 🔥 പഴയ 'outside' ലോജിക് മാറ്റി പുതിയ getZoneKey ഉപയോഗിക്കുന്നു
+  const zone = getZoneKey(d.state);
+
+  // Rate എടുക്കുന്നു (ഇല്ലെങ്കിൽ 0)
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+
   const total = base + courier;
 
-  // --- GENERATE MESSAGE ---
-  let msg = "";
+  // --- 3. GENERATE MESSAGE ---
+  const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+  const time = d.timestamp ? new Date(d.timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) : "Just now";
+
+  let header = "";
 
   if (isUpdate) {
-    // 🔄 UPDATE MESSAGE FORMAT (Changes Bold)
-    msg = `*⚠️ ORDER UPDATED* (ID: ${d.orderid})\n`;
+    header = `*⚠️ ORDER UPDATED* 📝\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n`;
     if (changes.length > 0) {
-      msg += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n__________________\n`;
+      header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
     } else {
-      msg += `\n(No major details changed)\n`;
+      header += `\n(No major details changed)\n`;
     }
-    msg += `\n*CURRENT DETAILS:*`;
-    msg += `\n👤 ${safe(d.name)}`;
-    msg += `\n📍 ${safe(d.place)}, ${safe(d.postoffice)}`;
-    msg += `\n📱 ${d.phone}`;
-    msg += `\n\n*🛒 Qty: ${d.quantity}*`;
-    msg += `\n💰 Total: ₹${total}/-`;
-    msg += `\n_Updated via Web_`;
-
+    header += `\n*👇 CURRENT DETAILS:*`;
   } else {
-    // ✅ NEW ORDER FORMAT (Old Style)
-    const editLink = `kafaklife.com/order.html?oid=${d.orderid}`;
-    const extra = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${d.timestamp}_\n🔗 _${editLink}_\n`;
-    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-    msg = extra + details + `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+    header = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_\n`;
   }
-  // വാട്സാപ്പിലേക്ക് അയക്കുന്നു
-  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(msg)}`;
+
+  // Receipt Style (Both New & Update use same style now)
+  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+
+  const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+
+  const finalMsg = header + details + footer;
+
+  // Send
+  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(finalMsg)}`;
 }
-function sendUpdateToWhatsapp(d) {
-  const adminPhone = '7788990313'; // Admin Phone
-  const safe = (val) => String(val || '').trim();
 
-  // 1. പഴയ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുന്നു (Find Changes)
-  let changes = [];
-
-  // Qty Change
-  if (savedOrderData.quantity != d.quantity) {
-    changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-  }
-  // Phone Change
-  if (savedOrderData.phone != d.phone) {
-    changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
-  }
-  // Address Changes
-  if (safe(savedOrderData.house) !== safe(d.house)) {
-    changes.push(`🏠 HOUSE: *${safe(d.house).toUpperCase()}*`);
-  }
-  if (safe(savedOrderData.place) !== safe(d.place)) {
-    changes.push(`📍 PLACE: *${safe(d.place).toUpperCase()}*`);
-  }
-  if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) {
-    changes.push(`📮 PO: *${safe(d.postoffice).toUpperCase()}*`);
-  }
-  if (safe(savedOrderData.pincode) !== safe(d.pincode)) {
-    changes.push(`🔢 PIN: ${savedOrderData.pincode} ➡️ *${d.pincode}*`);
-  }
-
-  // 2. മെസ്സേജ് നിർമ്മിക്കുന്നു
-  let msg = `*⚠️ ORDER UPDATED* (ID: ${d.orderid})\n`;
-
-  if (changes.length > 0) {
-    msg += `\n*🔥 WHAT CHANGED:* \n`;
-    msg += changes.join('\n'); // മാറ്റങ്ങൾ മാത്രം ഇവിടെ വരും
-    msg += `\n__________________\n`;
-  } else {
-    msg += `\n(No major details changed)\n`;
-  }
-
-  // 3. Current Summary
-
-  // --- CALCULATE TOTAL (Updated Logic) ---
-  const n = parseInt(d.quantity);
-  const base = n * 650;
-
-  // 🔥 Find Zone & Rate
-  const zone = getZoneKey(d.state);
-  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-
-  const total = base + courier;
-
-
-
-  msg += `\n*CURRENT DETAILS:*`;
-  msg += `\n👤 ${safe(d.name)}`;
-  msg += `\n📍 ${safe(d.place)}, ${safe(d.postoffice)}`;
-  msg += `\n📱 ${d.phone}`;
-  msg += `\n\n*🛒 Qty: ${d.quantity}*`;
-  msg += `\n💰 Total: ₹${total}/-`;
-
-  // 4. Send
-  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(msg)}`;
-}
