@@ -526,12 +526,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
   if (d.language) {
-    // 1. ഡ്രോപ്പ്ഡൗണിൽ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
     $('#language-select').val(d.language);
-
-    // 2. ഭാഷ മാറ്റുന്ന ഫംഗ്‌ഷൻ വിളിക്കുന്നു (UI ടെക്സ്റ്റ് മാറാൻ)
     changeLanguage(d.language);
   }
+
   // 1. Order ID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
@@ -551,97 +549,81 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateSummaryDisplay();
   $('#status-area').empty();
 
-  // 3. Check Status
+  // 3. CHECK STATUS & VISIBILITY LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
-  const isPaid = status === 'paid';
 
-  // 'paid' സ്റ്റാറ്റസിനെ ഇവിടെ നിന്ന് ഒഴിവാക്കി (അപ്പോൾ താഴെ Show Mode-ൽ വരും)
-  const hideControls = ['dispatched', 'completed', 'delivered'].includes(status);
+  // Elements to Hide/Show
+  const qtyElements = $('#quick-qty, .btn-update-sage, label[data-i18n="lbl_qty"]');
+  const priceBox = $('#quick-price-box');
+  const editAddrBtn = $('#btn-edit-addr');
 
-  if (hideControls) {
-    // === HIDE MODE (Dispatched, Delivered...) ===
-    $('label[data-i18n="lbl_qty"]').hide();
-    $('.qty-action-row').hide();
-    $('#quick-price-box').hide();
-    $('#btn-edit-addr').hide();
+  // Reset First (Show All, Enable All)
+  qtyElements.show();
+  priceBox.show();
+  editAddrBtn.css('display', 'inline-block');
+  $('#quick-qty option').prop('disabled', false);
+  $('#btn-new-order-mode').hide();
 
-    if (['completed', 'delivered'].includes(status)) {
-      if ($('#btn-new-order-mode').length === 0) {
-        const btnText = "PLACE NEW ORDER";
-        $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
+  // --- 🔥 LOGIC STARTS HERE ---
+
+  if (status === 'dispatched') {
+    // CASE 1: DISPATCHED (Hide Everything)
+    qtyElements.hide();
+    priceBox.hide();
+    editAddrBtn.hide();
+  }
+  else if (status === 'paid') {
+    // CASE 2: PAID (Show, but Restrict Lower Quantity)
+    editAddrBtn.hide(); // Address മാറ്റാൻ സമ്മതിക്കില്ല
+
+    let currentQty = parseInt(d.quantity) || 0;
+    $('#quick-qty option').each(function () {
+      if (parseInt($(this).val()) < currentQty) {
+        $(this).prop('disabled', true); // ചെറിയ അളവുകൾ ഡിസേബിൾ ചെയ്യുന്നു
       }
-      $('#btn-new-order-mode').show();
-    } else {
-      $('#btn-new-order-mode').hide();
+    });
+    // Button Text will be handled by checkForChanges
+  }
+  else if (['delivered', 'completed'].includes(status)) {
+    // CASE 3: DELIVERED (Hide Initially, Show "Place New Order")
+    qtyElements.hide();
+    priceBox.hide();
+    editAddrBtn.hide();
+
+    if ($('#btn-new-order-mode').length === 0) {
+      const btnText = "PLACE NEW ORDER";
+      $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
     }
-
-  } else {
-    // === SHOW MODE (Pending, Sent, Paid) ===
-    $('label[data-i18n="lbl_qty"]').show();
-    $('.qty-action-row').css('display', 'flex');
-    $('#quick-price-box').show();
-    $('#btn-new-order-mode').hide();
-
-    // Unlock Quantity Dropdown
-    $('#quick-qty').prop('disabled', false);
-    $('#quick-qty option').prop('disabled', false); // Reset options first
-
-    if (isPaid) {
-      // 🔥 PAID MODE LOGIC:
-      // 1. Address Edit ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു (Optional - അഡ്രസ്സ് മാറ്റാതിരിക്കാൻ)
-      $('#btn-edit-addr').hide();
-
-      // 2. നിലവിലുള്ള ക്വാണ്ടിറ്റിയേക്കാൾ കുറഞ്ഞത് ഡിസേബിൾ ചെയ്യുന്നു
-      let currentQty = parseInt(d.quantity) || 0;
-      $('#quick-qty option').each(function () {
-        if (parseInt($(this).val()) < currentQty) {
-          $(this).prop('disabled', true);
-        }
-      });
-    } else {
-      // Pending/Sent: അഡ്രസ്സ് മാറ്റാൻ അനുവദിക്കുന്നു
-      $('#btn-edit-addr').css('display', 'inline-block');
-    }
-
-    // Set Quantity Value
-    if (isActiveOrder || isPaid) {
-      $('#quick-qty').val(d.quantity).trigger('change');
-    } else {
-      $('#quick-qty').val('').trigger('change');
-    }
+    $('#btn-new-order-mode').show();
+  }
+  else {
+    // CASE 4: PENDING, SENT, ARCHIVE (Full Access)
+    // എല്ലാം എനേബിൾഡ് ആണ്. അഡ്രസ്സും മാറ്റാം.
   }
 
-  // 4. Status Loading or Timeline
+  // Set Quantity Value
+  if (status !== 'delivered' && status !== 'completed' && status !== 'dispatched') {
+    $('#quick-qty').val(d.quantity).trigger('change');
+  } else {
+    $('#quick-qty').val('').trigger('change'); // Reset for hidden states
+  }
+
+  // 4. Status Loading
   if (isServerData) {
     updateStatusUI(d);
-    // Refresh Button only after sync
     if ($('#refresh-btn').length === 0) {
       $('#returning-user-view').append(`
               <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
                   <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
                       <i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span>
                   </button>
-              </div>
-          `);
+              </div>`);
     }
   } else {
-    // 🔥 ലോക്കൽ ഡാറ്റ കാണിക്കുമ്പോൾ താഴെ ലോഡിംഗ് കാണിക്കുന്നു
-    $('#status-area').html(`
-          <div class="d-flex flex-column align-items-center justify-content-center py-5">
-              <div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div>
-              <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">CHECKING LIVE STATUS...</div>
-          </div>
-      `);
+    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">CHECKING LIVE STATUS...</div></div>`);
   }
 
   checkForChanges();
-
-  // ലോഡിംഗ് സമയത്ത് ബട്ടൺ ഡിസേബിൾ ചെയ്യുന്നു (സുരക്ഷയ്ക്ക്)
-  if (!isServerData && !hideControls) {
-    $('#quick-qty').prop('disabled', true);
-    $('.btn-update-sage').prop('disabled', true).text('CHECKING STATUS...');
-    $('#btn-edit-addr').hide();
-  }
 }
 
 window.enableNewOrderMode = function () {
@@ -649,25 +631,25 @@ window.enableNewOrderMode = function () {
   $('#btn-new-order-mode').hide();
   $('#status-area').empty();
 
-  // 2. Show Controls
+  // 2. Show Controls (🔥 ഹൈഡ് ചെയ്തവ തിരിച്ചു കൊണ്ടുവരുന്നു)
   $('label[data-i18n="lbl_qty"]').fadeIn();
-  $('.qty-action-row').css('display', 'flex').hide().fadeIn();
+  $('#quick-qty').fadeIn();
+  $('.btn-update-sage').fadeIn();
   $('#quick-price-box').fadeIn();
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
 
-  // 3. Reset State (Important!)
+  // 3. Reset State
   isEditMode = false;
-  editingOrderId = null; // 🔥 This makes it a NEW ORDER
+  editingOrderId = null; // New Order Mode
   $('#display-oid').hide();
   $('#display-date').hide();
 
   // 4. Reset Inputs
-  // ക്വാണ്ടിറ്റി ക്ലിയർ ചെയ്യുന്നു (അപ്പോൾ കസ്റ്റമർ പുതിയത് സെലക്ട് ചെയ്യണം)
   $('#quick-qty').val('').trigger('change');
-  $('#quick-qty option').prop('disabled', false);
+  $('#quick-qty option').prop('disabled', false); // എല്ലാ ഓപ്ഷനും എനേബിൾ ചെയ്യുന്നു
 
-  // 5. Update Button immediately
-  checkForChanges(); // This will set the text to "Select Quantity" or "Order Now"
+  // 5. Update Button
+  checkForChanges();
 }
 
 window.markOrderDelivered = function (oid) {
