@@ -245,8 +245,7 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-// 🔥 CORRECTED FUNCTION (No Duplicate)
-// 🔥 CORRECTED CARD HTML (Archive Left, Alt/WA Show, Number Selector)
+// 🔥 UPDATED CARD HTML (Single Line Contact + Tracking Group Button)
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
@@ -261,7 +260,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // --- BUTTONS & LAYOUT ---
+    // --- BUTTONS & HEADER ---
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
         ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
@@ -269,22 +268,18 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
-    // Top Right Actions (Edit + Print + Revert)
+    // Top Right Actions
     let topActions = editLink + printBtn;
     if (type === 'paid' || type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // --- WHATSAPP NUMBER SELECTOR (New Feature) ---
+    // --- WHATSAPP NUMBER SELECTOR (Pending Tab Only) ---
     let waSelectorHTML = '';
     if (type === 'pending') {
-        // Dropdown Options Generation
         let opts = '';
-        // 1. WhatsApp Number (Default)
         if (d.whatsapp) opts += `<option value="${d.whatsapp}">📲 WA: ${d.whatsapp}</option>`;
-        // 2. Main Phone
         opts += `<option value="${d.phone}" ${!d.whatsapp ? 'selected' : ''}>📞 PH: ${d.phone}</option>`;
-        // 3. Alt Phone
         if (d.altphone) opts += `<option value="${d.altphone}">☎️ ALT: ${d.altphone}</option>`;
 
         waSelectorHTML = `
@@ -295,32 +290,49 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // --- BOTTOM BUTTONS ---
+    // --- CONTACT INFO (🔥 SINGLE LINE FORMAT) ---
+    let contactLine = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt"></i> ${d.phone}</span>`;
+
+    // WhatsApp Icon (Only if different or specific)
+    if (d.whatsapp && d.whatsapp !== d.phone) {
+        contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</span>`;
+    }
+    // Alt Phone
+    if (d.altphone) {
+        contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-secondary fw-bold" style="font-size:10px;">ALT: ${d.altphone}</span>`;
+    }
+
+    // --- ACTION BUTTONS (🔥 DISPATCHED GROUPING) ---
     let buttons = '';
+
     if (type === 'pending') {
         buttons = (currentStatus === 'Sent')
             ? `<button class="btn-custom btn-paid" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
                <button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`
             : `<button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+
     } else if (type === 'paid') {
         buttons = `<button class="btn-custom btn-dispatch" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
                    <input type="checkbox" class="order-cb ms-2" value="${index}" onclick="event.stopPropagation();">`;
+
     } else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
-        buttons = `<button class="btn-custom btn-track" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
-                   <button class="btn-custom btn-complete" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+        let courierName = d.provider || "DTDC";
+        let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${trackNum}`;
+
+        // 🔥 Tracking Button Group (Button + Search Icon)
+        let trackBtnGroup = `
+        <div class="d-flex gap-1 mb-2">
+            <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">
+                🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}
+            </button>
+            ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
+        </div>`;
+
+        buttons = trackBtnGroup + `<button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
-    // --- EXTRA INFO (Alt Phone & WA Display) ---
-    let extraContactInfo = '';
-    if (d.whatsapp && d.whatsapp !== d.phone) {
-        extraContactInfo += `<div class="mt-1"><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</span></div>`;
-    }
-    if (d.altphone) {
-        extraContactInfo += `<div class="mt-1"><span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25"><i class="fas fa-phone-alt"></i> ALT: ${d.altphone}</span></div>`;
-    }
-
-    // 📱 COMPACT VIEW (Dispatched)
+    // 📱 COMPACT VIEW (For Dispatched List mainly)
     if (isCompact) {
         let trackNum = d.tracking || '';
         let courierName = d.provider || "DTDC";
@@ -347,7 +359,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // 📱 FULL VIEW (Beautiful Layout Restored)
+    // 📱 FULL VIEW (Updated Layout)
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card status-${currentStatus} p-3">
@@ -367,16 +379,14 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
                 
-                <div class="mt-1"><span class="text-primary fw-bold"><i class="fas fa-phone-alt"></i> ${d.phone}</span></div>
-                
-                ${extraContactInfo}
+                <div class="mt-1" style="font-size:11px;">${contactLine}</div>
             </div>
 
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
             
             ${waSelectorHTML}
 
-            <div class="action-area mt-2">${buttons}</div>
+            <div class="action-area mt-2" style="display:block;">${buttons}</div>
         </div>
     </div>`;
 }
