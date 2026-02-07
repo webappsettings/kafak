@@ -1051,27 +1051,27 @@ function checkForChanges() {
 
   if (isNewOrderMode) {
     // === NEW ORDER MODE (Always Enabled) ===
-
-    // 1. ബട്ടൺ എപ്പോഴും Enabled ആക്കുന്നു
-    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
-
-    // Save Button Logic (Always enabled for new orders)
+    btnUpdate.prop('disabled', false).css({
+      'opacity': '1',
+      'cursor': 'pointer',
+      'background': '#4CAF50', // പച്ച നിറം
+      'color': 'white'
+    });
     btnSave.prop('disabled', false).text(t.txt_save_changes);
 
-    // 2. ടെക്സ്റ്റ് സെറ്റിംഗ് (2 Lines)
     if (currQty && currQty !== "0") {
-      // ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ: വെറും "ORDER NOW"
-      btnUpdate.html(`<span style="font-size:16px; font-weight:800;">${t.btn_order_now}</span>`);
+      // ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ: വെറും "ORDER NOW" (വലുതായി)
+      btnUpdate.html(`<span style="font-size:17px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>`);
     } else {
       // ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ: "ORDER NOW" + Subtext
-      let subText = (lang === 'ml') ? "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)" : "(Select Quantity First)";
+      // മലയാളത്തിൽ "ഓർഡർ ചെയ്യാം" + "(അളവ് തിരഞ്ഞെടുക്കൂ)"
+      let subText = (lang === 'ml') ? "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)" : "(PLEASE SELECT QUANTITY)";
 
       btnUpdate.html(`
-          <span style="font-size:16px; font-weight:800;">${t.btn_order_now}</span><br>
-          <span style="font-size:10px; opacity:0.9; font-weight:600;">${subText}</span>
-      `);
+              <span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>
+              <span style="font-size:10px; opacity:0.85; font-weight:600; margin-top:2px;">${subText}</span>
+          `);
     }
-
   } else {
     // === UPDATE / EDIT MODE (Normal Logic) ===
     if (isChanged) {
