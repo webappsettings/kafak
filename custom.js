@@ -152,9 +152,9 @@ $(document).ready(function () {
   fetchCourierRates();
   injectVideoCSS();
 
-  const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
-  $('#quantity').append(qtyOpts);
-  $('#quick-qty').append(qtyOpts);
+  // const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
+  // $('#quantity').append(qtyOpts);
+  // $('#quick-qty').append(qtyOpts);
 
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
@@ -1247,20 +1247,47 @@ function postOrder(data) {
 }
 
 function fetchCourierRates() {
-  // Action 'getRates' വിളിച്ച് ഷീറ്റിലെ ഡാറ്റ എടുക്കുന്നു
+  // ലോഡിംഗ് കാണിക്കുന്നു
+  const loadingOpt = '<option value="">Loading rates...</option>';
+  // $('#quantity').html(loadingOpt); // വേണമെങ്കിൽ ഇത് കമന്റ് കളയാം (ആദ്യം ലോഡിംഗ് കാണിക്കാൻ)
+
   fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success' && data.rates) {
-        // ഷീറ്റിലെ ഡാറ്റ വെച്ച് റേറ്റ് അപ്ഡേറ്റ് ചെയ്യുന്നു
-        courierRates = data.rates;
-        console.log("Rates updated from Sheet:", courierRates);
 
-        // വില സ്ക്രീനിൽ കാണിക്കുന്നുണ്ടെങ്കിൽ അത് പുതുക്കുന്നു
-        if ($('#quantity').val()) updatePrice($('#quantity').val(), $('#quick-price-box').is(':visible'));
+        // 1. ഗ്ലോബൽ വേരിയബിളിലേക്ക് റേറ്റ് സേവ് ചെയ്യുന്നു
+        courierRates = data.rates;
+
+        // 2. ഏതൊക്കെ ബോട്ടിൽ അളവുകൾ ഉണ്ടെന്ന് കണ്ടെത്തുന്നു (1, 2, 4, 6 etc.)
+        const quantities = Object.keys(data.rates.kerala)
+          .map(Number)
+          .sort((a, b) => a - b);
+
+        // 3. HTML ഓപ്ഷനുകൾ നിർമ്മിക്കുന്നു
+        let optionsHTML = "";
+
+        quantities.forEach(qty => {
+          const totalGrams = qty * 650;
+          let weightText = totalGrams >= 1000
+            ? (totalGrams / 1000).toFixed(2) + " kg"
+            : totalGrams + "g";
+
+          let label = `${qty} Bottle${qty > 1 ? 's' : ''} (${weightText})`;
+          optionsHTML += `<option value="${qty}">${label}</option>`;
+        });
+
+        // 4. രണ്ട് ഡ്രോപ്പ്ഡൗണിലും (New Order & Edit) അപ്ഡേറ്റ് ചെയ്യുന്നു
+        $('#quantity').html(optionsHTML);   // New Order Form
+        $('#quick-qty').html(optionsHTML);  // Edit Form
+
+        console.log("Rates & Dropdown Updated Dynamically");
+
+        // നിലവിൽ ഏതെങ്കിലും വാല്യൂ സെലക്ട് ചെയ്തിട്ടുണ്ടെങ്കിൽ പ്രൈസ് അപ്ഡേറ്റ് ചെയ്യുന്നു
+        if ($('#quantity').val()) updatePrice($('#quantity').val(), false);
       }
     })
-    .catch(err => console.log("Failed to fetch rates, using default."));
+    .catch(err => console.log("Rate fetch failed"));
 }
 
 function sendToWhatsapp() {
