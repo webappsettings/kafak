@@ -89,10 +89,7 @@ function showDashboard() {
 }
 
 // --- CONFIG & VARIABLES ---
-let courierRates = JSON.parse(localStorage.getItem('adminRatesCache')) || {
-    kerala: { 1: 80, 2: 140, 3: 200, 4: 260, 6: 320, 8: 440, 10: 560 },
-    outside: { 1: 110, 2: 200, 3: 280, 4: 350, 6: 430, 8: 640, 10: 840 } // Fallback
-};
+let courierRates = JSON.parse(localStorage.getItem('adminRatesCache')) || {};
 
 let allOrders = [];
 let html5QrCode;
@@ -116,19 +113,21 @@ function confirmAction(text, callback) {
     }).then((result) => { if (result.isConfirmed) callback(); });
 }
 
-// 2. ബാക്ക്ഗ്രൗണ്ടിൽ റേറ്റ് അപ്‌ഡേറ്റ് ചെയ്യാനുള്ള ഫംഗ്‌ഷൻ
+// Background Rate Fetcher
 function fetchRatesBackground() {
-    console.log("Fetching rates in background...");
+    console.log("🔄 Fetching latest rates...");
     fetch(`${scriptURL}?action=getRates`)
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success' && data.rates) {
                 courierRates = data.rates; // ഗ്ലോബൽ വേരിയബിൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-                localStorage.setItem('adminRatesCache', JSON.stringify(courierRates)); // സേവ് ചെയ്യുന്നു
-                console.log("✅ Rates updated silently from Server");
+
+                // 🔥 പുതിയ റേറ്റ് ലോക്കൽ സ്റ്റോറേജിൽ സേവ് ചെയ്യുന്നു
+                localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
+                console.log("✅ Rates Updated & Saved to LocalStorage");
             }
         })
-        .catch(err => console.log("Rate fetch failed (using cached/default)"));
+        .catch(err => console.log("⚠️ Rate fetch failed, using cached data."));
 }
 
 // --- CORE FUNCTIONS ---
@@ -955,8 +954,12 @@ function calculatePriceInfo(qty, state) {
     // Zone കണ്ടുപിടിക്കുന്നു
     const zone = getZoneKey(state);
 
-    // റേറ്റ് എടുക്കുന്നു (ആദ്യം ലോക്കലിൽ ഉള്ളത്, അല്ലെങ്കിൽ ബാക്ക്ഗ്രൗണ്ടിൽ അപ്‌ഡേറ്റ് ആയത്)
-    const courierCharge = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+    let courierCharge = 0;
+
+    // 🔥 SAFETY CHECK: റേറ്റ് ഉണ്ടെങ്കിൽ മാത്രം എടുക്കുക, ഇല്ലെങ്കിൽ 0
+    if (courierRates[zone] && courierRates[zone][n]) {
+        courierCharge = courierRates[zone][n];
+    }
 
     return { total: `₹${basePrice + courierCharge}/-` };
 }
