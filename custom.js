@@ -76,6 +76,7 @@ window.changeLanguage = function (lang) {
   $('#house').attr('placeholder', t.ph_house);
   $('#whatsapp').attr('placeholder', t.lbl_whatsapp); // or specific placeholder key
   $('#altphone').attr('placeholder', t.lbl_altphone);
+  checkForChanges();
 }
 
 window.showAlert = function (msg) {
@@ -125,6 +126,18 @@ function getZoneKey(stateName) {
 }
 
 $(document).ready(function () {
+
+  const savedLang = localStorage.getItem('activeLang');
+  if (savedLang) {
+    // ഡ്രോപ്പ്ഡൗണിൽ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
+    $('.form-select').val(savedLang);
+    // ഭാഷ മാറ്റുന്നു
+    changeLanguage(savedLang);
+  } else {
+    // Default English
+    changeLanguage('en');
+  }
+
   fetchCourierRates();
   injectVideoCSS();
 
