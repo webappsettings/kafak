@@ -173,10 +173,17 @@ function renderTabs(orders) {
     // Sort: Latest First
     orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    // 🔥 ഏറ്റവും പുതിയ തീയതി (Latest Date) ഏതാണെന്ന് കണ്ടുപിടിക്കുന്നു
-    let latestDateLabel = "";
-    if (orders.length > 0) {
-        latestDateLabel = getTimelineLabel(orders[0].timestamp);
+    // 🔥 NEW LOGIC: Find the Latest Date available in Dispatched List
+    let dispatchedOrders = orders.filter(o => {
+        let local = pendingUpdates.find(u => u.oid === o.orderid);
+        let s = local ? local.status : (o.Status || 'Pending');
+        return s === 'Dispatched';
+    });
+
+    // ഡിസ്പാച്ച് ലിസ്റ്റിലെ ഏറ്റവും പുതിയ തീയതി (ഉദാ: ഇന്ന് ഇല്ലെങ്കിൽ ഇന്നലെ, അതില്ലെങ്കിൽ 5-ാം തീയതി)
+    let latestDispatchedDateLabel = "";
+    if (dispatchedOrders.length > 0) {
+        latestDispatchedDateLabel = getTimelineLabel(dispatchedOrders[0].timestamp);
     }
 
     let lastDateMap = { pending: '', paid: '', dispatched: '' };
@@ -202,10 +209,12 @@ function renderTabs(orders) {
             targetList = dispatchedList; type = 'dispatched'; listKey = 'dispatched';
             counts.dispatched++;
 
-            // 🔥 Compact Logic: ഏറ്റവും പുതിയ തീയതിയല്ലെങ്കിൽ മാത്രം Compact ആക്കുക
-            let orderDateLabel = getTimelineLabel(d.timestamp);
-            if (orderDateLabel !== latestDateLabel) {
-                isCompact = true;
+            // 🔥 EXPAND/COLLAPSE LOGIC:
+            // ഈ ഓർഡറിന്റെ തീയതിയും, ലിസ്റ്റിലെ ഏറ്റവും പുതിയ തീയതിയും ഒന്നാണെങ്കിൽ Expand ചെയ്യും.
+            // പഴയ തീയതി ആണെങ്കിൽ Compact (Collapse) ആകും.
+            let thisOrderDate = getTimelineLabel(d.timestamp);
+            if (thisOrderDate !== latestDispatchedDateLabel) {
+                isCompact = true; // Collapse old dates
             }
         }
 
@@ -268,13 +277,12 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
-    // Top Right Actions
     let topActions = editLink + printBtn;
     if (type === 'paid' || type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // --- WHATSAPP NUMBER SELECTOR (Pending Tab Only) ---
+    // --- WHATSAPP SELECTOR ---
     let waSelectorHTML = '';
     if (type === 'pending') {
         let opts = '';
@@ -283,46 +291,43 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         if (d.altphone) opts += `<option value="${d.altphone}">☎️ ALT: ${d.altphone}</option>`;
 
         waSelectorHTML = `
-        <div class="mt-2 mb-1" onclick="event.stopPropagation();">
-            <select id="wa-select-${index}" class="form-select form-select-sm shadow-none border-secondary text-secondary" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">
-                ${opts}
-            </select>
+        <div class="mt-2 mb-2" onclick="event.stopPropagation();">
+            <select id="wa-select-${index}" class="form-select form-select-sm shadow-none border-secondary text-secondary" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
         </div>`;
     }
 
-    // --- CONTACT INFO (🔥 SINGLE LINE FORMAT) ---
+    // --- CONTACT INFO ---
     let contactLine = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt"></i> ${d.phone}</span>`;
+    if (d.whatsapp && d.whatsapp !== d.phone) contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</span>`;
+    if (d.altphone) contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-secondary fw-bold" style="font-size:10px;">ALT: ${d.altphone}</span>`;
 
-    // WhatsApp Icon (Only if different or specific)
-    if (d.whatsapp && d.whatsapp !== d.phone) {
-        contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</span>`;
-    }
-    // Alt Phone
-    if (d.altphone) {
-        contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-secondary fw-bold" style="font-size:10px;">ALT: ${d.altphone}</span>`;
-    }
-
-    // --- ACTION BUTTONS (🔥 DISPATCHED GROUPING) ---
+    // --- ACTION BUTTONS (🔥 ALIGNMENT FIXED) ---
     let buttons = '';
 
     if (type === 'pending') {
         buttons = (currentStatus === 'Sent')
-            ? `<button class="btn-custom btn-paid" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
-               <button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`
-            : `<button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+            ? `<div class="d-flex gap-2 w-100">
+                 <button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
+                 <button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>
+               </div>`
+            : `<button class="btn-custom btn-wa w-100" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
 
     } else if (type === 'paid') {
-        buttons = `<button class="btn-custom btn-dispatch" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
-                   <input type="checkbox" class="order-cb ms-2" value="${index}" onclick="event.stopPropagation();">`;
+        // 🔥 Dispatch & Checkbox Alignment
+        buttons = `
+        <div class="d-flex gap-2 align-items-center w-100">
+            <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
+            <div style="width: 40px; display: flex; justify-content: center;">
+                <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation();">
+            </div>
+        </div>`;
 
     } else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
         let courierName = d.provider || "DTDC";
         let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${trackNum}`;
-
-        // 🔥 Tracking Button Group (Button + Search Icon)
         let trackBtnGroup = `
-        <div class="d-flex gap-1 mb-2">
+        <div class="d-flex gap-1 mb-2 w-100">
             <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">
                 🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}
             </button>
@@ -332,7 +337,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         buttons = trackBtnGroup + `<button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
-    // 📱 COMPACT VIEW (For Dispatched List mainly)
+    // COMPACT VIEW
     if (isCompact) {
         let trackNum = d.tracking || '';
         let courierName = d.provider || "DTDC";
@@ -359,33 +364,23 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // 📱 FULL VIEW (Updated Layout)
+    // FULL VIEW
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card status-${currentStatus} p-3">
-            
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center">
-                    ${archiveBtn} 
-                    <span class="text-muted small ms-1" style="font-size:9px;">${formattedDate}</span>
-                </div>
+                <div class="d-flex align-items-center">${archiveBtn} <span class="text-muted small ms-1" style="font-size:9px;">${formattedDate}</span></div>
                 <div>${topActions}</div>
             </div>
-
             <div class="cust-name">${safe(d.name)}</div>
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
-            
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
-                
                 <div class="mt-1" style="font-size:11px;">${contactLine}</div>
             </div>
-
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
-            
             ${waSelectorHTML}
-
             <div class="action-area mt-2" style="display:block;">${buttons}</div>
         </div>
     </div>`;
@@ -661,7 +656,11 @@ function editTracking(oid, currentVal) {
         inputAttributes: { autocapitalize: 'characters' },
         showCancelButton: true,
         confirmButtonText: 'SAVE',
-        confirmButtonColor: '#000'
+        confirmButtonColor: '#000',
+        position: 'top', // 🔥 ഇത് ചേർത്താൽ കീബോർഡ് പ്രശ്നം മാറിക്കോളും (മുകളിൽ കാണിക്കും)
+        customClass: {
+            popup: 'mt-5' // കുറച്ചുകൂടി താഴേക്ക് ഇറക്കി ഭംഗിയാക്കാൻ
+        }
     }).then((result) => {
         if (result.isConfirmed) {
             let trackId = result.value.trim().toUpperCase();
