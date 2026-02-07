@@ -80,7 +80,16 @@ const translations = {
         lbl_reserved_for: "RESERVED FOR", // വീഡിയോയിലെ ടെക്സ്റ്റ് (മലയാളം വേണമെങ്കിൽ "ഇവർക്കായി പാക്ക് ചെയ്തത്" എന്ന് നൽകാം, അല്ലെങ്കിൽ ഇംഗ്ലീഷ് തന്നെ മതി)
         txt_gpay: "ഗൂഗിൾ പേ നമ്പർ", // GPay Text
 
-        // Placeholders for Edit Box
+        // 🔥 WIZARD PLACEHOLDERS (Login & Steps):
+        ph_phone: "മൊബൈൽ നമ്പർ നൽകുക",
+        ph_name: "പേര്",
+        ph_house: "വീട്ടുപേര്",
+        ph_place: "സ്ഥലം",
+        ph_pincode: "000000",
+        ph_whatsapp: "വാട്സാപ്പ് നമ്പർ",
+        ph_altphone: "മറ്റൊരു നമ്പർ",
+
+        // 🔥 EDIT BOX PLACEHOLDERS:
         ph_edit_phone: "ഫോൺ നമ്പർ",
         ph_edit_house: "വീട്ടുപേര്",
         ph_edit_place: "സ്ഥലം",
@@ -171,7 +180,16 @@ const translations = {
         lbl_reserved_for: "RESERVED FOR",
         txt_gpay: "GPay to",
 
-        // Placeholders
+        // 🔥 WIZARD PLACEHOLDERS:
+        ph_phone: "Enter Mobile Number",
+        ph_name: "Full Name",
+        ph_house: "House Name",
+        ph_place: "Place",
+        ph_pincode: "000000",
+        ph_whatsapp: "WhatsApp Number",
+        ph_altphone: "Alternate Phone",
+
+        // 🔥 EDIT BOX PLACEHOLDERS:
         ph_edit_phone: "Phone",
         ph_edit_house: "House Name",
         ph_edit_place: "Place",

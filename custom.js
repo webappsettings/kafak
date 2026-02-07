@@ -63,13 +63,22 @@ window.changeLanguage = function (lang) {
   const t = translations[lang];
   if (!t) return;
 
-  // Update Text Content
+  // 1. Update Text Content (data-i18n)
   $('[data-i18n]').each(function () {
     const key = $(this).attr('data-i18n');
     if (t[key]) $(this).text(t[key]);
   });
 
-  // Update Placeholders
+  // 2. 🔥 Update WIZARD Placeholders (Login & Steps)
+  $('#phone').attr('placeholder', t.ph_phone);
+  $('#name').attr('placeholder', t.ph_name);
+  $('#house').attr('placeholder', t.ph_house);
+  $('#place').attr('placeholder', t.ph_place);
+  $('#pincode').attr('placeholder', t.ph_pincode);
+  $('#whatsapp').attr('placeholder', t.ph_whatsapp);
+  $('#altphone').attr('placeholder', t.ph_altphone);
+
+  // 3. 🔥 Update EDIT BOX Placeholders
   $('#edit-phone').attr('placeholder', t.ph_edit_phone);
   $('#edit-house').attr('placeholder', t.ph_edit_house);
   $('#edit-place').attr('placeholder', t.ph_edit_place);
@@ -77,23 +86,29 @@ window.changeLanguage = function (lang) {
   $('#edit-whatsapp').attr('placeholder', t.ph_edit_wa);
   $('#edit-altphone').attr('placeholder', t.ph_edit_alt);
 
-  // 🔥 Update Wizard Buttons Live
+  // 4. Update Dropdowns & Price
+  renderQtyDropdowns();
+
+  let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
+  if (qtyVal) {
+    updatePrice(qtyVal, $('#quick-qty').is(':visible'));
+  }
+
+  // 5. Check Buttons
   const wizBtn = $('#btn-wiz-next');
   if (wizBtn.length > 0) {
     if (currentStep === 7) wizBtn.text(t.btn_order);
     else wizBtn.text(t.btn_next);
   }
 
-  renderQtyDropdowns();
-
-  // 🔥 Update Price Box Text Immediately
-  let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
-  if (qtyVal) {
-    // Pass boolean true if quick-qty is visible
-    updatePrice(qtyVal, $('#quick-qty').is(':visible'));
-  }
-
   checkForChanges();
+
+  // 6. Refresh Status UI (If exists)
+  if (typeof userData !== 'undefined' && userData.orderid && typeof updateStatusUI === 'function') {
+    if ($('#status-area').html().trim() !== "") {
+      updateStatusUI(userData);
+    }
+  }
 }
 
 window.showAlert = function (msg) {
@@ -375,45 +390,45 @@ window.handleEditPincode = async function (val) {
     return;
   }
 
-  checkForChanges(); // ബട്ടൺ ചെക്ക് ചെയ്യുന്നു
+  checkForChanges();
+
+  // 🔥 Language Setup
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang];
 
   try {
     const res = await fetch(`pincode_json_files/${val}.json`);
     if (!res.ok) throw new Error("Not Found");
 
     let data = await res.json();
-
-    // പേര് ഫോർമാറ്റ് ചെയ്യുന്നു
     data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
 
     if (data && data.length > 0) {
-      // District & State Auto-fill
       $('#edit-district').val(data[0].district);
       $('#edit-state').val(data[0].statename);
       updatePrice($('#quick-qty').val(), true);
 
       if (data.length > 1) {
         // === MULTIPLE POST OFFICES ===
-        $('#single-po-display').hide(); // ടെക്സ്റ്റ് ഹൈഡ് ചെയ്യുന്നു
+        $('#single-po-display').hide();
 
         const sel = $('#edit-postoffice-select');
-        sel.empty().append('<option value="">Select Post Office...</option>');
+
+        // 🔥 ഇവിടെ മാറ്റം വരുത്തി (Use Translation)
+        sel.empty().append(`<option value="">${t.lbl_select_po}...</option>`);
 
         data.forEach(p => {
           sel.append(`<option value="${p.officename}">${p.officename}</option>`);
         });
 
-        $('#edit-po-wrapper').slideDown(); // ഡ്രോപ്പ്ഡൗൺ കാണിക്കുന്നു
-        $('#edit-postoffice').val(''); // വാല്യൂ ക്ലിയർ ചെയ്യുന്നു (സെലക്ട് ചെയ്യാൻ)
+        $('#edit-po-wrapper').slideDown();
+        $('#edit-postoffice').val('');
 
       } else {
         // === SINGLE POST OFFICE ===
-        $('#edit-po-wrapper').slideUp(); // ഡ്രോപ്പ്ഡൗൺ ഹൈഡ് ചെയ്യുന്നു
-
+        $('#edit-po-wrapper').slideUp();
         const poName = data[0].officename;
-        $('#edit-postoffice').val(poName); // നേരിട്ട് സെറ്റ് ചെയ്യുന്നു
-
-        // താഴെ ചെറിയ ടെക്സ്റ്റ് ആയി കാണിക്കുന്നു
+        $('#edit-postoffice').val(poName);
         $('#single-po-display').html(`<i class="fas fa-check-circle"></i> ${poName}`).fadeIn();
       }
 
@@ -452,23 +467,37 @@ window.showStep = function (s) {
 }
 
 window.nextStep = async function () {
+  // 🔥 Language Setup
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang];
+
   if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name'));
   if (currentStep === 2 && !/^[0-9]{10}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
+
   if (currentStep === 3) {
     const pin = $('#pincode').val(); if (!/^[0-9]{6}$/.test(pin)) return showAlert(getAlert('err_pincode'));
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
       data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
-      $('#btn-wiz-next').prop('disabled', false).text(translations[$('#language-select').val()].btn_next);
+      $('#btn-wiz-next').prop('disabled', false).text(t.btn_next);
+
       if (data && data.length > 0) {
         poList = data; userData.district = data[0].district; userData.state = data[0].statename;
         const dl = $('#place-list'); dl.empty(); data.forEach(p => dl.append(`<option value="${p.officename}">`));
-        if (data.length > 1) { $('#po-select').empty().append('<option value="">Select...</option>'); data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`)); currentStep = 3.5; showStep(3.5); return; }
+
+        if (data.length > 1) {
+          // 🔥 ഇവിടെ മാറ്റം വരുത്തി (Use Translation)
+          $('#po-select').empty().append(`<option value="">${t.lbl_select_po}...</option>`);
+
+          data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`));
+          currentStep = 3.5; showStep(3.5); return;
+        }
         else { userData.postoffice = data[0].officename; currentStep = 4; showStep(4); return; }
       } else { showAlert(getAlert('err_pin_not_found')); }
-    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(translations[$('#language-select').val()].btn_next); showAlert(getAlert('err_pincode')); return; }
+    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(t.btn_next); showAlert(getAlert('err_pincode')); return; }
   }
+
   if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
   if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
   if (currentStep === 5) { if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; } updateWizardLocDisplay(); currentStep = 6; showStep(6); return; }
@@ -625,14 +654,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#returning-user-view').append(`
               <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
                   <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
-                      <i class="fas fa-sync-alt me-1"></i> <span>${refreshText}</span>
+                      <i class="fas fa-sync-alt me-1"></i> <span data-i18n="txt_refresh">${refreshText}</span>
                   </button>
               </div>`);
     }
   } else {
     // 🔥 FIX: Loading ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
     const checkText = t.status_check || "CHECKING LIVE STATUS...";
-    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">${checkText}</div></div>`);
+    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`);
   }
 
   checkForChanges();
