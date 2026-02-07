@@ -168,8 +168,6 @@ $(document).ready(function () {
       if (isDirty) SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
     } catch (e) { localUsersMap = {}; }
   }
-
-  const urlParams = new URLSearchParams(window.location.search);
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
