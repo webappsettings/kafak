@@ -538,12 +538,17 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
+  // 1. Get Language & Translations
+  // 🔥 ഇവിടെ ഭാഷ എടുക്കുന്നു, എങ്കിലേ താഴെ ഉപയോഗിക്കാൻ പറ്റൂ
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
+
   if (d.language) {
     $('#language-select').val(d.language);
     changeLanguage(d.language);
   }
 
-  // 1. Order ID & Date
+  // 2. Order ID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
@@ -552,7 +557,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#display-date').text(formatPrettyDate(d.date)).show();
   } else { $('#display-date').hide(); }
 
-  // 2. Populate User Data
+  // 3. Populate User Data
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
@@ -562,78 +567,67 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateSummaryDisplay();
   $('#status-area').empty();
 
-  // 3. CHECK STATUS & VISIBILITY LOGIC
+  // 4. CHECK STATUS & VISIBILITY LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
 
-  // Elements to Hide/Show
   const qtyElements = $('#quick-qty, .btn-update-sage, label[data-i18n="lbl_qty"]');
   const priceBox = $('#quick-price-box');
   const editAddrBtn = $('#btn-edit-addr');
 
-  // Reset First (Show All, Enable All)
   qtyElements.show();
   priceBox.show();
   editAddrBtn.css('display', 'inline-block');
   $('#quick-qty option').prop('disabled', false);
   $('#btn-new-order-mode').hide();
 
-  // --- 🔥 LOGIC STARTS HERE ---
-
   if (status === 'dispatched') {
-    // CASE 1: DISPATCHED (Hide Everything)
-    qtyElements.hide();
-    priceBox.hide();
-    editAddrBtn.hide();
+    qtyElements.hide(); priceBox.hide(); editAddrBtn.hide();
   }
   else if (status === 'paid') {
-    // CASE 2: PAID (Show, but Restrict Lower Quantity)
-    editAddrBtn.hide(); // Address മാറ്റാൻ സമ്മതിക്കില്ല
-
+    editAddrBtn.hide();
     let currentQty = parseInt(d.quantity) || 0;
     $('#quick-qty option').each(function () {
-      if (parseInt($(this).val()) < currentQty) {
-        $(this).prop('disabled', true); // ചെറിയ അളവുകൾ ഡിസേബിൾ ചെയ്യുന്നു
-      }
+      if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
     });
-    // Button Text will be handled by checkForChanges
   }
   else if (['delivered', 'completed'].includes(status)) {
-    // CASE 3: DELIVERED (Hide Initially, Show "Place New Order")
-    qtyElements.hide();
-    priceBox.hide();
-    editAddrBtn.hide();
+    qtyElements.hide(); priceBox.hide(); editAddrBtn.hide();
+
+    // 🔥 FIX: ബട്ടൺ ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
+    const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
 
     if ($('#btn-new-order-mode').length === 0) {
-      const btnText = "PLACE NEW ORDER";
       $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
+    } else {
+      // നിലവിലുണ്ടെങ്കിൽ ടെക്സ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+      $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
     }
     $('#btn-new-order-mode').show();
   }
-  else {
-    // CASE 4: PENDING, SENT, ARCHIVE (Full Access)
-    // എല്ലാം എനേബിൾഡ് ആണ്. അഡ്രസ്സും മാറ്റാം.
-  }
 
-  // Set Quantity Value
   if (status !== 'delivered' && status !== 'completed' && status !== 'dispatched') {
     $('#quick-qty').val(d.quantity).trigger('change');
   } else {
-    $('#quick-qty').val('').trigger('change'); // Reset for hidden states
+    $('#quick-qty').val('').trigger('change');
   }
 
-  // 4. Status Loading
+  // 5. Status Loading
   if (isServerData) {
     updateStatusUI(d);
     if ($('#refresh-btn').length === 0) {
+      // 🔥 FIX: Refresh ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
+      const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
               <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
                   <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
-                      <i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span>
+                      <i class="fas fa-sync-alt me-1"></i> <span>${refreshText}</span>
                   </button>
               </div>`);
     }
   } else {
-    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">CHECKING LIVE STATUS...</div></div>`);
+    // 🔥 FIX: Loading ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
+    const checkText = t.status_check || "CHECKING LIVE STATUS...";
+    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">${checkText}</div></div>`);
   }
 
   checkForChanges();
@@ -947,8 +941,10 @@ function updateLiveAddressPreview() {
 
   // 3. Language Check
   let lang = $('#language-select').val() || 'en';
-  let warnText = "Enter Place only (Don't add District/PO)";
-  if (lang === 'ml') warnText = "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)";
+  let t = translations[lang];
+
+  // 🔥 Use Translation Key
+  let warnText = t.warn_place_only;
 
   // 4. HTML Content
   let previewHtml = `
@@ -1212,7 +1208,7 @@ function injectVideoCSS() {
             </div>
             <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
         </div>
-        <div class="loading-txt">PREPARING YOUR ORDER...</div>
+        <div class="loading-txt" data-i18n="lbl_preparing">PREPARING YOUR ORDER...</div>
     </div>`);
 }
 
@@ -1336,12 +1332,11 @@ function sendToWhatsapp() {
   const safe = (val) => String(val || '').trim().toUpperCase();
 
   // 1. ഭാഷ തിരിച്ചറിയുന്നു & പുതിയ ടെക്സ്റ്റ്
-  const lang = $('#language-select').val() || 'en';
+  const lang = $('#language-select').val() || 'en'; // ID Selector ഉപയോഗിക്കുന്നു
+  const t = translations[lang];
 
   // 🔥 ഇവിടെയാണ് മാറ്റം വരുത്തിയത്:
-  const editText = (lang === 'ml')
-    ? "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇"
-    : "To Check Status or Edit Order: 👇";
+  const editText = t.wa_check_status;
 
   // 2. Date Formatting
   const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
@@ -1377,12 +1372,12 @@ function sendToWhatsapp() {
   let header = "";
 
   if (isUpdate) {
-    header = `*⚠️ ORDER UPDATED* 📝\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+    header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
     if (changes.length > 0) header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
     else header += `\n(No major details changed)\n`;
     header += `\n*👇 CURRENT DETAILS:*`;
   } else {
-    header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+    header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
   }
 
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;

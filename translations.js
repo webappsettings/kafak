@@ -66,7 +66,12 @@ const translations = {
         err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
 
         // 🔥 NEW: Button Subtext
-        lbl_select_qty_subtext: "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)"
+        lbl_select_qty_subtext: "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)",
+        wa_check_status: "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇",
+        wa_header_new: "ഓർഡർ ലഭിച്ചു! (Honey Order Confirmed)", // WhatsApp Header New
+        wa_header_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു! (Order Updated)", // WhatsApp Header Update
+        warn_place_only: "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)", // Address Warning
+        lbl_preparing: "ഓർഡർ തയ്യാറാക്കുന്നു..." // Video Text
     },
 
     en: {
@@ -136,6 +141,12 @@ const translations = {
         err_qty: "Please select quantity",
 
         // 🔥 NEW: Button Subtext
-        lbl_select_qty_subtext: "(PLEASE SELECT QUANTITY)"
+        lbl_select_qty_subtext: "(PLEASE SELECT QUANTITY)",
+
+        wa_check_status: "To Check Status or Edit Order: 👇",
+        wa_header_new: "✅ Honey order confirmed! 🍯",
+        wa_header_update: "⚠️ ORDER UPDATED 📝",
+        warn_place_only: "Enter Place only (Don't add District/PO)",
+        lbl_preparing: "PREPARING YOUR ORDER..."
     }
 };
