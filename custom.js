@@ -1247,47 +1247,59 @@ function postOrder(data) {
 }
 
 function fetchCourierRates() {
-  // ലോഡിംഗ് കാണിക്കുന്നു
-  const loadingOpt = '<option value="">Loading rates...</option>';
-  // $('#quantity').html(loadingOpt); // വേണമെങ്കിൽ ഇത് കമന്റ് കളയാം (ആദ്യം ലോഡിംഗ് കാണിക്കാൻ)
+  // 1. ലോഡിംഗ് ആണെന്ന് കാണിക്കുന്നു (യൂസർ പെട്ടെന്ന് എത്തിയാൽ മനസ്സിലാകാൻ)
+  $('#quantity, #quick-qty').html('<option value="">Loading Options...</option>');
 
+  // 2. സെർവറിലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
   fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success' && data.rates) {
 
-        // 1. ഗ്ലോബൽ വേരിയബിളിലേക്ക് റേറ്റ് സേവ് ചെയ്യുന്നു
+        // A. ഗ്ലോബൽ വേരിയബിൾ അപ്ഡേറ്റ് ചെയ്യുന്നു (വില കാൽക്കുലേറ്റ് ചെയ്യാൻ)
         courierRates = data.rates;
 
-        // 2. ഏതൊക്കെ ബോട്ടിൽ അളവുകൾ ഉണ്ടെന്ന് കണ്ടെത്തുന്നു (1, 2, 4, 6 etc.)
+        // B. ഷീറ്റിലുള്ള അളവുകൾ (Quantities) മാത്രം എടുക്കുന്നു (Eg: 1, 2, 4, 6...)
+        // (Object.keys വഴി 1, 2, 5 ഒക്കെ എടുക്കും, എന്നിട്ട് Sort ചെയ്യും)
         const quantities = Object.keys(data.rates.kerala)
           .map(Number)
           .sort((a, b) => a - b);
 
-        // 3. HTML ഓപ്ഷനുകൾ നിർമ്മിക്കുന്നു
-        let optionsHTML = "";
+        // C. HTML ഓപ്ഷനുകൾ നിർമ്മിക്കുന്നു
+        let optionsHTML = '<option value="">Select Quantity</option>'; // Default Option
 
         quantities.forEach(qty => {
+          // വെയിറ്റ് കണക്കാക്കുന്നു (1 Bottle = 650g)
           const totalGrams = qty * 650;
-          let weightText = totalGrams >= 1000
-            ? (totalGrams / 1000).toFixed(2) + " kg"
-            : totalGrams + "g";
+          let weightText;
 
+          // 1000g ന് മുകളിൽ ആണെങ്കിൽ kg, അല്ലെങ്കിൽ g
+          if (totalGrams >= 1000) {
+            weightText = (totalGrams / 1000).toFixed(2) + " kg";
+          } else {
+            weightText = totalGrams + "g";
+          }
+
+          // Plural Logic (Bottle vs Bottles)
           let label = `${qty} Bottle${qty > 1 ? 's' : ''} (${weightText})`;
+
           optionsHTML += `<option value="${qty}">${label}</option>`;
         });
 
-        // 4. രണ്ട് ഡ്രോപ്പ്ഡൗണിലും (New Order & Edit) അപ്ഡേറ്റ് ചെയ്യുന്നു
-        $('#quantity').html(optionsHTML);   // New Order Form
+        // D. രണ്ട് ഡ്രോപ്പ്ഡൗണിലും (New Order & Edit) അപ്ഡേറ്റ് ചെയ്യുന്നു
+        $('#quantity').html(optionsHTML);   // Wizard Form
         $('#quick-qty').html(optionsHTML);  // Edit Form
 
-        console.log("Rates & Dropdown Updated Dynamically");
+        console.log("✅ Rates & Dropdown Updated from Server");
 
-        // നിലവിൽ ഏതെങ്കിലും വാല്യൂ സെലക്ട് ചെയ്തിട്ടുണ്ടെങ്കിൽ പ്രൈസ് അപ്ഡേറ്റ് ചെയ്യുന്നു
+        // നിലവിൽ ഏതെങ്കിലും വാല്യൂ (ഉദാ: എഡിറ്റ് ചെയ്യുമ്പോൾ) ഉണ്ടെങ്കിൽ പ്രൈസ് അപ്ഡേറ്റ് ചെയ്യുന്നു
         if ($('#quantity').val()) updatePrice($('#quantity').val(), false);
       }
     })
-    .catch(err => console.log("Rate fetch failed"));
+    .catch(err => {
+      console.log("❌ Rate fetch failed, using default.");
+      // എറർ വന്നാൽ സ്റ്റാറ്റിക് ഓപ്ഷൻ കാണിക്കാം (Optional)
+    });
 }
 
 function sendToWhatsapp() {
