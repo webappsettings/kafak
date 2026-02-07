@@ -254,7 +254,6 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-// 🔥 UPDATED CARD HTML (Single Line Contact + Tracking Group Button)
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
@@ -282,7 +281,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // --- WHATSAPP SELECTOR ---
+    // --- WHATSAPP SELECTOR (Pending Tab Only) ---
     let waSelectorHTML = '';
     if (type === 'pending') {
         let opts = '';
@@ -296,12 +295,44 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // --- CONTACT INFO ---
-    let contactLine = `<span class="text-primary fw-bold"><i class="fas fa-phone-alt"></i> ${d.phone}</span>`;
-    if (d.whatsapp && d.whatsapp !== d.phone) contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-success fw-bold"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</span>`;
-    if (d.altphone) contactLine += ` <span class="text-muted mx-1">|</span> <span class="text-secondary fw-bold" style="font-size:10px;">ALT: ${d.altphone}</span>`;
+    // --- 🔥 SMART CONTACT GROUPING LOGIC ---
+    let contactMap = {};
 
-    // --- ACTION BUTTONS (🔥 ALIGNMENT FIXED) ---
+    const addContact = (iconType, number) => {
+        if (!number) return;
+        let numStr = String(number).trim();
+        if (!numStr) return;
+
+        if (!contactMap[numStr]) contactMap[numStr] = [];
+
+        let iconHTML = '';
+        // Icons Definition
+        if (iconType === 'phone') iconHTML = '<i class="fas fa-phone-alt text-primary" title="Phone"></i>';
+        if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900; font-size:1.1em;" title="WhatsApp"></i>';
+        if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;" title="Land/Alt"></i>';
+
+        // Avoid duplicate icons for same number group
+        if (!contactMap[numStr].includes(iconHTML)) {
+            contactMap[numStr].push(iconHTML);
+        }
+    };
+
+    addContact('phone', d.phone);
+    addContact('wa', d.whatsapp);
+    addContact('alt', d.altphone);
+
+    let contactHTMLParts = [];
+    for (let num in contactMap) {
+        // Join icons with a small space
+        let iconsStr = contactMap[num].join('<span style="margin-left:4px;"></span>');
+        // Format: [Icons] [Number]
+        contactHTMLParts.push(`<span style="white-space:nowrap;">${iconsStr} <span class="fw-bold text-dark ms-1" style="font-size:11px;">${num}</span></span>`);
+    }
+
+    // Join different number groups with a separator
+    let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
+
+    // --- ACTION BUTTONS ---
     let buttons = '';
 
     if (type === 'pending') {
@@ -313,7 +344,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             : `<button class="btn-custom btn-wa w-100" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
 
     } else if (type === 'paid') {
-        // 🔥 Dispatch & Checkbox Alignment
         buttons = `
         <div class="d-flex gap-2 align-items-center w-100">
             <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
@@ -377,7 +407,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
-                <div class="mt-1" style="font-size:11px;">${contactLine}</div>
+                
+                <div class="mt-2" style="font-size:11px;">${contactLine}</div>
             </div>
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
             ${waSelectorHTML}
