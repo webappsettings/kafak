@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzjDIXhu9hFZGfz0CsTbClhrT3qtTs7yHhTCfjewAYvt-kDfBxTm14MZfWrGRsKAj9Z/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzeQYqPF1R0PMB0EzeJGtIN_h23BNUi4rD0Nq24spVzVstI-AEUZJAEZRiZOAT8UhKu_w/exec`;
 
 
 
@@ -131,6 +131,7 @@ window.updateWizardLocDisplay = function () {
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
+
 // 🔥 Pretty Date Format with Year (e.g., 10 Oct 2023, 04:30 PM)
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
@@ -146,6 +147,20 @@ function formatPrettyDate(dateStr) {
     minute: 'numeric',
     hour12: true
   });
+}
+
+function getZoneKey(stateName) {
+  if (!stateName) return 'north'; // Default
+  let s = stateName.toUpperCase().trim();
+
+  if (s === 'KERALA') return 'kerala';
+  if (s === 'TAMIL NADU') return 'tn';
+  if (s === 'KARNATAKA') return 'ka';
+  if (s === 'ANDHRA PRADESH') return 'ap';
+  if (s === 'TELANGANA') return 'ts';
+  if (s === 'LAKSHADWEEP') return 'lakshadweep';
+
+  return 'north'; // All other states
 }
 
 $(document).ready(function () {
@@ -360,12 +375,13 @@ window.handleEditPincode = async function (val) {
     let data = await res.json();
 
     // പേര് ഫോർമാറ്റ് ചെയ്യുന്നു
-    data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO') }));
+    data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
 
     if (data && data.length > 0) {
       // District & State Auto-fill
       $('#edit-district').val(data[0].district);
       $('#edit-state').val(data[0].statename);
+      updatePrice($('#quick-qty').val(), true);
 
       if (data.length > 1) {
         // === MULTIPLE POST OFFICES ===
@@ -435,7 +451,7 @@ window.nextStep = async function () {
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
-      data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*(B\.?O\.?|S\.?O\.?)\s*$/i, ' PO') }));
+      data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
       $('#btn-wiz-next').prop('disabled', false).text(translations[$('.form-select').val()].btn_next);
       if (data && data.length > 0) {
         poList = data; userData.district = data[0].district; userData.state = data[0].statename;
@@ -863,10 +879,27 @@ function applyHideLogic(status) {
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return;
   const n = parseInt(qty);
-  const base = n * 650;
-  const courier = courierRates.kerala[n] || 0;
+  const base = n * 650; // Honey Price
+
+  // 1. Get State
+  let currentState = "";
+  if (isQuick) {
+    currentState = $('#edit-state').val(); // Edit Mode
+  } else {
+    // Wizard Mode (From global variable or input)
+    currentState = (userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA');
+  }
+
+  // 2. Identify Zone
+  const zone = getZoneKey(currentState);
+
+  // 3. Get Courier Rate
+  // courierRates object now has keys: kerala, tn, ka, ap, ts, lakshadweep, north
+  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+
   const total = base + courier;
 
+  // 4. Update UI
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
   container.find('.qty-count').text(n);
   container.find('.val-base').text(base);
@@ -1403,11 +1436,18 @@ function sendUpdateToWhatsapp(d) {
   }
 
   // 3. Current Summary
+
+  // --- CALCULATE TOTAL (Updated Logic) ---
   const n = parseInt(d.quantity);
   const base = n * 650;
-  const zone = (d.state && d.state.toLowerCase() === 'kerala') ? 'kerala' : 'outside';
+
+  // 🔥 Find Zone & Rate
+  const zone = getZoneKey(d.state);
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+
   const total = base + courier;
+
+
 
   msg += `\n*CURRENT DETAILS:*`;
   msg += `\n👤 ${safe(d.name)}`;
