@@ -606,16 +606,17 @@
               </div>
             </div>
 
-            <div class="white-card">
-              <label class="form-label mb-2" data-i18n="lbl_qty"
-                style="margin-top: 0; color:#6b7280; font-size:12px;">SELECT
-                QUANTITY</label>
+            <div class="white-card p-3"> <label class="form-label d-block text-muted fw-bold small mb-2"
+                data-i18n="lbl_qty" style="letter-spacing: 0.5px;">
+                SELECT QUANTITY
+              </label>
 
-              <div class="qty-action-row mb-3">
-                <select id="quick-qty" class="form-select border-0 bg-light fw-bold" style="font-size: 16px;">
-                  <option value="" disabled selected>Select...</option>
-                </select>
-                <button type="button" class="btn-update-sage w-100 shadow-sm" style="
+              <select id="quick-qty" class="form-select form-select-lg mb-3 shadow-sm border"
+                style="font-weight: 600; font-size: 15px; height: 50px; border-radius: 8px;">
+                <option value="" disabled selected>Select...</option>
+              </select>
+
+              <button type="button" class="btn-update-sage w-100 shadow-sm" style="
         display: flex; 
         flex-direction: column; 
         align-items: center; 
@@ -624,12 +625,12 @@
         min-height: 55px; 
         padding: 8px 10px; 
         line-height: 1.2;
+        border-radius: 8px;
         transition: all 0.3s ease;">
-                  UPDATE ORDER
-                </button>
-              </div>
+                UPDATE ORDER
+              </button>
 
-              <div id="quick-price-box" class="price-card mb-3" style="display:none;">
+              <div id="quick-price-box" class="price-card mt-3 mb-3" style="display:none;">
                 <div class="price-row"><span>Honey Price (<span class="qty-count">0</span>)</span><span>₹<span
                       class="val-base">0</span></span></div>
                 <div class="price-row"><span>Courier Charge</span><span>₹<span class="val-courier">0</span></span></div>
