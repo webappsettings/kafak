@@ -246,46 +246,81 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 // 🔥 CORRECTED FUNCTION (No Duplicate)
+// 🔥 CORRECTED CARD HTML (Archive Left, Alt/WA Show, Number Selector)
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
-    let statusBadge = '', buttons = '', topButtons = '';
 
-    // Date & Time Formatting
+    // Date Formatting
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // Customer History Stats
+    // Customer Stats
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // Common Buttons
-    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini"><i class="fas fa-archive"></i></button>` : '';
+    // --- BUTTONS & LAYOUT ---
+    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
+        ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`
+        : '';
+
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
-    if (type === 'pending') {
-        buttons = (currentStatus === 'Sent')
-            ? `<button class="btn-custom btn-paid" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`
-            : `<button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
-    } else if (type === 'paid') {
-        buttons = `<button class="btn-custom btn-dispatch" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><input type="checkbox" class="order-cb ms-2" value="${index}" onclick="event.stopPropagation();">`;
-        topButtons = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + printBtn;
-    } else if (type === 'dispatched') {
-        let trackNum = d.tracking || '';
-        let courierName = d.provider || "DTDC";
-
-        // 🔥 Admin Tracking Button Logic
-        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${courierName}+tracking+${trackNum}" target="_blank" class="ms-1 text-primary" style="font-size:10px;" onclick="event.stopPropagation();"><i class="fas fa-external-link-alt"></i></a>` : '';
-
-        buttons = `<button class="btn-custom btn-track" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
-                   <button class="btn-custom btn-complete" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
-        topButtons = trackCheckBtn + `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + printBtn;
+    // Top Right Actions (Edit + Print + Revert)
+    let topActions = editLink + printBtn;
+    if (type === 'paid' || type === 'dispatched') {
+        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // 📦 COMPACT VIEW RENDER
+    // --- WHATSAPP NUMBER SELECTOR (New Feature) ---
+    let waSelectorHTML = '';
+    if (type === 'pending') {
+        // Dropdown Options Generation
+        let opts = '';
+        // 1. WhatsApp Number (Default)
+        if (d.whatsapp) opts += `<option value="${d.whatsapp}">📲 WA: ${d.whatsapp}</option>`;
+        // 2. Main Phone
+        opts += `<option value="${d.phone}" ${!d.whatsapp ? 'selected' : ''}>📞 PH: ${d.phone}</option>`;
+        // 3. Alt Phone
+        if (d.altphone) opts += `<option value="${d.altphone}">☎️ ALT: ${d.altphone}</option>`;
+
+        waSelectorHTML = `
+        <div class="mt-2 mb-1" onclick="event.stopPropagation();">
+            <select id="wa-select-${index}" class="form-select form-select-sm shadow-none border-secondary text-secondary" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">
+                ${opts}
+            </select>
+        </div>`;
+    }
+
+    // --- BOTTOM BUTTONS ---
+    let buttons = '';
+    if (type === 'pending') {
+        buttons = (currentStatus === 'Sent')
+            ? `<button class="btn-custom btn-paid" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
+               <button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>`
+            : `<button class="btn-custom btn-wa" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+    } else if (type === 'paid') {
+        buttons = `<button class="btn-custom btn-dispatch" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
+                   <input type="checkbox" class="order-cb ms-2" value="${index}" onclick="event.stopPropagation();">`;
+    } else if (type === 'dispatched') {
+        let trackNum = d.tracking || '';
+        buttons = `<button class="btn-custom btn-track" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
+                   <button class="btn-custom btn-complete" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+    }
+
+    // --- EXTRA INFO (Alt Phone & WA Display) ---
+    let extraContactInfo = '';
+    if (d.whatsapp && d.whatsapp !== d.phone) {
+        extraContactInfo += `<div class="mt-1"><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25"><i class="fab fa-whatsapp"></i> ${d.whatsapp}</span></div>`;
+    }
+    if (d.altphone) {
+        extraContactInfo += `<div class="mt-1"><span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25"><i class="fas fa-phone-alt"></i> ALT: ${d.altphone}</span></div>`;
+    }
+
+    // 📱 COMPACT VIEW (Dispatched)
     if (isCompact) {
         let trackNum = d.tracking || '';
         let courierName = d.provider || "DTDC";
@@ -294,7 +329,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         return `
         <div class="col-12 col-md-6 col-lg-4">
             <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3;">
-                
                 <div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))">
                     <div style="font-size:12px; flex-grow:1;">
                         <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted small">(${d.phone})</span><br>
@@ -306,7 +340,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                         <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
                     </div>
                 </div>
-
                 <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">
                     ${createCardHTML(d, index, type, currentStatus, false)}
                 </div>
@@ -314,23 +347,36 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // 📱 FULL VIEW RENDER
+    // 📱 FULL VIEW (Beautiful Layout Restored)
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card status-${currentStatus} p-3">
-            <div class="d-flex justify-content-between mb-2">
-                <span class="text-muted small" style="font-size:9px;">${formattedDate}</span>
-                <div>${archiveBtn} ${editLink} ${topButtons}</div>
+            
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex align-items-center">
+                    ${archiveBtn} 
+                    <span class="text-muted small ms-1" style="font-size:9px;">${formattedDate}</span>
+                </div>
+                <div>${topActions}</div>
             </div>
+
             <div class="cust-name">${safe(d.name)}</div>
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
+            
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
-                <span class="text-primary"><i class="fas fa-phone-alt"></i> ${d.phone}</span>
+                
+                <div class="mt-1"><span class="text-primary fw-bold"><i class="fas fa-phone-alt"></i> ${d.phone}</span></div>
+                
+                ${extraContactInfo}
             </div>
+
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
-            <div class="action-area mt-3">${buttons}</div>
+            
+            ${waSelectorHTML}
+
+            <div class="action-area mt-2">${buttons}</div>
         </div>
     </div>`;
 }
@@ -446,13 +492,14 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
+// 🔥 UPDATED: Select Number from Dropdown
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
     const adminPhone = '7788990313';
     const safe = (val) => String(val || '').trim().toUpperCase();
 
-    // 1. DATE FORMATTING (dd/m/yyyy, h:mm:ss PM)
+    // 1. DATE FORMATTING
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
     const day = dateObj.getDate();
     const month = dateObj.getMonth() + 1;
@@ -462,33 +509,37 @@ function sendWA(index) {
 
     // 2. CALCULATE PRICE & COURIER
     const base = n * 650;
-
-    // Zone കണ്ടുപിടിക്കുന്നു (admin.js-ൽ getZoneKey ഉണ്ടെന്ന് ഉറപ്പാക്കുക)
     const zone = getZoneKey(d.state);
     const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
     const total = base + courier;
 
     // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-
-    // Header (ID Removed, Edit Link Added)
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
-
-    // Details Section
     const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-
-    // Footer
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
-
     const finalMsg = header + details + footer;
 
-    // 4. OPEN WHATSAPP
-    let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
+    // 4. 🔥 DETERMINE TARGET PHONE NUMBER
+    let phoneNum = "";
+
+    // a) Check if Dropdown exists (Pending Tab)
+    const dropdown = document.getElementById(`wa-select-${index}`);
+    if (dropdown && dropdown.value) {
+        phoneNum = dropdown.value;
+    } else {
+        // b) Fallback (Paid Tab etc.): Prioritize WhatsApp -> Phone
+        phoneNum = d.whatsapp || d.phone;
+    }
+
+    // Clean Number
+    phoneNum = String(phoneNum).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
+    // 5. OPEN WHATSAPP
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(finalMsg)}`, '_blank');
 
-    // 5. UPDATE STATUS (Pending -> Sent)
+    // 6. UPDATE STATUS
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
