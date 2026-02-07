@@ -1340,25 +1340,29 @@ function sendToWhatsapp() {
   const adminPhone = '7788990313';
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // --- 1. DATE FORMATTING (dd/m/yyyy, h:mm:ss PM) ---
+  // 1. ഭാഷ തിരിച്ചറിയുന്നു & പുതിയ ടെക്സ്റ്റ്
+  const lang = $('.form-select').val() || 'en';
+
+  // 🔥 ഇവിടെയാണ് മാറ്റം വരുത്തിയത്:
+  const editText = (lang === 'ml')
+    ? "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇"
+    : "To Check Status or Edit Order: 👇";
+
+  // 2. Date Formatting
   const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
   const day = dateObj.getDate();
-  const month = dateObj.getMonth() + 1; // Month starts from 0
+  const month = dateObj.getMonth() + 1;
   const year = dateObj.getFullYear();
-  const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true }); // Ex: 2:30:40 PM
-
+  const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true });
   const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
 
-  // --- 2. CHECK UPDATES ---
+  // 3. Check Updates
   let isUpdate = false;
   let changes = [];
-
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
     isUpdate = true;
-    if (String(savedOrderData.quantity) !== String(d.quantity))
-      changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-    if (String(savedOrderData.phone) !== String(d.phone))
-      changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
+    if (String(savedOrderData.quantity) !== String(d.quantity)) changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
+    if (String(savedOrderData.phone) !== String(d.phone)) changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
     if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
     if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
     if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
@@ -1366,39 +1370,29 @@ function sendToWhatsapp() {
     if (safe(savedOrderData.state) !== safe(d.state)) changes.push(`🌍 STATE: *${safe(d.state)}*`);
   }
 
-  // --- 3. CALCULATE TOTAL ---
+  // 4. Calculate Total
   const n = parseInt(d.quantity);
   const base = n * 650;
-  const zone = getZoneKey(d.state); // Using new zone logic
+  const zone = getZoneKey(d.state);
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
-  // --- 4. GENERATE MESSAGE ---
+  // 5. Generate Message
   const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
   let header = "";
 
   if (isUpdate) {
-    // ⚠️ UPDATE MESSAGE (With Edit Link & Date)
-    header = `*⚠️ ORDER UPDATED* 📝\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
-
-    if (changes.length > 0) {
-      header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
-    } else {
-      header += `\n(No major details changed)\n`;
-    }
+    header = `*⚠️ ORDER UPDATED* 📝\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+    if (changes.length > 0) header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
+    else header += `\n(No major details changed)\n`;
     header += `\n*👇 CURRENT DETAILS:*`;
-
   } else {
-    // ✅ NEW ORDER MESSAGE (With Edit Link & Date)
-    header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
+    header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
   }
 
-  // Common Details Section
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-
   const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
-  const finalMsg = header + details + footer;
-  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(finalMsg)}`;
+  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
 }
 

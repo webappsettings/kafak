@@ -502,7 +502,6 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// 🔥 UPDATED: Select Number from Dropdown
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
@@ -511,13 +510,9 @@ function sendWA(index) {
 
     // 1. DATE FORMATTING
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
-    const day = dateObj.getDate();
-    const month = dateObj.getMonth() + 1;
-    const year = dateObj.getFullYear();
-    const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true });
-    const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
+    const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    // 2. CALCULATE PRICE & COURIER
+    // 2. CALCULATE PRICE
     const base = n * 650;
     const zone = getZoneKey(d.state);
     const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
@@ -525,31 +520,26 @@ function sendWA(index) {
 
     // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-    const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
+
+    // 🔥 ഇവിടെയും പുതിയ ടെക്സ്റ്റ് നൽകി:
+    const editText = "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
+
+    const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
     const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
-    const finalMsg = header + details + footer;
 
-    // 4. 🔥 DETERMINE TARGET PHONE NUMBER
+    // 4. DETERMINE TARGET PHONE
     let phoneNum = "";
-
-    // a) Check if Dropdown exists (Pending Tab)
     const dropdown = document.getElementById(`wa-select-${index}`);
-    if (dropdown && dropdown.value) {
-        phoneNum = dropdown.value;
-    } else {
-        // b) Fallback (Paid Tab etc.): Prioritize WhatsApp -> Phone
-        phoneNum = d.whatsapp || d.phone;
-    }
+    if (dropdown && dropdown.value) phoneNum = dropdown.value;
+    else phoneNum = d.whatsapp || d.phone;
 
-    // Clean Number
     phoneNum = String(phoneNum).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    // 5. OPEN WHATSAPP
-    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(finalMsg)}`, '_blank');
+    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
 
-    // 6. UPDATE STATUS
+    // 5. UPDATE STATUS
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);
