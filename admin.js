@@ -450,31 +450,46 @@ function calculatePriceInfo(qty, state) {
 function sendWA(index) {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
-
-    let priceInfo = calculatePriceInfo(n, d.state);
-    let total = d.grandTotal ? parseInt(d.grandTotal) : parseInt(priceInfo.total.replace(/[^0-9]/g, ''));
-
-    const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-    const time = d.timestamp ? new Date(d.timestamp).toLocaleString() : new Date().toLocaleString();
+    const adminPhone = '7788990313';
     const safe = (val) => String(val || '').trim().toUpperCase();
 
-    const extra = `*✅ Honey order confirmed!* 🍯\n⌚ _${time}_\n`;
-    const linkSection = `🔍 *Check Status / Edit Address:* 👇\n(ഓർഡർ സ്റ്റാറ്റസ് അറിയാൻ താഴെ ക്ലിക്ക് ചെയ്യുക)\n🔗 _${editLink}_\n`;
+    // 1. DATE FORMATTING (dd/m/yyyy, h:mm:ss PM)
+    const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+    const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true });
+    const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
 
+    // 2. CALCULATE PRICE & COURIER
     const base = n * 650;
-    const courier = total - base;
-    const amountText = `Amount(₹): ${base} + ${courier}`;
-    const totalText = `Total(₹): ${total}/-`;
-    const adminPhone = '7788990313';
 
-    const format = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${String(d.pincode || '').trim()}*\n*Ph: ${String(d.phone || '').trim()}*\n\n*Qty: ${d.quantity}*\n*${amountText}*\n*${totalText}*\n____________________________________\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+    // Zone കണ്ടുപിടിക്കുന്നു (admin.js-ൽ getZoneKey ഉണ്ടെന്ന് ഉറപ്പാക്കുക)
+    const zone = getZoneKey(d.state);
+    const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+    const total = base + courier;
 
+    // 3. GENERATE MESSAGE
+    const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+
+    // Header (ID Removed, Edit Link Added)
+    const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
+
+    // Details Section
+    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+
+    // Footer
+    const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+
+    const finalMsg = header + details + footer;
+
+    // 4. OPEN WHATSAPP
     let phoneNum = String(d.phone).replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    const finalMsg = extra + "\n" + linkSection + format;
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(finalMsg)}`, '_blank');
 
+    // 5. UPDATE STATUS (Pending -> Sent)
     if (d.Status === 'Pending') {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         updates = updates.filter(item => item.oid !== d.orderid);

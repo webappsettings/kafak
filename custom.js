@@ -1336,26 +1336,29 @@ function fetchCourierRates() {
 }
 
 function sendToWhatsapp() {
-  const d = successData; // postOrder സെറ്റ് ചെയ്യുന്ന ഗ്ലോബൽ ഡാറ്റ
+  const d = successData;
   const adminPhone = '7788990313';
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // --- 1. CHECK FOR UPDATES (മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് നോക്കുന്നു) ---
+  // --- 1. DATE FORMATTING (dd/m/yyyy, h:mm:ss PM) ---
+  const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
+  const day = dateObj.getDate();
+  const month = dateObj.getMonth() + 1; // Month starts from 0
+  const year = dateObj.getFullYear();
+  const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true }); // Ex: 2:30:40 PM
+
+  const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
+
+  // --- 2. CHECK UPDATES ---
   let isUpdate = false;
   let changes = [];
 
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
-    isUpdate = true; // ഇതൊരു അപ്ഡേറ്റ് ആണ്
-
-    // Qty Change
+    isUpdate = true;
     if (String(savedOrderData.quantity) !== String(d.quantity))
       changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-
-    // Phone Change
     if (String(savedOrderData.phone) !== String(d.phone))
       changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
-
-    // Address Changes
     if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
     if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
     if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
@@ -1363,44 +1366,39 @@ function sendToWhatsapp() {
     if (safe(savedOrderData.state) !== safe(d.state)) changes.push(`🌍 STATE: *${safe(d.state)}*`);
   }
 
-  // --- 2. CALCULATE TOTAL (🔥 FIXED LOGIC) ---
+  // --- 3. CALCULATE TOTAL ---
   const n = parseInt(d.quantity);
   const base = n * 650;
-
-  // 🔥 പഴയ 'outside' ലോജിക് മാറ്റി പുതിയ getZoneKey ഉപയോഗിക്കുന്നു
-  const zone = getZoneKey(d.state);
-
-  // Rate എടുക്കുന്നു (ഇല്ലെങ്കിൽ 0)
+  const zone = getZoneKey(d.state); // Using new zone logic
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-
   const total = base + courier;
 
-  // --- 3. GENERATE MESSAGE ---
+  // --- 4. GENERATE MESSAGE ---
   const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-  const time = d.timestamp ? new Date(d.timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) : "Just now";
-
   let header = "";
 
   if (isUpdate) {
-    header = `*⚠️ ORDER UPDATED* 📝\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n`;
+    // ⚠️ UPDATE MESSAGE (With Edit Link & Date)
+    header = `*⚠️ ORDER UPDATED* 📝\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
+
     if (changes.length > 0) {
       header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
     } else {
       header += `\n(No major details changed)\n`;
     }
     header += `\n*👇 CURRENT DETAILS:*`;
+
   } else {
-    header = `*✅ Honey order confirmed!* 🍯\n🔖 ID: \`\`\`${d.orderid}\`\`\`\n⌚ _${time}_\n🔗 _${editLink}_\n`;
+    // ✅ NEW ORDER MESSAGE (With Edit Link & Date)
+    header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n🔗 _${editLink}_\n`;
   }
 
-  // Receipt Style (Both New & Update use same style now)
+  // Common Details Section
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
   const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
   const finalMsg = header + details + footer;
-
-  // Send
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(finalMsg)}`;
 }
 
