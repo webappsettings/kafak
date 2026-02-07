@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
         if (localStorage.getItem('kafakAdmin') === 'true') {
             showDashboard();
+            fetchRatesBackground();
             const savedTab = localStorage.getItem('activeAdminTab');
             if (savedTab) {
                 const tabTrigger = document.querySelector(`button[data-bs-target="${savedTab}"]`);
@@ -88,9 +89,9 @@ function showDashboard() {
 }
 
 // --- CONFIG & VARIABLES ---
-const courierRates = {
-    kerala: { 1: 80, 2: 140, 3: 190, 4: 240, 5: 290, 6: 340, 8: 480, 10: 500 },
-    outside: { 1: 110, 2: 200, 3: 280, 4: 350, 5: 430, 6: 510, 8: 640, 10: 840 }
+let courierRates = JSON.parse(localStorage.getItem('adminRatesCache')) || {
+    kerala: { 1: 80, 2: 140, 3: 200, 4: 260, 6: 320, 8: 440, 10: 560 },
+    outside: { 1: 110, 2: 200, 3: 280, 4: 350, 6: 430, 8: 640, 10: 840 } // Fallback
 };
 
 let allOrders = [];
@@ -113,6 +114,21 @@ function confirmAction(text, callback) {
         text: text, icon: 'question', showCancelButton: true, confirmButtonColor: '#000', cancelButtonColor: '#f2f2f2', confirmButtonText: 'Yes',
         customClass: { popup: 'ios-popup', title: 'ios-title', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' }
     }).then((result) => { if (result.isConfirmed) callback(); });
+}
+
+// 2. ബാക്ക്ഗ്രൗണ്ടിൽ റേറ്റ് അപ്‌ഡേറ്റ് ചെയ്യാനുള്ള ഫംഗ്‌ഷൻ
+function fetchRatesBackground() {
+    console.log("Fetching rates in background...");
+    fetch(`${scriptURL}?action=getRates`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success' && data.rates) {
+                courierRates = data.rates; // ഗ്ലോബൽ വേരിയബിൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+                localStorage.setItem('adminRatesCache', JSON.stringify(courierRates)); // സേവ് ചെയ്യുന്നു
+                console.log("✅ Rates updated silently from Server");
+            }
+        })
+        .catch(err => console.log("Rate fetch failed (using cached/default)"));
 }
 
 // --- CORE FUNCTIONS ---
@@ -901,4 +917,31 @@ function cancelDispatchAction() {
     $('#scan-result-box').slideUp(); // Hide box
     // ഡിസ്പാച്ച് ആക്കണ്ട, വെറുതെ ബോക്സ് ക്ലോസ് ചെയ്ത് ക്യാമറ ഓൺ ആക്കുന്നു
     setTimeout(() => html5QrCode.resume(), 1000);
+}
+
+function getZoneKey(stateName) {
+    if (!stateName) return 'north';
+    let s = stateName.toUpperCase().trim();
+
+    if (s === 'KERALA') return 'kerala';
+    if (s === 'TAMIL NADU') return 'tn';
+    if (s === 'KARNATAKA') return 'ka';
+    if (s === 'ANDHRA PRADESH') return 'ap';
+    if (s === 'TELANGANA') return 'ts';
+    if (s === 'LAKSHADWEEP') return 'lakshadweep';
+
+    return 'north'; // Default
+}
+
+function calculatePriceInfo(qty, state) {
+    const n = parseInt(qty) || 0;
+    const basePrice = n * 650;
+
+    // Zone കണ്ടുപിടിക്കുന്നു
+    const zone = getZoneKey(state);
+
+    // റേറ്റ് എടുക്കുന്നു (ആദ്യം ലോക്കലിൽ ഉള്ളത്, അല്ലെങ്കിൽ ബാക്ക്ഗ്രൗണ്ടിൽ അപ്‌ഡേറ്റ് ആയത്)
+    const courierCharge = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+
+    return { total: `₹${basePrice + courierCharge}/-` };
 }
