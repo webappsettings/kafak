@@ -71,7 +71,22 @@ const translations = {
         wa_header_new: "ഓർഡർ ലഭിച്ചു! (Honey Order Confirmed)", // WhatsApp Header New
         wa_header_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു! (Order Updated)", // WhatsApp Header Update
         warn_place_only: "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)", // Address Warning
-        lbl_preparing: "ഓർഡർ തയ്യാറാക്കുന്നു..." // Video Text
+        lbl_preparing: "ഓർഡർ തയ്യാറാക്കുന്നു...", // Video Text
+        dd_select: "അളവ് തിരഞ്ഞെടുക്കുക", // Select Quantity placeholder
+        txt_bottle: "ബോട്ടിൽ", // Singular
+        txt_bottles: "ബോട്ടിൽ", // Plural (മലയാളത്തിൽ 2 ബോട്ടിൽ എന്ന് മതി, 'ബോട്ടിലുകൾ' എന്ന് നിർബന്ധമില്ല)
+        txt_kg: "കിലോ",
+        txt_g: "ഗ്രാം",
+        lbl_reserved_for: "RESERVED FOR", // വീഡിയോയിലെ ടെക്സ്റ്റ് (മലയാളം വേണമെങ്കിൽ "ഇവർക്കായി പാക്ക് ചെയ്തത്" എന്ന് നൽകാം, അല്ലെങ്കിൽ ഇംഗ്ലീഷ് തന്നെ മതി)
+        txt_gpay: "ഗൂഗിൾ പേ നമ്പർ", // GPay Text
+
+        // Placeholders for Edit Box
+        ph_edit_phone: "ഫോൺ നമ്പർ",
+        ph_edit_house: "വീട്ടുപേര്",
+        ph_edit_place: "സ്ഥലം",
+        ph_edit_pin: "പിൻകോഡ്",
+        ph_edit_wa: "വാട്സാപ്പ്",
+        ph_edit_alt: "മറ്റൊരു നമ്പർ"
     },
 
     en: {
@@ -147,6 +162,21 @@ const translations = {
         wa_header_new: "✅ Honey order confirmed! 🍯",
         wa_header_update: "⚠️ ORDER UPDATED 📝",
         warn_place_only: "Enter Place only (Don't add District/PO)",
-        lbl_preparing: "PREPARING YOUR ORDER..."
+        lbl_preparing: "PREPARING YOUR ORDER...",
+        dd_select: "Select Quantity",
+        txt_bottle: "Bottle",
+        txt_bottles: "Bottles",
+        txt_kg: "kg",
+        txt_g: "g",
+        lbl_reserved_for: "RESERVED FOR",
+        txt_gpay: "GPay to",
+
+        // Placeholders
+        ph_edit_phone: "Phone",
+        ph_edit_house: "House Name",
+        ph_edit_place: "Place",
+        ph_edit_pin: "Pin",
+        ph_edit_wa: "WhatsApp",
+        ph_edit_alt: "Alt Phone"
     }
 };

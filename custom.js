@@ -13,6 +13,7 @@ let localUsersMap = {};
 let currentLoginPhone = null;
 let isEditMode = false;
 var savedOrderData = {};
+let globalQtyList = [];
 
 const STORAGE_KEY = 'kafakCustomerData';
 
@@ -69,10 +70,12 @@ window.changeLanguage = function (lang) {
   });
 
   // Update Placeholders
-  $('#phone').attr('placeholder', t.ph_phone);
-  $('#name').attr('placeholder', t.ph_name);
-  $('#house').attr('placeholder', t.ph_house);
-  // ... other placeholders
+  $('#edit-phone').attr('placeholder', t.ph_edit_phone);
+  $('#edit-house').attr('placeholder', t.ph_edit_house);
+  $('#edit-place').attr('placeholder', t.ph_edit_place);
+  $('#edit-pincode').attr('placeholder', t.ph_edit_pin);
+  $('#edit-whatsapp').attr('placeholder', t.ph_edit_wa);
+  $('#edit-altphone').attr('placeholder', t.ph_edit_alt);
 
   // 🔥 Update Wizard Buttons Live
   const wizBtn = $('#btn-wiz-next');
@@ -80,6 +83,8 @@ window.changeLanguage = function (lang) {
     if (currentStep === 7) wizBtn.text(t.btn_order);
     else wizBtn.text(t.btn_next);
   }
+
+  renderQtyDropdowns();
 
   // 🔥 Update Price Box Text Immediately
   let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
@@ -1203,7 +1208,7 @@ function injectVideoCSS() {
         <div class="video-container">
             <video id="honeyVideo" muted playsinline preload="auto"><source src="honey_rotate.mp4" type="video/mp4"></video>
             <div class="digital-label" id="customLabel">
-                <div class="content-group"><img src="images/kafak_logo.png" alt="Kafak"><div class="packed-text">RESERVED FOR</div></div>
+                <div class="content-group"><img src="images/kafak_logo.png" alt="Kafak"><div class="packed-text" data-i18n="lbl_reserved_for">RESERVED FOR</div></div>
                 <div class="check-wrapper" id="finalCheck"><svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg></div>
             </div>
             <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
@@ -1270,49 +1275,33 @@ function postOrder(data) {
     }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
 }
 
-function fetchCourierRates() {
-  // 1. ലോഡിംഗ് ആണെന്ന് കാണിക്കുന്നു (യൂസർ പെട്ടെന്ന് എത്തിയാൽ മനസ്സിലാകാൻ)
-  $('#quantity, #quick-qty').html('<option value="">Loading Options...</option>');
 
-  // 2. സെർവറിലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
+// 2. Updated fetchCourierRates Function
+function fetchCourierRates() {
+  // 1. Loading Text (ഭാഷ അനുസരിച്ച് മാറാൻ)
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
+  const loadingTxt = t.loading || "Loading Options...";
+
+  $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
+
+  // 2. Fetch from Server
   fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success' && data.rates) {
 
-        // A. ഗ്ലോബൽ വേരിയബിൾ അപ്ഡേറ്റ് ചെയ്യുന്നു (വില കാൽക്കുലേറ്റ് ചെയ്യാൻ)
+        // A. ഗ്ലോബൽ വേരിയബിൾ അപ്ഡേറ്റ് ചെയ്യുന്നു
         courierRates = data.rates;
 
-        // B. ഷീറ്റിലുള്ള അളവുകൾ (Quantities) മാത്രം എടുക്കുന്നു (Eg: 1, 2, 4, 6...)
-        // (Object.keys വഴി 1, 2, 5 ഒക്കെ എടുക്കും, എന്നിട്ട് Sort ചെയ്യും)
-        const quantities = Object.keys(data.rates.kerala)
+        // B. അളവുകൾ ഗ്ലോബൽ ലിസ്റ്റിലേക്ക് സേവ് ചെയ്യുന്നു (Sorted)
+        // ഇത് 'renderQtyDropdowns' ഉപയോഗിക്കും
+        globalQtyList = Object.keys(data.rates.kerala)
           .map(Number)
           .sort((a, b) => a - b);
 
-        // C. HTML ഓപ്ഷനുകൾ നിർമ്മിക്കുന്നു
-        let optionsHTML = '<option value="">Select Quantity</option>'; // Default Option
-
-        quantities.forEach(qty => {
-          // വെയിറ്റ് കണക്കാക്കുന്നു (1 Bottle = 650g)
-          const totalGrams = qty * 650;
-          let weightText;
-
-          // 1000g ന് മുകളിൽ ആണെങ്കിൽ kg, അല്ലെങ്കിൽ g
-          if (totalGrams >= 1000) {
-            weightText = (totalGrams / 1000).toFixed(2) + " kg";
-          } else {
-            weightText = totalGrams + "g";
-          }
-
-          // Plural Logic (Bottle vs Bottles)
-          let label = `${qty} Bottle${qty > 1 ? 's' : ''} (${weightText})`;
-
-          optionsHTML += `<option value="${qty}">${label}</option>`;
-        });
-
-        // D. രണ്ട് ഡ്രോപ്പ്ഡൗണിലും (New Order & Edit) അപ്ഡേറ്റ് ചെയ്യുന്നു
-        $('#quantity').html(optionsHTML);   // Wizard Form
-        $('#quick-qty').html(optionsHTML);  // Edit Form
+        // C. HTML ഓപ്ഷനുകൾ നിർമ്മിക്കുന്നു (Render Function വിളിക്കുന്നു)
+        renderQtyDropdowns();
 
         console.log("✅ Rates & Dropdown Updated from Server");
 
@@ -1321,9 +1310,49 @@ function fetchCourierRates() {
       }
     })
     .catch(err => {
-      console.log("❌ Rate fetch failed, using default.");
-      // എറർ വന്നാൽ സ്റ്റാറ്റിക് ഓപ്ഷൻ കാണിക്കാം (Optional)
+      console.log("❌ Rate fetch failed");
     });
+}
+
+// 3. New Helper Function (ഇതും custom.js-ൽ എവിടെയെങ്കിലും ചേർക്കുക)
+function renderQtyDropdowns() {
+  if (!globalQtyList || globalQtyList.length === 0) return;
+
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
+
+  // 1. Default Option (Select Quantity - Translated)
+  let optionsHTML = `<option value="" disabled selected>${t.dd_select || "Select Quantity"}</option>`;
+
+  // 2. Generate Options
+  globalQtyList.forEach(qty => {
+    const totalGrams = qty * 650;
+    let weightText;
+
+    // Unit Conversion (kg/g)
+    if (totalGrams >= 1000) {
+      weightText = (totalGrams / 1000).toFixed(2) + " " + (t.txt_kg || "kg");
+    } else {
+      weightText = totalGrams + (t.txt_g || "g");
+    }
+
+    // Bottle vs Bottles Translation
+    let bottleLabel = (qty === 1) ? (t.txt_bottle || "Bottle") : (t.txt_bottles || "Bottles");
+
+    let label = `${qty} ${bottleLabel} (${weightText})`;
+    optionsHTML += `<option value="${qty}">${label}</option>`;
+  });
+
+  // 3. Update Dropdowns but Keep Selected Value
+  const currentVal1 = $('#quantity').val();
+  const currentVal2 = $('#quick-qty').val();
+
+  $('#quantity').html(optionsHTML);
+  $('#quick-qty').html(optionsHTML);
+
+  // പഴയ വാല്യൂ ഉണ്ടെങ്കിൽ അത് തന്നെ സെലക്ട് ചെയ്തു വെക്കുന്നു
+  if (currentVal1) $('#quantity').val(currentVal1);
+  if (currentVal2) $('#quick-qty').val(currentVal2);
 }
 
 function sendToWhatsapp() {
@@ -1381,7 +1410,7 @@ function sendToWhatsapp() {
   }
 
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-  const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
 }
