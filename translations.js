@@ -14,8 +14,23 @@ const translations = {
         err_checking_pin: "പിൻകോഡ് പരിശോധിക്കുന്നു...", err_pin_not_found: "പിൻകോഡ് കണ്ടെത്തിയില്ല.",
         err_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക", err_house: "വീട്ടുപേര് നൽകുക", err_place: "സ്ഥലം നൽകുക",
         err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
-        confirm_home: "ഹോമിലേക്ക് പോകണോ? വിവരങ്ങൾ നഷ്ടപ്പെടും.", alert_title: "ശ്രദ്ധിക്കുക",
-        btn_new_order: "പുതിയ ഓർഡർ ചെയ്യാം"
+        confirm_home: "ഹോമിലേക്ക് പോകണോ?", alert_title: "ശ്രദ്ധിക്കുക",
+        btn_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
+        btn_order_now: "ഓർഡർ ചെയ്യാം", // New Order Button
+        txt_no_changes: "മാറ്റങ്ങൾ വരുത്തൂ", // Disabled Button Text
+        txt_save_changes: "സേവ് ചെയ്യാം",
+        lbl_order_status: "ഓർഡർ സ്റ്റാറ്റസ്",
+        lbl_track_item: "ട്രാക്ക് ചെയ്യാം",
+        lbl_payment_pending: "പേയ്‌മെന്റ് പെൻഡിംഗ്",
+        lbl_payment_received: "പേയ്‌മെന്റ് ലഭിച്ചു",
+        lbl_packing: "പാക്കിംഗ് നടക്കുന്നു",
+        lbl_dispatched: "അയച്ചു (Dispatched)",
+        lbl_delivered: "ലഭിച്ചു (Delivered)",
+        lbl_on_the_way: "വഴിയിലാണ്",
+        btn_place_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
+        btn_received: "ഓർഡർ കൈപ്പറ്റി (Received)",
+        status_check: "സ്റ്റാറ്റസ് നോക്കുന്നു...",
+        txt_refresh: "റീഫ്രഷ് ചെയ്യാം"
     },
     en: {
         lbl_phone: "Phone Number", ph_phone: "Enter Mobile Number", btn_next: "CONTINUE", welcome_back: "Welcome Back!",
@@ -31,7 +46,22 @@ const translations = {
         err_checking_pin: "Checking Pincode...", err_pin_not_found: "Pincode not found.",
         err_select_po: "Please select Post Office", err_house: "Please enter House Name", err_place: "Please enter Place",
         err_qty: "Please select quantity",
-        confirm_home: "Go home? Data will be lost.", alert_title: "Alert",
-        btn_new_order: "PLACE NEW ORDER"
+        confirm_home: "Go home?", alert_title: "Alert",
+        btn_new_order: "PLACE NEW ORDER",
+        btn_order_now: "ORDER NOW", // New Order Button
+        txt_no_changes: "MAKE CHANGES", // Disabled Button Text
+        txt_save_changes: "SAVE CHANGES",
+        lbl_order_status: "ORDER STATUS",
+        lbl_track_item: "Track Item",
+        lbl_payment_pending: "Payment Pending",
+        lbl_payment_received: "Payment Received",
+        lbl_packing: "Packing",
+        lbl_dispatched: "Dispatched",
+        lbl_delivered: "Delivered",
+        lbl_on_the_way: "On the Way",
+        btn_place_new_order: "PLACE NEW ORDER",
+        btn_received: "✅ I RECEIVED THE ORDER",
+        status_check: "CHECKING STATUS...",
+        txt_refresh: "REFRESH STATUS"
     }
 };

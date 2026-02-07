@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzeQYqPF1R0PMB0EzeJGtIN_h23BNUi4rD0Nq24spVzVstI-AEUZJAEZRiZOAT8UhKu_w/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbyXOnGjHsjd1Kf_7K5BFzBMtaCKWRu227jmAGzEWUZ6z0VZkc0eV_h0y1DgnzgNmuf6kQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -328,7 +328,8 @@ window.submitWizardOrder = function () {
     state: userData.state || 'Kerala',
     quantity: $('#quantity').val(),
     message: '',
-    custId: myCustId
+    custId: myCustId,
+    language: $('#language-select').val() || 'en'
   };
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
@@ -498,7 +499,8 @@ window.submitQuickOrder = function () {
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     message: '',
-    custId: myCustId
+    custId: myCustId,
+    language: $('#language-select').val() || 'en'
   };
 
   // 5. Play Video & Then Submit
@@ -510,6 +512,13 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
+  if (d.language) {
+    // 1. ഡ്രോപ്പ്ഡൗണിൽ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
+    $('#language-select').val(d.language);
+
+    // 2. ഭാഷ മാറ്റുന്ന ഫംഗ്‌ഷൻ വിളിക്കുന്നു (UI ടെക്സ്റ്റ് മാറാൻ)
+    changeLanguage(d.language);
+  }
   // 1. Order ID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
@@ -627,37 +636,25 @@ window.enableNewOrderMode = function () {
   $('#btn-new-order-mode').hide();
   $('#status-area').empty();
 
-  // 2. Show Controls (കൃത്യമായ ക്ലാസുകൾ ഉപയോഗിക്കുന്നു)
+  // 2. Show Controls
   $('label[data-i18n="lbl_qty"]').fadeIn();
-
-  // Flex Box ആയതുകൊണ്ട് display:flex എന്ന് പ്രത്യേകം പറയണം
   $('.qty-action-row').css('display', 'flex').hide().fadeIn();
-
   $('#quick-price-box').fadeIn();
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
 
-  // 3. Reset State
+  // 3. Reset State (Important!)
   isEditMode = false;
-  editingOrderId = null;
+  editingOrderId = null; // 🔥 This makes it a NEW ORDER
   $('#display-oid').hide();
   $('#display-date').hide();
 
   // 4. Reset Inputs
+  // ക്വാണ്ടിറ്റി ക്ലിയർ ചെയ്യുന്നു (അപ്പോൾ കസ്റ്റമർ പുതിയത് സെലക്ട് ചെയ്യണം)
   $('#quick-qty').val('').trigger('change');
   $('#quick-qty option').prop('disabled', false);
 
-  // 5. Update Button Text
-  const lang = $('.form-select').val() || 'en';
-  const btnText = translations[lang].btn_order || "PLACE ORDER";
-
-  // പുതിയ ബട്ടൺ ക്ലാസ്സ് ഉപയോഗിക്കുന്നു
-  $('.btn-update-sage').text(btnText).prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
-
-  // 6. Logic Fix
-  if (typeof savedOrderData !== 'undefined') savedOrderData.quantity = null;
-
-  // ബട്ടൺ എനേബിൾ ആക്കാൻ
-  checkForChanges();
+  // 5. Update Button immediately
+  checkForChanges(); // This will set the text to "Select Quantity" or "Order Now"
 }
 
 window.markOrderDelivered = function (oid) {
@@ -680,56 +677,50 @@ window.markOrderDelivered = function (oid) {
 
 function updateStatusUI(d) {
   $('#status-area').empty();
+  const lang = $('.form-select').val() || 'en';
+  const t = translations[lang]; // Get translations
 
-  // Status Priority for Timeline (Order of progress)
   const steps = ['pending', 'sent', 'paid', 'dispatched', 'delivered'];
   let currentStatus = String(d.Status || d.status || 'pending').toLowerCase();
-
-  // Normalize Status
   if (currentStatus === 'archive') currentStatus = 'pending';
   if (currentStatus === 'completed') currentStatus = 'delivered';
 
   let currentIndex = steps.indexOf(currentStatus);
-  if (currentIndex === -1) currentIndex = 0; // Default if unknown
+  if (currentIndex === -1) currentIndex = 0;
 
-  // HTML Generator for Timeline
-  let timelineHTML = `<div class="tracking-wrapper"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">ORDER STATUS</h6><ul class="track-tl">`;
+  let timelineHTML = `<div class="tracking-wrapper"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">${t.lbl_order_status}</h6><ul class="track-tl">`;
 
-  // 1. Order Placed (Always Active)
+  // 1. Order Placed
   timelineHTML += `
       <li class="track-tl-item active">
           <div class="track-tl-dot"></div>
           <div class="track-date">${formatPrettyDate(d.timestamp) || ''}</div>
-          <div class="track-title">Order Placed</div>
-          <div class="track-desc">Order details received.</div>
+          <div class="track-title">${t.order_success || "Order Placed"}</div>
       </li>`;
 
-  // 2. Payment (Active if Paid or above)
+  // 2. Payment
   let isPaid = currentIndex >= 2;
   timelineHTML += `
       <li class="track-tl-item ${isPaid ? 'active' : ''}">
           <div class="track-tl-dot"></div>
-          <div class="track-title">${isPaid ? 'Payment Received' : 'Payment Pending'}</div>
-          <div class="track-desc">${isPaid ? 'Order confirmed & Packing started.' : 'Waiting for payment confirmation.'}</div>
+          <div class="track-title">${isPaid ? t.lbl_payment_received : t.lbl_payment_pending}</div>
       </li>`;
 
-  // 3. Dispatched (Active if Dispatched or Delivered)
+  // 3. Dispatched
   let isDispatched = currentIndex >= 3;
   let trackBtn = '';
-
   if (d.tracking) {
-    // Direct Link Logic
     let courierName = d.courier || d.provider || "Courier";
     let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
-    trackBtn = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3" style="font-size:11px; border-radius:50px;">Track Item <i class="fas fa-external-link-alt"></i></a></div>`;
+    trackBtn = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt"></i></a></div>`;
   }
 
   timelineHTML += `
       <li class="track-tl-item ${isDispatched ? 'active' : ''}">
           <div class="track-tl-dot"></div>
-          <div class="track-title">${isDispatched ? 'Dispatched' : 'Packing'}</div>
+          <div class="track-title">${isDispatched ? t.lbl_dispatched : t.lbl_packing}</div>
           <div class="track-desc">
-            ${isDispatched ? `Shipped via ${d.courier || 'Courier'}. <br><b>ID: ${d.tracking || ''}</b>` : 'Item is being packed.'}
+            ${isDispatched ? `ID: ${d.tracking || ''}` : ''}
             ${isDispatched && d.tracking ? trackBtn : ''}
           </div>
       </li>`;
@@ -739,20 +730,13 @@ function updateStatusUI(d) {
   timelineHTML += `
       <li class="track-tl-item ${isDelivered ? 'active' : ''}">
           <div class="track-tl-dot"></div>
-          <div class="track-title">${isDelivered ? 'Delivered' : 'On the Way'}</div>
-          <div class="track-desc">${isDelivered ? 'Item successfully delivered.' : 'Estimated delivery within 3-5 days.'}</div>
+          <div class="track-title">${isDelivered ? t.lbl_delivered : t.lbl_on_the_way}</div>
       </li>`;
 
   timelineHTML += `</ul></div>`;
 
-  // Add "Mark as Received" Button only if Dispatched but not Delivered
   if (currentStatus === 'dispatched') {
-    timelineHTML += `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-2">✅ I RECEIVED THE ORDER</button></div>`;
-  }
-
-  // Display Platinum Customer Badge if applicable
-  if (d.offer === true || String(d.offer).toLowerCase() === 'true') {
-    $('#status-area').prepend(`<div class="p-3 mb-2 rounded shadow-sm text-center" style="background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); border: 1px solid #ffeeba;"><h6 class="fw-bold text-warning mb-1"><i class="fas fa-crown"></i> Platinum Customer</h6><small class="text-dark">Special priority packing enabled!</small></div>`);
+    timelineHTML += `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-2">${t.btn_received}</button></div>`;
   }
 
   $('#status-area').append(timelineHTML);
@@ -1004,10 +988,10 @@ function updateLiveAddressPreview() {
 setTimeout(updateLiveAddressPreview, 1000);
 
 function checkForChanges() {
-  // 1. Current Values (നിലവിൽ സ്ക്രീനിലുള്ളത്)
+  // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
   var currPhone = $('#edit-phone').val() || '';
-  var currWa = $('#edit-whatsapp').val() || ''; // 🔥 New: WhatsApp Value
+  var currWa = $('#edit-whatsapp').val() || '';
   var currHouse = $('#edit-house').val() || '';
   var currPlace = $('#edit-place').val() || '';
   var currPin = $('#edit-pincode').val() || '';
@@ -1016,7 +1000,7 @@ function checkForChanges() {
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
   var savedPhone = (savedOrderData.phone || '') + '';
-  var savedWa = (savedOrderData.whatsapp || savedOrderData.phone || '') + ''; // 🔥 New: Saved WhatsApp
+  var savedWa = (savedOrderData.whatsapp || savedOrderData.phone || '') + '';
   var savedHouse = (savedOrderData.house || '') + '';
   var savedPlace = (savedOrderData.place || '') + '';
   var savedPin = (savedOrderData.pincode || '') + '';
@@ -1024,25 +1008,47 @@ function checkForChanges() {
 
   // 3. Compare
   var isChanged = false;
-
   if (String(currQty) !== String(savedQty)) isChanged = true;
   if (String(currPhone) !== String(savedPhone)) isChanged = true;
-  if (String(currWa) !== String(savedWa)) isChanged = true; // 🔥 Check WhatsApp Change
+  if (String(currWa) !== String(savedWa)) isChanged = true;
   if (String(currHouse).trim().toUpperCase() !== String(savedHouse).trim().toUpperCase()) isChanged = true;
   if (String(currPlace).trim().toUpperCase() !== String(savedPlace).trim().toUpperCase()) isChanged = true;
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
-  // 4. Button Logic
+  // 4. Button Logic & Text Setup
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
 
-  if (isChanged) {
-    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text('UPDATE ORDER');
-    btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text('SAVE CHANGES');
+  // Language Setup
+  const lang = $('.form-select').val() || 'en';
+  const t = translations[lang];
+
+  // 🔥 MODE CHECK: Is it a New Order or Update?
+  // editingOrderId നൽ ആണെങ്കിൽ അത് പുതിയ ഓർഡർ ആണ്.
+  const isNewOrderMode = (editingOrderId === null);
+
+  if (isNewOrderMode) {
+    // === NEW ORDER MODE ===
+    // ക്വാണ്ടിറ്റി സെലക്ട് ചെയ്തിട്ടുണ്ടെങ്കിൽ ബട്ടൺ എനേബിൾ ആകും
+    if (currQty && currQty !== "0") {
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.btn_order_now);
+    } else {
+      // ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ
+      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.lbl_qty);
+    }
+    // Save Button in Address Box
+    btnSave.prop('disabled', false).text(t.txt_save_changes); // New Order mode-ൽ അഡ്രസ്സ് മാറ്റാൻ എപ്പോഴും സമ്മതിക്കണം
+
   } else {
-    btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text('NO CHANGES');
-    btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text('NO CHANGES');
+    // === UPDATE / EDIT MODE ===
+    if (isChanged) {
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.btn_update);
+      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes);
+    } else {
+      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
+      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
+    }
   }
 }
 

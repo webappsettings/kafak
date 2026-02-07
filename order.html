@@ -515,8 +515,9 @@
         <div class="d-flex align-items-center">
           <img src="logo.png" alt="KAFAK" class="brand-logo-img" onerror="this.style.display='none'">
         </div>
-        <select class="form-select form-select-sm border-0 bg-light fw-bold text-secondary shadow-none"
-          style="width:auto;" onchange="changeLanguage(this.value)">
+        <select id="language-select"
+          class="form-select form-select-sm border-0 bg-light fw-bold text-secondary shadow-none" style="width:auto;"
+          onchange="changeLanguage(this.value)">
           <option value="ml" selected>മലയാളം</option>
           <option value="en">ENGLISH</option>
         </select>
@@ -613,14 +614,6 @@
               <div class="qty-action-row mb-3">
                 <select id="quick-qty" class="form-select border-0 bg-light fw-bold" style="font-size: 16px;">
                   <option value="" disabled selected>Select...</option>
-                  <!-- <option value="1">1 Bottle (650g)</option>
-                  <option value="2">2 Bottles (1.30 kg)</option>
-                  <option value="3">3 Bottles (1.95 kg)</option>
-                  <option value="4">4 Bottles (2.60 kg)</option>
-                  <option value="5">5 Bottles (3.25 kg)</option>
-                  <option value="6">6 Bottles (3.90 kg)</option>
-                  <option value="8">8 Bottles (5.20 kg)</option>
-                  <option value="10">10 Bottles (6.50 kg)</option> -->
                 </select>
                 <button onclick="submitQuickOrder()" class="btn-update-sage">
                   <span data-i18n="btn_update">UPDATE ORDER</span>
