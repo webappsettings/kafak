@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbyXOnGjHsjd1Kf_7K5BFzBMtaCKWRu227jmAGzEWUZ6z0VZkc0eV_h0y1DgnzgNmuf6kQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzILxz8-v4S0D1kVSr6hryIKxmzKBAOU0-d4QytfV2CW9dn3Hw7wGhJCDH46wY2krucNA/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1037,24 +1037,43 @@ function checkForChanges() {
   const lang = $('.form-select').val() || 'en';
   const t = translations[lang];
 
-  // 🔥 MODE CHECK: Is it a New Order or Update?
-  // editingOrderId നൽ ആണെങ്കിൽ അത് പുതിയ ഓർഡർ ആണ്.
+  // ബട്ടൺ 2 വരിയിൽ വരാനുള്ള സ്റ്റൈൽ
+  btnUpdate.css({
+    'white-space': 'normal',
+    'line-height': '1.2',
+    'padding': '8px',
+    'height': 'auto',
+    'min-height': '50px'
+  });
+
+  // 🔥 MODE CHECK
   const isNewOrderMode = (editingOrderId === null);
 
   if (isNewOrderMode) {
-    // === NEW ORDER MODE ===
-    // ക്വാണ്ടിറ്റി സെലക്ട് ചെയ്തിട്ടുണ്ടെങ്കിൽ ബട്ടൺ എനേബിൾ ആകും
+    // === NEW ORDER MODE (Always Enabled) ===
+
+    // 1. ബട്ടൺ എപ്പോഴും Enabled ആക്കുന്നു
+    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
+
+    // Save Button Logic (Always enabled for new orders)
+    btnSave.prop('disabled', false).text(t.txt_save_changes);
+
+    // 2. ടെക്സ്റ്റ് സെറ്റിംഗ് (2 Lines)
     if (currQty && currQty !== "0") {
-      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.btn_order_now);
+      // ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ: വെറും "ORDER NOW"
+      btnUpdate.html(`<span style="font-size:16px; font-weight:800;">${t.btn_order_now}</span>`);
     } else {
-      // ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ
-      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.lbl_qty);
+      // ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ: "ORDER NOW" + Subtext
+      let subText = (lang === 'ml') ? "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)" : "(Select Quantity First)";
+
+      btnUpdate.html(`
+          <span style="font-size:16px; font-weight:800;">${t.btn_order_now}</span><br>
+          <span style="font-size:10px; opacity:0.9; font-weight:600;">${subText}</span>
+      `);
     }
-    // Save Button in Address Box
-    btnSave.prop('disabled', false).text(t.txt_save_changes); // New Order mode-ൽ അഡ്രസ്സ് മാറ്റാൻ എപ്പോഴും സമ്മതിക്കണം
 
   } else {
-    // === UPDATE / EDIT MODE ===
+    // === UPDATE / EDIT MODE (Normal Logic) ===
     if (isChanged) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.btn_update);
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes);
