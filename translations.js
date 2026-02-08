@@ -33,7 +33,7 @@ const translations = {
         btn_order_now: "ഓർഡർ ചെയ്യാം", // New Order Button
         btn_place_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
         btn_received: "ഓർഡർ കൈപ്പറ്റി (Received)",
-        txt_no_changes: "മാറ്റങ്ങൾ വരുത്തൂ", // Disabled Button Text
+        txt_no_changes: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം", // Disabled Button Text
         txt_save_changes: "സേവ് ചെയ്യാം",
         txt_refresh: "റീഫ്രഷ് ചെയ്യാം",
         open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
@@ -95,7 +95,14 @@ const translations = {
         ph_edit_place: "സ്ഥലം",
         ph_edit_pin: "പിൻകോഡ്",
         ph_edit_wa: "വാട്സാപ്പ്",
-        ph_edit_alt: "മറ്റൊരു നമ്പർ"
+        ph_edit_alt: "മറ്റൊരു നമ്പർ",
+        desc_order_placed: "ഞങ്ങൾക്ക് ഓർഡർ ലഭിച്ചു.",
+        desc_pay_pending: "പേയ്‌മെന്റ് ലഭിക്കാനുണ്ട്.",
+        desc_pay_received: "പേയ്‌മെന്റ് വിജയകരമായി ലഭിച്ചു.",
+        desc_packing: "തേൻ ബോട്ടിൽ പാക്ക് ചെയ്യുന്നു...",
+        desc_dispatched: "ഓർഡർ കൊറിയർ വഴി അയച്ചു.",
+        desc_on_the_way: "നിങ്ങളുടെ അടുത്തേക്ക് എത്തുന്നു...",
+        desc_delivered: "ഓർഡർ കൈമാറി. നന്ദി!",
     },
 
     en: {
@@ -195,6 +202,13 @@ const translations = {
         ph_edit_place: "Place",
         ph_edit_pin: "Pin",
         ph_edit_wa: "WhatsApp",
-        ph_edit_alt: "Alt Phone"
+        ph_edit_alt: "Alt Phone",
+        desc_order_placed: "We have received your order.",
+        desc_pay_pending: "Waiting for payment confirmation.",
+        desc_pay_received: "Payment received successfully.",
+        desc_packing: "Packing your honey bottle...",
+        desc_dispatched: "Order dispatched via courier.",
+        desc_on_the_way: "On the way to your doorstep...",
+        desc_delivered: "Item delivered. Thank you!",
     }
 };
