@@ -714,7 +714,7 @@ window.markOrderDelivered = function (oid) {
 function updateStatusUI(d) {
   $('#status-area').empty();
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang]; // Get translations
+  const t = translations[lang] || translations['en']; // Fallback to English
 
   const steps = ['pending', 'sent', 'paid', 'dispatched', 'delivered'];
   let currentStatus = String(d.Status || d.status || 'pending').toLowerCase();
@@ -726,12 +726,13 @@ function updateStatusUI(d) {
 
   let timelineHTML = `<div class="tracking-wrapper"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">${t.lbl_order_status}</h6><ul class="track-tl">`;
 
-  // 1. Order Placed
+  // 1. Order Placed (Always Active)
   timelineHTML += `
       <li class="track-tl-item active">
           <div class="track-tl-dot"></div>
           <div class="track-date">${formatPrettyDate(d.timestamp) || ''}</div>
           <div class="track-title">${t.order_success || "Order Placed"}</div>
+          <div class="track-desc" style="font-size:11px; color:#888;">${t.desc_order_placed}</div>
       </li>`;
 
   // 2. Payment
@@ -740,9 +741,10 @@ function updateStatusUI(d) {
       <li class="track-tl-item ${isPaid ? 'active' : ''}">
           <div class="track-tl-dot"></div>
           <div class="track-title">${isPaid ? t.lbl_payment_received : t.lbl_payment_pending}</div>
+          <div class="track-desc" style="font-size:11px; color:#888;">${isPaid ? t.desc_pay_received : t.desc_pay_pending}</div>
       </li>`;
 
-  // 3. Dispatched
+  // 3. Dispatched / Packing
   let isDispatched = currentIndex >= 3;
   let trackBtn = '';
   if (d.tracking) {
@@ -755,18 +757,20 @@ function updateStatusUI(d) {
       <li class="track-tl-item ${isDispatched ? 'active' : ''}">
           <div class="track-tl-dot"></div>
           <div class="track-title">${isDispatched ? t.lbl_dispatched : t.lbl_packing}</div>
-          <div class="track-desc">
-            ${isDispatched ? `ID: ${d.tracking || ''}` : ''}
+          <div class="track-desc" style="font-size:11px; color:#888;">
+            ${isDispatched ? t.desc_dispatched : t.desc_packing}
+            ${isDispatched && d.tracking ? `<br>ID: ${d.tracking}` : ''}
             ${isDispatched && d.tracking ? trackBtn : ''}
           </div>
       </li>`;
 
-  // 4. Delivered
+  // 4. Delivered / On the Way
   let isDelivered = currentIndex >= 4;
   timelineHTML += `
       <li class="track-tl-item ${isDelivered ? 'active' : ''}">
           <div class="track-tl-dot"></div>
           <div class="track-title">${isDelivered ? t.lbl_delivered : t.lbl_on_the_way}</div>
+          <div class="track-desc" style="font-size:11px; color:#888;">${isDelivered ? t.desc_delivered : t.desc_on_the_way}</div>
       </li>`;
 
   timelineHTML += `</ul></div>`;
