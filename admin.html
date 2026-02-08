@@ -492,6 +492,401 @@
             align-items: center;
             justify-content: center;
         }
+
+        /* --- HEADER --- */
+        .admin-header {
+            background: var(--glass-bg);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-title {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            color: #1a1a1a;
+        }
+
+        .header-actions button {
+            border: none;
+            background: #f3f4f6;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #333;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-actions button:hover {
+            background: #e5e7eb;
+            transform: scale(1.05);
+        }
+
+        /* --- TABS --- */
+        .status-tabs {
+            background: #fff;
+            padding: 10px 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-tab {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #666;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .status-tab.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        /* --- ORDERS LIST --- */
+        .orders-container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .order-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .order-card:active {
+            transform: scale(0.98);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-id {
+            font-family: monospace;
+            font-weight: 700;
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .order-time {
+            font-size: 11px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .order-name {
+            font-weight: 800;
+            font-size: 16px;
+            color: #111;
+            margin-bottom: 2px;
+        }
+
+        .order-details {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .order-footer {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-badge {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        /* STATUS COLORS */
+        .status-Pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-Sent {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .status-Paid {
+            background: #fefce8;
+            color: #a16207;
+        }
+
+        .status-Dispatched {
+            background: #f0fdf4;
+            color: #15803d;
+        }
+
+        .status-Delivered {
+            background: #fafafa;
+            color: #555;
+        }
+
+        /* --- SCANNER OVERLAY --- */
+        #scan-result-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            z-index: 2000;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        /* --- 🔥 NEW DASHBOARD DRAWER (SLIDE OVER) --- */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: #f8f9fa;
+            z-index: 2100;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            background: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* DASHBOARD TABS */
+        .nav-pills .nav-link {
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #666;
+            padding: 8px 20px;
+            background: #eee;
+            margin-right: 10px;
+        }
+
+        .nav-pills .nav-link.active {
+            background: #000;
+            color: #fff;
+        }
+
+        /* DATE NAVIGATOR */
+        .date-nav {
+            background: #fff;
+            padding: 12px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+
+        .date-btn {
+            border: none;
+            background: #f1f1f1;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            color: #333;
+        }
+
+        .date-btn:active {
+            transform: scale(0.9);
+        }
+
+        .date-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .date-display {
+            font-weight: 800;
+            font-size: 15px;
+            color: #000;
+        }
+
+        /* STAT CARDS */
+        .stat-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .stat-val {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* TIMELINE ITEM */
+        .timeline-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.01);
+        }
+
+        .timeline-item.expense {
+            border-left-color: #dc3545;
+        }
+
+        .timeline-item.income {
+            border-left-color: #198754;
+        }
+
+        .timeline-item.courier {
+            border-left-color: #f59e0b;
+        }
+
+        /* PARTNER CARD */
+        .partner-card {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .partner-card:hover {
+            background: #f8f9fa;
+        }
+
+        .partner-card.selected {
+            border-color: #000;
+            background: #f0f0f0;
+        }
+
+        /* SEARCH BAR */
+        .search-container {
+            padding: 10px 15px;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            background: #f8f9fa;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .search-input:focus {
+            background: white;
+            border-color: #000;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -599,110 +994,204 @@
         <div class="spinner-border text-success" role="status"></div>
     </div>
 
-    <div id="accounts-modal" class="accounts-modal-overlay">
-        <div class="accounts-card">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold m-0"><i class="fas fa-wallet me-2"></i>Accounts</h5>
-                <button onclick="closeAccountsModal()" class="btn btn-light btn-sm rounded-circle"><i
-                        class="fas fa-times"></i></button>
-            </div>
 
-            <div class="mb-3 bg-light p-2 rounded-3 border d-flex align-items-center justify-content-between">
-                <span class="small fw-bold text-muted ps-2">SELECT DATE:</span>
-                <input type="date" id="stats-date-picker"
-                    class="form-control form-control-sm fw-bold border-0 bg-white shadow-sm" style="width: 140px;"
-                    onchange="fetchDailyStats(this.value)">
-            </div>
+    <!-- -----admin dashboard  -->
 
-            <div class="row g-2 mb-3 text-center">
-                <div class="col-4">
-                    <div class="stat-box p-2">
-                        <div class="stat-val" id="d-count">0</div>
-                        <div class="stat-label">Orders</div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="stat-box p-2">
-                        <div class="stat-val text-success">₹<span id="d-sales">0</span></div>
-                        <div class="stat-label">Sales</div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="stat-box p-2 bg-success-subtle border-success">
-                        <div class="stat-val text-success">₹<span id="d-profit">0</span></div>
-                        <div class="stat-label">PROFIT</div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="stat-box p-2 bg-danger-subtle border-danger">
-                        <div class="stat-val text-danger">₹<span id="d-courier">0</span></div>
-                        <div class="stat-label">Courier Cost</div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="stat-box p-2 bg-warning-subtle border-warning">
-                        <div class="stat-val text-dark">₹<span id="d-expense">0</span></div>
-                        <div class="stat-label">Other Exp</div>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="my-3" style="opacity:0.1">
-
-            <button class="btn btn-dark w-100 btn-sm mb-3 fw-bold" type="button" data-bs-toggle="collapse"
-                data-bs-target="#expFormCollapse">
-                <i class="fas fa-plus-circle me-1"></i> ADD NEW EXPENSE
+    <div class="admin-header">
+        <div class="d-flex align-items-center gap-3">
+            <div class="header-title">KAFAK</div>
+            <button onclick="openDashboard()"
+                class="btn btn-dark btn-sm rounded-pill px-3 fw-bold shadow-sm d-flex align-items-center">
+                <i class="fas fa-chart-pie me-2"></i> ACCOUNTS
             </button>
-
-            <div class="collapse" id="expFormCollapse">
-                <div class="card card-body border-0 bg-light p-3 rounded-3">
-                    <form id="expense-form" onsubmit="submitExpense(event)">
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <label class="form-label small fw-bold text-muted">Category</label>
-                                <select id="exp-category" class="form-select form-select-sm fw-bold" required>
-                                    <option value="Materials">Materials</option>
-                                    <option value="Salary">Salary</option>
-                                    <option value="Food">Food</option>
-                                    <option value="Travel">Travel</option>
-                                    <option value="Courier">Courier</option>
-                                    <option value="Ads">Ads</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label small fw-bold text-muted">Date</label>
-                                <input type="date" id="exp-date" class="form-control form-control-sm fw-bold" required>
-                            </div>
-                        </div>
-                        <input type="text" id="exp-vendor" class="form-control form-control-sm mb-2"
-                            placeholder="Vendor / Payee Name" required>
-                        <input type="text" id="exp-desc" class="form-control form-control-sm mb-2"
-                            placeholder="Description" required>
-                        <div class="row g-2 mb-2">
-                            <div class="col-6">
-                                <input type="number" id="exp-amount" class="form-control form-control-sm fw-bold"
-                                    placeholder="Amount (₹)" required>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" id="exp-ref" class="form-control form-control-sm"
-                                    placeholder="Bill No / Ref">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-muted d-block">Proof Image (Optional)</label>
-                            <input type="file" id="exp-proof" class="form-control form-control-sm" accept="image/*">
-                        </div>
-                        <button type="submit" class="ac-btn shadow-sm" id="btn-save-exp">SAVE EXPENSE</button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="expense-list-container" class="mt-3">
-            </div>
-
+        </div>
+        <div class="header-actions d-flex gap-2">
+            <button onclick="refreshOrders()"><i class="fas fa-sync-alt"></i></button>
+            <button onclick="logout()" class="text-danger"><i class="fas fa-sign-out-alt"></i></button>
         </div>
     </div>
+
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search Name, Phone or Order ID...">
+    </div>
+
+    <div class="status-tabs" id="status-tabs">
+        <div class="status-tab active" onclick="filterStatus('Pending')">Pending <span id="count-Pending"
+                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
+        <div class="status-tab" onclick="filterStatus('Sent')">Sent <span id="count-Sent"
+                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
+        <div class="status-tab" onclick="filterStatus('Paid')">Paid <span id="count-Paid"
+                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
+        <div class="status-tab" onclick="filterStatus('Dispatched')">Dispatched <span id="count-Dispatched"
+                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
+        <div class="status-tab" onclick="filterStatus('Delivered')">Delivered</div>
+    </div>
+
+    <div class="orders-container" id="orders-container">
+        <div class="text-center py-5 text-muted">
+            <div class="spinner-border text-dark mb-3" role="status"></div>
+            <div style="font-size:12px; font-weight:700;">LOADING ORDERS...</div>
+        </div>
+    </div>
+
+    <div class="drawer-overlay" id="drawer-overlay" onclick="closeDashboard()"></div>
+    <div class="drawer" id="dashboard-drawer">
+        <div class="drawer-header">
+            <h5 class="fw-bold m-0"><i class="fas fa-wallet me-2"></i>Accounts</h5>
+            <button onclick="closeDashboard()" class="btn btn-light rounded-circle" style="width:35px; height:35px;"><i
+                    class="fas fa-times"></i></button>
+        </div>
+
+        <div class="px-3 pt-3">
+            <ul class="nav nav-pills w-100" id="pills-tab" role="tablist">
+                <li class="nav-item flex-fill text-center">
+                    <button class="nav-link w-100 active" id="tab-overview" data-bs-toggle="pill"
+                        data-bs-target="#pills-overview" type="button">OVERVIEW</button>
+                </li>
+                <li class="nav-item flex-fill text-center">
+                    <button class="nav-link w-100" id="tab-expense" data-bs-toggle="pill"
+                        data-bs-target="#pills-expense" type="button">ADD EXPENSE</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="drawer-body tab-content">
+
+            <div class="tab-pane fade show active" id="pills-overview">
+                <div class="date-nav">
+                    <button class="date-btn" onclick="changeDate(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="date-display" id="current-date-display">Today</div>
+                    <button class="date-btn" id="btn-next-date" onclick="changeDate(1)" disabled><i
+                            class="fas fa-chevron-right"></i></button>
+                </div>
+
+                <h6 class="fw-bold small text-muted mb-2 text-uppercase">Daily Stats</h6>
+                <div class="row g-2 mb-4">
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <div class="stat-val text-success" id="d-sales">0</div>
+                            <div class="stat-lbl">Sales</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <div class="stat-val text-danger" id="d-expense">0</div>
+                            <div class="stat-lbl">Expense</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <div class="stat-val text-warning" id="d-courier">0</div>
+                            <div class="stat-lbl">Courier</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <div class="stat-val" id="d-profit">0</div>
+                            <div class="stat-lbl">Profit</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold small text-muted mb-2 text-uppercase">Transactions</h6>
+                <div id="daily-timeline">
+                    <div class="text-center text-muted small py-3">Loading...</div>
+                </div>
+
+                <div class="mt-4 p-3 bg-white rounded-3 border shadow-sm">
+                    <h6 class="fw-bold mb-3 small text-uppercase text-primary"><i class="fas fa-calendar-alt me-1"></i>
+                        Month Summary</h6>
+                    <div class="d-flex justify-content-between mb-2 small fw-bold"><span>Total Sales:</span> <span
+                            class="text-success" id="m-sales">0</span></div>
+                    <div class="d-flex justify-content-between mb-2 small fw-bold"><span>Total Expense:</span> <span
+                            class="text-danger" id="m-expense">0</span></div>
+                    <div class="d-flex justify-content-between mb-2 small fw-bold"><span>Courier Charges:</span> <span
+                            class="text-warning" id="m-courier">0</span></div>
+                    <hr>
+                    <div class="d-flex justify-content-between h6 fw-bold m-0"><span>Net Profit:</span> <span
+                            id="m-profit">0</span></div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-expense">
+                <form id="expense-form" onsubmit="submitExpense(event)">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Transaction Date</label>
+                        <input type="date" id="exp-date" class="form-control fw-bold border-2">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Category</label>
+                        <select id="exp-category" class="form-select fw-bold" onchange="togglePartnerSelect()">
+                            <option value="Materials">Materials / Purchase</option>
+                            <option value="Salary">Salary Payment</option>
+                            <option value="Food">Food & Refreshment</option>
+                            <option value="Travel">Travel & Fuel</option>
+                            <option value="Courier">Courier Charges</option>
+                            <option value="Ads">Ads & Marketing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div id="partner-section" style="display:none;" class="mb-3 p-3 bg-light border rounded">
+                        <label class="form-label small fw-bold text-muted">Select Partner</label>
+                        <div id="partner-list">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Payee / Description</label>
+                        <input type="text" id="exp-vendor" class="form-control" placeholder="Vendor Name / Person"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Description (Optional)</label>
+                        <input type="text" id="exp-desc" class="form-control" placeholder="Item details...">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-text fw-bold">₹</span>
+                            <input type="number" id="exp-amount" class="form-control fw-bold fs-5" placeholder="0.00"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Upload Bill / Screenshot</label>
+                        <input type="file" id="exp-proof" class="form-control" accept="image/*">
+                        <div class="form-text" style="font-size:10px;">Auto-compressed & saved to Drive.</div>
+                    </div>
+
+                    <button type="submit" id="btn-save-exp" class="btn btn-dark w-100 py-3 fw-bold rounded-3 shadow-sm">
+                        SAVE TRANSACTION
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="scan-result-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="fw-bold m-0"><i class="fas fa-barcode me-2"></i>SCAN RESULT</h6>
+            <button onclick="cancelDispatchAction()" class="btn btn-light btn-sm rounded-circle"><i
+                    class="fas fa-times"></i></button>
+        </div>
+        <div class="p-3 bg-light rounded mb-3 border">
+            <div class="small text-muted fw-bold">ORDER ID</div>
+            <div class="fw-bold fs-5 text-dark" id="scan-oid">...</div>
+            <div class="small text-muted fw-bold mt-2">TRACKING ID</div>
+            <div class="fw-bold fs-5 text-primary" id="scan-code">...</div>
+        </div>
+        <div class="d-grid">
+            <button id="btn-confirm-dispatch" class="btn btn-success fw-bold py-3 shadow-sm">CONFIRM DISPATCH ✅</button>
+        </div>
+    </div>
+
+    <div id="reader" style="width: 0px; height: 0px; overflow: hidden;"></div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>

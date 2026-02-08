@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyg5QtNCUctrBNkZKpGAEA6jUvc1zvCFvzJ_M7iHfiFy88OeOfOIvvJXnAPK2FKwsddlA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbz9ptwHNo7kEtffTgA33phd2H5cIMSu87RWLMiO0mGPQxZiqvT4258RwQEArc0xf583QQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -517,16 +517,7 @@ function discardLocalChanges() {
     });
 }
 
-function calculatePriceInfo(qty, state) {
-    const n = parseInt(qty) || 0;
-    const basePrice = n * 650;
-    let courierCharge = 0;
-    const s = String(state || '').toLowerCase().trim();
-    if (s === 'lakshadweep') courierCharge = (n * 100) + 20;
-    else if (s === 'kerala') courierCharge = courierRates.kerala[n] || 0;
-    else courierCharge = courierRates.outside[n] || 0;
-    return { total: `₹${basePrice + courierCharge}/-` };
-}
+
 
 function sendWA(index) {
     const d = allOrders[index];
@@ -998,20 +989,12 @@ function confirmDispatchAction(oid, code) {
     isScanProcessing = false; // 🔥 Unlock Scanner for next scan
 }
 
-// ❌ Helper: Cancel Dispatch Click
 function cancelDispatchAction() {
     $('#scan-result-box').slideUp();
     setTimeout(() => {
         html5QrCode.resume();
-        isScanProcessing = false; // 🔥 Unlock Scanner
+        isScanProcessing = false; // 🔥 Unlock Scanner (Important)
     }, 1000);
-}
-
-// ❌ Helper: Cancel Dispatch Click
-function cancelDispatchAction() {
-    $('#scan-result-box').slideUp(); // Hide box
-    // ഡിസ്പാച്ച് ആക്കണ്ട, വെറുതെ ബോക്സ് ക്ലോസ് ചെയ്ത് ക്യാമറ ഓൺ ആക്കുന്നു
-    setTimeout(() => html5QrCode.resume(), 1000);
 }
 
 function getZoneKey(stateName) {
@@ -1045,31 +1028,180 @@ function calculatePriceInfo(qty, state) {
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
-// 1. STATS CALCULATION (Updated with Courier Cost)
-function calculateDailyStats() {
-    let today = new Date().toDateString();
-    let count = 0;
-    let sales = 0;
-    let courierCost = 0; // 🔥 New Variable
 
-    allOrders.forEach(o => {
-        let orderDate = new Date(o.timestamp).toDateString();
-        // Dispatched, Completed, Delivered, Paid ആയവ മാത്രം കണക്കിൽ കൂട്ടാം
-        let validStatus = ['Paid', 'Dispatched', 'Completed', 'Delivered'].includes(o.Status);
 
-        if (orderDate === today && validStatus) {
-            count++;
-            sales += (parseInt(o.grandTotal) || 0);
-            courierCost += (parseInt(o.actualCourierCost) || 0); // 🔥 Sum Actual Courier Cost
-        }
-    });
+// ==========================================
+// 🔥 DASHBOARD & EXPENSE LOGIC (NEW)
+// ==========================================
 
-    $('#today-count').text(count);
-    $('#today-sales').text(sales);
-    $('#today-courier').text(courierCost);
+// 1. DRAWER OPEN/CLOSE
+function openDashboard() {
+    $('#drawer-overlay').fadeIn(200);
+    $('#dashboard-drawer').addClass('open');
+
+    // Default to Today & Fetch
+    selectedDate = new Date();
+    updateDateDisplay();
+    fetchDashboardData();
 }
 
-// 2. SUBMIT EXPENSE (Updated with Image Compression)
+function closeDashboard() {
+    $('#drawer-overlay').fadeOut(200);
+    $('#dashboard-drawer').removeClass('open');
+}
+
+// 2. DATE NAVIGATION
+function updateDateDisplay() {
+    let today = new Date();
+    // Reset time for comparison
+    let d1 = new Date(selectedDate.toDateString());
+    let d2 = new Date(today.toDateString());
+    let isToday = d1.getTime() === d2.getTime();
+
+    let options = { weekday: 'short', day: 'numeric', month: 'short' };
+    $('#current-date-display').text(isToday ? "Today" : selectedDate.toLocaleDateString('en-IN', options));
+
+    $('#btn-next-date').prop('disabled', isToday);
+
+    // Sync Date Input in Form
+    document.getElementById('exp-date').valueAsDate = selectedDate;
+}
+
+function changeDate(days) {
+    selectedDate.setDate(selectedDate.getDate() + days);
+    updateDateDisplay();
+    fetchDashboardData();
+}
+
+// 3. FETCH UNIFIED DATA
+function fetchDashboardData() {
+    // Show Loading State
+    $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
+    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
+
+    // Format YYYY-MM-DD
+    // Note: Using local time handling to avoid timezone issues
+    let y = selectedDate.getFullYear();
+    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    let d = String(selectedDate.getDate()).padStart(2, '0');
+    let dateStr = `${y}-${m}-${d}`;
+
+    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
+        .then(res => res.json())
+        .then(res => {
+            if (res.result === 'success') {
+                dashboardData = res.data;
+                renderDashboard();
+            }
+        })
+        .catch(err => console.error("Dash Error:", err));
+}
+
+function renderDashboard() {
+    if (!dashboardData) return;
+
+    let d = dashboardData.daily;
+    let m = dashboardData.monthly;
+
+    // --- Daily Stats ---
+    $('#d-sales').text('₹' + d.sales);
+    $('#d-expense').text('₹' + d.expense);
+    $('#d-courier').text('₹' + d.courier);
+    $('#d-profit').text('₹' + d.profit).css('color', d.profit >= 0 ? 'green' : 'red');
+
+    // --- Monthly Stats ---
+    $('#m-sales').text('₹' + m.sales);
+    $('#m-expense').text('₹' + m.expense);
+    $('#m-courier').text('₹' + m.courier);
+    $('#m-profit').text('₹' + m.profit).css('color', m.profit >= 0 ? 'green' : 'red');
+
+    // --- Timeline List ---
+    let listHtml = '';
+
+    // 1. Custom Expenses
+    if (d.list && d.list.length > 0) {
+        d.list.forEach(item => {
+            let icon = item.proof ? `<a href="${item.proof}" target="_blank" class="ms-2 text-primary small"><i class="fas fa-image"></i></a>` : '';
+            listHtml += `
+            <div class="timeline-item expense">
+                <div style="width:70%">
+                    <div class="fw-bold small text-truncate">${item.desc}</div>
+                    <div class="text-muted" style="font-size:10px;">${item.category}</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold text-danger small">-₹${item.amount}</span>
+                    ${icon}
+                </div>
+            </div>`;
+        });
+    }
+
+    // 2. Add Courier Summary Row if exists
+    if (d.courier > 0) {
+        listHtml += `
+        <div class="timeline-item courier">
+            <div>
+                <div class="fw-bold small">Courier Charges</div>
+                <div class="text-muted" style="font-size:10px;">Auto-calc</div>
+            </div>
+            <div class="fw-bold text-warning small">-₹${d.courier}</div>
+        </div>`;
+    }
+
+    if (listHtml === '') listHtml = '<div class="text-center text-muted small py-4 bg-light rounded">No transactions yet.</div>';
+    $('#daily-timeline').html(listHtml);
+
+    // Update Partner List in Form
+    renderPartnerList();
+}
+
+// 4. PARTNER SALARY LOGIC
+function togglePartnerSelect() {
+    let cat = $('#exp-category').val();
+    if (cat === 'Salary') {
+        $('#partner-section').slideDown();
+        $('#exp-vendor').prop('readonly', true).attr('placeholder', 'Select Partner above');
+    } else {
+        $('#partner-section').slideUp();
+        $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+    }
+}
+
+function renderPartnerList() {
+    if (!dashboardData || !dashboardData.partners) return;
+
+    let partners = dashboardData.partners;
+    let html = '';
+
+    for (let [name, balance] of Object.entries(partners)) {
+        html += `
+        <div class="partner-card" onclick="selectPartner('${name}')">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-user-circle text-muted fs-4"></i>
+                <div>
+                    <div class="fw-bold small">${name}</div>
+                    <div class="text-muted" style="font-size:10px;">Bal: ₹${balance}</div>
+                </div>
+            </div>
+            <i class="far fa-circle text-muted check-icon"></i>
+        </div>`;
+    }
+    $('#partner-list').html(html);
+}
+
+function selectPartner(name) {
+    // UI Update
+    $('.partner-card').removeClass('selected');
+    $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
+
+    $(event.currentTarget).addClass('selected');
+    $(event.currentTarget).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
+
+    // Fill Data
+    $('#exp-vendor').val(name);
+}
+
+// 5. SUBMIT EXPENSE (With Image Compression)
 async function submitExpense(e) {
     e.preventDefault();
 
@@ -1081,15 +1213,13 @@ async function submitExpense(e) {
     let fileData = null;
     let fileName = null;
 
-    // 🔥 Image Compression Logic
     if (fileInput.files.length > 0) {
         try {
-            btn.html('<i class="fas fa-compress"></i> PROCESSING...');
+            btn.html('<i class="fas fa-compress"></i> COMPRESSING...');
             let compressed = await compressImage(fileInput.files[0]);
             fileData = compressed.data;
             fileName = compressed.name;
         } catch (err) {
-            console.error(err);
             alert("Image processing failed");
             btn.prop('disabled', false).text(originalText);
             return;
@@ -1102,8 +1232,7 @@ async function submitExpense(e) {
         vendor: $('#exp-vendor').val(),
         description: $('#exp-desc').val(),
         amount: $('#exp-amount').val(),
-        billRef: $('#exp-ref').val(),
-        fileData: fileData, // Base64 Image
+        fileData: fileData,
         fileName: fileName
     };
 
@@ -1115,10 +1244,19 @@ async function submitExpense(e) {
         .then(data => {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+
+                // Reset Form
                 $('#expense-form')[0].reset();
-                document.getElementById('exp-date').valueAsDate = new Date();
+                document.getElementById('exp-date').valueAsDate = selectedDate;
+                $('.partner-card').removeClass('selected'); // Reset partner selection
+
+                // Refresh Dashboard Data
+                fetchDashboardData();
+
+                // Switch back to overview tab
+                $('#tab-overview').click();
             } else {
-                alert('Failed to save');
+                alert('Failed: ' + (data.message || 'Unknown error'));
             }
         })
         .catch(err => alert('Network Error'))
@@ -1127,7 +1265,7 @@ async function submitExpense(e) {
         });
 }
 
-// 3. 📸 IMAGE COMPRESSION HELPER (New Function)
+// 📸 IMAGE COMPRESSION
 function compressImage(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -1137,7 +1275,7 @@ function compressImage(file) {
             img.src = event.target.result;
             img.onload = () => {
                 const canvas = document.createElement('canvas');
-                const MAX_WIDTH = 800; // Resize to 800px width
+                const MAX_WIDTH = 800; // Resize to 800px
                 const scaleSize = MAX_WIDTH / img.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = img.height * scaleSize;
@@ -1145,12 +1283,8 @@ function compressImage(file) {
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                // Compress to JPEG with 0.6 quality (60%)
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
-                resolve({
-                    data: dataUrl,
-                    name: "Proof_" + Date.now() + ".jpg"
-                });
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.6); // 60% Quality
+                resolve({ data: dataUrl, name: "Proof_" + Date.now() + ".jpg" });
             };
             img.onerror = (err) => reject(err);
         };
@@ -1158,64 +1292,71 @@ function compressImage(file) {
     });
 }
 
-// 🔥 OPEN MODAL & LOAD TODAY'S STATS
-function openAccountsModal() {
-    $('#accounts-modal').fadeIn(200).css('display', 'flex');
+// ==========================================
+// 📷 SCANNER LOGIC (Existing)
+// ==========================================
 
-    // Set Date Picker to Today
-    let today = new Date().toISOString().split('T')[0];
-    document.getElementById('stats-date-picker').value = today;
-    document.getElementById('exp-date').value = today; // Form date also
-
-    // Fetch Data
-    fetchDailyStats(today);
+function initScanner() {
+    html5QrCode = new Html5Qrcode("reader");
+    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
 }
 
-// 🔥 FETCH STATS FROM SERVER (REAL-TIME)
-function fetchDailyStats(dateStr) {
-    // Show Loading
-    $('#d-count, #d-sales, #d-courier, #d-expense, #d-profit').html('<i class="fas fa-spinner fa-spin small"></i>');
-    $('#expense-list-container').html('');
+function onScanSuccess(decodedText, decodedResult) {
+    if (isScanProcessing) return;
 
-    fetch(`${scriptURL}?action=getDailyStats&date=${dateStr}`)
+    let parts = decodedText.split('|');
+    if (parts.length < 2) return;
+
+    isScanProcessing = true;
+    beepSound.play();
+    html5QrCode.pause();
+
+    let orderId = parts[0];
+    let trackingId = parts[1];
+
+    $('#scan-oid').text(orderId);
+    $('#scan-code').text(trackingId);
+    $('#scan-result-box').slideDown();
+
+    $('#btn-confirm-dispatch').off('click').on('click', function () {
+        processDispatch(orderId, trackingId);
+    });
+}
+
+function processDispatch(oid, trk) {
+    const btn = $('#btn-confirm-dispatch');
+    btn.prop('disabled', true).text('SAVING...');
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: "updateTracking", oid: oid, tracking: trk })
+    })
         .then(res => res.json())
-        .then(response => {
-            if (response.result === 'success') {
-                let d = response.data;
+        .then(data => {
+            if (data.result === 'success') {
+                Swal.mixin({ toast: true, position: 'top', showConfirmButton: false, timer: 2000 })
+                    .fire({ icon: 'success', title: 'Dispatched!' });
 
-                // Update Numbers
-                $('#d-count').text(d.count);
-                $('#d-sales').text(d.sales);
-                $('#d-courier').text(d.courier);
-                $('#d-expense').text(d.expense);
-                $('#d-profit').text(d.profit);
-
-                // Show Profit Color (Green if +, Red if -)
-                let pBox = $('#d-profit').parent();
-                if (d.profit >= 0) {
-                    pBox.addClass('text-success').removeClass('text-danger');
-                } else {
-                    pBox.addClass('text-danger').removeClass('text-success');
-                }
-
-                // Show Expenses List (Optional)
-                if (d.expenseList && d.expenseList.length > 0) {
-                    let html = '<h6 class="small fw-bold text-muted mt-3">EXPENSES LIST</h6><ul class="list-group list-group-flush small">';
-                    d.expenseList.forEach(ex => {
-                        html += `<li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
-                        <div><span class="fw-bold">${ex.category}</span> <span class="text-muted">- ${ex.desc}</span></div>
-                        <div class="fw-bold text-danger">-₹${ex.amount}</div>
-                    </li>`;
-                    });
-                    html += '</ul>';
-                    $('#expense-list-container').html(html);
-                } else {
-                    $('#expense-list-container').html('<div class="text-center text-muted small mt-3">No expenses recorded.</div>');
-                }
+                $('#scan-result-box').slideUp();
+                setTimeout(() => {
+                    fetchAllOrders();
+                    btn.prop('disabled', false).text('CONFIRM DISPATCH ✅');
+                    html5QrCode.resume();
+                    isScanProcessing = false;
+                }, 1000);
+            } else {
+                alert('Error updating order');
+                isScanProcessing = false;
+                html5QrCode.resume();
             }
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Failed to load stats');
         });
+}
+
+function cancelDispatchAction() {
+    $('#scan-result-box').slideUp();
+    setTimeout(() => {
+        html5QrCode.resume();
+        isScanProcessing = false;
+    }, 1000);
 }

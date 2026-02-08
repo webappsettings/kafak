@@ -3,14 +3,14 @@ const translations = {
         loading: "വിവരങ്ങൾ എടുക്കുന്നു...",
         // --- LABELS & HEADERS ---
         lbl_phone: "ഫോൺ നമ്പർ",
-        ph_phone: "മൊബൈൽ നമ്പർ നൽകുക", // Updated placeholder
+        ph_phone: "മൊബൈൽ നമ്പർ", // Updated placeholder
         lbl_name: "നിങ്ങളുടെ പേര്",
         ph_name: "പേര്",
         lbl_house: "വീട്ടുപേര് / നമ്പർ",
         ph_house: "വീട്ടുപേര്",
         lbl_place: "സ്ഥലം",
         lbl_pincode: "പിൻകോഡ്",
-        lbl_select_po: "പോസ്റ്റ് ഓഫീസ് തിരഞ്ഞെടുക്കുക",
+        lbl_select_po: "പോസ്റ്റ് ഓഫീസ്?",
         lbl_whatsapp: "വാട്സാപ്പ് നമ്പർ",
         lbl_altphone: "മറ്റൊരു നമ്പർ (Optional)",
         lbl_qty: "എത്ര ബോട്ടിൽ വേണം?",
