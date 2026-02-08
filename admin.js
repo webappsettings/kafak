@@ -1102,55 +1102,81 @@ function renderDashboard() {
     let d = dashboardData.daily;
     let m = dashboardData.monthly;
 
-    // --- Daily Stats ---
-    $('#d-sales').text('₹' + d.sales);
-    $('#d-expense').text('₹' + d.expense);
-    $('#d-courier').text('₹' + d.courier);
-    $('#d-profit').text('₹' + d.profit).css('color', d.profit >= 0 ? 'green' : 'red');
+    // --- ANIMATE NUMBERS ---
+    $('#d-sales').text('₹' + d.sales.toLocaleString());
+    $('#d-expense').text('₹' + d.expense.toLocaleString());
+    $('#d-courier').text('₹' + d.courier.toLocaleString());
+    $('#d-profit').text('₹' + d.profit.toLocaleString());
+    $('#d-orders').text(d.count || 0); // 🔥 Shows Order Count
+    $('#d-prod').text('₹' + (d.productCost || 0).toLocaleString());
 
-    // --- Monthly Stats ---
-    $('#m-sales').text('₹' + m.sales);
-    $('#m-expense').text('₹' + m.expense);
-    $('#m-courier').text('₹' + m.courier);
-    $('#m-profit').text('₹' + m.profit).css('color', m.profit >= 0 ? 'green' : 'red');
+    // Profit Color Logic
+    if (d.profit >= 0) {
+        $('#d-profit').addClass('text-success').removeClass('text-danger');
+        $('#d-status-text').text("Running Profit 🚀").css('color', '#4caf50');
+    } else {
+        $('#d-profit').addClass('text-danger').removeClass('text-success');
+        $('#d-status-text').text("Needs Attention 📉").css('color', '#ff5252');
+    }
 
-    // --- Timeline List ---
-    let listHtml = '';
+    // --- MONTHLY ---
+    $('#m-sales').text('₹' + m.sales.toLocaleString());
+    $('#m-expense').text('₹' + m.expense.toLocaleString());
+    $('#m-profit').text('₹' + m.profit.toLocaleString());
 
-    // 1. Custom Expenses
-    if (d.list && d.list.length > 0) {
-        d.list.forEach(item => {
-            let icon = item.proof ? `<a href="${item.proof}" target="_blank" class="ms-2 text-primary small"><i class="fas fa-image"></i></a>` : '';
-            listHtml += `
-            <div class="timeline-item expense">
-                <div style="width:70%">
-                    <div class="fw-bold small text-truncate">${item.desc}</div>
-                    <div class="text-muted" style="font-size:10px;">${item.category}</div>
-                </div>
+    // --- TIMELINE LIST (With Icons) ---
+    let html = '';
+
+    // 1. EXPENSES LIST
+    if (d.expenseList && d.expenseList.length > 0) {
+        d.expenseList.forEach(item => {
+            let icon = '📝'; // Default
+            let cat = item.category.toLowerCase();
+            if (cat.includes('salary')) icon = '👤';
+            else if (cat.includes('materials')) icon = '📦';
+            else if (cat.includes('food')) icon = '🍔';
+            else if (cat.includes('travel')) icon = '⛽';
+            else if (cat.includes('courier')) icon = '🚚';
+            else if (cat.includes('ads')) icon = '📢';
+
+            html += `
+            <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
                 <div class="d-flex align-items-center">
-                    <span class="fw-bold text-danger small">-₹${item.amount}</span>
-                    ${icon}
+                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:40px; height:40px; font-size:18px;">${icon}</div>
+                    <div>
+                        <div class="fw-bold text-dark small">${item.desc || item.category}</div>
+                        <div class="text-muted" style="font-size:10px;">${item.category}</div>
+                    </div>
                 </div>
+                <div class="fw-bold text-danger">-₹${item.amount}</div>
             </div>`;
         });
     }
 
-    // 2. Add Courier Summary Row if exists
+    // 2. COURIER SUMMARY (If any)
     if (d.courier > 0) {
-        listHtml += `
-        <div class="timeline-item courier">
-            <div>
-                <div class="fw-bold small">Courier Charges</div>
-                <div class="text-muted" style="font-size:10px;">Auto-calc</div>
+        html += `
+        <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-warning bg-opacity-10 d-flex align-items-center justify-content-center me-3" style="width:40px; height:40px; font-size:18px;">🚚</div>
+                <div>
+                    <div class="fw-bold text-dark small">Courier Charges</div>
+                    <div class="text-muted" style="font-size:10px;">Auto-calculated</div>
+                </div>
             </div>
-            <div class="fw-bold text-warning small">-₹${d.courier}</div>
+            <div class="fw-bold text-warning">-₹${d.courier}</div>
         </div>`;
     }
 
-    if (listHtml === '') listHtml = '<div class="text-center text-muted small py-4 bg-light rounded">No transactions yet.</div>';
-    $('#daily-timeline').html(listHtml);
+    if (html === '') {
+        html = `
+        <div class="text-center py-5">
+            <div class="text-muted mb-2" style="font-size:30px; opacity:0.3;"><i class="fas fa-receipt"></i></div>
+            <div class="small text-muted">No transactions recorded today.</div>
+        </div>`;
+    }
 
-    // Update Partner List in Form
+    $('#daily-timeline').html(html);
     renderPartnerList();
 }
 
