@@ -1392,14 +1392,13 @@ function renderQtyDropdowns() {
 
 function sendToWhatsapp() {
   const d = successData;
-  const adminPhone = '7788990313';
+  const adminPhone = '7788990313'; // Admin Phone Number
   const safe = (val) => String(val || '').trim().toUpperCase();
 
-  // 1. ഭാഷ തിരിച്ചറിയുന്നു & പുതിയ ടെക്സ്റ്റ്
-  const lang = $('#language-select').val() || 'en'; // ID Selector ഉപയോഗിക്കുന്നു
-  const t = translations[lang];
+  // 1. Language & Translations
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
 
-  // 🔥 ഇവിടെയാണ് മാറ്റം വരുത്തിയത്:
   const editText = t.wa_check_status;
 
   // 2. Date Formatting
@@ -1410,13 +1409,32 @@ function sendToWhatsapp() {
   const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true });
   const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
 
-  // 3. Check Updates
+  // 3. Check Updates (🔥 ALL FIELDS CHECKED)
   let isUpdate = false;
   let changes = [];
+
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
     isUpdate = true;
-    if (String(savedOrderData.quantity) !== String(d.quantity)) changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-    if (String(savedOrderData.phone) !== String(d.phone)) changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
+
+    // 1. Quantity Check
+    if (String(savedOrderData.quantity) !== String(d.quantity))
+      changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
+
+    // 2. Main Phone Check
+    if (String(savedOrderData.phone) !== String(d.phone))
+      changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
+
+    // 3. Alt Phone Check
+    const oldAlt = String(savedOrderData.altphone || '').trim();
+    const newAlt = String(d.altphone || '').trim();
+    if (oldAlt !== newAlt) changes.push(`📞 ALT PH: ${oldAlt || 'None'} ➡️ *${newAlt}*`);
+
+    // 4. WhatsApp Number Check (🔥 NEW ADDITION)
+    const oldWa = String(savedOrderData.whatsapp || '').trim();
+    const newWa = String(d.whatsapp || '').trim();
+    if (oldWa !== newWa) changes.push(`💬 WA: ${oldWa} ➡️ *${newWa}*`);
+
+    // 5. Address Details Check
     if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
     if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
     if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
@@ -1431,22 +1449,30 @@ function sendToWhatsapp() {
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
-  // 5. Generate Message
+  // 5. Generate Message Header
   const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
   let header = "";
 
   if (isUpdate) {
     header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-    if (changes.length > 0) header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
-    else header += `\n(No major details changed)\n`;
+
+    if (changes.length > 0) {
+      header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
+    } else {
+      header += `\n(Updated details confirmed)\n`;
+    }
+
     header += `\n*👇 CURRENT DETAILS:*`;
   } else {
     header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
   }
 
-  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+  // Alt Phone Display Logic
+  let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
+
+  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+
   const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
 }
-
