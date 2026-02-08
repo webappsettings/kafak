@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycby8GCnhQi72sjjtPsTDHtQhqXh-rbqfNpF73nExQRECiLOeb-wxAFdXJBhnj6Pe73WBEQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyg5QtNCUctrBNkZKpGAEA6jUvc1zvCFvzJ_M7iHfiFy88OeOfOIvvJXnAPK2FKwsddlA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1043,4 +1043,179 @@ function calculatePriceInfo(qty, state) {
     }
 
     return { total: `₹${basePrice + courierCharge}/-` };
+}
+
+// 1. STATS CALCULATION (Updated with Courier Cost)
+function calculateDailyStats() {
+    let today = new Date().toDateString();
+    let count = 0;
+    let sales = 0;
+    let courierCost = 0; // 🔥 New Variable
+
+    allOrders.forEach(o => {
+        let orderDate = new Date(o.timestamp).toDateString();
+        // Dispatched, Completed, Delivered, Paid ആയവ മാത്രം കണക്കിൽ കൂട്ടാം
+        let validStatus = ['Paid', 'Dispatched', 'Completed', 'Delivered'].includes(o.Status);
+
+        if (orderDate === today && validStatus) {
+            count++;
+            sales += (parseInt(o.grandTotal) || 0);
+            courierCost += (parseInt(o.actualCourierCost) || 0); // 🔥 Sum Actual Courier Cost
+        }
+    });
+
+    $('#today-count').text(count);
+    $('#today-sales').text(sales);
+    $('#today-courier').text(courierCost);
+}
+
+// 2. SUBMIT EXPENSE (Updated with Image Compression)
+async function submitExpense(e) {
+    e.preventDefault();
+
+    let btn = $('#btn-save-exp');
+    let originalText = btn.text();
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SAVING...');
+
+    let fileInput = document.getElementById('exp-proof');
+    let fileData = null;
+    let fileName = null;
+
+    // 🔥 Image Compression Logic
+    if (fileInput.files.length > 0) {
+        try {
+            btn.html('<i class="fas fa-compress"></i> PROCESSING...');
+            let compressed = await compressImage(fileInput.files[0]);
+            fileData = compressed.data;
+            fileName = compressed.name;
+        } catch (err) {
+            console.error(err);
+            alert("Image processing failed");
+            btn.prop('disabled', false).text(originalText);
+            return;
+        }
+    }
+
+    let formData = {
+        date: $('#exp-date').val(),
+        category: $('#exp-category').val(),
+        vendor: $('#exp-vendor').val(),
+        description: $('#exp-desc').val(),
+        amount: $('#exp-amount').val(),
+        billRef: $('#exp-ref').val(),
+        fileData: fileData, // Base64 Image
+        fileName: fileName
+    };
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'addExpense', data: formData })
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success') {
+                Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+                $('#expense-form')[0].reset();
+                document.getElementById('exp-date').valueAsDate = new Date();
+            } else {
+                alert('Failed to save');
+            }
+        })
+        .catch(err => alert('Network Error'))
+        .finally(() => {
+            btn.prop('disabled', false).text(originalText);
+        });
+}
+
+// 3. 📸 IMAGE COMPRESSION HELPER (New Function)
+function compressImage(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const MAX_WIDTH = 800; // Resize to 800px width
+                const scaleSize = MAX_WIDTH / img.width;
+                canvas.width = MAX_WIDTH;
+                canvas.height = img.height * scaleSize;
+
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                // Compress to JPEG with 0.6 quality (60%)
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
+                resolve({
+                    data: dataUrl,
+                    name: "Proof_" + Date.now() + ".jpg"
+                });
+            };
+            img.onerror = (err) => reject(err);
+        };
+        reader.onerror = (err) => reject(err);
+    });
+}
+
+// 🔥 OPEN MODAL & LOAD TODAY'S STATS
+function openAccountsModal() {
+    $('#accounts-modal').fadeIn(200).css('display', 'flex');
+
+    // Set Date Picker to Today
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById('stats-date-picker').value = today;
+    document.getElementById('exp-date').value = today; // Form date also
+
+    // Fetch Data
+    fetchDailyStats(today);
+}
+
+// 🔥 FETCH STATS FROM SERVER (REAL-TIME)
+function fetchDailyStats(dateStr) {
+    // Show Loading
+    $('#d-count, #d-sales, #d-courier, #d-expense, #d-profit').html('<i class="fas fa-spinner fa-spin small"></i>');
+    $('#expense-list-container').html('');
+
+    fetch(`${scriptURL}?action=getDailyStats&date=${dateStr}`)
+        .then(res => res.json())
+        .then(response => {
+            if (response.result === 'success') {
+                let d = response.data;
+
+                // Update Numbers
+                $('#d-count').text(d.count);
+                $('#d-sales').text(d.sales);
+                $('#d-courier').text(d.courier);
+                $('#d-expense').text(d.expense);
+                $('#d-profit').text(d.profit);
+
+                // Show Profit Color (Green if +, Red if -)
+                let pBox = $('#d-profit').parent();
+                if (d.profit >= 0) {
+                    pBox.addClass('text-success').removeClass('text-danger');
+                } else {
+                    pBox.addClass('text-danger').removeClass('text-success');
+                }
+
+                // Show Expenses List (Optional)
+                if (d.expenseList && d.expenseList.length > 0) {
+                    let html = '<h6 class="small fw-bold text-muted mt-3">EXPENSES LIST</h6><ul class="list-group list-group-flush small">';
+                    d.expenseList.forEach(ex => {
+                        html += `<li class="list-group-item d-flex justify-content-between px-0 bg-transparent">
+                        <div><span class="fw-bold">${ex.category}</span> <span class="text-muted">- ${ex.desc}</span></div>
+                        <div class="fw-bold text-danger">-₹${ex.amount}</div>
+                    </li>`;
+                    });
+                    html += '</ul>';
+                    $('#expense-list-container').html(html);
+                } else {
+                    $('#expense-list-container').html('<div class="text-center text-muted small mt-3">No expenses recorded.</div>');
+                }
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Failed to load stats');
+        });
 }
