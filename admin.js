@@ -268,8 +268,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // 🔥 NEW: Order ID Badge Color Class
-    let badgeClass = `bg-${currentStatus}`; // e.g., bg-Pending, bg-Paid
+    // 🔥 Badge Color Class
+    let badgeClass = `bg-${currentStatus}`;
 
     // --- BUTTONS & HEADER ---
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
@@ -284,7 +284,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // --- WHATSAPP SELECTOR (Pending Only) ---
+    // --- WHATSAPP SELECTOR ---
     let waSelectorHTML = '';
     if (type === 'pending') {
         let opts = '';
@@ -346,7 +346,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 <div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))">
                     <div style="font-size:12px; flex-grow:1;">
                         <div class="d-flex align-items-center gap-2 mb-1">
-                             <span class="order-id-badge ${badgeClass}">#${d.orderid.split('-')[1]}</span>
+                             <span class="order-id-badge ${badgeClass}">${d.orderid}</span>
                              <span class="text-muted small" style="font-size:10px;">${formattedDate}</span>
                         </div>
                         <div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div>
@@ -364,7 +364,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <div class="d-flex align-items-center">
-                    <span class="order-id-badge ${badgeClass} me-2">#${d.orderid.slice(-5)}</span>
+                    <span class="order-id-badge ${badgeClass} me-2">${d.orderid}</span>
                     ${archiveBtn} 
                 </div>
                 <div>${topActions}</div>
