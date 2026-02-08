@@ -589,12 +589,364 @@ function compressImage(file) {
 }
 
 function toggleSelectAll() {
-    // Stub
+    const btn = document.getElementById('btn-select-all');
+    const checkboxes = document.querySelectorAll('.order-cb');
+    const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
+    checkboxes.forEach(cb => cb.checked = !isAllChecked);
+    updateSelectAllButton();
 }
-function checkSelectAllStatus() { }
-function updateSelectAllButton() { }
-function formatFullDate(d) { return d; }
-function editTracking(oid, curr) {
-    let t = prompt("Tracking ID:", curr);
-    if (t) updateOrder(oid, 'Dispatched', t);
+
+function checkSelectAllStatus() { updateSelectAllButton(); }
+
+function updateSelectAllButton() {
+    const btn = document.getElementById('btn-select-all');
+    const checkboxes = document.querySelectorAll('.order-cb');
+    if (checkboxes.length === 0) return;
+    const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
+    if (isAllChecked) {
+        btn.classList.remove('btn-light', 'text-secondary'); btn.classList.add('btn-dark', 'text-white');
+        btn.innerHTML = '<i class="fas fa-check-square"></i> All';
+    } else {
+        btn.classList.add('btn-light', 'text-secondary'); btn.classList.remove('btn-dark', 'text-white');
+        btn.innerHTML = '<i class="far fa-square"></i> All';
+    }
 }
+
+function formatFullDate(dateStr) {
+    if (!dateStr) return "";
+    const d = new Date(dateStr);
+    return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
+}
+
+function getTimelineLabel(dateStr) {
+    const d = new Date(dateStr);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (d.toDateString() === today.toDateString()) return "Today";
+    if (d.toDateString() === yesterday.toDateString()) return "Yesterday";
+
+    return d.toLocaleDateString('en-GB');
+}
+
+document.addEventListener('click', function (e) {
+    if (e.target.closest('button') || e.target.closest('a')) {
+        const card = e.target.closest('.order-card');
+        if (card) {
+            document.querySelectorAll('.order-card').forEach(c => c.classList.remove('active-highlight'));
+            card.classList.add('active-highlight');
+        }
+    }
+});
+
+document.addEventListener('click', function (e) {
+    const card = e.target.closest('.order-card');
+    if (card) {
+        document.querySelectorAll('.order-card').forEach(c => c.classList.remove('active-highlight'));
+        card.classList.add('active-highlight');
+    }
+});
+
+function toggleCard(btn) {
+    let card = btn.closest('.order-card');
+    let fullView = card.querySelector('.full-card-view');
+    if (fullView.style.display === 'none') {
+        fullView.style.display = 'block';
+        btn.innerHTML = '▲';
+    } else {
+        fullView.style.display = 'none';
+        btn.innerHTML = '▼';
+    }
+}
+
+// 🔥 Toggle Card Expand/Collapse
+function toggleCardUI(cardElement) {
+    let fullContent = cardElement.querySelector('.full-card-content');
+
+    if (fullContent.style.display === 'none') {
+        fullContent.style.display = 'block';
+    } else {
+        fullContent.style.display = 'none';
+    }
+}
+
+// ✅ Helper: Confirm Dispatch Click
+function confirmDispatchAction(oid, code) {
+    updateOrder(oid, 'Dispatched');
+    scanStep = 2;
+    $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
+
+    let order = allOrders.find(o => o.orderid === oid);
+    showScanFeedback("MARKED DISPATCHED ✅ SCAN BARCODE", order, code);
+
+    html5QrCode.resume();
+    isScanProcessing = false; // 🔥 Unlock Scanner for next scan
+}
+
+function cancelDispatchAction() {
+    $('#scan-result-box').slideUp();
+    setTimeout(() => {
+        html5QrCode.resume();
+        isScanProcessing = false; // 🔥 Unlock Scanner (Important)
+    }, 1000);
+}
+
+function getZoneKey(stateName) {
+    if (!stateName) return 'north';
+    let s = stateName.toUpperCase().trim();
+
+    if (s === 'KERALA') return 'kerala';
+    if (s === 'TAMIL NADU') return 'tn';
+    if (s === 'KARNATAKA') return 'ka';
+    if (s === 'ANDHRA PRADESH') return 'ap';
+    if (s === 'TELANGANA') return 'ts';
+    if (s === 'LAKSHADWEEP') return 'lakshadweep';
+
+    return 'north'; // Default
+}
+
+function calculatePriceInfo(qty, state) {
+    const n = parseInt(qty) || 0;
+    const basePrice = n * 650;
+
+    // Zone കണ്ടുപിടിക്കുന്നു
+    const zone = getZoneKey(state);
+
+    let courierCharge = 0;
+
+    // 🔥 SAFETY CHECK: റേറ്റ് ഉണ്ടെങ്കിൽ മാത്രം എടുക്കുക, ഇല്ലെങ്കിൽ 0
+    if (courierRates[zone] && courierRates[zone][n]) {
+        courierCharge = courierRates[zone][n];
+    }
+
+    return { total: `₹${basePrice + courierCharge}/-` };
+}
+
+
+
+// ==========================================
+// 🔥 DASHBOARD & EXPENSE LOGIC (NEW)
+// ==========================================
+function renderOrders(orders) {
+    const container = $('#orders-container');
+    container.empty();
+    orders.forEach(o => {
+        let statusClass = `status-${o.Status || 'Pending'}`;
+        let html = `
+        <div class="order-card" onclick="window.location.href='order.html?oid=${o.orderid}'">
+            <div class="order-header"><span>#${o.orderid.slice(-5)}</span><span>${o.timestamp.split('T')[0]}</span></div>
+            <div class="order-name">${o.name} <span class="badge bg-dark">${o.quantity}</span></div>
+            <div class="text-muted small">${o.place}</div>
+            <div class="d-flex justify-content-between mt-2 align-items-center">
+                <span class="status-badge ${statusClass}">${o.Status || 'Pending'}</span>
+                <span class="fw-bold">₹${o.grandTotal}</span>
+            </div>
+        </div>`;
+        container.append(html);
+    });
+}
+
+// 2. DASHBOARD LOGIC
+function openDashboard() {
+    $('#drawer-overlay').fadeIn();
+    $('#dashboard-drawer').addClass('open');
+    selectedDate = new Date();
+    updateDateDisplay();
+    fetchDashboardData();
+}
+
+function closeDashboard() {
+    $('#drawer-overlay').fadeOut();
+    $('#dashboard-drawer').removeClass('open');
+}
+
+function updateDateDisplay() {
+    let today = new Date();
+    let isToday = selectedDate.toDateString() === today.toDateString();
+    $('#current-date-display').text(isToday ? "Today" : selectedDate.toDateString());
+    $('#btn-next-date').prop('disabled', isToday);
+    document.getElementById('exp-date').valueAsDate = selectedDate;
+}
+
+function changeDate(d) {
+    selectedDate.setDate(selectedDate.getDate() + d);
+    updateDateDisplay();
+    fetchDashboardData();
+}
+
+function fetchDashboardData() {
+    let dateStr = selectedDate.toISOString().split('T')[0];
+    $('#d-sales, #d-profit').text('...');
+
+    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
+        .then(res => res.json())
+        .then(res => {
+            dashboardData = res.data;
+            renderDashboard();
+        });
+}
+
+function renderDashboard() {
+    let d = dashboardData.daily;
+    let m = dashboardData.monthly;
+
+    $('#d-sales').text(d.sales);
+    $('#d-expense').text(d.expense);
+    $('#d-courier').text(d.courier);
+    $('#d-profit').text(d.profit);
+
+    $('#m-sales').text(m.sales);
+    $('#m-expense').text(m.expense);
+    $('#m-profit').text(m.profit);
+
+    let html = '';
+    d.list.forEach(i => {
+        let icon = i.proof ? `<a href="${i.proof}" target="_blank">📷</a>` : '';
+        html += `<div class="d-flex justify-content-between p-2 border-bottom">
+            <div><div class="fw-bold small">${i.desc}</div><div class="text-muted" style="font-size:10px">${i.category}</div></div>
+            <div class="text-danger fw-bold">-${i.amount} ${icon}</div>
+        </div>`;
+    });
+    $('#daily-timeline').html(html || '<div class="text-center text-muted small">No Data</div>');
+
+    renderPartnerList();
+}
+
+// 3. SALARY AUTO-FILL
+function togglePartnerSelect() {
+    let cat = $('#exp-category').val();
+    if (cat === 'Salary') {
+        $('#partner-section').slideDown();
+        $('#exp-vendor').prop('readonly', true).val('');
+    } else {
+        $('#partner-section').slideUp();
+        $('#exp-vendor').prop('readonly', false);
+    }
+}
+
+function renderPartnerList() {
+    if (!dashboardData) return;
+    let html = '';
+    for (let [name, bal] of Object.entries(dashboardData.partners)) {
+        // Data attribute holds the balance
+        html += `<div class="partner-card" onclick="selectPartner('${name}', ${bal})">
+            <span class="fw-bold small">${name}</span>
+            <span class="text-success fw-bold small">Bal: ${bal}</span>
+        </div>`;
+    }
+    $('#partner-list').html(html);
+}
+
+function selectPartner(name, balance) {
+    $('.partner-card').removeClass('selected');
+    $(event.currentTarget).addClass('selected');
+
+    $('#exp-vendor').val(name + ' Salary'); // Auto-fill Description
+
+    // 🔥 AUTO FILL AMOUNT IF NEEDED (Optional)
+    // You can uncomment next line if you want to auto-fill the full balance
+    // $('#exp-amount').val(balance > 0 ? balance : 0); 
+}
+
+// 4. SUBMIT EXPENSE
+async function submitExpense(e) {
+    e.preventDefault();
+    let btn = $('#btn-save-exp');
+    btn.prop('disabled', true).text('SAVING...');
+
+    let fileInput = document.getElementById('exp-proof');
+    let fileData = null, fileName = null;
+
+    if (fileInput.files.length > 0) {
+        try {
+            let compressed = await compressImage(fileInput.files[0]);
+            fileData = compressed.data;
+            fileName = compressed.name;
+        } catch (err) { alert("Image Error"); return; }
+    }
+
+    let formData = {
+        date: $('#exp-date').val(),
+        category: $('#exp-category').val(),
+        vendor: $('#exp-vendor').val(), // This will have "Salam Salary" etc.
+        description: $('#exp-desc').val() || "Expense",
+        amount: $('#exp-amount').val(),
+        fileData: fileData, fileName: fileName
+    };
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'addExpense', data: formData })
+    }).then(res => res.json()).then(d => {
+        if (d.result === 'success') {
+            alert("Saved!");
+            $('#expense-form')[0].reset();
+            fetchDashboardData(); // Refresh Data
+            $('#tab-overview').click(); // Go back to overview
+        } else {
+            alert("Error");
+        }
+        btn.prop('disabled', false).text('SAVE DATA');
+    });
+}
+
+function compressImage(file) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const scale = 800 / img.width;
+                canvas.width = 800; canvas.height = img.height * scale;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                resolve({ data: canvas.toDataURL('image/jpeg', 0.6), name: "Proof.jpg" });
+            };
+        };
+    });
+}
+
+// ==========================================
+// 📷 SCANNER LOGIC (Existing)
+// ==========================================
+
+function initScanner() {
+    html5QrCode = new Html5Qrcode("reader");
+    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
+}
+
+
+function processDispatch(oid, trk) {
+    const btn = $('#btn-confirm-dispatch');
+    btn.prop('disabled', true).text('SAVING...');
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: "updateTracking", oid: oid, tracking: trk })
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success') {
+                Swal.mixin({ toast: true, position: 'top', showConfirmButton: false, timer: 2000 })
+                    .fire({ icon: 'success', title: 'Dispatched!' });
+
+                $('#scan-result-box').slideUp();
+                setTimeout(() => {
+                    fetchAllOrders();
+                    btn.prop('disabled', false).text('CONFIRM DISPATCH ✅');
+                    html5QrCode.resume();
+                    isScanProcessing = false;
+                }, 1000);
+            } else {
+                alert('Error updating order');
+                isScanProcessing = false;
+                html5QrCode.resume();
+            }
+        });
+}
+
