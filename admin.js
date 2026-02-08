@@ -254,63 +254,168 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-function createCardHTML(d, index, type, currentStatus, isCompact) {
+function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
-    let dateObj = new Date(d.timestamp);
-    let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // 1. Compact View
+    // Date Formatting
+    let dateObj = new Date(d.timestamp);
+    let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+
+    // Customer Stats
+    let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
+    let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
+    let totalOrders = custHistory.length;
+    let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
+
+    // --- BUTTONS & HEADER ---
+    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
+        ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`
+        : '';
+
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
+    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
+
+    let topActions = editLink + printBtn;
+    if (type === 'paid' || type === 'dispatched') {
+        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
+    }
+
+    // --- WHATSAPP SELECTOR (Pending Tab Only) ---
+    let waSelectorHTML = '';
+    if (type === 'pending') {
+        let opts = '';
+        if (d.whatsapp) opts += `<option value="${d.whatsapp}">📲 WA: ${d.whatsapp}</option>`;
+        opts += `<option value="${d.phone}" ${!d.whatsapp ? 'selected' : ''}>📞 PH: ${d.phone}</option>`;
+        if (d.altphone) opts += `<option value="${d.altphone}">☎️ ALT: ${d.altphone}</option>`;
+
+        waSelectorHTML = `
+        <div class="mt-2 mb-2" onclick="event.stopPropagation();">
+            <select id="wa-select-${index}" class="form-select form-select-sm shadow-none border-secondary text-secondary" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
+        </div>`;
+    }
+
+    // --- 🔥 SMART CONTACT GROUPING LOGIC ---
+    let contactMap = {};
+
+    const addContact = (iconType, number) => {
+        if (!number) return;
+        let numStr = String(number).trim();
+        if (!numStr) return;
+
+        if (!contactMap[numStr]) contactMap[numStr] = [];
+
+        let iconHTML = '';
+        // Icons Definition
+        if (iconType === 'phone') iconHTML = '<i class="fas fa-phone-alt text-primary" title="Phone"></i>';
+        if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900; font-size:1.1em;" title="WhatsApp"></i>';
+        if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;" title="Land/Alt"></i>';
+
+        // Avoid duplicate icons for same number group
+        if (!contactMap[numStr].includes(iconHTML)) {
+            contactMap[numStr].push(iconHTML);
+        }
+    };
+
+    addContact('phone', d.phone);
+    addContact('wa', d.whatsapp);
+    addContact('alt', d.altphone);
+
+    let contactHTMLParts = [];
+    for (let num in contactMap) {
+        // Join icons with a small space
+        let iconsStr = contactMap[num].join('<span style="margin-left:4px;"></span>');
+        // Format: [Icons] [Number]
+        contactHTMLParts.push(`<span style="white-space:nowrap;">${iconsStr} <span class="fw-bold text-dark ms-1" style="font-size:11px;">${num}</span></span>`);
+    }
+
+    // Join different number groups with a separator
+    let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
+
+    // --- ACTION BUTTONS ---
+    let buttons = '';
+
+    if (type === 'pending') {
+        buttons = (currentStatus === 'Sent')
+            ? `<div class="d-flex gap-2 w-100">
+                 <button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
+                 <button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>
+               </div>`
+            : `<button class="btn-custom btn-wa w-100" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
+
+    } else if (type === 'paid') {
+        buttons = `
+        <div class="d-flex gap-2 align-items-center w-100">
+            <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
+            <div style="width: 40px; display: flex; justify-content: center;">
+                <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation();">
+            </div>
+        </div>`;
+
+    } else if (type === 'dispatched') {
+        let trackNum = d.tracking || '';
+        let courierName = d.provider || "DTDC";
+        let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${trackNum}`;
+        let trackBtnGroup = `
+        <div class="d-flex gap-1 mb-2 w-100">
+            <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">
+                🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}
+            </button>
+            ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
+        </div>`;
+
+        buttons = trackBtnGroup + `<button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+    }
+
+    // COMPACT VIEW
     if (isCompact) {
+        let trackNum = d.tracking || '';
+        let courierName = d.provider || "DTDC";
+        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${courierName}+tracking+${trackNum}" target="_blank" class="badge bg-info text-dark ms-1" style="text-decoration:none;" onclick="event.stopPropagation();"><i class="fas fa-search"></i></a>` : '';
+
         return `
         <div class="col-12 col-md-6 col-lg-4">
             <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3;">
-                <div class="d-flex justify-content-between align-items-center" onclick="toggleCardUI(this.closest('.order-card'))">
-                    <div style="font-size:12px;">
-                        <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted">(${d.phone})</span>
-                        ${d.tracking ? `<br><span class="badge bg-light text-dark border">TRK: ${d.tracking}</span>` : ''}
+                <div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))">
+                    <div style="font-size:12px; flex-grow:1;">
+                        <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted small">(${d.phone})</span><br>
+                        <span class="badge bg-light text-dark border" style="font-size:9px;">#${d.orderid.split('-')[1]}</span>
+                        ${trackNum ? `<span class="badge bg-light text-dark border ms-1" style="font-size:9px;">TRK: ${trackNum}</span>` : ''}
+                        ${trackCheckBtn}
                     </div>
-                    <button class="btn btn-sm btn-success" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
+                    <div class="d-flex gap-2 align-items-center">
+                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
+                    </div>
                 </div>
-                <div class="full-card-content mt-2 border-top pt-2" style="display:none;">
+                <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">
                     ${createCardHTML(d, index, type, currentStatus, false)}
                 </div>
             </div>
         </div>`;
     }
 
-    // 2. Full View
-    let buttons = '';
-    if (type === 'pending') {
-        buttons = `<button class="btn-custom btn-wa w-100" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
-        if (currentStatus === 'Sent') buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-paid flex-grow-1" onclick="updateOrder('${d.orderid}', 'Paid')">💰 Paid</button><button class="btn-custom btn-wa flex-grow-1" onclick="sendWA(${index})">Resend</button></div>`;
-    } else if (type === 'paid') {
-        buttons = `<button class="btn-custom btn-dispatch w-100" onclick="updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>`;
-    } else if (type === 'dispatched') {
-        buttons = `<button class="btn-custom btn-track w-100 mb-1" onclick="editTracking('${d.orderid}', '${d.tracking || ''}')">🚚 ${d.tracking ? d.tracking : 'Add Tracking'}</button>
-                   <button class="btn-custom btn-complete w-100" onclick="updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
-    }
-
-    // 🔥 Fix: Added 'oid-bg-${currentStatus}' class for Order Number Background Color
+    // FULL VIEW
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card status-${currentStatus} p-3">
-            <div class="d-flex justify-content-between mb-2">
-                <span class="order-id oid-bg-${currentStatus}">#${d.orderid.slice(-5)}</span>
-                <span class="text-muted small">${formattedDate}</span>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex align-items-center">${archiveBtn} <span class="text-muted small ms-1" style="font-size:9px;">${formattedDate}</span></div>
+                <div>${topActions}</div>
             </div>
             <div class="cust-name">${safe(d.name)}</div>
+            <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
-                <b>${safe(d.house)}</b>, ${safe(d.place)}<br>
-                ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b>
+                <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
+                ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
+                
+                <div class="mt-2" style="font-size:11px;">${contactLine}</div>
             </div>
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
-            <div class="action-area mt-2">${buttons}</div>
+            ${waSelectorHTML}
+            <div class="action-area mt-2" style="display:block;">${buttons}</div>
         </div>
     </div>`;
 }
-
-
 function updateSyncButtonUI() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     const syncBtn = $('#sync-btn');
@@ -421,28 +526,22 @@ function sendWA(index) {
 
     // 1. DATE FORMATTING
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
-    const formattedTime = dateObj.toLocaleString('en-US', { hour12: true });
+    const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    // 2. CALCULATE PRICE (Rates fetched from Settings)
+    // 2. CALCULATE PRICE
     const base = n * 650;
     const zone = getZoneKey(d.state);
-    let courier = 0;
-
-    // Check if rates exist in global variable
-    if (courierRates[zone] && courierRates[zone][n]) {
-        courier = courierRates[zone][n];
-    }
+    const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
     const total = base + courier;
 
     // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+
+    // 🔥 ഇവിടെയും പുതിയ ടെക്സ്റ്റ് നൽകി:
     const editText = "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
 
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-
-    // 🔥 UPDATED DETAILS SECTION (Courier shown separately)
-    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Price: ₹${base}*\n*Courier: ₹${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-
+    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
     // 4. DETERMINE TARGET PHONE
@@ -456,9 +555,19 @@ function sendWA(index) {
 
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
 
-    // 5. UPDATE STATUS (If Pending)
+    // 5. UPDATE STATUS
     if (d.Status === 'Pending') {
-        updateOrder(d.orderid, 'Sent');
+        let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+        updates = updates.filter(item => item.oid !== d.orderid);
+        updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
+        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+        const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
+        if (orderIndex !== -1) {
+            allOrders[orderIndex].Status = 'Sent';
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+        }
+        setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
     }
 }
 
