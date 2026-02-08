@@ -1,5 +1,6 @@
 const translations = {
     ml: {
+        loading: "വിവരങ്ങൾ എടുക്കുന്നു...",
         // --- LABELS & HEADERS ---
         lbl_phone: "ഫോൺ നമ്പർ",
         ph_phone: "മൊബൈൽ നമ്പർ നൽകുക", // Updated placeholder
@@ -44,7 +45,7 @@ const translations = {
         lbl_packing: "പാക്കിംഗ് നടക്കുന്നു",
         lbl_dispatched: "അയച്ചു (Dispatched)",
         lbl_delivered: "ലഭിച്ചു (Delivered)",
-        lbl_on_the_way: "വഴിയിലാണ്",
+        lbl_on_the_way: "യാത്രയിലാണ്",
         order_success: "ഓർഡർ ലഭിച്ചു!",
         redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...",
         courier_included: "(കൊറിയര്‍ ചാർജ് ഉൾപ്പെടെ)",
@@ -106,6 +107,7 @@ const translations = {
     },
 
     en: {
+        loading: "LOADING...",
         // --- LABELS & HEADERS ---
         lbl_phone: "Phone Number",
         ph_phone: "Enter Mobile Number",

@@ -23,14 +23,16 @@ const SafeStorage = {
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
 
-// --- NEW LOADER LOGIC WITH COUNTER ---
+// --- UPDATED LOADER LOGIC ---
 let loaderInterval;
 
 window.showLoader = function (show) {
+  // 1. Get Text based on Language
   const lang = $('#language-select').val() || 'en';
-  if (translations && translations[lang]) {
-    $('#loader-text').text(translations[lang].loading || "LOADING...");
-  }
+  const t = translations[lang] || translations['en'];
+
+  // 2. Set Text
+  $('#loader-text').text(t.loading || "LOADING...");
 
   if (show) {
     $('#full-loader').fadeIn(200);
@@ -46,7 +48,7 @@ window.showLoader = function (show) {
         percent++;
         $('#loader-percent').text(percent + '%');
       }
-    }, 30); // Speed of counting
+    }, 30);
 
   } else {
     // Finish to 100% and hide
@@ -54,7 +56,7 @@ window.showLoader = function (show) {
     $('#loader-percent').text('100%');
     setTimeout(() => {
       $('#full-loader').fadeOut(300);
-    }, 200); // Small delay to see 100%
+    }, 200);
   }
 }
 
