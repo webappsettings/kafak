@@ -1,8 +1,30 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbz9ptwHNo7kEtffTgA33phd2H5cIMSu87RWLMiO0mGPQxZiqvT4258RwQEArc0xf583QQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzrsNY0LWb9GDDYXftb-LSgPDUw-u6CVh6rB-FDPKL6hCs4d9JXHr3obipyN25i48v0xQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
 let isScanProcessing = false;
+
+
+let dashboardData = null;
+let selectedDate = new Date();
+
+
+$(document).ready(function () {
+    if (!localStorage.getItem('kafakAdminUser')) window.location.href = 'index.html';
+    fetchAllOrders();
+    initScanner();
+    document.getElementById('exp-date').valueAsDate = new Date();
+});
+
+// 1. Fetch Orders List
+function fetchAllOrders() {
+    fetch(`${scriptURL}?action=getAllOrders`)
+        .then(res => res.json())
+        .then(data => {
+            allOrders = data.data;
+            renderOrders(allOrders);
+        });
+}
 
 function playBeep() {
     let ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -91,8 +113,8 @@ function showDashboard() {
 // --- CONFIG & VARIABLES ---
 let courierRates = JSON.parse(localStorage.getItem('adminRatesCache')) || {};
 
-let allOrders = [];
-let html5QrCode;
+
+
 let scanMode = '';
 let scanStep = 0;
 let tempOid = null;
@@ -1033,262 +1055,185 @@ function calculatePriceInfo(qty, state) {
 // ==========================================
 // 🔥 DASHBOARD & EXPENSE LOGIC (NEW)
 // ==========================================
+function renderOrders(orders) {
+    const container = $('#orders-container');
+    container.empty();
+    orders.forEach(o => {
+        let statusClass = `status-${o.Status || 'Pending'}`;
+        let html = `
+        <div class="order-card" onclick="window.location.href='order.html?oid=${o.orderid}'">
+            <div class="order-header"><span>#${o.orderid.slice(-5)}</span><span>${o.timestamp.split('T')[0]}</span></div>
+            <div class="order-name">${o.name} <span class="badge bg-dark">${o.quantity}</span></div>
+            <div class="text-muted small">${o.place}</div>
+            <div class="d-flex justify-content-between mt-2 align-items-center">
+                <span class="status-badge ${statusClass}">${o.Status || 'Pending'}</span>
+                <span class="fw-bold">₹${o.grandTotal}</span>
+            </div>
+        </div>`;
+        container.append(html);
+    });
+}
 
-// 1. DRAWER OPEN/CLOSE
+// 2. DASHBOARD LOGIC
 function openDashboard() {
-    $('#drawer-overlay').fadeIn(200);
+    $('#drawer-overlay').fadeIn();
     $('#dashboard-drawer').addClass('open');
-
-    // Default to Today & Fetch
     selectedDate = new Date();
     updateDateDisplay();
     fetchDashboardData();
 }
 
 function closeDashboard() {
-    $('#drawer-overlay').fadeOut(200);
+    $('#drawer-overlay').fadeOut();
     $('#dashboard-drawer').removeClass('open');
 }
 
-// 2. DATE NAVIGATION
 function updateDateDisplay() {
     let today = new Date();
-    // Reset time for comparison
-    let d1 = new Date(selectedDate.toDateString());
-    let d2 = new Date(today.toDateString());
-    let isToday = d1.getTime() === d2.getTime();
-
-    let options = { weekday: 'short', day: 'numeric', month: 'short' };
-    $('#current-date-display').text(isToday ? "Today" : selectedDate.toLocaleDateString('en-IN', options));
-
+    let isToday = selectedDate.toDateString() === today.toDateString();
+    $('#current-date-display').text(isToday ? "Today" : selectedDate.toDateString());
     $('#btn-next-date').prop('disabled', isToday);
-
-    // Sync Date Input in Form
     document.getElementById('exp-date').valueAsDate = selectedDate;
 }
 
-function changeDate(days) {
-    selectedDate.setDate(selectedDate.getDate() + days);
+function changeDate(d) {
+    selectedDate.setDate(selectedDate.getDate() + d);
     updateDateDisplay();
     fetchDashboardData();
 }
 
-// 3. FETCH UNIFIED DATA
 function fetchDashboardData() {
-    // Show Loading State
-    $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
-
-    // Format YYYY-MM-DD
-    // Note: Using local time handling to avoid timezone issues
-    let y = selectedDate.getFullYear();
-    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    let d = String(selectedDate.getDate()).padStart(2, '0');
-    let dateStr = `${y}-${m}-${d}`;
+    let dateStr = selectedDate.toISOString().split('T')[0];
+    $('#d-sales, #d-profit').text('...');
 
     fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
         .then(res => res.json())
         .then(res => {
-            if (res.result === 'success') {
-                dashboardData = res.data;
-                renderDashboard();
-            }
-        })
-        .catch(err => console.error("Dash Error:", err));
+            dashboardData = res.data;
+            renderDashboard();
+        });
 }
 
 function renderDashboard() {
-    if (!dashboardData) return;
-
     let d = dashboardData.daily;
     let m = dashboardData.monthly;
 
-    // --- Daily Stats ---
-    $('#d-sales').text('₹' + d.sales);
-    $('#d-expense').text('₹' + d.expense);
-    $('#d-courier').text('₹' + d.courier);
-    $('#d-profit').text('₹' + d.profit).css('color', d.profit >= 0 ? 'green' : 'red');
+    $('#d-sales').text(d.sales);
+    $('#d-expense').text(d.expense);
+    $('#d-courier').text(d.courier);
+    $('#d-profit').text(d.profit);
 
-    // --- Monthly Stats ---
-    $('#m-sales').text('₹' + m.sales);
-    $('#m-expense').text('₹' + m.expense);
-    $('#m-courier').text('₹' + m.courier);
-    $('#m-profit').text('₹' + m.profit).css('color', m.profit >= 0 ? 'green' : 'red');
+    $('#m-sales').text(m.sales);
+    $('#m-expense').text(m.expense);
+    $('#m-profit').text(m.profit);
 
-    // --- Timeline List ---
-    let listHtml = '';
-
-    // 1. Custom Expenses
-    if (d.list && d.list.length > 0) {
-        d.list.forEach(item => {
-            let icon = item.proof ? `<a href="${item.proof}" target="_blank" class="ms-2 text-primary small"><i class="fas fa-image"></i></a>` : '';
-            listHtml += `
-            <div class="timeline-item expense">
-                <div style="width:70%">
-                    <div class="fw-bold small text-truncate">${item.desc}</div>
-                    <div class="text-muted" style="font-size:10px;">${item.category}</div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <span class="fw-bold text-danger small">-₹${item.amount}</span>
-                    ${icon}
-                </div>
-            </div>`;
-        });
-    }
-
-    // 2. Add Courier Summary Row if exists
-    if (d.courier > 0) {
-        listHtml += `
-        <div class="timeline-item courier">
-            <div>
-                <div class="fw-bold small">Courier Charges</div>
-                <div class="text-muted" style="font-size:10px;">Auto-calc</div>
-            </div>
-            <div class="fw-bold text-warning small">-₹${d.courier}</div>
+    let html = '';
+    d.list.forEach(i => {
+        let icon = i.proof ? `<a href="${i.proof}" target="_blank">📷</a>` : '';
+        html += `<div class="d-flex justify-content-between p-2 border-bottom">
+            <div><div class="fw-bold small">${i.desc}</div><div class="text-muted" style="font-size:10px">${i.category}</div></div>
+            <div class="text-danger fw-bold">-${i.amount} ${icon}</div>
         </div>`;
-    }
+    });
+    $('#daily-timeline').html(html || '<div class="text-center text-muted small">No Data</div>');
 
-    if (listHtml === '') listHtml = '<div class="text-center text-muted small py-4 bg-light rounded">No transactions yet.</div>';
-    $('#daily-timeline').html(listHtml);
-
-    // Update Partner List in Form
     renderPartnerList();
 }
 
-// 4. PARTNER SALARY LOGIC
+// 3. SALARY AUTO-FILL
 function togglePartnerSelect() {
     let cat = $('#exp-category').val();
     if (cat === 'Salary') {
         $('#partner-section').slideDown();
-        $('#exp-vendor').prop('readonly', true).attr('placeholder', 'Select Partner above');
+        $('#exp-vendor').prop('readonly', true).val('');
     } else {
         $('#partner-section').slideUp();
-        $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+        $('#exp-vendor').prop('readonly', false);
     }
 }
 
 function renderPartnerList() {
-    if (!dashboardData || !dashboardData.partners) return;
-
-    let partners = dashboardData.partners;
+    if (!dashboardData) return;
     let html = '';
-
-    for (let [name, balance] of Object.entries(partners)) {
-        html += `
-        <div class="partner-card" onclick="selectPartner('${name}')">
-            <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-user-circle text-muted fs-4"></i>
-                <div>
-                    <div class="fw-bold small">${name}</div>
-                    <div class="text-muted" style="font-size:10px;">Bal: ₹${balance}</div>
-                </div>
-            </div>
-            <i class="far fa-circle text-muted check-icon"></i>
+    for (let [name, bal] of Object.entries(dashboardData.partners)) {
+        // Data attribute holds the balance
+        html += `<div class="partner-card" onclick="selectPartner('${name}', ${bal})">
+            <span class="fw-bold small">${name}</span>
+            <span class="text-success fw-bold small">Bal: ${bal}</span>
         </div>`;
     }
     $('#partner-list').html(html);
 }
 
-function selectPartner(name) {
-    // UI Update
+function selectPartner(name, balance) {
     $('.partner-card').removeClass('selected');
-    $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
-
     $(event.currentTarget).addClass('selected');
-    $(event.currentTarget).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
 
-    // Fill Data
-    $('#exp-vendor').val(name);
+    $('#exp-vendor').val(name + ' Salary'); // Auto-fill Description
+
+    // 🔥 AUTO FILL AMOUNT IF NEEDED (Optional)
+    // You can uncomment next line if you want to auto-fill the full balance
+    // $('#exp-amount').val(balance > 0 ? balance : 0); 
 }
 
-// 5. SUBMIT EXPENSE (With Image Compression)
+// 4. SUBMIT EXPENSE
 async function submitExpense(e) {
     e.preventDefault();
-
     let btn = $('#btn-save-exp');
-    let originalText = btn.text();
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SAVING...');
+    btn.prop('disabled', true).text('SAVING...');
 
     let fileInput = document.getElementById('exp-proof');
-    let fileData = null;
-    let fileName = null;
+    let fileData = null, fileName = null;
 
     if (fileInput.files.length > 0) {
         try {
-            btn.html('<i class="fas fa-compress"></i> COMPRESSING...');
             let compressed = await compressImage(fileInput.files[0]);
             fileData = compressed.data;
             fileName = compressed.name;
-        } catch (err) {
-            alert("Image processing failed");
-            btn.prop('disabled', false).text(originalText);
-            return;
-        }
+        } catch (err) { alert("Image Error"); return; }
     }
 
     let formData = {
         date: $('#exp-date').val(),
         category: $('#exp-category').val(),
-        vendor: $('#exp-vendor').val(),
-        description: $('#exp-desc').val(),
+        vendor: $('#exp-vendor').val(), // This will have "Salam Salary" etc.
+        description: $('#exp-desc').val() || "Expense",
         amount: $('#exp-amount').val(),
-        fileData: fileData,
-        fileName: fileName
+        fileData: fileData, fileName: fileName
     };
 
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'addExpense', data: formData })
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.result === 'success') {
-                Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
-
-                // Reset Form
-                $('#expense-form')[0].reset();
-                document.getElementById('exp-date').valueAsDate = selectedDate;
-                $('.partner-card').removeClass('selected'); // Reset partner selection
-
-                // Refresh Dashboard Data
-                fetchDashboardData();
-
-                // Switch back to overview tab
-                $('#tab-overview').click();
-            } else {
-                alert('Failed: ' + (data.message || 'Unknown error'));
-            }
-        })
-        .catch(err => alert('Network Error'))
-        .finally(() => {
-            btn.prop('disabled', false).text(originalText);
-        });
+    }).then(res => res.json()).then(d => {
+        if (d.result === 'success') {
+            alert("Saved!");
+            $('#expense-form')[0].reset();
+            fetchDashboardData(); // Refresh Data
+            $('#tab-overview').click(); // Go back to overview
+        } else {
+            alert("Error");
+        }
+        btn.prop('disabled', false).text('SAVE DATA');
+    });
 }
 
-// 📸 IMAGE COMPRESSION
 function compressImage(file) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = (event) => {
+        reader.onload = (e) => {
             const img = new Image();
-            img.src = event.target.result;
+            img.src = e.target.result;
             img.onload = () => {
                 const canvas = document.createElement('canvas');
-                const MAX_WIDTH = 800; // Resize to 800px
-                const scaleSize = MAX_WIDTH / img.width;
-                canvas.width = MAX_WIDTH;
-                canvas.height = img.height * scaleSize;
-
+                const scale = 800 / img.width;
+                canvas.width = 800; canvas.height = img.height * scale;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.6); // 60% Quality
-                resolve({ data: dataUrl, name: "Proof_" + Date.now() + ".jpg" });
+                resolve({ data: canvas.toDataURL('image/jpeg', 0.6), name: "Proof.jpg" });
             };
-            img.onerror = (err) => reject(err);
         };
-        reader.onerror = (err) => reject(err);
     });
 }
 
@@ -1302,27 +1247,6 @@ function initScanner() {
     html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
 }
 
-function onScanSuccess(decodedText, decodedResult) {
-    if (isScanProcessing) return;
-
-    let parts = decodedText.split('|');
-    if (parts.length < 2) return;
-
-    isScanProcessing = true;
-    beepSound.play();
-    html5QrCode.pause();
-
-    let orderId = parts[0];
-    let trackingId = parts[1];
-
-    $('#scan-oid').text(orderId);
-    $('#scan-code').text(trackingId);
-    $('#scan-result-box').slideDown();
-
-    $('#btn-confirm-dispatch').off('click').on('click', function () {
-        processDispatch(orderId, trackingId);
-    });
-}
 
 function processDispatch(oid, trk) {
     const btn = $('#btn-confirm-dispatch');
@@ -1353,10 +1277,3 @@ function processDispatch(oid, trk) {
         });
 }
 
-function cancelDispatchAction() {
-    $('#scan-result-box').slideUp();
-    setTimeout(() => {
-        html5QrCode.resume();
-        isScanProcessing = false;
-    }, 1000);
-}

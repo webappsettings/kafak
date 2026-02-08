@@ -908,6 +908,9 @@
         <div class="sticky-app-header">
             <div class="header-top">
                 <button onclick="fetchOrders(true)" class="btn-refresh"><i class="fas fa-sync-alt"></i></button>
+                <button onclick="openDashboard()" class="btn btn-dark btn-sm fw-bold px-3 rounded-pill">
+                    <i class="fas fa-chart-pie me-1"></i> DASHBOARD
+                </button>
                 <div class="search-wrapper"><input type="text" id="searchInput" class="search-compact"
                         placeholder="Search..." onkeyup="filterOrders()"></div>
                 <button id="sync-btn" onclick="syncWithServer()" class="btn-sync"><i
@@ -997,61 +1000,20 @@
 
     <!-- -----admin dashboard  -->
 
-    <div class="admin-header">
-        <div class="d-flex align-items-center gap-3">
-            <div class="header-title">KAFAK</div>
-            <button onclick="openDashboard()"
-                class="btn btn-dark btn-sm rounded-pill px-3 fw-bold shadow-sm d-flex align-items-center">
-                <i class="fas fa-chart-pie me-2"></i> ACCOUNTS
-            </button>
-        </div>
-        <div class="header-actions d-flex gap-2">
-            <button onclick="refreshOrders()"><i class="fas fa-sync-alt"></i></button>
-            <button onclick="logout()" class="text-danger"><i class="fas fa-sign-out-alt"></i></button>
-        </div>
-    </div>
-
-    <div class="search-container">
-        <input type="text" id="search-input" class="search-input" placeholder="Search Name, Phone or Order ID...">
-    </div>
-
-    <div class="status-tabs" id="status-tabs">
-        <div class="status-tab active" onclick="filterStatus('Pending')">Pending <span id="count-Pending"
-                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
-        <div class="status-tab" onclick="filterStatus('Sent')">Sent <span id="count-Sent"
-                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
-        <div class="status-tab" onclick="filterStatus('Paid')">Paid <span id="count-Paid"
-                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
-        <div class="status-tab" onclick="filterStatus('Dispatched')">Dispatched <span id="count-Dispatched"
-                class="badge bg-secondary rounded-pill ms-1" style="font-size:9px;">0</span></div>
-        <div class="status-tab" onclick="filterStatus('Delivered')">Delivered</div>
-    </div>
-
-    <div class="orders-container" id="orders-container">
-        <div class="text-center py-5 text-muted">
-            <div class="spinner-border text-dark mb-3" role="status"></div>
-            <div style="font-size:12px; font-weight:700;">LOADING ORDERS...</div>
-        </div>
-    </div>
-
     <div class="drawer-overlay" id="drawer-overlay" onclick="closeDashboard()"></div>
     <div class="drawer" id="dashboard-drawer">
         <div class="drawer-header">
-            <h5 class="fw-bold m-0"><i class="fas fa-wallet me-2"></i>Accounts</h5>
-            <button onclick="closeDashboard()" class="btn btn-light rounded-circle" style="width:35px; height:35px;"><i
+            <h5 class="fw-bold m-0">Daily Accounts</h5>
+            <button onclick="closeDashboard()" class="btn btn-light rounded-circle"><i
                     class="fas fa-times"></i></button>
         </div>
 
         <div class="px-3 pt-3">
             <ul class="nav nav-pills w-100" id="pills-tab" role="tablist">
-                <li class="nav-item flex-fill text-center">
-                    <button class="nav-link w-100 active" id="tab-overview" data-bs-toggle="pill"
-                        data-bs-target="#pills-overview" type="button">OVERVIEW</button>
-                </li>
-                <li class="nav-item flex-fill text-center">
-                    <button class="nav-link w-100" id="tab-expense" data-bs-toggle="pill"
-                        data-bs-target="#pills-expense" type="button">ADD EXPENSE</button>
-                </li>
+                <li class="nav-item flex-fill"><button class="nav-link w-100 active" id="tab-overview"
+                        data-bs-toggle="pill" data-bs-target="#pills-overview" type="button">OVERVIEW</button></li>
+                <li class="nav-item flex-fill"><button class="nav-link w-100" id="tab-expense" data-bs-toggle="pill"
+                        data-bs-target="#pills-expense" type="button">ADD EXPENSE</button></li>
             </ul>
         </div>
 
@@ -1061,54 +1023,48 @@
                 <div class="date-nav">
                     <button class="date-btn" onclick="changeDate(-1)"><i class="fas fa-chevron-left"></i></button>
                     <div class="date-display" id="current-date-display">Today</div>
-                    <button class="date-btn" id="btn-next-date" onclick="changeDate(1)" disabled><i
+                    <button class="date-btn" id="btn-next-date" onclick="changeDate(1)"><i
                             class="fas fa-chevron-right"></i></button>
                 </div>
 
-                <h6 class="fw-bold small text-muted mb-2 text-uppercase">Daily Stats</h6>
-                <div class="row g-2 mb-4">
+                <div class="row g-2 mb-3 text-center">
                     <div class="col-6">
-                        <div class="stat-card">
-                            <div class="stat-val text-success" id="d-sales">0</div>
-                            <div class="stat-lbl">Sales</div>
+                        <div class="p-3 bg-white border rounded">
+                            <div class="h5 fw-bold text-success m-0" id="d-sales">0</div>
+                            <div class="small text-muted">Sales</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="stat-card">
-                            <div class="stat-val text-danger" id="d-expense">0</div>
-                            <div class="stat-lbl">Expense</div>
+                        <div class="p-3 bg-white border rounded">
+                            <div class="h5 fw-bold text-danger m-0" id="d-expense">0</div>
+                            <div class="small text-muted">Expense</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="stat-card">
-                            <div class="stat-val text-warning" id="d-courier">0</div>
-                            <div class="stat-lbl">Courier</div>
+                        <div class="p-3 bg-white border rounded">
+                            <div class="h5 fw-bold text-warning m-0" id="d-courier">0</div>
+                            <div class="small text-muted">Courier</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="stat-card">
-                            <div class="stat-val" id="d-profit">0</div>
-                            <div class="stat-lbl">Profit</div>
+                        <div class="p-3 bg-white border rounded">
+                            <div class="h5 fw-bold m-0" id="d-profit">0</div>
+                            <div class="small text-muted">Profit</div>
                         </div>
                     </div>
                 </div>
 
-                <h6 class="fw-bold small text-muted mb-2 text-uppercase">Transactions</h6>
-                <div id="daily-timeline">
-                    <div class="text-center text-muted small py-3">Loading...</div>
-                </div>
+                <h6 class="small fw-bold text-muted mt-4">TODAY'S TRANSACTIONS</h6>
+                <div id="daily-timeline" class="mb-4">Loading...</div>
 
-                <div class="mt-4 p-3 bg-white rounded-3 border shadow-sm">
-                    <h6 class="fw-bold mb-3 small text-uppercase text-primary"><i class="fas fa-calendar-alt me-1"></i>
-                        Month Summary</h6>
-                    <div class="d-flex justify-content-between mb-2 small fw-bold"><span>Total Sales:</span> <span
-                            class="text-success" id="m-sales">0</span></div>
-                    <div class="d-flex justify-content-between mb-2 small fw-bold"><span>Total Expense:</span> <span
-                            class="text-danger" id="m-expense">0</span></div>
-                    <div class="d-flex justify-content-between mb-2 small fw-bold"><span>Courier Charges:</span> <span
-                            class="text-warning" id="m-courier">0</span></div>
-                    <hr>
-                    <div class="d-flex justify-content-between h6 fw-bold m-0"><span>Net Profit:</span> <span
+                <div class="p-3 bg-white border rounded">
+                    <h6 class="fw-bold small">MONTH SUMMARY</h6>
+                    <div class="d-flex justify-content-between small"><span>Sales:</span> <span
+                            class="text-success fw-bold" id="m-sales">0</span></div>
+                    <div class="d-flex justify-content-between small"><span>Expense:</span> <span
+                            class="text-danger fw-bold" id="m-expense">0</span></div>
+                    <hr class="my-2">
+                    <div class="d-flex justify-content-between fw-bold"><span>Net Profit:</span> <span
                             id="m-profit">0</span></div>
                 </div>
             </div>
@@ -1116,81 +1072,49 @@
             <div class="tab-pane fade" id="pills-expense">
                 <form id="expense-form" onsubmit="submitExpense(event)">
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Transaction Date</label>
-                        <input type="date" id="exp-date" class="form-control fw-bold border-2">
+                        <label class="small fw-bold text-muted">Date</label>
+                        <input type="date" id="exp-date" class="form-control fw-bold">
                     </div>
-
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Category</label>
+                        <label class="small fw-bold text-muted">Category</label>
                         <select id="exp-category" class="form-select fw-bold" onchange="togglePartnerSelect()">
-                            <option value="Materials">Materials / Purchase</option>
+                            <option value="Materials">Materials</option>
                             <option value="Salary">Salary Payment</option>
-                            <option value="Food">Food & Refreshment</option>
-                            <option value="Travel">Travel & Fuel</option>
-                            <option value="Courier">Courier Charges</option>
-                            <option value="Ads">Ads & Marketing</option>
+                            <option value="Courier">Courier</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
 
-                    <div id="partner-section" style="display:none;" class="mb-3 p-3 bg-light border rounded">
-                        <label class="form-label small fw-bold text-muted">Select Partner</label>
-                        <div id="partner-list">
-                        </div>
+                    <div id="partner-section" style="display:none;" class="mb-3 p-2 bg-white border rounded">
+                        <label class="small fw-bold text-muted mb-2">Select Partner</label>
+                        <div id="partner-list">Loading partners...</div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Payee / Description</label>
-                        <input type="text" id="exp-vendor" class="form-control" placeholder="Vendor Name / Person"
-                            required>
+                        <label class="small fw-bold text-muted">Description / Name</label>
+                        <input type="text" id="exp-vendor" class="form-control" required>
                     </div>
-
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Description (Optional)</label>
-                        <input type="text" id="exp-desc" class="form-control" placeholder="Item details...">
+                        <label class="small fw-bold text-muted">Amount</label>
+                        <input type="number" id="exp-amount" class="form-control fw-bold" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Amount</label>
-                        <div class="input-group">
-                            <span class="input-group-text fw-bold">₹</span>
-                            <input type="number" id="exp-amount" class="form-control fw-bold fs-5" placeholder="0.00"
-                                required>
-                        </div>
-                    </div>
-
                     <div class="mb-4">
-                        <label class="form-label small fw-bold text-muted">Upload Bill / Screenshot</label>
+                        <label class="small fw-bold text-muted">Upload Proof</label>
                         <input type="file" id="exp-proof" class="form-control" accept="image/*">
-                        <div class="form-text" style="font-size:10px;">Auto-compressed & saved to Drive.</div>
                     </div>
-
-                    <button type="submit" id="btn-save-exp" class="btn btn-dark w-100 py-3 fw-bold rounded-3 shadow-sm">
-                        SAVE TRANSACTION
-                    </button>
+                    <button type="submit" id="btn-save-exp" class="btn btn-dark w-100 fw-bold py-2">SAVE DATA</button>
                 </form>
             </div>
         </div>
     </div>
 
     <div id="scan-result-box">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h6 class="fw-bold m-0"><i class="fas fa-barcode me-2"></i>SCAN RESULT</h6>
-            <button onclick="cancelDispatchAction()" class="btn btn-light btn-sm rounded-circle"><i
-                    class="fas fa-times"></i></button>
-        </div>
-        <div class="p-3 bg-light rounded mb-3 border">
-            <div class="small text-muted fw-bold">ORDER ID</div>
-            <div class="fw-bold fs-5 text-dark" id="scan-oid">...</div>
-            <div class="small text-muted fw-bold mt-2">TRACKING ID</div>
-            <div class="fw-bold fs-5 text-primary" id="scan-code">...</div>
-        </div>
-        <div class="d-grid">
-            <button id="btn-confirm-dispatch" class="btn btn-success fw-bold py-3 shadow-sm">CONFIRM DISPATCH ✅</button>
-        </div>
+        <h6 class="fw-bold">SCAN RESULT</h6>
+        <div id="scan-oid" class="fw-bold fs-5 my-2">...</div>
+        <button id="btn-confirm-dispatch" class="btn btn-success w-100">CONFIRM</button>
+        <button onclick="cancelDispatchAction()" class="btn btn-light w-100 mt-2">CANCEL</button>
     </div>
-
-    <div id="reader" style="width: 0px; height: 0px; overflow: hidden;"></div>
+    <div id="reader" style="width:0;height:0;overflow:hidden;"></div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
