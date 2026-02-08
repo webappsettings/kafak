@@ -260,13 +260,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // Date Formatting
     let dateObj = new Date(d.timestamp);
-    let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+    let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
 
     // Customer Stats
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
+
+    // 🔥 NEW: Order ID Badge Color Class
+    let badgeClass = `bg-${currentStatus}`; // e.g., bg-Pending, bg-Paid
 
     // --- BUTTONS & HEADER ---
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
@@ -281,7 +284,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // --- WHATSAPP SELECTOR (Pending Tab Only) ---
+    // --- WHATSAPP SELECTOR (Pending Only) ---
     let waSelectorHTML = '';
     if (type === 'pending') {
         let opts = '';
@@ -295,119 +298,88 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // --- 🔥 SMART CONTACT GROUPING LOGIC ---
+    // --- SMART CONTACT GROUPING ---
     let contactMap = {};
-
     const addContact = (iconType, number) => {
         if (!number) return;
         let numStr = String(number).trim();
         if (!numStr) return;
-
         if (!contactMap[numStr]) contactMap[numStr] = [];
-
         let iconHTML = '';
-        // Icons Definition
         if (iconType === 'phone') iconHTML = '<i class="fas fa-phone-alt text-primary" title="Phone"></i>';
         if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900; font-size:1.1em;" title="WhatsApp"></i>';
         if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;" title="Land/Alt"></i>';
-
-        // Avoid duplicate icons for same number group
-        if (!contactMap[numStr].includes(iconHTML)) {
-            contactMap[numStr].push(iconHTML);
-        }
+        if (!contactMap[numStr].includes(iconHTML)) contactMap[numStr].push(iconHTML);
     };
-
     addContact('phone', d.phone);
     addContact('wa', d.whatsapp);
     addContact('alt', d.altphone);
 
     let contactHTMLParts = [];
     for (let num in contactMap) {
-        // Join icons with a small space
         let iconsStr = contactMap[num].join('<span style="margin-left:4px;"></span>');
-        // Format: [Icons] [Number]
         contactHTMLParts.push(`<span style="white-space:nowrap;">${iconsStr} <span class="fw-bold text-dark ms-1" style="font-size:11px;">${num}</span></span>`);
     }
-
-    // Join different number groups with a separator
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
     // --- ACTION BUTTONS ---
     let buttons = '';
-
     if (type === 'pending') {
         buttons = (currentStatus === 'Sent')
-            ? `<div class="d-flex gap-2 w-100">
-                 <button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button>
-                 <button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button>
-               </div>`
+            ? `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button></div>`
             : `<button class="btn-custom btn-wa w-100" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
-
     } else if (type === 'paid') {
-        buttons = `
-        <div class="d-flex gap-2 align-items-center w-100">
-            <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button>
-            <div style="width: 40px; display: flex; justify-content: center;">
-                <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation();">
-            </div>
-        </div>`;
-
+        buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation();"></div></div>`;
     } else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
-        let courierName = d.provider || "DTDC";
-        let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${trackNum}`;
-        let trackBtnGroup = `
-        <div class="d-flex gap-1 mb-2 w-100">
-            <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">
-                🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}
-            </button>
-            ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
-        </div>`;
-
-        buttons = trackBtnGroup + `<button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+        let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
+        buttons = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}</div><button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
-    // COMPACT VIEW
+    // 1. COMPACT VIEW
     if (isCompact) {
         let trackNum = d.tracking || '';
-        let courierName = d.provider || "DTDC";
-        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${courierName}+tracking+${trackNum}" target="_blank" class="badge bg-info text-dark ms-1" style="text-decoration:none;" onclick="event.stopPropagation();"><i class="fas fa-search"></i></a>` : '';
-
+        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}" target="_blank" class="badge bg-info text-dark ms-1" style="text-decoration:none;" onclick="event.stopPropagation();"><i class="fas fa-search"></i></a>` : '';
         return `
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="order-card p-2 shadow-sm" style="border-left: 4px solid #2196f3;">
+            <div class="order-card p-3 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))">
                     <div style="font-size:12px; flex-grow:1;">
-                        <span class="fw-bold">${safe(d.name)}</span> <span class="text-muted small">(${d.phone})</span><br>
-                        <span class="badge bg-light text-dark border" style="font-size:9px;">#${d.orderid.split('-')[1]}</span>
-                        ${trackNum ? `<span class="badge bg-light text-dark border ms-1" style="font-size:9px;">TRK: ${trackNum}</span>` : ''}
-                        ${trackCheckBtn}
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                             <span class="order-id-badge ${badgeClass}">#${d.orderid.split('-')[1]}</span>
+                             <span class="text-muted small" style="font-size:10px;">${formattedDate}</span>
+                        </div>
+                        <div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div>
                     </div>
-                    <div class="d-flex gap-2 align-items-center">
-                        <button class="btn btn-sm btn-success" style="padding: 2px 8px; font-size:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">Done?</button>
-                    </div>
+                    <button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅</button>
                 </div>
-                <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">
-                    ${createCardHTML(d, index, type, currentStatus, false)}
-                </div>
+                <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">${createCardHTML(d, index, type, currentStatus, false)}</div>
             </div>
         </div>`;
     }
 
-    // FULL VIEW
+    // 2. FULL VIEW
     return `
     <div class="col-12 col-md-6 col-lg-4">
-        <div class="order-card status-${currentStatus} p-3">
+        <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center">${archiveBtn} <span class="text-muted small ms-1" style="font-size:9px;">${formattedDate}</span></div>
+                <div class="d-flex align-items-center">
+                    <span class="order-id-badge ${badgeClass} me-2">#${d.orderid.slice(-5)}</span>
+                    ${archiveBtn} 
+                </div>
                 <div>${topActions}</div>
             </div>
+            
             <div class="cust-name">${safe(d.name)}</div>
-            <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
+            <div class="mb-2">
+                <span class="stats-badge-blue">📦 ${totalBottles} Btls</span> 
+                <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span>
+                <span class="text-muted small ms-2" style="font-size:10px;">${formattedDate}</span>
+            </div>
+
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
-                
                 <div class="mt-2" style="font-size:11px;">${contactLine}</div>
             </div>
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>

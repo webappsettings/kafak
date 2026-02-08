@@ -108,133 +108,143 @@
             border: 2px solid white;
         }
 
-        /* TABS */
+        /* --- 1. BEAUTIFUL TABS (iPhone Style) --- */
         .nav-pills {
-            background: transparent;
-            padding: 0;
-            width: 100%;
+            background: #f2f4f6;
+            /* Light Grey Background */
+            padding: 5px;
+            border-radius: 14px;
             display: flex;
-            gap: 5px;
-            padding-bottom: 10px;
+            gap: 0;
+            border: none !important;
         }
 
         .nav-pills .nav-link {
-            color: #6b7280;
-            font-weight: 700;
-            border-radius: 0;
+            flex: 1;
+            border-radius: 10px;
             padding: 10px 0;
             font-size: 13px;
-            flex: 1;
-            text-align: center;
+            font-weight: 700;
+            color: #888;
             background: transparent;
-            border-bottom: 3px solid transparent;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .nav-pills .nav-link.active {
-            background: transparent;
-            color: black;
-            border-bottom: 3px solid black;
+            background: #ffffff;
+            color: #000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transform: scale(1);
         }
 
         .tab-badge {
-            font-size: 10px;
-            opacity: 0.6;
-            margin-left: 2px;
-            background: #e5e7eb;
-            padding: 2px 6px;
-            border-radius: 10px;
+            background: #e0e0e0;
             color: #333;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            margin-left: 5px;
+            vertical-align: middle;
         }
 
         .nav-link.active .tab-badge {
-            background: black;
-            color: white;
-            opacity: 1;
+            background: #000;
+            color: #fff;
         }
 
-        /* CARDS */
+        /* --- 2. PURE WHITE CARDS --- */
         .order-card {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            border: 1px solid #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            background: #ffffff !important;
+            /* Force Pure White */
+            border: 1px solid #f0f0f0;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
         }
 
-        .status-Pending {
-            border-left: 4px solid #ff9800;
+        .order-card:active {
+            transform: scale(0.98);
         }
 
-        .status-Paid {
-            border-left: 4px solid #2e7d32;
+        /* Remove Old Border Lines & Backgrounds */
+        .status-Pending,
+        .status-Paid,
+        .status-Dispatched,
+        .status-Sent {
+            border-left: none !important;
+            background: #fff !important;
         }
 
-        .status-Dispatched {
-            border-left: 4px solid #2196f3;
-        }
-
-        .card-header-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            align-items: flex-start;
-        }
-
-        .order-id {
-            font-size: 10px;
+        /* --- 3. COLORFUL ORDER ID BADGE --- */
+        .order-id-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 800;
-            color: #9ca3af;
+            color: white !important;
             letter-spacing: 0.5px;
-            background: #f7f7f7;
-            padding: 3px 6px;
-            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
+        /* Dynamic Colors for Order ID */
+        .bg-Pending {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Orange */
+        .bg-Sent {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Blue */
+        .bg-Paid {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        /* Green */
+        .bg-Dispatched {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+        }
+
+        /* Indigo */
+
+        /* --- 4. OTHER UI TWEAKS --- */
         .cust-name {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 800;
-            color: #111;
+            color: #1a1a1a;
+            margin-top: 8px;
+            margin-bottom: 2px;
         }
 
         .cust-details {
-            font-size: 12px;
-            color: #4b5563;
-            line-height: 1.4;
-            margin-bottom: 10px;
-            margin-top: 4px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
         .info-box {
-            background: #f8f9fa;
-            padding: 8px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            font-weight: 700;
-            color: #374151;
-            border: 1px dashed #e5e7eb;
-        }
-
-        .action-area {
-            margin-top: 12px;
-            display: flex;
-            gap: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            color: #334155;
         }
 
         .btn-custom {
-            flex: 1;
-            padding: 10px;
             border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
             font-size: 11px;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            letter-spacing: 0.5px;
+            padding: 12px;
         }
 
         .btn-wa {
@@ -1047,7 +1057,8 @@
                             <div class="small text-muted fw-bold">TOTAL SALES</div>
                             <div class="fs-4 fw-bold text-dark mt-1" id="d-sales">₹0</div>
                             <div class="small text-muted mt-1"><i class="fas fa-shopping-bag me-1 text-primary"></i>
-                                <span id="d-orders">0</span> Orders</div>
+                                <span id="d-orders">0</span> Orders
+                            </div>
                         </div>
                     </div>
                     <div class="col-6">
