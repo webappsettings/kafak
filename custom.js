@@ -281,7 +281,50 @@ window.handlePhoneNext = function () {
   startWizard();
   backgroundUserCheck(phone);
   $('#top-progress-container').fadeIn();
+
+  checkUserOnServerBackground(phone);
 }
+
+function checkUserOnServerBackground(phone) {
+  console.log("Checking server in background...");
+
+  fetch(`${sc}?action=getCustomer&phone=${phone}`)
+    .then(res => res.json())
+    .then(data => {
+      // വിസാർഡ് ഇപ്പോഴും തുറന്നിരിപ്പുണ്ടെങ്കിൽ മാത്രം (അവർ സബ്മിറ്റ് ചെയ്തിട്ടില്ലെങ്കിൽ)
+      if ($('#wizard-view').is(':visible')) {
+
+        if (data.result === 'success' && data.data && data.data.authorized) {
+          let status = String(data.data.Status || '').toLowerCase();
+
+          // പഴയ ആക്ടീവ് ഓർഡർ ഉണ്ടെങ്കിൽ
+          if (status !== 'completed' && status !== 'delivered') {
+
+            // ടൈപ്പ് ചെയ്യുന്നത് നിർത്തിച്ച് പഴയതിലേക്ക് മാറ്റുന്നു
+            Swal.fire({
+              title: 'Welcome Back!',
+              text: 'Loading your active order...',
+              icon: 'info',
+              timer: 2000,
+              showConfirmButton: false,
+              toast: true,
+              position: 'top'
+            });
+
+            userData = data.data;
+            saveToLocal(phone, userData);
+
+            // വിസാർഡ് ക്ലോസ് ചെയ്ത് എഡിറ്റ് പേജ് തുറക്കുന്നു
+            $('#wizard-view').hide();
+            $('#top-progress-container').hide();
+            loadOrderData(userData, true);
+          }
+        }
+      }
+    })
+    .catch(err => console.log("Background check silent fail"));
+}
+
 
 function saveToLocal(phone, data) {
   let cleanData = { ...data };
@@ -323,6 +366,7 @@ function setRefreshLoading(isLoading) {
   }
 }
 
+
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
@@ -349,6 +393,11 @@ function syncUserDataBackground(phone) {
 
         saveToLocal(phone, mergedData);
 
+        updateStatusUI(mergedData);
+
+        // 🔥 NEW: സിങ്ക് കഴിഞ്ഞാൽ ബട്ടണുകൾ കാണിക്കുന്നു
+        handleEditControlsVisibility(mergedData);
+
         // 🔥 മാറ്റം 2: Paid സ്റ്റാറ്റസ് 'Active' ആയി കണക്കാക്കുന്നു
         let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
         showReturningUserView(mergedData, isActive, true);
@@ -356,6 +405,25 @@ function syncUserDataBackground(phone) {
     })
     .catch(err => { console.log("Sync error"); })
     .finally(() => { setRefreshLoading(false); });
+}
+
+// 🔥 Helper Function to Show/Hide Controls based on Status
+function handleEditControlsVisibility(d) {
+  const status = String(d.Status || 'pending').toLowerCase();
+
+  // എഡിറ്റ് ചെയ്യാൻ പറ്റാത്ത സ്റ്റാറ്റസ് ആണെങ്കിൽ ഹൈഡ് തന്നെ ഇരിക്കും
+  if (['paid', 'dispatched', 'delivered', 'completed'].includes(status)) {
+    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+    $('#btn-edit-addr').hide();
+  } else {
+    // എഡിറ്റ് ചെയ്യാൻ പറ്റുമെങ്കിൽ മാത്രം തെളിയിക്കുക
+    $('#quick-qty, .btn-update-sage, #quick-price-box').fadeIn();
+    $('#btn-edit-addr').css('display', 'inline-block');
+
+    // Price update ചെയ്യുക
+    updatePrice($('#quick-qty').val(), true);
+    checkForChanges();
+  }
 }
 
 function backgroundUserCheck(phone) {
@@ -602,6 +670,24 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
   $('#status-area').empty();
+
+  // 🔥 CHANGE 1: ബട്ടണുകൾ ആദ്യം തന്നെ ഹൈഡ് ചെയ്യുന്നു
+  $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+  $('#btn-edit-addr').hide();
+
+  // Status Loading UI
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
+  const checkText = t.status_check || "CHECKING LIVE STATUS...";
+
+  $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-4"><div class="spinner-border text-secondary" role="status" style="width: 1.5rem; height: 1.5rem; opacity: 0.5;"></div><div class="mt-2 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">${checkText}</div></div>`);
+
+  // Server Data ആണെങ്കിൽ മാത്രം ബട്ടൺ കാണിക്കുന്നു
+  if (isServerData) {
+    updateStatusUI(d);
+    handleEditControlsVisibility(d); // ബട്ടൺ തെളിയിക്കുന്ന ഫംഗ്‌ഷൻ
+  }
+
 
   // 4. CHECK STATUS & VISIBILITY LOGIC
   const status = String(d.Status || '').trim().toLowerCase();

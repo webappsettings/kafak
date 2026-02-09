@@ -1152,7 +1152,7 @@ function onScanSuccess(decodedText) {
                 let currentOrder = allOrders.find(o => o.orderid === tempOid);
 
                 if (duplicateOrder) {
-                    let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name}</b>`;
+                    let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name} (${duplicateOrder.phone})</b>`;
                     showScanFeedback("BARCODE ALREADY USED ⚠️", currentOrder, decodedText, true, errorMsg);
                     setTimeout(() => { isScanProcessing = false; }, 3000);
                 }
