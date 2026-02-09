@@ -642,8 +642,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
-  // 1. Get Language & Translations
-  // 🔥 ഇവിടെ ഭാഷ എടുക്കുന്നു, എങ്കിലേ താഴെ ഉപയോഗിക്കാൻ പറ്റൂ
+  // 1. Get Language & Translations (Declaration 1)
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
@@ -671,13 +670,12 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateSummaryDisplay();
   $('#status-area').empty();
 
-  // 🔥 CHANGE 1: ബട്ടണുകൾ ആദ്യം തന്നെ ഹൈഡ് ചെയ്യുന്നു
+  // 🔥 BUTTONS HIDING
   $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
   $('#btn-edit-addr').hide();
 
-  // Status Loading UI
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
+  // 🔥 REMOVED DUPLICATE DECLARATION HERE
+  // (We use existing 't' variable)
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
   $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-4"><div class="spinner-border text-secondary" role="status" style="width: 1.5rem; height: 1.5rem; opacity: 0.5;"></div><div class="mt-2 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">${checkText}</div></div>`);
@@ -685,9 +683,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   // Server Data ആണെങ്കിൽ മാത്രം ബട്ടൺ കാണിക്കുന്നു
   if (isServerData) {
     updateStatusUI(d);
-    handleEditControlsVisibility(d); // ബട്ടൺ തെളിയിക്കുന്ന ഫംഗ്‌ഷൻ
+    handleEditControlsVisibility(d);
   }
-
 
   // 4. CHECK STATUS & VISIBILITY LOGIC
   const status = String(d.Status || '').trim().toLowerCase();
@@ -696,6 +693,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   const priceBox = $('#quick-price-box');
   const editAddrBtn = $('#btn-edit-addr');
 
+  // Default Show
   qtyElements.show();
   priceBox.show();
   editAddrBtn.css('display', 'inline-block');
@@ -715,13 +713,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   else if (['delivered', 'completed'].includes(status)) {
     qtyElements.hide(); priceBox.hide(); editAddrBtn.hide();
 
-    // 🔥 FIX: ബട്ടൺ ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
     const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
 
     if ($('#btn-new-order-mode').length === 0) {
       $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
     } else {
-      // നിലവിലുണ്ടെങ്കിൽ ടെക്സ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
       $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
     }
     $('#btn-new-order-mode').show();
@@ -733,11 +729,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#quick-qty').val('').trigger('change');
   }
 
-  // 5. Status Loading
+  // 5. Status Loading UI Updates
   if (isServerData) {
     updateStatusUI(d);
     if ($('#refresh-btn').length === 0) {
-      // 🔥 FIX: Refresh ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
       const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
               <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
@@ -747,8 +742,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
               </div>`);
     }
   } else {
-    // 🔥 FIX: Loading ടെക്സ്റ്റ് ട്രാൻസ്ലേഷൻ വഴി എടുക്കുന്നു
-    const checkText = t.status_check || "CHECKING LIVE STATUS...";
+    // We use 'checkText' derived from 't' above
     $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`);
   }
 
