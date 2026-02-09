@@ -642,7 +642,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
-  // 1. Get Language & Translations
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
@@ -651,7 +650,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     changeLanguage(d.language);
   }
 
-  // 2. Order ID & Date
+  // OID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
@@ -660,7 +659,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#display-date').text(formatPrettyDate(d.date)).show();
   } else { $('#display-date').hide(); }
 
-  // 3. Populate User Data
+  // Populate Data
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
@@ -668,23 +667,21 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
-  $('#status-area').empty();
 
-  // 🔥 BUTTONS HIDING (Initially Hide Everything)
-  $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+  // 🔥 FIX 1: തുടക്കത്തിൽ തന്നെ Status Area ഹൈഡ് ചെയ്യുന്നു (Jerking ഒഴിവാക്കാൻ)
+  $('#status-area').hide().empty();
+
+  // 🔥 FIX 2: ബട്ടണുകളും ലേബലും ഹൈഡ് ചെയ്യുന്നു
+  $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').hide();
   $('#btn-edit-addr').hide();
-  $('#btn-new-order-mode').hide(); // New Order Button-ഉം ഹൈഡ് ചെയ്യുന്നു
+  $('#btn-new-order-mode').hide();
 
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
-  // 4. SERVER DATA CHECK LOGIC
-  // സെർവറിൽ നിന്നുള്ള ഡാറ്റ ആണെങ്കിൽ മാത്രം താഴെയുള്ള കാര്യങ്ങൾ ചെയ്താൽ മതി
   if (isServerData) {
-
-    // A. Show Timeline
+    // സർവർ ഡാറ്റ ആണെങ്കിൽ സ്റ്റാറ്റസ് കാണിക്കുന്നു (Smooth Animation ഉള്ളിൽ ഉണ്ട്)
     updateStatusUI(d);
 
-    // B. Show Refresh Button
     if ($('#refresh-btn').length === 0) {
       const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
@@ -695,13 +692,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
               </div>`);
     }
 
-    // C. Check Status & Show Controls Logic
     const status = String(d.Status || '').trim().toLowerCase();
 
-    // Reset Qty Dropdown
     $('#quick-qty option').prop('disabled', false);
 
-    // CASE 1: PAID (Disable Lower Quantities)
     if (status === 'paid') {
       let currentQty = parseInt(d.quantity) || 0;
       $('#quick-qty option').each(function () {
@@ -709,7 +703,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       });
     }
 
-    // CASE 2: COMPLETED / DELIVERED (Show New Order Button)
     if (['delivered', 'completed'].includes(status)) {
       const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
       if ($('#btn-new-order-mode').length === 0) {
@@ -717,14 +710,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       } else {
         $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
       }
-      $('#btn-new-order-mode').show(); // Show New Order Button
+      $('#btn-new-order-mode').fadeIn();
     }
 
-    // CASE 3: NORMAL STATUS (Pending/Sent) -> Show Edit Controls
-    // handleEditControlsVisibility ഫംഗ്‌ഷൻ ആണ് ബട്ടണുകൾ തെളിയിക്കുന്നത്
     handleEditControlsVisibility(d);
 
-    // D. Update Values
     if (status !== 'delivered' && status !== 'completed' && status !== 'dispatched') {
       $('#quick-qty').val(d.quantity).trigger('change');
     } else {
@@ -732,9 +722,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     }
 
   } else {
-    // LOADING STATE (Local Data Only)
-    // ഇവിടെ ബട്ടണുകൾ കാണിക്കില്ല, ലോഡർ മാത്രം കാണിക്കും
-    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`);
+    // 🔥 FIX 3: ലോഡർ സ്മൂത്ത് ആയി വരുന്നു
+    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).fadeIn(300);
   }
 
   checkForChanges();
@@ -785,9 +774,11 @@ window.markOrderDelivered = function (oid) {
 }
 
 function updateStatusUI(d) {
-  $('#status-area').empty();
+  // ആദ്യം ക്ലിയർ ചെയ്യുന്നു (പക്ഷെ കാണിക്കില്ല)
+  $('#status-area').hide().empty();
+
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en']; // Fallback to English
+  const t = translations[lang] || translations['en'];
 
   const steps = ['pending', 'sent', 'paid', 'dispatched', 'delivered'];
   let currentStatus = String(d.Status || d.status || 'pending').toLowerCase();
@@ -797,9 +788,10 @@ function updateStatusUI(d) {
   let currentIndex = steps.indexOf(currentStatus);
   if (currentIndex === -1) currentIndex = 0;
 
-  let timelineHTML = `<div class="tracking-wrapper"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">${t.lbl_order_status}</h6><ul class="track-tl">`;
+  // നല്ല ഭംഗിയുള്ള ടൈംലൈൻ ഡിസൈൻ
+  let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">${t.lbl_order_status}</h6><ul class="track-tl">`;
 
-  // 1. Order Placed (Always Active)
+  // 1. Order Placed
   timelineHTML += `
       <li class="track-tl-item active">
           <div class="track-tl-dot"></div>
@@ -817,7 +809,7 @@ function updateStatusUI(d) {
           <div class="track-desc" style="font-size:11px; color:#888;">${isPaid ? t.desc_pay_received : t.desc_pay_pending}</div>
       </li>`;
 
-  // 3. Dispatched / Packing
+  // 3. Dispatched
   let isDispatched = currentIndex >= 3;
   let trackBtn = '';
   if (d.tracking) {
@@ -837,7 +829,7 @@ function updateStatusUI(d) {
           </div>
       </li>`;
 
-  // 4. Delivered / On the Way
+  // 4. Delivered
   let isDelivered = currentIndex >= 4;
   timelineHTML += `
       <li class="track-tl-item ${isDelivered ? 'active' : ''}">
@@ -852,7 +844,11 @@ function updateStatusUI(d) {
     timelineHTML += `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-2">${t.btn_received}</button></div>`;
   }
 
-  $('#status-area').append(timelineHTML);
+  // HTML സെറ്റ് ചെയ്ത ശേഷം Smooth ആയി Fade In ചെയ്യുന്നു
+  $('#status-area').html(timelineHTML);
+  $('#status-area').fadeIn(500, function () {
+    $('.tracking-wrapper').css('opacity', '1'); // Double ensure opacity
+  });
 }
 
 function updateSummaryDisplay() {
