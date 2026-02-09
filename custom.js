@@ -62,16 +62,23 @@ window.showLoader = function (show) {
 
 window.changeLanguage = function (lang) {
   localStorage.setItem('activeLang', lang);
-  const t = translations[lang];
+  const t = translations[lang] || translations['en']; // Fallback
   if (!t) return;
 
-  // 1. Update Text Content (data-i18n)
+  // 1. Update Standard Text Content
   $('[data-i18n]').each(function () {
     const key = $(this).attr('data-i18n');
+
+    // 🔥 FIX: എഡിറ്റ് മോഡ് ആണെങ്കിൽ പുതിയ കീ (lbl_qty_edit) ഉപയോഗിക്കുന്നു
+    if (key === 'lbl_qty' && typeof editingOrderId !== 'undefined' && editingOrderId) {
+      $(this).text(t.lbl_qty_edit);
+      return;
+    }
+
     if (t[key]) $(this).text(t[key]);
   });
 
-  // 2. 🔥 Update WIZARD Placeholders (Login & Steps)
+  // 2. Update Placeholders & Other UI Elements
   $('#phone').attr('placeholder', t.ph_phone);
   $('#name').attr('placeholder', t.ph_name);
   $('#house').attr('placeholder', t.ph_house);
@@ -80,7 +87,6 @@ window.changeLanguage = function (lang) {
   $('#whatsapp').attr('placeholder', t.ph_whatsapp);
   $('#altphone').attr('placeholder', t.ph_altphone);
 
-  // 3. 🔥 Update EDIT BOX Placeholders
   $('#edit-phone').attr('placeholder', t.ph_edit_phone);
   $('#edit-house').attr('placeholder', t.ph_edit_house);
   $('#edit-place').attr('placeholder', t.ph_edit_place);
@@ -88,15 +94,14 @@ window.changeLanguage = function (lang) {
   $('#edit-whatsapp').attr('placeholder', t.ph_edit_wa);
   $('#edit-altphone').attr('placeholder', t.ph_edit_alt);
 
-  // 4. Update Dropdowns & Price
+  // 3. Update Dropdowns
   renderQtyDropdowns();
-
   let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
   if (qtyVal) {
     updatePrice(qtyVal, $('#quick-qty').is(':visible'));
   }
 
-  // 5. Check Buttons
+  // 4. Update Wizard Button Text
   const wizBtn = $('#btn-wiz-next');
   if (wizBtn.length > 0) {
     if (currentStep === 7) wizBtn.text(t.btn_order);
@@ -105,11 +110,17 @@ window.changeLanguage = function (lang) {
 
   checkForChanges();
 
-  // 6. Refresh Status UI (If exists)
+  // 5. Status UI Refresh
   if (typeof userData !== 'undefined' && userData.orderid && typeof updateStatusUI === 'function') {
     if ($('#status-area').html().trim() !== "") {
       updateStatusUI(userData);
     }
+  }
+
+  // 🔥 SAFETY: ഹൈഡ് ആയിരിക്കേണ്ട സമയത്താണ് ഭാഷ മാറ്റുന്നതെങ്കിൽ, അത് ഹൈഡ് തന്നെ ആയിരിക്കണം
+  if ($('#quick-qty').is(':hidden')) {
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('#quick-qty').prev('label').hide();
   }
 }
 
@@ -667,11 +678,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   // 🔥 CHANGE 1: ലേബൽ ടെക്സ്റ്റ് മാറ്റുന്നു (Edit Mode)
   const qtyLabel = $('label[data-i18n="lbl_qty"]');
-  if (lang === 'ml' || lang === 'malayalam') {
-    qtyLabel.text("നിങ്ങള്‍ സെലെക്ട് ചെയ്തത്");
-  } else {
-    qtyLabel.text("You Selected");
-  }
+  qtyLabel.text(t.lbl_qty_edit);
 
   // OID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
