@@ -642,7 +642,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
-  // 1. Get Language & Translations (Declaration 1)
+  // 1. Get Language & Translations
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
@@ -670,68 +670,21 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateSummaryDisplay();
   $('#status-area').empty();
 
-  // 🔥 BUTTONS HIDING
+  // 🔥 BUTTONS HIDING (Initially Hide Everything)
   $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
   $('#btn-edit-addr').hide();
+  $('#btn-new-order-mode').hide(); // New Order Button-ഉം ഹൈഡ് ചെയ്യുന്നു
 
-  // 🔥 REMOVED DUPLICATE DECLARATION HERE
-  // (We use existing 't' variable)
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
-  $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-4"><div class="spinner-border text-secondary" role="status" style="width: 1.5rem; height: 1.5rem; opacity: 0.5;"></div><div class="mt-2 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;">${checkText}</div></div>`);
-
-  // Server Data ആണെങ്കിൽ മാത്രം ബട്ടൺ കാണിക്കുന്നു
+  // 4. SERVER DATA CHECK LOGIC
+  // സെർവറിൽ നിന്നുള്ള ഡാറ്റ ആണെങ്കിൽ മാത്രം താഴെയുള്ള കാര്യങ്ങൾ ചെയ്താൽ മതി
   if (isServerData) {
+
+    // A. Show Timeline
     updateStatusUI(d);
-    handleEditControlsVisibility(d);
-  }
 
-  // 4. CHECK STATUS & VISIBILITY LOGIC
-  const status = String(d.Status || '').trim().toLowerCase();
-
-  const qtyElements = $('#quick-qty, .btn-update-sage, label[data-i18n="lbl_qty"]');
-  const priceBox = $('#quick-price-box');
-  const editAddrBtn = $('#btn-edit-addr');
-
-  // Default Show
-  qtyElements.show();
-  priceBox.show();
-  editAddrBtn.css('display', 'inline-block');
-  $('#quick-qty option').prop('disabled', false);
-  $('#btn-new-order-mode').hide();
-
-  if (status === 'dispatched') {
-    qtyElements.hide(); priceBox.hide(); editAddrBtn.hide();
-  }
-  else if (status === 'paid') {
-    editAddrBtn.hide();
-    let currentQty = parseInt(d.quantity) || 0;
-    $('#quick-qty option').each(function () {
-      if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
-    });
-  }
-  else if (['delivered', 'completed'].includes(status)) {
-    qtyElements.hide(); priceBox.hide(); editAddrBtn.hide();
-
-    const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
-
-    if ($('#btn-new-order-mode').length === 0) {
-      $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
-    } else {
-      $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
-    }
-    $('#btn-new-order-mode').show();
-  }
-
-  if (status !== 'delivered' && status !== 'completed' && status !== 'dispatched') {
-    $('#quick-qty').val(d.quantity).trigger('change');
-  } else {
-    $('#quick-qty').val('').trigger('change');
-  }
-
-  // 5. Status Loading UI Updates
-  if (isServerData) {
-    updateStatusUI(d);
+    // B. Show Refresh Button
     if ($('#refresh-btn').length === 0) {
       const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
@@ -741,8 +694,46 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                   </button>
               </div>`);
     }
+
+    // C. Check Status & Show Controls Logic
+    const status = String(d.Status || '').trim().toLowerCase();
+
+    // Reset Qty Dropdown
+    $('#quick-qty option').prop('disabled', false);
+
+    // CASE 1: PAID (Disable Lower Quantities)
+    if (status === 'paid') {
+      let currentQty = parseInt(d.quantity) || 0;
+      $('#quick-qty option').each(function () {
+        if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
+      });
+    }
+
+    // CASE 2: COMPLETED / DELIVERED (Show New Order Button)
+    if (['delivered', 'completed'].includes(status)) {
+      const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
+      if ($('#btn-new-order-mode').length === 0) {
+        $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
+      } else {
+        $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
+      }
+      $('#btn-new-order-mode').show(); // Show New Order Button
+    }
+
+    // CASE 3: NORMAL STATUS (Pending/Sent) -> Show Edit Controls
+    // handleEditControlsVisibility ഫംഗ്‌ഷൻ ആണ് ബട്ടണുകൾ തെളിയിക്കുന്നത്
+    handleEditControlsVisibility(d);
+
+    // D. Update Values
+    if (status !== 'delivered' && status !== 'completed' && status !== 'dispatched') {
+      $('#quick-qty').val(d.quantity).trigger('change');
+    } else {
+      $('#quick-qty').val('').trigger('change');
+    }
+
   } else {
-    // We use 'checkText' derived from 't' above
+    // LOADING STATE (Local Data Only)
+    // ഇവിടെ ബട്ടണുകൾ കാണിക്കില്ല, ലോഡർ മാത്രം കാണിക്കും
     $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`);
   }
 
