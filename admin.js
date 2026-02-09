@@ -258,20 +258,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
 
-    // Date Formatting
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // Customer Stats
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // 🔥 Badge Color Class
     let badgeClass = `bg-${currentStatus}`;
 
-    // --- BUTTONS & HEADER ---
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
         ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
@@ -279,12 +275,18 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
+    // 🔥 TOP ACTIONS LOGIC FIXED
     let topActions = editLink + printBtn;
-    if (type === 'paid' || type === 'dispatched') {
+
+    // Dispatched Tab -> Revert to Paid
+    if (type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     }
+    // Paid Tab -> Revert to Sent
+    else if (type === 'paid') {
+        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
+    }
 
-    // --- WHATSAPP SELECTOR ---
     let waSelectorHTML = '';
     if (type === 'pending') {
         let opts = '';
@@ -298,7 +300,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // --- SMART CONTACT GROUPING ---
     let contactMap = {};
     const addContact = (iconType, number) => {
         if (!number) return;
@@ -322,7 +323,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // --- ACTION BUTTONS ---
     let buttons = '';
     if (type === 'pending') {
         buttons = (currentStatus === 'Sent')
@@ -1126,15 +1126,14 @@ function onScanSuccess(decodedText) {
                     showScanFeedback("ORDER NOT FOUND ❌", null, decodedText, true);
                     setTimeout(() => { isScanProcessing = false; }, 1500);
                 }
-                else if (order.Status === 'Dispatched') {
-                    showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, true, "Cannot edit dispatched order via Scan");
-                    setTimeout(() => { isScanProcessing = false; }, 2500);
-                }
+                // 🔥 LOGIC CHANGE HERE: If Dispatched, allow updating Tracking (Don't stop)
                 else {
                     scanStep = 2;
-                    $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
-                    // Show Current Order Details Clearly
-                    showScanFeedback("QR DETECTED ✅", order, decodedText, false, "Ready to link Tracking ID");
+                    let msg = (order.Status === 'Dispatched') ? "UPDATE TRACKING BARCODE" : "NOW SCAN COURIER BARCODE";
+                    let subMsg = (order.Status === 'Dispatched') ? "Order is already dispatched. Scanning to update tracking." : "Ready to link Tracking ID";
+
+                    $('#scan-mode-title').text(msg);
+                    showScanFeedback("QR DETECTED ✅", order, decodedText, false, subMsg);
 
                     html5QrCode.pause();
                     setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500);
@@ -1150,13 +1149,11 @@ function onScanSuccess(decodedText) {
 
                 // 🔥 CHECK: Is this barcode already used?
                 let duplicateOrder = allOrders.find(o => o.tracking === decodedText && o.orderid !== tempOid);
-                let currentOrder = allOrders.find(o => o.orderid === tempOid); // The one we are working on
+                let currentOrder = allOrders.find(o => o.orderid === tempOid);
 
                 if (duplicateOrder) {
-                    // 🔥 SHOW ERROR: Show Current Order Large, and Error Details Small
                     let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name}</b>`;
                     showScanFeedback("BARCODE ALREADY USED ⚠️", currentOrder, decodedText, true, errorMsg);
-
                     setTimeout(() => { isScanProcessing = false; }, 3000);
                 }
                 else {
