@@ -598,12 +598,6 @@ function runPrintLogic(selectedItems) {
 // 📷 SCANNER LOGIC (RESTORED)
 // ==========================================
 
-// --- VARIABLES ---
-let html5QrCode;
-let scanMode = '';
-let scanStep = 0;
-let tempOid = null;
-
 // --- FUNCTIONS ---
 function startScanner(mode, specificOid) {
     scanMode = mode;
