@@ -411,16 +411,21 @@ function syncUserDataBackground(phone) {
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
 
-  // എഡിറ്റ് ചെയ്യാൻ പറ്റാത്ത സ്റ്റാറ്റസ് ആണെങ്കിൽ ഹൈഡ് തന്നെ ഇരിക്കും
+  // എഡിറ്റ് ചെയ്യാൻ പാടില്ലാത്ത സ്റ്റാറ്റസ്
   if (['paid', 'dispatched', 'delivered', 'completed'].includes(status)) {
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+    // എല്ലാം ഹൈഡ് ചെയ്യുന്നു
+    $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').hide();
     $('#btn-edit-addr').hide();
   } else {
-    // എഡിറ്റ് ചെയ്യാൻ പറ്റുമെങ്കിൽ മാത്രം തെളിയിക്കുക
-    $('#quick-qty, .btn-update-sage, #quick-price-box').fadeIn();
+    // 🔥 CRITICAL STEP: തെളിയിക്കുന്നതിന് മുൻപേ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
+    if (d.quantity) {
+      $('#quick-qty').val(d.quantity);
+    }
+
+    // അതിന് ശേഷം മാത്രം തെളിയിക്കുന്നു
+    $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').fadeIn();
     $('#btn-edit-addr').css('display', 'inline-block');
 
-    // Price update ചെയ്യുക
     updatePrice($('#quick-qty').val(), true);
     checkForChanges();
   }
@@ -650,7 +655,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     changeLanguage(d.language);
   }
 
-  // OID & Date
+  // OID & Date Display
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
@@ -659,7 +664,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#display-date').text(formatPrettyDate(d.date)).show();
   } else { $('#display-date').hide(); }
 
-  // Populate Data
+  // Populate Text Fields
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
@@ -668,20 +673,22 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
 
-  // 🔥 FIX 1: തുടക്കത്തിൽ തന്നെ Status Area ഹൈഡ് ചെയ്യുന്നു (Jerking ഒഴിവാക്കാൻ)
+  // 🔥 CRITICAL FIX: തുടക്കത്തിൽ എല്ലാം ഹൈഡ് ചെയ്യുന്നു (ലേബൽ ഉൾപ്പെടെ)
+  // സെർവർ സിങ്ക് കഴിയുന്നത് വരെ ഇത് തുറക്കില്ല.
   $('#status-area').hide().empty();
-
-  // 🔥 FIX 2: ബട്ടണുകളും ലേബലും ഹൈഡ് ചെയ്യുന്നു
   $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').hide();
   $('#btn-edit-addr').hide();
   $('#btn-new-order-mode').hide();
 
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
+  // 🔥 CONDITION: Server Data ഉണ്ടെങ്കിൽ മാത്രം മുന്നോട്ട് പോകുക
   if (isServerData) {
-    // സർവർ ഡാറ്റ ആണെങ്കിൽ സ്റ്റാറ്റസ് കാണിക്കുന്നു (Smooth Animation ഉള്ളിൽ ഉണ്ട്)
+
+    // 1. Status Timeline Show
     updateStatusUI(d);
 
+    // 2. Refresh Button Add
     if ($('#refresh-btn').length === 0) {
       const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
@@ -694,8 +701,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
     const status = String(d.Status || '').trim().toLowerCase();
 
+    // 3. Paid Status Check
     $('#quick-qty option').prop('disabled', false);
-
     if (status === 'paid') {
       let currentQty = parseInt(d.quantity) || 0;
       $('#quick-qty option').each(function () {
@@ -703,6 +710,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       });
     }
 
+    // 4. Completed/Delivered Check
     if (['delivered', 'completed'].includes(status)) {
       const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
       if ($('#btn-new-order-mode').length === 0) {
@@ -710,20 +718,17 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       } else {
         $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
       }
-      $('#btn-new-order-mode').fadeIn();
+      $('#btn-new-order-mode').show();
     }
 
+    // 5. 🔥 VISIBILITY HANDLER call
+    // ഇവിടെ വെച്ചാണ് ക്വാണ്ടിറ്റി ബോക്സ് തെളിയിക്കുന്നത്
     handleEditControlsVisibility(d);
 
-    if (status !== 'delivered' && status !== 'completed' && status !== 'dispatched') {
-      $('#quick-qty').val(d.quantity).trigger('change');
-    } else {
-      $('#quick-qty').val('').trigger('change');
-    }
-
   } else {
-    // 🔥 FIX 3: ലോഡർ സ്മൂത്ത് ആയി വരുന്നു
-    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).fadeIn(300);
+    // 🔥 LOCAL DATA ONLY:
+    // ഇവിടെ ക്വാണ്ടിറ്റി ബോക്സ് കാണിക്കില്ല. ലോഡർ മാത്രം.
+    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
   }
 
   checkForChanges();
