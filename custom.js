@@ -411,19 +411,29 @@ function syncUserDataBackground(phone) {
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
 
-  // എഡിറ്റ് ചെയ്യാൻ പാടില്ലാത്ത സ്റ്റാറ്റസ്
   if (['paid', 'dispatched', 'delivered', 'completed'].includes(status)) {
-    // എല്ലാം ഹൈഡ് ചെയ്യുന്നു
-    $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').hide();
+    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('#quick-qty').prev('label').hide();
   } else {
-    // 🔥 CRITICAL STEP: തെളിയിക്കുന്നതിന് മുൻപേ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
-    if (d.quantity) {
-      $('#quick-qty').val(d.quantity);
+    // Retry Logic for Quantity
+    if (!d.quantity || d.quantity === "" || d.quantity === "0") {
+      console.log("Qty Missing! Retrying fetch...");
+      $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+      $('label[data-i18n="lbl_qty"]').hide();
+      $('#status-area').html(`<div class="text-center text-muted small py-2"><i class="fas fa-sync fa-spin"></i> Retrieving Order Details...</div>`).show();
+      setTimeout(() => { syncUserDataBackground(d.phone); }, 1000);
+      return;
     }
 
-    // അതിന് ശേഷം മാത്രം തെളിയിക്കുന്നു
-    $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').fadeIn();
+    $('#quick-qty').val(d.quantity);
+
+    // 🔥 ലേബലും ബോക്സും തെളിയിക്കുന്നു
+    $('label[data-i18n="lbl_qty"]').fadeIn();
+    $('#quick-qty').prev('label').fadeIn();
+
+    $('#quick-qty, .btn-update-sage, #quick-price-box').fadeIn();
     $('#btn-edit-addr').css('display', 'inline-block');
 
     updatePrice($('#quick-qty').val(), true);
@@ -655,7 +665,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     changeLanguage(d.language);
   }
 
-  // OID & Date Display
+  // 🔥 CHANGE 1: ലേബൽ ടെക്സ്റ്റ് മാറ്റുന്നു (Edit Mode)
+  const qtyLabel = $('label[data-i18n="lbl_qty"]');
+  if (lang === 'ml' || lang === 'malayalam') {
+    qtyLabel.text("നിങ്ങള്‍ സെലെക്ട് ചെയ്തത്");
+  } else {
+    qtyLabel.text("You Selected");
+  }
+
+  // OID & Date
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
@@ -664,7 +682,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#display-date').text(formatPrettyDate(d.date)).show();
   } else { $('#display-date').hide(); }
 
-  // Populate Text Fields
+  // Populate Data
   $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
@@ -673,22 +691,21 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
 
-  // 🔥 CRITICAL FIX: തുടക്കത്തിൽ എല്ലാം ഹൈഡ് ചെയ്യുന്നു (ലേബൽ ഉൾപ്പെടെ)
-  // സെർവർ സിങ്ക് കഴിയുന്നത് വരെ ഇത് തുറക്കില്ല.
+  // 🔥 Strict Hiding (Blank ഒഴിവാക്കാൻ)
   $('#status-area').hide().empty();
-  $('#quick-qty, .btn-update-sage, #quick-price-box, label[data-i18n="lbl_qty"]').hide();
+  $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
   $('#btn-edit-addr').hide();
   $('#btn-new-order-mode').hide();
 
+  // ലേബലും ഹൈഡ് ചെയ്യുന്നു
+  $('label[data-i18n="lbl_qty"]').hide();
+  $('#quick-qty').prev('label').hide();
+
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
-  // 🔥 CONDITION: Server Data ഉണ്ടെങ്കിൽ മാത്രം മുന്നോട്ട് പോകുക
   if (isServerData) {
-
-    // 1. Status Timeline Show
     updateStatusUI(d);
 
-    // 2. Refresh Button Add
     if ($('#refresh-btn').length === 0) {
       const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
@@ -701,7 +718,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
     const status = String(d.Status || '').trim().toLowerCase();
 
-    // 3. Paid Status Check
     $('#quick-qty option').prop('disabled', false);
     if (status === 'paid') {
       let currentQty = parseInt(d.quantity) || 0;
@@ -710,7 +726,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       });
     }
 
-    // 4. Completed/Delivered Check
     if (['delivered', 'completed'].includes(status)) {
       const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
       if ($('#btn-new-order-mode').length === 0) {
@@ -721,13 +736,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#btn-new-order-mode').show();
     }
 
-    // 5. 🔥 VISIBILITY HANDLER call
-    // ഇവിടെ വെച്ചാണ് ക്വാണ്ടിറ്റി ബോക്സ് തെളിയിക്കുന്നത്
     handleEditControlsVisibility(d);
 
   } else {
-    // 🔥 LOCAL DATA ONLY:
-    // ഇവിടെ ക്വാണ്ടിറ്റി ബോക്സ് കാണിക്കില്ല. ലോഡർ മാത്രം.
     $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
   }
 
@@ -735,28 +746,31 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 }
 
 window.enableNewOrderMode = function () {
-  // 1. Hide "New Order" button & Timeline
   $('#btn-new-order-mode').hide();
   $('#status-area').empty();
 
-  // 2. Show Controls (🔥 ഹൈഡ് ചെയ്തവ തിരിച്ചു കൊണ്ടുവരുന്നു)
+  // 🔥 CHANGE 2: ടെക്സ്റ്റ് പഴയത് പോലെ ആക്കുന്നു
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
+  $('label[data-i18n="lbl_qty"]').text(t.lbl_qty || "How many bottles?");
+
+  // Show Controls
   $('label[data-i18n="lbl_qty"]').fadeIn();
+  $('#quick-qty').prev('label').fadeIn();
+
   $('#quick-qty').fadeIn();
   $('.btn-update-sage').fadeIn();
   $('#quick-price-box').fadeIn();
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
 
-  // 3. Reset State
   isEditMode = false;
-  editingOrderId = null; // New Order Mode
+  editingOrderId = null;
   $('#display-oid').hide();
   $('#display-date').hide();
 
-  // 4. Reset Inputs
   $('#quick-qty').val('').trigger('change');
-  $('#quick-qty option').prop('disabled', false); // എല്ലാ ഓപ്ഷനും എനേബിൾ ചെയ്യുന്നു
+  $('#quick-qty option').prop('disabled', false);
 
-  // 5. Update Button
   checkForChanges();
 }
 
@@ -1428,38 +1442,35 @@ function renderQtyDropdowns() {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
-  // 1. Default Option (Select Quantity - Translated)
   let optionsHTML = `<option value="" disabled selected>${t.dd_select || "Select Quantity"}</option>`;
 
-  // 2. Generate Options
   globalQtyList.forEach(qty => {
     const totalGrams = qty * 650;
     let weightText;
-
-    // Unit Conversion (kg/g)
     if (totalGrams >= 1000) {
       weightText = (totalGrams / 1000).toFixed(2) + " " + (t.txt_kg || "kg");
     } else {
       weightText = totalGrams + (t.txt_g || "g");
     }
-
-    // Bottle vs Bottles Translation
     let bottleLabel = (qty === 1) ? (t.txt_bottle || "Bottle") : (t.txt_bottles || "Bottles");
-
     let label = `${qty} ${bottleLabel} (${weightText})`;
     optionsHTML += `<option value="${qty}">${label}</option>`;
   });
 
-  // 3. Update Dropdowns but Keep Selected Value
-  const currentVal1 = $('#quantity').val();
-  const currentVal2 = $('#quick-qty').val();
-
   $('#quantity').html(optionsHTML);
   $('#quick-qty').html(optionsHTML);
 
-  // പഴയ വാല്യൂ ഉണ്ടെങ്കിൽ അത് തന്നെ സെലക്ട് ചെയ്തു വെക്കുന്നു
-  if (currentVal1) $('#quantity').val(currentVal1);
-  if (currentVal2) $('#quick-qty').val(currentVal2);
+  // 🔥 FIX: റേറ്റുകൾ വൈകി വന്നാലും, സേവ് ചെയ്ത ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ അത് സെറ്റ് ചെയ്യുന്നു
+  if (typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
+    $('#quick-qty').val(savedOrderData.quantity);
+    // വാല്യൂ സെറ്റ് ആയോ എന്ന് ഉറപ്പുവരുത്തുന്നു
+    if (!$('#quick-qty').val()) {
+      // ഓപ്ഷൻ ലിസ്റ്റിൽ ഇല്ലാത്ത പഴയ ക്വാണ്ടിറ്റി ആണെങ്കിൽ (ഉദാ: പഴയ ഓഫർ) അത് മാന്വലായി ചേർക്കുന്നു
+      let oldQty = savedOrderData.quantity;
+      $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
+    }
+    updatePrice($('#quick-qty').val(), true);
+  }
 }
 
 function sendToWhatsapp() {
