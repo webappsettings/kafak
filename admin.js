@@ -281,7 +281,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let topActions = editLink + printBtn;
     if (type === 'paid' || type === 'dispatched') {
-        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
+        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     }
 
     // --- WHATSAPP SELECTOR ---
@@ -1040,25 +1040,13 @@ function compressImage(file) {
 }
 
 // ==========================================
-// 📷 SCANNER LOGIC (FINAL FIXED VERSION)
-// ==========================================
-
-// --- VARIABLES ---
-// (Already declared at top, but ensuring safety)
-// let html5QrCode; 
-
-// --- FUNCTIONS ---
-// ==========================================
-// 📷 SCANNER LOGIC (FIXED & TESTED)
-// ==========================================
-// ==========================================
-// 📷 SCANNER LOGIC (BEAUTIFUL UI & VALIDATION)
+// 📷 SCANNER LOGIC (BIG UI & SMART FEEDBACK)
 // ==========================================
 
 function startScanner(mode) {
     scanMode = mode;
     scanStep = (mode === 'tracking') ? 1 : 0;
-    tempOid = null; // Reset temp ID
+    tempOid = null;
 
     $('#scanner-modal').css('display', 'flex');
     $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
@@ -1066,7 +1054,6 @@ function startScanner(mode) {
     $('#scan-info-text').html('');
     $('#scan-status-text').text('');
 
-    // Wider box for Tracking (Barcode), Square for QR
     let boxConfig = (mode === 'tracking') ? { width: 300, height: 150 } : { width: 250, height: 250 };
 
     history.pushState(null, null, location.href);
@@ -1103,7 +1090,7 @@ function onScanSuccess(decodedText) {
     isScanProcessing = true;
     playBeep();
 
-    // 📦 MODE 1: SIMPLE DISPATCH (QR Only)
+    // 📦 MODE 1: DISPATCH (QR Only)
     if (scanMode === 'dispatch') {
         if (decodedText.startsWith("ORD-")) {
             let order = allOrders.find(o => o.orderid === decodedText);
@@ -1112,21 +1099,21 @@ function onScanSuccess(decodedText) {
                 showScanFeedback("ORDER NOT FOUND ❌", null, decodedText, true);
             }
             else if (order.Status === 'Dispatched') {
-                showScanFeedback("ALREADY SCANNED! ⚠️<br><span style='font-size:12px; font-weight:400;'>Already moved to Dispatched Tab</span>", order, decodedText, true);
+                showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, true, "Already moved to Dispatched Tab");
             }
             else {
                 updateOrder(decodedText, 'Dispatched', null, true);
                 showScanFeedback("MOVED TO DISPATCHED ✅", order, decodedText, false);
             }
         } else {
-            showScanFeedback("INVALID QR ❌", null, decodedText, true);
+            showScanFeedback("INVALID QR CODE ❌", null, decodedText, true);
         }
 
         html5QrCode.pause();
         setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000);
     }
 
-    // 🚚 MODE 2: TRACKING (Dual Scan: QR -> Barcode)
+    // 🚚 MODE 2: TRACKING (Dual Scan)
     else if (scanMode === 'tracking') {
 
         // 👉 STEP 1: SCAN ORDER QR
@@ -1140,44 +1127,43 @@ function onScanSuccess(decodedText) {
                     setTimeout(() => { isScanProcessing = false; }, 1500);
                 }
                 else if (order.Status === 'Dispatched') {
-                    // 🔥 ERROR: Already Dispatched
-                    showScanFeedback("ALREADY SCANNED! ⚠️<br><span style='font-size:12px; font-weight:400;'>Already moved to Dispatched Tab</span>", order, decodedText, true);
-                    // Don't proceed to Step 2
+                    showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, true, "Cannot edit dispatched order via Scan");
                     setTimeout(() => { isScanProcessing = false; }, 2500);
                 }
                 else {
-                    // ✅ SUCCESS: Move to Step 2
                     scanStep = 2;
-                    $('#scan-mode-title').text("NOW SCAN TRACKING BARCODE");
-                    showScanFeedback("QR DETECTED ✅<br><span style='font-size:12px; font-weight:400; color:#333;'>Now Scan Courier Barcode</span>", order, decodedText, false);
+                    $('#scan-mode-title').text("NOW SCAN COURIER BARCODE");
+                    // Show Current Order Details Clearly
+                    showScanFeedback("QR DETECTED ✅", order, decodedText, false, "Ready to link Tracking ID");
 
                     html5QrCode.pause();
                     setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500);
                 }
             } else {
-                setTimeout(() => { isScanProcessing = false; }, 500); // Ignore barcodes in step 1
+                setTimeout(() => { isScanProcessing = false; }, 500);
             }
         }
 
-        // 👉 STEP 2: SCAN COURIER BARCODE
+        // 👉 STEP 2: SCAN BARCODE
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-")) {
 
-                // 🔥 CHECK 1: Is this barcode already used?
+                // 🔥 CHECK: Is this barcode already used?
                 let duplicateOrder = allOrders.find(o => o.tracking === decodedText && o.orderid !== tempOid);
+                let currentOrder = allOrders.find(o => o.orderid === tempOid); // The one we are working on
 
                 if (duplicateOrder) {
-                    showScanFeedback(`DUPLICATE BARCODE! ⚠️<br><span style='font-size:11px; font-weight:400;'>Assigned to Order #${duplicateOrder.orderid.slice(-5)}</span>`, duplicateOrder, decodedText, true);
-                    setTimeout(() => { isScanProcessing = false; }, 2500);
+                    // 🔥 SHOW ERROR: Show Current Order Large, and Error Details Small
+                    let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name}</b>`;
+                    showScanFeedback("BARCODE ALREADY USED ⚠️", currentOrder, decodedText, true, errorMsg);
+
+                    setTimeout(() => { isScanProcessing = false; }, 3000);
                 }
                 else {
-                    // ✅ SUCCESS: Assign Tracking & Dispatch
                     updateOrder(tempOid, 'Dispatched', decodedText, true);
 
-                    let order = allOrders.find(o => o.orderid === tempOid);
-                    showScanFeedback("TRACKING SAVED ✅", order, decodedText, false);
+                    showScanFeedback("TRACKING SAVED ✅", currentOrder, decodedText, false, "Tracking ID Linked Successfully");
 
-                    // Reset to Step 1
                     scanStep = 1;
                     setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 2000);
 
@@ -1192,9 +1178,9 @@ function onScanSuccess(decodedText) {
     }
 }
 
-// 🔥 BEAUTIFUL FEEDBACK UI
-function showScanFeedback(statusHtml, order, code = "", isError = false) {
-    let color = isError ? "#dc3545" : "#2e7d32"; // Red or Green
+// 🔥 UPDATED UI: Highlights Code & Correct Priority
+function showScanFeedback(statusHtml, order, code = "", isError = false, extraMsg = "") {
+    let color = isError ? "#dc3545" : "#2e7d32";
     let bg = isError ? "#fff5f5" : "#f0fdf4";
 
     $('#scan-status-text').css('color', color).html(statusHtml);
@@ -1202,63 +1188,54 @@ function showScanFeedback(statusHtml, order, code = "", isError = false) {
 
     let htmlContent = "";
 
-    if (order) {
-        let safe = (v) => String(v || '').toUpperCase();
-
-        // --- SMART CONTACT GROUPING (Copied logic for consistency) ---
-        let contactMap = {};
-        const addContact = (iconType, number) => {
-            if (!number) return;
-            let numStr = String(number).trim();
-            if (!numStr) return;
-            if (!contactMap[numStr]) contactMap[numStr] = [];
-            let iconHTML = '';
-            if (iconType === 'phone') iconHTML = '<i class="fas fa-phone-alt text-primary"></i>';
-            if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900;"></i>';
-            if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary"></i>';
-            if (!contactMap[numStr].includes(iconHTML)) contactMap[numStr].push(iconHTML);
-        };
-        addContact('phone', order.phone);
-        addContact('wa', order.whatsapp);
-        addContact('alt', order.altphone);
-
-        let contactHTMLParts = [];
-        for (let num in contactMap) {
-            let iconsStr = contactMap[num].join('<span style="margin-left:4px;"></span>');
-            contactHTMLParts.push(`<span style="white-space:nowrap; font-weight:700; color:#333;">${iconsStr} <span style="margin-left:2px;">${num}</span></span>`);
-        }
-        let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted">|</span>');
-
-        // --- UI STRUCTURE ---
+    // 1. SCANNED CODE (HIGHLIGHTED BIG)
+    if (code) {
+        let label = code.startsWith("ORD-") ? "QR CODE" : "BARCODE";
         htmlContent += `
-        <div style="background:white; border-radius:12px; padding:15px; box-shadow:0 2px 10px rgba(0,0,0,0.05); text-align:left; margin-top:10px; border:1px solid #eee;">
-            
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <span style="background:${isError ? '#dc3545' : '#2e7d32'}; color:white; padding:2px 8px; border-radius:6px; font-size:10px; font-weight:800;">
-                    ${order.orderid}
-                </span>
-                <span style="font-size:10px; color:#888; font-weight:600;">QTY: ${order.quantity}</span>
-            </div>
-
-            <div style="font-size:16px; font-weight:900; color:#000; margin-bottom:2px;">
-                ${safe(order.name)}
-            </div>
-            
-            <div style="font-size:12px; color:#555; line-height:1.4; margin-bottom:8px;">
-                ${safe(order.house)}, ${safe(order.place)}<br>
-                ${safe(order.postoffice)}, ${safe(order.district)}<br>
-                <b>PIN: ${order.pincode}</b>
-            </div>
-
-            <div style="font-size:11px; background:#f8f9fa; padding:6px; border-radius:6px; border:1px solid #eee;">
-                ${contactLine}
-            </div>
+        <div style="background:#fff; border:2px dashed ${color}; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;">
+            <div style="font-size:10px; font-weight:700; color:#888; letter-spacing:1px;">SCANNED ${label}</div>
+            <div style="font-size:18px; font-weight:800; color:#333; font-family:monospace; word-break:break-all;">${code}</div>
         </div>`;
     }
 
-    // Code Display
-    if (code) {
-        htmlContent += `<div style="font-size:10px; color:#999; margin-top:10px; font-family:monospace;">SCANNED: ${code}</div>`;
+    // 2. EXTRA MESSAGE (Error Details or Instructions)
+    if (extraMsg) {
+        htmlContent += `<div style="text-align:center; font-size:13px; color:${isError ? '#dc3545' : '#555'}; font-weight:600; margin-bottom:10px; padding:5px; background:rgba(255,255,255,0.5); border-radius:5px;">${extraMsg}</div>`;
+    }
+
+    // 3. CURRENT ORDER DETAILS (Large)
+    if (order) {
+        let safe = (v) => String(v || '').toUpperCase();
+
+        // Icons
+        let contactIcons = [];
+        if (order.phone) contactIcons.push('<i class="fas fa-phone-alt text-primary"></i> ' + order.phone);
+        if (order.whatsapp && order.whatsapp !== order.phone) contactIcons.push('<i class="fab fa-whatsapp text-success"></i> ' + order.whatsapp);
+
+        let contactLine = contactIcons.join(' <span class="mx-2 text-muted">|</span> ');
+
+        htmlContent += `
+        <div style="background:white; border-radius:12px; padding:15px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:left; border:1px solid #eee;">
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                <span style="background:#333; color:white; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:800;">
+                    ${order.orderid.slice(-5)}
+                </span>
+                <span style="font-size:11px; color:#888; font-weight:700;">QTY: ${order.quantity}</span>
+            </div>
+
+            <div style="font-size:18px; font-weight:900; color:#000; margin-bottom:2px;">
+                ${safe(order.name)}
+            </div>
+            
+            <div style="font-size:13px; color:#555; line-height:1.4; margin-bottom:10px;">
+                ${safe(order.place)}, ${safe(order.district)}
+            </div>
+
+            <div style="font-size:12px; background:#f8f9fa; padding:8px; border-radius:8px; border:1px solid #eee; font-weight:700; color:#444;">
+                ${contactLine}
+            </div>
+        </div>`;
     }
 
     $('#scan-info-text').html(htmlContent);
