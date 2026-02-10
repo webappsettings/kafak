@@ -1215,20 +1215,41 @@ function setupAdminView(oid) {
 window.updateAdminUI = function (serverStatus, oid) {
   let status = String(serverStatus || '').trim();
   status = status.charAt(0).toUpperCase() + status.slice(1);
+
+  // പെൻഡിംഗ് അപ്ഡേറ്റ്സ് ഉണ്ടോ എന്ന് നോക്കുന്നു (Sync Icon കളർ മാറ്റാൻ)
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let hasPending = updates.some(u => u.oid === oid);
+
+  // Sync Button HTML (Blue Cloud Icon)
+  // പെൻഡിംഗ് ഉണ്ടെങ്കിൽ കടും നീല, ഇല്ലെങ്കിൽ ലൈറ്റ്
+  let syncColor = hasPending ? "btn-info text-white" : "btn-light text-muted border";
+  let syncBtn = `<button onclick="syncSingleOrder('${oid}')" class="btn ${syncColor} btn-sm shadow-sm ms-1" style="width:45px;" title="Sync to Server"><i class="fas fa-cloud-upload-alt"></i></button>`;
+
   let btnHTML = '';
+
   if (status === 'Archive') {
-    btnHTML = `<button onclick="adminAction('${oid}', 'Paid')" class="btn btn-dark btn-sm fw-bold w-100 shadow-sm" style="background:#444; border:none;">📂 (Archived) CHANGE TO PAID</button>`;
+    btnHTML = `<div class="d-flex w-100"><button onclick="adminAction('${oid}', 'Paid')" class="btn btn-dark btn-sm fw-bold flex-grow-1 shadow-sm" style="background:#444; border:none;">📂 (Archived) TO PAID</button>${syncBtn}</div>`;
   } else if (status === 'Pending') {
-    btnHTML = `<div class="d-flex gap-2 w-100"><button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold w-100 shadow-sm">💬 MARK SENT</button><button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button></div>`;
+    btnHTML = `<div class="d-flex gap-2 w-100">
+                 <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold flex-grow-1 shadow-sm">💬 MARK SENT</button>
+                 ${syncBtn}
+                 <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
+               </div>`;
   } else if (status === 'Sent') {
-    btnHTML = `<div class="d-flex gap-2 w-100"><button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold w-100 shadow-sm text-dark">💰 MARK PAID</button><button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button></div>`;
+    btnHTML = `<div class="d-flex gap-2 w-100">
+                 <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold flex-grow-1 shadow-sm text-dark">💰 MARK PAID</button>
+                 ${syncBtn}
+                 <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
+               </div>`;
   } else if (status === 'Delivered') {
-    btnHTML = `<button class="btn btn-success btn-sm fw-bold w-100 shadow-sm" disabled>DELIVERED BY CUSTOMER ✅</button>`;
+    btnHTML = `<div class="d-flex w-100"><button class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" disabled>DELIVERED ✅</button>${syncBtn}</div>`;
   } else {
     let displayTxt = status === 'Dispatched' ? 'DISPATCHED' : (status === 'Completed' ? 'COMPLETED' : status.toUpperCase());
-    btnHTML = `<button class="btn btn-secondary btn-sm fw-bold w-100 shadow-sm" disabled>${displayTxt} ✅</button>`;
+    btnHTML = `<div class="d-flex w-100"><button class="btn btn-secondary btn-sm fw-bold flex-grow-1 shadow-sm" disabled>${displayTxt} ✅</button>${syncBtn}</div>`;
   }
-  $('#admin-btn-container').html(btnHTML); $('#admin-action-bar').slideDown();
+
+  $('#admin-btn-container').html(btnHTML);
+  $('#admin-action-bar').slideDown();
 }
 
 window.adminAction = function (oid, status) {
@@ -1292,6 +1313,53 @@ window.adminAction = function (oid, status) {
 
   // Update the UI immediately to reflect the change
   updateAdminUI(status, oid);
+}
+
+window.syncSingleOrder = function (oid) {
+  // 1. Check for Pending Updates Locally
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let myUpdate = updates.find(u => u.oid === oid);
+
+  if (!myUpdate) {
+    // ലോക്കലിൽ മാറ്റങ്ങൾ ഒന്നുമില്ലെങ്കിൽ
+    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes for this order.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
+    return;
+  }
+
+  // 2. Show Loading
+  const btn = $('#admin-btn-container button').find('.fa-cloud-upload-alt').parent();
+  let originalHtml = btn.html();
+  btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
+
+  // 3. Prepare Data
+  let payload = { action: 'bulkUpdateStatus', updates: [myUpdate] };
+
+  // 4. Send to Server
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        // A. Remove from Local Pending
+        let newUpdates = updates.filter(u => u.oid !== oid);
+        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
+
+        // B. Show Success
+        Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
+
+        // C. Update UI (Button Blue color to Grey)
+        updateAdminUI(myUpdate.status, oid);
+      } else {
+        alert("Sync Failed: Server Error");
+        btn.html(originalHtml).prop('disabled', false);
+      }
+    })
+    .catch(err => {
+      alert("Network Error. Try again.");
+      btn.html(originalHtml).prop('disabled', false);
+    });
 }
 
 window.clearAdminCache = function () {
