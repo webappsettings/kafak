@@ -177,18 +177,16 @@ function renderTabs(orders) {
         let status = local ? local.status : (o.Status || 'Pending');
 
         let tDate = new Date(o.timestamp); // Order Date
-        // Paid Date Calculation
         let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
         let pDate = new Date(pDateStr);
 
-        // Dispatch Date Calculation
         let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
         let dDate = new Date(dDateStr);
 
         return { status, tDate, pDate, dDate, pDateStr, dDateStr };
     };
 
-    // --- 2. ADVANCED SORTING (DYNAMIC) ---
+    // --- 2. ADVANCED SORTING ---
     orders.sort((a, b) => {
         let infoA = getOrderInfo(a);
         let infoB = getOrderInfo(b);
@@ -208,17 +206,34 @@ function renderTabs(orders) {
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // --- 3. RENDER LOOP ---
-    let lastDateMap = { pending: '', paid: '', dispatched: '' };
-    // Get Latest Dispatch Date for Collapse Logic
+    // --- 3. PRE-CALCULATE DISPATCHED COURIER TOTALS 🚚💰 ---
+    let dispatchedCostMap = {};
+    orders.forEach(o => {
+        let { status, dDateStr } = getOrderInfo(o);
+        if (status === 'Dispatched') {
+            let lbl = getTimelineLabel(dDateStr);
+            // Actual Courier Cost (Column U in Sheet)
+            let cost = parseInt(o.actualCourierCost) || 0;
+            dispatchedCostMap[lbl] = (dispatchedCostMap[lbl] || 0) + cost;
+        }
+    });
+
+    // --- 4. CALCULATE LATEST DATE (For Collapse) ---
     let firstDisp = orders.find(o => getOrderInfo(o).status === 'Dispatched');
-    let latestDispatchedDateLabel = firstDisp ? getTimelineLabel(getOrderInfo(firstDisp).dDateStr) : "";
+    let latestDispatchedDateLabel = "";
+    if (firstDisp) {
+        let info = getOrderInfo(firstDisp);
+        latestDispatchedDateLabel = getTimelineLabel(info.dDateStr);
+    }
+
+    // --- 5. RENDER LOOP ---
+    let lastDateMap = { pending: '', paid: '', dispatched: '' };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
         let isCompact = false;
 
-        // 🔥 IMPORTANT FIX: Inject Resolved Dates into Object for Card UI
+        // Inject Resolved Dates for Card
         d.paidDate = pDateStr;
         d['Dispatched Date'] = dDateStr;
 
@@ -249,8 +264,16 @@ function renderTabs(orders) {
 
             let dateLabel = getTimelineLabel(displayDateRaw);
 
+            // 🔥 STICKY DATE HEADER RENDERING
             if (dateLabel !== lastDateMap[type]) {
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${dateLabel}</div></div>`;
+                let extraHtml = '';
+
+                // Dispatched Tab ആണെങ്കിൽ കൊറിയർ തുക കാണിക്കുക
+                if (type === 'dispatched' && dispatchedCostMap[dateLabel] > 0) {
+                    extraHtml = `<span style="opacity:0.9; font-weight:600; margin-left:8px; padding-left:8px; border-left:1px solid #999;">🚚 ₹${dispatchedCostMap[dateLabel]}</span>`;
+                }
+
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[type] = dateLabel;
             }
 
