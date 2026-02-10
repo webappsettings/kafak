@@ -1603,6 +1603,157 @@ function renderQtyDropdowns() {
   }
 }
 
+
+// ==========================================
+// 🔥 NEW SYNC WINDOW LOGIC (FOR EDIT VIEW)
+// ==========================================
+
+let activeSyncOid = null; // To store current OID
+
+// 1. OPEN SYNC MODAL (Replaces old syncSingleOrder)
+window.syncSingleOrder = function (oid) {
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let myUpdate = updates.find(u => u.oid === oid);
+
+  if (!myUpdate) {
+    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
+    updateAdminUI(userData.Status, oid); // Refresh UI just in case
+    return;
+  }
+
+  activeSyncOid = oid; // Set global OID
+  renderSingleSyncItem(myUpdate);
+  new bootstrap.Modal(document.getElementById('singleSyncModal')).show();
+}
+
+// 2. RENDER ITEM IN MODAL
+function renderSingleSyncItem(u) {
+  const list = document.getElementById('single-sync-list');
+  list.innerHTML = '';
+
+  // Determine Values
+  let fromStatus = u.oldStatus || "Pending";
+  let toStatus = u.status;
+  let extraInfo = "";
+
+  // Badge Colors
+  let getBadgeColor = (s) => {
+    if (s === 'Paid') return 'success';
+    if (s === 'Dispatched') return 'primary';
+    if (s === 'Sent') return 'info text-dark';
+    if (s === 'Archive') return 'dark';
+    return 'secondary';
+  };
+
+  // Special Display for Dispatched Date
+  if (toStatus === 'Dispatched' && u.actionDate) {
+    let d = new Date(u.actionDate);
+    // Format: 06/02/2026 12:00 PM
+    let dateStr = d.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+    extraInfo = `<div class="mt-2 small text-success fw-bold p-2 bg-white rounded border border-success border-opacity-25"><i class="far fa-calendar-alt me-1"></i> Dispatched Date: ${dateStr}</div>`;
+  }
+
+  // HTML Structure
+  let html = `
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <div class="fw-bold text-dark mb-1" style="font-size:14px;">${u.oid}</div>
+            
+            <div style="font-size:13px; color:#555;">
+                <span class="badge bg-light text-secondary border">${fromStatus}</span> 
+                <i class="fas fa-long-arrow-alt-right mx-1 text-muted"></i> 
+                <span class="badge bg-${getBadgeColor(toStatus)}">${toStatus}</span>
+            </div>
+            
+            ${extraInfo}
+        </div>
+        
+        <button onclick="discardSingleChanges()" class="btn btn-sm btn-outline-danger border-0 bg-white shadow-sm" style="width:35px; height:35px; border-radius:50%;" title="Undo">
+            <i class="fas fa-undo"></i>
+        </button>
+    </div>`;
+
+  list.innerHTML = html;
+}
+
+// 3. UPLOAD NOW (Perform Sync)
+window.performSingleSync = function () {
+  if (!activeSyncOid) return;
+
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let myUpdate = updates.find(u => u.oid === activeSyncOid);
+
+  if (!myUpdate) return;
+
+  // UI Loading
+  const btn = $('#singleSyncModal .btn-dark');
+  let originalHtml = btn.html();
+  btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
+
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        // Remove from Local
+        let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
+        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
+
+        // Close Modal & Show Success
+        $('#singleSyncModal').modal('hide');
+        Swal.fire({ icon: 'success', title: 'Synced Successfully!', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
+
+        // Update UI Button (Blue -> Grey)
+        updateAdminUI(myUpdate.status, activeSyncOid);
+      } else {
+        alert("Sync Failed!");
+      }
+    })
+    .catch(err => alert("Network Error"))
+    .finally(() => {
+      btn.prop('disabled', false).html(originalHtml);
+    });
+}
+
+// 4. DISCARD / UNDO
+window.discardSingleChanges = function () {
+  if (!activeSyncOid) return;
+
+  if (!confirm("Discard these changes?")) return;
+
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let myUpdate = updates.find(u => u.oid === activeSyncOid);
+  let oldStatus = myUpdate ? (myUpdate.oldStatus || "Pending") : "Pending";
+
+  // Remove from Local
+  let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
+  localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
+
+  // Close Modal
+  $('#singleSyncModal').modal('hide');
+
+  // 🔥 Revert UI immediately to Old Status
+  // We update the UI to reflect the state BEFORE the change
+  updateAdminUI(oldStatus, activeSyncOid);
+
+  // Optional: Reload data from cache to be safe
+  let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let cachedOrder = cachedOrders.find(o => o.orderid === activeSyncOid);
+  if (cachedOrder) {
+    // Revert cache object status if needed, or just rely on server data next refresh
+    // For visual feedback, updateAdminUI is enough
+  }
+
+  showToast('info', 'Changes Discarded');
+}
+
+// Helper Toast (if not already exists)
+function showToast(icon, title) {
+  Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: icon, title: title });
+}
+
 function sendToWhatsapp() {
   const d = successData;
   const adminPhone = '7788990313'; // Admin Phone Number

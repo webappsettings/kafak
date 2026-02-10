@@ -663,7 +663,7 @@
             </div>
 
             <div class="white-card p-3">
-              <label class="form-label d-block text-muted fw-bold small mb-2" data-i18n="lbl_qty"
+              <label class="form-label text-muted fw-bold small mb-2" data-i18n="lbl_qty"
                 style="display:none; letter-spacing: 0.5px;">
                 SELECT QUANTITY
               </label>
@@ -759,6 +759,36 @@
               class="fas fa-chevron-left"></i></button><button type="button" class="btn-black flex-grow-1 ms-3"
             onclick="nextStep()" id="btn-wiz-next"><span data-i18n="btn_next">തുടരുക</span></button></div>
         <div id="btn-group-returning" style="display:none !important;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="singleSyncModal" tabindex="-1" aria-hidden="true" style="z-index: 13000;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+
+        <div class="modal-header border-0 pb-0 d-flex justify-content-between align-items-center">
+          <h6 class="modal-title fw-bold text-secondary text-uppercase ls-1" style="font-size:12px;">Pending Changes
+          </h6>
+          <div class="d-flex align-items-center gap-2">
+            <button onclick="discardSingleChanges()" class="btn btn-sm btn-outline-danger fw-bold"
+              style="font-size:11px; border-radius:8px;">
+              <i class="fas fa-trash-alt me-1"></i> Discard
+            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+        </div>
+
+        <div class="modal-body pt-2">
+          <div class="bg-light rounded-4 p-3 border mb-3">
+            <div id="single-sync-list">
+            </div>
+          </div>
+
+          <button onclick="performSingleSync()" class="btn btn-dark w-100 py-3 rounded-pill fw-bold shadow-sm">
+            <i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW
+          </button>
+        </div>
       </div>
     </div>
   </div>
