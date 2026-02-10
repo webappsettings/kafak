@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbz3zkFxJJUrfZatKuO5FZUBzMaJQB1-Vw9eFZFyjxlEn7qLsRMsgY_UoFu9MCTiHI1ATQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyVXTb55rfRF-I8tFYo2_x8vJN27YAn-CrDMWx94KPctuYbq_A-oXBKAaPPte54SwaC/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -333,7 +333,29 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     } else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
         let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
-        buttons = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}</div><button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+
+        // 🔥 Dispatched Date Display Logic
+        let dispDate = d['Dispatched Date'] || d.actionDate || d.timestamp;
+        let formattedDispDate = new Date(dispDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+        // Date & Edit Icon HTML
+        let dateHtml = `
+            <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-size:11px; color:#166534; font-weight:700;">
+                    <i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}
+                </div>
+                <button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDate}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button>
+            </div>
+        `;
+
+        buttons = `
+            ${dateHtml} 
+            <div class="d-flex gap-1 mb-2 w-100">
+                <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
+                ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
+            </div>
+            <button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>
+        `;
     }
 
     // 1. COMPACT VIEW
@@ -430,30 +452,68 @@ function filterOrders() {
     }
 }
 
-// 🔥 UPDATED: Added 'skipConfirm' parameter to fix Scanner blocking
-function updateOrder(oid, status, trackingNum = null, skipConfirm = false) {
-    // സ്കാനറിൽ നിന്നാണെങ്കിൽ കൺഫർമേഷൻ ചോദിക്കില്ല
-    if (!skipConfirm && !trackingNum && !confirm(`Mark '${status}'?`)) return;
+// Updated updateOrder function (Preserves Scanner Logic + Adds Date Feature)
+function updateOrder(oid, status, trackingNum = null, skipConfirm = false, customDate = null) {
+    // 1. SAFETY CHECK: സ്കാനർ, ട്രാക്കിംഗ്, അല്ലെങ്കിൽ ഡേറ്റ് എഡിറ്റ് ആണെങ്കിൽ കൺഫർമേഷൻ വേണ്ട
+    // (Old Logic Preserved here)
+    if (!skipConfirm && !trackingNum && !customDate && !confirm(`Mark '${status}'?`)) return;
 
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     updates = updates.filter(item => item.oid !== oid);
-    let updateObj = { oid: oid, status: status, time: new Date().getTime() };
+
+    let updateObj = {
+        oid: oid,
+        status: status,
+        time: new Date().getTime()
+    };
+
     if (trackingNum) updateObj.tracking = trackingNum;
+
+    // 🔥 NEW: Date സേവ് ചെയ്യുന്ന ഭാഗം
+    if (customDate) {
+        updateObj.actionDate = customDate;
+    } else if (status === 'Dispatched' && !trackingNum) {
+        // Dispatched ആക്കുമ്പോൾ Default ആയി ഇന്നത്തെ ഡേറ്റ് എടുക്കുന്നു
+        updateObj.actionDate = new Date().toISOString().split('T')[0];
+    }
+
     updates.push(updateObj);
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
+    // 2. UI UPDATE (Cache)
     const orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex !== -1) {
         allOrders[orderIndex].Status = status;
         if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
+        // പുതിയ ഡേറ്റ് ഉടനടി കാർഡിൽ കാണിക്കാൻ
+        if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
+    // 3. REFRESH VIEW (Preserved)
     if (document.getElementById('searchInput').value.length > 0) filterOrders();
     else renderTabs(allOrders);
 
     updateSyncButtonUI();
+
+    // 4. TOAST MESSAGES
     if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
+    if (customDate) showToast('success', 'Date Updated! Sync to Save.');
+}
+
+
+window.editDispatchDate = async function (oid, currentDate) {
+    const { value: newDate } = await Swal.fire({
+        title: 'Change Dispatch Date',
+        html: `<input type="date" id="edit-disp-date" class="swal2-input" value="${currentDate ? new Date(currentDate).toISOString().split('T')[0] : ''}">`,
+        showCancelButton: true,
+        confirmButtonText: 'Update',
+        preConfirm: () => document.getElementById('edit-disp-date').value
+    });
+
+    if (newDate) {
+        updateOrder(oid, 'Dispatched', null, true, newDate);
+    }
 }
 
 function syncWithServer() {

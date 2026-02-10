@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbz3zkFxJJUrfZatKuO5FZUBzMaJQB1-Vw9eFZFyjxlEn7qLsRMsgY_UoFu9MCTiHI1ATQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbyVXTb55rfRF-I8tFYo2_x8vJN27YAn-CrDMWx94KPctuYbq_A-oXBKAaPPte54SwaC/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1252,16 +1252,12 @@ window.updateAdminUI = function (serverStatus, oid) {
   $('#admin-action-bar').slideDown();
 }
 
-window.adminAction = function (oid, status) {
-  // 1. CONFIRMATION
-  if (status === 'Archive' && !confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
-  if (status !== 'Archive' && !confirm(`Mark as '${status}'? (Saved Locally)`)) return;
-
-  const btnContainer = $('#admin-btn-container');
-
-  // 🔥 CASE 1: ARCHIVE -> DIRECT SERVER UPDATE
-  // ആർക്കൈവ് ആണെങ്കിൽ നേരിട്ട് സെർവറിലേക്ക് അയക്കുന്നു
+window.adminAction = async function (oid, status) {
+  // 1. ARCHIVE: Direct Server Call
   if (status === 'Archive') {
+    if (!confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
+
+    const btnContainer = $('#admin-btn-container');
     const originalContent = btnContainer.html();
     btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Archiving...</div>');
 
@@ -1272,9 +1268,8 @@ window.adminAction = function (oid, status) {
       .then(res => res.json())
       .then(data => {
         if (data.result === 'success') {
-          // Local Cache Update (Optional but good for immediate UI sync)
           let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-          updates = updates.filter(item => item.oid !== oid); // Remove if any local pending exists
+          updates = updates.filter(item => item.oid !== oid);
           localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
           Swal.fire({ icon: 'success', title: 'Archived!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
@@ -1291,16 +1286,53 @@ window.adminAction = function (oid, status) {
     return;
   }
 
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let selectedDate = null;
 
-  // Remove any existing update for this Order ID to avoid duplicates
+  // 2. PAID: Show Date Picker 📅
+  if (status === 'Paid') {
+    const today = new Date().toISOString().split('T')[0];
+
+    const { value: dateVal } = await Swal.fire({
+      title: 'Mark as PAID',
+      html: `
+            <div style="margin-bottom:5px; font-weight:600; color:#555; font-size:13px;">Select Payment Date:</div>
+            <input type="date" id="swal-date-input" class="swal2-input" 
+                   value="${today}" max="${today}" 
+                   style="width: 70%; margin: 0 auto;">
+          `,
+      showCancelButton: true,
+      confirmButtonText: 'Save Paid',
+      confirmButtonColor: '#28a745',
+      focusConfirm: false,
+      preConfirm: () => {
+        return document.getElementById('swal-date-input').value;
+      }
+    });
+
+    if (!dateVal) return; // Cancelled
+    selectedDate = dateVal;
+  }
+
+  // 3. SENT or OTHERS: Normal Confirm
+  else {
+    if (!confirm(`Mark as '${status}'? (Saved Locally)`)) return;
+    // Dispatched ആണെങ്കിൽ Default ആയി ഇന്നത്തെ ഡേറ്റ് എടുക്കുന്നു
+    if (status === 'Dispatched') selectedDate = new Date().toISOString().split('T')[0];
+  }
+
+  // 4. SAVE LOCALLY
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
 
-  // Add new update
-  updates.push({ oid: oid, status: status, time: new Date().getTime() });
+  updates.push({
+    oid: oid,
+    status: status,
+    actionDate: selectedDate, // 🔥 Date Saved Here
+    time: new Date().getTime()
+  });
+
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  // Show success message
   Swal.fire({
     icon: 'success',
     title: `Saved: ${status}`,
@@ -1311,7 +1343,6 @@ window.adminAction = function (oid, status) {
     timer: 2000
   });
 
-  // Update the UI immediately to reflect the change
   updateAdminUI(status, oid);
 }
 
