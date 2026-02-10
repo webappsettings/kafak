@@ -393,7 +393,6 @@ function syncUserDataBackground(phone) {
 
         let s = mergedData.Status.toLowerCase();
 
-        // 🔥 മാറ്റം 1: ഇവിടെ 'paid' ഒഴിവാക്കി. (Paid ആയാലും പഴയ ഓർഡർ തന്നെ എഡിറ്റ് ചെയ്യാം)
         if (['dispatched', 'completed', 'delivered'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
@@ -406,10 +405,16 @@ function syncUserDataBackground(phone) {
 
         updateStatusUI(mergedData);
 
-        // 🔥 NEW: സിങ്ക് കഴിഞ്ഞാൽ ബട്ടണുകൾ കാണിക്കുന്നു
+        // സിങ്ക് കഴിഞ്ഞാൽ ബട്ടണുകൾ കാണിക്കുന്നു
         handleEditControlsVisibility(mergedData);
 
-        // 🔥 മാറ്റം 2: Paid സ്റ്റാറ്റസ് 'Active' ആയി കണക്കാക്കുന്നു
+        // 🔥🔥🔥 THIS IS THE FIX 🔥🔥🔥
+        // അഡ്മിൻ ആണെങ്കിൽ, പുതിയ സ്റ്റാറ്റസ് വെച്ച് ബട്ടണുകൾ അപ്ഡേറ്റ് ചെയ്യുക
+        if (SafeStorage.getItem('kafakAdmin') === 'true') {
+          updateAdminUI(mergedData.Status, mergedData.orderid || editingOrderId);
+        }
+        // 🔥🔥🔥 END FIX 🔥🔥🔥
+
         let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
         showReturningUserView(mergedData, isActive, true);
       }
