@@ -1253,7 +1253,7 @@ window.updateAdminUI = function (serverStatus, oid) {
 }
 
 window.adminAction = async function (oid, status) {
-  // 1. ARCHIVE: Direct Server Call
+  // 1. ARCHIVE: Direct Server Call (No Change)
   if (status === 'Archive') {
     if (!confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
 
@@ -1288,29 +1288,35 @@ window.adminAction = async function (oid, status) {
 
   let selectedDate = null;
 
-  // 2. PAID: Show Date & Time Picker 📅
+  // 2. 🔥 PAID: Show Beautiful Flatpickr Date & Time Picker
   if (status === 'Paid') {
-    // Get Current Time in Local Format (for max attribute)
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    const currentDateTime = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:MM
-
     const { value: dateVal } = await Swal.fire({
       title: 'Mark as PAID',
       html: `
-            <div style="margin-bottom:5px; font-weight:600; color:#555; font-size:13px;">Select Time:</div>
-            <input type="datetime-local" id="swal-date-input" class="swal2-input" 
-                   value="${currentDateTime}" max="${currentDateTime}" 
-                   style="width: 80%; margin: 0 auto;">
+            <div style="text-align:center;">
+                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME</label>
+                <input type="text" id="flatpickr-paid" class="form-control text-center fw-bold" 
+                       style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
+                       placeholder="Select Date...">
+            </div>
           `,
       showCancelButton: true,
       confirmButtonText: 'Save Paid',
       confirmButtonColor: '#28a745',
       focusConfirm: false,
+      didOpen: () => {
+        // 🔥 Initialize Flatpickr (Material Style)
+        flatpickr("#flatpickr-paid", {
+          enableTime: true,
+          dateFormat: "Y-m-d H:i",
+          defaultDate: new Date(),
+          theme: "material_blue",
+          time_24hr: false,
+          disableMobile: false
+        });
+      },
       preConfirm: () => {
-        // User Select ചെയ്തത് അല്ലെങ്കിൽ Current Time
-        let val = document.getElementById('swal-date-input').value;
-        return val ? val.replace('T', ' ') : null; // "YYYY-MM-DD HH:MM"
+        return document.getElementById('flatpickr-paid').value;
       }
     });
 
@@ -1323,9 +1329,14 @@ window.adminAction = async function (oid, status) {
 
     // Dispatched ആണെങ്കിൽ Auto-set Local Time
     if (status === 'Dispatched') {
+      // YYYY-MM-DD HH:MM ഫോർമാറ്റിൽ എടുക്കുന്നു (Flatpickr ഫോർമാറ്റുമായി ഒത്തുപോകാൻ)
       const now = new Date();
-      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-      selectedDate = now.toISOString().slice(0, 16).replace('T', ' ');
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      selectedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
     }
   }
 
