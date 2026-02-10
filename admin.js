@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxwUZWfsRFGC537qvqh3vPYN2ME7PWLbQphp-bLtp82_Dd9IFo8tDNvj4S0h1Bt-RUBNw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby2J-tpgdyIDBpyo_iYmz4b4d9fGXV5PwxRAzbSk8eYcyawDPfaHYnc-vdTrk6yhSjGWg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -177,9 +177,11 @@ function renderTabs(orders) {
         let status = local ? local.status : (o.Status || 'Pending');
 
         let tDate = new Date(o.timestamp); // Order Date
+        // Paid Date Calculation
         let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
         let pDate = new Date(pDateStr);
 
+        // Dispatch Date Calculation
         let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
         let dDate = new Date(dDateStr);
 
@@ -191,40 +193,34 @@ function renderTabs(orders) {
         let infoA = getOrderInfo(a);
         let infoB = getOrderInfo(b);
 
-        // Group by Status Priority first (Pending > Paid > Dispatched) to keep tabs clean logically
-        // But inside each tab, we use specific dates
         const statusPriority = { 'Pending': 1, 'Sent': 1, 'Paid': 2, 'Dispatched': 3, 'Completed': 4, 'Archive': 5 };
         let statA = statusPriority[infoA.status] || 9;
         let statB = statusPriority[infoB.status] || 9;
 
         if (statA !== statB) return statA - statB;
 
-        // Date Comparison based on Tab Type
         let dateA, dateB;
-        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; } // Pending -> Order Date
-        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; } // Paid -> Paid Date
-        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; } // Dispatched -> Dispatch Date
+        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; }
+        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; }
+        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; }
         else { dateA = infoA.tDate; dateB = infoB.tDate; }
 
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // --- 3. CALCULATE LATEST DISPATCH DATE (For Collapse Logic) ---
-    let latestDispatchedDateLabel = "";
-    // Dispatched ലിസ്റ്റിലെ ആദ്യത്തെ ഐറ്റം (Sorted ആയതുകൊണ്ട്)
-    let firstDisp = orders.find(o => getOrderInfo(o).status === 'Dispatched');
-    if (firstDisp) {
-        let info = getOrderInfo(firstDisp);
-        // Sort Order മാറിയാൽ Collapse ലോജിക് മാറണം (Latest always expanded logic is safer)
-        latestDispatchedDateLabel = getTimelineLabel(info.dDateStr);
-    }
-
-    // --- 4. RENDER LOOP ---
+    // --- 3. RENDER LOOP ---
     let lastDateMap = { pending: '', paid: '', dispatched: '' };
+    // Get Latest Dispatch Date for Collapse Logic
+    let firstDisp = orders.find(o => getOrderInfo(o).status === 'Dispatched');
+    let latestDispatchedDateLabel = firstDisp ? getTimelineLabel(getOrderInfo(firstDisp).dDateStr) : "";
 
     orders.forEach((d, i) => {
-        let { status, dDateStr, pDateStr, tDate } = getOrderInfo(d);
+        let { status, dDateStr, pDateStr } = getOrderInfo(d);
         let isCompact = false;
+
+        // 🔥 IMPORTANT FIX: Inject Resolved Dates into Object for Card UI
+        d.paidDate = pDateStr;
+        d['Dispatched Date'] = dDateStr;
 
         if (status === 'Completed' || status === 'Archive') return;
 
@@ -237,8 +233,6 @@ function renderTabs(orders) {
             targetList = paidList; type = 'paid'; counts.paid++;
         } else if (status === 'Dispatched') {
             targetList = dispatchedList; type = 'dispatched'; counts.dispatched++;
-
-            // Collapse Logic (Only if Sorted by Newest)
             if (currentSortDir === 'desc') {
                 let thisDispLabel = getTimelineLabel(dDateStr);
                 if (thisDispLabel !== latestDispatchedDateLabel) isCompact = true;
@@ -249,7 +243,6 @@ function renderTabs(orders) {
             let qty = parseInt(d.quantity) || 0;
             btlCounts[type] += qty;
 
-            // Sticky Date Logic based on Tab Type
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
             if (type === 'dispatched') displayDateRaw = dDateStr;
@@ -269,7 +262,7 @@ function renderTabs(orders) {
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
     updateSyncButtonUI();
-    checkSelectAllStatus(); // 🔥 Ensure Checkbox UI is correct on Render
+    checkSelectAllStatus();
 }
 
 function updateBadgeUI(elementId, orderCount, bottleCount) {
@@ -410,15 +403,20 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
         let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
-        let dispDate = d['Dispatched Date'] || d.actionDate || d.timestamp;
-        let formattedDispDate = new Date(dispDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
+        // 🔥 DATE + TIME Display Logic
+        let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
+        let dateObj = new Date(dispDateStr);
+        // Format: 10 Feb 2026, 10:30 AM
+        let formattedDispDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+
+        // Date & Edit Icon HTML
         let dateHtml = `
             <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
                 <div style="font-size:11px; color:#166534; font-weight:700;">
                     <i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}
                 </div>
-                <button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDate}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button>
+                <button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button>
             </div>
         `;
 
@@ -570,15 +568,40 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
 
 
 window.editDispatchDate = async function (oid, currentDate) {
+    // 1. Create a container for Flatpickr inside SweetAlert
     const { value: newDate } = await Swal.fire({
         title: 'Change Dispatch Date',
-        html: `<input type="date" id="edit-disp-date" class="swal2-input" value="${currentDate ? new Date(currentDate).toISOString().split('T')[0] : ''}">`,
+        html: `
+            <div style="text-align:center;">
+                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT NEW DATE & TIME</label>
+                <input type="text" id="flatpickr-input" class="form-control text-center fw-bold" 
+                       style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
+                       placeholder="Select Date...">
+            </div>
+        `,
         showCancelButton: true,
         confirmButtonText: 'Update',
-        preConfirm: () => document.getElementById('edit-disp-date').value
+        confirmButtonColor: '#2e7d32',
+        focusConfirm: false,
+        didOpen: () => {
+            // 🔥 Initialize Flatpickr (Material Style)
+            flatpickr("#flatpickr-input", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                defaultDate: currentDate || new Date(),
+                theme: "material_blue",
+                time_24hr: false,
+                disableMobile: false // Force custom picker even on mobile for consistency
+            });
+        },
+        preConfirm: () => {
+            return document.getElementById('flatpickr-input').value;
+        }
     });
 
     if (newDate) {
+        // Save locally & Sync
+        // Format it to ISO String or keep as YYYY-MM-DD HH:MM for simplicity in script
         updateOrder(oid, 'Dispatched', null, true, newDate);
     }
 }
@@ -587,24 +610,115 @@ function syncWithServer() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     if (pendingUpdates.length === 0) return;
 
-    confirmAction(`${pendingUpdates.length} മാറ്റങ്ങൾ അപ്‌ലോഡ് ചെയ്യട്ടെ?`, () => {
-        $('#sync-btn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
-        let trackingUpdates = pendingUpdates.filter(u => u.tracking);
-        let statusUpdates = pendingUpdates.filter(u => !u.tracking);
-        let promises = [];
+    renderSyncList();
+    new bootstrap.Modal(document.getElementById('syncModal')).show();
+}
 
-        if (statusUpdates.length > 0) promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates }) }));
-        trackingUpdates.forEach(u => promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking }) })));
+// 🔥 RENDER LIST IN MODAL
+function renderSyncList() {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    const list = document.getElementById('sync-preview-list');
+    const countDisplay = document.getElementById('sync-count-display');
 
-        Promise.all(promises).then(() => {
-            localStorage.removeItem('pendingUpdates');
-            showToast('success', 'Synced Successfully!');
-            updateSyncButtonUI();
-            $('#sync-btn').prop('disabled', false).html('<i class="fas fa-cloud-upload-alt"></i>');
-        }).catch(() => {
-            showToast('error', 'Sync Failed!');
-            $('#sync-btn').prop('disabled', false).html('<i class="fas fa-cloud-upload-alt"></i>');
-        });
+    countDisplay.innerText = pendingUpdates.length;
+    list.innerHTML = '';
+
+    pendingUpdates.forEach((u, index) => {
+        // Find Order Details
+        let order = allOrders.find(o => o.orderid === u.oid);
+        let name = order ? order.name : 'Unknown';
+        let phone = order ? order.phone : '';
+
+        // Determine Action Text
+        let actionHtml = '';
+        if (u.tracking) {
+            actionHtml = `<span class="badge bg-light text-dark border">Tracking Update</span> <b class="ms-1">${u.tracking}</b>`;
+        } else if (u.status) {
+            let oldStatus = order ? order.Status : '...';
+            // Specific text for Status Change
+            let badgeColor = 'secondary';
+            if (u.status === 'Paid') badgeColor = 'success';
+            if (u.status === 'Dispatched') badgeColor = 'primary';
+            if (u.status === 'Sent') badgeColor = 'info text-dark';
+            if (u.status === 'Archive') badgeColor = 'dark';
+
+            let dateInfo = '';
+            if (u.actionDate) {
+                // Format Date nicely
+                let d = new Date(u.actionDate);
+                let dateStr = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                dateInfo = `<div class="text-muted" style="font-size:10px; margin-top:2px;"><i class="far fa-clock"></i> Date: ${dateStr}</div>`;
+            }
+
+            actionHtml = `Status: <b>${oldStatus}</b> <i class="fas fa-arrow-right text-muted mx-1" style="font-size:10px;"></i> <span class="badge bg-${badgeColor}">${u.status}</span> ${dateInfo}`;
+        }
+
+        let row = `
+        <tr style="border-bottom:1px solid #eee;">
+            <td width="30">
+                <div class="rounded-circle bg-white d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;">${index + 1}</div>
+            </td>
+            <td>
+                <div class="fw-bold text-dark">${u.oid}</div>
+                <div class="small text-muted">${name} (${phone})</div>
+            </td>
+            <td>${actionHtml}</td>
+            <td width="40" class="text-end">
+                <button onclick="undoUpdate(${index})" class="btn btn-sm btn-outline-danger border-0" style="background:#fff1f2; color:#e11d48;"><i class="fas fa-undo"></i></button>
+            </td>
+        </tr>`;
+        list.innerHTML += row;
+    });
+
+    if (pendingUpdates.length === 0) {
+        $('#syncModal').modal('hide'); // Close modal if empty
+        updateSyncButtonUI(); // Hide cloud icon
+    }
+}
+
+// 🔥 UNDO LOGIC
+function undoUpdate(index) {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+    // Remove item at index
+    pendingUpdates.splice(index, 1);
+
+    // Save back
+    localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
+
+    // Refresh List
+    renderSyncList();
+
+    // 🔥 Critical: Revert UI changes by reloading data
+    // (This ensures the card goes back to old status visually)
+    fetchOrders(true);
+    updateSyncButtonUI();
+}
+
+// 🔥 FINAL UPLOAD
+function finalConfirmSync() {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    if (pendingUpdates.length === 0) return;
+
+    const btn = $('#syncModal button.btn-dark');
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
+
+    let trackingUpdates = pendingUpdates.filter(u => u.tracking);
+    let statusUpdates = pendingUpdates.filter(u => !u.tracking);
+    let promises = [];
+
+    if (statusUpdates.length > 0) promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates }) }));
+    trackingUpdates.forEach(u => promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking }) })));
+
+    Promise.all(promises).then(() => {
+        localStorage.removeItem('pendingUpdates');
+        $('#syncModal').modal('hide');
+        showToast('success', 'Synced Successfully!');
+        updateSyncButtonUI();
+        btn.prop('disabled', false).html('<i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW');
+    }).catch(() => {
+        showToast('error', 'Sync Failed!');
+        btn.prop('disabled', false).html('<i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW');
     });
 }
 
