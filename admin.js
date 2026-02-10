@@ -517,51 +517,52 @@ function filterOrders() {
     }
 }
 
-// Updated updateOrder function (Preserves Scanner Logic + Adds Date Feature)
 function updateOrder(oid, status, trackingNum = null, skipConfirm = false, customDate = null) {
-    // 1. SAFETY CHECK: സ്കാനർ, ട്രാക്കിംഗ്, അല്ലെങ്കിൽ ഡേറ്റ് എഡിറ്റ് ആണെങ്കിൽ കൺഫർമേഷൻ വേണ്ട
-    // (Old Logic Preserved here)
     if (!skipConfirm && !trackingNum && !customDate && !confirm(`Mark '${status}'?`)) return;
 
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     updates = updates.filter(item => item.oid !== oid);
 
+    // 🔥 FIX: Find OLD STATUS before updating
+    let existingOrder = allOrders.find(o => o.orderid === oid);
+    let oldStatus = existingOrder ? existingOrder.Status : 'Pending';
+    // If only date is changing, keep the same status context
+    if (existingOrder && existingOrder.Status === status && customDate) {
+        oldStatus = `${existingOrder.Status} (${getTimelineLabel(existingOrder['Dispatched Date'] || existingOrder.timestamp)})`;
+    }
+
     let updateObj = {
         oid: oid,
         status: status,
+        oldStatus: oldStatus, // 🔥 Saved Here
         time: new Date().getTime()
     };
 
     if (trackingNum) updateObj.tracking = trackingNum;
 
-    // 🔥 NEW: Date സേവ് ചെയ്യുന്ന ഭാഗം
     if (customDate) {
         updateObj.actionDate = customDate;
     } else if (status === 'Dispatched' && !trackingNum) {
-        // Dispatched ആക്കുമ്പോൾ Default ആയി ഇന്നത്തെ ഡേറ്റ് എടുക്കുന്നു
         updateObj.actionDate = new Date().toISOString().split('T')[0];
     }
 
     updates.push(updateObj);
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-    // 2. UI UPDATE (Cache)
+    // Update Cache (UI)
     const orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex !== -1) {
         allOrders[orderIndex].Status = status;
         if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
-        // പുതിയ ഡേറ്റ് ഉടനടി കാർഡിൽ കാണിക്കാൻ
         if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
-    // 3. REFRESH VIEW (Preserved)
     if (document.getElementById('searchInput').value.length > 0) filterOrders();
     else renderTabs(allOrders);
 
     updateSyncButtonUI();
 
-    // 4. TOAST MESSAGES
     if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
     if (customDate) showToast('success', 'Date Updated! Sync to Save.');
 }
@@ -619,38 +620,52 @@ function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     const list = document.getElementById('sync-preview-list');
     const countDisplay = document.getElementById('sync-count-display');
+    const discardBtnArea = document.getElementById('modal-header-actions'); // New Area
 
     countDisplay.innerText = pendingUpdates.length;
     list.innerHTML = '';
 
     pendingUpdates.forEach((u, index) => {
-        // Find Order Details
-        let order = allOrders.find(o => o.orderid === u.oid);
+        let order = allOrders.find(o => o.orderid === u.oid); // This is current/new state
         let name = order ? order.name : 'Unknown';
         let phone = order ? order.phone : '';
 
-        // Determine Action Text
         let actionHtml = '';
+
+        // 1. TRACKING UPDATE
         if (u.tracking) {
             actionHtml = `<span class="badge bg-light text-dark border">Tracking Update</span> <b class="ms-1">${u.tracking}</b>`;
-        } else if (u.status) {
-            let oldStatus = order ? order.Status : '...';
-            // Specific text for Status Change
-            let badgeColor = 'secondary';
-            if (u.status === 'Paid') badgeColor = 'success';
-            if (u.status === 'Dispatched') badgeColor = 'primary';
-            if (u.status === 'Sent') badgeColor = 'info text-dark';
-            if (u.status === 'Archive') badgeColor = 'dark';
+        }
+        // 2. STATUS / DATE UPDATE
+        else if (u.status) {
+            // 🔥 Use Saved OLD STATUS
+            let fromStatus = u.oldStatus || (order ? order.Status : 'Unknown');
+            let toStatus = u.status;
 
-            let dateInfo = '';
-            if (u.actionDate) {
-                // Format Date nicely
+            let badgeColor = 'secondary';
+            if (toStatus === 'Paid') badgeColor = 'success';
+            if (toStatus === 'Dispatched') badgeColor = 'primary';
+            if (toStatus === 'Sent') badgeColor = 'info text-dark';
+            if (toStatus === 'Archive') badgeColor = 'dark';
+
+            let extraInfo = "";
+
+            // Special Display for Dispatched Date
+            if (toStatus === 'Dispatched' && u.actionDate) {
                 let d = new Date(u.actionDate);
-                let dateStr = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                dateInfo = `<div class="text-muted" style="font-size:10px; margin-top:2px;"><i class="far fa-clock"></i> Date: ${dateStr}</div>`;
+                // Format: 06/02/2026 12:00 PM
+                let dateStr = d.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+                extraInfo = `<div class="mt-1 small text-success fw-bold"><i class="far fa-calendar-alt"></i> Date: ${dateStr}</div>`;
             }
 
-            actionHtml = `Status: <b>${oldStatus}</b> <i class="fas fa-arrow-right text-muted mx-1" style="font-size:10px;"></i> <span class="badge bg-${badgeColor}">${u.status}</span> ${dateInfo}`;
+            // Arrow Logic (From -> To)
+            actionHtml = `
+            <div style="font-size:12px; color:#555;">
+                <span class="badge bg-light text-secondary border">${fromStatus}</span> 
+                <i class="fas fa-long-arrow-alt-right mx-1 text-muted"></i> 
+                <span class="badge bg-${badgeColor}">${toStatus}</span>
+                ${extraInfo}
+            </div>`;
         }
 
         let row = `
@@ -659,21 +674,35 @@ function renderSyncList() {
                 <div class="rounded-circle bg-white d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;">${index + 1}</div>
             </td>
             <td>
-                <div class="fw-bold text-dark">${u.oid}</div>
-                <div class="small text-muted">${name} (${phone})</div>
+                <div class="fw-bold text-dark" style="font-size:12px;">${u.oid}</div>
+                <div class="small text-muted" style="font-size:11px;">${name} (${phone})</div>
             </td>
             <td>${actionHtml}</td>
             <td width="40" class="text-end">
-                <button onclick="undoUpdate(${index})" class="btn btn-sm btn-outline-danger border-0" style="background:#fff1f2; color:#e11d48;"><i class="fas fa-undo"></i></button>
+                <button onclick="undoUpdate(${index})" class="btn btn-sm btn-outline-danger border-0" title="Undo"><i class="fas fa-undo"></i></button>
             </td>
         </tr>`;
         list.innerHTML += row;
     });
 
     if (pendingUpdates.length === 0) {
-        $('#syncModal').modal('hide'); // Close modal if empty
-        updateSyncButtonUI(); // Hide cloud icon
+        $('#syncModal').modal('hide');
+        updateSyncButtonUI();
     }
+}
+
+// 🔥 NEW: Discard All Function
+window.discardAllUpdates = function () {
+    if (!confirm("Are you sure you want to discard ALL pending changes?")) return;
+
+    localStorage.removeItem('pendingUpdates');
+
+    // Re-fetch to revert UI instantly (Important!)
+    fetchOrders(true);
+
+    $('#syncModal').modal('hide');
+    updateSyncButtonUI();
+    showToast('info', 'All changes discarded');
 }
 
 // 🔥 UNDO LOGIC

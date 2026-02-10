@@ -1329,8 +1329,8 @@ window.adminAction = async function (oid, status) {
 
     // Dispatched ആണെങ്കിൽ Auto-set Local Time
     if (status === 'Dispatched') {
-      // YYYY-MM-DD HH:MM ഫോർമാറ്റിൽ എടുക്കുന്നു (Flatpickr ഫോർമാറ്റുമായി ഒത്തുപോകാൻ)
       const now = new Date();
+      // YYYY-MM-DD HH:MM format logic
       const year = now.getFullYear();
       const month = String(now.getMonth() + 1).padStart(2, '0');
       const day = String(now.getDate()).padStart(2, '0');
@@ -1344,9 +1344,22 @@ window.adminAction = async function (oid, status) {
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
 
+  // 🔥 NEW: Find Old Status for Sync History
+  let oldStatus = 'Pending'; // Default
+  // Check global userData first (since we are in order.html context)
+  if (typeof userData !== 'undefined' && userData.orderid === oid) {
+    oldStatus = userData.Status || 'Pending';
+  } else {
+    // Fallback: Check admin cache if available
+    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    let found = cached.find(o => o.orderid === oid);
+    if (found) oldStatus = found.Status;
+  }
+
   updates.push({
     oid: oid,
     status: status,
+    oldStatus: oldStatus, // 🔥 Saved Here
     actionDate: selectedDate, // Time included
     time: new Date().getTime()
   });
