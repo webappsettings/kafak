@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbyVXTb55rfRF-I8tFYo2_x8vJN27YAn-CrDMWx94KPctuYbq_A-oXBKAaPPte54SwaC/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxwUZWfsRFGC537qvqh3vPYN2ME7PWLbQphp-bLtp82_Dd9IFo8tDNvj4S0h1Bt-RUBNw/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1288,36 +1288,45 @@ window.adminAction = async function (oid, status) {
 
   let selectedDate = null;
 
-  // 2. PAID: Show Date Picker 📅
+  // 2. PAID: Show Date & Time Picker 📅
   if (status === 'Paid') {
-    const today = new Date().toISOString().split('T')[0];
+    // Get Current Time in Local Format (for max attribute)
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    const currentDateTime = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:MM
 
     const { value: dateVal } = await Swal.fire({
       title: 'Mark as PAID',
       html: `
-            <div style="margin-bottom:5px; font-weight:600; color:#555; font-size:13px;">Select Payment Date:</div>
-            <input type="date" id="swal-date-input" class="swal2-input" 
-                   value="${today}" max="${today}" 
-                   style="width: 70%; margin: 0 auto;">
+            <div style="margin-bottom:5px; font-weight:600; color:#555; font-size:13px;">Select Time:</div>
+            <input type="datetime-local" id="swal-date-input" class="swal2-input" 
+                   value="${currentDateTime}" max="${currentDateTime}" 
+                   style="width: 80%; margin: 0 auto;">
           `,
       showCancelButton: true,
       confirmButtonText: 'Save Paid',
       confirmButtonColor: '#28a745',
       focusConfirm: false,
       preConfirm: () => {
-        return document.getElementById('swal-date-input').value;
+        // User Select ചെയ്തത് അല്ലെങ്കിൽ Current Time
+        let val = document.getElementById('swal-date-input').value;
+        return val ? val.replace('T', ' ') : null; // "YYYY-MM-DD HH:MM"
       }
     });
 
-    if (!dateVal) return; // Cancelled
+    if (!dateVal) return;
     selectedDate = dateVal;
   }
-
-  // 3. SENT or OTHERS: Normal Confirm
   else {
+    // 3. OTHERS (Sent, Dispatched, etc.)
     if (!confirm(`Mark as '${status}'? (Saved Locally)`)) return;
-    // Dispatched ആണെങ്കിൽ Default ആയി ഇന്നത്തെ ഡേറ്റ് എടുക്കുന്നു
-    if (status === 'Dispatched') selectedDate = new Date().toISOString().split('T')[0];
+
+    // Dispatched ആണെങ്കിൽ Auto-set Local Time
+    if (status === 'Dispatched') {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      selectedDate = now.toISOString().slice(0, 16).replace('T', ' ');
+    }
   }
 
   // 4. SAVE LOCALLY
@@ -1327,22 +1336,13 @@ window.adminAction = async function (oid, status) {
   updates.push({
     oid: oid,
     status: status,
-    actionDate: selectedDate, // 🔥 Date Saved Here
+    actionDate: selectedDate, // Time included
     time: new Date().getTime()
   });
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-  Swal.fire({
-    icon: 'success',
-    title: `Saved: ${status}`,
-    text: 'Saved locally. Please Sync from Admin Dashboard.',
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 2000
-  });
-
+  Swal.fire({ icon: 'success', title: `Saved: ${status}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
   updateAdminUI(status, oid);
 }
 

@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyVXTb55rfRF-I8tFYo2_x8vJN27YAn-CrDMWx94KPctuYbq_A-oXBKAaPPte54SwaC/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxwUZWfsRFGC537qvqh3vPYN2ME7PWLbQphp-bLtp82_Dd9IFo8tDNvj4S0h1Bt-RUBNw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -170,51 +170,81 @@ function renderTabs(orders) {
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // Sort: Latest First
-    orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-    // 🔥 NEW LOGIC: Find the Latest Date available in Dispatched List
-    let dispatchedOrders = orders.filter(o => {
+    // --- 1. HELPER: Get Effective Status & Dates ---
+    const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid);
-        let s = local ? local.status : (o.Status || 'Pending');
-        return s === 'Dispatched';
+        let status = local ? local.status : (o.Status || 'Pending');
+
+        // Dates Resolution
+        let tDate = new Date(o.timestamp); // Order Date
+        // Paid Date: Local Action Date OR Sheet Paid Date OR Order Date
+        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
+        let pDate = new Date(pDateStr);
+
+        // Dispatch Date: Local Action Date OR Sheet Dispatch Date OR Order Date
+        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
+        let dDate = new Date(dDateStr);
+
+        return { status, tDate, pDate, dDate, pDateStr, dDateStr };
+    };
+
+    // --- 2. ADVANCED SORTING ---
+    // Pending -> Order Date | Paid -> Paid Date | Dispatched -> Dispatch Date
+    orders.sort((a, b) => {
+        let infoA = getOrderInfo(a);
+        let infoB = getOrderInfo(b);
+
+        const statusPriority = { 'Pending': 1, 'Sent': 1, 'Paid': 2, 'Dispatched': 3, 'Completed': 4, 'Archive': 5 };
+        let statA = statusPriority[infoA.status] || 9;
+        let statB = statusPriority[infoB.status] || 9;
+
+        // Status Grouping
+        if (statA !== statB) return statA - statB;
+
+        // Specific Sorting
+        if (statA === 1) return infoB.tDate - infoA.tDate; // Pending: Newest Order First
+        if (statA === 2) return infoB.pDate - infoA.pDate; // Paid: Newest Payment First
+        if (statA === 3) return infoB.dDate - infoA.dDate; // Dispatched: Newest Dispatch First
+
+        return 0;
     });
 
-    // ഡിസ്പാച്ച് ലിസ്റ്റിലെ ഏറ്റവും പുതിയ തീയതി (ഉദാ: ഇന്ന് ഇല്ലെങ്കിൽ ഇന്നലെ, അതില്ലെങ്കിൽ 5-ാം തീയതി)
+    // --- 3. CALCULATE LATEST DISPATCH DATE (For Collapse Logic) ---
+    // സോർട്ട് ചെയ്തതുകൊണ്ട് ലിസ്റ്റിലെ ആദ്യത്തെ Dispatched ഐറ്റത്തിന്റെ തീയതി തന്നെയായിരിക്കും ലേറ്റസ്റ്റ്
     let latestDispatchedDateLabel = "";
-    if (dispatchedOrders.length > 0) {
-        latestDispatchedDateLabel = getTimelineLabel(dispatchedOrders[0].timestamp);
+    let firstDisp = orders.find(o => getOrderInfo(o).status === 'Dispatched');
+    if (firstDisp) {
+        let info = getOrderInfo(firstDisp);
+        latestDispatchedDateLabel = getTimelineLabel(info.dDateStr);
     }
 
+    // --- 4. RENDER LOOP ---
     let lastDateMap = { pending: '', paid: '', dispatched: '' };
 
     orders.forEach((d, i) => {
-        let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
-        let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
+        let { status, dDateStr, pDateStr } = getOrderInfo(d);
         let isCompact = false;
 
         if (status === 'Completed' || status === 'Archive') return;
 
         let targetList = null;
         let type = '';
-        let listKey = '';
 
+        // Determine List Type
         if (status === 'Pending' || status === 'Sent') {
-            targetList = pendingList; type = 'pending'; listKey = 'pending';
+            targetList = pendingList; type = 'pending';
             counts.pending++;
         } else if (status === 'Paid') {
-            targetList = paidList; type = 'paid'; listKey = 'paid';
+            targetList = paidList; type = 'paid';
             counts.paid++;
         } else if (status === 'Dispatched') {
-            targetList = dispatchedList; type = 'dispatched'; listKey = 'dispatched';
+            targetList = dispatchedList; type = 'dispatched';
             counts.dispatched++;
 
-            // 🔥 EXPAND/COLLAPSE LOGIC:
-            // ഈ ഓർഡറിന്റെ തീയതിയും, ലിസ്റ്റിലെ ഏറ്റവും പുതിയ തീയതിയും ഒന്നാണെങ്കിൽ Expand ചെയ്യും.
-            // പഴയ തീയതി ആണെങ്കിൽ Compact (Collapse) ആകും.
-            let thisOrderDate = getTimelineLabel(d.timestamp);
-            if (thisOrderDate !== latestDispatchedDateLabel) {
-                isCompact = true; // Collapse old dates
+            // 🔥 COLLAPSE LOGIC: Dispatched Date വെച്ച് ചെക്ക് ചെയ്യുന്നു
+            let thisDispLabel = getTimelineLabel(dDateStr);
+            if (thisDispLabel !== latestDispatchedDateLabel) {
+                isCompact = true; // ഇന്നത്തെ (അല്ലെങ്കിൽ ലേറ്റസ്റ്റ്) തീയതി അല്ലാത്തവ ചുരുക്കുന്നു
             }
         }
 
@@ -222,11 +252,19 @@ function renderTabs(orders) {
             let qty = parseInt(d.quantity) || 0;
             btlCounts[type] += qty;
 
-            let orderDate = d.timestamp ? getTimelineLabel(d.timestamp) : "Unknown Date";
-            if (orderDate !== lastDateMap[listKey]) {
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${orderDate}</div></div>`;
-                lastDateMap[listKey] = orderDate;
+            // 🔥 STICKY DATE HEADER LOGIC
+            // ഓരോ ടാബിലും അതിന്റേതായ തീയതി വെച്ച് ഹെഡർ കാണിക്കുന്നു
+            let displayDateRaw = d.timestamp; // Default
+            if (type === 'paid') displayDateRaw = pDateStr;
+            if (type === 'dispatched') displayDateRaw = dDateStr;
+
+            let dateLabel = getTimelineLabel(displayDateRaw);
+
+            if (dateLabel !== lastDateMap[type]) {
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${dateLabel}</div></div>`;
+                lastDateMap[type] = dateLabel;
             }
+
             targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
         }
     });
@@ -255,38 +293,61 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
+    // 1. Existing Logic & Calculations (No Change)
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
-
     let dateObj = new Date(d.timestamp);
-    let formattedDate = dateObj.toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+    let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
 
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    let badgeClass = `bg-${currentStatus}`;
+    // 2. 🔥 NEW: Colorful Status Badges
+    let statusColor = 'secondary';
+    if (currentStatus === 'Pending') statusColor = 'warning text-dark';
+    if (currentStatus === 'Sent') statusColor = 'primary';
+    if (currentStatus === 'Paid') statusColor = 'success';
+    if (currentStatus === 'Dispatched') statusColor = 'info text-dark';
 
+    // 3. 🔥 NEW: Beautiful Language Badge
+    let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
+
+    // 4. Header Section (Order ID + Status + Lang + Archive)
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
-        ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini" title="Archive"><i class="fas fa-archive"></i></button>`
+        ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
 
+    let headerLeft = `
+        <div class="d-flex align-items-center flex-wrap gap-1">
+            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
+            <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
+            ${langBadge}
+            ${archiveBtn}
+        </div>
+    `;
+
+    // 5. Top Actions (Edit / Print / Revert)
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
-
-    // 🔥 TOP ACTIONS LOGIC FIXED
     let topActions = editLink + printBtn;
 
-    // Dispatched Tab -> Revert to Paid
     if (type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
-    }
-    // Paid Tab -> Revert to Sent
-    else if (type === 'paid') {
+    } else if (type === 'paid') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
+    // 6. 🔥 NEW: Paid Date & Time Display
+    let paidTimeHTML = '';
+    if (type === 'paid' && d.paidDate) {
+        // d.paidDate ഗൂഗിൾ ഷീറ്റിൽ നിന്നും വരുന്നത്
+        let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+        paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid: ${pDate}</div>`;
+    }
+
+    // 7. WhatsApp Selector (Existing Logic)
     let waSelectorHTML = '';
     if (type === 'pending') {
         let opts = '';
@@ -300,6 +361,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
+    // 8. Contact Icons Logic (Existing Logic)
     let contactMap = {};
     const addContact = (iconType, number) => {
         if (!number) return;
@@ -323,22 +385,38 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
+    // 9. 🔥 UPDATED: Buttons Logic (With Small Icon Button)
     let buttons = '';
     if (type === 'pending') {
-        buttons = (currentStatus === 'Sent')
-            ? `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 Mark Paid</button><button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Resend</button></div>`
-            : `<button class="btn-custom btn-wa w-100" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> Send Invoice</button>`;
-    } else if (type === 'paid') {
-        buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 Dispatch</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation();"></div></div>`;
-    } else if (type === 'dispatched') {
+        let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
+        // Main Invoice Button
+        let mainBtn = `<button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>`;
+
+        // Secondary Paid Button (Small Icon or Big Button based on Status)
+        if (currentStatus === 'Sent') {
+            // Sent ആണെങ്കിൽ: Big Paid Button + Small WA Button
+            buttons = `<div class="d-flex gap-2 w-100">
+                <button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 MARK PAID</button>
+                <button class="btn-custom btn-wa" style="width:50px;" onclick="event.stopPropagation(); sendWA(${index})" title="Resend Invoice"><i class="fab fa-whatsapp"></i></button>
+             </div>`;
+        } else {
+            // Pending ആണെങ്കിൽ: Invoice Button + Small Paid Icon Button
+            buttons = `<div class="d-flex gap-2 w-100">
+                ${mainBtn}
+                <button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center" style="width:50px; border-radius:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-hand-holding-usd"></i></button>
+             </div>`;
+        }
+    }
+    else if (type === 'paid') {
+        buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation();"></div></div>`;
+    }
+    else if (type === 'dispatched') {
+        // Dispatched Logic (Preserved)
         let trackNum = d.tracking || '';
         let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
-
-        // 🔥 Dispatched Date Display Logic
         let dispDate = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let formattedDispDate = new Date(dispDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
-        // Date & Edit Icon HTML
         let dateHtml = `
             <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
                 <div style="font-size:11px; color:#166534; font-weight:700;">
@@ -358,20 +436,18 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         `;
     }
 
-    // 1. COMPACT VIEW
+    // --- RENDER RETURN ---
+
+    // 10. Compact View (Updated with new Badges)
     if (isCompact) {
-        let trackNum = d.tracking || '';
-        let trackCheckBtn = trackNum ? `<a href="https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}" target="_blank" class="badge bg-info text-dark ms-1" style="text-decoration:none;" onclick="event.stopPropagation();"><i class="fas fa-search"></i></a>` : '';
         return `
         <div class="col-12 col-md-6 col-lg-4">
             <div class="order-card p-3 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))">
                     <div style="font-size:12px; flex-grow:1;">
-                        <div class="d-flex align-items-center gap-2 mb-1">
-                             <span class="order-id-badge ${badgeClass}">${d.orderid}</span>
-                             <span class="text-muted small" style="font-size:10px;">${formattedDate}</span>
-                        </div>
+                        <div class="mb-1">${headerLeft}</div>
                         <div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div>
+                        <div class="text-muted small" style="font-size:10px;">${formattedDate}</div>
                     </div>
                     <button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅</button>
                 </div>
@@ -380,23 +456,22 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // 2. FULL VIEW
+    // 11. Full View (Updated with Paid Date & New Button Group)
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center">
-                    <span class="order-id-badge ${badgeClass} me-2">${d.orderid}</span>
-                    ${archiveBtn} 
-                </div>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>${headerLeft}</div>
                 <div>${topActions}</div>
             </div>
+            <div class="text-end text-muted small mb-2" style="font-size:10px;">${formattedDate}</div>
             
+            ${paidTimeHTML}
+
             <div class="cust-name">${safe(d.name)}</div>
             <div class="mb-2">
                 <span class="stats-badge-blue">📦 ${totalBottles} Btls</span> 
                 <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span>
-                <span class="text-muted small ms-2" style="font-size:10px;">${formattedDate}</span>
             </div>
 
             <div class="cust-details">
