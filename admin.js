@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxv6eHEHmluEDWnIzoRstI4OXIvsMtxM8EIDhRDUw2EVT-JA2lhp9eZ3htMYU-PlPucsA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxJc1BY53QHWavvZOMSINLF5xEWYdS3o-N623hJ3p9ORxY2QZGec-ID0TUfcKjk3fcBCw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1108,40 +1108,32 @@ function changeDate(days) {
 function changeDashDate(val) {
     if (!val) return;
     selectedDate = new Date(val);
-    document.getElementById('exp-date').valueAsDate = selectedDate; // Sync expense date
+    if (document.getElementById('exp-date')) document.getElementById('exp-date').valueAsDate = selectedDate;
 
-    // Show loading state briefly
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
+    // പുതിയ രണ്ട് ടാബുകളിലും ലോഡിംഗ് കാണിക്കാൻ
+    $('#monthly-expense-timeline, #monthly-income-timeline').html('<div class="text-center py-5 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
 
     fetchDashboardDataBg();
 }
 
-function changeDashDate(val) {
-    if (!val) return;
-    selectedDate = new Date(val);
-    document.getElementById('exp-date').valueAsDate = selectedDate; // Sync expense date
 
-    // Show loading state briefly
-    $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
 
-    fetchDashboardDataBg();
-}
-
+// 🔥 UPDATED RENDER DASHBOARD (With Full Month Timeline Tabs)
 function renderDashboard() {
     if (!dashboardData) return;
 
     let d = dashboardData.daily;
     let m = dashboardData.monthly;
+    let tl = dashboardData.monthTimeline; // Timeline Data
 
+    // --- 1. TOP CARDS ---
     $('#d-sales').text('₹' + d.sales.toLocaleString());
     $('#d-expense').text('₹' + d.expense.toLocaleString());
     $('#d-courier').text('₹' + d.courier.toLocaleString());
     $('#d-profit').text('₹' + d.profit.toLocaleString());
     $('#d-orders').text(d.count || 0);
 
-    // Color logic for Profit
     if (d.profit >= 0) {
         $('#d-profit').removeClass('text-danger').addClass('text-success');
         $('#d-status-text').text("Running Profit 🚀").css('color', '#2e7d32');
@@ -1150,55 +1142,90 @@ function renderDashboard() {
         $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
     }
 
-    // Monthly
     $('#m-sales').text('₹' + m.sales.toLocaleString());
     $('#m-expense').text('₹' + m.expense.toLocaleString());
     $('#m-profit').text('₹' + m.profit.toLocaleString());
 
-    // Timeline List
-    let html = '';
-    if (d.list && d.list.length > 0) {
-        d.list.forEach(item => {
-            let icon = '📝';
-            let cat = item.category.toLowerCase();
-            if (cat.includes('salary')) icon = '👤';
-            else if (cat.includes('materials')) icon = '📦';
-            else if (cat.includes('courier')) icon = '🚚';
-
-            html += `
-            <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
-                <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:35px; height:35px; font-size:15px;">${icon}</div>
-                    <div>
-                        <div class="fw-bold text-dark small">${item.desc || item.category}</div>
-                        <div class="text-muted" style="font-size:10px;">${item.category}</div>
-                    </div>
-                </div>
-                <div class="fw-bold text-danger small">-₹${item.amount}</div>
-            </div>`;
+    // --- 2. EXPENSE TAB RENDER (Month) ---
+    let expHtml = '';
+    let expMap = {};
+    if (tl && tl.expense) {
+        tl.expense.forEach(e => {
+            if (!expMap[e.date]) expMap[e.date] = [];
+            if (e.isCourier) {
+                // കൊറിയർ ചാർജുകൾ ഒരേ ദിവസം ഉണ്ടെങ്കിൽ ഒരുമിച്ച് കാണിക്കാൻ
+                let ex = expMap[e.date].find(x => x.isCourier);
+                if (ex) ex.amount += e.amount;
+                else expMap[e.date].push({ ...e });
+            } else {
+                expMap[e.date].push(e);
+            }
         });
     }
 
-    if (d.courier > 0) {
-        html += `
-        <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle bg-warning bg-opacity-10 text-warning d-flex align-items-center justify-content-center me-3" style="width:35px; height:35px; font-size:15px;">🚚</div>
-                <div>
-                    <div class="fw-bold text-dark small">Courier Charges</div>
-                    <div class="text-muted" style="font-size:10px;">Auto-calculated</div>
+    let expDates = Object.keys(expMap).sort((a, b) => new Date(b) - new Date(a));
+    if (expDates.length === 0) {
+        expHtml = `<div class="text-center py-5 text-muted small">No expenses this month.</div>`;
+    } else {
+        expDates.forEach(date => {
+            let lbl = getTimelineLabel(date); // Sticky Date Header
+            expHtml += `
+            <div class="sticky-date-wrapper" style="position:sticky; top:0; z-index:5; background:rgba(255,255,255,0.95); backdrop-filter:blur(4px); padding:8px 0; border-bottom:1px solid #eee;">
+                <div class="timeline-badge text-danger" style="background:#fff1f2; border:1px solid #ffe4e6; margin:0 auto; padding:4px 12px; font-size:11px; border-radius:20px; font-weight:800;">${lbl}</div>
+            </div>`;
+
+            expMap[date].forEach(item => {
+                let descText = item.desc || item.cat || 'Expense';
+                // ഉദാഹരണത്തിന്: 100 bottles brought from AtoZ Packaging
+                if (item.vendor && item.vendor !== 'Auto') descText += ` from <b>${item.vendor}</b>`;
+                if (item.isCourier) descText = "<b>Courier Sent</b>";
+
+                let icon = item.isCourier ? '🚚' : '📦';
+                if (!item.isCourier && item.cat === 'Salary') icon = '👤';
+
+                expHtml += `
+                <div class="d-flex justify-content-between align-items-center p-3 border-bottom" style="background:#fff;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle bg-light d-flex align-items-center justify-content-center text-secondary" style="width:32px; height:32px; font-size:14px;">${icon}</div>
+                        <div class="small text-dark" style="line-height:1.4; max-width:180px;">${descText}</div>
+                    </div>
+                    <div class="fw-bold text-danger fs-6" style="letter-spacing:-0.5px;">-₹${item.amount.toLocaleString()}</div>
+                </div>`;
+            });
+        });
+    }
+    $('#monthly-expense-timeline').html(expHtml);
+
+    // --- 3. INCOME TAB RENDER (Month) ---
+    let incHtml = '';
+    let incMap = (tl && tl.income) ? tl.income : {};
+    let incDates = Object.keys(incMap).sort((a, b) => new Date(b) - new Date(a));
+
+    if (incDates.length === 0) {
+        incHtml = `<div class="text-center py-5 text-muted small">No income this month.</div>`;
+    } else {
+        incDates.forEach(date => {
+            let lbl = getTimelineLabel(date); // Sticky Date Header
+            let item = incMap[date];
+
+            incHtml += `
+            <div class="sticky-date-wrapper" style="position:sticky; top:0; z-index:5; background:rgba(255,255,255,0.95); backdrop-filter:blur(4px); padding:8px 0; border-bottom:1px solid #eee;">
+                <div class="timeline-badge text-success" style="background:#f0fdf4; border:1px solid #dcfce7; margin:0 auto; padding:4px 12px; font-size:11px; border-radius:20px; font-weight:800;">${lbl}</div>
+            </div>`;
+
+            incHtml += `
+            <div class="d-flex justify-content-between align-items-center p-3 border-bottom" style="background:#fff;">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:32px; height:32px; font-size:16px; background:#f0fdf4;">🍯</div>
+                    <div class="small fw-bold text-dark" style="line-height:1.3;">${item.bottles} bottles sales</div>
                 </div>
-            </div>
-            <div class="fw-bold text-warning small">-₹${d.courier}</div>
-        </div>`;
+                <div class="fw-bold text-success fs-6" style="letter-spacing:-0.5px;">+₹${item.amount.toLocaleString()}</div>
+            </div>`;
+        });
     }
+    $('#monthly-income-timeline').html(incHtml);
 
-    if (html === '') {
-        html = `<div class="text-center py-4"><div class="small text-muted">No transactions recorded today.</div></div>`;
-    }
-
-    $('#daily-timeline').html(html);
-    renderPartnerList();
+    if (typeof renderPartnerList === 'function') renderPartnerList();
 }
 
 // 1. DRAWER OPEN/CLOSE
@@ -1228,7 +1255,7 @@ function updateDateDisplay() {
 function changeDate(days) {
     selectedDate.setDate(selectedDate.getDate() + days);
     updateDateDisplay();
-    fetchDashboardData();
+    fetchDashboardDataBg();
 }
 
 
@@ -1328,7 +1355,7 @@ async function submitExpense(e) {
                 $('.partner-card').removeClass('selected'); // Reset partner selection
 
                 // Refresh Dashboard Data
-                fetchDashboardData();
+                fetchDashboardDataBg();
 
                 // Switch back to overview tab
                 $('#tab-overview').click();
