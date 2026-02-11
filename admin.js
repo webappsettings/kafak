@@ -542,6 +542,7 @@ function filterOrders() {
 }
 
 // 🔥 UPDATED: Auto generates Date & Time for 'Paid' status from Admin Panel
+// 🔥 UPDATED: Auto generates Date & Time for both 'Paid' & 'Dispatched' status
 function updateOrder(oid, status, trackingNum = null, skipConfirm = false, customDate = null) {
     if (!skipConfirm && !trackingNum && !customDate && !confirm(`Mark '${status}'?`)) return;
 
@@ -563,13 +564,10 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
 
     if (trackingNum) updateObj.tracking = trackingNum;
 
-    // 🔥 DATE LOGIC FIX
+    // 🔥 DATE & TIME LOGIC FIX (Both Paid and Dispatched will get Exact Time)
     if (customDate) {
         updateObj.actionDate = customDate;
-    } else if (status === 'Dispatched' && !trackingNum) {
-        updateObj.actionDate = new Date().toISOString().split('T')[0];
-    } else if (status === 'Paid') {
-        // അഡ്മിൻ പാനലിൽ നിന്ന് നേരിട്ട് "Paid" ആക്കുമ്പോൾ കറന്റ് ഡേറ്റ്/ടൈം കൊടുക്കുന്നു
+    } else if ((status === 'Dispatched' && !trackingNum) || status === 'Paid') {
         let now = new Date();
         let y = now.getFullYear();
         let m = String(now.getMonth() + 1).padStart(2, '0');
@@ -588,9 +586,11 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
         if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
         if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
 
-        // UI-യിൽ അപ്പോൾ തന്നെ Paid Date കാണിക്കാൻ വേണ്ടിയുള്ള കോഡ്
         if (status === 'Paid' && !allOrders[orderIndex].paidDate) {
             allOrders[orderIndex].paidDate = updateObj.actionDate;
+        }
+        if (status === 'Dispatched' && !allOrders[orderIndex]['Dispatched Date']) {
+            allOrders[orderIndex]['Dispatched Date'] = updateObj.actionDate;
         }
 
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
