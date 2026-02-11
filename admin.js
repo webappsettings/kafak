@@ -1028,26 +1028,30 @@ function cancelDispatchAction() {
     }, 1000);
 }
 
-// 🔥 FIX: Settings ഷീറ്റിലെ പേരുമായി കൃത്യമായി മാച്ച് ചെയ്യാനുള്ള കോഡ്
-// 🔥 FULLY DYNAMIC ZONE MATCHER (No Hardcoded States)
 function getZoneKey(stateName) {
     if (!stateName) return 'REST OF INDIA';
     let s = String(stateName).toUpperCase().trim();
 
-    if (courierRates) {
-        // 1. Exact Match (ഷീറ്റിലെ പേരും കസ്റ്റമർ കൊടുത്ത പേരും കൃത്യമായി ഒന്നാണെങ്കിൽ)
-        if (courierRates[s]) return s;
-
-        // 2. Dynamic Smart Guess (ഹാർഡ്‌കോഡിങ് ഇല്ലാതെ തന്നെ ഷീറ്റിലെ പേരുകൾ വെച്ച് ചെക്ക് ചെയ്യുന്നു)
+    if (courierRates && typeof courierRates === 'object') {
         let availableZones = Object.keys(courierRates);
+
+        // 1. Exact Match (വലിയ അക്ഷരങ്ങളും സ്പേസും തനിയെ ക്ലിയർ ചെയ്ത് ചെക്ക് ചെയ്യുന്നു)
+        let exactMatch = availableZones.find(z => String(z).toUpperCase().trim() === s);
+        if (exactMatch) return exactMatch;
+
+        // 2. Smart Match (അക്ഷരത്തെറ്റുകൾ ഉണ്ടെങ്കിലും കണ്ടുപിടിക്കാൻ)
         for (let zone of availableZones) {
-            if (zone !== 'REST OF INDIA' && s.length >= 4) {
-                // കസ്റ്റമർ ടൈപ്പ് ചെയ്തതിൽ ഷീറ്റിലെ പേരിന്റെ പകുതി ഉണ്ടെങ്കിലോ തിരിച്ചാണെങ്കിലോ അത് സെലക്ട് ചെയ്യും (ഉദാഹരണത്തിന് കസ്റ്റമർ 'Keral' എന്ന് അടിച്ചാൽ ഷീറ്റിലെ 'KERALA' എന്ന് തനിയെ എടുക്കും)
-                if (zone.includes(s) || s.includes(zone)) {
-                    return zone;
+            let zUpper = String(zone).toUpperCase().trim();
+            if (zUpper !== 'REST OF INDIA' && s.length >= 4) {
+                if (zUpper.includes(s) || s.includes(zUpper)) {
+                    return zone; // ഷീറ്റിൽ ഉള്ള ഒറിജിനൽ പേര് തന്നെ എടുക്കുന്നു
                 }
             }
         }
+
+        // 3. Fallback to Rest of India (ഒന്നും കിട്ടിയില്ലെങ്കിൽ)
+        let restMatch = availableZones.find(z => String(z).toUpperCase().trim() === 'REST OF INDIA');
+        if (restMatch) return restMatch;
     }
     return 'REST OF INDIA';
 }
@@ -1057,12 +1061,25 @@ function calculatePriceInfo(qty, state) {
     const n = parseInt(qty) || 0;
     const basePrice = n * 650;
 
-    const zone = getZoneKey(state);
     let courierCharge = 0;
 
-    // ഷീറ്റിൽ നിന്നും ഫെച്ച് ചെയ്ത റേറ്റുകൾ മാത്രം എടുക്കുന്നു
-    if (courierRates && courierRates[zone] && courierRates[zone][n]) {
-        courierCharge = parseInt(courierRates[zone][n]);
+    // ഷീറ്റിൽ നിന്നും റേറ്റുകൾ വന്നിട്ടുണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+    if (courierRates && Object.keys(courierRates).length > 0) {
+        const zone = getZoneKey(state);
+
+        if (courierRates[zone]) {
+            if (courierRates[zone][n] !== undefined) {
+                courierCharge = parseInt(courierRates[zone][n]) || 0;
+            } else if (courierRates[zone][String(n)] !== undefined) {
+                courierCharge = parseInt(courierRates[zone][String(n)]) || 0;
+            }
+        }
+    } else {
+        // 🔥 FAILSAFE: നെറ്റ്വർക്ക് ഇഷ്യൂ കാരണമോ മറ്റോ റേറ്റ് കിട്ടിയില്ലെങ്കിൽ ഡീഫോൾട്ട് ആയി ഇത് എടുക്കും
+        if (n === 1) courierCharge = 80;
+        else if (n === 2) courierCharge = 140;
+        else if (n === 3) courierCharge = 180;
+        else if (n >= 4) courierCharge = 200;
     }
 
     return { total: `₹${basePrice + courierCharge}/-` };
