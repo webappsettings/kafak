@@ -1307,17 +1307,35 @@ function renderTransactionsForDate(dateStr) {
     $('#tx-details-area').html(html);
 }
 
-// 🔥 NEW: Receipt കാണാനുള്ള ഫംഗ്‌ഷൻ
+// 🔥 NEW: Receipt കാണാനുള്ള ഫംഗ്‌ഷൻ (Google Drive Image Fix)
 window.viewReceipt = function (url) {
+    let imgUrl = url;
+
+    // ഗൂഗിൾ ഡ്രൈവ് വ്യൂ ലിങ്കിനെ നേരിട്ടുള്ള ഇമേജ് ലിങ്ക് ആക്കി മാറ്റുന്നു
+    let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+        imgUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+
     Swal.fire({
         title: 'Bill / Receipt',
-        imageUrl: url,
-        imageAlt: 'Receipt Image',
+        imageUrl: imgUrl,
+        imageAlt: 'Loading Image...',
         width: '90%',
         padding: '10px',
         showCloseButton: true,
         showConfirmButton: false,
-        customClass: { image: 'rounded-3 shadow-sm' }
+        customClass: { image: 'rounded-3 shadow-sm' },
+        didOpen: () => {
+            // ഡ്രൈവ് പെർമിഷൻ കാരണം ഇമേജ് ലോഡ് ആയില്ലെങ്കിൽ, നേരിട്ട് പുതിയ ടാബിൽ തുറക്കും
+            const img = Swal.getImage();
+            if (img) {
+                img.onerror = () => {
+                    Swal.close();
+                    window.open(url, '_blank');
+                };
+            }
+        }
     });
 }
 
@@ -1345,7 +1363,7 @@ function compressImage(file) {
     });
 }
 
-// 🔥 ADD EXPENSE (Submit & Reset Logic Updated)
+// 🔥 ADD EXPENSE (Submit & Perfect Reset Logic)
 async function submitExpense(e) {
     e.preventDefault();
     let btn = $('#btn-save-exp');
@@ -1389,13 +1407,14 @@ async function submitExpense(e) {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
 
-                // 🔥 FIX: പൂർണ്ണമായും ഫോം റീസെറ്റ് ചെയ്യുന്നു
+                // 🔥 PERFECT FORM RESET
                 $('#expense-form')[0].reset();
-                $('#exp-category').val('Materials'); // Default ആക്കുന്നു
-                togglePartnerSelect(); // Partner സെലക്ഷൻ ഹൈഡ് ആക്കുന്നു
-
-                if (expDatePicker) expDatePicker.setDate(selectedD, false);
+                $('#exp-category').val('Materials'); // Default Category
+                $('#partner-section').hide(); // Force hide partner section
+                $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
                 $('.partner-card').removeClass('selected');
+                $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
+                if (expDatePicker) expDatePicker.setDate(selectedD, false);
 
                 fetchDashboardDataBg();
                 $('#tab-overview').click();
@@ -1416,14 +1435,15 @@ function togglePartnerSelect() {
     }
 }
 
-// 🔥 FIX: Previous Month Balance കാണിക്കാൻ
+// 🔥 FIX: Show absolute Total Balance
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
     let html = '';
+
     for (let [name, data] of Object.entries(partners)) {
-        // കഴിഞ്ഞ മാസത്തെ ബാലൻസും ഈ മാസത്തെ ബാലൻസും വ്യത്യാസമുണ്ടെങ്കിൽ മാത്രം കാണിക്കുക
-        let prevText = (data.prev !== data.curr) ? `<span class="text-muted ms-1" style="font-size:9px;">(Last M: ₹${data.prev})</span>` : '';
+        // data.curr എന്നത് ഇതുവരെയുള്ള മൊത്തം പ്രോഫിറ്റിൽ നിന്ന് ഇതുവരെ എടുത്ത മൊത്തം സാലറി കുറച്ച ഫൈനൽ ബാലൻസ് ആണ്. 
+        let totalBal = typeof data === 'object' ? data.curr : data;
 
         html += `
         <div class="partner-card" onclick="selectPartner('${name}')">
@@ -1431,7 +1451,7 @@ function renderPartnerList() {
                 <i class="fas fa-user-circle text-muted fs-4"></i>
                 <div>
                     <div class="fw-bold small">${name}</div>
-                    <div class="text-muted" style="font-size:10px;">Bal: ₹${data.curr} ${prevText}</div>
+                    <div class="text-success fw-bold" style="font-size:11px;">Total Bal: ₹${totalBal}</div>
                 </div>
             </div>
             <i class="far fa-circle text-muted check-icon"></i>
