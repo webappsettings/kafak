@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbwDBC8iUvC7s3XV6wJPTwm6qCMQc32VkBLxYRMjSXB1ZCXC2CleO7pH3EKL-DAh1LziKg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxXAIp1EYrYVP-nAqyz6ADXlLgmNjjyBsRN2wVci7sesS4ztnoGSvhuHNCgfzsmKhoLvA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1242,7 +1242,7 @@ function renderDashboard() {
     if (typeof renderPartnerList === 'function') renderPartnerList();
 }
 
-// 🔥 RENDER TRANSACTIONS FOR SELECTED DATE (Clean & Compact)
+// 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
 function renderTransactionsForDate(dateStr) {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -1261,7 +1261,6 @@ function renderTransactionsForDate(dateStr) {
         html += `<div class="text-center py-4 bg-white border rounded-4 shadow-sm text-muted small" style="border-style:dashed !important;">No activity on this date.</div>`;
     }
 
-    // 1. Show Income First
     if (inc) {
         html += `
         <div class="d-flex justify-content-between align-items-center p-3 mb-2 bg-white border border-success border-opacity-25 rounded-4 shadow-sm">
@@ -1276,7 +1275,6 @@ function renderTransactionsForDate(dateStr) {
         </div>`;
     }
 
-    // 2. Show Expenses Below
     if (exps.length > 0) {
         exps.forEach(item => {
             let descText = item.desc || item.cat || 'Expense';
@@ -1286,12 +1284,18 @@ function renderTransactionsForDate(dateStr) {
             let icon = item.isCourier ? '🚚' : '📦';
             if (!item.isCourier && item.cat === 'Salary') icon = '👤';
 
+            // 🔥 FIX: രസീത് ഉണ്ടെങ്കിൽ മാത്രം ബട്ടൺ കാണിക്കുക
+            let proofBtn = '';
+            if (item.proof && String(item.proof).trim() !== "") {
+                proofBtn = `<button onclick="viewReceipt('${item.proof}')" class="btn btn-sm btn-light border py-0 px-2 ms-1" style="font-size:10px; border-radius:6px;"><i class="fas fa-image text-primary"></i></button>`;
+            }
+
             html += `
             <div class="d-flex justify-content-between align-items-center p-3 mb-2 bg-white border border-danger border-opacity-25 rounded-4 shadow-sm">
                 <div class="d-flex align-items-center gap-3">
                     <div class="rounded-circle d-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger" style="width:35px; height:35px; font-size:14px;">${icon}</div>
                     <div>
-                        <div class="small fw-bold text-dark mb-1">${descText}</div>
+                        <div class="small fw-bold text-dark mb-1 d-flex align-items-center flex-wrap">${descText} ${proofBtn}</div>
                         <div class="text-muted" style="font-size:10px;">${item.cat}</div>
                     </div>
                 </div>
@@ -1301,6 +1305,20 @@ function renderTransactionsForDate(dateStr) {
     }
 
     $('#tx-details-area').html(html);
+}
+
+// 🔥 NEW: Receipt കാണാനുള്ള ഫംഗ്‌ഷൻ
+window.viewReceipt = function (url) {
+    Swal.fire({
+        title: 'Bill / Receipt',
+        imageUrl: url,
+        imageAlt: 'Receipt Image',
+        width: '90%',
+        padding: '10px',
+        showCloseButton: true,
+        showConfirmButton: false,
+        customClass: { image: 'rounded-3 shadow-sm' }
+    });
 }
 
 // 📸 HELPER: Image Compression Logic
@@ -1327,7 +1345,7 @@ function compressImage(file) {
     });
 }
 
-// 🔥 ADD EXPENSE (Submit Logic)
+// 🔥 ADD EXPENSE (Submit & Reset Logic Updated)
 async function submitExpense(e) {
     e.preventDefault();
     let btn = $('#btn-save-exp');
@@ -1370,9 +1388,15 @@ async function submitExpense(e) {
         .then(data => {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+
+                // 🔥 FIX: പൂർണ്ണമായും ഫോം റീസെറ്റ് ചെയ്യുന്നു
                 $('#expense-form')[0].reset();
+                $('#exp-category').val('Materials'); // Default ആക്കുന്നു
+                togglePartnerSelect(); // Partner സെലക്ഷൻ ഹൈഡ് ആക്കുന്നു
+
                 if (expDatePicker) expDatePicker.setDate(selectedD, false);
                 $('.partner-card').removeClass('selected');
+
                 fetchDashboardDataBg();
                 $('#tab-overview').click();
             } else alert('Failed!');
@@ -1392,18 +1416,22 @@ function togglePartnerSelect() {
     }
 }
 
+// 🔥 FIX: Previous Month Balance കാണിക്കാൻ
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
     let html = '';
-    for (let [name, balance] of Object.entries(partners)) {
+    for (let [name, data] of Object.entries(partners)) {
+        // കഴിഞ്ഞ മാസത്തെ ബാലൻസും ഈ മാസത്തെ ബാലൻസും വ്യത്യാസമുണ്ടെങ്കിൽ മാത്രം കാണിക്കുക
+        let prevText = (data.prev !== data.curr) ? `<span class="text-muted ms-1" style="font-size:9px;">(Last M: ₹${data.prev})</span>` : '';
+
         html += `
         <div class="partner-card" onclick="selectPartner('${name}')">
             <div class="d-flex align-items-center gap-2">
                 <i class="fas fa-user-circle text-muted fs-4"></i>
                 <div>
                     <div class="fw-bold small">${name}</div>
-                    <div class="text-muted" style="font-size:10px;">Bal: ₹${balance}</div>
+                    <div class="text-muted" style="font-size:10px;">Bal: ₹${data.curr} ${prevText}</div>
                 </div>
             </div>
             <i class="far fa-circle text-muted check-icon"></i>

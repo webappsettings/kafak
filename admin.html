@@ -1159,27 +1159,6 @@
 
                 <div id="daily-timeline" class="mb-5">
 
-                    <div class="mt-3 mb-0"
-                        style="position: sticky; top: -20px; z-index: 10; background: #f8f9fa; padding-top: 10px;">
-                        <ul class="nav nav-tabs border-0 d-flex gap-2" id="tx-tabs" role="tablist">
-                            <li class="nav-item flex-grow-1" role="presentation">
-                                <button class="nav-link active w-100 fw-bold small rounded-top-3 px-2 py-2"
-                                    id="tx-expense-tab" data-bs-toggle="tab" data-bs-target="#tx-expense" type="button"
-                                    role="tab"
-                                    style="color: #dc3545; background: #fff5f5; border: 1px solid #ffe4e6; border-bottom: none;">
-                                    <i class="fas fa-arrow-down me-1"></i> EXPENSES (Month)
-                                </button>
-                            </li>
-                            <li class="nav-item flex-grow-1" role="presentation">
-                                <button class="nav-link w-100 fw-bold small rounded-top-3 px-2 py-2" id="tx-income-tab"
-                                    data-bs-toggle="tab" data-bs-target="#tx-income" type="button" role="tab"
-                                    style="color: #198754; background: #f0fdf4; border: 1px solid #dcfce7; border-bottom: none;">
-                                    <i class="fas fa-arrow-up me-1"></i> INCOME (Month)
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-
                     <div class="d-flex justify-content-between align-items-center px-1 mt-2 mb-2">
                         <h6 class="fw-bold m-0 text-uppercase text-muted small" style="font-size: 11px;">Activity
                             Calendar</h6>
@@ -1638,6 +1617,28 @@
             font-size: 10px;
             font-weight: 700;
             border: 1px solid #f0abfc;
+        }
+
+        /* 🔥 FIX: Flatpickr Full Width Fix */
+        .flatpickr-calendar.inline {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .flatpickr-innerContainer,
+        .flatpickr-rContainer,
+        .dayContainer,
+        .flatpickr-days {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 100% !important;
+        }
+
+        .flatpickr-day {
+            max-width: 100% !important;
+            flex-basis: 14.28% !important;
         }
     </style>
 </body>
