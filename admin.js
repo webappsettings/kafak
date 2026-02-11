@@ -478,6 +478,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     else if (type === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100">
             <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button>
+            
+            <button class="btn btn-danger shadow-sm border-0 d-flex align-items-center justify-content-center" style="width:40px; border-radius:10px;" onclick="event.stopPropagation(); prefillRefund(${index})" title="Refund"><i class="fas fa-undo-alt"></i></button>
+            
             <div style="width: 40px; display: flex; justify-content: center;">
                 <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
             </div>
@@ -508,6 +511,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             <div class="d-flex gap-1 mb-2 w-100">
                 <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
                 ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
+                
+                <button class="btn btn-danger shadow-sm border-0 d-flex align-items-center justify-content-center" style="width:45px; border-radius:10px;" onclick="event.stopPropagation(); prefillRefund(${index})" title="Refund"><i class="fas fa-undo-alt"></i></button>
             </div>
             <button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>
         `;
@@ -1629,6 +1634,9 @@ function renderTransactionsForDate(dateStr) {
             let icon = item.isCourier ? '🚚' : '📦';
             if (!item.isCourier && item.cat === 'Salary') icon = '👤';
 
+            // 🔥 FIX: റീഫണ്ട് ആണെങ്കിൽ പൈസ പോകുന്ന ഐക്കൺ കാണിക്കാൻ
+            if (!item.isCourier && item.cat === 'Refund') icon = '💸';
+
             let proofBtn = '';
             if (item.proof && String(item.proof).trim() !== "") {
                 proofBtn = `<button onclick="viewReceipt('${item.proof}')" class="btn btn-sm btn-light border py-0 px-2 ms-1" style="font-size:10px; border-radius:6px;"><i class="fas fa-image text-primary"></i></button>`;
@@ -1743,6 +1751,38 @@ async function submitExpense(e) {
             saveExpenseOffline(formData, selectedD); // നെറ്റ് പോയാൽ ഓഫ്ലൈൻ ആകും
         })
         .finally(() => btn.prop('disabled', false).text(originalText));
+}
+
+
+// 🔥 NEW: Auto-fill Expense Form for Refund
+function prefillRefund(index) {
+    let order = allOrders[index];
+    if (!order) return;
+
+    // 1. Calculate Amount
+    let priceInfo = calculatePriceInfo(order.quantity, order.state);
+    let amount = parseInt(priceInfo.total.replace(/[^0-9]/g, '')) || 0;
+
+    // 2. Switch to Add Expense Tab
+    let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
+    tabTrigger.show();
+
+    // 3. Auto-fill Data
+    setTimeout(() => {
+        $('#exp-category').val('Refund'); // "Refund" category select cheyyunnu
+        $('#exp-vendor').val(order.name + " (Ref #" + order.orderid + ")"); // Customer Name + Order ID
+        $('#exp-amount').val(amount); // Order Total Amount
+        $('#exp-desc').val("Refund for Order " + order.orderid);
+
+        // Focus for quick save
+        $('#exp-amount').focus();
+
+        // Show Toast
+        Swal.fire({
+            toast: true, position: 'top', showConfirmButton: false, timer: 2000,
+            icon: 'info', title: 'Refund details auto-filled! ⚡'
+        });
+    }, 200);
 }
 
 // Helper: Offline Save
