@@ -1180,23 +1180,19 @@
                         </ul>
                     </div>
 
-                    <div class="tab-content mb-4" id="tx-tabs-content">
-                        <div class="tab-pane fade show active" id="tx-expense" role="tabpanel">
-                            <div id="monthly-expense-timeline"
-                                class="bg-white border rounded-bottom-4 rounded-top-0 p-0 shadow-sm"
-                                style="position:relative; min-height: 150px;">
-                                <div class="text-center py-5 text-muted small"><i class="fas fa-spinner fa-spin"></i>
-                                    Loading...</div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tx-income" role="tabpanel">
-                            <div id="monthly-income-timeline"
-                                class="bg-white border rounded-bottom-4 rounded-top-0 p-0 shadow-sm"
-                                style="position:relative; min-height: 150px;">
-                                <div class="text-center py-5 text-muted small"><i class="fas fa-spinner fa-spin"></i>
-                                    Loading...</div>
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-between align-items-center px-1 mt-2 mb-2">
+                        <h6 class="fw-bold m-0 text-uppercase text-muted small" style="font-size: 11px;">Activity
+                            Calendar</h6>
+                    </div>
+
+                    <div class="bg-white border rounded-4 shadow-sm p-2 mb-3 d-flex justify-content-center"
+                        style="overflow: hidden;">
+                        <input type="text" id="tx-calendar" class="d-none">
+                    </div>
+
+                    <div id="tx-details-area" class="mb-4">
+                        <div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading
+                            Activity...</div>
                     </div>
                 </div>
 
@@ -1282,6 +1278,45 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="admin.js"></script>
+
+    <style>
+        /* Custom CSS for Calendar Dots */
+        .flatpickr-day {
+            position: relative;
+        }
+
+        .activity-dots {
+            position: absolute;
+            bottom: 3px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+            pointer-events: none;
+        }
+
+        .dot-inc {
+            width: 5px;
+            height: 5px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+
+        .dot-exp {
+            width: 5px;
+            height: 5px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+
+        /* Hide top calendar header border to make it clean */
+        .flatpickr-calendar.inline {
+            box-shadow: none !important;
+            border: none !important;
+            width: 100% !important;
+        }
+    </style>
 
     <style id="label-css">
         @page {

@@ -1060,25 +1060,29 @@ function calculatePriceInfo(qty, state) {
 
 
 // ==========================================
-// 🔥 DASHBOARD & EXPENSE LOGIC (FLATPICKR UPDATE)
+// 🔥 DASHBOARD LOGIC (INTERACTIVE CALENDAR WITH DOTS)
 // ==========================================
 
 let selectedDate = new Date();
 let dashboardData = null;
 let dashDatePicker = null;
 let expDatePicker = null;
+let txCalendarPicker = null;
 
-// 1. Initialize Advanced Beautiful Date Pickers
+// 1. Initialize Advanced Pickers
 function initFlatpickrs() {
     if (!dashDatePicker) {
         dashDatePicker = flatpickr("#dash-date", {
-            dateFormat: "Y-m-d",
+            dateFormat: "d M Y", // 🔥 Fix: Beautiful format (e.g. 11 Feb 2026)
             defaultDate: selectedDate,
-            maxDate: "today", // 🔥 Tomorrow Disabled
+            maxDate: "today",
             theme: "material_blue",
-            disableMobile: false,
-            onChange: function (selectedDates, dateStr, instance) {
-                if (dateStr) changeDashDate(dateStr);
+            disableMobile: true, // 🔥 Fix: Prevents dd-mm-yyyy issue on phones
+            onChange: function (selectedDates) {
+                if (selectedDates[0]) {
+                    selectedDate = selectedDates[0];
+                    changeDashDate();
+                }
             }
         });
     }
@@ -1086,9 +1090,42 @@ function initFlatpickrs() {
         expDatePicker = flatpickr("#exp-date", {
             dateFormat: "Y-m-d",
             defaultDate: selectedDate,
-            maxDate: "today", // 🔥 Tomorrow Disabled
+            maxDate: "today",
             theme: "material_blue",
-            disableMobile: false
+            disableMobile: true
+        });
+    }
+    if (!txCalendarPicker) {
+        txCalendarPicker = flatpickr("#tx-calendar", {
+            inline: true, // 🔥 Show as a permanent calendar block
+            defaultDate: selectedDate,
+            theme: "material_blue",
+            onChange: function (selectedDates) {
+                if (selectedDates[0]) {
+                    selectedDate = selectedDates[0];
+                    changeDashDate();
+                }
+            },
+            onMonthChange: function (selectedDates, dateStr, instance) {
+                // Fetch data when user swipes to previous month
+                selectedDate = new Date(instance.currentYear, instance.currentMonth, 1);
+                changeDashDate();
+            },
+            // 🔥 Inject Green & Red Dots
+            onDayCreate: function (dObj, dStr, fp, dayElem) {
+                if (!dashboardData || !dashboardData.monthTimeline) return;
+                let dateKey = flatpickr.formatDate(dayElem.dateObj, "Y-m-d");
+                let hasIncome = dashboardData.monthTimeline.income[dateKey];
+                let hasExpense = dashboardData.monthTimeline.expense.some(e => e.date === dateKey);
+
+                if (hasIncome || hasExpense) {
+                    let dots = '<div class="activity-dots">';
+                    if (hasIncome) dots += '<span class="dot-inc"></span>';
+                    if (hasExpense) dots += '<span class="dot-exp"></span>';
+                    dots += '</div>';
+                    dayElem.innerHTML += dots;
+                }
+            }
         });
     }
 }
@@ -1113,8 +1150,8 @@ function openDashboard() {
     $('#drawer-overlay').fadeIn(200);
     $('#dashboard-drawer').addClass('open');
 
-    initFlatpickrs(); // Load UI pickers
-    updateArrowUI();  // Disable arrow if today
+    initFlatpickrs();
+    updateArrowUI();
 
     if (!dashboardData) fetchDashboardDataBg();
     else renderDashboard();
@@ -1125,7 +1162,6 @@ function closeDashboard() {
     $('#dashboard-drawer').removeClass('open');
 }
 
-// 2. 🔥 Arrow Click Function (Prevent Future Dates)
 function updateArrowUI() {
     let today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -1148,53 +1184,38 @@ function changeDate(days) {
     let checkD = new Date(newDate);
     checkD.setHours(0, 0, 0, 0);
 
-    // Tomorrow Disabled
     if (checkD > today) return;
 
     selectedDate = newDate;
-    let dateStr = flatpickr.formatDate(selectedDate, "Y-m-d");
-
-    // Update pickers without triggering loop
-    if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
-    if (expDatePicker) expDatePicker.setDate(selectedDate, false);
-
-    changeDashDate(dateStr);
+    changeDashDate();
 }
 
-// 3. 🔥 Date Change Event Trigger
-function changeDashDate(val) {
-    if (!val) return;
-    selectedDate = new Date(val);
-
-    // Sync both pickers
-    if (expDatePicker) expDatePicker.setDate(selectedDate, false);
+function changeDashDate() {
+    // Sync all pickers to selectedDate
     if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
+    if (expDatePicker) expDatePicker.setDate(selectedDate, false);
+    if (txCalendarPicker) txCalendarPicker.setDate(selectedDate, false);
 
     updateArrowUI();
 
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    $('#monthly-expense-timeline, #monthly-income-timeline').html('<div class="text-center py-5 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
+    $('#tx-details-area').html('<div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
 
     fetchDashboardDataBg();
 }
 
-// 4. 🔥 Render Dashboard UI (With dynamic Month/Year Tags)
+// 🔥 Render Top Summary & Refresh Calendar Dots
 function renderDashboard() {
     if (!dashboardData) return;
 
     let d = dashboardData.daily;
     let m = dashboardData.monthly;
-    let tl = dashboardData.monthTimeline;
 
-    // Dynamic Month Display
     let mName = selectedDate.toLocaleString('en-US', { month: 'short' });
     let yName = selectedDate.getFullYear();
 
     $('#m-overview-title').text(`(${mName} ${yName})`);
-    $('#tx-expense-tab').html(`<i class="fas fa-arrow-down me-1"></i> EXPENSES (${mName})`);
-    $('#tx-income-tab').html(`<i class="fas fa-arrow-up me-1"></i> INCOME (${mName})`);
 
-    // --- TOP CARDS ---
     $('#d-sales').text('₹' + d.sales.toLocaleString());
     $('#d-expense').text('₹' + d.expense.toLocaleString());
     $('#d-courier').text('₹' + d.courier.toLocaleString());
@@ -1213,84 +1234,73 @@ function renderDashboard() {
     $('#m-expense').text('₹' + m.expense.toLocaleString());
     $('#m-profit').text('₹' + m.profit.toLocaleString());
 
-    // --- EXPENSE TAB RENDER ---
-    let expHtml = '';
-    let expMap = {};
-    if (tl && tl.expense) {
-        tl.expense.forEach(e => {
-            if (!expMap[e.date]) expMap[e.date] = [];
-            if (e.isCourier) {
-                let ex = expMap[e.date].find(x => x.isCourier);
-                if (ex) ex.amount += e.amount;
-                else expMap[e.date].push({ ...e });
-            } else {
-                expMap[e.date].push(e);
-            }
-        });
-    }
-
-    let expDates = Object.keys(expMap).sort((a, b) => new Date(b) - new Date(a));
-    if (expDates.length === 0) {
-        expHtml = `<div class="text-center py-5 text-muted small">No expenses in ${mName} ${yName}.</div>`;
-    } else {
-        expDates.forEach(date => {
-            let lbl = getTimelineLabel(date);
-            expHtml += `
-            <div class="sticky-date-wrapper" style="position:sticky; top:0; z-index:5; background:rgba(255,255,255,0.95); backdrop-filter:blur(4px); padding:8px 0; border-bottom:1px solid #eee;">
-                <div class="timeline-badge text-danger" style="background:#fff1f2; border:1px solid #ffe4e6; margin:0 auto; padding:4px 12px; font-size:11px; border-radius:20px; font-weight:800;">${lbl}</div>
-            </div>`;
-
-            expMap[date].forEach(item => {
-                let descText = item.desc || item.cat || 'Expense';
-                if (item.vendor && item.vendor !== 'Auto') descText += ` from <b>${item.vendor}</b>`;
-                if (item.isCourier) descText = "<b>Courier Sent</b>";
-
-                let icon = item.isCourier ? '🚚' : '📦';
-                if (!item.isCourier && item.cat === 'Salary') icon = '👤';
-
-                expHtml += `
-                <div class="d-flex justify-content-between align-items-center p-3 border-bottom" style="background:#fff;">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="rounded-circle bg-light d-flex align-items-center justify-content-center text-secondary" style="width:32px; height:32px; font-size:14px;">${icon}</div>
-                        <div class="small text-dark" style="line-height:1.4; max-width:180px;">${descText}</div>
-                    </div>
-                    <div class="fw-bold text-danger fs-6" style="letter-spacing:-0.5px;">-₹${item.amount.toLocaleString()}</div>
-                </div>`;
-            });
-        });
-    }
-    $('#monthly-expense-timeline').html(expHtml);
-
-    // --- INCOME TAB RENDER ---
-    let incHtml = '';
-    let incMap = (tl && tl.income) ? tl.income : {};
-    let incDates = Object.keys(incMap).sort((a, b) => new Date(b) - new Date(a));
-
-    if (incDates.length === 0) {
-        incHtml = `<div class="text-center py-5 text-muted small">No income in ${mName} ${yName}.</div>`;
-    } else {
-        incDates.forEach(date => {
-            let lbl = getTimelineLabel(date);
-            let item = incMap[date];
-
-            incHtml += `
-            <div class="sticky-date-wrapper" style="position:sticky; top:0; z-index:5; background:rgba(255,255,255,0.95); backdrop-filter:blur(4px); padding:8px 0; border-bottom:1px solid #eee;">
-                <div class="timeline-badge text-success" style="background:#f0fdf4; border:1px solid #dcfce7; margin:0 auto; padding:4px 12px; font-size:11px; border-radius:20px; font-weight:800;">${lbl}</div>
-            </div>`;
-
-            incHtml += `
-            <div class="d-flex justify-content-between align-items-center p-3 border-bottom" style="background:#fff;">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:32px; height:32px; font-size:16px; background:#f0fdf4;">🍯</div>
-                    <div class="small fw-bold text-dark" style="line-height:1.3;">${item.bottles} bottles sales</div>
-                </div>
-                <div class="fw-bold text-success fs-6" style="letter-spacing:-0.5px;">+₹${item.amount.toLocaleString()}</div>
-            </div>`;
-        });
-    }
-    $('#monthly-income-timeline').html(incHtml);
+    // 🔥 Redraw Calendar to show dots & Render Transactions for selected date
+    if (txCalendarPicker) txCalendarPicker.redraw();
+    let dateKey = flatpickr.formatDate(selectedDate, "Y-m-d");
+    renderTransactionsForDate(dateKey);
 
     if (typeof renderPartnerList === 'function') renderPartnerList();
+}
+
+// 🔥 RENDER TRANSACTIONS FOR SELECTED DATE (Clean & Compact)
+function renderTransactionsForDate(dateStr) {
+    if (!dashboardData || !dashboardData.monthTimeline) return;
+
+    let tl = dashboardData.monthTimeline;
+    let inc = tl.income[dateStr];
+    let exps = tl.expense.filter(e => e.date === dateStr);
+
+    let dateLabel = getTimelineLabel(dateStr);
+    if (dateLabel !== "Today" && dateLabel !== "Yesterday") {
+        dateLabel = flatpickr.formatDate(new Date(dateStr), "d M Y");
+    }
+
+    let html = `<div class="d-flex align-items-center mb-2 px-1"><h6 class="fw-bold small text-dark m-0">${dateLabel}'s Activity</h6></div>`;
+
+    if (!inc && exps.length === 0) {
+        html += `<div class="text-center py-4 bg-white border rounded-4 shadow-sm text-muted small" style="border-style:dashed !important;">No activity on this date.</div>`;
+    }
+
+    // 1. Show Income First
+    if (inc) {
+        html += `
+        <div class="d-flex justify-content-between align-items-center p-3 mb-2 bg-white border border-success border-opacity-25 rounded-4 shadow-sm">
+            <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle d-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success" style="width:35px; height:35px; font-size:16px;">🍯</div>
+                <div>
+                    <div class="small fw-bold text-dark mb-1">Sales Income</div>
+                    <div class="text-muted" style="font-size:10px;">${inc.bottles} bottles sold</div>
+                </div>
+            </div>
+            <div class="fw-bold text-success fs-6">+₹${inc.amount.toLocaleString()}</div>
+        </div>`;
+    }
+
+    // 2. Show Expenses Below
+    if (exps.length > 0) {
+        exps.forEach(item => {
+            let descText = item.desc || item.cat || 'Expense';
+            if (item.vendor && item.vendor !== 'Auto') descText += ` (${item.vendor})`;
+            if (item.isCourier) descText = "Courier Charges";
+
+            let icon = item.isCourier ? '🚚' : '📦';
+            if (!item.isCourier && item.cat === 'Salary') icon = '👤';
+
+            html += `
+            <div class="d-flex justify-content-between align-items-center p-3 mb-2 bg-white border border-danger border-opacity-25 rounded-4 shadow-sm">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger" style="width:35px; height:35px; font-size:14px;">${icon}</div>
+                    <div>
+                        <div class="small fw-bold text-dark mb-1">${descText}</div>
+                        <div class="text-muted" style="font-size:10px;">${item.cat}</div>
+                    </div>
+                </div>
+                <div class="fw-bold text-danger fs-6">-₹${item.amount.toLocaleString()}</div>
+            </div>`;
+        });
+    }
+
+    $('#tx-details-area').html(html);
 }
 
 // 📸 HELPER: Image Compression Logic
@@ -1307,12 +1317,9 @@ function compressImage(file) {
                 const scaleSize = MAX_WIDTH / img.width;
                 canvas.width = MAX_WIDTH;
                 canvas.height = img.height * scaleSize;
-
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
-                resolve({ data: dataUrl, name: "Proof_" + Date.now() + ".jpg" });
+                resolve({ data: canvas.toDataURL('image/jpeg', 0.6), name: "Proof_" + Date.now() + ".jpg" });
             };
             img.onerror = (err) => reject(err);
         };
@@ -1320,24 +1327,21 @@ function compressImage(file) {
     });
 }
 
-// 🔥 ADD EXPENSE (Submit Logic Updated)
+// 🔥 ADD EXPENSE (Submit Logic)
 async function submitExpense(e) {
     e.preventDefault();
-
     let btn = $('#btn-save-exp');
     let originalText = btn.text();
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SAVING...');
 
     let fileInput = document.getElementById('exp-proof');
-    let fileData = null;
-    let fileName = null;
+    let fileData = null; let fileName = null;
 
     if (fileInput && fileInput.files.length > 0) {
         try {
             btn.html('<i class="fas fa-compress"></i> COMPRESSING...');
             let compressed = await compressImage(fileInput.files[0]);
-            fileData = compressed.data;
-            fileName = compressed.name;
+            fileData = compressed.data; fileName = compressed.name;
         } catch (err) {
             alert("Image processing failed");
             btn.prop('disabled', false).text(originalText);
@@ -1361,29 +1365,20 @@ async function submitExpense(e) {
         fileName: fileName
     };
 
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'addExpense', data: formData })
-    })
+    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: formData }) })
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
                 $('#expense-form')[0].reset();
-
                 if (expDatePicker) expDatePicker.setDate(selectedD, false);
                 $('.partner-card').removeClass('selected');
-
                 fetchDashboardDataBg();
                 $('#tab-overview').click();
-            } else {
-                alert('Failed: ' + (data.message || 'Unknown error'));
-            }
+            } else alert('Failed!');
         })
         .catch(err => alert('Network Error'))
-        .finally(() => {
-            btn.prop('disabled', false).text(originalText);
-        });
+        .finally(() => btn.prop('disabled', false).text(originalText));
 }
 
 function togglePartnerSelect() {
