@@ -121,11 +121,13 @@ function fetchRatesBackground() {
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success' && data.rates) {
-                courierRates = data.rates; // ഗ്ലോബൽ വേരിയബിൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-
-                // 🔥 പുതിയ റേറ്റ് ലോക്കൽ സ്റ്റോറേജിൽ സേവ് ചെയ്യുന്നു
+                courierRates = data.rates;
                 localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
                 console.log("✅ Rates Updated & Saved to LocalStorage");
+
+                if (allOrders && allOrders.length > 0) {
+                    renderTabs(allOrders);
+                }
             }
         })
         .catch(err => console.log("⚠️ Rate fetch failed, using cached data."));
@@ -1027,24 +1029,27 @@ function cancelDispatchAction() {
 }
 
 // 🔥 FIX: Settings ഷീറ്റിലെ പേരുമായി കൃത്യമായി മാച്ച് ചെയ്യാനുള്ള കോഡ്
+// 🔥 FULLY DYNAMIC ZONE MATCHER (No Hardcoded States)
 function getZoneKey(stateName) {
     if (!stateName) return 'REST OF INDIA';
     let s = String(stateName).toUpperCase().trim();
 
-    // കൃത്യമായ സ്പെല്ലിംഗ് ആണെങ്കിൽ അത് തന്നെ എടുക്കുക 
-    if (['KERALA', 'TAMIL NADU', 'KARNATAKA', 'ANDHRA PRADESH', 'TELANGANA', 'LAKSHADWEEP'].includes(s)) {
-        return s;
+    if (courierRates) {
+        // 1. Exact Match (ഷീറ്റിലെ പേരും കസ്റ്റമർ കൊടുത്ത പേരും കൃത്യമായി ഒന്നാണെങ്കിൽ)
+        if (courierRates[s]) return s;
+
+        // 2. Dynamic Smart Guess (ഹാർഡ്‌കോഡിങ് ഇല്ലാതെ തന്നെ ഷീറ്റിലെ പേരുകൾ വെച്ച് ചെക്ക് ചെയ്യുന്നു)
+        let availableZones = Object.keys(courierRates);
+        for (let zone of availableZones) {
+            if (zone !== 'REST OF INDIA' && s.length >= 4) {
+                // കസ്റ്റമർ ടൈപ്പ് ചെയ്തതിൽ ഷീറ്റിലെ പേരിന്റെ പകുതി ഉണ്ടെങ്കിലോ തിരിച്ചാണെങ്കിലോ അത് സെലക്ട് ചെയ്യും (ഉദാഹരണത്തിന് കസ്റ്റമർ 'Keral' എന്ന് അടിച്ചാൽ ഷീറ്റിലെ 'KERALA' എന്ന് തനിയെ എടുക്കും)
+                if (zone.includes(s) || s.includes(zone)) {
+                    return zone;
+                }
+            }
+        }
     }
-
-    // കസ്റ്റമർ അക്ഷരത്തെറ്റ് വരുത്തിയാലും കണ്ടുപിടിക്കാൻ (Smart Guess)
-    if (s.includes('KERAL')) return 'KERALA';
-    if (s.includes('TAMIL') || s.includes('TN')) return 'TAMIL NADU';
-    if (s.includes('KARNAT') || s.includes('KA')) return 'KARNATAKA';
-    if (s.includes('ANDHRA') || s.includes('AP')) return 'ANDHRA PRADESH';
-    if (s.includes('TELANG') || s.includes('TS')) return 'TELANGANA';
-    if (s.includes('LAKSH')) return 'LAKSHADWEEP';
-
-    return 'REST OF INDIA'; // ബാക്കി എല്ലാ സംസ്ഥാനങ്ങൾക്കും
+    return 'REST OF INDIA';
 }
 
 // 🔥 UPDATED: Price Calculation with Failsafe Courier Charge
@@ -1055,10 +1060,11 @@ function calculatePriceInfo(qty, state) {
     const zone = getZoneKey(state);
     let courierCharge = 0;
 
-    // ഷീറ്റിൽ നിന്നും റേറ്റ് കിട്ടിയാൽ അത് എടുക്കുക
+    // ഷീറ്റിൽ നിന്നും ഫെച്ച് ചെയ്ത റേറ്റുകൾ മാത്രം എടുക്കുന്നു
     if (courierRates && courierRates[zone] && courierRates[zone][n]) {
-        courierCharge = courierRates[zone][n];
+        courierCharge = parseInt(courierRates[zone][n]);
     }
+
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
