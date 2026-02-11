@@ -724,89 +724,104 @@ window.editDispatchDate = async function (oid, currentDate) {
     }
 }
 
-function syncWithServer() {
+// 🔥 1. SYNC CLICK FIX (ഓർഡറുകളും എക്സ്പെൻസുകളും ചെക്ക് ചെയ്യാൻ)
+window.syncWithServer = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    if (pendingUpdates.length === 0) return;
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+
+    // രണ്ടും ഇല്ലെങ്കിൽ മാത്രം റിട്ടേൺ ചെയ്യുക
+    if (pendingUpdates.length === 0 && pendingExpenses.length === 0) return;
 
     renderSyncList();
     new bootstrap.Modal(document.getElementById('syncModal')).show();
-}
+};
 
-// 🔥 RENDER LIST IN MODAL
+// 🔥 2. SHOW EXPENSES IN SYNC MODAL (സിങ്ക് വിൻഡോയിൽ എക്സ്പെൻസുകൾ കൂടി കാണിക്കാൻ)
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+
     const list = document.getElementById('sync-preview-list');
     const countDisplay = document.getElementById('sync-count-display');
-    const discardBtnArea = document.getElementById('modal-header-actions'); // New Area
 
-    countDisplay.innerText = pendingUpdates.length;
+    let totalCount = pendingUpdates.length + pendingExpenses.length;
+    countDisplay.innerText = totalCount;
     list.innerHTML = '';
 
+    // A. ഓഫ്‌ലൈൻ ഓർഡറുകൾ ലിസ്റ്റ് ചെയ്യുന്നു
     pendingUpdates.forEach((u, index) => {
-        let order = allOrders.find(o => o.orderid === u.oid); // This is current/new state
+        let order = allOrders.find(o => o.orderid === u.oid);
         let name = order ? order.name : 'Unknown';
-        let phone = order ? order.phone : '';
-
         let actionHtml = '';
 
-        // 1. TRACKING UPDATE
         if (u.tracking) {
-            actionHtml = `<span class="badge bg-light text-dark border">Tracking Update</span> <b class="ms-1">${u.tracking}</b>`;
-        }
-        // 2. STATUS / DATE UPDATE
-        else if (u.status) {
-            // 🔥 Use Saved OLD STATUS
+            actionHtml = `<span class="badge bg-light text-dark border">Tracking</span> <b class="ms-1">${u.tracking}</b>`;
+        } else if (u.status) {
             let fromStatus = u.oldStatus || (order ? order.Status : 'Unknown');
-            let toStatus = u.status;
-
             let badgeColor = 'secondary';
-            if (toStatus === 'Paid') badgeColor = 'success';
-            if (toStatus === 'Dispatched') badgeColor = 'primary';
-            if (toStatus === 'Sent') badgeColor = 'info text-dark';
-            if (toStatus === 'Archive') badgeColor = 'dark';
+            if (u.status === 'Paid') badgeColor = 'success';
+            if (u.status === 'Dispatched') badgeColor = 'primary';
+            if (u.status === 'Sent') badgeColor = 'info text-dark';
 
             let extraInfo = "";
-
-            // Special Display for Dispatched Date
-            if (toStatus === 'Dispatched' && u.actionDate) {
+            if (u.status === 'Dispatched' && u.actionDate) {
                 let d = new Date(u.actionDate);
-                // Format: 06/02/2026 12:00 PM
                 let dateStr = d.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-                extraInfo = `<div class="mt-1 small text-success fw-bold"><i class="far fa-calendar-alt"></i> Date: ${dateStr}</div>`;
+                extraInfo = `<div class="mt-1 small text-success fw-bold"><i class="far fa-calendar-alt"></i> ${dateStr}</div>`;
             }
-
-            // Arrow Logic (From -> To)
             actionHtml = `
             <div style="font-size:12px; color:#555;">
                 <span class="badge bg-light text-secondary border">${fromStatus}</span> 
                 <i class="fas fa-long-arrow-alt-right mx-1 text-muted"></i> 
-                <span class="badge bg-${badgeColor}">${toStatus}</span>
+                <span class="badge bg-${badgeColor}">${u.status}</span>
                 ${extraInfo}
             </div>`;
         }
 
-        let row = `
+        list.innerHTML += `
         <tr style="border-bottom:1px solid #eee;">
-            <td width="30">
-                <div class="rounded-circle bg-white d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;">${index + 1}</div>
-            </td>
+            <td width="30"><div class="rounded-circle bg-white d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;">${index + 1}</div></td>
             <td>
                 <div class="fw-bold text-dark" style="font-size:12px;">${u.oid}</div>
-                <div class="small text-muted" style="font-size:11px;">${name} (${phone})</div>
+                <div class="small text-muted" style="font-size:11px;">${name}</div>
             </td>
             <td>${actionHtml}</td>
             <td width="40" class="text-end">
                 <button onclick="undoUpdate(${index})" class="btn btn-sm btn-outline-danger border-0" title="Undo"><i class="fas fa-undo"></i></button>
             </td>
         </tr>`;
-        list.innerHTML += row;
     });
 
-    if (pendingUpdates.length === 0) {
+    // B. ഓഫ്‌ലൈൻ എക്സ്പെൻസുകൾ ലിസ്റ്റ് ചെയ്യുന്നു
+    pendingExpenses.forEach((exp, index) => {
+        list.innerHTML += `
+        <tr style="border-bottom:1px solid #eee; background:#fffcf2;">
+            <td width="30"><div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;"><i class="fas fa-receipt"></i></div></td>
+            <td>
+                <div class="fw-bold text-dark" style="font-size:12px;">Expense: ${exp.category}</div>
+                <div class="small text-muted" style="font-size:11px;">${exp.vendor || 'No Vendor'}</div>
+            </td>
+            <td><span class="badge bg-danger">₹${exp.amount}</span></td>
+            <td width="40" class="text-end">
+                <button onclick="undoExpenseUpdate('${exp.id}')" class="btn btn-sm btn-outline-danger border-0" title="Remove"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>`;
+    });
+
+    if (totalCount === 0) {
         $('#syncModal').modal('hide');
         updateSyncButtonUI();
     }
 }
+
+// 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
+window.undoExpenseUpdate = function (id) {
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    pendingExpenses = pendingExpenses.filter(e => e.id !== id);
+    localStorage.setItem('pendingExpenses', JSON.stringify(pendingExpenses));
+    renderSyncList();
+    updateSyncButtonUI();
+};
 
 // 🔥 NEW: Discard All Function
 window.discardAllUpdates = function () {
@@ -1769,12 +1784,11 @@ function togglePartnerSelect() {
     }
 }
 
-// 🔥 UPDATED: Partner List with Helper Note
+// 🔥 4. PARTNER BALANCE DECIMAL FIX (ആ വലിയ ഡെസിമൽ നമ്പറുകൾ കളയാൻ)
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
-    // 🔥 NEW: സാലറിയുടെ മുകളിലെ നോട്ട്
     let html = `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
         <i class="fas fa-info-circle text-warning mt-1"></i> 
         <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ബാലൻസ് ആണ്.</div>
@@ -1782,13 +1796,17 @@ function renderPartnerList() {
 
     for (let [name, data] of Object.entries(partners)) {
         let totalBal = typeof data === 'object' ? data.curr : data;
+
+        // 🔥 ഡെസിമൽ ഒഴിവാക്കി പക്കാ തുക ആക്കാൻ
+        let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
         html += `
         <div class="partner-card" onclick="selectPartner('${name}')">
             <div class="d-flex align-items-center gap-2">
                 <i class="fas fa-user-circle text-muted fs-4"></i>
                 <div>
                     <div class="fw-bold small">${name}</div>
-                    <div class="text-success fw-bold" style="font-size:11px;">Total Bal: ₹${totalBal}</div>
+                    <div class="text-success fw-bold" style="font-size:11px;">Total Bal: ₹${formattedBal}</div>
                 </div>
             </div>
             <i class="far fa-circle text-muted check-icon"></i>
