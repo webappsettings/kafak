@@ -1076,10 +1076,20 @@ function openDashboard() {
     $('#drawer-overlay').fadeIn(200);
     $('#dashboard-drawer').addClass('open');
 
-    // Set Calendar to current selected date
-    document.getElementById('dash-date').valueAsDate = selectedDate;
+    let y = selectedDate.getFullYear();
+    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    let d = String(selectedDate.getDate()).padStart(2, '0');
+    let dateStr = `${y}-${m}-${d}`;
 
-    // If not fetched yet, fetch it. Else just show rendered data.
+    if (document.getElementById('dash-date')) {
+        document.getElementById('dash-date').value = dateStr;
+    }
+
+    // 🔥 FIX: Expense ഫോമിലും ഡീഫോൾട്ട് ആയി ഡേറ്റ് സെറ്റ് ചെയ്യുന്നു
+    if (document.getElementById('exp-date')) {
+        document.getElementById('exp-date').value = dateStr;
+    }
+
     if (!dashboardData) fetchDashboardDataBg();
     else renderDashboard();
 }
@@ -1108,10 +1118,13 @@ function changeDate(days) {
 function changeDashDate(val) {
     if (!val) return;
     selectedDate = new Date(val);
-    if (document.getElementById('exp-date')) document.getElementById('exp-date').valueAsDate = selectedDate;
+
+    // 🔥 FIX: ടൈംസോൺ പ്രശ്നം ഒഴിവാക്കാൻ നേരിട്ട് വാല്യൂ നൽകുന്നു
+    if (document.getElementById('exp-date')) {
+        document.getElementById('exp-date').value = val;
+    }
 
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    // പുതിയ രണ്ട് ടാബുകളിലും ലോഡിംഗ് കാണിക്കാൻ
     $('#monthly-expense-timeline, #monthly-income-timeline').html('<div class="text-center py-5 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
 
     fetchDashboardDataBg();
@@ -1306,6 +1319,7 @@ function selectPartner(name) {
 }
 
 // 5. SUBMIT EXPENSE (With Image Compression)
+// 🔥 ADD EXPENSE (Submit Logic Updated)
 async function submitExpense(e) {
     e.preventDefault();
 
@@ -1317,7 +1331,7 @@ async function submitExpense(e) {
     let fileData = null;
     let fileName = null;
 
-    if (fileInput.files.length > 0) {
+    if (fileInput && fileInput.files.length > 0) {
         try {
             btn.html('<i class="fas fa-compress"></i> COMPRESSING...');
             let compressed = await compressImage(fileInput.files[0]);
@@ -1330,8 +1344,15 @@ async function submitExpense(e) {
         }
     }
 
+    // 🔥 FIX: ഡേറ്റ് വീണ്ടും ചെക്ക് ചെയ്യുന്നു
+    let selectedD = $('#exp-date').val();
+    if (!selectedD) {
+        let today = new Date();
+        selectedD = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    }
+
     let formData = {
-        date: $('#exp-date').val(),
+        date: selectedD,
         category: $('#exp-category').val(),
         vendor: $('#exp-vendor').val(),
         description: $('#exp-desc').val(),
@@ -1348,16 +1369,15 @@ async function submitExpense(e) {
         .then(data => {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
-
-                // Reset Form
                 $('#expense-form')[0].reset();
-                document.getElementById('exp-date').valueAsDate = selectedDate;
-                $('.partner-card').removeClass('selected'); // Reset partner selection
 
-                // Refresh Dashboard Data
+                // ഫോം റീസെറ്റ് ചെയ്ത ശേഷം വീണ്ടും തീയതി പഴയതുപോലെ വെക്കുന്നു
+                document.getElementById('exp-date').value = selectedD;
+                $('.partner-card').removeClass('selected');
+
+                // Refresh Dashboard Data Background
                 fetchDashboardDataBg();
 
-                // Switch back to overview tab
                 $('#tab-overview').click();
             } else {
                 alert('Failed: ' + (data.message || 'Unknown error'));
