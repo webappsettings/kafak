@@ -127,6 +127,20 @@ function showDashboard() {
                 border: none !important;
                 margin-top: 10px;
             }
+                .btn-refund-icon {
+                background: #fee2e2;
+                border: 1px solid #fecaca;
+                color: #dc2626;
+                border-radius: 6px;
+                padding: 1px 6px;
+                font-size: 10px;
+                transition: all 0.3s ease;
+            }
+            .btn-refund-icon.active-refund {
+                background: #dc2626 !important;
+                color: white !important;
+                box-shadow: 0 0 8px rgba(220, 38, 38, 0.4);
+            }
         `).appendTo('head');
     }
 
@@ -392,10 +406,13 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
 
+    let refundBtn = `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>`;
+
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
             <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
+            ${refundBtn} 
             ${langBadge}
             ${archiveBtn}
         </div>
@@ -478,9 +495,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     else if (type === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100">
             <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button>
-            
-            <button class="btn btn-danger shadow-sm border-0 d-flex align-items-center justify-content-center" style="width:40px; border-radius:10px;" onclick="event.stopPropagation(); prefillRefund(${index})" title="Refund"><i class="fas fa-undo-alt"></i></button>
-            
+                       
             <div style="width: 40px; display: flex; justify-content: center;">
                 <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
             </div>
@@ -511,8 +526,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             <div class="d-flex gap-1 mb-2 w-100">
                 <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
                 ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
-                
-                <button class="btn btn-danger shadow-sm border-0 d-flex align-items-center justify-content-center" style="width:45px; border-radius:10px;" onclick="event.stopPropagation(); prefillRefund(${index})" title="Refund"><i class="fas fa-undo-alt"></i></button>
             </div>
             <button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>
         `;
@@ -1754,36 +1767,62 @@ async function submitExpense(e) {
 }
 
 
-// 🔥 NEW: Auto-fill Expense Form for Refund
-function prefillRefund(index) {
-    let order = allOrders[index];
-    if (!order) return;
+// 🔥 REFUND TOGGLE & AUTO-FILL LOGIC
+window.handleRefundToggle = function (oid, index) {
+    let btn = $(`#ref-btn-${oid}`);
 
-    // 1. Calculate Amount
-    let priceInfo = calculatePriceInfo(order.quantity, order.state);
-    let amount = parseInt(priceInfo.total.replace(/[^0-9]/g, '')) || 0;
+    // 1. CLEAR LOGIC: ബട്ടൺ ഓൾറെഡി ആക്റ്റീവ് ആണെങ്കിൽ ഫോം ക്ലിയർ ചെയ്യുന്നു
+    if (btn.hasClass('active-refund')) {
+        clearRefundForm();
+        return;
+    }
 
-    // 2. Switch to Add Expense Tab
-    let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
+    // 2. CONFIRMATION: റീഫണ്ട് പ്രോസസ്സ് തുടങ്ങുന്നതിന് മുൻപ് ചോദിക്കുന്നു
+    confirmAction(`Order ${oid} റീഫണ്ട് ചെയ്യണോ?`, () => {
+        let order = allOrders[index];
+        if (!order) return;
+
+        // പഴയ ആക്റ്റീവ് ബട്ടണുകൾ മാറ്റുന്നു
+        $('.btn-refund-icon').removeClass('active-refund');
+        // ഈ ബട്ടൺ ഹൈലൈറ്റ് ചെയ്യുന്നു
+        btn.addClass('active-refund');
+
+        // എമൗണ്ട് കണക്കാക്കുന്നു
+        let priceInfo = calculatePriceInfo(order.quantity, order.state);
+        let amount = parseInt(priceInfo.total.replace(/[^0-9]/g, '')) || 0;
+
+        // Add Expense ടാബിലേക്ക് മാറുന്നു
+        let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
+        tabTrigger.show();
+
+        // ഫോം ഫിൽ ചെയ്യുന്നു
+        setTimeout(() => {
+            $('#exp-category').val('Refund');
+            $('#exp-vendor').val(order.name + " (Ref #" + order.orderid + ")");
+            $('#exp-amount').val(amount);
+            $('#exp-desc').val("Refund for Order " + order.orderid);
+
+            // വിഷ്വൽ ഇൻഡിക്കേഷൻ
+            $('#expense-form').css('border', '2px solid #dc2626').css('padding', '10px').css('border-radius', '15px');
+
+            showToast('info', 'Refund details filled! 💸');
+        }, 300);
+    });
+};
+
+// 🔥 ഫോം ക്ലിയർ ചെയ്യാനുള്ള ഫംഗ്‌ഷൻ
+window.clearRefundForm = function () {
+    $('.btn-refund-icon').removeClass('active-refund');
+    $('#expense-form')[0].reset();
+    $('#exp-category').val('Materials');
+    $('#expense-form').css('border', 'none');
+
+    // ടാബ് തിരികെ ഓവർവ്യൂവിലേക്ക് മാറ്റുന്നു (ഓപ്ഷണൽ)
+    let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-overview'));
     tabTrigger.show();
 
-    // 3. Auto-fill Data
-    setTimeout(() => {
-        $('#exp-category').val('Refund'); // "Refund" category select cheyyunnu
-        $('#exp-vendor').val(order.name + " (Ref #" + order.orderid + ")"); // Customer Name + Order ID
-        $('#exp-amount').val(amount); // Order Total Amount
-        $('#exp-desc').val("Refund for Order " + order.orderid);
-
-        // Focus for quick save
-        $('#exp-amount').focus();
-
-        // Show Toast
-        Swal.fire({
-            toast: true, position: 'top', showConfirmButton: false, timer: 2000,
-            icon: 'info', title: 'Refund details auto-filled! ⚡'
-        });
-    }, 200);
-}
+    showToast('info', 'Form cleared and reset ✅');
+};
 
 // Helper: Offline Save
 function saveExpenseOffline(formData, selectedD) {
