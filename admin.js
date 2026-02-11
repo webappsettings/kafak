@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyGSf5nJc1KYGLHaY9pt9ZajIY9KclnMvgNIfL40PcQeERa8Uit-2ZhpFnI9EHfmFysdw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwDBC8iUvC7s3XV6wJPTwm6qCMQc32VkBLxYRMjSXB1ZCXC2CleO7pH3EKL-DAh1LziKg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -541,16 +541,15 @@ function filterOrders() {
     }
 }
 
+// 🔥 UPDATED: Auto generates Date & Time for 'Paid' status from Admin Panel
 function updateOrder(oid, status, trackingNum = null, skipConfirm = false, customDate = null) {
     if (!skipConfirm && !trackingNum && !customDate && !confirm(`Mark '${status}'?`)) return;
 
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     updates = updates.filter(item => item.oid !== oid);
 
-    // 🔥 FIX: Find OLD STATUS before updating
     let existingOrder = allOrders.find(o => o.orderid === oid);
     let oldStatus = existingOrder ? existingOrder.Status : 'Pending';
-    // If only date is changing, keep the same status context
     if (existingOrder && existingOrder.Status === status && customDate) {
         oldStatus = `${existingOrder.Status} (${getTimelineLabel(existingOrder['Dispatched Date'] || existingOrder.timestamp)})`;
     }
@@ -558,27 +557,42 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
     let updateObj = {
         oid: oid,
         status: status,
-        oldStatus: oldStatus, // 🔥 Saved Here
+        oldStatus: oldStatus,
         time: new Date().getTime()
     };
 
     if (trackingNum) updateObj.tracking = trackingNum;
 
+    // 🔥 DATE LOGIC FIX
     if (customDate) {
         updateObj.actionDate = customDate;
     } else if (status === 'Dispatched' && !trackingNum) {
         updateObj.actionDate = new Date().toISOString().split('T')[0];
+    } else if (status === 'Paid') {
+        // അഡ്മിൻ പാനലിൽ നിന്ന് നേരിട്ട് "Paid" ആക്കുമ്പോൾ കറന്റ് ഡേറ്റ്/ടൈം കൊടുക്കുന്നു
+        let now = new Date();
+        let y = now.getFullYear();
+        let m = String(now.getMonth() + 1).padStart(2, '0');
+        let d = String(now.getDate()).padStart(2, '0');
+        let h = String(now.getHours()).padStart(2, '0');
+        let min = String(now.getMinutes()).padStart(2, '0');
+        updateObj.actionDate = `${y}-${m}-${d} ${h}:${min}`;
     }
 
     updates.push(updateObj);
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-    // Update Cache (UI)
     const orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex !== -1) {
         allOrders[orderIndex].Status = status;
         if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
         if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
+
+        // UI-യിൽ അപ്പോൾ തന്നെ Paid Date കാണിക്കാൻ വേണ്ടിയുള്ള കോഡ്
+        if (status === 'Paid' && !allOrders[orderIndex].paidDate) {
+            allOrders[orderIndex].paidDate = updateObj.actionDate;
+        }
+
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
