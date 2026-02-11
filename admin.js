@@ -51,6 +51,7 @@ window.logoutAdmin = function () {
             localStorage.removeItem('activeAdminTab');
             localStorage.removeItem('allOrdersCache');
             localStorage.removeItem('pendingUpdates');
+            localStorage.removeItem('adminRatesCache');
         } catch (e) { console.error(e); }
         window.location.href = "index.html";
     });
@@ -86,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function showDashboard() {
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('dashboard-section').style.display = 'block';
+    fetchRatesBackground(); // 🔥 ഡാഷ്‌ബോർഡ് വരുമ്പോൾ റേറ്റ് ഫെച്ച് ചെയ്യാൻ വിളിക്കുന്നു
     fetchOrders();
 }
 
@@ -116,7 +118,12 @@ function confirmAction(text, callback) {
 
 // Background Rate Fetcher
 function fetchRatesBackground() {
-    console.log("🔄 Fetching latest rates...");
+    if (localStorage.getItem('adminRatesCache')) {
+        courierRates = JSON.parse(localStorage.getItem('adminRatesCache'));
+        return;
+    }
+
+    console.log("🔄 Fetching latest rates from server...");
     fetch(`${scriptURL}?action=getRates`)
         .then(res => res.json())
         .then(data => {
@@ -130,7 +137,7 @@ function fetchRatesBackground() {
                 }
             }
         })
-        .catch(err => console.log("⚠️ Rate fetch failed, using cached data."));
+        .catch(err => console.log("⚠️ Rate fetch failed"));
 }
 
 // --- CORE FUNCTIONS ---
@@ -1028,58 +1035,29 @@ function cancelDispatchAction() {
     }, 1000);
 }
 
+// 🔥 SIMPLE ZONE MATCHER (No extra codes, exact match only)
 function getZoneKey(stateName) {
     if (!stateName) return 'REST OF INDIA';
     let s = String(stateName).toUpperCase().trim();
 
-    if (courierRates && typeof courierRates === 'object') {
-        let availableZones = Object.keys(courierRates);
-
-        // 1. Exact Match (വലിയ അക്ഷരങ്ങളും സ്പേസും തനിയെ ക്ലിയർ ചെയ്ത് ചെക്ക് ചെയ്യുന്നു)
-        let exactMatch = availableZones.find(z => String(z).toUpperCase().trim() === s);
-        if (exactMatch) return exactMatch;
-
-        // 2. Smart Match (അക്ഷരത്തെറ്റുകൾ ഉണ്ടെങ്കിലും കണ്ടുപിടിക്കാൻ)
-        for (let zone of availableZones) {
-            let zUpper = String(zone).toUpperCase().trim();
-            if (zUpper !== 'REST OF INDIA' && s.length >= 4) {
-                if (zUpper.includes(s) || s.includes(zUpper)) {
-                    return zone; // ഷീറ്റിൽ ഉള്ള ഒറിജിനൽ പേര് തന്നെ എടുക്കുന്നു
-                }
-            }
-        }
-
-        // 3. Fallback to Rest of India (ഒന്നും കിട്ടിയില്ലെങ്കിൽ)
-        let restMatch = availableZones.find(z => String(z).toUpperCase().trim() === 'REST OF INDIA');
-        if (restMatch) return restMatch;
+    // pincode.json വഴി വരുന്ന കൃത്യമായ പേര് ഷീറ്റിലെ പേരുമായി മാച്ച് ചെയ്യുന്നു
+    if (courierRates && courierRates[s]) {
+        return s;
     }
     return 'REST OF INDIA';
 }
 
-// 🔥 UPDATED: Price Calculation with Failsafe Courier Charge
+// 🔥 SIMPLE PRICE CALCULATION 
 function calculatePriceInfo(qty, state) {
     const n = parseInt(qty) || 0;
     const basePrice = n * 650;
-
     let courierCharge = 0;
 
-    // ഷീറ്റിൽ നിന്നും റേറ്റുകൾ വന്നിട്ടുണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
     if (courierRates && Object.keys(courierRates).length > 0) {
         const zone = getZoneKey(state);
-
-        if (courierRates[zone]) {
-            if (courierRates[zone][n] !== undefined) {
-                courierCharge = parseInt(courierRates[zone][n]) || 0;
-            } else if (courierRates[zone][String(n)] !== undefined) {
-                courierCharge = parseInt(courierRates[zone][String(n)]) || 0;
-            }
+        if (courierRates[zone] && courierRates[zone][n]) {
+            courierCharge = parseInt(courierRates[zone][n]);
         }
-    } else {
-        // 🔥 FAILSAFE: നെറ്റ്വർക്ക് ഇഷ്യൂ കാരണമോ മറ്റോ റേറ്റ് കിട്ടിയില്ലെങ്കിൽ ഡീഫോൾട്ട് ആയി ഇത് എടുക്കും
-        if (n === 1) courierCharge = 80;
-        else if (n === 2) courierCharge = 140;
-        else if (n === 3) courierCharge = 180;
-        else if (n >= 4) courierCharge = 200;
     }
 
     return { total: `₹${basePrice + courierCharge}/-` };
