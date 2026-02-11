@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycby2J-tpgdyIDBpyo_iYmz4b4d9fGXV5PwxRAzbSk8eYcyawDPfaHYnc-vdTrk6yhSjGWg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby3b5ptowPlWRS4AAWXK7p1Sz-VLICHENQ67P_a-piBpVYVASorulsYEvVQC0iAuZlrpg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -152,6 +152,7 @@ function fetchOrders(forceLoad = false) {
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 renderTabs(allOrders);
                 updateSyncButtonUI();
+                fetchDashboardDataBg();
             }
         })
         .catch(err => {
@@ -1048,16 +1049,131 @@ function calculatePriceInfo(qty, state) {
 // 🔥 DASHBOARD & EXPENSE LOGIC (NEW)
 // ==========================================
 
-// 1. DRAWER OPEN/CLOSE
+// ==========================================
+// 🔥 NEW DASHBOARD & EXPENSE LOGIC
+// ==========================================
+
+let selectedDate = new Date();
+let dashboardData = null;
+
+function fetchDashboardDataBg() {
+    let y = selectedDate.getFullYear();
+    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    let d = String(selectedDate.getDate()).padStart(2, '0');
+    let dateStr = `${y}-${m}-${d}`;
+
+    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
+        .then(res => res.json())
+        .then(res => {
+            if (res.result === 'success') {
+                dashboardData = res.data;
+                renderDashboard();
+            }
+        }).catch(err => console.error(err));
+}
+
 function openDashboard() {
     $('#drawer-overlay').fadeIn(200);
     $('#dashboard-drawer').addClass('open');
 
-    // Default to Today & Fetch
-    selectedDate = new Date();
-    updateDateDisplay();
-    fetchDashboardData();
+    // Set Calendar to current selected date
+    document.getElementById('dash-date').valueAsDate = selectedDate;
+
+    // If not fetched yet, fetch it. Else just show rendered data.
+    if (!dashboardData) fetchDashboardDataBg();
+    else renderDashboard();
 }
+
+function closeDashboard() {
+    $('#drawer-overlay').fadeOut(200);
+    $('#dashboard-drawer').removeClass('open');
+}
+
+function changeDashDate(val) {
+    if (!val) return;
+    selectedDate = new Date(val);
+    document.getElementById('exp-date').valueAsDate = selectedDate; // Sync expense date
+
+    // Show loading state briefly
+    $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
+    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
+
+    fetchDashboardDataBg();
+}
+
+function renderDashboard() {
+    if (!dashboardData) return;
+
+    let d = dashboardData.daily;
+    let m = dashboardData.monthly;
+
+    $('#d-sales').text('₹' + d.sales.toLocaleString());
+    $('#d-expense').text('₹' + d.expense.toLocaleString());
+    $('#d-courier').text('₹' + d.courier.toLocaleString());
+    $('#d-profit').text('₹' + d.profit.toLocaleString());
+    $('#d-orders').text(d.count || 0);
+
+    // Color logic for Profit
+    if (d.profit >= 0) {
+        $('#d-profit').removeClass('text-danger').addClass('text-success');
+        $('#d-status-text').text("Running Profit 🚀").css('color', '#2e7d32');
+    } else {
+        $('#d-profit').removeClass('text-success').addClass('text-danger');
+        $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
+    }
+
+    // Monthly
+    $('#m-sales').text('₹' + m.sales.toLocaleString());
+    $('#m-expense').text('₹' + m.expense.toLocaleString());
+    $('#m-profit').text('₹' + m.profit.toLocaleString());
+
+    // Timeline List
+    let html = '';
+    if (d.list && d.list.length > 0) {
+        d.list.forEach(item => {
+            let icon = '📝';
+            let cat = item.category.toLowerCase();
+            if (cat.includes('salary')) icon = '👤';
+            else if (cat.includes('materials')) icon = '📦';
+            else if (cat.includes('courier')) icon = '🚚';
+
+            html += `
+            <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:35px; height:35px; font-size:15px;">${icon}</div>
+                    <div>
+                        <div class="fw-bold text-dark small">${item.desc || item.category}</div>
+                        <div class="text-muted" style="font-size:10px;">${item.category}</div>
+                    </div>
+                </div>
+                <div class="fw-bold text-danger small">-₹${item.amount}</div>
+            </div>`;
+        });
+    }
+
+    if (d.courier > 0) {
+        html += `
+        <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-warning bg-opacity-10 text-warning d-flex align-items-center justify-content-center me-3" style="width:35px; height:35px; font-size:15px;">🚚</div>
+                <div>
+                    <div class="fw-bold text-dark small">Courier Charges</div>
+                    <div class="text-muted" style="font-size:10px;">Auto-calculated</div>
+                </div>
+            </div>
+            <div class="fw-bold text-warning small">-₹${d.courier}</div>
+        </div>`;
+    }
+
+    if (html === '') {
+        html = `<div class="text-center py-4"><div class="small text-muted">No transactions recorded today.</div></div>`;
+    }
+
+    $('#daily-timeline').html(html);
+    renderPartnerList();
+}
+
+// 1. DRAWER OPEN/CLOSE
 
 function closeDashboard() {
     $('#drawer-overlay').fadeOut(200);
@@ -1087,113 +1203,6 @@ function changeDate(days) {
     fetchDashboardData();
 }
 
-// 3. FETCH UNIFIED DATA
-function fetchDashboardData() {
-    // Show Loading State
-    $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
-
-    // Format YYYY-MM-DD
-    // Note: Using local time handling to avoid timezone issues
-    let y = selectedDate.getFullYear();
-    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    let d = String(selectedDate.getDate()).padStart(2, '0');
-    let dateStr = `${y}-${m}-${d}`;
-
-    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
-        .then(res => res.json())
-        .then(res => {
-            if (res.result === 'success') {
-                dashboardData = res.data;
-                renderDashboard();
-            }
-        })
-        .catch(err => console.error("Dash Error:", err));
-}
-
-function renderDashboard() {
-    if (!dashboardData) return;
-
-    let d = dashboardData.daily;
-    let m = dashboardData.monthly;
-
-    // --- ANIMATE NUMBERS ---
-    $('#d-sales').text('₹' + d.sales.toLocaleString());
-    $('#d-expense').text('₹' + d.expense.toLocaleString());
-    $('#d-courier').text('₹' + d.courier.toLocaleString());
-    $('#d-profit').text('₹' + d.profit.toLocaleString());
-    $('#d-orders').text(d.count || 0); // 🔥 Shows Order Count
-    $('#d-prod').text('₹' + (d.productCost || 0).toLocaleString());
-
-    // Profit Color Logic
-    if (d.profit >= 0) {
-        $('#d-profit').addClass('text-success').removeClass('text-danger');
-        $('#d-status-text').text("Running Profit 🚀").css('color', '#4caf50');
-    } else {
-        $('#d-profit').addClass('text-danger').removeClass('text-success');
-        $('#d-status-text').text("Needs Attention 📉").css('color', '#ff5252');
-    }
-
-    // --- MONTHLY ---
-    $('#m-sales').text('₹' + m.sales.toLocaleString());
-    $('#m-expense').text('₹' + m.expense.toLocaleString());
-    $('#m-profit').text('₹' + m.profit.toLocaleString());
-
-    // --- TIMELINE LIST (With Icons) ---
-    let html = '';
-
-    // 1. EXPENSES LIST
-    if (d.expenseList && d.expenseList.length > 0) {
-        d.expenseList.forEach(item => {
-            let icon = '📝'; // Default
-            let cat = item.category.toLowerCase();
-            if (cat.includes('salary')) icon = '👤';
-            else if (cat.includes('materials')) icon = '📦';
-            else if (cat.includes('food')) icon = '🍔';
-            else if (cat.includes('travel')) icon = '⛽';
-            else if (cat.includes('courier')) icon = '🚚';
-            else if (cat.includes('ads')) icon = '📢';
-
-            html += `
-            <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
-                <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:40px; height:40px; font-size:18px;">${icon}</div>
-                    <div>
-                        <div class="fw-bold text-dark small">${item.desc || item.category}</div>
-                        <div class="text-muted" style="font-size:10px;">${item.category}</div>
-                    </div>
-                </div>
-                <div class="fw-bold text-danger">-₹${item.amount}</div>
-            </div>`;
-        });
-    }
-
-    // 2. COURIER SUMMARY (If any)
-    if (d.courier > 0) {
-        html += `
-        <div class="d-flex align-items-center justify-content-between p-3 mb-2 bg-white border rounded-4 shadow-sm">
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle bg-warning bg-opacity-10 d-flex align-items-center justify-content-center me-3" style="width:40px; height:40px; font-size:18px;">🚚</div>
-                <div>
-                    <div class="fw-bold text-dark small">Courier Charges</div>
-                    <div class="text-muted" style="font-size:10px;">Auto-calculated</div>
-                </div>
-            </div>
-            <div class="fw-bold text-warning">-₹${d.courier}</div>
-        </div>`;
-    }
-
-    if (html === '') {
-        html = `
-        <div class="text-center py-5">
-            <div class="text-muted mb-2" style="font-size:30px; opacity:0.3;"><i class="fas fa-receipt"></i></div>
-            <div class="small text-muted">No transactions recorded today.</div>
-        </div>`;
-    }
-
-    $('#daily-timeline').html(html);
-    renderPartnerList();
-}
 
 // 4. PARTNER SALARY LOGIC
 function togglePartnerSelect() {

@@ -1048,74 +1048,67 @@
         <div class="drawer-body tab-content">
 
             <div class="tab-pane fade show active" id="pills-overview">
-                <div class="date-nav mb-4 bg-white border shadow-sm">
-                    <button class="date-btn" onclick="changeDate(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <div class="date-display" id="current-date-display">Today</div>
-                    <button class="date-btn" id="btn-next-date" onclick="changeDate(1)"><i
-                            class="fas fa-chevron-right"></i></button>
+
+                <div class="d-flex justify-content-between align-items-center mb-3 px-1">
+                    <h6 class="fw-bold m-0 text-dark" style="font-size: 15px; letter-spacing: -0.5px;">Summary</h6>
+                    <input type="date" id="dash-date"
+                        class="form-control form-control-sm bg-white border shadow-sm fw-bold text-dark"
+                        style="width: 140px; border-radius: 8px;" onchange="changeDashDate(this.value)">
                 </div>
 
-                <div class="card border-0 shadow-sm mb-3 bg-dark text-white overflow-hidden"
-                    style="border-radius: 20px;">
-                    <div class="card-body text-center py-4 position-relative">
-                        <div style="position:absolute; top:-10px; right:-10px; opacity:0.1; font-size:80px;"><i
-                                class="fas fa-wallet"></i></div>
-                        <div class="small text-white-50 fw-bold letter-spacing-1">NET PROFIT</div>
-                        <h1 class="display-4 fw-bold m-0" id="d-profit">₹0</h1>
-                        <div class="small text-success mt-1" id="d-status-text">Good Job! 🚀</div>
-                    </div>
-                </div>
-
-                <div class="row g-2 mb-4">
+                <div class="row g-3 mb-4">
                     <div class="col-6">
-                        <div class="p-3 bg-white border rounded-4 h-100 shadow-sm position-relative overflow-hidden">
-                            <div class="small text-muted fw-bold">TOTAL SALES</div>
-                            <div class="fs-4 fw-bold text-dark mt-1" id="d-sales">₹0</div>
-                            <div class="small text-muted mt-1"><i class="fas fa-shopping-bag me-1 text-primary"></i>
-                                <span id="d-orders">0</span> Orders
+                        <div
+                            class="p-3 bg-white border rounded-4 shadow-sm h-100 d-flex flex-column justify-content-between">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">TOTAL SALES</div>
+                            <div class="fs-3 fw-bold text-dark" id="d-sales">₹0</div>
+                            <div class="text-muted" style="font-size: 11px; margin-top:2px;">
+                                <i class="fas fa-shopping-bag me-1 text-primary"></i><span id="d-orders">0</span> Orders
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 bg-white border rounded-4 h-100 shadow-sm">
-                            <div class="small text-muted fw-bold">EXPENSES</div>
-                            <div class="fs-4 fw-bold text-danger mt-1" id="d-expense">₹0</div>
-                            <div class="small text-muted mt-1">Daily Costs</div>
+                        <div class="p-3 bg-white border rounded-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                            style="background: linear-gradient(145deg, #ffffff, #f8f9fa);">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">NET PROFIT</div>
+                            <div class="fs-3 fw-bold" id="d-profit">₹0</div>
+                            <div class="text-muted" style="font-size: 11px; margin-top:2px;" id="d-status-text">
+                                Calculating...</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 bg-white border rounded-4 h-100 shadow-sm">
-                            <div class="small text-muted fw-bold">COURIER</div>
-                            <div class="fs-4 fw-bold text-warning mt-1" id="d-courier">₹0</div>
+                        <div class="p-3 bg-white border rounded-4 shadow-sm h-100">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">COURIER COST</div>
+                            <div class="fs-4 fw-bold text-warning" id="d-courier">₹0</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="p-3 bg-white border rounded-4 h-100 shadow-sm">
-                            <div class="small text-muted fw-bold">PROD. COST</div>
-                            <div class="fs-4 fw-bold text-secondary mt-1" id="d-prod">₹0</div>
+                        <div class="p-3 bg-white border rounded-4 shadow-sm h-100">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">EXPENSES</div>
+                            <div class="fs-4 fw-bold text-danger" id="d-expense">₹0</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="fw-bold m-0 text-uppercase text-muted small">Transactions</h6>
-                    <span class="badge bg-light text-dark border">Today</span>
+                <div class="d-flex justify-content-between align-items-center mb-3 px-1">
+                    <h6 class="fw-bold m-0 text-uppercase text-muted small" style="font-size: 11px;">Transactions</h6>
                 </div>
 
                 <div id="daily-timeline" class="mb-5">
-                    <div class="text-center py-4 text-muted small">Loading...</div>
+                    <div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin me-2"></i>Loading...
+                    </div>
                 </div>
 
-                <div class="p-3 bg-primary bg-opacity-10 border border-primary border-opacity-10 rounded-4">
-                    <h6 class="fw-bold small text-primary mb-3"><i class="fas fa-calendar-alt me-2"></i>MONTHLY OVERVIEW
+                <div class="p-3 bg-light border rounded-4">
+                    <h6 class="fw-bold small text-muted mb-3"><i class="fas fa-calendar-alt me-2"></i>MONTHLY OVERVIEW
                     </h6>
                     <div class="d-flex justify-content-between small mb-2"><span>Total Sales:</span> <span
                             class="fw-bold text-dark" id="m-sales">0</span></div>
                     <div class="d-flex justify-content-between small mb-2"><span>Total Expense:</span> <span
                             class="fw-bold text-danger" id="m-expense">0</span></div>
-                    <hr class="border-primary border-opacity-25 my-2">
-                    <div class="d-flex justify-content-between fw-bold fs-5 text-primary"><span>Net Profit:</span> <span
-                            id="m-profit">0</span></div>
+                    <hr class="my-2 border-secondary border-opacity-25">
+                    <div class="d-flex justify-content-between fw-bold text-dark" style="font-size: 15px;"><span>Net
+                            Profit:</span> <span id="m-profit">0</span></div>
                 </div>
             </div>
 
