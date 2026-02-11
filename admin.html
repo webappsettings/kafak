@@ -1049,11 +1049,27 @@
 
             <div class="tab-pane fade show active" id="pills-overview">
 
-                <div class="d-flex justify-content-between align-items-center mb-3 px-1">
+                <div class="d-flex justify-content-between align-items-center mb-4 px-1">
                     <h6 class="fw-bold m-0 text-dark" style="font-size: 15px; letter-spacing: -0.5px;">Summary</h6>
-                    <input type="date" id="dash-date"
-                        class="form-control form-control-sm bg-white border shadow-sm fw-bold text-dark"
-                        style="width: 140px; border-radius: 8px;" onchange="changeDashDate(this.value)">
+
+                    <div class="d-flex align-items-center bg-white border rounded-pill p-1 shadow-sm">
+                        <button class="btn btn-sm btn-light rounded-circle border-0 text-secondary"
+                            style="width:30px; height:30px; display:flex; align-items:center; justify-content:center;"
+                            onclick="changeDate(-1)">
+                            <i class="fas fa-chevron-left" style="font-size:12px;"></i>
+                        </button>
+
+                        <input type="date" id="dash-date"
+                            class="form-control form-control-sm border-0 text-center fw-bold text-dark shadow-none bg-transparent"
+                            style="width: 130px; cursor: pointer; font-size:13px;"
+                            onchange="changeDashDate(this.value)">
+
+                        <button class="btn btn-sm btn-light rounded-circle border-0 text-secondary"
+                            style="width:30px; height:30px; display:flex; align-items:center; justify-content:center;"
+                            onclick="changeDate(1)">
+                            <i class="fas fa-chevron-right" style="font-size:12px;"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="row g-3 mb-4">

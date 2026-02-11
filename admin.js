@@ -1089,6 +1089,34 @@ function closeDashboard() {
     $('#dashboard-drawer').removeClass('open');
 }
 
+// 🔥 NEW: Arrow Click Logic
+function changeDate(days) {
+    selectedDate.setDate(selectedDate.getDate() + days);
+
+    // YYYY-MM-DD ഫോർമാറ്റ് ആക്കുന്നു
+    let y = selectedDate.getFullYear();
+    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    let d = String(selectedDate.getDate()).padStart(2, '0');
+
+    // ഇൻപുട്ട് ബോക്സിലെ തീയതി അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+    document.getElementById('dash-date').value = `${y}-${m}-${d}`;
+
+    // ഡാറ്റ ലോഡ് ചെയ്യാൻ വിളിക്കുന്നു
+    changeDashDate(`${y}-${m}-${d}`);
+}
+
+function changeDashDate(val) {
+    if (!val) return;
+    selectedDate = new Date(val);
+    document.getElementById('exp-date').valueAsDate = selectedDate; // Sync expense date
+
+    // Show loading state briefly
+    $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
+    $('#daily-timeline').html('<div class="text-center py-4"><i class="fas fa-spinner fa-spin text-muted"></i></div>');
+
+    fetchDashboardDataBg();
+}
+
 function changeDashDate(val) {
     if (!val) return;
     selectedDate = new Date(val);
