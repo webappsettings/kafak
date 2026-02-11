@@ -1265,12 +1265,27 @@ function renderDashboard() {
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
+// 🔥 RENDER TRANSACTIONS FOR SELECTED DATE (WITH COURIER GROUPING FIX)
 function renderTransactionsForDate(dateStr) {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
     let tl = dashboardData.monthTimeline;
     let inc = tl.income[dateStr];
-    let exps = tl.expense.filter(e => e.date === dateStr);
+    let rawExps = tl.expense.filter(e => e.date === dateStr);
+
+    // 🔥 FIX: കൊറിയർ ചാർജുകൾ ഒരൊറ്റ ലൈനിൽ കൂട്ടിക്കാണിക്കാൻ (Grouping)
+    let exps = [];
+    let totalCourier = 0;
+
+    rawExps.forEach(e => {
+        if (e.isCourier) totalCourier += e.amount;
+        else exps.push(e);
+    });
+
+    // കൊറിയർ ഉണ്ടെങ്കിൽ അത് എക്സ്പെൻസ് ലിസ്റ്റിന്റെ ആദ്യം വെക്കുന്നു
+    if (totalCourier > 0) {
+        exps.unshift({ isCourier: true, amount: totalCourier, desc: "Courier Charges", cat: "Auto-calculated" });
+    }
 
     let dateLabel = getTimelineLabel(dateStr);
     if (dateLabel !== "Today" && dateLabel !== "Yesterday") {
@@ -1306,11 +1321,13 @@ function renderTransactionsForDate(dateStr) {
             let icon = item.isCourier ? '🚚' : '📦';
             if (!item.isCourier && item.cat === 'Salary') icon = '👤';
 
-            // 🔥 FIX: രസീത് ഉണ്ടെങ്കിൽ മാത്രം ബട്ടൺ കാണിക്കുക
             let proofBtn = '';
             if (item.proof && String(item.proof).trim() !== "") {
                 proofBtn = `<button onclick="viewReceipt('${item.proof}')" class="btn btn-sm btn-light border py-0 px-2 ms-1" style="font-size:10px; border-radius:6px;"><i class="fas fa-image text-primary"></i></button>`;
             }
+
+            // 🔥 FIX: 'undefined' മാറ്റി 'Auto-calculated' ആക്കുന്നു
+            let subText = item.isCourier ? "Auto-calculated" : item.cat;
 
             html += `
             <div class="d-flex justify-content-between align-items-center p-3 mb-2 bg-white border border-danger border-opacity-25 rounded-4 shadow-sm">
@@ -1318,7 +1335,7 @@ function renderTransactionsForDate(dateStr) {
                     <div class="rounded-circle d-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger" style="width:35px; height:35px; font-size:14px;">${icon}</div>
                     <div>
                         <div class="small fw-bold text-dark mb-1 d-flex align-items-center flex-wrap">${descText} ${proofBtn}</div>
-                        <div class="text-muted" style="font-size:10px;">${item.cat}</div>
+                        <div class="text-muted" style="font-size:10px;">${subText}</div>
                     </div>
                 </div>
                 <div class="fw-bold text-danger fs-6">-₹${item.amount.toLocaleString()}</div>
