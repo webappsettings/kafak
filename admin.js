@@ -1247,17 +1247,17 @@ function changeDashDate() {
 }
 
 // 🔥 Render Top Summary & Refresh Calendar Dots
+// 🔥 Render Top Summary & Refresh Calendar Dots (WITH TRUE PROFIT, PARTNER SHARES & STATS)
 function renderDashboard() {
     if (!dashboardData) return;
 
     let d = dashboardData.daily;
-    let m = dashboardData.monthly;
-
     let mName = selectedDate.toLocaleString('en-US', { month: 'short' });
     let yName = selectedDate.getFullYear();
 
     $('#m-overview-title').text(`(${mName} ${yName})`);
 
+    // --- DAILY CARDS ---
     $('#d-sales').text('₹' + d.sales.toLocaleString());
     $('#d-expense').text('₹' + d.expense.toLocaleString());
     $('#d-courier').text('₹' + d.courier.toLocaleString());
@@ -1272,11 +1272,145 @@ function renderDashboard() {
         $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
     }
 
-    $('#m-sales').text('₹' + m.sales.toLocaleString());
-    $('#m-expense').text('₹' + m.expense.toLocaleString());
-    $('#m-profit').text('₹' + m.profit.toLocaleString());
+    // 🔥 TRUE MONTHLY NET PROFIT & ADVANCED STATS CALCULATION 
+    let mY = selectedDate.getFullYear();
+    let mM = selectedDate.getMonth();
 
-    // 🔥 Redraw Calendar to show dots & Render Transactions for selected date
+    let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0;
+
+    // പുതിയ വേരിയബിളുകൾ (കുപ്പികളുടെയും ഓർഡറുകളുടെയും കണക്കെടുക്കാൻ)
+    let monthBottles = 0, yearBottles = 0;
+    let monthOrders = 0, yearOrders = 0;
+
+    allOrders.forEach(o => {
+        let status = o.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
+
+        let pDate = new Date(o.paidDate || o.timestamp);
+        let oYear = pDate.getFullYear();
+        let oMonth = pDate.getMonth();
+        let qty = parseInt(o.quantity) || 0;
+
+        // ഓർഡറുകളും കുപ്പികളും കൂട്ടുന്നു (ഈ വർഷത്തെ)
+        if (oYear === mY) {
+            yearOrders++;
+            yearBottles += qty;
+
+            // ഈ മാസത്തെ മാത്രം കണക്കുകൾ
+            if (oMonth === mM) {
+                monthOrders++;
+                monthBottles += qty;
+
+                // വരുമാനവും ചിലവും (Monthly)
+                let pInfo = calculatePriceInfo(qty, o.state);
+                let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+                trueIncome += amt;
+                trueProductCost += qty * 350; // 350 എന്നത് കുപ്പിയുടെ അടിസ്ഥാന ചിലവ്
+            }
+        }
+
+        // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച് - Monthly)
+        if (status !== 'Paid') {
+            let dDate = new Date(o['Dispatched Date'] || o.timestamp);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                trueCourierExp += parseInt(o.actualCourierCost) || 0;
+            }
+        }
+    });
+
+    // മറ്റ് ചിലവുകൾ (Expenses)
+    let trueOtherExp = 0;
+    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => {
+            if (!e.isCourier) trueOtherExp += e.amount;
+        });
+    }
+
+    // യഥാർത്ഥ ലാഭം കണ്ടുപിടിക്കുന്നു
+    let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
+    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
+
+    // ഡാഷ്‌ബോർഡിലെ Monthly Overview കാർഡുകളിലേക്ക് നൽകുന്നു
+    $('#m-sales').text('₹' + trueIncome.toLocaleString());
+    $('#m-expense').text('₹' + totalExpenses.toLocaleString());
+    $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
+
+    // 🔥 പഴയ കണ്ടെയ്‌നറുകൾ കളയുന്നു
+    $('#extra-stats-container').remove();
+    $('#partner-shares-container').remove();
+
+    // 🔥 NEW: BEAUTIFUL BOTTLES & ORDERS STATS UI 
+    let statsHtml = `
+    <div id="extra-stats-container" class="row mb-3 px-1 mt-3">
+        <div class="col-6 pe-2">
+            <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-wine-bottle"></i></div>
+                    <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;">BOTTLES SOLD</h6>
+                </div>
+                <div class="d-flex justify-content-between align-items-end mt-1 pt-2 border-top border-primary border-opacity-25">
+                    <div class="text-center w-50">
+                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Month</div>
+                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${monthBottles}</div>
+                    </div>
+                    <div style="height:30px; width:1px; background:#bbd0ff;"></div>
+                    <div class="text-center w-50">
+                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Year</div>
+                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${yearBottles}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 ps-2">
+            <div class="bg-warning bg-opacity-10 border border-warning border-opacity-50 rounded-4 p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <div class="rounded-circle bg-warning text-dark d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-box-open"></i></div>
+                    <h6 class="fw-bold text-dark m-0" style="font-size:11px; letter-spacing:0.5px;">TOTAL ORDERS</h6>
+                </div>
+                <div class="d-flex justify-content-between align-items-end mt-1 pt-2 border-top border-warning border-opacity-50">
+                    <div class="text-center w-50">
+                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Month</div>
+                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${monthOrders}</div>
+                    </div>
+                    <div style="height:30px; width:1px; background:#ffe08a;"></div>
+                    <div class="text-center w-50">
+                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Year</div>
+                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${yearOrders}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    // 🔥 PROFIT SHARES UI 
+    let sharesHtml = `
+    <div id="partner-shares-container" class="mb-4 p-3 bg-white border border-success border-opacity-25 rounded-4 shadow-sm">
+        <div class="d-flex align-items-center mb-2 pb-2 border-bottom border-success border-opacity-10">
+            <i class="fas fa-chart-pie text-success me-2"></i>
+            <h6 class="fw-bold text-dark m-0" style="font-size:12px;">PROFIT SHARE SPLIT</h6>
+        </div>
+        <div class="row text-center pt-1">
+            <div class="col-4 border-end">
+                <div class="small text-muted mb-1" style="font-size:10px; font-weight:700;">Salam (20%)</div>
+                <div class="fw-bold text-success" style="font-size:14px;">₹${(trueNetProfit * 0.20).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
+            </div>
+            <div class="col-4 border-end">
+                <div class="small text-muted mb-1" style="font-size:10px; font-weight:700;">Samad (70%)</div>
+                <div class="fw-bold text-success" style="font-size:14px;">₹${(trueNetProfit * 0.70).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
+            </div>
+            <div class="col-4">
+                <div class="small text-muted mb-1" style="font-size:10px; font-weight:700;">Jazeela (10%)</div>
+                <div class="fw-bold text-success" style="font-size:14px;">₹${(trueNetProfit * 0.10).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    // രണ്ടും ആക്ടിവിറ്റി ലിസ്റ്റിന് മുകളിലായി ആഡ് ചെയ്യുന്നു
+    $('#tx-details-area').before(statsHtml + sharesHtml);
+
+    // 🔥 Redraw Calendar & Render Transactions
     if (txCalendarPicker) txCalendarPicker.redraw();
     let dateKey = flatpickr.formatDate(selectedDate, "Y-m-d");
     renderTransactionsForDate(dateKey);
