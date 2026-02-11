@@ -118,9 +118,15 @@ function confirmAction(text, callback) {
 
 // Background Rate Fetcher
 function fetchRatesBackground() {
-    if (localStorage.getItem('adminRatesCache')) {
-        courierRates = JSON.parse(localStorage.getItem('adminRatesCache'));
-        return;
+    let cached = localStorage.getItem('adminRatesCache');
+
+    // കാഷെ ഉണ്ടെങ്കിലും അത് ശൂന്യമല്ലെങ്കിൽ (Empty അല്ലെങ്കില്) മാത്രം എടുത്താൽ മതി
+    if (cached && cached !== "{}" && cached !== "null") {
+        let parsed = JSON.parse(cached);
+        if (Object.keys(parsed).length > 0) {
+            courierRates = parsed;
+            return; // റേറ്റ് ഉണ്ടെങ്കിൽ പിന്നെ ഫെച്ച് ചെയ്യില്ല
+        }
     }
 
     console.log("🔄 Fetching latest rates from server...");
@@ -132,6 +138,7 @@ function fetchRatesBackground() {
                 localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
                 console.log("✅ Rates Updated & Saved to LocalStorage");
 
+                // റേറ്റ് കിട്ടിയ ഉടനെ കാർഡുകൾ അപ്ഡേറ്റ് ആവാൻ
                 if (allOrders && allOrders.length > 0) {
                     renderTabs(allOrders);
                 }
@@ -1035,19 +1042,25 @@ function cancelDispatchAction() {
     }, 1000);
 }
 
-// 🔥 SIMPLE ZONE MATCHER (No extra codes, exact match only)
+// 🔥 2. SIMPLE ZONE MATCHER 
 function getZoneKey(stateName) {
     if (!stateName) return 'REST OF INDIA';
     let s = String(stateName).toUpperCase().trim();
 
-    // pincode.json വഴി വരുന്ന കൃത്യമായ പേര് ഷീറ്റിലെ പേരുമായി മാച്ച് ചെയ്യുന്നു
     if (courierRates && courierRates[s]) {
         return s;
     }
+
+    // ഫോൾബാക്ക് (എന്തെങ്കിലും കാരണവശാൽ സ്പെല്ലിംഗ് മാറിയാൽ)
+    let zones = Object.keys(courierRates || {});
+    for (let z of zones) {
+        if (z.toUpperCase() === s) return z;
+    }
+
     return 'REST OF INDIA';
 }
 
-// 🔥 SIMPLE PRICE CALCULATION 
+// 🔥 3. SIMPLE PRICE CALCULATION 
 function calculatePriceInfo(qty, state) {
     const n = parseInt(qty) || 0;
     const basePrice = n * 650;
@@ -1055,9 +1068,15 @@ function calculatePriceInfo(qty, state) {
 
     if (courierRates && Object.keys(courierRates).length > 0) {
         const zone = getZoneKey(state);
-        if (courierRates[zone] && courierRates[zone][n]) {
+        if (courierRates[zone] && courierRates[zone][n] !== undefined) {
             courierCharge = parseInt(courierRates[zone][n]);
         }
+    } else {
+        // 🔥 FAILSAFE: നെറ്റ്വർക്ക് ഇഷ്യൂ കാരണമോ മറ്റോ റേറ്റ് കിട്ടിയില്ലെങ്കിൽ ഡീഫോൾട്ട് ആയി ഇത് എടുക്കും
+        if (n === 1) courierCharge = 80;
+        else if (n === 2) courierCharge = 140;
+        else if (n === 3) courierCharge = 180;
+        else if (n >= 4) courierCharge = 200;
     }
 
     return { total: `₹${basePrice + courierCharge}/-` };
