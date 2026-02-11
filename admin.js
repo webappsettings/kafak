@@ -515,15 +515,20 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>
     </div>`;
 }
+// 🔥 UPDATED: Sync Button UI (Orders + Expenses കൂട്ടാൻ)
 function updateSyncButtonUI() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+
+    let totalPending = pendingUpdates.length + pendingExpenses.length;
+
     const syncBtn = $('#sync-btn');
     const logoPlaceholder = $('#logo-placeholder');
     const headerLogo = $('#header-logo');
     const badge = $('#sync-badge-count');
 
-    if (pendingUpdates.length > 0) {
-        syncBtn.css('display', 'flex'); logoPlaceholder.hide(); badge.text(pendingUpdates.length);
+    if (totalPending > 0) {
+        syncBtn.css('display', 'flex'); logoPlaceholder.hide(); badge.text(totalPending);
     } else {
         syncBtn.hide(); logoPlaceholder.show(); headerLogo.show();
     }
@@ -779,28 +784,41 @@ function undoUpdate(index) {
 }
 
 // 🔥 FINAL UPLOAD
+// 🔥 UPDATED: FINAL UPLOAD (Orders + Expenses ഒരുമിച്ച് സിങ്ക് ആവാൻ)
 function finalConfirmSync() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    if (pendingUpdates.length === 0) return;
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+
+    if (pendingUpdates.length === 0 && pendingExpenses.length === 0) return;
 
     const btn = $('#syncModal button.btn-dark');
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
 
-    let trackingUpdates = pendingUpdates.filter(u => u.tracking);
-    let statusUpdates = pendingUpdates.filter(u => !u.tracking);
     let promises = [];
 
+    // 1. Orders Status Sync
+    let statusUpdates = pendingUpdates.filter(u => !u.tracking);
     if (statusUpdates.length > 0) promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates }) }));
+
+    // 2. Orders Tracking Sync
+    let trackingUpdates = pendingUpdates.filter(u => u.tracking);
     trackingUpdates.forEach(u => promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking }) })));
+
+    // 3. Expenses Sync (Image ഉള്ളതുകൊണ്ട് ഓരോന്നായി അപ്‌ലോഡ് ചെയ്യുന്നു)
+    pendingExpenses.forEach(exp => {
+        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: exp }) }));
+    });
 
     Promise.all(promises).then(() => {
         localStorage.removeItem('pendingUpdates');
+        localStorage.removeItem('pendingExpenses');
         $('#syncModal').modal('hide');
         showToast('success', 'Synced Successfully!');
         updateSyncButtonUI();
+        fetchDashboardDataBg();
         btn.prop('disabled', false).html('<i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW');
     }).catch(() => {
-        showToast('error', 'Sync Failed!');
+        showToast('error', 'Sync Failed! Try again later.');
         btn.prop('disabled', false).html('<i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW');
     });
 }
@@ -1232,16 +1250,50 @@ function changeDate(days) {
     changeDashDate();
 }
 
+// 🔥 FIX: തീയതി കാണിക്കാനും, ഡിസൈൻ സെറ്റ് ചെയ്യാനുമുള്ള ഫംഗ്‌ഷൻ
 function changeDashDate() {
-    // Sync all pickers to selectedDate
     if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
     if (expDatePicker) expDatePicker.setDate(selectedDate, false);
     if (txCalendarPicker) txCalendarPicker.setDate(selectedDate, false);
 
     updateArrowUI();
 
+    // 🔥 FIX 1: Top Date Text (Arrows ഇടയിലുള്ള തീയതി കാണിക്കാൻ)
+    let formattedDate = flatpickr.formatDate(selectedDate, "d M Y");
+    if (selectedDate.toDateString() === new Date().toDateString()) {
+        formattedDate = "Today, " + formattedDate;
+    }
+    // ഇൻപുട്ട് ആണെങ്കിലും ഡിവിഷൻ ആണെങ്കിലും വർക്ക് ചെയ്യാൻ
+    $('#dash-date').val(formattedDate).text(formattedDate);
+
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
     $('#tx-details-area').html('<div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
+
+    // 🔥 FIX 2: ആക്റ്റിവിറ്റി ലിസ്റ്റ് കലണ്ടറിന് താഴേക്ക് മാറ്റാൻ
+    if ($('#tx-calendar').length && $('#tx-details-area').length) {
+        $('#tx-details-area').insertAfter($('#tx-calendar').parent());
+    }
+
+    // 🔥 FIX 3: Add Expense ഇൻപുട്ട് ബോക്സുകൾക്ക് നല്ല ബോർഡർ കൊടുക്കാൻ (CSS Injection)
+    if (!$('#custom-expense-css').length) {
+        $('<style id="custom-expense-css">')
+            .html(`
+            #expense-form input, #expense-form select, #expense-form textarea {
+                border: 2px solid #ced4da !important;
+                border-radius: 8px;
+                padding: 10px;
+                background-color: #f8f9fa;
+                font-weight: 600;
+                color: #333;
+            }
+            #expense-form input:focus, #expense-form select:focus, #expense-form textarea:focus {
+                border-color: #0d6efd !important;
+                background-color: #fff;
+                box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+            }
+            `)
+            .appendTo('head');
+    }
 
     fetchDashboardDataBg();
 }
@@ -1264,9 +1316,12 @@ function renderDashboard() {
     $('#d-profit').text('₹' + d.profit.toLocaleString());
     $('#d-orders').text(d.count || 0);
 
+    // 🔥 NEW: ഡെയ്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
+    $('#d-profit').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
+
     if (d.profit >= 0) {
         $('#d-profit').removeClass('text-danger').addClass('text-success');
-        $('#d-status-text').text("Running Profit 🚀").css('color', '#2e7d32');
+        $('#d-status-text').text("Cash in Hand 🚀").css('color', '#2e7d32');
     } else {
         $('#d-profit').removeClass('text-success').addClass('text-danger');
         $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
@@ -1316,6 +1371,16 @@ function renderDashboard() {
                 trueCourierExp += parseInt(o.actualCourierCost) || 0;
             }
         }
+
+        // ഡാഷ്‌ബോർഡിലെ Monthly Overview കാർഡുകളിലേക്ക് നൽകുന്നു
+        $('#m-sales').text('₹' + trueIncome.toLocaleString());
+        $('#m-expense').text('₹' + totalExpenses.toLocaleString());
+        $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
+
+        // 🔥 NEW: മന്ത്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
+        $('#m-sales').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
+        $('#m-expense').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(Bottle Cost + Courier + Other)</div>');
+        $('#m-profit').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
     });
 
     // മറ്റ് ചിലവുകൾ (Expenses)
@@ -1556,7 +1621,7 @@ function compressImage(file) {
     });
 }
 
-// 🔥 ADD EXPENSE (Submit & Perfect Reset Logic)
+// 🔥 UPDATED: ADD EXPENSE (WITH OFFLINE SUPPORT)
 async function submitExpense(e) {
     e.preventDefault();
     let btn = $('#btn-save-exp');
@@ -1578,13 +1643,10 @@ async function submitExpense(e) {
         }
     }
 
-    let selectedD = $('#exp-date').val();
-    if (!selectedD) {
-        let today = new Date();
-        selectedD = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    }
+    let selectedD = $('#exp-date').val() || flatpickr.formatDate(new Date(), "Y-m-d");
 
     let formData = {
+        id: 'EXP-' + Date.now(), // ഓഫ്ലൈൻ സിങ്കിങ്ങിന് വേണ്ടി
         date: selectedD,
         category: $('#exp-category').val(),
         vendor: $('#exp-vendor').val(),
@@ -1594,27 +1656,51 @@ async function submitExpense(e) {
         fileName: fileName
     };
 
+    // 🔥 OFFLINE CHECK
+    if (!navigator.onLine) {
+        saveExpenseOffline(formData, selectedD);
+        btn.prop('disabled', false).text(originalText);
+        return;
+    }
+
     fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: formData }) })
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
-
-                // 🔥 PERFECT FORM RESET
-                $('#expense-form')[0].reset();
-                $('#exp-category').val('Materials'); // Default Category
-                $('#partner-section').hide(); // Force hide partner section
-                $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
-                $('.partner-card').removeClass('selected');
-                $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
-                if (expDatePicker) expDatePicker.setDate(selectedD, false);
-
-                fetchDashboardDataBg();
-                $('#tab-overview').click();
-            } else alert('Failed!');
+                resetExpenseForm(selectedD);
+            } else {
+                saveExpenseOffline(formData, selectedD); // സെർവർ ഫെയിൽ ആയാലും സേവ് ആകും
+            }
         })
-        .catch(err => alert('Network Error'))
+        .catch(err => {
+            saveExpenseOffline(formData, selectedD); // നെറ്റ് പോയാൽ ഓഫ്ലൈൻ ആകും
+        })
         .finally(() => btn.prop('disabled', false).text(originalText));
+}
+
+// Helper: Offline Save
+function saveExpenseOffline(formData, selectedD) {
+    let pendingExp = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    pendingExp.push(formData);
+    localStorage.setItem('pendingExpenses', JSON.stringify(pendingExp));
+
+    showToast('info', 'Saved Offline! 📶 Sync later.');
+    updateSyncButtonUI();
+    resetExpenseForm(selectedD);
+}
+
+// Helper: Form Reset
+function resetExpenseForm(selectedD) {
+    $('#expense-form')[0].reset();
+    $('#exp-category').val('Materials');
+    $('#partner-section').hide();
+    $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+    $('.partner-card').removeClass('selected');
+    $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
+    if (expDatePicker) expDatePicker.setDate(selectedD, false);
+    fetchDashboardDataBg();
+    $('#tab-overview').click();
 }
 
 function togglePartnerSelect() {
@@ -1628,16 +1714,19 @@ function togglePartnerSelect() {
     }
 }
 
-// 🔥 FIX: Show absolute Total Balance
+// 🔥 UPDATED: Partner List with Helper Note
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
-    let html = '';
+
+    // 🔥 NEW: സാലറിയുടെ മുകളിലെ നോട്ട്
+    let html = `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
+        <i class="fas fa-info-circle text-warning mt-1"></i> 
+        <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ബാലൻസ് ആണ്.</div>
+    </div>`;
 
     for (let [name, data] of Object.entries(partners)) {
-        // data.curr എന്നത് ഇതുവരെയുള്ള മൊത്തം പ്രോഫിറ്റിൽ നിന്ന് ഇതുവരെ എടുത്ത മൊത്തം സാലറി കുറച്ച ഫൈനൽ ബാലൻസ് ആണ്. 
         let totalBal = typeof data === 'object' ? data.curr : data;
-
         html += `
         <div class="partner-card" onclick="selectPartner('${name}')">
             <div class="d-flex align-items-center gap-2">
