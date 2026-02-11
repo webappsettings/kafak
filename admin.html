@@ -1107,12 +1107,11 @@
                             <i class="fas fa-chevron-left" style="font-size:12px;"></i>
                         </button>
 
-                        <input type="date" id="dash-date"
+                        <input type="text" id="dash-date"
                             class="form-control form-control-sm border-0 text-center fw-bold text-dark shadow-none bg-transparent"
-                            style="width: 130px; cursor: pointer; font-size:13px;"
-                            onchange="changeDashDate(this.value)">
+                            style="width: 130px; cursor: pointer; font-size:13px;" readonly>
 
-                        <button class="btn btn-sm btn-light rounded-circle border-0 text-secondary"
+                        <button id="btn-next-day" class="btn btn-sm btn-light rounded-circle border-0 text-secondary"
                             style="width:30px; height:30px; display:flex; align-items:center; justify-content:center;"
                             onclick="changeDate(1)">
                             <i class="fas fa-chevron-right" style="font-size:12px;"></i>
@@ -1202,7 +1201,9 @@
                 </div>
 
                 <div class="p-3 bg-light border rounded-4 mt-4">
-                    <h6 class="fw-bold small text-muted mb-3"><i class="fas fa-calendar-alt me-2"></i>MONTHLY OVERVIEW
+                    <h6 class="fw-bold small text-muted mb-3">
+                        <i class="fas fa-calendar-alt me-2"></i>MONTHLY OVERVIEW <span id="m-overview-title"
+                            class="text-primary ms-1"></span>
                     </h6>
                     <div class="d-flex justify-content-between small mb-2"><span>Total Sales:</span> <span
                             class="fw-bold text-dark" id="m-sales">0</span></div>
@@ -1218,7 +1219,8 @@
                 <form id="expense-form" onsubmit="submitExpense(event)">
                     <div class="mb-3">
                         <label class="small fw-bold text-muted ms-1">Transaction Date</label>
-                        <input type="date" id="exp-date" class="form-control form-control-lg fw-bold bg-light border-0">
+                        <input type="text" id="exp-date" class="form-control form-control-lg fw-bold bg-light border-0"
+                            placeholder="Select Date" readonly>
                     </div>
 
                     <div class="mb-3">

@@ -1046,15 +1046,38 @@ function calculatePriceInfo(qty, state) {
 
 
 // ==========================================
-// 🔥 DASHBOARD & EXPENSE LOGIC (NEW)
-// ==========================================
-
-// ==========================================
-// 🔥 NEW DASHBOARD & EXPENSE LOGIC
+// 🔥 DASHBOARD & EXPENSE LOGIC (FLATPICKR UPDATE)
 // ==========================================
 
 let selectedDate = new Date();
 let dashboardData = null;
+let dashDatePicker = null;
+let expDatePicker = null;
+
+// 1. Initialize Advanced Beautiful Date Pickers
+function initFlatpickrs() {
+    if (!dashDatePicker) {
+        dashDatePicker = flatpickr("#dash-date", {
+            dateFormat: "Y-m-d",
+            defaultDate: selectedDate,
+            maxDate: "today", // 🔥 Tomorrow Disabled
+            theme: "material_blue",
+            disableMobile: false,
+            onChange: function (selectedDates, dateStr, instance) {
+                if (dateStr) changeDashDate(dateStr);
+            }
+        });
+    }
+    if (!expDatePicker) {
+        expDatePicker = flatpickr("#exp-date", {
+            dateFormat: "Y-m-d",
+            defaultDate: selectedDate,
+            maxDate: "today", // 🔥 Tomorrow Disabled
+            theme: "material_blue",
+            disableMobile: false
+        });
+    }
+}
 
 function fetchDashboardDataBg() {
     let y = selectedDate.getFullYear();
@@ -1076,19 +1099,8 @@ function openDashboard() {
     $('#drawer-overlay').fadeIn(200);
     $('#dashboard-drawer').addClass('open');
 
-    let y = selectedDate.getFullYear();
-    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    let d = String(selectedDate.getDate()).padStart(2, '0');
-    let dateStr = `${y}-${m}-${d}`;
-
-    if (document.getElementById('dash-date')) {
-        document.getElementById('dash-date').value = dateStr;
-    }
-
-    // 🔥 FIX: Expense ഫോമിലും ഡീഫോൾട്ട് ആയി ഡേറ്റ് സെറ്റ് ചെയ്യുന്നു
-    if (document.getElementById('exp-date')) {
-        document.getElementById('exp-date').value = dateStr;
-    }
+    initFlatpickrs(); // Load UI pickers
+    updateArrowUI();  // Disable arrow if today
 
     if (!dashboardData) fetchDashboardDataBg();
     else renderDashboard();
@@ -1099,30 +1111,52 @@ function closeDashboard() {
     $('#dashboard-drawer').removeClass('open');
 }
 
-// 🔥 NEW: Arrow Click Logic
-function changeDate(days) {
-    selectedDate.setDate(selectedDate.getDate() + days);
+// 2. 🔥 Arrow Click Function (Prevent Future Dates)
+function updateArrowUI() {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let checkD = new Date(selectedDate);
+    checkD.setHours(0, 0, 0, 0);
 
-    // YYYY-MM-DD ഫോർമാറ്റ് ആക്കുന്നു
-    let y = selectedDate.getFullYear();
-    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    let d = String(selectedDate.getDate()).padStart(2, '0');
-
-    // ഇൻപുട്ട് ബോക്സിലെ തീയതി അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-    document.getElementById('dash-date').value = `${y}-${m}-${d}`;
-
-    // ഡാറ്റ ലോഡ് ചെയ്യാൻ വിളിക്കുന്നു
-    changeDashDate(`${y}-${m}-${d}`);
+    if (checkD >= today) {
+        $('#btn-next-day').prop('disabled', true).css({ 'opacity': '0.3', 'cursor': 'not-allowed' });
+    } else {
+        $('#btn-next-day').prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
+    }
 }
 
+function changeDate(days) {
+    let newDate = new Date(selectedDate);
+    newDate.setDate(newDate.getDate() + days);
+
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let checkD = new Date(newDate);
+    checkD.setHours(0, 0, 0, 0);
+
+    // Tomorrow Disabled
+    if (checkD > today) return;
+
+    selectedDate = newDate;
+    let dateStr = flatpickr.formatDate(selectedDate, "Y-m-d");
+
+    // Update pickers without triggering loop
+    if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
+    if (expDatePicker) expDatePicker.setDate(selectedDate, false);
+
+    changeDashDate(dateStr);
+}
+
+// 3. 🔥 Date Change Event Trigger
 function changeDashDate(val) {
     if (!val) return;
     selectedDate = new Date(val);
 
-    // 🔥 FIX: ടൈംസോൺ പ്രശ്നം ഒഴിവാക്കാൻ നേരിട്ട് വാല്യൂ നൽകുന്നു
-    if (document.getElementById('exp-date')) {
-        document.getElementById('exp-date').value = val;
-    }
+    // Sync both pickers
+    if (expDatePicker) expDatePicker.setDate(selectedDate, false);
+    if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
+
+    updateArrowUI();
 
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
     $('#monthly-expense-timeline, #monthly-income-timeline').html('<div class="text-center py-5 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
@@ -1130,17 +1164,23 @@ function changeDashDate(val) {
     fetchDashboardDataBg();
 }
 
-
-
-// 🔥 UPDATED RENDER DASHBOARD (With Full Month Timeline Tabs)
+// 4. 🔥 Render Dashboard UI (With dynamic Month/Year Tags)
 function renderDashboard() {
     if (!dashboardData) return;
 
     let d = dashboardData.daily;
     let m = dashboardData.monthly;
-    let tl = dashboardData.monthTimeline; // Timeline Data
+    let tl = dashboardData.monthTimeline;
 
-    // --- 1. TOP CARDS ---
+    // Dynamic Month Display
+    let mName = selectedDate.toLocaleString('en-US', { month: 'short' });
+    let yName = selectedDate.getFullYear();
+
+    $('#m-overview-title').text(`(${mName} ${yName})`);
+    $('#tx-expense-tab').html(`<i class="fas fa-arrow-down me-1"></i> EXPENSES (${mName})`);
+    $('#tx-income-tab').html(`<i class="fas fa-arrow-up me-1"></i> INCOME (${mName})`);
+
+    // --- TOP CARDS ---
     $('#d-sales').text('₹' + d.sales.toLocaleString());
     $('#d-expense').text('₹' + d.expense.toLocaleString());
     $('#d-courier').text('₹' + d.courier.toLocaleString());
@@ -1159,14 +1199,13 @@ function renderDashboard() {
     $('#m-expense').text('₹' + m.expense.toLocaleString());
     $('#m-profit').text('₹' + m.profit.toLocaleString());
 
-    // --- 2. EXPENSE TAB RENDER (Month) ---
+    // --- EXPENSE TAB RENDER ---
     let expHtml = '';
     let expMap = {};
     if (tl && tl.expense) {
         tl.expense.forEach(e => {
             if (!expMap[e.date]) expMap[e.date] = [];
             if (e.isCourier) {
-                // കൊറിയർ ചാർജുകൾ ഒരേ ദിവസം ഉണ്ടെങ്കിൽ ഒരുമിച്ച് കാണിക്കാൻ
                 let ex = expMap[e.date].find(x => x.isCourier);
                 if (ex) ex.amount += e.amount;
                 else expMap[e.date].push({ ...e });
@@ -1178,10 +1217,10 @@ function renderDashboard() {
 
     let expDates = Object.keys(expMap).sort((a, b) => new Date(b) - new Date(a));
     if (expDates.length === 0) {
-        expHtml = `<div class="text-center py-5 text-muted small">No expenses this month.</div>`;
+        expHtml = `<div class="text-center py-5 text-muted small">No expenses in ${mName} ${yName}.</div>`;
     } else {
         expDates.forEach(date => {
-            let lbl = getTimelineLabel(date); // Sticky Date Header
+            let lbl = getTimelineLabel(date);
             expHtml += `
             <div class="sticky-date-wrapper" style="position:sticky; top:0; z-index:5; background:rgba(255,255,255,0.95); backdrop-filter:blur(4px); padding:8px 0; border-bottom:1px solid #eee;">
                 <div class="timeline-badge text-danger" style="background:#fff1f2; border:1px solid #ffe4e6; margin:0 auto; padding:4px 12px; font-size:11px; border-radius:20px; font-weight:800;">${lbl}</div>
@@ -1189,7 +1228,6 @@ function renderDashboard() {
 
             expMap[date].forEach(item => {
                 let descText = item.desc || item.cat || 'Expense';
-                // ഉദാഹരണത്തിന്: 100 bottles brought from AtoZ Packaging
                 if (item.vendor && item.vendor !== 'Auto') descText += ` from <b>${item.vendor}</b>`;
                 if (item.isCourier) descText = "<b>Courier Sent</b>";
 
@@ -1209,16 +1247,16 @@ function renderDashboard() {
     }
     $('#monthly-expense-timeline').html(expHtml);
 
-    // --- 3. INCOME TAB RENDER (Month) ---
+    // --- INCOME TAB RENDER ---
     let incHtml = '';
     let incMap = (tl && tl.income) ? tl.income : {};
     let incDates = Object.keys(incMap).sort((a, b) => new Date(b) - new Date(a));
 
     if (incDates.length === 0) {
-        incHtml = `<div class="text-center py-5 text-muted small">No income this month.</div>`;
+        incHtml = `<div class="text-center py-5 text-muted small">No income in ${mName} ${yName}.</div>`;
     } else {
         incDates.forEach(date => {
-            let lbl = getTimelineLabel(date); // Sticky Date Header
+            let lbl = getTimelineLabel(date);
             let item = incMap[date];
 
             incHtml += `
@@ -1241,84 +1279,33 @@ function renderDashboard() {
     if (typeof renderPartnerList === 'function') renderPartnerList();
 }
 
-// 1. DRAWER OPEN/CLOSE
+// 📸 HELPER: Image Compression Logic
+function compressImage(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const MAX_WIDTH = 800;
+                const scaleSize = MAX_WIDTH / img.width;
+                canvas.width = MAX_WIDTH;
+                canvas.height = img.height * scaleSize;
 
-function closeDashboard() {
-    $('#drawer-overlay').fadeOut(200);
-    $('#dashboard-drawer').removeClass('open');
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
+                resolve({ data: dataUrl, name: "Proof_" + Date.now() + ".jpg" });
+            };
+            img.onerror = (err) => reject(err);
+        };
+        reader.onerror = (err) => reject(err);
+    });
 }
 
-// 2. DATE NAVIGATION
-function updateDateDisplay() {
-    let today = new Date();
-    // Reset time for comparison
-    let d1 = new Date(selectedDate.toDateString());
-    let d2 = new Date(today.toDateString());
-    let isToday = d1.getTime() === d2.getTime();
-
-    let options = { weekday: 'short', day: 'numeric', month: 'short' };
-    $('#current-date-display').text(isToday ? "Today" : selectedDate.toLocaleDateString('en-IN', options));
-
-    $('#btn-next-date').prop('disabled', isToday);
-
-    // Sync Date Input in Form
-    document.getElementById('exp-date').valueAsDate = selectedDate;
-}
-
-function changeDate(days) {
-    selectedDate.setDate(selectedDate.getDate() + days);
-    updateDateDisplay();
-    fetchDashboardDataBg();
-}
-
-
-// 4. PARTNER SALARY LOGIC
-function togglePartnerSelect() {
-    let cat = $('#exp-category').val();
-    if (cat === 'Salary') {
-        $('#partner-section').slideDown();
-        $('#exp-vendor').prop('readonly', true).attr('placeholder', 'Select Partner above');
-    } else {
-        $('#partner-section').slideUp();
-        $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
-    }
-}
-
-function renderPartnerList() {
-    if (!dashboardData || !dashboardData.partners) return;
-
-    let partners = dashboardData.partners;
-    let html = '';
-
-    for (let [name, balance] of Object.entries(partners)) {
-        html += `
-        <div class="partner-card" onclick="selectPartner('${name}')">
-            <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-user-circle text-muted fs-4"></i>
-                <div>
-                    <div class="fw-bold small">${name}</div>
-                    <div class="text-muted" style="font-size:10px;">Bal: ₹${balance}</div>
-                </div>
-            </div>
-            <i class="far fa-circle text-muted check-icon"></i>
-        </div>`;
-    }
-    $('#partner-list').html(html);
-}
-
-function selectPartner(name) {
-    // UI Update
-    $('.partner-card').removeClass('selected');
-    $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
-
-    $(event.currentTarget).addClass('selected');
-    $(event.currentTarget).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
-
-    // Fill Data
-    $('#exp-vendor').val(name);
-}
-
-// 5. SUBMIT EXPENSE (With Image Compression)
 // 🔥 ADD EXPENSE (Submit Logic Updated)
 async function submitExpense(e) {
     e.preventDefault();
@@ -1344,7 +1331,6 @@ async function submitExpense(e) {
         }
     }
 
-    // 🔥 FIX: ഡേറ്റ് വീണ്ടും ചെക്ക് ചെയ്യുന്നു
     let selectedD = $('#exp-date').val();
     if (!selectedD) {
         let today = new Date();
@@ -1371,13 +1357,10 @@ async function submitExpense(e) {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
                 $('#expense-form')[0].reset();
 
-                // ഫോം റീസെറ്റ് ചെയ്ത ശേഷം വീണ്ടും തീയതി പഴയതുപോലെ വെക്കുന്നു
-                document.getElementById('exp-date').value = selectedD;
+                if (expDatePicker) expDatePicker.setDate(selectedD, false);
                 $('.partner-card').removeClass('selected');
 
-                // Refresh Dashboard Data Background
                 fetchDashboardDataBg();
-
                 $('#tab-overview').click();
             } else {
                 alert('Failed: ' + (data.message || 'Unknown error'));
@@ -1388,6 +1371,46 @@ async function submitExpense(e) {
             btn.prop('disabled', false).text(originalText);
         });
 }
+
+function togglePartnerSelect() {
+    let cat = $('#exp-category').val();
+    if (cat === 'Salary') {
+        $('#partner-section').slideDown();
+        $('#exp-vendor').prop('readonly', true).attr('placeholder', 'Select Partner above');
+    } else {
+        $('#partner-section').slideUp();
+        $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+    }
+}
+
+function renderPartnerList() {
+    if (!dashboardData || !dashboardData.partners) return;
+    let partners = dashboardData.partners;
+    let html = '';
+    for (let [name, balance] of Object.entries(partners)) {
+        html += `
+        <div class="partner-card" onclick="selectPartner('${name}')">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-user-circle text-muted fs-4"></i>
+                <div>
+                    <div class="fw-bold small">${name}</div>
+                    <div class="text-muted" style="font-size:10px;">Bal: ₹${balance}</div>
+                </div>
+            </div>
+            <i class="far fa-circle text-muted check-icon"></i>
+        </div>`;
+    }
+    $('#partner-list').html(html);
+}
+
+function selectPartner(name) {
+    $('.partner-card').removeClass('selected');
+    $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
+    $(event.currentTarget).addClass('selected');
+    $(event.currentTarget).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
+    $('#exp-vendor').val(name);
+}
+
 
 // 📸 IMAGE COMPRESSION
 function compressImage(file) {
