@@ -84,10 +84,53 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) { console.error("Init Error:", e); }
 });
 
+// 🔥 1. GLOBAL UI BEAUTIFIER & INITIALIZER
 function showDashboard() {
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('dashboard-section').style.display = 'block';
-    fetchRatesBackground(); // 🔥 ഡാഷ്‌ബോർഡ് വരുമ്പോൾ റേറ്റ് ഫെച്ച് ചെയ്യാൻ വിളിക്കുന്നു
+
+    // 🔥 BEAUTIFUL EXPENSE UI CSS INJECTION (ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ വർക്ക് ആകും)
+    if (!$('#custom-expense-css').length) {
+        $('<style id="custom-expense-css">').html(`
+            #expense-form input, #expense-form select, #expense-form textarea {
+                border: 2px solid #cbd5e1 !important;
+                border-radius: 10px !important;
+                padding: 12px 15px !important;
+                background-color: #f8fafc !important;
+                font-weight: 700 !important;
+                color: #1e293b !important;
+                font-size: 14px !important;
+                transition: all 0.3s ease;
+            }
+            #expense-form input:focus, #expense-form select:focus, #expense-form textarea:focus {
+                border-color: #2563eb !important;
+                background-color: #ffffff !important;
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
+                outline: none !important;
+            }
+            #expense-form .form-label, #expense-form label {
+                font-size: 11px !important;
+                font-weight: 800 !important;
+                color: #64748b !important;
+                text-transform: uppercase !important;
+                margin-bottom: 6px !important;
+                letter-spacing: 0.5px;
+            }
+            #btn-save-exp {
+                background: #0f172a !important;
+                border-radius: 12px !important;
+                font-size: 14px !important;
+                font-weight: 800 !important;
+                padding: 14px !important;
+                letter-spacing: 1px !important;
+                text-transform: uppercase !important;
+                border: none !important;
+                margin-top: 10px;
+            }
+        `).appendTo('head');
+    }
+
+    fetchRatesBackground();
     fetchOrders();
 }
 
@@ -516,6 +559,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     </div>`;
 }
 // 🔥 UPDATED: Sync Button UI (Orders + Expenses കൂട്ടാൻ)
+// 🔥 2. UPDATED SYNC BUTTON UI (Expense ഫോമിനുള്ളിൽ സിങ്ക് ബട്ടൺ കാണിക്കാൻ)
 function updateSyncButtonUI() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -527,10 +571,24 @@ function updateSyncButtonUI() {
     const headerLogo = $('#header-logo');
     const badge = $('#sync-badge-count');
 
+    // ഹെഡറിലെ മെയിൻ സിങ്ക് ബട്ടൺ
     if (totalPending > 0) {
         syncBtn.css('display', 'flex'); logoPlaceholder.hide(); badge.text(totalPending);
     } else {
         syncBtn.hide(); logoPlaceholder.show(); headerLogo.show();
+    }
+
+    // 🔥 EXPENSE TAB-ൽ തനിയെ വരുന്ന SYNC ALERT & BUTTON
+    $('#exp-sync-alert').remove(); // പഴയത് കളയുന്നു
+    if (pendingExpenses.length > 0) {
+        let alertHtml = `
+        <div id="exp-sync-alert" class="alert alert-warning d-flex justify-content-between align-items-center p-3 mb-3 shadow-sm border-warning" style="border-radius:12px; background:#fffbeb;">
+            <div style="font-size:12px; font-weight:800; color:#b45309;">
+                <i class="fas fa-wifi text-danger me-1"></i> ${pendingExpenses.length} Expense(s) Offline!
+            </div>
+            <button type="button" onclick="syncWithServer()" class="btn btn-dark shadow-sm" style="font-size:11px; font-weight:800; border-radius:8px; padding:6px 12px;">SYNC NOW <i class="fas fa-cloud-upload-alt ms-1"></i></button>
+        </div>`;
+        $('#expense-form').prepend(alertHtml);
     }
 }
 
