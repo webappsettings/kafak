@@ -1081,13 +1081,6 @@ document.addEventListener('click', function (e) {
     }
 });
 
-document.addEventListener('click', function (e) {
-    const card = e.target.closest('.order-card');
-    if (card) {
-        document.querySelectorAll('.order-card').forEach(c => c.classList.remove('active-highlight'));
-        card.classList.add('active-highlight');
-    }
-});
 
 function toggleCard(btn) {
     let card = btn.closest('.order-card');
@@ -1125,13 +1118,7 @@ function confirmDispatchAction(oid, code) {
     isScanProcessing = false; // 🔥 Unlock Scanner for next scan
 }
 
-function cancelDispatchAction() {
-    $('#scan-result-box').slideUp();
-    setTimeout(() => {
-        html5QrCode.resume();
-        isScanProcessing = false; // 🔥 Unlock Scanner (Important)
-    }, 1000);
-}
+
 
 // 🔥 2. SIMPLE ZONE MATCHER 
 function getZoneKey(stateName) {
@@ -1151,27 +1138,6 @@ function getZoneKey(stateName) {
     return 'REST OF INDIA';
 }
 
-// 🔥 3. SIMPLE PRICE CALCULATION 
-function calculatePriceInfo(qty, state) {
-    const n = parseInt(qty) || 0;
-    const basePrice = n * 650;
-    let courierCharge = 0;
-
-    if (courierRates && Object.keys(courierRates).length > 0) {
-        const zone = getZoneKey(state);
-        if (courierRates[zone] && courierRates[zone][n] !== undefined) {
-            courierCharge = parseInt(courierRates[zone][n]);
-        }
-    } else {
-        // 🔥 FAILSAFE: നെറ്റ്വർക്ക് ഇഷ്യൂ കാരണമോ മറ്റോ റേറ്റ് കിട്ടിയില്ലെങ്കിൽ ഡീഫോൾട്ട് ആയി ഇത് എടുക്കും
-        if (n === 1) courierCharge = 80;
-        else if (n === 2) courierCharge = 140;
-        else if (n === 3) courierCharge = 180;
-        else if (n >= 4) courierCharge = 200;
-    }
-
-    return { total: `₹${basePrice + courierCharge}/-` };
-}
 
 function calculatePriceInfo(qty, state) {
     const n = parseInt(qty) || 0;
@@ -1716,29 +1682,6 @@ window.viewReceipt = function (url) {
     });
 }
 
-// 📸 HELPER: Image Compression Logic
-function compressImage(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (event) => {
-            const img = new Image();
-            img.src = event.target.result;
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const MAX_WIDTH = 800;
-                const scaleSize = MAX_WIDTH / img.width;
-                canvas.width = MAX_WIDTH;
-                canvas.height = img.height * scaleSize;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                resolve({ data: canvas.toDataURL('image/jpeg', 0.6), name: "Proof_" + Date.now() + ".jpg" });
-            };
-            img.onerror = (err) => reject(err);
-        };
-        reader.onerror = (err) => reject(err);
-    });
-}
 
 // 🔥 UPDATED: ADD EXPENSE (WITH OFFLINE SUPPORT)
 async function submitExpense(e) {
@@ -2109,7 +2052,10 @@ function showScanFeedback(statusHtml, order, code = "", isError = false, extraMs
 
 function cancelDispatchAction() {
     $('#scan-result-box').slideUp();
-    setTimeout(() => { if (html5QrCode) html5QrCode.resume(); isScanProcessing = false; }, 500);
+    setTimeout(() => {
+        if (typeof html5QrCode !== 'undefined' && html5QrCode) html5QrCode.resume();
+        isScanProcessing = false;
+    }, 500);
 }
 
 // 🔥 TOGGLE SORT FUNCTION
