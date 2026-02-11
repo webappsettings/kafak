@@ -502,7 +502,10 @@ window.handleEditPincode = async function (val) {
     if (!res.ok) throw new Error("Not Found");
 
     let data = await res.json();
-    data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
+    data = data.map(item => ({
+      ...item,
+      officename: item.officename.replace(/\s+(BO|SO|HO|PO)\s*$/i, ' PO')
+    }));
 
     if (data && data.length > 0) {
       $('#edit-district').val(data[0].district);
@@ -580,7 +583,10 @@ window.nextStep = async function () {
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
       const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
-      data = data.map(item => ({ ...item, officename: item.officename.replace(/\s*[\(\-\s]?(P|B|S|H)[\.\s]?O\.?[\)]?\s*$/i, ' PO') }));
+      data = data.map(item => ({
+        ...item,
+        officename: item.officename.replace(/\s+(BO|SO|HO|PO)\s*$/i, ' PO')
+      }));
       $('#btn-wiz-next').prop('disabled', false).text(t.btn_next);
 
       if (data && data.length > 0) {
@@ -1059,11 +1065,15 @@ $('#place').on('input keyup focus', function () {
 
 function updateLiveAddressPreview() {
   // 1. Get raw text for PO (Hidden Div-ൽ നിന്ന്)
+
+  // 1. Get raw text for PO (Hidden Div-ൽ നിന്ന്)
   let poRaw = $('#display-po').text() || '';
 
   // 2. Data Cleaning
   let place = $('#place').val() || '';
-  let po = poRaw.replace('PO', '').trim();
+
+  // 🔥 FIX: വാക്കിന്റെ അവസാനമുള്ള 'PO' മാത്രം കളയാൻ (Ponjassery പോലെയുള്ള പേരുകൾ മുറിഞ്ഞു പോകാതിരിക്കാൻ)
+  let po = poRaw.replace(/\s+PO\s*$/i, '').trim();
   if (po) po += ' PO';
 
   // 🔥 FIX: Split Logic ഒഴിവാക്കി, നേരിട്ട് Global Data-യിൽ നിന്ന് എടുക്കുന്നു
