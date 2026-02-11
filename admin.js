@@ -477,7 +477,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 <div>${headerLeft}</div>
                 <div>${topActions}</div>
             </div>
-            <div class="text-end text-muted small mb-2" style="font-size:10px;">${formattedDate}</div>
+            <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
             
             ${paidTimeHTML}
 
