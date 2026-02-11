@@ -1203,6 +1203,102 @@ let expDatePicker = null;
 let txCalendarPicker = null;
 
 // 1. Initialize Advanced Pickers
+function initFlatpickrs() {
+    if (!dashDatePicker) {
+        dashDatePicker = flatpickr("#dash-date", {
+            dateFormat: "d M Y", // 🔥 Fix: Beautiful format (e.g. 11 Feb 2026)
+            defaultDate: selectedDate,
+            maxDate: "today",
+            theme: "material_blue",
+            disableMobile: true, // 🔥 Fix: Prevents dd-mm-yyyy issue on phones
+            onChange: function (selectedDates) {
+                if (selectedDates[0]) {
+                    selectedDate = selectedDates[0];
+                    changeDashDate();
+                }
+            }
+        });
+    }
+    if (!expDatePicker) {
+        expDatePicker = flatpickr("#exp-date", {
+            enableTime: true,           // 🔥 Time picker enable cheyyan
+            dateFormat: "Y-m-d h:i K",  // 🔥 AM/PM format-il date & time varan
+            defaultDate: new Date(),    // 🔥 Default aayi ippozhathe time varan
+            theme: "material_blue",
+            time_24hr: false,
+            disableMobile: false        // 🔥 Mobile-lum UI clear aayi varan
+        });
+    }
+    if (!txCalendarPicker) {
+        txCalendarPicker = flatpickr("#tx-calendar", {
+            inline: true, // 🔥 Show as a permanent calendar block
+            defaultDate: selectedDate,
+            theme: "material_blue",
+            onChange: function (selectedDates) {
+                if (selectedDates[0]) {
+                    selectedDate = selectedDates[0];
+                    changeDashDate();
+                }
+            },
+            onMonthChange: function (selectedDates, dateStr, instance) {
+                // Fetch data when user swipes to previous month
+                selectedDate = new Date(instance.currentYear, instance.currentMonth, 1);
+                changeDashDate();
+            },
+            // 🔥 Inject Green & Red Dots
+            onDayCreate: function (dObj, dStr, fp, dayElem) {
+                if (!dashboardData || !dashboardData.monthTimeline) return;
+                let dateKey = flatpickr.formatDate(dayElem.dateObj, "Y-m-d");
+                let hasIncome = dashboardData.monthTimeline.income[dateKey];
+                let hasExpense = dashboardData.monthTimeline.expense.some(e => e.date === dateKey);
+
+                if (hasIncome || hasExpense) {
+                    let dots = '<div class="activity-dots">';
+                    if (hasIncome) dots += '<span class="dot-inc"></span>';
+                    if (hasExpense) dots += '<span class="dot-exp"></span>';
+                    dots += '</div>';
+                    dayElem.innerHTML += dots;
+                }
+            }
+        });
+    }
+}
+
+function fetchDashboardDataBg() {
+    let y = selectedDate.getFullYear();
+    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    let d = String(selectedDate.getDate()).padStart(2, '0');
+    let dateStr = `${y}-${m}-${d}`;
+
+    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
+        .then(res => res.json())
+        .then(res => {
+            if (res.result === 'success') {
+                dashboardData = res.data;
+                renderDashboard();
+            }
+        }).catch(err => console.error(err));
+}
+
+// 🔥 FIX: ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ തീയതി കാണിക്കാൻ (Force UI Update)
+function openDashboard() {
+    $('#drawer-overlay').fadeIn(200);
+    $('#dashboard-drawer').addClass('open');
+
+    initFlatpickrs();
+    updateArrowUI();
+
+    // 🔥 ഡാഷ്‌ബോർഡ് തുറക്കുന്ന നിമിഷം തന്നെ തീയതി ബോക്സിലേക്ക് വെക്കുന്നു
+    let formattedDate = flatpickr.formatDate(selectedDate, "d M Y");
+    if (selectedDate.toDateString() === new Date().toDateString()) {
+        formattedDate = "Today, " + formattedDate;
+    }
+    $('#dash-date').val(formattedDate).text(formattedDate);
+
+    if (!dashboardData) fetchDashboardDataBg();
+    else renderDashboard();
+}
+
 // 1. Initialize Advanced Pickers
 function initFlatpickrs() {
     if (!dashDatePicker) {
@@ -1212,7 +1308,6 @@ function initFlatpickrs() {
             maxDate: "today",
             theme: "material_blue",
             disableMobile: true,
-            // 🔥 FIX: Flatpickr തനിയെ 'Today' എന്ന് കാണിക്കാൻ
             formatDate: (date, format, locale) => {
                 let formatted = flatpickr.formatDate(date, "d M Y");
                 if (date.toDateString() === new Date().toDateString()) return "Today, " + formatted;
@@ -1269,37 +1364,12 @@ function initFlatpickrs() {
         });
     }
 
-    // 🔥 FIX: ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ തീയതി ആ ആരോകൾക്കിടയിൽ വരാൻ
-    if (dashDatePicker && dashDatePicker.input) {
-        $('#dash-date').val(dashDatePicker.input.value).text(dashDatePicker.input.value);
+    // 🔥 കലണ്ടർ സെറ്റ് ആയ ഉടൻ തന്നെ വീണ്ടും ഉറപ്പാക്കാൻ
+    let formattedDate = flatpickr.formatDate(selectedDate, "d M Y");
+    if (selectedDate.toDateString() === new Date().toDateString()) {
+        formattedDate = "Today, " + formattedDate;
     }
-}
-
-function fetchDashboardDataBg() {
-    let y = selectedDate.getFullYear();
-    let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    let d = String(selectedDate.getDate()).padStart(2, '0');
-    let dateStr = `${y}-${m}-${d}`;
-
-    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
-        .then(res => res.json())
-        .then(res => {
-            if (res.result === 'success') {
-                dashboardData = res.data;
-                renderDashboard();
-            }
-        }).catch(err => console.error(err));
-}
-
-function openDashboard() {
-    $('#drawer-overlay').fadeIn(200);
-    $('#dashboard-drawer').addClass('open');
-
-    initFlatpickrs();
-    updateArrowUI();
-
-    if (!dashboardData) fetchDashboardDataBg();
-    else renderDashboard();
+    $('#dash-date').val(formattedDate).text(formattedDate);
 }
 
 function closeDashboard() {
@@ -1336,24 +1406,48 @@ function changeDate(days) {
 }
 
 // 🔥 FIX: തീയതി കാണിക്കാനും, ഡിസൈൻ സെറ്റ് ചെയ്യാനുമുള്ള ഫംഗ്‌ഷൻ
-// 🔥 FIX: തീയതി മാറുന്നതനുസരിച്ച് ഡിസൈനും ഡാറ്റയും സെറ്റ് ചെയ്യാൻ
 function changeDashDate() {
     if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
+    if (expDatePicker) expDatePicker.setDate(selectedDate, false);
     if (txCalendarPicker) txCalendarPicker.setDate(selectedDate, false);
 
     updateArrowUI();
 
-    // 🔥 FIX: കലണ്ടർ മാറ്റുമ്പോൾ പുതിയ തീയതി ടെക്സ്റ്റ് ആയി വരാൻ
-    if (dashDatePicker && dashDatePicker.input) {
-        $('#dash-date').val(dashDatePicker.input.value).text(dashDatePicker.input.value);
+    // 🔥 FIX 1: Top Date Text (Arrows ഇടയിലുള്ള തീയതി കാണിക്കാൻ)
+    let formattedDate = flatpickr.formatDate(selectedDate, "d M Y");
+    if (selectedDate.toDateString() === new Date().toDateString()) {
+        formattedDate = "Today, " + formattedDate;
     }
+    // ഇൻപുട്ട് ആണെങ്കിലും ഡിവിഷൻ ആണെങ്കിലും വർക്ക് ചെയ്യാൻ
+    $('#dash-date').val(formattedDate).text(formattedDate);
 
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
     $('#tx-details-area').html('<div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
 
-    // ആക്റ്റിവിറ്റി ലിസ്റ്റ് കലണ്ടറിന് താഴേക്ക് മാറ്റാൻ
+    // 🔥 FIX 2: ആക്റ്റിവിറ്റി ലിസ്റ്റ് കലണ്ടറിന് താഴേക്ക് മാറ്റാൻ
     if ($('#tx-calendar').length && $('#tx-details-area').length) {
         $('#tx-details-area').insertAfter($('#tx-calendar').parent());
+    }
+
+    // 🔥 FIX 3: Add Expense ഇൻപുട്ട് ബോക്സുകൾക്ക് നല്ല ബോർഡർ കൊടുക്കാൻ (CSS Injection)
+    if (!$('#custom-expense-css').length) {
+        $('<style id="custom-expense-css">')
+            .html(`
+            #expense-form input, #expense-form select, #expense-form textarea {
+                border: 2px solid #ced4da !important;
+                border-radius: 8px;
+                padding: 10px;
+                background-color: #f8f9fa;
+                font-weight: 600;
+                color: #333;
+            }
+            #expense-form input:focus, #expense-form select:focus, #expense-form textarea:focus {
+                border-color: #0d6efd !important;
+                background-color: #fff;
+                box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+            }
+            `)
+            .appendTo('head');
     }
 
     fetchDashboardDataBg();
