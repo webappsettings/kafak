@@ -1372,8 +1372,6 @@ function changeDashDate() {
 }
 
 // 🔥 Render Top Summary & Refresh Calendar Dots
-// 🔥 Render Top Summary & Refresh Calendar Dots (WITH TRUE PROFIT, PARTNER SHARES & STATS)
-// 🔥 Render Top Summary & Refresh Calendar Dots (WITH TRUE PROFIT, PARTNER SHARES & STATS)
 function renderDashboard() {
     if (!dashboardData) return;
 
@@ -1448,11 +1446,22 @@ function renderDashboard() {
         }
     });
 
-    // മറ്റ് ചിലവുകൾ (Expenses)
+    // മറ്റ് ചിലവുകൾ (Expenses) & മെറ്റീരിയൽ ചിലവുകൾ (Materials)
     let trueOtherExp = 0;
+    let monthMaterialExp = 0; // 🔥 NEW: മെറ്റീരിയൽ ചിലവ് കൂട്ടാൻ
+
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            if (!e.isCourier) trueOtherExp += e.amount;
+            let catName = String(e.cat || '').toLowerCase();
+
+            // മെറ്റീരിയൽ ആണെങ്കിൽ പ്രത്യേകം കൂട്ടുന്നു
+            if (catName.includes('material')) {
+                monthMaterialExp += e.amount;
+            }
+            // അല്ലെങ്കിൽ മറ്റ് ചിലവുകളിൽ കൂട്ടുന്നു (കൊറിയർ അല്ലാത്തവ)
+            else if (!e.isCourier) {
+                trueOtherExp += e.amount;
+            }
         });
     }
 
@@ -1466,6 +1475,8 @@ function renderDashboard() {
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
 
     // 🔥 മന്ത്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
+    $('.helper-text-dash').remove(); // പഴയത് കളയുന്നു
+    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
     $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
     $('#m-expense').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Bottle Cost + Courier + Other)</div>');
     $('#m-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
@@ -1473,11 +1484,26 @@ function renderDashboard() {
     // 🔥 പഴയ കണ്ടെയ്‌നറുകൾ കളയുന്നു
     $('#extra-stats-container').remove();
     $('#partner-shares-container').remove();
+    $('#material-stats-container').remove(); // 🔥 പഴയ മെറ്റീരിയൽ ബോക്സ് കളയുന്നു
+
+    // 🔥 NEW: MATERIAL PURCHASES BOX (മെറ്റീരിയൽ ചിലവുകൾ കാണിക്കാൻ)
+    let materialHtml = `
+    <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:35px;height:35px;font-size:14px;"><i class="fas fa-boxes"></i></div>
+            <div>
+                <h6 class="fw-bold text-dark m-0" style="font-size:11px; letter-spacing:0.5px;">MATERIAL PURCHASES</h6>
+                <div class="text-muted" style="font-size:10px; font-weight:600;">(Stock bought this month)</div>
+            </div>
+        </div>
+        <div class="fw-bold text-dark fs-5">₹${monthMaterialExp.toLocaleString()}</div>
+    </div>
+    `;
 
     // 🔥 NEW: BEAUTIFUL BOTTLES & ORDERS STATS UI 
     let statsHtml = `
-    <div id="extra-stats-container" class="row mb-3 px-1 mt-3">
-        <div class="col-6 pe-2">
+    <div id="extra-stats-container" class="row mb-3 px-1 mt-2">
+    <div class="col-6 pe-2">
             <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
                 <div class="d-flex align-items-center gap-2 mb-2">
                     <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-wine-bottle"></i></div>
@@ -1542,8 +1568,8 @@ function renderDashboard() {
     </div>
     `;
 
-    // രണ്ടും ആക്ടിവിറ്റി ലിസ്റ്റിന് മുകളിലായി ആഡ് ചെയ്യുന്നു
-    $('#tx-details-area').before(statsHtml + sharesHtml);
+    // 🔥 3 ബോക്സുകളും ആക്ടിവിറ്റി ലിസ്റ്റിന് മുകളിലായി ആഡ് ചെയ്യുന്നു (ആദ്യം മെറ്റീരിയൽ, പിന്നെ സ്റ്റാറ്റസ്, പിന്നെ പ്രോഫിറ്റ്)
+    $('#tx-details-area').before(materialHtml + statsHtml + sharesHtml);
 
     // 🔥 Redraw Calendar & Render Transactions
     if (txCalendarPicker) txCalendarPicker.redraw();
