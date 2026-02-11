@@ -1221,11 +1221,12 @@ function initFlatpickrs() {
     }
     if (!expDatePicker) {
         expDatePicker = flatpickr("#exp-date", {
-            dateFormat: "Y-m-d",
-            defaultDate: selectedDate,
-            maxDate: "today",
+            enableTime: true,           // 🔥 Time picker enable cheyyan
+            dateFormat: "Y-m-d h:i K",  // 🔥 AM/PM format-il date & time varan
+            defaultDate: new Date(),    // 🔥 Default aayi ippozhathe time varan
             theme: "material_blue",
-            disableMobile: true
+            time_24hr: false,
+            disableMobile: false        // 🔥 Mobile-lum UI clear aayi varan
         });
     }
     if (!txCalendarPicker) {
@@ -1562,7 +1563,7 @@ function renderDashboard() {
     <div id="partner-shares-container" class="mb-4 p-3 bg-white border border-success border-opacity-25 rounded-4 shadow-sm">
         <div class="d-flex align-items-center mb-2 pb-2 border-bottom border-success border-opacity-10">
             <i class="fas fa-chart-pie text-success me-2"></i>
-            <h6 class="fw-bold text-dark m-0" style="font-size:12px;">PROFIT SHARE SPLIT</h6>
+            <h6 class="fw-bold text-dark m-0" style="font-size:12px;">PROFIT SHARE SPLIT (This Month)</h6>
         </div>
         <div class="row text-center pt-1">
             <div class="col-4 border-end">
@@ -1807,8 +1808,15 @@ function resetExpenseForm(selectedD) {
     $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
     $('.partner-card').removeClass('selected');
     $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
-    if (expDatePicker) expDatePicker.setDate(selectedD, false);
-    fetchDashboardDataBg();
+
+    // 🔥 FIX: Reset cheyyumpozhum exact ippozhathe time varan
+    if (expDatePicker) expDatePicker.setDate(new Date(), false);
+
+    // ഇന്റർനെറ്റ് ഉണ്ടെങ്കിൽ മാത്രം ഡാഷ്‌ബോർഡ് ഡാറ്റ റിഫ്രഷ് ചെയ്യാൻ ശ്രമിക്കുക
+    if (navigator.onLine) {
+        fetchDashboardDataBg();
+    }
+
     $('#tab-overview').click();
 }
 
