@@ -1300,6 +1300,7 @@ function changeDashDate() {
 
 // 🔥 Render Top Summary & Refresh Calendar Dots
 // 🔥 Render Top Summary & Refresh Calendar Dots (WITH TRUE PROFIT, PARTNER SHARES & STATS)
+// 🔥 Render Top Summary & Refresh Calendar Dots (WITH TRUE PROFIT, PARTNER SHARES & STATS)
 function renderDashboard() {
     if (!dashboardData) return;
 
@@ -1316,8 +1317,9 @@ function renderDashboard() {
     $('#d-profit').text('₹' + d.profit.toLocaleString());
     $('#d-orders').text(d.count || 0);
 
-    // 🔥 NEW: ഡെയ്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
-    $('#d-profit').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
+    // 🔥 ഡെയ്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ (റിപ്പീറ്റ് ആവാതിരിക്കാൻ പഴയത് ഡിലീറ്റ് ചെയ്യുന്നു)
+    $('.helper-text-dash').remove();
+    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
 
     if (d.profit >= 0) {
         $('#d-profit').removeClass('text-danger').addClass('text-success');
@@ -1371,16 +1373,6 @@ function renderDashboard() {
                 trueCourierExp += parseInt(o.actualCourierCost) || 0;
             }
         }
-
-        // ഡാഷ്‌ബോർഡിലെ Monthly Overview കാർഡുകളിലേക്ക് നൽകുന്നു
-        $('#m-sales').text('₹' + trueIncome.toLocaleString());
-        $('#m-expense').text('₹' + totalExpenses.toLocaleString());
-        $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
-
-        // 🔥 NEW: മന്ത്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
-        $('#m-sales').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
-        $('#m-expense').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(Bottle Cost + Courier + Other)</div>');
-        $('#m-profit').parent().append('<div class="text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
     });
 
     // മറ്റ് ചിലവുകൾ (Expenses)
@@ -1391,7 +1383,7 @@ function renderDashboard() {
         });
     }
 
-    // യഥാർത്ഥ ലാഭം കണ്ടുപിടിക്കുന്നു
+    // യഥാർത്ഥ ലാഭം കണ്ടുപിടിക്കുന്നു (ലൂപ്പിന് പുറത്ത്!)
     let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
     let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
 
@@ -1399,6 +1391,11 @@ function renderDashboard() {
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
+
+    // 🔥 മന്ത്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
+    $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
+    $('#m-expense').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Bottle Cost + Courier + Other)</div>');
+    $('#m-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
 
     // 🔥 പഴയ കണ്ടെയ്‌നറുകൾ കളയുന്നു
     $('#extra-stats-container').remove();
