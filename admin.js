@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxXAIp1EYrYVP-nAqyz6ADXlLgmNjjyBsRN2wVci7sesS4ztnoGSvhuHNCgfzsmKhoLvA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzOsevskLbRB7ySvOAJDiaNT9O9y7V0I536oCqm3_R7IRO7RiDRwUn4I7fyVl9QQaDrrQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1486,17 +1486,30 @@ function renderDashboard() {
     $('#partner-shares-container').remove();
     $('#material-stats-container').remove(); // 🔥 പഴയ മെറ്റീരിയൽ ബോക്സ് കളയുന്നു
 
-    // 🔥 NEW: MATERIAL PURCHASES BOX (മെറ്റീരിയൽ ചിലവുകൾ കാണിക്കാൻ)
+    // 🔥 NEW: YEARLY MATERIAL EXPENSE
+    let yearMaterialExp = 0;
+    if (dashboardData && dashboardData.yearly && dashboardData.yearly.materialExp) {
+        yearMaterialExp = dashboardData.yearly.materialExp;
+    }
+
+    // 🔥 UPDATED: BEAUTIFUL MATERIAL PURCHASES BOX (Month & Year)
     let materialHtml = `
-    <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center gap-3">
-            <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:35px;height:35px;font-size:14px;"><i class="fas fa-boxes"></i></div>
-            <div>
-                <h6 class="fw-bold text-dark m-0" style="font-size:11px; letter-spacing:0.5px;">MATERIAL PURCHASES</h6>
-                <div class="text-muted" style="font-size:10px; font-weight:600;">(Stock bought this month)</div>
+    <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm">
+        <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom border-secondary border-opacity-25">
+            <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-boxes"></i></div>
+            <h6 class="fw-bold text-dark m-0" style="font-size:11px; letter-spacing:0.5px;">MATERIAL PURCHASES</h6>
+        </div>
+        <div class="d-flex justify-content-between align-items-end mt-1 pt-1">
+            <div class="text-center w-50">
+                <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">This Month</div>
+                <div class="fw-bold text-dark fs-5" style="line-height:1;">₹${monthMaterialExp.toLocaleString()}</div>
+            </div>
+            <div style="height:30px; width:1px; background:#adb5bd;"></div>
+            <div class="text-center w-50">
+                <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">This Year</div>
+                <div class="fw-bold text-dark fs-5" style="line-height:1;">₹${yearMaterialExp.toLocaleString()}</div>
             </div>
         </div>
-        <div class="fw-bold text-dark fs-5">₹${monthMaterialExp.toLocaleString()}</div>
     </div>
     `;
 
