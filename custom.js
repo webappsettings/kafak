@@ -759,16 +759,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   } else {
     // $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
-    $('#status-area').html(`
-            <div class="d-flex flex-column align-items-center justify-content-center py-5 fade-in">
-                <div class="hourglass-container">
-                    <div class="hourglass-glass"></div>
-                </div>
-                <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px; text-transform:uppercase;">
-                    ${checkText}
-                </div>
-            </div>
-        `).show();
+    $('#status-area').hide();
   }
 
   checkForChanges();
@@ -898,9 +889,11 @@ function updateStatusUI(d) {
 
   timelineHTML += `</div></div>`;
 
+
+
+
   // Button Logic: Only show 'Received' if Dispatched
-  // Button Logic: Only show 'Received' if Dispatched
-  if (currentStatus === 'dispatched') {
+  if (s === 'dispatched') {
     timelineHTML += `
       <div class="mt-4 text-center fade-in">
           <div class="text-muted fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">${t.txt_received_helper}</div>
