@@ -277,24 +277,19 @@ $(document).ready(function () {
 window.handlePhoneNext = function () {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
-  currentLoginPhone = phone;
 
+  currentLoginPhone = phone;
   preloadHoneyVideo();
 
-  // if (localUsersMap[phone]) {
-  //   loadOrderData(localUsersMap[phone], false);
-  //   syncUserDataBackground(phone);
-  //   return;
-  // }
-
   if (localUsersMap[phone]) {
-    // 🔥 FIX: പഴയ ഡാറ്റ കാണിക്കാതെ, ലോഡർ ഇട്ട് കാത്തിരിക്കുന്നു
+
+    // 🔥 DO NOT RENDER LOCAL IMMEDIATELY
     showLoader(true);
 
-    // സിങ്ക് ചെയ്ത ശേഷം മാത്രം സ്ക്രീൻ കാണിക്കുന്നു
     syncUserDataBackground(phone).finally(() => {
       showLoader(false);
     });
+
     return;
   }
 
@@ -304,9 +299,8 @@ window.handlePhoneNext = function () {
   startWizard();
   backgroundUserCheck(phone);
   $('#top-progress-container').fadeIn();
-
-  checkUserOnServerBackground(phone);
 }
+
 
 function checkUserOnServerBackground(phone) {
   console.log("Checking server in background...");
@@ -392,85 +386,73 @@ function setRefreshLoading(isLoading) {
 
 // 🔥 UPDATED: PERFECT SYNC LOGIC
 function syncUserDataBackground(phone) {
+
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  // 1. User Data Fetch
   const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
-    .catch(() => null); // Error വന്നാൽ Null
+    .catch(() => null);
 
-  // 2. Rate Fetch (ഇത് ഇപ്പോൾ Fast ആണ്)
   const ratePromise = fetchCourierRates();
 
   return Promise.all([userPromise, ratePromise])
-    .then(([userRes, rateSuccess]) => {
+    .then(([userRes]) => {
 
-      let finalData = localData; // Default to Local
+      let finalData = localData;
 
-      // Server Data കിട്ടിയെങ്കിൽ അത് എടുക്കുക
       if (userRes && userRes.result === 'success' && userRes.data) {
+
         let serverData = userRes.data;
+
         finalData = { ...localData, ...serverData };
         finalData.Status = serverData.Status || serverData.status || "Pending";
 
-        // Save Updates
         userData = finalData;
         savedOrderData = JSON.parse(JSON.stringify(finalData));
+
         saveToLocal(phone, finalData);
       }
 
-      // 🔥 RENDER UI
-      renderQtyDropdowns(); // Dropdown ഉറപ്പായും വരും
-      updateStatusUI(finalData); // Status Timeline വരും
-
-      // Admin Update
-      if (SafeStorage.getItem('kafakAdmin') === 'true') {
-        updateAdminUI(finalData.Status, finalData.orderid || editingOrderId);
-      }
-
-      let s = String(finalData.Status || 'pending').toLowerCase();
-      let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
-
-      // Show Full View
-      showReturningUserView(finalData, isActive, true);
-
+      // 🔥 SINGLE RENDER POINT
+      renderEditView(finalData);
     });
 }
 
+
 // 🔥 Helper Function to Show/Hide Controls based on Status
 function handleEditControlsVisibility(d) {
+
   const status = String(d.Status || 'pending').toLowerCase();
 
   if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+
     $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
     $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').prev('label').hide();
-  } else {
-    // Retry Logic for Quantity
-    if (!d.quantity || d.quantity === "" || d.quantity === "0") {
-      console.log("Qty Missing! Retrying fetch...");
-      $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-      $('label[data-i18n="lbl_qty"]').hide();
-      $('#status-area').html(`<div class="text-center text-muted small py-2"><i class="fas fa-sync fa-spin"></i> Retrieving Order Details...</div>`).show();
-      setTimeout(() => { syncUserDataBackground(d.phone); }, 1000);
-      return;
-    }
 
-    $('#quick-qty').val(d.quantity);
-
-    // 🔥 ലേബലും ബോക്സും തെളിയിക്കുന്നു
-    $('label[data-i18n="lbl_qty"]').fadeIn();
-    $('#quick-qty').prev('label').fadeIn();
-
-    $('#quick-qty, .btn-update-sage, #quick-price-box').fadeIn();
-    $('#btn-edit-addr').css('display', 'inline-block');
-
-    updatePrice($('#quick-qty').val(), true);
-    checkForChanges();
+    return;
   }
+
+  // 🔥 Retry only once if quantity missing
+  if (!d.quantity && !d._retried) {
+
+    d._retried = true;
+
+    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+    $('label[data-i18n="lbl_qty"]').hide();
+
+    setTimeout(() => syncUserDataBackground(d.phone), 1000);
+
+    return;
+  }
+
+  // ✅ Show Controls
+  $('label[data-i18n="lbl_qty"]').show();
+  $('#quick-qty, .btn-update-sage, #quick-price-box').show();
+  $('#btn-edit-addr').css('display', 'inline-block');
 }
+
 
 function backgroundUserCheck(phone) {
   fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()).then(res => { if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId; }).catch(e => console.log("Bg check fail"));
@@ -1932,4 +1914,28 @@ function sendToWhatsapp() {
   const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*`;
 
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
+}
+
+
+function renderEditView(data) {
+
+  const status = String(data.Status || 'pending').toLowerCase();
+  const isActive = !(['dispatched', 'completed', 'delivered'].includes(status));
+
+  showReturningUserView(data, isActive, true);
+
+  updateEditUIState(data);
+}
+
+
+function updateEditUIState(data) {
+
+  updateStatusUI(data);
+
+  handleEditControlsVisibility(data);
+
+  if (data.quantity) {
+    $('#quick-qty').val(data.quantity);
+    updatePrice(data.quantity, true);
+  }
 }

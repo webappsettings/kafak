@@ -50,7 +50,6 @@ const translations = {
         order_success: "ഓർഡർ ലഭിച്ചു!",
         redirect_wa: "വാട്സാപ്പിലേക്ക് പോകുന്നു...",
         courier_included: "(കൊറിയര്‍ ചാർജ് ഉൾപ്പെടെ)",
-        loading: "വിവരങ്ങൾ എടുക്കുന്നു...",
         status_check: "സ്റ്റാറ്റസ് നോക്കുന്നു...",
 
         // --- ALERTS & ERRORS ---
