@@ -845,6 +845,7 @@ window.markOrderDelivered = function (oid) {
 
 // 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
 // 🔥 UPDATED: FIXED TIMELINE LOGIC & DESIGN
+// 🔥 UPDATED: TIMELINE WITH DATE FIX & REFUND RED COLOR
 function updateStatusUI(d) {
   $('#status-area').empty();
 
@@ -857,7 +858,7 @@ function updateStatusUI(d) {
   const isPaid = ['paid', 'dispatched', 'delivered', 'refunded', 'completed'].includes(s);
   const isDispatched = ['dispatched', 'delivered', 'refunded', 'completed'].includes(s);
   const isDelivered = ['delivered', 'completed'].includes(s);
-  const isRefunded = (s === 'refunded'); // 🔥 Refund Check
+  const isRefunded = (s === 'refunded');
 
   let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
         <h6 class="fw-bold mb-4 ps-1" style="font-size:13px; color:#374151; letter-spacing:0.5px;">${t.lbl_order_status}</h6>
@@ -865,19 +866,35 @@ function updateStatusUI(d) {
 
   // Timeline Items
   const items = [
-    { title: t.order_success, desc: t.desc_order_placed, date: d.timestamp, active: true },
-    { title: t.lbl_payment_received, desc: t.desc_pay_received, date: d.paidDate, active: isPaid },
-    { title: t.lbl_dispatched, desc: t.desc_dispatched, date: d['Dispatched Date'], active: isDispatched },
+    {
+      title: t.order_success,
+      desc: t.desc_order_placed,
+      // 🔥 FIX: timestamp അല്ലെങ്കിൽ date, ഏതാണോ ഉള്ളത് അത് എടുക്കും
+      date: d.timestamp || d.date,
+      active: true
+    },
+    {
+      title: t.lbl_payment_received,
+      desc: t.desc_pay_received,
+      date: d.paidDate,
+      active: isPaid
+    },
+    {
+      title: t.lbl_dispatched,
+      desc: t.desc_dispatched,
+      date: d['Dispatched Date'],
+      active: isDispatched
+    },
   ];
 
-  // 🔥 Last Step Logic: Refunded ആണെങ്കിൽ അത് കാണിക്കും, അല്ലെങ്കിൽ Delivered
+  // Last Step Logic
   if (isRefunded) {
     items.push({
       title: t.lbl_refunded || "Refunded",
       desc: t.desc_refunded || "Amount Returned",
       date: null,
       active: true,
-      isRefund: true // Special Flag
+      isRefund: true
     });
   } else {
     items.push({
@@ -891,29 +908,25 @@ function updateStatusUI(d) {
   items.forEach((item, index) => {
     let isLast = index === items.length - 1;
 
-    // Icon Logic
     let iconClass = "timeline-icon";
     let iconContent = "";
 
     if (item.isRefund) {
-      // 🔥 Refund Red Icon
       iconClass += " refunded";
       iconContent = `<i class="fas fa-undo-alt"></i>`;
     } else if (item.active) {
-      // Green Tick
       iconClass += " active";
       iconContent = `<i class="fas fa-check"></i>`;
     }
 
     let iconHtml = `<div class="${iconClass}">${iconContent}</div>`;
-
-    // Line Logic
     let nextItemActive = items[index + 1] && items[index + 1].active;
     let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
 
-    // Date Display
+    // 🔥 DATE DISPLAY LOGIC
     let dateHtml = '';
     if (item.date && item.active) {
+      // ഫോർമാറ്റ് ചെയ്ത് ഭംഗിയായി കാണിക്കുന്നു
       dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
     }
 
@@ -925,7 +938,6 @@ function updateStatusUI(d) {
       extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
     }
 
-    // 🔥 Text Color Logic
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
 
     timelineHTML += `
@@ -937,7 +949,7 @@ function updateStatusUI(d) {
                 <div class="timeline-right pb-4">
                     <div class="d-flex justify-content-between align-items-start">
                         <div class="fw-bold text-dark" style="font-size:14px;">${item.title}</div>
-                        ${dateHtml}
+                        ${dateHtml} 
                     </div>
                     <div class="text-muted small mt-1" style="font-size:12px; line-height:1.4;">${item.desc}</div>
                     ${extraContent}
@@ -948,7 +960,6 @@ function updateStatusUI(d) {
 
   timelineHTML += `</div></div>`;
 
-  // Button Logic
   if (s === 'dispatched') {
     timelineHTML += `
             <div class="mt-4 text-center fade-in">
