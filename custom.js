@@ -42,19 +42,19 @@ window.showLoader = function (show) {
     let percent = 0;
     $('#loader-percent').text('0%');
 
-    // 🔥 REALISTIC COUNTER LOGIC
+    // 🔥 SUPER FAST COUNTER LOGIC
     loaderInterval = setInterval(() => {
-      // 1 മുതൽ 4 വരെ റാൻഡം ആയി കൂട്ടുന്നു (ഒരേ വേഗതയിൽ പോകാതിരിക്കാൻ)
-      let jump = Math.floor(Math.random() * 4) + 1;
+      // 1 മുതൽ 5 വരെ റാൻഡം ആയി കൂട്ടുന്നു (Speed കൂട്ടി)
+      let jump = Math.floor(Math.random() * 5) + 1;
       percent += jump;
 
-      // 95% എത്തിയാൽ അവിടെ ഹോൾഡ് ചെയ്യും (ഡാറ്റ വരുന്നത് വരെ)
-      if (percent >= 95) {
-        percent = 95;
+      // 98% എത്തിയാൽ അവിടെ ഹോൾഡ് ചെയ്യും
+      if (percent >= 98) {
+        percent = 98;
       }
 
       $('#loader-percent').text(percent + '%');
-    }, 150); // 150ms ഇടവേള (കണ്ണിന് കാണാൻ പാകത്തിന്)
+    }, 40); // 🔥 150ms മാറ്റി 40ms ആക്കി (ഇതാണ് സ്പീഡ് കൂട്ടുന്നത്)
 
   } else {
     // Hide UI (Finish Sequence)
