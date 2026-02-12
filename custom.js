@@ -694,6 +694,7 @@ window.submitQuickOrder = function () {
 }
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
+  $('#step-0').hide();
   $('#returning-user-view').show();
   updateFooterButtons('returning'); isEditMode = isActiveOrder;
 
