@@ -379,16 +379,29 @@ function setRefreshLoading(isLoading) {
 }
 
 
+// 🔥 UPDATED: SINGLE SHOT SYNC (Fixes Jerky Loading)
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
+
   setRefreshLoading(true);
 
-  return fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === 'success' && res.data) {
-        let serverData = res.data;
+  // 1. User Data Fetch Promise
+  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
+    .then(res => res.json());
+
+  // 2. Rates Fetch Promise (റേറ്റ് കയ്യിലില്ലെങ്കിൽ മാത്രം ഫെച്ച് ചെയ്യും)
+  const ratePromise = (globalQtyList.length > 0 && Object.keys(courierRates).length > 0)
+    ? Promise.resolve(true) // Already have rates
+    : fetchCourierRates();  // Fetch if missing
+
+  // 🔥 3. WAIT FOR BOTH TO FINISH (Promise.all)
+  return Promise.all([userPromise, ratePromise])
+    .then(([userRes, rateSuccess]) => {
+
+      // A. Process User Data
+      if (userRes.result === 'success' && userRes.data) {
+        let serverData = userRes.data;
         let mergedData = { ...localData, ...serverData };
         mergedData.Status = serverData.Status || serverData.status || "Pending";
 
@@ -401,26 +414,31 @@ function syncUserDataBackground(phone) {
 
         userData = mergedData;
         savedOrderData = JSON.parse(JSON.stringify(mergedData));
-
         saveToLocal(phone, mergedData);
 
+        // 🔥 B. RENDER EVERYTHING TOGETHER (SMOOTH UI)
+
+        // 1. Render Dropdowns (ഇപ്പോൾ റേറ്റ്സ് ഉറപ്പായും ഉണ്ട്)
+        renderQtyDropdowns();
+
+        // 2. Render Status Timeline
         updateStatusUI(mergedData);
 
-        // സിങ്ക് കഴിഞ്ഞാൽ ബട്ടണുകൾ കാണിക്കുന്നു
+        // 3. Show Edit Controls (Qty, Address, Buttons)
         handleEditControlsVisibility(mergedData);
 
-        // 🔥🔥🔥 THIS IS THE FIX 🔥🔥🔥
-        // അഡ്മിൻ ആണെങ്കിൽ, പുതിയ സ്റ്റാറ്റസ് വെച്ച് ബട്ടണുകൾ അപ്ഡേറ്റ് ചെയ്യുക
+        // 4. Update Admin UI (if admin)
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
           updateAdminUI(mergedData.Status, mergedData.orderid || editingOrderId);
         }
-        // 🔥🔥🔥 END FIX 🔥🔥🔥
 
         let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
+
+        // 5. Final Reveal
         showReturningUserView(mergedData, isActive, true);
       }
     })
-    .catch(err => { console.log("Sync error"); })
+    .catch(err => { console.log("Sync error", err); })
     .finally(() => { setRefreshLoading(false); });
 }
 
@@ -1582,31 +1600,24 @@ function fetchCourierRates() {
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
 
   // 2. Fetch from Server
-  fetch(`${sc}?action=getRates`)
+  return fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success' && data.rates) {
-
-        // A. ഗ്ലോബൽ വേരിയബിൾ അപ്ഡേറ്റ് ചെയ്യുന്നു
         courierRates = data.rates;
+        globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
 
-        // B. അളവുകൾ ഗ്ലോബൽ ലിസ്റ്റിലേക്ക് സേവ് ചെയ്യുന്നു (Sorted)
-        // ഇത് 'renderQtyDropdowns' ഉപയോഗിക്കും
-        globalQtyList = Object.keys(data.rates.kerala)
-          .map(Number)
-          .sort((a, b) => a - b);
-
-        // C. HTML ഓപ്ഷനുകൾ നിർമ്മിക്കുന്നു (Render Function വിളിക്കുന്നു)
         renderQtyDropdowns();
+        console.log("✅ Rates Synced");
 
-        console.log("✅ Rates & Dropdown Updated from Server");
-
-        // നിലവിൽ ഏതെങ്കിലും വാല്യൂ (ഉദാ: എഡിറ്റ് ചെയ്യുമ്പോൾ) ഉണ്ടെങ്കിൽ പ്രൈസ് അപ്ഡേറ്റ് ചെയ്യുന്നു
         if ($('#quantity').val()) updatePrice($('#quantity').val(), false);
+        return true; // Success Flag
       }
+      return false;
     })
     .catch(err => {
       console.log("❌ Rate fetch failed");
+      return false;
     });
 }
 
