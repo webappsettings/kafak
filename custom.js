@@ -27,36 +27,46 @@ const SafeStorage = {
 let loaderInterval;
 
 window.showLoader = function (show) {
-  // 1. Get Text based on Language
+  // 1. Language Setup
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
-  // 2. Set Text
-  $('#loader-text').text(t.loading || "LOADING...");
-
   if (show) {
+    // Show UI
+    $('#loader-text').text(t.loading || "LOADING...");
     $('#full-loader').fadeIn(200);
 
-    // Reset & Start Counter
+    // 🔥 FIX: Clear any running interval first
+    if (loaderInterval) clearInterval(loaderInterval);
+
     let percent = 0;
     $('#loader-percent').text('0%');
-    clearInterval(loaderInterval);
 
-    // Count up to 95% naturally
+    // 🔥 REALISTIC COUNTER LOGIC
     loaderInterval = setInterval(() => {
-      if (percent < 95) {
-        percent++;
-        $('#loader-percent').text(percent + '%');
+      // 1 മുതൽ 4 വരെ റാൻഡം ആയി കൂട്ടുന്നു (ഒരേ വേഗതയിൽ പോകാതിരിക്കാൻ)
+      let jump = Math.floor(Math.random() * 4) + 1;
+      percent += jump;
+
+      // 95% എത്തിയാൽ അവിടെ ഹോൾഡ് ചെയ്യും (ഡാറ്റ വരുന്നത് വരെ)
+      if (percent >= 95) {
+        percent = 95;
       }
-    }, 30);
+
+      $('#loader-percent').text(percent + '%');
+    }, 150); // 150ms ഇടവേള (കണ്ണിന് കാണാൻ പാകത്തിന്)
 
   } else {
-    // Finish to 100% and hide
-    clearInterval(loaderInterval);
+    // Hide UI (Finish Sequence)
+    if (loaderInterval) clearInterval(loaderInterval);
+
+    // 🔥 Force show 100% before closing
     $('#loader-percent').text('100%');
+
+    // ചെറിയൊരു ഡിലേ ഇട്ടാൽ മാത്രമേ 100% എന്നത് കണ്ണിന് കാണാൻ പറ്റൂ
     setTimeout(() => {
       $('#full-loader').fadeOut(300);
-    }, 200);
+    }, 400);
   }
 }
 
