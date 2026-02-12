@@ -1426,29 +1426,36 @@ window.adminAction = async function (oid, status) {
       selectedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
     }
   }
+  // 🔥🔥🔥 CHANGE STARTS HERE (REFUND LOGIC) 🔥🔥🔥
 
-  // 4. SAVE LOCALLY
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
 
-  // 🔥 NEW: Find Old Status for Sync History
-  let oldStatus = 'Pending'; // Default
-  // Check global userData first (since we are in order.html context)
+  // 1. പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു
+  let oldStatus = 'Pending';
   if (typeof userData !== 'undefined' && userData.orderid === oid) {
     oldStatus = userData.Status || 'Pending';
   } else {
-    // Fallback: Check admin cache if available
     let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
     let found = cached.find(o => o.orderid === oid);
     if (found) oldStatus = found.Status;
   }
 
+  // 2. Refund ഡിലീറ്റ് ചെയ്യണോ എന്ന് തീരുമാനിക്കുന്നു (Flagging)
+  let needsRefundDelete = false;
+  if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
+    needsRefundDelete = true;
+    console.log("Refund deletion queued for sync...");
+  }
+
+  // 3. Save to Local Storage with Flag
   updates.push({
     oid: oid,
     status: status,
-    oldStatus: oldStatus, // 🔥 Saved Here
-    actionDate: selectedDate, // Time included
-    time: new Date().getTime()
+    oldStatus: oldStatus,
+    actionDate: selectedDate,
+    time: new Date().getTime(),
+    deleteRefund: needsRefundDelete // 🔥 ഈ ഫ്ലാഗ് വെച്ചാണ് Sync ചെയ്യുമ്പോൾ തിരിച്ചറിയുന്നത്
   });
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -1463,8 +1470,8 @@ window.syncSingleOrder = function (oid) {
   let myUpdate = updates.find(u => u.oid === oid);
 
   if (!myUpdate) {
-    // ലോക്കലിൽ മാറ്റങ്ങൾ ഒന്നുമില്ലെങ്കിൽ
-    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes for this order.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
+    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
+    if (typeof userData !== 'undefined') updateAdminUI(userData.Status, oid);
     return;
   }
 
@@ -1473,25 +1480,38 @@ window.syncSingleOrder = function (oid) {
   let originalHtml = btn.html();
   btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
 
-  // 3. Prepare Data
-  let payload = { action: 'bulkUpdateStatus', updates: [myUpdate] };
+  // 🔥 3. PREPARE REQUESTS (Refund Delete + Status Update)
+  let promises = [];
 
-  // 4. Send to Server
-  fetch(sc, {
+  // A. Refund Delete ചെയ്യാനുണ്ടെങ്കിൽ അത് ലിസ്റ്റിൽ ചേർക്കുന്നു
+  if (myUpdate.deleteRefund) {
+    promises.push(fetch(sc, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'deleteRefund', oid: oid })
+    }));
+  }
+
+  // B. സാധാരണ Status Update
+  promises.push(fetch(sc, {
     method: 'POST',
-    body: JSON.stringify(payload)
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.result === 'success') {
-        // A. Remove from Local Pending
+    body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
+  }));
+
+  // 🔥 4. EXECUTE BOTH
+  Promise.all(promises)
+    .then(responses => Promise.all(responses.map(r => r.json())))
+    .then(dataList => {
+      // ഏതെങ്കിലും ഒന്ന് Success ആയാൽ മതി
+      if (dataList.some(d => d.result === 'success')) {
+
+        // Remove from Local
         let newUpdates = updates.filter(u => u.oid !== oid);
         localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
 
-        // B. Show Success
+        // Show Success
         Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
 
-        // C. Update UI (Button Blue color to Grey)
+        // Update UI Button (Blue -> Grey)
         updateAdminUI(myUpdate.status, oid);
       } else {
         alert("Sync Failed: Server Error");
@@ -1745,20 +1765,7 @@ function renderQtyDropdowns() {
 let activeSyncOid = null; // To store current OID
 
 // 1. OPEN SYNC MODAL (Replaces old syncSingleOrder)
-window.syncSingleOrder = function (oid) {
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let myUpdate = updates.find(u => u.oid === oid);
 
-  if (!myUpdate) {
-    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
-    updateAdminUI(userData.Status, oid); // Refresh UI just in case
-    return;
-  }
-
-  activeSyncOid = oid; // Set global OID
-  renderSingleSyncItem(myUpdate);
-  new bootstrap.Modal(document.getElementById('singleSyncModal')).show();
-}
 
 // 2. RENDER ITEM IN MODAL
 function renderSingleSyncItem(u) {

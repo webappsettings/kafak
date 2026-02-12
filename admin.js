@@ -678,25 +678,12 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
     let existingOrder = allOrders.find(o => o.orderid === oid);
     let oldStatus = existingOrder ? existingOrder.Status : 'Pending';
 
-    // 🔥🔥🔥 NEW CODE START: REFUND DELETE LOGIC 🔥🔥🔥
-    // പഴയത് Refunded ആണെങ്കിൽ, പുതിയത് Refunded അല്ല എങ്കിൽ -> Expense ഡിലീറ്റ് ചെയ്യണം
+    // 🔥 FIX: നേരിട്ട് Delete ചെയ്യാതെ, Sync ചെയ്യുമ്പോൾ ഡിലീറ്റ് ചെയ്യാൻ ഒരു Flag വെക്കുന്നു
+    let needsRefundDelete = false;
     if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
-        console.log("Reverting Refund: Deleting Expense Entry...");
-
-        // Server Call to Delete Expense
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify({ action: "deleteRefund", oid: oid })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.result === 'success') {
-                    showToast('info', 'Refund Expense Deleted 🗑️');
-                }
-            })
-            .catch(err => console.log("Error deleting refund expense"));
+        needsRefundDelete = true;
+        console.log("Refund deletion queued for sync...");
     }
-    // 🔥🔥🔥 NEW CODE END 🔥🔥🔥
 
     if (existingOrder && existingOrder.Status === status && customDate) {
         oldStatus = `${existingOrder.Status} (${getTimelineLabel(existingOrder['Dispatched Date'] || existingOrder.timestamp)})`;
@@ -706,7 +693,8 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
         oid: oid,
         status: status,
         oldStatus: oldStatus,
-        time: new Date().getTime()
+        time: new Date().getTime(),
+        deleteRefund: needsRefundDelete // 🔥 ഈ ഫ്ലാഗ് വെച്ചാണ് Sync ചെയ്യുമ്പോൾ തിരിച്ചറിയുന്നത്
     };
 
     if (trackingNum) updateObj.tracking = trackingNum;
@@ -926,6 +914,7 @@ function undoUpdate(index) {
 
 // 🔥 FINAL UPLOAD
 // 🔥 UPDATED: FINAL UPLOAD (Orders + Expenses ഒരുമിച്ച് സിങ്ക് ആവാൻ)
+// 🔥 UPDATED: FINAL UPLOAD (With Refund Deletion Logic)
 function finalConfirmSync() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -945,7 +934,13 @@ function finalConfirmSync() {
     let trackingUpdates = pendingUpdates.filter(u => u.tracking);
     trackingUpdates.forEach(u => promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking }) })));
 
-    // 3. Expenses Sync (Image ഉള്ളതുകൊണ്ട് ഓരോന്നായി അപ്‌ലോഡ് ചെയ്യുന്നു)
+    // 🔥 3. Refund Deletions (ഇതാണ് പുതിയത്)
+    let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
+    refundDeletions.forEach(u => {
+        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'deleteRefund', oid: u.oid }) }));
+    });
+
+    // 4. Expenses Sync
     pendingExpenses.forEach(exp => {
         promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: exp }) }));
     });
