@@ -819,21 +819,71 @@ window.enableNewOrderMode = function () {
 }
 
 window.markOrderDelivered = function (oid) {
-  if (!confirm("Have you received the order?")) return;
-  const btn = $('#btn-mark-delivered');
-  btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
-  fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.result === 'success') {
-        const Toast = Swal.mixin({ toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
-        Toast.fire({ icon: 'success', title: 'Thank You!' });
-        manualRefresh();
+  // 1. മനോഹരമായ ഒരു കൺഫർമേഷൻ ചോദിക്കുന്നു
+  Swal.fire({
+    title: 'Order Received?',
+    text: "നിങ്ങൾക്ക് ഓർഡർ ലഭിച്ചോ?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#28a745',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Received! ✅',
+    cancelButtonText: 'Not Yet',
+    customClass: { popup: 'rounded-4 shadow-lg' }
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      // 🚀 1. INSTANT UI UPDATE (പെട്ടെന്ന് തന്നെ മാറ്റുന്നു)
+
+      // A. ബട്ടൺ മാറ്റി അവിടെ ഒരു താങ്ക്സ് കാണിക്കുന്നു
+      $('#btn-mark-delivered').parent().html(`
+          <div class="text-success fw-bold text-center py-3 fade-in" style="animation: popIn 0.5s ease;">
+              <i class="fas fa-check-circle fa-3x mb-2"></i><br>
+              <span style="font-size:16px;">നന്ദി! Enjoy! 🍯</span>
+          </div>
+      `);
+
+      // B. Beautiful Success Popup (Celebration 🎉)
+      Swal.fire({
+        title: 'Thank You! ❤️',
+        html: '<div style="font-size:14px;">ഞങ്ങളെ വിശ്വസിച്ച് ഓർഡർ ചെയ്തതിന് നന്ദി!<br>Enjoy the purest honey! 🐝</div>',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+        backdrop: `rgba(0,0,0,0.4)`,
+        padding: '2em',
+        customClass: { popup: 'rounded-4' }
+      });
+
+      // C. ലോക്കൽ ആയി സ്റ്റാറ്റസ് മാറ്റുന്നു (Delivered)
+      if (typeof userData !== 'undefined') {
+        userData.Status = 'Delivered';
+
+        // നമ്മൾ നേരത്തെ ചെയ്തത് പോലെ, അടുത്ത തവണ വരുമ്പോൾ ക്വാണ്ടിറ്റി കാണിക്കാതിരിക്കാൻ
+        delete userData.quantity;
+
+        // ലോക്കൽ സ്റ്റോറേജിൽ സേവ് ചെയ്യുന്നു
+        saveToLocal(userData.phone, userData);
+
+        // ടൈംലൈൻ ഉടൻ തന്നെ പച്ച നിറത്തിൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+        updateStatusUI(userData);
+
+        // 3 സെക്കൻഡിന് ശേഷം പുതിയ ഓർഡർ ചെയ്യാനുള്ള പേജിലേക്ക് മാറ്റുന്നു
+        setTimeout(() => {
+          renderEditView(userData);
+        }, 3000);
       }
-    });
+
+      // 🚀 2. BACKGROUND SYNC (ഇത് പിന്നാമ്പുറത്ത് നടന്നോളും, കസ്റ്റമർ അറിയേണ്ടതില്ല)
+      fetch(sc, {
+        method: 'POST',
+        body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
+      })
+        .then(res => res.json())
+        .then(data => console.log("Server Updated: Delivered ✅"))
+        .catch(err => console.log("Background Sync Failed (Saved Locally)"));
+    }
+  });
 }
 
 // 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
