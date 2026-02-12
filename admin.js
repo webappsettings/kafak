@@ -318,7 +318,7 @@ function renderTabs(orders) {
 
         if (status === 'Pending' || status === 'Sent') {
             targetList = pendingList; type = 'pending'; counts.pending++;
-        } else if (status === 'Paid') {
+        } else if (status === 'Paid' || status === 'Refunded') {
             targetList = paidList; type = 'paid'; counts.paid++;
         } else if (status === 'Dispatched') {
             targetList = dispatchedList; type = 'dispatched'; counts.dispatched++;
@@ -398,6 +398,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (currentStatus === 'Pending') statusColor = 'warning text-dark';
     if (currentStatus === 'Sent') statusColor = 'primary';
     if (currentStatus === 'Paid') statusColor = 'success';
+    if (currentStatus === 'Refunded') statusColor = 'danger';
     if (currentStatus === 'Dispatched') statusColor = 'info text-dark';
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
@@ -1709,6 +1710,7 @@ window.viewReceipt = function (url) {
 
 
 // 🔥 UPDATED: ADD EXPENSE (WITH OFFLINE SUPPORT)
+// 🔥 UPDATED: SUBMIT EXPENSE (With Refund Logic)
 async function submitExpense(e) {
     e.preventDefault();
     let btn = $('#btn-save-exp');
@@ -1732,20 +1734,42 @@ async function submitExpense(e) {
 
     let selectedD = $('#exp-date').val() || flatpickr.formatDate(new Date(), "Y-m-d");
 
+    // 🔥 Extract Order ID if it is a Refund
+    let refundOrderId = null;
+    if ($('#exp-category').val() === 'Refund') {
+        let desc = $('#exp-desc').val();
+        let match = desc.match(/ORD-\d+/); // Description-ൽ നിന്നും ORD-xxxx കണ്ടുപിടിക്കുന്നു
+        if (match) refundOrderId = match[0];
+    }
+
     let formData = {
-        id: 'EXP-' + Date.now(), // ഓഫ്ലൈൻ സിങ്കിങ്ങിന് വേണ്ടി
+        id: 'EXP-' + Date.now(),
         date: selectedD,
         category: $('#exp-category').val(),
         vendor: $('#exp-vendor').val(),
         description: $('#exp-desc').val(),
         amount: $('#exp-amount').val(),
         fileData: fileData,
-        fileName: fileName
+        fileName: fileName,
+        orderId: refundOrderId // 🔥 Backend-ലേക്ക് അയക്കുന്നു
+    };
+
+    // Helper to Update Local Order Status
+    const updateLocalStatus = () => {
+        if (refundOrderId) {
+            let order = allOrders.find(o => o.orderid === refundOrderId);
+            if (order) {
+                order.Status = 'Refunded';
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+                renderTabs(allOrders); // UI Refresh
+            }
+        }
     };
 
     // 🔥 OFFLINE CHECK
     if (!navigator.onLine) {
         saveExpenseOffline(formData, selectedD);
+        updateLocalStatus(); // ഓഫ്ലൈൻ ആണെങ്കിലും സ്റ്റാറ്റസ് മാറ്റുന്നു
         btn.prop('disabled', false).text(originalText);
         return;
     }
@@ -1755,13 +1779,16 @@ async function submitExpense(e) {
         .then(data => {
             if (data.result === 'success') {
                 Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+                updateLocalStatus(); // Success ആണെങ്കിൽ സ്റ്റാറ്റസ് മാറ്റുന്നു
                 resetExpenseForm(selectedD);
             } else {
-                saveExpenseOffline(formData, selectedD); // സെർവർ ഫെയിൽ ആയാലും സേവ് ആകും
+                saveExpenseOffline(formData, selectedD);
+                updateLocalStatus();
             }
         })
         .catch(err => {
-            saveExpenseOffline(formData, selectedD); // നെറ്റ് പോയാൽ ഓഫ്ലൈൻ ആകും
+            saveExpenseOffline(formData, selectedD);
+            updateLocalStatus();
         })
         .finally(() => btn.prop('disabled', false).text(originalText));
 }
