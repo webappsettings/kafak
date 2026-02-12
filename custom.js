@@ -757,7 +757,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     handleEditControlsVisibility(d);
 
   } else {
-    $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
+    // $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
+    $('#status-area').hide();
   }
 
   checkForChanges();
@@ -810,8 +811,8 @@ window.markOrderDelivered = function (oid) {
     });
 }
 
+// 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
 function updateStatusUI(d) {
-  // ആദ്യം ക്ലിയർ ചെയ്യുന്നു (പക്ഷെ കാണിക്കില്ല)
   $('#status-area').hide().empty();
 
   const lang = $('#language-select').val() || 'en';
@@ -821,70 +822,71 @@ function updateStatusUI(d) {
   let currentStatus = String(d.Status || d.status || 'pending').toLowerCase();
   if (currentStatus === 'archive') currentStatus = 'pending';
   if (currentStatus === 'completed') currentStatus = 'delivered';
+  if (currentStatus === 'refunded') currentStatus = 'delivered'; // Refunded ആണെങ്കിലും ടൈംലൈൻ പൂർത്തിയായതായി കാണിക്കാം
 
   let currentIndex = steps.indexOf(currentStatus);
   if (currentIndex === -1) currentIndex = 0;
 
-  // നല്ല ഭംഗിയുള്ള ടൈംലൈൻ ഡിസൈൻ
-  let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;"><h6 class="fw-bold mb-3" style="font-size:13px; color:#555;">${t.lbl_order_status}</h6><ul class="track-tl">`;
+  let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
+        <h6 class="fw-bold mb-4 ps-1" style="font-size:13px; color:#374151; letter-spacing:0.5px;">${t.lbl_order_status}</h6>
+        <div class="modern-timeline">`;
 
-  // 1. Order Placed
-  timelineHTML += `
-      <li class="track-tl-item active">
-          <div class="track-tl-dot"></div>
-          <div class="track-date">${formatPrettyDate(d.timestamp) || ''}</div>
-          <div class="track-title">${t.order_success || "Order Placed"}</div>
-          <div class="track-desc" style="font-size:11px; color:#888;">${t.desc_order_placed}</div>
-      </li>`;
+  // Timeline Items Data
+  const items = [
+    { title: t.order_success || "Order Placed", desc: t.desc_order_placed, date: d.timestamp },
+    { title: t.lbl_payment_received, desc: t.desc_pay_received, date: null },
+    { title: t.lbl_dispatched, desc: t.desc_dispatched, date: null },
+    { title: t.lbl_delivered, desc: t.desc_delivered, date: null }
+  ];
 
-  // 2. Payment
-  let isPaid = currentIndex >= 2;
-  timelineHTML += `
-      <li class="track-tl-item ${isPaid ? 'active' : ''}">
-          <div class="track-tl-dot"></div>
-          <div class="track-title">${isPaid ? t.lbl_payment_received : t.lbl_payment_pending}</div>
-          <div class="track-desc" style="font-size:11px; color:#888;">${isPaid ? t.desc_pay_received : t.desc_pay_pending}</div>
-      </li>`;
+  items.forEach((item, index) => {
+    // Active Logic
+    let isActive = index <= currentIndex;
+    let isLast = index === items.length - 1;
 
-  // 3. Dispatched
-  let isDispatched = currentIndex >= 3;
-  let trackBtn = '';
-  if (d.tracking) {
-    let courierName = d.courier || d.provider || "Courier";
-    let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
-    trackBtn = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt"></i></a></div>`;
-  }
+    // Icon Logic: Tick for completed, Circle for pending
+    let iconHtml = '';
+    if (isActive) {
+      iconHtml = `<div class="timeline-icon active"><i class="fas fa-check"></i></div>`;
+    } else {
+      iconHtml = `<div class="timeline-icon"></div>`;
+    }
 
-  timelineHTML += `
-      <li class="track-tl-item ${isDispatched ? 'active' : ''}">
-          <div class="track-tl-dot"></div>
-          <div class="track-title">${isDispatched ? t.lbl_dispatched : t.lbl_packing}</div>
-          <div class="track-desc" style="font-size:11px; color:#888;">
-            ${isDispatched ? t.desc_dispatched : t.desc_packing}
-            ${isDispatched && d.tracking ? `<br>ID: ${d.tracking}` : ''}
-            ${isDispatched && d.tracking ? trackBtn : ''}
-          </div>
-      </li>`;
+    // Line Logic
+    let lineHtml = isLast ? '' : `<div class="timeline-line ${index < currentIndex ? 'active' : ''}"></div>`;
 
-  // 4. Delivered
-  let isDelivered = currentIndex >= 4;
-  timelineHTML += `
-      <li class="track-tl-item ${isDelivered ? 'active' : ''}">
-          <div class="track-tl-dot"></div>
-          <div class="track-title">${isDelivered ? t.lbl_delivered : t.lbl_on_the_way}</div>
-          <div class="track-desc" style="font-size:11px; color:#888;">${isDelivered ? t.desc_delivered : t.desc_on_the_way}</div>
-      </li>`;
+    // Content
+    let extraContent = '';
+    if (index === 2 && isActive && d.tracking) { // Dispatched Step
+      let courierName = d.courier || d.provider || "Courier";
+      let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
+      extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
+    }
 
-  timelineHTML += `</ul></div>`;
+    timelineHTML += `
+            <div class="timeline-row ${isActive ? 'completed' : ''}">
+                <div class="timeline-left">
+                    ${iconHtml}
+                    ${lineHtml}
+                </div>
+                <div class="timeline-right pb-4">
+                    <div class="fw-bold text-dark" style="font-size:14px;">${item.title}</div>
+                    <div class="text-muted small mt-1" style="font-size:12px; line-height:1.4;">${item.desc}</div>
+                    ${extraContent}
+                </div>
+            </div>
+        `;
+  });
+
+  timelineHTML += `</div></div>`;
 
   if (currentStatus === 'dispatched') {
-    timelineHTML += `<div class="mt-3"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-2">${t.btn_received}</button></div>`;
+    timelineHTML += `<div class="mt-2"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">${t.btn_received} <i class="fas fa-check-circle ms-1"></i></button></div>`;
   }
 
-  // HTML സെറ്റ് ചെയ്ത ശേഷം Smooth ആയി Fade In ചെയ്യുന്നു
   $('#status-area').html(timelineHTML);
   $('#status-area').fadeIn(500, function () {
-    $('.tracking-wrapper').css('opacity', '1'); // Double ensure opacity
+    $('.tracking-wrapper').css('opacity', '1');
   });
 }
 
