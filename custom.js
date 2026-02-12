@@ -424,9 +424,6 @@ function syncUserDataBackground(phone) {
         // 2. Render Status Timeline
         updateStatusUI(mergedData);
 
-        // 3. Show Edit Controls (Qty, Address, Buttons)
-        handleEditControlsVisibility(mergedData);
-
         // 4. Update Admin UI (if admin)
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
           updateAdminUI(mergedData.Status, mergedData.orderid || editingOrderId);
@@ -706,11 +703,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     changeLanguage(d.language);
   }
 
-  // 🔥 CHANGE 1: ലേബൽ ടെക്സ്റ്റ് മാറ്റുന്നു (Edit Mode)
   const qtyLabel = $('label[data-i18n="lbl_qty"]');
   qtyLabel.text(t.lbl_qty_edit);
 
-  // OID & Date
+  // OID & Date Display
   if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
   if (d.date) {
     if ($('#display-date').length === 0) {
@@ -728,21 +724,18 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
 
-  // 🔥 Strict Hiding (Blank ഒഴിവാക്കാൻ)
-  $('#status-area').hide().empty();
-  $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-  $('#btn-edit-addr').hide();
-  $('#btn-new-order-mode').hide();
+  // 🔥 FIX STARTS HERE: പഴയ Hide Code ഇവിടെ നിന്നും മാറ്റി താഴെ else-ലേക്ക് കൊടുത്തു
+  // (ഇവിടെ ഉണ്ടായിരുന്ന Hide കോഡുകൾ ഒഴിവാക്കി)
 
-  // ലേബലും ഹൈഡ് ചെയ്യുന്നു
-  $('label[data-i18n="lbl_qty"]').hide();
-  $('#quick-qty').prev('label').hide();
+  $('#status-area').hide().empty(); // സ്റ്റാറ്റസ് ഏരിയ മാത്രം ക്ലിയർ ചെയ്യുന്നു
 
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
   if (isServerData) {
+    // ✅ DATA ലഭ്യമാണെങ്കിൽ:
     updateStatusUI(d);
 
+    // Refresh Button logic...
     if ($('#refresh-btn').length === 0) {
       const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
@@ -753,8 +746,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
               </div>`);
     }
 
+    // New Order Button Logic...
     const status = String(d.Status || '').trim().toLowerCase();
-
     $('#quick-qty option').prop('disabled', false);
     if (status === 'paid') {
       let currentQty = parseInt(d.quantity) || 0;
@@ -773,10 +766,19 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#btn-new-order-mode').show();
     }
 
+    // 🔥 Controls കാണിക്കണോ വേണ്ടയോ എന്ന് ഇവിടെ തീരുമാനിക്കുന്നു
     handleEditControlsVisibility(d);
 
   } else {
-    // $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
+    // ❌ DATA ലഭ്യമല്ലെങ്കിൽ (LOADING TIME):
+    // ഇവിടെ വെച്ചാണ് ഇപ്പോൾ ഹൈഡ് ചെയ്യുന്നത്. അപ്പോൾ Hourglass മാത്രം കാണും.
+    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+    $('#btn-edit-addr').hide();
+    $('#btn-new-order-mode').hide();
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('#quick-qty').prev('label').hide();
+
+    // Hourglass Animation
     $('#status-area').html(`
         <div class="d-flex flex-column align-items-center justify-content-center py-5 fade-in">
             <div class="hourglass-container">
