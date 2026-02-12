@@ -26,47 +26,24 @@ const SafeStorage = {
 // --- UPDATED LOADER LOGIC ---
 let loaderInterval;
 
+// --- 🔥 SIMPLE GIF LOADER LOGIC ---
 window.showLoader = function (show) {
   // 1. Language Setup
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
+  const loadingTxt = t.loading || "LOADING...";
 
   if (show) {
     // Show UI
-    $('#loader-text').text(t.loading || "LOADING...");
-    $('#full-loader').fadeIn(200);
-
-    // 🔥 FIX: Clear any running interval first
-    if (loaderInterval) clearInterval(loaderInterval);
-
-    let percent = 0;
-    $('#loader-percent').text('0%');
-
-    // 🔥 SUPER FAST COUNTER LOGIC
-    loaderInterval = setInterval(() => {
-      // 1 മുതൽ 5 വരെ റാൻഡം ആയി കൂട്ടുന്നു (Speed കൂട്ടി)
-      let jump = Math.floor(Math.random() * 5) + 1;
-      percent += jump;
-
-      // 98% എത്തിയാൽ അവിടെ ഹോൾഡ് ചെയ്യും
-      if (percent >= 98) {
-        percent = 98;
-      }
-
-      $('#loader-percent').text(percent + '%');
-    }, 40); // 🔥 150ms മാറ്റി 40ms ആക്കി (ഇതാണ് സ്പീഡ് കൂട്ടുന്നത്)
+    $('#loader-text').text(loadingTxt);
+    $('#full-loader').css('display', 'flex').fadeIn(200); // 'flex' to center align
 
   } else {
-    // Hide UI (Finish Sequence)
-    if (loaderInterval) clearInterval(loaderInterval);
-
-    // 🔥 Force show 100% before closing
-    $('#loader-percent').text('100%');
-
-    // ചെറിയൊരു ഡിലേ ഇട്ടാൽ മാത്രമേ 100% എന്നത് കണ്ണിന് കാണാൻ പറ്റൂ
+    // Hide UI
+    // ചെറിയൊരു ഡിലേ നൽകുന്നത് സ്മൂത്ത് ആക്കാൻ നല്ലതാണ്
     setTimeout(() => {
       $('#full-loader').fadeOut(300);
-    }, 400);
+    }, 200);
   }
 }
 
