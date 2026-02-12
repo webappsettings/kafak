@@ -744,7 +744,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       });
     }
 
-    if (['delivered', 'completed'].includes(status)) {
+    if (['delivered', 'completed', 'refunded'].includes(status)) {
       const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
       if ($('#btn-new-order-mode').length === 0) {
         $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
