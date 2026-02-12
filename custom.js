@@ -229,6 +229,8 @@ $(document).ready(function () {
   // INSTANT EDIT LOAD
   // INSTANT EDIT LOAD
   if (oid) {
+    showLoader(true);
+
     if (isAdmin) {
       setupAdminView(oid);
     } else {
