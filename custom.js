@@ -14,8 +14,6 @@ let currentLoginPhone = null;
 let isEditMode = false;
 var savedOrderData = {};
 let globalQtyList = [];
-let ratesReady = false;
-let pendingPriceUpdate = null;
 
 const STORAGE_KEY = 'kafakCustomerData';
 
@@ -1040,75 +1038,24 @@ function applyHideLogic(status) {
   }
 }
 
-function calculatePrice(qty, state) {
-
-  if (!ratesReady) return null;
-
-  const n = parseInt(qty);
-  if (!n) return null;
-
-  const base = (baseRates && baseRates[n] ? baseRates[n] : 650) * n;
-
-  const zone = getZoneKey(state || 'KERALA');
-
-  let courier = 0;
-
-  if (courierRates && courierRates[zone] && courierRates[zone][n] != null) {
-    courier = courierRates[zone][n];
-  }
-
-  return {
-    qty: n,
-    base: base,
-    courier: courier,
-    total: base + courier,
-    zone: zone
-  };
-}
-
-
 window.updatePrice = function (qty, isQuick) {
   if (!qty) return;
-
-  // ✅ Container first define cheyyuka
-  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-
-  // 🔥 Wait until rates loaded
-  if (!ratesReady) {
-
-    container.html(`
-       <div class="text-center text-muted small py-3">
-          <i class="fas fa-spinner fa-spin"></i> Calculating...
-       </div>
-    `);
-
-    pendingPriceUpdate = { qty, isQuick };
-    return;
-  }
-
 
   // 1. Get Language using ID instead of Class
   const lang = $('#language-select').val() || 'ml';
   const t = translations[lang];
 
   const n = parseInt(qty);
-  // const base = n * 650;
+  const base = n * 650;
 
   // State Logic
   let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
-  // const zone = getZoneKey(currentState);
-  // const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-  // const total = base + courier;
-
-  const price = calculatePrice(n, currentState);
-  if (!price) return;
-
-  const base = price.base;
-  const courier = price.courier;
-  const total = price.total;
+  const zone = getZoneKey(currentState);
+  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+  const total = base + courier;
 
   // 2. Select Container
-  // const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
+  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
 
   // 3. Generate HTML with Translations (Malayalam/English)
   let htmlContent = `
@@ -1683,14 +1630,6 @@ function fetchCourierRates() {
     .then(data => {
       if (data.result === 'success' && data.rates) {
         courierRates = data.rates;
-
-        ratesReady = true;
-
-        if (pendingPriceUpdate) {
-          updatePrice(pendingPriceUpdate.qty, pendingPriceUpdate.isQuick);
-          pendingPriceUpdate = null;
-        }
-
         globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
 
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
@@ -1981,18 +1920,11 @@ function sendToWhatsapp() {
   }
 
   // 4. Calculate Total
-  // const n = parseInt(d.quantity);
-  // const base = (baseRates[n] || 650) * n;
-  // const zone = getZoneKey(d.state);
-  // const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-  // const total = base + courier;
-
-  const price = calculatePrice(d.quantity, d.state);
-  if (!price) return;
-
-  const base = price.base;
-  const courier = price.courier;
-  const total = price.total;
+  const n = parseInt(d.quantity);
+  const base = n * 650;
+  const zone = getZoneKey(d.state);
+  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+  const total = base + courier;
 
   // 5. Generate Message Header
   const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
