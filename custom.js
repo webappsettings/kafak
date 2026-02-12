@@ -251,6 +251,10 @@ $(document).ready(function () {
 
   // INSTANT EDIT LOAD
   if (oid) {
+
+    // 🔥 FIX 1: Start Loader Animation (0-100%) immediately
+    showLoader(true);
+
     if (isAdmin) {
       setupAdminView(oid);
     } else {
@@ -259,16 +263,24 @@ $(document).ready(function () {
 
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
-          showLoader(false);
+
           $('#step-0').hide();
-          // 🔥 SHOW LOCAL UI, HIDE LOADER
-          loadOrderData(localUsersMap[ph], false);
+
+          // Globals സെറ്റ് ചെയ്യുന്നു
+          currentLoginPhone = ph;
+          editingOrderId = oid;
+
           foundLocally = true;
-          // 🔥 FETCH SERVER DATA IN BACKGROUND
-          syncUserDataBackground(ph);
+
+          // 🔥 FIX 2: ഫോൺ ലോഗിൻ പോലെ തന്നെ, സിങ്ക് തീരുന്നത് വരെ ലോഡർ കാണിക്കുന്നു
+          syncUserDataBackground(ph).finally(() => {
+            showLoader(false);
+          });
+
           break;
         }
       }
+      // ലോക്കൽ ആയി ഇല്ലെങ്കിൽ സെർവറിൽ നോക്കുന്നു (fetchOrder തനിയെ ലോഡർ ഓഫ് ചെയ്തോളും)
       if (!foundLocally) fetchOrder(oid);
     }
   } else {
