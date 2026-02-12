@@ -229,6 +229,7 @@ $(document).ready(function () {
   // INSTANT EDIT LOAD
   // INSTANT EDIT LOAD
   if (oid) {
+    // 🔥 FIX: ലിങ്ക് വഴി വരുമ്പോൾ ഉടനെ ലോഡർ കാണിക്കാൻ ഈ വരി നിർബന്ധമാണ്
     showLoader(true);
 
     if (isAdmin) {
@@ -236,26 +237,16 @@ $(document).ready(function () {
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
-
-      // 1. ലോക്കൽ സ്റ്റോറേജിൽ ഓർഡർ ഉണ്ടോ എന്ന് തിരയുന്നു
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
-
-          // 🔥 FOUND! ലോഡർ ഉടനെ ഓഫ് ചെയ്യുന്നു (Wait ചെയ്യിക്കരുത്)
           showLoader(false);
           $('#step-0').hide();
-
-          // ലോക്കൽ ഡാറ്റ വെച്ച് സ്ക്രീൻ കാണിക്കുന്നു
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
-
-          // ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ സ്റ്റാറ്റസ് നോക്കുന്നു
           syncUserDataBackground(ph);
           break;
         }
       }
-
-      // 2. ലോക്കൽ ഇല്ലെങ്കിൽ മാത്രം സെർവറിലേക്ക് വിളിക്കുന്നു (Main Loader കാണും)
       if (!foundLocally) {
         console.log("Not found locally, fetching from server...");
         fetchOrder(oid);
@@ -394,10 +385,8 @@ function setRefreshLoading(isLoading) {
   }
 }
 
-
 // 🔥 UPDATED: PERFECT SYNC LOGIC
 function syncUserDataBackground(phone) {
-
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
@@ -409,23 +398,29 @@ function syncUserDataBackground(phone) {
 
   return Promise.all([userPromise, ratePromise])
     .then(([userRes]) => {
-
       let finalData = localData;
 
       if (userRes && userRes.result === 'success' && userRes.data) {
-
         let serverData = userRes.data;
-
         finalData = { ...localData, ...serverData };
         finalData.Status = serverData.Status || serverData.status || "Pending";
 
+        // 🔥 FIX: Set correct editingOrderId based on status
+        if (finalData.orderid) {
+          editingOrderId = finalData.orderid;
+
+          // Pending, Sent, Paid, Archive -> Edit Mode (editingOrderId നിലനിൽക്കും)
+          // Dispatched, Completed, Delivered, Refunded -> New Order Mode (editingOrderId = null)
+          let s = String(finalData.Status).toLowerCase();
+          if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
+            editingOrderId = null;
+          }
+        }
+
         userData = finalData;
         savedOrderData = JSON.parse(JSON.stringify(finalData));
-
         saveToLocal(phone, finalData);
       }
-
-      // 🔥 SINGLE RENDER POINT
       renderEditView(finalData);
     });
 }
@@ -790,6 +785,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 window.enableNewOrderMode = function () {
   $('#btn-new-order-mode').hide();
   $('#status-area').empty();
+
+  if (typeof savedOrderData !== 'undefined') {
+    savedOrderData.quantity = null;
+  }
 
   // 🔥 CHANGE 2: ടെക്സ്റ്റ് പഴയത് പോലെ ആക്കുന്നു
   const lang = $('#language-select').val() || 'en';
@@ -1220,8 +1219,6 @@ function checkForChanges() {
   // 4. Button Logic & Text Setup
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
-
-  // Language Setup
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang];
 
@@ -1238,30 +1235,23 @@ function checkForChanges() {
   const isNewOrderMode = (editingOrderId === null);
 
   if (isNewOrderMode) {
-    // === NEW ORDER MODE (Always Enabled) ===
-    btnUpdate.prop('disabled', false).css({
-      'opacity': '1',
-      'cursor': 'pointer',
-      'background': '#4CAF50', // പച്ച നിറം
-      'color': 'white'
-    });
-    btnSave.prop('disabled', false).text(t.txt_save_changes);
+    // === NEW ORDER MODE (Dispatched/Delivered/Completed/Refunded) ===
 
     if (currQty && currQty !== "0") {
-      // ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ: വെറും "ORDER NOW" (വലുതായി)
+      // അളവ് തിരഞ്ഞെടുത്തു -> ബട്ടൺ ഗ്രീൻ
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#4CAF50', 'color': 'white' });
       btnUpdate.html(`<span style="font-size:17px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>`);
     } else {
-      // ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ: "ORDER NOW" + Subtext
-      // മലയാളത്തിൽ "ഓർഡർ ചെയ്യാം" + "(അളവ് തിരഞ്ഞെടുക്കൂ)"
+      // അളവ് തിരഞ്ഞെടുത്തില്ല -> എങ്കിലും ബട്ടൺ ENABLED (For Validation Message)
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#4CAF50', 'color': 'white' });
       let subText = t.lbl_select_qty_subtext || "(Select Quantity)";
-
-      btnUpdate.html(`
-              <span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>
-              <span style="font-size:10px; opacity:0.85; font-weight:600; margin-top:2px;">${subText}</span>
-          `);
+      btnUpdate.html(`<span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span><span style="font-size:10px; opacity:0.85; font-weight:600; margin-top:2px;">${subText}</span>`);
     }
+
   } else {
-    // === UPDATE / EDIT MODE (Normal Logic) ===
+    // === EDIT MODE (Pending/Sent/Paid/Archive) ===
+    // പഴയ അളവ് കാണിക്കും, മാറ്റം വരുത്തിയാൽ മാത്രം ബട്ടൺ Enable ആകും
+
     if (isChanged) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.btn_update);
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes);
@@ -1701,20 +1691,14 @@ function fetchCourierRates() {
 // 🔥 UPDATED: RENDER DROPDOWNS (With Paid Status Lock)
 function renderQtyDropdowns() {
   if (!globalQtyList || globalQtyList.length === 0) return;
-
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
-
   let optionsHTML = `<option value="" disabled selected>${t.dd_select || "Select Quantity"}</option>`;
 
   globalQtyList.forEach(qty => {
     const totalGrams = qty * 650;
     let weightText;
-    if (totalGrams >= 1000) {
-      weightText = (totalGrams / 1000).toFixed(2) + " " + (t.txt_kg || "kg");
-    } else {
-      weightText = totalGrams + (t.txt_g || "g");
-    }
+    if (totalGrams >= 1000) { weightText = (totalGrams / 1000).toFixed(2) + " " + (t.txt_kg || "kg"); } else { weightText = totalGrams + (t.txt_g || "g"); }
     let bottleLabel = (qty === 1) ? (t.txt_bottle || "Bottle") : (t.txt_bottles || "Bottles");
     let label = `${qty} ${bottleLabel} (${weightText})`;
     optionsHTML += `<option value="${qty}">${label}</option>`;
@@ -1723,11 +1707,11 @@ function renderQtyDropdowns() {
   $('#quantity').html(optionsHTML);
   $('#quick-qty').html(optionsHTML);
 
-  // 1. RESTORE QUANTITY
-  if (typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
+  // 🔥 FIX: Pre-fill only for Edit Mode (Pending/Sent/Paid/Archive)
+  if (editingOrderId && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
     $('#quick-qty').val(savedOrderData.quantity);
 
-    // ലിസ്റ്റിൽ ഇല്ലാത്ത പഴയ ഓഫർ ക്വാണ്ടിറ്റി ആണെങ്കിൽ അത് മാന്വലായി ചേർക്കുന്നു
+    // ലിസ്റ്റിൽ ഇല്ലാത്ത പഴയ അളവ് ആണെങ്കിൽ അത് ചേർക്കുന്നു
     if (!$('#quick-qty').val()) {
       let oldQty = savedOrderData.quantity;
       $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
@@ -1735,15 +1719,12 @@ function renderQtyDropdowns() {
     updatePrice($('#quick-qty').val(), true);
   }
 
-  // 🔥 2. RE-APPLY PAID RESTRICTION (ഇതാണ് പ്രധാനം)
-  // സ്റ്റാറ്റസ് Paid ആണെങ്കിൽ, നിലവിലുള്ള ക്വാണ്ടിറ്റിയിൽ കുറഞ്ഞതൊന്നും സെലക്ട് ചെയ്യാൻ പറ്റില്ല.
+  // Paid Status Validation (കുറഞ്ഞ അളവ് എടുക്കാൻ സമ്മതിക്കില്ല)
   if (typeof savedOrderData !== 'undefined' && savedOrderData.Status) {
     let s = String(savedOrderData.Status).trim().toLowerCase();
     if (s === 'paid') {
       let currentQty = parseInt(savedOrderData.quantity) || 0;
-      $('#quick-qty option').each(function () {
-        if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
-      });
+      $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); });
     }
   }
 }

@@ -30,7 +30,7 @@ const translations = {
         // --- BUTTONS ---
         btn_next: "തുടരുക",
         btn_edit: "വിലാസം മാറ്റാം",
-        btn_update: "ഓർഡർ അപ്‌ഡേറ്റ്",
+        btn_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം",
         btn_order: "ഓർഡർ ചെയ്യാം", // Wizard End Button
         btn_order_now: "ഓർഡർ ചെയ്യാം", // New Order Button
         btn_place_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
@@ -145,7 +145,7 @@ const translations = {
         btn_order_now: "ORDER NOW",
         btn_place_new_order: "PLACE NEW ORDER",
         btn_received: "✅ I RECEIVED THE ORDER",
-        txt_no_changes: "MAKE CHANGES",
+        txt_no_changes: "UPDATE ORDER",
         txt_save_changes: "SAVE CHANGES",
         txt_refresh: "REFRESH STATUS",
         open_wa: "Open WhatsApp",
