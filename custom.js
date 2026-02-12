@@ -412,7 +412,7 @@ function syncUserDataBackground(phone) {
           // Pending, Sent, Paid, Archive -> Edit Mode (editingOrderId നിലനിൽക്കും)
           // Dispatched, Completed, Delivered, Refunded -> New Order Mode (editingOrderId = null)
           let s = String(finalData.Status).toLowerCase();
-          if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
+          if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
           }
         }
