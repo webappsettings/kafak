@@ -386,6 +386,7 @@ function setRefreshLoading(isLoading) {
 }
 
 // 🔥 UPDATED: PERFECT SYNC LOGIC
+// 1. DATA CLEANING
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
@@ -405,19 +406,19 @@ function syncUserDataBackground(phone) {
         finalData = { ...localData, ...serverData };
         finalData.Status = serverData.Status || serverData.status || "Pending";
 
-        // 🔥 FIX: Status നോക്കി Mode തീരുമാനിക്കുന്നു
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
-
           let s = String(finalData.Status).toLowerCase();
 
-          // Dispatched ഇതിൽ ഉൾപ്പെടുത്തിയിട്ടില്ല (അവർക്ക് Status View മതി)
-          // Completed, Delivered, Refunded മാത്രം New Order Mode ആകും
+          // Finished Orders -> New Order Mode
           if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
+
+            // 🔥 FIX: പഴയ ക്വാണ്ടിറ്റി ഡിലീറ്റ് ചെയ്യുന്നു
+            finalData.quantity = null;
+            delete finalData.quantity;
           }
         }
-
         userData = finalData;
         savedOrderData = JSON.parse(JSON.stringify(finalData));
         saveToLocal(phone, finalData);
@@ -783,6 +784,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   checkForChanges();
 }
 
+// 2. UI RESET
 window.enableNewOrderMode = function () {
   $('#btn-new-order-mode').hide();
   $('#status-area').empty();
@@ -791,18 +793,18 @@ window.enableNewOrderMode = function () {
     savedOrderData.quantity = null;
   }
 
-  // 🔥 CHANGE 2: ടെക്സ്റ്റ് പഴയത് പോലെ ആക്കുന്നു
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   $('label[data-i18n="lbl_qty"]').text(t.lbl_qty || "How many bottles?");
 
-  // Show Controls
   $('label[data-i18n="lbl_qty"]').fadeIn();
   $('#quick-qty').prev('label').fadeIn();
-
   $('#quick-qty').fadeIn();
   $('.btn-update-sage').fadeIn();
-  $('#quick-price-box').fadeIn();
+
+  // 🔥🔥🔥 MAIN FIX: Rate Table ഹൈഡ് ചെയ്യുന്നു & ക്ലിയർ ചെയ്യുന്നു 🔥🔥🔥
+  $('#quick-price-box').hide().empty();
+
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
 
   isEditMode = false;
@@ -1046,31 +1048,32 @@ function applyHideLogic(status) {
 }
 
 window.updatePrice = function (qty, isQuick) {
-  if (!qty) return;
+  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
 
-  // 1. Get Language using ID instead of Class
+  // 🔥 FIX: ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ Table ഹൈഡ് ചെയ്യുന്നു
+  if (!qty) {
+    container.hide();
+    return;
+  }
+
   const lang = $('#language-select').val() || 'ml';
   const t = translations[lang];
-
   const n = parseInt(qty);
   const base = n * 650;
 
-  // State Logic
   let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
   const zone = getZoneKey(currentState);
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
-  // 2. Select Container
-  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-
-  // 3. Generate HTML with Translations (Malayalam/English)
   let htmlContent = `
       <div class="price-row"><span>${t.lbl_honey_price} (<span class="qty-count">${n}</span>)</span><span>₹<span class="val-base">${base}</span></span></div>
       <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${courier}</span></span></div>
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
   container.html(htmlContent);
+
+  // 🔥 FIX: ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ മാത്രം തെളിഞ്ഞു വരുന്നു
   container.fadeIn();
 
   // 4. Update "Deliver To" Section (For Wizard View)
