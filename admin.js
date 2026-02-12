@@ -669,7 +669,6 @@ function filterOrders() {
 }
 
 // 🔥 UPDATED: Auto generates Date & Time for 'Paid' status from Admin Panel
-// 🔥 UPDATED: Auto generates Date & Time for both 'Paid' & 'Dispatched' status
 function updateOrder(oid, status, trackingNum = null, skipConfirm = false, customDate = null) {
     if (!skipConfirm && !trackingNum && !customDate && !confirm(`Mark '${status}'?`)) return;
 
@@ -678,6 +677,27 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
 
     let existingOrder = allOrders.find(o => o.orderid === oid);
     let oldStatus = existingOrder ? existingOrder.Status : 'Pending';
+
+    // 🔥🔥🔥 NEW CODE START: REFUND DELETE LOGIC 🔥🔥🔥
+    // പഴയത് Refunded ആണെങ്കിൽ, പുതിയത് Refunded അല്ല എങ്കിൽ -> Expense ഡിലീറ്റ് ചെയ്യണം
+    if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
+        console.log("Reverting Refund: Deleting Expense Entry...");
+
+        // Server Call to Delete Expense
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: "deleteRefund", oid: oid })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    showToast('info', 'Refund Expense Deleted 🗑️');
+                }
+            })
+            .catch(err => console.log("Error deleting refund expense"));
+    }
+    // 🔥🔥🔥 NEW CODE END 🔥🔥🔥
+
     if (existingOrder && existingOrder.Status === status && customDate) {
         oldStatus = `${existingOrder.Status} (${getTimelineLabel(existingOrder['Dispatched Date'] || existingOrder.timestamp)})`;
     }
