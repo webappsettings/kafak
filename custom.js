@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbyCPVscVsPecotiO8irVh584-lTwfni766eEHRnFrp81YFGKR-8B1GT5RZrJls4fmslQA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbz4Rc6pe2KlS8qEuUfSPY4baa-5Yc_ch51HZJULUmdNq5GVGq48jIZnIoJwaNLyIFoGtQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -846,6 +846,7 @@ window.markOrderDelivered = function (oid) {
 // 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
 // 🔥 UPDATED: FIXED TIMELINE LOGIC & DESIGN
 // 🔥 UPDATED: TIMELINE WITH DATE FIX & REFUND RED COLOR
+// 🔥 UPDATED: STATUS UI (Handles Missing Dates)
 function updateStatusUI(d) {
   $('#status-area').empty();
 
@@ -869,7 +870,7 @@ function updateStatusUI(d) {
     {
       title: t.order_success,
       desc: t.desc_order_placed,
-      // 🔥 FIX: timestamp അല്ലെങ്കിൽ date, ഏതാണോ ഉള്ളത് അത് എടുക്കും
+      // 🔥 FIX: timestamp അല്ലെങ്കിൽ date ഉപയോഗിക്കുന്നു
       date: d.timestamp || d.date,
       active: true
     },
@@ -887,7 +888,6 @@ function updateStatusUI(d) {
     },
   ];
 
-  // Last Step Logic
   if (isRefunded) {
     items.push({
       title: t.lbl_refunded || "Refunded",
@@ -907,30 +907,20 @@ function updateStatusUI(d) {
 
   items.forEach((item, index) => {
     let isLast = index === items.length - 1;
-
-    let iconClass = "timeline-icon";
-    let iconContent = "";
-
-    if (item.isRefund) {
-      iconClass += " refunded";
-      iconContent = `<i class="fas fa-undo-alt"></i>`;
-    } else if (item.active) {
-      iconClass += " active";
-      iconContent = `<i class="fas fa-check"></i>`;
-    }
-
+    let iconClass = "timeline-icon" + (item.isRefund ? " refunded" : (item.active ? " active" : ""));
+    let iconContent = item.isRefund ? `<i class="fas fa-undo-alt"></i>` : (item.active ? `<i class="fas fa-check"></i>` : "");
     let iconHtml = `<div class="${iconClass}">${iconContent}</div>`;
+
     let nextItemActive = items[index + 1] && items[index + 1].active;
     let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
 
-    // 🔥 DATE DISPLAY LOGIC
+    // Date Display
     let dateHtml = '';
     if (item.date && item.active) {
-      // ഫോർമാറ്റ് ചെയ്ത് ഭംഗിയായി കാണിക്കുന്നു
       dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
     }
 
-    // Tracking Button
+    // Tracking Button Logic...
     let extraContent = '';
     if (index === 2 && item.active && d.tracking && !isRefunded) {
       let courierName = d.courier || d.provider || "Courier";
@@ -942,20 +932,16 @@ function updateStatusUI(d) {
 
     timelineHTML += `
             <div class="${rowClass}">
-                <div class="timeline-left">
-                    ${iconHtml}
-                    ${lineHtml}
-                </div>
+                <div class="timeline-left">${iconHtml}${lineHtml}</div>
                 <div class="timeline-right pb-4">
                     <div class="d-flex justify-content-between align-items-start">
                         <div class="fw-bold text-dark" style="font-size:14px;">${item.title}</div>
-                        ${dateHtml} 
+                        ${dateHtml}
                     </div>
                     <div class="text-muted small mt-1" style="font-size:12px; line-height:1.4;">${item.desc}</div>
                     ${extraContent}
                 </div>
-            </div>
-        `;
+            </div>`;
   });
 
   timelineHTML += `</div></div>`;
@@ -971,9 +957,7 @@ function updateStatusUI(d) {
   }
 
   $('#status-area').html(timelineHTML);
-  $('#status-area').fadeIn(500, function () {
-    $('.tracking-wrapper').css('opacity', '1');
-  });
+  $('#status-area').fadeIn(500, function () { $('.tracking-wrapper').css('opacity', '1'); });
 }
 
 function updateSummaryDisplay() {
