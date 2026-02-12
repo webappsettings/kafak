@@ -1592,8 +1592,7 @@ function postOrder(data) {
 
 
 // 2. Updated fetchCourierRates Function
-// 🔥 UPDATED: FETCH RATES (With Local Cache Support)
-// 🔥 UPDATED: FAST RATES WITH CACHE
+// 🔥 UPDATED: FETCH RATES (Fixes Disappearing Price Table)
 function fetchCourierRates() {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
@@ -1601,7 +1600,7 @@ function fetchCourierRates() {
 
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
 
-  // 1. 🔥 CACHE CHECK (റേറ്റ് സേവ് ചെയ്തിട്ടുണ്ടോ എന്ന് നോക്കുന്നു)
+  // 1. CACHE CHECK
   let cachedRates = SafeStorage.getItem('cachedRates');
   let cacheValid = false;
 
@@ -1612,16 +1611,13 @@ function fetchCourierRates() {
         courierRates = parsed;
         globalQtyList = Object.keys(parsed.kerala).map(Number).sort((a, b) => a - b);
         renderQtyDropdowns();
-        console.log("⚡ Rates loaded from Cache (Instant)");
-        cacheValid = true; // Cache ഉണ്ട്
+        console.log("⚡ Rates loaded from Cache");
+        cacheValid = true;
       }
     } catch (e) { }
   }
 
-  // 2. Fetch from Server (Background Update)
-  // Cache ഉണ്ടെങ്കിൽ അത് ഉപയോഗിച്ച് മുന്നോട്ട് പോകാൻ Promise.resolve(true) നൽകുന്നു
-  // ഇല്ലെങ്കിൽ മാത്രം സെർവറിലേക്ക് വിളിക്കുന്നു
-
+  // 2. SERVER FETCH (Background)
   const serverFetch = fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
@@ -1629,12 +1625,21 @@ function fetchCourierRates() {
         courierRates = data.rates;
         globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
 
-        // Save to Cache
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
-        renderQtyDropdowns();
-        console.log("✅ Rates Synced from Server");
 
+        // 🔥 FIX: Re-render Dropdowns & Restore Value for Quick Edit View
+        renderQtyDropdowns();
+
+        // Restore Wizard Qty
         if ($('#quantity').val()) updatePrice($('#quantity').val(), false);
+
+        // 🔥 FIX: Restore Quick Edit Qty (ഇതാണ് മിസ്സിംഗ് ആയിരുന്നത്!)
+        if (typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
+          $('#quick-qty').val(savedOrderData.quantity);
+          updatePrice(savedOrderData.quantity, true);
+        }
+
+        console.log("✅ Rates Synced from Server");
         return true;
       }
       return false;
@@ -1644,12 +1649,12 @@ function fetchCourierRates() {
       return false;
     });
 
-  // Cache ഉണ്ടെങ്കിൽ സെർവർ റിസൾട്ടിന് കാത്തുനിൽക്കണ്ട, ഉടനെ True റിട്ടേൺ ചെയ്യാം
+  // Cache ഉണ്ടെങ്കിൽ ഉടനെ മുന്നോട്ട് പോകാൻ അനുവദിക്കുന്നു
   if (cacheValid) {
-    serverFetch; // സെർവർ ഫെച്ച് ബാക്ക്ഗ്രൗണ്ടിൽ നടക്കട്ടെ
+    serverFetch; // Run in background to update cache
     return Promise.resolve(true);
   } else {
-    return serverFetch; // Cache ഇല്ലെങ്കിൽ മാത്രം കാത്തുനിൽക്കുക
+    return serverFetch;
   }
 }
 
