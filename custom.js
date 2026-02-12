@@ -139,20 +139,21 @@ window.updateWizardLocDisplay = function () {
 }
 
 
-// 🔥 Pretty Date Format with Year (e.g., 10 Oct 2023, 04:30 PM)
+// 🔥 Pretty Date Format (Forced India Time)
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return "";
 
-  // Added year: 'numeric'
-  return d.toLocaleString('en-US', {
+  // 🔥 FIX: Timezone 'Asia/Kolkata' ആക്കി സെറ്റ് ചെയ്യുന്നു
+  return d.toLocaleString('en-GB', {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
-    hour12: true
+    hour12: true,
+    timeZone: 'Asia/Kolkata'
   });
 }
 
@@ -898,8 +899,15 @@ function updateStatusUI(d) {
   timelineHTML += `</div></div>`;
 
   // Button Logic: Only show 'Received' if Dispatched
-  if (s === 'dispatched') {
-    timelineHTML += `<div class="mt-2"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">${t.btn_received} <i class="fas fa-check-circle ms-1"></i></button></div>`;
+  // Button Logic: Only show 'Received' if Dispatched
+  if (currentStatus === 'dispatched') {
+    timelineHTML += `
+      <div class="mt-4 text-center fade-in">
+          <div class="text-muted fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">${t.txt_received_helper}</div>
+          <button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">
+              ${t.btn_received} <i class="fas fa-check-circle ms-1"></i>
+          </button>
+      </div>`;
   }
 
   $('#status-area').html(timelineHTML);
