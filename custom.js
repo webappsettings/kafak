@@ -281,9 +281,24 @@ window.handlePhoneNext = function () {
 
   preloadHoneyVideo();
 
+  // if (localUsersMap[phone]) {
+  //   loadOrderData(localUsersMap[phone], false);
+  //   syncUserDataBackground(phone);
+  //   return;
+  // }
+
   if (localUsersMap[phone]) {
-    loadOrderData(localUsersMap[phone], false);
-    syncUserDataBackground(phone);
+    // 🔥 FIX: ലോക്കൽ ഡാറ്റ ഉടനെ കാണിക്കാതെ, സിങ്ക് കഴിയാൻ കാത്തുനിൽക്കുന്നു.
+    // അപ്പോൾ ഒരൊറ്റ സ്മൂത്ത് ലോഡിംഗ് മാത്രമേ ഉണ്ടാവൂ.
+
+    // 1. Show Honey Drop Loader
+    showLoader(true);
+
+    // 2. Start Sync (Promise.all വഴി രണ്ടും കൂടി ഒറ്റയടിക്ക് വരും)
+    syncUserDataBackground(phone).then(() => {
+      // എല്ലാം സെറ്റ് ആയ ശേഷം ലോഡർ മാറ്റുന്നു
+      showLoader(false);
+    });
     return;
   }
 
@@ -379,64 +394,62 @@ function setRefreshLoading(isLoading) {
 }
 
 
-// 🔥 UPDATED: SINGLE SHOT SYNC (Fixes Jerky Loading)
+// 🔥 UPDATED: SYNC WITH FAILSAFE
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  setRefreshLoading(true);
-
-  // 1. User Data Fetch Promise
+  // 1. User Data Fetch
   const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
-    .then(res => res.json());
+    .then(res => res.json())
+    .catch(() => null); // Error വന്നാൽ Null റിട്ടേൺ ചെയ്യും
 
-  // 2. Rates Fetch Promise (റേറ്റ് കയ്യിലില്ലെങ്കിൽ മാത്രം ഫെച്ച് ചെയ്യും)
-  const ratePromise = (globalQtyList.length > 0 && Object.keys(courierRates).length > 0)
-    ? Promise.resolve(true) // Already have rates
-    : fetchCourierRates();  // Fetch if missing
+  // 2. Rate Fetch
+  const ratePromise = (globalQtyList.length > 0)
+    ? Promise.resolve(true)
+    : fetchCourierRates();
 
-  // 🔥 3. WAIT FOR BOTH TO FINISH (Promise.all)
   return Promise.all([userPromise, ratePromise])
     .then(([userRes, rateSuccess]) => {
 
-      // A. Process User Data
-      if (userRes.result === 'success' && userRes.data) {
+      let finalData = localData; // Default to Local Data
+
+      if (userRes && userRes.result === 'success' && userRes.data) {
+        // Server Data കിട്ടിയെങ്കിൽ അത് ഉപയോഗിക്കുന്നു
         let serverData = userRes.data;
-        let mergedData = { ...localData, ...serverData };
-        mergedData.Status = serverData.Status || serverData.status || "Pending";
+        finalData = { ...localData, ...serverData };
+        finalData.Status = serverData.Status || serverData.status || "Pending";
 
-        let s = mergedData.Status.toLowerCase();
-
-        if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
-          editingOrderId = null;
-          $('#display-oid').hide();
-        }
-
-        userData = mergedData;
-        savedOrderData = JSON.parse(JSON.stringify(mergedData));
-        saveToLocal(phone, mergedData);
-
-        // 🔥 B. RENDER EVERYTHING TOGETHER (SMOOTH UI)
-
-        // 1. Render Dropdowns (ഇപ്പോൾ റേറ്റ്സ് ഉറപ്പായും ഉണ്ട്)
-        renderQtyDropdowns();
-
-        // 2. Render Status Timeline
-        updateStatusUI(mergedData);
-
-        // 4. Update Admin UI (if admin)
-        if (SafeStorage.getItem('kafakAdmin') === 'true') {
-          updateAdminUI(mergedData.Status, mergedData.orderid || editingOrderId);
-        }
-
-        let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
-
-        // 5. Final Reveal
-        showReturningUserView(mergedData, isActive, true);
+        // Save Updates
+        userData = finalData;
+        savedOrderData = JSON.parse(JSON.stringify(finalData));
+        saveToLocal(phone, finalData);
       }
-    })
-    .catch(err => { console.log("Sync error", err); })
-    .finally(() => { setRefreshLoading(false); });
+
+      // 🔥 RENDER EVERYTHING (Server Data അല്ലെങ്കില്‍ Local Data വെച്ച്)
+      let s = String(finalData.Status || 'pending').toLowerCase();
+
+      if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
+        editingOrderId = null;
+        $('#display-oid').hide();
+      }
+
+      // 1. Render Components
+      renderQtyDropdowns();
+      updateStatusUI(finalData);
+
+      // Admin Update
+      if (SafeStorage.getItem('kafakAdmin') === 'true') {
+        updateAdminUI(finalData.Status, finalData.orderid || editingOrderId);
+      }
+
+      let isActive = !(['dispatched', 'completed', 'delivered'].includes(s));
+
+      // 2. Show View (With correct data source flag)
+      let gotServerData = (userRes && userRes.result === 'success');
+      showReturningUserView(finalData, isActive, true); // Always pass true here to force render UI
+
+    });
 }
 
 // 🔥 Helper Function to Show/Hide Controls based on Status
@@ -1593,15 +1606,29 @@ function postOrder(data) {
 
 
 // 2. Updated fetchCourierRates Function
+// 🔥 UPDATED: FETCH RATES (With Local Cache Support)
 function fetchCourierRates() {
-  // 1. Loading Text (ഭാഷ അനുസരിച്ച് മാറാൻ)
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   const loadingTxt = t.loading || "Loading Options...";
 
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
 
-  // 2. Fetch from Server
+  // 1. Try Loading from Cache First (Instant)
+  let cachedRates = SafeStorage.getItem('cachedRates');
+  if (cachedRates) {
+    try {
+      let parsed = JSON.parse(cachedRates);
+      if (parsed && parsed.kerala) {
+        courierRates = parsed;
+        globalQtyList = Object.keys(parsed.kerala).map(Number).sort((a, b) => a - b);
+        renderQtyDropdowns();
+        console.log("⚡ Rates loaded from Cache");
+      }
+    } catch (e) { }
+  }
+
+  // 2. Fetch from Server (Background Update)
   return fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
@@ -1609,17 +1636,21 @@ function fetchCourierRates() {
         courierRates = data.rates;
         globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
 
+        // 🔥 Save to Cache
+        SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
+
         renderQtyDropdowns();
-        console.log("✅ Rates Synced");
+        console.log("✅ Rates Synced from Server");
 
         if ($('#quantity').val()) updatePrice($('#quantity').val(), false);
-        return true; // Success Flag
+        return true;
       }
       return false;
     })
     .catch(err => {
-      console.log("❌ Rate fetch failed");
-      return false;
+      console.log("❌ Rate fetch failed, using cache if available");
+      // Cache ഉണ്ടെങ്കിൽ അത് വെച്ച് മുന്നോട്ട് പോകും (True റിട്ടേൺ ചെയ്യും)
+      return (Object.keys(courierRates).length > 0);
     });
 }
 
