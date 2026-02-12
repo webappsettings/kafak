@@ -82,8 +82,6 @@ const translations = {
         txt_gpay: "ഗൂഗിൾ പേ നമ്പർ", // GPay Text
 
         // 🔥 WIZARD PLACEHOLDERS (Login & Steps):
-        ph_phone: "മൊബൈൽ നമ്പർ നൽകുക",
-        ph_name: "പേര്",
         ph_house: "വീട്ടുപേര്",
         ph_place: "സ്ഥലം",
         ph_pincode: "000000",
