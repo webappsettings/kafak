@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbywgeSp-uXI1cSEARi3s8q8XGam9vsFCInfe5OaXbzejdqwfFI_v-oS5ydUhoF0bcjPyg/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxd6divSeLXcQljqLAfnx_5QkZUKM-rVx069m_1Qxw_q67X30mBgSCJkH9-gj47h90WbA/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -393,7 +393,7 @@ function syncUserDataBackground(phone) {
 
         let s = mergedData.Status.toLowerCase();
 
-        if (['dispatched', 'completed', 'delivered'].includes(s)) {
+        if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
           editingOrderId = null;
           $('#display-oid').hide();
         }
@@ -427,7 +427,7 @@ function syncUserDataBackground(phone) {
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
 
-  if (['paid', 'dispatched', 'delivered', 'completed'].includes(status)) {
+  if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
     $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
     $('label[data-i18n="lbl_qty"]').hide();
@@ -946,7 +946,7 @@ function updateSummaryDisplay() {
   // Hide Edit Button Logic
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    if (['paid', 'dispatched', 'completed', 'delivered'].includes(s)) {
+    if (['paid', 'dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
       $('#btn-edit-addr').hide();
     } else {
       $('#btn-edit-addr').css('display', 'inline-block');
@@ -974,7 +974,7 @@ function checkAndHideEditButton() {
 function applyHideLogic(status) {
   let s = String(status).toLowerCase().trim();
   // ഈ സ്റ്റാറ്റസുകൾ ആണെങ്കിൽ ബട്ടൺ കാണിക്കില്ല
-  if (['paid', 'dispatched'].includes(s)) {
+  if (['paid', 'dispatched', 'refunded'].includes(s)) {
     $('#btn-edit-addr').hide();
     console.log("Edit Button Hidden for Status:", s);
   } else {
