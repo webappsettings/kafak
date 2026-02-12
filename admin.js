@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxd6divSeLXcQljqLAfnx_5QkZUKM-rVx069m_1Qxw_q67X30mBgSCJkH9-gj47h90WbA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwHDi0-CxQmErFZcY60oossMY6TDpXnHF2llFkv4pf3n2DkxsFPFCFQxefYdMAbP7b4YA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -407,8 +407,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
 
-    let refundBtn = `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>`;
-
+    // 🔥 FIX: Refunded അല്ലെങ്കിൽ മാത്രമേ റീഫണ്ട് ബട്ടൺ കാണിക്കൂ
+    let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
+    let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
             <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
@@ -501,6 +502,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
             </div>
         </div>`;
+    }
+    else if (currentStatus === 'Refunded') {
+        buttons = `
+        <div class="alert alert-danger p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
+            <i class="fas fa-info-circle"></i> Amount Refunded to Customer
+        </div>
+        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
+            <i class="fas fa-history me-1"></i> REVERT TO PAID
+        </button>`;
     }
     else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
@@ -611,8 +621,9 @@ function updateSyncButtonUI() {
     }
 }
 
+// 🔥 UPDATED: POWERFUL SEARCH (Local + Server)
 function filterOrders() {
-    const term = document.getElementById('searchInput').value.toLowerCase();
+    const term = document.getElementById('searchInput').value.trim().toLowerCase();
     const tabsContainer = document.getElementById('tabs-container');
     const searchResultsArea = document.getElementById('search-results-area');
     const searchList = document.getElementById('list-search');
@@ -621,18 +632,36 @@ function filterOrders() {
         tabsContainer.style.display = 'none';
         searchResultsArea.style.display = 'block';
         searchList.innerHTML = '';
-        let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-        let matches = allOrders.filter(o => (o.name || '').toLowerCase().includes(term) || String(o.phone).includes(term) || (o.orderid || '').toLowerCase().includes(term));
-        if (matches.length === 0) searchList.innerHTML = '<div class="text-center text-muted">No results found.</div>';
-        else matches.forEach(d => {
-            let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
-            let localUpdate = pendingUpdates.find(item => item.oid === d.orderid);
-            let status = localUpdate ? localUpdate.status : (d.Status || 'Pending');
-            let type = 'pending';
-            if (status === 'Paid') type = 'paid';
-            if (status === 'Dispatched') type = 'dispatched';
-            if (status !== 'Completed') searchList.innerHTML += createCardHTML(d, originalIndex, type, status);
-        });
+
+        let matches = allOrders.filter(o =>
+            (o.name || '').toLowerCase().includes(term) ||
+            String(o.phone).includes(term) ||
+            (o.orderid || '').toLowerCase().includes(term) ||
+            (o.tracking || '').toLowerCase().includes(term)
+        );
+
+        if (matches.length === 0) {
+            searchList.innerHTML = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
+        } else {
+            matches.forEach(d => {
+                let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
+                searchList.innerHTML += createCardHTML(d, originalIndex, 'search', d.Status);
+            });
+        }
+
+        // 🔥 ADD "SEARCH ON SERVER" BUTTON
+        let serverBtnHtml = `
+            <div class="col-12 mt-3 text-center">
+                <div class="p-3 border rounded-3 bg-light shadow-sm">
+                    <div class="small text-muted mb-2">കാണുന്നില്ലേ? പഴയ ഓർഡറുകൾക്കായി ഷീറ്റിൽ സെർച്ച് ചെയ്യുക</div>
+                    <button onclick="searchOnServer('${term}')" class="btn btn-dark rounded-pill px-4 fw-bold">
+                        <i class="fas fa-cloud-download-alt me-2"></i> Search Entire Database
+                    </button>
+                </div>
+            </div>`;
+
+        searchList.innerHTML += serverBtnHtml;
+
     } else {
         tabsContainer.style.display = 'block';
         searchResultsArea.style.display = 'none';
@@ -2193,4 +2222,40 @@ function openSimpleWA(index) {
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
     window.open(`https://wa.me/${phoneNum}`, '_blank');
+}
+
+// 🔥 SERVER SIDE SEARCH FUNCTION
+function searchOnServer(term) {
+    let btn = $('#list-search button.btn-dark');
+    let originalText = btn.html();
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SEARCHING SHEET...');
+
+    fetch(`${scriptURL}?action=searchGlobal&query=${term}`)
+        .then(res => res.json())
+        .then(data => {
+            btn.prop('disabled', false).html(originalText);
+
+            if (data.result === 'success' && data.orders.length > 0) {
+                // റിസൾട്ട് കാണിക്കാൻ ലിസ്റ്റ് ക്ലിയർ ചെയ്യുന്നു
+                const searchList = document.getElementById('list-search');
+                searchList.innerHTML = `<div class="alert alert-success small fw-bold text-center">Found ${data.orders.length} result(s) from Server!</div>`;
+
+                data.orders.forEach(d => {
+                    // പുതിയ ഡാറ്റ ലോക്കൽ ലിസ്റ്റിലേക്ക് താൽക്കാലികമായി ചേർക്കുന്നു (കാർഡ് ജനറേറ്റ് ചെയ്യാൻ)
+                    // ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ ചെക്ക് ചെയ്യുന്നു
+                    let exists = allOrders.findIndex(o => o.orderid === d.orderid);
+                    if (exists === -1) allOrders.push(d);
+
+                    let idx = allOrders.findIndex(o => o.orderid === d.orderid);
+                    searchList.innerHTML += createCardHTML(d, idx, 'search', d.Status);
+                });
+
+            } else {
+                Swal.fire({ icon: 'warning', title: 'Not Found', text: 'No orders found in the Sheet.', toast: true, position: 'top' });
+            }
+        })
+        .catch(err => {
+            btn.prop('disabled', false).html(originalText);
+            alert("Search Failed!");
+        });
 }
