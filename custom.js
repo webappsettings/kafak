@@ -405,13 +405,14 @@ function syncUserDataBackground(phone) {
         finalData = { ...localData, ...serverData };
         finalData.Status = serverData.Status || serverData.status || "Pending";
 
-        // 🔥 FIX: Set correct editingOrderId based on status
+        // 🔥 FIX: Status നോക്കി Mode തീരുമാനിക്കുന്നു
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
 
-          // Pending, Sent, Paid, Archive -> Edit Mode (editingOrderId നിലനിൽക്കും)
-          // Dispatched, Completed, Delivered, Refunded -> New Order Mode (editingOrderId = null)
           let s = String(finalData.Status).toLowerCase();
+
+          // Dispatched ഇതിൽ ഉൾപ്പെടുത്തിയിട്ടില്ല (അവർക്ക് Status View മതി)
+          // Completed, Delivered, Refunded മാത്രം New Order Mode ആകും
           if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
           }
@@ -1956,12 +1957,24 @@ function sendToWhatsapp() {
 
 
 function renderEditView(data) {
-
   const status = String(data.Status || 'pending').toLowerCase();
-  const isActive = !(['dispatched', 'completed', 'delivered'].includes(status));
+
+  // 🔥 CASE 1: നേരിട്ട് New Order Mode കാണിക്കേണ്ടവ
+  // (Completed, Delivered, Refunded ആണെങ്കിൽ Button ക്ലിക്ക് ചെയ്യാതെ തന്നെ ഫോം വരും)
+  if (['completed', 'delivered', 'refunded'].includes(status)) {
+    // 1. വിലാസവും മറ്റും കാണിക്കുന്നു
+    showReturningUserView(data, false, true);
+
+    // 2. ഉടനെ തന്നെ New Order Mode-ലേക്ക് മാറ്റുന്നു (Auto-Click)
+    enableNewOrderMode();
+    return;
+  }
+
+  // 🔥 CASE 2: മറ്റുള്ളവ (Pending, Paid, Dispatched, Sent)
+  // Dispatched ആണെങ്കിൽ Status View (ട്രാക്കിംഗ്) തന്നെ കാണിക്കും
+  const isActive = !(['dispatched'].includes(status));
 
   showReturningUserView(data, isActive, true);
-
   updateEditUIState(data);
 }
 
