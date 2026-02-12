@@ -425,7 +425,7 @@ function handleEditControlsVisibility(d) {
 
   const status = String(d.Status || 'pending').toLowerCase();
 
-  if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+  if (['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
 
     $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
@@ -1002,7 +1002,7 @@ function updateSummaryDisplay() {
   // Hide Edit Button Logic
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    if (['paid', 'dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
+    if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
       $('#btn-edit-addr').hide();
     } else {
       $('#btn-edit-addr').css('display', 'inline-block');
