@@ -354,9 +354,20 @@ function saveToLocal(phone, data) {
 }
 
 function loadOrderData(d, isServerData = false) {
-  $('#step-0').hide(); userData = d; editingOrderId = d.orderid; currentLoginPhone = d.phone;
+  $('#step-0').hide();
+  userData = d;
+  editingOrderId = d.orderid;
+  currentLoginPhone = d.phone;
+
   if (d.phone) saveToLocal(d.phone, d);
+
   showReturningUserView(d, true, isServerData);
+
+  // 🔥 FIX: ഡാറ്റ ലോഡ് ആകുമ്പോൾ തന്നെ ക്വാണ്ടിറ്റി നിർബന്ധമായും സെറ്റ് ചെയ്യുന്നു
+  if (d.quantity) {
+    $('#quick-qty').val(d.quantity);
+    updatePrice(d.quantity, true);
+  }
 }
 
 window.manualRefresh = function () {
@@ -1600,10 +1611,14 @@ function postOrder(data) {
 
 // 2. Updated fetchCourierRates Function
 // 🔥 UPDATED: FETCH RATES (Fixes Disappearing Price Table)
+
 function fetchCourierRates() {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   const loadingTxt = t.loading || "Loading Options...";
+
+  // നിലവിലുള്ള വാല്യൂ സേവ് ചെയ്തു വെക്കുന്നു
+  let currentSelection = $('#quick-qty').val();
 
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
 
@@ -1624,26 +1639,28 @@ function fetchCourierRates() {
     } catch (e) { }
   }
 
-  // 2. SERVER FETCH (Background)
+  // 2. SERVER FETCH
   const serverFetch = fetch(`${sc}?action=getRates`)
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success' && data.rates) {
         courierRates = data.rates;
         globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
-
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
 
-        // 🔥 FIX: Re-render Dropdowns & Restore Value for Quick Edit View
+        // 🔥 FIX: Restore Logic
+        // 1. ആദ്യം നിലവിൽ സെലക്ട് ചെയ്ത വാല്യൂ ഉണ്ടോ എന്ന് നോക്കുന്നു
+        // 2. ഇല്ലെങ്കിൽ സേവ് ചെയ്ത ഡാറ്റയിൽ ഉണ്ടോ എന്ന് നോക്കുന്നു
+        let restoreQty = currentSelection;
+        if (!restoreQty && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
+          restoreQty = savedOrderData.quantity;
+        }
+
         renderQtyDropdowns();
 
-        // Restore Wizard Qty
-        if ($('#quantity').val()) updatePrice($('#quantity').val(), false);
-
-        // 🔥 FIX: Restore Quick Edit Qty (ഇതാണ് മിസ്സിംഗ് ആയിരുന്നത്!)
-        if (typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
-          $('#quick-qty').val(savedOrderData.quantity);
-          updatePrice(savedOrderData.quantity, true);
+        if (restoreQty) {
+          $('#quick-qty').val(restoreQty);
+          updatePrice(restoreQty, true);
         }
 
         console.log("✅ Rates Synced from Server");
@@ -1656,9 +1673,8 @@ function fetchCourierRates() {
       return false;
     });
 
-  // Cache ഉണ്ടെങ്കിൽ ഉടനെ മുന്നോട്ട് പോകാൻ അനുവദിക്കുന്നു
   if (cacheValid) {
-    serverFetch; // Run in background to update cache
+    serverFetch;
     return Promise.resolve(true);
   } else {
     return serverFetch;
