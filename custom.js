@@ -910,42 +910,15 @@ function updateStatusUI(d) {
 
   // Timeline Items
   const items = [
-    {
-      title: t.order_success,
-      desc: t.desc_order_placed,
-      // 🔥 FIX: timestamp അല്ലെങ്കിൽ date ഉപയോഗിക്കുന്നു
-      date: d.timestamp || d.date,
-      active: true
-    },
-    {
-      title: t.lbl_payment_received,
-      desc: t.desc_pay_received,
-      date: d.paidDate,
-      active: isPaid
-    },
-    {
-      title: t.lbl_dispatched,
-      desc: t.desc_dispatched,
-      date: d['Dispatched Date'],
-      active: isDispatched
-    },
+    { title: t.order_success, desc: t.desc_order_placed, date: d.timestamp || d.date, active: true },
+    { title: t.lbl_payment_received, desc: t.desc_pay_received, date: d.paidDate, active: isPaid },
+    { title: t.lbl_dispatched, desc: t.desc_dispatched, date: d['Dispatched Date'], active: isDispatched },
   ];
 
   if (isRefunded) {
-    items.push({
-      title: t.lbl_refunded || "Refunded",
-      desc: t.desc_refunded || "Amount Returned",
-      date: null,
-      active: true,
-      isRefund: true
-    });
+    items.push({ title: t.lbl_refunded || "Refunded", desc: t.desc_refunded || "Amount Returned", date: null, active: true, isRefund: true });
   } else {
-    items.push({
-      title: t.lbl_delivered,
-      desc: t.desc_delivered,
-      date: null,
-      active: isDelivered
-    });
+    items.push({ title: t.lbl_delivered, desc: t.desc_delivered, date: null, active: isDelivered });
   }
 
   items.forEach((item, index) => {
@@ -953,26 +926,19 @@ function updateStatusUI(d) {
     let iconClass = "timeline-icon" + (item.isRefund ? " refunded" : (item.active ? " active" : ""));
     let iconContent = item.isRefund ? `<i class="fas fa-undo-alt"></i>` : (item.active ? `<i class="fas fa-check"></i>` : "");
     let iconHtml = `<div class="${iconClass}">${iconContent}</div>`;
-
     let nextItemActive = items[index + 1] && items[index + 1].active;
     let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
-
-    // Date Display
     let dateHtml = '';
     if (item.date && item.active) {
       dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
     }
-
-    // Tracking Button Logic...
     let extraContent = '';
     if (index === 2 && item.active && d.tracking && !isRefunded) {
       let courierName = d.courier || d.provider || "Courier";
       let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
       extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
     }
-
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
-
     timelineHTML += `
             <div class="${rowClass}">
                 <div class="timeline-left">${iconHtml}${lineHtml}</div>
@@ -989,12 +955,38 @@ function updateStatusUI(d) {
 
   timelineHTML += `</div></div>`;
 
+  // 🔥 BEAUTIFUL RECEIVED BUTTON
   if (s === 'dispatched') {
     timelineHTML += `
-            <div class="mt-4 text-center fade-in">
-                <div class="text-muted fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">${t.txt_received_helper}</div>
-                <button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">
-                    ${t.btn_received} <i class="fas fa-check-circle ms-1"></i>
+            <div class="mt-4 px-2 text-center fade-in">
+                <div class="text-muted fw-bold mb-3" style="font-size:11px; letter-spacing:0.5px; text-transform:uppercase;">
+                    ${t.txt_received_helper}
+                </div>
+                
+                <button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" 
+                    class="btn w-100 py-3 shadow-lg" 
+                    style="
+                        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); 
+                        color: white; 
+                        border-radius: 16px; 
+                        border: none; 
+                        position: relative; 
+                        overflow: hidden;
+                        transition: transform 0.2s;
+                    "
+                    onmousedown="this.style.transform='scale(0.98)'" 
+                    onmouseup="this.style.transform='scale(1)'">
+                    
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <div style="background:rgba(255,255,255,0.2); border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center;">
+                            <i class="fas fa-check text-white" style="font-size:14px;"></i>
+                        </div>
+                        <div class="text-start">
+                            <div style="font-size:14px; font-weight:800; letter-spacing:0.5px; line-height:1.2;">YES, I RECEIVED IT</div>
+                            <div style="font-size:10px; opacity:0.9; font-weight:500;">Click to mark as Delivered</div>
+                        </div>
+                    </div>
+
                 </button>
             </div>`;
   }
@@ -1270,13 +1262,11 @@ function checkForChanges() {
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
-  // 4. Button Logic & Text Setup
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang];
 
-  // ബട്ടൺ 2 വരിയിൽ വരാനുള്ള സ്റ്റൈൽ
   btnUpdate.css({
     'white-space': 'normal',
     'line-height': '1.2',
@@ -1289,28 +1279,38 @@ function checkForChanges() {
   const isNewOrderMode = (editingOrderId === null);
 
   if (isNewOrderMode) {
-    // === NEW ORDER MODE (Dispatched/Delivered/Completed/Refunded) ===
+    // === NEW ORDER MODE (Always Enabled) ===
+
+    // 🔥 FIX: ബട്ടൺ എപ്പോഴും Enabled ആക്കുന്നു (Validation മെസ്സേജ് കാണിക്കാൻ)
+    btnUpdate.prop('disabled', false).css({
+      'opacity': '1',
+      'cursor': 'pointer',
+      'background': '#15803d', // Dark Green
+      'color': 'white',
+      'box-shadow': '0 4px 6px rgba(0,0,0,0.1)'
+    });
+
+    btnSave.prop('disabled', false).text(t.txt_save_changes);
 
     if (currQty && currQty !== "0") {
-      // അളവ് തിരഞ്ഞെടുത്തു -> ബട്ടൺ ഗ്രീൻ
-      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#4CAF50', 'color': 'white' });
+      // അളവ് തിരഞ്ഞെടുത്താൽ
       btnUpdate.html(`<span style="font-size:17px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>`);
     } else {
-      // അളവ് തിരഞ്ഞെടുത്തില്ല -> എങ്കിലും ബട്ടൺ ENABLED (For Validation Message)
-      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#4CAF50', 'color': 'white' });
+      // അളവ് തിരഞ്ഞെടുത്തില്ലെങ്കിൽ (Select Quantity എന്ന് കാണിക്കും)
       let subText = t.lbl_select_qty_subtext || "(Select Quantity)";
-      btnUpdate.html(`<span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span><span style="font-size:10px; opacity:0.85; font-weight:600; margin-top:2px;">${subText}</span>`);
+      btnUpdate.html(`
+              <span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>
+              <span style="font-size:10px; opacity:0.85; font-weight:600; margin-top:2px;">${subText}</span>
+          `);
     }
 
   } else {
-    // === EDIT MODE (Pending/Sent/Paid/Archive) ===
-    // പഴയ അളവ് കാണിക്കും, മാറ്റം വരുത്തിയാൽ മാത്രം ബട്ടൺ Enable ആകും
-
+    // === EDIT MODE (Old Logic) ===
     if (isChanged) {
-      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.btn_update);
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb' }).text(t.btn_update);
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes);
     } else {
-      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
+      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280' }).text(t.txt_no_changes);
       btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
     }
   }
