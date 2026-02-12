@@ -825,43 +825,68 @@ window.markOrderDelivered = function (oid) {
 // 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
 // 🔥 UPDATED: FIXED TIMELINE LOGIC & DESIGN
 function updateStatusUI(d) {
-  // ലോഡിംഗ് മാറി കണ്ടന്റ് വരാൻ വേണ്ടി ആദ്യം ക്ലിയർ ചെയ്യുന്നു
   $('#status-area').empty();
 
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
-  // Status Normalization
   let s = String(d.Status || d.status || 'pending').toLowerCase();
-  if (s === 'archive') s = 'pending';
-  if (s === 'completed') s = 'delivered';
-  if (s === 'refunded') s = 'delivered';
 
-  // 🔥 LOGIC FIX: ഓരോ സ്റ്റെപ്പും എപ്പോൾ ടിക്ക് ആവണം എന്ന് കൃത്യമായി പറയുന്നു
+  // Status Logic
   const isPaid = ['paid', 'dispatched', 'delivered', 'refunded', 'completed'].includes(s);
   const isDispatched = ['dispatched', 'delivered', 'refunded', 'completed'].includes(s);
-  const isDelivered = ['delivered', 'refunded', 'completed'].includes(s);
+  const isDelivered = ['delivered', 'completed'].includes(s);
+  const isRefunded = (s === 'refunded'); // 🔥 Refund Check
 
   let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
         <h6 class="fw-bold mb-4 ps-1" style="font-size:13px; color:#374151; letter-spacing:0.5px;">${t.lbl_order_status}</h6>
         <div class="modern-timeline">`;
 
+  // Timeline Items
   const items = [
-    { title: t.order_success || "Order Placed", desc: t.desc_order_placed, date: d.timestamp, active: true }, // Always Active
+    { title: t.order_success, desc: t.desc_order_placed, date: d.timestamp, active: true },
     { title: t.lbl_payment_received, desc: t.desc_pay_received, date: d.paidDate, active: isPaid },
     { title: t.lbl_dispatched, desc: t.desc_dispatched, date: d['Dispatched Date'], active: isDispatched },
-    { title: t.lbl_delivered, desc: t.desc_delivered, date: null, active: isDelivered }
   ];
+
+  // 🔥 Last Step Logic: Refunded ആണെങ്കിൽ അത് കാണിക്കും, അല്ലെങ്കിൽ Delivered
+  if (isRefunded) {
+    items.push({
+      title: t.lbl_refunded || "Refunded",
+      desc: t.desc_refunded || "Amount Returned",
+      date: null,
+      active: true,
+      isRefund: true // Special Flag
+    });
+  } else {
+    items.push({
+      title: t.lbl_delivered,
+      desc: t.desc_delivered,
+      date: null,
+      active: isDelivered
+    });
+  }
 
   items.forEach((item, index) => {
     let isLast = index === items.length - 1;
 
     // Icon Logic
-    let iconHtml = item.active ?
-      `<div class="timeline-icon active"><i class="fas fa-check"></i></div>` :
-      `<div class="timeline-icon"></div>`;
+    let iconClass = "timeline-icon";
+    let iconContent = "";
 
-    // Line Logic (അടുത്ത സ്റ്റെപ്പ് കൂടി ആക്റ്റീവ് ആണെങ്കിൽ ലൈനും ഗ്രീൻ ആകും)
+    if (item.isRefund) {
+      // 🔥 Refund Red Icon
+      iconClass += " refunded";
+      iconContent = `<i class="fas fa-undo-alt"></i>`;
+    } else if (item.active) {
+      // Green Tick
+      iconClass += " active";
+      iconContent = `<i class="fas fa-check"></i>`;
+    }
+
+    let iconHtml = `<div class="${iconClass}">${iconContent}</div>`;
+
+    // Line Logic
     let nextItemActive = items[index + 1] && items[index + 1].active;
     let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
 
@@ -871,16 +896,19 @@ function updateStatusUI(d) {
       dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
     }
 
-    // Tracking Button (Only for Dispatched Step)
+    // Tracking Button
     let extraContent = '';
-    if (index === 2 && item.active && d.tracking) {
+    if (index === 2 && item.active && d.tracking && !isRefunded) {
       let courierName = d.courier || d.provider || "Courier";
       let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
       extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
     }
 
+    // 🔥 Text Color Logic
+    let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
+
     timelineHTML += `
-            <div class="timeline-row ${item.active ? 'completed' : ''}">
+            <div class="${rowClass}">
                 <div class="timeline-left">
                     ${iconHtml}
                     ${lineHtml}
@@ -899,18 +927,15 @@ function updateStatusUI(d) {
 
   timelineHTML += `</div></div>`;
 
-
-
-
-  // Button Logic: Only show 'Received' if Dispatched
+  // Button Logic
   if (s === 'dispatched') {
     timelineHTML += `
-      <div class="mt-4 text-center fade-in">
-          <div class="text-muted fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">${t.txt_received_helper}</div>
-          <button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">
-              ${t.btn_received} <i class="fas fa-check-circle ms-1"></i>
-          </button>
-      </div>`;
+            <div class="mt-4 text-center fade-in">
+                <div class="text-muted fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">${t.txt_received_helper}</div>
+                <button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">
+                    ${t.btn_received} <i class="fas fa-check-circle ms-1"></i>
+                </button>
+            </div>`;
   }
 
   $('#status-area').html(timelineHTML);
@@ -1641,6 +1666,7 @@ function fetchCourierRates() {
 }
 
 // 3. New Helper Function (ഇതും custom.js-ൽ എവിടെയെങ്കിലും ചേർക്കുക)
+// 🔥 UPDATED: RENDER DROPDOWNS (With Paid Status Lock)
 function renderQtyDropdowns() {
   if (!globalQtyList || globalQtyList.length === 0) return;
 
@@ -1665,16 +1691,28 @@ function renderQtyDropdowns() {
   $('#quantity').html(optionsHTML);
   $('#quick-qty').html(optionsHTML);
 
-  // 🔥 FIX: റേറ്റുകൾ വൈകി വന്നാലും, സേവ് ചെയ്ത ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ അത് സെറ്റ് ചെയ്യുന്നു
+  // 1. RESTORE QUANTITY
   if (typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
     $('#quick-qty').val(savedOrderData.quantity);
-    // വാല്യൂ സെറ്റ് ആയോ എന്ന് ഉറപ്പുവരുത്തുന്നു
+
+    // ലിസ്റ്റിൽ ഇല്ലാത്ത പഴയ ഓഫർ ക്വാണ്ടിറ്റി ആണെങ്കിൽ അത് മാന്വലായി ചേർക്കുന്നു
     if (!$('#quick-qty').val()) {
-      // ഓപ്ഷൻ ലിസ്റ്റിൽ ഇല്ലാത്ത പഴയ ക്വാണ്ടിറ്റി ആണെങ്കിൽ (ഉദാ: പഴയ ഓഫർ) അത് മാന്വലായി ചേർക്കുന്നു
       let oldQty = savedOrderData.quantity;
       $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
     }
     updatePrice($('#quick-qty').val(), true);
+  }
+
+  // 🔥 2. RE-APPLY PAID RESTRICTION (ഇതാണ് പ്രധാനം)
+  // സ്റ്റാറ്റസ് Paid ആണെങ്കിൽ, നിലവിലുള്ള ക്വാണ്ടിറ്റിയിൽ കുറഞ്ഞതൊന്നും സെലക്ട് ചെയ്യാൻ പറ്റില്ല.
+  if (typeof savedOrderData !== 'undefined' && savedOrderData.Status) {
+    let s = String(savedOrderData.Status).trim().toLowerCase();
+    if (s === 'paid') {
+      let currentQty = parseInt(savedOrderData.quantity) || 0;
+      $('#quick-qty option').each(function () {
+        if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
+      });
+    }
   }
 }
 

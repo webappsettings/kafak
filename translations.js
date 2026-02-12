@@ -105,6 +105,8 @@ const translations = {
         desc_on_the_way: "നിങ്ങളുടെ അടുത്തേക്ക് എത്തുന്നു...",
         desc_delivered: "ഓർഡർ കൈമാറി. നന്ദി!",
         txt_received_helper: "നിങ്ങള്‍ക്ക് ഓര്‍ഡര്‍ കിട്ടിയെങ്കില്‍ ഈ ബട്ടണ്‍ അമര്‍ത്താം 👇",
+        lbl_refunded: "റീഫണ്ട് ചെയ്തു (Refunded)",
+        desc_refunded: "തുക തിരികെ നൽകി.",
     },
 
     en: {
@@ -215,5 +217,7 @@ const translations = {
         desc_on_the_way: "On the way to your doorstep...",
         desc_delivered: "Item delivered. Thank you!",
         txt_received_helper: "Tap here if you have received the order 👇",
+        lbl_refunded: "Refunded",
+        desc_refunded: "Amount has been refunded.",
     }
 };
