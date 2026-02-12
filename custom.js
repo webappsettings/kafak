@@ -227,38 +227,37 @@ $(document).ready(function () {
   }
 
   // INSTANT EDIT LOAD
+  // INSTANT EDIT LOAD
   if (oid) {
-
-    // 🔥 FIX 1: Start Loader Animation (0-100%) immediately
-    showLoader(true);
-
     if (isAdmin) {
       setupAdminView(oid);
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
 
+      // 1. ലോക്കൽ സ്റ്റോറേജിൽ ഓർഡർ ഉണ്ടോ എന്ന് തിരയുന്നു
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
 
+          // 🔥 FOUND! ലോഡർ ഉടനെ ഓഫ് ചെയ്യുന്നു (Wait ചെയ്യിക്കരുത്)
+          showLoader(false);
           $('#step-0').hide();
 
-          // Globals സെറ്റ് ചെയ്യുന്നു
-          currentLoginPhone = ph;
-          editingOrderId = oid;
-
+          // ലോക്കൽ ഡാറ്റ വെച്ച് സ്ക്രീൻ കാണിക്കുന്നു
+          loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
 
-          // 🔥 FIX 2: ഫോൺ ലോഗിൻ പോലെ തന്നെ, സിങ്ക് തീരുന്നത് വരെ ലോഡർ കാണിക്കുന്നു
-          syncUserDataBackground(ph).finally(() => {
-            showLoader(false);
-          });
-
+          // ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ സ്റ്റാറ്റസ് നോക്കുന്നു
+          syncUserDataBackground(ph);
           break;
         }
       }
-      // ലോക്കൽ ആയി ഇല്ലെങ്കിൽ സെർവറിൽ നോക്കുന്നു (fetchOrder തനിയെ ലോഡർ ഓഫ് ചെയ്തോളും)
-      if (!foundLocally) fetchOrder(oid);
+
+      // 2. ലോക്കൽ ഇല്ലെങ്കിൽ മാത്രം സെർവറിലേക്ക് വിളിക്കുന്നു (Main Loader കാണും)
+      if (!foundLocally) {
+        console.log("Not found locally, fetching from server...");
+        fetchOrder(oid);
+      }
     }
   } else {
     showLoader(false);
