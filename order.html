@@ -871,6 +871,40 @@
       color: #064e3b !important;
       /* Dark Green Text */
     }
+
+    /* 🔥 MODERN SMOOTH HOURGLASS LOADER */
+    .hourglass-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 15px;
+    }
+
+    .hourglass-glass {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border-top: 18px solid #2e7d32;
+      /* Brand Green */
+      border-bottom: 18px solid #2e7d32;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      animation: hourglass-spin 2s infinite ease-in-out;
+    }
+
+    @keyframes hourglass-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(180deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </body>
 

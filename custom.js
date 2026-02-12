@@ -758,7 +758,16 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   } else {
     // $('#status-area').html(`<div class="d-flex flex-column align-items-center justify-content-center py-5"><div class="spinner-border text-secondary" role="status" style="width: 2rem; height: 2rem; opacity: 0.5;"></div><div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px;" data-i18n="status_check">${checkText}</div></div>`).show();
-    $('#status-area').hide();
+    $('#status-area').html(`
+            <div class="d-flex flex-column align-items-center justify-content-center py-5 fade-in">
+                <div class="hourglass-container">
+                    <div class="hourglass-glass"></div>
+                </div>
+                <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px; text-transform:uppercase;">
+                    ${checkText}
+                </div>
+            </div>
+        `).show();
   }
 
   checkForChanges();
@@ -812,66 +821,64 @@ window.markOrderDelivered = function (oid) {
 }
 
 // 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
-// 🔥 UPDATED: TIMELINE WITH DATE & SMART BUTTON LOGIC
+// 🔥 UPDATED: FIXED TIMELINE LOGIC & DESIGN
 function updateStatusUI(d) {
-  $('#status-area').hide().empty();
+  // ലോഡിംഗ് മാറി കണ്ടന്റ് വരാൻ വേണ്ടി ആദ്യം ക്ലിയർ ചെയ്യുന്നു
+  $('#status-area').empty();
 
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
-  const steps = ['pending', 'sent', 'paid', 'dispatched', 'delivered'];
-  let currentStatus = String(d.Status || d.status || 'pending').toLowerCase();
+  // Status Normalization
+  let s = String(d.Status || d.status || 'pending').toLowerCase();
+  if (s === 'archive') s = 'pending';
+  if (s === 'completed') s = 'delivered';
+  if (s === 'refunded') s = 'delivered';
 
-  // Status Normalization for Timeline View
-  if (currentStatus === 'archive') currentStatus = 'pending';
-  if (currentStatus === 'completed') currentStatus = 'delivered';
-  if (currentStatus === 'refunded') currentStatus = 'delivered'; // Refunded = Full Green Ticks
-
-  let currentIndex = steps.indexOf(currentStatus);
-  if (currentIndex === -1) currentIndex = 0;
+  // 🔥 LOGIC FIX: ഓരോ സ്റ്റെപ്പും എപ്പോൾ ടിക്ക് ആവണം എന്ന് കൃത്യമായി പറയുന്നു
+  const isPaid = ['paid', 'dispatched', 'delivered', 'refunded', 'completed'].includes(s);
+  const isDispatched = ['dispatched', 'delivered', 'refunded', 'completed'].includes(s);
+  const isDelivered = ['delivered', 'refunded', 'completed'].includes(s);
 
   let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
         <h6 class="fw-bold mb-4 ps-1" style="font-size:13px; color:#374151; letter-spacing:0.5px;">${t.lbl_order_status}</h6>
         <div class="modern-timeline">`;
 
-  // Timeline Items with Dates
-  // Note: Backend-ൽ നിന്ന് ഡേറ്റ് വരുന്നുണ്ടെങ്കിൽ അത് കാണിക്കും
   const items = [
-    { title: t.order_success || "Order Placed", desc: t.desc_order_placed, date: d.timestamp },
-    { title: t.lbl_payment_received, desc: t.desc_pay_received, date: d.paidDate },
-    { title: t.lbl_dispatched, desc: t.desc_dispatched, date: d['Dispatched Date'] },
-    { title: t.lbl_delivered, desc: t.desc_delivered, date: null }
+    { title: t.order_success || "Order Placed", desc: t.desc_order_placed, date: d.timestamp, active: true }, // Always Active
+    { title: t.lbl_payment_received, desc: t.desc_pay_received, date: d.paidDate, active: isPaid },
+    { title: t.lbl_dispatched, desc: t.desc_dispatched, date: d['Dispatched Date'], active: isDispatched },
+    { title: t.lbl_delivered, desc: t.desc_delivered, date: null, active: isDelivered }
   ];
 
   items.forEach((item, index) => {
-    let isActive = index <= currentIndex;
     let isLast = index === items.length - 1;
 
-    // Icon (Green Tick or Grey Circle)
-    let iconHtml = isActive ?
+    // Icon Logic
+    let iconHtml = item.active ?
       `<div class="timeline-icon active"><i class="fas fa-check"></i></div>` :
       `<div class="timeline-icon"></div>`;
 
-    // Connector Line
-    let lineHtml = isLast ? '' : `<div class="timeline-line ${index < currentIndex ? 'active' : ''}"></div>`;
+    // Line Logic (അടുത്ത സ്റ്റെപ്പ് കൂടി ആക്റ്റീവ് ആണെങ്കിൽ ലൈനും ഗ്രീൻ ആകും)
+    let nextItemActive = items[index + 1] && items[index + 1].active;
+    let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
 
-    // 🔥 DATE DISPLAY LOGIC (Beautiful & Compact)
+    // Date Display
     let dateHtml = '';
-    if (item.date && isActive) {
-      // formatPrettyDate ഫംഗ്‌ഷൻ ഉപയോഗിക്കുന്നു
+    if (item.date && item.active) {
       dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
     }
 
-    // Extra Content (Tracking Button)
+    // Tracking Button (Only for Dispatched Step)
     let extraContent = '';
-    if (index === 2 && isActive && d.tracking) {
+    if (index === 2 && item.active && d.tracking) {
       let courierName = d.courier || d.provider || "Courier";
       let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
       extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
     }
 
     timelineHTML += `
-            <div class="timeline-row ${isActive ? 'completed' : ''}">
+            <div class="timeline-row ${item.active ? 'completed' : ''}">
                 <div class="timeline-left">
                     ${iconHtml}
                     ${lineHtml}
@@ -890,13 +897,8 @@ function updateStatusUI(d) {
 
   timelineHTML += `</div></div>`;
 
-  // 🔥 BUTTON LOGIC FIX:
-  // 'Dispatched' സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം 'Mark Received' ബട്ടൺ കാണിക്കും.
-  // Delivered, Completed, Refunded എന്നിവയ്ക്ക് ബട്ടൺ കാണിക്കില്ല.
-  // (പുതിയ ഓർഡർ ബട്ടൺ showReturningUserView ഫംഗ്‌ഷൻ വഴി തനിയെ വന്നോളും)
-
-  let rawStatus = String(d.Status || '').toLowerCase();
-  if (rawStatus === 'dispatched') {
+  // Button Logic: Only show 'Received' if Dispatched
+  if (s === 'dispatched') {
     timelineHTML += `<div class="mt-2"><button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" class="btn btn-success btn-sm fw-bold shadow-sm w-100 py-3 rounded-pill" style="font-size:13px;">${t.btn_received} <i class="fas fa-check-circle ms-1"></i></button></div>`;
   }
 
