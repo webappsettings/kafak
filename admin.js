@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzKj2ydN5u2zxnucqyljucI2f1r8hVZToXPRgavyLohumE4zvgoS45L5eriZK3PBbXUhg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwrzHhim7IJi5WSfv_5BfNm7e2qL6tsrqFJ4DXfvf1b-KyqqV5BGgOpgLO4stkFVKHzEQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -717,10 +717,11 @@ function filterOrders() {
 }
 
 // 🔥 ARCHIVE / DELETE ORDER FUNCTION
+// 🔥 ARCHIVE ORDER FUNCTION
 window.archiveOrder = function (oid) {
     // 1. Check User Permission
     const currentUser = localStorage.getItem('kafakAdminUser');
-    const isMaster = (currentUser === 'master'); // Master ആണോ എന്ന് നോക്കുന്നു
+    const isMaster = (currentUser === 'master');
 
     // 2. HTML Content for Popup
     let htmlContent = `
@@ -763,22 +764,43 @@ window.archiveOrder = function (oid) {
     }).then((result) => {
         if (result.isConfirmed) {
             let reason = result.value;
-            // Archive Action (Update Status to 'Archive' with Reason)
-            // Note: We pass the reason to the existing updateOrder logic or handle it directly
 
-            // ഇവിടെ updateOrder വിളിച്ച് Archive ആക്കുന്നു (Reason കൂടെ സേവ് ചെയ്യണമെങ്കിൽ backend മാറ്റം വേണം, 
-            // തൽക്കാലം നമ്മൾ ലോക്കൽ ആയി Note ചെയ്യുന്നു)
+            // ലോഡിംഗ് കാണിക്കുന്നു
+            Swal.fire({ title: 'Archiving...', didOpen: () => Swal.showLoading() });
 
-            // Server Call to Update Status
+            // Server Call
             $.post(scriptURL, JSON.stringify({
                 action: 'bulkUpdateStatus',
-                updates: [{ oid: oid, status: 'Archive', reason: reason }] // Backend will append reason to message
-            }), function (data) {
-                Swal.fire('Archived!', 'Order moved to Archive.', 'success');
-                fetchOrders(true);
+                updates: [{ oid: oid, status: 'Archive', reason: reason }]
+            }), function (response) {
+                // 🔥 FIX: Response പരിശോധിക്കുന്നു
+                let data = response;
+                if (typeof response === 'string') {
+                    try { data = JSON.parse(response); } catch (e) { }
+                }
+
+                if (data.result === 'success') {
+                    // Local Update
+                    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+                    let newCached = cached.filter(o => o.orderid !== oid);
+                    localStorage.setItem('allOrdersCache', JSON.stringify(newCached));
+
+                    Swal.fire('Archived!', 'Order moved to Archive.', 'success');
+                    fetchOrders(true);
+                } else {
+                    Swal.fire('Error', 'Failed to archive.', 'error');
+                }
+            }).fail(() => {
+                Swal.fire('Error', 'Network connection failed.', 'error');
             });
         }
     });
+}
+
+// 🔥 Helper for Dropdown
+window.toggleReasonInput = function (val) {
+    if (val === 'Other') document.getElementById('archive-other-input').style.display = 'block';
+    else document.getElementById('archive-other-input').style.display = 'none';
 }
 
 // Helper to show/hide input box
