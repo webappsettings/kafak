@@ -1843,40 +1843,52 @@ function sendToWhatsapp() {
 
   const editText = t.wa_check_status;
 
-  // 2. Date Formatting
-  const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
-  const day = dateObj.getDate();
-  const month = dateObj.getMonth() + 1;
+  // 🔥 FIX: Date Logic (NaN error പരിഹരിച്ചു)
+  // സെർവർ ഡേറ്റ് ശരിയല്ലെങ്കിൽ നിലവിലെ സമയം (Now) എടുക്കും.
+  let dateObj = new Date();
+  if (d.timestamp) {
+    let serverDate = new Date(d.timestamp);
+    // ഡേറ്റ് വാലിഡ് ആണോ എന്ന് നോക്കുന്നു
+    if (!isNaN(serverDate.getTime())) {
+      dateObj = serverDate;
+    }
+  }
+
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
   const year = dateObj.getFullYear();
-  const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true });
+
+  // സമയം ഫോർമാറ്റ് ചെയ്യുന്നു (Ex: 10:30 AM)
+  let hours = dateObj.getHours();
+  let minutes = String(dateObj.getMinutes()).padStart(2, '0');
+  let ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 should be 12
+  const timeStr = `${hours}:${minutes} ${ampm}`;
+
   const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
 
-  // 3. Check Updates (🔥 ALL FIELDS CHECKED)
+  // 3. Check Updates
   let isUpdate = false;
   let changes = [];
 
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
     isUpdate = true;
 
-    // 1. Quantity Check
     if (String(savedOrderData.quantity) !== String(d.quantity))
       changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
 
-    // 2. Main Phone Check
     if (String(savedOrderData.phone) !== String(d.phone))
       changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
 
-    // 3. Alt Phone Check
     const oldAlt = String(savedOrderData.altphone || '').trim();
     const newAlt = String(d.altphone || '').trim();
     if (oldAlt !== newAlt) changes.push(`📞 ALT PH: ${oldAlt || 'None'} ➡️ *${newAlt}*`);
 
-    // 4. WhatsApp Number Check (🔥 NEW ADDITION)
     const oldWa = String(savedOrderData.whatsapp || '').trim();
     const newWa = String(d.whatsapp || '').trim();
     if (oldWa !== newWa) changes.push(`💬 WA: ${oldWa} ➡️ *${newWa}*`);
 
-    // 5. Address Details Check
     if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
     if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
     if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
@@ -1909,13 +1921,13 @@ function sendToWhatsapp() {
     header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
   }
 
-  // Alt Phone Display Logic
   let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
-  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
   const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*`;
 
+  // WhatsApp Link Opening
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
 }
 
