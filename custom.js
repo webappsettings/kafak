@@ -1178,6 +1178,7 @@ function checkForChanges() {
 
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
+  var savedName = (savedOrderData.name || '') + '';
   var savedPhone = (savedOrderData.phone || '') + '';
   var savedWa = (savedOrderData.whatsapp || savedOrderData.phone || '') + '';
   var savedHouse = (savedOrderData.house || '') + '';
