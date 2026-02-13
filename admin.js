@@ -5,6 +5,14 @@ const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABA
 let isScanProcessing = false;
 let currentSortDir = 'desc';
 
+// 🔥 GLOBAL: Contact Selection Memory
+let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
+
+window.saveContactSelection = function (oid, val) {
+    contactMem[oid] = val; // സേവ് ചെയ്യുന്നു
+    localStorage.setItem('contactMem', JSON.stringify(contactMem));
+}
+
 function playBeep() {
     let ctx = new (window.AudioContext || window.webkitAudioContext)();
     let osc = ctx.createOscillator();
@@ -453,8 +461,7 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
-    // 🔥 FIX: സെർച്ച് ചെയ്യുമ്പോൾ സ്റ്റാറ്റസ് നോക്കി ടൈപ്പ് മാറ്റുന്നു.
-    // ഇതോടെ അതാത് ടാബിലുള്ള എല്ലാ ബട്ടണുകളും സെർച്ചിലും വരും.
+    // Search Logic Fix
     if (type === 'search') {
         if (currentStatus === 'Pending' || currentStatus === 'Sent') type = 'pending';
         else if (currentStatus === 'Paid') type = 'paid';
@@ -464,9 +471,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
 
-    // ... (ബാക്കി കോഡുകൾ പഴയത് പോലെ തന്നെ താഴേക്ക് തുടരുന്നു) ...
-
-    // 🔥 DATE WITH YEAR
+    // Date Logic
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
@@ -476,7 +481,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // Badges
+    // Badges & Colors
     let statusColor = 'secondary';
     if (currentStatus === 'Pending') statusColor = 'warning text-dark';
     if (currentStatus === 'Sent') statusColor = 'primary';
@@ -486,8 +491,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
 
-    // 🔥 Archive & Refund Buttons
-    // ഇവിടെ പഴയ updateOrder-ന് പകരം നമ്മൾ ഉണ്ടാക്കിയ archiveOrder വിളിക്കുന്നു
+    // Archive & Refund Buttons
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
         ? `<button onclick="archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
@@ -499,39 +503,42 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <div class="d-flex align-items-center flex-wrap gap-1">
             <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
-            ${refundBtn} 
-            ${langBadge}
-            ${archiveBtn}
-        </div>
-    `;
+            ${refundBtn} ${langBadge} ${archiveBtn}
+        </div>`;
 
-    // Actions
+    // Top Actions
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
     let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
     let topActions = editLink + printBtn;
 
+    // Revert Buttons
     if (type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (type === 'paid') {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // 🔥 PAID DATE BADGE
+    // Paid Date Badge
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
         let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
-    // 🔥 WHATSAPP SELECTOR
+    // 🔥 FIX 1: WHATSAPP SELECTOR MEMORY
+    let savedContact = contactMem[d.orderid]; // സേവ് ചെയ്ത നമ്പർ എടുക്കുന്നു
+
     let opts = '';
-    if (d.whatsapp) opts += `<option value="${d.whatsapp}">📲 WA: ${d.whatsapp}</option>`;
-    opts += `<option value="${d.phone}" ${!d.whatsapp ? 'selected' : ''}>📞 PH: ${d.phone}</option>`;
-    if (d.altphone) opts += `<option value="${d.altphone}">☎️ ALT: ${d.altphone}</option>`;
+    // Helper to check selected
+    const isSel = (val) => (savedContact && savedContact === val) ? 'selected' : (!savedContact && !d.whatsapp && val === d.phone) ? 'selected' : '';
+
+    if (d.whatsapp) opts += `<option value="${d.whatsapp}" ${isSel(d.whatsapp)}>📲 WA: ${d.whatsapp}</option>`;
+    opts += `<option value="${d.phone}" ${isSel(d.phone)}>📞 PH: ${d.phone}</option>`;
+    if (d.altphone) opts += `<option value="${d.altphone}" ${isSel(d.altphone)}>☎️ ALT: ${d.altphone}</option>`;
 
     let waSelectorHTML = `
     <div class="mt-2 mb-2 d-flex gap-1" onclick="event.stopPropagation();">
-        <select id="wa-select-${index}" class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
+        <select id="wa-select-${index}" onchange="saveContactSelection('${d.orderid}', this.value)" class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index})" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
@@ -559,21 +566,25 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // Buttons Logic (അതേപടി നിലനിർത്തുന്നു)
+    // Buttons Logic
     let buttons = '';
+
+    // 🔥 FIX 2: NEW BUTTONS LOGIC (Pending vs Sent)
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
         let mainBtn = `<button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>`;
 
-        if (currentStatus === 'Sent') {
-            buttons = `<div class="d-flex gap-2 w-100">
-                <button class="btn-custom btn-paid flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')">💰 MARK PAID</button>
-                <button class="btn-custom btn-wa" style="width:50px;" onclick="event.stopPropagation(); sendWA(${index})" title="Resend Invoice"><i class="fab fa-whatsapp"></i></button>
-             </div>`;
-        } else {
+        if (currentStatus === 'Pending') {
+            // "New" Tab -> Mark Sent Button
             buttons = `<div class="d-flex gap-2 w-100">
                 ${mainBtn}
-                <button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center" style="width:50px; border-radius:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-hand-holding-usd"></i></button>
+                <button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" title="Mark Sent"><i class="fas fa-paper-plane me-1"></i> SENT</button>
+             </div>`;
+        } else {
+            // "Sent" Tab -> Mark Paid Button
+            buttons = `<div class="d-flex gap-2 w-100">
+                ${mainBtn}
+                <button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button>
              </div>`;
         }
     }
@@ -585,15 +596,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             </div>
         </div>`;
     }
-    else if (currentStatus === 'Refunded') {
-        buttons = `
-        <div class="alert alert-danger p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
-            <i class="fas fa-info-circle"></i> Amount Refunded to Customer
-        </div>
-        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
-            <i class="fas fa-history me-1"></i> REVERT TO PAID
-        </button>`;
-    }
+    // Archive Revert Logic
     else if (currentStatus === 'Archive' || currentStatus === 'Archived') {
         buttons = `
         <div class="alert alert-secondary p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
@@ -601,6 +604,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>
         <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
             <i class="fas fa-box-open me-1"></i> REVERT TO PAID
+        </button>`;
+    }
+    else if (currentStatus === 'Refunded') {
+        buttons = `
+        <div class="alert alert-danger p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
+            <i class="fas fa-info-circle"></i> Amount Refunded to Customer
+        </div>
+        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
+            <i class="fas fa-history me-1"></i> REVERT TO PAID
         </button>`;
     }
     else if (type === 'dispatched') {
