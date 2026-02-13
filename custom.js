@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbz4Rc6pe2KlS8qEuUfSPY4baa-5Yc_ch51HZJULUmdNq5GVGq48jIZnIoJwaNLyIFoGtQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxPGM1TqheK7Z4cgW5QeR8b50x4AUTkpruQQP9nQAcvOWFZoa0wcd1k0xXjd6jmkcUBpw/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -14,6 +14,7 @@ let currentLoginPhone = null;
 let isEditMode = false;
 var savedOrderData = {};
 let globalQtyList = [];
+let adminPhone = '7788990313';
 
 const STORAGE_KEY = 'kafakCustomerData';
 
@@ -39,8 +40,6 @@ window.showLoader = function (show) {
     $('#full-loader').css('display', 'flex').fadeIn(200); // 'flex' to center align
 
   } else {
-    // Hide UI
-    // ചെറിയൊരു ഡിലേ നൽകുന്നത് സ്മൂത്ത് ആക്കാൻ നല്ലതാണ്
     setTimeout(() => {
       $('#full-loader').fadeOut(300);
     }, 200);
@@ -55,8 +54,6 @@ window.changeLanguage = function (lang) {
   // 1. Update Standard Text Content
   $('[data-i18n]').each(function () {
     const key = $(this).attr('data-i18n');
-
-    // 🔥 FIX: എഡിറ്റ് മോഡ് ആണെങ്കിൽ പുതിയ കീ (lbl_qty_edit) ഉപയോഗിക്കുന്നു
     if (key === 'lbl_qty' && typeof editingOrderId !== 'undefined' && editingOrderId) {
       $(this).text(t.lbl_qty_edit);
       return;
@@ -104,7 +101,6 @@ window.changeLanguage = function (lang) {
     }
   }
 
-  // 🔥 SAFETY: ഹൈഡ് ആയിരിക്കേണ്ട സമയത്താണ് ഭാഷ മാറ്റുന്നതെങ്കിൽ, അത് ഹൈഡ് തന്നെ ആയിരിക്കണം
   if ($('#quick-qty').is(':hidden')) {
     $('label[data-i18n="lbl_qty"]').hide();
     $('#quick-qty').prev('label').hide();
@@ -126,13 +122,11 @@ window.updateWizardLocDisplay = function () {
 }
 
 
-// 🔥 Pretty Date Format (Forced India Time)
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return "";
 
-  // 🔥 FIX: Timezone 'Asia/Kolkata' ആക്കി സെറ്റ് ചെയ്യുന്നു
   return d.toLocaleString('en-GB', {
     day: '2-digit',
     month: 'short',
@@ -162,11 +156,9 @@ $(document).ready(function () {
 
   const savedLang = localStorage.getItem('activeLang') || 'ml';
   if (savedLang) {
-    // ഡ്രോപ്പ്ഡൗണിൽ വാല്യൂ സെറ്റ് ചെയ്യുന്നു
     if ($('#language-select').length > 0) {
       $('#language-select').val(savedLang);
     }
-    // ഭാഷ മാറ്റുന്നു
     changeLanguage(savedLang);
   } else {
     // Default English
@@ -177,7 +169,7 @@ $(document).ready(function () {
   injectVideoCSS();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const autoPhone = urlParams.get('phone'); // Link-ൽ phone= ഉണ്ടോ എന്ന് നോക്കുന്നു
+  const autoPhone = urlParams.get('phone');
 
   if (autoPhone) {
     // 1. Clean the number (remove +91, spaces)
@@ -192,10 +184,6 @@ $(document).ready(function () {
       }, 500); // Small delay for smooth UX
     }
   }
-
-  // const qtyOpts = `<option value="1">1 Bottle (650g)</option><option value="2">2 Bottles (1.30 kg)</option><option value="3">3 Bottles (1.95 kg)</option><option value="4">4 Bottles (2.60 kg)</option><option value="5">5 Bottles (3.25 kg)</option><option value="6">6 Bottles (3.90 kg)</option><option value="8">8 Bottles (5.20 kg)</option><option value="10">10 Bottles (6.50 kg)</option>`;
-  // $('#quantity').append(qtyOpts);
-  // $('#quick-qty').append(qtyOpts);
 
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
@@ -219,17 +207,8 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
-  if (urlParams.get('mode') === 'test') {
-    $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
-    window.testVideo = function () {
-      playVideoAnimation("MANAF", () => { console.log("Video Test Started"); });
-    }
-  }
-
-  // INSTANT EDIT LOAD
   // INSTANT EDIT LOAD
   if (oid) {
-    // 🔥 FIX: ലിങ്ക് വഴി വരുമ്പോൾ ഉടനെ ലോഡർ കാണിക്കാൻ ഈ വരി നിർബന്ധമാണ്
     showLoader(true);
 
     if (isAdmin) {
@@ -294,21 +273,15 @@ window.handlePhoneNext = function () {
 
 
 function checkUserOnServerBackground(phone) {
-  console.log("Checking server in background...");
-
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
     .then(data => {
-      // വിസാർഡ് ഇപ്പോഴും തുറന്നിരിപ്പുണ്ടെങ്കിൽ മാത്രം (അവർ സബ്മിറ്റ് ചെയ്തിട്ടില്ലെങ്കിൽ)
       if ($('#wizard-view').is(':visible')) {
 
         if (data.result === 'success' && data.data && data.data.authorized) {
           let status = String(data.data.Status || '').toLowerCase();
-
-          // പഴയ ആക്ടീവ് ഓർഡർ ഉണ്ടെങ്കിൽ
           if (status !== 'completed' && status !== 'delivered') {
 
-            // ടൈപ്പ് ചെയ്യുന്നത് നിർത്തിച്ച് പഴയതിലേക്ക് മാറ്റുന്നു
             Swal.fire({
               title: 'Welcome Back!',
               text: 'Loading your active order...',
@@ -322,7 +295,6 @@ function checkUserOnServerBackground(phone) {
             userData = data.data;
             saveToLocal(phone, userData);
 
-            // വിസാർഡ് ക്ലോസ് ചെയ്ത് എഡിറ്റ് പേജ് തുറക്കുന്നു
             $('#wizard-view').hide();
             $('#top-progress-container').hide();
             loadOrderData(userData, true);
@@ -354,7 +326,6 @@ function loadOrderData(d, isServerData = false) {
 
   showReturningUserView(d, true, isServerData);
 
-  // 🔥 FIX: ഡാറ്റ ലോഡ് ആകുമ്പോൾ തന്നെ ക്വാണ്ടിറ്റി നിർബന്ധമായും സെറ്റ് ചെയ്യുന്നു
   if (d.quantity) {
     $('#quick-qty').val(d.quantity);
     updatePrice(d.quantity, true);
@@ -413,8 +384,6 @@ function syncUserDataBackground(phone) {
           // Finished Orders -> New Order Mode
           if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
-
-            // 🔥 FIX: പഴയ ക്വാണ്ടിറ്റി ഡിലീറ്റ് ചെയ്യുന്നു
             finalData.quantity = null;
             delete finalData.quantity;
           }
@@ -489,7 +458,6 @@ window.submitWizardOrder = function () {
 }
 
 window.handleEditPincode = async function (val) {
-  // 6 അക്കം തികഞ്ഞില്ലെങ്കിൽ എല്ലാം ഹൈഡ് ചെയ്യുക
   if (!/^[0-9]{6}$/.test(val)) {
     $('#edit-po-wrapper').slideUp();
     $('#single-po-display').hide();
@@ -523,7 +491,6 @@ window.handleEditPincode = async function (val) {
 
         const sel = $('#edit-postoffice-select');
 
-        // 🔥 ഇവിടെ മാറ്റം വരുത്തി (Use Translation)
         sel.empty().append(`<option value="">${t.lbl_select_po}...</option>`);
 
         data.forEach(p => {
@@ -599,7 +566,6 @@ window.nextStep = async function () {
         const dl = $('#place-list'); dl.empty(); data.forEach(p => dl.append(`<option value="${p.officename}">`));
 
         if (data.length > 1) {
-          // 🔥 ഇവിടെ മാറ്റം വരുത്തി (Use Translation)
           $('#po-select').empty().append(`<option value="">${t.lbl_select_po}...</option>`);
 
           data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`));
@@ -642,16 +608,13 @@ window.submitQuickOrder = function () {
   // 🔥 3. Post Office Validation
   let finalPO = $('#edit-postoffice').val();
 
-  // ഡ്രോപ്പ്ഡൗൺ ബോക്സ് കാണുന്നുണ്ടെങ്കിൽ, അതിലെ വാല്യൂ ആണ് എടുക്കുന്നത്
   if ($('#edit-postoffice-select').is(':visible')) {
     finalPO = $('#edit-postoffice-select').val();
   }
-
-  // വാല്യൂ ഇല്ലെങ്കിൽ Alert കാണിക്കും, എഡിറ്റ് ബോക്സ് തുറക്കും
   if (!finalPO) {
     showAlert(getAlert('err_select_po') || "Please Select Post Office");
     if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
-    return; // ഇവിടെ വെച്ച് തടയുന്നു
+    return;
   }
 
   $('#edit-postoffice').val(finalPO); // Hidden input update
@@ -674,9 +637,6 @@ window.submitQuickOrder = function () {
     custId: myCustId,
     language: $('#language-select').val() || 'en'
   };
-
-  // 5. Play Video & Then Submit
-  // വീഡിയോ കാണിച്ച ശേഷം postOrder ഫംഗ്‌ഷൻ വിളിക്കുന്നു
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
@@ -714,15 +674,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
 
-  // 🔥 FIX STARTS HERE: പഴയ Hide Code ഇവിടെ നിന്നും മാറ്റി താഴെ else-ലേക്ക് കൊടുത്തു
-  // (ഇവിടെ ഉണ്ടായിരുന്ന Hide കോഡുകൾ ഒഴിവാക്കി)
-
-  $('#status-area').hide().empty(); // സ്റ്റാറ്റസ് ഏരിയ മാത്രം ക്ലിയർ ചെയ്യുന്നു
+  $('#status-area').hide().empty();
 
   const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
   if (isServerData) {
-    // ✅ DATA ലഭ്യമാണെങ്കിൽ:
     updateStatusUI(d);
 
     // Refresh Button logic...
@@ -756,12 +712,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#btn-new-order-mode').show();
     }
 
-    // 🔥 Controls കാണിക്കണോ വേണ്ടയോ എന്ന് ഇവിടെ തീരുമാനിക്കുന്നു
     handleEditControlsVisibility(d);
 
   } else {
-    // ❌ DATA ലഭ്യമല്ലെങ്കിൽ (LOADING TIME):
-    // ഇവിടെ വെച്ചാണ് ഇപ്പോൾ ഹൈഡ് ചെയ്യുന്നത്. അപ്പോൾ Hourglass മാത്രം കാണും.
     $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
     $('#btn-new-order-mode').hide();
@@ -802,7 +755,7 @@ window.enableNewOrderMode = function () {
   $('#quick-qty').fadeIn();
   $('.btn-update-sage').fadeIn();
 
-  // 🔥🔥🔥 MAIN FIX: Rate Table ഹൈഡ് ചെയ്യുന്നു & ക്ലിയർ ചെയ്യുന്നു 🔥🔥🔥
+  // 🔥🔥🔥 MAIN FIX:
   $('#quick-price-box').hide().empty();
 
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
@@ -819,7 +772,6 @@ window.enableNewOrderMode = function () {
 }
 
 window.markOrderDelivered = function (oid) {
-  // 1. മനോഹരമായ ഒരു കൺഫർമേഷൻ ചോദിക്കുന്നു
   Swal.fire({
     title: 'Order Received?',
     text: "നിങ്ങൾക്ക് ഓർഡർ ലഭിച്ചോ?",
@@ -833,9 +785,6 @@ window.markOrderDelivered = function (oid) {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      // 🚀 1. INSTANT UI UPDATE (പെട്ടെന്ന് തന്നെ മാറ്റുന്നു)
-
-      // A. ബട്ടൺ മാറ്റി അവിടെ ഒരു താങ്ക്സ് കാണിക്കുന്നു
       $('#btn-mark-delivered').parent().html(`
           <div class="text-success fw-bold text-center py-3 fade-in" style="animation: popIn 0.5s ease;">
               <i class="fas fa-check-circle fa-3x mb-2"></i><br>
@@ -855,26 +804,20 @@ window.markOrderDelivered = function (oid) {
         customClass: { popup: 'rounded-4' }
       });
 
-      // C. ലോക്കൽ ആയി സ്റ്റാറ്റസ് മാറ്റുന്നു (Delivered)
       if (typeof userData !== 'undefined') {
         userData.Status = 'Delivered';
 
-        // നമ്മൾ നേരത്തെ ചെയ്തത് പോലെ, അടുത്ത തവണ വരുമ്പോൾ ക്വാണ്ടിറ്റി കാണിക്കാതിരിക്കാൻ
         delete userData.quantity;
 
-        // ലോക്കൽ സ്റ്റോറേജിൽ സേവ് ചെയ്യുന്നു
         saveToLocal(userData.phone, userData);
 
-        // ടൈംലൈൻ ഉടൻ തന്നെ പച്ച നിറത്തിൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
         updateStatusUI(userData);
 
-        // 3 സെക്കൻഡിന് ശേഷം പുതിയ ഓർഡർ ചെയ്യാനുള്ള പേജിലേക്ക് മാറ്റുന്നു
         setTimeout(() => {
           renderEditView(userData);
         }, 3000);
       }
 
-      // 🚀 2. BACKGROUND SYNC (ഇത് പിന്നാമ്പുറത്ത് നടന്നോളും, കസ്റ്റമർ അറിയേണ്ടതില്ല)
       fetch(sc, {
         method: 'POST',
         body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
@@ -886,10 +829,6 @@ window.markOrderDelivered = function (oid) {
   });
 }
 
-// 🔥 UPDATED: BEAUTIFUL TICK MARK TIMELINE
-// 🔥 UPDATED: FIXED TIMELINE LOGIC & DESIGN
-// 🔥 UPDATED: TIMELINE WITH DATE FIX & REFUND RED COLOR
-// 🔥 UPDATED: STATUS UI (Handles Missing Dates)
 function updateStatusUI(d) {
   $('#status-area').empty();
 
@@ -1063,7 +1002,6 @@ function updateSummaryDisplay() {
   if (typeof checkForChanges === 'function') checkForChanges();
 }
 
-// 🔥 പുതിയ ഫംഗ്‌ഷൻ: സ്റ്റാറ്റസ് കൃത്യമായി ചെക്ക് ചെയ്യാൻ
 function checkAndHideEditButton() {
   // 1. Check Global userData (If available)
   if (typeof userData !== 'undefined' && userData.Status) {
@@ -1071,7 +1009,6 @@ function checkAndHideEditButton() {
     return;
   }
 
-  // 2. Fallback: Check Hidden Input (HTML-ൽ സ്റ്റാറ്റസ് സേവ് ചെയ്തിട്ടുണ്ടെങ്കിൽ)
   let hiddenStatus = $('#order-status-hidden').val();
   if (hiddenStatus) {
     applyHideLogic(hiddenStatus);
@@ -1080,7 +1017,6 @@ function checkAndHideEditButton() {
 
 function applyHideLogic(status) {
   let s = String(status).toLowerCase().trim();
-  // ഈ സ്റ്റാറ്റസുകൾ ആണെങ്കിൽ ബട്ടൺ കാണിക്കില്ല
   if (['paid', 'dispatched', 'refunded'].includes(s)) {
     $('#btn-edit-addr').hide();
     console.log("Edit Button Hidden for Status:", s);
@@ -1092,7 +1028,6 @@ function applyHideLogic(status) {
 window.updatePrice = function (qty, isQuick) {
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
 
-  // 🔥 FIX: ക്വാണ്ടിറ്റി ഇല്ലെങ്കിൽ Table ഹൈഡ് ചെയ്യുന്നു
   if (!qty) {
     container.hide();
     return;
@@ -1114,8 +1049,6 @@ window.updatePrice = function (qty, isQuick) {
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
   container.html(htmlContent);
-
-  // 🔥 FIX: ക്വാണ്ടിറ്റി ഉണ്ടെങ്കിൽ മാത്രം തെളിഞ്ഞു വരുന്നു
   container.fadeIn();
 
   // 4. Update "Deliver To" Section (For Wizard View)
@@ -1172,25 +1105,18 @@ $('#place').on('input keyup focus', function () {
 });
 
 function updateLiveAddressPreview() {
-  // 1. Get raw text for PO (Hidden Div-ൽ നിന്ന്)
-
-  // 1. Get raw text for PO (Hidden Div-ൽ നിന്ന്)
   let poRaw = $('#display-po').text() || '';
 
   // 2. Data Cleaning
   let place = $('#place').val() || '';
 
-  // 🔥 FIX: വാക്കിന്റെ അവസാനമുള്ള 'PO' മാത്രം കളയാൻ (Ponjassery പോലെയുള്ള പേരുകൾ മുറിഞ്ഞു പോകാതിരിക്കാൻ)
   let po = poRaw.replace(/\s+PO\s*$/i, '').trim();
   if (po) po += ' PO';
 
-  // 🔥 FIX: Split Logic ഒഴിവാക്കി, നേരിട്ട് Global Data-യിൽ നിന്ന് എടുക്കുന്നു
-  // പഴയ split(',') കോഡ് പ്രശ്നക്കാരായത് കൊണ്ട് ഇത് ഉപയോഗിക്കുക:
   let dist = userData.district || '';
   let state = userData.state || $('#state').val() || 'KERALA';
   let pin = $('#pincode').val() || '';
 
-  // Safety: ജില്ലയുടെ പേരും സ്ഥലത്തിന്റെ പേരും ഒന്നാണെങ്കിൽ ജില്ല കാണിക്കേണ്ട
   if (dist.toLowerCase() === place.toLowerCase()) {
     dist = '';
   }
@@ -1230,7 +1156,6 @@ function updateLiveAddressPreview() {
   $('#live-addr-preview').html(previewHtml);
 }
 
-// പേജ് ലോഡ് ആകുമ്പോൾ തന്നെ ഒന്ന് കാണിക്കാൻ
 setTimeout(updateLiveAddressPreview, 1000);
 
 function checkForChanges() {
@@ -1280,8 +1205,6 @@ function checkForChanges() {
 
   if (isNewOrderMode) {
     // === NEW ORDER MODE (Always Enabled) ===
-
-    // 🔥 FIX: ബട്ടൺ എപ്പോഴും Enabled ആക്കുന്നു (Validation മെസ്സേജ് കാണിക്കാൻ)
     btnUpdate.prop('disabled', false).css({
       'opacity': '1',
       'cursor': 'pointer',
@@ -1293,10 +1216,8 @@ function checkForChanges() {
     btnSave.prop('disabled', false).text(t.txt_save_changes);
 
     if (currQty && currQty !== "0") {
-      // അളവ് തിരഞ്ഞെടുത്താൽ
       btnUpdate.html(`<span style="font-size:17px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>`);
     } else {
-      // അളവ് തിരഞ്ഞെടുത്തില്ലെങ്കിൽ (Select Quantity എന്ന് കാണിക്കും)
       let subText = t.lbl_select_qty_subtext || "(Select Quantity)";
       btnUpdate.html(`
               <span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>
@@ -1338,12 +1259,10 @@ window.updateAdminUI = function (serverStatus, oid) {
   let status = String(serverStatus || '').trim();
   status = status.charAt(0).toUpperCase() + status.slice(1);
 
-  // പെൻഡിംഗ് അപ്ഡേറ്റ്സ് ഉണ്ടോ എന്ന് നോക്കുന്നു (Sync Icon കളർ മാറ്റാൻ)
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   let hasPending = updates.some(u => u.oid === oid);
 
   // Sync Button HTML (Blue Cloud Icon)
-  // പെൻഡിംഗ് ഉണ്ടെങ്കിൽ കടും നീല, ഇല്ലെങ്കിൽ ലൈറ്റ്
   let syncColor = hasPending ? "btn-info text-white" : "btn-light text-muted border";
   let syncBtn = `<button onclick="syncSingleOrder('${oid}')" class="btn ${syncColor} btn-sm shadow-sm ms-1" style="width:45px;" title="Sync to Server"><i class="fas fa-cloud-upload-alt"></i></button>`;
 
@@ -1449,7 +1368,6 @@ window.adminAction = async function (oid, status) {
     // 3. OTHERS (Sent, Dispatched, etc.)
     if (!confirm(`Mark as '${status}'? (Saved Locally)`)) return;
 
-    // Dispatched ആണെങ്കിൽ Auto-set Local Time
     if (status === 'Dispatched') {
       const now = new Date();
       // YYYY-MM-DD HH:MM format logic
@@ -1466,7 +1384,6 @@ window.adminAction = async function (oid, status) {
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
   updates = updates.filter(item => item.oid !== oid);
 
-  // 1. പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു
   let oldStatus = 'Pending';
   if (typeof userData !== 'undefined' && userData.orderid === oid) {
     oldStatus = userData.Status || 'Pending';
@@ -1476,7 +1393,6 @@ window.adminAction = async function (oid, status) {
     if (found) oldStatus = found.Status;
   }
 
-  // 2. Refund ഡിലീറ്റ് ചെയ്യണോ എന്ന് തീരുമാനിക്കുന്നു (Flagging)
   let needsRefundDelete = false;
   if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
     needsRefundDelete = true;
@@ -1490,7 +1406,7 @@ window.adminAction = async function (oid, status) {
     oldStatus: oldStatus,
     actionDate: selectedDate,
     time: new Date().getTime(),
-    deleteRefund: needsRefundDelete // 🔥 ഈ ഫ്ലാഗ് വെച്ചാണ് Sync ചെയ്യുമ്പോൾ തിരിച്ചറിയുന്നത്
+    deleteRefund: needsRefundDelete
   });
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -1515,10 +1431,8 @@ window.syncSingleOrder = function (oid) {
   let originalHtml = btn.html();
   btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
 
-  // 🔥 3. PREPARE REQUESTS (Refund Delete + Status Update)
   let promises = [];
 
-  // A. Refund Delete ചെയ്യാനുണ്ടെങ്കിൽ അത് ലിസ്റ്റിൽ ചേർക്കുന്നു
   if (myUpdate.deleteRefund) {
     promises.push(fetch(sc, {
       method: 'POST',
@@ -1526,7 +1440,6 @@ window.syncSingleOrder = function (oid) {
     }));
   }
 
-  // B. സാധാരണ Status Update
   promises.push(fetch(sc, {
     method: 'POST',
     body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
@@ -1536,7 +1449,7 @@ window.syncSingleOrder = function (oid) {
   Promise.all(promises)
     .then(responses => Promise.all(responses.map(r => r.json())))
     .then(dataList => {
-      // ഏതെങ്കിലും ഒന്ന് Success ആയാൽ മതി
+
       if (dataList.some(d => d.result === 'success')) {
 
         // Remove from Local
@@ -1677,7 +1590,6 @@ function fetchCourierRates() {
   const t = translations[lang] || translations['en'];
   const loadingTxt = t.loading || "Loading Options...";
 
-  // നിലവിലുള്ള വാല്യൂ സേവ് ചെയ്തു വെക്കുന്നു
   let currentSelection = $('#quick-qty').val();
 
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
@@ -1705,12 +1617,16 @@ function fetchCourierRates() {
     .then(data => {
       if (data.result === 'success' && data.rates) {
         courierRates = data.rates;
+
+        // 🔥 NEW: Server-ൽ നിന്ന് അഡ്മിൻ നമ്പർ വരുന്നുണ്ടെങ്കിൽ അത് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+        if (data.adminPhone) {
+          adminPhone = String(data.adminPhone);
+          console.log("Admin Phone Updated:", adminPhone);
+        }
         globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
 
         // 🔥 FIX: Restore Logic
-        // 1. ആദ്യം നിലവിൽ സെലക്ട് ചെയ്ത വാല്യൂ ഉണ്ടോ എന്ന് നോക്കുന്നു
-        // 2. ഇല്ലെങ്കിൽ സേവ് ചെയ്ത ഡാറ്റയിൽ ഉണ്ടോ എന്ന് നോക്കുന്നു
         let restoreQty = currentSelection;
         if (!restoreQty && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
           restoreQty = savedOrderData.quantity;
@@ -1741,8 +1657,6 @@ function fetchCourierRates() {
   }
 }
 
-// 3. New Helper Function (ഇതും custom.js-ൽ എവിടെയെങ്കിലും ചേർക്കുക)
-// 🔥 UPDATED: RENDER DROPDOWNS (With Paid Status Lock)
 function renderQtyDropdowns() {
   if (!globalQtyList || globalQtyList.length === 0) return;
   const lang = $('#language-select').val() || 'en';
@@ -1765,7 +1679,6 @@ function renderQtyDropdowns() {
   if (editingOrderId && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
     $('#quick-qty').val(savedOrderData.quantity);
 
-    // ലിസ്റ്റിൽ ഇല്ലാത്ത പഴയ അളവ് ആണെങ്കിൽ അത് ചേർക്കുന്നു
     if (!$('#quick-qty').val()) {
       let oldQty = savedOrderData.quantity;
       $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
@@ -1773,7 +1686,6 @@ function renderQtyDropdowns() {
     updatePrice($('#quick-qty').val(), true);
   }
 
-  // Paid Status Validation (കുറഞ്ഞ അളവ് എടുക്കാൻ സമ്മതിക്കില്ല)
   if (typeof savedOrderData !== 'undefined' && savedOrderData.Status) {
     let s = String(savedOrderData.Status).trim().toLowerCase();
     if (s === 'paid') {
@@ -1923,7 +1835,6 @@ function showToast(icon, title) {
 
 function sendToWhatsapp() {
   const d = successData;
-  const adminPhone = '7788990313'; // Admin Phone Number
   const safe = (val) => String(val || '').trim().toUpperCase();
 
   // 1. Language & Translations
@@ -2012,19 +1923,16 @@ function sendToWhatsapp() {
 function renderEditView(data) {
   const status = String(data.Status || 'pending').toLowerCase();
 
-  // 🔥 CASE 1: നേരിട്ട് New Order Mode കാണിക്കേണ്ടവ
-  // (Completed, Delivered, Refunded ആണെങ്കിൽ Button ക്ലിക്ക് ചെയ്യാതെ തന്നെ ഫോം വരും)
+  // 🔥 CASE 1:
+  // (Completed, Delivered, Refunded)
   if (['completed', 'delivered', 'refunded'].includes(status)) {
-    // 1. വിലാസവും മറ്റും കാണിക്കുന്നു
     showReturningUserView(data, false, true);
-
-    // 2. ഉടനെ തന്നെ New Order Mode-ലേക്ക് മാറ്റുന്നു (Auto-Click)
     enableNewOrderMode();
     return;
   }
 
-  // 🔥 CASE 2: മറ്റുള്ളവ (Pending, Paid, Dispatched, Sent)
-  // Dispatched ആണെങ്കിൽ Status View (ട്രാക്കിംഗ്) തന്നെ കാണിക്കും
+  // 🔥 CASE 2: (Pending, Paid, Dispatched, Sent)
+  // Dispatched
   const isActive = !(['dispatched'].includes(status));
 
   showReturningUserView(data, isActive, true);
