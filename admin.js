@@ -226,6 +226,17 @@ function fetchOrders(forceLoad = false) {
                 renderTabs(allOrders);
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQ = urlParams.get('search');
+                if (searchQ) {
+                    // സെർച്ച് ബോക്സിൽ വാല്യൂ വെക്കുന്നു
+                    document.getElementById('searchInput').value = searchQ;
+                    // സെർച്ച് ഫംഗ്‌ഷൻ വിളിക്കുന്നു
+                    filterOrders();
+
+                    // (Optional) URL വൃത്തിയാക്കുന്നു
+                    window.history.replaceState(null, '', 'admin.html');
+                }
             }
         })
         .catch(err => {
@@ -624,6 +635,14 @@ function updateSyncButtonUI() {
 // 🔥 UPDATED: POWERFUL SEARCH (Local + Server)
 function filterOrders() {
     const term = document.getElementById('searchInput').value.trim().toLowerCase();
+
+    const clearBtn = document.getElementById('btn-clear-search');
+    if (term.length > 0) {
+        clearBtn.style.display = 'block'; // ടൈപ്പ് ചെയ്താൽ ബട്ടൺ വരും
+    } else {
+        clearBtn.style.display = 'none';  // ഒന്നുമില്ലെങ്കിൽ ബട്ടൺ പോകും
+    }
+
     const tabsContainer = document.getElementById('tabs-container');
     const searchResultsArea = document.getElementById('search-results-area');
     const searchList = document.getElementById('list-search');
