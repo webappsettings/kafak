@@ -269,17 +269,26 @@ function fetchOrders(forceLoad = false) {
 
 
 function renderTabs(orders) {
-    const pendingList = document.getElementById('list-pending');
+    // 🔥 1. DOM Elements Selection (Sub-tabs Included)
+    const listNew = document.getElementById('list-sub-new');
+    const listSent = document.getElementById('list-sub-sent');
     const paidList = document.getElementById('list-paid');
     const dispatchedList = document.getElementById('list-dispatched');
 
-    pendingList.innerHTML = ''; paidList.innerHTML = ''; dispatchedList.innerHTML = '';
+    // Clear previous content
+    if (listNew) listNew.innerHTML = '';
+    if (listSent) listSent.innerHTML = '';
+    paidList.innerHTML = '';
+    dispatchedList.innerHTML = '';
 
+    // Initialize Counters
     let counts = { pending: 0, paid: 0, dispatched: 0 };
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
+    let subCounts = { new: 0, sent: 0 }; // 🔥 For Sub-tab Badges
+
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // --- 1. HELPER: Get Effective Status & Dates ---
+    // --- HELPER: Get Effective Status & Dates (Includes Local Updates) ---
     const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid);
         let status = local ? local.status : (o.Status || 'Pending');
@@ -294,7 +303,7 @@ function renderTabs(orders) {
         return { status, tDate, pDate, dDate, pDateStr, dDateStr };
     };
 
-    // --- 2. ADVANCED SORTING ---
+    // --- SORTING LOGIC ---
     orders.sort((a, b) => {
         let infoA = getOrderInfo(a);
         let infoB = getOrderInfo(b);
@@ -306,27 +315,26 @@ function renderTabs(orders) {
         if (statA !== statB) return statA - statB;
 
         let dateA, dateB;
-        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; }
-        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; }
-        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; }
+        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; }      // Pending/Sent by Order Date
+        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; } // Paid by Paid Date
+        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; } // Dispatched by Disp Date
         else { dateA = infoA.tDate; dateB = infoB.tDate; }
 
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // --- 3. PRE-CALCULATE DISPATCHED COURIER TOTALS 🚚💰 ---
+    // --- PRE-CALCULATE COURIER TOTALS ---
     let dispatchedCostMap = {};
     orders.forEach(o => {
         let { status, dDateStr } = getOrderInfo(o);
         if (status === 'Dispatched') {
             let lbl = getTimelineLabel(dDateStr);
-            // Actual Courier Cost (Column U in Sheet)
             let cost = parseInt(o.actualCourierCost) || 0;
             dispatchedCostMap[lbl] = (dispatchedCostMap[lbl] || 0) + cost;
         }
     });
 
-    // --- 4. CALCULATE LATEST DATE (For Collapse) ---
+    // --- LATEST DATE CALCULATION (For Collapse Logic) ---
     let firstDisp = orders.find(o => getOrderInfo(o).status === 'Dispatched');
     let latestDispatchedDateLabel = "";
     if (firstDisp) {
@@ -334,8 +342,9 @@ function renderTabs(orders) {
         latestDispatchedDateLabel = getTimelineLabel(info.dDateStr);
     }
 
-    // --- 5. RENDER LOOP ---
-    let lastDateMap = { pending: '', paid: '', dispatched: '' };
+    // --- RENDER LOOP ---
+    // Date tracking for separate lists (New, Sent, Paid, Dispatched)
+    let lastDateMap = { new: '', sent: '', paid: '', dispatched: '' };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
@@ -349,13 +358,35 @@ function renderTabs(orders) {
 
         let targetList = null;
         let type = '';
+        let dateKey = ''; // To track date headers for specific lists
 
-        if (status === 'Pending' || status === 'Sent') {
-            targetList = pendingList; type = 'pending'; counts.pending++;
-        } else if (status === 'Paid') {
-            targetList = paidList; type = 'paid'; counts.paid++;
-        } else if (status === 'Dispatched') {
-            targetList = dispatchedList; type = 'dispatched'; counts.dispatched++;
+        // 🔥 LOGIC TO SPLIT PENDING & SENT
+        if (status === 'Pending') {
+            targetList = listNew;
+            type = 'pending';
+            dateKey = 'new';
+            counts.pending++;
+            subCounts.new++;
+        }
+        else if (status === 'Sent') {
+            targetList = listSent;
+            type = 'pending'; // Keep type as pending for button styling
+            dateKey = 'sent';
+            counts.pending++;
+            subCounts.sent++;
+        }
+        else if (status === 'Paid') {
+            targetList = paidList;
+            type = 'paid';
+            dateKey = 'paid';
+            counts.paid++;
+        }
+        else if (status === 'Dispatched') {
+            targetList = dispatchedList;
+            type = 'dispatched';
+            dateKey = 'dispatched';
+            counts.dispatched++;
+
             if (currentSortDir === 'desc') {
                 let thisDispLabel = getTimelineLabel(dDateStr);
                 if (thisDispLabel !== latestDispatchedDateLabel) isCompact = true;
@@ -364,8 +395,9 @@ function renderTabs(orders) {
 
         if (targetList) {
             let qty = parseInt(d.quantity) || 0;
-            btlCounts[type] += qty;
+            btlCounts[type] += qty; // Main Bottle Counters
 
+            // Date for Header
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
             if (type === 'dispatched') displayDateRaw = dDateStr;
@@ -373,29 +405,35 @@ function renderTabs(orders) {
             let dateLabel = getTimelineLabel(displayDateRaw);
 
             // 🔥 STICKY DATE HEADER RENDERING
-            if (dateLabel !== lastDateMap[type]) {
+            if (dateLabel !== lastDateMap[dateKey]) {
                 let extraHtml = '';
 
-                // Dispatched Tab ആണെങ്കിൽ കൊറിയർ തുക കാണിക്കുക
+                // Courier Cost in Dispatched Tab Header
                 if (type === 'dispatched' && dispatchedCostMap[dateLabel] > 0) {
                     extraHtml = `<span style="opacity:0.9; font-weight:600; margin-left:8px; padding-left:8px; border-left:1px solid #999;">🚚 ₹${dispatchedCostMap[dateLabel]}</span>`;
                 }
 
                 targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${dateLabel}${extraHtml}</div></div>`;
-                lastDateMap[type] = dateLabel;
+                lastDateMap[dateKey] = dateLabel;
             }
 
+            // Create Card
             targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
         }
     });
 
+    // --- UPDATE BADGES ---
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
+
+    // 🔥 Update Sub-Tab Badges (New & Sent)
+    if (document.getElementById('badge-sub-new')) document.getElementById('badge-sub-new').innerText = subCounts.new;
+    if (document.getElementById('badge-sub-sent')) document.getElementById('badge-sub-sent').innerText = subCounts.sent;
+
     updateSyncButtonUI();
     checkSelectAllStatus();
 }
-
 function updateBadgeUI(elementId, orderCount, bottleCount) {
     const el = document.getElementById(elementId);
     if (el) {
@@ -554,6 +592,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>
         <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
             <i class="fas fa-history me-1"></i> REVERT TO PAID
+        </button>`;
+    }
+    else if (currentStatus === 'Archive' || currentStatus === 'Archived') {
+        buttons = `
+        <div class="alert alert-secondary p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
+            <i class="fas fa-archive"></i> This order is Archived
+        </div>
+        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
+            <i class="fas fa-box-open me-1"></i> REVERT TO PAID
         </button>`;
     }
     else if (type === 'dispatched') {
@@ -909,8 +956,12 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
-    if (document.getElementById('searchInput').value.length > 0) filterOrders();
-    else renderTabs(allOrders);
+    if (document.getElementById('searchInput').value.trim().length > 0) {
+        filterOrders(); // സെർച്ച് ബോക്സിൽ വാല്യൂ ഉണ്ടെങ്കിൽ ഫിൽട്ടർ റിസൾട്ട് കാണിക്കും
+    } else {
+        renderTabs(allOrders); // ഇല്ലെങ്കിൽ സാധാരണ പോലെ ടാബ് കാണിക്കും
+    }
+    // 🔥 CHANGE END
 
     updateSyncButtonUI();
 
@@ -2458,4 +2509,23 @@ window.clearSearch = function () {
     document.getElementById('searchInput').value = ''; // 1. Input ക്ലിയർ ചെയ്യുന്നു
     filterOrders(); // 2. ലിസ്റ്റ് പഴയപടി ആക്കുന്നു
     document.getElementById('searchInput').focus(); // 3. വീണ്ടും ടൈപ്പ് ചെയ്യാൻ റെഡി ആക്കുന്നു
+}
+
+// 🔥 SWITCH SUB-TABS (New vs Sent)
+window.switchSubTab = function (type) {
+    if (type === 'new') {
+        document.getElementById('list-sub-new').style.display = 'flex';
+        document.getElementById('list-sub-sent').style.display = 'none';
+
+        // Button Styles
+        document.getElementById('btn-sub-new').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all';
+        document.getElementById('btn-sub-sent').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all';
+    } else {
+        document.getElementById('list-sub-new').style.display = 'none';
+        document.getElementById('list-sub-sent').style.display = 'flex';
+
+        // Button Styles
+        document.getElementById('btn-sub-new').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all';
+        document.getElementById('btn-sub-sent').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all';
+    }
 }
