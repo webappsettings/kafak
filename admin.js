@@ -205,14 +205,33 @@ function fetchRatesBackground() {
 }
 
 // --- CORE FUNCTIONS ---
+// 🔥 NEW: URL Search Logic Separate Function
+function handleUrlSearch() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQ = urlParams.get('search');
+    if (searchQ) {
+        document.getElementById('searchInput').value = searchQ;
+        filterOrders(); // ഫിൽട്ടർ ചെയ്യുന്നു
+        window.history.replaceState(null, '', 'admin.html'); // URL ക്ലീൻ ചെയ്യുന്നു
+    }
+}
+
+// 🔥 UPDATED: FETCH ORDERS (Fixes Search Issue)
 function fetchOrders(forceLoad = false) {
     let savedOrders = localStorage.getItem('allOrdersCache');
     let hasData = false;
+
+    // 1. Cache ഉണ്ടെങ്കിൽ ലോഡ് ചെയ്യുന്നു
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
         renderTabs(allOrders);
         hasData = true;
+
+        // ✅ FIX: Cache ഉണ്ടെങ്കിൽ ഇവിടെ വെച്ച് തന്നെ സെർച്ച് നടക്കും
+        handleUrlSearch();
     }
+
+    // Cache ഉണ്ടെങ്കിൽ, Force Load അല്ലെങ്കിൽ ഇവിടെ വെച്ച് നിർത്തും
     if (hasData && !forceLoad) return;
 
     document.getElementById('loader').style.display = 'flex';
@@ -226,17 +245,9 @@ function fetchOrders(forceLoad = false) {
                 renderTabs(allOrders);
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
-                const urlParams = new URLSearchParams(window.location.search);
-                const searchQ = urlParams.get('search');
-                if (searchQ) {
-                    // സെർച്ച് ബോക്സിൽ വാല്യൂ വെക്കുന്നു
-                    document.getElementById('searchInput').value = searchQ;
-                    // സെർച്ച് ഫംഗ്‌ഷൻ വിളിക്കുന്നു
-                    filterOrders();
 
-                    // (Optional) URL വൃത്തിയാക്കുന്നു
-                    window.history.replaceState(null, '', 'admin.html');
-                }
+                // ✅ FIX: പുതിയ ഡാറ്റ വന്നാലും സെർച്ച് നടക്കും
+                handleUrlSearch();
             }
         })
         .catch(err => {
@@ -2292,4 +2303,11 @@ function searchOnServer(term) {
             btn.prop('disabled', false).html(originalText);
             alert("Search Failed!");
         });
+}
+
+// 🔥 CLEAR SEARCH FUNCTION
+window.clearSearch = function () {
+    document.getElementById('searchInput').value = ''; // 1. Input ക്ലിയർ ചെയ്യുന്നു
+    filterOrders(); // 2. ലിസ്റ്റ് പഴയപടി ആക്കുന്നു
+    document.getElementById('searchInput').focus(); // 3. വീണ്ടും ടൈപ്പ് ചെയ്യാൻ റെഡി ആക്കുന്നു
 }
