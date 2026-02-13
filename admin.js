@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxSjcy51q_zXmc7mh_PalUUvUPvJKuPLDitu0oOlCykR2s3h30PJOAdkxVtMfsqqM73uw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzKj2ydN5u2zxnucqyljucI2f1r8hVZToXPRgavyLohumE4zvgoS45L5eriZK3PBbXUhg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -28,13 +28,17 @@ window.attemptLogin = function () {
         alert("Storage error. Please disable Private Mode.");
         return;
     }
-    const user = document.getElementById('adminUser').value;
+    const user = document.getElementById('adminUser').value.trim(); // Trim spaces
     const pass = document.getElementById('adminPass').value;
 
-    if (user === "admin" && pass === "kafak123") {
+    // 🔥 Master Admin & Regular Admin Check
+    // Master: master / kafak123
+    // Admin: admin / kafak123
+
+    if ((user === "admin" || user === "master") && pass === "kafak123") {
         try {
             localStorage.setItem('kafakAdmin', 'true');
-            localStorage.setItem('kafakAdminLoggedIn', 'true');
+            localStorage.setItem('kafakAdminUser', user); // 🔥 Username സേവ് ചെയ്യുന്നു
             showDashboard();
         } catch (e) { alert("Login Failed: Storage Error"); }
     } else {
@@ -206,34 +210,41 @@ function fetchRatesBackground() {
 
 // --- CORE FUNCTIONS ---
 // 🔥 NEW: URL Search Logic Separate Function
+// 🔥 1. NEW: URL Search Logic Function (ഇത് admin.js-ൽ എവിടെയെങ്കിലും ചേർക്കുക)
 function handleUrlSearch() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchQ = urlParams.get('search');
+
     if (searchQ) {
+        // Search Box-ൽ ഐഡി സെറ്റ് ചെയ്യുന്നു
         document.getElementById('searchInput').value = searchQ;
-        filterOrders(); // ഫിൽട്ടർ ചെയ്യുന്നു
-        window.history.replaceState(null, '', 'admin.html'); // URL ക്ലീൻ ചെയ്യുന്നു
+        // ഫിൽട്ടർ ചെയ്യുന്നു (കാർഡ് കാണിക്കുന്നു)
+        filterOrders();
+
+        // 🔥 URL ക്ലീൻ ചെയ്യുന്നു (ഇത് ഉള്ളതുകൊണ്ട് Refresh അടിച്ചാൽ ഫുൾ ഡാറ്റ വരും)
+        window.history.replaceState(null, '', 'admin.html');
     }
 }
 
-// 🔥 UPDATED: FETCH ORDERS (Fixes Search Issue)
+// 🔥 2. UPDATED: FETCH ORDERS (Fixes Search Issue)
 function fetchOrders(forceLoad = false) {
     let savedOrders = localStorage.getItem('allOrdersCache');
     let hasData = false;
 
-    // 1. Cache ഉണ്ടെങ്കിൽ ലോഡ് ചെയ്യുന്നു
+    // A. Cache ഉണ്ടെങ്കിൽ ലോഡ് ചെയ്യുന്നു
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
         renderTabs(allOrders);
         hasData = true;
 
-        // ✅ FIX: Cache ഉണ്ടെങ്കിൽ ഇവിടെ വെച്ച് തന്നെ സെർച്ച് നടക്കും
+        // ✅ FIX: Cache ഉണ്ടെങ്കിലും ഇവിടെ വെച്ച് തന്നെ സെർച്ച് നടക്കും
         handleUrlSearch();
     }
 
-    // Cache ഉണ്ടെങ്കിൽ, Force Load അല്ലെങ്കിൽ ഇവിടെ വെച്ച് നിർത്തും
+    // Cache ഉണ്ടെങ്കിൽ, Force Load (Refresh) അല്ലെങ്കിൽ ഇവിടെ വെച്ച് നിർത്തും
     if (hasData && !forceLoad) return;
 
+    // B. Server Fetch (Refresh അടിക്കുമ്പോൾ നടക്കുന്നത്)
     document.getElementById('loader').style.display = 'flex';
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
@@ -255,6 +266,7 @@ function fetchOrders(forceLoad = false) {
             if (!hasData) alert("Network Error!");
         });
 }
+
 
 function renderTabs(orders) {
     const pendingList = document.getElementById('list-pending');
@@ -402,8 +414,19 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
+
+    // 🔥 FIX: സെർച്ച് ചെയ്യുമ്പോൾ സ്റ്റാറ്റസ് നോക്കി ടൈപ്പ് മാറ്റുന്നു.
+    // ഇതോടെ അതാത് ടാബിലുള്ള എല്ലാ ബട്ടണുകളും സെർച്ചിലും വരും.
+    if (type === 'search') {
+        if (currentStatus === 'Pending' || currentStatus === 'Sent') type = 'pending';
+        else if (currentStatus === 'Paid') type = 'paid';
+        else if (currentStatus === 'Dispatched') type = 'dispatched';
+    }
+
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
+
+    // ... (ബാക്കി കോഡുകൾ പഴയത് പോലെ തന്നെ താഴേക്ക് തുടരുന്നു) ...
 
     // 🔥 DATE WITH YEAR
     let dateObj = new Date(d.timestamp);
@@ -425,13 +448,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
 
+    // 🔥 Archive & Refund Buttons
+    // ഇവിടെ പഴയ updateOrder-ന് പകരം നമ്മൾ ഉണ്ടാക്കിയ archiveOrder വിളിക്കുന്നു
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
-        ? `<button onclick="updateOrder('${d.orderid}', 'Archive')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
+        ? `<button onclick="archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
 
-    // 🔥 FIX: Refunded അല്ലെങ്കിൽ മാത്രമേ റീഫണ്ട് ബട്ടൺ കാണിക്കൂ
     let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
     let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
+
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
             <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
@@ -453,20 +478,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // 🔥 PAID DATE BADGE (Always Check for Paid Status)
+    // 🔥 PAID DATE BADGE
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
         let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
-    // 🔥 WHATSAPP SELECTOR (ALL TABS)
+    // 🔥 WHATSAPP SELECTOR
     let opts = '';
     if (d.whatsapp) opts += `<option value="${d.whatsapp}">📲 WA: ${d.whatsapp}</option>`;
     opts += `<option value="${d.phone}" ${!d.whatsapp ? 'selected' : ''}>📞 PH: ${d.phone}</option>`;
     if (d.altphone) opts += `<option value="${d.altphone}">☎️ ALT: ${d.altphone}</option>`;
 
-    // Dropdown + WA Icon Button
     let waSelectorHTML = `
     <div class="mt-2 mb-2 d-flex gap-1" onclick="event.stopPropagation();">
         <select id="wa-select-${index}" class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
@@ -497,7 +521,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // Buttons
+    // Buttons Logic (അതേപടി നിലനിർത്തുന്നു)
     let buttons = '';
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
@@ -515,11 +539,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
              </div>`;
         }
     }
-    // 🔥 PAID TAB BUTTONS (With Checkbox Event)
     else if (type === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100">
             <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button>
-                       
             <div style="width: 40px; display: flex; justify-content: center;">
                 <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
             </div>
@@ -537,14 +559,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
         let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
-
-        // 🔥 DATE + TIME Display Logic
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let dateObj = new Date(dispDateStr);
-        // Format: 10 Feb 2026, 10:30 AM
         let formattedDispDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-        // Date & Edit Icon HTML
         let dateHtml = `
             <div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
                 <div style="font-size:11px; color:#166534; font-weight:700;">
@@ -696,6 +714,114 @@ function filterOrders() {
         tabsContainer.style.display = 'block';
         searchResultsArea.style.display = 'none';
     }
+}
+
+// 🔥 ARCHIVE / DELETE ORDER FUNCTION
+window.archiveOrder = function (oid) {
+    // 1. Check User Permission
+    const currentUser = localStorage.getItem('kafakAdminUser');
+    const isMaster = (currentUser === 'master'); // Master ആണോ എന്ന് നോക്കുന്നു
+
+    // 2. HTML Content for Popup
+    let htmlContent = `
+        <div style="text-align:left; margin-bottom:10px;">
+            <label style="font-size:12px; font-weight:700; color:#666;">SELECT REASON:</label>
+            <select id="archive-reason" class="form-select mt-1" onchange="toggleReasonInput(this.value)">
+                <option value="Duplicate">Duplicate Order (രണ്ടാമത് വന്നത്)</option>
+                <option value="Test">Test Order (ടെസ്റ്റ് ചെയ്തത്)</option>
+                <option value="Cancelled">Customer Cancelled</option>
+                <option value="Other">Other (മറ്റുള്ളവ)</option>
+            </select>
+            <input type="text" id="archive-other-input" class="form-control mt-2" placeholder="എന്താണ് കാരണം?..." style="display:none;">
+        </div>
+    `;
+
+    // 🔥 Master Admin ആണെങ്കിൽ മാത്രം DELETE Button കാണിക്കുന്നു
+    let deleteBtnHtml = isMaster ?
+        `<button type="button" onclick="confirmHardDelete('${oid}')" class="btn btn-danger w-100 mt-3 fw-bold"><i class="fas fa-trash-alt me-2"></i> PERMANENTLY DELETE</button>`
+        : '';
+
+    Swal.fire({
+        title: 'Archive Order?',
+        html: htmlContent + `<div id="del-btn-area">${deleteBtnHtml}</div>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#444',
+        confirmButtonText: 'Archive Order',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+            let reason = document.getElementById('archive-reason').value;
+            if (reason === 'Other') {
+                reason = document.getElementById('archive-other-input').value;
+            }
+            if (!reason) {
+                Swal.showValidationMessage('Please select or type a reason');
+                return false;
+            }
+            return reason;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let reason = result.value;
+            // Archive Action (Update Status to 'Archive' with Reason)
+            // Note: We pass the reason to the existing updateOrder logic or handle it directly
+
+            // ഇവിടെ updateOrder വിളിച്ച് Archive ആക്കുന്നു (Reason കൂടെ സേവ് ചെയ്യണമെങ്കിൽ backend മാറ്റം വേണം, 
+            // തൽക്കാലം നമ്മൾ ലോക്കൽ ആയി Note ചെയ്യുന്നു)
+
+            // Server Call to Update Status
+            $.post(scriptURL, JSON.stringify({
+                action: 'bulkUpdateStatus',
+                updates: [{ oid: oid, status: 'Archive', reason: reason }] // Backend will append reason to message
+            }), function (data) {
+                Swal.fire('Archived!', 'Order moved to Archive.', 'success');
+                fetchOrders(true);
+            });
+        }
+    });
+}
+
+// Helper to show/hide input box
+window.toggleReasonInput = function (val) {
+    if (val === 'Other') document.getElementById('archive-other-input').style.display = 'block';
+    else document.getElementById('archive-other-input').style.display = 'none';
+}
+
+// 🔥 HARD DELETE FUNCTION (Triggered from Button)
+window.confirmHardDelete = function (oid) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "ഇത് തിരിച്ചെടുക്കാൻ സാധിക്കില്ല! ഓർഡർ പൂർണ്ണമായും ഡിലീറ്റ് ആകും.",
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, DELETE IT!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({ title: 'Deleting...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'deleteOrder', oid: oid })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        // Local Cache Update
+                        let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+                        let newCached = cached.filter(o => o.orderid !== oid);
+                        localStorage.setItem('allOrdersCache', JSON.stringify(newCached));
+
+                        Swal.fire('Deleted!', 'Order has been deleted permanently.', 'success');
+                        fetchOrders(true); // Refresh List
+                    } else {
+                        Swal.fire('Error', 'Failed to delete.', 'error');
+                    }
+                })
+                .catch(err => Swal.fire('Error', 'Network Error', 'error'));
+        }
+    });
 }
 
 // 🔥 UPDATED: Auto generates Date & Time for 'Paid' status from Admin Panel
