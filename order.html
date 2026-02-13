@@ -637,18 +637,31 @@
                 <h6 class="fw-bold small text-muted mb-3 pt-3 border-top" data-i18n="lbl_update_details">UPDATE DETAILS
                 </h6>
                 <div class="row g-2">
-                  <div class="col-12"><input type="tel" id="edit-phone" class="regular-input" placeholder="Phone"
-                      maxlength="10" oninput="updateSummaryDisplay()"></div>
-                  <div class="col-12"><input type="text" id="edit-house" class="regular-input" placeholder="House Name"
-                      oninput="updateSummaryDisplay()"></div>
-                  <div class="col-6"><input type="text" id="edit-place" class="regular-input" placeholder="Place"
-                      oninput="updateSummaryDisplay()"></div>
-                  <div class="col-6"><input type="tel" id="edit-pincode" class="regular-input" placeholder="Pin"
-                      maxlength="6" oninput="handleEditPincode(this.value)"></div>
-                  <div class="col-12" id="edit-po-wrapper" style="display:none;">
-                    <select id="edit-postoffice-select" class="regular-input"
-                      onchange="selectEditPO(this.value)"></select>
+                  <div class="col-12">
+                    <label class="small text-muted fw-bold ms-1" style="font-size:10px;">NAME</label>
+                    <input type="text" id="edit-name" class="regular-input" placeholder="Your Name" maxlength="25"
+                      oninput="updateSummaryDisplay()">
                   </div>
+
+                  <div class="col-12">
+                    <input type="tel" id="edit-phone" class="regular-input" placeholder="Phone" maxlength="10"
+                      oninput="updateSummaryDisplay()">
+                  </div>
+
+                  <div class="col-12">
+                    <input type="text" id="edit-house" class="regular-input" placeholder="House Name" maxlength="40"
+                      oninput="updateSummaryDisplay()">
+                  </div>
+                  <div class="col-6">
+                    <input type="text" id="edit-place" class="regular-input" placeholder="Place" maxlength="25"
+                      oninput="updateSummaryDisplay()">
+                  </div>
+
+                  <div class="col-6">
+                    <input type="tel" id="edit-pincode" class="regular-input" placeholder="Pin" maxlength="6"
+                      oninput="handleEditPincode(this.value)">
+                  </div>
+
                   <div class="col-12" id="edit-po-wrapper" style="display:none;">
                     <select id="edit-postoffice-select" class="regular-input"
                       onchange="selectEditPO(this.value)"></select>
@@ -657,8 +670,10 @@
                   <div id="single-po-display" class="col-12 text-success fw-bold small mt-1"
                     style="display:none; padding-left:5px; font-size:11px;"></div>
                 </div>
+
                 <input type="hidden" id="edit-postoffice"><input type="hidden" id="edit-district"><input type="hidden"
                   id="edit-state">
+
                 <div class="row g-2 mt-2">
                   <div class="col-6"><input type="tel" id="edit-whatsapp" class="regular-input" placeholder="WhatsApp"
                       maxlength="10" oninput="updateSummaryDisplay()"></div>

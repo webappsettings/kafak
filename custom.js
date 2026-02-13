@@ -599,6 +599,9 @@ window.submitQuickOrder = function () {
   // 2. Basic Validation (Qty, Phone, Pin)
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
+  const newName = $('#edit-name').val();
+  if (!newName) { showAlert(getAlert('err_name') || "Name Required"); return; }
+
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
@@ -622,7 +625,7 @@ window.submitQuickOrder = function () {
   // 4. Prepare Data Object
   const finalData = {
     orderid: editingOrderId,
-    name: $('#saved-name').text(),
+    name: newName,
     phone: newPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
@@ -666,7 +669,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   } else { $('#display-date').hide(); }
 
   // Populate Data
-  $('#saved-name').text(d.name); $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
+  $('#saved-name').text(d.name);
+  $('#edit-name').val(d.name);
+  $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
   $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district); $('#edit-state').val(d.state);
   $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
@@ -936,6 +941,8 @@ function updateStatusUI(d) {
 
 function updateSummaryDisplay() {
   // 1. Get Values
+  const newName = $('#edit-name').val();
+  if (newName) $('#saved-name').text(newName);
   const house = $('#edit-house').val() || '';
   const place = $('#edit-place').val() || '';
 
@@ -1161,6 +1168,7 @@ setTimeout(updateLiveAddressPreview, 1000);
 function checkForChanges() {
   // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
+  var currName = $('#edit-name').val() || '';
   var currPhone = $('#edit-phone').val() || '';
   var currWa = $('#edit-whatsapp').val() || '';
   var currHouse = $('#edit-house').val() || '';
@@ -1180,6 +1188,7 @@ function checkForChanges() {
   // 3. Compare
   var isChanged = false;
   if (String(currQty) !== String(savedQty)) isChanged = true;
+  if (String(currName).trim() !== String(savedName).trim()) isChanged = true;
   if (String(currPhone) !== String(savedPhone)) isChanged = true;
   if (String(currWa) !== String(savedWa)) isChanged = true;
   if (String(currHouse).trim().toUpperCase() !== String(savedHouse).trim().toUpperCase()) isChanged = true;
@@ -1908,6 +1917,13 @@ function sendToWhatsapp() {
   let header = "";
 
   if (isUpdate) {
+    if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
+      isUpdate = true;
+
+      // 🔥 NEW: പേര് മാറിയാൽ അത് കാണിക്കാനുള്ള കോഡ്
+      if (safe(savedOrderData.name) !== safe(d.name))
+        changes.push(`👤 NAME: ${savedOrderData.name} ➡️ *${d.name}*`);
+    }
     header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
 
     if (changes.length > 0) {
