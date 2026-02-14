@@ -532,7 +532,7 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
-    // Search Logic Fix
+    // 1. Search Logic Fix (To show correct buttons in search results)
     if (type === 'search') {
         if (currentStatus === 'Pending' || currentStatus === 'Sent') type = 'pending';
         else if (currentStatus === 'Paid') type = 'paid';
@@ -542,17 +542,17 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
 
-    // Date Logic
+    // 2. Date Formatting
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // Customer Stats
+    // 3. Customer Stats
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // Badges & Colors
+    // 4. Badges & Colors
     let statusColor = 'secondary';
     if (currentStatus === 'Pending') statusColor = 'warning text-dark';
     if (currentStatus === 'Sent') statusColor = 'primary';
@@ -562,13 +562,14 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
 
-    // Archive & Refund Buttons
+    // 5. Header Buttons (Archive & Refund)
+    // 🔥 Added highlightCard(this)
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
-        ? `<button onclick="archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
+        ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
 
     let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
-    let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
+    let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
@@ -577,63 +578,71 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
 
-    // Top Actions
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action">✏️ EDIT</a>`;
-    let printBtn = `<button onclick="printSingle(${index})" class="btn-top-action">🖨️</button>`;
+    // 6. Top Actions (Edit / Print / Revert)
+    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>`;
+    let printBtn = `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
     let topActions = editLink + printBtn;
 
     // Revert Buttons
     if (type === 'dispatched') {
-        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
+        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (type === 'paid') {
-        topActions = `<button onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
+        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
-    // Paid Date Badge
+    // 7. Paid Date Badge
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
         let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
-    // 🔥 FIX 1: WHATSAPP SELECTOR MEMORY
-    let savedContact = contactMem[d.orderid]; // സേവ് ചെയ്ത നമ്പർ എടുക്കുന്നു
+    // 🔥 8. CONTACT SELECTOR (NO DUPLICATES + ADMIN META SYNC)
+    // ---------------------------------------------------------
+    let meta = getMetaStatus(d.adminMeta);
+    let selectedContact = meta.contact; // 'phone', 'whatsapp', or 'alt'
+
+    let uniqueContacts = new Map(); // To store unique numbers
+    const cleanNum = (n) => String(n || '').replace(/[^0-9]/g, ''); // Helper
+
+    // A. Add Whatsapp
+    if (d.whatsapp) uniqueContacts.set(cleanNum(d.whatsapp), { val: d.whatsapp, label: `📲 WA: ${d.whatsapp}`, type: 'whatsapp' });
+
+    // B. Add Phone (Only if unique)
+    if (d.phone && !uniqueContacts.has(cleanNum(d.phone))) {
+        uniqueContacts.set(cleanNum(d.phone), { val: d.phone, label: `📞 PH: ${d.phone}`, type: 'phone' });
+    }
+
+    // C. Add Alt (Only if unique)
+    if (d.altphone && !uniqueContacts.has(cleanNum(d.altphone))) {
+        uniqueContacts.set(cleanNum(d.altphone), { val: d.altphone, label: `☎️ ALT: ${d.altphone}`, type: 'alt' });
+    }
 
     let opts = '';
-    // Helper to check selected
-    const isSel = (val) => val ? 'selected' : '';
+    // Determine selected type (Default to WhatsApp if meta is empty)
+    let selType = selectedContact;
+    if (!d.adminMeta) selType = 'whatsapp';
 
-    if (d.whatsapp) opts += `<option value="${d.whatsapp}" ${isSel(d.whatsapp)}>📲 WA: ${d.whatsapp}</option>`;
-    opts += `<option value="${d.phone}" ${isSel(d.phone)}>📞 PH: ${d.phone}</option>`;
-    if (d.altphone) opts += `<option value="${d.altphone}" ${isSel(d.altphone)}>☎️ ALT: ${d.altphone}</option>`;
+    uniqueContacts.forEach((v, k) => {
+        let isSelected = (v.type === selType) ? 'selected' : '';
 
-    // 🔥 META BASED SELECTION
-    let meta = getMetaStatus(d.adminMeta);
-    // M=Phone, W=WhatsApp, A=Alt. Default logic:
-    let selectedContact = meta.contact; // 'phone', 'whatsapp', or 'alt'    
+        // Code generation for Sync (W, M, A)
+        let code = (v.type === 'whatsapp') ? 'W' : ((v.type === 'alt') ? 'A' : 'M');
+        opts += `<option value="${code}" ${isSelected}>${v.label}</option>`;
+    });
 
-    // Logic to set selected attribute based on meta
-    let selP = (selectedContact === 'phone') ? 'selected' : '';
-    let selW = (selectedContact === 'whatsapp') ? 'selected' : '';
-    let selA = (selectedContact === 'alt') ? 'selected' : '';
-
-    if (d.whatsapp) opts += `<option value="${d.whatsapp}" ${selW}>📲 WA: ${d.whatsapp}</option>`;
-    opts += `<option value="${d.phone}" ${selP}>📞 PH: ${d.phone}</option>`;
-    if (d.altphone) opts += `<option value="${d.altphone}" ${selA}>☎️ ALT: ${d.altphone}</option>`;
-
-    // 🔥 ONCHANGE -> Calls updateAdminMeta ('M', 'W', or 'A')
-    // We need to pass the code, so we use a small helper in onchange
+    // Selector HTML with Highlight & Sync Call
     let waSelectorHTML = `
-    <div class="mt-2 mb-2 d-flex gap-1" onclick="event.stopPropagation();">
+    <div class="mt-2 mb-2 d-flex gap-1" onclick="highlightCard(this)">
         <select id="wa-select-${index}" 
-            onchange="let code = this.options[this.selectedIndex].text.includes('WA') ? 'W' : (this.options[this.selectedIndex].text.includes('ALT') ? 'A' : 'M'); updateAdminMeta('${d.orderid}', 'contact', code);" 
+            onchange="updateAdminMeta('${d.orderid}', 'contact', this.value);" 
             class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
-        <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index})" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
+        <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
-    // Contact Icons
+    // 9. Contact Icons (Visual Display)
     let contactMap = {};
-    const addContact = (iconType, number) => {
+    const addVisualContact = (iconType, number) => {
         if (!number) return;
         let numStr = String(number).trim();
         if (!numStr) return;
@@ -644,9 +653,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;" title="Land/Alt"></i>';
         if (!contactMap[numStr].includes(iconHTML)) contactMap[numStr].push(iconHTML);
     };
-    addContact('phone', d.phone);
-    addContact('wa', d.whatsapp);
-    addContact('alt', d.altphone);
+    addVisualContact('phone', d.phone);
+    addVisualContact('wa', d.whatsapp);
+    addVisualContact('alt', d.altphone);
 
     let contactHTMLParts = [];
     for (let num in contactMap) {
@@ -655,43 +664,42 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // Buttons Logic
+    // 10. BUTTONS LOGIC (With Highlight)
     let buttons = '';
 
-    // 🔥 FIX 2: NEW BUTTONS LOGIC (Pending vs Sent)
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
-        let mainBtn = `<button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>`;
+        // highlightCard added
+        let mainBtn = `<button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>`;
 
         if (currentStatus === 'Pending') {
-            // "New" Tab -> Mark Sent Button
+            // NEW TAB -> MARK SENT
             buttons = `<div class="d-flex gap-2 w-100">
                 ${mainBtn}
-                <button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Sent')" title="Mark Sent"><i class="fas fa-paper-plane me-1"></i> SENT</button>
+                <button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" title="Mark Sent"><i class="fas fa-paper-plane me-1"></i> SENT</button>
              </div>`;
         } else {
-            // "Sent" Tab -> Mark Paid Button
+            // SENT TAB -> MARK PAID
             buttons = `<div class="d-flex gap-2 w-100">
                 ${mainBtn}
-                <button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button>
+                <button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button>
              </div>`;
         }
     }
     else if (type === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100">
-            <button class="btn-custom btn-dispatch flex-grow-1" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button>
+            <button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button>
             <div style="width: 40px; display: flex; justify-content: center;">
                 <input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
             </div>
         </div>`;
     }
-    // Archive Revert Logic
     else if (currentStatus === 'Archive' || currentStatus === 'Archived') {
         buttons = `
         <div class="alert alert-secondary p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
             <i class="fas fa-archive"></i> This order is Archived
         </div>
-        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
+        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')">
             <i class="fas fa-box-open me-1"></i> REVERT TO PAID
         </button>`;
     }
@@ -700,7 +708,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <div class="alert alert-danger p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">
             <i class="fas fa-info-circle"></i> Amount Refunded to Customer
         </div>
-        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="updateOrder('${d.orderid}', 'Paid')">
+        <button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')">
             <i class="fas fa-history me-1"></i> REVERT TO PAID
         </button>`;
     }
@@ -723,13 +731,14 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         buttons = `
             ${dateHtml} 
             <div class="d-flex gap-1 mb-2 w-100">
-                <button class="btn-custom btn-track flex-grow-1" onclick="event.stopPropagation(); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
-                ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation();" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
+                <button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>
+                ${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}
             </div>
-            <button class="btn-custom btn-complete w-100" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>
+            <button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>
         `;
     }
 
+    // 11. Return Final HTML
     if (isCompact) {
         return `
         <div class="col-12 col-md-6 col-lg-4">
@@ -740,7 +749,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                         <div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div>
                         <div class="text-muted small" style="font-size:10px;">${formattedDate}</div>
                     </div>
-                    <button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); updateOrder('${d.orderid}', 'Completed')">✅</button>
+                    <button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅</button>
                 </div>
                 <div class="full-card-content mt-3 pt-3 border-top" style="display:none;">${createCardHTML(d, index, type, currentStatus, false)}</div>
             </div>
@@ -1123,6 +1132,7 @@ window.syncWithServer = function () {
 };
 
 // 🔥 2. SHOW EXPENSES IN SYNC MODAL (സിങ്ക് വിൻഡോയിൽ എക്സ്പെൻസുകൾ കൂടി കാണിക്കാൻ)
+// 🔥 UPDATED: BEAUTIFUL SPLIT SYNC LIST
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -1134,70 +1144,99 @@ function renderSyncList() {
     countDisplay.innerText = totalCount;
     list.innerHTML = '';
 
-    // A. ഓഫ്‌ലൈൻ ഓർഡറുകൾ ലിസ്റ്റ് ചെയ്യുന്നു
-    pendingUpdates.forEach((u, index) => {
-        let order = allOrders.find(o => o.orderid === u.oid);
-        let name = order ? order.name : 'Unknown';
-        let actionHtml = '';
+    // 1. Separate Updates
+    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && !u.deleteRefund);
+    let metaUpdates = pendingUpdates.filter(u => u.action === 'meta');
+    let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
 
-        if (u.tracking) {
-            actionHtml = `<span class="badge bg-light text-dark border">Tracking</span> <b class="ms-1">${u.tracking}</b>`;
-        } else if (u.status) {
-            let fromStatus = u.oldStatus || (order ? order.Status : 'Unknown');
-            let badgeColor = 'secondary';
-            if (u.status === 'Paid') badgeColor = 'success';
-            if (u.status === 'Dispatched') badgeColor = 'primary';
-            if (u.status === 'Sent') badgeColor = 'info text-dark';
+    // --- A. ORDER UPDATES (Status / Tracking) ---
+    if (orderUpdates.length > 0 || refundDeletions.length > 0) {
+        list.innerHTML += `<div class="sticky-header bg-light p-2 mb-2 border-bottom fw-bold text-dark small">📦 ORDER STATUS CHANGES</div>`;
 
-            let extraInfo = "";
-            if (u.status === 'Dispatched' && u.actionDate) {
-                let d = new Date(u.actionDate);
-                let dateStr = d.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-                extraInfo = `<div class="mt-1 small text-success fw-bold"><i class="far fa-calendar-alt"></i> ${dateStr}</div>`;
+        [...orderUpdates, ...refundDeletions].forEach((u, index) => {
+            let order = allOrders.find(o => o.orderid === u.oid);
+            let name = order ? order.name : 'Unknown';
+            let actionHtml = '';
+
+            if (u.deleteRefund) {
+                actionHtml = `<span class="badge bg-danger">DELETE REFUND RECORD</span>`;
+            } else if (u.tracking) {
+                actionHtml = `<span class="badge bg-light text-dark border">Tracking: ${u.tracking}</span>`;
+            } else {
+                let badgeColor = u.status === 'Paid' ? 'success' : (u.status === 'Dispatched' ? 'primary' : 'secondary');
+                actionHtml = `<span class="badge bg-${badgeColor}">${u.status}</span>`;
             }
-            actionHtml = `
-            <div style="font-size:12px; color:#555;">
-                <span class="badge bg-light text-secondary border">${fromStatus}</span> 
-                <i class="fas fa-long-arrow-alt-right mx-1 text-muted"></i> 
-                <span class="badge bg-${badgeColor}">${u.status}</span>
-                ${extraInfo}
-            </div>`;
-        }
 
-        list.innerHTML += `
-        <tr style="border-bottom:1px solid #eee;">
-            <td width="30"><div class="rounded-circle bg-white d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;">${index + 1}</div></td>
-            <td>
-                <div class="fw-bold text-dark" style="font-size:12px;">${u.oid}</div>
-                <div class="small text-muted" style="font-size:11px;">${name}</div>
-            </td>
-            <td>${actionHtml}</td>
-            <td width="40" class="text-end">
-                <button onclick="undoUpdate(${index})" class="btn btn-sm btn-outline-danger border-0" title="Undo"><i class="fas fa-undo"></i></button>
-            </td>
-        </tr>`;
-    });
+            list.innerHTML += `
+            <tr style="border-bottom:1px solid #eee;">
+                <td width="30"><div class="rounded-circle bg-white border d-flex align-items-center justify-content-center" style="width:30px; height:30px;">${index + 1}</div></td>
+                <td><div class="fw-bold text-dark small">${u.oid}</div><div class="small text-muted">${name}</div></td>
+                <td>${actionHtml}</td>
+                <td class="text-end"><button onclick="undoUpdate('${u.oid}', false)" class="btn btn-sm text-danger"><i class="fas fa-times"></i></button></td>
+            </tr>`;
+        });
+    }
 
-    // B. ഓഫ്‌ലൈൻ എക്സ്പെൻസുകൾ ലിസ്റ്റ് ചെയ്യുന്നു
-    pendingExpenses.forEach((exp, index) => {
-        list.innerHTML += `
-        <tr style="border-bottom:1px solid #eee; background:#fffcf2;">
-            <td width="30"><div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center border" style="width:30px; height:30px; font-weight:700; font-size:10px;"><i class="fas fa-receipt"></i></div></td>
-            <td>
-                <div class="fw-bold text-dark" style="font-size:12px;">Expense: ${exp.category}</div>
-                <div class="small text-muted" style="font-size:11px;">${exp.vendor || 'No Vendor'}</div>
-            </td>
-            <td><span class="badge bg-danger">₹${exp.amount}</span></td>
-            <td width="40" class="text-end">
-                <button onclick="undoExpenseUpdate('${exp.id}')" class="btn btn-sm btn-outline-danger border-0" title="Remove"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>`;
-    });
+    // --- B. ADMIN META UPDATES (Internal Flags) ---
+    if (metaUpdates.length > 0) {
+        list.innerHTML += `<div class="sticky-header bg-indigo-50 p-2 mt-3 mb-2 border-bottom fw-bold text-primary small" style="background:#e0e7ff; color:#3730a3;">⚙️ ADMIN INTERNAL FLAGS</div>`;
+
+        metaUpdates.forEach((u, index) => {
+            let meta = getMetaStatus(u.meta);
+            let flags = [];
+            if (meta.isPrinted) flags.push(`<span class="badge bg-warning text-dark border">Printed 🖨️</span>`);
+            if (meta.isTracked) flags.push(`<span class="badge bg-info text-dark border">Tracked 🚚</span>`);
+
+            let contactIcon = meta.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (meta.contact === 'alt' ? 'fas fa-phone-square text-secondary' : 'fas fa-phone-alt text-primary');
+            flags.push(`<i class="${contactIcon}"></i> Pref`);
+
+            list.innerHTML += `
+            <tr style="border-bottom:1px solid #eee; background:#f8fafc;">
+                <td width="30"><div class="rounded-circle bg-white border d-flex align-items-center justify-content-center" style="width:30px; height:30px;"><i class="fas fa-cog text-muted"></i></div></td>
+                <td><div class="fw-bold text-dark small">${u.oid}</div></td>
+                <td><div class="d-flex gap-1">${flags.join('')}</div></td>
+                <td class="text-end"><button onclick="undoUpdate('${u.oid}', true)" class="btn btn-sm text-danger"><i class="fas fa-times"></i></button></td>
+            </tr>`;
+        });
+    }
+
+    // --- C. EXPENSES ---
+    if (pendingExpenses.length > 0) {
+        list.innerHTML += `<div class="sticky-header bg-warning-50 p-2 mt-3 mb-2 border-bottom fw-bold text-dark small" style="background:#fffbeb; color:#92400e;">💸 EXPENSES</div>`;
+
+        pendingExpenses.forEach((exp, index) => {
+            list.innerHTML += `
+            <tr style="border-bottom:1px solid #eee; background:#fffcf2;">
+                <td width="30"><div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width:30px; height:30px;"><i class="fas fa-receipt"></i></div></td>
+                <td><div class="fw-bold small">${exp.category}</div><div class="small text-muted">₹${exp.amount}</div></td>
+                <td><div class="small">${exp.vendor}</div></td>
+                <td class="text-end"><button onclick="undoExpenseUpdate('${exp.id}')" class="btn btn-sm text-danger"><i class="fas fa-times"></i></button></td>
+            </tr>`;
+        });
+    }
 
     if (totalCount === 0) {
         $('#syncModal').modal('hide');
         updateSyncButtonUI();
     }
+}
+
+// 🔥 UPDATED UNDO LOGIC (Supports Meta Separate Undo)
+window.undoUpdate = function (oid, isMeta) {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+    if (isMeta) {
+        // Remove only meta action for this OID
+        pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'meta'));
+    } else {
+        // Remove status updates
+        pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta'));
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
+    renderSyncList();
+    updateSyncButtonUI();
+    fetchOrders(true); // Revert UI
 }
 
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
@@ -2560,7 +2599,8 @@ function toggleSort() {
 }
 
 // 🔥 OPEN WHATSAPP (JUST OPEN)
-function openSimpleWA(index) {
+function openSimpleWA(index, btnElement) {
+    if (btnElement) highlightCard(btnElement);
     const d = allOrders[index];
     let phoneNum = "";
 
@@ -2645,3 +2685,23 @@ window.switchSubTab = function (type) {
         btnInactive(type === 'disp_new' ? 'btn-sub-disp-tracked' : 'btn-sub-disp-new');
     }
 }
+
+// 🔥 HIGHLIGHT CARD FUNCTION
+window.highlightCard = function (el) {
+    // Remove highlight from all others
+    $('.order-card').removeClass('active-highlight-border');
+
+    // Add to current
+    let card = $(el).closest('.order-card');
+    card.addClass('active-highlight-border');
+}
+
+// Add CSS dynamically
+$('<style>').html(`
+    .active-highlight-border {
+        border: 2px solid #2563eb !important; /* Blue Border */
+        box-shadow: 0 0 15px rgba(37, 99, 235, 0.2) !important;
+        transform: scale(1.01);
+        z-index: 50;
+    }
+`).appendTo('head');
