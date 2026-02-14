@@ -1598,34 +1598,64 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 // 🔥 UPDATED PRINT LOGIC (With Sequence Number 1, 2, 3...)
-function runPrintLogic(checkboxes, directData = null) {
+// 🔥 UPDATED PRINT LOGIC (With Dates & Compact Layout)
+async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
-    // 1. Determine Source (Checkbox vs Bulk Data)
+    // 1. Determine Source
     if (directData) {
-        ordersToPrint = directData; // Batch Print (Sorted by Manager)
+        ordersToPrint = directData;
     } else if (checkboxes) {
-        // Manual Selection
         checkboxes.forEach(cb => {
             if (allOrders[cb.value]) ordersToPrint.push(allOrders[cb.value]);
         });
-        // Manual Selection ആണെങ്കിലും തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു (Oldest First)
         ordersToPrint.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
     }
 
     if (ordersToPrint.length === 0) return;
+
+    // 🔥 SHOW PROGRESS POPUP
+    Swal.fire({
+        title: 'Generating Labels...',
+        html: `Processing <b>1</b> of <b>${ordersToPrint.length}</b>`,
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
 
     const styles = document.getElementById('label-css').innerHTML;
     const tempDiv = document.createElement('div');
     tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px';
     document.body.appendChild(tempDiv);
 
-    const promises = [];
     const labelsData = [];
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let isModified = false;
 
-    // 2. Generate QR for each order
-    ordersToPrint.forEach((d) => {
-        const p = new Promise((resolve) => {
+    // 2. PROCESS SEQUENTIALLY
+    for (let i = 0; i < ordersToPrint.length; i++) {
+        const d = ordersToPrint[i];
+
+        if (Swal.getHtmlContainer()) {
+            Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
+        }
+
+        // A. Update Meta (Local & Queue)
+        let currentMeta = String(d.adminMeta || '');
+        if (!currentMeta.includes('P')) {
+            let newMeta = currentMeta + 'P';
+            d.adminMeta = newMeta;
+
+            let existingUpd = updates.find(u => u.oid === d.orderid && u.action === 'meta');
+            if (existingUpd) {
+                existingUpd.meta = newMeta;
+            } else {
+                updates.push({ oid: d.orderid, action: 'meta', meta: newMeta, status: d.Status });
+            }
+            isModified = true;
+        }
+
+        // B. Generate QR
+        await new Promise((resolve) => {
             const qrNode = document.createElement('div');
             tempDiv.appendChild(qrNode);
             new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
@@ -1634,82 +1664,96 @@ function runPrintLogic(checkboxes, directData = null) {
                 const canvas = qrNode.querySelector('canvas');
                 let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
                 labelsData.push({ details: d, qrSrc: qrImgSrc });
+                qrNode.remove();
                 resolve();
             }, 50);
         });
-        promises.push(p);
-    });
+    }
 
-    // 3. Open Print Window
-    Promise.all(promises).then(() => {
+    document.body.removeChild(tempDiv);
+    Swal.close();
 
-        // 🔥 MARK AS PRINTED (P)
-        ordersToPrint.forEach(d => {
-            updateAdminMeta(d.orderid, 'printed', 'P');
-        });
-
-        // Refresh UI
+    // 3. SAVE & REFRESH ONCE
+    if (isModified) {
+        localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+        updateSyncButtonUI();
         renderTabs(allOrders);
+    }
 
-        document.body.removeChild(tempDiv);
+    // 4. OPEN PRINT WINDOW
+    const printWin = window.open('', '', 'width=600,height=800');
+    let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
 
-        const printWin = window.open('', '', 'width=600,height=800');
-        let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
+    // Helper for compact date
+    const fmtDate = (str) => {
+        if (!str) return "-";
+        return new Date(str).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+    };
 
-        // 🔥 LOOP WITH INDEX (For Sequence Number)
-        labelsData.forEach((item, index) => {
-            const d = item.details;
-            const seqNum = index + 1; // 1, 2, 3...
-            const safe = (val) => String(val || '').toUpperCase();
-            let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
-            const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
+    labelsData.forEach((item, index) => {
+        const d = item.details;
+        const seqNum = index + 1;
+        const safe = (val) => String(val || '').toUpperCase();
+        let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
+        const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
 
-            let printPhone = d.phone;
-            if (d.altphone && String(d.altphone).trim() !== String(d.phone).trim()) {
-                printPhone += `, ${d.altphone}`;
-            }
+        let printPhone = d.phone;
+        if (d.altphone && String(d.altphone).trim() !== String(d.phone).trim()) {
+            printPhone += `, ${d.altphone}`;
+        }
 
-            htmlContent += `
-            <div class="label-page">
-                <div class="address-sec">
-                    <div class="to-label">To,</div>
-                    <div class="cust-name">${safe(d.name)}</div>
-                    <div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div>
-                    <div class="cust-pin">PIN: ${d.pincode}</div>
-                    <div class="cust-ph">PH: ${printPhone}</div>
-                </div>
-                
-                <div class="meta-sec">
-                    <div class="qr-box"><img src="${item.qrSrc}"></div>
-                    <div class="qr-oid">${d.orderid}</div>
-                    ${qtyHTML}
-                </div>
-                
-                <div class="contact-box">
-                    <div class="contact-icon">${phoneIcon}</div>
-                    <div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div>
-                </div>
-                
-                <div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div>
-                
-                <div class="from-sec">
-                    <span style="font-weight:bold; font-size:11px;">From,</span><br>
-                    <b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>
-                    Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
-                </div>
+        let orderTime = fmtDate(d.timestamp);
+        let paidTime = fmtDate(d.paidDate || d.timestamp);
 
-                <div style="position:absolute; bottom:5mm; right:5mm; font-size:14px; font-weight:900; color:#000; border:2px solid #000; padding:2px 6px; border-radius:6px;">
-                    #${seqNum}
-                </div>
+        htmlContent += `
+        <div class="label-page">
+            <div class="address-sec">
+                <div class="to-label">To,</div>
+                <div class="cust-name">${safe(d.name)}</div>
+                <div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div>
+                <div class="cust-pin">PIN: ${d.pincode}</div>
+                <div class="cust-ph">PH: ${printPhone}</div>
+            </div>
+            
+            <div class="meta-sec">
+                <div class="qr-box"><img src="${item.qrSrc}"></div>
+                <div class="qr-oid">${d.orderid}</div>
+                ${qtyHTML}
+            </div>
+            
+            <div class="contact-box">
+                <div class="contact-icon">${phoneIcon}</div>
+                <div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div>
+            </div>
+            
+            <div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div>
+            
+            <div class="from-sec">
+                <span style="font-weight:bold; font-size:11px;">From,</span><br>
+                <b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>
+                Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
+            </div>
 
-            </div>`;
-        });
+            <div style="position:absolute; bottom:8mm; right:5mm; font-size:12px; font-weight:800; color:#000; border:1px solid #000; padding:1px 5px; border-radius:4px;">
+                #${seqNum}
+            </div>
 
-        htmlContent += `</body></html>`;
-        printWin.document.write(htmlContent);
-        printWin.document.close();
-        setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
+            <div style="position:absolute; bottom:2mm; left:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif;">
+                ORD: ${orderTime}
+            </div>
+
+            <div style="position:absolute; bottom:2mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
+                PAID: ${paidTime}
+            </div>
+
+        </div>`;
     });
+
+    htmlContent += `</body></html>`;
+    printWin.document.write(htmlContent);
+    printWin.document.close();
+    setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
 }
 
 
