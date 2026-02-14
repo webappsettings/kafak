@@ -595,12 +595,26 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
     let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
+    // Admin Meta (P & T) Logic
+
+    let metaBadges = '';
+
+    // P = Printed (Brown Dot), T = Tracked (Blue Dot)
+    if (meta.printed) metaBadges += `<span class="dot-indicator brown" title="Printed (P)"></span>`;
+    if (meta.tracked) metaBadges += `<span class="dot-indicator blue" title="Tracked (T)"></span>`;
+
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
             <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
-            <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
+            ${metaBadges} <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
+
+    $('<style>').html(`
+    .dot-indicator { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-left: 4px; border: 1px solid rgba(0,0,0,0.1); }
+    .dot-indicator.brown { background-color: #795548; } /* Printed */
+    .dot-indicator.blue { background-color: #2196F3; }  /* Tracked */
+`).appendTo('head');
 
     // 6. Top Actions (Edit / Print / Revert)
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>`;
@@ -1361,25 +1375,6 @@ window.discardAllUpdates = function () {
     $('#syncModal').modal('hide');
     updateSyncButtonUI();
     showToast('info', 'All changes discarded');
-}
-
-// 🔥 UNDO LOGIC
-function undoUpdate(index) {
-    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
-    // Remove item at index
-    pendingUpdates.splice(index, 1);
-
-    // Save back
-    localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
-
-    // Refresh List
-    renderSyncList();
-
-    // 🔥 Critical: Revert UI changes by reloading data
-    // (This ensures the card goes back to old status visually)
-    fetchOrders(true);
-    updateSyncButtonUI();
 }
 
 // 🔥 FINAL UPLOAD
