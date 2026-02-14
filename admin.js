@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycby9NYm1UtKTHpdGt8BQwGCWsRiSqJLcskyjkEKrDM22S_vqhNBM1Mc4ZpUhSQ7aK6dH_w/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbw6-bU2TZRmP2W0cDisnClJThGdnMzhrp4G2xC6dHE_vxOeCDO2uEZYbfBbNHDgLlhvwQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -555,6 +555,7 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 // 🔥 UPDATED CARD HTML (Fixes Address, Date, Stats)
+// 🔥 UPDATED CARD HTML (Address Fix & Language Fix)
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // 1. Search Logic
@@ -567,18 +568,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').trim().toUpperCase();
 
-    // 2. 🔥 DATE FIX: Fallback if invalid
+    // 2. Date Formatting
     let dateObj = new Date(d.timestamp);
-    if (isNaN(dateObj.getTime())) dateObj = new Date(); // Invalid ആണെങ്കിൽ ഇന്നത്തെ ഡേറ്റ്
+    if (isNaN(dateObj.getTime())) dateObj = new Date();
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // 3. 🔥 STATS FIX: Clean Phone Comparison
+    // 3. Stats Logic
     let totalOrders = 0;
     let totalBottles = 0;
-
-    // ഫോൺ നമ്പർ ഉള്ളവ മാത്രം നോക്കുന്നു
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
-
     if (currentPhone.length > 5 && typeof allOrders !== 'undefined') {
         let custHistory = allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone);
         totalOrders = custHistory.length;
@@ -593,15 +591,17 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (currentStatus === 'Refunded') statusColor = 'danger';
     if (currentStatus === 'Dispatched') statusColor = 'info text-dark';
 
-    let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
+    // 🔥 LANGUAGE FIX: Check 'ml' or 'en' correctly
+    let langCode = (d.language && d.language.toLowerCase().includes('ml')) ? 'ML' : 'EN';
+    let langBadge = `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${langCode}</span>`;
 
-    // 5. Buttons
+    // 5. Header Buttons
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
         ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
         : '';
 
-    let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
-    let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
+    let refundBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed')
+        ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
@@ -620,6 +620,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
     }
 
+    // 6. Paid Date Badge
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
         let pDate = new Date(d.paidDate);
@@ -629,7 +630,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         }
     }
 
-    // WA Selector Logic...
+    // 7. 🔥 ADDRESS FIX: House Name Bold & New Line
+    let addrHtml = ``;
+    if (d.house) addrHtml += `<b>${safe(d.house)}</b>, `;
+    addrHtml += `${safe(d.place)}`;
+    if (d.postoffice) addrHtml += `, ${safe(d.postoffice)}`;
+
+    // 8. Contact Info
+    let contactIcons = [];
+    if (d.phone) contactIcons.push(`<i class="fas fa-phone-alt text-primary"></i> <b>${d.phone}</b>`);
+    if (d.whatsapp && d.whatsapp !== d.phone) contactIcons.push(`<i class="fab fa-whatsapp text-success"></i> <b>${d.whatsapp}</b>`);
+    let contactLine = contactIcons.join(' <span class="mx-2 text-muted">|</span> ');
+
+    // WA Selector Logic
     let meta = getMetaStatus(d.adminMeta);
     let selectedContact = meta.contact;
     let uniqueContacts = new Map();
@@ -641,7 +654,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let opts = '';
     let selType = selectedContact || 'whatsapp';
-
     uniqueContacts.forEach((v, k) => {
         let isSelected = (v.type === selType) ? 'selected' : '';
         let code = (v.type === 'whatsapp') ? 'W' : ((v.type === 'alt') ? 'A' : 'M');
@@ -656,37 +668,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
-    // Contact Icons...
-    let contactMap = {};
-    const addVisualContact = (iconType, number) => {
-        if (!number) return;
-        let numStr = String(number).trim();
-        if (!numStr) return;
-        if (!contactMap[numStr]) contactMap[numStr] = [];
-        let iconHTML = '';
-        if (iconType === 'phone') iconHTML = '<i class="fas fa-phone-alt text-primary" title="Phone"></i>';
-        if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900; font-size:1.1em;" title="WhatsApp"></i>';
-        if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;" title="Land/Alt"></i>';
-        if (!contactMap[numStr].includes(iconHTML)) contactMap[numStr].push(iconHTML);
-    };
-    addVisualContact('phone', d.phone);
-    addVisualContact('wa', d.whatsapp);
-    addVisualContact('alt', d.altphone);
-
-    let contactHTMLParts = [];
-    for (let num in contactMap) {
-        contactHTMLParts.push(`<span style="white-space:nowrap;">${contactMap[num].join('<span style="margin-left:4px;"></span>')} <span class="fw-bold text-dark ms-1" style="font-size:11px;">${num}</span></span>`);
-    }
-    let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
-
-    // 🔥 FIX: ADDRESS FORMATTING (Removes leading comma)
-    let addrParts = [];
-    if (d.house) addrParts.push(`<b>${safe(d.house)}</b>`);
-    if (d.place) addrParts.push(safe(d.place));
-    if (d.postoffice) addrParts.push(safe(d.postoffice));
-    let addrLine1 = addrParts.join(', '); // Join only existing parts
-
-    // Buttons...
+    // Buttons
     let buttons = '';
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
@@ -726,7 +708,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             <div class="cust-name">${safe(d.name)}</div>
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
-                ${addrLine1}<br>
+                ${addrHtml}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
                 <div class="mt-2" style="font-size:11px;">${contactLine}</div>
             </div>
