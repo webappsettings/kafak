@@ -1846,6 +1846,7 @@ function showToast(icon, title) {
 function sendToWhatsapp() {
   const d = successData;
   const safe = (val) => String(val || '').trim().toUpperCase();
+  const adminPhone = '7788990313'; // Admin Phone Number
 
   // 1. Language & Translations
   const lang = $('#language-select').val() || 'en';
@@ -1853,12 +1854,10 @@ function sendToWhatsapp() {
 
   const editText = t.wa_check_status;
 
-  // 🔥 FIX: Date Logic (NaN error പരിഹരിച്ചു)
-  // സെർവർ ഡേറ്റ് ശരിയല്ലെങ്കിൽ നിലവിലെ സമയം (Now) എടുക്കും.
+  // 🔥 FIX: Date Logic
   let dateObj = new Date();
   if (d.timestamp) {
     let serverDate = new Date(d.timestamp);
-    // ഡേറ്റ് വാലിഡ് ആണോ എന്ന് നോക്കുന്നു
     if (!isNaN(serverDate.getTime())) {
       dateObj = serverDate;
     }
@@ -1868,12 +1867,11 @@ function sendToWhatsapp() {
   const month = String(dateObj.getMonth() + 1).padStart(2, '0');
   const year = dateObj.getFullYear();
 
-  // സമയം ഫോർമാറ്റ് ചെയ്യുന്നു (Ex: 10:30 AM)
   let hours = dateObj.getHours();
   let minutes = String(dateObj.getMinutes()).padStart(2, '0');
   let ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
-  hours = hours ? hours : 12; // 0 should be 12
+  hours = hours ? hours : 12;
   const timeStr = `${hours}:${minutes} ${ampm}`;
 
   const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
@@ -1885,9 +1883,10 @@ function sendToWhatsapp() {
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
     isUpdate = true;
 
+    if (safe(savedOrderData.name) !== safe(d.name))
+      changes.push(`👤 NAME: ${savedOrderData.name} ➡️ *${d.name}*`);
     if (String(savedOrderData.quantity) !== String(d.quantity))
       changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-
     if (String(savedOrderData.phone) !== String(d.phone))
       changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
 
@@ -1918,13 +1917,6 @@ function sendToWhatsapp() {
   let header = "";
 
   if (isUpdate) {
-    if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
-      isUpdate = true;
-
-      // 🔥 NEW: പേര് മാറിയാൽ അത് കാണിക്കാനുള്ള കോഡ്
-      if (safe(savedOrderData.name) !== safe(d.name))
-        changes.push(`👤 NAME: ${savedOrderData.name} ➡️ *${d.name}*`);
-    }
     header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
 
     if (changes.length > 0) {
@@ -1932,7 +1924,6 @@ function sendToWhatsapp() {
     } else {
       header += `\n(Updated details confirmed)\n`;
     }
-
     header += `\n*👇 CURRENT DETAILS:*`;
   } else {
     header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
@@ -1942,7 +1933,15 @@ function sendToWhatsapp() {
 
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
-  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*`;
+  // 🔥 NEW: Payment Screenshot Request (Language based)
+  let paymentNote = "";
+  if (lang === 'en') {
+    paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
+  } else {
+    paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+  }
+
+  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
   // WhatsApp Link Opening
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
