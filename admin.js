@@ -1602,24 +1602,20 @@ window.printSelected = async function (sourceTab = 'new') {
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
-    // 1. Determine Source
     if (directData) {
         ordersToPrint = directData;
     } else if (checkboxes) {
         checkboxes.forEach(cb => {
             if (allOrders[cb.value]) ordersToPrint.push(allOrders[cb.value]);
         });
-        // Sort by Date (Oldest First)
         ordersToPrint.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
     }
 
     if (ordersToPrint.length === 0) return;
 
-    // 🔥 PRE-CALCULATE ALL PAID ORDERS (To find global rank)
     let allPaidOrders = allOrders.filter(o => o.Status === 'Paid');
     allPaidOrders.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
 
-    // Progress Bar
     Swal.fire({
         title: 'Generating Labels...',
         html: `Processing <b>1</b> of <b>${ordersToPrint.length}</b>`,
@@ -1636,24 +1632,19 @@ async function runPrintLogic(checkboxes, directData = null) {
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let isModified = false;
 
-    // 2. PROCESS SEQUENTIALLY
     for (let i = 0; i < ordersToPrint.length; i++) {
         const d = ordersToPrint[i];
-
         if (Swal.getHtmlContainer()) {
             Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
         }
 
-        // FIND GLOBAL SEQUENCE NUMBER
         let globalIndex = allPaidOrders.findIndex(x => x.orderid === d.orderid);
         let seqNum = (globalIndex !== -1) ? globalIndex + 1 : (i + 1);
 
-        // Update Meta Logic
         let currentMeta = String(d.adminMeta || '');
         if (!currentMeta.includes('P')) {
             let newMeta = currentMeta + 'P';
             d.adminMeta = newMeta;
-
             let existingUpd = updates.find(u => u.oid === d.orderid && u.action === 'meta');
             if (existingUpd) {
                 existingUpd.meta = newMeta;
@@ -1663,7 +1654,6 @@ async function runPrintLogic(checkboxes, directData = null) {
             isModified = true;
         }
 
-        // Generate QR
         await new Promise((resolve) => {
             const qrNode = document.createElement('div');
             tempDiv.appendChild(qrNode);
@@ -1682,7 +1672,6 @@ async function runPrintLogic(checkboxes, directData = null) {
     document.body.removeChild(tempDiv);
     Swal.close();
 
-    // 3. SAVE & REFRESH
     if (isModified) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -1690,7 +1679,6 @@ async function runPrintLogic(checkboxes, directData = null) {
         renderTabs(allOrders);
     }
 
-    // 4. OPEN PRINT WINDOW
     const printWin = window.open('', '', 'width=600,height=800');
     let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
 
@@ -1702,7 +1690,6 @@ async function runPrintLogic(checkboxes, directData = null) {
     labelsData.forEach((item) => {
         const d = item.details;
         const seqNum = item.seqNum;
-
         const safe = (val) => String(val || '').toUpperCase();
         let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
         const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -1712,6 +1699,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             printPhone += `, ${d.altphone}`;
         }
 
+        // 🔥 Dates Formatting
         let orderTime = fmtDate(d.timestamp);
         let paidTime = fmtDate(d.paidDate || d.timestamp);
 
@@ -1724,20 +1712,16 @@ async function runPrintLogic(checkboxes, directData = null) {
                 <div class="cust-pin">PIN: ${d.pincode}</div>
                 <div class="cust-ph">PH: ${printPhone}</div>
             </div>
-            
             <div class="meta-sec">
                 <div class="qr-box"><img src="${item.qrSrc}"></div>
                 <div class="qr-oid">${d.orderid}</div>
                 ${qtyHTML}
             </div>
-            
             <div class="contact-box">
                 <div class="contact-icon">${phoneIcon}</div>
                 <div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div>
             </div>
-            
             <div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div>
-            
             <div class="from-sec">
                 <span style="font-weight:bold; font-size:11px;">From,</span><br>
                 <b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>
@@ -1748,14 +1732,13 @@ async function runPrintLogic(checkboxes, directData = null) {
                 #${seqNum}
             </div>
 
-            <div style="position:absolute; bottom:5mm; left:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif;">
+            <div style="position:absolute; bottom:5mm; left:8mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif;">
                 O: ${orderTime}
             </div>
 
-            <div style="position:absolute; bottom:5mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
+            <div style="position:absolute; bottom:5mm; right:8mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
                 P: ${paidTime}
             </div>
-
         </div>`;
     });
 
