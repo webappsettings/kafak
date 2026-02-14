@@ -1552,6 +1552,7 @@ function injectVideoCSS() {
 function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
 
 function playVideoAnimation(userName, apiCallback) {
+  // 1. Show Video Modal
   $('#videoModal').css('display', 'flex').fadeIn();
   const video = document.getElementById('honeyVideo');
   const label = $('#customLabel');
@@ -1565,19 +1566,29 @@ function playVideoAnimation(userName, apiCallback) {
   checkWrapper.removeClass('show draw');
   nameBox.innerText = "";
 
+  // Font Size Logic
   let fontSize = 25;
   if (userName.length > 20) fontSize = 16;
   else if (userName.length > 12) fontSize = 20;
   $('#vid-username').css('font-size', fontSize + 'px');
 
-  // 🔥 Fix: വീഡിയോ പ്ലേ ആവാൻ കാത്തുനിൽക്കാതെ ഓർഡർ അയക്കുന്നു
+  // 2. 🔥 API CALL IMMEDIATELY (Don't wait for video to start)
+  // വീഡിയോ പ്ലേ ആവാൻ കാത്തുനിൽക്കാതെ തന്നെ ഓർഡർ അയക്കുന്നു.
+  // ഇതാണ് ഇപ്പോൾ ആനിമേഷൻ സ്റ്റക്ക് ആവുന്നത് ഒഴിവാക്കുന്നത്.
   apiCallback();
 
-  // Play Video Safely
+  // 3. Play Video (Safe Play)
   video.currentTime = 0;
-  video.play().catch(e => console.log("Auto-play blocked"));
+  let playPromise = video.play();
 
-  // Animations
+  if (playPromise !== undefined) {
+    playPromise.catch(error => {
+      console.log("Auto-play blocked. Showing manual UI.");
+      // വീഡിയോ പ്ലേ ആയില്ലെങ്കിലും ആനിമേഷൻ കാണിക്കാൻ ശ്രമിക്കുന്നു
+    });
+  }
+
+  // 4. Trigger Animations (Timers)
   setTimeout(() => { label.addClass('visible'); }, 4700);
   setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
   setTimeout(() => {
