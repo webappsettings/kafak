@@ -1338,19 +1338,19 @@ function sendWA(index) {
     window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
 
     // 5. UPDATE STATUS
-    if (d.Status === 'Pending') {
-        let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-        updates = updates.filter(item => item.oid !== d.orderid);
-        updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
-        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    // if (d.Status === 'Pending') {
+    //     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    //     updates = updates.filter(item => item.oid !== d.orderid);
+    //     updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
+    //     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-        const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
-        if (orderIndex !== -1) {
-            allOrders[orderIndex].Status = 'Sent';
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-        }
-        setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
-    }
+    //     const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
+    //     if (orderIndex !== -1) {
+    //         allOrders[orderIndex].Status = 'Sent';
+    //         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+    //     }
+    //     setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
+    // }
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
