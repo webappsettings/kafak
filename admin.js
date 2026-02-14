@@ -350,6 +350,20 @@ function renderTabs(orders) {
     const listDispNew = document.getElementById('list-disp-new');
     const listDispTracked = document.getElementById('list-disp-tracked');
 
+    window.paidRankMap = {};
+    let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
+
+    // Status = Paid ആയവ മാത്രം എടുക്കുന്നു
+    let paidOrds = sourceOrders.filter(o => o.Status === 'Paid');
+
+    // പഴയത് മുതൽ പുതിയത് എന്ന ക്രമത്തിൽ (Oldest First) സോർട്ട് ചെയ്യുന്നു
+    paidOrds.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
+
+    // ഓരോന്നിനും നമ്പർ നൽകുന്നു
+    paidOrds.forEach((o, i) => {
+        window.paidRankMap[o.orderid] = i + 1;
+    });
+
     // 2. CLEAR LISTS & RESTORE BUTTONS
     if (listNew) listNew.innerHTML = '';
     if (listSent) listSent.innerHTML = '';
@@ -604,19 +618,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed (P)"></span>`;
     if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked (T)"></span>`;
 
+    let rankBadge = '';
+    // Status 'Paid' ആണെങ്കിൽ മാത്രം നമ്പർ കാണിക്കും
+    if (currentStatus === 'Paid' && window.paidRankMap && window.paidRankMap[d.orderid]) {
+        rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
+    }
 
+    // Header-ൽ rankBadge കൂടി ചേർക്കുന്നു
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
-            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
+            ${rankBadge} <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
             ${metaBadges} <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
-
-    $('<style>').html(`
-    .dot-indicator { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-left: 4px; border: 1px solid rgba(0,0,0,0.1); }
-    .dot-indicator.brown { background-color: #795548; } /* Printed */
-    .dot-indicator.blue { background-color: #2196F3; }  /* Tracked */
-`).appendTo('head');
 
     // 6. Top Actions (Edit / Print / Revert)
     let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>`;
@@ -995,12 +1009,6 @@ window.archiveOrder = function (oid) {
 }
 
 // 🔥 Helper for Dropdown
-window.toggleReasonInput = function (val) {
-    if (val === 'Other') document.getElementById('archive-other-input').style.display = 'block';
-    else document.getElementById('archive-other-input').style.display = 'none';
-}
-
-// Helper to show/hide input box
 window.toggleReasonInput = function (val) {
     if (val === 'Other') document.getElementById('archive-other-input').style.display = 'block';
     else document.getElementById('archive-other-input').style.display = 'none';
@@ -3039,22 +3047,6 @@ window.highlightCard = function (el) {
     // Remove highlight from all others
     $('.order-card').removeClass('active-highlight-border');
 
-    // Add to current
     let card = $(el).closest('.order-card');
     card.addClass('active-highlight-border');
-
-    // Add CSS for Sync List
-    $('<style>').html(`
-    .last-no-border:last-child { border-bottom: none !important; }
-    .hover-bg-light:hover { background-color: #f8f9fa; }
-`).appendTo('head');
 }
-
-// Add CSS dynamically
-$('<style>').html(`
-    .active-highlight-border {
-        border: 2px solid #2563eb !important; /* Blue Border */
-        box-shadow: 0 0 15px rgba(37, 99, 235, 0.2) !important;
-        transform: scale(1.01);
-        z-index: 50;
-    }`).appendTo('head');
