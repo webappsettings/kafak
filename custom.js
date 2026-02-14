@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbz0tS40RQlHZ1rKbnQ-n3NJN50uhS_zGa0JzpdJTqTgDxVGut2MY0RPZxl26SnNWdn0zw/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbyy8cXH_lp-QwCa7REs1ZrwACWXLgfTbernGr-YT5ScNJZvMYfS5Xl1q7brUW0ALzDPXQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -216,29 +216,13 @@ $(document).ready(function () {
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
-
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
-          try {
-            // 🔥 SELF-HEALING: ഡാറ്റ ശരിയാണോ എന്ന് പരിശോധിക്കുന്നു
-            let d = localUsersMap[ph];
-
-            // പേരോ സ്റ്റാറ്റസോ ഇല്ലെങ്കിൽ അത് കേടായ ഡാറ്റയാണ് -> Error ഉണ്ടാക്കുന്നു
-            if (!d.name || !d.Status) throw new Error("Corrupt Data");
-
-            // ഡാറ്റ നല്ലതാണെങ്കിൽ ലോഡ് ചെയ്യുന്നു
-            showLoader(false);
-            $('#step-0').hide();
-            loadOrderData(d, false);
-            foundLocally = true;
-            syncUserDataBackground(ph);
-          } catch (e) {
-            console.log("⚠️ Local data corrupt! Deleting and fetching fresh data...");
-            // കേടായ ഡാറ്റ ഡിലീറ്റ് ചെയ്യുന്നു
-            delete localUsersMap[ph];
-            SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-            foundLocally = false; // സെർവറിൽ നിന്ന് എടുക്കാൻ നിർബന്ധിക്കുന്നു
-          }
+          showLoader(false);
+          $('#step-0').hide();
+          loadOrderData(localUsersMap[ph], false);
+          foundLocally = true;
+          syncUserDataBackground(ph);
           break;
         }
       }
@@ -1552,7 +1536,6 @@ function injectVideoCSS() {
 function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
 
 function playVideoAnimation(userName, apiCallback) {
-  // 1. Show Video Modal
   $('#videoModal').css('display', 'flex').fadeIn();
   const video = document.getElementById('honeyVideo');
   const label = $('#customLabel');
@@ -1560,35 +1543,20 @@ function playVideoAnimation(userName, apiCallback) {
   const checkWrapper = $('#finalCheck');
   const nameBox = document.getElementById('vid-username');
 
-  // Reset UI
   label.removeClass('visible final-state');
   nameBadge.removeClass('show-big docked');
   checkWrapper.removeClass('show draw');
   nameBox.innerText = "";
 
-  // Font Size Logic
   let fontSize = 25;
-  if (userName.length > 20) fontSize = 16;
-  else if (userName.length > 12) fontSize = 20;
+  if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
   $('#vid-username').css('font-size', fontSize + 'px');
 
-  // 2. 🔥 API CALL IMMEDIATELY (Don't wait for video to start)
-  // വീഡിയോ പ്ലേ ആവാൻ കാത്തുനിൽക്കാതെ തന്നെ ഓർഡർ അയക്കുന്നു.
-  // ഇതാണ് ഇപ്പോൾ ആനിമേഷൻ സ്റ്റക്ക് ആവുന്നത് ഒഴിവാക്കുന്നത്.
+  video.currentTime = 0;
+  video.play().catch(e => console.log("Auto-play blocked", e));
+
   apiCallback();
 
-  // 3. Play Video (Safe Play)
-  video.currentTime = 0;
-  let playPromise = video.play();
-
-  if (playPromise !== undefined) {
-    playPromise.catch(error => {
-      console.log("Auto-play blocked. Showing manual UI.");
-      // വീഡിയോ പ്ലേ ആയില്ലെങ്കിലും ആനിമേഷൻ കാണിക്കാൻ ശ്രമിക്കുന്നു
-    });
-  }
-
-  // 4. Trigger Animations (Timers)
   setTimeout(() => { label.addClass('visible'); }, 4700);
   setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
   setTimeout(() => {
