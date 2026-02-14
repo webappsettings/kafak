@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbw6-bU2TZRmP2W0cDisnClJThGdnMzhrp4G2xC6dHE_vxOeCDO2uEZYbfBbNHDgLlhvwQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzZy8_9JX8NeeGQK8G1-d_nT-3Xn7LityjG498lf0PevcKRkZ3KeTQWXkWVH9IRAqeI/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -556,6 +556,24 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 
 // 🔥 UPDATED CARD HTML (Fixes Address, Date, Stats)
 // 🔥 UPDATED CARD HTML (Address Fix & Language Fix)
+// 🔥 DATE HELPER: ഷീറ്റിലെ DD/MM/YYYY ഫോർമാറ്റ് ശരിയാക്കാൻ
+function parseSheetDate(dateStr) {
+    if (!dateStr) return new Date();
+    // timestamp ആണെങ്കിൽ നേരിട്ട് എടുക്കും
+    if (typeof dateStr === 'object') return dateStr;
+
+    // DD/MM/YYYY ഫോർമാറ്റ് ആണോ എന്ന് നോക്കുന്നു
+    if (String(dateStr).includes('/')) {
+        let parts = dateStr.split('/');
+        if (parts.length === 3) {
+            // (MonthIndex is 0-based in JS)
+            return new Date(parts[2], parts[1] - 1, parts[0]);
+        }
+    }
+    return new Date(dateStr);
+}
+
+// 🔥 UPDATED CARD HTML (Address, Date & Language Fixed)
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // 1. Search Logic
@@ -568,12 +586,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').trim().toUpperCase();
 
-    // 2. Date Formatting
-    let dateObj = new Date(d.timestamp);
-    if (isNaN(dateObj.getTime())) dateObj = new Date();
+    // 2. 🔥 DATE FIX: Use new helper function
+    let dateObj = parseSheetDate(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // 3. Stats Logic
+    // 3. Stats Logic (Existing logic kept same)
     let totalOrders = 0;
     let totalBottles = 0;
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
@@ -592,7 +609,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (currentStatus === 'Dispatched') statusColor = 'info text-dark';
 
     // 🔥 LANGUAGE FIX: Check 'ml' or 'en' correctly
-    let langCode = (d.language && d.language.toLowerCase().includes('ml')) ? 'ML' : 'EN';
+    let langCode = (d.language && String(d.language).toLowerCase().includes('ml')) ? 'ML' : 'EN';
     let langBadge = `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${langCode}</span>`;
 
     // 5. Header Buttons
@@ -623,18 +640,18 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     // 6. Paid Date Badge
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
-        let pDate = new Date(d.paidDate);
+        let pDate = parseSheetDate(d.paidDate); // Using helper here too
         if (!isNaN(pDate.getTime())) {
             let pDateStr = pDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
             paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDateStr}</div>`;
         }
     }
 
-    // 7. 🔥 ADDRESS FIX: House Name Bold & New Line
+    // 7. 🔥 ADDRESS FIX: Old Style (Block Format)
     let addrHtml = ``;
-    if (d.house) addrHtml += `<b>${safe(d.house)}</b>, `;
+    if (d.house) addrHtml += `<b>${safe(d.house)}</b><br>`; // Line break added
     addrHtml += `${safe(d.place)}`;
-    if (d.postoffice) addrHtml += `, ${safe(d.postoffice)}`;
+    if (d.postoffice) addrHtml += `, ${safe(d.postoffice)}`; // Same line for PO
 
     // 8. Contact Info
     let contactIcons = [];
@@ -668,7 +685,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
-    // Buttons
+    // Buttons (Logic kept same)
     let buttons = '';
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
@@ -688,7 +705,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         let trackNum = d.tracking || '';
         let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
-        let dDate = new Date(dispDateStr);
+        let dDate = parseSheetDate(dispDateStr); // Using helper
         let formattedDispDate = isNaN(dDate.getTime()) ? '-' : dDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
         let dateHtml = `<div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#166534; font-weight:700;"><i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}</div><button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div>`;
