@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwv0TMgKKo_FkiqOKW32Z5W_Lui1XKDqePXDe799xt1CPcwgXyXg5E0KVNgeoQM1dOB0A/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbza1XtbVXsMCKZX5kT4JH7Ib6h9LVIJj-SCWS5MvNMs5eyaNBKlyzHbT6qcrQbYek21/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1559,20 +1559,25 @@ function playVideoAnimation(userName, apiCallback) {
   const checkWrapper = $('#finalCheck');
   const nameBox = document.getElementById('vid-username');
 
+  // Reset UI
   label.removeClass('visible final-state');
   nameBadge.removeClass('show-big docked');
   checkWrapper.removeClass('show draw');
   nameBox.innerText = "";
 
   let fontSize = 25;
-  if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
+  if (userName.length > 20) fontSize = 16;
+  else if (userName.length > 12) fontSize = 20;
   $('#vid-username').css('font-size', fontSize + 'px');
 
-  video.currentTime = 0;
-  video.play().catch(e => console.log("Auto-play blocked", e));
-
+  // 🔥 Fix: വീഡിയോ പ്ലേ ആവാൻ കാത്തുനിൽക്കാതെ ഓർഡർ അയക്കുന്നു
   apiCallback();
 
+  // Play Video Safely
+  video.currentTime = 0;
+  video.play().catch(e => console.log("Auto-play blocked"));
+
+  // Animations
   setTimeout(() => { label.addClass('visible'); }, 4700);
   setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
   setTimeout(() => {
