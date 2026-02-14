@@ -554,24 +554,19 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-// 🔥 UPDATED CARD HTML (Fixes Address, Date, Stats)
+// 🔥 DATE FIX HELPER (ഇത് createCardHTML ന് തൊട്ടു മുകളിൽ ഇടുക)
 function parseSheetDate(dateStr) {
     if (!dateStr) return new Date();
-    // timestamp ആണെങ്കിൽ നേരിട്ട് എടുക്കും
     if (typeof dateStr === 'object') return dateStr;
-
-    // DD/MM/YYYY ഫോർമാറ്റ് ആണോ എന്ന് നോക്കുന്നു
+    // ഷീറ്റിലെ DD/MM/YYYY ഫോർമാറ്റ് JS-ന് മനസ്സിലാകുന്ന രീതിയിലാക്കുന്നു
     if (String(dateStr).includes('/')) {
         let parts = dateStr.split('/');
-        if (parts.length === 3) {
-            // (MonthIndex is 0-based in JS)
-            return new Date(parts[2], parts[1] - 1, parts[0]);
-        }
+        if (parts.length === 3) return new Date(parts[2], parts[1] - 1, parts[0]);
     }
     return new Date(dateStr);
 }
 
-// 🔥 UPDATED CARD HTML (Address, Date & Language Fixed)
+// 🔥 UPDATED CARD HTML (Date, Icons, Language & Address Fixed)
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // 1. Search Logic
@@ -584,13 +579,12 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').trim().toUpperCase();
 
-    // 2. 🔥 DATE FIX: Use new helper function
+    // 2. 🔥 DATE FIX: Invalid Date വരാതിരിക്കാൻ പുതിയ Helper ഉപയോഗിക്കുന്നു
     let dateObj = parseSheetDate(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // 3. Stats Logic (Existing logic kept same)
-    let totalOrders = 0;
-    let totalBottles = 0;
+    // 3. Stats Logic
+    let totalOrders = 0; let totalBottles = 0;
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     if (currentPhone.length > 5 && typeof allOrders !== 'undefined') {
         let custHistory = allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone);
@@ -606,132 +600,83 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (currentStatus === 'Refunded') statusColor = 'danger';
     if (currentStatus === 'Dispatched') statusColor = 'info text-dark';
 
-    // 🔥 LANGUAGE FIX: Check 'ml' or 'en' correctly
+    // 🔥 LANGUAGE FIX: ML ആണെങ്കിൽ ML എന്ന് തന്നെ കാണിക്കും
     let langCode = (d.language && String(d.language).toLowerCase().includes('ml')) ? 'ML' : 'EN';
     let langBadge = `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${langCode}</span>`;
 
-    // 5. Header Buttons
-    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
-        ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
-        : '';
+    // 5. Buttons
+    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>` : '';
+    let refundBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed') ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
-    let refundBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed')
-        ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
+    let headerLeft = `<div class="d-flex align-items-center flex-wrap gap-1"><span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span><span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>${refundBtn} ${langBadge} ${archiveBtn}</div>`;
+    let topActions = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a><button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
-    let headerLeft = `
-        <div class="d-flex align-items-center flex-wrap gap-1">
-            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
-            <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
-            ${refundBtn} ${langBadge} ${archiveBtn}
-        </div>`;
-
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>`;
-    let printBtn = `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
-    let topActions = editLink + printBtn;
-
-    if (type === 'dispatched') {
-        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
-    } else if (type === 'paid') {
-        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
-    }
+    if (type === 'dispatched') topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
+    else if (type === 'paid') topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
 
     // 6. Paid Date Badge
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
-        let pDate = parseSheetDate(d.paidDate); // Using helper here too
+        let pDate = parseSheetDate(d.paidDate);
         if (!isNaN(pDate.getTime())) {
             let pDateStr = pDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
             paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDateStr}</div>`;
         }
     }
 
-    // 7. 🔥 ADDRESS FIX: Old Style (Block Format)
-    let addrHtml = ``;
-    if (d.house) addrHtml += `<b>${safe(d.house)}</b><br>`; // Line break added
-    addrHtml += `${safe(d.place)}`;
-    if (d.postoffice) addrHtml += `, ${safe(d.postoffice)}`; // Same line for PO
-
-    // 8. Contact Info
+    // 7. 🔥 SMART CONTACT ICONS (Phone, WA, Alt എല്ലാം ഐക്കൺ സഹിതം)
     let contactIcons = [];
     if (d.phone) contactIcons.push(`<i class="fas fa-phone-alt text-primary"></i> <b>${d.phone}</b>`);
-    if (d.whatsapp && d.whatsapp !== d.phone) contactIcons.push(`<i class="fab fa-whatsapp text-success"></i> <b>${d.whatsapp}</b>`);
+    if (d.whatsapp && String(d.whatsapp) !== String(d.phone)) contactIcons.push(`<i class="fab fa-whatsapp text-success" style="font-weight:900; font-size:1.1em;"></i> <b>${d.whatsapp}</b>`);
+    if (d.altphone && String(d.altphone) !== String(d.phone)) contactIcons.push(`<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;"></i> <b>${d.altphone}</b>`);
     let contactLine = contactIcons.join(' <span class="mx-2 text-muted">|</span> ');
 
-    // WA Selector Logic
+    // 8. 🔥 ADDRESS STYLE (പഴയതുപോലെ താഴെ താഴെയായി വരും)
+    let addrHtml = ``;
+    if (d.house) addrHtml += `<b>${safe(d.house)}</b><br>`;
+    addrHtml += `${safe(d.place)}`;
+    if (d.postoffice) addrHtml += `, ${safe(d.postoffice)}`;
+
+    // WA Selector
     let meta = getMetaStatus(d.adminMeta);
-    let selectedContact = meta.contact;
     let uniqueContacts = new Map();
     const cleanNum = (n) => String(n || '').replace(/[^0-9]/g, '');
-
     if (d.whatsapp) uniqueContacts.set(cleanNum(d.whatsapp), { val: d.whatsapp, label: `📲 WA: ${d.whatsapp}`, type: 'whatsapp' });
     if (d.phone && !uniqueContacts.has(cleanNum(d.phone))) uniqueContacts.set(cleanNum(d.phone), { val: d.phone, label: `📞 PH: ${d.phone}`, type: 'phone' });
     if (d.altphone && !uniqueContacts.has(cleanNum(d.altphone))) uniqueContacts.set(cleanNum(d.altphone), { val: d.altphone, label: `☎️ ALT: ${d.altphone}`, type: 'alt' });
 
-    let opts = '';
-    let selType = selectedContact || 'whatsapp';
+    let opts = ''; let selType = meta.contact || 'whatsapp';
     uniqueContacts.forEach((v, k) => {
         let isSelected = (v.type === selType) ? 'selected' : '';
         let code = (v.type === 'whatsapp') ? 'W' : ((v.type === 'alt') ? 'A' : 'M');
         opts += `<option value="${code}" ${isSelected}>${v.label}</option>`;
     });
 
-    let waSelectorHTML = `
-    <div class="mt-2 mb-2 d-flex gap-1" onclick="highlightCard(this)">
-        <select id="wa-select-${index}" 
-            onchange="updateAdminMeta('${d.orderid}', 'contact', this.value);" 
-            class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
-        <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
-    </div>`;
+    let waSelectorHTML = `<div class="mt-2 mb-2 d-flex gap-1" onclick="highlightCard(this)"><select id="wa-select-${index}" onchange="updateAdminMeta('${d.orderid}', 'contact', this.value);" class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select><button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button></div>`;
 
-    // Buttons (Logic kept same)
+    // Action Buttons
     let buttons = '';
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
         let mainBtn = `<button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>`;
-        if (currentStatus === 'Pending') {
-            buttons = `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" title="Mark Sent"><i class="fas fa-paper-plane me-1"></i> SENT</button></div>`;
-        } else {
-            buttons = `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button></div>`;
-        }
+        buttons = (currentStatus === 'Pending') ? `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" title="Mark Sent"><i class="fas fa-paper-plane me-1"></i> SENT</button></div>` : `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button></div>`;
     } else if (type === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
-    } else if (currentStatus === 'Archive' || currentStatus === 'Archived') {
-        buttons = `<div class="alert alert-secondary p-2 mb-2 text-center" style="font-size:11px; font-weight:700;"><i class="fas fa-archive"></i> This order is Archived</div><button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')"><i class="fas fa-box-open me-1"></i> REVERT TO PAID</button>`;
-    } else if (currentStatus === 'Refunded') {
-        buttons = `<div class="alert alert-danger p-2 mb-2 text-center" style="font-size:11px; font-weight:700;"><i class="fas fa-info-circle"></i> Amount Refunded to Customer</div><button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')"><i class="fas fa-history me-1"></i> REVERT TO PAID</button>`;
+    } else if (['Archive', 'Archived', 'Refunded'].includes(currentStatus)) {
+        let msg = (currentStatus === 'Refunded') ? 'Amount Refunded' : 'This order is Archived';
+        let alertColor = (currentStatus === 'Refunded') ? 'alert-danger' : 'alert-secondary';
+        buttons = `<div class="alert ${alertColor} p-2 mb-2 text-center" style="font-size:11px; font-weight:700;">${msg}</div><button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')">REVERT TO PAID</button>`;
     } else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
-        let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
-        let dDate = parseSheetDate(dispDateStr); // Using helper
+        let dDate = parseSheetDate(dispDateStr);
         let formattedDispDate = isNaN(dDate.getTime()) ? '-' : dDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-
-        let dateHtml = `<div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#166534; font-weight:700;"><i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}</div><button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div>`;
-        buttons = `${dateHtml}<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}</div><button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+        buttons = `<div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#166534; font-weight:700;"><i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}</div><button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div><div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>${trackNum ? `<a href="https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}</div><button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
-    if (isCompact) {
-        return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card p-3 shadow-sm"><div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))"><div style="font-size:12px; flex-grow:1;"><div class="mb-1">${headerLeft}</div><div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div><div class="text-muted small" style="font-size:10px;">${formattedDate}</div></div><button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅</button></div><div class="full-card-content mt-3 pt-3 border-top" style="display:none;">${createCardHTML(d, index, type, currentStatus, false)}</div></div></div>`;
-    }
+    if (isCompact) return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card p-3 shadow-sm"><div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))"><div style="font-size:12px; flex-grow:1;"><div class="mb-1">${headerLeft}</div><div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div><div class="text-muted small" style="font-size:10px;">${formattedDate}</div></div><button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅</button></div><div class="full-card-content mt-3 pt-3 border-top" style="display:none;">${createCardHTML(d, index, type, currentStatus, false)}</div></div></div>`;
 
-    return `
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="order-card p-3">
-            <div class="d-flex justify-content-between align-items-start mb-2"><div>${headerLeft}</div><div>${topActions}</div></div>
-            <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
-            ${paidTimeHTML}
-            <div class="cust-name">${safe(d.name)}</div>
-            <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
-            <div class="cust-details">
-                ${addrHtml}<br>
-                ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
-                <div class="mt-2" style="font-size:11px;">${contactLine}</div>
-            </div>
-            <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
-            ${waSelectorHTML}
-            <div class="action-area mt-2" style="display:block;">${buttons}</div>
-        </div>
-    </div>`;
+    return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card p-3"><div class="d-flex justify-content-between align-items-start mb-2"><div>${headerLeft}</div><div>${topActions}</div></div><div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>${paidTimeHTML}<div class="cust-name">${safe(d.name)}</div><div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div><div class="cust-details">${addrHtml}<br>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br><div class="mt-2" style="font-size:11px;">${contactLine}</div></div><div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>${waSelectorHTML}<div class="action-area mt-2" style="display:block;">${buttons}</div></div></div>`;
 }
 // 🔥 UPDATED: Sync Button UI (Orders + Expenses കൂട്ടാൻ)
 // 🔥 2. UPDATED SYNC BUTTON UI (Expense ഫോമിനുള്ളിൽ സിങ്ക് ബട്ടൺ കാണിക്കാൻ)
