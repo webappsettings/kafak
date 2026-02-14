@@ -33,23 +33,26 @@ function getMetaStatus(metaStr) {
 }
 
 // Update Meta String Locally & Queue for Sync
+// 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
 function updateAdminMeta(oid, type, value) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
 
     let currentMeta = String(order.adminMeta || '');
+    let oldMeta = currentMeta; // 🔥 പഴയ അവസ്ഥ ഇവിടെ സേവ് ചെയ്യുന്നു
+
     let newMeta = currentMeta;
 
-    // 1. Contact Selection (M, W, A) -> ഒരെണ്ണം മാത്രമേ ഉണ്ടാകൂ, പഴയത് മാറ്റണം
+    // 1. Contact Selection (M, W, A)
     if (type === 'contact') {
-        newMeta = newMeta.replace(/[MWA]/g, ''); // പഴയത് കളയുന്നു
-        newMeta += value; // M, W, or A ചേർക്കുന്നു
+        newMeta = newMeta.replace(/[MWA]/g, '');
+        newMeta += value;
     }
-    // 2. Printed (P) -> Add P if not exists
+    // 2. Printed (P)
     else if (type === 'printed') {
         if (!newMeta.includes('P')) newMeta += 'P';
     }
-    // 3. Tracked (T) -> Add T if not exists
+    // 3. Tracked (T)
     else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
     }
@@ -58,20 +61,29 @@ function updateAdminMeta(oid, type, value) {
     order.adminMeta = newMeta;
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-    // Queue for Sync (നമ്മൾ ഉണ്ടാക്കിയ 'updates' ലിസ്റ്റിലേക്ക്)
+    // Queue for Sync
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // Check if update exists for this ID, update it or push new
     let existingUpd = updates.find(u => u.oid === oid && u.action === 'meta');
 
     if (existingUpd) {
         existingUpd.meta = newMeta;
+        // പഴയത് സേവ് ചെയ്തിട്ടില്ലെങ്കിൽ മാത്രം സേവ് ചെയ്യുക (ആദ്യത്തെ മാറ്റം നിലനിർത്താൻ)
+        if (existingUpd.oldMeta === undefined) existingUpd.oldMeta = oldMeta;
     } else {
-        updates.push({ oid: oid, action: 'meta', meta: newMeta, status: order.Status }); // Status just for reference
+        // 🔥 ഇവിടെ oldMeta കൂടി ചേർക്കുന്നു
+        updates.push({
+            oid: oid,
+            action: 'meta',
+            meta: newMeta,
+            oldMeta: oldMeta,
+            status: order.Status
+        });
     }
 
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
     updateSyncButtonUI();
+    renderTabs(allOrders); // UI ഉടനടി മാറാൻ
 }
 
 // 🔴 1. SAFE STORAGE CHECK
@@ -1267,39 +1279,43 @@ function renderSyncList() {
 }
 
 // 🔥 UPDATED UNDO LOGIC (Supports Meta Separate Undo)
-// 🔥 UPDATED UNDO LOGIC (No Loading Spinner)
+// 🔥 UPDATED: UNDO LOGIC (Reverts Admin Meta & Status)
 window.undoUpdate = function (oid, isMeta) {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let removedItem = null;
 
     if (isMeta) {
-        // Find and remove meta action
+        // Find item
         removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'meta');
-        pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'meta'));
 
-        // Revert Local Object Admin Meta (Optional visual revert)
-        let order = allOrders.find(o => o.orderid === oid);
-        if (order) {
-            // മെറ്റാ മാറ്റിയാൽ പഴയതിലേക്ക് പോകാൻ ബുദ്ധിമുട്ടാണ്, 
-            // അതിനാൽ തൽക്കാലം ഇത് സിങ്ക് ലിസ്റ്റിൽ നിന്ന് കളയുന്നു. 
-            // UI-ൽ പഴയ സെലക്ഷൻ തന്നെ നിൽക്കും (Re-select ചെയ്യാം).
+        if (removedItem) {
+            // 🔥 REVERT META LOCALLY
+            let order = allOrders.find(o => o.orderid === oid);
+
+            // പഴയ Meta ഉണ്ടെങ്കിൽ അത് തിരികെ സെറ്റ് ചെയ്യുന്നു
+            if (order && removedItem.oldMeta !== undefined) {
+                order.adminMeta = removedItem.oldMeta;
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            }
         }
 
+        // Remove from list
+        pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'meta'));
+
     } else {
-        // Remove status updates
+        // Status Update Undo Logic (Old logic)
         removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta');
         pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta'));
 
-        // 🔥 Revert Order Status Locally (Instant)
+        // 🔥 REVERT STATUS LOCALLY
         if (removedItem && removedItem.oldStatus) {
             let orderIndex = allOrders.findIndex(o => o.orderid === oid);
             if (orderIndex !== -1) {
                 allOrders[orderIndex].Status = removedItem.oldStatus;
 
-                // Remove Tracking if it was added
+                // Tracking ഉണ്ടെങ്കിൽ അതും കളയുന്നു
                 if (removedItem.tracking) delete allOrders[orderIndex].tracking;
 
-                // Save Reverted State to Cache
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
             }
         }
@@ -1307,10 +1323,10 @@ window.undoUpdate = function (oid, isMeta) {
 
     localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
 
-    // Refresh Lists without Server Call
+    // Refresh Lists & UI
     renderSyncList();
     updateSyncButtonUI();
-    renderTabs(allOrders); // UI പഴയ സ്റ്റാറ്റസിലേക്ക് മാറും
+    renderTabs(allOrders); // 🔥 ഇതാണ് പ്രധാനം: കാർഡ് പഴയ സ്ഥലത്തേക്ക് മാറാൻ ഇത് സഹായിക്കും
 }
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
 window.undoExpenseUpdate = function (id) {
@@ -1430,11 +1446,25 @@ function sendWA(index) {
 
     // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-    const editText = "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
+
+    // 🔥 LANGUAGE LOGIC (English or Malayalam)
+    const isEng = (d.language === 'en');
+
+    // Header Text based on Language
+    const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
 
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
     const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-    const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
+
+    // 🔥 NEW: Payment Screenshot Request (Language based)
+    let paymentNote = "";
+    if (isEng) {
+        paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
+    } else {
+        paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+    }
+
+    const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
     // 4. DETERMINE TARGET PHONE (Fix for W/M/A)
     let phoneNum = "";
