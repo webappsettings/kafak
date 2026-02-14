@@ -597,11 +597,13 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // Admin Meta (P & T) Logic
 
+    // 🔥 Admin Meta (Define FIRST)
+    let meta = getMetaStatus(d.adminMeta);
     let metaBadges = '';
 
-    // P = Printed (Brown Dot), T = Tracked (Blue Dot)
-    if (meta.printed) metaBadges += `<span class="dot-indicator brown" title="Printed (P)"></span>`;
-    if (meta.tracked) metaBadges += `<span class="dot-indicator blue" title="Tracked (T)"></span>`;
+    if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed (P)"></span>`;
+    if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked (T)"></span>`;
+
 
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
@@ -637,7 +639,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // 🔥 8. CONTACT SELECTOR (NO DUPLICATES + ADMIN META SYNC)
     // ---------------------------------------------------------
-    let meta = getMetaStatus(d.adminMeta);
+
     let selectedContact = meta.contact; // 'phone', 'whatsapp', or 'alt'
 
     let uniqueContacts = new Map(); // To store unique numbers
@@ -3055,5 +3057,4 @@ $('<style>').html(`
         box-shadow: 0 0 15px rgba(37, 99, 235, 0.2) !important;
         transform: scale(1.01);
         z-index: 50;
-    }
-`).appendTo('head');
+    }`).appendTo('head');
