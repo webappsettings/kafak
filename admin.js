@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyy8cXH_lp-QwCa7REs1ZrwACWXLgfTbernGr-YT5ScNJZvMYfS5Xl1q7brUW0ALzDPXQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyOtfxBCaXglzWp5wnI6Dzntv_CoYP8mrA0RVJmVMjTGUSh-be_b8yzRWZ75ReWvleDGw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1609,12 +1609,17 @@ async function runPrintLogic(checkboxes, directData = null) {
         checkboxes.forEach(cb => {
             if (allOrders[cb.value]) ordersToPrint.push(allOrders[cb.value]);
         });
+        // Sort by Date (Oldest First)
         ordersToPrint.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
     }
 
     if (ordersToPrint.length === 0) return;
 
-    // 🔥 SHOW PROGRESS POPUP
+    // 🔥 PRE-CALCULATE ALL PAID ORDERS (To find global rank)
+    let allPaidOrders = allOrders.filter(o => o.Status === 'Paid');
+    allPaidOrders.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
+
+    // Progress Bar
     Swal.fire({
         title: 'Generating Labels...',
         html: `Processing <b>1</b> of <b>${ordersToPrint.length}</b>`,
@@ -1639,7 +1644,11 @@ async function runPrintLogic(checkboxes, directData = null) {
             Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
         }
 
-        // A. Update Meta (Local & Queue)
+        // FIND GLOBAL SEQUENCE NUMBER
+        let globalIndex = allPaidOrders.findIndex(x => x.orderid === d.orderid);
+        let seqNum = (globalIndex !== -1) ? globalIndex + 1 : (i + 1);
+
+        // Update Meta Logic
         let currentMeta = String(d.adminMeta || '');
         if (!currentMeta.includes('P')) {
             let newMeta = currentMeta + 'P';
@@ -1654,7 +1663,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             isModified = true;
         }
 
-        // B. Generate QR
+        // Generate QR
         await new Promise((resolve) => {
             const qrNode = document.createElement('div');
             tempDiv.appendChild(qrNode);
@@ -1663,7 +1672,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             setTimeout(() => {
                 const canvas = qrNode.querySelector('canvas');
                 let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
-                labelsData.push({ details: d, qrSrc: qrImgSrc });
+                labelsData.push({ details: d, qrSrc: qrImgSrc, seqNum: seqNum });
                 qrNode.remove();
                 resolve();
             }, 50);
@@ -1673,7 +1682,7 @@ async function runPrintLogic(checkboxes, directData = null) {
     document.body.removeChild(tempDiv);
     Swal.close();
 
-    // 3. SAVE & REFRESH ONCE
+    // 3. SAVE & REFRESH
     if (isModified) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -1685,15 +1694,15 @@ async function runPrintLogic(checkboxes, directData = null) {
     const printWin = window.open('', '', 'width=600,height=800');
     let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
 
-    // Helper for compact date
     const fmtDate = (str) => {
         if (!str) return "-";
         return new Date(str).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
     };
 
-    labelsData.forEach((item, index) => {
+    labelsData.forEach((item) => {
         const d = item.details;
-        const seqNum = index + 1;
+        const seqNum = item.seqNum;
+
         const safe = (val) => String(val || '').toUpperCase();
         let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
         const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -1735,15 +1744,15 @@ async function runPrintLogic(checkboxes, directData = null) {
                 Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
             </div>
 
-            <div style="position:absolute; bottom:8mm; right:5mm; font-size:12px; font-weight:800; color:#000; border:1px solid #000; padding:1px 5px; border-radius:4px;">
+            <div style="position:absolute; bottom:9mm; right:5mm; font-size:12px; font-weight:800; color:#000; border:1px solid #000; padding:1px 5px; border-radius:4px;">
                 #${seqNum}
             </div>
 
-            <div style="position:absolute; bottom:2mm; left:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif;">
+            <div style="position:absolute; bottom:5mm; left:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif;">
                 O: ${orderTime}
             </div>
 
-            <div style="position:absolute; bottom:2mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
+            <div style="position:absolute; bottom:5mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
                 P: ${paidTime}
             </div>
 
