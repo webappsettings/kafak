@@ -1487,58 +1487,169 @@ function sendWA(index) {
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
-function printSelected() {
-    const selected = document.querySelectorAll('.order-cb:checked');
-    if (selected.length === 0) { showToast("warning", "Select orders first!"); return; }
-    runPrintLogic(selected);
+// 🔥 SMART PRINT MANAGER (Sort & Limit)
+window.printSelected = async function () {
+    // 1. Check if user manually selected checkboxes
+    const manualSelection = document.querySelectorAll('.order-cb:checked');
+
+    // മാന്വൽ ആയി ടിക്ക് ചെയ്തിട്ടുണ്ടെങ്കിൽ അത് മാത്രം പ്രിന്റ് ചെയ്യുന്നു (Fast Print)
+    if (manualSelection.length > 0) {
+        runPrintLogic(manualSelection, null);
+        return;
+    }
+
+    // 2. If nothing selected, Get ALL 'Paid > New' Orders
+    // (Paid സ്റ്റാറ്റസ് ഉള്ളതും, എന്നാൽ ഇതുവരെ Print ചെയ്യാത്തതുമായ ഓർഡറുകൾ എടുക്കുന്നു)
+    let candidates = allOrders.filter(o => {
+        let meta = getMetaStatus(o.adminMeta);
+        return o.Status === 'Paid' && !meta.isPrinted;
+    });
+
+    if (candidates.length === 0) {
+        showToast("warning", "No new orders to print!");
+        return;
+    }
+
+    // 3. SHOW PRINT MANAGER POPUP
+    const { value: formValues } = await Swal.fire({
+        title: '🖨️ Print Manager',
+        html: `
+            <div class="text-start bg-light p-3 rounded mb-3 border">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-dark">Total Pending:</span>
+                    <span class="badge bg-primary rounded-pill fs-6">${candidates.length}</span>
+                </div>
+                <div class="text-muted small" style="font-size:11px;">Select how many labels to generate now.</div>
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">1. Sorting Order</label>
+                <select id="print-sort" class="form-select shadow-none fw-bold text-dark mt-1">
+                    <option value="oldest">Oldest First (പഴയത് ആദ്യം)</option>
+                    <option value="newest">Newest First (പുതിയത് ആദ്യം)</option>
+                </select>
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">2. Quantity (Labels)</label>
+                <div class="input-group mt-1">
+                    <input type="number" id="print-limit" class="form-control shadow-none fw-bold fs-5 text-center" 
+                        value="${candidates.length}" min="1" max="${candidates.length}">
+                    <span class="input-group-text small text-muted">/ ${candidates.length}</span>
+                </div>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'GENERATE LABELS',
+        confirmButtonColor: '#000',
+        cancelButtonText: 'Cancel',
+        focusConfirm: false,
+        preConfirm: () => {
+            let limitVal = parseInt(document.getElementById('print-limit').value);
+            if (!limitVal || limitVal < 1) {
+                Swal.showValidationMessage('Please enter a valid quantity');
+                return false;
+            }
+            return {
+                sort: document.getElementById('print-sort').value,
+                limit: limitVal
+            };
+        }
+    });
+
+    if (!formValues) return; // Cancelled
+
+    // 4. PROCESS DATA (Sort & Slice)
+
+    // A. Sorting
+    candidates.sort((a, b) => {
+        // Paid Date വെച്ച് സോർട്ട് ചെയ്യുന്നു (അതില്ലെങ്കിൽ ഓർഡർ ഡേറ്റ്)
+        let dateA = new Date(a.paidDate || a.timestamp);
+        let dateB = new Date(b.paidDate || b.timestamp);
+        return formValues.sort === 'oldest' ? dateA - dateB : dateB - dateA;
+    });
+
+    // B. Limiting (ആവശ്യമുള്ള എണ്ണം മാത്രം എടുക്കുന്നു)
+    let selectedBatch = candidates.slice(0, formValues.limit);
+
+    // 5. Run Print Logic with Batch Data
+    runPrintLogic(null, selectedBatch);
 }
 
-function runPrintLogic(selectedItems) {
+// 🔥 UPDATED PRINT LOGIC (Supports both Checkbox & Bulk Data)
+function runPrintLogic(checkboxes, directData = null) {
+    let ordersToPrint = [];
+
+    // 1. Determine Source (Checkbox vs Bulk Data)
+    if (directData) {
+        ordersToPrint = directData; // Batch Print വഴി വന്നത്
+    } else if (checkboxes) {
+        // Manual Selection വഴി വന്നത്
+        checkboxes.forEach(cb => {
+            if (allOrders[cb.value]) ordersToPrint.push(allOrders[cb.value]);
+        });
+    }
+
+    if (ordersToPrint.length === 0) return;
+
     const styles = document.getElementById('label-css').innerHTML;
     const tempDiv = document.createElement('div');
     tempDiv.style.position = 'absolute'; tempDiv.style.left = '-9999px';
     document.body.appendChild(tempDiv);
-    const promises = []; const labelsData = [];
-    selectedItems.forEach((cb) => {
-        const d = allOrders[cb.value];
-        if (d) {
-            const p = new Promise((resolve) => {
-                const qrNode = document.createElement('div');
-                tempDiv.appendChild(qrNode);
-                new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
-                setTimeout(() => {
-                    const canvas = qrNode.querySelector('canvas');
-                    let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
-                    labelsData.push({ details: d, qrSrc: qrImgSrc });
-                    resolve();
-                }, 50);
-            });
-            promises.push(p);
-        }
-    });
-    Promise.all(promises).then(() => {
-        // 🔥 MARK AS PRINTED (P)
-        selectedItems.forEach(cb => {
-            let d = allOrders[cb.value];
-            if (d) updateAdminMeta(d.orderid, 'printed', 'P'); // 'P' ചേർക്കുന്നു
+
+    const promises = [];
+    const labelsData = [];
+
+    // 2. Generate QR for each order
+    ordersToPrint.forEach((d) => {
+        const p = new Promise((resolve) => {
+            const qrNode = document.createElement('div');
+            tempDiv.appendChild(qrNode);
+            new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
+
+            setTimeout(() => {
+                const canvas = qrNode.querySelector('canvas');
+                let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
+                labelsData.push({ details: d, qrSrc: qrImgSrc });
+                resolve();
+            }, 50); // Small delay for rendering
         });
+        promises.push(p);
+    });
+
+    // 3. Open Print Window
+    Promise.all(promises).then(() => {
+
+        // 🔥 MARK AS PRINTED (P) - Only for these orders
+        ordersToPrint.forEach(d => {
+            updateAdminMeta(d.orderid, 'printed', 'P');
+        });
+
+        // Refresh UI (Cards will move to 'Printed' tab)
         renderTabs(allOrders);
+
         document.body.removeChild(tempDiv);
+
         const printWin = window.open('', '', 'width=600,height=800');
-        let htmlContent = `<html><head><title>KAFAK Print</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
+        let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
+
         labelsData.forEach(item => {
             const d = item.details;
             const safe = (val) => String(val || '').toUpperCase();
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
+
             let printPhone = d.phone;
             if (d.altphone && String(d.altphone).trim() !== String(d.phone).trim()) {
                 printPhone += `, ${d.altphone}`;
             }
+
             htmlContent += `<div class="label-page"><div class="address-sec"><div class="to-label">To,</div><div class="cust-name">${safe(d.name)}</div><div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div><div class="cust-pin">PIN: ${d.pincode}</div><div class="cust-ph">PH: ${printPhone}</div></div><div class="meta-sec"><div class="qr-box"><img src="${item.qrSrc}"></div><div class="qr-oid">${d.orderid}</div>${qtyHTML}</div><div class="contact-box"><div class="contact-icon">${phoneIcon}</div><div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div></div><div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div><div class="from-sec"><span style="font-weight:bold; font-size:11px;">From,</span><br><b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313</div></div>`;
         });
+
         htmlContent += `</body></html>`;
-        printWin.document.write(htmlContent); printWin.document.close();
+        printWin.document.write(htmlContent);
+        printWin.document.close();
         setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
     });
 }
