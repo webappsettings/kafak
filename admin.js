@@ -8,6 +8,7 @@ let currentSortDir = 'desc';
 // 🔥 GLOBAL: Contact Selection Memory
 let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
 
+
 window.saveContactSelection = function (oid, val) {
     contactMem[oid] = val; // സേവ് ചെയ്യുന്നു
     localStorage.setItem('contactMem', JSON.stringify(contactMem));
@@ -19,6 +20,58 @@ function playBeep() {
     osc.type = "sine"; osc.frequency.setValueAtTime(800, ctx.currentTime);
     osc.connect(ctx.destination); osc.start();
     setTimeout(() => osc.stop(), 100);
+}
+
+// 🔥 ADMIN META HELPER (Code: M=Mobile, W=WhatsApp, A=Alt, P=Printed, T=Tracked)
+function getMetaStatus(metaStr) {
+    metaStr = String(metaStr || '');
+    return {
+        contact: metaStr.includes('W') ? 'whatsapp' : (metaStr.includes('A') ? 'alt' : 'phone'), // Default Mobile (M)
+        isPrinted: metaStr.includes('P'),
+        isTracked: metaStr.includes('T')
+    };
+}
+
+// Update Meta String Locally & Queue for Sync
+function updateAdminMeta(oid, type, value) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let currentMeta = String(order.adminMeta || '');
+    let newMeta = currentMeta;
+
+    // 1. Contact Selection (M, W, A) -> ഒരെണ്ണം മാത്രമേ ഉണ്ടാകൂ, പഴയത് മാറ്റണം
+    if (type === 'contact') {
+        newMeta = newMeta.replace(/[MWA]/g, ''); // പഴയത് കളയുന്നു
+        newMeta += value; // M, W, or A ചേർക്കുന്നു
+    }
+    // 2. Printed (P) -> Add P if not exists
+    else if (type === 'printed') {
+        if (!newMeta.includes('P')) newMeta += 'P';
+    }
+    // 3. Tracked (T) -> Add T if not exists
+    else if (type === 'tracked') {
+        if (!newMeta.includes('T')) newMeta += 'T';
+    }
+
+    // Save Locally
+    order.adminMeta = newMeta;
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    // Queue for Sync (നമ്മൾ ഉണ്ടാക്കിയ 'updates' ലിസ്റ്റിലേക്ക്)
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+    // Check if update exists for this ID, update it or push new
+    let existingUpd = updates.find(u => u.oid === oid && u.action === 'meta');
+
+    if (existingUpd) {
+        existingUpd.meta = newMeta;
+    } else {
+        updates.push({ oid: oid, action: 'meta', meta: newMeta, status: order.Status }); // Status just for reference
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    updateSyncButtonUI();
 }
 
 // 🔴 1. SAFE STORAGE CHECK
@@ -277,26 +330,50 @@ function fetchOrders(forceLoad = false) {
 
 
 function renderTabs(orders) {
-    // 🔥 1. DOM Elements Selection (Sub-tabs Included)
+    // 1. SELECT DOM ELEMENTS (For all Sub-tabs)
     const listNew = document.getElementById('list-sub-new');
     const listSent = document.getElementById('list-sub-sent');
-    const paidList = document.getElementById('list-paid');
-    const dispatchedList = document.getElementById('list-dispatched');
+    const listPaidNew = document.getElementById('list-paid-new');
+    const listPaidPrinted = document.getElementById('list-paid-printed');
+    const listDispNew = document.getElementById('list-disp-new');
+    const listDispTracked = document.getElementById('list-disp-tracked');
 
-    // Clear previous content
+    // 2. CLEAR LISTS & RESTORE BUTTONS
     if (listNew) listNew.innerHTML = '';
     if (listSent) listSent.innerHTML = '';
-    paidList.innerHTML = '';
-    dispatchedList.innerHTML = '';
 
-    // Initialize Counters
+    // 🔥 Restore "Paid" Tab Buttons (Scan, Select All, Print) in New Section
+    if (listPaidNew) {
+        listPaidNew.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
+            <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+            <div class="d-flex gap-2">
+                <button id="btn-select-all" onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small"><i class="far fa-square"></i> All</button>
+                <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
+            </div>
+        </div>`;
+    }
+    if (listPaidPrinted) listPaidPrinted.innerHTML = '';
+
+    // 🔥 Restore "Dispatched" Tab Buttons (Courier Scan) in New Section
+    if (listDispNew) {
+        listDispNew.innerHTML = `
+        <div class="text-center mb-3 w-100">
+            <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
+                <i class="fas fa-barcode"></i> Courier Scan
+            </button>
+        </div>`;
+    }
+    if (listDispTracked) listDispTracked.innerHTML = '';
+
+    // 3. INITIALIZE COUNTERS
     let counts = { pending: 0, paid: 0, dispatched: 0 };
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
-    let subCounts = { new: 0, sent: 0 }; // 🔥 For Sub-tab Badges
+    let subCounts = { new: 0, sent: 0, paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // --- HELPER: Get Effective Status & Dates (Includes Local Updates) ---
+    // 4. HELPER: Get Effective Status & Dates
     const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid);
         let status = local ? local.status : (o.Status || 'Pending');
@@ -311,7 +388,7 @@ function renderTabs(orders) {
         return { status, tDate, pDate, dDate, pDateStr, dDateStr };
     };
 
-    // --- SORTING LOGIC ---
+    // 5. SORTING LOGIC
     orders.sort((a, b) => {
         let infoA = getOrderInfo(a);
         let infoB = getOrderInfo(b);
@@ -323,15 +400,15 @@ function renderTabs(orders) {
         if (statA !== statB) return statA - statB;
 
         let dateA, dateB;
-        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; }      // Pending/Sent by Order Date
-        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; } // Paid by Paid Date
-        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; } // Dispatched by Disp Date
+        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; }      // Pending/Sent
+        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; } // Paid
+        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; } // Dispatched
         else { dateA = infoA.tDate; dateB = infoB.tDate; }
 
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // --- PRE-CALCULATE COURIER TOTALS ---
+    // 6. PRE-CALCULATE COURIER TOTALS
     let dispatchedCostMap = {};
     orders.forEach(o => {
         let { status, dDateStr } = getOrderInfo(o);
@@ -342,62 +419,50 @@ function renderTabs(orders) {
         }
     });
 
-    // --- LATEST DATE CALCULATION (For Collapse Logic) ---
-    let firstDisp = orders.find(o => getOrderInfo(o).status === 'Dispatched');
-    let latestDispatchedDateLabel = "";
-    if (firstDisp) {
-        let info = getOrderInfo(firstDisp);
-        latestDispatchedDateLabel = getTimelineLabel(info.dDateStr);
-    }
-
-    // --- RENDER LOOP ---
-    // Date tracking for separate lists (New, Sent, Paid, Dispatched)
-    let lastDateMap = { new: '', sent: '', paid: '', dispatched: '' };
+    // 7. RENDER LOOP (Distribute to Sub-lists)
+    // Date tracking for separate lists
+    let lastDateMap = { new: '', sent: '', paid_new: '', paid_print: '', disp_new: '', disp_track: '' };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
-        let isCompact = false;
-
-        // Inject Resolved Dates for Card
         d.paidDate = pDateStr;
-        d['Dispatched Date'] = dDateStr;
+        d['Dispatched Date'] = dDateStr; // Inject Dates for Card
 
         if (status === 'Completed' || status === 'Archive') return;
 
+        // 🔥 META DATA CHECK (For Printed/Tracked)
+        let meta = getMetaStatus(d.adminMeta);
+
         let targetList = null;
         let type = '';
-        let dateKey = ''; // To track date headers for specific lists
+        let dateKey = ''; // To track sticky headers
 
-        // 🔥 LOGIC TO SPLIT PENDING & SENT
+        // A. PENDING & SENT
         if (status === 'Pending') {
-            targetList = listNew;
-            type = 'pending';
-            dateKey = 'new';
-            counts.pending++;
-            subCounts.new++;
+            targetList = listNew; type = 'pending'; dateKey = 'new';
+            counts.pending++; subCounts.new++;
         }
         else if (status === 'Sent') {
-            targetList = listSent;
-            type = 'pending'; // Keep type as pending for button styling
-            dateKey = 'sent';
-            counts.pending++;
-            subCounts.sent++;
+            targetList = listSent; type = 'pending'; dateKey = 'sent';
+            counts.pending++; subCounts.sent++;
         }
+        // B. PAID (New vs Printed)
         else if (status === 'Paid') {
-            targetList = paidList;
-            type = 'paid';
-            dateKey = 'paid';
-            counts.paid++;
+            type = 'paid'; counts.paid++;
+            if (meta.isPrinted) {
+                targetList = listPaidPrinted; dateKey = 'paid_print'; subCounts.paid_print++;
+            } else {
+                targetList = listPaidNew; dateKey = 'paid_new'; subCounts.paid_new++;
+            }
         }
+        // C. DISPATCHED (New vs Tracked)
         else if (status === 'Dispatched') {
-            targetList = dispatchedList;
-            type = 'dispatched';
-            dateKey = 'dispatched';
-            counts.dispatched++;
-
-            if (currentSortDir === 'desc') {
-                let thisDispLabel = getTimelineLabel(dDateStr);
-                if (thisDispLabel !== latestDispatchedDateLabel) isCompact = true;
+            type = 'dispatched'; counts.dispatched++;
+            // Tracking Number ഉണ്ടെങ്കിൽ അല്ലെങ്കിൽ 'T' ഫ്ലാഗ് ഉണ്ടെങ്കിൽ
+            if (d.tracking || meta.isTracked) {
+                targetList = listDispTracked; dateKey = 'disp_track'; subCounts.disp_track++;
+            } else {
+                targetList = listDispNew; dateKey = 'disp_new'; subCounts.disp_new++;
             }
         }
 
@@ -405,18 +470,17 @@ function renderTabs(orders) {
             let qty = parseInt(d.quantity) || 0;
             btlCounts[type] += qty; // Main Bottle Counters
 
-            // Date for Header
+            // Determine Date for Header
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
             if (type === 'dispatched') displayDateRaw = dDateStr;
 
             let dateLabel = getTimelineLabel(displayDateRaw);
 
-            // 🔥 STICKY DATE HEADER RENDERING
+            // 🔥 STICKY DATE HEADER
             if (dateLabel !== lastDateMap[dateKey]) {
                 let extraHtml = '';
-
-                // Courier Cost in Dispatched Tab Header
+                // Show Courier Cost in Dispatched Tab
                 if (type === 'dispatched' && dispatchedCostMap[dateLabel] > 0) {
                     extraHtml = `<span style="opacity:0.9; font-weight:600; margin-left:8px; padding-left:8px; border-left:1px solid #999;">🚚 ₹${dispatchedCostMap[dateLabel]}</span>`;
                 }
@@ -425,19 +489,26 @@ function renderTabs(orders) {
                 lastDateMap[dateKey] = dateLabel;
             }
 
-            // Create Card
-            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
+            // Render Card
+            targetList.innerHTML += createCardHTML(d, i, type, status, false);
         }
     });
 
-    // --- UPDATE BADGES ---
+    // 8. UPDATE BADGES (Main & Sub)
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // 🔥 Update Sub-Tab Badges (New & Sent)
-    if (document.getElementById('badge-sub-new')) document.getElementById('badge-sub-new').innerText = subCounts.new;
-    if (document.getElementById('badge-sub-sent')) document.getElementById('badge-sub-sent').innerText = subCounts.sent;
+    // Sub-Tab Badges
+    const setBadge = (id, val) => {
+        if (document.getElementById(id)) document.getElementById(id).innerText = val;
+    };
+    setBadge('badge-sub-new', subCounts.new);
+    setBadge('badge-sub-sent', subCounts.sent);
+    setBadge('badge-paid-new', subCounts.paid_new);
+    setBadge('badge-paid-printed', subCounts.paid_print);
+    setBadge('badge-disp-new', subCounts.disp_new);
+    setBadge('badge-disp-tracked', subCounts.disp_track);
 
     updateSyncButtonUI();
     checkSelectAllStatus();
@@ -530,15 +601,33 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let opts = '';
     // Helper to check selected
-    const isSel = (val) => (savedContact && savedContact === val) ? 'selected' : (!savedContact && !d.whatsapp && val === d.phone) ? 'selected' : '';
+    const isSel = (val) => val ? 'selected' : '';
 
     if (d.whatsapp) opts += `<option value="${d.whatsapp}" ${isSel(d.whatsapp)}>📲 WA: ${d.whatsapp}</option>`;
     opts += `<option value="${d.phone}" ${isSel(d.phone)}>📞 PH: ${d.phone}</option>`;
     if (d.altphone) opts += `<option value="${d.altphone}" ${isSel(d.altphone)}>☎️ ALT: ${d.altphone}</option>`;
 
+    // 🔥 META BASED SELECTION
+    let meta = getMetaStatus(d.adminMeta);
+    // M=Phone, W=WhatsApp, A=Alt. Default logic:
+    let selectedContact = meta.contact; // 'phone', 'whatsapp', or 'alt'    
+
+    // Logic to set selected attribute based on meta
+    let selP = (selectedContact === 'phone') ? 'selected' : '';
+    let selW = (selectedContact === 'whatsapp') ? 'selected' : '';
+    let selA = (selectedContact === 'alt') ? 'selected' : '';
+
+    if (d.whatsapp) opts += `<option value="${d.whatsapp}" ${selW}>📲 WA: ${d.whatsapp}</option>`;
+    opts += `<option value="${d.phone}" ${selP}>📞 PH: ${d.phone}</option>`;
+    if (d.altphone) opts += `<option value="${d.altphone}" ${selA}>☎️ ALT: ${d.altphone}</option>`;
+
+    // 🔥 ONCHANGE -> Calls updateAdminMeta ('M', 'W', or 'A')
+    // We need to pass the code, so we use a small helper in onchange
     let waSelectorHTML = `
     <div class="mt-2 mb-2 d-flex gap-1" onclick="event.stopPropagation();">
-        <select id="wa-select-${index}" onchange="saveContactSelection('${d.orderid}', this.value)" class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
+        <select id="wa-select-${index}" 
+            onchange="let code = this.options[this.selectedIndex].text.includes('WA') ? 'W' : (this.options[this.selectedIndex].text.includes('ALT') ? 'A' : 'M'); updateAdminMeta('${d.orderid}', 'contact', code);" 
+            class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index})" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
@@ -1295,6 +1384,12 @@ function runPrintLogic(selectedItems) {
         }
     });
     Promise.all(promises).then(() => {
+        // 🔥 MARK AS PRINTED (P)
+        selectedItems.forEach(cb => {
+            let d = allOrders[cb.value];
+            if (d) updateAdminMeta(d.orderid, 'printed', 'P'); // 'P' ചേർക്കുന്നു
+        });
+        renderTabs(allOrders);
         document.body.removeChild(tempDiv);
         const printWin = window.open('', '', 'width=600,height=800');
         let htmlContent = `<html><head><title>KAFAK Print</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
@@ -2523,21 +2618,30 @@ window.clearSearch = function () {
     document.getElementById('searchInput').focus(); // 3. വീണ്ടും ടൈപ്പ് ചെയ്യാൻ റെഡി ആക്കുന്നു
 }
 
-// 🔥 SWITCH SUB-TABS (New vs Sent)
+// 🔥 SWITCH SUB-TABS 
 window.switchSubTab = function (type) {
-    if (type === 'new') {
-        document.getElementById('list-sub-new').style.display = 'flex';
-        document.getElementById('list-sub-sent').style.display = 'none';
+    // Hide All Sub-Lists First within context
+    const hide = (ids) => ids.forEach(id => document.getElementById(id).style.display = 'none');
+    const show = (id) => document.getElementById(id).style.display = 'flex';
+    const btnActive = (id) => document.getElementById(id).className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all';
+    const btnInactive = (id) => document.getElementById(id).className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all';
 
-        // Button Styles
-        document.getElementById('btn-sub-new').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all';
-        document.getElementById('btn-sub-sent').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all';
-    } else {
-        document.getElementById('list-sub-new').style.display = 'none';
-        document.getElementById('list-sub-sent').style.display = 'flex';
-
-        // Button Styles
-        document.getElementById('btn-sub-new').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all';
-        document.getElementById('btn-sub-sent').className = 'btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all';
+    if (type === 'new' || type === 'sent') {
+        hide(['list-sub-new', 'list-sub-sent']);
+        show(type === 'new' ? 'list-sub-new' : 'list-sub-sent');
+        btnActive(type === 'new' ? 'btn-sub-new' : 'btn-sub-sent');
+        btnInactive(type === 'new' ? 'btn-sub-sent' : 'btn-sub-new');
+    }
+    else if (type === 'paid_new' || type === 'paid_printed') {
+        hide(['list-paid-new', 'list-paid-printed']);
+        show(type === 'paid_new' ? 'list-paid-new' : 'list-paid-printed');
+        btnActive(type === 'paid_new' ? 'btn-sub-paid-new' : 'btn-sub-paid-printed');
+        btnInactive(type === 'paid_new' ? 'btn-sub-paid-printed' : 'btn-sub-paid-new');
+    }
+    else if (type === 'disp_new' || type === 'disp_tracked') {
+        hide(['list-disp-new', 'list-disp-tracked']);
+        show(type === 'disp_new' ? 'list-disp-new' : 'list-disp-tracked');
+        btnActive(type === 'disp_new' ? 'btn-sub-disp-new' : 'btn-sub-disp-tracked');
+        btnInactive(type === 'disp_new' ? 'btn-sub-disp-tracked' : 'btn-sub-disp-new');
     }
 }
