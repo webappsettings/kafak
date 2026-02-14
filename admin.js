@@ -1740,11 +1740,11 @@ async function runPrintLogic(checkboxes, directData = null) {
             </div>
 
             <div style="position:absolute; bottom:2mm; left:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif;">
-                ORD: ${orderTime}
+                O: ${orderTime}
             </div>
 
             <div style="position:absolute; bottom:2mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
-                PAID: ${paidTime}
+                P: ${paidTime}
             </div>
 
         </div>`;
