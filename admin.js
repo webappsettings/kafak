@@ -355,17 +355,29 @@ function renderTabs(orders) {
     if (listSent) listSent.innerHTML = '';
 
     // 🔥 Restore "Paid" Tab Buttons (Scan, Select All, Print) in New Section
+    // 🔥 Restore "Paid" Tab Buttons (New Section)
     if (listPaidNew) {
         listPaidNew.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
-                <button id="btn-select-all" onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small"><i class="far fa-square"></i> All</button>
+                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                 <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
             </div>
         </div>`;
     }
-    if (listPaidPrinted) listPaidPrinted.innerHTML = '';
+
+    // 🔥 NEW: Restore Buttons for "Printed" Section as well
+    if (listPaidPrinted) {
+        listPaidPrinted.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
+            <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+            <div class="d-flex gap-2">
+                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
+                <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
+            </div>
+        </div>`;
+    }
 
     // 🔥 Restore "Dispatched" Tab Buttons (Courier Scan) in New Section
     if (listDispNew) {
@@ -1487,39 +1499,48 @@ function sendWA(index) {
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
-// 🔥 SMART PRINT MANAGER (Sort & Limit)
-window.printSelected = async function () {
-    // 1. Check if user manually selected checkboxes
-    const manualSelection = document.querySelectorAll('.order-cb:checked');
+// 🔥 SMART PRINT MANAGER (Fixes Hanging & Supports Both Tabs)
+window.printSelected = async function (sourceTab = 'new') {
 
-    // മാന്വൽ ആയി ടിക്ക് ചെയ്തിട്ടുണ്ടെങ്കിൽ അത് മാത്രം പ്രിന്റ് ചെയ്യുന്നു (Fast Print)
+    // 1. Collect Candidates
+    let manualSelection = document.querySelectorAll('.order-cb:checked');
+    let candidates = [];
+
+    // A. മാന്വൽ ആയി ടിക്ക് ചെയ്തിട്ടുണ്ടെങ്കിൽ അത് മാത്രം എടുക്കുന്നു
     if (manualSelection.length > 0) {
-        runPrintLogic(manualSelection, null);
-        return;
+        manualSelection.forEach(cb => {
+            if (allOrders[cb.value]) candidates.push(allOrders[cb.value]);
+        });
     }
-
-    // 2. If nothing selected, Get ALL 'Paid > New' Orders
-    // (Paid സ്റ്റാറ്റസ് ഉള്ളതും, എന്നാൽ ഇതുവരെ Print ചെയ്യാത്തതുമായ ഓർഡറുകൾ എടുക്കുന്നു)
-    let candidates = allOrders.filter(o => {
-        let meta = getMetaStatus(o.adminMeta);
-        return o.Status === 'Paid' && !meta.isPrinted;
-    });
+    // B. ഒന്നും ടിക്ക് ചെയ്തിട്ടില്ലെങ്കിൽ, ആ ടാബിലുള്ള എല്ലാത്തിനെയും എടുക്കുന്നു
+    else {
+        candidates = allOrders.filter(o => {
+            let meta = getMetaStatus(o.adminMeta);
+            if (sourceTab === 'printed') {
+                return o.Status === 'Paid' && meta.isPrinted; // Printed Tab
+            } else {
+                return o.Status === 'Paid' && !meta.isPrinted; // New Tab
+            }
+        });
+    }
 
     if (candidates.length === 0) {
-        showToast("warning", "No new orders to print!");
+        showToast("warning", "No orders selected to print!");
         return;
     }
 
-    // 3. SHOW PRINT MANAGER POPUP
+    // 2. SHOW PRINT MANAGER POPUP
     const { value: formValues } = await Swal.fire({
         title: '🖨️ Print Manager',
         html: `
             <div class="text-start bg-light p-3 rounded mb-3 border">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-bold text-dark">Total Pending:</span>
+                    <span class="fw-bold text-dark">Selected Items:</span>
                     <span class="badge bg-primary rounded-pill fs-6">${candidates.length}</span>
                 </div>
-                <div class="text-muted small" style="font-size:11px;">Select how many labels to generate now.</div>
+                <div class="text-muted small" style="font-size:11px;">
+                    ${candidates.length > 50 ? '⚠️ High quantity! Select a limit to avoid hanging.' : 'Choose sort order and quantity.'}
+                </div>
             </div>
 
             <div class="mb-3 text-start">
@@ -1531,10 +1552,10 @@ window.printSelected = async function () {
             </div>
 
             <div class="mb-3 text-start">
-                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">2. Quantity (Labels)</label>
+                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">2. Quantity Limit</label>
                 <div class="input-group mt-1">
                     <input type="number" id="print-limit" class="form-control shadow-none fw-bold fs-5 text-center" 
-                        value="${candidates.length}" min="1" max="${candidates.length}">
+                        value="${candidates.length > 50 ? 50 : candidates.length}" min="1" max="${candidates.length}">
                     <span class="input-group-text small text-muted">/ ${candidates.length}</span>
                 </div>
             </div>
@@ -1559,35 +1580,37 @@ window.printSelected = async function () {
 
     if (!formValues) return; // Cancelled
 
-    // 4. PROCESS DATA (Sort & Slice)
+    // 3. PROCESS DATA (Sort & Slice)
+    // ഇവിടെ വെച്ചാണ് ഹെവി പ്രോസസ്സിംഗ് നടക്കുന്നത് (യൂസർ കൺഫേം ചെയ്ത ശേഷം മാത്രം)
 
     // A. Sorting
     candidates.sort((a, b) => {
-        // Paid Date വെച്ച് സോർട്ട് ചെയ്യുന്നു (അതില്ലെങ്കിൽ ഓർഡർ ഡേറ്റ്)
         let dateA = new Date(a.paidDate || a.timestamp);
         let dateB = new Date(b.paidDate || b.timestamp);
         return formValues.sort === 'oldest' ? dateA - dateB : dateB - dateA;
     });
 
-    // B. Limiting (ആവശ്യമുള്ള എണ്ണം മാത്രം എടുക്കുന്നു)
-    let selectedBatch = candidates.slice(0, formValues.limit);
+    // B. Limiting (യൂസർ പറഞ്ഞ എണ്ണം മാത്രം എടുക്കുന്നു)
+    let finalBatch = candidates.slice(0, formValues.limit);
 
-    // 5. Run Print Logic with Batch Data
-    runPrintLogic(null, selectedBatch);
+    // 4. Run Print Logic
+    runPrintLogic(null, finalBatch);
 }
 
-// 🔥 UPDATED PRINT LOGIC (Supports both Checkbox & Bulk Data)
+// 🔥 UPDATED PRINT LOGIC (With Sequence Number 1, 2, 3...)
 function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
     // 1. Determine Source (Checkbox vs Bulk Data)
     if (directData) {
-        ordersToPrint = directData; // Batch Print വഴി വന്നത്
+        ordersToPrint = directData; // Batch Print (Sorted by Manager)
     } else if (checkboxes) {
-        // Manual Selection വഴി വന്നത്
+        // Manual Selection
         checkboxes.forEach(cb => {
             if (allOrders[cb.value]) ordersToPrint.push(allOrders[cb.value]);
         });
+        // Manual Selection ആണെങ്കിലും തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു (Oldest First)
+        ordersToPrint.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
     }
 
     if (ordersToPrint.length === 0) return;
@@ -1612,7 +1635,7 @@ function runPrintLogic(checkboxes, directData = null) {
                 let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
                 labelsData.push({ details: d, qrSrc: qrImgSrc });
                 resolve();
-            }, 50); // Small delay for rendering
+            }, 50);
         });
         promises.push(p);
     });
@@ -1620,12 +1643,12 @@ function runPrintLogic(checkboxes, directData = null) {
     // 3. Open Print Window
     Promise.all(promises).then(() => {
 
-        // 🔥 MARK AS PRINTED (P) - Only for these orders
+        // 🔥 MARK AS PRINTED (P)
         ordersToPrint.forEach(d => {
             updateAdminMeta(d.orderid, 'printed', 'P');
         });
 
-        // Refresh UI (Cards will move to 'Printed' tab)
+        // Refresh UI
         renderTabs(allOrders);
 
         document.body.removeChild(tempDiv);
@@ -1633,8 +1656,10 @@ function runPrintLogic(checkboxes, directData = null) {
         const printWin = window.open('', '', 'width=600,height=800');
         let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
 
-        labelsData.forEach(item => {
+        // 🔥 LOOP WITH INDEX (For Sequence Number)
+        labelsData.forEach((item, index) => {
             const d = item.details;
+            const seqNum = index + 1; // 1, 2, 3...
             const safe = (val) => String(val || '').toUpperCase();
             let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
             const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -1644,7 +1669,40 @@ function runPrintLogic(checkboxes, directData = null) {
                 printPhone += `, ${d.altphone}`;
             }
 
-            htmlContent += `<div class="label-page"><div class="address-sec"><div class="to-label">To,</div><div class="cust-name">${safe(d.name)}</div><div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div><div class="cust-pin">PIN: ${d.pincode}</div><div class="cust-ph">PH: ${printPhone}</div></div><div class="meta-sec"><div class="qr-box"><img src="${item.qrSrc}"></div><div class="qr-oid">${d.orderid}</div>${qtyHTML}</div><div class="contact-box"><div class="contact-icon">${phoneIcon}</div><div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div></div><div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div><div class="from-sec"><span style="font-weight:bold; font-size:11px;">From,</span><br><b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>Ernakulam District, Kerala, India.<br>Phone: 778899 0 313</div></div>`;
+            htmlContent += `
+            <div class="label-page">
+                <div class="address-sec">
+                    <div class="to-label">To,</div>
+                    <div class="cust-name">${safe(d.name)}</div>
+                    <div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div>
+                    <div class="cust-pin">PIN: ${d.pincode}</div>
+                    <div class="cust-ph">PH: ${printPhone}</div>
+                </div>
+                
+                <div class="meta-sec">
+                    <div class="qr-box"><img src="${item.qrSrc}"></div>
+                    <div class="qr-oid">${d.orderid}</div>
+                    ${qtyHTML}
+                </div>
+                
+                <div class="contact-box">
+                    <div class="contact-icon">${phoneIcon}</div>
+                    <div class="contact-text"><span>7788990313, 9895082689</span>If unreachable, call or WhatsApp us</div>
+                </div>
+                
+                <div class="fragile-sec"><img src="fragile.png" class="fragile-img" alt="Fragile"></div>
+                
+                <div class="from-sec">
+                    <span style="font-weight:bold; font-size:11px;">From,</span><br>
+                    <b>KAFAK LLP,</b> 10/174, Kunnathery,<br>Thaikkattukara P.O, Aluva - 683106,<br>
+                    Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
+                </div>
+
+                <div style="position:absolute; bottom:5mm; right:5mm; font-size:14px; font-weight:900; color:#000; border:2px solid #000; padding:2px 6px; border-radius:6px;">
+                    #${seqNum}
+                </div>
+
+            </div>`;
         });
 
         htmlContent += `</body></html>`;
@@ -1673,11 +1731,22 @@ function editTracking(oid, currentVal) {
 
 
 function toggleSelectAll() {
-    const btn = document.getElementById('btn-select-all');
-    const checkboxes = document.querySelectorAll('.order-cb');
+    // ദൃശ്യമായിട്ടുള്ള ചെക്ക്ബോക്സുകൾ മാത്രം സെലക്ട് ചെയ്യുന്നു
+    const checkboxes = document.querySelectorAll('.order-cb:not([style*="display: none"])');
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
+
     checkboxes.forEach(cb => cb.checked = !isAllChecked);
-    updateSelectAllButton();
+
+    // ബട്ടൺ സ്റ്റൈൽ മാറ്റുന്നു
+    document.querySelectorAll('.btn-select-all').forEach(btn => {
+        if (!isAllChecked) {
+            btn.classList.remove('btn-light', 'text-secondary'); btn.classList.add('btn-dark', 'text-white');
+            btn.innerHTML = '<i class="fas fa-check-square"></i> All';
+        } else {
+            btn.classList.add('btn-light', 'text-secondary'); btn.classList.remove('btn-dark', 'text-white');
+            btn.innerHTML = '<i class="far fa-square"></i> All';
+        }
+    });
 }
 
 function checkSelectAllStatus() { updateSelectAllButton(); }
