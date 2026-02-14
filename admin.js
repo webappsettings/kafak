@@ -555,8 +555,6 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 // 🔥 UPDATED CARD HTML (Fixes Address, Date, Stats)
-// 🔥 UPDATED CARD HTML (Address Fix & Language Fix)
-// 🔥 DATE HELPER: ഷീറ്റിലെ DD/MM/YYYY ഫോർമാറ്റ് ശരിയാക്കാൻ
 function parseSheetDate(dateStr) {
     if (!dateStr) return new Date();
     // timestamp ആണെങ്കിൽ നേരിട്ട് എടുക്കും
