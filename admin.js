@@ -1555,7 +1555,7 @@ window.printSelected = async function (sourceTab = 'new') {
                 <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">2. Quantity Limit</label>
                 <div class="input-group mt-1">
                     <input type="number" id="print-limit" class="form-control shadow-none fw-bold fs-5 text-center" 
-                        value="${candidates.length > 50 ? 50 : candidates.length}" min="1" max="${candidates.length}">
+                        value="${(manualSelection.length > 0) ? candidates.length : (candidates.length > 50 ? 50 : candidates.length)}" min="1" max="${candidates.length}">
                     <span class="input-group-text small text-muted">/ ${candidates.length}</span>
                 </div>
             </div>
@@ -1751,18 +1751,29 @@ function toggleSelectAll() {
 
 function checkSelectAllStatus() { updateSelectAllButton(); }
 
+// 🔥 FIX: Update ALL Select All Buttons (New & Printed Tabs)
 function updateSelectAllButton() {
-    const btn = document.getElementById('btn-select-all');
-    const checkboxes = document.querySelectorAll('.order-cb');
+    // ID-ക്ക് പകരം Class വെച്ച് എല്ലാ ബട്ടണുകളും എടുക്കുന്നു
+    const buttons = document.querySelectorAll('.btn-select-all');
+    if (buttons.length === 0) return;
+
+    // ദൃശ്യമായിട്ടുള്ള ചെക്ക്ബോക്സുകൾ മാത്രം നോക്കുന്നു
+    const checkboxes = document.querySelectorAll('.order-cb:not([style*="display: none"])');
     if (checkboxes.length === 0) return;
+
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
-    if (isAllChecked) {
-        btn.classList.remove('btn-light', 'text-secondary'); btn.classList.add('btn-dark', 'text-white');
-        btn.innerHTML = '<i class="fas fa-check-square"></i> All';
-    } else {
-        btn.classList.add('btn-light', 'text-secondary'); btn.classList.remove('btn-dark', 'text-white');
-        btn.innerHTML = '<i class="far fa-square"></i> All';
-    }
+
+    buttons.forEach(btn => {
+        if (isAllChecked) {
+            btn.classList.remove('btn-light', 'text-secondary');
+            btn.classList.add('btn-dark', 'text-white');
+            btn.innerHTML = '<i class="fas fa-check-square"></i> All';
+        } else {
+            btn.classList.add('btn-light', 'text-secondary');
+            btn.classList.remove('btn-dark', 'text-white');
+            btn.innerHTML = '<i class="far fa-square"></i> All';
+        }
+    });
 }
 
 function formatFullDate(dateStr) {
