@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbyEPX1rol6DFFHVKHUqJjVx1ebSwIzNW0G0LYVKH2rxLN9XOD0xSaieXV3b5a-jd0fyoA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbyuKPl3TNmfOGHyWR8lRqx8baDkw5msA_LTIQyffJjv6MFCLzMKywi82L3EWTh3Ecw_zg/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -139,17 +139,17 @@ function formatPrettyDate(dateStr) {
 }
 
 function getZoneKey(stateName) {
-  if (!stateName) return 'north'; // Default
+  if (!stateName) return 'REST OF INDIA';
   let s = stateName.toUpperCase().trim();
 
-  if (s === 'KERALA') return 'kerala';
-  if (s === 'TAMIL NADU') return 'tn';
-  if (s === 'KARNATAKA') return 'ka';
-  if (s === 'ANDHRA PRADESH') return 'ap';
-  if (s === 'TELANGANA') return 'ts';
-  if (s === 'LAKSHADWEEP') return 'lakshadweep';
+  // 🔥 DYNAMIC CHECK: സ്റ്റേറ്റ് ലിസ്റ്റിൽ ഈ പേരുണ്ടോ എന്ന് നോക്കുന്നു
+  // ഉണ്ടെങ്കിൽ ആ പേര് തന്നെ തിരിച്ചയക്കുന്നു (ഉദാ: "KARNATAKA")
+  if (courierRates && courierRates[s]) {
+    return s;
+  }
 
-  return 'north'; // All other states
+  // ലിസ്റ്റിൽ ഇല്ലെങ്കിൽ മാത്രം "REST OF INDIA" എടുക്കുന്നു
+  return 'REST OF INDIA';
 }
 
 $(document).ready(function () {
@@ -1599,23 +1599,20 @@ function fetchCourierRates() {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   const loadingTxt = t.loading || "Loading Options...";
-
   let currentSelection = $('#quick-qty').val();
-
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
 
   // 1. CACHE CHECK
   let cachedRates = SafeStorage.getItem('cachedRates');
   let cacheValid = false;
-
   if (cachedRates) {
     try {
       let parsed = JSON.parse(cachedRates);
-      if (parsed && parsed.kerala) {
+      // 🔥 FIX: 'KERALA' (UpperCase) ആണ് ഇപ്പോൾ കീ
+      if (parsed && parsed.KERALA) {
         courierRates = parsed;
-        globalQtyList = Object.keys(parsed.kerala).map(Number).sort((a, b) => a - b);
+        globalQtyList = Object.keys(parsed.KERALA).map(Number).sort((a, b) => a - b);
         renderQtyDropdowns();
-        console.log("⚡ Rates loaded from Cache");
         cacheValid = true;
       }
     } catch (e) { }
@@ -1627,44 +1624,30 @@ function fetchCourierRates() {
     .then(data => {
       if (data.result === 'success' && data.rates) {
         courierRates = data.rates;
+        if (data.adminPhone) adminPhone = String(data.adminPhone);
 
-        // 🔥 NEW: Server-ൽ നിന്ന് അഡ്മിൻ നമ്പർ വരുന്നുണ്ടെങ്കിൽ അത് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-        if (data.adminPhone) {
-          adminPhone = String(data.adminPhone);
-          console.log("Admin Phone Updated:", adminPhone);
+        // 🔥 FIX: 'KERALA' കീ ഉപയോഗിക്കുന്നു
+        if (data.rates.KERALA) {
+          globalQtyList = Object.keys(data.rates.KERALA).map(Number).sort((a, b) => a - b);
         }
-        globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
+
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
 
-        // 🔥 FIX: Restore Logic
         let restoreQty = currentSelection;
         if (!restoreQty && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
           restoreQty = savedOrderData.quantity;
         }
-
         renderQtyDropdowns();
-
         if (restoreQty) {
           $('#quick-qty').val(restoreQty);
           updatePrice(restoreQty, true);
         }
-
-        console.log("✅ Rates Synced from Server");
         return true;
       }
       return false;
-    })
-    .catch(err => {
-      console.log("❌ Rate fetch failed");
-      return false;
-    });
+    }).catch(err => false);
 
-  if (cacheValid) {
-    serverFetch;
-    return Promise.resolve(true);
-  } else {
-    return serverFetch;
-  }
+  if (cacheValid) { serverFetch; return Promise.resolve(true); } else { return serverFetch; }
 }
 
 function renderQtyDropdowns() {
