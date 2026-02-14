@@ -216,13 +216,29 @@ $(document).ready(function () {
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
+
       for (let ph of phones) {
         if (String(localUsersMap[ph].orderid) === String(oid)) {
-          showLoader(false);
-          $('#step-0').hide();
-          loadOrderData(localUsersMap[ph], false);
-          foundLocally = true;
-          syncUserDataBackground(ph);
+          try {
+            // 🔥 SELF-HEALING: ഡാറ്റ ശരിയാണോ എന്ന് പരിശോധിക്കുന്നു
+            let d = localUsersMap[ph];
+
+            // പേരോ സ്റ്റാറ്റസോ ഇല്ലെങ്കിൽ അത് കേടായ ഡാറ്റയാണ് -> Error ഉണ്ടാക്കുന്നു
+            if (!d.name || !d.Status) throw new Error("Corrupt Data");
+
+            // ഡാറ്റ നല്ലതാണെങ്കിൽ ലോഡ് ചെയ്യുന്നു
+            showLoader(false);
+            $('#step-0').hide();
+            loadOrderData(d, false);
+            foundLocally = true;
+            syncUserDataBackground(ph);
+          } catch (e) {
+            console.log("⚠️ Local data corrupt! Deleting and fetching fresh data...");
+            // കേടായ ഡാറ്റ ഡിലീറ്റ് ചെയ്യുന്നു
+            delete localUsersMap[ph];
+            SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+            foundLocally = false; // സെർവറിൽ നിന്ന് എടുക്കാൻ നിർബന്ധിക്കുന്നു
+          }
           break;
         }
       }
