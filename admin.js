@@ -1132,7 +1132,7 @@ window.syncWithServer = function () {
 };
 
 // 🔥 2. SHOW EXPENSES IN SYNC MODAL (സിങ്ക് വിൻഡോയിൽ എക്സ്പെൻസുകൾ കൂടി കാണിക്കാൻ)
-// 🔥 UPDATED: BEAUTIFUL SPLIT SYNC LIST
+// 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -1142,17 +1142,22 @@ function renderSyncList() {
 
     let totalCount = pendingUpdates.length + pendingExpenses.length;
     countDisplay.innerText = totalCount;
-    list.innerHTML = '';
+    list.innerHTML = ''; // Clear previous content
+
+    if (totalCount === 0) {
+        $('#syncModal').modal('hide');
+        updateSyncButtonUI();
+        return;
+    }
 
     // 1. Separate Updates
     let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && !u.deleteRefund);
     let metaUpdates = pendingUpdates.filter(u => u.action === 'meta');
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
 
-    // --- A. ORDER UPDATES (Status / Tracking) ---
+    // --- A. ORDER STATUS CHANGES ---
     if (orderUpdates.length > 0 || refundDeletions.length > 0) {
-        list.innerHTML += `<div class="sticky-header bg-light p-2 mb-2 border-bottom fw-bold text-dark small">📦 ORDER STATUS CHANGES</div>`;
-
+        let itemsHtml = '';
         [...orderUpdates, ...refundDeletions].forEach((u, index) => {
             let order = allOrders.find(o => o.orderid === u.oid);
             let name = order ? order.name : 'Unknown';
@@ -1167,20 +1172,35 @@ function renderSyncList() {
                 actionHtml = `<span class="badge bg-${badgeColor}">${u.status}</span>`;
             }
 
-            list.innerHTML += `
-            <tr style="border-bottom:1px solid #eee;">
-                <td width="30"><div class="rounded-circle bg-white border d-flex align-items-center justify-content-center" style="width:30px; height:30px;">${index + 1}</div></td>
-                <td><div class="fw-bold text-dark small">${u.oid}</div><div class="small text-muted">${name}</div></td>
-                <td>${actionHtml}</td>
-                <td class="text-end"><button onclick="undoUpdate('${u.oid}', false)" class="btn btn-sm text-danger"><i class="fas fa-times"></i></button></td>
-            </tr>`;
+            itemsHtml += `
+            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle bg-light border d-flex align-items-center justify-content-center fw-bold text-secondary" style="width:25px; height:25px; font-size:10px;">${index + 1}</div>
+                    <div>
+                        <div class="fw-bold text-dark small">${u.oid} <span class="text-muted fw-normal">(${name})</span></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    ${actionHtml}
+                    <button onclick="undoUpdate('${u.oid}', false)" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
+                </div>
+            </div>`;
         });
+
+        list.innerHTML += `
+        <div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;">
+            <div class="card-header bg-white fw-bold text-dark small py-2 px-3 border-bottom">
+                📦 ORDER STATUS CHANGES
+            </div>
+            <div class="card-body p-0 bg-white">
+                ${itemsHtml}
+            </div>
+        </div>`;
     }
 
-    // --- B. ADMIN META UPDATES (Internal Flags) ---
+    // --- B. INTERNAL FLAGS (Admin Meta) ---
     if (metaUpdates.length > 0) {
-        list.innerHTML += `<div class="sticky-header bg-indigo-50 p-2 mt-3 mb-2 border-bottom fw-bold text-primary small" style="background:#e0e7ff; color:#3730a3;">⚙️ ADMIN INTERNAL FLAGS</div>`;
-
+        let itemsHtml = '';
         metaUpdates.forEach((u, index) => {
             let meta = getMetaStatus(u.meta);
             let flags = [];
@@ -1190,55 +1210,108 @@ function renderSyncList() {
             let contactIcon = meta.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (meta.contact === 'alt' ? 'fas fa-phone-square text-secondary' : 'fas fa-phone-alt text-primary');
             flags.push(`<i class="${contactIcon}"></i> Pref`);
 
-            list.innerHTML += `
-            <tr style="border-bottom:1px solid #eee; background:#f8fafc;">
-                <td width="30"><div class="rounded-circle bg-white border d-flex align-items-center justify-content-center" style="width:30px; height:30px;"><i class="fas fa-cog text-muted"></i></div></td>
-                <td><div class="fw-bold text-dark small">${u.oid}</div></td>
-                <td><div class="d-flex gap-1">${flags.join('')}</div></td>
-                <td class="text-end"><button onclick="undoUpdate('${u.oid}', true)" class="btn btn-sm text-danger"><i class="fas fa-times"></i></button></td>
-            </tr>`;
+            itemsHtml += `
+            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle bg-indigo-50 text-primary border d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-cog"></i></div>
+                    <div class="fw-bold text-dark small">${u.oid}</div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex gap-1">${flags.join('')}</div>
+                    <button onclick="undoUpdate('${u.oid}', true)" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
+                </div>
+            </div>`;
         });
+
+        list.innerHTML += `
+        <div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;">
+            <div class="card-header bg-indigo-50 fw-bold text-primary small py-2 px-3 border-bottom" style="background:#e0e7ff;">
+                ⚙️ ADMIN INTERNAL FLAGS
+            </div>
+            <div class="card-body p-0 bg-white">
+                ${itemsHtml}
+            </div>
+        </div>`;
     }
 
     // --- C. EXPENSES ---
     if (pendingExpenses.length > 0) {
-        list.innerHTML += `<div class="sticky-header bg-warning-50 p-2 mt-3 mb-2 border-bottom fw-bold text-dark small" style="background:#fffbeb; color:#92400e;">💸 EXPENSES</div>`;
-
+        let itemsHtml = '';
         pendingExpenses.forEach((exp, index) => {
-            list.innerHTML += `
-            <tr style="border-bottom:1px solid #eee; background:#fffcf2;">
-                <td width="30"><div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width:30px; height:30px;"><i class="fas fa-receipt"></i></div></td>
-                <td><div class="fw-bold small">${exp.category}</div><div class="small text-muted">₹${exp.amount}</div></td>
-                <td><div class="small">${exp.vendor}</div></td>
-                <td class="text-end"><button onclick="undoExpenseUpdate('${exp.id}')" class="btn btn-sm text-danger"><i class="fas fa-times"></i></button></td>
-            </tr>`;
+            itemsHtml += `
+            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-receipt"></i></div>
+                    <div>
+                        <div class="fw-bold small">${exp.category}</div>
+                        <div class="small text-muted" style="font-size:10px;">${exp.vendor}</div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold text-dark small">₹${exp.amount}</span>
+                    <button onclick="undoExpenseUpdate('${exp.id}')" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
+                </div>
+            </div>`;
         });
-    }
 
-    if (totalCount === 0) {
-        $('#syncModal').modal('hide');
-        updateSyncButtonUI();
+        list.innerHTML += `
+        <div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;">
+            <div class="card-header bg-warning-50 fw-bold text-dark small py-2 px-3 border-bottom" style="background:#fffbeb; color:#92400e;">
+                💸 EXPENSES
+            </div>
+            <div class="card-body p-0 bg-white">
+                ${itemsHtml}
+            </div>
+        </div>`;
     }
 }
 
 // 🔥 UPDATED UNDO LOGIC (Supports Meta Separate Undo)
+// 🔥 UPDATED UNDO LOGIC (No Loading Spinner)
 window.undoUpdate = function (oid, isMeta) {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let removedItem = null;
 
     if (isMeta) {
-        // Remove only meta action for this OID
+        // Find and remove meta action
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'meta');
         pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'meta'));
+
+        // Revert Local Object Admin Meta (Optional visual revert)
+        let order = allOrders.find(o => o.orderid === oid);
+        if (order) {
+            // മെറ്റാ മാറ്റിയാൽ പഴയതിലേക്ക് പോകാൻ ബുദ്ധിമുട്ടാണ്, 
+            // അതിനാൽ തൽക്കാലം ഇത് സിങ്ക് ലിസ്റ്റിൽ നിന്ന് കളയുന്നു. 
+            // UI-ൽ പഴയ സെലക്ഷൻ തന്നെ നിൽക്കും (Re-select ചെയ്യാം).
+        }
+
     } else {
         // Remove status updates
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta');
         pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta'));
+
+        // 🔥 Revert Order Status Locally (Instant)
+        if (removedItem && removedItem.oldStatus) {
+            let orderIndex = allOrders.findIndex(o => o.orderid === oid);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].Status = removedItem.oldStatus;
+
+                // Remove Tracking if it was added
+                if (removedItem.tracking) delete allOrders[orderIndex].tracking;
+
+                // Save Reverted State to Cache
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            }
+        }
     }
 
     localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
+
+    // Refresh Lists without Server Call
     renderSyncList();
     updateSyncButtonUI();
-    fetchOrders(true); // Revert UI
+    renderTabs(allOrders); // UI പഴയ സ്റ്റാറ്റസിലേക്ക് മാറും
 }
-
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
 window.undoExpenseUpdate = function (id) {
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -1357,39 +1430,30 @@ function sendWA(index) {
 
     // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-
-    // 🔥 ഇവിടെയും പുതിയ ടെക്സ്റ്റ് നൽകി:
     const editText = "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
 
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
     const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*`;
 
-    // 4. DETERMINE TARGET PHONE
+    // 4. DETERMINE TARGET PHONE (Fix for W/M/A)
     let phoneNum = "";
     const dropdown = document.getElementById(`wa-select-${index}`);
-    if (dropdown && dropdown.value) phoneNum = dropdown.value;
+    let code = dropdown ? dropdown.value : '';
+
+    if (code === 'W') phoneNum = d.whatsapp;
+    else if (code === 'A') phoneNum = d.altphone;
+    else if (code === 'M') phoneNum = d.phone;
     else phoneNum = d.whatsapp || d.phone;
 
-    phoneNum = String(phoneNum).replace(/[^0-9]/g, '');
+    phoneNum = String(phoneNum || '').replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
-
-    // 5. UPDATE STATUS
-    // if (d.Status === 'Pending') {
-    //     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    //     updates = updates.filter(item => item.oid !== d.orderid);
-    //     updates.push({ oid: d.orderid, status: 'Sent', time: new Date().getTime() });
-    //     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-    //     const orderIndex = allOrders.findIndex(o => o.orderid === d.orderid);
-    //     if (orderIndex !== -1) {
-    //         allOrders[orderIndex].Status = 'Sent';
-    //         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-    //     }
-    //     setTimeout(() => { renderTabs(allOrders); updateSyncButtonUI(); }, 1000);
-    // }
+    if (phoneNum) {
+        window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
+    } else {
+        alert("Number not found!");
+    }
 }
 
 function printSingle(index) { runPrintLogic([{ value: index }]); }
@@ -2599,20 +2663,33 @@ function toggleSort() {
 }
 
 // 🔥 OPEN WHATSAPP (JUST OPEN)
+// 🔥 OPEN WHATSAPP (Fix for W/M/A Codes)
 function openSimpleWA(index, btnElement) {
+    // 1. Highlight
     if (btnElement) highlightCard(btnElement);
+
     const d = allOrders[index];
     let phoneNum = "";
 
-    // Get value from dropdown
+    // 2. Get Code from Dropdown (W, M, A)
     const dropdown = document.getElementById(`wa-select-${index}`);
-    if (dropdown && dropdown.value) phoneNum = dropdown.value;
-    else phoneNum = d.whatsapp || d.phone;
+    let code = dropdown ? dropdown.value : '';
 
-    phoneNum = String(phoneNum).replace(/[^0-9]/g, '');
+    // 3. Map Code to Real Number
+    if (code === 'W') phoneNum = d.whatsapp;
+    else if (code === 'A') phoneNum = d.altphone;
+    else if (code === 'M') phoneNum = d.phone;
+    else phoneNum = d.whatsapp || d.phone; // Fallback
+
+    // 4. Clean & Open
+    phoneNum = String(phoneNum || '').replace(/[^0-9]/g, '');
     if (phoneNum.length === 10) phoneNum = '91' + phoneNum;
 
-    window.open(`https://wa.me/${phoneNum}`, '_blank');
+    if (phoneNum) {
+        window.open(`https://wa.me/${phoneNum}`, '_blank');
+    } else {
+        alert("Number not found!");
+    }
 }
 
 // 🔥 SERVER SIDE SEARCH FUNCTION
@@ -2694,6 +2771,12 @@ window.highlightCard = function (el) {
     // Add to current
     let card = $(el).closest('.order-card');
     card.addClass('active-highlight-border');
+
+    // Add CSS for Sync List
+    $('<style>').html(`
+    .last-no-border:last-child { border-bottom: none !important; }
+    .hover-bg-light:hover { background-color: #f8f9fa; }
+`).appendTo('head');
 }
 
 // Add CSS dynamically

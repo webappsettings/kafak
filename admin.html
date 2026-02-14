@@ -907,6 +907,21 @@
                 transform: translateY(0);
             }
         }
+
+        /* 🔥 STICKY SUB-TABS */
+        .sticky-sub-nav {
+            position: -webkit-sticky;
+            /* For Safari */
+            position: sticky;
+            top: 135px;
+            /* Main Header-ന്റെ ഏകദേശ ഉയരം. ആവശ്യം എങ്കിൽ ഇത് 130 ഓ 140 ഓ ആക്കി മാറ്റാം */
+            z-index: 900;
+            background: var(--light-bg);
+            /* ബോഡിയുടെ അതേ കളർ നൽകുന്നു, സ്ക്രോൾ ചെയ്യുമ്പോൾ പിന്നിലൂടെ എഴുത്ത് കാണാതിരിക്കാൻ */
+            padding-top: 5px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -969,27 +984,23 @@
             <div id="tabs-container">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pending">
-                        <div class="tab-pane fade show active" id="tab-pending">
 
-                            <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto"
-                                style="max-width: 300px;">
-                                <button onclick="switchSubTab('new')" id="btn-sub-new"
-                                    class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all">
-                                    New <span id="badge-sub-new" class="badge bg-white text-dark ms-1 rounded-pill"
-                                        style="font-size:9px;">0</span>
-                                </button>
-                                <button onclick="switchSubTab('sent')" id="btn-sub-sent"
-                                    class="btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all">
-                                    Sent <span id="badge-sub-sent"
-                                        class="badge bg-secondary text-white ms-1 rounded-pill"
-                                        style="font-size:9px;">0</span>
-                                </button>
-                            </div>
-
-                            <div class="row g-2" id="list-sub-new"></div>
-                            <div class="row g-2" id="list-sub-sent" style="display:none;"></div>
-
+                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto sticky-sub-nav"
+                            style="max-width: 300px;">
+                            <button onclick="switchSubTab('new')" id="btn-sub-new"
+                                class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all">
+                                New <span id="badge-sub-new" class="badge bg-white text-dark ms-1 rounded-pill"
+                                    style="font-size:9px;">0</span>
+                            </button>
+                            <button onclick="switchSubTab('sent')" id="btn-sub-sent"
+                                class="btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all">
+                                Sent <span id="badge-sub-sent" class="badge bg-secondary text-white ms-1 rounded-pill"
+                                    style="font-size:9px;">0</span>
+                            </button>
                         </div>
+
+                        <div class="row g-2" id="list-sub-new"></div>
+                        <div class="row g-2" id="list-sub-sent" style="display:none;"></div>
                     </div>
 
                     <!-- <div class="tab-pane fade" id="tab-paid">
@@ -1010,7 +1021,7 @@
                     </div> -->
 
                     <div class="tab-pane fade" id="tab-paid">
-                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto"
+                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto sticky-sub-nav"
                             style="max-width: 300px;">
                             <button onclick="switchSubTab('paid_new')" id="btn-sub-paid-new"
                                 class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all">
@@ -1027,9 +1038,6 @@
 
                         <div class="row g-2" id="list-paid-new"></div>
                         <div class="row g-2" id="list-paid-printed" style="display:none;"></div>
-
-                        <div class="d-flex justify-content-between align-items-center mb-3 px-1 mt-3">
-                        </div>
                     </div>
 
                     <!-- <div class="tab-pane fade" id="tab-dispatched">
@@ -1043,7 +1051,7 @@
                     </div> -->
 
                     <div class="tab-pane fade" id="tab-dispatched">
-                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto"
+                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto sticky-sub-nav"
                             style="max-width: 300px;">
                             <button onclick="switchSubTab('disp_new')" id="btn-sub-disp-new"
                                 class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all">
