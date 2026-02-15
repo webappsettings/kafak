@@ -1296,6 +1296,20 @@ window.updateAdminUI = function (serverStatus, oid) {
                </div>`;
   } else if (status === 'Delivered') {
     btnHTML = `<div class="d-flex w-100"><button class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" disabled>DELIVERED ✅</button>${syncBtn}</div>`;
+  } else if (status === 'Paid') {
+    // 🔥 FIX: Paid & Synced ആണെങ്കിൽ Receipt Button കാണിക്കുന്നു
+    if (!hasPending) {
+      btnHTML = `
+        <div class="d-flex gap-2 w-100">
+            <button class="btn btn-success btn-sm fw-bold shadow-sm disabled" style="opacity:1;">PAID ✅</button>
+            <button onclick="sendPaymentWA('${oid}')" class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" style="background:#25D366; border-color:#25D366;">
+                <i class="fab fa-whatsapp"></i> SEND RECEIPT
+            </button>
+        </div>`;
+    } else {
+      // Sync ചെയ്യാൻ ബാക്കിയുണ്ടെങ്കിൽ സാധാരണ പോലെ കാണിക്കുന്നു
+      btnHTML = `<div class="d-flex w-100"><button class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" disabled>PAID ✅</button>${syncBtn}</div>`;
+    }
   } else {
     let displayTxt = status === 'Dispatched' ? 'DISPATCHED' : (status === 'Completed' ? 'COMPLETED' : status.toUpperCase());
     btnHTML = `<div class="d-flex w-100"><button class="btn btn-secondary btn-sm fw-bold flex-grow-1 shadow-sm" disabled>${displayTxt} ✅</button>${syncBtn}</div>`;
@@ -1963,4 +1977,35 @@ function updateEditUIState(data) {
     $('#quick-qty').val(data.quantity);
     updatePrice(data.quantity, true);
   }
+}
+// 🔥 SEND PAYMENT RECEIPT WHATSAPP (Updated Message)
+window.sendPaymentWA = function (oid) {
+  let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
+
+  if (!order && typeof allOrders !== 'undefined') {
+    order = allOrders.find(o => o.orderid === oid);
+  }
+  if (!order) {
+    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    order = cached.find(o => o.orderid === oid);
+  }
+
+  if (!order) { alert("Order Data Missing!"); return; }
+
+  let lang = order.language || 'en';
+  let msg = "";
+
+  // ട്രാക്കിംഗ് ലിങ്ക് (ഇത് ഉപകാരപ്രദമാണ്, വേണമെങ്കിൽ ഒഴിവാക്കാം)
+  let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
+
+  if (lang === 'ml') {
+    msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\nനിങ്ങളുടെ സഹകരണത്തിന് നന്ദി!\n\n👇 *Order Status:*\n${trackLink}`;
+  } else {
+    msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
+  }
+
+  let phone = String(order.whatsapp || order.phone).replace(/[^0-9]/g, '');
+  if (phone.length === 10) phone = '91' + phone;
+
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
