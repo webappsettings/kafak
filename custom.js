@@ -630,7 +630,7 @@ window.submitQuickOrder = function () {
   // 1. Check if button is disabled
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 2. Basic Validation (Qty, Phone, Pin)
+  // 2. Basic Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
   const newName = $('#edit-name').val();
@@ -642,9 +642,8 @@ window.submitQuickOrder = function () {
   const pin = $('#edit-pincode').val();
   if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
 
-  // 🔥 3. Post Office Validation
+  // 3. Post Office Validation
   let finalPO = $('#edit-postoffice').val();
-
   if ($('#edit-postoffice-select').is(':visible')) {
     finalPO = $('#edit-postoffice-select').val();
   }
@@ -653,8 +652,7 @@ window.submitQuickOrder = function () {
     if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
     return;
   }
-
-  $('#edit-postoffice').val(finalPO); // Hidden input update
+  $('#edit-postoffice').val(finalPO);
 
   // 4. Prepare Data Object
   const finalData = {
@@ -675,71 +673,69 @@ window.submitQuickOrder = function () {
     language: $('#language-select').val() || 'en'
   };
 
-  // 🔥🔥🔥 SMART ADMIN LOGIC (Status Change & Balance Calc) 🔥🔥🔥
+  // 🔥🔥🔥 SIMPLIFIED ADMIN LOGIC 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
-  // അഡ്മിൻ ആണ്, ഓർഡർ Paid ആണ്, ക്വാണ്ടിറ്റി കൂട്ടിയിട്ടുണ്ട് എങ്കിൽ മാത്രം:
-  if (isAdmin && oldStatus === 'paid') {
-    let oldQty = parseInt(savedOrderData.quantity) || 0;
-    let newQty = parseInt(finalData.quantity) || 0;
+  if (isAdmin) {
+    // 🛑 CASE: Paid Order & Quantity Increased
+    if (oldStatus === 'paid') {
+      let oldQty = parseInt(savedOrderData.quantity) || 0;
+      let newQty = parseInt(finalData.quantity) || 0;
 
-    if (newQty > oldQty) {
-      // 1. Calculate Balance
-      let stateKey = getZoneKey(finalData.state);
-      let rates = courierRates[stateKey] || {};
+      if (newQty > oldQty) {
+        // Calculate Balance
+        let stateKey = getZoneKey(finalData.state);
+        let rates = courierRates[stateKey] || {};
+        let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
+        let newTotal = (newQty * 650) + (rates[newQty] || 0);
 
-      let oldBase = oldQty * 650;
-      let oldCourier = rates[oldQty] || 0;
-      let oldTotal = oldBase + oldCourier;
+        // Simple Confirmation
+        Swal.fire({
+          title: 'Qty Increased! 📈',
+          text: `Balance to collect: ₹${balance}. Mark as SENT?`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#28a745',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Yes, Save & WhatsApp',
+          cancelButtonText: 'No, Just Save'
+        }).then((result) => {
 
-      let newBase = newQty * 650;
-      let newCourier = rates[newQty] || 0;
-      let newTotal = newBase + newCourier;
+          if (result.isConfirmed) {
+            // A. Change Status to SENT
+            finalData.Status = 'Sent';
 
-      let balance = newTotal - oldTotal;
+            // B. Save FIRST (No Animation)
+            postOrder(finalData);
 
-      // 2. Ask Admin Confirmation
-      Swal.fire({
-        title: 'Qty Increased! 📈',
-        html: `Item count changed: <b>${oldQty} ➡️ ${newQty}</b><br>
-                   Balance to collect: <b style="color:red; font-size:18px;">₹${balance}</b><br><br>
-                   Change status to <b>SENT</b> (Pending Payment)?`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ffc107', // Warning Yellow
-        cancelButtonColor: '#28a745', // Success Green
-        confirmButtonText: 'Yes, Mark SENT & Notify',
-        cancelButtonText: 'No, Keep PAID (Already Paid)',
-        reverseButtons: true
-      }).then((result) => {
+            // C. Then Open WhatsApp
+            let custPhone = finalData.whatsapp || finalData.phone;
+            let msg = "";
+            if (finalData.language === 'ml') {
+              msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
+            } else {
+              msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
+            }
+            setTimeout(() => {
+              window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+            }, 500); // Small delay to ensure save triggers first
 
-        if (result.isConfirmed) {
-          // A. Status മാറ്റുന്നു -> Sent
-          finalData.Status = 'Sent';
-
-          // B. WhatsApp Message അയക്കുന്നു
-          let custPhone = finalData.whatsapp || finalData.phone;
-          let msg = "";
-
-          if (finalData.language === 'ml') {
-            msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal} - അടച്ചത്: ₹${oldTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
           } else {
-            msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal} - Paid: ₹${oldTotal})\n\nPlease GPay the balance to confirm. 👍`;
+            // Just Save (Keep Paid)
+            postOrder(finalData);
           }
-
-          window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        // C. Save Data (Sent or Paid based on choice)
-        playVideoAnimation(finalData.name, () => postOrder(finalData));
-
-      });
-      return; // Stop here, wait for SweetAlert click
+        });
+        return; // Stop here
+      }
     }
+
+    // Normal Admin Save (No Qty Change / Not Paid) -> No Video
+    postOrder(finalData);
+    return;
   }
 
-  // സാധാരണ സേവ് (Pending/Sent or No Qty Change)
+  // 🎬 CUSTOMER: Play Video Animation
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
