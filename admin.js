@@ -1148,6 +1148,7 @@ window.syncWithServer = function () {
 
 // 🔥 2. SHOW EXPENSES IN SYNC MODAL (സിങ്ക് വിൻഡോയിൽ എക്സ്പെൻസുകൾ കൂടി കാണിക്കാൻ)
 // 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST
+// 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Paid Number)
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -1157,7 +1158,7 @@ function renderSyncList() {
 
     let totalCount = pendingUpdates.length + pendingExpenses.length;
     countDisplay.innerText = totalCount;
-    list.innerHTML = ''; // Clear previous content
+    list.innerHTML = '';
 
     if (totalCount === 0) {
         $('#syncModal').modal('hide');
@@ -1166,8 +1167,9 @@ function renderSyncList() {
     }
 
     // 1. Separate Updates
-    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && !u.deleteRefund);
+    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && u.action !== 'paidNum' && !u.deleteRefund);
     let metaUpdates = pendingUpdates.filter(u => u.action === 'meta');
+    let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum'); // 🔥 New Category
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
 
     // --- A. ORDER STATUS CHANGES ---
@@ -1191,9 +1193,7 @@ function renderSyncList() {
             <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
                 <div class="d-flex align-items-center gap-2">
                     <div class="rounded-circle bg-light border d-flex align-items-center justify-content-center fw-bold text-secondary" style="width:25px; height:25px; font-size:10px;">${index + 1}</div>
-                    <div>
-                        <div class="fw-bold text-dark small">${u.oid} <span class="text-muted fw-normal">(${name})</span></div>
-                    </div>
+                    <div><div class="fw-bold text-dark small">${u.oid} <span class="text-muted fw-normal">(${name})</span></div></div>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     ${actionHtml}
@@ -1202,18 +1202,30 @@ function renderSyncList() {
             </div>`;
         });
 
-        list.innerHTML += `
-        <div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;">
-            <div class="card-header bg-white fw-bold text-dark small py-2 px-3 border-bottom">
-                📦 ORDER STATUS CHANGES
-            </div>
-            <div class="card-body p-0 bg-white">
-                ${itemsHtml}
-            </div>
-        </div>`;
+        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-white fw-bold text-dark small py-2 px-3 border-bottom">📦 ORDER STATUS CHANGES</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
 
-    // --- B. INTERNAL FLAGS (Admin Meta) ---
+    // --- 🔥 B. PAID NUMBER UPDATES (New Section) ---
+    if (paidNumUpdates.length > 0) {
+        let itemsHtml = '';
+        paidNumUpdates.forEach((u, index) => {
+            itemsHtml += `
+            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle bg-success bg-opacity-10 text-success border d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="fw-bold text-dark small">${u.oid}</div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-light text-dark border fw-bold">Paid By: ${u.num}</span>
+                    <button onclick="undoUpdate('${u.oid}', 'paidNum')" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
+                </div>
+            </div>`;
+        });
+
+        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-success bg-opacity-10 fw-bold text-success small py-2 px-3 border-bottom">📱 PAID NUMBER UPDATES</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
+    }
+
+    // --- C. INTERNAL FLAGS ---
     if (metaUpdates.length > 0) {
         let itemsHtml = '';
         metaUpdates.forEach((u, index) => {
@@ -1221,7 +1233,6 @@ function renderSyncList() {
             let flags = [];
             if (meta.isPrinted) flags.push(`<span class="badge bg-warning text-dark border">Printed 🖨️</span>`);
             if (meta.isTracked) flags.push(`<span class="badge bg-info text-dark border">Tracked 🚚</span>`);
-
             let contactIcon = meta.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (meta.contact === 'alt' ? 'fas fa-phone-square text-secondary' : 'fas fa-phone-alt text-primary');
             flags.push(`<i class="${contactIcon}"></i> Pref`);
 
@@ -1237,19 +1248,10 @@ function renderSyncList() {
                 </div>
             </div>`;
         });
-
-        list.innerHTML += `
-        <div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;">
-            <div class="card-header bg-indigo-50 fw-bold text-primary small py-2 px-3 border-bottom" style="background:#e0e7ff;">
-                ⚙️ ADMIN INTERNAL FLAGS
-            </div>
-            <div class="card-body p-0 bg-white">
-                ${itemsHtml}
-            </div>
-        </div>`;
+        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-indigo-50 fw-bold text-primary small py-2 px-3 border-bottom" style="background:#e0e7ff;">⚙️ ADMIN INTERNAL FLAGS</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
 
-    // --- C. EXPENSES ---
+    // --- D. EXPENSES ---
     if (pendingExpenses.length > 0) {
         let itemsHtml = '';
         pendingExpenses.forEach((exp, index) => {
@@ -1257,10 +1259,7 @@ function renderSyncList() {
             <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
                 <div class="d-flex align-items-center gap-2">
                     <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-receipt"></i></div>
-                    <div>
-                        <div class="fw-bold small">${exp.category}</div>
-                        <div class="small text-muted" style="font-size:10px;">${exp.vendor}</div>
-                    </div>
+                    <div><div class="fw-bold small">${exp.category}</div><div class="small text-muted" style="font-size:10px;">${exp.vendor}</div></div>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <span class="fw-bold text-dark small">₹${exp.amount}</span>
@@ -1268,16 +1267,7 @@ function renderSyncList() {
                 </div>
             </div>`;
         });
-
-        list.innerHTML += `
-        <div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;">
-            <div class="card-header bg-warning-50 fw-bold text-dark small py-2 px-3 border-bottom" style="background:#fffbeb; color:#92400e;">
-                💸 EXPENSES
-            </div>
-            <div class="card-body p-0 bg-white">
-                ${itemsHtml}
-            </div>
-        </div>`;
+        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-warning-50 fw-bold text-dark small py-2 px-3 border-bottom" style="background:#fffbeb; color:#92400e;">💸 EXPENSES</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
 }
 
@@ -3029,6 +3019,7 @@ window.highlightCard = function (el) {
 
 
 // 🔥 SAVE PAID NUMBER (With Offline Sync Support)
+// 🔥 SAVE PAID NUMBER (Fixed Error & Offline Support)
 window.savePaidNum = function (oid, val) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
@@ -3037,7 +3028,7 @@ window.savePaidNum = function (oid, val) {
     order.paidNum = val;
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-    // 2. Queue for Sync (Offline Support)
+    // 2. Queue for Sync
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     // പഴയ അപ്‌ഡേറ്റ് ഉണ്ടെങ്കിൽ അത് തിരുത്തുന്നു, ഇല്ലെങ്കിൽ പുതിയത് ചേർക്കുന്നു
@@ -3048,27 +3039,20 @@ window.savePaidNum = function (oid, val) {
         updates.push({
             oid: oid,
             action: 'paidNum',
-            num: val,
-            status: order.Status // Just for reference
+            num: val
         });
     }
 
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-    updateSyncButtonUI(); // Sync Button തെളിയാൻ
+    updateSyncButtonUI();
 
-    // 3. Re-render Card (വാട്സാപ്പ് ബട്ടൺ അപ്പപ്പോൾ വരാൻ വേണ്ടി)
-    // ചെറിയൊരു ഡിലേ ഇട്ട് കാർഡ് റിഫ്രഷ് ചെയ്യുന്നു
+    // 🔥 FIX: Error പരിഹരിച്ചു. സേവ് ചെയ്ത് കഴിഞ്ഞാൽ കാർഡ് റീഫ്രഷ് ചെയ്യുന്നു.
+    // ഇത് വഴി വാട്സാപ്പ് ബട്ടൺ ഓട്ടോമാറ്റിക് ആയി വരും.
     setTimeout(() => {
-        let card = document.querySelector(`input[value="${val}"]`).closest('.order-card');
-        if (card) {
-            let parent = card.parentElement;
-            // നമ്മൾ ഫുൾ പേജ് റീലോഡ് ചെയ്യുന്നില്ല, പക്ഷെ അടുത്ത തവണ റിഫ്രഷ് ചെയ്യുമ്പോൾ ബട്ടൺ വരും.
-            // പെട്ടെന്ന് കാണണമെങ്കിൽ: renderTabs(allOrders) വിളിക്കാം.
-            renderTabs(allOrders);
-        }
-    }, 500);
+        renderTabs(allOrders);
+    }, 100);
 
-    showToast('success', 'Number Saved (Queued) ✅');
+    showToast('success', 'Paid Number Saved ✅');
 }
 
 // 🔥 Open WhatsApp for Paid Number
