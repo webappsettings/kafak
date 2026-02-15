@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzvyPaXLSzQDYnH-1Q9FHA2l2lxV5lS3RshUcM84BknSqAwj7JEgV0aKXtqgCaAQwNxZA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxbF8Bqqp-PmGo-AbDe-RYAvQ6kJ7J4l0LXYmh7yeB8La5vSO5EGktQnL-O_bPCnEzB2Q/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -2500,7 +2500,7 @@ async function submitExpense(e) {
     let refundOrderId = null;
     if ($('#exp-category').val() === 'Refund') {
         let desc = $('#exp-desc').val();
-        let match = desc.match(/ORD-\d+/); // Description-ൽ നിന്നും ORD-xxxx കണ്ടുപിടിക്കുന്നു
+        let match = desc.match(/(ORD-|K-)\d+/); // Description-ൽ നിന്നും ORD-xxxx കണ്ടുപിടിക്കുന്നു
         if (match) refundOrderId = match[0];
     }
 
@@ -2775,7 +2775,7 @@ function onScanSuccess(decodedText) {
 
     // 📦 MODE 1: DISPATCH (QR Only)
     if (scanMode === 'dispatch') {
-        if (decodedText.startsWith("ORD-")) {
+        if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
             let order = allOrders.find(o => o.orderid === decodedText);
 
             if (!order) {
@@ -2801,7 +2801,7 @@ function onScanSuccess(decodedText) {
 
         // 👉 STEP 1: SCAN ORDER QR
         if (scanStep === 1) {
-            if (decodedText.startsWith("ORD-")) {
+            if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
                 tempOid = decodedText;
                 let order = allOrders.find(o => o.orderid === tempOid);
 
@@ -2828,7 +2828,7 @@ function onScanSuccess(decodedText) {
 
         // 👉 STEP 2: SCAN BARCODE
         else if (scanStep === 2) {
-            if (!decodedText.startsWith("ORD-")) {
+            if (!decodedText.startsWith("ORD-") && !decodedText.startsWith("K-")) {
 
                 // 🔥 CHECK: Is this barcode already used?
                 let duplicateOrder = allOrders.find(o => o.tracking === decodedText && o.orderid !== tempOid);
@@ -2870,7 +2870,7 @@ function showScanFeedback(statusHtml, order, code = "", isError = false, extraMs
 
     // 1. SCANNED CODE (HIGHLIGHTED BIG)
     if (code) {
-        let label = code.startsWith("ORD-") ? "QR CODE" : "BARCODE";
+        let label = (code.startsWith("ORD-") || code.startsWith("K-")) ? "QR CODE" : "BARCODE";
         htmlContent += `
         <div style="background:#fff; border:2px dashed ${color}; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;">
             <div style="font-size:10px; font-weight:700; color:#888; letter-spacing:1px;">SCANNED ${label}</div>
