@@ -633,6 +633,29 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
     }
 
+    let linkedOrder = checkCrossLinking(d);
+    let fraudAlertHtml = '';
+
+    if (linkedOrder) {
+        // ലിങ്ക് ചെയ്തത് 'Paid' ഓർഡർ ആണെങ്കിൽ നമുക്ക് സംശയിക്കാം
+        let linkColor = linkedOrder.Status === 'Paid' ? 'danger' : 'warning';
+        let linkIcon = linkedOrder.Status === 'Paid' ? 'exclamation-triangle' : 'link';
+
+        fraudAlertHtml = `
+        <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
+            <div style="font-size:11px; font-weight:700; color:#b91c1c;">
+                <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
+            </div>
+            <div style="font-size:10px; color:#555;">
+                Order ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})<br>
+                Phone Matches found!
+            </div>
+            <button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn btn-sm btn-outline-danger w-100 mt-1 fw-bold" style="font-size:10px;">
+                <i class="fas fa-archive"></i> ARCHIVE THIS DUPLICATE
+            </button>
+        </div>`;
+    }
+
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
             ${rankBadge} <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
@@ -770,6 +793,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 <div>${headerLeft}</div>
                 <div>${topActions}</div>
             </div>
+            ${fraudAlertHtml}
             <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
             
             ${paidTimeHTML}
@@ -3080,3 +3104,45 @@ tabButtons.forEach(btn => {
         localStorage.setItem('lastScrollPosition', 0);
     });
 });
+
+// 🔥 SMART FRAUD DETECTOR: Checks Phone, WhatsApp, Alt, AND PAID NUM
+function checkCrossLinking(currentOrder) {
+    // ആർക്കൈവ് ചെയ്തതും കംപ്ലീറ്റ് ആയതും ചെക്ക് ചെയ്യേണ്ട
+    if (currentOrder.Status === 'Completed' || currentOrder.Status === 'Archive') return null;
+
+    // 1. ഇപ്പോഴത്തെ ഓർഡറിലെ എല്ലാ നമ്പറുകളും എടുക്കുന്നു (Paid Number ഉൾപ്പെടെ)
+    let myNums = [
+        currentOrder.phone,
+        currentOrder.whatsapp,
+        currentOrder.altphone,
+        currentOrder.paidNum // 🔥 ഇതാണ് പ്രധാനം!
+    ]
+        .map(n => String(n || '').replace(/[^0-9]/g, '')) // അക്കങ്ങൾ മാത്രം
+        .filter(n => n.length > 5 && !n.startsWith('0000')); // 5 അക്കത്തിൽ കുറഞ്ഞതും 0000 ഉം ഒഴിവാക്കുന്നു
+
+    if (myNums.length === 0) return null;
+
+    // 2. ബാക്കിയുള്ള എല്ലാ ഓർഡറുകളുമായും ഒത്തുനോക്കുന്നു
+    for (let other of allOrders) {
+        // സ്വന്തം ഓർഡർ ആണെങ്കിൽ നോക്കേണ്ട
+        if (other.orderid === currentOrder.orderid) continue;
+
+        // മറ്റേ ഓർഡറിലെ എല്ലാ നമ്പറുകളും എടുക്കുന്നു
+        let theirNums = [
+            other.phone,
+            other.whatsapp,
+            other.altphone,
+            other.paidNum // 🔥 അവരുടെ പെയ്ഡ് നമ്പറും നോക്കുന്നു
+        ]
+            .map(n => String(n || '').replace(/[^0-9]/g, ''));
+
+        // 3. ക്രോസ് ചെക്കിംഗ് (എന്റെ ഏതെങ്കിലും നമ്പർ അവരുടെ ലിസ്റ്റിൽ ഉണ്ടോ?)
+        for (let myN of myNums) {
+            if (theirNums.includes(myN)) {
+                // മാച്ച് കണ്ടുപിടിച്ചു!
+                return other;
+            }
+        }
+    }
+    return null;
+}
