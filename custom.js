@@ -374,7 +374,7 @@ function syncUserDataBackground(phone) {
 
       if (userRes && userRes.result === 'success' && userRes.data) {
         let serverData = userRes.data;
-        finalData = { ...localData, ...serverData };
+        finalData = { ...serverData, ...localData };
         finalData.Status = serverData.Status || serverData.status || "Pending";
 
         if (finalData.orderid) {
