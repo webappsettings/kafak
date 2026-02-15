@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyDlDLwnWZgo2EzKDs4W7U-AO0if_t0SPV7TCjXuOl6ePnR3elwLqteAGI0GEMh85T8Iw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxpiS5nFcMz02IURvPqzVsVTno4j8UXYAHFxTHZ1Sw__6bGfkzZlR_FErUPd0JrBvkiKw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -699,6 +699,20 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
+    let paidNumHtml = '';
+    if (type === 'pending' || type === 'paid' || type === 'search') {
+        paidNumHtml = `
+        <div class="mt-2 mb-2 d-flex align-items-center gap-1" onclick="highlightCard(this)">
+            <span class="badge bg-light text-dark border"><i class="fas fa-mobile-alt"></i> Paid By:</span>
+            <input type="text" 
+                class="form-control form-control-sm border-secondary fw-bold text-dark" 
+                placeholder="Enter GPay / Phone Number" 
+                value="${d.paidNum || ''}" 
+                onchange="savePaidNum('${d.orderid}', this.value)"
+                style="font-size:12px; background:#f0fdf4; letter-spacing:0.5px;">
+        </div>`;
+    }
+
     // 9. Contact Icons (Visual Display)
     let contactMap = {};
     const addVisualContact = (iconType, number) => {
@@ -881,9 +895,7 @@ function updateSyncButtonUI() {
 // 🔥 UPDATED: POWERFUL SEARCH (Includes WA, Alt Phone & Space Fix)
 function filterOrders() {
     const term = document.getElementById('searchInput').value.trim().toLowerCase();
-
-    // 🔥 സ്പേസും ചിഹ്നങ്ങളും കളഞ്ഞ് നമ്പറുകൾ മാത്രം എടുക്കുന്നു (For Phone Search)
-    const termClean = term.replace(/[^0-9]/g, '');
+    const termClean = term.replace(/[^0-9]/g, ''); // സെർച്ച് ടേമിലെ നമ്പർ മാത്രം
 
     const clearBtn = document.getElementById('btn-clear-search');
     if (term.length > 0) {
@@ -902,20 +914,19 @@ function filterOrders() {
         searchList.innerHTML = '';
 
         let matches = allOrders.filter(o => {
-            // 1. സാധാരണ ടെക്സ്റ്റ് സെർച്ച് (പേര്, ഐഡി, ട്രാക്കിംഗ്)
+            // 1. Text Search
             if ((o.name || '').toLowerCase().includes(term)) return true;
             if ((o.orderid || '').toLowerCase().includes(term)) return true;
-            if ((o.tracking || '').toLowerCase().includes(term)) return true;
 
-            // 2. നമ്പർ സെർച്ച് (ഫോൺ, വാട്സാപ്പ്, Alt) - സ്പേസ് പ്രശ്നം വരില്ല
+            // 2. Powerful Number Search (Checks Phone, WA, Alt, AND PAID NUM)
             if (termClean.length > 0) {
                 let p = String(o.phone || '').replace(/[^0-9]/g, '');
                 let w = String(o.whatsapp || '').replace(/[^0-9]/g, '');
-                let a = String(o.altphone || '').replace(/[^0-9]/g, '');
+                let paid = String(o.paidNum || '').replace(/[^0-9]/g, ''); // 🔥 New Field
 
                 if (p.includes(termClean)) return true;
                 if (w.includes(termClean)) return true;
-                if (a.includes(termClean)) return true;
+                if (paid.includes(termClean)) return true; // 🔥 Matches saved GPay number
             }
             return false;
         });
@@ -3070,4 +3081,21 @@ window.highlightCard = function (el) {
 
     let card = $(el).closest('.order-card');
     card.addClass('active-highlight-border');
+}
+
+
+// 🔥 SAVE PAID NUMBER TO SERVER
+window.savePaidNum = function (oid, val) {
+    // ലോക്കലായി അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+    let order = allOrders.find(o => o.orderid === oid);
+    if (order) order.paidNum = val;
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    // സർവറിലേക്ക് അയക്കുന്നു
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: val })
+    }).then(res => console.log("Paid Num Saved"));
+
+    showToast('success', 'Number Saved ✅');
 }
