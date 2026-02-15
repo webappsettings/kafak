@@ -667,22 +667,27 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
             fraudAlertHtml = `
             <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
-                <div class="d-flex justify-content-between align-items-start">
-                    <div style="font-size:11px; font-weight:700; color:#b91c1c;">
-                        <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
-                    </div>
+                <div style="font-size:11px; font-weight:700; color:#b91c1c;">
+                    <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
+                </div>
+                
+                <div style="font-size:10px; color:#555; margin-top:3px; display:flex; align-items:center;">
+                    ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})
                     <button onclick="event.stopPropagation(); openWASearch('${linkedNum}')" 
-                        class="btn btn-sm btn-light border shadow-sm" 
-                        style="padding: 1px 6px; font-size: 10px;" title="Check Linked Number">
+                        class="btn btn-sm btn-light border shadow-sm ms-2" 
+                        style="padding: 0px 5px; font-size: 9px; height: 18px; line-height: 1;" 
+                        title="Check Linked Number">
                         <i class="fab fa-whatsapp text-success"></i> 🔎
                     </button>
                 </div>
-                <div style="font-size:10px; color:#555;">
-                    ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})
+
+                <div class="text-end mt-1">
+                    <button onclick="highlightCard(this); archiveOrder('${d.orderid}')" 
+                        class="btn btn-sm btn-outline-danger fw-bold shadow-sm" 
+                        style="font-size:9px; padding: 2px 8px; border-radius:4px;">
+                        <i class="fas fa-archive"></i> ARCHIVE
+                    </button>
                 </div>
-                <button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn btn-sm btn-outline-danger w-100 mt-2 fw-bold" style="font-size:10px;">
-                    ARCHIVE DUPLICATE
-                </button>
             </div>`;
         }
     }
