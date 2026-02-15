@@ -584,8 +584,6 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
-
-
     // 1. Search Logic Fix
     if (type === 'search') {
         if (currentStatus === 'Pending' || currentStatus === 'Sent') type = 'pending';
@@ -824,6 +822,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             buttons = `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button></div>`;
         }
     } else if (type === 'paid') {
+        // 🔥 FIX: Receipt Button (Green) & Revert Button
+        topActions = `
+        <div class="d-flex gap-1">
+            <button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>
+            ${topActions} 
+        </div>`;
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
     } else if (currentStatus === 'Archive' || currentStatus === 'Archived') {
         buttons = `<div class="alert alert-secondary p-2 mb-2 text-center" style="font-size:11px; font-weight:700;"><i class="fas fa-archive"></i> This order is Archived</div><button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')"><i class="fas fa-box-open me-1"></i> REVERT TO PAID</button>`;
@@ -3224,4 +3231,27 @@ window.searchOrderInWA = function (oid) {
         console.error('Copy failed', err);
         showToast('error', 'Copy failed! Please copy manually.');
     });
+}
+
+// 🔥 SEND PAYMENT RECEIPT (Admin Dashboard)
+window.sendPaymentWA = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) { alert("Order Data Missing!"); return; }
+
+    let lang = order.language || 'en';
+    let msg = "";
+
+    // ട്രാക്കിംഗ് ലിങ്ക്
+    let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
+
+    if (lang === 'ml') {
+        msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\nനിങ്ങളുടെ സഹകരണത്തിന് നന്ദി!\n\n👇 *Order Status:*\n${trackLink}`;
+    } else {
+        msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
+    }
+
+    let phone = String(order.whatsapp || order.phone).replace(/[^0-9]/g, '');
+    if (phone.length === 10) phone = '91' + phone;
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
