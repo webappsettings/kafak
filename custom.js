@@ -631,13 +631,12 @@ window.submitQuickOrder = function () {
 
   // 1. Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-  const newName = $('#edit-name').val();
-  if (!newName) { showAlert(getAlert('err_name')); return; }
 
-  // Sync Admin Inputs to Hidden Inputs (Just in case)
   if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
+  const newName = $('#edit-name').val();
+  if (!newName) { showAlert(getAlert('err_name')); return; }
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
@@ -662,72 +661,50 @@ window.submitQuickOrder = function () {
   };
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-  const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
   if (isAdmin) {
-    // 🔥 DETERMINE TARGET WHATSAPP NUMBER
     let targetPhone = getSelectedWAPhone(finalData);
+    const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
-    // CASE: Paid Order & Quantity Increased
+    // 🔥 AUTO-DETECT: Paid -> Qty Increased
     if (oldStatus === 'paid') {
       let oldQty = parseInt(savedOrderData.quantity) || 0;
       let newQty = parseInt(finalData.quantity) || 0;
 
       if (newQty > oldQty) {
+        // Calculate Balance (Just for Message)
         let stateKey = getZoneKey(finalData.state);
         let rates = courierRates[stateKey] || {};
         let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
         let newTotal = (newQty * 650) + (rates[newQty] || 0);
 
-        Swal.fire({
-          title: 'Qty Increased! 📈',
-          text: `Balance: ₹${balance}. Change status to SENT?`,
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#28a745',
-          cancelButtonColor: '#6c757d',
-          confirmButtonText: 'Yes, Save & Notify',
-          cancelButtonText: 'No, Just Save'
-        }).then((result) => {
+        showLoader(true);
 
-          showLoader(true);
+        // A. Save Data
+        fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+          .then(res => res.json())
+          .then(res => {
+            // B. Force Status Update -> 'Sent' (SILENTLY)
+            fetch(sc, {
+              method: 'POST',
+              body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
+            }).then(() => {
+              updateLocalCache(finalData, 'Sent');
+              savedOrderData.quantity = newQty;
 
-          fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-            .then(res => res.json())
-            .then(res => {
+              updateAdminUI('Sent', finalData.orderid);
+              showLoader(false);
 
-              if (result.isConfirmed) {
-                // Force Status Update -> 'Sent'
-                fetch(sc, {
-                  method: 'POST',
-                  body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
-                }).then(() => {
-                  // 🔥 FIX: Update Local Memory so popup works again next time
-                  updateLocalCache(finalData, 'Sent');
-                  savedOrderData.quantity = newQty; // Important!
-
-                  updateAdminUI('Sent', finalData.orderid);
-                  showLoader(false);
-
-                  // WhatsApp Message to SELECTED NUMBER
-                  let msg = "";
-                  if (finalData.language === 'ml') {
-                    msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
-                  } else {
-                    msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
-                  }
-                  window.open(`https://wa.me/91${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-                });
-
+              // C. WhatsApp Message (Auto Open)
+              let msg = "";
+              if (finalData.language === 'ml') {
+                msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
               } else {
-                // Just Save (Keep Paid)
-                updateLocalCache(finalData, 'Paid');
-                savedOrderData.quantity = newQty; // Update memory
-                showLoader(false);
-                location.reload();
+                msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
               }
+              window.open(`https://wa.me/91${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
             });
-        });
+          });
         return;
       }
     }
@@ -737,7 +714,7 @@ window.submitQuickOrder = function () {
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
         updateLocalCache(finalData, savedOrderData.Status);
-        savedOrderData.quantity = finalData.quantity; // Update memory
+        savedOrderData.quantity = finalData.quantity;
         showLoader(false);
         Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
       });
@@ -775,17 +752,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateFooterButtons('returning');
   isEditMode = isActiveOrder;
-  savedOrderData = JSON.parse(JSON.stringify(d)); // Save initial state
+  savedOrderData = JSON.parse(JSON.stringify(d));
 
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-
   if (d.language) {
     $('#language-select').val(d.language);
     changeLanguage(d.language);
   }
 
-  // Populate Basic Data
+  // Populate Data
   $('#saved-name').text(d.name);
   $('#edit-name').val(d.name);
   $('#edit-house').val(d.house);
@@ -795,7 +770,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district);
   $('#edit-state').val(d.state);
 
-  // 🔥 NOTE: Phone inputs are now handled in the Admin Panel below
+  // Admin Panel Phone Inputs
   $('#edit-phone').val(d.phone);
   $('#edit-whatsapp').val(d.whatsapp || d.phone);
   $('#edit-altphone').val(d.altphone || '');
@@ -803,76 +778,54 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // 🔥🔥🔥 NEW: ADMIN COMMUNICATION PANEL (Outside Collapse) 🔥🔥🔥
+  // 🔥 ADMIN COMMUNICATION PANEL
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-  $('#admin-comm-panel').remove(); // Remove old if exists
+  $('#admin-comm-panel').remove();
+
+  // 🔥🔥🔥 NEW: REMOVE OLD DIFF VIEWER IF EXISTS
+  $('#admin-diff-viewer').remove();
 
   if (isAdmin) {
-    // Hide default phone inputs inside the collapse box to avoid duplication
     $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
+    // 1. Comm Panel (Phone Numbers)
     let commHTML = `
       <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
           
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0">Main Phone</label>
-                  <input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold" value="${d.phone}" onchange="$('#edit-phone').val(this.value)">
-              </div>
-              <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="phone" style="transform: scale(1.3);">
-              </div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold" value="${d.phone}" onchange="$('#edit-phone').val(this.value)"></div>
+              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="phone" style="transform: scale(1.3);"></div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0 text-success">WhatsApp</label>
-                  <input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success" value="${d.whatsapp || d.phone}" onchange="$('#edit-whatsapp').val(this.value)">
-              </div>
-              <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" checked style="transform: scale(1.3); border-color:#25D366;">
-              </div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success" value="${d.whatsapp || d.phone}" onchange="$('#edit-whatsapp').val(this.value)"></div>
+              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="whatsapp" checked style="transform: scale(1.3); border-color:#25D366;"></div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0">Alt Phone</label>
-                  <input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold" value="${d.altphone || ''}" placeholder="No Alt Phone" onchange="$('#edit-altphone').val(this.value)">
-              </div>
-              <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="alt" style="transform: scale(1.3);">
-              </div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold" value="${d.altphone || ''}" placeholder="No Alt Phone" onchange="$('#edit-altphone').val(this.value)"></div>
+              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="alt" style="transform: scale(1.3);"></div>
           </div>
 
           <div class="d-flex align-items-center">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0 text-primary">Paid By (GPay)</label>
-                  <input type="tel" id="adm-paid" class="form-control form-control-sm fw-bold border-primary" value="${d.paidNum || ''}" placeholder="Enter Paid Number" onchange="$('#edit-paid-by').val(this.value)">
-              </div>
-              <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="paid" style="transform: scale(1.3);">
-              </div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0 text-primary">Paid By (GPay)</label><input type="tel" id="adm-paid" class="form-control form-control-sm fw-bold border-primary" value="${d.paidNum || ''}" placeholder="Enter Paid Number" onchange="$('#edit-paid-by').val(this.value)"></div>
+              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="paid" style="transform: scale(1.3);"></div>
           </div>
       </div>`;
-
-    // Insert ABOVE the status area or buttons
     $(commHTML).insertBefore('#status-area');
+
+    // 2. 🔥🔥🔥 NEW: BALANCE SHOWING AREA (Initially Hidden)
+    $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
+
   }
-  // 🔥🔥🔥 END ADMIN PANEL 🔥🔥🔥
 
   $('#status-area').hide().empty();
 
   if (isServerData) {
     updateStatusUI(d);
-
     if ($('#refresh-btn').length === 0) {
-      $('#returning-user-view').append(`
-              <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
-                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2">
-                      <i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span>
-                  </button>
-              </div>`);
+      $('#returning-user-view').append(`<div class="d-flex justify-content-center mt-4 mb-3 fade-in"><button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2"><i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span></button></div>`);
     }
     handleEditControlsVisibility(d);
   } else {
@@ -1384,7 +1337,42 @@ function checkForChanges() {
       btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
     }
   }
-}
+
+  // 🔥 LIVE BALANCE CHECKER
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  if (isAdmin && savedOrderData.Status && savedOrderData.Status.toLowerCase() === 'paid') {
+    let oldQty = parseInt(savedOrderData.quantity) || 0;
+    let newQty = parseInt($('#quick-qty').val()) || 0;
+
+    if (newQty > oldQty) {
+      // Calculate Difference
+      let stateKey = getZoneKey($('#edit-state').val());
+      let rates = courierRates[stateKey] || {};
+
+      let oldTotal = (oldQty * 650) + (rates[oldQty] || 0);
+      let newTotal = (newQty * 650) + (rates[newQty] || 0);
+      let balance = newTotal - oldTotal;
+
+      $('#admin-diff-viewer').html(`
+              <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                      <div class="fw-bold" style="font-size:14px;">Qty Increased: ${oldQty} ➡ ${newQty}</div>
+                      <div class="small">Status will change to <b>SENT</b></div>
+                  </div>
+                  <div class="text-end">
+                      <div class="fw-bold text-danger" style="font-size:18px;">Balance: ₹${balance}</div>
+                      <div class="small text-muted">New Total: ₹${newTotal}</div>
+                  </div>
+              </div>
+          `).slideDown();
+    } else {
+      $('#admin-diff-viewer').slideUp();
+    }
+  } else {
+    $('#admin-diff-viewer').hide();
+  }
+} // End of checkForChanges
+
 
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
