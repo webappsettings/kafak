@@ -398,36 +398,70 @@ function syncUserDataBackground(phone) {
 
 
 // 🔥 Helper Function to Show/Hide Controls based on Status
+// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
+// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
 function handleEditControlsVisibility(d) {
 
   const status = String(d.Status || 'pending').toLowerCase();
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു
 
-  if (['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+  // Language Setup for Messages
+  const lang = $('#language-select').val() || 'en';
+  let reqText = "Want to increase bottle count?";
+  let subText = "Message Admin";
 
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('#btn-edit-addr').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
+  if (lang === 'ml') {
+    reqText = "കുപ്പിയുടെ എണ്ണം കൂട്ടണോ?";
+    subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
+  }
 
+  // 1. അഡ്മിൻ ആണെങ്കിൽ എല്ലാം എഡിറ്റ് ചെയ്യാൻ പറ്റണം (Status Paid ആണെങ്കിൽ പോലും)
+  if (isAdmin) {
+    $('#quick-qty, .btn-update-sage, #quick-price-box').show();
+    $('#btn-edit-addr').css('display', 'inline-block');
+    $('label[data-i18n="lbl_qty"]').show();
+    $('#quick-qty').prop('disabled', false); // Enable Qty
+
+    // അഡ്മിന് മാത്രം കാണുന്ന ഒരു പ്രത്യേക ബോർഡർ (തിരിച്ചറിയാൻ)
+    $('#quick-qty').css('border', '2px solid #dc3545');
+    $('#btn-req-modify').remove(); // അഡ്മിന് ഈ ബട്ടൺ വേണ്ട
     return;
   }
 
-  // 🔥 Retry only once if quantity missing
-  if (!d.quantity && !d._retried) {
+  // 2. കസ്റ്റമർ - Paid/Dispatched/Delivered/Completed/Refunded
+  // ഇവിടെ അഡ്രസ്സ് മാറ്റാം, പക്ഷെ ക്വാണ്ടിറ്റി മാറ്റാൻ പറ്റില്ല.
+  if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
 
-    d._retried = true;
+    // Hide Qty Controls
+    $('#quick-qty').prop('disabled', true); // Disable Dropdown
+    $('.btn-update-sage, #quick-price-box').hide();
 
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
+    // Address Edit is Allowed
+    $('#btn-edit-addr').show().css('display', 'inline-block');
 
-    setTimeout(() => syncUserDataBackground(d.phone), 1000);
+    // 🔥 "Request Qty Change" WhatsApp Button
+    if ($('#btn-req-modify').length === 0) {
+      let waMsg = `Hello, I want to increase bottle count for Order: ${d.orderid}. Please help!`;
+      // Use Global adminPhone variable
+      let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
+      $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
+            <div class="text-muted small mb-1 fw-bold">${reqText}</div>
+            <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
+               class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
+               <i class="fab fa-whatsapp"></i> ${subText}
+            </a>
+           </div>`).insertAfter('#status-area');
+    }
     return;
   }
 
-  // ✅ Show Controls
+  // 3. Pending/Sent/Archive - എല്ലാം എഡിറ്റ് ചെയ്യാം (സാധാരണ പോലെ)
   $('label[data-i18n="lbl_qty"]').show();
-  $('#quick-qty, .btn-update-sage, #quick-price-box').show();
+  $('#quick-qty').prop('disabled', false).show();
+  $('.btn-update-sage, #quick-price-box').show();
   $('#btn-edit-addr').css('display', 'inline-block');
+  $('#btn-req-modify').remove();
 }
 
 
@@ -640,6 +674,48 @@ window.submitQuickOrder = function () {
     custId: myCustId,
     language: $('#language-select').val() || 'en'
   };
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+  // അഡ്മിൻ എഡിറ്റ് ചെയ്യുമ്പോൾ പഴയ ക്വാണ്ടിറ്റിയും പുതിയതും തമ്മിലുള്ള വ്യത്യാസം നോക്കുന്നു
+  if (isAdmin && savedOrderData && savedOrderData.quantity) {
+    let oldQty = parseInt(savedOrderData.quantity) || 0;
+    let newQty = parseInt(finalData.quantity) || 0;
+    let status = String(savedOrderData.Status || '').toLowerCase();
+
+    // Paid ഓർഡറിൽ ക്വാണ്ടിറ്റി കൂട്ടിയാൽ മാത്രം മെസ്സേജ് അയക്കുന്നു
+    if (status === 'paid' && newQty > oldQty) {
+
+      // Calculate Balance Amount
+      // 1. Get Rates based on State
+      let stateKey = getZoneKey(finalData.state);
+      let rates = courierRates[stateKey] || {};
+
+      // 2. Calculate Old Total
+      let oldBase = oldQty * 650;
+      let oldCourier = rates[oldQty] || 0; // പഴയ കൊറിയർ ചാർജ്
+      let oldTotal = oldBase + oldCourier;
+
+      // 3. Calculate New Total
+      let newBase = newQty * 650;
+      let newCourier = rates[newQty] || 0; // പുതിയ കൊറിയർ ചാർജ്
+      let newTotal = newBase + newCourier;
+
+      // 4. Balance to Pay
+      let balance = newTotal - oldTotal;
+
+      // 5. Send WhatsApp Message to Customer
+      let custPhone = finalData.whatsapp || finalData.phone;
+      let msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal} - Paid: ₹${oldTotal})\n\nPlease GPay the balance to confirm. 👍`;
+
+      if (finalData.language === 'ml') {
+        msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal} - അടച്ചത്: ₹${oldTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
+      }
+
+      // Open WhatsApp in Background (Optional) or just trigger link
+      window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  }
+
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
