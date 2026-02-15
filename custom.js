@@ -684,7 +684,6 @@ window.submitQuickOrder = function () {
 
     // Paid ഓർഡറിൽ ക്വാണ്ടിറ്റി കൂട്ടിയാൽ മാത്രം മെസ്സേജ് അയക്കുന്നു
     if (status === 'paid' && newQty > oldQty) {
-
       // Calculate Balance Amount
       // 1. Get Rates based on State
       let stateKey = getZoneKey(finalData.state);
