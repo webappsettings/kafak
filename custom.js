@@ -630,31 +630,21 @@ window.submitQuickOrder = function () {
   // 1. Check if button is disabled
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 2. Basic Validation
+  // 2. Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-
   const newName = $('#edit-name').val();
   if (!newName) { showAlert(getAlert('err_name') || "Name Required"); return; }
-
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-
   const pin = $('#edit-pincode').val();
   if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
 
-  // 3. Post Office Validation
   let finalPO = $('#edit-postoffice').val();
-  if ($('#edit-postoffice-select').is(':visible')) {
-    finalPO = $('#edit-postoffice-select').val();
-  }
-  if (!finalPO) {
-    showAlert(getAlert('err_select_po') || "Please Select Post Office");
-    if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
-    return;
-  }
+  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
+  if (!finalPO) { showAlert(getAlert('err_select_po')); return; }
   $('#edit-postoffice').val(finalPO);
 
-  // 4. Prepare Data Object
+  // 3. Prepare Data
   const finalData = {
     orderid: editingOrderId,
     name: newName,
@@ -673,12 +663,12 @@ window.submitQuickOrder = function () {
     language: $('#language-select').val() || 'en'
   };
 
-  // 🔥🔥🔥 SIMPLIFIED ADMIN LOGIC 🔥🔥🔥
+  // 🔥🔥🔥 ADMIN LOGIC FIX 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
   if (isAdmin) {
-    // 🛑 CASE: Paid Order & Quantity Increased
+    // CASE: Paid Order & Quantity Increased
     if (oldStatus === 'paid') {
       let oldQty = parseInt(savedOrderData.quantity) || 0;
       let newQty = parseInt(finalData.quantity) || 0;
@@ -690,52 +680,72 @@ window.submitQuickOrder = function () {
         let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
         let newTotal = (newQty * 650) + (rates[newQty] || 0);
 
-        // Simple Confirmation
         Swal.fire({
           title: 'Qty Increased! 📈',
-          text: `Balance to collect: ₹${balance}. Mark as SENT?`,
+          text: `Balance: ₹${balance}. Change status to SENT?`,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#28a745',
           cancelButtonColor: '#6c757d',
-          confirmButtonText: 'Yes, Save & WhatsApp',
+          confirmButtonText: 'Yes, Save & Send WA',
           cancelButtonText: 'No, Just Save'
         }).then((result) => {
 
-          if (result.isConfirmed) {
-            // A. Change Status to SENT
-            finalData.Status = 'Sent';
+          // Show Loading (No Video)
+          showLoader(true);
 
-            // B. Save FIRST (No Animation)
-            postOrder(finalData);
+          // 1. Save Data First
+          fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+            .then(res => res.json())
+            .then(res => {
 
-            // C. Then Open WhatsApp
-            let custPhone = finalData.whatsapp || finalData.phone;
-            let msg = "";
-            if (finalData.language === 'ml') {
-              msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
-            } else {
-              msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
-            }
-            setTimeout(() => {
-              window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-            }, 500); // Small delay to ensure save triggers first
+              if (result.isConfirmed) {
+                // 2. 🔥 FORCE STATUS UPDATE TO 'SENT'
+                fetch(sc, {
+                  method: 'POST',
+                  body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
+                }).then(() => {
 
-          } else {
-            // Just Save (Keep Paid)
-            postOrder(finalData);
-          }
+                  showLoader(false);
+
+                  // 3. WhatsApp Message (Short & Clean)
+                  let custPhone = finalData.whatsapp || finalData.phone;
+                  let msg = "";
+
+                  // GPay Footer ഒഴിവാക്കി
+                  if (finalData.language === 'ml') {
+                    msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
+                  } else {
+                    msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
+                  }
+
+                  // Open WA & Refresh Page
+                  window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+                  location.reload();
+                });
+
+              } else {
+                showLoader(false);
+                location.reload();
+              }
+            });
         });
-        return; // Stop here
+        return;
       }
     }
 
-    // Normal Admin Save (No Qty Change / Not Paid) -> No Video
-    postOrder(finalData);
+    // Normal Admin Update (No Status Change)
+    showLoader(true);
+    fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+      .then(() => {
+        showLoader(false);
+        Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+        setTimeout(() => location.reload(), 1000);
+      });
     return;
   }
 
-  // 🎬 CUSTOMER: Play Video Animation
+  // CUSTOMER: Play Video Animation
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
