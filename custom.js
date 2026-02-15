@@ -633,15 +633,13 @@ window.submitQuickOrder = function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newName = $('#edit-name').val();
   if (!newName) { showAlert(getAlert('err_name')); return; }
+
+  // Sync Admin Inputs to Hidden Inputs (Just in case)
+  if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
+  if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
+
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-  const pin = $('#edit-pincode').val();
-  if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
-
-  let finalPO = $('#edit-postoffice').val();
-  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
-  if (!finalPO) { showAlert(getAlert('err_select_po')); return; }
-  $('#edit-postoffice').val(finalPO);
 
   // 2. Prepare Data
   const finalData = {
@@ -652,8 +650,8 @@ window.submitQuickOrder = function () {
     altphone: $('#edit-altphone').val(),
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
-    pincode: pin,
-    postoffice: finalPO,
+    pincode: $('#edit-pincode').val(),
+    postoffice: $('#edit-postoffice').val(),
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
@@ -664,18 +662,18 @@ window.submitQuickOrder = function () {
   };
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-
-  // 🔥 FIX: Check Status Case-Insensitive
   const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
   if (isAdmin) {
+    // 🔥 DETERMINE TARGET WHATSAPP NUMBER
+    let targetPhone = getSelectedWAPhone(finalData);
+
     // CASE: Paid Order & Quantity Increased
     if (oldStatus === 'paid') {
       let oldQty = parseInt(savedOrderData.quantity) || 0;
       let newQty = parseInt(finalData.quantity) || 0;
 
       if (newQty > oldQty) {
-        // Calculate Balance
         let stateKey = getZoneKey(finalData.state);
         let rates = courierRates[stateKey] || {};
         let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
@@ -694,42 +692,37 @@ window.submitQuickOrder = function () {
 
           showLoader(true);
 
-          // A. Save Data
           fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
             .then(res => res.json())
             .then(res => {
 
               if (result.isConfirmed) {
-                // B. Force Status Update -> 'Sent'
+                // Force Status Update -> 'Sent'
                 fetch(sc, {
                   method: 'POST',
                   body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
                 }).then(() => {
-
-                  // 🔥 CRITICAL: Update Memory & Cache IMMEDIATELY
+                  // 🔥 FIX: Update Local Memory so popup works again next time
                   updateLocalCache(finalData, 'Sent');
+                  savedOrderData.quantity = newQty; // Important!
 
-                  // Force UI Update
-                  savedOrderData.Status = 'Sent';
-                  userData.Status = 'Sent';
                   updateAdminUI('Sent', finalData.orderid);
-
                   showLoader(false);
 
-                  // C. WhatsApp Message
-                  let custPhone = finalData.whatsapp || finalData.phone;
+                  // WhatsApp Message to SELECTED NUMBER
                   let msg = "";
                   if (finalData.language === 'ml') {
                     msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
                   } else {
                     msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
                   }
-                  window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+                  window.open(`https://wa.me/91${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
                 });
 
               } else {
                 // Just Save (Keep Paid)
                 updateLocalCache(finalData, 'Paid');
+                savedOrderData.quantity = newQty; // Update memory
                 showLoader(false);
                 location.reload();
               }
@@ -739,19 +732,17 @@ window.submitQuickOrder = function () {
       }
     }
 
-    // Normal Admin Update (Just Save)
+    // Normal Admin Update
     showLoader(true);
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
-        updateLocalCache(finalData, savedOrderData.Status); // Keep old status
+        updateLocalCache(finalData, savedOrderData.Status);
+        savedOrderData.quantity = finalData.quantity; // Update memory
         showLoader(false);
         Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
-        setTimeout(() => location.reload(), 1000);
       });
     return;
   }
-
-  // CUSTOMER: Play Video Animation
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
@@ -775,99 +766,16 @@ function updateLocalCache(data, status) {
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
   }
 }
+
 function showReturningUserView(d, isActiveOrder, isServerData) {
-  function showReturningUserView(d, isActiveOrder, isServerData) {
-    $('#step-0').hide();
-    $('#wizard-view').hide();
-    $('#top-progress-container').hide();
-    $('#returning-user-view').show();
-
-    updateFooterButtons('returning');
-    isEditMode = isActiveOrder;
-    savedOrderData = JSON.parse(JSON.stringify(d)); // Save initial state
-
-    const lang = $('#language-select').val() || 'en';
-    const t = translations[lang] || translations['en'];
-
-    if (d.language) {
-      $('#language-select').val(d.language);
-      changeLanguage(d.language);
-    }
-
-    // Populate Data
-    $('#saved-name').text(d.name);
-    $('#edit-name').val(d.name);
-    $('#edit-phone').val(d.phone);
-    $('#edit-house').val(d.house);
-    $('#edit-place').val(d.place);
-    $('#edit-pincode').val(d.pincode);
-    $('#edit-postoffice').val(d.postoffice);
-    $('#edit-district').val(d.district);
-    $('#edit-state').val(d.state);
-    $('#edit-whatsapp').val(d.whatsapp || d.phone);
-    $('#edit-altphone').val(d.altphone || '');
-
-    updateSummaryDisplay();
-
-    // 🔥🔥🔥 FIX: ADMIN INPUTS FORCE SHOW 🔥🔥🔥
-    const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-
-    if (isAdmin) {
-      // 1. Paid By Input (Inject if missing)
-      if ($('#edit-paid-by-wrapper').length === 0) {
-        $(`
-          <div id="edit-paid-by-wrapper" class="mt-3 p-2 border rounded bg-light">
-              <label class="small fw-bold text-muted" style="display:block">💰 PAID BY (Extra Number)</label>
-              <input type="tel" id="edit-paid-by" class="form-control form-control-sm fw-bold" placeholder="Enter GPay Number" value="${d.paidNum || ''}">
-          </div>
-          `).insertBefore('#address-edit-box button');
-      } else {
-        $('#edit-paid-by').val(d.paidNum || '');
-      }
-
-      // 2. Force Show Phone Inputs (Parent Divs)
-      $('#edit-phone').closest('.mb-3').show();
-      $('#edit-whatsapp').closest('.mb-3').show();
-      $('#edit-altphone').closest('.mb-3').show();
-    } else {
-      // Hide for customers
-      $('#edit-paid-by-wrapper').remove();
-    }
-    // 🔥🔥🔥 END FIX 🔥🔥🔥
-
-    $('#status-area').hide().empty();
-
-    if (isServerData) {
-      updateStatusUI(d);
-
-      // Refresh Button logic
-      if ($('#refresh-btn').length === 0) {
-        const refreshText = t.txt_refresh || "REFRESH STATUS";
-        $('#returning-user-view').append(`
-              <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
-                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2">
-                      <i class="fas fa-sync-alt me-1"></i> <span data-i18n="txt_refresh">${refreshText}</span>
-                  </button>
-              </div>`);
-      }
-
-      handleEditControlsVisibility(d);
-
-    } else {
-      // Local data view (Loading...)
-      $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-      $('#btn-edit-addr').hide();
-      $('label[data-i18n="lbl_qty"]').hide();
-      $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
-    }
-
-    checkForChanges();
-  }
   $('#step-0').hide();
   $('#wizard-view').hide();
   $('#top-progress-container').hide();
   $('#returning-user-view').show();
-  updateFooterButtons('returning'); isEditMode = isActiveOrder;
+
+  updateFooterButtons('returning');
+  isEditMode = isActiveOrder;
+  savedOrderData = JSON.parse(JSON.stringify(d)); // Save initial state
 
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
@@ -877,107 +785,99 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     changeLanguage(d.language);
   }
 
-  const qtyLabel = $('label[data-i18n="lbl_qty"]');
-  qtyLabel.text(t.lbl_qty_edit);
-
-  // OID & Date Display
-  if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
-  if (d.date) {
-    if ($('#display-date').length === 0) {
-      $('<div id="display-date" class="text-muted fw-bold small mt-1" style="font-size:10px;"></div>').insertAfter('#display-oid');
-    }
-    $('#display-date').text(formatPrettyDate(d.date)).show();
-  } else { $('#display-date').hide(); }
-
-  // Populate Data
+  // Populate Basic Data
   $('#saved-name').text(d.name);
   $('#edit-name').val(d.name);
-  $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
-  $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
-  $('#edit-district').val(d.district); $('#edit-state').val(d.state);
-  $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
+  $('#edit-house').val(d.house);
+  $('#edit-place').val(d.place);
+  $('#edit-pincode').val(d.pincode);
+  $('#edit-postoffice').val(d.postoffice);
+  $('#edit-district').val(d.district);
+  $('#edit-state').val(d.state);
 
-  savedOrderData = JSON.parse(JSON.stringify(d));
+  // 🔥 NOTE: Phone inputs are now handled in the Admin Panel below
+  $('#edit-phone').val(d.phone);
+  $('#edit-whatsapp').val(d.whatsapp || d.phone);
+  $('#edit-altphone').val(d.altphone || '');
+  $('#edit-paid-by').val(d.paidNum || '');
+
   updateSummaryDisplay();
 
+  // 🔥🔥🔥 NEW: ADMIN COMMUNICATION PANEL (Outside Collapse) 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-  if (isAdmin) {
-    // 1. Inject Paid By Input if missing
-    if ($('#edit-paid-by-wrapper').length === 0) {
-      $(`
-          <div id="edit-paid-by-wrapper" class="mt-2 p-2 border rounded bg-light fade-in">
-              <label class="small fw-bold text-muted">💰 PAID BY (Extra Number)</label>
-              <input type="tel" id="edit-paid-by" class="form-control form-control-sm fw-bold" placeholder="Enter GPay Number" value="${d.paidNum || ''}">
-          </div>
-          `).insertBefore('#address-edit-box button'); // Save Button-ന് തൊട്ടു മുകളിൽ
-    } else {
-      $('#edit-paid-by').val(d.paidNum || '');
-    }
+  $('#admin-comm-panel').remove(); // Remove old if exists
 
-    // 2. Make Phone Inputs Visible for Admin
-    $('#edit-phone, #edit-whatsapp, #edit-altphone').parent().show();
+  if (isAdmin) {
+    // Hide default phone inputs inside the collapse box to avoid duplication
+    $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
+
+    let commHTML = `
+      <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
+          <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
+          
+          <div class="d-flex align-items-center mb-2">
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0">Main Phone</label>
+                  <input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold" value="${d.phone}" onchange="$('#edit-phone').val(this.value)">
+              </div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="phone" style="transform: scale(1.3);">
+              </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-2">
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0 text-success">WhatsApp</label>
+                  <input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success" value="${d.whatsapp || d.phone}" onchange="$('#edit-whatsapp').val(this.value)">
+              </div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" checked style="transform: scale(1.3); border-color:#25D366;">
+              </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-2">
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0">Alt Phone</label>
+                  <input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold" value="${d.altphone || ''}" placeholder="No Alt Phone" onchange="$('#edit-altphone').val(this.value)">
+              </div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="alt" style="transform: scale(1.3);">
+              </div>
+          </div>
+
+          <div class="d-flex align-items-center">
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0 text-primary">Paid By (GPay)</label>
+                  <input type="tel" id="adm-paid" class="form-control form-control-sm fw-bold border-primary" value="${d.paidNum || ''}" placeholder="Enter Paid Number" onchange="$('#edit-paid-by').val(this.value)">
+              </div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="paid" style="transform: scale(1.3);">
+              </div>
+          </div>
+      </div>`;
+
+    // Insert ABOVE the status area or buttons
+    $(commHTML).insertBefore('#status-area');
   }
+  // 🔥🔥🔥 END ADMIN PANEL 🔥🔥🔥
 
   $('#status-area').hide().empty();
-
-  const checkText = t.status_check || "CHECKING LIVE STATUS...";
 
   if (isServerData) {
     updateStatusUI(d);
 
-    // Refresh Button logic...
     if ($('#refresh-btn').length === 0) {
-      const refreshText = t.txt_refresh || "REFRESH STATUS";
       $('#returning-user-view').append(`
               <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
-                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
-                      <i class="fas fa-sync-alt me-1"></i> <span data-i18n="txt_refresh">${refreshText}</span>
+                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2">
+                      <i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span>
                   </button>
               </div>`);
     }
-
-    // New Order Button Logic...
-    const status = String(d.Status || '').trim().toLowerCase();
-    $('#quick-qty option').prop('disabled', false);
-    if (status === 'paid') {
-      let currentQty = parseInt(d.quantity) || 0;
-      $('#quick-qty option').each(function () {
-        if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
-      });
-    }
-
-    if (['delivered', 'completed', 'refunded'].includes(status)) {
-      const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
-      if ($('#btn-new-order-mode').length === 0) {
-        $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
-      } else {
-        $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
-      }
-      $('#btn-new-order-mode').show();
-    }
-
     handleEditControlsVisibility(d);
-
   } else {
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('#btn-edit-addr').hide();
-    $('#btn-new-order-mode').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').prev('label').hide();
-
-    // Hourglass Animation
-    $('#status-area').html(`
-        <div class="d-flex flex-column align-items-center justify-content-center py-5 fade-in">
-            <div class="hourglass-container">
-                <div class="hourglass-glass"></div>
-            </div>
-            <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px; text-transform:uppercase;">
-                ${checkText}
-            </div>
-        </div>
-    `).show();
+    $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
   }
-
   checkForChanges();
 }
 
@@ -2236,6 +2136,54 @@ window.sendPaymentWA = function (oid) {
   }
 
   let phone = String(order.whatsapp || order.phone).replace(/[^0-9]/g, '');
+  if (phone.length === 10) phone = '91' + phone;
+
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// 🔥 HELPER: Get Selected Phone Number
+window.getSelectedWAPhone = function (order) {
+  // Admin Panel-ൽ Radio Button ഉണ്ടെങ്കിൽ അതിൽ നിന്ന് എടുക്കുന്നു
+  if ($('input[name="target_wa"]:checked').length > 0) {
+    let selected = $('input[name="target_wa"]:checked').val();
+
+    if (selected === 'phone') return $('#adm-phone').val() || order.phone;
+    if (selected === 'whatsapp') return $('#adm-whatsapp').val() || order.whatsapp || order.phone;
+    if (selected === 'alt') return $('#adm-alt').val();
+    if (selected === 'paid') return $('#adm-paid').val();
+  }
+
+  // Default fallback
+  return order.whatsapp || order.phone;
+}
+
+// 🔥 SEND PAYMENT RECEIPT (Uses Selected Number)
+window.sendPaymentWA = function (oid) {
+  let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
+
+  if (!order) {
+    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    order = cached.find(o => o.orderid === oid);
+  }
+
+  if (!order) { alert("Order Data Missing!"); return; }
+
+  let lang = order.language || 'en';
+  let msg = "";
+  let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
+
+  if (lang === 'ml') {
+    msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\nനിങ്ങളുടെ സഹകരണത്തിന് നന്ദി!\n\n👇 *Order Status:*\n${trackLink}`;
+  } else {
+    msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
+  }
+
+  // 🔥 USE SELECTED PHONE NUMBER
+  let phone = getSelectedWAPhone(order);
+
+  if (!phone) { alert("Please enter/select a valid number!"); return; }
+
+  phone = String(phone).replace(/[^0-9]/g, '');
   if (phone.length === 10) phone = '91' + phone;
 
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
