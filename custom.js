@@ -632,7 +632,7 @@ window.submitQuickOrder = function () {
   // 1. Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newName = $('#edit-name').val();
-  if (!newName) { showAlert(getAlert('err_name') || "Name Required"); return; }
+  if (!newName) { showAlert(getAlert('err_name')); return; }
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
   const pin = $('#edit-pincode').val();
@@ -657,14 +657,15 @@ window.submitQuickOrder = function () {
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
-    paidNum: $('#edit-paid-by').val() || '', // 🔥 Paid By Captured
+    paidNum: $('#edit-paid-by').val() || '',
     message: '',
     custId: myCustId,
     language: $('#language-select').val() || 'en'
   };
 
-  // 🔥🔥🔥 ADMIN LOGIC (Paid -> Sent Fix) 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+  // 🔥 FIX: Check Status Case-Insensitive
   const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
   if (isAdmin) {
@@ -691,9 +692,9 @@ window.submitQuickOrder = function () {
           cancelButtonText: 'No, Just Save'
         }).then((result) => {
 
-          showLoader(true); // Loading Start
+          showLoader(true);
 
-          // A. First Save Data (Name, Qty, PaidBy etc.)
+          // A. Save Data
           fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
             .then(res => res.json())
             .then(res => {
@@ -705,14 +706,13 @@ window.submitQuickOrder = function () {
                   body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
                 }).then(() => {
 
-                  // 🔥 CRITICAL FIX: Update Local Cache IMMEDIATELY
-                  // റീലോഡ് ചെയ്യുമ്പോൾ പഴയ 'Paid' വരാതിരിക്കാൻ ലോക്കൽ ഡാറ്റ മാറ്റുന്നു
-                  if (localUsersMap[finalData.phone]) {
-                    localUsersMap[finalData.phone].Status = 'Sent';
-                    localUsersMap[finalData.phone].quantity = newQty;
-                    localUsersMap[finalData.phone].paidNum = finalData.paidNum;
-                    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-                  }
+                  // 🔥 CRITICAL: Update Memory & Cache IMMEDIATELY
+                  updateLocalCache(finalData, 'Sent');
+
+                  // Force UI Update
+                  savedOrderData.Status = 'Sent';
+                  userData.Status = 'Sent';
+                  updateAdminUI('Sent', finalData.orderid);
 
                   showLoader(false);
 
@@ -724,14 +724,12 @@ window.submitQuickOrder = function () {
                   } else {
                     msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
                   }
-
-                  // Open WA & Reload
                   window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-                  setTimeout(() => location.reload(), 1000);
                 });
 
               } else {
-                // Just Save (No Status Change)
+                // Just Save (Keep Paid)
+                updateLocalCache(finalData, 'Paid');
                 showLoader(false);
                 location.reload();
               }
@@ -745,12 +743,7 @@ window.submitQuickOrder = function () {
     showLoader(true);
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
-        // Update Local Cache to reflect Name/Phone/PaidBy changes immediately
-        if (localUsersMap[finalData.phone]) {
-          localUsersMap[finalData.phone] = { ...localUsersMap[finalData.phone], ...finalData };
-          SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-        }
-
+        updateLocalCache(finalData, savedOrderData.Status); // Keep old status
         showLoader(false);
         Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
         setTimeout(() => location.reload(), 1000);
@@ -762,7 +755,114 @@ window.submitQuickOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
+// 🔥 Helper to Update All Caches (Fixes "Old Data" Issue)
+function updateLocalCache(data, status) {
+  // 1. Update Current Global Objects
+  userData = { ...userData, ...data, Status: status };
+  savedOrderData = JSON.parse(JSON.stringify(userData));
+
+  // 2. Update Local User Map
+  if (localUsersMap[data.phone]) {
+    localUsersMap[data.phone] = { ...localUsersMap[data.phone], ...data, Status: status };
+    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+  }
+
+  // 3. 🔥 UPDATE ADMIN CACHE (allOrdersCache)
+  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let idx = allOrders.findIndex(o => o.orderid === data.orderid);
+  if (idx > -1) {
+    allOrders[idx] = { ...allOrders[idx], ...data, Status: status };
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+  }
+}
 function showReturningUserView(d, isActiveOrder, isServerData) {
+  function showReturningUserView(d, isActiveOrder, isServerData) {
+    $('#step-0').hide();
+    $('#wizard-view').hide();
+    $('#top-progress-container').hide();
+    $('#returning-user-view').show();
+
+    updateFooterButtons('returning');
+    isEditMode = isActiveOrder;
+    savedOrderData = JSON.parse(JSON.stringify(d)); // Save initial state
+
+    const lang = $('#language-select').val() || 'en';
+    const t = translations[lang] || translations['en'];
+
+    if (d.language) {
+      $('#language-select').val(d.language);
+      changeLanguage(d.language);
+    }
+
+    // Populate Data
+    $('#saved-name').text(d.name);
+    $('#edit-name').val(d.name);
+    $('#edit-phone').val(d.phone);
+    $('#edit-house').val(d.house);
+    $('#edit-place').val(d.place);
+    $('#edit-pincode').val(d.pincode);
+    $('#edit-postoffice').val(d.postoffice);
+    $('#edit-district').val(d.district);
+    $('#edit-state').val(d.state);
+    $('#edit-whatsapp').val(d.whatsapp || d.phone);
+    $('#edit-altphone').val(d.altphone || '');
+
+    updateSummaryDisplay();
+
+    // 🔥🔥🔥 FIX: ADMIN INPUTS FORCE SHOW 🔥🔥🔥
+    const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+    if (isAdmin) {
+      // 1. Paid By Input (Inject if missing)
+      if ($('#edit-paid-by-wrapper').length === 0) {
+        $(`
+          <div id="edit-paid-by-wrapper" class="mt-3 p-2 border rounded bg-light">
+              <label class="small fw-bold text-muted" style="display:block">💰 PAID BY (Extra Number)</label>
+              <input type="tel" id="edit-paid-by" class="form-control form-control-sm fw-bold" placeholder="Enter GPay Number" value="${d.paidNum || ''}">
+          </div>
+          `).insertBefore('#address-edit-box button');
+      } else {
+        $('#edit-paid-by').val(d.paidNum || '');
+      }
+
+      // 2. Force Show Phone Inputs (Parent Divs)
+      $('#edit-phone').closest('.mb-3').show();
+      $('#edit-whatsapp').closest('.mb-3').show();
+      $('#edit-altphone').closest('.mb-3').show();
+    } else {
+      // Hide for customers
+      $('#edit-paid-by-wrapper').remove();
+    }
+    // 🔥🔥🔥 END FIX 🔥🔥🔥
+
+    $('#status-area').hide().empty();
+
+    if (isServerData) {
+      updateStatusUI(d);
+
+      // Refresh Button logic
+      if ($('#refresh-btn').length === 0) {
+        const refreshText = t.txt_refresh || "REFRESH STATUS";
+        $('#returning-user-view').append(`
+              <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
+                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2">
+                      <i class="fas fa-sync-alt me-1"></i> <span data-i18n="txt_refresh">${refreshText}</span>
+                  </button>
+              </div>`);
+      }
+
+      handleEditControlsVisibility(d);
+
+    } else {
+      // Local data view (Loading...)
+      $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+      $('#btn-edit-addr').hide();
+      $('label[data-i18n="lbl_qty"]').hide();
+      $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
+    }
+
+    checkForChanges();
+  }
   $('#step-0').hide();
   $('#wizard-view').hide();
   $('#top-progress-container').hide();
@@ -1392,16 +1492,10 @@ function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDispla
 function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html?search=${oid}'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
-  let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
-  let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-  if (cachedOrder) {
-    showLoader(false);
-    loadOrderData(cachedOrder, false);
-    updateAdminUI(cachedOrder.Status || 'Pending', oid);
-    syncUserDataBackground(cachedOrder.phone);
-  } else {
-    fetchOrder(oid);
-  }
+
+  // 🔥 FIX: Always fetch fresh data for Admin Edit View
+  showLoader(true);
+  fetchOrder(oid);
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
