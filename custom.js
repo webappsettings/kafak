@@ -2114,7 +2114,6 @@ window.sendPaymentWA = function (oid) {
   let lang = order.language || 'en';
   let msg = "";
 
-  // ട്രാക്കിംഗ് ലിങ്ക് (ഇത് ഉപകാരപ്രദമാണ്, വേണമെങ്കിൽ ഒഴിവാക്കാം)
   let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
   if (lang === 'ml') {
@@ -2143,36 +2142,4 @@ window.getSelectedWAPhone = function (order) {
 
   // Default fallback
   return order.whatsapp || order.phone;
-}
-
-// 🔥 SEND PAYMENT RECEIPT (Uses Selected Number)
-window.sendPaymentWA = function (oid) {
-  let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
-
-  if (!order) {
-    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-    order = cached.find(o => o.orderid === oid);
-  }
-
-  if (!order) { alert("Order Data Missing!"); return; }
-
-  let lang = order.language || 'en';
-  let msg = "";
-  let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
-
-  if (lang === 'ml') {
-    msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\nനിങ്ങളുടെ സഹകരണത്തിന് നന്ദി!\n\n👇 *Order Status:*\n${trackLink}`;
-  } else {
-    msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
-  }
-
-  // 🔥 USE SELECTED PHONE NUMBER
-  let phone = getSelectedWAPhone(order);
-
-  if (!phone) { alert("Please enter/select a valid number!"); return; }
-
-  phone = String(phone).replace(/[^0-9]/g, '');
-  if (phone.length === 10) phone = '91' + phone;
-
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
