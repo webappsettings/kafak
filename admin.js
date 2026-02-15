@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxpiS5nFcMz02IURvPqzVsVTno4j8UXYAHFxTHZ1Sw__6bGfkzZlR_FErUPd0JrBvkiKw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzJJZAmYxhS_3uReLN9gdsXNfvHIvI-12qPUPyebLQr3R2V_w_EG7uv3f_6IP8xpI2vYQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1101,7 +1101,7 @@ window.confirmHardDelete = function (oid) {
     });
 }
 
-// 🔥 UPDATED: Auto generates Date & Time for 'Paid' status from Admin Panel
+// 🔥 UPDATED: Auto generates Date & Time (Preserves Old Date)
 function updateOrder(oid, status, trackingNum = null, skipConfirm = false, customDate = null) {
     if (!skipConfirm && !trackingNum && !customDate && !confirm(`Mark '${status}'?`)) return;
 
@@ -1111,11 +1111,9 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
     let existingOrder = allOrders.find(o => o.orderid === oid);
     let oldStatus = existingOrder ? existingOrder.Status : 'Pending';
 
-    // 🔥 FIX: നേരിട്ട് Delete ചെയ്യാതെ, Sync ചെയ്യുമ്പോൾ ഡിലീറ്റ് ചെയ്യാൻ ഒരു Flag വെക്കുന്നു
     let needsRefundDelete = false;
     if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
         needsRefundDelete = true;
-        console.log("Refund deletion queued for sync...");
     }
 
     if (existingOrder && existingOrder.Status === status && customDate) {
@@ -1127,22 +1125,29 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
         status: status,
         oldStatus: oldStatus,
         time: new Date().getTime(),
-        deleteRefund: needsRefundDelete // 🔥 ഈ ഫ്ലാഗ് വെച്ചാണ് Sync ചെയ്യുമ്പോൾ തിരിച്ചറിയുന്നത്
+        deleteRefund: needsRefundDelete
     };
 
     if (trackingNum) updateObj.tracking = trackingNum;
 
-    // 🔥 DATE & TIME LOGIC FIX (Both Paid and Dispatched will get Exact Time)
+    // 🔥 DATE & TIME LOGIC FIX
     if (customDate) {
         updateObj.actionDate = customDate;
     } else if ((status === 'Dispatched' && !trackingNum) || status === 'Paid') {
-        let now = new Date();
-        let y = now.getFullYear();
-        let m = String(now.getMonth() + 1).padStart(2, '0');
-        let d = String(now.getDate()).padStart(2, '0');
-        let h = String(now.getHours()).padStart(2, '0');
-        let min = String(now.getMinutes()).padStart(2, '0');
-        updateObj.actionDate = `${y}-${m}-${d} ${h}:${min}`;
+
+        // 🔥 FIX: പഴയ ഓർഡറിൽ Paid Date ഉണ്ടെങ്കിൽ അത് തന്നെ ഉപയോഗിക്കുക (മാറ്റരുത്)
+        if (status === 'Paid' && existingOrder && existingOrder.paidDate) {
+            updateObj.actionDate = existingOrder.paidDate;
+        } else {
+            // ഇല്ലെങ്കിൽ മാത്രം പുതിയ സമയം എടുക്കുക
+            let now = new Date();
+            let y = now.getFullYear();
+            let m = String(now.getMonth() + 1).padStart(2, '0');
+            let d = String(now.getDate()).padStart(2, '0');
+            let h = String(now.getHours()).padStart(2, '0');
+            let min = String(now.getMinutes()).padStart(2, '0');
+            updateObj.actionDate = `${y}-${m}-${d} ${h}:${min}`;
+        }
     }
 
     updates.push(updateObj);
@@ -1154,7 +1159,8 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
         if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
         if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
 
-        if (status === 'Paid' && !allOrders[orderIndex].paidDate) {
+        // Paid Date ലോക്കലായി അപ്‌ഡേറ്റ് ചെയ്യുന്നു (പഴയതുണ്ടെങ്കിൽ അത് തന്നെ നിൽക്കും)
+        if (status === 'Paid') {
             allOrders[orderIndex].paidDate = updateObj.actionDate;
         }
         if (status === 'Dispatched' && !allOrders[orderIndex]['Dispatched Date']) {
@@ -1165,11 +1171,10 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
     }
 
     if (document.getElementById('searchInput').value.trim().length > 0) {
-        filterOrders(); // സെർച്ച് ബോക്സിൽ വാല്യൂ ഉണ്ടെങ്കിൽ ഫിൽട്ടർ റിസൾട്ട് കാണിക്കും
+        filterOrders();
     } else {
-        renderTabs(allOrders); // ഇല്ലെങ്കിൽ സാധാരണ പോലെ ടാബ് കാണിക്കും
+        renderTabs(allOrders);
     }
-    // 🔥 CHANGE END
 
     updateSyncButtonUI();
 
