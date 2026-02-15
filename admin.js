@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxbF8Bqqp-PmGo-AbDe-RYAvQ6kJ7J4l0LXYmh7yeB8La5vSO5EGktQnL-O_bPCnEzB2Q/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyDlDLwnWZgo2EzKDs4W7U-AO0if_t0SPV7TCjXuOl6ePnR3elwLqteAGI0GEMh85T8Iw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -877,15 +877,19 @@ function updateSyncButtonUI() {
     }
 }
 
-// 🔥 UPDATED: POWERFUL SEARCH (Local + Server)
+
+// 🔥 UPDATED: POWERFUL SEARCH (Includes WA, Alt Phone & Space Fix)
 function filterOrders() {
     const term = document.getElementById('searchInput').value.trim().toLowerCase();
 
+    // 🔥 സ്പേസും ചിഹ്നങ്ങളും കളഞ്ഞ് നമ്പറുകൾ മാത്രം എടുക്കുന്നു (For Phone Search)
+    const termClean = term.replace(/[^0-9]/g, '');
+
     const clearBtn = document.getElementById('btn-clear-search');
     if (term.length > 0) {
-        clearBtn.style.display = 'block'; // ടൈപ്പ് ചെയ്താൽ ബട്ടൺ വരും
+        clearBtn.style.display = 'block';
     } else {
-        clearBtn.style.display = 'none';  // ഒന്നുമില്ലെങ്കിൽ ബട്ടൺ പോകും
+        clearBtn.style.display = 'none';
     }
 
     const tabsContainer = document.getElementById('tabs-container');
@@ -897,12 +901,24 @@ function filterOrders() {
         searchResultsArea.style.display = 'block';
         searchList.innerHTML = '';
 
-        let matches = allOrders.filter(o =>
-            (o.name || '').toLowerCase().includes(term) ||
-            String(o.phone).includes(term) ||
-            (o.orderid || '').toLowerCase().includes(term) ||
-            (o.tracking || '').toLowerCase().includes(term)
-        );
+        let matches = allOrders.filter(o => {
+            // 1. സാധാരണ ടെക്സ്റ്റ് സെർച്ച് (പേര്, ഐഡി, ട്രാക്കിംഗ്)
+            if ((o.name || '').toLowerCase().includes(term)) return true;
+            if ((o.orderid || '').toLowerCase().includes(term)) return true;
+            if ((o.tracking || '').toLowerCase().includes(term)) return true;
+
+            // 2. നമ്പർ സെർച്ച് (ഫോൺ, വാട്സാപ്പ്, Alt) - സ്പേസ് പ്രശ്നം വരില്ല
+            if (termClean.length > 0) {
+                let p = String(o.phone || '').replace(/[^0-9]/g, '');
+                let w = String(o.whatsapp || '').replace(/[^0-9]/g, '');
+                let a = String(o.altphone || '').replace(/[^0-9]/g, '');
+
+                if (p.includes(termClean)) return true;
+                if (w.includes(termClean)) return true;
+                if (a.includes(termClean)) return true;
+            }
+            return false;
+        });
 
         if (matches.length === 0) {
             searchList.innerHTML = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
@@ -913,7 +929,7 @@ function filterOrders() {
             });
         }
 
-        // 🔥 ADD "SEARCH ON SERVER" BUTTON
+        // Search Server Button
         let serverBtnHtml = `
             <div class="col-12 mt-3 text-center">
                 <div class="p-3 border rounded-3 bg-light shadow-sm">
