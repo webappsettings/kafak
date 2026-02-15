@@ -642,12 +642,12 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // 🔥 1. MAIN SEARCH BUTTON (For Header)
     // ഏത് നമ്പറാണ് സെർച്ച് ചെയ്യേണ്ടത്? (WhatsApp ഉണ്ടെങ്കിൽ അത്, ഇല്ലെങ്കിൽ Phone)
-    let searchNum = d.whatsapp || d.phone;
+    // 🔥 1. MAIN SEARCH BUTTON (Copies Order ID)
     let searchBtnHtml = `
-    <button onclick="event.stopPropagation(); openWASearch('${searchNum}')" 
+    <button onclick="event.stopPropagation(); searchOrderInWA('${d.orderid}')" 
         class="btn btn-sm btn-light border shadow-sm ms-1" 
         style="padding: 0px 5px; font-size: 9px; height: 18px; line-height: 1;" 
-        title="Search on WhatsApp">
+        title="Copy ID & Open WhatsApp">
         <i class="fab fa-whatsapp text-success"></i> <i class="fas fa-search text-muted" style="font-size:8px;"></i>
     </button>`;
 
@@ -673,10 +673,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 
                 <div style="font-size:10px; color:#555; margin-top:3px; display:flex; align-items:center;">
                     ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})
-                    <button onclick="event.stopPropagation(); openWASearch('${linkedNum}')" 
+                    <button onclick="event.stopPropagation(); searchOrderInWA('${linkedOrder.orderid}')" 
                         class="btn btn-sm btn-light border shadow-sm ms-2" 
                         style="padding: 0px 5px; font-size: 9px; height: 18px; line-height: 1;" 
-                        title="Check Linked Number">
+                        title="Copy Linked ID & Open WhatsApp">
                         <i class="fab fa-whatsapp text-success"></i> 🔎
                     </button>
                 </div>
@@ -3206,14 +3206,17 @@ function checkCrossLinking(currentOrder) {
     return null;
 }
 
-// 🔥 OPEN WHATSAPP CHAT (SEARCH USER)
-window.openWASearch = function (num) {
-    let clean = String(num || '').replace(/[^0-9]/g, '');
-    if (clean.length >= 10) {
-        if (clean.length === 10) clean = '91' + clean;
-        // പുതിയ ടാബിൽ ചാറ്റ് തുറക്കുന്നു (ഇതാണ് ഹിസ്റ്ററി നോക്കാൻ എളുപ്പം)
-        window.open(`https://wa.me/${clean}`, '_blank');
-    } else {
-        showToast('error', 'No valid number found!');
-    }
+
+// 🔥 COPY ORDER ID & OPEN WHATSAPP WEB
+window.searchOrderInWA = function (oid) {
+    // 1. Order ID കോപ്പി ചെയ്യുന്നു
+    navigator.clipboard.writeText(oid).then(() => {
+        showToast('success', 'Order ID Copied! Paste in WhatsApp Search 📋');
+
+        // 2. WhatsApp Web തുറക്കുന്നു
+        window.open('https://web.whatsapp.com/', '_blank');
+    }).catch(err => {
+        console.error('Copy failed', err);
+        showToast('error', 'Copy failed! Please copy manually.');
+    });
 }
