@@ -537,6 +537,8 @@ function renderTabs(orders) {
         }
     });
 
+    updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
+
     // 8. UPDATE BADGES (Main & Sub)
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
@@ -555,6 +557,13 @@ function renderTabs(orders) {
 
     updateSyncButtonUI();
     checkSelectAllStatus();
+
+    let savedScroll = localStorage.getItem('lastScrollPosition');
+    if (savedScroll && parseInt(savedScroll) > 0) {
+        setTimeout(() => {
+            window.scrollTo(0, parseInt(savedScroll));
+        }, 100); // കാർഡുകൾ ലോഡ് ആകാൻ ഒരു 100ms സമയം കൊടുക്കുന്നു
+    }
 }
 function updateBadgeUI(elementId, orderCount, bottleCount) {
     const el = document.getElementById(elementId);
@@ -679,15 +688,22 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     // 🔥 FIX: Paid Phone Input HTML Creation
     let paidNumHtml = '';
     if (type === 'pending' || type === 'paid' || type === 'search') {
+        let pNum = d.paidNum || '';
+        let waBtn = '';
+        if (pNum.length > 5) {
+            waBtn = `<button class="btn btn-sm btn-success ms-1" onclick="openPaidNumWA('${pNum}')" title="Chat with Paid Number" style="padding: 2px 6px; font-size: 10px;"><i class="fab fa-whatsapp"></i></button>`;
+        }
+
         paidNumHtml = `
         <div class="mt-2 mb-2 d-flex align-items-center gap-1" onclick="highlightCard(this)">
             <span class="badge bg-light text-dark border"><i class="fas fa-mobile-alt"></i> Paid By:</span>
             <input type="text" 
                 class="form-control form-control-sm border-secondary fw-bold text-dark" 
                 placeholder="Enter GPay / Phone Number" 
-                value="${d.paidNum || ''}" 
+                value="${pNum}" 
                 onchange="savePaidNum('${d.orderid}', this.value)"
                 style="font-size:12px; background:#f0fdf4; letter-spacing:0.5px;">
+            ${waBtn}
         </div>`;
     }
 
@@ -1369,6 +1385,15 @@ function finalConfirmSync() {
     // 4. Expenses Sync
     pendingExpenses.forEach(exp => {
         promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: exp }) }));
+    });
+
+    // 🔥 5. Paid Number Sync
+    let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum');
+    paidNumUpdates.forEach(u => {
+        promises.push(fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'updatePaidNum', oid: u.oid, num: u.num })
+        }));
     });
 
     Promise.all(promises).then(() => {
@@ -3003,18 +3028,71 @@ window.highlightCard = function (el) {
 }
 
 
-// 🔥 SAVE PAID NUMBER TO SERVER
+// 🔥 SAVE PAID NUMBER (With Offline Sync Support)
 window.savePaidNum = function (oid, val) {
-    // ലോക്കലായി അപ്‌ഡേറ്റ് ചെയ്യുന്നു
     let order = allOrders.find(o => o.orderid === oid);
-    if (order) order.paidNum = val;
+    if (!order) return;
+
+    // 1. Local Update
+    order.paidNum = val;
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-    // സർവറിലേക്ക് അയക്കുന്നു
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: val })
-    }).then(res => console.log("Paid Num Saved"));
+    // 2. Queue for Sync (Offline Support)
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    showToast('success', 'Number Saved ✅');
+    // പഴയ അപ്‌ഡേറ്റ് ഉണ്ടെങ്കിൽ അത് തിരുത്തുന്നു, ഇല്ലെങ്കിൽ പുതിയത് ചേർക്കുന്നു
+    let existing = updates.find(u => u.oid === oid && u.action === 'paidNum');
+    if (existing) {
+        existing.num = val;
+    } else {
+        updates.push({
+            oid: oid,
+            action: 'paidNum',
+            num: val,
+            status: order.Status // Just for reference
+        });
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    updateSyncButtonUI(); // Sync Button തെളിയാൻ
+
+    // 3. Re-render Card (വാട്സാപ്പ് ബട്ടൺ അപ്പപ്പോൾ വരാൻ വേണ്ടി)
+    // ചെറിയൊരു ഡിലേ ഇട്ട് കാർഡ് റിഫ്രഷ് ചെയ്യുന്നു
+    setTimeout(() => {
+        let card = document.querySelector(`input[value="${val}"]`).closest('.order-card');
+        if (card) {
+            let parent = card.parentElement;
+            // നമ്മൾ ഫുൾ പേജ് റീലോഡ് ചെയ്യുന്നില്ല, പക്ഷെ അടുത്ത തവണ റിഫ്രഷ് ചെയ്യുമ്പോൾ ബട്ടൺ വരും.
+            // പെട്ടെന്ന് കാണണമെങ്കിൽ: renderTabs(allOrders) വിളിക്കാം.
+            renderTabs(allOrders);
+        }
+    }, 500);
+
+    showToast('success', 'Number Saved (Queued) ✅');
 }
+
+// 🔥 Open WhatsApp for Paid Number
+window.openPaidNumWA = function (num) {
+    let clean = String(num).replace(/[^0-9]/g, '');
+    if (clean.length >= 10) {
+        if (clean.length === 10) clean = '91' + clean;
+        window.open(`https://wa.me/${clean}`, '_blank');
+    } else {
+        alert("Invalid Phone Number");
+    }
+}
+
+// 🔥 AUTO SCROLL RESTORE SYSTEM
+// 1. നമ്മൾ സ്ക്രോൾ ചെയ്യുമ്പോൾ ആ സ്ഥാനം സേവ് ചെയ്യുന്നു
+window.addEventListener('scroll', function () {
+    localStorage.setItem('lastScrollPosition', window.scrollY);
+});
+
+// 2. ടാബ് മാറുമ്പോൾ സ്ക്രോൾ മുകളിലേക്ക് തന്നെ പോകാൻ (Optional)
+const tabButtons = document.querySelectorAll('button[data-bs-toggle="pill"]');
+tabButtons.forEach(btn => {
+    btn.addEventListener('shown.bs.tab', function (e) {
+        // ടാബ് മാറിയാൽ പൊസിഷൻ 0 ആക്കുന്നു
+        localStorage.setItem('lastScrollPosition', 0);
+    });
+});
