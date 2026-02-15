@@ -349,15 +349,35 @@ function renderTabs(orders) {
     const listPaidPrinted = document.getElementById('list-paid-printed');
     const listDispNew = document.getElementById('list-disp-new');
     const listDispTracked = document.getElementById('list-disp-tracked');
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+    // 4. HELPER: Get Effective Status & Dates
+    const getOrderInfo = (o) => {
+        let local = pendingUpdates.find(u => u.oid === o.orderid);
+        let status = local ? local.status : (o.Status || 'Pending');
+
+        let tDate = new Date(o.timestamp); // Order Date
+        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
+        let pDate = new Date(pDateStr);
+
+        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
+        let dDate = new Date(dDateStr);
+
+        return { status, tDate, pDate, dDate, pDateStr, dDateStr };
+    };
 
     window.paidRankMap = {};
     let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
 
     // Status = Paid ആയവ മാത്രം എടുക്കുന്നു
-    let paidOrds = sourceOrders.filter(o => o.Status === 'Paid');
+    let paidOrds = sourceOrders.filter(o => getOrderInfo(o).status === 'Paid');
 
     // പഴയത് മുതൽ പുതിയത് എന്ന ക്രമത്തിൽ (Oldest First) സോർട്ട് ചെയ്യുന്നു
-    paidOrds.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
+    paidOrds.sort((a, b) => {
+        let dateA = new Date(getOrderInfo(a).pDateStr);
+        let dateB = new Date(getOrderInfo(b).pDateStr);
+        return dateA - dateB;
+    });
 
     // ഓരോന്നിനും നമ്പർ നൽകുന്നു
     paidOrds.forEach((o, i) => {
@@ -409,22 +429,7 @@ function renderTabs(orders) {
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
     let subCounts = { new: 0, sent: 0, paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
 
-    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // 4. HELPER: Get Effective Status & Dates
-    const getOrderInfo = (o) => {
-        let local = pendingUpdates.find(u => u.oid === o.orderid);
-        let status = local ? local.status : (o.Status || 'Pending');
-
-        let tDate = new Date(o.timestamp); // Order Date
-        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
-        let pDate = new Date(pDateStr);
-
-        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
-        let dDate = new Date(dDateStr);
-
-        return { status, tDate, pDate, dDate, pDateStr, dDateStr };
-    };
 
     // 5. SORTING LOGIC
     orders.sort((a, b) => {

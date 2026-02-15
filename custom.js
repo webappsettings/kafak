@@ -1,1964 +1,894 @@
-﻿// ------------------------------------------------------------------------------
-// 🔴 CONFIGURATION & GLOBALS
-// ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxbF8Bqqp-PmGo-AbDe-RYAvQ6kJ7J4l0LXYmh7yeB8La5vSO5EGktQnL-O_bPCnEzB2Q/exec`;
+﻿var scriptProp = PropertiesService.getScriptProperties();
 
-let currentStep = 0;
-let editingOrderId = null;
-let userData = {};
-let successData = null;
-let poList = [];
-let myCustId = null;
-let localUsersMap = {};
-let currentLoginPhone = null;
-let isEditMode = false;
-var savedOrderData = {};
-let globalQtyList = [];
-let adminPhone = '7788990313';
-
-const STORAGE_KEY = 'kafakCustomerData';
-
-const SafeStorage = {
-  getItem: function (key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
-  setItem: function (key, val) { try { localStorage.setItem(key, val); } catch (e) { } },
-  removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
-};
-
-// --- UPDATED LOADER LOGIC ---
-let loaderInterval;
-
-// --- 🔥 SIMPLE GIF LOADER LOGIC ---
-window.showLoader = function (show) {
-  // 1. Language Setup
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-  const loadingTxt = t.loading || "LOADING...";
-
-  if (show) {
-    // Show UI
-    $('#loader-text').text(loadingTxt);
-    $('#full-loader').css('display', 'flex').fadeIn(200); // 'flex' to center align
-
-  } else {
-    setTimeout(() => {
-      $('#full-loader').fadeOut(300);
-    }, 200);
-  }
+function setup() {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty("key", doc.getId());
 }
 
-window.changeLanguage = function (lang) {
-  localStorage.setItem('activeLang', lang);
-  const t = translations[lang] || translations['en']; // Fallback
-  if (!t) return;
-
-  // 1. Update Standard Text Content
-  $('[data-i18n]').each(function () {
-    const key = $(this).attr('data-i18n');
-    if (key === 'lbl_qty' && typeof editingOrderId !== 'undefined' && editingOrderId) {
-      $(this).text(t.lbl_qty_edit);
-      return;
-    }
-
-    if (t[key]) $(this).text(t[key]);
-  });
-
-  // 2. Update Placeholders & Other UI Elements
-  $('#phone').attr('placeholder', t.ph_phone);
-  $('#name').attr('placeholder', t.ph_name);
-  $('#house').attr('placeholder', t.ph_house);
-  $('#place').attr('placeholder', t.ph_place);
-  $('#pincode').attr('placeholder', t.ph_pincode);
-  $('#whatsapp').attr('placeholder', t.ph_whatsapp);
-  $('#altphone').attr('placeholder', t.ph_altphone);
-
-  $('#edit-phone').attr('placeholder', t.ph_edit_phone);
-  $('#edit-house').attr('placeholder', t.ph_edit_house);
-  $('#edit-place').attr('placeholder', t.ph_edit_place);
-  $('#edit-pincode').attr('placeholder', t.ph_edit_pin);
-  $('#edit-whatsapp').attr('placeholder', t.ph_edit_wa);
-  $('#edit-altphone').attr('placeholder', t.ph_edit_alt);
-
-  // 3. Update Dropdowns
-  renderQtyDropdowns();
-  let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
-  if (qtyVal) {
-    updatePrice(qtyVal, $('#quick-qty').is(':visible'));
+function doGet(e) {
+  var action = e.parameter.action;
+  if (action == 'getCustomer') return getCustomer(e);
+  if (action == 'getOrder') return getOrderDetails(e);
+  if (action == 'getAllOrders') return getAllOrders();
+  if (action == 'getDashboardData') return getDashboardData(e); 
+  if (action == 'getRates') return getRatesWithAdmin();
+  if (action === 'searchGlobal') {
+    return searchGlobal(e.parameter.query);
   }
-
-  // 4. Update Wizard Button Text
-  const wizBtn = $('#btn-wiz-next');
-  if (wizBtn.length > 0) {
-    if (currentStep === 7) wizBtn.text(t.btn_order);
-    else wizBtn.text(t.btn_next);
-  }
-
-  checkForChanges();
-
-  // 5. Status UI Refresh
-  if (typeof userData !== 'undefined' && userData.orderid && typeof updateStatusUI === 'function') {
-    if ($('#status-area').html().trim() !== "") {
-      updateStatusUI(userData);
-    }
-  }
-
-  if ($('#quick-qty').is(':hidden')) {
-    $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').prev('label').hide();
-  }
+  return ContentService.createTextOutput("KAFAK Server Running... High-Speed System Active 🚀");
 }
 
-window.showAlert = function (msg) {
-  Swal.fire({ text: msg, icon: 'warning', confirmButtonText: 'OK', confirmButtonColor: '#000', customClass: { popup: 'ios-popup', confirmButton: 'ios-btn' } });
-}
-
-window.getAlert = function (key) {
-  const lang = $('#language-select').val() || 'en';
-  return translations[lang][key] || key;
-}
-
-window.updateWizardLocDisplay = function () {
-  $('#display-po').text((userData.postoffice || '').toUpperCase());
-  $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
-}
-
-
-function formatPrettyDate(dateStr) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return "";
-
-  return d.toLocaleString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-    timeZone: 'Asia/Kolkata'
-  });
-}
-
-function getZoneKey(stateName) {
-  if (!stateName) return 'REST OF INDIA';
-  let s = stateName.toUpperCase().trim();
-
-  // 🔥 DYNAMIC CHECK: സ്റ്റേറ്റ് ലിസ്റ്റിൽ ഈ പേരുണ്ടോ എന്ന് നോക്കുന്നു
-  // ഉണ്ടെങ്കിൽ ആ പേര് തന്നെ തിരിച്ചയക്കുന്നു (ഉദാ: "KARNATAKA")
-  if (courierRates && courierRates[s]) {
-    return s;
-  }
-
-  // ലിസ്റ്റിൽ ഇല്ലെങ്കിൽ മാത്രം "REST OF INDIA" എടുക്കുന്നു
-  return 'REST OF INDIA';
-}
-
-$(document).ready(function () {
-
-  const savedLang = localStorage.getItem('activeLang') || 'ml';
-  if (savedLang) {
-    if ($('#language-select').length > 0) {
-      $('#language-select').val(savedLang);
-    }
-    changeLanguage(savedLang);
-  } else {
-    // Default English
-    changeLanguage('en');
-  }
-
-  fetchCourierRates();
-  injectVideoCSS();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const autoPhone = urlParams.get('phone');
-
-  if (autoPhone) {
-    // 1. Clean the number (remove +91, spaces)
-    let cleanPhone = autoPhone.replace(/[^0-9]/g, '');
-    if (cleanPhone.length > 10) cleanPhone = cleanPhone.slice(-10); // Last 10 digits
-
-    // 2. Set Value & Auto Click Next
-    if (cleanPhone.length === 10) {
-      $('#phone').val(cleanPhone);
-      setTimeout(() => {
-        handlePhoneNext(); // Auto-Trigger Next Button
-      }, 500); // Small delay for smooth UX
-    }
-  }
-
-  $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
-  $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
-
-  const saved = SafeStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    try {
-      localUsersMap = JSON.parse(saved);
-      let isDirty = false;
-      Object.keys(localUsersMap).forEach(key => {
-        let u = localUsersMap[key];
-        if (u.Status || u.status || u.tracking || u.offer || u.courier) {
-          delete u.Status; delete u.status;
-          delete u.tracking; delete u.offer; delete u.courier; delete u.provider;
-          isDirty = true;
-        }
-      });
-      if (isDirty) SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-    } catch (e) { localUsersMap = {}; }
-  }
-  const oid = urlParams.get('oid');
-  const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
-
-  // INSTANT EDIT LOAD
-  if (oid) {
-    showLoader(true);
-
-    if (isAdmin) {
-      setupAdminView(oid);
-    } else {
-      let foundLocally = false;
-      const phones = Object.keys(localUsersMap);
-      for (let ph of phones) {
-        if (String(localUsersMap[ph].orderid) === String(oid)) {
-          showLoader(false);
-          $('#step-0').hide();
-          loadOrderData(localUsersMap[ph], false);
-          foundLocally = true;
-          syncUserDataBackground(ph);
-          break;
-        }
-      }
-      if (!foundLocally) {
-        console.log("Not found locally, fetching from server...");
-        fetchOrder(oid);
-      }
-    }
-  } else {
-    showLoader(false);
-    $('#step-0').show();
-    updateFooterButtons('step-0');
-    setTimeout(() => $('#phone').focus(), 500);
-  }
-
-  $('.form-select').on('change', function () {
-    updateLiveAddressPreview();
-  });
-
-});
-
-window.handlePhoneNext = function () {
-  const phone = $('#phone').val();
-  if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
-
-  currentLoginPhone = phone;
-  preloadHoneyVideo();
-
-  if (localUsersMap[phone]) {
-
-    // 🔥 DO NOT RENDER LOCAL IMMEDIATELY
-    showLoader(true);
-
-    syncUserDataBackground(phone).finally(() => {
-      showLoader(false);
-    });
-
-    return;
-  }
-
-  editingOrderId = null;
-  $('#step-0').hide();
-  $('#whatsapp').val(phone);
-  startWizard();
-  backgroundUserCheck(phone);
-  $('#top-progress-container').fadeIn();
-}
-
-
-function checkUserOnServerBackground(phone) {
-  fetch(`${sc}?action=getCustomer&phone=${phone}`)
-    .then(res => res.json())
-    .then(data => {
-      if ($('#wizard-view').is(':visible')) {
-
-        if (data.result === 'success' && data.data && data.data.authorized) {
-          let status = String(data.data.Status || '').toLowerCase();
-          if (status !== 'completed' && status !== 'delivered') {
-
-            Swal.fire({
-              title: 'Welcome Back!',
-              text: 'Loading your active order...',
-              icon: 'info',
-              timer: 2000,
-              showConfirmButton: false,
-              toast: true,
-              position: 'top'
-            });
-
-            userData = data.data;
-            saveToLocal(phone, userData);
-
-            $('#wizard-view').hide();
-            $('#top-progress-container').hide();
-            loadOrderData(userData, true);
-          }
-        }
-      }
-    })
-    .catch(err => console.log("Background check silent fail"));
-}
-
-
-function saveToLocal(phone, data) {
-  let cleanData = { ...data };
-  delete cleanData.Status; delete cleanData.status;
-  delete cleanData.tracking; delete cleanData.courier;
-  delete cleanData.provider; delete cleanData.offer;
-  delete cleanData.grandTotal;
-  localUsersMap[phone] = cleanData;
-  SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-}
-
-function loadOrderData(d, isServerData = false) {
-  $('#step-0').hide();
-  userData = d;
-  editingOrderId = d.orderid;
-  currentLoginPhone = d.phone;
-
-  if (d.phone) saveToLocal(d.phone, d);
-
-  showReturningUserView(d, true, isServerData);
-
-  if (d.quantity) {
-    $('#quick-qty').val(d.quantity);
-    updatePrice(d.quantity, true);
-  }
-}
-
-window.manualRefresh = function () {
-  setRefreshLoading(true);
-  const phone = currentLoginPhone;
-  if (phone) {
-    syncUserDataBackground(phone).finally(() => {
-      setTimeout(() => { setRefreshLoading(false); }, 500);
-    });
-  }
-}
-
-function setRefreshLoading(isLoading) {
-  const btn = $('#refresh-btn');
-  if (btn.length === 0) return;
-  if (isLoading) {
-    btn.prop('disabled', true).css('opacity', '0.7');
-    btn.find('i').addClass('fa-spin');
-    btn.find('span').text("CHECKING...");
-  } else {
-    btn.prop('disabled', false).css('opacity', '1');
-    btn.find('i').removeClass('fa-spin');
-    btn.find('span').text("REFRESH STATUS");
-  }
-}
-
-// 🔥 UPDATED: PERFECT SYNC LOGIC
-// 1. DATA CLEANING
-function syncUserDataBackground(phone) {
-  let localData = localUsersMap[phone] || {};
-  let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-
-  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
-    .then(res => res.json())
-    .catch(() => null);
-
-  const ratePromise = fetchCourierRates();
-
-  return Promise.all([userPromise, ratePromise])
-    .then(([userRes]) => {
-      let finalData = localData;
-
-      if (userRes && userRes.result === 'success' && userRes.data) {
-        let serverData = userRes.data;
-        finalData = { ...localData, ...serverData };
-        finalData.Status = serverData.Status || serverData.status || "Pending";
-
-        if (finalData.orderid) {
-          editingOrderId = finalData.orderid;
-          let s = String(finalData.Status).toLowerCase();
-
-          // Finished Orders -> New Order Mode
-          if (['completed', 'delivered', 'refunded'].includes(s)) {
-            editingOrderId = null;
-            finalData.quantity = null;
-            delete finalData.quantity;
-          }
-        }
-        userData = finalData;
-        savedOrderData = JSON.parse(JSON.stringify(finalData));
-        saveToLocal(phone, finalData);
-      }
-      renderEditView(finalData);
-    });
-}
-
-
-// 🔥 Helper Function to Show/Hide Controls based on Status
-function handleEditControlsVisibility(d) {
-
-  const status = String(d.Status || 'pending').toLowerCase();
-
-  if (['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
-
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('#btn-edit-addr').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
-
-    return;
-  }
-
-  // 🔥 Retry only once if quantity missing
-  if (!d.quantity && !d._retried) {
-
-    d._retried = true;
-
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
-
-    setTimeout(() => syncUserDataBackground(d.phone), 1000);
-
-    return;
-  }
-
-  // ✅ Show Controls
-  $('label[data-i18n="lbl_qty"]').show();
-  $('#quick-qty, .btn-update-sage, #quick-price-box').show();
-  $('#btn-edit-addr').css('display', 'inline-block');
-}
-
-
-function backgroundUserCheck(phone) {
-  fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()).then(res => { if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId; }).catch(e => console.log("Bg check fail"));
-}
-
-window.submitWizardOrder = function () {
-  const finalData = {
-    orderid: editingOrderId,
-    name: $('#name').val(),
-    phone: $('#phone').val(),
-    whatsapp: $('#whatsapp').val(),
-    altphone: $('#altphone').val(),
-    house: $('#house').val(),
-    place: $('#place').val(),
-    pincode: $('#pincode').val(),
-    postoffice: userData.postoffice,
-    district: userData.district,
-    state: userData.state || 'Kerala',
-    quantity: $('#quantity').val(),
-    message: '',
-    custId: myCustId,
-    language: $('#language-select').val() || 'en'
-  };
-  saveToLocal(finalData.phone, finalData);
-  playVideoAnimation(finalData.name, () => postOrder(finalData));
-}
-
-window.handleEditPincode = async function (val) {
-  if (!/^[0-9]{6}$/.test(val)) {
-    $('#edit-po-wrapper').slideUp();
-    $('#single-po-display').hide();
-    return;
-  }
-
-  checkForChanges();
-
-  // 🔥 Language Setup
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang];
-
+function doPost(e) {
   try {
-    const res = await fetch(`pincode_json_files/${val}.json`);
-    if (!res.ok) throw new Error("Not Found");
+    var params = (typeof e.postData.contents === 'string') ? JSON.parse(e.postData.contents) : e.postData.contents;
+    
+    if (params.action === "bulkUpdateStatus") return bulkUpdateStatus(params);
+    if (params.action === "updateTracking") return updateTracking(params);
+    if (params.action === "submit") return submitOrder(params);
+    if (params.action === "addExpense") return addExpense(params); 
+    if (params.action === "deleteOrder") return deleteOrder(params);
+    if (params.action === 'deleteRefund') {
+       return deleteRefundExpense(params);
+    }
+    
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'message': err.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
 
-    let data = await res.json();
-    data = data.map(item => ({
-      ...item,
-      officename: item.officename.replace(/\s+(BO|SO|HO|PO)\s*$/i, ' PO')
-    }));
+// 🚀 ULTRA-FAST HELPER: TextFinder for exact match
+function findRowIndex(sheet, searchText, columnIndex) {
+  var range = sheet.getRange(1, columnIndex, sheet.getLastRow() || 1, 1);
+  var finder = range.createTextFinder(searchText).matchEntireCell(true).findNext();
+  return finder ? finder.getRow() : -1;
+}
 
-    if (data && data.length > 0) {
-      $('#edit-district').val(data[0].district);
-      $('#edit-state').val(data[0].statename);
-      updatePrice($('#quick-qty').val(), true);
-
-      if (data.length > 1) {
-        // === MULTIPLE POST OFFICES ===
-        $('#single-po-display').hide();
-
-        const sel = $('#edit-postoffice-select');
-
-        sel.empty().append(`<option value="">${t.lbl_select_po}...</option>`);
-
-        data.forEach(p => {
-          sel.append(`<option value="${p.officename}">${p.officename}</option>`);
-        });
-
-        $('#edit-po-wrapper').slideDown();
-        $('#edit-postoffice').val('');
-
-      } else {
-        // === SINGLE POST OFFICE ===
-        $('#edit-po-wrapper').slideUp();
-        const poName = data[0].officename;
-        $('#edit-postoffice').val(poName);
-        $('#single-po-display').html(`<i class="fas fa-check-circle"></i> ${poName}`).fadeIn();
+// 🚀 FAST HELPER: Array Search (Best for phone numbers with quotes)
+function findRowIndexByPhone(sheet, phone, colIndex) {
+  var lastRow = sheet.getLastRow();
+  if(lastRow < 1) return -1;
+  var colData = sheet.getRange(1, colIndex, lastRow, 1).getValues();
+  var target = String(phone).trim();
+  for (var i = colData.length - 1; i >= 0; i--) {
+      if (String(colData[i][0]).replace(/'/g, "").trim() === target) {
+          return i + 1;
       }
-
-      updateSummaryDisplay();
-      checkForChanges();
-    }
-  } catch (e) {
-    console.log("Pincode not found");
-    $('#edit-po-wrapper').slideUp();
-    $('#single-po-display').hide();
   }
+  return -1;
 }
 
-function updateFooterButtons(view) {
-  $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
-  if (view === 'step-0') $('#btn-group-0').show();
-  if (view === 'wizard') $('#btn-group-wizard').css({ 'display': 'flex', 'gap': '1rem' });
-  if (view === 'returning') $('#btn-group-returning').show();
+function getSettingsMap() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Settings");
+  if (!sheet) return {};
+  var data = sheet.getDataRange().getValues();
+  data.shift(); // Remove Header
+  
+  return data.reduce((acc, row) => {
+    var key = String(row[2]).trim(); 
+    if(key) acc[key] = { rateStr: row[3], provider: row[4], extraFee: Number(row[5]) || 0 };
+    return acc;
+  }, {});
 }
 
-window.startWizard = function () {
-  $('#wizard-view').show();
-  updateFooterButtons('wizard');
-  currentStep = 1;
-  showStep(1);
-}
-window.showStep = function (s) {
-  $('.wiz-step').hide();
-  if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
-  else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
-  const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
-  const btn = $('#btn-wiz-next'); const lang = $('#language-select').val();
-  if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
-  else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
-  if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
-}
+function calculateSmartRate(qty, settingData) {
+  if (!settingData) return { cost: 0, provider: "" };
+  var val = String(settingData.rateStr).trim();
+  var cost = 0;
 
-window.nextStep = async function () {
-  // 🔥 Language Setup
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang];
-
-  if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name'));
-  if (currentStep === 2 && !/^[0-9]{10}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
-
-  if (currentStep === 3) {
-    const pin = $('#pincode').val(); if (!/^[0-9]{6}$/.test(pin)) return showAlert(getAlert('err_pincode'));
-    $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
-    try {
-      const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
-      data = data.map(item => ({
-        ...item,
-        officename: item.officename.replace(/\s+(BO|SO|HO|PO)\s*$/i, ' PO')
-      }));
-      $('#btn-wiz-next').prop('disabled', false).text(t.btn_next);
-
-      if (data && data.length > 0) {
-        poList = data; userData.district = data[0].district; userData.state = data[0].statename;
-        const dl = $('#place-list'); dl.empty(); data.forEach(p => dl.append(`<option value="${p.officename}">`));
-
-        if (data.length > 1) {
-          $('#po-select').empty().append(`<option value="">${t.lbl_select_po}...</option>`);
-
-          data.forEach(p => $('#po-select').append(`<option value="${p.officename}">${p.officename}</option>`));
-          currentStep = 3.5; showStep(3.5); return;
-        }
-        else { userData.postoffice = data[0].officename; currentStep = 4; showStep(4); return; }
-      } else { showAlert(getAlert('err_pin_not_found')); }
-    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(t.btn_next); showAlert(getAlert('err_pincode')); return; }
+  if (val.includes(":")) {
+    var rates = val.split(",").reduce((acc, p) => {
+      var pair = p.trim().split(":");
+      if (pair.length === 2) acc[parseInt(pair[0])] = parseInt(pair[1]);
+      return acc;
+    }, {});
+    cost = rates[qty] || 0;
+  } else if (!isNaN(parseFloat(val))) {
+    cost = parseFloat(val) * qty;
   }
-
-  if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
-  if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
-  if (currentStep === 5) { if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; } updateWizardLocDisplay(); currentStep = 6; showStep(6); return; }
-  if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
-  if (currentStep === 7) { if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; } submitWizardOrder(); return; }
-  currentStep++; showStep(currentStep);
+  cost += settingData.extraFee;
+  return { cost: cost, provider: settingData.provider };
 }
 
-window.prevStep = function () {
-  if (currentStep === 1) return location.reload();
-  if (currentStep === 4 && poList.length > 1) { currentStep = 3.5; showStep(3.5); return; }
-  if (currentStep === 4 && poList.length <= 1) { currentStep = 3; showStep(3); return; }
-  if (currentStep === 3.5) { currentStep = 3; showStep(3); return; }
-  currentStep--; showStep(currentStep);
-}
+// --- CORE FUNCTIONS ---
 
-window.submitQuickOrder = function () {
-  // 1. Check if button is disabled
-  if ($('.btn-update-sage').prop('disabled')) return;
+function submitOrder(params) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var doc = SpreadsheetApp.getActiveSpreadsheet();
+    var orderSheet = doc.getSheetByName("Orders");
+    var custSheet = doc.getSheetByName("Customers");
+    var data = params.orderData;
+    var timestamp = new Date();
+    
+    // Settings & Rates Calculation (Logic Kept Same)
+    var settings = getSettingsMap();
+    var state = String(data.state || '').trim().toUpperCase();
+    var qty = parseInt(data.quantity) || 1;
+    var zoneMap = { "TN": "TAMIL NADU", "KA": "KARNATAKA", "KL": "KERALA", "AP": "ANDHRA PRADESH", "TS": "TELANGANA" };
+    var zoneKey = settings[state] ? state : (zoneMap[state] || "REST OF INDIA");
+    var rates = getRatesFromSettings();
+    var itemTotal = (rates.prices && rates.prices[qty]) ? rates.prices[qty] : (rates.prices[1] || 650) * qty;
+    var rateResult = calculateSmartRate(qty, settings[zoneKey]);
+    var grandTotal = itemTotal + rateResult.cost;
 
-  // 2. Basic Validation (Qty, Phone, Pin)
-  if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+    // 🔥 K-26... format (Year 2 digits only)
+    var orderId = data.orderid || "K-" + Utilities.formatDate(timestamp, Session.getScriptTimeZone(), "yyMMddHHmmss");
+    var custId = data.custId || "USER-" + Math.floor(100000 + Math.random() * 900000);
 
-  const newName = $('#edit-name').val();
-  if (!newName) { showAlert(getAlert('err_name') || "Name Required"); return; }
+    // 🔥 SMART HEADER MAPPING FOR SAVING
+    // ഷീറ്റിലെ ഹെഡർ എന്താണോ, അതിലേക്ക് ഡാറ്റ മാപ്പ് ചെയ്യുന്നു
+    var headers = orderSheet.getRange(1, 1, 1, orderSheet.getLastColumn()).getValues()[0];
+    var newRow = new Array(headers.length).fill(""); 
 
-  const newPhone = $('#edit-phone').val();
-  if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+    var map = {
+      "Order ID": orderId, 
+      "Date": timestamp, // ഇവിടെ 'Date' എന്ന് തന്നെ കൊടുത്തു
+      "Name": data.name, 
+      "Phone": "'" + data.phone,
+      "House": data.house, 
+      "Place": data.place, 
+      "Post Office": data.postoffice,
+      "Pincode": data.pincode, 
+      "District": data.district, 
+      "State": data.state,
+      "WhatsApp": "'" + data.whatsapp, 
+      "Alt Phone": "'" + (data.altphone || ""),
+      "Quantity": data.quantity, 
+      "Message": data.message, 
+      "Status": "Pending",
+      "Product_Amount": itemTotal, //
+      "Courier_Charge": rateResult.cost, //
+      "Grand_Total": grandTotal, //
+      "Courier_Provider": rateResult.provider, //
+      "Language": (data.language && data.language !== "") ? data.language : 'en',
+      "Admin Meta": "" 
+    };
 
-  const pin = $('#edit-pincode').val();
-  if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
-
-  // 🔥 3. Post Office Validation
-  let finalPO = $('#edit-postoffice').val();
-
-  if ($('#edit-postoffice-select').is(':visible')) {
-    finalPO = $('#edit-postoffice-select').val();
-  }
-  if (!finalPO) {
-    showAlert(getAlert('err_select_po') || "Please Select Post Office");
-    if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
-    return;
-  }
-
-  $('#edit-postoffice').val(finalPO); // Hidden input update
-
-  // 4. Prepare Data Object
-  const finalData = {
-    orderid: editingOrderId,
-    name: newName,
-    phone: newPhone,
-    whatsapp: $('#edit-whatsapp').val(),
-    altphone: $('#edit-altphone').val(),
-    house: $('#edit-house').val(),
-    place: $('#edit-place').val(),
-    pincode: pin,
-    postoffice: finalPO,
-    district: $('#edit-district').val(),
-    state: $('#edit-state').val(),
-    quantity: $('#quick-qty').val(),
-    message: '',
-    custId: myCustId,
-    language: $('#language-select').val() || 'en'
-  };
-  playVideoAnimation(finalData.name, () => postOrder(finalData));
-}
-
-function showReturningUserView(d, isActiveOrder, isServerData) {
-  $('#step-0').hide();
-  $('#returning-user-view').show();
-  updateFooterButtons('returning'); isEditMode = isActiveOrder;
-
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-
-  if (d.language) {
-    $('#language-select').val(d.language);
-    changeLanguage(d.language);
-  }
-
-  const qtyLabel = $('label[data-i18n="lbl_qty"]');
-  qtyLabel.text(t.lbl_qty_edit);
-
-  // OID & Date Display
-  if (d.orderid) $('#display-oid').text('#' + d.orderid).show(); else $('#display-oid').hide();
-  if (d.date) {
-    if ($('#display-date').length === 0) {
-      $('<div id="display-date" class="text-muted fw-bold small mt-1" style="font-size:10px;"></div>').insertAfter('#display-oid');
-    }
-    $('#display-date').text(formatPrettyDate(d.date)).show();
-  } else { $('#display-date').hide(); }
-
-  // Populate Data
-  $('#saved-name').text(d.name);
-  $('#edit-name').val(d.name);
-  $('#edit-phone').val(d.phone); $('#edit-house').val(d.house);
-  $('#edit-place').val(d.place); $('#edit-pincode').val(d.pincode); $('#edit-postoffice').val(d.postoffice);
-  $('#edit-district').val(d.district); $('#edit-state').val(d.state);
-  $('#edit-whatsapp').val(d.whatsapp || d.phone); $('#edit-altphone').val(d.altphone || '');
-
-  savedOrderData = JSON.parse(JSON.stringify(d));
-  updateSummaryDisplay();
-
-  $('#status-area').hide().empty();
-
-  const checkText = t.status_check || "CHECKING LIVE STATUS...";
-
-  if (isServerData) {
-    updateStatusUI(d);
-
-    // Refresh Button logic...
-    if ($('#refresh-btn').length === 0) {
-      const refreshText = t.txt_refresh || "REFRESH STATUS";
-      $('#returning-user-view').append(`
-              <div class="d-flex justify-content-center mt-4 mb-3 fade-in">
-                  <button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2" style="font-weight: 600; font-size: 11px;">
-                      <i class="fas fa-sync-alt me-1"></i> <span data-i18n="txt_refresh">${refreshText}</span>
-                  </button>
-              </div>`);
+    // ഹെഡർ നോക്കി വാല്യൂ ഫിൽ ചെയ്യുന്നു
+    for (var i = 0; i < headers.length; i++) {
+      if (map[headers[i]] !== undefined) newRow[i] = map[headers[i]];
     }
 
-    // New Order Button Logic...
-    const status = String(d.Status || '').trim().toLowerCase();
-    $('#quick-qty option').prop('disabled', false);
-    if (status === 'paid') {
-      let currentQty = parseInt(d.quantity) || 0;
-      $('#quick-qty option').each(function () {
-        if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true);
-      });
+    // Row സേവ് ചെയ്യുന്നു
+    var rowIndex = findRowIndex(orderSheet, orderId, 1);
+    if (rowIndex > -1) {
+      // നിലവിലുള്ള ഓർഡർ ആണെങ്കിൽ പഴയ ചില വിവരങ്ങൾ (Status/Tracking) നിലനിർത്തണം
+      var oldRow = orderSheet.getRange(rowIndex, 1, 1, headers.length).getValues()[0];
+      var statusIdx = headers.indexOf("Status");
+      var trackIdx = headers.indexOf("Tracking ID");
+      if(statusIdx > -1) newRow[statusIdx] = oldRow[statusIdx];
+      if(trackIdx > -1) newRow[trackIdx] = oldRow[trackIdx];
+      
+      orderSheet.getRange(rowIndex, 1, 1, newRow.length).setValues([newRow]);
+    } else {
+      orderSheet.appendRow(newRow);
     }
 
-    if (['delivered', 'completed', 'refunded'].includes(status)) {
-      const btnText = t.btn_place_new_order || "PLACE NEW ORDER";
-      if ($('#btn-new-order-mode').length === 0) {
-        $(`<div id="btn-new-order-mode" class="mt-2 mb-3 text-center fade-in"><button onclick="enableNewOrderMode()" class="btn btn-dark shadow-sm rounded-pill px-4 py-2" style="font-weight:700; width:100%;"><i class="fas fa-plus-circle me-1"></i> ${btnText}</button></div>`).insertAfter('#status-area');
-      } else {
-        $('#btn-new-order-mode button').html(`<i class="fas fa-plus-circle me-1"></i> ${btnText}`);
-      }
-      $('#btn-new-order-mode').show();
-    }
+    updateCustomerData(custSheet, data, custId);
 
-    handleEditControlsVisibility(d);
+    return ContentService.createTextOutput(JSON.stringify({ 
+      'result': 'success', 'orderid': orderId, 'custId': custId, 'timestamp': timestamp.toISOString() 
+    })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
 
-  } else {
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('#btn-edit-addr').hide();
-    $('#btn-new-order-mode').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').prev('label').hide();
-
-    // Hourglass Animation
-    $('#status-area').html(`
-        <div class="d-flex flex-column align-items-center justify-content-center py-5 fade-in">
-            <div class="hourglass-container">
-                <div class="hourglass-glass"></div>
-            </div>
-            <div class="mt-3 text-muted fw-bold small" style="font-size:11px; letter-spacing:1px; text-transform:uppercase;">
-                ${checkText}
-            </div>
-        </div>
-    `).show();
+function updateCustomerData(sheet, data, custId) {
+  var phone = String(data.phone);
+  var rowIndex = -1;
+  
+  if(custId) rowIndex = findRowIndex(sheet, custId, 11);
+  if(rowIndex === -1) rowIndex = findRowIndexByPhone(sheet, phone, 1);
+  
+  var totalOrders = 0, totalBottles = 0, currentOffer = "";
+  if (rowIndex > -1) {
+    var existingData = sheet.getRange(rowIndex, 1, 1, 14).getValues()[0];
+    totalOrders = existingData[11] || 0;
+    totalBottles = existingData[12] || 0;
+    currentOffer = existingData[13] || "";
   }
 
-  checkForChanges();
-}
-
-// 2. UI RESET
-window.enableNewOrderMode = function () {
-  $('#btn-new-order-mode').hide();
-  $('#status-area').empty();
-
-  if (typeof savedOrderData !== 'undefined') {
-    savedOrderData.quantity = null;
-  }
-
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-  $('label[data-i18n="lbl_qty"]').text(t.lbl_qty || "How many bottles?");
-
-  $('label[data-i18n="lbl_qty"]').fadeIn();
-  $('#quick-qty').prev('label').fadeIn();
-  $('#quick-qty').fadeIn();
-  $('.btn-update-sage').fadeIn();
-
-  // 🔥🔥🔥 MAIN FIX:
-  $('#quick-price-box').hide().empty();
-
-  $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
-
-  isEditMode = false;
-  editingOrderId = null;
-  $('#display-oid').hide();
-  $('#display-date').hide();
-
-  $('#quick-qty').val('').trigger('change');
-  $('#quick-qty option').prop('disabled', false);
-
-  checkForChanges();
-}
-
-window.markOrderDelivered = function (oid) {
-  Swal.fire({
-    title: 'Order Received?',
-    text: "നിങ്ങൾക്ക് ഓർഡർ ലഭിച്ചോ?",
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#28a745',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Received! ✅',
-    cancelButtonText: 'Not Yet',
-    customClass: { popup: 'rounded-4 shadow-lg' }
-  }).then((result) => {
-    if (result.isConfirmed) {
-
-      $('#btn-mark-delivered').parent().html(`
-          <div class="text-success fw-bold text-center py-3 fade-in" style="animation: popIn 0.5s ease;">
-              <i class="fas fa-check-circle fa-3x mb-2"></i><br>
-              <span style="font-size:16px;">നന്ദി! Enjoy! 🍯</span>
-          </div>
-      `);
-
-      // B. Beautiful Success Popup (Celebration 🎉)
-      Swal.fire({
-        title: 'Thank You! ❤️',
-        html: '<div style="font-size:14px;">ഞങ്ങളെ വിശ്വസിച്ച് ഓർഡർ ചെയ്തതിന് നന്ദി!<br>Enjoy the purest honey! 🐝</div>',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000,
-        backdrop: `rgba(0,0,0,0.4)`,
-        padding: '2em',
-        customClass: { popup: 'rounded-4' }
-      });
-
-      if (typeof userData !== 'undefined') {
-        userData.Status = 'Delivered';
-
-        delete userData.quantity;
-
-        saveToLocal(userData.phone, userData);
-
-        updateStatusUI(userData);
-
-        setTimeout(() => {
-          renderEditView(userData);
-        }, 3000);
-      }
-
-      fetch(sc, {
-        method: 'POST',
-        body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
-      })
-        .then(res => res.json())
-        .then(data => console.log("Server Updated: Delivered ✅"))
-        .catch(err => console.log("Background Sync Failed (Saved Locally)"));
-    }
-  });
-}
-
-function updateStatusUI(d) {
-  $('#status-area').empty();
-
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-
-  let s = String(d.Status || d.status || 'pending').toLowerCase();
-
-  // Status Logic
-  const isPaid = ['paid', 'dispatched', 'delivered', 'refunded', 'completed'].includes(s);
-  const isDispatched = ['dispatched', 'delivered', 'refunded', 'completed'].includes(s);
-  const isDelivered = ['delivered', 'completed'].includes(s);
-  const isRefunded = (s === 'refunded');
-
-  let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
-        <h6 class="fw-bold mb-4 ps-1" style="font-size:13px; color:#374151; letter-spacing:0.5px;">${t.lbl_order_status}</h6>
-        <div class="modern-timeline">`;
-
-  // Timeline Items
-  const items = [
-    { title: t.order_success, desc: t.desc_order_placed, date: d.timestamp || d.date, active: true },
-    { title: t.lbl_payment_received, desc: t.desc_pay_received, date: d.paidDate, active: isPaid },
-    { title: t.lbl_dispatched, desc: t.desc_dispatched, date: d['Dispatched Date'], active: isDispatched },
+  var custRow = [
+    "'" + phone, data.name, data.house, data.place, data.postoffice, 
+    data.pincode, data.district, data.state, "'" + data.whatsapp, 
+    "'" + (data.altphone || ""), custId, totalOrders, totalBottles,
+    currentOffer, data.language || 'en'
   ];
 
-  if (isRefunded) {
-    items.push({ title: t.lbl_refunded || "Refunded", desc: t.desc_refunded || "Amount Returned", date: null, active: true, isRefund: true });
-  } else {
-    items.push({ title: t.lbl_delivered, desc: t.desc_delivered, date: null, active: isDelivered });
+  if (rowIndex > -1) { 
+      sheet.getRange(rowIndex, 1, 1, custRow.length).setValues([custRow]);
+  } else { 
+      sheet.appendRow(custRow);
   }
+}
 
-  items.forEach((item, index) => {
-    let isLast = index === items.length - 1;
-    let iconClass = "timeline-icon" + (item.isRefund ? " refunded" : (item.active ? " active" : ""));
-    let iconContent = item.isRefund ? `<i class="fas fa-undo-alt"></i>` : (item.active ? `<i class="fas fa-check"></i>` : "");
-    let iconHtml = `<div class="${iconClass}">${iconContent}</div>`;
-    let nextItemActive = items[index + 1] && items[index + 1].active;
-    let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
-    let dateHtml = '';
-    if (item.date && item.active) {
-      dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
+// 🚀 HIGH SPEED: MEMORY BATCH PROCESSING (No loops with getValues)
+function updateCustomerStatsBatch(sheetOrders, sheetCustomers, completedOids, idMap) {
+  if(completedOids.length === 0) return;
+  
+  var oData = sheetOrders.getDataRange().getValues();
+  
+  // Find phones that need update
+  var phonesToUpdate = [];
+  completedOids.forEach(oid => {
+    var rIdx = idMap[oid];
+    if (rIdx && oData[rIdx-1]) phonesToUpdate.push(String(oData[rIdx-1][3]).replace("'","").trim());
+  });
+  phonesToUpdate = [...new Set(phonesToUpdate)]; // Unique phones
+  
+  // Calculate stats in memory
+  var phoneStats = {};
+  phonesToUpdate.forEach(p => phoneStats[p] = { count: 0, bottles: 0 });
+  
+  oData.forEach(row => {
+    var p = String(row[3]).replace("'","").trim();
+    var status = String(row[14]);
+    if (phoneStats[p] && (status === 'Completed' || status === 'Delivered')) {
+       phoneStats[p].count++;
+       phoneStats[p].bottles += (parseInt(row[12]) || 0);
     }
-    let extraContent = '';
-    if (index === 2 && item.active && d.tracking && !isRefunded) {
-      let courierName = d.courier || d.provider || "Courier";
-      let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
-      extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
-    }
-    let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
-    timelineHTML += `
-            <div class="${rowClass}">
-                <div class="timeline-left">${iconHtml}${lineHtml}</div>
-                <div class="timeline-right pb-4">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div class="fw-bold text-dark" style="font-size:14px;">${item.title}</div>
-                        ${dateHtml}
-                    </div>
-                    <div class="text-muted small mt-1" style="font-size:12px; line-height:1.4;">${item.desc}</div>
-                    ${extraContent}
-                </div>
-            </div>`;
   });
 
-  timelineHTML += `</div></div>`;
-
-  // 🔥 BEAUTIFUL RECEIVED BUTTON
-  if (s === 'dispatched') {
-    timelineHTML += `
-            <div class="mt-4 px-2 text-center fade-in">
-                <div class="text-muted fw-bold mb-3" style="font-size:11px; letter-spacing:0.5px; text-transform:uppercase;">
-                    ${t.txt_received_helper}
-                </div>
-                
-                <button id="btn-mark-delivered" onclick="markOrderDelivered('${d.orderid}')" 
-                    class="btn w-100 py-3 shadow-lg" 
-                    style="
-                        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); 
-                        color: white; 
-                        border-radius: 16px; 
-                        border: none; 
-                        position: relative; 
-                        overflow: hidden;
-                        transition: transform 0.2s;
-                    "
-                    onmousedown="this.style.transform='scale(0.98)'" 
-                    onmouseup="this.style.transform='scale(1)'">
-                    
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <div style="background:rgba(255,255,255,0.2); border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center;">
-                            <i class="fas fa-check text-white" style="font-size:14px;"></i>
-                        </div>
-                        <div class="text-start">
-                            <div style="font-size:14px; font-weight:800; letter-spacing:0.5px; line-height:1.2;">YES, I RECEIVED IT</div>
-                            <div style="font-size:10px; opacity:0.9; font-weight:500;">Click to mark as Delivered</div>
-                        </div>
-                    </div>
-
-                </button>
-            </div>`;
-  }
-
-  $('#status-area').html(timelineHTML);
-  $('#status-area').fadeIn(500, function () { $('.tracking-wrapper').css('opacity', '1'); });
-}
-
-function updateSummaryDisplay() {
-  // 1. Get Values
-  const newName = $('#edit-name').val();
-  if (newName) $('#saved-name').text(newName);
-  const house = $('#edit-house').val() || '';
-  const place = $('#edit-place').val() || '';
-
-  // 🔥 FIX: Check Dropdown first, then Hidden Input
-  let po = '';
-  if ($('#edit-postoffice-select').is(':visible') && $('#edit-postoffice-select').val()) {
-    po = $('#edit-postoffice-select').val(); // Dropdown Value
-  } else {
-    po = $('#edit-postoffice').val() || ''; // Hidden Input Value
-  }
-
-  const pin = $('#edit-pincode').val() || '';
-  const dist = $('#edit-district').val() || '';
-  const state = $('#edit-state').val() || 'KERALA';
-
-  const wa = $('#edit-whatsapp').val() || '';
-  const alt = $('#edit-altphone').val();
-  const phone = $('#edit-phone').val() || '';
-
-  const safe = (val) => String(val || '').trim().toUpperCase();
-
-  // 2. Clean PO Logic
-  let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
-  if (poClean) poClean += ' PO';
-
-  // 3. Generate Address HTML
-  let addrHtml = `
-      <span class="addr-house">${safe(house)}</span>
-      ${safe(place)}${place && poClean ? ',' : ''} <b>${poClean}</b>
-      <br>
-      <span style="font-weight:600;">${safe(dist)}, ${safe(state)}</span> 
-      <span class="pin-box">${safe(pin)}</span>
-  `;
-  $('#saved-address-text').html(addrHtml);
-
-  // 4. Phone Box
-  let phoneHtml = `
-      <div class="phone-grey-box">
-          <div class="ph-row">
-              <i class="fas fa-phone-alt text-secondary" style="width:20px; text-align:center;"></i> 
-              <span style="color:#374151; font-weight:700; font-size:14px;">${phone}</span>
-              ${alt ? `<span style="color:#ccc; margin:0 5px;">|</span> <span style="color:#666;">${alt}</span>` : ''}
-          </div>
-          ${wa ? `
-          <div class="ph-row">
-              <i class="fab fa-whatsapp" style="color:#25D366; font-size:18px; width:20px; text-align:center;"></i> 
-              <span style="color:#25D366; font-weight:700; font-size:14px;">${wa}</span>
-          </div>` : ''}
-      </div>
-  `;
-  $('#saved-phone-text').html(phoneHtml);
-  $('#saved-wa-text, #saved-alt-text').hide();
-
-  // Hide Edit Button Logic
-  if (typeof userData !== 'undefined' && userData.Status) {
-    let s = String(userData.Status).toLowerCase().trim();
-    if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
-      $('#btn-edit-addr').hide();
-    } else {
-      $('#btn-edit-addr').css('display', 'inline-block');
+  // Write back specific rows
+  var cPhones = sheetCustomers.getRange(1, 1, sheetCustomers.getLastRow(), 1).getValues().flat().map(p => String(p).replace("'","").trim());
+  phonesToUpdate.forEach(p => {
+    var cIdx = cPhones.lastIndexOf(p);
+    if (cIdx > -1) {
+      sheetCustomers.getRange(cIdx + 1, 12, 1, 2).setValues([[ phoneStats[p].count, phoneStats[p].bottles ]]);
     }
-  }
-
-  if (typeof checkForChanges === 'function') checkForChanges();
-}
-
-function checkAndHideEditButton() {
-  // 1. Check Global userData (If available)
-  if (typeof userData !== 'undefined' && userData.Status) {
-    applyHideLogic(userData.Status);
-    return;
-  }
-
-  let hiddenStatus = $('#order-status-hidden').val();
-  if (hiddenStatus) {
-    applyHideLogic(hiddenStatus);
-  }
-}
-
-function applyHideLogic(status) {
-  let s = String(status).toLowerCase().trim();
-  if (['paid', 'dispatched', 'refunded'].includes(s)) {
-    $('#btn-edit-addr').hide();
-    console.log("Edit Button Hidden for Status:", s);
-  } else {
-    $('#btn-edit-addr').css('display', 'inline-flex');
-  }
-}
-
-window.updatePrice = function (qty, isQuick) {
-  const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
-
-  if (!qty) {
-    container.hide();
-    return;
-  }
-
-  const lang = $('#language-select').val() || 'ml';
-  const t = translations[lang];
-  const n = parseInt(qty);
-  const base = n * 650;
-
-  let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
-  const zone = getZoneKey(currentState);
-  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-  const total = base + courier;
-
-  let htmlContent = `
-      <div class="price-row"><span>${t.lbl_honey_price} (<span class="qty-count">${n}</span>)</span><span>₹<span class="val-base">${base}</span></span></div>
-      <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${courier}</span></span></div>
-      <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
-  `;
-  container.html(htmlContent);
-  container.fadeIn();
-
-  // 4. Update "Deliver To" Section (For Wizard View)
-  if (!isQuick) {
-    let name = $('#name').val() || '';
-    let house = $('#house').val() || '';
-    let place = $('#place').val() || '';
-    let po = (userData.postoffice || '').toUpperCase();
-    let dist = (userData.district || '').toUpperCase();
-    let state = (userData.state || 'KERALA').toUpperCase();
-    let pin = $('#pincode').val();
-    let phone = $('#phone').val();
-    let wa = $('#whatsapp').val();
-
-    let prettyHtml = `
-        <div style="padding: 8px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 10px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                 <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">${t.lbl_deliver_to}</div>
-                 <div style="font-size: 11px; font-weight: 700; color: #25D366;"><i class="fab fa-whatsapp"></i> ${wa}</div>
-            </div>
-            <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase;">${name}</div>
-            <div style="font-size: 12px; color: #4b5563; line-height: 1.6; text-transform: uppercase;">
-                <span style="font-weight: 600;">${house}</span>, ${place}, ${po},<br/>
-                ${dist}, ${state} - <b>${pin}</b>
-            </div>
-        </div>
-    `;
-    $('#wiz-final-addr').html(prettyHtml);
-    $('#wiz-deliver-box').fadeIn();
-  }
-
-  if (isQuick) checkForChanges();
-}
-// 🔥 Live Address Preview (Fix: Correctly splits Place & District)
-$('#place').on('input keyup focus', function () {
-
-  // 1. Create hidden divs if missing
-  if ($('#display-po').length === 0) {
-    $('<div id="display-po" style="display:none;"></div>').insertAfter('#place');
-  }
-  if ($('#display-dist-state').length === 0) {
-    $('<div id="display-dist-state" style="display:none;"></div>').insertAfter('#place');
-  }
-
-  // 2. Fetch Data using old function
-  try {
-    if (typeof updateWizardLocDisplay === 'function') {
-      updateWizardLocDisplay();
-    }
-  } catch (e) { }
-
-  // 3. Update Preview
-  updateLiveAddressPreview();
-});
-
-function updateLiveAddressPreview() {
-  let poRaw = $('#display-po').text() || '';
-
-  // 2. Data Cleaning
-  let place = $('#place').val() || '';
-
-  let po = poRaw.replace(/\s+PO\s*$/i, '').trim();
-  if (po) po += ' PO';
-
-  let dist = userData.district || '';
-  let state = userData.state || $('#state').val() || 'KERALA';
-  let pin = $('#pincode').val() || '';
-
-  if (dist.toLowerCase() === place.toLowerCase()) {
-    dist = '';
-  }
-
-  // 3. Language Check
-  let lang = $('#language-select').val() || 'en';
-  let t = translations[lang];
-
-  // 🔥 Use Translation Key
-  let warnText = t.warn_place_only;
-
-  // 4. HTML Content
-  let previewHtml = `
-  <div class="text-danger fw-bold mb-2" style="margin-top: 5px; font-size:11px; letter-spacing:0.5px; border-bottom:1px dashed #e0e0e0; padding-bottom:8px;">
-        <i class="fas fa-info-circle"></i> ${warnText}
-    </div>
-    <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
-        <div style="font-size: 13px; line-height: 1.6; color: #333;">
-            <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
-            
-            <div style="text-transform: uppercase;">
-                ${place ? place : ''}${place && dist ? ', ' : ''}
-                <span style="text-transform: uppercase; font-weight:600;">${dist}</span>
-            </div>
-
-            <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
-                ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
-            </div>
-        </div>
-    </div>
-    `;
-
-  // 5. Update UI
-  if ($('#live-addr-preview').length === 0) {
-    $('<div id="live-addr-preview"></div>').insertAfter('#place');
-  }
-  $('#live-addr-preview').html(previewHtml);
-}
-
-setTimeout(updateLiveAddressPreview, 1000);
-
-function checkForChanges() {
-  // 1. Current Values
-  var currQty = $('#quick-qty').val() || '';
-  var currName = $('#edit-name').val() || '';
-  var currPhone = $('#edit-phone').val() || '';
-  var currWa = $('#edit-whatsapp').val() || '';
-  var currHouse = $('#edit-house').val() || '';
-  var currPlace = $('#edit-place').val() || '';
-  var currPin = $('#edit-pincode').val() || '';
-  var currAlt = $('#edit-altphone').val() || '';
-
-  // 2. Saved Values
-  var savedQty = (savedOrderData.quantity || '') + '';
-  var savedName = (savedOrderData.name || '') + '';
-  var savedPhone = (savedOrderData.phone || '') + '';
-  var savedWa = (savedOrderData.whatsapp || savedOrderData.phone || '') + '';
-  var savedHouse = (savedOrderData.house || '') + '';
-  var savedPlace = (savedOrderData.place || '') + '';
-  var savedPin = (savedOrderData.pincode || '') + '';
-  var savedAlt = (savedOrderData.altphone || '') + '';
-
-  // 3. Compare
-  var isChanged = false;
-  if (String(currQty) !== String(savedQty)) isChanged = true;
-  if (String(currName).trim() !== String(savedName).trim()) isChanged = true;
-  if (String(currPhone) !== String(savedPhone)) isChanged = true;
-  if (String(currWa) !== String(savedWa)) isChanged = true;
-  if (String(currHouse).trim().toUpperCase() !== String(savedHouse).trim().toUpperCase()) isChanged = true;
-  if (String(currPlace).trim().toUpperCase() !== String(savedPlace).trim().toUpperCase()) isChanged = true;
-  if (String(currPin) !== String(savedPin)) isChanged = true;
-  if (String(currAlt) !== String(savedAlt)) isChanged = true;
-
-  var btnUpdate = $('.btn-update-sage');
-  var btnSave = $('#address-edit-box button');
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang];
-
-  btnUpdate.css({
-    'white-space': 'normal',
-    'line-height': '1.2',
-    'padding': '8px',
-    'height': 'auto',
-    'min-height': '50px'
   });
+}
 
-  // 🔥 MODE CHECK
-  const isNewOrderMode = (editingOrderId === null);
-
-  if (isNewOrderMode) {
-    // === NEW ORDER MODE (Always Enabled) ===
-    btnUpdate.prop('disabled', false).css({
-      'opacity': '1',
-      'cursor': 'pointer',
-      'background': '#15803d', // Dark Green
-      'color': 'white',
-      'box-shadow': '0 4px 6px rgba(0,0,0,0.1)'
-    });
-
-    btnSave.prop('disabled', false).text(t.txt_save_changes);
-
-    if (currQty && currQty !== "0") {
-      btnUpdate.html(`<span style="font-size:17px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>`);
-    } else {
-      let subText = t.lbl_select_qty_subtext || "(Select Quantity)";
-      btnUpdate.html(`
-              <span style="font-size:16px; font-weight:800; letter-spacing:0.5px;">${t.btn_order_now}</span>
-              <span style="font-size:10px; opacity:0.85; font-weight:600; margin-top:2px;">${subText}</span>
-          `);
-    }
-
+// 🚀 FAST GET CUSTOMER USING TEXTFINDER
+// 🚀 FAST GET CUSTOMER (Fixed Date Issue)
+function getCustomer(e) {
+  var phone = e.parameter.phone;
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var custSheet = doc.getSheetByName("Customers");
+  var orderSheet = doc.getSheetByName("Orders");
+  
+  var responseData = {};
+  var rowIndex = findRowIndexByPhone(custSheet, phone, 1);
+  
+  if(rowIndex > -1) {
+      var r = custSheet.getRange(rowIndex, 1, 1, 15).getValues()[0];
+      responseData = { 
+          phone: String(r[0]).replace("'",""), name: r[1], house: r[2], place: r[3], 
+          postoffice: r[4], pincode: r[5], district: r[6], state: r[7], 
+          whatsapp: String(r[8]).replace("'",""), altphone: String(r[9]).replace("'",""), 
+          custId: r[10], authorized: true, offer: (String(r[13]).toLowerCase() === 'true'), 
+          total_bottles: r[12], language: (r[14] && String(r[14]).trim() !== "") ? r[14] : "en",
+      };
   } else {
-    // === EDIT MODE (Old Logic) ===
-    if (isChanged) {
-      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb' }).text(t.btn_update);
-      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes);
-    } else {
-      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280' }).text(t.txt_no_changes);
-      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
+      responseData = { phone: phone, authorized: false };
+  }
+
+  // Find last order
+  var tf = orderSheet.getRange("D:D").createTextFinder(phone).matchEntireCell(false).findAll();
+  if (tf.length > 0) {
+      var lastRowIdx = tf[tf.length - 1].getRow();
+      
+      // 🔥 FIX: Fetch ALL columns to get Dates at the end
+      var lastCol = orderSheet.getLastColumn();
+      var foundOrder = orderSheet.getRange(lastRowIdx, 1, 1, lastCol).getValues()[0];
+      var headers = orderSheet.getRange(1, 1, 1, lastCol).getValues()[0]; // Get Headers to find Index
+
+      // Find Date Columns dynamically
+      var paidIdx = headers.indexOf("Paid Date");
+      var dispIdx = headers.indexOf("Dispatched Date");
+
+      var status = foundOrder[14]; 
+      
+      responseData.Status = status;
+      responseData.date = foundOrder[1]; // Order Date
+      
+      // 🔥 FIX: Add Missing Dates
+      responseData.paidDate = (paidIdx > -1) ? foundOrder[paidIdx] : "";
+      responseData["Dispatched Date"] = (dispIdx > -1) ? foundOrder[dispIdx] : "";
+
+      if(['Dispatched', 'Completed', 'Delivered'].includes(status)) {
+          responseData.tracking = foundOrder[15];
+          responseData.courier = foundOrder[19];
+      } else if(responseData.authorized) {
+          responseData.orderid = foundOrder[0];
+          responseData.quantity = foundOrder[12];
+          responseData.message = foundOrder[13];
+      }
+  }
+
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: responseData })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function getOrderDetails(e) {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName("Orders");
+  var custSheet = doc.getSheetByName("Customers");
+  var rowIndex = findRowIndex(sheet, e.parameter.oid, 1);
+  
+  if(rowIndex > -1) {
+      var r = sheet.getRange(rowIndex, 1, 1, 20).getValues()[0];
+      var orderPhone = String(r[3]).replace("'","");
+      var custId = null, hasOffer = false; 
+
+      var custRow = findRowIndexByPhone(custSheet, orderPhone, 1);
+      if(custRow > -1) {
+          var cData = custSheet.getRange(custRow, 1, 1, 14).getValues()[0];
+          custId = cData[10];
+          hasOffer = (String(cData[13]).toLowerCase() === 'true');
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({ 
+        result: 'success', 
+        data: { 
+            orderid: r[0], date: r[1], name: r[2], phone: orderPhone, house: r[4], 
+            place: r[5], postoffice: r[6], pincode: r[7], district: r[8], state: r[9], 
+            whatsapp: r[10], altphone: r[11], quantity: r[12], message: r[13], 
+            Status: r[14], tracking: r[15], grandTotal: r[18], courier: r[19], 
+            custId: custId, offer: hasOffer 
+        } 
+      })).setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput(JSON.stringify({ result: 'error' })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// 🔥 UPDATED: GET ALL ORDERS (With Customer Language Lookup)
+function getAllOrders() { 
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName("Orders");
+  var custSheet = doc.getSheetByName("Customers"); // കസ്റ്റമർ ഷീറ്റ് വിളിക്കുന്നു
+
+  if (!sheet || sheet.getLastRow() < 2) {
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: [] })).setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  // 1. കസ്റ്റമർ ഷീറ്റിലെ ഫോൺ നമ്പറും ഭാഷയും എടുത്ത് വെക്കുന്നു
+  var custLangMap = {};
+  if (custSheet && custSheet.getLastRow() > 1) {
+    var cData = custSheet.getDataRange().getValues();
+    // Customers ഷീറ്റിൽ: Column A (0) = Phone, Column O (14) = Language
+    for (var i = 1; i < cData.length; i++) {
+       var p = String(cData[i][0]).replace(/'/g, "").trim(); // Phone
+       var l = cData[i][14]; // Language Column (15th column is index 14)
+       if (p) custLangMap[p] = l;
     }
   }
-}
 
-function toggleAddressEdit() { $('.address-box').slideToggle(); }
-function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
-
-function setupAdminView(oid) {
-  const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html?search=${oid}'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
-  $('body').append(adminUI); $('body').css('padding-bottom', '100px');
-  let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
-  let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-  if (cachedOrder) {
-    showLoader(false);
-    loadOrderData(cachedOrder, false);
-    updateAdminUI(cachedOrder.Status || 'Pending', oid);
-    syncUserDataBackground(cachedOrder.phone);
-  } else {
-    fetchOrder(oid);
-  }
-}
-
-window.updateAdminUI = function (serverStatus, oid) {
-  let status = String(serverStatus || '').trim();
-  status = status.charAt(0).toUpperCase() + status.slice(1);
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let hasPending = updates.some(u => u.oid === oid);
-
-  // Sync Button HTML (Blue Cloud Icon)
-  let syncColor = hasPending ? "btn-info text-white" : "btn-light text-muted border";
-  let syncBtn = `<button onclick="syncSingleOrder('${oid}')" class="btn ${syncColor} btn-sm shadow-sm ms-1" style="width:45px;" title="Sync to Server"><i class="fas fa-cloud-upload-alt"></i></button>`;
-
-  let btnHTML = '';
-
-  if (status === 'Archive') {
-    btnHTML = `<div class="d-flex w-100"><button onclick="adminAction('${oid}', 'Paid')" class="btn btn-dark btn-sm fw-bold flex-grow-1 shadow-sm" style="background:#444; border:none;">📂 (Archived) TO PAID</button>${syncBtn}</div>`;
-  } else if (status === 'Pending') {
-    btnHTML = `<div class="d-flex gap-2 w-100">
-                 <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold flex-grow-1 shadow-sm">💬 MARK SENT</button>
-                 ${syncBtn}
-                 <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
-               </div>`;
-  } else if (status === 'Sent') {
-    btnHTML = `<div class="d-flex gap-2 w-100">
-                 <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold flex-grow-1 shadow-sm text-dark">💰 MARK PAID</button>
-                 ${syncBtn}
-                 <button onclick="adminAction('${oid}', 'Archive')" class="btn btn-outline-secondary btn-sm" style="width:40px;"><i class="fas fa-archive"></i></button>
-               </div>`;
-  } else if (status === 'Delivered') {
-    btnHTML = `<div class="d-flex w-100"><button class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" disabled>DELIVERED ✅</button>${syncBtn}</div>`;
-  } else {
-    let displayTxt = status === 'Dispatched' ? 'DISPATCHED' : (status === 'Completed' ? 'COMPLETED' : status.toUpperCase());
-    btnHTML = `<div class="d-flex w-100"><button class="btn btn-secondary btn-sm fw-bold flex-grow-1 shadow-sm" disabled>${displayTxt} ✅</button>${syncBtn}</div>`;
-  }
-
-  $('#admin-btn-container').html(btnHTML);
-  $('#admin-action-bar').slideDown();
-}
-
-window.adminAction = async function (oid, status) {
-  // 1. ARCHIVE: Direct Server Call (No Change)
-  if (status === 'Archive') {
-    if (!confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
-
-    const btnContainer = $('#admin-btn-container');
-    const originalContent = btnContainer.html();
-    btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Archiving...</div>');
-
-    fetch(sc, {
-      method: 'POST',
-      body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.result === 'success') {
-          let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-          updates = updates.filter(item => item.oid !== oid);
-          localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-          Swal.fire({ icon: 'success', title: 'Archived!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-          updateAdminUI(status, oid);
-        } else {
-          alert("Failed to Archive!");
-          btnContainer.html(originalContent);
-        }
-      })
-      .catch(err => {
-        alert("Network Error");
-        btnContainer.html(originalContent);
-      });
-    return;
-  }
-
-  let selectedDate = null;
-
-  // 2. 🔥 PAID: Show Beautiful Flatpickr Date & Time Picker
-  if (status === 'Paid') {
-    const { value: dateVal } = await Swal.fire({
-      title: 'Mark as PAID',
-      html: `
-            <div style="text-align:center;">
-                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME</label>
-                <input type="text" id="flatpickr-paid" class="form-control text-center fw-bold" 
-                       style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
-                       placeholder="Select Date...">
-            </div>
-          `,
-      showCancelButton: true,
-      confirmButtonText: 'Save Paid',
-      confirmButtonColor: '#28a745',
-      focusConfirm: false,
-      didOpen: () => {
-        // 🔥 Initialize Flatpickr (Material Style)
-        flatpickr("#flatpickr-paid", {
-          enableTime: true,
-          dateFormat: "Y-m-d H:i",
-          defaultDate: new Date(),
-          theme: "material_blue",
-          time_24hr: false,
-          disableMobile: false
-        });
-      },
-      preConfirm: () => {
-        return document.getElementById('flatpickr-paid').value;
-      }
-    });
-
-    if (!dateVal) return;
-    selectedDate = dateVal;
-  }
-  else {
-    // 3. OTHERS (Sent, Dispatched, etc.)
-    if (!confirm(`Mark as '${status}'? (Saved Locally)`)) return;
-
-    if (status === 'Dispatched') {
-      const now = new Date();
-      // YYYY-MM-DD HH:MM format logic
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      selectedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-    }
-  }
-  // 🔥🔥🔥 CHANGE STARTS HERE (REFUND LOGIC) 🔥🔥🔥
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  updates = updates.filter(item => item.oid !== oid);
-
-  let oldStatus = 'Pending';
-  if (typeof userData !== 'undefined' && userData.orderid === oid) {
-    oldStatus = userData.Status || 'Pending';
-  } else {
-    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-    let found = cached.find(o => o.orderid === oid);
-    if (found) oldStatus = found.Status;
-  }
-
-  let needsRefundDelete = false;
-  if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
-    needsRefundDelete = true;
-    console.log("Refund deletion queued for sync...");
-  }
-
-  // 3. Save to Local Storage with Flag
-  updates.push({
-    oid: oid,
-    status: status,
-    oldStatus: oldStatus,
-    actionDate: selectedDate,
-    time: new Date().getTime(),
-    deleteRefund: needsRefundDelete
-  });
-
-  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-  Swal.fire({ icon: 'success', title: `Saved: ${status}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-  updateAdminUI(status, oid);
-}
-
-window.syncSingleOrder = function (oid) {
-  // 1. Check for Pending Updates Locally
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let myUpdate = updates.find(u => u.oid === oid);
-
-  if (!myUpdate) {
-    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
-    if (typeof userData !== 'undefined') updateAdminUI(userData.Status, oid);
-    return;
-  }
-
-  // 2. Show Loading
-  const btn = $('#admin-btn-container button').find('.fa-cloud-upload-alt').parent();
-  let originalHtml = btn.html();
-  btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
-
-  let promises = [];
-
-  if (myUpdate.deleteRefund) {
-    promises.push(fetch(sc, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'deleteRefund', oid: oid })
-    }));
-  }
-
-  promises.push(fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
-  }));
-
-  // 🔥 4. EXECUTE BOTH
-  Promise.all(promises)
-    .then(responses => Promise.all(responses.map(r => r.json())))
-    .then(dataList => {
-
-      if (dataList.some(d => d.result === 'success')) {
-
-        // Remove from Local
-        let newUpdates = updates.filter(u => u.oid !== oid);
-        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
-
-        // Show Success
-        Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
-
-        // Update UI Button (Blue -> Grey)
-        updateAdminUI(myUpdate.status, oid);
-      } else {
-        alert("Sync Failed: Server Error");
-        btn.html(originalHtml).prop('disabled', false);
-      }
-    })
-    .catch(err => {
-      alert("Network Error. Try again.");
-      btn.html(originalHtml).prop('disabled', false);
-    });
-}
-
-window.clearAdminCache = function () {
-  if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
-}
-
-function fetchOrder(oid) {
-  fetch(`${sc}?action=getOrder&oid=${oid}`).then(res => res.json()).then(res => {
-    showLoader(false);
-    if (res.result === 'success') {
-      let d = res.data;
-      if (SafeStorage.getItem('kafakAdmin') === 'true') { updateAdminUI(d.Status || 'Pending', oid); }
-      loadOrderData(d, true);
-    } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
-  }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
-}
-
-function injectVideoCSS() {
-  $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
-  $('body').append(`
-    <style>
-        #videoModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; }
-        .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
-        video { width: 100%; height: 100%; object-fit: cover; }
-        .digital-label { position: absolute; top: 67%; left: 53%; transform: translate(-30%, -50%) scale(0.7); width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10; opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .content-group { display: flex; flex-direction: column; align-items: center; transition: transform 0.8s ease-in-out; }
-        .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
-        .packed-text { font-family: 'Montserrat', sans-serif; font-size: 10px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
-        .digital-label.final-state .content-group { transform: translateY(-18px) scale(0.9); }
-        .check-wrapper { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scale(0); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); }
-        .check-wrapper.show { transform: translateX(-50%) scale(1); }
-        .checkmark-svg { width: 28px; height: 28px; stroke: #28a745; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; transition: stroke-dashoffset 0.4s ease-in-out; }
-        .check-wrapper.draw .checkmark-svg { stroke-dashoffset: 0; }
-        .name-wrapper { position: absolute; top: 50%; left: 50%; z-index: 999; transform: translate(-100%, -250%) scale(1.2); opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); display: flex; justify-content: center; align-items: center; width: 100%; }
-        .user-name { font-family: 'Courier New', monospace; font-size: 25px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding-bottom: 2px; background-color: #000000; height: 32px; display: flex; align-items: center; justify-content: center; width: auto; min-width: 163px; padding-left: 15px; padding-right: 15px; padding-top: 2px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.3); white-space: nowrap; }
-        .name-wrapper.show-big { opacity: 1; transform: translate(-50%, -250%) scale(1.2); }
-        .name-wrapper.docked { top: 67%; left: 53%; transform: translate(-50%, 2px) scale(0.5); opacity: 1; }
-        .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
-    </style>
-    <div id="videoModal">
-        <div class="video-container">
-            <video id="honeyVideo" muted playsinline preload="auto"><source src="honey_rotate.mp4" type="video/mp4"></video>
-            <div class="digital-label" id="customLabel">
-                <div class="content-group"><img src="images/kafak_logo.png" alt="Kafak"><div class="packed-text" data-i18n="lbl_reserved_for">RESERVED FOR</div></div>
-                <div class="check-wrapper" id="finalCheck"><svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg></div>
-            </div>
-            <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
-        </div>
-        <div class="loading-txt" data-i18n="lbl_preparing">PREPARING YOUR ORDER...</div>
-    </div>`);
-}
-
-function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
-
-function playVideoAnimation(userName, apiCallback) {
-  $('#videoModal').css('display', 'flex').fadeIn();
-  const video = document.getElementById('honeyVideo');
-  const label = $('#customLabel');
-  const nameBadge = $('#nameBadge');
-  const checkWrapper = $('#finalCheck');
-  const nameBox = document.getElementById('vid-username');
-
-  label.removeClass('visible final-state');
-  nameBadge.removeClass('show-big docked');
-  checkWrapper.removeClass('show draw');
-  nameBox.innerText = "";
-
-  let fontSize = 25;
-  if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
-  $('#vid-username').css('font-size', fontSize + 'px');
-
-  video.currentTime = 0;
-  video.play().catch(e => console.log("Auto-play blocked", e));
-
-  apiCallback();
-
-  setTimeout(() => { label.addClass('visible'); }, 4700);
-  setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
-  setTimeout(() => {
-    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
-    let typeInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(typeInterval); } }, 80);
-  }, 5800);
-  setTimeout(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
-  setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
-}
-
-function postOrder(data) {
-  const startTime = Date.now();
-  window.orderSuccess = false;
-
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === 'success') {
-        successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
-        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap)); }
-        window.orderSuccess = true;
-
-        const elapsed = Date.now() - startTime;
-        const minAnimationTime = 8800;
-        let waitTime = minAnimationTime - elapsed;
-        if (waitTime < 0) waitTime = 0;
-
-        setTimeout(() => {
-          $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
-        }, waitTime);
-      }
-    }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
-}
-
-
-// 2. Updated fetchCourierRates Function
-// 🔥 UPDATED: FETCH RATES (Fixes Disappearing Price Table)
-
-function fetchCourierRates() {
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-  const loadingTxt = t.loading || "Loading Options...";
-  let currentSelection = $('#quick-qty').val();
-  $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
-
-  // 1. CACHE CHECK
-  let cachedRates = SafeStorage.getItem('cachedRates');
-  let cacheValid = false;
-  if (cachedRates) {
-    try {
-      let parsed = JSON.parse(cachedRates);
-      // 🔥 FIX: 'KERALA' (UpperCase) ആണ് ഇപ്പോൾ കീ
-      if (parsed && parsed.KERALA) {
-        courierRates = parsed;
-        globalQtyList = Object.keys(parsed.KERALA).map(Number).sort((a, b) => a - b);
-        renderQtyDropdowns();
-        cacheValid = true;
-      }
-    } catch (e) { }
-  }
-
-  // 2. SERVER FETCH
-  const serverFetch = fetch(`${sc}?action=getRates`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.result === 'success' && data.rates) {
-        courierRates = data.rates;
-        if (data.adminPhone) adminPhone = String(data.adminPhone);
-
-        // 🔥 FIX: 'KERALA' കീ ഉപയോഗിക്കുന്നു
-        if (data.rates.KERALA) {
-          globalQtyList = Object.keys(data.rates.KERALA).map(Number).sort((a, b) => a - b);
-        }
-
-        SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
-
-        let restoreQty = currentSelection;
-        if (!restoreQty && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
-          restoreQty = savedOrderData.quantity;
-        }
-        renderQtyDropdowns();
-        if (restoreQty) {
-          $('#quick-qty').val(restoreQty);
-          updatePrice(restoreQty, true);
-        }
-        return true;
-      }
-      return false;
-    }).catch(err => false);
-
-  if (cacheValid) { serverFetch; return Promise.resolve(true); } else { return serverFetch; }
-}
-
-function renderQtyDropdowns() {
-  if (!globalQtyList || globalQtyList.length === 0) return;
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-  let optionsHTML = `<option value="" disabled selected>${t.dd_select || "Select Quantity"}</option>`;
-
-  globalQtyList.forEach(qty => {
-    const totalGrams = qty * 650;
-    let weightText;
-    if (totalGrams >= 1000) { weightText = (totalGrams / 1000).toFixed(2) + " " + (t.txt_kg || "kg"); } else { weightText = totalGrams + (t.txt_g || "g"); }
-    let bottleLabel = (qty === 1) ? (t.txt_bottle || "Bottle") : (t.txt_bottles || "Bottles");
-    let label = `${qty} ${bottleLabel} (${weightText})`;
-    optionsHTML += `<option value="${qty}">${label}</option>`;
-  });
-
-  $('#quantity').html(optionsHTML);
-  $('#quick-qty').html(optionsHTML);
-
-  // 🔥 FIX: Pre-fill only for Edit Mode (Pending/Sent/Paid/Archive)
-  if (editingOrderId && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
-    $('#quick-qty').val(savedOrderData.quantity);
-
-    if (!$('#quick-qty').val()) {
-      let oldQty = savedOrderData.quantity;
-      $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
-    }
-    updatePrice($('#quick-qty').val(), true);
-  }
-
-  if (typeof savedOrderData !== 'undefined' && savedOrderData.Status) {
-    let s = String(savedOrderData.Status).trim().toLowerCase();
-    if (s === 'paid') {
-      let currentQty = parseInt(savedOrderData.quantity) || 0;
-      $('#quick-qty option').each(function () { if (parseInt($(this).val()) < currentQty) $(this).prop('disabled', true); });
-    }
-  }
-}
-
-
-// ==========================================
-// 🔥 NEW SYNC WINDOW LOGIC (FOR EDIT VIEW)
-// ==========================================
-
-let activeSyncOid = null; // To store current OID
-
-// 1. OPEN SYNC MODAL (Replaces old syncSingleOrder)
-
-
-// 2. RENDER ITEM IN MODAL
-function renderSingleSyncItem(u) {
-  const list = document.getElementById('single-sync-list');
-  list.innerHTML = '';
-
-  // Determine Values
-  let fromStatus = u.oldStatus || "Pending";
-  let toStatus = u.status;
-  let extraInfo = "";
-
-  // Badge Colors
-  let getBadgeColor = (s) => {
-    if (s === 'Paid') return 'success';
-    if (s === 'Dispatched') return 'primary';
-    if (s === 'Sent') return 'info text-dark';
-    if (s === 'Archive') return 'dark';
-    return 'secondary';
+  var data = sheet.getDataRange().getValues();
+  var headers = data[0]; 
+  
+  var idx = {
+    oid: headers.indexOf("Order ID"),
+    time: headers.indexOf("Date"),
+    name: headers.indexOf("Name"),
+    phone: headers.indexOf("Phone"),
+    house: headers.indexOf("House"),
+    place: headers.indexOf("Place"),
+    post: headers.indexOf("Post Office"),
+    pin: headers.indexOf("Pincode"),
+    dist: headers.indexOf("District"),
+    state: headers.indexOf("State"),
+    wa: headers.indexOf("WhatsApp"),
+    alt: headers.indexOf("Alt Phone"),
+    qty: headers.indexOf("Quantity"),
+    status: headers.indexOf("Status"),
+    track: headers.indexOf("Tracking ID"),
+    cost: headers.indexOf("Actual_Courier_Cost"),
+    meta: headers.indexOf("Admin Meta"), 
+    paidDate: headers.indexOf("Paid Date"),
+    dispDate: headers.indexOf("Dispatched Date")
   };
 
-  // Special Display for Dispatched Date
-  if (toStatus === 'Dispatched' && u.actionDate) {
-    let d = new Date(u.actionDate);
-    // Format: 06/02/2026 12:00 PM
-    let dateStr = d.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-    extraInfo = `<div class="mt-2 small text-success fw-bold p-2 bg-white rounded border border-success border-opacity-25"><i class="far fa-calendar-alt me-1"></i> Dispatched Date: ${dateStr}</div>`;
-  }
+  var rows = data.slice(1);
+  var validData = rows.filter(function(row) { return row[idx.oid] && String(row[idx.oid]).trim() !== ""; });
+  var recentData = validData.length > 500 ? validData.slice(-500) : validData;
 
-  // HTML Structure
-  let html = `
-    <div class="d-flex align-items-center justify-content-between">
-        <div>
-            <div class="fw-bold text-dark mb-1" style="font-size:14px;">${u.oid}</div>
-            
-            <div style="font-size:13px; color:#555;">
-                <span class="badge bg-light text-secondary border">${fromStatus}</span> 
-                <i class="fas fa-long-arrow-alt-right mx-1 text-muted"></i> 
-                <span class="badge bg-${getBadgeColor(toStatus)}">${toStatus}</span>
-            </div>
-            
-            ${extraInfo}
-        </div>
+  var orders = recentData.map(function(row) { 
+    // 2. ഓർഡറിലെ ഫോൺ നമ്പർ വെച്ച് മാപ്പിൽ നിന്ന് ഭാഷ എടുക്കുന്നു
+    var phone = String(row[idx.phone]).replace(/'/g, "").trim();
+    
+    // 🔥 ഇവിടെയാണ് മാജിക്: കസ്റ്റമർ ഷീറ്റിലെ ഭാഷ നേരിട്ട് എടുക്കുന്നു
+    var finalLang = custLangMap[phone] || "en"; 
+
+    return {
+      orderid: row[idx.oid], 
+      timestamp: row[idx.time], 
+      name: row[idx.name], 
+      phone: row[idx.phone],
+      house: row[idx.house], place: row[idx.place], postoffice: row[idx.post], 
+      pincode: row[idx.pin], district: row[idx.dist], state: row[idx.state], 
+      whatsapp: row[idx.wa], altphone: row[idx.alt], 
+      quantity: row[idx.qty], 
+      Status: row[idx.status], 
+      tracking: (idx.track > -1) ? String(row[idx.track]) : "",
+      actualCourierCost: (idx.cost > -1) ? (row[idx.cost] || 0) : 0,
+      adminMeta: (idx.meta > -1) ? String(row[idx.meta]) : "", 
+      
+      language: finalLang, // 🔥 കസ്റ്റമർ ഷീറ്റിലെ ഭാഷ വരും
+      
+      paidDate: (idx.paidDate > -1) ? row[idx.paidDate] : "",
+      "Dispatched Date": (idx.dispDate > -1) ? row[idx.dispDate] : ""
+    };
+  }).reverse();
+
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: orders })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// 🚀 HIGH SPEED BULK UPDATE
+// 🚀 HIGH SPEED BULK UPDATE (Fixed: Now Saves Admin Meta)
+function bulkUpdateStatus(params) {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName("Orders");
+  var custSheet = doc.getSheetByName("Customers");
+  
+  var allIds = sheet.getRange(1, 1, sheet.getLastRow(), 1).getValues().flat();
+  var idMap = allIds.reduce((acc, id, idx) => { acc[String(id)] = idx + 1; return acc; }, {});
+  var updates = params.updates; 
+  
+  if(!updates || updates.length === 0) return ContentService.createTextOutput(JSON.stringify({ result: 'success', count: 0 })).setMimeType(ContentService.MimeType.JSON);
+  
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  
+  // 🔥 Column Indexes കണ്ടുപിടിക്കുന്നു
+  var paidDateCol = headers.indexOf("Paid Date") + 1;
+  var dispDateCol = headers.indexOf("Dispatched Date") + 1;
+  var metaCol = headers.indexOf("Admin Meta") + 1; // 🔥 Meta Column
+  var msgCol = 14; 
+
+  var successCount = 0;
+  var completedIds = [];
+
+  updates.forEach(function(item) {
+    var rowIndex = idMap[item.oid]; 
+    if (rowIndex) {
         
-        <button onclick="discardSingleChanges()" class="btn btn-sm btn-outline-danger border-0 bg-white shadow-sm" style="width:35px; height:35px; border-radius:50%;" title="Undo">
-            <i class="fas fa-undo"></i>
-        </button>
-    </div>`;
+        // 🔥 CASE 1: വെറും Meta Update ആണെങ്കിൽ (Print ചെയ്യുമ്പോൾ നടക്കുന്നത്)
+        if (item.action === 'meta') {
+            if (metaCol > 0 && item.meta !== undefined) {
+                sheet.getRange(rowIndex, metaCol).setValue(item.meta);
+            }
+        } 
+        // 🔥 CASE 2: Status Update ആണെങ്കിൽ
+        else {
+            sheet.getRange(rowIndex, 15).setValue(item.status);
+            
+            // Archive Reason
+            if (item.status === 'Archive' && item.reason) {
+                var oldMsg = sheet.getRange(rowIndex, msgCol).getValue();
+                var newMsg = oldMsg + " [ARCHIVED: " + item.reason + "]";
+                sheet.getRange(rowIndex, msgCol).setValue(newMsg);
+            }
 
-  list.innerHTML = html;
-}
+            // Handle Dates
+            if (item.status === 'Paid' && item.actionDate && paidDateCol > 0) {
+                sheet.getRange(rowIndex, paidDateCol).setValue(item.actionDate);
+            }
+            if (item.status === 'Dispatched' && dispDateCol > 0) {
+                let dDate = item.actionDate || new Date(); 
+                if (typeof dDate === 'object') dDate = Utilities.formatDate(dDate, Session.getScriptTimeZone(), "yyyy-MM-dd HH:mm");
+                sheet.getRange(rowIndex, dispDateCol).setValue(dDate);
+            }
 
-// 3. UPLOAD NOW (Perform Sync)
-window.performSingleSync = function () {
-  if (!activeSyncOid) return;
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let myUpdate = updates.find(u => u.oid === activeSyncOid);
-
-  if (!myUpdate) return;
-
-  // UI Loading
-  const btn = $('#singleSyncModal .btn-dark');
-  let originalHtml = btn.html();
-  btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
-
-  fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.result === 'success') {
-        // Remove from Local
-        let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
-        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
-
-        // Close Modal & Show Success
-        $('#singleSyncModal').modal('hide');
-        Swal.fire({ icon: 'success', title: 'Synced Successfully!', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
-
-        // Update UI Button (Blue -> Grey)
-        updateAdminUI(myUpdate.status, activeSyncOid);
-      } else {
-        alert("Sync Failed!");
-      }
-    })
-    .catch(err => alert("Network Error"))
-    .finally(() => {
-      btn.prop('disabled', false).html(originalHtml);
-    });
-}
-
-// 4. DISCARD / UNDO
-window.discardSingleChanges = function () {
-  if (!activeSyncOid) return;
-
-  if (!confirm("Discard these changes?")) return;
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let myUpdate = updates.find(u => u.oid === activeSyncOid);
-  let oldStatus = myUpdate ? (myUpdate.oldStatus || "Pending") : "Pending";
-
-  // Remove from Local
-  let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
-  localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
-
-  // Close Modal
-  $('#singleSyncModal').modal('hide');
-
-  // 🔥 Revert UI immediately to Old Status
-  // We update the UI to reflect the state BEFORE the change
-  updateAdminUI(oldStatus, activeSyncOid);
-
-  // Optional: Reload data from cache to be safe
-  let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-  let cachedOrder = cachedOrders.find(o => o.orderid === activeSyncOid);
-  if (cachedOrder) {
-    // Revert cache object status if needed, or just rely on server data next refresh
-    // For visual feedback, updateAdminUI is enough
-  }
-
-  showToast('info', 'Changes Discarded');
-}
-
-// Helper Toast (if not already exists)
-function showToast(icon, title) {
-  Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: icon, title: title });
-}
-
-function sendToWhatsapp() {
-  const d = successData;
-  const safe = (val) => String(val || '').trim().toUpperCase();
-  const adminPhone = '7788990313'; // Admin Phone Number
-
-  // 1. Language & Translations
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
-
-  const editText = t.wa_check_status;
-
-  // 🔥 FIX: Date Logic
-  let dateObj = new Date();
-  if (d.timestamp) {
-    let serverDate = new Date(d.timestamp);
-    if (!isNaN(serverDate.getTime())) {
-      dateObj = serverDate;
+            // Stats Recalculation Trigger
+            if (['Completed', 'Delivered', 'Archive'].includes(item.status)) {
+                completedIds.push(item.oid);
+            }
+        }
+        successCount++;
     }
+  });
+
+  // Batch Update Stats
+  if(completedIds.length > 0) {
+    updateCustomerStatsBatch(sheet, custSheet, completedIds, idMap);
   }
 
-  const day = String(dateObj.getDate()).padStart(2, '0');
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-  const year = dateObj.getFullYear();
+  return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'count': successCount })).setMimeType(ContentService.MimeType.JSON);
+}
 
-  let hours = dateObj.getHours();
-  let minutes = String(dateObj.getMinutes()).padStart(2, '0');
-  let ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  const timeStr = `${hours}:${minutes} ${ampm}`;
-
-  const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
-
-  // 3. Check Updates
-  let isUpdate = false;
-  let changes = [];
-
-  if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
-    isUpdate = true;
-
-    if (safe(savedOrderData.name) !== safe(d.name))
-      changes.push(`👤 NAME: ${savedOrderData.name} ➡️ *${d.name}*`);
-    if (String(savedOrderData.quantity) !== String(d.quantity))
-      changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-    if (String(savedOrderData.phone) !== String(d.phone))
-      changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
-
-    const oldAlt = String(savedOrderData.altphone || '').trim();
-    const newAlt = String(d.altphone || '').trim();
-    if (oldAlt !== newAlt) changes.push(`📞 ALT PH: ${oldAlt || 'None'} ➡️ *${newAlt}*`);
-
-    const oldWa = String(savedOrderData.whatsapp || '').trim();
-    const newWa = String(d.whatsapp || '').trim();
-    if (oldWa !== newWa) changes.push(`💬 WA: ${oldWa} ➡️ *${newWa}*`);
-
-    if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
-    if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
-    if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
-    if (String(savedOrderData.pincode) !== String(d.pincode)) changes.push(`🔢 PIN: *${d.pincode}*`);
-    if (safe(savedOrderData.state) !== safe(d.state)) changes.push(`🌍 STATE: *${safe(d.state)}*`);
+// 🚀 BATCH ARRAY UPDATE FOR TRACKING
+function updateTracking(params) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Orders");
+  var rowIndex = findRowIndex(sheet, params.oid, 1);
+  if (rowIndex > -1) {
+    // Write Status and Tracking ID together in one shot
+    sheet.getRange(rowIndex, 15, 1, 2).setValues([["Dispatched", params.tracking]]);
+    
+    // Add Dispatch Date
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var dispDateCol = headers.indexOf("Dispatched Date") + 1;
+    if(dispDateCol > 0) {
+        var dDate = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd HH:mm");
+        sheet.getRange(rowIndex, dispDateCol).setValue(dDate);
+    }
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
   }
+  return ContentService.createTextOutput(JSON.stringify({ result: 'error' })).setMimeType(ContentService.MimeType.JSON);
+}
 
-  // 4. Calculate Total
-  const n = parseInt(d.quantity);
-  const base = n * 650;
-  const zone = getZoneKey(d.state);
-  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-  const total = base + courier;
+// 🔥 DYNAMIC RATES: ഷീറ്റിലെ സംസ്ഥാനത്തിന്റെ പേര് അതേപോലെ എടുക്കുന്നു
+function getRatesFromSettings() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Settings');
+  var data = sheet.getDataRange().getValues();
+  data.shift(); // Remove Header
 
-  // 5. Generate Message Header
-  const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-  let header = "";
-
-  if (isUpdate) {
-    header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-
-    if (changes.length > 0) {
-      header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
+  // Helper to process rate string
+  var processRates = (rateStr, serviceFeeStr) => {
+    if (!rateStr) return {};
+    var serviceMap = {};
+    if (String(serviceFeeStr).includes(":")) {
+       String(serviceFeeStr).split(',').forEach(s => {
+          var p = s.split(':');
+          if(p.length===2) serviceMap[p[0].trim()] = Number(p[1].trim());
+       });
     } else {
-      header += `\n(Updated details confirmed)\n`;
+       var fixedFee = Number(serviceFeeStr) || 0;
+       serviceMap['default'] = fixedFee;
     }
-    header += `\n*👇 CURRENT DETAILS:*`;
-  } else {
-    header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-  }
 
-  let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
+    return String(rateStr).split(',').reduce((acc, item) => {
+      var parts = item.split(':');
+      if (parts.length === 2) {
+        var qty = parts[0].trim();
+        var baseRate = Number(parts[1].trim());
+        var sCharge = (serviceMap[qty] !== undefined) ? serviceMap[qty] : (serviceMap['default'] || 0);
+        acc[qty] = baseRate + sCharge;
+      }
+      return acc;
+    }, {});
+  };
+  
+  // 🔥 NO HARDCODED MAP: ഷീറ്റിലെ പേര് (Column C) കീ ആയി ഉപയോഗിക്കുന്നു
+  return data.reduce((acc, row) => {
+      var qtyLabel = String(row[0]); 
+      var price = Number(row[1]); 
+      var qtyMatch = qtyLabel.match(/^(\d+)/);
+      if (qtyMatch && price) acc.prices[qtyMatch[1]] = price;
 
-  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+      var sheetZoneName = String(row[2]).trim().toUpperCase(); // e.g., "KERALA", "KARNATAKA"
+      var rateStr = String(row[3]).trim(); 
+      var serviceCharge = String(row[5]).trim(); 
 
-  // 🔥 NEW: Payment Screenshot Request (Language based)
-  let paymentNote = "";
-  if (lang === 'en') {
-    paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
-  } else {
-    paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
-  }
-
-  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
-
-  // WhatsApp Link Opening
-  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
+      if (sheetZoneName) {
+        acc[sheetZoneName] = processRates(rateStr, serviceCharge);
+      }
+      return acc;
+  }, { prices: {} });
 }
 
+// 🔥 UPDATED: Dashboard Data (Strict Separation of Sales and Courier Logic)
+// 🔥 UPDATED: Dashboard Data (With Previous Balance & Receipt Images)
+function getDashboardData(e) {
+  var targetDateStr = e.parameter.date;
+  var targetDate = new Date(targetDateStr);
+  targetDate.setHours(0,0,0,0);
+  
+  var firstDayOfMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 1);
+  var lastDayOfMonth = new Date(targetDate.getFullYear(), targetDate.getMonth() + 1, 0);
+  lastDayOfMonth.setHours(23, 59, 59, 999);
 
-function renderEditView(data) {
-  const status = String(data.Status || 'pending').toLowerCase();
-
-  // 🔥 CASE 1:
-  // (Completed, Delivered, Refunded)
-  if (['completed', 'delivered', 'refunded'].includes(status)) {
-    showReturningUserView(data, false, true);
-    enableNewOrderMode();
-    return;
+  var realToday = new Date();
+  if (lastDayOfMonth > realToday) {
+      lastDayOfMonth = realToday;
+      lastDayOfMonth.setHours(23, 59, 59, 999);
   }
+  
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var tz = Session.getScriptTimeZone(); 
+  
+  var orderSheet = doc.getSheetByName("Orders");
+  var expSheet = doc.getSheetByName("Expenses");
+  var auditSheet = doc.getSheetByName("Auditor_Report");
 
-  // 🔥 CASE 2: (Pending, Paid, Dispatched, Sent)
-  // Dispatched
-  const isActive = !(['dispatched'].includes(status));
+  var oData = orderSheet.getDataRange().getValues(); 
+  var headers = oData.shift();
+  var paidIdx = headers.indexOf("Paid Date");
+  var dispIdx = headers.indexOf("Dispatched Date");
 
-  showReturningUserView(data, isActive, true);
-  updateEditUIState(data);
+  var eData = expSheet.getDataRange().getValues(); eData.shift();
+  var aData = auditSheet.getDataRange().getValues(); aData.shift();
+
+  var stats = {
+    daily: { sales: 0, courier: 0, expense: 0, profit: 0, count: 0, list: [] },
+    monthly: { sales: 0, expense: 0, courier: 0, profit: 0 },
+    yearly: { materialExp: 0 }, // 🔥 NEW: Yearly കണക്കുകൾ എടുക്കാൻ
+    partners: { 
+        "Salam": { curr: 0, prev: 0 }, 
+        "Samad": { curr: 0, prev: 0 }, 
+        "Jazeela": { curr: 0, prev: 0 } 
+    },
+    monthTimeline: { income: {}, expense: [] } 
+  };
+
+  oData.forEach(row => {
+    var status = String(row[14]);
+    var isPaidOrMore = ['Paid', 'Dispatched', 'Completed', 'Delivered'].includes(status);
+    var isDispatchedOrMore = ['Dispatched', 'Completed', 'Delivered'].includes(status);
+
+    if (isPaidOrMore || isDispatchedOrMore) {
+      var sales = isPaidOrMore ? (Number(row[18]) || 0) : 0;
+      var courier = isDispatchedOrMore ? (Number(row[20]) || 0) : 0; 
+      var qty = parseInt(row[12]) || 0; 
+
+      if (isPaidOrMore) {
+          var pDateRaw = paidIdx > -1 ? row[paidIdx] : "";
+          var pDate = pDateRaw ? new Date(pDateRaw) : new Date(row[1]);
+          pDate.setHours(0,0,0,0);
+
+          if (pDate >= firstDayOfMonth && pDate <= lastDayOfMonth) {
+              stats.monthly.sales += sales;
+              var pKey = Utilities.formatDate(pDate, tz, "yyyy-MM-dd");
+              if(!stats.monthTimeline.income[pKey]) stats.monthTimeline.income[pKey] = { bottles: 0, amount: 0 };
+              stats.monthTimeline.income[pKey].bottles += qty;
+              stats.monthTimeline.income[pKey].amount += sales;
+          }
+          if (pDate.getTime() === targetDate.getTime()) {
+            stats.daily.sales += sales;
+            stats.daily.count++;
+          }
+      }
+
+      if (isDispatchedOrMore) {
+          var dDateRaw = dispIdx > -1 ? row[dispIdx] : "";
+          var dDate = dDateRaw ? new Date(dDateRaw) : new Date(row[1]);
+          dDate.setHours(0,0,0,0);
+
+          if (dDate >= firstDayOfMonth && dDate <= lastDayOfMonth) {
+              stats.monthly.courier += courier;
+              if (courier > 0) {
+                  var dKey = Utilities.formatDate(dDate, tz, "yyyy-MM-dd");
+                  stats.monthTimeline.expense.push({ date: dKey, desc: 'Sent by courier', vendor: 'Auto', amount: courier, isCourier: true });
+              }
+          }
+          if (dDate.getTime() === targetDate.getTime()) {
+            stats.daily.courier += courier;
+          }
+      }
+    }
+  });
+
+  stats.monthly.profit = stats.monthly.sales - stats.monthly.courier;
+  stats.daily.profit = stats.daily.sales - stats.daily.courier;
+
+  // Expenses Logic
+  eData.forEach(row => {
+    var d = new Date(row[0]); d.setHours(0,0,0,0);
+    var cat = String(row[1]);
+    var vendor = String(row[2]).trim();
+    var desc = String(row[3]).trim();
+    var amount = Number(row[4]) || 0;
+    var proof = row[7] || ""; 
+
+    // Yearly Material Calculation
+    if (d.getFullYear() === targetDate.getFullYear()) {
+        if (cat.toLowerCase().includes('material')) {
+            stats.yearly.materialExp += amount;
+        }
+    }
+
+    // 🔥 FIX: സാലറിയും മെറ്റീരിയലും കമ്പനിയുടെ ലാഭത്തിൽ നിന്നും കുറയ്ക്കില്ല!
+    let isMaterial = cat.toLowerCase().includes('material');
+    let isSalary = (cat === 'Salary');
+    let isDeductibleExp = !isMaterial && !isSalary; 
+
+    if (d >= firstDayOfMonth && d <= lastDayOfMonth) {
+      if (isDeductibleExp) {
+          stats.monthly.expense += amount;
+          stats.monthly.profit -= amount;
+      }
+      var eKey = Utilities.formatDate(d, tz, "yyyy-MM-dd");
+      stats.monthTimeline.expense.push({ date: eKey, desc: desc || cat, vendor: vendor, amount: amount, isCourier: false, cat: cat, proof: proof });
+    }
+    
+    if (d.getTime() === targetDate.getTime()) {
+      if (isDeductibleExp) {
+          stats.daily.expense += amount;
+          stats.daily.profit -= amount;
+      }
+      stats.daily.list.push({ category: cat, desc: desc, amount: amount, proof: proof });
+    }
+
+    // Salary partner deduction logic
+    if (cat === "Salary") {
+      var vLower = vendor.toLowerCase();
+      var dLower = desc.toLowerCase();
+      var matchedPartner = null;
+      
+      if (vLower.includes("salam") || dLower.includes("salam")) matchedPartner = "Salam";
+      else if (vLower.includes("samad") || dLower.includes("samad")) matchedPartner = "Samad";
+      else if (vLower.includes("jazeela") || dLower.includes("jazeela")) matchedPartner = "Jazeela";
+
+      if (matchedPartner) {
+          stats.partners[matchedPartner].curr -= amount;
+          if (d < firstDayOfMonth) {
+              stats.partners[matchedPartner].prev -= amount; 
+          }
+      }
+    }
+  });
+
+  // Auditor Report Additions
+  aData.forEach(row => {
+    var s1 = Number(row[6]) || 0;  
+    var s2 = Number(row[7]) || 0;  
+    var s3 = Number(row[8]) || 0; 
+    
+    stats.partners["Salam"].curr += s1;  stats.partners["Salam"].prev += s1;
+    stats.partners["Samad"].curr += s2;  stats.partners["Samad"].prev += s2;
+    stats.partners["Jazeela"].curr += s3; stats.partners["Jazeela"].prev += s3;
+  });
+
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success', data: stats })).setMimeType(ContentService.MimeType.JSON);
 }
 
-
-function updateEditUIState(data) {
-
-  updateStatusUI(data);
-
-  handleEditControlsVisibility(data);
-
-  if (data.quantity) {
-    $('#quick-qty').val(data.quantity);
-    updatePrice(data.quantity, true);
+// 🔥 UPDATED: ADD EXPENSE (Updates Order Status to 'Refunded' automatically)
+function addExpense(params) {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName("Expenses");
+  var data = params.data;
+  
+  var proofUrl = "";
+  if (data.fileData && data.fileName) {
+    try {
+      proofUrl = saveImageToDrive(data.fileData, data.fileName);
+    } catch(e) {
+      proofUrl = "Error: " + e.toString();
+    }
   }
+  var expDate = data.date ? new Date(data.date) : new Date();
+  
+  sheet.appendRow([
+    expDate,
+    data.category,
+    data.vendor,
+    data.description,
+    data.amount,
+    data.billRef || "",
+    "Admin",
+    proofUrl
+  ]);
+
+  // 🔥 NEW: റീഫണ്ട് ആണെങ്കിൽ ഓർഡർ ഷീറ്റിലെ സ്റ്റാറ്റസ് 'Refunded' എന്ന് മാറ്റുന്നു
+  if (data.category === 'Refund' && data.orderId) {
+      var orderSheet = doc.getSheetByName("Orders");
+      // ഓർഡർ ഐഡി വെച്ച് വരി കണ്ടുപിടിക്കുന്നു (Column A ൽ ആണ് ID എന്ന് കരുതുന്നു)
+      var rowIndex = findRowIndex(orderSheet, data.orderId, 1); 
+      
+      if (rowIndex > -1) {
+          // Status കിടക്കുന്നത് 15-ാമത്തെ കോളത്തിൽ (Column O) ആണെന്ന് ഉറപ്പാക്കുക
+          orderSheet.getRange(rowIndex, 15).setValue("Refunded");
+      }
+  }
+  
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function saveImageToDrive(base64Data, fileName) {
+  var folderName = "KAFAK_EXPENSE_PROOFS";
+  var folders = DriveApp.getFoldersByName(folderName);
+  var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(folderName);
+  
+  var contentType = base64Data.substring(5, base64Data.indexOf(';'));
+  var bytes = Utilities.base64Decode(base64Data.substr(base64Data.indexOf('base64,')+7));
+  var blob = Utilities.newBlob(bytes, contentType, fileName);
+  
+  var file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  return file.getUrl();
+}
+
+function fixPermissions() {
+  DriveApp.getRootFolder();
+  console.log("Permission Fixed!");
+}
+
+function setColumnValueByHeader(sheet, rowIndex, headerName, value) {
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var colIndex = headers.indexOf(headerName);
+  if (colIndex > -1) sheet.getRange(rowIndex, colIndex + 1).setValue(value);
+}
+
+// 🔥 FIXED: GLOBAL SEARCH FUNCTION
+function searchGlobal(query) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Orders");
+  var data = sheet.getDataRange().getValues();
+  var headers = data[0];
+  var results = [];
+  var q = String(query).toLowerCase().trim();
+  
+  // Date Column Indexes കണ്ടുപിടിക്കുന്നു
+  var paidDateIdx = headers.indexOf("Paid Date");
+  var dispDateIdx = headers.indexOf("Dispatched Date");
+
+  // Row 2 മുതൽ താഴേക്ക് തിരയുന്നു
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    
+    // OrderID (0), Name (2), Phone (3), Tracking (15) എന്നിവയിൽ തിരയുന്നു
+    // Note: Column Index 0-based ആണ് (Phone is Column D -> Index 3)
+    if (
+       String(row[0]).toLowerCase().includes(q) || // Order ID
+       String(row[2]).toLowerCase().includes(q) || // Name
+       String(row[3]).includes(q) ||               // Phone (Column D)
+       String(row[15]).toLowerCase().includes(q)   // Tracking ID (Column P)
+    ) {
+       // Create Order Object Manually
+       var orderObj = {
+          orderid: row[0], timestamp: row[1], name: row[2], phone: row[3],
+          house: row[4], place: row[5], postoffice: row[6], pincode: row[7],
+          district: row[8], state: row[9], whatsapp: row[10], 
+          altphone: row[11], quantity: row[12], 
+          Status: row[14], tracking: row[15] || "",
+          grandTotal: row[18], provider: row[19],
+          actualCourierCost: row[20] || 0,
+          paidDate: (paidDateIdx > -1) ? row[paidDateIdx] : "",
+          "Dispatched Date": (dispDateIdx > -1) ? row[dispDateIdx] : ""
+       };
+       results.push(orderObj);
+    }
+  }
+  
+  return ContentService.createTextOutput(JSON.stringify({ result: 'success', orders: results })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// 🔥 DELETE REFUND FROM EXPENSES SHEET
+function deleteRefundExpense(data) {
+  var oid = data.oid;
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Expenses");
+  var rows = sheet.getDataRange().getValues();
+  
+  // താഴെ നിന്നും മുകളിലേക്ക് പരിശോധിക്കുന്നു (Row ഡിലീറ്റ് ചെയ്യുമ്പോൾ പ്രശ്നം വരാതിരിക്കാൻ)
+  for (var i = rows.length - 1; i >= 0; i--) {
+    var row = rows[i];
+    // Column B (Category) = Refund ആണോ എന്നും, Column C/D യിൽ ഓർഡർ ഐഡി ഉണ്ടോ എന്നും നോക്കുന്നു
+    var category = String(row[1]); 
+    var vendor = String(row[2]);
+    var desc = String(row[3]);
+
+    if (category === 'Refund' && (vendor.includes(oid) || desc.includes(oid))) {
+      sheet.deleteRow(i + 1); // Row നമ്പർ (Index + 1) വെച്ച് ഡിലീറ്റ് ചെയ്യുന്നു
+      return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+  
+  return ContentService.createTextOutput(JSON.stringify({ result: 'not_found' })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// 🔥 NEW OPTIMIZED FUNCTION (No Loop)
+function getRatesWithAdmin() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var rates = getRatesFromSettings(); // പഴയ Rates എടുക്കുന്നു
+  
+  var adminSheet = ss.getSheetByName("Admins");
+  var adminPhone = "7788990313"; // Default Fallback
+
+  if (adminSheet) {
+    // 'findRowIndex' ഉപയോഗിച്ച് ഒറ്റയടിക്ക് അഡ്മിനെ കണ്ടുപിടിക്കുന്നു (Fastest Way)
+    var rowIndex = findRowIndex(adminSheet, "admin", 1); 
+
+    if (rowIndex > -1) {
+      // Row കിട്ടിയാൽ, Column 5-ൽ (Phone) ഉള്ള വാല്യൂ എടുക്കുന്നു
+      adminPhone = String(adminSheet.getRange(rowIndex, 5).getValue());
+    }
+  }
+
+  return ContentService.createTextOutput(JSON.stringify({ 
+    result: 'success', 
+    rates: rates, 
+    adminPhone: adminPhone 
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// 🔥 PERMANENT DELETE FUNCTION (Master Admin Only)
+function deleteOrder(params) {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName("Orders");
+  var rowIndex = findRowIndex(sheet, params.oid, 1); // ID വെച്ച് വരി കണ്ടുപിടിക്കുന്നു
+
+  if (rowIndex > -1) {
+    sheet.deleteRow(rowIndex); // വരി പൂർണ്ണമായും നീക്കം ചെയ്യുന്നു
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput(JSON.stringify({ result: 'error', message: 'Order not found' })).setMimeType(ContentService.MimeType.JSON);
 }
