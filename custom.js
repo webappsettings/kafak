@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzJJZAmYxhS_3uReLN9gdsXNfvHIvI-12qPUPyebLQr3R2V_w_EG7uv3f_6IP8xpI2vYQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwsLxEq278ODYt8GeFH-V5yTOE73cgPQ0WgSgIiJft2PM9bRm6HpYQ17APFVDTD8ww8yA/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -627,10 +627,9 @@ window.prevStep = function () {
 }
 
 window.submitQuickOrder = function () {
-  // 1. Check if button is disabled
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 2. Validation
+  // 1. Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
   const newName = $('#edit-name').val();
   if (!newName) { showAlert(getAlert('err_name') || "Name Required"); return; }
@@ -644,7 +643,7 @@ window.submitQuickOrder = function () {
   if (!finalPO) { showAlert(getAlert('err_select_po')); return; }
   $('#edit-postoffice').val(finalPO);
 
-  // 3. Prepare Data
+  // 2. Prepare Data
   const finalData = {
     orderid: editingOrderId,
     name: newName,
@@ -658,12 +657,13 @@ window.submitQuickOrder = function () {
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
+    paidNum: $('#edit-paid-by').val() || '', // 🔥 Paid By Captured
     message: '',
     custId: myCustId,
     language: $('#language-select').val() || 'en'
   };
 
-  // 🔥🔥🔥 ADMIN LOGIC FIX 🔥🔥🔥
+  // 🔥🔥🔥 ADMIN LOGIC (Paid -> Sent Fix) 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
@@ -687,44 +687,51 @@ window.submitQuickOrder = function () {
           showCancelButton: true,
           confirmButtonColor: '#28a745',
           cancelButtonColor: '#6c757d',
-          confirmButtonText: 'Yes, Save & Send WA',
+          confirmButtonText: 'Yes, Save & Notify',
           cancelButtonText: 'No, Just Save'
         }).then((result) => {
 
-          // Show Loading (No Video)
-          showLoader(true);
+          showLoader(true); // Loading Start
 
-          // 1. Save Data First
+          // A. First Save Data (Name, Qty, PaidBy etc.)
           fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
             .then(res => res.json())
             .then(res => {
 
               if (result.isConfirmed) {
-                // 2. 🔥 FORCE STATUS UPDATE TO 'SENT'
+                // B. Force Status Update -> 'Sent'
                 fetch(sc, {
                   method: 'POST',
                   body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
                 }).then(() => {
 
+                  // 🔥 CRITICAL FIX: Update Local Cache IMMEDIATELY
+                  // റീലോഡ് ചെയ്യുമ്പോൾ പഴയ 'Paid' വരാതിരിക്കാൻ ലോക്കൽ ഡാറ്റ മാറ്റുന്നു
+                  if (localUsersMap[finalData.phone]) {
+                    localUsersMap[finalData.phone].Status = 'Sent';
+                    localUsersMap[finalData.phone].quantity = newQty;
+                    localUsersMap[finalData.phone].paidNum = finalData.paidNum;
+                    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+                  }
+
                   showLoader(false);
 
-                  // 3. WhatsApp Message (Short & Clean)
+                  // C. WhatsApp Message
                   let custPhone = finalData.whatsapp || finalData.phone;
                   let msg = "";
-
-                  // GPay Footer ഒഴിവാക്കി
                   if (finalData.language === 'ml') {
                     msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
                   } else {
                     msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
                   }
 
-                  // Open WA & Refresh Page
+                  // Open WA & Reload
                   window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-                  location.reload();
+                  setTimeout(() => location.reload(), 1000);
                 });
 
               } else {
+                // Just Save (No Status Change)
                 showLoader(false);
                 location.reload();
               }
@@ -734,10 +741,16 @@ window.submitQuickOrder = function () {
       }
     }
 
-    // Normal Admin Update (No Status Change)
+    // Normal Admin Update (Just Save)
     showLoader(true);
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
+        // Update Local Cache to reflect Name/Phone/PaidBy changes immediately
+        if (localUsersMap[finalData.phone]) {
+          localUsersMap[finalData.phone] = { ...localUsersMap[finalData.phone], ...finalData };
+          SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+        }
+
         showLoader(false);
         Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
         setTimeout(() => location.reload(), 1000);
@@ -786,6 +799,24 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   savedOrderData = JSON.parse(JSON.stringify(d));
   updateSummaryDisplay();
+
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  if (isAdmin) {
+    // 1. Inject Paid By Input if missing
+    if ($('#edit-paid-by-wrapper').length === 0) {
+      $(`
+          <div id="edit-paid-by-wrapper" class="mt-2 p-2 border rounded bg-light fade-in">
+              <label class="small fw-bold text-muted">💰 PAID BY (Extra Number)</label>
+              <input type="tel" id="edit-paid-by" class="form-control form-control-sm fw-bold" placeholder="Enter GPay Number" value="${d.paidNum || ''}">
+          </div>
+          `).insertBefore('#address-edit-box button'); // Save Button-ന് തൊട്ടു മുകളിൽ
+    } else {
+      $('#edit-paid-by').val(d.paidNum || '');
+    }
+
+    // 2. Make Phone Inputs Visible for Admin
+    $('#edit-phone, #edit-whatsapp, #edit-altphone').parent().show();
+  }
 
   $('#status-area').hide().empty();
 
