@@ -584,6 +584,8 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
+
+
     // 1. Search Logic Fix
     if (type === 'search') {
         if (currentStatus === 'Pending' || currentStatus === 'Sent') type = 'pending';
@@ -622,6 +624,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
     let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
+
+
     // Admin Meta
     let meta = getMetaStatus(d.adminMeta);
     let metaBadges = '';
@@ -635,6 +639,53 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let linkedOrder = checkCrossLinking(d);
     let fraudAlertHtml = '';
+
+    // 🔥 1. MAIN SEARCH BUTTON (For Header)
+    // ഏത് നമ്പറാണ് സെർച്ച് ചെയ്യേണ്ടത്? (WhatsApp ഉണ്ടെങ്കിൽ അത്, ഇല്ലെങ്കിൽ Phone)
+    let searchNum = d.whatsapp || d.phone;
+    let searchBtnHtml = `
+    <button onclick="event.stopPropagation(); openWASearch('${searchNum}')" 
+        class="btn btn-sm btn-light border shadow-sm ms-1" 
+        style="padding: 0px 5px; font-size: 9px; height: 18px; line-height: 1;" 
+        title="Search on WhatsApp">
+        <i class="fab fa-whatsapp text-success"></i> <i class="fas fa-search text-muted" style="font-size:8px;"></i>
+    </button>`;
+
+
+
+    // 🔥 2. DUPLICATE CHECKER & BUTTON (For Fraud Box)
+
+    if (currentStatus === 'Pending' || currentStatus === 'Sent') {
+        let linkedOrder = checkCrossLinking(d);
+
+        if (linkedOrder) {
+            let linkColor = linkedOrder.Status === 'Paid' ? 'danger' : 'warning';
+            let linkIcon = linkedOrder.Status === 'Paid' ? 'exclamation-triangle' : 'link';
+
+            // Linked Order-ന്റെ നമ്പർ എടുക്കുന്നു
+            let linkedNum = linkedOrder.whatsapp || linkedOrder.phone;
+
+            fraudAlertHtml = `
+            <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div style="font-size:11px; font-weight:700; color:#b91c1c;">
+                        <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
+                    </div>
+                    <button onclick="event.stopPropagation(); openWASearch('${linkedNum}')" 
+                        class="btn btn-sm btn-light border shadow-sm" 
+                        style="padding: 1px 6px; font-size: 10px;" title="Check Linked Number">
+                        <i class="fab fa-whatsapp text-success"></i> 🔎
+                    </button>
+                </div>
+                <div style="font-size:10px; color:#555;">
+                    ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})
+                </div>
+                <button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn btn-sm btn-outline-danger w-100 mt-2 fw-bold" style="font-size:10px;">
+                    ARCHIVE DUPLICATE
+                </button>
+            </div>`;
+        }
+    }
 
     if (linkedOrder) {
         // ലിങ്ക് ചെയ്തത് 'Paid' ഓർഡർ ആണെങ്കിൽ നമുക്ക് സംശയിക്കാം
@@ -656,10 +707,13 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
+    // 🔥 HEADER UPDATE: searchBtnHtml ഇവിടെ ചേർക്കുന്നു 👇
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
-            ${rankBadge} <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
-            ${metaBadges} <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
+            ${rankBadge} 
+            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
+            ${searchBtnHtml} ${metaBadges} 
+            <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
 
@@ -3145,4 +3199,16 @@ function checkCrossLinking(currentOrder) {
         }
     }
     return null;
+}
+
+// 🔥 OPEN WHATSAPP CHAT (SEARCH USER)
+window.openWASearch = function (num) {
+    let clean = String(num || '').replace(/[^0-9]/g, '');
+    if (clean.length >= 10) {
+        if (clean.length === 10) clean = '91' + clean;
+        // പുതിയ ടാബിൽ ചാറ്റ് തുറക്കുന്നു (ഇതാണ് ഹിസ്റ്ററി നോക്കാൻ എളുപ്പം)
+        window.open(`https://wa.me/${clean}`, '_blank');
+    } else {
+        showToast('error', 'No valid number found!');
+    }
 }
