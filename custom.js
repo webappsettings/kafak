@@ -674,47 +674,72 @@ window.submitQuickOrder = function () {
     custId: myCustId,
     language: $('#language-select').val() || 'en'
   };
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // അഡ്മിൻ എഡിറ്റ് ചെയ്യുമ്പോൾ പഴയ ക്വാണ്ടിറ്റിയും പുതിയതും തമ്മിലുള്ള വ്യത്യാസം നോക്കുന്നു
-  if (isAdmin && savedOrderData && savedOrderData.quantity) {
+  // 🔥🔥🔥 SMART ADMIN LOGIC (Status Change & Balance Calc) 🔥🔥🔥
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
+
+  // അഡ്മിൻ ആണ്, ഓർഡർ Paid ആണ്, ക്വാണ്ടിറ്റി കൂട്ടിയിട്ടുണ്ട് എങ്കിൽ മാത്രം:
+  if (isAdmin && oldStatus === 'paid') {
     let oldQty = parseInt(savedOrderData.quantity) || 0;
     let newQty = parseInt(finalData.quantity) || 0;
-    let status = String(savedOrderData.Status || '').toLowerCase();
 
-    // Paid ഓർഡറിൽ ക്വാണ്ടിറ്റി കൂട്ടിയാൽ മാത്രം മെസ്സേജ് അയക്കുന്നു
-    if (status === 'paid' && newQty > oldQty) {
-      // Calculate Balance Amount
-      // 1. Get Rates based on State
+    if (newQty > oldQty) {
+      // 1. Calculate Balance
       let stateKey = getZoneKey(finalData.state);
       let rates = courierRates[stateKey] || {};
 
-      // 2. Calculate Old Total
       let oldBase = oldQty * 650;
-      let oldCourier = rates[oldQty] || 0; // പഴയ കൊറിയർ ചാർജ്
+      let oldCourier = rates[oldQty] || 0;
       let oldTotal = oldBase + oldCourier;
 
-      // 3. Calculate New Total
       let newBase = newQty * 650;
-      let newCourier = rates[newQty] || 0; // പുതിയ കൊറിയർ ചാർജ്
+      let newCourier = rates[newQty] || 0;
       let newTotal = newBase + newCourier;
 
-      // 4. Balance to Pay
       let balance = newTotal - oldTotal;
 
-      // 5. Send WhatsApp Message to Customer
-      let custPhone = finalData.whatsapp || finalData.phone;
-      let msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal} - Paid: ₹${oldTotal})\n\nPlease GPay the balance to confirm. 👍`;
+      // 2. Ask Admin Confirmation
+      Swal.fire({
+        title: 'Qty Increased! 📈',
+        html: `Item count changed: <b>${oldQty} ➡️ ${newQty}</b><br>
+                   Balance to collect: <b style="color:red; font-size:18px;">₹${balance}</b><br><br>
+                   Change status to <b>SENT</b> (Pending Payment)?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ffc107', // Warning Yellow
+        cancelButtonColor: '#28a745', // Success Green
+        confirmButtonText: 'Yes, Mark SENT & Notify',
+        cancelButtonText: 'No, Keep PAID (Already Paid)',
+        reverseButtons: true
+      }).then((result) => {
 
-      if (finalData.language === 'ml') {
-        msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal} - അടച്ചത്: ₹${oldTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
-      }
+        if (result.isConfirmed) {
+          // A. Status മാറ്റുന്നു -> Sent
+          finalData.Status = 'Sent';
 
-      // Open WhatsApp in Background (Optional) or just trigger link
-      window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+          // B. WhatsApp Message അയക്കുന്നു
+          let custPhone = finalData.whatsapp || finalData.phone;
+          let msg = "";
+
+          if (finalData.language === 'ml') {
+            msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal} - അടച്ചത്: ₹${oldTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
+          } else {
+            msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal} - Paid: ₹${oldTotal})\n\nPlease GPay the balance to confirm. 👍`;
+          }
+
+          window.open(`https://wa.me/91${custPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // C. Save Data (Sent or Paid based on choice)
+        playVideoAnimation(finalData.name, () => postOrder(finalData));
+
+      });
+      return; // Stop here, wait for SweetAlert click
     }
   }
 
+  // സാധാരണ സേവ് (Pending/Sent or No Qty Change)
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
