@@ -408,6 +408,7 @@ function syncUserDataBackground(phone) {
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
 function handleEditControlsVisibility(d) {
+  r
 
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു
@@ -834,27 +835,24 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
           
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0">Main Phone</label>
-                  <input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly>
+              <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly></div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3);">
               </div>
-              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="phone" style="transform: scale(1.3);"></div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0 text-success">WhatsApp</label>
-                  <input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly>
+              <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly></div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3); border-color:#25D366;">
               </div>
-              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="whatsapp" checked style="transform: scale(1.3); border-color:#25D366;"></div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1">
-                  <label class="small text-muted mb-0">Alt Phone</label>
-                  <input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly>
+              <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly></div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3);">
               </div>
-              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="alt" style="transform: scale(1.3);"></div>
           </div>
 
           <div class="d-flex align-items-center">
@@ -862,12 +860,12 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                   <label class="small text-muted mb-0 text-primary">Paid By / Custom WA</label>
                   <div class="input-group input-group-sm">
                       <input type="tel" id="adm-paid" class="form-control fw-bold border-primary" placeholder="Paste Number Here..." onchange="$('#edit-paid-by').val(this.value)">
-                      <button class="btn btn-outline-primary" type="button" onclick="savePaidNumOnly('${d.orderid}')" title="Save this number only">
-                          <i class="fas fa-save"></i>
-                      </button>
+                      <button class="btn btn-outline-primary" type="button" onclick="savePaidNumOnly('${d.orderid}')" title="Save this number only"><i class="fas fa-save"></i></button>
                   </div>
               </div>
-              <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="paid" style="transform: scale(1.3);"></div>
+              <div class="ms-2 pt-3">
+                  <input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3);">
+              </div>
           </div>
       </div>`;
     $(commHTML).insertBefore('#status-area');
@@ -2370,4 +2368,43 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
         $('#admin-action-bar').slideDown();
       });
     });
+}
+
+// 🔥 SAVE RADIO SELECTION INSTANTLY
+window.saveRadioSelection = function (oid) {
+  // 1. Get Selected Value
+  let selectedRadio = $('input[name="target_wa"]:checked').val();
+  let newFlag = 'M'; // Default (Mobile)
+
+  if (selectedRadio === 'whatsapp') newFlag = 'W';
+  else if (selectedRadio === 'alt') newFlag = 'A';
+  else if (selectedRadio === 'paid') newFlag = 'G';
+
+  // 2. Prepare Meta String (Preserve existing flags, replace contact flag)
+  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
+  let finalMeta = currentMeta + newFlag;
+
+  // 3. Update Local Data Immediately (To reflect in UI)
+  savedOrderData.adminMeta = finalMeta;
+  if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
+
+  // 4. Send to Server (Silent Update)
+  // We use 'bulkUpdateStatus' with action 'meta' which we already added in GS.txt
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'bulkUpdateStatus',
+      updates: [{ oid: oid, action: 'meta', meta: finalMeta }]
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        console.log("Meta Saved:", finalMeta);
+        // Optional: Small Toast to show saved
+        const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000 });
+        Toast.fire({ icon: 'success', title: 'Selection Saved' });
+      }
+    })
+    .catch(err => console.error("Meta Save Failed"));
 }
