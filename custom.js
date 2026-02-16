@@ -2223,54 +2223,59 @@ window.getSelectedWAPhone = function (order) {
   return cleanNum;
 }
 
-// 🔥 SAVE ONLY PAID NUMBER
+
+// 🔥 SAVE PAID NUMBER & UPDATE META TO 'G'
 window.savePaidNumOnly = function (oid) {
   let rawNum = $('#adm-paid').val();
-
-  // 1. Clean the number (Remove spaces, +, -, etc.)
-  // Example: "+91 999 999 9999" -> "919999999999"
   let cleanNum = rawNum.replace(/[^0-9]/g, '');
 
-  // 2. Validate length (Optional warning)
   if (cleanNum.length < 10) {
-    Swal.fire({ icon: 'warning', title: 'Invalid Number', text: 'Please enter a valid phone number', timer: 1500, showConfirmButton: false });
+    Swal.fire({ icon: 'warning', title: 'Invalid Number', timer: 1500, showConfirmButton: false });
     return;
   }
 
-  // 3. UI Feedback (Loading)
   let btn = $('#adm-paid').next('button');
   let originalIcon = btn.html();
   btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
 
-  // 4. Send to Server
-  fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum })
-  })
+  // 1. Save Number
+  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum }) })
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success') {
+
         // Update Local Cache
         if (userData) userData.paidNum = cleanNum;
         if (savedOrderData) savedOrderData.paidNum = cleanNum;
 
-        // Show Success Tick
+        // Select Radio Button
+        $('input[name="target_wa"][value="paid"]').prop('checked', true);
+
+        // 🔥 2. UPDATE META TO 'G' IMMEDIATELY
+        let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
+        let finalMeta = currentMeta + 'G'; // Add 'G' flag
+
+        savedOrderData.adminMeta = finalMeta;
+        if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
+
+        // Send Meta Update to Server
+        fetch(sc, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [{ oid: oid, action: 'meta', meta: finalMeta }] })
+        }).then(() => console.log("Meta updated to G"));
+
+        // UI Success Feedback
         btn.html('<i class="fas fa-check"></i>').removeClass('btn-outline-primary').addClass('btn-success');
         setTimeout(() => {
           btn.html('<i class="fas fa-save"></i>').removeClass('btn-success').addClass('btn-outline-primary').prop('disabled', false);
         }, 2000);
 
-        // Select the radio button automatically
-        $('input[name="target_wa"][value="paid"]').prop('checked', true);
-
       } else {
-        alert("Save Failed!");
-        btn.html(originalIcon).prop('disabled', false);
+        alert("Save Failed!"); btn.html(originalIcon).prop('disabled', false);
       }
     })
     .catch(err => {
-      alert("Network Error");
-      btn.html(originalIcon).prop('disabled', false);
+      alert("Network Error"); btn.html(originalIcon).prop('disabled', false);
     });
 }
 
