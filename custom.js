@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwsLxEq278ODYt8GeFH-V5yTOE73cgPQ0WgSgIiJft2PM9bRm6HpYQ17APFVDTD8ww8yA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzSb1bcSdRvTyjSGAtmhsNCoOFVairH3C5PeihZnGJxmrEOT3f0rWNckYcvUiblUpQPxw/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -640,7 +640,18 @@ window.submitQuickOrder = function () {
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
-  // 2. Prepare Data
+  // 2. META DATA CALCULATION (Save Selection M/W/A/G)
+  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, ''); // Remove old contact flag
+  let selectedRadio = $('input[name="target_wa"]:checked').val();
+  let newFlag = 'M'; // Default Mobile
+
+  if (selectedRadio === 'whatsapp') newFlag = 'W';
+  else if (selectedRadio === 'alt') newFlag = 'A';
+  else if (selectedRadio === 'paid') newFlag = 'G'; // G = Paid Number
+
+  let finalMeta = currentMeta + newFlag;
+
+  // 3. Prepare Data
   const finalData = {
     orderid: editingOrderId,
     name: newName,
@@ -655,6 +666,7 @@ window.submitQuickOrder = function () {
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     paidNum: $('#edit-paid-by').val() || '',
+    adminMeta: finalMeta, // 🔥 Sending Updated Meta to Server
     message: '',
     custId: myCustId,
     language: $('#language-select').val() || 'en'
@@ -663,16 +675,17 @@ window.submitQuickOrder = function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (isAdmin) {
+    // 🔥 GET TARGET PHONE (Correctly)
     let targetPhone = getSelectedWAPhone(finalData);
+
     const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
-    // 🔥 AUTO-DETECT: Paid -> Qty Increased
+    // CASE: Paid -> Qty Increased (Send Update Message)
     if (oldStatus === 'paid') {
       let oldQty = parseInt(savedOrderData.quantity) || 0;
       let newQty = parseInt(finalData.quantity) || 0;
 
       if (newQty > oldQty) {
-        // Calculate Balance (Just for Message)
         let stateKey = getZoneKey(finalData.state);
         let rates = courierRates[stateKey] || {};
         let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
@@ -680,41 +693,45 @@ window.submitQuickOrder = function () {
 
         showLoader(true);
 
-        // A. Save Data
+        // A. Save Data (Includes Meta)
         fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
           .then(res => res.json())
           .then(res => {
-            // B. Force Status Update -> 'Sent' (SILENTLY)
+            // B. Force Status Update -> 'Sent'
             fetch(sc, {
               method: 'POST',
               body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
             }).then(() => {
               updateLocalCache(finalData, 'Sent');
               savedOrderData.quantity = newQty;
+              savedOrderData.adminMeta = finalMeta; // Update Local Memory
 
               updateAdminUI('Sent', finalData.orderid);
               showLoader(false);
 
-              // C. WhatsApp Message (Auto Open)
+              // C. WhatsApp Message
               let msg = "";
               if (finalData.language === 'ml') {
                 msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
               } else {
                 msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
               }
-              window.open(`https://wa.me/91${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+
+              // 🔥 FIX: Removed '91' prefix because getSelectedWAPhone adds it
+              window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
             });
           });
         return;
       }
     }
 
-    // Normal Admin Update
+    // Normal Admin Update (Just Save)
     showLoader(true);
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
         updateLocalCache(finalData, savedOrderData.Status);
         savedOrderData.quantity = finalData.quantity;
+        savedOrderData.adminMeta = finalMeta; // Update Local Memory
         showLoader(false);
         Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
       });
@@ -828,7 +845,18 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
               <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="paid" style="transform: scale(1.3);"></div>
           </div>
       </div>`;
+
     $(commHTML).insertBefore('#status-area');
+
+    // 🔥 AUTO-SELECT RADIO BASED ON META
+    let metaStr = d.adminMeta || '';
+    let targetVal = 'phone'; // Default
+    if (metaStr.includes('W')) targetVal = 'whatsapp';
+    else if (metaStr.includes('A')) targetVal = 'alt';
+    else if (metaStr.includes('G')) targetVal = 'paid';
+
+    // Check the radio button
+    $(`input[name="target_wa"][value="${targetVal}"]`).prop('checked', true);
 
     $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
   }
@@ -2111,12 +2139,10 @@ function updateEditUIState(data) {
   }
 }
 // 🔥 SEND PAYMENT RECEIPT WHATSAPP (Updated Message)
+// 🔥 SEND PAYMENT RECEIPT (Uses Selected Number)
 window.sendPaymentWA = function (oid) {
   let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
 
-  if (!order && typeof allOrders !== 'undefined') {
-    order = allOrders.find(o => o.orderid === oid);
-  }
   if (!order) {
     let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
     order = cached.find(o => o.orderid === oid);
@@ -2126,7 +2152,6 @@ window.sendPaymentWA = function (oid) {
 
   let lang = order.language || 'en';
   let msg = "";
-
   let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
   if (lang === 'ml') {
@@ -2135,9 +2160,12 @@ window.sendPaymentWA = function (oid) {
     msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
   }
 
-  let phone = String(order.whatsapp || order.phone).replace(/[^0-9]/g, '');
-  if (phone.length === 10) phone = '91' + phone;
+  // 🔥 FIX: Use Selected Number Logic
+  let phone = getSelectedWAPhone(order);
 
+  if (!phone) { alert("Please enter/select a valid number!"); return; }
+
+  // 🔥 FIX: getSelectedWAPhone already handles '91' prefix logic correctly
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
