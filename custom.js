@@ -408,8 +408,6 @@ function syncUserDataBackground(phone) {
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
 function handleEditControlsVisibility(d) {
-  r
-
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു
 
