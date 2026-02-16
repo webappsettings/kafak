@@ -407,48 +407,48 @@ function syncUserDataBackground(phone) {
 // 🔥 Helper Function to Show/Hide Controls based on Status
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
+// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
 function handleEditControlsVisibility(d) {
+
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു
 
   // Language Setup for Messages
   const lang = $('#language-select').val() || 'en';
-  let reqText = "Want to increase bottle count?";
+  let reqText = "Want to change details?";
   let subText = "Message Admin";
 
   if (lang === 'ml') {
-    reqText = "കുപ്പിയുടെ എണ്ണം കൂട്ടണോ?";
+    reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
     subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
   }
 
-  // 1. അഡ്മിൻ ആണെങ്കിൽ എല്ലാം എഡിറ്റ് ചെയ്യാൻ പറ്റണം (Status Paid ആണെങ്കിൽ പോലും)
+  // 1. അഡ്മിൻ ആണെങ്കിൽ എല്ലാം എഡിറ്റ് ചെയ്യാൻ പറ്റണം
   if (isAdmin) {
     $('#quick-qty, .btn-update-sage, #quick-price-box').show();
-    $('#btn-edit-addr').css('display', 'inline-block');
+    $('#btn-edit-addr').css('display', 'inline-block'); // Admin can edit address
     $('label[data-i18n="lbl_qty"]').show();
-    $('#quick-qty').prop('disabled', false); // Enable Qty
+    $('#quick-qty').prop('disabled', false);
 
-    // അഡ്മിന് മാത്രം കാണുന്ന ഒരു പ്രത്യേക ബോർഡർ (തിരിച്ചറിയാൻ)
     $('#quick-qty').css('border', '2px solid #dc3545');
-    $('#btn-req-modify').remove(); // അഡ്മിന് ഈ ബട്ടൺ വേണ്ട
+    $('#btn-req-modify').remove();
     return;
   }
 
   // 2. കസ്റ്റമർ - Paid/Dispatched/Delivered/Completed/Refunded
-  // ഇവിടെ അഡ്രസ്സ് മാറ്റാം, പക്ഷെ ക്വാണ്ടിറ്റി മാറ്റാൻ പറ്റില്ല.
+  // 🔥 ഇവിടെ അഡ്രസ്സ് എഡിറ്റ് ബട്ടണും ഹൈഡ് ചെയ്യുന്നു
   if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
 
-    // Hide Qty Controls
-    $('#quick-qty').prop('disabled', true); // Disable Dropdown
+    // Disable Qty
+    $('#quick-qty').prop('disabled', true);
     $('.btn-update-sage, #quick-price-box').hide();
 
-    // Address Edit is Allowed
-    $('#btn-edit-addr').show().css('display', 'inline-block');
+    // 🔥 HIDE ADDRESS EDIT BUTTON TOO
+    $('#btn-edit-addr').hide();
 
-    // 🔥 "Request Qty Change" WhatsApp Button
+    // Show WhatsApp Request Button
     if ($('#btn-req-modify').length === 0) {
-      let waMsg = `Hello, I want to increase bottle count for Order: ${d.orderid}. Please help!`;
-      // Use Global adminPhone variable
+      let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
       let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
       $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
@@ -462,11 +462,11 @@ function handleEditControlsVisibility(d) {
     return;
   }
 
-  // 3. Pending/Sent/Archive - എല്ലാം എഡിറ്റ് ചെയ്യാം (സാധാരണ പോലെ)
+  // 3. Pending/Sent/Archive - എല്ലാം എഡിറ്റ് ചെയ്യാൻ പറ്റും
   $('label[data-i18n="lbl_qty"]').show();
   $('#quick-qty').prop('disabled', false).show();
   $('.btn-update-sage, #quick-price-box').show();
-  $('#btn-edit-addr').css('display', 'inline-block');
+  $('#btn-edit-addr').css('display', 'inline-block'); // Allow Address Edit
   $('#btn-req-modify').remove();
 }
 
@@ -2157,7 +2157,7 @@ function updateEditUIState(data) {
   }
 }
 // 🔥 SEND PAYMENT RECEIPT WHATSAPP (Updated Message)
-// 🔥 SEND PAYMENT RECEIPT (Uses Selected Number)
+// 🔥 SEND PAYMENT RECEIPT (English + Malayalam Combined)
 window.sendPaymentWA = function (oid) {
   let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
 
@@ -2168,22 +2168,17 @@ window.sendPaymentWA = function (oid) {
 
   if (!order) { alert("Order Data Missing!"); return; }
 
-  let lang = order.language || 'en';
-  let msg = "";
   let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
-  if (lang === 'ml') {
-    msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\nനിങ്ങളുടെ സഹകരണത്തിന് നന്ദി!\n\n👇 *Order Status:*\n${trackLink}`;
-  } else {
-    msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
-  }
+  // 🔥 UNIFIED MESSAGE (English & Malayalam)
+  let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
 
-  // 🔥 FIX: Use Selected Number Logic
+  // Use Selected Number Logic
   let phone = getSelectedWAPhone(order);
 
   if (!phone) { alert("Please enter/select a valid number!"); return; }
 
-  // 🔥 FIX: getSelectedWAPhone already handles '91' prefix logic correctly
+  // Open WhatsApp
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
