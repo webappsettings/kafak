@@ -802,7 +802,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   // Display Order ID & Date
   if (d.orderid) {
-    $('#display-oid').html(`Order ID: <b>${d.orderid}</b>`).show();
+    $('#display-oid').html(`<b>${d.orderid}</b>`).show();
     let dateStr = d.timestamp || d.date;
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
@@ -835,21 +835,27 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly></div>
               <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3);">
+                  <div class="radio-holder">
+                      <input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
+                  </div>
               </div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly></div>
               <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3); border-color:#25D366;">
+                  <div class="radio-holder">
+                      <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3); border-color:#25D366;">
+                  </div>
               </div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly></div>
               <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3);">
+                  <div class="radio-holder">
+                      <input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
+                  </div>
               </div>
           </div>
 
@@ -862,7 +868,9 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                   </div>
               </div>
               <div class="ms-2 pt-3">
-                  <input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}')" style="transform: scale(1.3);">
+                  <div class="radio-holder">
+                      <input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
+                  </div>
               </div>
           </div>
       </div>`;
@@ -2363,26 +2371,33 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     });
 }
 
-// 🔥 SAVE RADIO SELECTION INSTANTLY
-window.saveRadioSelection = function (oid) {
-  // 1. Get Selected Value
-  let selectedRadio = $('input[name="target_wa"]:checked').val();
-  let newFlag = 'M'; // Default (Mobile)
+// 🔥 SAVE RADIO SELECTION (With Beautiful Animation)
+window.saveRadioSelection = function (oid, el) {
+  // 1. Setup UI (Show Spinner)
+  let holder = $(el).parent(); // .radio-holder
+  // Remove existing animations if any
+  holder.find('.spinner-ring, .success-tick').remove();
 
+  // Add Spinner around radio
+  holder.append('<div class="spinner-ring"></div>');
+
+  // Temporarily disable all radios to prevent spam
+  $('input[name="target_wa"]').prop('disabled', true);
+
+  // 2. Logic
+  let selectedRadio = $(el).val();
+  let newFlag = 'M';
   if (selectedRadio === 'whatsapp') newFlag = 'W';
   else if (selectedRadio === 'alt') newFlag = 'A';
   else if (selectedRadio === 'paid') newFlag = 'G';
 
-  // 2. Prepare Meta String (Preserve existing flags, replace contact flag)
   let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
   let finalMeta = currentMeta + newFlag;
 
-  // 3. Update Local Data Immediately (To reflect in UI)
   savedOrderData.adminMeta = finalMeta;
   if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
 
-  // 4. Send to Server (Silent Update)
-  // We use 'bulkUpdateStatus' with action 'meta' which we already added in GS.txt
+  // 3. Server Call
   fetch(sc, {
     method: 'POST',
     body: JSON.stringify({
@@ -2392,12 +2407,26 @@ window.saveRadioSelection = function (oid) {
   })
     .then(res => res.json())
     .then(data => {
-      if (data.result === 'success') {
-        console.log("Meta Saved:", finalMeta);
-        // Optional: Small Toast to show saved
-        const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000 });
-        Toast.fire({ icon: 'success', title: 'Selection Saved' });
-      }
+      // 4. Success Animation
+      holder.find('.spinner-ring').remove(); // Stop Spinner
+
+      // Show Green Tick on top of radio
+      holder.append('<div class="success-tick"><i class="fas fa-check-circle"></i></div>');
+
+      // Re-enable radios
+      $('input[name="target_wa"]').prop('disabled', false);
+
+      // Fade out tick after 1.5 seconds
+      setTimeout(() => {
+        holder.find('.success-tick').fadeOut(300, function () { $(this).remove(); });
+      }, 1500);
+
+      console.log("Meta Saved:", finalMeta);
     })
-    .catch(err => console.error("Meta Save Failed"));
+    .catch(err => {
+      // Error Handling
+      holder.find('.spinner-ring').remove();
+      $('input[name="target_wa"]').prop('disabled', false);
+      alert("Failed to save selection!");
+    });
 }

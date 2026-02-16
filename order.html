@@ -960,6 +960,62 @@
       color: #dc2626 !important;
       /* Red Text */
     }
+
+    .radio-holder {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+    }
+
+    .spinner-ring {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-top: 3px solid #2563eb;
+      /* Blue Loading */
+      border-radius: 50%;
+      animation: radio-spin 0.8s linear infinite;
+      pointer-events: none;
+    }
+
+    .success-tick {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #16a34a;
+      /* Green Success */
+      font-size: 18px;
+      font-weight: bold;
+      animation: popIn 0.3s ease-out forwards;
+      pointer-events: none;
+      background: white;
+      border-radius: 50%;
+    }
+
+    @keyframes radio-spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+      }
+
+      80% {
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
   </style>
 </body>
 
