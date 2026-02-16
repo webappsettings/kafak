@@ -406,67 +406,64 @@ function syncUserDataBackground(phone) {
 
 // 🔥 Helper Function to Show/Hide Controls based on Status
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
-// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
-// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Restrictions)
 function handleEditControlsVisibility(d) {
-
   const status = String(d.Status || 'pending').toLowerCase();
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // Language Setup for Messages
+  // Language Setup
   const lang = $('#language-select').val() || 'en';
   let reqText = "Want to change details?";
   let subText = "Message Admin";
-
   if (lang === 'ml') {
     reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
     subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
   }
 
-  // 1. അഡ്മിൻ ആണെങ്കിൽ എല്ലാം എഡിറ്റ് ചെയ്യാൻ പറ്റണം
+  // 1. ADMIN - Always Allow Edit
   if (isAdmin) {
     $('#quick-qty, .btn-update-sage, #quick-price-box').show();
-    $('#btn-edit-addr').css('display', 'inline-block'); // Admin can edit address
+    $('#btn-edit-addr').css('display', 'inline-block'); // Show Address Edit
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').prop('disabled', false);
-
     $('#quick-qty').css('border', '2px solid #dc3545');
     $('#btn-req-modify').remove();
     return;
   }
 
-  // 2. കസ്റ്റമർ - Paid/Dispatched/Delivered/Completed/Refunded
-  // 🔥 ഇവിടെ അഡ്രസ്സ് എഡിറ്റ് ബട്ടണും ഹൈഡ് ചെയ്യുന്നു
+  // 2. LOCKED STATES (Paid, Dispatched, Refunded)
   if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
 
-    // Disable Qty
+    // Lock Qty & Hide Update Buttons
     $('#quick-qty').prop('disabled', true);
     $('.btn-update-sage, #quick-price-box').hide();
 
-    // 🔥 HIDE ADDRESS EDIT BUTTON TOO
+    // Lock Address Edit
     $('#btn-edit-addr').hide();
 
-    // Show WhatsApp Request Button
-    if ($('#btn-req-modify').length === 0) {
+    // 🔥 LOGIC: Show Message Button ONLY if 'Paid'
+    $('#btn-req-modify').remove(); // Remove existing button first
+
+    if (status === 'paid') {
       let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
       let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
       $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
-            <div class="text-muted small mb-1 fw-bold">${reqText}</div>
-            <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
-               class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
-               <i class="fab fa-whatsapp"></i> ${subText}
-            </a>
-           </div>`).insertAfter('#status-area');
+              <div class="text-muted small mb-1 fw-bold">${reqText}</div>
+              <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
+                 class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
+                 <i class="fab fa-whatsapp"></i> ${subText}
+              </a>
+             </div>`).insertAfter('#status-area');
     }
+    // Note: Dispatched/Refunded ഉള്ളപ്പോൾ ഒന്നും കാണിക്കില്ല (View Only).
     return;
   }
 
-  // 3. Pending/Sent/Archive - എല്ലാം എഡിറ്റ് ചെയ്യാൻ പറ്റും
+  // 3. EDITABLE STATES (Pending, Sent, Archive)
   $('label[data-i18n="lbl_qty"]').show();
   $('#quick-qty').prop('disabled', false).show();
   $('.btn-update-sage, #quick-price-box').show();
-  $('#btn-edit-addr').css('display', 'inline-block'); // Allow Address Edit
+  $('#btn-edit-addr').css('display', 'inline-block'); // Unlock Address Edit
   $('#btn-req-modify').remove();
 }
 
@@ -783,6 +780,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   isEditMode = isActiveOrder;
   savedOrderData = JSON.parse(JSON.stringify(d));
 
+  // 🔥 SAFETY LOCK: Default State (Before Status Check)
+  // സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നത് വരെ ഇത് ഡിസേബിൾ ആയിരിക്കും.
+  $('#quick-qty').prop('disabled', true);
+  $('#btn-edit-addr').hide();
+
   // Language Setup
   const lang = $('#language-select').val() || 'en';
   if (d.language) {
@@ -802,7 +804,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   // Display Order ID & Date
   if (d.orderid) {
-    $('#display-oid').html(`<b>${d.orderid}</b>`).show();
+    $('#display-oid').html(`Order ID: <b>${d.orderid}</b>`).show();
     let dateStr = d.timestamp || d.date;
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
@@ -815,50 +817,31 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // 🔥 ADMIN PANEL LOGIC
+  // Admin Panel Setup (Old Logic Preserved)
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
   $('#admin-qty-actions').remove();
 
   if (isAdmin) {
-    // 🔥 RESTORED: "You Selected" Label Only
-    $('#quick-qty').prev('label').show();
-
-    // Hide Old Inputs
+    $('#quick-qty').prev('label').show(); // "You Selected" Label
     $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
     let commHTML = `
       <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
-          
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly></div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
-
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly></div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3); border-color:#25D366;">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3); border-color:#25D366;"></div></div>
           </div>
-
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly></div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
-
           <div class="d-flex align-items-center">
               <div class="flex-grow-1">
                   <label class="small text-muted mb-0 text-primary">Paid By / Custom WA</label>
@@ -867,25 +850,17 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                       <button class="btn btn-outline-primary" type="button" onclick="savePaidNumOnly('${d.orderid}')" title="Save this number only"><i class="fas fa-save"></i></button>
                   </div>
               </div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
       </div>`;
     $(commHTML).insertBefore('#status-area');
-
-    // Set Paid Number directly
     $('#adm-paid').val(d.paidNum || '');
 
-    // Check Radio Button based on Admin Meta
     let metaStr = d.adminMeta || '';
     let targetVal = 'phone';
     if (metaStr.includes('W')) targetVal = 'whatsapp';
     else if (metaStr.includes('A')) targetVal = 'alt';
     else if (metaStr.includes('G')) targetVal = 'paid';
-
     $(`input[name="target_wa"][value="${targetVal}"]`).prop('checked', true);
 
     $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
@@ -923,11 +898,11 @@ window.enableNewOrderMode = function () {
   $('#quick-qty').prev('label').fadeIn();
   $('#quick-qty').fadeIn();
   $('.btn-update-sage').fadeIn();
-
-  // 🔥🔥🔥 MAIN FIX:
   $('#quick-price-box').hide().empty();
 
+  // 🔥 CRITICAL: Unlock Address Edit & Qty for New Order
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
+  $('#quick-qty').prop('disabled', false);
 
   isEditMode = false;
   editingOrderId = null;
@@ -936,6 +911,7 @@ window.enableNewOrderMode = function () {
 
   $('#quick-qty').val('').trigger('change');
   $('#quick-qty option').prop('disabled', false);
+  $('#btn-req-modify').remove(); // Remove help button if exists
 
   checkForChanges();
 }
