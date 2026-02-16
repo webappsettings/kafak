@@ -358,6 +358,7 @@ function setRefreshLoading(isLoading) {
 
 // 🔥 UPDATED: PERFECT SYNC LOGIC
 // 1. DATA CLEANING
+// 🔥 UPDATED: PERFECT SYNC LOGIC (Server Data Priority Fixed)
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
@@ -374,8 +375,15 @@ function syncUserDataBackground(phone) {
 
       if (userRes && userRes.result === 'success' && userRes.data) {
         let serverData = userRes.data;
+
+        // 1. സാധാരണ വിവരങ്ങൾ ലോക്കൽ ഡാറ്റ വെച്ച് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
         finalData = { ...serverData, ...localData };
+
+        // 🔥 FIX: പക്ഷെ ഈ കാര്യങ്ങൾ സെർവറിൽ നിന്ന് തന്നെ എടുക്കണം (Force Server Priority)
         finalData.Status = serverData.Status || serverData.status || "Pending";
+        finalData.adminMeta = serverData.adminMeta; // Admin Meta സെർവറിൽ നിന്നുള്ളത് തന്നെ വേണം
+        finalData.paidNum = serverData.paidNum;     // Paid Number ഉം സെർവറിൽ നിന്നുള്ളത് വേണം
+        finalData.language = serverData.language;   // Language ഉം സെർവറിൽ നിന്നുള്ളത് വേണം
 
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
@@ -395,7 +403,6 @@ function syncUserDataBackground(phone) {
       renderEditView(finalData);
     });
 }
-
 
 // 🔥 Helper Function to Show/Hide Controls based on Status
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
