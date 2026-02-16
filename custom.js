@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzSb1bcSdRvTyjSGAtmhsNCoOFVairH3C5PeihZnGJxmrEOT3f0rWNckYcvUiblUpQPxw/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzZlU55hnHJcHy7aBdM1noj6FzjRPfOyUbkVhWMn6SWXtp8grL3yaB2RiW5v7iS_bqYmg/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -629,14 +629,11 @@ window.prevStep = function () {
 window.submitQuickOrder = function () {
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 1. Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  // 🔥 PO Validation
+  // PO Check
   let finalPO = $('#edit-postoffice').val();
-  if ($('#edit-postoffice-select').is(':visible')) {
-    finalPO = $('#edit-postoffice-select').val();
-  }
+  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
   if (!finalPO) {
     showAlert(getAlert('err_select_po') || "Please Select Post Office");
     if ($('.address-box').is(':hidden')) toggleAddressEdit();
@@ -652,7 +649,7 @@ window.submitQuickOrder = function () {
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
-  // 2. META DATA
+  // META Logic
   let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
   let selectedRadio = $('input[name="target_wa"]:checked').val();
   let newFlag = 'M';
@@ -661,11 +658,9 @@ window.submitQuickOrder = function () {
   else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
 
-  // 🔥 CUSTOMER LANGUAGE FIX
-  // അഡ്മിൻ UI ഇംഗ്ലീഷിൽ ആണെങ്കിലും, ഡാറ്റ സേവ് ചെയ്യുമ്പോൾ കസ്റ്റമറുടെ പഴയ ഭാഷ തന്നെ നിലനിർത്തണം.
+  // Customer Language
   let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
-  // 3. Prepare Data
   const finalData = {
     orderid: editingOrderId,
     name: newName,
@@ -683,7 +678,7 @@ window.submitQuickOrder = function () {
     adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: custLang // 🔥 Using preserved Customer Language
+    language: custLang
   };
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
@@ -719,7 +714,6 @@ window.submitQuickOrder = function () {
               updateAdminUI('Sent', finalData.orderid);
               showLoader(false);
 
-              // 🔥 MSG Language Check (Using custLang)
               let msg = "";
               if (custLang === 'ml') {
                 msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
@@ -727,6 +721,7 @@ window.submitQuickOrder = function () {
                 msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
               }
 
+              // 🔥 SIMPLE WA OPEN
               window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
             });
           });
@@ -734,7 +729,6 @@ window.submitQuickOrder = function () {
       }
     }
 
-    // Normal Admin Update
     showLoader(true);
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
@@ -2280,14 +2274,10 @@ window.savePaidNumOnly = function (oid) {
 // 🔥 NEW: HANDLE DYNAMIC QTY UPDATE (SENT vs PAID)
 window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty, newQty) {
 
-  // 1. Basic Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  // 🔥 RESTORED: Post Office Validation
   let finalPO = $('#edit-postoffice').val();
-  if ($('#edit-postoffice-select').is(':visible')) {
-    finalPO = $('#edit-postoffice-select').val();
-  }
+  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
   if (!finalPO) {
     showAlert(getAlert('err_select_po') || "Please Select Post Office");
     if ($('.address-box').is(':hidden')) toggleAddressEdit();
@@ -2301,7 +2291,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   const newName = $('#edit-name').val();
   const newPhone = $('#edit-phone').val();
 
-  // META Calculation
+  // META Logic
   let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
   let selectedRadio = $('input[name="target_wa"]:checked').val();
   let newFlag = 'M';
@@ -2310,7 +2300,6 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
 
-  // 🔥 CUSTOMER LANGUAGE FIX
   let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
   const finalData = {
@@ -2330,7 +2319,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: custLang // 🔥 Using Customer Language
+    language: custLang
   };
 
   showLoader(true);
@@ -2349,19 +2338,16 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
         updateAdminUI(targetStatus, finalData.orderid);
         showLoader(false);
 
-        // 🔥 MSG Language Check (Using custLang)
         let msg = "";
         let targetPhone = getSelectedWAPhone(finalData);
 
         if (targetStatus === 'Sent') {
-          // ORANGE BUTTON MESSAGE
           if (custLang === 'ml') {
             msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
           } else {
             msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
           }
         } else {
-          // GREEN BUTTON MESSAGE
           if (custLang === 'ml') {
             msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\n(ആകെ തുക: ₹${newTotal})\n\nഓർഡർ ഉടൻ അയക്കുന്നതാണ്.`;
           } else {
@@ -2369,6 +2355,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
           }
         }
 
+        // 🔥 SIMPLE WA OPEN
         window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
 
         $('#admin-qty-actions').slideUp();
