@@ -773,20 +773,24 @@ function updateLocalCache(data, status) {
 }
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
+  // 1. Hide Wizard Steps First
   $('#step-0').hide();
   $('#wizard-view').hide();
   $('#top-progress-container').hide();
+
+  // 2. Show Returning View
   $('#returning-user-view').show();
 
   updateFooterButtons('returning');
   isEditMode = isActiveOrder;
   savedOrderData = JSON.parse(JSON.stringify(d));
 
-  // 🔥 Fix: Admin Language vs Customer Language
-  // UI അഡ്മിന് മനസ്സിലാകുന്ന ഭാഷയിൽ തന്നെ നിൽക്കട്ടെ.
-  // മെസ്സേജ് അയക്കുമ്പോൾ മാത്രം കസ്റ്റമർ ഭാഷ എടുക്കാം.
+  // Language Setup (Preserve Logic)
   const lang = $('#language-select').val() || 'en';
-  // DO NOT FORCE CHANGE LANGUAGE HERE
+  if (d.language) {
+    $('#language-select').val(d.language);
+    changeLanguage(d.language);
+  }
 
   // Populate Data
   $('#saved-name').text(d.name);
@@ -798,18 +802,14 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district);
   $('#edit-state').val(d.state);
 
-  // 🔥 FIX 1: ORDER ID & DATE DISPLAY (Restored)
+  // Display Order ID & Date
   if (d.orderid) {
     $('#display-oid').html(`Order ID: <b>${d.orderid}</b>`).show();
-    // Date Formatting
-    let dateStr = d.timestamp;
-    if (!dateStr && d.date) dateStr = d.date;
-    if (dateStr) {
-      $('#display-date').text(formatPrettyDate(dateStr)).show();
-    }
+    let dateStr = d.timestamp || d.date;
+    if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
 
-  // Admin Panel Phone Inputs
+  // Admin Inputs
   $('#edit-phone').val(d.phone);
   $('#edit-whatsapp').val(d.whatsapp || d.phone);
   $('#edit-altphone').val(d.altphone || '');
@@ -817,17 +817,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // 🔥 ADMIN COMMUNICATION PANEL
+  // 🔥 ADMIN PANEL LOGIC
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
   $('#admin-qty-actions').remove();
 
   if (isAdmin) {
-    // Force Show "Quantity" Label
-    $('label[data-i18n="lbl_qty"]').show();
-    $('#quick-qty').prev('label').show(); // "You Selected" label restoration
-
+    // 🔥 FIX: Remove the problematic .show() lines here!
+    // പഴയ എഡിറ്റ് ഫീൽഡുകൾ ഹൈഡ് ചെയ്യുന്നു
     $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
     let commHTML = `
@@ -870,10 +868,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       </div>`;
     $(commHTML).insertBefore('#status-area');
 
-    // 🔥 FIX: Paid Number Load Issue
+    // Set Paid Number directly
     $('#adm-paid').val(d.paidNum || '');
 
-    // AUTO-SELECT RADIO
+    // Check Radio Button based on Admin Meta
     let metaStr = d.adminMeta || '';
     let targetVal = 'phone';
     if (metaStr.includes('W')) targetVal = 'whatsapp';
