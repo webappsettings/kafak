@@ -781,43 +781,56 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   // 🔥 ADMIN COMMUNICATION PANEL
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   $('#admin-comm-panel').remove();
-
-  // 🔥🔥🔥 NEW: REMOVE OLD DIFF VIEWER IF EXISTS
   $('#admin-diff-viewer').remove();
 
   if (isAdmin) {
     $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
-    // 1. Comm Panel (Phone Numbers)
+    // 🔥 READ-ONLY INPUTS & PAID BY SYNC BUTTON
     let commHTML = `
       <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
           
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold" value="${d.phone}" onchange="$('#edit-phone').val(this.value)"></div>
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0">Main Phone</label>
+                  <input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly>
+              </div>
               <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="phone" style="transform: scale(1.3);"></div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success" value="${d.whatsapp || d.phone}" onchange="$('#edit-whatsapp').val(this.value)"></div>
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0 text-success">WhatsApp</label>
+                  <input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly>
+              </div>
               <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="whatsapp" checked style="transform: scale(1.3); border-color:#25D366;"></div>
           </div>
 
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold" value="${d.altphone || ''}" placeholder="No Alt Phone" onchange="$('#edit-altphone').val(this.value)"></div>
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0">Alt Phone</label>
+                  <input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly>
+              </div>
               <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="alt" style="transform: scale(1.3);"></div>
           </div>
 
           <div class="d-flex align-items-center">
-              <div class="flex-grow-1"><label class="small text-muted mb-0 text-primary">Paid By (GPay)</label><input type="tel" id="adm-paid" class="form-control form-control-sm fw-bold border-primary" value="${d.paidNum || ''}" placeholder="Enter Paid Number" onchange="$('#edit-paid-by').val(this.value)"></div>
+              <div class="flex-grow-1">
+                  <label class="small text-muted mb-0 text-primary">Paid By / Custom WA</label>
+                  <div class="input-group input-group-sm">
+                      <input type="tel" id="adm-paid" class="form-control fw-bold border-primary" value="${d.paidNum || ''}" placeholder="Paste Number Here..." onchange="$('#edit-paid-by').val(this.value)">
+                      <button class="btn btn-outline-primary" type="button" onclick="savePaidNumOnly('${d.orderid}')" title="Save this number only">
+                          <i class="fas fa-save"></i>
+                      </button>
+                  </div>
+              </div>
               <div class="ms-2 pt-3"><input class="form-check-input" type="radio" name="target_wa" value="paid" style="transform: scale(1.3);"></div>
           </div>
       </div>`;
     $(commHTML).insertBefore('#status-area');
 
-    // 2. 🔥🔥🔥 NEW: BALANCE SHOWING AREA (Initially Hidden)
     $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
-
   }
 
   $('#status-area').hide().empty();
@@ -2129,17 +2142,88 @@ window.sendPaymentWA = function (oid) {
 }
 
 // 🔥 HELPER: Get Selected Phone Number
+// 🔥 HELPER: Get Selected Phone Number (Auto Clean)
 window.getSelectedWAPhone = function (order) {
-  // Admin Panel-ൽ Radio Button ഉണ്ടെങ്കിൽ അതിൽ നിന്ന് എടുക്കുന്നു
+  let selectedRaw = "";
+
+  // 1. Get raw value from inputs based on selection
   if ($('input[name="target_wa"]:checked').length > 0) {
     let selected = $('input[name="target_wa"]:checked').val();
 
-    if (selected === 'phone') return $('#adm-phone').val() || order.phone;
-    if (selected === 'whatsapp') return $('#adm-whatsapp').val() || order.whatsapp || order.phone;
-    if (selected === 'alt') return $('#adm-alt').val();
-    if (selected === 'paid') return $('#adm-paid').val();
+    if (selected === 'phone') selectedRaw = $('#adm-phone').val() || order.phone;
+    else if (selected === 'whatsapp') selectedRaw = $('#adm-whatsapp').val() || order.whatsapp || order.phone;
+    else if (selected === 'alt') selectedRaw = $('#adm-alt').val();
+    else if (selected === 'paid') selectedRaw = $('#adm-paid').val(); // ഇവിടെ സ്പേസ് ഉള്ള നമ്പർ വരാം
+  } else {
+    selectedRaw = order.whatsapp || order.phone;
   }
 
-  // Default fallback
-  return order.whatsapp || order.phone;
+  // 2. CLEAN THE NUMBER (Space, +, - എല്ലാം കളയുന്നു)
+  if (!selectedRaw) return "";
+
+  // Remove all non-numeric characters
+  let cleanNum = String(selectedRaw).replace(/[^0-9]/g, '');
+
+  // 3. Format Logic (10 അക്കമാണെങ്കിൽ 91 ചേർക്കുന്നു)
+  if (cleanNum.length === 10) {
+    cleanNum = '91' + cleanNum;
+  } else if (cleanNum.length > 10 && cleanNum.startsWith('91')) {
+    // Already has 91, do nothing
+  } else if (cleanNum.length > 10 && cleanNum.startsWith('0')) {
+    // Starts with 0 (e.g., 0987...), replace 0 with 91
+    cleanNum = '91' + cleanNum.substring(1);
+  }
+
+  return cleanNum;
+}
+
+// 🔥 SAVE ONLY PAID NUMBER
+window.savePaidNumOnly = function (oid) {
+  let rawNum = $('#adm-paid').val();
+
+  // 1. Clean the number (Remove spaces, +, -, etc.)
+  // Example: "+91 999 999 9999" -> "919999999999"
+  let cleanNum = rawNum.replace(/[^0-9]/g, '');
+
+  // 2. Validate length (Optional warning)
+  if (cleanNum.length < 10) {
+    Swal.fire({ icon: 'warning', title: 'Invalid Number', text: 'Please enter a valid phone number', timer: 1500, showConfirmButton: false });
+    return;
+  }
+
+  // 3. UI Feedback (Loading)
+  let btn = $('#adm-paid').next('button');
+  let originalIcon = btn.html();
+  btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
+
+  // 4. Send to Server
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === 'success') {
+        // Update Local Cache
+        if (userData) userData.paidNum = cleanNum;
+        if (savedOrderData) savedOrderData.paidNum = cleanNum;
+
+        // Show Success Tick
+        btn.html('<i class="fas fa-check"></i>').removeClass('btn-outline-primary').addClass('btn-success');
+        setTimeout(() => {
+          btn.html('<i class="fas fa-save"></i>').removeClass('btn-success').addClass('btn-outline-primary').prop('disabled', false);
+        }, 2000);
+
+        // Select the radio button automatically
+        $('input[name="target_wa"][value="paid"]').prop('checked', true);
+
+      } else {
+        alert("Save Failed!");
+        btn.html(originalIcon).prop('disabled', false);
+      }
+    })
+    .catch(err => {
+      alert("Network Error");
+      btn.html(originalIcon).prop('disabled', false);
+    });
 }
