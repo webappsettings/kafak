@@ -692,29 +692,26 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         }
     }
 
-    // 🔥 HEADER: NO SEARCH BUTTONS, CLICK TO COPY
+    // 🔥 HEADER: COPY ICON MOVED OUTSIDE
     let headerLeft = `
-        <div class="d-flex align-items-center flex-wrap gap-1">
+        <div class="d-flex align-items-center flex-wrap gap-2">
             ${rankBadge} 
-            <span class="badge rounded-pill bg-dark" 
-                  style="font-size:11px; cursor:pointer;" 
-                  onclick="copyToClipboard('${d.orderid}')" 
-                  title="Click to Copy ID">
-                  ${d.orderid} <i class="far fa-copy" style="font-size:9px; opacity:0.7;"></i>
-            </span>
+            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
+            <i class="far fa-copy text-muted" style="cursor:pointer; font-size:12px;" onclick="event.stopPropagation(); copyToClipboard('${d.orderid}')" title="Copy ID"></i>
             ${metaBadges} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
 
-    // Top Actions
+    // Top Actions (Updated for WhatsApp Target)
     let topActions = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>` +
         `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
     if (type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (type === 'paid') {
-        topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}')" class="btn-top-action" style="background:#25D366; color:white; border:none;"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>${topActions}</div>`;
+        // 🔥 FIX: Passed 'index' to sendPaymentWA
+        topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index})" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>${topActions}</div>`;
     }
 
     let paidTimeHTML = '';
@@ -3176,24 +3173,47 @@ window.searchOrderInWA = function (oid) {
 }
 
 // 🔥 SEND PAYMENT RECEIPT (Admin Dashboard)
-window.sendPaymentWA = function (oid) {
+// 🔥 SEND PAYMENT RECEIPT (Target Selected Number)
+window.sendPaymentWA = function (oid, index) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) { alert("Order Data Missing!"); return; }
 
+    // 1. Get Selected Code from Dropdown (M, W, A, G)
+    let code = 'W'; // Default
+    let dropdown = document.getElementById(`wa-select-${index}`);
+    if (dropdown) code = dropdown.value;
+
+    // 2. Pick Number based on Selection
+    let targetNum = "";
+    if (code === 'M') targetNum = order.phone;
+    else if (code === 'W') targetNum = order.whatsapp;
+    else if (code === 'A') targetNum = order.altphone;
+    else if (code === 'G') targetNum = order.paidNum;
+    else targetNum = order.whatsapp || order.phone; // Fallback
+
+    let cleanNum = String(targetNum || '').replace(/[^0-9]/g, '');
+    if (cleanNum.length === 10) cleanNum = '91' + cleanNum;
+
+    if (!cleanNum) { alert("No valid number found for selection!"); return; }
+
+    // 3. Generate Message
     let lang = order.language || 'en';
     let msg = "";
-
-    // ട്രാക്കിംഗ് ലിങ്ക്
     let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
     if (lang === 'ml') {
-        msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\nനിങ്ങളുടെ സഹകരണത്തിന് നന്ദി!\n\n👇 *Order Status:*\n${trackLink}`;
+        msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\n👇 *Order Status:*\n${trackLink}`;
     } else {
-        msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\nThanks for your cooperation!\n\n👇 *Order Status:*\n${trackLink}`;
+        msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\n👇 *Order Status:*\n${trackLink}`;
     }
 
-    let phone = String(order.whatsapp || order.phone).replace(/[^0-9]/g, '');
-    if (phone.length === 10) phone = '91' + phone;
+    // 4. Open WhatsApp with SELECTED Number
+    window.open(`https://wa.me/${cleanNum}?text=${encodeURIComponent(msg)}`, '_blank');
+}
 
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+// 🔥 CLIPBOARD COPY FUNCTION
+window.copyToClipboard = function (text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('success', 'Copied: ' + text);
+    }).catch(err => console.error('Copy failed', err));
 }
