@@ -632,6 +632,18 @@ window.submitQuickOrder = function () {
   // 1. Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
+  // 🔥 PO Validation
+  let finalPO = $('#edit-postoffice').val();
+  if ($('#edit-postoffice-select').is(':visible')) {
+    finalPO = $('#edit-postoffice-select').val();
+  }
+  if (!finalPO) {
+    showAlert(getAlert('err_select_po') || "Please Select Post Office");
+    if ($('.address-box').is(':hidden')) toggleAddressEdit();
+    return;
+  }
+  $('#edit-postoffice').val(finalPO);
+
   if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
@@ -640,16 +652,18 @@ window.submitQuickOrder = function () {
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
-  // 2. META DATA CALCULATION (Save Selection M/W/A/G)
-  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, ''); // Remove old contact flag
+  // 2. META DATA
+  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
   let selectedRadio = $('input[name="target_wa"]:checked').val();
-  let newFlag = 'M'; // Default Mobile
-
+  let newFlag = 'M';
   if (selectedRadio === 'whatsapp') newFlag = 'W';
   else if (selectedRadio === 'alt') newFlag = 'A';
-  else if (selectedRadio === 'paid') newFlag = 'G'; // G = Paid Number
-
+  else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
+
+  // 🔥 CUSTOMER LANGUAGE FIX
+  // അഡ്മിൻ UI ഇംഗ്ലീഷിൽ ആണെങ്കിലും, ഡാറ്റ സേവ് ചെയ്യുമ്പോൾ കസ്റ്റമറുടെ പഴയ ഭാഷ തന്നെ നിലനിർത്തണം.
+  let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
   // 3. Prepare Data
   const finalData = {
@@ -661,26 +675,24 @@ window.submitQuickOrder = function () {
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
     pincode: $('#edit-pincode').val(),
-    postoffice: $('#edit-postoffice').val(),
+    postoffice: finalPO,
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
     paidNum: $('#edit-paid-by').val() || '',
-    adminMeta: finalMeta, // 🔥 Sending Updated Meta to Server
+    adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: $('#language-select').val() || 'en'
+    language: custLang // 🔥 Using preserved Customer Language
   };
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   if (isAdmin) {
-    // 🔥 GET TARGET PHONE (Correctly)
     let targetPhone = getSelectedWAPhone(finalData);
-
     const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
-    // CASE: Paid -> Qty Increased (Send Update Message)
+    // CASE: Paid -> Qty Increased
     if (oldStatus === 'paid') {
       let oldQty = parseInt(savedOrderData.quantity) || 0;
       let newQty = parseInt(finalData.quantity) || 0;
@@ -693,31 +705,28 @@ window.submitQuickOrder = function () {
 
         showLoader(true);
 
-        // A. Save Data (Includes Meta)
         fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
           .then(res => res.json())
           .then(res => {
-            // B. Force Status Update -> 'Sent'
             fetch(sc, {
               method: 'POST',
               body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
             }).then(() => {
               updateLocalCache(finalData, 'Sent');
               savedOrderData.quantity = newQty;
-              savedOrderData.adminMeta = finalMeta; // Update Local Memory
+              savedOrderData.adminMeta = finalMeta;
 
               updateAdminUI('Sent', finalData.orderid);
               showLoader(false);
 
-              // C. WhatsApp Message
+              // 🔥 MSG Language Check (Using custLang)
               let msg = "";
-              if (finalData.language === 'ml') {
+              if (custLang === 'ml') {
                 msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
               } else {
                 msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
               }
 
-              // 🔥 FIX: Removed '91' prefix because getSelectedWAPhone adds it
               window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
             });
           });
@@ -725,13 +734,13 @@ window.submitQuickOrder = function () {
       }
     }
 
-    // Normal Admin Update (Just Save)
+    // Normal Admin Update
     showLoader(true);
     fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
       .then(() => {
         updateLocalCache(finalData, savedOrderData.Status);
         savedOrderData.quantity = finalData.quantity;
-        savedOrderData.adminMeta = finalMeta; // Update Local Memory
+        savedOrderData.adminMeta = finalMeta;
         showLoader(false);
         Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
       });
@@ -771,11 +780,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   isEditMode = isActiveOrder;
   savedOrderData = JSON.parse(JSON.stringify(d));
 
+  // 🔥 Fix: Admin Language vs Customer Language
+  // UI അഡ്മിന് മനസ്സിലാകുന്ന ഭാഷയിൽ തന്നെ നിൽക്കട്ടെ.
+  // മെസ്സേജ് അയക്കുമ്പോൾ മാത്രം കസ്റ്റമർ ഭാഷ എടുക്കാം.
   const lang = $('#language-select').val() || 'en';
-  if (d.language) {
-    $('#language-select').val(d.language);
-    changeLanguage(d.language);
-  }
+  // DO NOT FORCE CHANGE LANGUAGE HERE
 
   // Populate Data
   $('#saved-name').text(d.name);
@@ -786,6 +795,17 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-postoffice').val(d.postoffice);
   $('#edit-district').val(d.district);
   $('#edit-state').val(d.state);
+
+  // 🔥 FIX 1: ORDER ID & DATE DISPLAY (Restored)
+  if (d.orderid) {
+    $('#display-oid').html(`Order ID: <b>${d.orderid}</b>`).show();
+    // Date Formatting
+    let dateStr = d.timestamp;
+    if (!dateStr && d.date) dateStr = d.date;
+    if (dateStr) {
+      $('#display-date').text(formatPrettyDate(dateStr)).show();
+    }
+  }
 
   // Admin Panel Phone Inputs
   $('#edit-phone').val(d.phone);
@@ -799,13 +819,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
-  $('#admin-qty-actions').remove(); // Remove old action buttons if any
+  $('#admin-qty-actions').remove();
 
   if (isAdmin) {
+    // Force Show "Quantity" Label
+    $('label[data-i18n="lbl_qty"]').show();
+    $('#quick-qty').prev('label').show(); // "You Selected" label restoration
+
     $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
-    // 🔥 READ-ONLY INPUTS & PAID BY SYNC BUTTON
-    // 🔥 FIX: Value d.paidNum കൃത്യമായി ലോഡ് ചെയ്യുന്നു
     let commHTML = `
       <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
@@ -838,7 +860,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
               <div class="flex-grow-1">
                   <label class="small text-muted mb-0 text-primary">Paid By / Custom WA</label>
                   <div class="input-group input-group-sm">
-                      <input type="tel" id="adm-paid" class="form-control fw-bold border-primary" value="${d.paidNum || ''}" placeholder="Paste Number Here..." onchange="$('#edit-paid-by').val(this.value)">
+                      <input type="tel" id="adm-paid" class="form-control fw-bold border-primary" placeholder="Paste Number Here..." onchange="$('#edit-paid-by').val(this.value)">
                       <button class="btn btn-outline-primary" type="button" onclick="savePaidNumOnly('${d.orderid}')" title="Save this number only">
                           <i class="fas fa-save"></i>
                       </button>
@@ -849,7 +871,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       </div>`;
     $(commHTML).insertBefore('#status-area');
 
-    // 🔥 AUTO-SELECT RADIO BASED ON META
+    // 🔥 FIX: Paid Number Load Issue
+    $('#adm-paid').val(d.paidNum || '');
+
+    // AUTO-SELECT RADIO
     let metaStr = d.adminMeta || '';
     let targetVal = 'phone';
     if (metaStr.includes('W')) targetVal = 'whatsapp';
@@ -858,7 +883,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
     $(`input[name="target_wa"][value="${targetVal}"]`).prop('checked', true);
 
-    // Create Hidden Containers for Qty Changes
     $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
     $(`<div id="admin-qty-actions" class="mt-3 fade-in" style="display:none;"></div>`).insertAfter('#admin-diff-viewer');
   }
@@ -1591,6 +1615,9 @@ window.adminAction = async function (oid, status) {
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
+  if (typeof userData !== 'undefined') userData.Status = status;
+  if (typeof savedOrderData !== 'undefined') savedOrderData.Status = status;
+
   Swal.fire({ icon: 'success', title: `Saved: ${status}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
   updateAdminUI(status, oid);
 }
@@ -2256,15 +2283,25 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   // 1. Basic Validation
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  // Sync Admin Inputs
+  // 🔥 RESTORED: Post Office Validation
+  let finalPO = $('#edit-postoffice').val();
+  if ($('#edit-postoffice-select').is(':visible')) {
+    finalPO = $('#edit-postoffice-select').val();
+  }
+  if (!finalPO) {
+    showAlert(getAlert('err_select_po') || "Please Select Post Office");
+    if ($('.address-box').is(':hidden')) toggleAddressEdit();
+    return;
+  }
+  $('#edit-postoffice').val(finalPO);
+
   if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
-  // 2. Prepare Data
   const newName = $('#edit-name').val();
   const newPhone = $('#edit-phone').val();
 
-  // META Calculation (Preserve Radio Selection)
+  // META Calculation
   let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
   let selectedRadio = $('input[name="target_wa"]:checked').val();
   let newFlag = 'M';
@@ -2272,6 +2309,9 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   else if (selectedRadio === 'alt') newFlag = 'A';
   else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
+
+  // 🔥 CUSTOMER LANGUAGE FIX
+  let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
   const finalData = {
     orderid: editingOrderId,
@@ -2282,7 +2322,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
     pincode: $('#edit-pincode').val(),
-    postoffice: $('#edit-postoffice').val(),
+    postoffice: finalPO,
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
@@ -2290,22 +2330,18 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: $('#language-select').val() || 'en'
+    language: custLang // 🔥 Using Customer Language
   };
 
-  // 3. EXECUTE UPDATE (No Popup)
   showLoader(true);
 
-  // A. Save Data First
   fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
     .then(res => res.json())
     .then(res => {
-      // B. Force Status Update
       fetch(sc, {
         method: 'POST',
         body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: targetStatus }] })
       }).then(() => {
-        // Update Local Cache
         updateLocalCache(finalData, targetStatus);
         savedOrderData.quantity = newQty;
         savedOrderData.adminMeta = finalMeta;
@@ -2313,30 +2349,28 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
         updateAdminUI(targetStatus, finalData.orderid);
         showLoader(false);
 
-        // C. Generate Dynamic WhatsApp Message
+        // 🔥 MSG Language Check (Using custLang)
         let msg = "";
-        let targetPhone = getSelectedWAPhone(finalData); // Uses Radio Selection
+        let targetPhone = getSelectedWAPhone(finalData);
 
         if (targetStatus === 'Sent') {
-          // ORANGE BUTTON MESSAGE (Ask Balance)
-          if (finalData.language === 'ml') {
+          // ORANGE BUTTON MESSAGE
+          if (custLang === 'ml') {
             msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
           } else {
             msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
           }
         } else {
-          // GREEN BUTTON MESSAGE (Payment Received)
-          if (finalData.language === 'ml') {
+          // GREEN BUTTON MESSAGE
+          if (custLang === 'ml') {
             msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\n(ആകെ തുക: ₹${newTotal})\n\nഓർഡർ ഉടൻ അയക്കുന്നതാണ്.`;
           } else {
             msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n✅ *Payment Received!* Thank you❤️\n(Total: ₹${newTotal})\n\nWe will dispatch shortly.`;
           }
         }
 
-        // Open WhatsApp
         window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
 
-        // Refresh View
         $('#admin-qty-actions').slideUp();
         $('#admin-diff-viewer').slideUp();
         $('#admin-action-bar').slideDown();
