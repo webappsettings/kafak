@@ -23,13 +23,61 @@ function playBeep() {
 }
 
 // 🔥 ADMIN META HELPER (Code: M=Mobile, W=WhatsApp, A=Alt, P=Printed, T=Tracked)
+// 🔥 ADMIN META HELPER (Updated: G=Paid, P=Printed)
 function getMetaStatus(metaStr) {
     metaStr = String(metaStr || '');
+
+    // Check Contact Type
+    let contact = 'phone'; // Default (M)
+    if (metaStr.includes('G')) contact = 'paid';      // 'G' for Google Pay/Paid Number
+    else if (metaStr.includes('W')) contact = 'whatsapp';
+    else if (metaStr.includes('A')) contact = 'alt';
+
     return {
-        contact: metaStr.includes('W') ? 'whatsapp' : (metaStr.includes('A') ? 'alt' : 'phone'), // Default Mobile (M)
-        isPrinted: metaStr.includes('P'),
+        contact: contact,
+        isPrinted: metaStr.includes('P'), // 'P' for Printed Label
         isTracked: metaStr.includes('T')
     };
+}
+
+// 🔥 UPDATE ADMIN META
+function updateAdminMeta(oid, type, value) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let currentMeta = String(order.adminMeta || '');
+    let oldMeta = currentMeta;
+    let newMeta = currentMeta;
+
+    // 1. Contact Selection (M, W, A, G)
+    if (type === 'contact') {
+        newMeta = newMeta.replace(/[MWAG]/g, ''); // Remove existing
+        newMeta += value; // Add new (M, W, A, or G)
+    }
+    // 2. Printed (P)
+    else if (type === 'printed') {
+        if (!newMeta.includes('P')) newMeta += 'P';
+    }
+    else if (type === 'tracked') {
+        if (!newMeta.includes('T')) newMeta += 'T';
+    }
+
+    order.adminMeta = newMeta;
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    // Sync Queue
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let existingUpd = updates.find(u => u.oid === oid && u.action === 'meta');
+
+    if (existingUpd) {
+        existingUpd.meta = newMeta;
+        if (existingUpd.oldMeta === undefined) existingUpd.oldMeta = oldMeta;
+    } else {
+        updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: oldMeta, status: order.Status });
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    renderTabs(allOrders);
 }
 
 // Update Meta String Locally & Queue for Sync
@@ -583,8 +631,6 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
-
-    // 1. Search Logic Fix
     if (type === 'search') {
         if (currentStatus === 'Pending' || currentStatus === 'Sent') type = 'pending';
         else if (currentStatus === 'Paid') type = 'paid';
@@ -593,18 +639,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
-
-    // 2. Date Formatting
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
-    // 3. Customer Stats
+    // Customer Stats
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // 4. Badges & Colors
+    // Color Logic
     let statusColor = 'secondary';
     if (currentStatus === 'Pending') statusColor = 'warning text-dark';
     if (currentStatus === 'Sent') statusColor = 'primary';
@@ -612,133 +656,74 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (currentStatus === 'Refunded') statusColor = 'danger';
     if (currentStatus === 'Dispatched') statusColor = 'info text-dark';
 
-    let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa; vertical-align:middle;">${d.language.toUpperCase()}</span>` : '';
+    let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa;">${d.language.toUpperCase()}</span>` : '';
 
-    // 5. Header Buttons
+    // Action Buttons
     let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
-        ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>`
-        : '';
+        ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>` : '';
+    let refundBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed') ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
-    let showRefBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed');
-    let refundBtn = showRefBtn ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
-
-
-
-    // Admin Meta
+    // Meta Badges ('P' for Printed)
     let meta = getMetaStatus(d.adminMeta);
     let metaBadges = '';
-    if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed (P)"></span>`;
-    if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked (T)"></span>`;
+    if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed"></span>`;
+    if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked"></span>`;
 
     let rankBadge = '';
     if (currentStatus === 'Paid' && window.paidRankMap && window.paidRankMap[d.orderid]) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
     }
 
-    let linkedOrder = checkCrossLinking(d);
+    // Fraud Alert
     let fraudAlertHtml = '';
-
-    // 🔥 1. MAIN SEARCH BUTTON (For Header)
-    // ഏത് നമ്പറാണ് സെർച്ച് ചെയ്യേണ്ടത്? (WhatsApp ഉണ്ടെങ്കിൽ അത്, ഇല്ലെങ്കിൽ Phone)
-    // 🔥 1. MAIN SEARCH BUTTON (Copies Order ID)
-    let searchBtnHtml = `
-    <button onclick="event.stopPropagation(); searchOrderInWA('${d.orderid}')" 
-        class="btn btn-sm btn-light border shadow-sm ms-1" 
-        style="padding: 0px 5px; font-size: 9px; height: 18px; line-height: 1;" 
-        title="Copy ID & Open WhatsApp">
-        <i class="fab fa-whatsapp text-success"></i> <i class="fas fa-search text-muted" style="font-size:8px;"></i>
-    </button>`;
-
-
-
-    // 🔥 2. DUPLICATE CHECKER & BUTTON (For Fraud Box)
-
     if (currentStatus === 'Pending' || currentStatus === 'Sent') {
         let linkedOrder = checkCrossLinking(d);
-
         if (linkedOrder) {
             let linkColor = linkedOrder.Status === 'Paid' ? 'danger' : 'warning';
             let linkIcon = linkedOrder.Status === 'Paid' ? 'exclamation-triangle' : 'link';
-
-            // Linked Order-ന്റെ നമ്പർ എടുക്കുന്നു
-            let linkedNum = linkedOrder.whatsapp || linkedOrder.phone;
-
             fraudAlertHtml = `
             <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
                 <div style="font-size:11px; font-weight:700; color:#b91c1c;">
                     <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
                 </div>
-                
-                <div style="font-size:10px; color:#555; margin-top:3px; display:flex; align-items:center;">
-                    ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})
-                    <button onclick="event.stopPropagation(); searchOrderInWA('${linkedOrder.orderid}')" 
-                        class="btn btn-sm btn-light border shadow-sm ms-2" 
-                        style="padding: 0px 5px; font-size: 9px; height: 18px; line-height: 1;" 
-                        title="Copy Linked ID & Open WhatsApp">
-                        <i class="fab fa-whatsapp text-success"></i> 🔎
-                    </button>
-                </div>
-
-                <div class="text-end mt-1">
-                    <button onclick="highlightCard(this); archiveOrder('${d.orderid}')" 
-                        class="btn btn-sm btn-outline-danger fw-bold shadow-sm" 
-                        style="font-size:9px; padding: 2px 8px; border-radius:4px;">
-                        <i class="fas fa-archive"></i> ARCHIVE
-                    </button>
-                </div>
+                <div style="font-size:10px; color:#555; margin-top:2px;">ID: <b>${linkedOrder.orderid}</b></div>
+                <div class="text-end mt-1"><button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn btn-sm btn-outline-danger fw-bold shadow-sm" style="font-size:9px; padding: 2px 8px;"><i class="fas fa-archive"></i> ARCHIVE</button></div>
             </div>`;
         }
     }
 
-    if (linkedOrder) {
-        // ലിങ്ക് ചെയ്തത് 'Paid' ഓർഡർ ആണെങ്കിൽ നമുക്ക് സംശയിക്കാം
-        let linkColor = linkedOrder.Status === 'Paid' ? 'danger' : 'warning';
-        let linkIcon = linkedOrder.Status === 'Paid' ? 'exclamation-triangle' : 'link';
-
-        fraudAlertHtml = `
-        <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
-            <div style="font-size:11px; font-weight:700; color:#b91c1c;">
-                <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
-            </div>
-            <div style="font-size:10px; color:#555;">
-                Order ID: <b>${linkedOrder.orderid}</b> (${linkedOrder.Status})<br>
-                Phone Matches found!
-            </div>
-            <button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn btn-sm btn-outline-danger w-100 mt-1 fw-bold" style="font-size:10px;">
-                <i class="fas fa-archive"></i> ARCHIVE THIS DUPLICATE
-            </button>
-        </div>`;
-    }
-
-    // 🔥 HEADER UPDATE: searchBtnHtml ഇവിടെ ചേർക്കുന്നു 👇
+    // 🔥 HEADER: NO SEARCH BUTTONS, CLICK TO COPY
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-1">
             ${rankBadge} 
-            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
-            ${searchBtnHtml} ${metaBadges} 
+            <span class="badge rounded-pill bg-dark" 
+                  style="font-size:11px; cursor:pointer;" 
+                  onclick="copyToClipboard('${d.orderid}')" 
+                  title="Click to Copy ID">
+                  ${d.orderid} <i class="far fa-copy" style="font-size:9px; opacity:0.7;"></i>
+            </span>
+            ${metaBadges} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
 
-    // 6. Top Actions
-    let editLink = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>`;
-    let printBtn = `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
-    let topActions = editLink + printBtn;
+    // Top Actions
+    let topActions = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>` +
+        `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
     if (type === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (type === 'paid') {
-        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>` + topActions;
+        topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}')" class="btn-top-action" style="background:#25D366; color:white; border:none;"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>${topActions}</div>`;
     }
 
-    // 7. Paid Date Badge
     let paidTimeHTML = '';
     if ((type === 'paid' || currentStatus === 'Paid') && d.paidDate) {
         let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
-    // 8. CONTACT SELECTOR
+    // 🔥 CONTACT SELECTOR (Using 'G' for Paid)
     let selectedContact = meta.contact;
     let uniqueContacts = new Map();
     const cleanNum = (n) => String(n || '').replace(/[^0-9]/g, '');
@@ -747,13 +732,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (d.phone && !uniqueContacts.has(cleanNum(d.phone))) uniqueContacts.set(cleanNum(d.phone), { val: d.phone, label: `📞 PH: ${d.phone}`, type: 'phone' });
     if (d.altphone && !uniqueContacts.has(cleanNum(d.altphone))) uniqueContacts.set(cleanNum(d.altphone), { val: d.altphone, label: `☎️ ALT: ${d.altphone}`, type: 'alt' });
 
+    // Add Paid Number
+    if (d.paidNum && !uniqueContacts.has(cleanNum(d.paidNum))) {
+        uniqueContacts.set(cleanNum(d.paidNum), { val: d.paidNum, label: `💰 PAID: ${d.paidNum}`, type: 'paid' });
+    }
+
     let opts = '';
     let selType = selectedContact;
     if (!d.adminMeta) selType = 'whatsapp';
 
     uniqueContacts.forEach((v, k) => {
         let isSelected = (v.type === selType) ? 'selected' : '';
-        let code = (v.type === 'whatsapp') ? 'W' : ((v.type === 'alt') ? 'A' : 'M');
+        // Codes: W=WA, A=Alt, M=Mobile, G=Paid (Google Pay)
+        let code = (v.type === 'whatsapp') ? 'W' : (v.type === 'alt' ? 'A' : (v.type === 'paid' ? 'G' : 'M'));
         opts += `<option value="${code}" ${isSelected}>${v.label}</option>`;
     });
 
@@ -761,48 +752,28 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     <div class="mt-2 mb-2 d-flex gap-1" onclick="highlightCard(this)">
         <select id="wa-select-${index}" 
             onchange="updateAdminMeta('${d.orderid}', 'contact', this.value);" 
-            class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
+            class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" 
+            style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this)" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
-    // 🔥 FIX: Paid Phone Input HTML Creation
-    let paidNumHtml = '';
-    if (type === 'pending' || type === 'paid' || type === 'search') {
-        let pNum = d.paidNum || '';
-        let waBtn = '';
-        if (pNum.length > 5) {
-            waBtn = `<button class="btn btn-sm btn-success ms-1" onclick="openPaidNumWA('${pNum}')" title="Chat with Paid Number" style="padding: 2px 6px; font-size: 10px;"><i class="fab fa-whatsapp"></i></button>`;
-        }
-
-        paidNumHtml = `
-        <div class="mt-2 mb-2 d-flex align-items-center gap-1" onclick="highlightCard(this)">
-            <span class="badge bg-light text-dark border"><i class="fas fa-mobile-alt"></i> Paid By:</span>
-            <input type="text" 
-                class="form-control form-control-sm border-secondary fw-bold text-dark" 
-                placeholder="Enter GPay / Phone Number" 
-                value="${pNum}" 
-                onchange="savePaidNum('${d.orderid}', this.value)"
-                style="font-size:12px; background:#f0fdf4; letter-spacing:0.5px;">
-            ${waBtn}
-        </div>`;
-    }
-
-    // 9. Contact Icons
+    // Contact Visuals
     let contactMap = {};
     const addVisualContact = (iconType, number) => {
         if (!number) return;
         let numStr = String(number).trim();
-        if (!numStr) return;
         if (!contactMap[numStr]) contactMap[numStr] = [];
         let iconHTML = '';
         if (iconType === 'phone') iconHTML = '<i class="fas fa-phone-alt text-primary" title="Phone"></i>';
-        if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900; font-size:1.1em;" title="WhatsApp"></i>';
-        if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" style="font-size:1.1em;" title="Land/Alt"></i>';
+        if (iconType === 'wa') iconHTML = '<i class="fab fa-whatsapp text-success" style="font-weight:900;" title="WhatsApp"></i>';
+        if (iconType === 'alt') iconHTML = '<i class="fas fa-phone-square text-secondary" title="Alt"></i>';
+        if (iconType === 'paid') iconHTML = '<i class="fas fa-money-bill-wave text-success" title="Paid By"></i>';
         if (!contactMap[numStr].includes(iconHTML)) contactMap[numStr].push(iconHTML);
     };
     addVisualContact('phone', d.phone);
     addVisualContact('wa', d.whatsapp);
     addVisualContact('alt', d.altphone);
+    if (d.paidNum) addVisualContact('paid', d.paidNum);
 
     let contactHTMLParts = [];
     for (let num in contactMap) {
@@ -811,38 +782,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // 10. Buttons
+    // Buttons
     let buttons = '';
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
-        let mainBtn = `<button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>`;
-        if (currentStatus === 'Pending') {
-            buttons = `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" title="Mark Sent"><i class="fas fa-paper-plane me-1"></i> SENT</button></div>`;
-        } else {
-            buttons = `<div class="d-flex gap-2 w-100">${mainBtn}<button class="btn btn-warning shadow-sm border-warning d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" title="Mark Paid"><i class="fas fa-check me-1"></i> PAID</button></div>`;
-        }
+        buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button><button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', '${currentStatus === 'Pending' ? 'Sent' : 'Paid'}')" title="Next Status"><i class="fas fa-arrow-right me-1"></i> NEXT</button></div>`;
     } else if (type === 'paid') {
-        // 🔥 FIX: Receipt Button (Green) & Revert Button
-        topActions = `
-        <div class="d-flex gap-1">
-            <button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt">
-                <i class="fab fa-whatsapp"></i>
-            </button>
-            <button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>
-            ${topActions} 
-        </div>`;
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
-    } else if (currentStatus === 'Archive' || currentStatus === 'Archived') {
-        buttons = `<div class="alert alert-secondary p-2 mb-2 text-center" style="font-size:11px; font-weight:700;"><i class="fas fa-archive"></i> This order is Archived</div><button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')"><i class="fas fa-box-open me-1"></i> REVERT TO PAID</button>`;
-    } else if (currentStatus === 'Refunded') {
-        buttons = `<div class="alert alert-danger p-2 mb-2 text-center" style="font-size:11px; font-weight:700;"><i class="fas fa-info-circle"></i> Amount Refunded to Customer</div><button class="btn btn-warning w-100 fw-bold shadow-sm text-dark" style="border-radius:10px;" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')"><i class="fas fa-history me-1"></i> REVERT TO PAID</button>`;
     } else if (type === 'dispatched') {
         let trackNum = d.tracking || '';
         let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let dateObj = new Date(dispDateStr);
         let formattedDispDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-
         let dateHtml = `<div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#166534; font-weight:700;"><i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}</div><button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div>`;
         buttons = `${dateHtml}<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 ${trackNum ? 'TRK: ' + trackNum : 'Add Trk'}</button>${trackNum ? `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a>` : ''}</div><button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
@@ -851,7 +803,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card p-3 shadow-sm"><div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))"><div style="font-size:12px; flex-grow:1;"><div class="mb-1">${headerLeft}</div><div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div><div class="text-muted small" style="font-size:10px;">${formattedDate}</div></div><button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅</button></div><div class="full-card-content mt-3 pt-3 border-top" style="display:none;">${createCardHTML(d, index, type, currentStatus, false)}</div></div></div>`;
     }
 
-    // 🔥 FIX: Added ${paidNumHtml} below ${waSelectorHTML}
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card p-3">
@@ -861,15 +812,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             </div>
             ${fraudAlertHtml}
             <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
-            
             ${paidTimeHTML}
-
             <div class="cust-name">${safe(d.name)}</div>
-            <div class="mb-2">
-                <span class="stats-badge-blue">📦 ${totalBottles} Btls</span> 
-                <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span>
-            </div>
-
+            <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br>
@@ -877,7 +822,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             </div>
             <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
             ${waSelectorHTML}
-            ${paidNumHtml} 
             <div class="action-area mt-2" style="display:block;">${buttons}</div>
         </div>
     </div>`;
@@ -3005,21 +2949,20 @@ function toggleSort() {
 // 🔥 OPEN WHATSAPP (JUST OPEN)
 // 🔥 OPEN WHATSAPP (Fix for W/M/A Codes)
 function openSimpleWA(index, btnElement) {
-    // 1. Highlight
     if (btnElement) highlightCard(btnElement);
 
     const d = allOrders[index];
     let phoneNum = "";
 
-    // 2. Get Code from Dropdown (W, M, A)
+    // 2. Get Code from Dropdown (W, M, A, G)
     const dropdown = document.getElementById(`wa-select-${index}`);
     let code = dropdown ? dropdown.value : '';
 
-    // 3. Map Code to Real Number
     if (code === 'W') phoneNum = d.whatsapp;
     else if (code === 'A') phoneNum = d.altphone;
     else if (code === 'M') phoneNum = d.phone;
-    else phoneNum = d.whatsapp || d.phone; // Fallback
+    else if (code === 'G') phoneNum = d.paidNum; // 🔥 G = Paid Number
+    else phoneNum = d.whatsapp || d.phone;
 
     // 4. Clean & Open
     phoneNum = String(phoneNum || '').replace(/[^0-9]/g, '');
@@ -3031,7 +2974,6 @@ function openSimpleWA(index, btnElement) {
         alert("Number not found!");
     }
 }
-
 // 🔥 SERVER SIDE SEARCH FUNCTION
 function searchOnServer(term) {
     let btn = $('#list-search button.btn-dark');
