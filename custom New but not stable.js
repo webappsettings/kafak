@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbz4Rc6pe2KlS8qEuUfSPY4baa-5Yc_ch51HZJULUmdNq5GVGq48jIZnIoJwaNLyIFoGtQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzZlU55hnHJcHy7aBdM1noj6FzjRPfOyUbkVhWMn6SWXtp8grL3yaB2RiW5v7iS_bqYmg/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -14,6 +14,7 @@ let currentLoginPhone = null;
 let isEditMode = false;
 var savedOrderData = {};
 let globalQtyList = [];
+let adminPhone = '7788990313';
 
 const STORAGE_KEY = 'kafakCustomerData';
 
@@ -138,17 +139,17 @@ function formatPrettyDate(dateStr) {
 }
 
 function getZoneKey(stateName) {
-  if (!stateName) return 'north'; // Default
+  if (!stateName) return 'REST OF INDIA';
   let s = stateName.toUpperCase().trim();
 
-  if (s === 'KERALA') return 'kerala';
-  if (s === 'TAMIL NADU') return 'tn';
-  if (s === 'KARNATAKA') return 'ka';
-  if (s === 'ANDHRA PRADESH') return 'ap';
-  if (s === 'TELANGANA') return 'ts';
-  if (s === 'LAKSHADWEEP') return 'lakshadweep';
+  // 🔥 DYNAMIC CHECK: സ്റ്റേറ്റ് ലിസ്റ്റിൽ ഈ പേരുണ്ടോ എന്ന് നോക്കുന്നു
+  // ഉണ്ടെങ്കിൽ ആ പേര് തന്നെ തിരിച്ചയക്കുന്നു (ഉദാ: "KARNATAKA")
+  if (courierRates && courierRates[s]) {
+    return s;
+  }
 
-  return 'north'; // All other states
+  // ലിസ്റ്റിൽ ഇല്ലെങ്കിൽ മാത്രം "REST OF INDIA" എടുക്കുന്നു
+  return 'REST OF INDIA';
 }
 
 $(document).ready(function () {
@@ -205,13 +206,6 @@ $(document).ready(function () {
   }
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
-
-  if (urlParams.get('mode') === 'test') {
-    $('body').append('<button onclick="testVideo()" style="position:fixed; bottom:20px; right:20px; z-index:999999; padding:15px; background:red; color:white; border:none; border-radius:50px; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3);">🔴 TEST VIDEO</button>');
-    window.testVideo = function () {
-      playVideoAnimation("MANAF", () => { console.log("Video Test Started"); });
-    }
-  }
 
   // INSTANT EDIT LOAD
   if (oid) {
@@ -279,8 +273,6 @@ window.handlePhoneNext = function () {
 
 
 function checkUserOnServerBackground(phone) {
-  console.log("Checking server in background...");
-
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
     .then(data => {
@@ -365,7 +357,7 @@ function setRefreshLoading(isLoading) {
 }
 
 // 🔥 UPDATED: PERFECT SYNC LOGIC
-// 1. DATA CLEANING
+// 🔥 UPDATED: FORCE SERVER DATA PRIORITY (Fixes 'Paid' showing as 'Pending')
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
@@ -382,60 +374,116 @@ function syncUserDataBackground(phone) {
 
       if (userRes && userRes.result === 'success' && userRes.data) {
         let serverData = userRes.data;
+
+        // 1. Merge: Server Data Overwrites Local Data (For Critical Fields)
+        // പഴയ കോഡിൽ localData ആയിരുന്നു അവസാനം, അതാണ് പ്രശ്നം.
+        // ഇവിടെ നമ്മൾ ക്രിട്ടിക്കൽ ആയ കാര്യങ്ങൾ സെർവറിൽ നിന്ന് നിർബന്ധപൂർവ്വം എടുക്കുന്നു.
+
         finalData = { ...localData, ...serverData };
+
+        // 🔥 FORCE CRITICAL FIELDS FROM SERVER
+        // ലോക്കലിൽ "Pending" എന്ന് കിടന്നാലും സെർവറിൽ "Paid" ആണെങ്കിൽ "Paid" തന്നെ എടുക്കും.
         finalData.Status = serverData.Status || serverData.status || "Pending";
+        finalData.adminMeta = serverData.adminMeta;
+        finalData.paidNum = serverData.paidNum;
+        finalData.language = serverData.language;
+        finalData.tracking = serverData.tracking;
+        finalData['Dispatched Date'] = serverData['Dispatched Date'];
+        finalData.paidDate = serverData.paidDate;
+
+        // Preserve unsaved address edits from local if status is editable
+        const s = String(finalData.Status).toLowerCase();
+        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(s)) {
+          // Pending ആണെങ്കിൽ മാത്രം ലോക്കലിലെ പേരും അഡ്രസ്സും നിലനിർത്താം (കസ്റ്റമർ എഡിറ്റ് ചെയ്തുകൊണ്ടിരിക്കുകയാണെങ്കിൽ)
+          if (localData.name) finalData.name = localData.name;
+          if (localData.house) finalData.house = localData.house;
+          if (localData.place) finalData.place = localData.place;
+          if (localData.postoffice) finalData.postoffice = localData.postoffice;
+          if (localData.pincode) finalData.pincode = localData.pincode;
+        }
 
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
-          let s = String(finalData.Status).toLowerCase();
 
-          // Finished Orders -> New Order Mode
+          // Finished Orders -> New Order Mode logic
           if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
             finalData.quantity = null;
             delete finalData.quantity;
           }
         }
+
         userData = finalData;
         savedOrderData = JSON.parse(JSON.stringify(finalData));
+
+        // Update Local Storage with new Truth
         saveToLocal(phone, finalData);
       }
       renderEditView(finalData);
     });
 }
 
-
 // 🔥 Helper Function to Show/Hide Controls based on Status
+// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
 function handleEditControlsVisibility(d) {
-
   const status = String(d.Status || 'pending').toLowerCase();
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  if (['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+  // Language Setup
+  const lang = $('#language-select').val() || 'en';
+  let reqText = "Want to change details?";
+  let subText = "Message Admin";
+  if (lang === 'ml') {
+    reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
+    subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
+  }
 
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
+  // 1. ADMIN - Always Allow Edit
+  if (isAdmin) {
+    $('#quick-qty, .btn-update-sage, #quick-price-box').show();
+    $('#btn-edit-addr').css('display', 'inline-block'); // Show Address Edit
+    $('label[data-i18n="lbl_qty"]').show();
+    $('#quick-qty').prop('disabled', false);
+    $('#quick-qty').css('border', '2px solid #dc3545');
+    $('#btn-req-modify').remove();
+    return;
+  }
+
+  // 2. LOCKED STATES (Paid, Dispatched, Refunded)
+  if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+
+    // Lock Qty & Hide Update Buttons
+    $('#quick-qty').prop('disabled', true);
+    $('.btn-update-sage, #quick-price-box').hide();
+
+    // Lock Address Edit
     $('#btn-edit-addr').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
 
+    // 🔥 LOGIC: Show Message Button ONLY if 'Paid'
+    $('#btn-req-modify').remove(); // Remove existing button first
+
+    if (status === 'paid') {
+      let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
+      let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
+
+      $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
+              <div class="text-muted small mb-1 fw-bold">${reqText}</div>
+              <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
+                 class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
+                 <i class="fab fa-whatsapp"></i> ${subText}
+              </a>
+             </div>`).insertAfter('#status-area');
+    }
+    // Note: Dispatched/Refunded ഉള്ളപ്പോൾ ഒന്നും കാണിക്കില്ല (View Only).
     return;
   }
 
-  // 🔥 Retry only once if quantity missing
-  if (!d.quantity && !d._retried) {
-
-    d._retried = true;
-
-    $('#quick-qty, .btn-update-sage, #quick-price-box').hide();
-    $('label[data-i18n="lbl_qty"]').hide();
-
-    setTimeout(() => syncUserDataBackground(d.phone), 1000);
-
-    return;
-  }
-
-  // ✅ Show Controls
+  // 3. EDITABLE STATES (Pending, Sent, Archive)
   $('label[data-i18n="lbl_qty"]').show();
-  $('#quick-qty, .btn-update-sage, #quick-price-box').show();
-  $('#btn-edit-addr').css('display', 'inline-block');
+  $('#quick-qty').prop('disabled', false).show();
+  $('.btn-update-sage, #quick-price-box').show();
+  $('#btn-edit-addr').css('display', 'inline-block'); // Unlock Address Edit
+  $('#btn-req-modify').remove();
 }
 
 
@@ -601,51 +649,141 @@ window.prevStep = function () {
 }
 
 window.submitQuickOrder = function () {
-  // 1. Check if button is disabled
   if ($('.btn-update-sage').prop('disabled')) return;
 
-  // 2. Basic Validation (Qty, Phone, Pin)
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
+  // PO Check
+  let finalPO = $('#edit-postoffice').val();
+  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
+  if (!finalPO) {
+    showAlert(getAlert('err_select_po') || "Please Select Post Office");
+    if ($('.address-box').is(':hidden')) toggleAddressEdit();
+    return;
+  }
+  $('#edit-postoffice').val(finalPO);
+
+  if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
+  if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
+
+  const newName = $('#edit-name').val();
+  if (!newName) { showAlert(getAlert('err_name')); return; }
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
-  const pin = $('#edit-pincode').val();
-  if (!pin || pin.length !== 6) { showAlert(getAlert('err_pincode')); return; }
+  // META Logic
+  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
+  let selectedRadio = $('input[name="target_wa"]:checked').val();
+  let newFlag = 'M';
+  if (selectedRadio === 'whatsapp') newFlag = 'W';
+  else if (selectedRadio === 'alt') newFlag = 'A';
+  else if (selectedRadio === 'paid') newFlag = 'G';
+  let finalMeta = currentMeta + newFlag;
 
-  // 🔥 3. Post Office Validation
-  let finalPO = $('#edit-postoffice').val();
+  // Customer Language
+  let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
-  if ($('#edit-postoffice-select').is(':visible')) {
-    finalPO = $('#edit-postoffice-select').val();
-  }
-  if (!finalPO) {
-    showAlert(getAlert('err_select_po') || "Please Select Post Office");
-    if ($('#address-edit-box').is(':hidden')) toggleAddressEdit();
-    return;
-  }
-
-  $('#edit-postoffice').val(finalPO); // Hidden input update
-
-  // 4. Prepare Data Object
   const finalData = {
     orderid: editingOrderId,
-    name: $('#saved-name').text(),
+    name: newName,
     phone: newPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
     house: $('#edit-house').val(),
     place: $('#edit-place').val(),
-    pincode: pin,
+    pincode: $('#edit-pincode').val(),
     postoffice: finalPO,
     district: $('#edit-district').val(),
     state: $('#edit-state').val(),
     quantity: $('#quick-qty').val(),
+    paidNum: $('#edit-paid-by').val() || '',
+    adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: $('#language-select').val() || 'en'
+    language: custLang
   };
+
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+  if (isAdmin) {
+    let targetPhone = getSelectedWAPhone(finalData);
+    const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
+
+    // CASE: Paid -> Qty Increased
+    if (oldStatus === 'paid') {
+      let oldQty = parseInt(savedOrderData.quantity) || 0;
+      let newQty = parseInt(finalData.quantity) || 0;
+
+      if (newQty > oldQty) {
+        let stateKey = getZoneKey(finalData.state);
+        let rates = courierRates[stateKey] || {};
+        let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
+        let newTotal = (newQty * 650) + (rates[newQty] || 0);
+
+        showLoader(true);
+
+        fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+          .then(res => res.json())
+          .then(res => {
+            fetch(sc, {
+              method: 'POST',
+              body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
+            }).then(() => {
+              updateLocalCache(finalData, 'Sent');
+              savedOrderData.quantity = newQty;
+              savedOrderData.adminMeta = finalMeta;
+
+              updateAdminUI('Sent', finalData.orderid);
+              showLoader(false);
+
+              let msg = "";
+              if (custLang === 'ml') {
+                msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
+              } else {
+                msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
+              }
+
+              // 🔥 SIMPLE WA OPEN
+              window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+            });
+          });
+        return;
+      }
+    }
+
+    showLoader(true);
+    fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+      .then(() => {
+        updateLocalCache(finalData, savedOrderData.Status);
+        savedOrderData.quantity = finalData.quantity;
+        savedOrderData.adminMeta = finalMeta;
+        showLoader(false);
+        Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+      });
+    return;
+  }
   playVideoAnimation(finalData.name, () => postOrder(finalData));
+}
+
+// 🔥 Helper to Update All Caches (Fixes "Old Data" Issue)
+function updateLocalCache(data, status) {
+  // 1. Update Current Global Objects
+  userData = { ...userData, ...data, Status: status };
+  savedOrderData = JSON.parse(JSON.stringify(userData));
+
+  // 2. Update Local User Map
+  if (localUsersMap[data.phone]) {
+    localUsersMap[data.phone] = { ...localUsersMap[data.phone], ...data, Status: status };
+    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+  }
+
+  // 3. 🔥 UPDATE ADMIN CACHE (allOrdersCache)
+  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let idx = allOrders.findIndex(o => o.orderid === data.orderid);
+  if (idx > -1) {
+    allOrders[idx] = { ...allOrders[idx], ...data, Status: status };
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+  }
 }
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
@@ -661,7 +799,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   isEditMode = isActiveOrder;
   savedOrderData = JSON.parse(JSON.stringify(d));
 
-  // 🔥 SAFETY LOCK: Default State (Prevent Flicker)
+  // 🔥 SAFETY LOCK: Default State (Before Status Check)
+  // സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നത് വരെ ഇത് ഡിസേബിൾ ആയിരിക്കും.
   $('#quick-qty').prop('disabled', true);
   $('#btn-edit-addr').hide();
 
@@ -689,7 +828,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
 
-  // Admin Inputs (Hidden but populated)
+  // Admin Inputs
   $('#edit-phone').val(d.phone);
   $('#edit-whatsapp').val(d.whatsapp || d.phone);
   $('#edit-altphone').val(d.altphone || '');
@@ -697,52 +836,31 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // 🔥 ADMIN PANEL LOGIC (New Radio Design)
+  // Admin Panel Setup (Old Logic Preserved)
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-
-  // Clear old elements
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
   $('#admin-qty-actions').remove();
 
   if (isAdmin) {
-    // Show "You Selected" Label
-    $('#quick-qty').prev('label').show();
-
-    // Hide Standard Phone Inputs
+    $('#quick-qty').prev('label').show(); // "You Selected" Label
     $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
     let commHTML = `
       <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
-          
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly></div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
-
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly></div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3); border-color:#25D366;">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3); border-color:#25D366;"></div></div>
           </div>
-
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly></div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
-
           <div class="d-flex align-items-center">
               <div class="flex-grow-1">
                   <label class="small text-muted mb-0 text-primary">Paid By / Custom WA</label>
@@ -751,20 +869,12 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
                       <button class="btn btn-outline-primary" type="button" onclick="savePaidNumOnly('${d.orderid}')" title="Save this number only"><i class="fas fa-save"></i></button>
                   </div>
               </div>
-              <div class="ms-2 pt-3">
-                  <div class="radio-holder">
-                      <input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);">
-                  </div>
-              </div>
+              <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="paid" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
       </div>`;
-
     $(commHTML).insertBefore('#status-area');
-
-    // Populate Paid Number
     $('#adm-paid').val(d.paidNum || '');
 
-    // Auto-Check Correct Radio
     let metaStr = d.adminMeta || '';
     let targetVal = 'phone';
     if (metaStr.includes('W')) targetVal = 'whatsapp';
@@ -772,7 +882,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     else if (metaStr.includes('G')) targetVal = 'paid';
     $(`input[name="target_wa"][value="${targetVal}"]`).prop('checked', true);
 
-    // Inject Dynamic Action Containers
     $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
     $(`<div id="admin-qty-actions" class="mt-3 fade-in" style="display:none;"></div>`).insertAfter('#admin-diff-viewer');
   }
@@ -808,11 +917,11 @@ window.enableNewOrderMode = function () {
   $('#quick-qty').prev('label').fadeIn();
   $('#quick-qty').fadeIn();
   $('.btn-update-sage').fadeIn();
-
-  // 🔥🔥🔥 MAIN FIX:
   $('#quick-price-box').hide().empty();
 
+  // 🔥 CRITICAL: Unlock Address Edit & Qty for New Order
   $('#btn-edit-addr').fadeIn().css('display', 'inline-block');
+  $('#quick-qty').prop('disabled', false);
 
   isEditMode = false;
   editingOrderId = null;
@@ -821,6 +930,7 @@ window.enableNewOrderMode = function () {
 
   $('#quick-qty').val('').trigger('change');
   $('#quick-qty option').prop('disabled', false);
+  $('#btn-req-modify').remove(); // Remove help button if exists
 
   checkForChanges();
 }
@@ -990,6 +1100,8 @@ function updateStatusUI(d) {
 
 function updateSummaryDisplay() {
   // 1. Get Values
+  const newName = $('#edit-name').val();
+  if (newName) $('#saved-name').text(newName);
   const house = $('#edit-house').val() || '';
   const place = $('#edit-place').val() || '';
 
@@ -1212,8 +1324,8 @@ function updateLiveAddressPreview() {
 
 setTimeout(updateLiveAddressPreview, 1000);
 
-function checkForChanges() {// 1. UPDATE 'checkForChanges' (Replace existing function)
-  // Current Values
+function checkForChanges() {
+  // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
   var currName = $('#edit-name').val() || '';
   var currPhone = $('#edit-phone').val() || '';
@@ -1223,7 +1335,7 @@ function checkForChanges() {// 1. UPDATE 'checkForChanges' (Replace existing fun
   var currPin = $('#edit-pincode').val() || '';
   var currAlt = $('#edit-altphone').val() || '';
 
-  // Saved Values
+  // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
   var savedName = (savedOrderData.name || '') + '';
   var savedPhone = (savedOrderData.phone || '') + '';
@@ -1233,8 +1345,9 @@ function checkForChanges() {// 1. UPDATE 'checkForChanges' (Replace existing fun
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
 
+  // 3. Compare
   var isChanged = false;
-  var isQtyChanged = (String(currQty) !== String(savedQty));
+  var isQtyChanged = (String(currQty) !== String(savedQty)); // 🔥 Check Qty Specifically
 
   if (isQtyChanged) isChanged = true;
   if (String(currName).trim() !== String(savedName).trim()) isChanged = true;
@@ -1245,15 +1358,18 @@ function checkForChanges() {// 1. UPDATE 'checkForChanges' (Replace existing fun
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
+  // UI Updates for Customer Mode
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
+  const t = translations[lang];
 
-  // 🔥 ADMIN DYNAMIC BUTTON LOGIC
+  // 🔥🔥🔥 ADMIN DYNAMIC BUTTON LOGIC STARTS HERE 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
   if (isAdmin && editingOrderId) {
     if (isQtyChanged) {
+      // 1. Calculate Prices
       let oldQty = parseInt(savedQty) || 0;
       let newQty = parseInt(currQty) || 0;
       let stateKey = getZoneKey($('#edit-state').val());
@@ -1263,43 +1379,48 @@ function checkForChanges() {// 1. UPDATE 'checkForChanges' (Replace existing fun
       let newTotal = (newQty * 650) + (rates[newQty] || 0);
       let balance = newTotal - oldTotal;
 
-      // Show Diff Viewer
+      // 2. Show Difference Info
       $('#admin-diff-viewer').html(`
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <div class="fw-bold" style="font-size:13px;">Qty: ${oldQty} ➡ ${newQty}</div>
-                        <div class="small text-muted">New Total: ₹${newTotal}</div>
-                    </div>
-                    <div class="text-end">
-                        <div class="fw-bold text-danger" style="font-size:16px;">Bal: ${balance > 0 ? '+' : ''}₹${balance}</div>
-                    </div>
-                </div>`).slideDown();
+              <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                      <div class="fw-bold" style="font-size:13px;">Qty: ${oldQty} ➡ ${newQty}</div>
+                      <div class="small text-muted">New Total: ₹${newTotal}</div>
+                  </div>
+                  <div class="text-end">
+                      <div class="fw-bold text-danger" style="font-size:16px;">Bal: ${balance > 0 ? '+' : ''}₹${balance}</div>
+                  </div>
+              </div>
+          `).slideDown();
 
-      // Hide Standard Bar & Show Dynamic Actions
-      $('#admin-action-bar').hide();
-      btnUpdate.hide();
+      // 3. 🔥 HIDE STANDARD BUTTONS & SHOW DUAL ACTIONS
+      $('#admin-action-bar').hide(); // Hide bottom bar
 
       let actionHtml = `
-                <div class="d-flex gap-2">
-                    <button onclick="handleQtyUpdateAction('Sent', ${balance}, ${newTotal}, ${oldQty}, ${newQty})" class="btn w-50 shadow-sm text-white fw-bold" style="background:#fd7e14; border-radius:10px; font-size:13px;">
-                        <i class="fab fa-whatsapp"></i> Update & Notify<br><span style="font-size:10px; opacity:0.8;">(Ask Balance)</span>
-                    </button>
-                    <button onclick="handleQtyUpdateAction('Paid', ${balance}, ${newTotal}, ${oldQty}, ${newQty})" class="btn w-50 shadow-sm text-white fw-bold" style="background:#198754; border-radius:10px; font-size:13px;">
-                        <i class="fas fa-check-circle"></i> Update & PAID<br><span style="font-size:10px; opacity:0.8;">(Payment Recd)</span>
-                    </button>
-                </div>`;
+          <div class="d-flex gap-2">
+              <button onclick="handleQtyUpdateAction('Sent', ${balance}, ${newTotal}, ${oldQty}, ${newQty})" class="btn w-50 shadow-sm text-white fw-bold" style="background:#fd7e14; border-radius:10px; font-size:13px;">
+                  <i class="fab fa-whatsapp"></i> Update & Notify<br><span style="font-size:10px; opacity:0.8;">(Ask Balance)</span>
+              </button>
+              <button onclick="handleQtyUpdateAction('Paid', ${balance}, ${newTotal}, ${oldQty}, ${newQty})" class="btn w-50 shadow-sm text-white fw-bold" style="background:#198754; border-radius:10px; font-size:13px;">
+                  <i class="fas fa-check-circle"></i> Update & PAID<br><span style="font-size:10px; opacity:0.8;">(Payment Recd)</span>
+              </button>
+          </div>`;
+
       $('#admin-qty-actions').html(actionHtml).slideDown();
 
+      // Disable standard update button to avoid confusion
+      btnUpdate.hide();
+
     } else {
-      // Restore Normal View
+      // No Qty Change -> Restore Standard UI
       $('#admin-diff-viewer').slideUp();
       $('#admin-qty-actions').slideUp();
-      $('#admin-action-bar').slideDown();
+      $('#admin-action-bar').slideDown(); // Show bottom bar
       btnUpdate.show();
     }
   }
+  // 🔥🔥🔥 ADMIN LOGIC ENDS 🔥🔥🔥
 
-  // Standard Customer/No-Qty-Change Logic
+  // Standard Button Logic (For Customer or Non-Qty Changes)
   if (!isAdmin || !isQtyChanged) {
     if (isChanged) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb' }).text(t.btn_update);
@@ -1311,22 +1432,17 @@ function checkForChanges() {// 1. UPDATE 'checkForChanges' (Replace existing fun
   }
 }
 
+
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
 
 function setupAdminView(oid) {
-  const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
+  const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html?search=${oid}'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
-  let cachedOrders = JSON.parse(SafeStorage.getItem('allOrdersCache') || "[]");
-  let cachedOrder = cachedOrders.find(o => o.orderid === oid);
-  if (cachedOrder) {
-    showLoader(false);
-    loadOrderData(cachedOrder, false);
-    updateAdminUI(cachedOrder.Status || 'Pending', oid);
-    syncUserDataBackground(cachedOrder.phone);
-  } else {
-    fetchOrder(oid);
-  }
+
+  // 🔥 FIX: Always fetch fresh data for Admin Edit View
+  showLoader(true);
+  fetchOrder(oid);
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
@@ -1358,6 +1474,20 @@ window.updateAdminUI = function (serverStatus, oid) {
                </div>`;
   } else if (status === 'Delivered') {
     btnHTML = `<div class="d-flex w-100"><button class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" disabled>DELIVERED ✅</button>${syncBtn}</div>`;
+  } else if (status === 'Paid') {
+    // 🔥 FIX: Paid & Synced ആണെങ്കിൽ Receipt Button കാണിക്കുന്നു
+    if (!hasPending) {
+      btnHTML = `
+        <div class="d-flex gap-2 w-100">
+            <button class="btn btn-success btn-sm fw-bold shadow-sm disabled" style="opacity:1;">PAID ✅</button>
+            <button onclick="sendPaymentWA('${oid}')" class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" style="background:#25D366; border-color:#25D366;">
+                <i class="fab fa-whatsapp"></i> SEND RECEIPT
+            </button>
+        </div>`;
+    } else {
+      // Sync ചെയ്യാൻ ബാക്കിയുണ്ടെങ്കിൽ സാധാരണ പോലെ കാണിക്കുന്നു
+      btnHTML = `<div class="d-flex w-100"><button class="btn btn-success btn-sm fw-bold flex-grow-1 shadow-sm" disabled>PAID ✅</button>${syncBtn}</div>`;
+    }
   } else {
     let displayTxt = status === 'Dispatched' ? 'DISPATCHED' : (status === 'Completed' ? 'COMPLETED' : status.toUpperCase());
     btnHTML = `<div class="d-flex w-100"><button class="btn btn-secondary btn-sm fw-bold flex-grow-1 shadow-sm" disabled>${displayTxt} ✅</button>${syncBtn}</div>`;
@@ -1484,6 +1614,9 @@ window.adminAction = async function (oid, status) {
   });
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+  if (typeof userData !== 'undefined') userData.Status = status;
+  if (typeof savedOrderData !== 'undefined') savedOrderData.Status = status;
 
   Swal.fire({ icon: 'success', title: `Saved: ${status}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
   updateAdminUI(status, oid);
@@ -1663,23 +1796,20 @@ function fetchCourierRates() {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   const loadingTxt = t.loading || "Loading Options...";
-
   let currentSelection = $('#quick-qty').val();
-
   $('#quantity, #quick-qty').html(`<option value="">${loadingTxt}</option>`);
 
   // 1. CACHE CHECK
   let cachedRates = SafeStorage.getItem('cachedRates');
   let cacheValid = false;
-
   if (cachedRates) {
     try {
       let parsed = JSON.parse(cachedRates);
-      if (parsed && parsed.kerala) {
+      // 🔥 FIX: 'KERALA' (UpperCase) ആണ് ഇപ്പോൾ കീ
+      if (parsed && parsed.KERALA) {
         courierRates = parsed;
-        globalQtyList = Object.keys(parsed.kerala).map(Number).sort((a, b) => a - b);
+        globalQtyList = Object.keys(parsed.KERALA).map(Number).sort((a, b) => a - b);
         renderQtyDropdowns();
-        console.log("⚡ Rates loaded from Cache");
         cacheValid = true;
       }
     } catch (e) { }
@@ -1691,38 +1821,30 @@ function fetchCourierRates() {
     .then(data => {
       if (data.result === 'success' && data.rates) {
         courierRates = data.rates;
-        globalQtyList = Object.keys(data.rates.kerala).map(Number).sort((a, b) => a - b);
+        if (data.adminPhone) adminPhone = String(data.adminPhone);
+
+        // 🔥 FIX: 'KERALA' കീ ഉപയോഗിക്കുന്നു
+        if (data.rates.KERALA) {
+          globalQtyList = Object.keys(data.rates.KERALA).map(Number).sort((a, b) => a - b);
+        }
+
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
 
-        // 🔥 FIX: Restore Logic
         let restoreQty = currentSelection;
         if (!restoreQty && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
           restoreQty = savedOrderData.quantity;
         }
-
         renderQtyDropdowns();
-
         if (restoreQty) {
           $('#quick-qty').val(restoreQty);
           updatePrice(restoreQty, true);
         }
-
-        console.log("✅ Rates Synced from Server");
         return true;
       }
       return false;
-    })
-    .catch(err => {
-      console.log("❌ Rate fetch failed");
-      return false;
-    });
+    }).catch(err => false);
 
-  if (cacheValid) {
-    serverFetch;
-    return Promise.resolve(true);
-  } else {
-    return serverFetch;
-  }
+  if (cacheValid) { serverFetch; return Promise.resolve(true); } else { return serverFetch; }
 }
 
 function renderQtyDropdowns() {
@@ -1903,8 +2025,8 @@ function showToast(icon, title) {
 
 function sendToWhatsapp() {
   const d = successData;
-  const adminPhone = '7788990313'; // Admin Phone Number
   const safe = (val) => String(val || '').trim().toUpperCase();
+  const adminPhone = '7788990313'; // Admin Phone Number
 
   // 1. Language & Translations
   const lang = $('#language-select').val() || 'en';
@@ -1912,40 +2034,50 @@ function sendToWhatsapp() {
 
   const editText = t.wa_check_status;
 
-  // 2. Date Formatting
-  const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
-  const day = dateObj.getDate();
-  const month = dateObj.getMonth() + 1;
+  // 🔥 FIX: Date Logic
+  let dateObj = new Date();
+  if (d.timestamp) {
+    let serverDate = new Date(d.timestamp);
+    if (!isNaN(serverDate.getTime())) {
+      dateObj = serverDate;
+    }
+  }
+
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
   const year = dateObj.getFullYear();
-  const timeStr = dateObj.toLocaleTimeString('en-US', { hour12: true });
+
+  let hours = dateObj.getHours();
+  let minutes = String(dateObj.getMinutes()).padStart(2, '0');
+  let ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const timeStr = `${hours}:${minutes} ${ampm}`;
+
   const formattedTime = `${day}/${month}/${year}, ${timeStr}`;
 
-  // 3. Check Updates (🔥 ALL FIELDS CHECKED)
+  // 3. Check Updates
   let isUpdate = false;
   let changes = [];
 
   if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid == d.orderid) {
     isUpdate = true;
 
-    // 1. Quantity Check
+    if (safe(savedOrderData.name) !== safe(d.name))
+      changes.push(`👤 NAME: ${savedOrderData.name} ➡️ *${d.name}*`);
     if (String(savedOrderData.quantity) !== String(d.quantity))
       changes.push(`📦 QTY: ${savedOrderData.quantity} ➡️ *${d.quantity}*`);
-
-    // 2. Main Phone Check
     if (String(savedOrderData.phone) !== String(d.phone))
       changes.push(`📞 PHONE: ${savedOrderData.phone} ➡️ *${d.phone}*`);
 
-    // 3. Alt Phone Check
     const oldAlt = String(savedOrderData.altphone || '').trim();
     const newAlt = String(d.altphone || '').trim();
     if (oldAlt !== newAlt) changes.push(`📞 ALT PH: ${oldAlt || 'None'} ➡️ *${newAlt}*`);
 
-    // 4. WhatsApp Number Check (🔥 NEW ADDITION)
     const oldWa = String(savedOrderData.whatsapp || '').trim();
     const newWa = String(d.whatsapp || '').trim();
     if (oldWa !== newWa) changes.push(`💬 WA: ${oldWa} ➡️ *${newWa}*`);
 
-    // 5. Address Details Check
     if (safe(savedOrderData.house) !== safe(d.house)) changes.push(`🏠 HOUSE: *${safe(d.house)}*`);
     if (safe(savedOrderData.place) !== safe(d.place)) changes.push(`📍 PLACE: *${safe(d.place)}*`);
     if (safe(savedOrderData.postoffice) !== safe(d.postoffice)) changes.push(`📮 PO: *${safe(d.postoffice)}*`);
@@ -1972,19 +2104,26 @@ function sendToWhatsapp() {
     } else {
       header += `\n(Updated details confirmed)\n`;
     }
-
     header += `\n*👇 CURRENT DETAILS:*`;
   } else {
     header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
   }
 
-  // Alt Phone Display Logic
   let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
-  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*`;
+  // 🔥 NEW: Payment Screenshot Request (Language based)
+  let paymentNote = "";
+  if (lang === 'en') {
+    paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
+  } else {
+    paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+  }
 
+  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
+
+  // WhatsApp Link Opening
   window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
 }
 
@@ -2020,100 +2159,122 @@ function updateEditUIState(data) {
     updatePrice(data.quantity, true);
   }
 }
+// 🔥 SEND PAYMENT RECEIPT WHATSAPP (Updated Message)
+// 🔥 SEND PAYMENT RECEIPT (English + Malayalam Combined)
+window.sendPaymentWA = function (oid) {
+  let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
 
+  if (!order) {
+    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    order = cached.find(o => o.orderid === oid);
+  }
 
-// ----------
+  if (!order) { alert("Order Data Missing!"); return; }
 
+  let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
-// ============================================================
-// 🟢 PART 1: NEW ADMIN FEATURES (Radio Animation & Logic)
-// ============================================================
+  // 🔥 UNIFIED MESSAGE (English & Malayalam)
+  let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
 
-// 2. HELPER: Get Selected Phone Number (Auto Clean)
+  // Use Selected Number Logic
+  let phone = getSelectedWAPhone(order);
+
+  if (!phone) { alert("Please enter/select a valid number!"); return; }
+
+  // Open WhatsApp
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// 🔥 HELPER: Get Selected Phone Number
+// 🔥 HELPER: Get Selected Phone Number (Auto Clean)
 window.getSelectedWAPhone = function (order) {
   let selectedRaw = "";
-  // Check Radio Selection
+
+  // 1. Get raw value from inputs based on selection
   if ($('input[name="target_wa"]:checked').length > 0) {
     let selected = $('input[name="target_wa"]:checked').val();
+
     if (selected === 'phone') selectedRaw = $('#adm-phone').val() || order.phone;
     else if (selected === 'whatsapp') selectedRaw = $('#adm-whatsapp').val() || order.whatsapp || order.phone;
     else if (selected === 'alt') selectedRaw = $('#adm-alt').val();
-    else if (selected === 'paid') selectedRaw = $('#adm-paid').val();
+    else if (selected === 'paid') selectedRaw = $('#adm-paid').val(); // ഇവിടെ സ്പേസ് ഉള്ള നമ്പർ വരാം
   } else {
     selectedRaw = order.whatsapp || order.phone;
   }
 
+  // 2. CLEAN THE NUMBER (Space, +, - എല്ലാം കളയുന്നു)
   if (!selectedRaw) return "";
+
+  // Remove all non-numeric characters
   let cleanNum = String(selectedRaw).replace(/[^0-9]/g, '');
-  if (cleanNum.length === 10) cleanNum = '91' + cleanNum;
-  else if (cleanNum.length > 10 && cleanNum.startsWith('0')) cleanNum = '91' + cleanNum.substring(1);
+
+  // 3. Format Logic (10 അക്കമാണെങ്കിൽ 91 ചേർക്കുന്നു)
+  if (cleanNum.length === 10) {
+    cleanNum = '91' + cleanNum;
+  } else if (cleanNum.length > 10 && cleanNum.startsWith('91')) {
+    // Already has 91, do nothing
+  } else if (cleanNum.length > 10 && cleanNum.startsWith('0')) {
+    // Starts with 0 (e.g., 0987...), replace 0 with 91
+    cleanNum = '91' + cleanNum.substring(1);
+  }
+
   return cleanNum;
 }
 
-// 3. SAVE PAID NUMBER (With Animation)
+// 🔥 SAVE ONLY PAID NUMBER
 window.savePaidNumOnly = function (oid) {
   let rawNum = $('#adm-paid').val();
-  let cleanNum = rawNum.replace(/[^0-9]/g, '');
-  if (cleanNum.length < 10) { Swal.fire({ icon: 'warning', title: 'Invalid Number', timer: 1500, showConfirmButton: false }); return; }
 
+  // 1. Clean the number (Remove spaces, +, -, etc.)
+  // Example: "+91 999 999 9999" -> "919999999999"
+  let cleanNum = rawNum.replace(/[^0-9]/g, '');
+
+  // 2. Validate length (Optional warning)
+  if (cleanNum.length < 10) {
+    Swal.fire({ icon: 'warning', title: 'Invalid Number', text: 'Please enter a valid phone number', timer: 1500, showConfirmButton: false });
+    return;
+  }
+
+  // 3. UI Feedback (Loading)
   let btn = $('#adm-paid').next('button');
   let originalIcon = btn.html();
   btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
 
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum }) })
-    .then(res => res.json()).then(data => {
+  // 4. Send to Server
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum })
+  })
+    .then(res => res.json())
+    .then(data => {
       if (data.result === 'success') {
+        // Update Local Cache
         if (userData) userData.paidNum = cleanNum;
         if (savedOrderData) savedOrderData.paidNum = cleanNum;
 
+        // Show Success Tick
         btn.html('<i class="fas fa-check"></i>').removeClass('btn-outline-primary').addClass('btn-success');
         setTimeout(() => {
           btn.html('<i class="fas fa-save"></i>').removeClass('btn-success').addClass('btn-outline-primary').prop('disabled', false);
         }, 2000);
 
-        // Auto-select radio
+        // Select the radio button automatically
         $('input[name="target_wa"][value="paid"]').prop('checked', true);
+
       } else {
-        alert("Save Failed!"); btn.html(originalIcon).prop('disabled', false);
+        alert("Save Failed!");
+        btn.html(originalIcon).prop('disabled', false);
       }
-    }).catch(err => { alert("Network Error"); btn.html(originalIcon).prop('disabled', false); });
-}
-
-// 4. SAVE RADIO SELECTION (With Beautiful Animation)
-window.saveRadioSelection = function (oid, el) {
-  let holder = $(el).parent();
-  holder.find('.spinner-ring, .success-tick').remove();
-  holder.append('<div class="spinner-ring"></div>');
-  $('input[name="target_wa"]').prop('disabled', true); // Lock inputs
-
-  let selectedRadio = $(el).val();
-  let newFlag = 'M';
-  if (selectedRadio === 'whatsapp') newFlag = 'W';
-  else if (selectedRadio === 'alt') newFlag = 'A';
-  else if (selectedRadio === 'paid') newFlag = 'G';
-
-  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
-  let finalMeta = currentMeta + newFlag;
-
-  savedOrderData.adminMeta = finalMeta;
-  if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
-
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [{ oid: oid, action: 'meta', meta: finalMeta }] }) })
-    .then(res => res.json()).then(data => {
-      holder.find('.spinner-ring').remove();
-      holder.append('<div class="success-tick"><i class="fas fa-check-circle"></i></div>');
-      $('input[name="target_wa"]').prop('disabled', false); // Unlock
-      setTimeout(() => { holder.find('.success-tick').fadeOut(300, function () { $(this).remove(); }); }, 1500);
-    }).catch(err => {
-      holder.find('.spinner-ring').remove();
-      $('input[name="target_wa"]').prop('disabled', false);
-      alert("Failed to save selection!");
+    })
+    .catch(err => {
+      alert("Network Error");
+      btn.html(originalIcon).prop('disabled', false);
     });
 }
 
-
-// 2. NEW FUNCTION: Handle Dynamic Button Clicks
+// 🔥 NEW: HANDLE DYNAMIC QTY UPDATE (SENT vs PAID)
 window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty, newQty) {
+
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
   let finalPO = $('#edit-postoffice').val();
@@ -2128,7 +2289,10 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
-  // Meta Logic
+  const newName = $('#edit-name').val();
+  const newPhone = $('#edit-phone').val();
+
+  // META Logic
   let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
   let selectedRadio = $('input[name="target_wa"]:checked').val();
   let newFlag = 'M';
@@ -2140,13 +2304,23 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
   const finalData = {
-    orderid: editingOrderId, name: $('#edit-name').val(), phone: $('#edit-phone').val(),
-    whatsapp: $('#edit-whatsapp').val(), altphone: $('#edit-altphone').val(),
-    house: $('#edit-house').val(), place: $('#edit-place').val(),
-    pincode: $('#edit-pincode').val(), postoffice: finalPO,
-    district: $('#edit-district').val(), state: $('#edit-state').val(),
-    quantity: $('#quick-qty').val(), paidNum: $('#edit-paid-by').val() || '',
-    adminMeta: finalMeta, message: '', custId: myCustId, language: custLang
+    orderid: editingOrderId,
+    name: newName,
+    phone: newPhone,
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: $('#edit-pincode').val(),
+    postoffice: finalPO,
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
+    quantity: $('#quick-qty').val(),
+    paidNum: $('#edit-paid-by').val() || '',
+    adminMeta: finalMeta,
+    message: '',
+    custId: myCustId,
+    language: custLang
   };
 
   showLoader(true);
@@ -2158,14 +2332,13 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
         method: 'POST',
         body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: targetStatus }] })
       }).then(() => {
-        // Update Local & UI
         updateLocalCache(finalData, targetStatus);
         savedOrderData.quantity = newQty;
         savedOrderData.adminMeta = finalMeta;
+
         updateAdminUI(targetStatus, finalData.orderid);
         showLoader(false);
 
-        // Prepare WhatsApp Message
         let msg = "";
         let targetPhone = getSelectedWAPhone(finalData);
 
@@ -2183,13 +2356,72 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
           }
         }
 
-        // Open WhatsApp
+        // 🔥 SIMPLE WA OPEN
         window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
 
-        // Reset UI
         $('#admin-qty-actions').slideUp();
         $('#admin-diff-viewer').slideUp();
         $('#admin-action-bar').slideDown();
       });
+    });
+}
+
+// 🔥 SAVE RADIO SELECTION (With Beautiful Animation)
+window.saveRadioSelection = function (oid, el) {
+  // 1. Setup UI (Show Spinner)
+  let holder = $(el).parent(); // .radio-holder
+  // Remove existing animations if any
+  holder.find('.spinner-ring, .success-tick').remove();
+
+  // Add Spinner around radio
+  holder.append('<div class="spinner-ring"></div>');
+
+  // Temporarily disable all radios to prevent spam
+  $('input[name="target_wa"]').prop('disabled', true);
+
+  // 2. Logic
+  let selectedRadio = $(el).val();
+  let newFlag = 'M';
+  if (selectedRadio === 'whatsapp') newFlag = 'W';
+  else if (selectedRadio === 'alt') newFlag = 'A';
+  else if (selectedRadio === 'paid') newFlag = 'G';
+
+  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
+  let finalMeta = currentMeta + newFlag;
+
+  savedOrderData.adminMeta = finalMeta;
+  if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
+
+  // 3. Server Call
+  fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'bulkUpdateStatus',
+      updates: [{ oid: oid, action: 'meta', meta: finalMeta }]
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      // 4. Success Animation
+      holder.find('.spinner-ring').remove(); // Stop Spinner
+
+      // Show Green Tick on top of radio
+      holder.append('<div class="success-tick"><i class="fas fa-check-circle"></i></div>');
+
+      // Re-enable radios
+      $('input[name="target_wa"]').prop('disabled', false);
+
+      // Fade out tick after 1.5 seconds
+      setTimeout(() => {
+        holder.find('.success-tick').fadeOut(300, function () { $(this).remove(); });
+      }, 1500);
+
+      console.log("Meta Saved:", finalMeta);
+    })
+    .catch(err => {
+      // Error Handling
+      holder.find('.spinner-ring').remove();
+      $('input[name="target_wa"]').prop('disabled', false);
+      alert("Failed to save selection!");
     });
 }
