@@ -14,7 +14,8 @@ let currentLoginPhone = null;
 let isEditMode = false;
 var savedOrderData = {};
 let globalQtyList = [];
-
+let courierRates = {};
+let adminPhone = '7788990313';
 const STORAGE_KEY = 'kafakCustomerData';
 
 const SafeStorage = {
