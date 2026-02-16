@@ -357,8 +357,7 @@ function setRefreshLoading(isLoading) {
 }
 
 // 🔥 UPDATED: PERFECT SYNC LOGIC
-// 1. DATA CLEANING
-// 🔥 UPDATED: PERFECT SYNC LOGIC (Server Data Priority Fixed)
+// 🔥 UPDATED: FORCE SERVER DATA PRIORITY (Fixes 'Paid' showing as 'Pending')
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
@@ -376,28 +375,48 @@ function syncUserDataBackground(phone) {
       if (userRes && userRes.result === 'success' && userRes.data) {
         let serverData = userRes.data;
 
-        // 1. സാധാരണ വിവരങ്ങൾ ലോക്കൽ ഡാറ്റ വെച്ച് അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-        finalData = { ...serverData, ...localData };
+        // 1. Merge: Server Data Overwrites Local Data (For Critical Fields)
+        // പഴയ കോഡിൽ localData ആയിരുന്നു അവസാനം, അതാണ് പ്രശ്നം.
+        // ഇവിടെ നമ്മൾ ക്രിട്ടിക്കൽ ആയ കാര്യങ്ങൾ സെർവറിൽ നിന്ന് നിർബന്ധപൂർവ്വം എടുക്കുന്നു.
 
-        // 🔥 FIX: പക്ഷെ ഈ കാര്യങ്ങൾ സെർവറിൽ നിന്ന് തന്നെ എടുക്കണം (Force Server Priority)
+        finalData = { ...localData, ...serverData };
+
+        // 🔥 FORCE CRITICAL FIELDS FROM SERVER
+        // ലോക്കലിൽ "Pending" എന്ന് കിടന്നാലും സെർവറിൽ "Paid" ആണെങ്കിൽ "Paid" തന്നെ എടുക്കും.
         finalData.Status = serverData.Status || serverData.status || "Pending";
-        finalData.adminMeta = serverData.adminMeta; // Admin Meta സെർവറിൽ നിന്നുള്ളത് തന്നെ വേണം
-        finalData.paidNum = serverData.paidNum;     // Paid Number ഉം സെർവറിൽ നിന്നുള്ളത് വേണം
-        finalData.language = serverData.language;   // Language ഉം സെർവറിൽ നിന്നുള്ളത് വേണം
+        finalData.adminMeta = serverData.adminMeta;
+        finalData.paidNum = serverData.paidNum;
+        finalData.language = serverData.language;
+        finalData.tracking = serverData.tracking;
+        finalData['Dispatched Date'] = serverData['Dispatched Date'];
+        finalData.paidDate = serverData.paidDate;
+
+        // Preserve unsaved address edits from local if status is editable
+        const s = String(finalData.Status).toLowerCase();
+        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(s)) {
+          // Pending ആണെങ്കിൽ മാത്രം ലോക്കലിലെ പേരും അഡ്രസ്സും നിലനിർത്താം (കസ്റ്റമർ എഡിറ്റ് ചെയ്തുകൊണ്ടിരിക്കുകയാണെങ്കിൽ)
+          if (localData.name) finalData.name = localData.name;
+          if (localData.house) finalData.house = localData.house;
+          if (localData.place) finalData.place = localData.place;
+          if (localData.postoffice) finalData.postoffice = localData.postoffice;
+          if (localData.pincode) finalData.pincode = localData.pincode;
+        }
 
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
-          let s = String(finalData.Status).toLowerCase();
 
-          // Finished Orders -> New Order Mode
+          // Finished Orders -> New Order Mode logic
           if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
             finalData.quantity = null;
             delete finalData.quantity;
           }
         }
+
         userData = finalData;
         savedOrderData = JSON.parse(JSON.stringify(finalData));
+
+        // Update Local Storage with new Truth
         saveToLocal(phone, finalData);
       }
       renderEditView(finalData);
