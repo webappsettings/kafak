@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxvG8a6HlWtTFUyRVVM3tBofrlv0sJixLoYLoE4TztxDzPMgcHhZ1yzfz3FcXnxZTfDHg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbymVE4fDgG656ZLBBBS_5uqjuOJu8IbUCaX3VobNkziWmM1-rOjQpRWIhS3y__pxsIqtg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -765,6 +765,27 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         }
     }
 
+    if (currentStatus === 'Completed' || currentStatus === 'Delivered') {
+        let delDateStr = d['Delivered Date'] || d.actionDate; // Delivered Date എടുക്കുന്നു
+
+        let dateDisplay = '';
+        if (delDateStr) {
+            let dateObj = new Date(delDateStr);
+            let fmtDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+
+            dateDisplay = `
+            <div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-size:11px; color:#15803d; font-weight:700;">
+                    <i class="fas fa-check-circle me-1"></i> Delivered: ${fmtDate}
+                </div>
+                <button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '${delDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button>
+            </div>`;
+        }
+
+        // Buttons variable-ലേക്ക് ഇത് ചേർക്കുന്നു
+        buttons = dateDisplay + `<button class="btn btn-secondary w-100 disabled" style="opacity:0.7;">Order Completed</button>`;
+    }
+
     // 🔥 HEADER: COPY ICON MOVED OUTSIDE
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-2">
@@ -1213,6 +1234,16 @@ function updateOrder(oid, status, trackingNum = null, skipConfirm = false, custo
         if (status === 'Dispatched' && !allOrders[orderIndex]['Dispatched Date']) {
             allOrders[orderIndex]['Dispatched Date'] = updateObj.actionDate;
         }
+        if ((status === 'Completed' || status === 'Delivered')) {
+            // പഴയ ഡേറ്റ് ഇല്ലെങ്കിൽ മാത്രം പുതിയത് ചേർക്കുക
+            if (!allOrders[orderIndex]['Delivered Date']) {
+                allOrders[orderIndex]['Delivered Date'] = updateObj.actionDate;
+            }
+            // കസ്റ്റം ഡേറ്റ് നൽകിയിട്ടുണ്ടെങ്കിൽ അത് അപ്‌ഡേറ്റ് ചെയ്യുക
+            if (customDate) {
+                allOrders[orderIndex]['Delivered Date'] = customDate;
+            }
+        }
 
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
@@ -1266,6 +1297,39 @@ window.editDispatchDate = async function (oid, currentDate) {
         // Save locally & Sync
         // Format it to ISO String or keep as YYYY-MM-DD HH:MM for simplicity in script
         updateOrder(oid, 'Dispatched', null, true, newDate);
+    }
+}
+
+// 🔥 EDIT DELIVERED DATE
+window.editDeliveredDate = async function (oid, currentDate) {
+    const { value: newDate } = await Swal.fire({
+        title: 'Change Delivered Date',
+        html: `
+            <div style="text-align:center;">
+                <input type="text" id="del-date-input" class="form-control text-center fw-bold" 
+                       style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
+                       placeholder="Select Date...">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Update',
+        confirmButtonColor: '#198754', // Green
+        didOpen: () => {
+            flatpickr("#del-date-input", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                defaultDate: currentDate || new Date(),
+                theme: "material_blue",
+                disableMobile: true
+            });
+        },
+        preConfirm: () => document.getElementById('del-date-input').value
+    });
+
+    if (newDate) {
+        // Status മാറ്റാതെ തന്നെ ഡേറ്റ് മാത്രം അപ്‌ഡേറ്റ് ചെയ്യുന്നു
+        // അതിനായി വീണ്ടും 'Completed' സ്റ്റാറ്റസ് തന്നെ അയക്കുന്നു
+        updateOrder(oid, 'Completed', null, true, newDate);
     }
 }
 
