@@ -546,65 +546,132 @@ function renderTabs(orders) {
         }
     });
 
-    // 8. UPDATE BADGES (Main & Sub)
+    // ---------------------------------------------------------
+    // 8. UPDATE BADGES (With Bottle Counts & State Dots)
+    // ---------------------------------------------------------
+
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // Sub-Tab Badges (Standard - Pending Only)
+    // Sub-Tab Badges (Pending)
     const setBadge = (id, val) => {
         if (document.getElementById(id)) document.getElementById(id).innerText = val;
     };
     setBadge('badge-sub-new', subCounts.new);
     setBadge('badge-sub-sent', subCounts.sent);
 
-    // 🔥 CUSTOM: Paid Sub-tabs with Bottle Count
-    let pNewQty = 0, pPrintQty = 0;
+    // 🔥 STATE STATS COLLECTOR
+    let stateStats = {
+        paid_new: { lak: 0, kar: 0, tn: 0, other: 0 },
+        paid_print: { lak: 0, kar: 0, tn: 0, other: 0 },
+        disp_new: { lak: 0, kar: 0, tn: 0, other: 0 },
+        disp_track: { lak: 0, kar: 0, tn: 0, other: 0 }
+    };
+
+    // 🔥 BOTTLE & STATE COUNTER LOOP
+    let pNewQty = 0, pPrintQty = 0, dNewQty = 0, dTrackQty = 0;
+
     orders.forEach(o => {
-        if (o.Status === 'Paid') {
-            let q = parseInt(o.quantity) || 0;
-            if ((o.adminMeta || '').indexOf('P') !== -1) pPrintQty += q;
-            else pNewQty += q;
+        let q = parseInt(o.quantity) || 0;
+        let s = String(o.state || '').toUpperCase().trim();
+        let meta = getMetaStatus(o.adminMeta);
+
+        // 1. Identify Non-Kerala State
+        let stateKey = null;
+        if (s && s !== 'KERALA') {
+            if (s.includes('LAK')) stateKey = 'lak';       // Lakshadweep
+            else if (s.includes('KARN')) stateKey = 'kar'; // Karnataka
+            else if (s.includes('TAMIL') || s.includes('TN')) stateKey = 'tn'; // Tamil Nadu
+            else stateKey = 'other'; // Other States
         }
-    });
 
-    let bPaidNew = document.getElementById('badge-paid-new');
-    if (bPaidNew) bPaidNew.innerHTML = `${subCounts.paid_new} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pNewQty}</span>`;
-
-    let bPaidPrint = document.getElementById('badge-paid-printed');
-    if (bPaidPrint) bPaidPrint.innerHTML = `${subCounts.paid_print} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pPrintQty}</span>`;
-
-    // 🔥 CUSTOM: Dispatched Sub-tabs with Bottle Count (New Feature)
-    let dNewQty = 0, dTrackQty = 0;
-    orders.forEach(o => {
-        if (o.Status === 'Dispatched') {
-            let q = parseInt(o.quantity) || 0;
-            // Logic: Has Tracking OR 'T' flag -> Tracked Tab
-            let meta = getMetaStatus(o.adminMeta);
+        // 2. Paid Tab Stats
+        if (o.Status === 'Paid') {
+            if (meta.isPrinted) {
+                pPrintQty += q;
+                if (stateKey) stateStats.paid_print[stateKey]++;
+            } else {
+                pNewQty += q;
+                if (stateKey) stateStats.paid_new[stateKey]++;
+            }
+        }
+        // 3. Dispatched Tab Stats
+        else if (o.Status === 'Dispatched') {
             if (o.tracking || meta.isTracked) {
                 dTrackQty += q;
+                if (stateKey) stateStats.disp_track[stateKey]++;
             } else {
                 dNewQty += q;
+                if (stateKey) stateStats.disp_new[stateKey]++;
             }
         }
     });
 
-    let bDispNew = document.getElementById('badge-disp-new');
-    if (bDispNew) bDispNew.innerHTML = `${subCounts.disp_new} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${dNewQty}</span>`;
+    // 🔥 HELPER: GENERATE COLORED DOTS HTML
+    const getDotsHtml = (stats) => {
+        let html = '';
+        // Blue Dot (Lakshadweep)
+        if (stats.lak > 0) html += `<span class="state-dot" style="background:#0dcaf0;" title="Lakshadweep">${stats.lak}</span>`;
+        // Dark Yellow Dot (Karnataka)
+        if (stats.kar > 0) html += `<span class="state-dot" style="background:#d97706;" title="Karnataka">${stats.kar}</span>`;
+        // Coffee Dot (Tamil Nadu)
+        if (stats.tn > 0) html += `<span class="state-dot" style="background:#795548;" title="Tamil Nadu">${stats.tn}</span>`;
+        // Magenta Dot (Others)
+        if (stats.other > 0) html += `<span class="state-dot" style="background:#d63384;" title="Other State">${stats.other}</span>`;
 
-    let bDispTrack = document.getElementById('badge-disp-tracked');
-    if (bDispTrack) bDispTrack.innerHTML = `${subCounts.disp_track} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${dTrackQty}</span>`;
+        return html ? `<div class="d-flex gap-1 ms-1 align-items-center">${html}</div>` : '';
+    };
+
+    // 🔥 INJECT CSS FOR DOTS (One time)
+    if (!$('#state-dot-css').length) {
+        $('<style id="state-dot-css">').html(`
+            .state-dot {
+                width: 14px; height: 14px;
+                border-radius: 50%;
+                color: white;
+                font-size: 8px;
+                font-weight: bold;
+                display: flex; justify-content: center; align-items: center;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            }
+        `).appendTo('head');
+    }
+
+    // 🔥 UPDATE BADGES WITH BOTTLES & DOTS
+    // 1. Paid > New
+    let elPaidNew = document.getElementById('badge-paid-new');
+    if (elPaidNew) {
+        elPaidNew.innerHTML = `${subCounts.paid_new} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${pNewQty}</span> ${getDotsHtml(stateStats.paid_new)}`;
+    }
+
+    // 2. Paid > Printed
+    let elPaidPrint = document.getElementById('badge-paid-printed');
+    if (elPaidPrint) {
+        elPaidPrint.innerHTML = `${subCounts.paid_print} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${pPrintQty}</span> ${getDotsHtml(stateStats.paid_print)}`;
+    }
+
+    // 3. Dispatched > New
+    let elDispNew = document.getElementById('badge-disp-new');
+    if (elDispNew) {
+        elDispNew.innerHTML = `${subCounts.disp_new} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${dNewQty}</span> ${getDotsHtml(stateStats.disp_new)}`;
+    }
+
+    // 4. Dispatched > Tracked
+    let elDispTrack = document.getElementById('badge-disp-tracked');
+    if (elDispTrack) {
+        elDispTrack.innerHTML = `${subCounts.disp_track} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${dTrackQty}</span> ${getDotsHtml(stateStats.disp_track)}`;
+    }
 
     updateSyncButtonUI();
     checkSelectAllStatus();
 
     let savedScroll = localStorage.getItem('lastScrollPosition');
     if (savedScroll && parseInt(savedScroll) > 0) {
-        setTimeout(() => {
-            window.scrollTo(0, parseInt(savedScroll));
-        }, 100);
+        setTimeout(() => { window.scrollTo(0, parseInt(savedScroll)); }, 100);
     }
 }
+
 function updateBadgeUI(elementId, orderCount, bottleCount) {
     const el = document.getElementById(elementId);
     if (el) {
