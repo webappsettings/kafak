@@ -2495,81 +2495,7 @@ window.viewReceipt = function (url) {
     });
 }
 
-// 🔥 SHOW ADD EXPENSE MODAL (Date Picker Fixed)
-// 🔥 LOAD FLATPICKR (Beautiful Date Picker)
-function loadFlatpickr(callback) {
-    if (typeof flatpickr !== 'undefined') { callback(); return; }
 
-    // 1. Load CSS (Material Blue Theme)
-    let link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://npmcdn.com/flatpickr/dist/themes/material_blue.css';
-    document.head.appendChild(link);
-
-    // 2. Load JS
-    let script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/flatpickr';
-    script.onload = callback;
-    document.head.appendChild(script);
-}
-
-// 🔥 SHOW ADD EXPENSE MODAL (New Beautiful UI 📅)
-window.showAddExpenseModal = function () {
-    // Load Flatpickr first, then show Modal
-    loadFlatpickr(() => {
-        Swal.fire({
-            title: 'Add New Expense 🧾',
-            html: `
-                <div style="text-align:left; font-size:14px;">
-                    <label class="fw-bold" style="color:#2563eb;">📅 Date & Time</label>
-                    <input type="text" id="exp-date" class="form-control mb-2 bg-white" placeholder="Tap to select Date & Time..." readonly>
-
-                    <label class="fw-bold mt-2">📂 Category</label>
-                    <select id="exp-category" class="form-select mb-2">
-                        <option value="Material Purchase">Material Purchase</option>
-                        <option value="Packaging Material">Packaging Material</option>
-                        <option value="Marketing/Ads">Marketing / Ads</option>
-                        <option value="Transport/Fuel">Transport / Fuel</option>
-                        <option value="Salary/Wages">Salary / Wages</option>
-                        <option value="Office Expense">Office Expense</option>
-                        <option value="Refund">Refund</option>
-                        <option value="Other">Other</option>
-                    </select>
-
-                    <label class="fw-bold">🏪 Vendor / Shop Name</label>
-                    <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
-
-                    <label class="fw-bold">📝 Description</label>
-                    <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Ex: 50kg Honey..."></textarea>
-
-                    <label class="fw-bold">💰 Amount (₹)</label>
-                    <input type="number" id="exp-amount" class="form-control mb-2" placeholder="0.00">
-                    
-                    <label class="fw-bold">📸 Upload Proof (Optional)</label>
-                    <input type="file" id="exp-proof" class="form-control mb-2" accept="image/*">
-
-                    <button id="btn-save-exp" class="btn btn-primary w-100 mt-3 py-2 fw-bold shadow-sm" onclick="submitExpense(event)" style="border-radius: 50px;">
-                        <i class="fas fa-check-circle"></i> SAVE EXPENSE
-                    </button>
-                </div>
-            `,
-            showConfirmButton: false,
-            showCloseButton: true,
-            didOpen: () => {
-                // 🔥 Initialize Flatpickr (The Magic Part)
-                flatpickr("#exp-date", {
-                    enableTime: true,
-                    dateFormat: "Y-m-dTH:i", // Backend format
-                    altInput: true,
-                    altFormat: "F j, Y at h:i K", // User sees: "February 17, 2026 at 4:30 PM"
-                    defaultDate: new Date(),
-                    time_24hr: false,
-                    disableMobile: "true" // Forces the beautiful desktop theme on mobile too
-                });
-            }
-        });
-    });
-}
 
 
 // 🔥 UPDATED: ADD EXPENSE (WITH OFFLINE SUPPORT)
@@ -3315,4 +3241,85 @@ window.copyToClipboard = function (text) {
     navigator.clipboard.writeText(text).then(() => {
         showToast('success', 'Copied: ' + text);
     }).catch(err => console.error('Copy failed', err));
+}
+
+
+
+// ==========================================
+// 🔥 BEAUTIFUL DATE PICKER (Flatpickr)
+// ==========================================
+
+// 1. Load Flatpickr Library Dynamically
+function loadFlatpickr(callback) {
+    if (typeof flatpickr !== 'undefined') { callback(); return; }
+
+    // Load CSS (Blue Theme)
+    let link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://npmcdn.com/flatpickr/dist/themes/material_blue.css';
+    document.head.appendChild(link);
+
+    // Load JS
+    let script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/flatpickr';
+    script.onload = callback;
+    document.head.appendChild(script);
+}
+
+// 2. Show Modal with Beautiful Date Picker
+window.showAddExpenseModal = function () {
+    // Load Flatpickr first, then open Modal
+    loadFlatpickr(() => {
+        Swal.fire({
+            title: 'Add New Expense 🧾',
+            html: `
+                <div style="text-align:left; font-size:14px;">
+                    <label class="fw-bold" style="color:#2563eb;">📅 Date & Time</label>
+                    <input type="text" id="exp-date" class="form-control mb-2 bg-white" placeholder="Select Date & Time..." readonly>
+
+                    <label class="fw-bold mt-2">📂 Category</label>
+                    <select id="exp-category" class="form-select mb-2">
+                        <option value="Material Purchase">Material Purchase</option>
+                        <option value="Packaging Material">Packaging Material</option>
+                        <option value="Marketing/Ads">Marketing / Ads</option>
+                        <option value="Transport/Fuel">Transport / Fuel</option>
+                        <option value="Salary/Wages">Salary / Wages</option>
+                        <option value="Office Expense">Office Expense</option>
+                        <option value="Refund">Refund</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label class="fw-bold">🏪 Vendor / Shop Name</label>
+                    <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
+
+                    <label class="fw-bold">📝 Description</label>
+                    <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Ex: 50kg Honey..."></textarea>
+
+                    <label class="fw-bold">💰 Amount (₹)</label>
+                    <input type="number" id="exp-amount" class="form-control mb-2" placeholder="0.00">
+                    
+                    <label class="fw-bold">📸 Upload Proof (Optional)</label>
+                    <input type="file" id="exp-proof" class="form-control mb-2" accept="image/*">
+
+                    <button id="btn-save-exp" class="btn btn-primary w-100 mt-3 py-2 fw-bold shadow-sm" onclick="submitExpense(event)" style="border-radius: 50px;">
+                        <i class="fas fa-check-circle"></i> SAVE EXPENSE
+                    </button>
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true,
+            didOpen: () => {
+                // 🔥 Activate Flatpickr (Date -> Then Clock)
+                flatpickr("#exp-date", {
+                    enableTime: true,
+                    dateFormat: "Y-m-d\\TH:i", // Backend Format
+                    altInput: true,
+                    altFormat: "F j, Y at h:i K", // User sees: "February 17, 2026 at 4:30 PM"
+                    defaultDate: new Date(),
+                    time_24hr: false,
+                    disableMobile: "true" // Force Beautiful UI on Mobile
+                });
+            }
+        });
+    });
 }
