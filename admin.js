@@ -2472,6 +2472,73 @@ window.viewReceipt = function (url) {
     });
 }
 
+// 🔥 SHOW ADD EXPENSE MODAL (Date Picker Fixed)
+window.showAddExpenseModal = function () {
+    // 1. Get Correct Local Time (IST)
+    const now = new Date();
+    const offset = now.getTimezoneOffset() * 60000;
+    const localISOTime = new Date(now.getTime() - offset).toISOString().slice(0, 16);
+
+    Swal.fire({
+        title: 'Add New Expense 🧾',
+        html: `
+            <div style="text-align:left; font-size:14px;">
+                <label class="fw-bold">📅 Date & Time</label>
+                <input type="datetime-local" id="exp-date" class="form-control mb-2" value="${localISOTime}" step="any" required>
+
+                <label class="fw-bold">📂 Category</label>
+                <select id="exp-category" class="form-select mb-2">
+                    <option value="Material Purchase">Material Purchase</option>
+                    <option value="Packaging Material">Packaging Material</option>
+                    <option value="Marketing/Ads">Marketing / Ads</option>
+                    <option value="Transport/Fuel">Transport / Fuel</option>
+                    <option value="Salary/Wages">Salary / Wages</option>
+                    <option value="Office Expense">Office Expense</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label class="fw-bold">🏪 Vendor / Shop Name</label>
+                <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
+
+                <label class="fw-bold">📝 Description (Items)</label>
+                <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Ex: 50kg Honey, 100 Bottles..."></textarea>
+
+                <label class="fw-bold">💰 Amount (₹)</label>
+                <input type="number" id="exp-amount" class="form-control mb-2" placeholder="0.00">
+
+                <label class="fw-bold">🧾 Bill Reference (Optional)</label>
+                <input type="text" id="exp-billref" class="form-control mb-2" placeholder="Invoice No / Trans ID">
+                
+                <label class="fw-bold">📸 Upload Proof (Optional)</label>
+                <input type="file" id="exp-proof" class="form-control mb-2" accept="image/*,application/pdf">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Save Expense',
+        confirmButtonColor: '#d33',
+        preConfirm: () => {
+            const date = document.getElementById('exp-date').value;
+            const category = document.getElementById('exp-category').value;
+            const vendor = document.getElementById('exp-vendor').value;
+            const desc = document.getElementById('exp-desc').value;
+            const amount = document.getElementById('exp-amount').value;
+            const billRef = document.getElementById('exp-billref').value;
+            const fileInput = document.getElementById('exp-proof');
+
+            if (!date || !amount || !vendor) {
+                Swal.showValidationMessage('Please fill Date, Vendor & Amount');
+                return false;
+            }
+
+            return { date, category, vendor, desc, amount, billRef, file: fileInput.files[0] };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            submitExpense(result.value);
+        }
+    });
+}
+
 
 // 🔥 UPDATED: ADD EXPENSE (WITH OFFLINE SUPPORT)
 // 🔥 UPDATED: SUBMIT EXPENSE (With Refund Logic)
