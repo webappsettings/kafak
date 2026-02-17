@@ -546,43 +546,54 @@ function renderTabs(orders) {
         }
     });
 
-    updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
-
     // 8. UPDATE BADGES (Main & Sub)
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // Sub-Tab Badges (Standard)
+    // Sub-Tab Badges (Standard - Pending Only)
     const setBadge = (id, val) => {
         if (document.getElementById(id)) document.getElementById(id).innerText = val;
     };
     setBadge('badge-sub-new', subCounts.new);
     setBadge('badge-sub-sent', subCounts.sent);
-    setBadge('badge-disp-new', subCounts.disp_new);
-    setBadge('badge-disp-tracked', subCounts.disp_track);
 
-    // 🔥 CUSTOM: Paid Sub-tabs with Bottle Count (Icon Style)
-    // 1. Calculate Bottle Counts for Sub-tabs
+    // 🔥 CUSTOM: Paid Sub-tabs with Bottle Count
     let pNewQty = 0, pPrintQty = 0;
     orders.forEach(o => {
-        if (o.Status === 'Paid') { // Using 'Paid' status directly
+        if (o.Status === 'Paid') {
             let q = parseInt(o.quantity) || 0;
-            // Check if Printed ('P' in Meta)
-            if ((o.adminMeta || '').indexOf('P') !== -1) {
-                pPrintQty += q;
+            if ((o.adminMeta || '').indexOf('P') !== -1) pPrintQty += q;
+            else pNewQty += q;
+        }
+    });
+
+    let bPaidNew = document.getElementById('badge-paid-new');
+    if (bPaidNew) bPaidNew.innerHTML = `${subCounts.paid_new} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pNewQty}</span>`;
+
+    let bPaidPrint = document.getElementById('badge-paid-printed');
+    if (bPaidPrint) bPaidPrint.innerHTML = `${subCounts.paid_print} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pPrintQty}</span>`;
+
+    // 🔥 CUSTOM: Dispatched Sub-tabs with Bottle Count (New Feature)
+    let dNewQty = 0, dTrackQty = 0;
+    orders.forEach(o => {
+        if (o.Status === 'Dispatched') {
+            let q = parseInt(o.quantity) || 0;
+            // Logic: Has Tracking OR 'T' flag -> Tracked Tab
+            let meta = getMetaStatus(o.adminMeta);
+            if (o.tracking || meta.isTracked) {
+                dTrackQty += q;
             } else {
-                pNewQty += q;
+                dNewQty += q;
             }
         }
     });
 
-    // 2. Update Badges with Icon (Using innerHTML)
-    let bNew = document.getElementById('badge-paid-new');
-    if (bNew) bNew.innerHTML = `${subCounts.paid_new} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pNewQty}</span>`;
+    let bDispNew = document.getElementById('badge-disp-new');
+    if (bDispNew) bDispNew.innerHTML = `${subCounts.disp_new} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${dNewQty}</span>`;
 
-    let bPrint = document.getElementById('badge-paid-printed');
-    if (bPrint) bPrint.innerHTML = `${subCounts.paid_print} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pPrintQty}</span>`;
+    let bDispTrack = document.getElementById('badge-disp-tracked');
+    if (bDispTrack) bDispTrack.innerHTML = `${subCounts.disp_track} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${dTrackQty}</span>`;
 
     updateSyncButtonUI();
     checkSelectAllStatus();
@@ -591,7 +602,7 @@ function renderTabs(orders) {
     if (savedScroll && parseInt(savedScroll) > 0) {
         setTimeout(() => {
             window.scrollTo(0, parseInt(savedScroll));
-        }, 100); // കാർഡുകൾ ലോഡ് ആകാൻ ഒരു 100ms സമയം കൊടുക്കുന്നു
+        }, 100);
     }
 }
 function updateBadgeUI(elementId, orderCount, bottleCount) {
