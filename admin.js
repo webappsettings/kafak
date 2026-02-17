@@ -40,45 +40,6 @@ function getMetaStatus(metaStr) {
     };
 }
 
-// 🔥 UPDATE ADMIN META
-function updateAdminMeta(oid, type, value) {
-    let order = allOrders.find(o => o.orderid === oid);
-    if (!order) return;
-
-    let currentMeta = String(order.adminMeta || '');
-    let oldMeta = currentMeta;
-    let newMeta = currentMeta;
-
-    // 1. Contact Selection (M, W, A, G)
-    if (type === 'contact') {
-        newMeta = newMeta.replace(/[MWAG]/g, ''); // Remove existing
-        newMeta += value; // Add new (M, W, A, or G)
-    }
-    // 2. Printed (P)
-    else if (type === 'printed') {
-        if (!newMeta.includes('P')) newMeta += 'P';
-    }
-    else if (type === 'tracked') {
-        if (!newMeta.includes('T')) newMeta += 'T';
-    }
-
-    order.adminMeta = newMeta;
-    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-
-    // Sync Queue
-    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    let existingUpd = updates.find(u => u.oid === oid && u.action === 'meta');
-
-    if (existingUpd) {
-        existingUpd.meta = newMeta;
-        if (existingUpd.oldMeta === undefined) existingUpd.oldMeta = oldMeta;
-    } else {
-        updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: oldMeta, status: order.Status });
-    }
-
-    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-    renderTabs(allOrders);
-}
 
 // Update Meta String Locally & Queue for Sync
 // 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
