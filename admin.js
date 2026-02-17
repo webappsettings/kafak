@@ -592,16 +592,36 @@ function renderTabs(orders) {
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // Sub-Tab Badges
+    // Sub-Tab Badges (Standard)
     const setBadge = (id, val) => {
         if (document.getElementById(id)) document.getElementById(id).innerText = val;
     };
     setBadge('badge-sub-new', subCounts.new);
     setBadge('badge-sub-sent', subCounts.sent);
-    setBadge('badge-paid-new', subCounts.paid_new);
-    setBadge('badge-paid-printed', subCounts.paid_print);
     setBadge('badge-disp-new', subCounts.disp_new);
     setBadge('badge-disp-tracked', subCounts.disp_track);
+
+    // 🔥 CUSTOM: Paid Sub-tabs with Bottle Count (Icon Style)
+    // 1. Calculate Bottle Counts for Sub-tabs
+    let pNewQty = 0, pPrintQty = 0;
+    orders.forEach(o => {
+        if (o.Status === 'Paid') { // Using 'Paid' status directly
+            let q = parseInt(o.quantity) || 0;
+            // Check if Printed ('P' in Meta)
+            if ((o.adminMeta || '').indexOf('P') !== -1) {
+                pPrintQty += q;
+            } else {
+                pNewQty += q;
+            }
+        }
+    });
+
+    // 2. Update Badges with Icon (Using innerHTML)
+    let bNew = document.getElementById('badge-paid-new');
+    if (bNew) bNew.innerHTML = `${subCounts.paid_new} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pNewQty}</span>`;
+
+    let bPrint = document.getElementById('badge-paid-printed');
+    if (bPrint) bPrint.innerHTML = `${subCounts.paid_print} <span style="font-size:0.85em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:10px;"></i> ${pPrintQty}</span>`;
 
     updateSyncButtonUI();
     checkSelectAllStatus();
@@ -2169,6 +2189,9 @@ function renderDashboard() {
     let monthBottles = 0, yearBottles = 0;
     let monthOrders = 0, yearOrders = 0;
 
+    let paidNewQty = 0;
+    let paidPrintedQty = 0;
+
     allOrders.forEach(o => {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
@@ -2473,69 +2496,78 @@ window.viewReceipt = function (url) {
 }
 
 // 🔥 SHOW ADD EXPENSE MODAL (Date Picker Fixed)
+// 🔥 LOAD FLATPICKR (Beautiful Date Picker)
+function loadFlatpickr(callback) {
+    if (typeof flatpickr !== 'undefined') { callback(); return; }
+
+    // 1. Load CSS (Material Blue Theme)
+    let link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://npmcdn.com/flatpickr/dist/themes/material_blue.css';
+    document.head.appendChild(link);
+
+    // 2. Load JS
+    let script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/flatpickr';
+    script.onload = callback;
+    document.head.appendChild(script);
+}
+
+// 🔥 SHOW ADD EXPENSE MODAL (New Beautiful UI 📅)
 window.showAddExpenseModal = function () {
-    // 1. Get Correct Local Time (IST)
-    const now = new Date();
-    const offset = now.getTimezoneOffset() * 60000;
-    const localISOTime = new Date(now.getTime() - offset).toISOString().slice(0, 16);
+    // Load Flatpickr first, then show Modal
+    loadFlatpickr(() => {
+        Swal.fire({
+            title: 'Add New Expense 🧾',
+            html: `
+                <div style="text-align:left; font-size:14px;">
+                    <label class="fw-bold" style="color:#2563eb;">📅 Date & Time</label>
+                    <input type="text" id="exp-date" class="form-control mb-2 bg-white" placeholder="Tap to select Date & Time..." readonly>
 
-    Swal.fire({
-        title: 'Add New Expense 🧾',
-        html: `
-            <div style="text-align:left; font-size:14px;">
-                <label class="fw-bold">📅 Date & Time</label>
-                <input type="datetime-local" id="exp-date" class="form-control mb-2" value="${localISOTime}" step="any" required>
+                    <label class="fw-bold mt-2">📂 Category</label>
+                    <select id="exp-category" class="form-select mb-2">
+                        <option value="Material Purchase">Material Purchase</option>
+                        <option value="Packaging Material">Packaging Material</option>
+                        <option value="Marketing/Ads">Marketing / Ads</option>
+                        <option value="Transport/Fuel">Transport / Fuel</option>
+                        <option value="Salary/Wages">Salary / Wages</option>
+                        <option value="Office Expense">Office Expense</option>
+                        <option value="Refund">Refund</option>
+                        <option value="Other">Other</option>
+                    </select>
 
-                <label class="fw-bold">📂 Category</label>
-                <select id="exp-category" class="form-select mb-2">
-                    <option value="Material Purchase">Material Purchase</option>
-                    <option value="Packaging Material">Packaging Material</option>
-                    <option value="Marketing/Ads">Marketing / Ads</option>
-                    <option value="Transport/Fuel">Transport / Fuel</option>
-                    <option value="Salary/Wages">Salary / Wages</option>
-                    <option value="Office Expense">Office Expense</option>
-                    <option value="Other">Other</option>
-                </select>
+                    <label class="fw-bold">🏪 Vendor / Shop Name</label>
+                    <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
 
-                <label class="fw-bold">🏪 Vendor / Shop Name</label>
-                <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
+                    <label class="fw-bold">📝 Description</label>
+                    <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Ex: 50kg Honey..."></textarea>
 
-                <label class="fw-bold">📝 Description (Items)</label>
-                <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Ex: 50kg Honey, 100 Bottles..."></textarea>
+                    <label class="fw-bold">💰 Amount (₹)</label>
+                    <input type="number" id="exp-amount" class="form-control mb-2" placeholder="0.00">
+                    
+                    <label class="fw-bold">📸 Upload Proof (Optional)</label>
+                    <input type="file" id="exp-proof" class="form-control mb-2" accept="image/*">
 
-                <label class="fw-bold">💰 Amount (₹)</label>
-                <input type="number" id="exp-amount" class="form-control mb-2" placeholder="0.00">
-
-                <label class="fw-bold">🧾 Bill Reference (Optional)</label>
-                <input type="text" id="exp-billref" class="form-control mb-2" placeholder="Invoice No / Trans ID">
-                
-                <label class="fw-bold">📸 Upload Proof (Optional)</label>
-                <input type="file" id="exp-proof" class="form-control mb-2" accept="image/*,application/pdf">
-            </div>
-        `,
-        showCancelButton: true,
-        confirmButtonText: 'Save Expense',
-        confirmButtonColor: '#d33',
-        preConfirm: () => {
-            const date = document.getElementById('exp-date').value;
-            const category = document.getElementById('exp-category').value;
-            const vendor = document.getElementById('exp-vendor').value;
-            const desc = document.getElementById('exp-desc').value;
-            const amount = document.getElementById('exp-amount').value;
-            const billRef = document.getElementById('exp-billref').value;
-            const fileInput = document.getElementById('exp-proof');
-
-            if (!date || !amount || !vendor) {
-                Swal.showValidationMessage('Please fill Date, Vendor & Amount');
-                return false;
+                    <button id="btn-save-exp" class="btn btn-primary w-100 mt-3 py-2 fw-bold shadow-sm" onclick="submitExpense(event)" style="border-radius: 50px;">
+                        <i class="fas fa-check-circle"></i> SAVE EXPENSE
+                    </button>
+                </div>
+            `,
+            showConfirmButton: false,
+            showCloseButton: true,
+            didOpen: () => {
+                // 🔥 Initialize Flatpickr (The Magic Part)
+                flatpickr("#exp-date", {
+                    enableTime: true,
+                    dateFormat: "Y-m-dTH:i", // Backend format
+                    altInput: true,
+                    altFormat: "F j, Y at h:i K", // User sees: "February 17, 2026 at 4:30 PM"
+                    defaultDate: new Date(),
+                    time_24hr: false,
+                    disableMobile: "true" // Forces the beautiful desktop theme on mobile too
+                });
             }
-
-            return { date, category, vendor, desc, amount, billRef, file: fileInput.files[0] };
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            submitExpense(result.value);
-        }
+        });
     });
 }
 
