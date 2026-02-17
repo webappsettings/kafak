@@ -991,16 +991,15 @@ function updateSyncButtonUI() {
 
 
 // 🔥 UPDATED: POWERFUL SEARCH (Includes WA, Alt Phone & Space Fix)
+// 🔥 UPDATED: POWERFUL SEARCH (Address Filter + Active Tab Priority)
 function filterOrders() {
     const term = document.getElementById('searchInput').value.trim().toLowerCase();
     const termClean = term.replace(/[^0-9]/g, ''); // സെർച്ച് ടേമിലെ നമ്പർ മാത്രം
 
+    // Clear Button Visibility
     const clearBtn = document.getElementById('btn-clear-search');
-    if (term.length > 0) {
-        clearBtn.style.display = 'block';
-    } else {
-        clearBtn.style.display = 'none';
-    }
+    if (term.length > 0) clearBtn.style.display = 'block';
+    else clearBtn.style.display = 'none';
 
     const tabsContainer = document.getElementById('tabs-container');
     const searchResultsArea = document.getElementById('search-results-area');
@@ -1011,28 +1010,70 @@ function filterOrders() {
         searchResultsArea.style.display = 'block';
         searchList.innerHTML = '';
 
+        // 1. FIND ACTIVE TAB STATUS (To prioritize results)
+        let activeStatus = [];
+        // Check which tab button is active (Assuming standard Bootstrap IDs)
+        if ($('#pills-pending-tab').hasClass('active')) activeStatus = ['Pending', 'Sent'];
+        else if ($('#pills-paid-tab').hasClass('active')) activeStatus = ['Paid'];
+        else if ($('#pills-dispatched-tab').hasClass('active')) activeStatus = ['Dispatched'];
+        else if ($('#pills-completed-tab').hasClass('active')) activeStatus = ['Completed', 'Delivered'];
+
+        // 2. FILTER LOGIC
         let matches = allOrders.filter(o => {
-            // 1. Text Search
+            // A. Text Search (Name, ID)
             if ((o.name || '').toLowerCase().includes(term)) return true;
             if ((o.orderid || '').toLowerCase().includes(term)) return true;
 
-            // 2. Powerful Number Search (Checks Phone, WA, Alt, AND PAID NUM)
+            // B. Address Search (House, Place, District, State, Pin) 🔥 NEW
+            let addressStr = [
+                o.house, o.place, o.postoffice,
+                o.district, o.state, o.pincode
+            ].map(s => String(s || '').toLowerCase()).join(' ');
+
+            if (addressStr.includes(term)) return true;
+
+            // C. Number Search (Phone, WA, Alt, Paid Num)
             if (termClean.length > 0) {
                 let p = String(o.phone || '').replace(/[^0-9]/g, '');
                 let w = String(o.whatsapp || '').replace(/[^0-9]/g, '');
-                let paid = String(o.paidNum || '').replace(/[^0-9]/g, ''); // 🔥 New Field
+                let paid = String(o.paidNum || '').replace(/[^0-9]/g, '');
 
                 if (p.includes(termClean)) return true;
                 if (w.includes(termClean)) return true;
-                if (paid.includes(termClean)) return true; // 🔥 Matches saved GPay number
+                if (paid.includes(termClean)) return true;
             }
             return false;
         });
 
+        // 3. SORT LOGIC (Active Tab First) 🔥 NEW
+        matches.sort((a, b) => {
+            // Check if items belong to the active tab
+            let aIsActive = activeStatus.includes(a.Status) ? 1 : 0;
+            let bIsActive = activeStatus.includes(b.Status) ? 1 : 0;
+
+            // Priority 1: Active Tab Status comes first
+            if (aIsActive !== bIsActive) return bIsActive - aIsActive;
+
+            // Priority 2: Sort by Date (Newest First) within groups
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+
+        // 4. RENDER RESULTS
         if (matches.length === 0) {
             searchList.innerHTML = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
         } else {
+            // Show a small header if prioritizing
+            let prevWasActive = true;
+
             matches.forEach(d => {
+                let isCurrentActive = activeStatus.includes(d.Status);
+
+                // Optional: Add a separator line between Active Tab results and Others
+                if (activeStatus.length > 0 && prevWasActive && !isCurrentActive) {
+                    searchList.innerHTML += `<div class="text-center my-2"><span class="badge bg-secondary bg-opacity-25 text-secondary rounded-pill px-3" style="font-size:10px;">OTHER RESULTS</span></div>`;
+                    prevWasActive = false;
+                }
+
                 let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
                 searchList.innerHTML += createCardHTML(d, originalIndex, 'search', d.Status);
             });
@@ -1056,7 +1097,6 @@ function filterOrders() {
         searchResultsArea.style.display = 'none';
     }
 }
-
 // 🔥 ARCHIVE / DELETE ORDER FUNCTION
 // 🔥 ARCHIVE ORDER FUNCTION
 window.archiveOrder = function (oid) {
