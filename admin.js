@@ -3227,28 +3227,45 @@ function loadFlatpickr(callback) {
     document.head.appendChild(script);
 }
 
-// 2. Show Modal with Beautiful Date Picker
+// 🔥 SHOW ADD EXPENSE MODAL (Mobile Friendly & Beautiful)
 window.showAddExpenseModal = function () {
-    // Load Flatpickr first, then open Modal
+    // 1. Force High Z-Index for DatePicker on Mobile
+    if (!$('#flatpickr-mobile-fix').length) {
+        $('<style id="flatpickr-mobile-fix">').html(`
+            .flatpickr-calendar { z-index: 9999 !important; } 
+            .swal2-container { z-index: 2000 !important; }
+        `).appendTo('head');
+    }
+
     loadFlatpickr(() => {
         Swal.fire({
             title: 'Add New Expense 🧾',
             html: `
                 <div style="text-align:left; font-size:14px;">
                     <label class="fw-bold" style="color:#2563eb;">📅 Date & Time</label>
-                    <input type="text" id="exp-date" class="form-control mb-2 bg-white" placeholder="Select Date & Time..." readonly>
+                    
+                    <div class="input-group mb-2">
+                        <span class="input-group-text bg-white text-primary border-end-0"><i class="fas fa-calendar-alt"></i></span>
+                        <input type="text" id="exp-date" class="form-control bg-white border-start-0 fw-bold" placeholder="Select Date & Time..." readonly>
+                    </div>
 
                     <label class="fw-bold mt-2">📂 Category</label>
-                    <select id="exp-category" class="form-select mb-2">
+                    <select id="exp-category" class="form-select mb-2" onchange="togglePartnerSelect()">
                         <option value="Material Purchase">Material Purchase</option>
                         <option value="Packaging Material">Packaging Material</option>
                         <option value="Marketing/Ads">Marketing / Ads</option>
                         <option value="Transport/Fuel">Transport / Fuel</option>
-                        <option value="Salary/Wages">Salary / Wages</option>
+                        <option value="Salary">Salary / Wages</option>
                         <option value="Office Expense">Office Expense</option>
                         <option value="Refund">Refund</option>
                         <option value="Other">Other</option>
                     </select>
+
+                    <div id="partner-section" style="display:none; background:#f0f9ff; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #bae6fd;">
+                        <label class="fw-bold text-primary" style="font-size:11px;">SELECT PARTNER:</label>
+                        <div id="partner-list" class="d-flex flex-column gap-2 mt-1">
+                            </div>
+                    </div>
 
                     <label class="fw-bold">🏪 Vendor / Shop Name</label>
                     <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
@@ -3270,15 +3287,18 @@ window.showAddExpenseModal = function () {
             showConfirmButton: false,
             showCloseButton: true,
             didOpen: () => {
-                // 🔥 Activate Flatpickr (Date -> Then Clock)
+                // Render Partner List logic
+                if (typeof renderPartnerList === 'function') renderPartnerList();
+
+                // 🔥 Activate Flatpickr (Mobile Fix applied)
                 flatpickr("#exp-date", {
                     enableTime: true,
-                    dateFormat: "Y-m-d\\TH:i", // Backend Format
+                    dateFormat: "Y-m-d\\TH:i",
                     altInput: true,
-                    altFormat: "F j, Y at h:i K", // User sees: "February 17, 2026 at 4:30 PM"
+                    altFormat: "F j, Y at h:i K",
                     defaultDate: new Date(),
                     time_24hr: false,
-                    disableMobile: "true" // Force Beautiful UI on Mobile
+                    disableMobile: true // 🔥 Quotes നീക്കി, ഇത് Boolean ആക്കി
                 });
             }
         });
