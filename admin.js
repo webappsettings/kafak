@@ -716,8 +716,20 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
     // Customer Stats
+    // Customer Stats (Modified to count ONLY Valid Orders)
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
-    let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => String(o.phone).replace(/[^0-9]/g, '') === currentPhone) : [];
+
+    let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => {
+        // 1. Phone Match
+        let matchPhone = String(o.phone || '').replace(/[^0-9]/g, '') === currentPhone;
+
+        // 2. Status Check (Exclude Pending, Sent, Archive)
+        let s = o.Status || 'Pending';
+        let isValidStatus = (s !== 'Pending' && s !== 'Sent' && s !== 'Archive');
+
+        return matchPhone && isValidStatus;
+    }) : [];
+
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
