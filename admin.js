@@ -710,6 +710,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         else if (currentStatus === 'Dispatched') type = 'dispatched';
     }
 
+    let buttons = '';
+
     let priceInfo = calculatePriceInfo(d.quantity, d.state);
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = new Date(d.timestamp);
@@ -885,8 +887,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // Buttons
-    let buttons = '';
+
     if (type === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
         buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index})"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button><button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', '${currentStatus === 'Pending' ? 'Sent' : 'Paid'}')" title="Next Status"><i class="fas fa-arrow-right me-1"></i> NEXT</button></div>`;
