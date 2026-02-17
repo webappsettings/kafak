@@ -460,34 +460,44 @@ function renderTabs(orders) {
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // 6. PRE-CALCULATE COURIER TOTALS
-    let dispatchedCostMap = {};
+    // ---------------------------------------------------------
+    // 6. PRE-CALCULATE COURIER TOTALS (SEPARATE FOR NEW & TRACKED)
+    // ---------------------------------------------------------
+    let dispNewCostMap = {};
+    let dispTrackCostMap = {};
+
     orders.forEach(o => {
         let { status, dDateStr } = getOrderInfo(o);
         if (status === 'Dispatched') {
             let lbl = getTimelineLabel(dDateStr);
             let cost = parseInt(o.actualCourierCost) || 0;
-            dispatchedCostMap[lbl] = (dispatchedCostMap[lbl] || 0) + cost;
+
+            // Check if tracked to split the cost
+            let meta = getMetaStatus(o.adminMeta);
+            if (o.tracking || meta.isTracked) {
+                dispTrackCostMap[lbl] = (dispTrackCostMap[lbl] || 0) + cost;
+            } else {
+                dispNewCostMap[lbl] = (dispNewCostMap[lbl] || 0) + cost;
+            }
         }
     });
 
+    // ---------------------------------------------------------
     // 7. RENDER LOOP (Distribute to Sub-lists)
-    // Date tracking for separate lists
+    // ---------------------------------------------------------
     let lastDateMap = { new: '', sent: '', paid_new: '', paid_print: '', disp_new: '', disp_track: '' };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
         d.paidDate = pDateStr;
-        d['Dispatched Date'] = dDateStr; // Inject Dates for Card
+        d['Dispatched Date'] = dDateStr;
 
         if (status === 'Completed' || status === 'Archive') return;
 
-        // 🔥 META DATA CHECK (For Printed/Tracked)
         let meta = getMetaStatus(d.adminMeta);
-
         let targetList = null;
         let type = '';
-        let dateKey = ''; // To track sticky headers
+        let dateKey = '';
 
         // A. PENDING & SENT
         if (status === 'Pending') {
@@ -498,7 +508,7 @@ function renderTabs(orders) {
             targetList = listSent; type = 'pending'; dateKey = 'sent';
             counts.pending++; subCounts.sent++;
         }
-        // B. PAID (New vs Printed)
+        // B. PAID
         else if (status === 'Paid') {
             type = 'paid'; counts.paid++;
             if (meta.isPrinted) {
@@ -507,10 +517,9 @@ function renderTabs(orders) {
                 targetList = listPaidNew; dateKey = 'paid_new'; subCounts.paid_new++;
             }
         }
-        // C. DISPATCHED (New vs Tracked)
+        // C. DISPATCHED
         else if (status === 'Dispatched') {
             type = 'dispatched'; counts.dispatched++;
-            // Tracking Number ഉണ്ടെങ്കിൽ അല്ലെങ്കിൽ 'T' ഫ്ലാഗ് ഉണ്ടെങ്കിൽ
             if (d.tracking || meta.isTracked) {
                 targetList = listDispTracked; dateKey = 'disp_track'; subCounts.disp_track++;
             } else {
@@ -520,7 +529,7 @@ function renderTabs(orders) {
 
         if (targetList) {
             let qty = parseInt(d.quantity) || 0;
-            btlCounts[type] += qty; // Main Bottle Counters
+            btlCounts[type] += qty;
 
             // Determine Date for Header
             let displayDateRaw = d.timestamp;
@@ -529,12 +538,17 @@ function renderTabs(orders) {
 
             let dateLabel = getTimelineLabel(displayDateRaw);
 
-            // 🔥 STICKY DATE HEADER
+            // 🔥 STICKY DATE HEADER (With Separate Totals)
             if (dateLabel !== lastDateMap[dateKey]) {
                 let extraHtml = '';
-                // Show Courier Cost in Dispatched Tab
-                if (type === 'dispatched' && dispatchedCostMap[dateLabel] > 0) {
-                    extraHtml = `<span style="opacity:0.9; font-weight:600; margin-left:8px; padding-left:8px; border-left:1px solid #999;">🚚 ₹${dispatchedCostMap[dateLabel]}</span>`;
+
+                // Show Courier Cost ONLY for Dispatched Tabs (Separately)
+                let currentCost = 0;
+                if (dateKey === 'disp_new') currentCost = dispNewCostMap[dateLabel] || 0;
+                if (dateKey === 'disp_track') currentCost = dispTrackCostMap[dateLabel] || 0;
+
+                if (currentCost > 0) {
+                    extraHtml = `<span style="opacity:0.9; font-weight:600; margin-left:8px; padding-left:8px; border-left:1px solid #999;">🚚 ₹${currentCost}</span>`;
                 }
 
                 targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${dateLabel}${extraHtml}</div></div>`;
