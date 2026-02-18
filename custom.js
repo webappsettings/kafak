@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbymVE4fDgG656ZLBBBS_5uqjuOJu8IbUCaX3VobNkziWmM1-rOjQpRWIhS3y__pxsIqtg/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxoJlXEJRLz5Xsc__c5QCoqf4pVFLIUdqM3Wm-095rxBW--XsyAyRq32I7S5JX08nSKYQ/exec`;
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 
