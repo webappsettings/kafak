@@ -427,6 +427,7 @@ function syncUserDataBackground(phone) {
 
 // 🔥 Helper Function to Show/Hide Controls based on Status
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
+// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer can Re-Order if Delivered)
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
@@ -435,15 +436,18 @@ function handleEditControlsVisibility(d) {
   const lang = $('#language-select').val() || 'en';
   let reqText = "Want to change details?";
   let subText = "Message Admin";
+  let orderAgainText = "ORDER AGAIN";
+
   if (lang === 'ml') {
     reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
     subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
+    orderAgainText = "ORDER AGAIN"; // വീണ്ടും ഓർഡർ ചെയ്യാം
   }
 
   // 1. ADMIN - Always Allow Edit
   if (isAdmin) {
     $('#quick-qty, .btn-update-sage, #quick-price-box').show();
-    $('#btn-edit-addr').css('display', 'inline-block'); // Show Address Edit
+    $('#btn-edit-addr').css('display', 'inline-block');
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').prop('disabled', false);
     $('#quick-qty').css('border', '2px solid #dc3545');
@@ -451,8 +455,35 @@ function handleEditControlsVisibility(d) {
     return;
   }
 
-  // 2. LOCKED STATES (Paid, Dispatched, Refunded)
-  if (['paid', 'dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+  // 2. 🔥 RE-ORDER STATE (Delivered / Completed)
+  // ഡെലിവറി കഴിഞ്ഞാൽ പുതിയ ഓർഡർ ഇടാനുള്ള ഓപ്ഷൻ നൽകുന്നു
+  if (['delivered', 'completed'].includes(status)) {
+
+    // Enable Qty & Show Price Box
+    $('#quick-qty').prop('disabled', false).val('').trigger('change'); // Clear qty
+    $('label[data-i18n="lbl_qty"]').show();
+    $('#quick-price-box').hide(); // Hide price until qty selected
+
+    // Unlock Address Edit
+    $('#btn-edit-addr').css('display', 'inline-block');
+
+    // 🔥 Show "ORDER AGAIN" Button
+    $('.btn-update-sage')
+      .show()
+      .prop('disabled', false)
+      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' }) // Green Color
+      .html(`<i class="fas fa-shopping-bag me-1"></i> ${orderAgainText}`);
+
+    // Remove Request Button
+    $('#btn-req-modify').remove();
+
+    // Ensure ID is null so it creates a NEW order
+    editingOrderId = null;
+    return;
+  }
+
+  // 3. LOCKED STATES (Paid, Dispatched, Refunded)
+  if (['paid', 'dispatched', 'refunded'].includes(status)) {
 
     // Lock Qty & Hide Update Buttons
     $('#quick-qty').prop('disabled', true);
@@ -461,8 +492,8 @@ function handleEditControlsVisibility(d) {
     // Lock Address Edit
     $('#btn-edit-addr').hide();
 
-    // 🔥 LOGIC: Show Message Button ONLY if 'Paid'
-    $('#btn-req-modify').remove(); // Remove existing button first
+    // Show Message Button ONLY if 'Paid'
+    $('#btn-req-modify').remove();
 
     if (status === 'paid') {
       let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
@@ -474,17 +505,23 @@ function handleEditControlsVisibility(d) {
                  class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
                  <i class="fab fa-whatsapp"></i> ${subText}
               </a>
-             </div>`).insertAfter('#status-area');
+              </div>`).insertAfter('#status-area');
     }
-    // Note: Dispatched/Refunded ഉള്ളപ്പോൾ ഒന്നും കാണിക്കില്ല (View Only).
     return;
   }
 
-  // 3. EDITABLE STATES (Pending, Sent, Archive)
+  // 4. EDITABLE STATES (Pending, Sent, Archive)
   $('label[data-i18n="lbl_qty"]').show();
   $('#quick-qty').prop('disabled', false).show();
   $('.btn-update-sage, #quick-price-box').show();
-  $('#btn-edit-addr').css('display', 'inline-block'); // Unlock Address Edit
+
+  // Reset Button Text to "Update Order"
+  let updateText = (lang === 'ml') ? "അപ്‌ഡേറ്റ് ചെയ്യൂ" : "UPDATE ORDER";
+  $('.btn-update-sage')
+    .css({ 'background': '#2563eb', 'border-color': '#2563eb' }) // Blue Color
+    .html(updateText);
+
+  $('#btn-edit-addr').css('display', 'inline-block');
   $('#btn-req-modify').remove();
 }
 
