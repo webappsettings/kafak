@@ -362,7 +362,7 @@ function fetchOrders(forceLoad = false) {
 
 
 function renderTabs(orders) {
-    // 1. SELECT DOM ELEMENTS (For all Sub-tabs)
+    // 1. SELECT DOM ELEMENTS
     const listNew = document.getElementById('list-sub-new');
     const listSent = document.getElementById('list-sub-sent');
     const listPaidNew = document.getElementById('list-paid-new');
@@ -371,47 +371,30 @@ function renderTabs(orders) {
     const listDispTracked = document.getElementById('list-disp-tracked');
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // 4. HELPER: Get Effective Status & Dates
+    // Helper to get effective status and dates
     const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid);
         let status = local ? local.status : (o.Status || 'Pending');
-
-        let tDate = new Date(o.timestamp); // Order Date
+        let tDate = new Date(o.timestamp);
         let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
         let pDate = new Date(pDateStr);
-
         let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
         let dDate = new Date(dDateStr);
-
         return { status, tDate, pDate, dDate, pDateStr, dDateStr };
     };
 
+    // Rank Logic for Paid Orders
     window.paidRankMap = {};
     let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
-
-    // Status = Paid ആയവ മാത്രം എടുക്കുന്നു
     let paidOrds = sourceOrders.filter(o => getOrderInfo(o).status === 'Paid');
+    paidOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
+    paidOrds.forEach((o, i) => window.paidRankMap[o.orderid] = i + 1);
 
-    // പഴയത് മുതൽ പുതിയത് എന്ന ക്രമത്തിൽ (Oldest First) സോർട്ട് ചെയ്യുന്നു
-    paidOrds.sort((a, b) => {
-        let dateA = new Date(getOrderInfo(a).pDateStr);
-        let dateB = new Date(getOrderInfo(b).pDateStr);
-        return dateA - dateB;
-    });
-
-    // ഓരോന്നിനും നമ്പർ നൽകുന്നു
-    paidOrds.forEach((o, i) => {
-        window.paidRankMap[o.orderid] = i + 1;
-    });
-
-    // 2. CLEAR LISTS & RESTORE BUTTONS
+    // 2. CLEAR LISTS & RESTORE DEFAULT BUTTONS
     if (listNew) listNew.innerHTML = '';
     if (listSent) listSent.innerHTML = '';
 
-    // 🔥 Restore "Paid" Tab Buttons (Scan, Select All, Print) in New Section
-    // 🔥 Restore "Paid" Tab Buttons (New Section)
-    if (listPaidNew) {
-        listPaidNew.innerHTML = `
+    if (listPaidNew) listPaidNew.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
@@ -419,11 +402,8 @@ function renderTabs(orders) {
                 <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
             </div>
         </div>`;
-    }
 
-    // 🔥 NEW: Restore Buttons for "Printed" Section as well
-    if (listPaidPrinted) {
-        listPaidPrinted.innerHTML = `
+    if (listPaidPrinted) listPaidPrinted.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
@@ -431,72 +411,78 @@ function renderTabs(orders) {
                 <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
             </div>
         </div>`;
-    }
 
-    // 🔥 Restore "Dispatched" Tab Buttons (Courier Scan) in New Section
-    if (listDispNew) {
-        listDispNew.innerHTML = `
+    if (listDispNew) listDispNew.innerHTML = `
         <div class="text-center mb-3 w-100">
             <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
                 <i class="fas fa-barcode"></i> Courier Scan
             </button>
         </div>`;
-    }
+
     if (listDispTracked) listDispTracked.innerHTML = '';
 
-    // 3. INITIALIZE COUNTERS
+    // 3. INITIALIZE VARIABLES
     let counts = { pending: 0, paid: 0, dispatched: 0 };
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
     let subCounts = { new: 0, sent: 0, paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
 
+    // State Stats Containers (Lakshadweep, Karnataka etc.)
+    let stateStats = {
+        paid_new: { lak: 0, kar: 0, tn: 0, other: 0 },
+        paid_print: { lak: 0, kar: 0, tn: 0, other: 0 },
+        disp_new: { lak: 0, kar: 0, tn: 0, other: 0 },
+        disp_track: { lak: 0, kar: 0, tn: 0, other: 0 }
+    };
 
+    // Bottle Counts for Sub-Tabs
+    let pNewQty = 0, pPrintQty = 0, dNewQty = 0, dTrackQty = 0;
 
-    // 5. SORTING LOGIC
+    // Sorting Logic
     orders.sort((a, b) => {
-        let infoA = getOrderInfo(a);
-        let infoB = getOrderInfo(b);
-
+        let infoA = getOrderInfo(a), infoB = getOrderInfo(b);
         const statusPriority = { 'Pending': 1, 'Sent': 1, 'Paid': 2, 'Dispatched': 3, 'Completed': 4, 'Archive': 5 };
-        let statA = statusPriority[infoA.status] || 9;
-        let statB = statusPriority[infoB.status] || 9;
-
+        let statA = statusPriority[infoA.status] || 9, statB = statusPriority[infoB.status] || 9;
         if (statA !== statB) return statA - statB;
-
-        let dateA, dateB;
-        if (statA === 1) { dateA = infoA.tDate; dateB = infoB.tDate; }      // Pending/Sent
-        else if (statA === 2) { dateA = infoA.pDate; dateB = infoB.pDate; } // Paid
-        else if (statA === 3) { dateA = infoA.dDate; dateB = infoB.dDate; } // Dispatched
-        else { dateA = infoA.tDate; dateB = infoB.tDate; }
-
+        let dateA = (statA === 2) ? infoA.pDate : ((statA === 3) ? infoA.dDate : infoA.tDate);
+        let dateB = (statA === 2) ? infoB.pDate : ((statA === 3) ? infoB.dDate : infoB.tDate);
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // ---------------------------------------------------------
-    // 6. PRE-CALCULATE COURIER TOTALS (SEPARATE FOR NEW & TRACKED)
-    // ---------------------------------------------------------
-    let dispNewCostMap = {};
-    let dispTrackCostMap = {};
+    // 🔥 STEP 4: PRE-CALCULATE TIMELINE STATS (For Header Display)
+    let timelineStats = {};
 
     orders.forEach(o => {
-        let { status, dDateStr } = getOrderInfo(o);
-        if (status === 'Dispatched') {
-            let lbl = getTimelineLabel(dDateStr);
-            let cost = parseInt(o.actualCourierCost) || 0;
+        let { status, dDateStr, pDateStr } = getOrderInfo(o);
+        if (status === 'Completed' || status === 'Archive') return;
 
-            // Check if tracked to split the cost
-            let meta = getMetaStatus(o.adminMeta);
-            if (o.tracking || meta.isTracked) {
-                dispTrackCostMap[lbl] = (dispTrackCostMap[lbl] || 0) + cost;
-            } else {
-                dispNewCostMap[lbl] = (dispNewCostMap[lbl] || 0) + cost;
-            }
+        let meta = getMetaStatus(o.adminMeta);
+        let dateKeyType = '';
+        let displayDateRaw = o.timestamp;
+
+        if (status === 'Paid') {
+            displayDateRaw = pDateStr;
+            dateKeyType = meta.isPrinted ? 'paid_print' : 'paid_new';
+        } else if (status === 'Dispatched') {
+            displayDateRaw = dDateStr;
+            dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
+        } else if (status === 'Pending') dateKeyType = 'new';
+        else if (status === 'Sent') dateKeyType = 'sent';
+
+        if (dateKeyType) {
+            let lbl = getTimelineLabel(displayDateRaw);
+            let fullKey = `${dateKeyType}_${lbl}`;
+
+            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0 };
+
+            timelineStats[fullKey].count++;
+            timelineStats[fullKey].bottles += (parseInt(o.quantity) || 0);
+            if (status === 'Dispatched') timelineStats[fullKey].cost += (parseInt(o.actualCourierCost) || 0);
         }
     });
 
-    // ---------------------------------------------------------
-    // 7. RENDER LOOP (Distribute to Sub-lists)
-    // ---------------------------------------------------------
+    // 🔥 STEP 5: MAIN RENDER LOOP (Merged everything here)
     let lastDateMap = { new: '', sent: '', paid_new: '', paid_print: '', disp_new: '', disp_track: '' };
+    let firstDateFlags = { new: true, sent: true, paid_new: true, paid_print: true, disp_new: true, disp_track: true };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
@@ -510,183 +496,117 @@ function renderTabs(orders) {
         let type = '';
         let dateKey = '';
 
-        // A. PENDING & SENT
+        let qty = parseInt(d.quantity) || 0;
+        let s = String(d.state || '').toUpperCase().trim();
+        let stateKey = null;
+
+        // --- State Identification (For Dots) ---
+        if (s && s !== 'KERALA') {
+            if (s.includes('LAK')) stateKey = 'lak';
+            else if (s.includes('KARN')) stateKey = 'kar';
+            else if (s.includes('TAMIL') || s.includes('TN')) stateKey = 'tn';
+            else stateKey = 'other';
+        }
+
+        // --- Classification Logic ---
         if (status === 'Pending') {
-            targetList = listNew; type = 'pending'; dateKey = 'new';
-            counts.pending++; subCounts.new++;
+            targetList = listNew; type = 'pending'; dateKey = 'new'; counts.pending++; subCounts.new++;
         }
         else if (status === 'Sent') {
-            targetList = listSent; type = 'pending'; dateKey = 'sent';
-            counts.pending++; subCounts.sent++;
+            targetList = listSent; type = 'pending'; dateKey = 'sent'; counts.pending++; subCounts.sent++;
         }
-        // B. PAID
         else if (status === 'Paid') {
             type = 'paid'; counts.paid++;
             if (meta.isPrinted) {
-                targetList = listPaidPrinted; dateKey = 'paid_print'; subCounts.paid_print++;
+                targetList = listPaidPrinted; dateKey = 'paid_print'; subCounts.paid_print++; pPrintQty += qty;
+                if (stateKey) stateStats.paid_print[stateKey]++;
             } else {
-                targetList = listPaidNew; dateKey = 'paid_new'; subCounts.paid_new++;
+                targetList = listPaidNew; dateKey = 'paid_new'; subCounts.paid_new++; pNewQty += qty;
+                if (stateKey) stateStats.paid_new[stateKey]++;
             }
         }
-        // C. DISPATCHED
         else if (status === 'Dispatched') {
             type = 'dispatched'; counts.dispatched++;
             if (d.tracking || meta.isTracked) {
-                targetList = listDispTracked; dateKey = 'disp_track'; subCounts.disp_track++;
+                targetList = listDispTracked; dateKey = 'disp_track'; subCounts.disp_track++; dTrackQty += qty;
+                if (stateKey) stateStats.disp_track[stateKey]++;
             } else {
-                targetList = listDispNew; dateKey = 'disp_new'; subCounts.disp_new++;
+                targetList = listDispNew; dateKey = 'disp_new'; subCounts.disp_new++; dNewQty += qty;
+                if (stateKey) stateStats.disp_new[stateKey]++;
             }
         }
 
         if (targetList) {
-            let qty = parseInt(d.quantity) || 0;
             btlCounts[type] += qty;
 
-            // Determine Date for Header
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
             if (type === 'dispatched') displayDateRaw = dDateStr;
-
             let dateLabel = getTimelineLabel(displayDateRaw);
 
-            // 🔥 STICKY DATE HEADER (With Separate Totals)
+            // --- STICKY DATE HEADER ---
             if (dateLabel !== lastDateMap[dateKey]) {
+                if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
+
                 let extraHtml = '';
+                let s = timelineStats[`${dateKey}_${dateLabel}`];
 
-                // Show Courier Cost ONLY for Dispatched Tabs (Separately)
-                let currentCost = 0;
-                if (dateKey === 'disp_new') currentCost = dispNewCostMap[dateLabel] || 0;
-                if (dateKey === 'disp_track') currentCost = dispTrackCostMap[dateLabel] || 0;
-
-                if (currentCost > 0) {
-                    extraHtml = `<span style="opacity:0.9; font-weight:600; margin-left:8px; padding-left:8px; border-left:1px solid #999;">🚚 ₹${currentCost}</span>`;
+                if (s) {
+                    if (type === 'dispatched' && s.cost > 0) {
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${s.cost}</span>`;
+                    }
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${s.count}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${s.bottles}</span>`;
                 }
 
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge">${dateLabel}${extraHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
-            // Render Card
-            targetList.innerHTML += createCardHTML(d, i, type, status, false);
+            // --- COMPACT VIEW LOGIC ---
+            let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
+
+            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
         }
     });
 
-    // ---------------------------------------------------------
-    // 8. UPDATE BADGES (With Bottle Counts & State Dots)
-    // ---------------------------------------------------------
-
+    // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // Sub-Tab Badges (Pending)
-    const setBadge = (id, val) => {
-        if (document.getElementById(id)) document.getElementById(id).innerText = val;
-    };
-    setBadge('badge-sub-new', subCounts.new);
-    setBadge('badge-sub-sent', subCounts.sent);
-
-    // 🔥 STATE STATS COLLECTOR
-    let stateStats = {
-        paid_new: { lak: 0, kar: 0, tn: 0, other: 0 },
-        paid_print: { lak: 0, kar: 0, tn: 0, other: 0 },
-        disp_new: { lak: 0, kar: 0, tn: 0, other: 0 },
-        disp_track: { lak: 0, kar: 0, tn: 0, other: 0 }
-    };
-
-    // 🔥 BOTTLE & STATE COUNTER LOOP
-    let pNewQty = 0, pPrintQty = 0, dNewQty = 0, dTrackQty = 0;
-
-    orders.forEach(o => {
-        let q = parseInt(o.quantity) || 0;
-        let s = String(o.state || '').toUpperCase().trim();
-        let meta = getMetaStatus(o.adminMeta);
-
-        // 1. Identify Non-Kerala State
-        let stateKey = null;
-        if (s && s !== 'KERALA') {
-            if (s.includes('LAK')) stateKey = 'lak';       // Lakshadweep
-            else if (s.includes('KARN')) stateKey = 'kar'; // Karnataka
-            else if (s.includes('TAMIL') || s.includes('TN')) stateKey = 'tn'; // Tamil Nadu
-            else stateKey = 'other'; // Other States
-        }
-
-        // 2. Paid Tab Stats
-        if (o.Status === 'Paid') {
-            if (meta.isPrinted) {
-                pPrintQty += q;
-                if (stateKey) stateStats.paid_print[stateKey]++;
-            } else {
-                pNewQty += q;
-                if (stateKey) stateStats.paid_new[stateKey]++;
-            }
-        }
-        // 3. Dispatched Tab Stats
-        else if (o.Status === 'Dispatched') {
-            if (o.tracking || meta.isTracked) {
-                dTrackQty += q;
-                if (stateKey) stateStats.disp_track[stateKey]++;
-            } else {
-                dNewQty += q;
-                if (stateKey) stateStats.disp_new[stateKey]++;
-            }
-        }
-    });
-
-    // 🔥 HELPER: GENERATE COLORED DOTS HTML
+    // State Dots HTML Helper
     const getDotsHtml = (stats) => {
         let html = '';
-        // Blue Dot (Lakshadweep)
         if (stats.lak > 0) html += `<span class="state-dot" style="background:#0dcaf0;" title="Lakshadweep">${stats.lak}</span>`;
-        // Dark Yellow Dot (Karnataka)
         if (stats.kar > 0) html += `<span class="state-dot" style="background:#d97706;" title="Karnataka">${stats.kar}</span>`;
-        // Coffee Dot (Tamil Nadu)
         if (stats.tn > 0) html += `<span class="state-dot" style="background:#795548;" title="Tamil Nadu">${stats.tn}</span>`;
-        // Magenta Dot (Others)
         if (stats.other > 0) html += `<span class="state-dot" style="background:#d63384;" title="Other State">${stats.other}</span>`;
-
         return html ? `<div class="d-flex gap-1 ms-1 align-items-center">${html}</div>` : '';
     };
 
-    // 🔥 INJECT CSS FOR DOTS (One time)
+    // Inject CSS for Dots
     if (!$('#state-dot-css').length) {
-        $('<style id="state-dot-css">').html(`
-            .state-dot {
-                width: 14px; height: 14px;
-                border-radius: 50%;
-                color: white;
-                font-size: 8px;
-                font-weight: bold;
-                display: flex; justify-content: center; align-items: center;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            }
-        `).appendTo('head');
+        $('<style id="state-dot-css">').html(`.state-dot { width: 14px; height: 14px; border-radius: 50%; color: white; font-size: 8px; font-weight: bold; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }`).appendTo('head');
     }
 
-    // 🔥 UPDATE BADGES WITH BOTTLES & DOTS
-    // 1. Paid > New
-    let elPaidNew = document.getElementById('badge-paid-new');
-    if (elPaidNew) {
-        elPaidNew.innerHTML = `${subCounts.paid_new} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${pNewQty}</span> ${getDotsHtml(stateStats.paid_new)}`;
-    }
+    // Update Sub-tab Badges
+    const setBadge = (id, val, btl, stats) => {
+        if (document.getElementById(id)) {
+            document.getElementById(id).innerHTML = `${val} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${btl}</span> ${getDotsHtml(stats)}`;
+        }
+    };
 
-    // 2. Paid > Printed
-    let elPaidPrint = document.getElementById('badge-paid-printed');
-    if (elPaidPrint) {
-        elPaidPrint.innerHTML = `${subCounts.paid_print} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${pPrintQty}</span> ${getDotsHtml(stateStats.paid_print)}`;
-    }
+    // Basic Badges
+    const setBasicBadge = (id, val) => { if (document.getElementById(id)) document.getElementById(id).innerText = val; };
+    setBasicBadge('badge-sub-new', subCounts.new);
+    setBasicBadge('badge-sub-sent', subCounts.sent);
 
-    // 3. Dispatched > New
-    let elDispNew = document.getElementById('badge-disp-new');
-    if (elDispNew) {
-        elDispNew.innerHTML = `${subCounts.disp_new} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${dNewQty}</span> ${getDotsHtml(stateStats.disp_new)}`;
-    }
-
-    // 4. Dispatched > Tracked
-    let elDispTrack = document.getElementById('badge-disp-tracked');
-    if (elDispTrack) {
-        elDispTrack.innerHTML = `${subCounts.disp_track} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${dTrackQty}</span> ${getDotsHtml(stateStats.disp_track)}`;
-    }
+    // Advanced Badges (With Dots & Bottles)
+    setBadge('badge-paid-new', subCounts.paid_new, pNewQty, stateStats.paid_new);
+    setBadge('badge-paid-printed', subCounts.paid_print, pPrintQty, stateStats.paid_print);
+    setBadge('badge-disp-new', subCounts.disp_new, dNewQty, stateStats.disp_new);
+    setBadge('badge-disp-tracked', subCounts.disp_track, dTrackQty, stateStats.disp_track);
 
     updateSyncButtonUI();
     checkSelectAllStatus();
@@ -715,10 +635,7 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false) {
-    // 🔥 FIX 1: Declare 'buttons' at the top to fix ReferenceError
     let buttons = '';
-
-    // 🔥 FIX 2: Create a separate variable for Logic, keep 'type' for Unique IDs
     let logicType = type;
     if (type === 'search') {
         if (currentStatus === 'Pending' || currentStatus === 'Sent') logicType = 'pending';
@@ -726,24 +643,48 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         else if (currentStatus === 'Dispatched') logicType = 'dispatched';
     }
 
-    let priceInfo = calculatePriceInfo(d.quantity, d.state);
+    // 1. Basic Data & Safety
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+    let priceInfo = calculatePriceInfo(d.quantity, d.state);
 
-    // Customer Stats
+    // 2. Customer Stats (History)
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => {
         let matchPhone = String(o.phone || '').replace(/[^0-9]/g, '') === currentPhone;
         let s = o.Status || 'Pending';
-        let isValidStatus = (s !== 'Pending' && s !== 'Sent' && s !== 'Archive');
-        return matchPhone && isValidStatus;
+        return matchPhone && (s !== 'Pending' && s !== 'Sent' && s !== 'Archive');
     }) : [];
-
     let totalOrders = custHistory.length;
     let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
 
-    // Color Logic
+    // 3. Compact View (Collapsed Logic) - EARLY EXIT
+    if (isCompact) {
+        let phoneDisplay = d.phone ? d.phone.replace(/[^0-9]/g, '').slice(-10) : '';
+        return `
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="order-card p-0 shadow-sm border-0 mb-2" style="border-radius:10px; overflow:hidden;">
+                <div class="d-flex align-items-center justify-content-between p-3 bg-white" 
+                     onclick="toggleCardUI(this.parentElement)" 
+                     style="cursor:pointer; border:1px solid #eee; border-radius:10px;">
+                    <div class="d-flex align-items-center gap-2 overflow-hidden">
+                         <span class="badge bg-light text-secondary border" style="font-size:10px; font-weight:700;">${d.orderid.slice(-4)}</span>
+                         <div class="fw-bold text-dark text-truncate" style="font-size:13px;">${safe(d.name)}</div>
+                         <div class="text-muted small" style="font-size:11px;"><i class="fas fa-phone-alt ms-1 me-1" style="font-size:9px;"></i>${phoneDisplay}</div>
+                    </div>
+                    <i class="fas fa-chevron-down text-muted small transition-icon"></i>
+                </div>
+                <div class="full-card-content bg-white border-top p-3" style="display:none;">
+                    ${createCardHTML(d, index, type, currentStatus, false)} 
+                </div>
+            </div>
+        </div>`;
+    }
+
+    // --- FULL CARD CONTENT (Standard View) ---
+
+    // Badges & Status Color
     let statusColor = 'secondary';
     if (currentStatus === 'Pending') statusColor = 'warning text-dark';
     if (currentStatus === 'Sent') statusColor = 'primary';
@@ -753,14 +694,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa;">${d.language.toUpperCase()}</span>` : '';
 
-    // Action Buttons
-    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending')
-        ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>` : '';
-
-    // Note: handleRefundToggle uses 'this' now to avoid ID issues
+    // Action Buttons (Refund/Archive)
+    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>` : '';
     let refundBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed') ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
 
-    // Meta Badges
     let meta = getMetaStatus(d.adminMeta);
     let metaBadges = '';
     if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed"></span>`;
@@ -771,7 +708,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
     }
 
-    // Fraud Alert
+    // Fraud/Linked Order Alert
     let fraudAlertHtml = '';
     if (currentStatus === 'Pending' || currentStatus === 'Sent') {
         let linkedOrder = checkCrossLinking(d);
@@ -789,7 +726,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         }
     }
 
-    // Header Left
+    // Header Construction
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-2">
             ${rankBadge} 
@@ -800,35 +737,33 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             ${refundBtn} ${langBadge} ${archiveBtn}
         </div>`;
 
-    // Top Actions
+    // Top Right Actions
     let topActions = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>` +
         `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
     if (logicType === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (logicType === 'paid') {
-        // 🔥 UPDATE: Pass 'type' (context) to sendPaymentWA
         topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>${topActions}</div>`;
     }
 
+    // Paid Date Display
     let paidTimeHTML = '';
     if ((logicType === 'paid' || currentStatus === 'Paid') && d.paidDate) {
-        let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+        let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
-    // Contact Selector
-    let selectedContact = meta.contact;
+    // Contact Selector Logic
     let uniqueContacts = new Map();
     const cleanNum = (n) => String(n || '').replace(/[^0-9]/g, '');
-
     if (d.whatsapp) uniqueContacts.set(cleanNum(d.whatsapp), { val: d.whatsapp, label: `📲 WA: ${d.whatsapp}`, type: 'whatsapp' });
     if (d.phone && !uniqueContacts.has(cleanNum(d.phone))) uniqueContacts.set(cleanNum(d.phone), { val: d.phone, label: `📞 PH: ${d.phone}`, type: 'phone' });
     if (d.altphone && !uniqueContacts.has(cleanNum(d.altphone))) uniqueContacts.set(cleanNum(d.altphone), { val: d.altphone, label: `☎️ ALT: ${d.altphone}`, type: 'alt' });
     if (d.paidNum && !uniqueContacts.has(cleanNum(d.paidNum))) uniqueContacts.set(cleanNum(d.paidNum), { val: d.paidNum, label: `💰 PAID: ${d.paidNum}`, type: 'paid' });
 
     let opts = '';
-    let selType = selectedContact || 'whatsapp';
+    let selType = meta.contact || 'whatsapp';
     if (!d.adminMeta) selType = 'whatsapp';
 
     uniqueContacts.forEach((v, k) => {
@@ -837,8 +772,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         opts += `<option value="${code}" ${isSelected}>${v.label}</option>`;
     });
 
-    // 🔥 FIX 3: UNIQUE ID using 'type' (context)
-    // Example ID: wa-select-paid-5 OR wa-select-search-5
     let waSelectorHTML = `
     <div class="mt-2 mb-2 d-flex gap-1" onclick="highlightCard(this)">
         <select id="wa-select-${type}-${index}" 
@@ -848,7 +781,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this, '${type}')" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
-    // Contact Visuals
+    // Contact Visuals (Icons)
     let contactMap = {};
     const addVisualContact = (iconType, number) => {
         if (!number) return;
@@ -873,8 +806,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // ================= BUTTON LOGIC =================
-
+    // === MAIN BUTTONS LOGIC ===
     if (currentStatus === 'Completed' || currentStatus === 'Delivered') {
         let delDateStr = d['Delivered Date'] || d.actionDate;
         let dateDisplay = '';
@@ -886,7 +818,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     else if (logicType === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
-        // 🔥 UPDATE: Pass 'type' to sendWA
         buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button><button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', '${currentStatus === 'Pending' ? 'Sent' : 'Paid'}')" title="Next Status"><i class="fas fa-arrow-right me-1"></i> NEXT</button></div>`;
     }
     else if (logicType === 'paid') {
@@ -911,11 +842,29 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         buttons = `${dateHtml}${trkBtnHtml}<button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
-    if (isCompact) {
-        return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card p-3 shadow-sm"><div class="d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="toggleCardUI(this.closest('.order-card'))"><div style="font-size:12px; flex-grow:1;"><div class="mb-1">${headerLeft}</div><div class="fw-bold text-dark" style="font-size:14px;">${safe(d.name)}</div><div class="text-muted small" style="font-size:10px;">${formattedDate}</div></div><button class="btn btn-sm btn-light border" onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅</button></div><div class="full-card-content mt-3 pt-3 border-top" style="display:none;">${createCardHTML(d, index, type, currentStatus, false)}</div></div></div>`;
-    }
-
-    return `<div class="col-12 col-md-6 col-lg-4"><div class="order-card p-3"><div class="d-flex justify-content-between align-items-start mb-2"><div>${headerLeft}</div><div>${topActions}</div></div>${fraudAlertHtml}<div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>${paidTimeHTML}<div class="cust-name">${safe(d.name)}</div><div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div><div class="cust-details"><b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b><br><div class="mt-2" style="font-size:11px;">${contactLine}</div></div><div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>${waSelectorHTML}<div class="action-area mt-2" style="display:block;">${buttons}</div></div></div>`;
+    // FINAL ASSEMBLY
+    return `
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="order-card p-3">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>${headerLeft}</div>
+                <div>${topActions}</div>
+            </div>
+            ${fraudAlertHtml}
+            <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
+            ${paidTimeHTML}
+            <div class="cust-name">${safe(d.name)}</div>
+            <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
+            <div class="cust-details">
+                <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
+                ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b>
+                <div class="mt-2" style="font-size:11px;">${contactLine}</div>
+            </div>
+            <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
+            ${waSelectorHTML}
+            <div class="action-area mt-2" style="display:block;">${buttons}</div>
+        </div>
+    </div>`;
 }
 // 🔥 UPDATED: Sync Button UI (Orders + Expenses കൂട്ടാൻ)
 // 🔥 2. UPDATED SYNC BUTTON UI (Expense ഫോമിനുള്ളിൽ സിങ്ക് ബട്ടൺ കാണിക്കാൻ)
