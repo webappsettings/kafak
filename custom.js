@@ -1399,7 +1399,7 @@ function checkForChanges() {
 
   // 3. Compare
   var isChanged = false;
-  var isQtyChanged = (String(currQty) !== String(savedQty)); // 🔥 Check Qty Specifically
+  var isQtyChanged = (String(currQty) !== String(savedQty));
 
   if (isQtyChanged) isChanged = true;
   if (String(currName).trim() !== String(savedName).trim()) isChanged = true;
@@ -1410,18 +1410,26 @@ function checkForChanges() {
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
-  // UI Updates for Customer Mode
+  // UI Updates
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang];
 
-  // 🔥🔥🔥 ADMIN DYNAMIC BUTTON LOGIC STARTS HERE 🔥🔥🔥
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
+  // 🔥 FIX START: Delivered ആണെങ്കിൽ ബട്ടൺ എപ്പോഴും Enable ആക്കുക (Force Enable)
+  const status = String(savedOrderData.Status || '').toLowerCase();
+  if (['delivered', 'completed'].includes(status)) {
+    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
+    // Text is handled by handleEditControlsVisibility, so we don't overwrite it here
+    return; // ഇവിടെ വെച്ച് നിർത്തുന്നു, ബാക്കി ചെക്ക് ചെയ്യേണ്ട ആവശ്യമില്ല
+  }
+  // 🔥 FIX END
+
+  // Admin Logic (Old Logic)
   if (isAdmin && editingOrderId) {
     if (isQtyChanged) {
-      // 1. Calculate Prices
       let oldQty = parseInt(savedQty) || 0;
       let newQty = parseInt(currQty) || 0;
       let stateKey = getZoneKey($('#edit-state').val());
@@ -1431,21 +1439,14 @@ function checkForChanges() {
       let newTotal = (newQty * 650) + (rates[newQty] || 0);
       let balance = newTotal - oldTotal;
 
-      // 2. Show Difference Info
       $('#admin-diff-viewer').html(`
               <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                      <div class="fw-bold" style="font-size:13px;">Qty: ${oldQty} ➡ ${newQty}</div>
-                      <div class="small text-muted">New Total: ₹${newTotal}</div>
-                  </div>
-                  <div class="text-end">
-                      <div class="fw-bold text-danger" style="font-size:16px;">Bal: ${balance > 0 ? '+' : ''}₹${balance}</div>
-                  </div>
+                  <div><div class="fw-bold" style="font-size:13px;">Qty: ${oldQty} ➡ ${newQty}</div><div class="small text-muted">New Total: ₹${newTotal}</div></div>
+                  <div class="text-end"><div class="fw-bold text-danger" style="font-size:16px;">Bal: ${balance > 0 ? '+' : ''}₹${balance}</div></div>
               </div>
           `).slideDown();
 
-      // 3. 🔥 HIDE STANDARD BUTTONS & SHOW DUAL ACTIONS
-      $('#admin-action-bar').hide(); // Hide bottom bar
+      $('#admin-action-bar').hide();
 
       let actionHtml = `
           <div class="d-flex gap-2">
@@ -1458,21 +1459,17 @@ function checkForChanges() {
           </div>`;
 
       $('#admin-qty-actions').html(actionHtml).slideDown();
-
-      // Disable standard update button to avoid confusion
       btnUpdate.hide();
 
     } else {
-      // No Qty Change -> Restore Standard UI
       $('#admin-diff-viewer').slideUp();
       $('#admin-qty-actions').slideUp();
-      $('#admin-action-bar').slideDown(); // Show bottom bar
+      $('#admin-action-bar').slideDown();
       btnUpdate.show();
     }
   }
-  // 🔥🔥🔥 ADMIN LOGIC ENDS 🔥🔥🔥
 
-  // Standard Button Logic (For Customer or Non-Qty Changes)
+  // Standard User Logic
   if (!isAdmin || !isQtyChanged) {
     if (isChanged) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb' }).text(t.btn_update);
