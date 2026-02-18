@@ -504,14 +504,13 @@ function handleEditControlsVisibility(d) {
   }
 
   // 3. LOCKED STATES (Paid, Dispatched, Refunded)
-  // ഇവിടെ മാറ്റം വരുത്താൻ പാടില്ല
   if (['paid', 'dispatched', 'refunded'].includes(status)) {
 
-    // Lock Qty & Hide Update Buttons
-    $('#quick-qty').prop('disabled', true);
-    $('.btn-update-sage, #quick-price-box').hide();
+    // 🔥 FIX: Label കാണിക്കുന്നു & Select Box Disable ചെയ്യുന്നു
+    $('label[data-i18n="lbl_qty"]').show(); // Label കാണിക്കാൻ
+    $('#quick-qty').prop('disabled', true); // Box Disable ചെയ്യാൻ
 
-    // Lock Address Edit
+    $('.btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
 
     // Show Message Button ONLY if 'Paid'
