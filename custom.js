@@ -885,7 +885,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
 
-  // Admin Inputs (Phone fields)
+  // Admin Inputs
   $('#edit-phone').val(d.phone);
   $('#edit-whatsapp').val(d.whatsapp || d.phone);
   $('#edit-altphone').val(d.altphone || '');
@@ -946,22 +946,26 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#status-area').hide().empty();
 
   if (isServerData) {
+    // --- DATA LOADED ---
     updateStatusUI(d);
     if ($('#refresh-btn').length === 0) {
       $('#returning-user-view').append(`<div class="d-flex justify-content-center mt-4 mb-3 fade-in"><button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2"><i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span></button></div>`);
     }
+
+    // Control Visibility based on Status
     handleEditControlsVisibility(d);
   } else {
-    // 🔥 LOADING TIME: എല്ലാം ഹൈഡ് ചെയ്യുന്നു
+    // --- LOADING STATE (Spinner) ---
+    // 🔥 FIX: Everything Hidden during loading
     $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
 
-    // Hide Controls
-    $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').hide().prev('label').hide(); // Hide Select & Label
-    $('.btn-update-sage').hide(); // Hide Button
-    $('#quick-price-box').hide();
-    $('#btn-edit-addr').hide();
+    $('label[data-i18n="lbl_qty"]').hide(); // Label Hide
+    $('#quick-qty').hide().prev('label').hide(); // Select Box Hide
+    $('.btn-update-sage').hide(); // Button Hide
+    $('#quick-price-box').hide(); // 🔥 Price Table Hide
+    $('#btn-edit-addr').hide(); // Edit Button Hide
   }
+
   checkForChanges();
 }
 
