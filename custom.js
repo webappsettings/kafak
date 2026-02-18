@@ -436,12 +436,14 @@ function handleEditControlsVisibility(d) {
   const lang = $('#language-select').val() || 'en';
   let reqText = "Want to change details?";
   let subText = "Message Admin";
-  let orderAgainText = "ORDER AGAIN";
+
+  // Button Text Logic
+  let orderAgainText = (lang === 'ml') ? "വീണ്ടും ഓർഡർ ചെയ്യാം" : "ORDER AGAIN";
+  let updateText = (lang === 'ml') ? "അപ്‌ഡേറ്റ് ചെയ്യൂ" : "UPDATE ORDER";
 
   if (lang === 'ml') {
     reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
     subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
-    orderAgainText = "ORDER AGAIN"; // വീണ്ടും ഓർഡർ ചെയ്യാം
   }
 
   // 1. ADMIN - Always Allow Edit
@@ -456,18 +458,18 @@ function handleEditControlsVisibility(d) {
   }
 
   // 2. 🔥 RE-ORDER STATE (Delivered / Completed)
-  // ഡെലിവറി കഴിഞ്ഞാൽ പുതിയ ഓർഡർ ഇടാനുള്ള ഓപ്ഷൻ നൽകുന്നു
+  // ഡെലിവറി കഴിഞ്ഞാൽ പഴയ ഐഡി മാറ്റി പുതിയ ഓർഡർ ഇടാനുള്ള ഓപ്ഷൻ നൽകുന്നു
   if (['delivered', 'completed'].includes(status)) {
 
-    // Enable Qty & Show Price Box
-    $('#quick-qty').prop('disabled', false).val('').trigger('change'); // Clear qty
+    // Enable Qty & Show Price Box (Reset Qty for new selection)
+    $('#quick-qty').prop('disabled', false).val('').trigger('change');
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-price-box').hide(); // Hide price until qty selected
 
-    // Unlock Address Edit
+    // Unlock Address Edit (അഡ്രസ് മാറ്റണമെങ്കിൽ മാറ്റാം)
     $('#btn-edit-addr').css('display', 'inline-block');
 
-    // 🔥 Show "ORDER AGAIN" Button
+    // 🔥 Show "ORDER AGAIN" Button (Green)
     $('.btn-update-sage')
       .show()
       .prop('disabled', false)
@@ -477,12 +479,14 @@ function handleEditControlsVisibility(d) {
     // Remove Request Button
     $('#btn-req-modify').remove();
 
-    // Ensure ID is null so it creates a NEW order
+    // 🔥 CRITICAL: പഴയ Order ID നൾ (null) ആക്കുന്നു.
+    // ഇതോടെ 'Submit' അടിക്കുമ്പോൾ പുതിയ ഓർഡർ ആയി (New ID) സേവ് ആകും.
     editingOrderId = null;
     return;
   }
 
   // 3. LOCKED STATES (Paid, Dispatched, Refunded)
+  // ഇവിടെ മാറ്റം വരുത്താൻ പാടില്ല
   if (['paid', 'dispatched', 'refunded'].includes(status)) {
 
     // Lock Qty & Hide Update Buttons
@@ -511,14 +515,14 @@ function handleEditControlsVisibility(d) {
   }
 
   // 4. EDITABLE STATES (Pending, Sent, Archive)
+  // സാധാരണ അപ്‌ഡേറ്റ് മോഡ്
   $('label[data-i18n="lbl_qty"]').show();
   $('#quick-qty').prop('disabled', false).show();
   $('.btn-update-sage, #quick-price-box').show();
 
-  // Reset Button Text to "Update Order"
-  let updateText = (lang === 'ml') ? "അപ്‌ഡേറ്റ് ചെയ്യൂ" : "UPDATE ORDER";
+  // Reset Button Text to "Update Order" (Blue)
   $('.btn-update-sage')
-    .css({ 'background': '#2563eb', 'border-color': '#2563eb' }) // Blue Color
+    .css({ 'background': '#2563eb', 'border-color': '#2563eb' })
     .html(updateText);
 
   $('#btn-edit-addr').css('display', 'inline-block');
