@@ -2097,13 +2097,16 @@ function sendToWhatsapp() {
   const safe = (val) => String(val || '').trim().toUpperCase();
   const adminPhone = '7788990313'; // Admin Phone Number
 
+  // 🔥 MISSING PART ADDED: Check if Admin is logged in
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
   // 1. Language & Translations
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
   const editText = t.wa_check_status;
 
-  // 🔥 FIX: Date Logic
+  // Date Logic
   let dateObj = new Date();
   if (d.timestamp) {
     let serverDate = new Date(d.timestamp);
@@ -2165,24 +2168,30 @@ function sendToWhatsapp() {
   const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
   let header = "";
 
-  if (isUpdate) {
-    header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-
-    if (changes.length > 0) {
-      header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
-    } else {
-      header += `\n(Updated details confirmed)\n`;
-    }
-    header += `\n*👇 CURRENT DETAILS:*`;
+  // 🔥 LOGIC UPDATE: Custom Header for Admin
+  if (isAdmin) {
+    // Admin sending Invoice to Customer
+    header = `*🧾 ORDER INVOICE* - KAFAK HONEY 🍯\n⌚ _${formattedTime}_\n\nHere is your order details 👇\n🔗 _${editLink}_\n`;
   } else {
-    header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+    // Customer placing order (Standard)
+    if (isUpdate) {
+      header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+      if (changes.length > 0) {
+        header += `\n*🔥 WHAT CHANGED:* \n${changes.join('\n')}\n`;
+      } else {
+        header += `\n(Updated details confirmed)\n`;
+      }
+      header += `\n*👇 CURRENT DETAILS:*`;
+    } else {
+      header = `*${t.wa_header_new}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+    }
   }
 
   let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
   const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
-  // 🔥 NEW: Payment Screenshot Request (Language based)
+  // Payment Note
   let paymentNote = "";
   if (lang === 'en') {
     paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
@@ -2192,8 +2201,22 @@ function sendToWhatsapp() {
 
   const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
+  // 🔥 LOGIC UPDATE: Determine Target Phone
+  let targetPhone = "";
+  if (isAdmin) {
+    // If Admin: Send to Customer's WhatsApp or Phone
+    targetPhone = d.whatsapp || d.phone;
+  } else {
+    // If Customer: Send to Admin
+    targetPhone = adminPhone;
+  }
+
+  // Clean Number logic
+  targetPhone = String(targetPhone).replace(/[^0-9]/g, '');
+  if (targetPhone.length === 10) targetPhone = '91' + targetPhone;
+
   // WhatsApp Link Opening
-  window.location.href = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(header + details + footer)}`;
+  window.location.href = `https://wa.me/${targetPhone}?text=${encodeURIComponent(header + details + footer)}`;
 }
 
 
