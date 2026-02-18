@@ -254,10 +254,27 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
+    let localData = localUsersMap[phone];
+    let status = String(localData.Status || '').toLowerCase();
 
-    // 🔥 DO NOT RENDER LOCAL IMMEDIATELY
+    // 🔥 INSTANT LOAD for Delivered/Completed (No Waiting!)
+    if (['delivered', 'completed', 'refunded'].includes(status)) {
+      // Loader കാണിക്കേണ്ട കാര്യമില്ല
+
+      // പുതിയ ഓർഡറിന് റെഡിയാക്കുന്നു
+      editingOrderId = null;
+      localData.quantity = null;
+
+      // ലോക്കൽ ഡാറ്റ വെച്ച് ഉടൻ തന്നെ പേജ് കാണിക്കുന്നു (True Flag കൊടുക്കുന്നു)
+      loadOrderData(localData, true);
+
+      // ബാക്ക്ഗ്രൗണ്ടിൽ മാത്രം അപ്‌ഡേറ്റ് നടക്കുന്നു (ശല്യം ചെയ്യില്ല)
+      syncUserDataBackground(phone);
+      return;
+    }
+
+    // Active Orders (Paid/Pending) ആണെങ്കിൽ പഴയത് പോലെ Sync കഴിഞ്ഞ് കാണിക്കാം
     showLoader(true);
-
     syncUserDataBackground(phone).finally(() => {
       showLoader(false);
     });
@@ -265,6 +282,7 @@ window.handlePhoneNext = function () {
     return;
   }
 
+  // New User Logic
   editingOrderId = null;
   $('#step-0').hide();
   $('#whatsapp').val(phone);
@@ -829,6 +847,7 @@ function updateLocalCache(data, status) {
   }
 }
 
+
 function showReturningUserView(d, isActiveOrder, isServerData) {
   // 1. Hide Wizard Steps
   $('#step-0').hide();
@@ -841,11 +860,6 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateFooterButtons('returning');
   isEditMode = isActiveOrder;
   savedOrderData = JSON.parse(JSON.stringify(d));
-
-  // 🔥 SAFETY LOCK: Default State (Before Status Check)
-  // സ്റ്റാറ്റസ് ചെക്ക് ചെയ്യുന്നത് വരെ ഇത് ഡിസേബിൾ ആയിരിക്കും.
-  $('#quick-qty').prop('disabled', true);
-  $('#btn-edit-addr').hide();
 
   // Language Setup
   const lang = $('#language-select').val() || 'en';
@@ -871,7 +885,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
 
-  // Admin Inputs
+  // Admin Inputs (Phone fields)
   $('#edit-phone').val(d.phone);
   $('#edit-whatsapp').val(d.whatsapp || d.phone);
   $('#edit-altphone').val(d.altphone || '');
@@ -879,7 +893,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // Admin Panel Setup (Old Logic Preserved)
+  // Admin Panel Setup
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
@@ -938,7 +952,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     }
     handleEditControlsVisibility(d);
   } else {
+    // 🔥 LOADING TIME: എല്ലാം ഹൈഡ് ചെയ്യുന്നു
     $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
+
+    // Hide Controls
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('#quick-qty').hide().prev('label').hide(); // Hide Select & Label
+    $('.btn-update-sage').hide(); // Hide Button
+    $('#quick-price-box').hide();
+    $('#btn-edit-addr').hide();
   }
   checkForChanges();
 }
