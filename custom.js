@@ -50,7 +50,7 @@ window.showLoader = function (show) {
 
 window.changeLanguage = function (lang) {
   localStorage.setItem('activeLang', lang);
-  const t = translations[lang] || translations['en']; // Fallback
+  const t = translations[lang] || translations['en'];
   if (!t) return;
 
   // 1. Update Standard Text Content
@@ -60,11 +60,10 @@ window.changeLanguage = function (lang) {
       $(this).text(t.lbl_qty_edit);
       return;
     }
-
     if (t[key]) $(this).text(t[key]);
   });
 
-  // 2. Update Placeholders & Other UI Elements
+  // 2. Update Placeholders
   $('#phone').attr('placeholder', t.ph_phone);
   $('#name').attr('placeholder', t.ph_name);
   $('#house').attr('placeholder', t.ph_house);
@@ -96,11 +95,13 @@ window.changeLanguage = function (lang) {
 
   checkForChanges();
 
-  // 5. Status UI Refresh
+  // 5. Status & Controls Refresh
   if (typeof userData !== 'undefined' && userData.orderid && typeof updateStatusUI === 'function') {
     if ($('#status-area').html().trim() !== "") {
       updateStatusUI(userData);
     }
+    // 🔥 FIX: ഭാഷ മാറുമ്പോൾ ബട്ടണുകൾ റീ-റെൻഡർ ചെയ്യാൻ ഇത് വിളിക്കുന്നു
+    handleEditControlsVisibility(userData);
   }
 
   if ($('#quick-qty').is(':hidden')) {
@@ -443,12 +444,13 @@ function syncUserDataBackground(phone) {
     });
 }
 
+
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer can Re-Order if Delivered)
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // 1. Language Setup (Fix: Declaring 't')
+  // 1. Language Setup
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en']; // 🔥 't' defined here
 
@@ -465,6 +467,12 @@ function handleEditControlsVisibility(d) {
   }
 
   // 3. 🔥 RE-ORDER STATE (Delivered / Completed)
+  if (['delivered', 'completed', 'refunded'].includes(status) && status !== 'refunded') {
+    // Note: Refunded is usually locked, but if you want re-order for refunded, keep it here. 
+    // Based on previous code, Refunded was in Locked state. I will keep Refunded in Locked state below for safety.
+  }
+
+  // Corrected RE-ORDER Condition
   if (['delivered', 'completed'].includes(status)) {
 
     $('#quick-qty').prop('disabled', false).val('').trigger('change');
@@ -478,10 +486,10 @@ function handleEditControlsVisibility(d) {
       .show()
       .prop('disabled', false)
       .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
-      .html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again}`); // Uses 't'
+      .html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again}`);
 
     $('#btn-req-modify').remove();
-    editingOrderId = null;
+    editingOrderId = null; // Important for New Order
     return;
   }
 
@@ -489,20 +497,20 @@ function handleEditControlsVisibility(d) {
   if (['paid', 'dispatched', 'refunded'].includes(status)) {
 
     $('label[data-i18n="lbl_qty"]').show();
-    $('#quick-qty').show().prop('disabled', true);
+    $('#quick-qty').show().prop('disabled', true); // Show but Disabled
     $('#quick-qty').prev('label').show();
 
-    $('.btn-update-sage, #quick-price-box').hide();
+    $('.btn-update-sage, #quick-price-box').hide(); // Hide Buttons & Price
     $('#btn-edit-addr').hide();
 
     $('#btn-req-modify').remove();
 
-    // 🔥 Show "Message Admin" with Translation
+    // 🔥 Show "Message Admin" with Translation (Only for Paid)
     if (status === 'paid') {
       let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
       let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
-      // Translations for text
+      // Text Translation for label above button
       let reqText = (lang === 'ml') ? "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?" : "Want to change details?";
 
       $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">

@@ -107,6 +107,7 @@ const translations = {
         txt_received_helper: "നിങ്ങള്‍ക്ക് ഓര്‍ഡര്‍ കിട്ടിയെങ്കില്‍ ഈ ബട്ടണ്‍ അമര്‍ത്താം 👇",
         lbl_refunded: "റീഫണ്ട് ചെയ്തു (Refunded)",
         desc_refunded: "തുക തിരികെ നൽകി.",
+        lbl_req_change: "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?",
     },
 
     en: {
@@ -220,5 +221,6 @@ const translations = {
         txt_received_helper: "Tap here if you have received the order 👇",
         lbl_refunded: "Refunded",
         desc_refunded: "Amount has been refunded.",
+        lbl_req_change: "Want to change details?",
     }
 };
