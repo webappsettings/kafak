@@ -164,7 +164,6 @@ $(document).ready(function () {
     }
     changeLanguage(savedLang);
   } else {
-    // Default English
     changeLanguage('en');
   }
 
@@ -175,16 +174,13 @@ $(document).ready(function () {
   const autoPhone = urlParams.get('phone');
 
   if (autoPhone) {
-    // 1. Clean the number (remove +91, spaces)
     let cleanPhone = autoPhone.replace(/[^0-9]/g, '');
-    if (cleanPhone.length > 10) cleanPhone = cleanPhone.slice(-10); // Last 10 digits
-
-    // 2. Set Value & Auto Click Next
+    if (cleanPhone.length > 10) cleanPhone = cleanPhone.slice(-10);
     if (cleanPhone.length === 10) {
       $('#phone').val(cleanPhone);
       setTimeout(() => {
-        handlePhoneNext(); // Auto-Trigger Next Button
-      }, 500); // Small delay for smooth UX
+        handlePhoneNext();
+      }, 500);
     }
   }
 
@@ -210,10 +206,23 @@ $(document).ready(function () {
   const oid = urlParams.get('oid');
   const isAdmin = SafeStorage.getItem('kafakAdmin') === 'true';
 
+  // 🔥 NEW: Add Admin Label to Phone Input Screen (Step-0)
+  if (isAdmin) {
+    $('#admin-home-label').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയുന്നു
+    let labelHtml = `
+            <div id="admin-home-label" class="text-center mb-3 fade-in">
+                <span class="badge bg-dark text-warning border border-warning shadow-sm px-3 py-2 rounded-pill" 
+                      style="font-size:10px; letter-spacing:1px; font-weight:800;">
+                    <i class="fas fa-user-shield me-1"></i> ADMIN ORDERING
+                </span>
+            </div>
+        `;
+    $('#step-0').prepend(labelHtml); // ഫോം ബോക്സിനുള്ളിൽ ഏറ്റവും മുകളിൽ ചേർക്കുന്നു
+  }
+
   // INSTANT EDIT LOAD
   if (oid) {
     showLoader(true);
-
     if (isAdmin) {
       setupAdminView(oid);
     } else {
