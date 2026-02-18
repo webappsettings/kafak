@@ -346,10 +346,10 @@ function loadOrderData(d, isServerData = false) {
 
   showReturningUserView(d, true, isServerData);
 
-  if (d.quantity) {
-    $('#quick-qty').val(d.quantity);
-    updatePrice(d.quantity, true);
-  }
+  // if (d.quantity) {
+  //   $('#quick-qty').val(d.quantity);
+  //   updatePrice(d.quantity, true);
+  // }
 }
 
 window.manualRefresh = function () {
@@ -893,7 +893,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   updateSummaryDisplay();
 
-  // Admin Panel Setup
+  // Admin Panel Setup (Placeholder)
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
@@ -943,10 +943,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $(`<div id="admin-qty-actions" class="mt-3 fade-in" style="display:none;"></div>`).insertAfter('#admin-diff-viewer');
   }
 
+  // 🔥 FIX: Status Area Reset
   $('#status-area').hide().empty();
 
   if (isServerData) {
-    // --- DATA LOADED ---
+    // --- DATA LOADED (Server Synced) ---
     updateStatusUI(d);
     if ($('#refresh-btn').length === 0) {
       $('#returning-user-view').append(`<div class="d-flex justify-content-center mt-4 mb-3 fade-in"><button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2"><i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span></button></div>`);
@@ -954,16 +955,23 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
     // Control Visibility based on Status
     handleEditControlsVisibility(d);
+
+    // 🔥 UPDATE PRICE ONLY AFTER DATA LOAD
+    if (d.quantity) {
+      $('#quick-qty').val(d.quantity);
+      updatePrice(d.quantity, true);
+    }
+
   } else {
     // --- LOADING STATE (Spinner) ---
-    // 🔥 FIX: Everything Hidden during loading
+    // 🔥 എല്ലാം ഹൈഡ് ചെയ്യുന്നു
     $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
 
-    $('label[data-i18n="lbl_qty"]').hide(); // Label Hide
-    $('#quick-qty').hide().prev('label').hide(); // Select Box Hide
-    $('.btn-update-sage').hide(); // Button Hide
-    $('#quick-price-box').hide(); // 🔥 Price Table Hide
-    $('#btn-edit-addr').hide(); // Edit Button Hide
+    $('label[data-i18n="lbl_qty"]').hide();
+    $('#quick-qty').hide().prev('label').hide();
+    $('.btn-update-sage').hide();
+    $('#quick-price-box').hide(); // Price Box Hidden
+    $('#btn-edit-addr').hide();
   }
 
   checkForChanges();
