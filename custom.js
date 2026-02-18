@@ -506,9 +506,10 @@ function handleEditControlsVisibility(d) {
   // 3. LOCKED STATES (Paid, Dispatched, Refunded)
   if (['paid', 'dispatched', 'refunded'].includes(status)) {
 
-    // 🔥 FIX: Label കാണിക്കുന്നു & Select Box Disable ചെയ്യുന്നു
-    $('label[data-i18n="lbl_qty"]').show(); // Label കാണിക്കാൻ
-    $('#quick-qty').prop('disabled', true); // Box Disable ചെയ്യാൻ
+    $('label[data-i18n="lbl_qty"]').show(); // Label കാണിക്കുന്നു
+
+    // 🔥 FIX: ബട്ടൺ ഹൈഡ് ആയത് മാറ്റാൻ .show() കൊടുത്തു, ഒപ്പം disable ചെയ്തു.
+    $('#quick-qty').show().prop('disabled', true);
 
     $('.btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
