@@ -951,6 +951,7 @@ window.markOrderDelivered = function (oid) {
   }).then((result) => {
     if (result.isConfirmed) {
 
+      // 1. UI Feedback
       $('#btn-mark-delivered').parent().html(`
           <div class="text-success fw-bold text-center py-3 fade-in" style="animation: popIn 0.5s ease;">
               <i class="fas fa-check-circle fa-3x mb-2"></i><br>
@@ -958,7 +959,7 @@ window.markOrderDelivered = function (oid) {
           </div>
       `);
 
-      // B. Beautiful Success Popup (Celebration 🎉)
+      // 2. Celebration Popup
       Swal.fire({
         title: 'Thank You! ❤️',
         html: '<div style="font-size:14px;">ഞങ്ങളെ വിശ്വസിച്ച് ഓർഡർ ചെയ്തതിന് നന്ദി!<br>Enjoy the purest honey! 🐝</div>',
@@ -970,27 +971,35 @@ window.markOrderDelivered = function (oid) {
         customClass: { popup: 'rounded-4' }
       });
 
+      // 3. Local Update
+      let now = new Date();
+      // YYYY-MM-DD HH:MM Format for Sheets
+      let actionDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
       if (typeof userData !== 'undefined') {
         userData.Status = 'Delivered';
-
+        userData['Delivered Date'] = actionDate; // 🔥 Local Update
         delete userData.quantity;
-
         saveToLocal(userData.phone, userData);
-
         updateStatusUI(userData);
-
-        setTimeout(() => {
-          renderEditView(userData);
-        }, 3000);
+        setTimeout(() => { renderEditView(userData); }, 3000);
       }
 
+      // 4. Server Update (Sends Date)
       fetch(sc, {
         method: 'POST',
-        body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: "Delivered" }] })
+        body: JSON.stringify({
+          action: "bulkUpdateStatus",
+          updates: [{
+            oid: oid,
+            status: "Delivered",
+            actionDate: actionDate // 🔥 Sends Date to Backend
+          }]
+        })
       })
         .then(res => res.json())
         .then(data => console.log("Server Updated: Delivered ✅"))
-        .catch(err => console.log("Background Sync Failed (Saved Locally)"));
+        .catch(err => console.log("Background Sync Failed"));
     }
   });
 }

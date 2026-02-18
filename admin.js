@@ -164,7 +164,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
         tabEls.forEach(tabEl => {
             tabEl.addEventListener('shown.bs.tab', function (event) {
+                // 1. ടാബ് മാറുന്നത് സേവ് ചെയ്യുന്നു
                 localStorage.setItem('activeAdminTab', event.target.getAttribute('data-bs-target'));
+
+                // 2. 🔥 SMART SEARCH RE-SORTING
+                // സെർച്ച് ബോക്സിൽ വാല്യൂ ഉണ്ടെങ്കിൽ, പുതിയ ടാബ് അനുസരിച്ച് റിസൾട്ട് ക്രമീകരിക്കാൻ filterOrders() വീണ്ടും വിളിക്കുന്നു.
+                let searchInput = document.getElementById('searchInput');
+                if (searchInput && searchInput.value.trim() !== "") {
+                    filterOrders();
+                } else {
+                    // സെർച്ച് ഇല്ലെങ്കിൽ മാത്രം സ്ക്രോൾ മുകളിലേക്ക് ആക്കുന്നു
+                    localStorage.setItem('lastScrollPosition', 0);
+                }
             });
         });
     } catch (e) { console.error("Init Error:", e); }
