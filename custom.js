@@ -456,8 +456,8 @@ function handleEditControlsVisibility(d) {
   let subText = "Message Admin";
 
   // Button Text Logic
-  let orderAgainText = (lang === 'ml') ? "വീണ്ടും ഓർഡർ ചെയ്യാം" : "ORDER AGAIN";
-  let updateText = (lang === 'ml') ? "അപ്‌ഡേറ്റ് ചെയ്യൂ" : "UPDATE ORDER";
+  let orderAgainText = (lang === 'ml') ? t.btn_order_again : t.btn_order_again;
+  let updateText = (lang === 'ml') ? t.btn_update : t.btn_update;
 
   if (lang === 'ml') {
     reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
@@ -525,7 +525,7 @@ function handleEditControlsVisibility(d) {
               <div class="text-muted small mb-1 fw-bold">${reqText}</div>
               <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
                  class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
-                 <i class="fab fa-whatsapp"></i> ${subText}
+                 <i class="fab fa-whatsapp"></i> ${t.btn_msg_admin}
               </a>
               </div>`).insertAfter('#status-area');
     }

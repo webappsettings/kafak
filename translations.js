@@ -3,7 +3,7 @@ const translations = {
         loading: "വിവരങ്ങൾ എടുക്കുന്നു...",
         // --- LABELS & HEADERS ---
         lbl_phone: "ഫോൺ നമ്പർ",
-        ph_phone: "മൊബൈൽ നമ്പർ", // Updated placeholder
+        ph_phone: "മൊബൈൽ നമ്പർ",
         lbl_name: "നിങ്ങളുടെ പേര്",
         ph_name: "പേര്",
         lbl_house: "വീട്ടുപേര് / നമ്പർ",
@@ -31,14 +31,18 @@ const translations = {
         btn_next: "തുടരുക",
         btn_edit: "വിലാസം മാറ്റാം",
         btn_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം",
-        btn_order: "ഓർഡർ ചെയ്യാം", // Wizard End Button
-        btn_order_now: "ഓർഡർ ചെയ്യാം", // New Order Button
+        btn_order: "ഓർഡർ ചെയ്യാം",
+        btn_order_now: "ഓർഡർ ചെയ്യാം",
         btn_place_new_order: "പുതിയ ഓർഡർ ചെയ്യാം",
         btn_received: "ഓർഡർ കൈപ്പറ്റി (Received)",
-        txt_no_changes: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം", // Disabled Button Text
+        txt_no_changes: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്യാം",
         txt_save_changes: "സേവ് ചെയ്യാം",
         txt_refresh: "റീഫ്രഷ് ചെയ്യാം",
         open_wa: "വാട്സാപ്പ് ഓപ്പൺ ചെയ്യാം",
+
+        // 🔥 NEW BUTTON TEXTS
+        btn_order_again: "വീണ്ടും ഓർഡർ ചെയ്യാം",
+        btn_msg_admin: "അഡ്മിന് മെസ്സേജ് അയക്കൂ",
 
         // --- STATUS MESSAGES ---
         lbl_payment_pending: "പേയ്‌മെന്റ് പെൻഡിംഗ്",
@@ -66,29 +70,27 @@ const translations = {
         err_place: "സ്ഥലം നൽകുക",
         err_qty: "എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കുക",
 
-        // 🔥 NEW: Button Subtext
+        // Other Texts
         lbl_select_qty_subtext: "(എത്ര ബോട്ടിൽ എന്ന് തിരഞ്ഞെടുക്കൂ)",
         wa_check_status: "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇",
-        wa_header_new: "ഓർഡർ ലഭിച്ചു! (Honey Order Confirmed)", // WhatsApp Header New
-        wa_header_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു! (Order Updated)", // WhatsApp Header Update
-        warn_place_only: "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)", // Address Warning
-        lbl_preparing: "ഓർഡർ തയ്യാറാക്കുന്നു...", // Video Text
-        dd_select: "അളവ് തിരഞ്ഞെടുക്കുക", // Select Quantity placeholder
-        txt_bottle: "ബോട്ടിൽ", // Singular
-        txt_bottles: "ബോട്ടിൽ", // Plural (മലയാളത്തിൽ 2 ബോട്ടിൽ എന്ന് മതി, 'ബോട്ടിലുകൾ' എന്ന് നിർബന്ധമില്ല)
+        wa_header_new: "ഓർഡർ ലഭിച്ചു! (Honey Order Confirmed)",
+        wa_header_update: "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു! (Order Updated)",
+        warn_place_only: "സ്ഥലം മാത്രം നൽകുക (ജില്ല/PO ചേർക്കരുത്)",
+        lbl_preparing: "ഓർഡർ തയ്യാറാക്കുന്നു...",
+        dd_select: "അളവ് തിരഞ്ഞെടുക്കുക",
+        txt_bottle: "ബോട്ടിൽ",
+        txt_bottles: "ബോട്ടിൽ",
         txt_kg: "കിലോ",
         txt_g: "ഗ്രാം",
-        lbl_reserved_for: "RESERVED FOR", // വീഡിയോയിലെ ടെക്സ്റ്റ് (മലയാളം വേണമെങ്കിൽ "ഇവർക്കായി പാക്ക് ചെയ്തത്" എന്ന് നൽകാം, അല്ലെങ്കിൽ ഇംഗ്ലീഷ് തന്നെ മതി)
-        txt_gpay: "ഗൂഗിൾ പേ നമ്പർ", // GPay Text
+        lbl_reserved_for: "RESERVED FOR",
+        txt_gpay: "ഗൂഗിൾ പേ നമ്പർ",
 
-        // 🔥 WIZARD PLACEHOLDERS (Login & Steps):
+        // Placeholders
         ph_house: "വീട്ടുപേര്",
         ph_place: "സ്ഥലം",
         ph_pincode: "000000",
         ph_whatsapp: "വാട്സാപ്പ് നമ്പർ",
         ph_altphone: "മറ്റൊരു നമ്പർ",
-
-        // 🔥 EDIT BOX PLACEHOLDERS:
         ph_edit_phone: "ഫോൺ നമ്പർ",
         ph_edit_house: "വീട്ടുപേര്",
         ph_edit_place: "സ്ഥലം",
@@ -148,6 +150,10 @@ const translations = {
         txt_refresh: "REFRESH STATUS",
         open_wa: "Open WhatsApp",
 
+        // 🔥 NEW BUTTON TEXTS
+        btn_order_again: "ORDER AGAIN",
+        btn_msg_admin: "Message Admin",
+
         // --- STATUS MESSAGES ---
         lbl_payment_pending: "Payment Pending",
         lbl_payment_received: "Payment Received",
@@ -175,9 +181,8 @@ const translations = {
         err_place: "Please enter Place",
         err_qty: "Please select quantity",
 
-        // 🔥 NEW: Button Subtext
+        // Other Texts
         lbl_select_qty_subtext: "(PLEASE SELECT QUANTITY)",
-
         wa_check_status: "To Check Status or Edit Order: 👇",
         wa_header_new: "✅ Honey order confirmed! 🍯",
         wa_header_update: "⚠️ ORDER UPDATED 📝",
@@ -191,7 +196,7 @@ const translations = {
         lbl_reserved_for: "RESERVED FOR",
         txt_gpay: "GPay to",
 
-        // 🔥 WIZARD PLACEHOLDERS:
+        // Placeholders
         ph_phone: "Enter Mobile Number",
         ph_name: "Full Name",
         ph_house: "House Name",
@@ -199,8 +204,6 @@ const translations = {
         ph_pincode: "000000",
         ph_whatsapp: "WhatsApp Number",
         ph_altphone: "Alternate Phone",
-
-        // 🔥 EDIT BOX PLACEHOLDERS:
         ph_edit_phone: "Phone",
         ph_edit_house: "House Name",
         ph_edit_place: "Place",
