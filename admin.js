@@ -818,7 +818,24 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     else if (logicType === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
-        buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button><button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="highlightCard(this); updateOrder('${d.orderid}', '${currentStatus === 'Pending' ? 'Sent' : 'Paid'}')" title="Next Status"><i class="fas fa-arrow-right me-1"></i> NEXT</button></div>`;
+        let actionBtn = '';
+
+        // 🔥 CHANGE: Status Sent ആണെങ്കിൽ 'PAID' ബട്ടൺ, അല്ലെങ്കിൽ 'SENT' ബട്ടൺ
+        if (currentStatus === 'Sent') {
+            // Green PAID Button
+            actionBtn = `<button class="btn btn-success shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
+                         style="width:100px; border-radius:10px; background:#198754;" 
+                         onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" 
+                         title="Mark as Paid">💰 PAID</button>`;
+        } else {
+            // Blue SENT Button
+            actionBtn = `<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
+                         style="width:100px; border-radius:10px; background:#0d6efd;" 
+                         onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" 
+                         title="Mark as Sent">SENT <i class="fas fa-arrow-right ms-1"></i></button>`;
+        }
+
+        buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>${actionBtn}</div>`;
     }
     else if (logicType === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
