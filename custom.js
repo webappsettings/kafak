@@ -638,6 +638,22 @@ function updateFooterButtons(view) {
 window.startWizard = function () {
   $('#wizard-view').show();
   updateFooterButtons('wizard');
+
+  // 🔥 NEW: Admin Label Logic
+  $('#admin-wiz-label').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയുന്നു (ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ)
+
+  if (localStorage.getItem('kafakAdmin') === 'true') {
+    let labelHtml = `
+            <div id="admin-wiz-label" class="text-center mb-4 fade-in">
+                <span class="badge bg-dark text-warning border border-warning shadow-sm px-3 py-2 rounded-pill" 
+                      style="font-size:10px; letter-spacing:1px; font-weight:800;">
+                    <i class="fas fa-user-shield me-1"></i> ADMIN ORDERING
+                </span>
+            </div>
+         `;
+    $('#wizard-view').prepend(labelHtml); // വിസാർഡിന്റെ ഏറ്റവും മുകളിൽ ചേർക്കുന്നു
+  }
+
   currentStep = 1;
   showStep(1);
 }
