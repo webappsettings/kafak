@@ -853,6 +853,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#step-0').hide();
   $('#wizard-view').hide();
   $('#top-progress-container').hide();
+  $('#quick-price-box').hide();
 
   // 2. Show Returning View
   $('#returning-user-view').show();
