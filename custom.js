@@ -443,30 +443,19 @@ function syncUserDataBackground(phone) {
     });
 }
 
-// 🔥 Helper Function to Show/Hide Controls based on Status
-// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer Cannot)
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer can Re-Order if Delivered)
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // Language Setup
+  // 1. Language Setup (Fix: Declaring 't')
   const lang = $('#language-select').val() || 'en';
-  let reqText = "Want to change details?";
-  let subText = "Message Admin";
+  const t = translations[lang] || translations['en']; // 🔥 't' defined here
 
-  // Button Text Logic
-  let orderAgainText = (lang === 'ml') ? t.btn_order_again : t.btn_order_again;
-  let updateText = (lang === 'ml') ? t.btn_update : t.btn_update;
-
-  if (lang === 'ml') {
-    reqText = "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?";
-    subText = "അഡ്മിന് മെസ്സേജ് അയക്കൂ";
-  }
-
-  // 1. ADMIN - Always Allow Edit
+  // 2. ADMIN - Always Allow Edit
   if (isAdmin) {
-    $('#quick-qty, .btn-update-sage, #quick-price-box').show();
+    // 🔥 FIX: removed #quick-price-box from .show() to prevent empty box appearing
+    $('#quick-qty, .btn-update-sage').show();
     $('#btn-edit-addr').css('display', 'inline-block');
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').prop('disabled', false);
@@ -475,51 +464,46 @@ function handleEditControlsVisibility(d) {
     return;
   }
 
-  // 2. 🔥 RE-ORDER STATE (Delivered / Completed)
-  // ഡെലിവറി കഴിഞ്ഞാൽ പഴയ ഐഡി മാറ്റി പുതിയ ഓർഡർ ഇടാനുള്ള ഓപ്ഷൻ നൽകുന്നു
+  // 3. 🔥 RE-ORDER STATE (Delivered / Completed)
   if (['delivered', 'completed'].includes(status)) {
 
-    // Enable Qty & Show Price Box (Reset Qty for new selection)
     $('#quick-qty').prop('disabled', false).val('').trigger('change');
     $('label[data-i18n="lbl_qty"]').show();
-    $('#quick-price-box').hide(); // Hide price until qty selected
+    $('#quick-price-box').hide(); // Hide price initially
 
-    // Unlock Address Edit (അഡ്രസ് മാറ്റണമെങ്കിൽ മാറ്റാം)
     $('#btn-edit-addr').css('display', 'inline-block');
 
-    // 🔥 Show "ORDER AGAIN" Button (Green)
+    // 🔥 Green "ORDER AGAIN" Button with Translation
     $('.btn-update-sage')
       .show()
       .prop('disabled', false)
-      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' }) // Green Color
-      .html(`<i class="fas fa-shopping-bag me-1"></i> ${orderAgainText}`);
+      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
+      .html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again}`); // Uses 't'
 
-    // Remove Request Button
     $('#btn-req-modify').remove();
-
-    // 🔥 CRITICAL: പഴയ Order ID നൾ (null) ആക്കുന്നു.
-    // ഇതോടെ 'Submit' അടിക്കുമ്പോൾ പുതിയ ഓർഡർ ആയി (New ID) സേവ് ആകും.
     editingOrderId = null;
     return;
   }
 
-  // 3. LOCKED STATES (Paid, Dispatched, Refunded)
+  // 4. LOCKED STATES (Paid, Dispatched, Refunded)
   if (['paid', 'dispatched', 'refunded'].includes(status)) {
 
-    $('label[data-i18n="lbl_qty"]').show(); // Label കാണിക്കുന്നു
-
-    // 🔥 FIX: ബട്ടൺ ഹൈഡ് ആയത് മാറ്റാൻ .show() കൊടുത്തു, ഒപ്പം disable ചെയ്തു.
+    $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').show().prop('disabled', true);
+    $('#quick-qty').prev('label').show();
 
     $('.btn-update-sage, #quick-price-box').hide();
     $('#btn-edit-addr').hide();
 
-    // Show Message Button ONLY if 'Paid'
     $('#btn-req-modify').remove();
 
+    // 🔥 Show "Message Admin" with Translation
     if (status === 'paid') {
       let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
       let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
+
+      // Translations for text
+      let reqText = (lang === 'ml') ? "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?" : "Want to change details?";
 
       $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
               <div class="text-muted small mb-1 fw-bold">${reqText}</div>
@@ -532,16 +516,17 @@ function handleEditControlsVisibility(d) {
     return;
   }
 
-  // 4. EDITABLE STATES (Pending, Sent, Archive)
-  // സാധാരണ അപ്‌ഡേറ്റ് മോഡ്
+  // 5. EDITABLE STATES (Pending, Sent, Archive)
   $('label[data-i18n="lbl_qty"]').show();
   $('#quick-qty').prop('disabled', false).show();
-  $('.btn-update-sage, #quick-price-box').show();
 
-  // Reset Button Text to "Update Order" (Blue)
+  // 🔥 FIX: removed #quick-price-box from .show()
+  $('.btn-update-sage').show();
+
+  // Normal Update Button with Translation
   $('.btn-update-sage')
     .css({ 'background': '#2563eb', 'border-color': '#2563eb' })
-    .html(updateText);
+    .html(t.btn_update);
 
   $('#btn-edit-addr').css('display', 'inline-block');
   $('#btn-req-modify').remove();
