@@ -978,8 +978,6 @@
         <div class="sticky-app-header">
             <div class="header-top">
                 <button onclick="fetchOrders(true)" class="btn-refresh"><i class="fas fa-sync-alt"></i></button>
-                <button onclick="openDashboard()" class="btn btn-sm px-0 px-1 text-bg-warning">
-                    <i class="fa-chart-pie fas"></i></button>
 
                 <button onclick="toggleSort()" class="btn btn-refresh" id="btn-sort" title="Sort Order">
                     <i class="fas fa-sort-amount-down"></i>
@@ -999,6 +997,10 @@
 
                     </div>
                 </div>
+
+                <button onclick="openDashboard()" class="btn btn-sm px-0 px-1 text-bg-warning">
+                    <i class="fa-chart-pie fas"></i></button>
+
                 <button id="sync-btn" onclick="syncWithServer()" class="btn-sync"><i
                         class="fas fa-cloud-upload-alt"></i><span class="sync-badge"
                         id="sync-badge-count">0</span></button>

@@ -2121,11 +2121,11 @@ let txCalendarPicker = null;
 function initFlatpickrs() {
     if (!dashDatePicker) {
         dashDatePicker = flatpickr("#dash-date", {
-            dateFormat: "d M Y", // 🔥 Fix: Beautiful format (e.g. 11 Feb 2026)
+            dateFormat: "d M Y",
             defaultDate: selectedDate,
             maxDate: "today",
             theme: "material_blue",
-            disableMobile: true, // 🔥 Fix: Prevents dd-mm-yyyy issue on phones
+            disableMobile: true,
             onChange: function (selectedDates) {
                 if (selectedDates[0]) {
                     selectedDate = selectedDates[0];
@@ -2134,19 +2134,21 @@ function initFlatpickrs() {
             }
         });
     }
+
     if (!expDatePicker) {
         expDatePicker = flatpickr("#exp-date", {
-            enableTime: true,           // 🔥 Time picker enable cheyyan
-            dateFormat: "Y-m-d h:i K",  // 🔥 AM/PM format-il date & time varan
-            defaultDate: new Date(),    // 🔥 Default aayi ippozhathe time varan
+            enableTime: true,
+            dateFormat: "Y-m-d h:i K",
+            defaultDate: new Date(),
             theme: "material_blue",
             time_24hr: false,
-            disableMobile: false        // 🔥 Mobile-lum UI clear aayi varan
+            disableMobile: true        // 🔥 FIX: ഇവിടെ false മാറ്റി true ആക്കി
         });
     }
+
     if (!txCalendarPicker) {
         txCalendarPicker = flatpickr("#tx-calendar", {
-            inline: true, // 🔥 Show as a permanent calendar block
+            inline: true,
             defaultDate: selectedDate,
             theme: "material_blue",
             onChange: function (selectedDates) {
