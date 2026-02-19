@@ -1752,8 +1752,8 @@ window.printSelected = async function (sourceTab = 'new') {
     runPrintLogic(null, finalBatch);
 }
 
-// 🔥 UPDATED PRINT LOGIC (With Sequence Number 1, 2, 3...)
-// 🔥 UPDATED PRINT LOGIC (With Dates & Compact Layout)
+
+// 🔥 UPDATED PRINT LOGIC (With Sequence Number & Non-Kerala State Dots)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -1847,7 +1847,10 @@ async function runPrintLogic(checkboxes, directData = null) {
 
     // 4. OPEN PRINT WINDOW
     const printWin = window.open('', '', 'width=600,height=800');
-    let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles}</style></head><body>`;
+
+    // CSS for accurate background printing
+    let extraCss = `* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }`;
+    let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles} ${extraCss}</style></head><body>`;
 
     const fmtDate = (str) => {
         if (!str) return "-";
@@ -1870,8 +1873,22 @@ async function runPrintLogic(checkboxes, directData = null) {
         let orderTime = fmtDate(d.timestamp);
         let paidTime = fmtDate(d.paidDate || d.timestamp);
 
+        // 🔥 STATE DOT LOGIC FOR PRINT LABEL
+        let s = String(d.state || '').toUpperCase().trim();
+        let stateDotHtml = '';
+        if (s && s !== 'KERALA') {
+            let dotColor = '#d63384'; // Default Other (Magenta)
+            if (s.includes('LAK')) dotColor = '#0dcaf0'; // Lakshadweep (Blue)
+            else if (s.includes('KARN')) dotColor = '#d97706'; // Karnataka (Yellow/Orange)
+            else if (s.includes('TAMIL') || s.includes('TN')) dotColor = '#795548'; // Tamil Nadu (Brown)
+
+            // Placed at Top Right corner
+            stateDotHtml = `<div style="position:absolute; top:8mm; right:8mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
+        }
+
         htmlContent += `
         <div class="label-page">
+            ${stateDotHtml}
             <div class="address-sec">
                 <div class="to-label">To,</div>
                 <div class="cust-name">${safe(d.name)}</div>
@@ -1917,9 +1934,10 @@ async function runPrintLogic(checkboxes, directData = null) {
     htmlContent += `</body></html>`;
     printWin.document.write(htmlContent);
     printWin.document.close();
+
+    // Timeout added to make sure images load before print prompt
     setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
 }
-
 
 
 // Ensure editTracking is available
