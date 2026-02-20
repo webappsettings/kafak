@@ -244,10 +244,18 @@ $(document).ready(function () {
       }
     }
   } else {
-    showLoader(false);
-    $('#step-0').show();
-    updateFooterButtons('step-0');
-    setTimeout(() => $('#phone').focus(), 500);
+    // 🔥 AUTO LOGIN FOR PWA & RETURNING CUSTOMERS
+    let lastPhone = SafeStorage.getItem('lastUsedPhone');
+    if (lastPhone && localUsersMap[lastPhone] && !isAdmin) {
+      $('#phone').val(lastPhone);
+      showLoader(true);
+      setTimeout(() => { handlePhoneNext(); }, 300);
+    } else {
+      showLoader(false);
+      $('#step-0').show();
+      updateFooterButtons('step-0');
+      setTimeout(() => $('#phone').focus(), 500);
+    }
   }
 
   $('.form-select').on('change', function () {
@@ -261,6 +269,8 @@ window.handlePhoneNext = function () {
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
   currentLoginPhone = phone;
+  SafeStorage.setItem('lastUsedPhone', phone);
+
   preloadHoneyVideo();
 
   if (localUsersMap[phone]) {
@@ -888,7 +898,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   }
 
   // Populate Data
-  $('#saved-name').text(d.name);
+  if (localStorage.getItem('kafakAdmin') !== 'true') {
+    $('#saved-name').html(`${d.name} <i class="fas fa-sign-out-alt ms-2" onclick="clearUserLogin()" style="cursor:pointer; color:#facc15; font-size:12px;" title="Change Number"></i>`);
+  } else {
+    $('#saved-name').text(d.name);
+  }
   $('#edit-name').val(d.name);
   $('#edit-house').val(d.house);
   $('#edit-place').val(d.place);
@@ -2577,4 +2591,10 @@ window.saveRadioSelection = function (oid, el) {
       $('input[name="target_wa"]').prop('disabled', false);
       alert("Failed to save selection!");
     });
+}
+
+// 🔥 CLEAR LOGIN / CHANGE NUMBER
+window.clearUserLogin = function () {
+  SafeStorage.removeItem('lastUsedPhone');
+  window.location.href = "order.html";
 }
