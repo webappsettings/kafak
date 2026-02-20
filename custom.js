@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxLOqU9AlEoFwZ9xseYlgYu5nXtfPp2H28uPx30s3WtsboOJ771rVImbf94dTTUIQ5_Ow/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwME3fUKNoFfOe_leSSPZQfv5pLqeV6u5_YPnUwE_J6_9Y0E62U96BBiY5nshGjjQ1_/exec`;
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 
@@ -565,6 +565,11 @@ function backgroundUserCheck(phone) {
 }
 
 window.submitWizardOrder = function () {
+
+  // 🔥 ആപ്പ് വഴിയാണോ തുറന്നിരിക്കുന്നത് എന്ന് ചെക്ക് ചെയ്യുന്നു
+  const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const orderSource = isApp ? "App 📱" : "Web 🌐";
+
   const finalData = {
     orderid: editingOrderId,
     name: $('#name').val(),
@@ -580,8 +585,10 @@ window.submitWizardOrder = function () {
     quantity: $('#quantity').val(),
     message: '',
     custId: myCustId,
-    language: $('#language-select').val() || 'en'
+    language: $('#language-select').val() || 'en',
+    source: orderSource  // 🔥 ഈ പുതിയ വരി ചേർത്തു
   };
+
   saveToLocal(finalData.phone, finalData);
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
@@ -772,6 +779,9 @@ window.submitQuickOrder = function () {
   // Customer Language
   let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
+  const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const orderSource = isApp ? "App 📱" : "Web 🌐";
+
   const finalData = {
     orderid: editingOrderId,
     name: newName,
@@ -789,7 +799,8 @@ window.submitQuickOrder = function () {
     adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: custLang
+    language: custLang,
+    source: orderSource
   };
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
@@ -2476,6 +2487,9 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
 
   let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
 
+  const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const orderSource = isApp ? "App 📱" : "Web 🌐";
+
   const finalData = {
     orderid: editingOrderId,
     name: newName,
@@ -2493,7 +2507,8 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     adminMeta: finalMeta,
     message: '',
     custId: myCustId,
-    language: custLang
+    language: custLang,
+    source: orderSource
   };
 
   showLoader(true);
@@ -2630,9 +2645,26 @@ $(document).on('click', '#install-app-btn', async function () {
   }
 });
 
-// ആപ്പ് ഇൻസ്റ്റാൾ ആയിക്കഴിഞ്ഞാൽ ബട്ടൺ ഹൈഡ് ചെയ്യാൻ
+// ആപ്പ് ഇൻസ്റ്റാൾ ആയിക്കഴിഞ്ഞാൽ കൗണ്ട് ചെയ്യാൻ
 window.addEventListener('appinstalled', () => {
   $('#install-app-btn').hide();
   deferredPrompt = null;
   console.log('PWA was installed');
+
+  // 🔥 ഡ്യൂപ്ലിക്കേറ്റ് ഇൻസ്റ്റാൾ ഒഴിവാക്കാനുള്ള കോഡ്
+  let isAlreadyCounted = localStorage.getItem('kafak_app_counted');
+
+  if (!isAlreadyCounted) {
+    // ആദ്യമായി ഇൻസ്റ്റാൾ ചെയ്യുന്ന ആളാണെങ്കിൽ സർവറിലേക്ക് മെസ്സേജ് അയക്കുന്നു
+    fetch(`${sc}?action=logInstall`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("New Install Counted!");
+        // കൗണ്ട് ചെയ്തു എന്ന് ഫോണിൽ സേവ് ചെയ്തു വെക്കുന്നു
+        localStorage.setItem('kafak_app_counted', 'true');
+      })
+      .catch(err => console.log("Install tracking failed"));
+  } else {
+    console.log("Already installed before, not counting again.");
+  }
 });
