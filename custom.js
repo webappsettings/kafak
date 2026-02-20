@@ -1786,14 +1786,37 @@ window.clearAdminCache = function () {
 }
 
 function fetchOrder(oid) {
-  fetch(`${sc}?action=getOrder&oid=${oid}`).then(res => res.json()).then(res => {
-    showLoader(false);
-    if (res.result === 'success') {
-      let d = res.data;
-      if (SafeStorage.getItem('kafakAdmin') === 'true') { updateAdminUI(d.Status || 'Pending', oid); }
-      loadOrderData(d, true);
-    } else { $('#step-0').fadeIn(); updateFooterButtons('step-0'); }
-  }).catch(() => { showLoader(false); $('#step-0').fadeIn(); updateFooterButtons('step-0'); });
+  // 🔥 1. ഡാറ്റ വരാൻ വൈകിയാലും ഫോം കാണിക്കാതിരിക്കാൻ തുടക്കത്തിൽ തന്നെ ഹൈഡ് ചെയ്യുന്നു
+  $('#step-0').hide();
+  $('#wizard-view').hide();
+
+  fetch(`${sc}?action=getOrder&oid=${oid}`)
+    .then(res => res.json())
+    .then(res => {
+      showLoader(false);
+      if (res.result === 'success') {
+        $('#step-0').hide(); // വീണ്ടും ഉറപ്പുവരുത്തുന്നു
+        let d = res.data;
+        if (SafeStorage.getItem('kafakAdmin') === 'true') {
+          updateAdminUI(d.Status || 'Pending', oid);
+        }
+        loadOrderData(d, true);
+      } else {
+        // ഓർഡർ ഐഡി തെറ്റാണെങ്കിൽ മാത്രം ഫോം കാണിക്കുക
+        $('#step-0').fadeIn();
+        updateFooterButtons('step-0');
+      }
+    })
+    .catch(() => {
+      showLoader(false);
+      // 🔥 2. എറർ വന്നാൽ വീണ്ടും നമ്പർ അടിക്കാൻ പറയുന്നതിന് പകരം എറർ കാണിക്കുക
+      Swal.fire({
+        title: 'Network Error',
+        text: 'ഓർഡർ വിവരങ്ങൾ എടുക്കാൻ സാധിച്ചില്ല. ഒന്നുകൂടി ശ്രമിച്ച് നോക്കൂ.',
+        icon: 'error',
+        confirmButtonColor: '#000'
+      });
+    });
 }
 
 function injectVideoCSS() {
