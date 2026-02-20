@@ -2366,7 +2366,7 @@ function renderDashboard() {
                 trueIncome += amt;
 
                 // 🔥 FIX: 350 ന് പകരം ഷീറ്റിൽ നിന്നുള്ള ഡൈനാമിക് Base Cost ഉപയോഗിക്കുന്നു
-                trueProductCost += qty * globalBaseCost;
+                trueProductCost += parseFloat(o.Product_Base_Cost) || (qty * 330);
             }
         }
 
