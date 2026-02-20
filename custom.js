@@ -262,6 +262,8 @@ $(document).ready(function () {
     updateLiveAddressPreview();
   });
 
+  showIOSInstallPrompt();
+
 });
 
 window.handlePhoneNext = function () {
@@ -2668,3 +2670,39 @@ window.addEventListener('appinstalled', () => {
     console.log("Already installed before, not counting again.");
   }
 });
+
+// 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC
+window.showIOSInstallPrompt = function () {
+  // const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isIOS = true;
+  const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+  const hasSeenPrompt = localStorage.getItem('ios_prompt_seen');
+
+  // ഐഫോൺ ആണെന്നും, ആപ്പ് ആയിട്ടല്ല തുറന്നിരിക്കുന്നതെന്നും, മുൻപ് ഈ മെസ്സേജ് കണ്ടിട്ടില്ലെന്നും ഉറപ്പാക്കുന്നു
+  if (isIOS && !isStandalone && !hasSeenPrompt) {
+    const iosPromptHtml = `
+      <div id="ios-install-prompt" class="fade-in" style="position:fixed; bottom:25px; left:50%; transform:translateX(-50%); width:90%; max-width:350px; background:#ffffff; padding:15px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:99999; text-align:center; border: 1px solid #f0f0f0;">
+          <div style="font-size:14px; color:#1a1a1a; font-weight:800; margin-bottom:8px;">
+              📱 Install KAFAK App
+          </div>
+          <div style="font-size:12px; color:#4b5563; line-height:1.5; margin-bottom:12px;">
+              Tap the <b>Share</b> icon <i class="fas fa-external-link-square-alt text-primary mx-1"></i> below and select <br><b>"Add to Home Screen"</b>
+          </div>
+          <button onclick="closeIOSPrompt()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-4 fw-bold" style="font-size:11px; letter-spacing:1px;">OK, GOT IT</button>
+          
+          <div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:10px solid #ffffff;"></div>
+      </div>
+      `;
+
+    // 3 സെക്കൻഡിന് ശേഷം മാത്രം സ്ക്രീനിൽ കാണിക്കുന്നു
+    setTimeout(() => {
+      $('body').append(iosPromptHtml);
+    }, 3000);
+  }
+}
+
+// യൂസർ OK അടിച്ചാൽ പിന്നെ കാണിക്കില്ല എന്ന് സേവ് ചെയ്യുന്നു
+window.closeIOSPrompt = function () {
+  $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
+  localStorage.setItem('ios_prompt_seen', 'true');
+}
