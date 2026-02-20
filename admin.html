@@ -19,6 +19,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
+    <link rel="manifest" href="manifest-admin.json">
+    <meta name="theme-color" content="#111111">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <style>
         :root {
             --brand-green: #2e7d32;
@@ -1790,6 +1794,17 @@
             flex-basis: 14.28% !important;
         }
     </style>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('Admin PWA Ready!');
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>
