@@ -3,6 +3,7 @@
     "name": "KAFAK Honey",
     "short_name": "KAFAK",
     "start_url": "./order.html",
+    "scope": "./order.html",
     "display": "standalone",
     "background_color": "#e5e9ee",
     "theme_color": "#2e7d32",

@@ -3,6 +3,7 @@
     "name": "KAFAK Admin",
     "short_name": "KAFAK Admin",
     "start_url": "./admin.html",
+    "scope": "./admin.html",
     "display": "standalone",
     "background_color": "#f3f4f6",
     "theme_color": "#111111",
