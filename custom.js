@@ -2604,3 +2604,35 @@ window.clearUserLogin = function () {
   SafeStorage.removeItem('lastUsedPhone');
   window.location.href = "order.html";
 }
+
+// 🔥 SMART PWA INSTALL BUTTON LOGIC
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // ബ്രൗസറിന്റെ തനിയെ വരുന്ന പോപ്പപ്പ് തടയുന്നു (നമുക്ക് ബട്ടൺ വഴി കൊടുത്താൽ മതി)
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // ആപ്പ് ഇല്ലാത്തവർക്ക് മാത്രം ബട്ടൺ കാണിക്കുന്നു
+  $('#install-app-btn').fadeIn();
+});
+
+// ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ ഇൻസ്റ്റാൾ പോപ്പപ്പ് കാണിക്കാൻ
+$(document).on('click', '#install-app-btn', async function () {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      console.log('User installed the app');
+      $('#install-app-btn').fadeOut(); // ഇൻസ്റ്റാൾ ചെയ്താൽ ഉടൻ ബട്ടൺ മറയുന്നു
+    }
+    deferredPrompt = null;
+  }
+});
+
+// ആപ്പ് ഇൻസ്റ്റാൾ ആയിക്കഴിഞ്ഞാൽ ബട്ടൺ ഹൈഡ് ചെയ്യാൻ
+window.addEventListener('appinstalled', () => {
+  $('#install-app-btn').hide();
+  deferredPrompt = null;
+  console.log('PWA was installed');
+});
