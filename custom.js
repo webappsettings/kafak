@@ -2674,8 +2674,8 @@ window.addEventListener('appinstalled', () => {
 
 // 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC (DUAL LANGUAGE)
 window.showIOSInstallPrompt = function () {
-  //const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isIOS = true;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  // const isIOS = true;
   const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
   const hasSeenPrompt = localStorage.getItem('ios_prompt_seen');
 
