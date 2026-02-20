@@ -1,4 +1,5 @@
 {
+    "id": "kafak-admin-app",
     "name": "KAFAK Admin",
     "short_name": "KAFAK Admin",
     "start_url": "./admin.html",

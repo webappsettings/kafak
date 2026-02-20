@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kafak-app-v1';
+const CACHE_NAME = 'kafak-app-v2';
 
 // കാഷെ ചെയ്യേണ്ട പ്രധാന ഫയലുകൾ
 const urlsToCache = [
