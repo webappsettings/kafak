@@ -1,4 +1,5 @@
 {
+    "id": "kafak-customer-app",
     "name": "KAFAK Honey",
     "short_name": "KAFAK",
     "start_url": "./order.html",
