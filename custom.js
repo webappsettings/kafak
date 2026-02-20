@@ -2671,9 +2671,10 @@ window.addEventListener('appinstalled', () => {
   }
 });
 
-// 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC
+
+// 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC (DUAL LANGUAGE)
 window.showIOSInstallPrompt = function () {
-  // const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  //const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   const isIOS = true;
   const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
   const hasSeenPrompt = localStorage.getItem('ios_prompt_seen');
@@ -2685,10 +2686,14 @@ window.showIOSInstallPrompt = function () {
           <div style="font-size:14px; color:#1a1a1a; font-weight:800; margin-bottom:8px;">
               📱 Install KAFAK App
           </div>
-          <div style="font-size:12px; color:#4b5563; line-height:1.5; margin-bottom:12px;">
-              Tap the <b>Share</b> icon <i class="fas fa-external-link-square-alt text-primary mx-1"></i> below and select <br><b>"Add to Home Screen"</b>
+          <div style="font-size:12px; color:#1f2937; line-height:1.6; margin-bottom:12px;">
+              താഴെ കാണുന്ന <b>Share</b> ഐക്കണിൽ <i class="fas fa-external-link-square-alt text-primary mx-1"></i> ക്ലിക്ക് ചെയ്ത് <b>"Add to Home Screen"</b> തിരഞ്ഞെടുക്കുക.
+              
+              <div style="margin-top:8px; padding-top:8px; border-top:1px dashed #e5e7eb; font-size:11px; color:#6b7280;">
+                  Tap the <b>Share</b> icon below and select <b>"Add to Home Screen"</b>
+              </div>
           </div>
-          <button onclick="closeIOSPrompt()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-4 fw-bold" style="font-size:11px; letter-spacing:1px;">OK, GOT IT</button>
+          <button onclick="closeIOSPrompt()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-4 fw-bold" style="font-size:11px; letter-spacing:1px;">OK, GOT IT / ശരി</button>
           
           <div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:10px solid #ffffff;"></div>
       </div>
@@ -2699,6 +2704,12 @@ window.showIOSInstallPrompt = function () {
       $('body').append(iosPromptHtml);
     }, 3000);
   }
+}
+
+// യൂസർ OK അടിച്ചാൽ പിന്നെ കാണിക്കില്ല എന്ന് സേവ് ചെയ്യുന്നു
+window.closeIOSPrompt = function () {
+  $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
+  localStorage.setItem('ios_prompt_seen', 'true');
 }
 
 // യൂസർ OK അടിച്ചാൽ പിന്നെ കാണിക്കില്ല എന്ന് സേവ് ചെയ്യുന്നു
