@@ -7,6 +7,7 @@ let currentSortDir = 'desc';
 
 // 🔥 GLOBAL: Contact Selection Memory
 let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
+const globalBaseCost = 330;
 
 
 window.saveContactSelection = function (oid, val) {
