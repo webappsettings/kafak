@@ -1220,7 +1220,13 @@ function updateStatusUI(d) {
 function updateSummaryDisplay() {
   // 1. Get Values
   const newName = $('#edit-name').val();
-  if (newName) $('#saved-name').text(newName);
+  if (newName) {
+    if (localStorage.getItem('kafakAdmin') !== 'true') {
+      $('#saved-name').html(`${newName} <i class="fas fa-sign-out-alt ms-2" onclick="clearUserLogin()" style="cursor:pointer; color:#facc15; font-size:12px;" title="Change Number"></i>`);
+    } else {
+      $('#saved-name').text(newName);
+    }
+  }
   const house = $('#edit-house').val() || '';
   const place = $('#edit-place').val() || '';
 
