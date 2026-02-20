@@ -2363,7 +2363,9 @@ function renderDashboard() {
                 let pInfo = calculatePriceInfo(qty, o.state);
                 let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
                 trueIncome += amt;
-                trueProductCost += qty * 350; // 350 എന്നത് കുപ്പിയുടെ അടിസ്ഥാന ചിലവ്
+
+                // 🔥 FIX: 350 ന് പകരം ഷീറ്റിൽ നിന്നുള്ള ഡൈനാമിക് Base Cost ഉപയോഗിക്കുന്നു
+                trueProductCost += qty * globalBaseCost;
             }
         }
 
