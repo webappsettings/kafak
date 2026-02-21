@@ -1357,6 +1357,7 @@ window.syncWithServer = function () {
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    let allOrdersLocal = JSON.parse(localStorage.getItem('allOrdersCache') || "[]"); // കസ്റ്റമർ ഡാറ്റ എടുക്കാൻ
 
     const list = document.getElementById('sync-preview-list');
     const countDisplay = document.getElementById('sync-count-display');
@@ -1366,6 +1367,12 @@ function renderSyncList() {
     list.innerHTML = '';
 
     if (totalCount === 0) {
+        list.innerHTML = `
+            <div class="text-center text-muted p-5">
+                <i class="fas fa-check-circle fa-3x mb-3 text-success opacity-50"></i>
+                <h6 class="fw-bold">Everything is synced!</h6>
+                <div class="small">No pending changes found.</div>
+            </div>`;
         $('#syncModal').modal('hide');
         updateSyncButtonUI();
         return;
@@ -1373,107 +1380,156 @@ function renderSyncList() {
 
     // 1. Separate Updates
     let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && u.action !== 'paidNum' && !u.deleteRefund);
-    let metaUpdates = pendingUpdates.filter(u => u.action === 'meta');
-    let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum'); // 🔥 New Category
+    let metaUpdates = pendingUpdates.filter(u => u.action === 'meta' && u.meta !== undefined); // WhatsApp/Print flags
+    let courierUpdates = pendingUpdates.filter(u => u.action === 'meta' && u.provider !== undefined); // 🔥 Courier Changes
+    let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum');
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
 
-    // --- A. ORDER STATUS CHANGES ---
+    let itemsHtml = '';
+
+    // --- A. COURIER UPDATES (NEW BEAUTIFUL UI) ---
+    if (courierUpdates.length > 0) {
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-2" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">🚚 Courier & Price Updates</div>`;
+        courierUpdates.forEach(u => {
+            let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
+            let custName = order.name || 'Unknown User';
+            let custPhone = String(order.phone || 'N/A').replace(/[^0-9]/g, '');
+
+            itemsHtml += `
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #ff9800 !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', true)" title="Discard"><i class="fas fa-times"></i></button>
+                
+                <div class="d-flex justify-content-between align-items-start mb-2 pe-4">
+                    <div>
+                        <div class="fw-bold text-dark" style="font-size:14px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
+                        <div class="text-muted mt-1 fw-bold" style="font-size:11px;"><i class="fas fa-phone-alt me-1 text-success"></i> ${custPhone}</div>
+                    </div>
+                    <div class="badge bg-light text-secondary border border-secondary border-opacity-25" style="font-size:9px;">${u.oid.split('-').pop()}</div>
+                </div>
+                
+                <div class="bg-light p-2 rounded border border-dashed mt-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" style="width:28px; height:28px; font-size:12px;"><i class="fas fa-truck"></i></div>
+                        <div>
+                            <div style="font-size:10px; color:#6c757d; font-weight:700; text-transform:uppercase;">New Courier</div>
+                            <div class="fw-bold text-dark" style="font-size:13px;">${u.provider}</div>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <div style="font-size:10px; color:#6c757d; font-weight:700; text-transform:uppercase;">New Total</div>
+                        <div class="fw-bold text-success" style="font-size:14px;">₹${u.total}</div>
+                    </div>
+                </div>
+            </div>`;
+        });
+    }
+
+    // --- B. ORDER STATUS CHANGES ---
     if (orderUpdates.length > 0 || refundDeletions.length > 0) {
-        let itemsHtml = '';
-        [...orderUpdates, ...refundDeletions].forEach((u, index) => {
-            let order = allOrders.find(o => o.orderid === u.oid);
-            let name = order ? order.name : 'Unknown';
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📦 Order Status Updates</div>`;
+        [...orderUpdates, ...refundDeletions].forEach(u => {
+            let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
+            let custName = order.name || 'Unknown User';
+            let custPhone = String(order.phone || 'N/A').replace(/[^0-9]/g, '');
+
+            let oldS = u.oldStatus || 'Pending';
+            let newS = u.status;
             let actionHtml = '';
 
             if (u.deleteRefund) {
-                actionHtml = `<span class="badge bg-danger">DELETE REFUND RECORD</span>`;
+                actionHtml = `<div class="fw-bold text-danger"><i class="fas fa-trash-alt me-1"></i> Refund Deleted</div>`;
             } else if (u.tracking) {
-                actionHtml = `<span class="badge bg-light text-dark border">Tracking: ${u.tracking}</span>`;
+                actionHtml = `<div class="fw-bold text-dark"><i class="fas fa-barcode me-1 text-muted"></i> Track: <span class="text-primary">${u.tracking}</span></div>`;
             } else {
-                let badgeColor = u.status === 'Paid' ? 'success' : (u.status === 'Dispatched' ? 'primary' : 'secondary');
-                actionHtml = `<span class="badge bg-${badgeColor}">${u.status}</span>`;
+                let oldCol = oldS === 'Paid' ? 'success' : (oldS === 'Sent' ? 'info text-dark' : 'secondary');
+                let newCol = newS === 'Paid' ? 'success' : (newS === 'Dispatched' ? 'primary' : 'dark');
+                actionHtml = `
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-${oldCol} bg-opacity-25 text-${oldCol} border border-${oldCol} border-opacity-50 px-2 py-1">${oldS}</span>
+                        <i class="fas fa-long-arrow-alt-right text-muted"></i>
+                        <span class="badge bg-${newCol} px-2 py-1 shadow-sm">${newS}</span>
+                    </div>`;
             }
 
             itemsHtml += `
-            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
-                <div class="d-flex align-items-center gap-2">
-                    <div class="rounded-circle bg-light border d-flex align-items-center justify-content-center fw-bold text-secondary" style="width:25px; height:25px; font-size:10px;">${index + 1}</div>
-                    <div><div class="fw-bold text-dark small">${u.oid} <span class="text-muted fw-normal">(${name})</span></div></div>
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #0d6efd !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', false)" title="Discard"><i class="fas fa-times"></i></button>
+                
+                <div class="d-flex justify-content-between align-items-start mb-2 pe-4">
+                    <div>
+                        <div class="fw-bold text-dark" style="font-size:14px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
+                        <div class="text-muted mt-1 fw-bold" style="font-size:11px;"><i class="fas fa-phone-alt me-1 text-primary"></i> ${custPhone}</div>
+                    </div>
+                    <div class="badge bg-light text-secondary border border-secondary border-opacity-25" style="font-size:9px;">${u.oid.split('-').pop()}</div>
                 </div>
-                <div class="d-flex align-items-center gap-2">
+                
+                <div class="bg-light p-2 rounded border border-dashed mt-2">
                     ${actionHtml}
-                    <button onclick="undoUpdate('${u.oid}', false)" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
                 </div>
             </div>`;
         });
-
-        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-white fw-bold text-dark small py-2 px-3 border-bottom">📦 ORDER STATUS CHANGES</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
 
-    // --- 🔥 B. PAID NUMBER UPDATES (New Section) ---
+    // --- C. PAID NUMBER UPDATES ---
     if (paidNumUpdates.length > 0) {
-        let itemsHtml = '';
-        paidNumUpdates.forEach((u, index) => {
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📱 Payment Contact Updates</div>`;
+        paidNumUpdates.forEach(u => {
+            let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
+            let custName = order.name || 'Unknown User';
+
             itemsHtml += `
-            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
-                <div class="d-flex align-items-center gap-2">
-                    <div class="rounded-circle bg-success bg-opacity-10 text-success border d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-mobile-alt"></i></div>
-                    <div class="fw-bold text-dark small">${u.oid}</div>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <span class="badge bg-light text-dark border fw-bold">Paid By: ${u.num}</span>
-                    <button onclick="undoUpdate('${u.oid}', 'paidNum')" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #198754 !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', 'paidNum')" title="Discard"><i class="fas fa-times"></i></button>
+                <div class="fw-bold text-dark mb-1" style="font-size:13px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
+                <div class="d-flex align-items-center gap-2 mt-2">
+                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1"><i class="fas fa-mobile-alt me-1"></i> Paid By: ${u.num}</span>
                 </div>
             </div>`;
         });
-
-        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-success bg-opacity-10 fw-bold text-success small py-2 px-3 border-bottom">📱 PAID NUMBER UPDATES</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
 
-    // --- C. INTERNAL FLAGS ---
+    // --- D. META (TARGET WA) UPDATES ---
     if (metaUpdates.length > 0) {
-        let itemsHtml = '';
-        metaUpdates.forEach((u, index) => {
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">⚙️ Contact Preference Updates</div>`;
+        metaUpdates.forEach(u => {
+            let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
+            let custName = order.name || 'Unknown User';
+
             let meta = getMetaStatus(u.meta);
-            let flags = [];
-            if (meta.isPrinted) flags.push(`<span class="badge bg-warning text-dark border">Printed 🖨️</span>`);
-            if (meta.isTracked) flags.push(`<span class="badge bg-info text-dark border">Tracked 🚚</span>`);
             let contactIcon = meta.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (meta.contact === 'alt' ? 'fas fa-phone-square text-secondary' : 'fas fa-phone-alt text-primary');
-            flags.push(`<i class="${contactIcon}"></i> Pref`);
+            let contactLabel = meta.contact === 'whatsapp' ? 'WhatsApp' : (meta.contact === 'alt' ? 'Alt Phone' : 'Main Phone');
 
             itemsHtml += `
-            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
-                <div class="d-flex align-items-center gap-2">
-                    <div class="rounded-circle bg-indigo-50 text-primary border d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-cog"></i></div>
-                    <div class="fw-bold text-dark small">${u.oid}</div>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <div class="d-flex gap-1">${flags.join('')}</div>
-                    <button onclick="undoUpdate('${u.oid}', true)" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
-                </div>
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #6c757d !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', true)" title="Discard"><i class="fas fa-times"></i></button>
+                <div class="fw-bold text-dark mb-1" style="font-size:13px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
+                <div class="mt-2 text-muted" style="font-size:12px;">Messages will now be sent to <span class="fw-bold text-dark"><i class="${contactIcon}"></i> ${contactLabel}</span></div>
             </div>`;
         });
-        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-indigo-50 fw-bold text-primary small py-2 px-3 border-bottom" style="background:#e0e7ff;">⚙️ ADMIN INTERNAL FLAGS</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
 
-    // --- D. EXPENSES ---
+    // --- E. EXPENSES ---
     if (pendingExpenses.length > 0) {
-        let itemsHtml = '';
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">💸 New Expenses</div>`;
         pendingExpenses.forEach((exp, index) => {
             itemsHtml += `
-            <div class="d-flex justify-content-between align-items-center p-2 border-bottom last-no-border">
-                <div class="d-flex align-items-center gap-2">
-                    <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width:25px; height:25px; font-size:10px;"><i class="fas fa-receipt"></i></div>
-                    <div><div class="fw-bold small">${exp.category}</div><div class="small text-muted" style="font-size:10px;">${exp.vendor}</div></div>
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #dc3545 !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoExpenseUpdate('${exp.id}')" title="Discard"><i class="fas fa-times"></i></button>
+                <div class="d-flex justify-content-between align-items-start mb-2 pe-4">
+                    <div>
+                        <div class="fw-bold text-dark" style="font-size:14px;"><i class="fas fa-receipt text-danger me-1"></i> ${exp.category}</div>
+                        <div class="text-muted mt-1 fw-bold" style="font-size:11px;">${exp.vendor || 'No Vendor'}</div>
+                    </div>
+                    <div class="fw-bold text-danger" style="font-size:15px;">₹${exp.amount}</div>
                 </div>
-                <div class="d-flex align-items-center gap-2">
-                    <span class="fw-bold text-dark small">₹${exp.amount}</span>
-                    <button onclick="undoExpenseUpdate('${exp.id}')" class="btn btn-sm text-danger hover-bg-light rounded-circle" style="width:30px; height:30px;"><i class="fas fa-times"></i></button>
+                <div class="bg-light p-2 rounded border border-dashed mt-2 small text-muted">
+                    ${exp.description || 'No Description provided'}
                 </div>
             </div>`;
         });
-        list.innerHTML += `<div class="card border-0 shadow-sm mb-3" style="border-radius:12px; overflow:hidden;"><div class="card-header bg-warning-50 fw-bold text-dark small py-2 px-3 border-bottom" style="background:#fffbeb; color:#92400e;">💸 EXPENSES</div><div class="card-body p-0 bg-white">${itemsHtml}</div></div>`;
     }
+
+    list.innerHTML = itemsHtml;
 }
 
 // 🔥 UPDATED UNDO LOGIC (Supports Meta Separate Undo)
