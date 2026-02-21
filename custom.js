@@ -1,9 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwNhN8d6meTyuOmIodsvHhSkJHudxyt112Pli4jMRVrN1tGoOIsXy3BSp6M4OGhZY2Kxw/exec`;
-// ------------------------------------------------------------------------------
-// 🔴 CONFIGURATION & GLOBALS
+const sc = `https://script.google.com/macros/s/AKfycbx0AINn4S09wGQ3E4De0aCi0relTagz0UMxornNjEJB3TlmG1HiPBTSnfF7rWgJU1wVag/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1164,7 +1162,7 @@ function updateStatusUI(d) {
     }
     let extraContent = '';
     if (index === 2 && item.active && d.tracking && !isRefunded) {
-      let courierName = d.courier || d.provider || "Courier";
+      let courierName = d.courier || d.Courier_Provider || d.provider || "Courier";
       let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
       extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
     }

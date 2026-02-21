@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbwNhN8d6meTyuOmIodsvHhSkJHudxyt112Pli4jMRVrN1tGoOIsXy3BSp6M4OGhZY2Kxw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbx0AINn4S09wGQ3E4De0aCi0relTagz0UMxornNjEJB3TlmG1HiPBTSnfF7rWgJU1wVag/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -8,7 +8,7 @@ let currentSortDir = 'desc';
 // 🔥 GLOBAL: Contact Selection Memory
 let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
 const globalBaseCost = 330;
-
+let availableProviders = ["DTDC", "India Post", "ST Courier", "Professional", "Delhivery"];
 
 window.saveContactSelection = function (oid, val) {
     contactMem[oid] = val; // സേവ് ചെയ്യുന്നു
@@ -280,6 +280,10 @@ function fetchRatesBackground() {
         let parsed = JSON.parse(cached);
         if (Object.keys(parsed).length > 0) {
             courierRates = parsed;
+            // 🔥 കാഷെയിൽ നിന്ന് പ്രൊവൈഡർമാരെ എടുക്കുന്നു
+            if (parsed._providers) {
+                availableProviders = parsed._providers;
+            }
             return; // റേറ്റ് ഉണ്ടെങ്കിൽ പിന്നെ ഫെച്ച് ചെയ്യില്ല
         }
     }
@@ -290,6 +294,12 @@ function fetchRatesBackground() {
         .then(data => {
             if (data.result === 'success' && data.rates) {
                 courierRates = data.rates;
+
+                // 🔥 ഷീറ്റിൽ നിന്ന് ഡൈനാമിക് ആയി പ്രൊവൈഡർമാരെ എടുക്കുന്നു
+                if (data.rates._providers) {
+                    availableProviders = data.rates._providers;
+                }
+
                 localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
                 console.log("✅ Rates Updated & Saved to LocalStorage");
 
@@ -648,7 +658,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-    let priceInfo = calculatePriceInfo(d.quantity, d.state);
+    let priceInfo = calculatePriceInfo(d.quantity, d.state, d.provider || d.Courier_Provider);
 
     // 2. Customer Stats (History)
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
@@ -843,7 +853,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     else if (logicType === 'dispatched') {
         let trackNum = d.tracking || '';
-        let trackLink = `https://www.google.com/search?q=${d.provider || 'DTDC'}+tracking+${trackNum}`;
+        let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim();
+        let trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
+
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let formattedDispDate = new Date(dispDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
 
@@ -861,6 +873,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
 
     // FINAL ASSEMBLY
+    let providerOptions = '';
+    availableProviders.forEach(prov => {
+        let isSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === String(prov).toUpperCase()) ? 'selected' : '';
+        providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
+    });
     return `
     <div class="col-12 col-md-6 col-lg-4">
         <div class="order-card p-3">
@@ -878,7 +895,15 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b>
                 <div class="mt-2" style="font-size:11px;">${contactLine}</div>
             </div>
-            <div class="info-box mt-2"><span>${d.quantity} Bottles</span><span class="fw-bold text-success">${priceInfo.total}</span></div>
+            <div class="info-box mt-2">
+                <span>${d.quantity} Bottles</span>
+                <div class="d-flex align-items-center">
+                    <select class="form-select form-select-sm me-2 border-secondary shadow-sm" style="width:120px; font-size:11px; font-weight:bold; padding:2px 5px;" onchange="event.stopPropagation(); changeCourier('${d.orderid}', this.value)">
+                        ${providerOptions}
+                    </select>
+                    <span class="fw-bold text-success" id="price-box-${d.orderid}">${priceInfo.total}</span>
+                </div>
+            </div>
             ${waSelectorHTML}
             <div class="action-area mt-2" style="display:block;">${buttons}</div>
         </div>
@@ -2070,39 +2095,34 @@ function confirmDispatchAction(oid, code) {
 
 
 
-// 🔥 2. SIMPLE ZONE MATCHER 
 function getZoneKey(stateName) {
     if (!stateName) return 'REST OF INDIA';
     let s = String(stateName).toUpperCase().trim();
-
-    if (courierRates && courierRates[s]) {
-        return s;
-    }
-
-    // ഫോൾബാക്ക് (എന്തെങ്കിലും കാരണവശാൽ സ്പെല്ലിംഗ് മാറിയാൽ)
+    if (courierRates && courierRates[s]) return s;
     let zones = Object.keys(courierRates || {});
     for (let z of zones) {
         if (z.toUpperCase() === s) return z;
     }
-
     return 'REST OF INDIA';
 }
 
+function getCourierRate(state, provider, qty) {
+    let s = String(state || '').toUpperCase().trim();
+    let p = String(provider || '').toUpperCase().trim();
+    let n = parseInt(qty) || 1;
 
-function calculatePriceInfo(qty, state) {
+    if (courierRates[`${s} ${p}`] && courierRates[`${s} ${p}`][n] !== undefined) return courierRates[`${s} ${p}`][n];
+    if (courierRates[p] && courierRates[p][n] !== undefined) return courierRates[p][n];
+
+    const zone = getZoneKey(state);
+    if (courierRates[zone] && courierRates[zone][n] !== undefined) return courierRates[zone][n];
+    return 0;
+}
+
+function calculatePriceInfo(qty, state, provider) {
     const n = parseInt(qty) || 0;
     const basePrice = n * 650;
-
-    // Zone കണ്ടുപിടിക്കുന്നു
-    const zone = getZoneKey(state);
-
-    let courierCharge = 0;
-
-    // 🔥 SAFETY CHECK: റേറ്റ് ഉണ്ടെങ്കിൽ മാത്രം എടുക്കുക, ഇല്ലെങ്കിൽ 0
-    if (courierRates[zone] && courierRates[zone][n]) {
-        courierCharge = courierRates[zone][n];
-    }
-
+    let courierCharge = getCourierRate(state, provider, n);
     return { total: `₹${basePrice + courierCharge}/-` };
 }
 
@@ -3496,4 +3516,36 @@ window.showAddExpenseModal = function () {
             }
         });
     });
+}
+
+// 🔥 CHANGING COURIER & UPDATING PRICE
+window.changeCourier = function (oid, newProvider) {
+    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    let oIdx = cached.findIndex(o => o.orderid === oid);
+
+    if (oIdx > -1) {
+        let o = cached[oIdx];
+        o.provider = newProvider;
+        o.Courier_Provider = newProvider;
+
+        let n = parseInt(o.quantity) || 1;
+        let newCourierCharge = getCourierRate(o.state, newProvider, n);
+        let newTotal = (n * 650) + newCourierCharge;
+
+        o.Courier_Charge = newCourierCharge;
+        o.Grand_Total = newTotal;
+        localStorage.setItem('allOrdersCache', JSON.stringify(cached));
+
+        $(`#price-box-${oid}`).html(`₹${newTotal}/-`).css('color', '#ff9800').fadeOut(150).fadeIn(150, function () {
+            $(this).css('color', '#198754');
+        });
+
+        let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+        updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCourierCharge, total: newTotal, time: new Date().getTime() });
+        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+
+        updateSyncButtonUI();
+
+        Swal.fire({ icon: 'success', title: `${newProvider} Selected!`, text: `New Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+    }
 }
