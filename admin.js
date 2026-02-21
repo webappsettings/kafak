@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbx0AINn4S09wGQ3E4De0aCi0relTagz0UMxornNjEJB3TlmG1HiPBTSnfF7rWgJU1wVag/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxX17HZtqljRuQXYJgAAglwE6FpY9IWOzPG1exJAxN5rDYGcgGFsDyuSsYGFwMTA0n_8w/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -3518,7 +3518,7 @@ window.showAddExpenseModal = function () {
     });
 }
 
-// 🔥 CHANGING COURIER & UPDATING PRICE
+// 🔥 CHANGING COURIER & UPDATING PRICE (DUPLICATES FIXED)
 window.changeCourier = function (oid, newProvider) {
     let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
     let oIdx = cached.findIndex(o => o.orderid === oid);
@@ -3528,6 +3528,7 @@ window.changeCourier = function (oid, newProvider) {
         o.provider = newProvider;
         o.Courier_Provider = newProvider;
 
+        // കാൽക്കുലേഷൻ
         let n = parseInt(o.quantity) || 1;
         let newCourierCharge = getCourierRate(o.state, newProvider, n);
         let newTotal = (n * 650) + newCourierCharge;
@@ -3536,14 +3537,27 @@ window.changeCourier = function (oid, newProvider) {
         o.Grand_Total = newTotal;
         localStorage.setItem('allOrdersCache', JSON.stringify(cached));
 
+        // വില മാറുന്ന എഫക്റ്റ്
         $(`#price-box-${oid}`).html(`₹${newTotal}/-`).css('color', '#ff9800').fadeOut(150).fadeIn(150, function () {
             $(this).css('color', '#198754');
         });
 
+        // 🔥 ഡ്യൂപ്ലിക്കേറ്റ് ഒഴിവാക്കാനുള്ള പുതിയ സിങ്ക് ലോജിക്
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-        updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCourierCharge, total: newTotal, time: new Date().getTime() });
-        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+        let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'meta' && !u.status);
 
+        if (existingIndex > -1) {
+            // നിലവിൽ പെൻഡിങ് ഉണ്ടെങ്കിൽ അതിൽ തന്നെ പുതുക്കുന്നു
+            updates[existingIndex].provider = newProvider;
+            updates[existingIndex].charge = newCourierCharge;
+            updates[existingIndex].total = newTotal;
+            updates[existingIndex].time = new Date().getTime();
+        } else {
+            // പുതിയത് ചേർക്കുന്നു
+            updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCourierCharge, total: newTotal, time: new Date().getTime() });
+        }
+
+        localStorage.setItem('pendingUpdates', JSON.stringify(updates));
         updateSyncButtonUI();
 
         Swal.fire({ icon: 'success', title: `${newProvider} Selected!`, text: `New Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
