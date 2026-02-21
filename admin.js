@@ -44,6 +44,7 @@ function getMetaStatus(metaStr) {
 
 // Update Meta String Locally & Queue for Sync
 // 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
+// 🔥 UPDATED: ADMIN META UPDATE (Combined Best of Both Codes)
 function updateAdminMeta(oid, type, value) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
@@ -71,29 +72,38 @@ function updateAdminMeta(oid, type, value) {
     order.adminMeta = newMeta;
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-    // Queue for Sync
-    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    // Update Pending Sync
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    let existingUpd = updates.find(u => u.oid === oid && u.action === 'meta');
+    // 🔥 കൊറിയർ മാറ്റങ്ങളുമായി കൂട്ടിമുട്ടാതിരിക്കാൻ കൃത്യമായ സെർച്ച്
+    let existingIndex = pendingUpdates.findIndex(u => u.oid === oid && u.action === 'meta' && u.meta !== undefined);
 
-    if (existingUpd) {
-        existingUpd.meta = newMeta;
-        // പഴയത് സേവ് ചെയ്തിട്ടില്ലെങ്കിൽ മാത്രം സേവ് ചെയ്യുക (ആദ്യത്തെ മാറ്റം നിലനിർത്താൻ)
-        if (existingUpd.oldMeta === undefined) existingUpd.oldMeta = oldMeta;
+    if (existingIndex > -1) {
+        pendingUpdates[existingIndex].meta = newMeta;
+
+        // 🔥 പഴയ കോഡിലെ ആ നല്ല ഫീച്ചർ തിരികെ കൊണ്ടുവന്നു (ആദ്യത്തെ മാറ്റം നിലനിർത്താൻ)
+        if (pendingUpdates[existingIndex].oldMeta === undefined) {
+            pendingUpdates[existingIndex].oldMeta = oldMeta;
+        }
     } else {
-        // 🔥 ഇവിടെ oldMeta കൂടി ചേർക്കുന്നു
-        updates.push({
+        pendingUpdates.push({
             oid: oid,
             action: 'meta',
             meta: newMeta,
             oldMeta: oldMeta,
-            status: order.Status
+            status: order.Status, // 🔥 പഴയതിലെ പോലെ സ്റ്റാറ്റസ് ചേർത്തു
+            time: new Date().getTime()
         });
     }
 
-    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
     updateSyncButtonUI();
-    renderTabs(allOrders); // UI ഉടനടി മാറാൻ
+
+    // 🔥 പഴയതിലെ പോലെ UI ഉടനടി മാറാൻ ഇത് തിരികെ ചേർത്തു
+    renderTabs(allOrders);
+
+    // 🔥 പുതിയതിലെ സക്സസ് മെസ്സേജ്
+    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: 'Saved!' });
 }
 
 // 🔴 1. SAFE STORAGE CHECK
@@ -1533,54 +1543,76 @@ function renderSyncList() {
 }
 
 // 🔥 UPDATED UNDO LOGIC (Supports Meta Separate Undo)
-// 🔥 UPDATED: UNDO LOGIC (Reverts Admin Meta & Status)
-window.undoUpdate = function (oid, isMeta) {
+// 🔥 UNIVERSAL UNDO UPDATE (Restores Everything to Previous State)
+window.undoUpdate = function (oid, type) {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let removedItem = null;
 
-    if (isMeta) {
-        // Find item
-        removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'meta');
-
+    // 1. PAID NUMBER UNDO
+    if (type === 'paidNum') {
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'paidNum');
         if (removedItem) {
-            // 🔥 REVERT META LOCALLY
+            let order = allOrders.find(o => o.orderid === oid);
+            if (order) order.paidNum = removedItem.oldNum || "";
+            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'paidNum'));
+        }
+    }
+    // 2. META UNDO (Contact Prefs, Printed, Tracked) & COURIER UNDO
+    else if (type === true || type === 'meta') {
+        // Here we need to check if it's a courier meta or normal meta
+        let metaIndex = pendingUpdates.findIndex(u => u.oid === oid && u.action === 'meta');
+
+        if (metaIndex > -1) {
+            removedItem = pendingUpdates[metaIndex];
             let order = allOrders.find(o => o.orderid === oid);
 
-            // പഴയ Meta ഉണ്ടെങ്കിൽ അത് തിരികെ സെറ്റ് ചെയ്യുന്നു
-            if (order && removedItem.oldMeta !== undefined) {
-                order.adminMeta = removedItem.oldMeta;
-                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            if (order) {
+                // A. Restore Courier if it was a courier update
+                if (removedItem.provider !== undefined) {
+                    order.provider = removedItem.oldProvider;
+                    order.Courier_Provider = removedItem.oldProvider;
+                    order.Courier_Charge = removedItem.oldCharge;
+                    order.Grand_Total = removedItem.oldTotal;
+                }
+
+                // B. Restore Meta String if it was a preference update
+                if (removedItem.meta !== undefined && removedItem.oldMeta !== undefined) {
+                    order.adminMeta = removedItem.oldMeta;
+                }
             }
+            pendingUpdates.splice(metaIndex, 1); // Remove from list
         }
-
-        // Remove from list
-        pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'meta'));
-
-    } else {
-        // Status Update Undo Logic (Old logic)
-        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta');
-        pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta'));
-
-        // 🔥 REVERT STATUS LOCALLY
-        if (removedItem && removedItem.oldStatus) {
+    }
+    // 3. STATUS UNDO (Pending, Sent, Paid, Dispatched etc)
+    else {
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum');
+        if (removedItem) {
             let orderIndex = allOrders.findIndex(o => o.orderid === oid);
             if (orderIndex !== -1) {
-                allOrders[orderIndex].Status = removedItem.oldStatus;
+                // Restore old status
+                allOrders[orderIndex].Status = removedItem.oldStatus || "Pending";
 
-                // Tracking ഉണ്ടെങ്കിൽ അതും കളയുന്നു
+                // Remove tracking if it was added during this step
                 if (removedItem.tracking) delete allOrders[orderIndex].tracking;
 
-                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+                // Remove Dispatch Date if it was added
+                if (removedItem.status === 'Dispatched') delete allOrders[orderIndex]['Dispatched Date'];
+                if (removedItem.status === 'Paid') delete allOrders[orderIndex]['Paid Date'];
             }
+            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum'));
         }
     }
 
+    // Save final state back to Local Storage
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
 
-    // Refresh Lists & UI
+    // Refresh UI
     renderSyncList();
     updateSyncButtonUI();
-    renderTabs(allOrders); // 🔥 ഇതാണ് പ്രധാനം: കാർഡ് പഴയ സ്ഥലത്തേക്ക് മാറാൻ ഇത് സഹായിക്കും
+
+    // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും!
+    renderTabs(allOrders);
 }
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
 window.undoExpenseUpdate = function (id) {
@@ -3574,17 +3606,22 @@ window.showAddExpenseModal = function () {
     });
 }
 
-// 🔥 CHANGING COURIER & UPDATING PRICE (DUPLICATES FIXED)
+// 🔥 CHANGING COURIER & UPDATING PRICE (SAVES OLD STATE FOR UNDO)
 window.changeCourier = function (oid, newProvider) {
     let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
     let oIdx = cached.findIndex(o => o.orderid === oid);
 
     if (oIdx > -1) {
         let o = cached[oIdx];
+
+        // 🔥 പഴയ അവസ്ഥ സേവ് ചെയ്തു വെക്കുന്നു
+        let oldProvider = o.provider || o.Courier_Provider;
+        let oldCharge = o.Courier_Charge;
+        let oldTotal = o.Grand_Total;
+
         o.provider = newProvider;
         o.Courier_Provider = newProvider;
 
-        // കാൽക്കുലേഷൻ
         let n = parseInt(o.quantity) || 1;
         let newCourierCharge = getCourierRate(o.state, newProvider, n);
         let newTotal = (n * 650) + newCourierCharge;
@@ -3593,24 +3630,26 @@ window.changeCourier = function (oid, newProvider) {
         o.Grand_Total = newTotal;
         localStorage.setItem('allOrdersCache', JSON.stringify(cached));
 
-        // വില മാറുന്ന എഫക്റ്റ്
         $(`#price-box-${oid}`).html(`₹${newTotal}/-`).css('color', '#ff9800').fadeOut(150).fadeIn(150, function () {
             $(this).css('color', '#198754');
         });
 
-        // 🔥 ഡ്യൂപ്ലിക്കേറ്റ് ഒഴിവാക്കാനുള്ള പുതിയ സിങ്ക് ലോജിക്
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-        let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'meta' && !u.status);
+        let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
 
         if (existingIndex > -1) {
-            // നിലവിൽ പെൻഡിങ് ഉണ്ടെങ്കിൽ അതിൽ തന്നെ പുതുക്കുന്നു
             updates[existingIndex].provider = newProvider;
             updates[existingIndex].charge = newCourierCharge;
             updates[existingIndex].total = newTotal;
             updates[existingIndex].time = new Date().getTime();
         } else {
-            // പുതിയത് ചേർക്കുന്നു
-            updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCourierCharge, total: newTotal, time: new Date().getTime() });
+            // പഴയത് കൂടെ ചേർത്ത് സേവ് ചെയ്യുന്നു
+            updates.push({
+                oid: oid, action: 'meta',
+                provider: newProvider, charge: newCourierCharge, total: newTotal,
+                oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal,
+                time: new Date().getTime()
+            });
         }
 
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
