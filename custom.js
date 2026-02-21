@@ -367,11 +367,6 @@ function loadOrderData(d, isServerData = false) {
   if (d.phone) saveToLocal(d.phone, d);
 
   showReturningUserView(d, true, isServerData);
-
-  // if (d.quantity) {
-  //   $('#quick-qty').val(d.quantity);
-  //   updatePrice(d.quantity, true);
-  // }
 }
 
 window.manualRefresh = function () {
@@ -2366,7 +2361,6 @@ window.sendPaymentWA = function (oid) {
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// 🔥 HELPER: Get Selected Phone Number
 // 🔥 HELPER: Get Selected Phone Number (Auto Clean)
 window.getSelectedWAPhone = function (order) {
   let selectedRaw = "";
@@ -2635,15 +2629,24 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 // ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ ഇൻസ്റ്റാൾ പോപ്പപ്പ് കാണിക്കാൻ
-$(document).on('click', '#install-app-btn', async function () {
+window.installPWA = async function () {
   if (deferredPrompt) {
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     if (outcome === 'accepted') {
       console.log('User installed the app');
-      $('#install-app-btn').fadeOut(); // ഇൻസ്റ്റാൾ ചെയ്താൽ ഉടൻ ബട്ടൺ മറയുന്നു
+      $('#install-app-btn').fadeOut();
     }
     deferredPrompt = null;
+  }
+};
+
+$(document).on('click', '#install-app-btn', async function () {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIOS) {
+    showIOSInstallPrompt(); // iPhone ആണെങ്കിൽ മെസ്സേജ് കാണിക്കും
+  } else {
+    installPWA(); // അല്ലാത്തവയ്ക്ക് സാധാരണ ഇൻസ്റ്റാൾ
   }
 });
 
@@ -2672,15 +2675,17 @@ window.addEventListener('appinstalled', () => {
 });
 
 
-// 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC (DUAL LANGUAGE)
+// 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC (ON BUTTON CLICK ONLY)
 window.showIOSInstallPrompt = function () {
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  // const isIOS = true;
   const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
-  const hasSeenPrompt = localStorage.getItem('ios_prompt_seen');
 
-  // ഐഫോൺ ആണെന്നും, ആപ്പ് ആയിട്ടല്ല തുറന്നിരിക്കുന്നതെന്നും, മുൻപ് ഈ മെസ്സേജ് കണ്ടിട്ടില്ലെന്നും ഉറപ്പാക്കുന്നു
-  if (isIOS && !isStandalone && !hasSeenPrompt) {
+  // ഐഫോൺ ആണെന്നും, ആപ്പ് ആയിട്ടല്ല തുറന്നിരിക്കുന്നതെന്നും ഉറപ്പാക്കുന്നു
+  if (isIOS && !isStandalone) {
+
+    // പഴയത് സ്ക്രീനിൽ ഉണ്ടെങ്കിൽ അത് കളയുന്നു (തുടർച്ചയായി ക്ലിക്ക് ചെയ്താൽ ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ)
+    $('#ios-install-prompt').remove();
+
     const iosPromptHtml = `
       <div id="ios-install-prompt" class="fade-in" style="position:fixed; bottom:25px; left:50%; transform:translateX(-50%); width:90%; max-width:350px; background:#ffffff; padding:15px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:99999; text-align:center; border: 1px solid #f0f0f0;">
           <div style="font-size:14px; color:#1a1a1a; font-weight:800; margin-bottom:8px;">
@@ -2699,21 +2704,15 @@ window.showIOSInstallPrompt = function () {
       </div>
       `;
 
-    // 3 സെക്കൻഡിന് ശേഷം മാത്രം സ്ക്രീനിൽ കാണിക്കുന്നു
-    setTimeout(() => {
-      $('body').append(iosPromptHtml);
-    }, 3000);
+    // ക്ലിക്ക് ചെയ്യുമ്പോൾ തന്നെ സ്ക്രീനിൽ കാണിക്കുന്നു (No Delay)
+    $('body').append(iosPromptHtml);
+
+  } else if (!isIOS) {
+    // ഐഫോൺ അല്ലാത്തവർ ഈ ഫംഗ്ഷൻ വിളിച്ചാൽ ഒരു അലർട്ട് കൊടുക്കാം (Optional)
+    console.log("This device is not an iOS device or already installed.");
   }
 }
-
-// യൂസർ OK അടിച്ചാൽ പിന്നെ കാണിക്കില്ല എന്ന് സേവ് ചെയ്യുന്നു
+// യൂസർ OK അടിച്ചാൽ മെസ്സേജ് ക്ലോസ് ചെയ്യുന്നു
 window.closeIOSPrompt = function () {
   $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
-  localStorage.setItem('ios_prompt_seen', 'true');
-}
-
-// യൂസർ OK അടിച്ചാൽ പിന്നെ കാണിക്കില്ല എന്ന് സേവ് ചെയ്യുന്നു
-window.closeIOSPrompt = function () {
-  $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
-  localStorage.setItem('ios_prompt_seen', 'true');
 }
