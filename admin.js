@@ -2215,7 +2215,6 @@ function calculatePriceInfo(qty, state, provider) {
 }
 
 
-
 // ==========================================
 // 🔥 DASHBOARD LOGIC (INTERACTIVE CALENDAR WITH DOTS)
 // ==========================================
@@ -3339,7 +3338,6 @@ window.highlightCard = function (el) {
 }
 
 
-// 🔥 SAVE PAID NUMBER (With Offline Sync Support)
 // 🔥 SAVE PAID NUMBER (Fixed Error & Offline Support)
 window.savePaidNum = function (oid, val) {
     let order = allOrders.find(o => o.orderid === oid);
