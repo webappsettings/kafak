@@ -808,7 +808,7 @@ window.submitQuickOrder = function () {
   }
   $('#edit-postoffice').val(finalPO);
 
-  if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
+  //if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
   const newName = $('#edit-name').val();
@@ -996,7 +996,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   if (isAdmin) {
     $('#quick-qty').prev('label').show(); // "You Selected" Label
-    $('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
+    //$('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
 
     let commHTML = `
       <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
@@ -2558,7 +2558,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   }
   $('#edit-postoffice').val(finalPO);
 
-  if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
+  //if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
   const newName = $('#edit-name').val();
