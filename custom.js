@@ -746,10 +746,57 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
+
 window.submitQuickOrder = function () {
   if ($('.btn-update-sage').prop('disabled')) return;
 
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+
+  // 🔥 NEW LOGIC: പഴയ ഓർഡറിൽ നിന്നും 'Order Again' അമർത്തുമ്പോൾ ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+  const phoneCheck = $('#edit-phone').val() || (userData ? userData.phone : null);
+
+  if (!editingOrderId && phoneCheck) {
+    // ലോക്കൽ കാഷെയിൽ ഈ നമ്പറിൽ ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് നോക്കുന്നു
+    let existingOrder = localUsersMap[phoneCheck];
+
+    // അഡ്മിൻ ആണെങ്കിൽ എല്ലാ ഓർഡറുകളിൽ നിന്നും നോക്കുന്നു
+    if (localStorage.getItem('kafakAdmin') === 'true') {
+      let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+      let latestActive = cachedOrders.find(o => String(o.phone) === String(phoneCheck) && !['delivered', 'completed', 'refunded'].includes(String(o.Status).toLowerCase()));
+      if (latestActive) existingOrder = latestActive;
+    }
+
+    if (existingOrder) {
+      let s = String(existingOrder.Status || 'pending').toLowerCase();
+
+      // ആ ഓർഡർ ഡെലിവറി ആവാത്തത് ആണെങ്കിൽ (അതായത് Pending, Sent, Paid, Archive, Dispatched)
+      if (!['delivered', 'completed', 'refunded'].includes(s)) {
+
+        const lang = $('#language-select').val() || 'en';
+        const msg = lang === 'ml'
+          ? `നിങ്ങൾക്ക് നിലവിൽ പ്രോസസ്സിങ്ങിൽ ഉള്ള ഒരു ഓർഡർ ഉണ്ട് (Order ID: ${existingOrder.orderid}). പുതിയത് ഉണ്ടാക്കുന്നതിന് പകരം അത് കാണിക്കുന്നു.`
+          : `You already have an active order (Order ID: ${existingOrder.orderid}). Switching to that order instead of creating a new one.`;
+
+        Swal.fire({
+          icon: 'info',
+          title: 'Active Order Found!',
+          text: msg,
+          confirmButtonColor: '#2563eb',
+          customClass: { popup: 'ios-popup' }
+        }).then(() => {
+          // ആക്ടീവ് ഓർഡറിലേക്ക് സ്ക്രീൻ മാറ്റുന്നു (Switching)
+          showLoader(true);
+          if (localStorage.getItem('kafakAdmin') === 'true') {
+            window.location.href = `order.html?oid=${existingOrder.orderid}`;
+          } else {
+            window.location.href = `order.html?phone=${phoneCheck}`;
+          }
+        });
+
+        return; // പുതിയ ഓർഡർ സേവ് ചെയ്യുന്നത് ഇവിടെ വെച്ച് നിർത്തുന്നു!
+      }
+    }
+  }
 
   // PO Check
   let finalPO = $('#edit-postoffice').val();
