@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbz-RHWSz5yR41AGZs1S_TaKn9cJM8D5I_k6fsm1wvrmbCKZ9VLs6L0TqYYESLjx5ntkCA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxdhUBvYzF8jb9-Pk0QcNI_fDUDcyskFk9SZsb-snNt2wIZzD5qHbZ6Cig9BQYmzLhrNA/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -139,17 +139,14 @@ function formatPrettyDate(dateStr) {
   });
 }
 
+// 🔥 OLD ZONE KEY FINDER (Restored)
 function getZoneKey(stateName) {
   if (!stateName) return 'REST OF INDIA';
   let s = stateName.toUpperCase().trim();
 
-  // 🔥 DYNAMIC CHECK: സ്റ്റേറ്റ് ലിസ്റ്റിൽ ഈ പേരുണ്ടോ എന്ന് നോക്കുന്നു
-  // ഉണ്ടെങ്കിൽ ആ പേര് തന്നെ തിരിച്ചയക്കുന്നു (ഉദാ: "KARNATAKA")
   if (courierRates && courierRates[s]) {
     return s;
   }
-
-  // ലിസ്റ്റിൽ ഇല്ലെങ്കിൽ മാത്രം "REST OF INDIA" എടുക്കുന്നു
   return 'REST OF INDIA';
 }
 
