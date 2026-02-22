@@ -370,33 +370,39 @@ function saveToLocal(phone, data) {
   SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 }
 
-function loadOrderData(d, isServerData = false) {
+window.loadOrderData = function (d, isServerData = false) {
   if (!d) return;
 
-  // 🔥 സ്മാർട്ട് ലോജിക്: അഡ്മിൻ ഫോൺ നമ്പർ മാറ്റിയാൽ മാത്രം ലോഗ് ഔട്ട് ചെയ്യുക
+  // 1. ലോക്കലിൽ സേവ് ചെയ്തിട്ടുള്ള കസ്റ്റമറുടെ പഴയ ഫോൺ നമ്പർ എടുക്കുന്നു
   let savedPhone = SafeStorage.getItem('lastUsedPhone');
 
-  if (isServerData && savedPhone && !$('#adm-phone').length) {
-    // 1. ഫോൺ നമ്പർ മാറിയിട്ടുണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+  // 2. അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു (adminPhone വേരിയബിളും URL-ഉം വെച്ച്)
+  let isAdmin = (currentLoginPhone === adminPhone) || window.location.href.includes('admin');
+
+  // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം ഫോൺ നമ്പർ മാറ്റം ചെക്ക് ചെയ്യുന്നു
+  if (!isAdmin && savedPhone && d.phone) {
     if (String(d.phone).trim() !== String(savedPhone).trim()) {
       Swal.fire({
         icon: 'warning',
         title: 'Account Updated',
-        text: 'Your details have been updated by admin. Please login with your new phone number.',
+        text: 'Your phone number has been updated by admin. Please login with your new number.',
         confirmButtonText: 'Login Again',
         allowOutsideClick: false
       }).then(() => {
-        logoutCustomer(); // ലോഗ് ഔട്ട് ചെയ്യുന്നു
+        // 🔥 നിങ്ങളുടെ കോഡിലുള്ള ഫംഗ്ഷൻ ഇവിടെ കോൾ ചെയ്യുന്നു
+        clearUserLogin();
       });
-      return; // ഇവിടെ വെച്ച് കോഡ് നിൽക്കുന്നു
+      return;
     }
+  }
 
-    // 2. ഫോൺ നമ്പർ അല്ലാതെ മറ്റ് ഡാറ്റ (പേര്, അഡ്രസ്സ്) മാറിയാൽ ലോക്കൽ മെമ്മറിയിൽ സേവ് ചെയ്യുന്നു
+  // 4. പേരോ അഡ്രസ്സോ മാറിയിട്ടുണ്ടെങ്കിൽ ലോക്കലിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു (അഡ്മിൻ അല്ലെങ്കിൽ മാത്രം)
+  if (isServerData && !isAdmin && savedPhone) {
     localUsersMap[savedPhone] = d;
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  // --- നിങ്ങളുടെ പഴയ കോഡ് ഇവിടെ നിന്നും തുടരുന്നു ---
+  // --- ബാക്കിയുള്ള നിങ്ങളുടെ പഴയ കോഡ് ഇവിടെ തുടരുന്നു ---
   $('#step-0').hide();
   userData = d;
   editingOrderId = d.orderid;
@@ -405,7 +411,7 @@ function loadOrderData(d, isServerData = false) {
   if (d.phone) saveToLocal(d.phone, d);
 
   showReturningUserView(d, true, isServerData);
-}
+};
 
 window.manualRefresh = function () {
   setRefreshLoading(true);
