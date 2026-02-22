@@ -366,6 +366,20 @@ function saveToLocal(phone, data) {
   delete cleanData.tracking; delete cleanData.courier;
   delete cleanData.provider; delete cleanData.offer;
   delete cleanData.grandTotal;
+
+  // 🔥 FIX: കാഷെ മെമ്മറിയിൽ ഈ ഓർഡർ ഐഡിക്ക് പഴയ നമ്പർ ഉണ്ടെങ്കിൽ അത് ഡിലീറ്റ് ചെയ്യുന്നു! (ലൂപ്പ് ഒഴിവാക്കാൻ)
+  if (cleanData.orderid) {
+    Object.keys(localUsersMap).forEach(key => {
+      // നിലവിൽ സേവ് ചെയ്യുന്ന നമ്പറല്ലാത്ത മറ്റ് നമ്പറുകളിൽ ഇതേ ഓർഡർ ഐഡി ഉണ്ടെങ്കിൽ
+      if (String(key).trim() !== String(phone).trim() &&
+        String(localUsersMap[key].orderid) === String(cleanData.orderid)) {
+
+        delete localUsersMap[key]; // ആ പഴയ നമ്പറിലെ ഡാറ്റ ഡിലീറ്റ് ചെയ്യുന്നു
+      }
+    });
+  }
+
+  // പുതിയ നമ്പറിൽ കൃത്യമായി ഡാറ്റ സേവ് ചെയ്യുന്നു
   localUsersMap[phone] = cleanData;
   SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 }
