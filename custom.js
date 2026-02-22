@@ -377,10 +377,10 @@ window.loadOrderData = function (d, isServerData = false) {
   let savedPhone = SafeStorage.getItem('lastUsedPhone');
 
   // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു (Admin ലോഗിൻ ആണെങ്കിൽ ഈ ചെക്കിങ് വേണ്ട)
-  let isAdmin = (currentLoginPhone === adminPhone) || window.location.href.includes('admin');
+  let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
 
   // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം നമ്പർ മാറിയോ എന്ന് നോക്കുന്നു
-  if (!isAdmin && savedPhone && d.phone) {
+  if (!isAdmin && savedPhone && d.phone && isServerData) {
     if (String(d.phone).trim() !== String(savedPhone).trim()) {
       Swal.fire({
         icon: 'warning',
@@ -389,7 +389,7 @@ window.loadOrderData = function (d, isServerData = false) {
         confirmButtonText: 'Login Again',
         allowOutsideClick: false
       }).then(() => {
-        clearUserLogin(); // ഇത് കസ്റ്റമറെ ലോഗ് ഔട്ട് ചെയ്ത് വിസാർഡിലേക്ക് വിടും
+        clearUserLogin();
       });
       return;
     }
