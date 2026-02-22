@@ -373,13 +373,14 @@ function saveToLocal(phone, data) {
 window.loadOrderData = function (d, isServerData = false) {
   if (!d) return;
 
-  // 1. കസ്റ്റമർ ലോഗിൻ ചെയ്ത ഫോൺ നമ്പർ ലോക്കലിൽ നിന്ന് എടുക്കുന്നു
+  // 1. Local-il ippozhullphone number edukkunnu
   let savedPhone = SafeStorage.getItem('lastUsedPhone');
 
-  // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു (Admin ലോഗിൻ ആണെങ്കിൽ ഈ ചെക്കിങ് വേണ്ട)
+  // 2. Admin aano ennu check cheyyunnu (Admin-u ee alert varathirikkan)
   let isAdmin = (currentLoginPhone === adminPhone) || window.location.href.includes('admin');
 
-  // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം നമ്പർ മാറിയോ എന്ന് നോക്കുന്നു
+  // 3. 🛡️ PHONE NUMBER CHECK LOGIC
+  // Customer view-il, server-le number-um local number-um thammil match allel logout aakkum
   if (!isAdmin && savedPhone && d.phone) {
     if (String(d.phone).trim() !== String(savedPhone).trim()) {
       Swal.fire({
@@ -389,25 +390,26 @@ window.loadOrderData = function (d, isServerData = false) {
         confirmButtonText: 'Login Again',
         allowOutsideClick: false
       }).then(() => {
-        clearUserLogin(); // ഇത് കസ്റ്റമറെ ലോഗ് ഔട്ട് ചെയ്ത് വിസാർഡിലേക്ക് വിടും
+        clearUserLogin(); // Logout cheyth wizard-lekk vidum
       });
       return;
     }
   }
 
-  // 4. ഫോൺ നമ്പർ മാറിയിട്ടില്ലെങ്കിൽ, മറ്റ് പുതിയ വിവരങ്ങൾ (Name, Status) ലോക്കലിൽ സേവ് ചെയ്യുന്നു
+  // 4. ✅ DATA UPDATE LOGIC
+  // Phone number match aanel, bakki ella datayum (Name, Status, items etc.) 
+  // server-le pole local-il replace cheythu save cheyyum.
   if (isServerData && savedPhone && !isAdmin) {
     localUsersMap[savedPhone] = d;
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  // --- നിങ്ങളുടെ ബാക്കി പഴയ കോഡ് ഇവിടെ തുടരുന്നു ---
+  // --- Nammude pazhaya code-nte bakki ---
   $('#step-0').hide();
   userData = d;
   editingOrderId = d.orderid;
   currentLoginPhone = d.phone;
 
-  // നിലവിലുള്ള ലോഗിൻ സേവ് ചെയ്യുന്നു
   if (d.phone) saveToLocal(d.phone, d);
 
   showReturningUserView(d, true, isServerData);
