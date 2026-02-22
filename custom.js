@@ -914,19 +914,21 @@ window.submitQuickOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-// 🔥 Helper to Update All Caches (Fixes "Old Data" Issue)
+// 🔥 Helper to Update All Caches (Fixes Phone Change Issue)
 function updateLocalCache(data, status) {
   // 1. Update Current Global Objects
+  let oldPhone = userData.phone || currentLoginPhone; // പഴയ നമ്പർ എടുക്കുന്നു
   userData = { ...userData, ...data, Status: status };
   savedOrderData = JSON.parse(JSON.stringify(userData));
 
   // 2. Update Local User Map
-  if (localUsersMap[data.phone]) {
-    localUsersMap[data.phone] = { ...localUsersMap[data.phone], ...data, Status: status };
-    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+  if (oldPhone && oldPhone !== data.phone) {
+    delete localUsersMap[oldPhone]; // പഴയ നമ്പറിലെ ഡാറ്റ കളയുന്നു
   }
+  localUsersMap[data.phone] = { ...localUsersMap[data.phone], ...data, Status: status };
+  SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 
-  // 3. 🔥 UPDATE ADMIN CACHE (allOrdersCache)
+  // 3. UPDATE ADMIN CACHE (allOrdersCache)
   let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
   let idx = allOrders.findIndex(o => o.orderid === data.orderid);
   if (idx > -1) {
@@ -1999,7 +2001,23 @@ function postOrder(data) {
     .then(res => {
       if (res.result === 'success') {
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
-        if (res.custId) { data.custId = res.custId; myCustId = res.custId; localUsersMap[data.phone] = data; SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap)); }
+
+        // 🔥 FIX: ഫോൺ നമ്പർ മാറ്റിയിട്ടുണ്ടെങ്കിൽ പഴയ ലോഗിൻ കാഷെ കളഞ്ഞ് പുതിയ നമ്പർ സെറ്റ് ചെയ്യുന്നു
+        if (currentLoginPhone && currentLoginPhone !== data.phone) {
+          delete localUsersMap[currentLoginPhone];
+        }
+        currentLoginPhone = data.phone;
+        SafeStorage.setItem('lastUsedPhone', data.phone);
+
+        if (res.custId) {
+          data.custId = res.custId;
+          myCustId = res.custId;
+        }
+
+        // പുതിയ ഡാറ്റ ലോക്കൽ കാഷെയിൽ സേവ് ചെയ്യുന്നു
+        localUsersMap[data.phone] = data;
+        SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+
         window.orderSuccess = true;
 
         const elapsed = Date.now() - startTime;
