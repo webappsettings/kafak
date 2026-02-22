@@ -390,12 +390,12 @@ window.loadOrderData = function (d, isServerData = false) {
   // 1. കസ്റ്റമർ ലോഗിൻ ചെയ്ത ഫോൺ നമ്പർ ലോക്കലിൽ നിന്ന് എടുക്കുന്നു
   let savedPhone = SafeStorage.getItem('lastUsedPhone');
 
-  // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു (Admin ലോഗിൻ ആണെങ്കിൽ ഈ ചെക്കിങ് വേണ്ട)
+  // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
   let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
 
   // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം നമ്പർ മാറിയോ എന്ന് നോക്കുന്നു
   if (!isAdmin && savedPhone && d.phone && isServerData) {
-    if (String(d.phone).trim() !== String(savedPhone).trim()) {
+    if (String(d.phone).trim() !== String(savedPhone).trim() && String(d.phone).trim() !== String(currentLoginPhone).trim()) {
       Swal.fire({
         icon: 'warning',
         title: 'Account Updated',
@@ -409,19 +409,22 @@ window.loadOrderData = function (d, isServerData = false) {
     }
   }
 
-  // 4. ഫോൺ നമ്പർ മാറിയിട്ടില്ലെങ്കിൽ, മറ്റ് പുതിയ വിവരങ്ങൾ (Name, Status) ലോക്കലിൽ സേവ് ചെയ്യുന്നു
+  // 4. മറ്റ് പുതിയ വിവരങ്ങൾ (Name, Address, Status) ലോക്കലിൽ സേവ് ചെയ്യുന്നു
   if (isServerData && savedPhone && !isAdmin) {
     localUsersMap[savedPhone] = d;
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  // --- നിങ്ങളുടെ ബാക്കി പഴയ കോഡ് ഇവിടെ തുടരുന്നു ---
+  // --- ബാക്കി കോഡുകൾ ---
   $('#step-0').hide();
+
+  // 🔥 FIX: പുതിയ ഡാറ്റ (d) എപ്പോഴും userData-യിലേക്ക് കൊടുക്കുന്നു
   userData = d;
+  savedOrderData = JSON.parse(JSON.stringify(d)); // സ്ക്രീനിൽ കമ്പയർ ചെയ്യാൻ ഇതും അപ്ഡേറ്റ് ചെയ്യണം
+
   editingOrderId = d.orderid;
   currentLoginPhone = d.phone;
 
-  // നിലവിലുള്ള ലോഗിൻ സേവ് ചെയ്യുന്നു
   if (d.phone) saveToLocal(d.phone, d);
 
   showReturningUserView(d, true, isServerData);
