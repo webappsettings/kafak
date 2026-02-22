@@ -1659,6 +1659,12 @@ window.undoUpdate = function (oid, type) {
 
     // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും!
     renderTabs(allOrders);
+
+    // 🔥 FIX: സെർച്ച് ചെയ്തുകൊണ്ടിരിക്കുന്ന സമയത്താണ് അൺഡൂ അടിക്കുന്നതെങ്കിൽ ആ കാർഡും തൽക്ഷണം റിഫ്രഷ് ആവാൻ!
+    let searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim() !== "") {
+        filterOrders();
+    }
 }
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
 window.undoExpenseUpdate = function (id) {
