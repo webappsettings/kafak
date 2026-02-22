@@ -1399,7 +1399,7 @@ window.updatePrice = function (qty, isQuick) {
 
   // 🔥 കൊറിയർ പേര് സഹിതം Zone Key കണ്ടുപിടിക്കുന്നു (ഉദാ: "KERALA INDIA POST")
   const zone = getZoneKey(currentState, savedProvider);
-  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+  const courier = (typeof courierRates !== 'undefined' && courierRates && courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
   let htmlContent = `
@@ -1907,16 +1907,18 @@ function fetchOrder(orderId) {
       }
     })
     .catch((err) => {
-      console.error(err);
+      console.error("Fetch/Load Error: ", err);
       showLoader(false);
 
-      // 🔥 2. എറർ വന്നാൽ വീണ്ടും നമ്പർ അടിക്കാൻ പറയുന്നതിന് പകരം എറർ കാണിക്കുക
-      Swal.fire({
-        title: 'Network Error',
-        text: 'ഓർഡർ വിവരങ്ങൾ എടുക്കാൻ സാധിച്ചില്ല. ഒന്നുകൂടി ശ്രമിച്ച് നോക്കൂ.',
-        icon: 'error',
-        confirmButtonColor: '#000'
-      });
+      // 🔥 FIX: യഥാർത്ഥത്തിൽ ഇന്റർനെറ്റ് ഇല്ലാത്തതുകൊണ്ട് വരുന്ന എറർ ആണെങ്കിൽ മാത്രം പോപ്പപ്പ് കാണിക്കുക
+      if (err.message && err.message.includes('fetch')) {
+        Swal.fire({
+          title: 'Network Error',
+          text: 'ഓർഡർ വിവരങ്ങൾ എടുക്കാൻ സാധിച്ചില്ല. ഒന്നുകൂടി ശ്രമിച്ച് നോക്കൂ.',
+          icon: 'error',
+          confirmButtonColor: '#000'
+        });
+      }
     });
 }
 
