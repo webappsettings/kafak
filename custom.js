@@ -1999,6 +1999,7 @@ function fetchCourierRates() {
           restoreQty = savedOrderData.quantity;
         }
         renderQtyDropdowns();
+        console.log('serverFetch=', serverFetch)
         if (restoreQty) {
           $('#quick-qty').val(restoreQty);
           updatePrice(restoreQty, true);
@@ -2025,7 +2026,7 @@ function renderQtyDropdowns() {
     let label = `${qty} ${bottleLabel} (${weightText})`;
     optionsHTML += `<option value="${qty}">${label}</option>`;
   });
-
+  console.log("Generated optionsHTML: ", optionsHTML);
   $('#quantity').html(optionsHTML);
   $('#quick-qty').html(optionsHTML);
 
