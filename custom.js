@@ -314,7 +314,8 @@ window.handlePhoneNext = function () {
   $('#step-0').hide();
   $('#whatsapp').val(phone);
   startWizard();
-  backgroundUserCheck(phone);
+  // 🔥 FIX: ശരിയായ ഫംഗ്ഷൻ കോൾ ചെയ്യുന്നു
+  checkUserOnServerBackground(phone);
   $('#top-progress-container').fadeIn();
 }
 
@@ -326,8 +327,14 @@ function checkUserOnServerBackground(phone) {
       if ($('#wizard-view').is(':visible')) {
 
         if (data.result === 'success' && data.data && data.data.authorized) {
+
+          // 🔥 FIX: കസ്റ്റമർ ഐഡി സേവ് ചെയ്യുന്നു (പുതിയ ഓർഡർ ഇട്ടാലും പഴയ ഹിസ്റ്ററി കിട്ടാൻ)
+          if (data.data.custId) myCustId = data.data.custId;
+
           let status = String(data.data.Status || '').toLowerCase();
-          if (status !== 'completed' && status !== 'delivered') {
+
+          // ഓർഡർ ഡെലിവറി അല്ലെങ്കിൽ റീഫണ്ട് ആവാത്തതാണെങ്കിൽ മാത്രം എഡിറ്റ് വ്യൂവിലേക്ക് മാറ്റുന്നു
+          if (status !== 'completed' && status !== 'delivered' && status !== 'refunded') {
 
             Swal.fire({
               title: 'Welcome Back!',
