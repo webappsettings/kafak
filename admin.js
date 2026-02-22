@@ -1,9 +1,24 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxh5ihijow2DRc1g1sjIcT8xVSf63QtXvSKZeWU_P26eEuNbX3qSNxJiC9DsXcQ9n9R4w/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzM9oI7CIuy4DjuozVvLpc0NQFJWvQgmyTHWHSgRN4FTOui82Avg1zgVRo7Kk2JJE_CnQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
 let isScanProcessing = false;
 let currentSortDir = 'desc';
+let showAllTracking = false;
+
+// 🔥 SMART SEARCH (Debouncing - ടൈപ്പിംഗ് ഫാസ്റ്റ് ആക്കാൻ)
+let searchTimeout;
+
+window.handleSmartSearch = function (value) {
+    // ആരെങ്കിലും വേഗത്തിൽ ടൈപ്പ് ചെയ്തുകൊണ്ടിരിക്കുകയാണെങ്കിൽ പഴയ സെർച്ച് ക്യാൻസൽ ചെയ്യുന്നു
+    clearTimeout(searchTimeout);
+
+    // 400 മില്ലിസെക്കൻഡ് (0.4 സെക്കൻഡ്) കാത്തിരുന്ന ശേഷം മാത്രം യഥാർത്ഥ സെർച്ച് നടത്തുന്നു
+    searchTimeout = setTimeout(() => {
+        // filterOrders എന്നത് നിങ്ങളുടെ നിലവിലെ യഥാർത്ഥ സെർച്ച് ഫംഗ്ഷൻ ആണ്
+        filterOrders(value);
+    }, 400);
+};
 
 // 🔥 GLOBAL: Contact Selection Memory
 let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
@@ -561,6 +576,17 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
+            // 🔥 ട്രാക്കിംഗ് ലിസ്റ്റ് ആണെങ്കിൽ മാത്രം ഡേറ്റ് ചെക്ക് ചെയ്യുന്നു
+            if (dateKey === 'disp_track') {
+                let orderDate = new Date(dDateStr || d.timestamp);
+                // 3 ദിവസത്തേക്കാൾ പഴയതാണെങ്കിൽ സ്കിപ്പ് ചെയ്യുന്നു (Show All അമർത്തിയിട്ടില്ലെങ്കിൽ)
+                if (!showAllTracking && orderDate < cutoffDate) {
+                    oldTrackingCount++;
+                    btlCounts[type] += qty; // കൗണ്ടിൽ മാത്രം ചേർക്കുന്നു
+                    return;
+                }
+            }
+
             btlCounts[type] += qty;
 
             let displayDateRaw = d.timestamp;
@@ -571,10 +597,8 @@ function renderTabs(orders) {
             // --- STICKY DATE HEADER ---
             if (dateLabel !== lastDateMap[dateKey]) {
                 if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
-
                 let extraHtml = '';
                 let s = timelineStats[`${dateKey}_${dateLabel}`];
-
                 if (s) {
                     if (type === 'dispatched' && s.cost > 0) {
                         extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${s.cost}</span>`;
@@ -582,17 +606,25 @@ function renderTabs(orders) {
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${s.count}</span>`;
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${s.bottles}</span>`;
                 }
-
                 targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
             // --- COMPACT VIEW LOGIC ---
             let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-
             targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
         }
     });
+
+    // 🔥 ലൂപ്പിന് ശേഷം ബട്ടൺ ചേർക്കുന്നു
+    if (oldTrackingCount > 0 && !showAllTracking && listDispTracked) {
+        listDispTracked.innerHTML += `
+            <div class="text-center my-4">
+                <button onclick="loadOldTrackingOrders()" class="btn btn-outline-dark btn-sm rounded-pill px-4 shadow-sm">
+                    <i class="fas fa-history me-1"></i> Load Old Orders (${oldTrackingCount})
+                </button>
+            </div>`;
+    }
 
     // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
@@ -3662,3 +3694,8 @@ window.changeCourier = function (oid, newProvider) {
         Swal.fire({ icon: 'success', title: `${newProvider} Selected!`, text: `New Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
     }
 }
+
+window.loadOldTrackingOrders = function () {
+    showAllTracking = true;
+    renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
+};
