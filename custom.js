@@ -1909,8 +1909,6 @@ function fetchOrder(orderId) {
     .catch((err) => {
       console.error("Fetch/Load Error: ", err);
       showLoader(false);
-
-      // 🔥 FIX: യഥാർത്ഥത്തിൽ ഇന്റർനെറ്റ് ഇല്ലാത്തതുകൊണ്ട് വരുന്ന എറർ ആണെങ്കിൽ മാത്രം പോപ്പപ്പ് കാണിക്കുക
       if (err.message && err.message.includes('fetch')) {
         Swal.fire({
           title: 'Network Error',
