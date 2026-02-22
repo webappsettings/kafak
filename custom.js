@@ -1811,30 +1811,43 @@ window.clearAdminCache = function () {
   if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
 
-function fetchOrder(oid) {
+function fetchOrder(orderId) {
   // 🔥 1. ഡാറ്റ വരാൻ വൈകിയാലും ഫോം കാണിക്കാതിരിക്കാൻ തുടക്കത്തിൽ തന്നെ ഹൈഡ് ചെയ്യുന്നു
   $('#step-0').hide();
   $('#wizard-view').hide();
+  showLoader(true); // ലോഡർ കാണിക്കുന്നു
 
-  fetch(`${sc}?action=getOrder&oid=${oid}`)
+  fetch(`${sc}?action=getOrder&oid=${orderId}`)
     .then(res => res.json())
     .then(res => {
       showLoader(false);
-      if (res.result === 'success') {
+
+      if (res.result === 'success' && res.data) {
         $('#step-0').hide(); // വീണ്ടും ഉറപ്പുവരുത്തുന്നു
         let d = res.data;
+
+        // Admin ആണെങ്കിൽ സ്റ്റാറ്റസ് മാറ്റാനുള്ള UI കാണിക്കാൻ
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
-          updateAdminUI(d.Status || 'Pending', oid);
+          updateAdminUI(d.Status || 'Pending', orderId);
         }
+
         loadOrderData(d, true);
+
       } else {
         // ഓർഡർ ഐഡി തെറ്റാണെങ്കിൽ മാത്രം ഫോം കാണിക്കുക
         $('#step-0').fadeIn();
         updateFooterButtons('step-0');
+
+        Swal.fire({
+          toast: true, position: 'top', icon: 'error',
+          title: 'Order not found!', showConfirmButton: false, timer: 3000
+        });
       }
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error(err);
       showLoader(false);
+
       // 🔥 2. എറർ വന്നാൽ വീണ്ടും നമ്പർ അടിക്കാൻ പറയുന്നതിന് പകരം എറർ കാണിക്കുക
       Swal.fire({
         title: 'Network Error',
