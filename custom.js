@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzM9oI7CIuy4DjuozVvLpc0NQFJWvQgmyTHWHSgRN4FTOui82Avg1zgVRo7Kk2JJE_CnQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxuyFJ1i20nevuQLvT2TT1YRyQMnIbsFaVwtAaOAOpsbtPsXgI23WEPH3SGDn8RrBagyQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -630,6 +630,7 @@ window.submitWizardOrder = function () {
     orderid: editingOrderId,
     name: $('#name').val(),
     phone: $('#phone').val(),
+    oldPhone: currentLoginPhone,
     whatsapp: $('#whatsapp').val(),
     altphone: $('#altphone').val(),
     house: $('#house').val(),
@@ -889,6 +890,7 @@ window.submitQuickOrder = function () {
     orderid: editingOrderId,
     name: newName,
     phone: newPhone,
+    oldPhone: currentLoginPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
     house: $('#edit-house').val(),
@@ -2636,6 +2638,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     orderid: editingOrderId,
     name: newName,
     phone: newPhone,
+    oldPhone: currentLoginPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
     house: $('#edit-house').val(),
