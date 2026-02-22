@@ -507,13 +507,13 @@ function syncUserDataBackground(phone) {
         finalData.paidDate = serverData.paidDate;
 
         const s = String(finalData.Status).toLowerCase();
-        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(s)) {
-          if (localData.name) finalData.name = localData.name;
-          if (localData.house) finalData.house = localData.house;
-          if (localData.place) finalData.place = localData.place;
-          if (localData.postoffice) finalData.postoffice = localData.postoffice;
-          if (localData.pincode) finalData.pincode = localData.pincode;
-        }
+        // if (!['paid', 'dispatched', 'delivered', 'completed'].includes(s)) {
+        //   if (localData.name) finalData.name = localData.name;
+        //   if (localData.house) finalData.house = localData.house;
+        //   if (localData.place) finalData.place = localData.place;
+        //   if (localData.postoffice) finalData.postoffice = localData.postoffice;
+        //   if (localData.pincode) finalData.pincode = localData.pincode;
+        // }
 
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
