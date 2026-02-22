@@ -139,14 +139,24 @@ function formatPrettyDate(dateStr) {
   });
 }
 
-// 🔥 OLD ZONE KEY FINDER (Restored)
-function getZoneKey(stateName) {
+// 🔥 SMART ZONE KEY FINDER (Fixes Admin Courier Changes)
+function getZoneKey(stateName, specificProvider = null) {
   if (!stateName) return 'REST OF INDIA';
   let s = stateName.toUpperCase().trim();
 
+  // 1. ഓർഡറിൽ ഒരു പ്രത്യേക കൊറിയർ (ഉദാ: India Post) ഉണ്ടെങ്കിൽ അത് ആദ്യം നോക്കുന്നു
+  if (specificProvider && courierRates) {
+    let specificKey = s + " " + specificProvider.toUpperCase().trim();
+    if (courierRates[specificKey]) {
+      return specificKey;
+    }
+  }
+
+  // 2. അതല്ലെങ്കിൽ പഴയപോലെ ഡിഫോൾട്ട് റേറ്റ് (ഉദാ: KERALA) എടുക്കുന്നു
   if (courierRates && courierRates[s]) {
     return s;
   }
+
   return 'REST OF INDIA';
 }
 
@@ -1333,7 +1343,15 @@ window.updatePrice = function (qty, isQuick) {
   const base = n * 650;
 
   let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
-  const zone = getZoneKey(currentState);
+
+  // 🔥 FIX: ഷീറ്റിൽ നിന്നും അഡ്മിൻ സേവ് ചെയ്ത കൊറിയർ ഉണ്ടെങ്കിൽ അത് എടുക്കുന്നു
+  let savedProvider = null;
+  if (typeof savedOrderData !== 'undefined' && savedOrderData.courier) {
+    savedProvider = savedOrderData.courier;
+  }
+
+  // 🔥 കൊറിയർ പേര് സഹിതം Zone Key കണ്ടുപിടിക്കുന്നു (ഉദാ: "KERALA INDIA POST")
+  const zone = getZoneKey(currentState, savedProvider);
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;
 
