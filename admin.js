@@ -282,22 +282,24 @@ function confirmAction(text, callback) {
 }
 
 // Background Rate Fetcher
+// 🔥 BACKGROUND RATE FETCHER (Fixed: Always keeps rates up-to-date & Updates UI)
 function fetchRatesBackground() {
     let cached = localStorage.getItem('adminRatesCache');
 
-    // കാഷെ ഉണ്ടെങ്കിലും അത് ശൂന്യമല്ലെങ്കിൽ (Empty അല്ലെങ്കില്) മാത്രം എടുത്താൽ മതി
+    // കാഷെ ഉണ്ടെങ്കിൽ അത് ആദ്യം എടുക്കുന്നു (ആപ്പ് പെട്ടെന്ന് ലോഡ് ആവാൻ)
     if (cached && cached !== "{}" && cached !== "null") {
         let parsed = JSON.parse(cached);
         if (Object.keys(parsed).length > 0) {
             courierRates = parsed;
-            // 🔥 കാഷെയിൽ നിന്ന് പ്രൊവൈഡർമാരെ എടുക്കുന്നു
             if (parsed._providers) {
                 availableProviders = parsed._providers;
             }
-            return; // റേറ്റ് ഉണ്ടെങ്കിൽ പിന്നെ ഫെച്ച് ചെയ്യില്ല
+            // 🔥 ഇവിടെ ഉണ്ടായിരുന്ന 'return;' നമ്മൾ ഒഴിവാക്കി! 
+            // (അതുകൊണ്ട് എപ്പോഴും പുതിയ റേറ്റ് ഷീറ്റിൽ നിന്നും എടുക്കും)
         }
     }
 
+    // കാഷെ ഉണ്ടെങ്കിലും ഇല്ലെങ്കിലും ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ റേറ്റ് എപ്പോഴും ചെക്ക് ചെയ്യുന്നു!
     console.log("🔄 Fetching latest rates from server...");
     fetch(`${scriptURL}?action=getRates`)
         .then(res => res.json())
@@ -305,16 +307,17 @@ function fetchRatesBackground() {
             if (data.result === 'success' && data.rates) {
                 courierRates = data.rates;
 
-                // 🔥 ഷീറ്റിൽ നിന്ന് ഡൈനാമിക് ആയി പ്രൊവൈഡർമാരെ എടുക്കുന്നു
                 if (data.rates._providers) {
                     availableProviders = data.rates._providers;
                 }
 
+                // പുതിയ റേറ്റ് കാഷെയിലേക്ക് സേവ് ചെയ്യുന്നു
                 localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
                 console.log("✅ Rates Updated & Saved to LocalStorage");
 
-                // റേറ്റ് കിട്ടിയ ഉടനെ കാർഡുകൾ അപ്ഡേറ്റ് ആവാൻ
-                if (allOrders && allOrders.length > 0) {
+                // 🔥 വിട്ടുപോയ ആ പ്രധാനപ്പെട്ട ഭാഗം തിരികെ ചേർത്തു!
+                // ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ റേറ്റ് കിട്ടിയാൽ ഉടൻ തന്നെ സ്ക്രീനിൽ കാർഡുകൾ അപ്ഡേറ്റ് ആവാൻ:
+                if (typeof allOrders !== 'undefined' && allOrders && allOrders.length > 0) {
                     renderTabs(allOrders);
                 }
             }
@@ -1059,6 +1062,7 @@ function filterOrders() {
     } else {
         tabsContainer.style.display = 'block';
         searchResultsArea.style.display = 'none';
+        renderTabs(allOrders);
     }
 }
 // 🔥 ARCHIVE / DELETE ORDER FUNCTION
@@ -3606,11 +3610,11 @@ window.showAddExpenseModal = function () {
 
 // 🔥 CHANGING COURIER & UPDATING PRICE (SAVES OLD STATE FOR UNDO)
 window.changeCourier = function (oid, newProvider) {
-    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-    let oIdx = cached.findIndex(o => o.orderid === oid);
+    // 🔥 FIX: കാഷെക്ക് പകരം മെയിൻ ലിസ്റ്റ് (allOrders) നേരിട്ട് അപ്ഡേറ്റ് ചെയ്യുന്നു
+    let oIdx = allOrders.findIndex(o => o.orderid === oid);
 
     if (oIdx > -1) {
-        let o = cached[oIdx];
+        let o = allOrders[oIdx];
 
         // 🔥 പഴയ അവസ്ഥ സേവ് ചെയ്തു വെക്കുന്നു
         let oldProvider = o.provider || o.Courier_Provider;
@@ -3626,7 +3630,9 @@ window.changeCourier = function (oid, newProvider) {
 
         o.Courier_Charge = newCourierCharge;
         o.Grand_Total = newTotal;
-        localStorage.setItem('allOrdersCache', JSON.stringify(cached));
+
+        // കാഷെയും അപ്ഡേറ്റ് ചെയ്യുന്നു
+        localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
         $(`#price-box-${oid}`).html(`₹${newTotal}/-`).css('color', '#ff9800').fadeOut(150).fadeIn(150, function () {
             $(this).css('color', '#198754');
