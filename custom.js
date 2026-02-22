@@ -507,14 +507,6 @@ function syncUserDataBackground(phone) {
         finalData.paidDate = serverData.paidDate;
 
         const s = String(finalData.Status).toLowerCase();
-        // if (!['paid', 'dispatched', 'delivered', 'completed'].includes(s)) {
-        //   if (localData.name) finalData.name = localData.name;
-        //   if (localData.house) finalData.house = localData.house;
-        //   if (localData.place) finalData.place = localData.place;
-        //   if (localData.postoffice) finalData.postoffice = localData.postoffice;
-        //   if (localData.pincode) finalData.pincode = localData.pincode;
-        // }
-
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
           if (['completed', 'delivered', 'refunded'].includes(s)) {
@@ -667,7 +659,7 @@ window.submitWizardOrder = function () {
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-window.handleEditPincode = async function (val) {
+window.handleEditPincode = async function (val, savedPO = null) {
   if (!/^[0-9]{6}$/.test(val)) {
     $('#edit-po-wrapper').slideUp();
     $('#single-po-display').hide();
@@ -676,9 +668,8 @@ window.handleEditPincode = async function (val) {
 
   checkForChanges();
 
-  // 🔥 Language Setup
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang];
+  const t = translations[lang] || {};
 
   try {
     const res = await fetch(`pincode_json_files/${val}.json`);
@@ -693,28 +684,42 @@ window.handleEditPincode = async function (val) {
     if (data && data.length > 0) {
       $('#edit-district').val(data[0].district);
       $('#edit-state').val(data[0].statename);
-      updatePrice($('#quick-qty').val(), true);
+
+      if ($('#quick-qty').val()) {
+        updatePrice($('#quick-qty').val(), true);
+      }
 
       if (data.length > 1) {
-        // === MULTIPLE POST OFFICES ===
+        // === ഒന്നിലധികം പോസ്റ്റ് ഓഫീസുകൾ ഉണ്ടെങ്കിൽ ===
         $('#single-po-display').hide();
-
         const sel = $('#edit-postoffice-select');
+        sel.empty().append(`<option value="">${t.lbl_select_po || 'Select Post Office'}...</option>`);
 
-        sel.empty().append(`<option value="">${t.lbl_select_po}...</option>`);
-
+        let matched = false;
         data.forEach(p => {
-          sel.append(`<option value="${p.officename}">${p.officename}</option>`);
+          let isSelected = '';
+          // 🔥 പഴയ പോസ്റ്റ് ഓഫീസുമായി മാച്ച് ആവുന്നുണ്ടോ എന്ന് നോക്കുന്നു (Drop-down ൽ സെലക്ട് ചെയ്യാൻ)
+          if (savedPO && p.officename.toLowerCase().trim() === savedPO.toLowerCase().trim()) {
+            isSelected = 'selected';
+            matched = true;
+          }
+          sel.append(`<option value="${p.officename}" ${isSelected}>${p.officename}</option>`);
         });
 
         $('#edit-po-wrapper').slideDown();
-        $('#edit-postoffice').val('');
 
+        if (matched && savedPO) {
+          $('#edit-postoffice').val(savedPO);
+        } else if (!savedPO) {
+          $('#edit-postoffice').val('');
+        }
       } else {
-        // === SINGLE POST OFFICE ===
+        // === ഒരൊറ്റ പോസ്റ്റ് ഓഫീസ് മാത്രമേ ഉള്ളുവെങ്കിൽ ===
         $('#edit-po-wrapper').slideUp();
         const poName = data[0].officename;
         $('#edit-postoffice').val(poName);
+
+        // 🔥 ഗ്രീൻ ടെക്സ്റ്റ് കാണിക്കുന്നു
         $('#single-po-display').html(`<i class="fas fa-check-circle"></i> ${poName}`).fadeIn();
       }
 
@@ -1041,8 +1046,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-name').val(d.name);
   $('#edit-house').val(d.house);
   $('#edit-place').val(d.place);
+
+  // 🔥 FIX: പിൻകോഡ് വെച്ച് പോസ്റ്റ് ഓഫീസ് ഡിസൈൻ ശരിയാക്കുന്നു
   $('#edit-pincode').val(d.pincode);
-  $('#edit-postoffice').val(d.postoffice);
+  $('#edit-postoffice').val(d.postoffice); // (നെറ്റ്‌വർക്ക് കിട്ടിയില്ലെങ്കിൽ ഡാറ്റ പോകാതിരിക്കാൻ ആദ്യം സേവ് ചെയ്യുന്നു)
+
+  if (d.pincode) {
+    handleEditPincode(d.pincode, d.postoffice);
+  }
+
   $('#edit-district').val(d.district);
   $('#edit-state').val(d.state);
 
