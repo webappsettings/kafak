@@ -373,13 +373,13 @@ function saveToLocal(phone, data) {
 window.loadOrderData = function (d, isServerData = false) {
   if (!d) return;
 
-  // 1. ലോക്കലിൽ സേവ് ചെയ്തിട്ടുള്ള കസ്റ്റമറുടെ പഴയ ഫോൺ നമ്പർ എടുക്കുന്നു
+  // 1. കസ്റ്റമർ ലോഗിൻ ചെയ്ത ഫോൺ നമ്പർ ലോക്കലിൽ നിന്ന് എടുക്കുന്നു
   let savedPhone = SafeStorage.getItem('lastUsedPhone');
 
-  // 2. അഡ്മിൻ ആണോ എന്ന് നോക്കുന്നു (adminPhone വേരിയബിളും URL-ഉം വെച്ച്)
+  // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു (Admin ലോഗിൻ ആണെങ്കിൽ ഈ ചെക്കിങ് വേണ്ട)
   let isAdmin = (currentLoginPhone === adminPhone) || window.location.href.includes('admin');
 
-  // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം ഫോൺ നമ്പർ മാറ്റം ചെക്ക് ചെയ്യുന്നു
+  // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം നമ്പർ മാറിയോ എന്ന് നോക്കുന്നു
   if (!isAdmin && savedPhone && d.phone) {
     if (String(d.phone).trim() !== String(savedPhone).trim()) {
       Swal.fire({
@@ -389,25 +389,25 @@ window.loadOrderData = function (d, isServerData = false) {
         confirmButtonText: 'Login Again',
         allowOutsideClick: false
       }).then(() => {
-        // 🔥 നിങ്ങളുടെ കോഡിലുള്ള ഫംഗ്ഷൻ ഇവിടെ കോൾ ചെയ്യുന്നു
-        clearUserLogin();
+        clearUserLogin(); // ഇത് കസ്റ്റമറെ ലോഗ് ഔട്ട് ചെയ്ത് വിസാർഡിലേക്ക് വിടും
       });
       return;
     }
   }
 
-  // 4. പേരോ അഡ്രസ്സോ മാറിയിട്ടുണ്ടെങ്കിൽ ലോക്കലിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു (അഡ്മിൻ അല്ലെങ്കിൽ മാത്രം)
-  if (isServerData && !isAdmin && savedPhone) {
+  // 4. ഫോൺ നമ്പർ മാറിയിട്ടില്ലെങ്കിൽ, മറ്റ് പുതിയ വിവരങ്ങൾ (Name, Status) ലോക്കലിൽ സേവ് ചെയ്യുന്നു
+  if (isServerData && savedPhone && !isAdmin) {
     localUsersMap[savedPhone] = d;
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  // --- ബാക്കിയുള്ള നിങ്ങളുടെ പഴയ കോഡ് ഇവിടെ തുടരുന്നു ---
+  // --- നിങ്ങളുടെ ബാക്കി പഴയ കോഡ് ഇവിടെ തുടരുന്നു ---
   $('#step-0').hide();
   userData = d;
   editingOrderId = d.orderid;
   currentLoginPhone = d.phone;
 
+  // നിലവിലുള്ള ലോഗിൻ സേവ് ചെയ്യുന്നു
   if (d.phone) saveToLocal(d.phone, d);
 
   showReturningUserView(d, true, isServerData);
