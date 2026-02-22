@@ -373,14 +373,13 @@ function saveToLocal(phone, data) {
 window.loadOrderData = function (d, isServerData = false) {
   if (!d) return;
 
-  // 1. Local-il ippozhullphone number edukkunnu
+  // 1. കസ്റ്റമർ ലോഗിൻ ചെയ്ത ഫോൺ നമ്പർ ലോക്കലിൽ നിന്ന് എടുക്കുന്നു
   let savedPhone = SafeStorage.getItem('lastUsedPhone');
 
-  // 2. Admin aano ennu check cheyyunnu (Admin-u ee alert varathirikkan)
+  // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു (Admin ലോഗിൻ ആണെങ്കിൽ ഈ ചെക്കിങ് വേണ്ട)
   let isAdmin = (currentLoginPhone === adminPhone) || window.location.href.includes('admin');
 
-  // 3. 🛡️ PHONE NUMBER CHECK LOGIC
-  // Customer view-il, server-le number-um local number-um thammil match allel logout aakkum
+  // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം നമ്പർ മാറിയോ എന്ന് നോക്കുന്നു
   if (!isAdmin && savedPhone && d.phone) {
     if (String(d.phone).trim() !== String(savedPhone).trim()) {
       Swal.fire({
@@ -390,26 +389,25 @@ window.loadOrderData = function (d, isServerData = false) {
         confirmButtonText: 'Login Again',
         allowOutsideClick: false
       }).then(() => {
-        clearUserLogin(); // Logout cheyth wizard-lekk vidum
+        clearUserLogin(); // ഇത് കസ്റ്റമറെ ലോഗ് ഔട്ട് ചെയ്ത് വിസാർഡിലേക്ക് വിടും
       });
       return;
     }
   }
 
-  // 4. ✅ DATA UPDATE LOGIC
-  // Phone number match aanel, bakki ella datayum (Name, Status, items etc.) 
-  // server-le pole local-il replace cheythu save cheyyum.
+  // 4. ഫോൺ നമ്പർ മാറിയിട്ടില്ലെങ്കിൽ, മറ്റ് പുതിയ വിവരങ്ങൾ (Name, Status) ലോക്കലിൽ സേവ് ചെയ്യുന്നു
   if (isServerData && savedPhone && !isAdmin) {
     localUsersMap[savedPhone] = d;
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  // --- Nammude pazhaya code-nte bakki ---
+  // --- നിങ്ങളുടെ ബാക്കി പഴയ കോഡ് ഇവിടെ തുടരുന്നു ---
   $('#step-0').hide();
   userData = d;
   editingOrderId = d.orderid;
   currentLoginPhone = d.phone;
 
+  // നിലവിലുള്ള ലോഗിൻ സേവ് ചെയ്യുന്നു
   if (d.phone) saveToLocal(d.phone, d);
 
   showReturningUserView(d, true, isServerData);
@@ -439,12 +437,11 @@ function setRefreshLoading(isLoading) {
   }
 }
 
-// 🔥 UPDATED: PERFECT SYNC LOGIC
-// 🔥 UPDATED: FORCE SERVER DATA PRIORITY (Fixes 'Paid' showing as 'Pending')
 function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
+  // 1. സെർവറിൽ നിന്നും ലേറ്റസ്റ്റ് ഡാറ്റ എടുക്കുന്നു
   const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
     .then(res => res.json())
     .catch(() => null);
@@ -453,19 +450,37 @@ function syncUserDataBackground(phone) {
 
   return Promise.all([userPromise, ratePromise])
     .then(([userRes]) => {
-      let finalData = localData;
+
+      // അഡ്മിൻ പാനലിൽ ആണോ എന്ന് നോക്കുന്നു
+      let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
+
+      // 🔥 ഡീപ്പ് ചെക്ക് 1: സെർവറിൽ നിന്ന് ഡാറ്റ കിട്ടിയില്ലെങ്കിൽ (Network Error അല്ലാതെ)
+      if (userRes && userRes.result === 'error' && !isAdmin) {
+        clearUserLogin();
+        return;
+      }
 
       if (userRes && userRes.result === 'success' && userRes.data) {
         let serverData = userRes.data;
 
-        // 1. Merge: Server Data Overwrites Local Data (For Critical Fields)
-        // പഴയ കോഡിൽ localData ആയിരുന്നു അവസാനം, അതാണ് പ്രശ്നം.
-        // ഇവിടെ നമ്മൾ ക്രിട്ടിക്കൽ ആയ കാര്യങ്ങൾ സെർവറിൽ നിന്ന് നിർബന്ധപൂർവ്വം എടുക്കുന്നു.
+        // 🔥 ഡീപ്പ് ചെക്ക് 2: അഡ്മിൻ ഷീറ്റിൽ നമ്പർ മാറ്റിയോ എന്ന് കണ്ടുപിടിക്കുന്നു!
+        // കസ്റ്റമർക്ക് ഒരു ഓർഡർ ഉണ്ടായിരുന്നു, പക്ഷേ സെർവറിൽ നിന്ന് വരുന്ന ഡാറ്റയിൽ ഓർഡർ ഐഡിയോ ഓതറൈസേഷനോ ഇല്ലെങ്കിൽ!
+        if (!isAdmin && localData.orderid && (!serverData.orderid || serverData.authorized === false)) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Account Updated',
+            text: 'Your phone number has been updated by admin. Please login with your new number.',
+            confirmButtonText: 'Login Again',
+            allowOutsideClick: false
+          }).then(() => {
+            clearUserLogin(); // ലോഗ് ഔട്ട് ചെയ്യുന്നു!
+          });
+          return; // ബാക്കി കോഡ് റൺ ചെയ്യേണ്ടതില്ല
+        }
 
-        finalData = { ...localData, ...serverData };
+        let finalData = { ...localData, ...serverData };
 
-        // 🔥 FORCE CRITICAL FIELDS FROM SERVER
-        // ലോക്കലിൽ "Pending" എന്ന് കിടന്നാലും സെർവറിൽ "Paid" ആണെങ്കിൽ "Paid" തന്നെ എടുക്കും.
+        // 🔥 ക്രിട്ടിക്കൽ ഡാറ്റ സെർവറിൽ നിന്നും തന്നെ എടുക്കുന്നു
         finalData.Status = serverData.Status || serverData.status || "Pending";
         finalData.adminMeta = serverData.adminMeta;
         finalData.paidNum = serverData.paidNum;
@@ -474,10 +489,8 @@ function syncUserDataBackground(phone) {
         finalData['Dispatched Date'] = serverData['Dispatched Date'];
         finalData.paidDate = serverData.paidDate;
 
-        // Preserve unsaved address edits from local if status is editable
         const s = String(finalData.Status).toLowerCase();
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(s)) {
-          // Pending ആണെങ്കിൽ മാത്രം ലോക്കലിലെ പേരും അഡ്രസ്സും നിലനിർത്താം (കസ്റ്റമർ എഡിറ്റ് ചെയ്തുകൊണ്ടിരിക്കുകയാണെങ്കിൽ)
           if (localData.name) finalData.name = localData.name;
           if (localData.house) finalData.house = localData.house;
           if (localData.place) finalData.place = localData.place;
@@ -487,8 +500,6 @@ function syncUserDataBackground(phone) {
 
         if (finalData.orderid) {
           editingOrderId = finalData.orderid;
-
-          // Finished Orders -> New Order Mode logic
           if (['completed', 'delivered', 'refunded'].includes(s)) {
             editingOrderId = null;
             finalData.quantity = null;
@@ -499,10 +510,12 @@ function syncUserDataBackground(phone) {
         userData = finalData;
         savedOrderData = JSON.parse(JSON.stringify(finalData));
 
-        // Update Local Storage with new Truth
+        // 🔥 അപ്ഡേറ്റ് ചെയ്ത ഡാറ്റ ലോക്കലിൽ സേവ് ചെയ്യുന്നു (Status, Address എല്ലാം മാറും)
         saveToLocal(phone, finalData);
+
+        // സ്ക്രീൻ അപ്ഡേറ്റ് ചെയ്യുന്നു
+        renderEditView(finalData);
       }
-      renderEditView(finalData);
     });
 }
 
