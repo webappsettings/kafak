@@ -371,6 +371,32 @@ function saveToLocal(phone, data) {
 }
 
 function loadOrderData(d, isServerData = false) {
+  if (!d) return;
+
+  // 🔥 സ്മാർട്ട് ലോജിക്: അഡ്മിൻ ഫോൺ നമ്പർ മാറ്റിയാൽ മാത്രം ലോഗ് ഔട്ട് ചെയ്യുക
+  let savedPhone = SafeStorage.getItem('lastUsedPhone');
+
+  if (isServerData && savedPhone && !$('#adm-phone').length) {
+    // 1. ഫോൺ നമ്പർ മാറിയിട്ടുണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+    if (String(d.phone).trim() !== String(savedPhone).trim()) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Account Updated',
+        text: 'Your details have been updated by admin. Please login with your new phone number.',
+        confirmButtonText: 'Login Again',
+        allowOutsideClick: false
+      }).then(() => {
+        logoutCustomer(); // ലോഗ് ഔട്ട് ചെയ്യുന്നു
+      });
+      return; // ഇവിടെ വെച്ച് കോഡ് നിൽക്കുന്നു
+    }
+
+    // 2. ഫോൺ നമ്പർ അല്ലാതെ മറ്റ് ഡാറ്റ (പേര്, അഡ്രസ്സ്) മാറിയാൽ ലോക്കൽ മെമ്മറിയിൽ സേവ് ചെയ്യുന്നു
+    localUsersMap[savedPhone] = d;
+    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+  }
+
+  // --- നിങ്ങളുടെ പഴയ കോഡ് ഇവിടെ നിന്നും തുടരുന്നു ---
   $('#step-0').hide();
   userData = d;
   editingOrderId = d.orderid;
