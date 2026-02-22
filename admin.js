@@ -523,6 +523,16 @@ function renderTabs(orders) {
     let lastDateMap = { new: '', sent: '', paid_new: '', paid_print: '', disp_new: '', disp_track: '' };
     let firstDateFlags = { new: true, sent: true, paid_new: true, paid_print: true, disp_new: true, disp_track: true };
 
+    // --- 🔥 FIX: 3 ദിവസത്തെ ലിമിറ്റ് സെറ്റ് ചെയ്യാനുള്ള വേരിയബിളുകൾ ഇവിടെയാണ് ചേർക്കേണ്ടത്! ---
+    let todayLimit = new Date();
+    todayLimit.setHours(0, 0, 0, 0);
+    let cutoffDate = new Date();
+    cutoffDate.setDate(todayLimit.getDate() - 2);
+    cutoffDate.setHours(0, 0, 0, 0);
+
+    let oldTrackingCount = 0; // പഴയ ഓർഡറുകൾ എണ്ണാൻ
+    // ----------------------------------------------------------------------
+
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
         d.paidDate = pDateStr;
