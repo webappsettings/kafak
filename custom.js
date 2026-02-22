@@ -1048,7 +1048,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   // Display Order ID & Date
   if (d.orderid) {
-    $('#display-oid').html(`Order ID: <b>${d.orderid}</b>`).show();
+    $('#display-oid').html(`<b>${d.orderid}</b>`).show();
     let dateStr = d.timestamp || d.date;
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   }
