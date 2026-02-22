@@ -1987,9 +1987,9 @@ function fetchCourierRates() {
         courierRates = data.rates;
         if (data.adminPhone) adminPhone = String(data.adminPhone);
 
-        // 🔥 FIX: 'KERALA' കീ ഉപയോഗിക്കുന്നു
-        if (data.rates.KERALA) {
-          globalQtyList = Object.keys(data.rates.KERALA).map(Number).sort((a, b) => a - b);
+        // 🔥 FIX: 'prices' എന്നതിൽ നിന്നും നേരിട്ട് ക്വാണ്ടിറ്റി ലിസ്റ്റ് എടുക്കുന്നു
+        if (data.rates && data.rates.prices) {
+          globalQtyList = Object.keys(data.rates.prices).map(Number).sort((a, b) => a - b);
         }
 
         SafeStorage.setItem('cachedRates', JSON.stringify(data.rates));
