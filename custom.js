@@ -1961,12 +1961,17 @@ window.clearAdminCache = function () {
 }
 
 function fetchOrder(orderId) {
-  // 🔥 1. ഡാറ്റ വരാൻ വൈകിയാലും ഫോം കാണിക്കാതിരിക്കാൻ തുടക്കത്തിൽ തന്നെ ഹൈഡ് ചെയ്യുന്നു
+  // 1. ഡാറ്റ വരാൻ വൈകിയാലും ഫോം കാണിക്കാതിരിക്കാൻ തുടക്കത്തിൽ തന്നെ ഹൈഡ് ചെയ്യുന്നു
   $('#step-0').hide();
   $('#wizard-view').hide();
   showLoader(true); // ലോഡർ കാണിക്കുന്നു
 
-  fetch(`${sc}?action=getOrder&oid=${orderId}`)
+  // 🔥 CRITICAL FIX: URL-ൽ Timestamp ചേർത്തു (Cache ഒഴിവാക്കി എപ്പോഴും പുതിയ ഡാറ്റ കിട്ടാൻ)
+  // ഒപ്പം Order ID-യിൽ അനാവശ്യ സ്പേസുകൾ ഉണ്ടെങ്കിൽ അത് പരിഹരിക്കാൻ encodeURIComponent നൽകി
+  let safeOid = encodeURIComponent(orderId);
+  let fetchUrl = `${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`;
+
+  fetch(fetchUrl)
     .then(res => res.json())
     .then(res => {
       showLoader(false);
