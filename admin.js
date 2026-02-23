@@ -774,20 +774,71 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
     }
 
+
     // Fraud/Linked Order Alert
     let fraudAlertHtml = '';
     if (currentStatus === 'Pending' || currentStatus === 'Sent') {
         let linkedOrder = checkCrossLinking(d);
         if (linkedOrder) {
-            let linkColor = linkedOrder.Status === 'Paid' ? 'danger' : 'warning';
-            let linkIcon = linkedOrder.Status === 'Paid' ? 'exclamation-triangle' : 'link';
+            let linkStatus = String(linkedOrder.Status || 'Pending');
+            let linkColor = linkStatus === 'Paid' ? 'danger' : 'warning';
+            let linkIcon = linkStatus === 'Paid' ? 'exclamation-triangle' : 'link';
+
+            // ഓർഡർ ചെയ്ത തീയതിയും സമയവും (Top Right)
+            let linkDateStr = '';
+            if (linkedOrder.timestamp) {
+                let lDate = new Date(linkedOrder.timestamp);
+                linkDateStr = lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+            }
+
+            // ഫോൺ നമ്പറുകൾ ഒരുമിച്ചാക്കാൻ (Smart Contact Line)
+            let linkContacts = {};
+            const cleanNumLinked = (n) => String(n || '').replace(/[^0-9]/g, '');
+
+            const addLinkedContact = (type, num) => {
+                let clNum = cleanNumLinked(num);
+                if (clNum && clNum.length >= 10) {
+                    if (!linkContacts[clNum]) linkContacts[clNum] = [];
+                    linkContacts[clNum].push(type);
+                }
+            };
+
+            addLinkedContact('<i class="fas fa-phone-alt text-primary"></i>', linkedOrder.phone);
+            addLinkedContact('<i class="fab fa-whatsapp text-success"></i>', linkedOrder.whatsapp);
+            addLinkedContact('<i class="fas fa-phone-square text-secondary"></i>', linkedOrder.altphone);
+
+            let contactHtmlArray = [];
+            for (let num in linkContacts) {
+                let icons = linkContacts[num].join(' ');
+                contactHtmlArray.push(`<span>${icons} <span class="fw-bold">${num.slice(-10)}</span></span>`);
+            }
+            let linkContactLine = contactHtmlArray.join(' <span class="mx-1 text-muted opacity-50">|</span> ');
+
+            // Archive ബട്ടൺ കാണിക്കണോ എന്ന് തീരുമാനിക്കുന്നു
+            let hideArchiveFor = ['archive', 'sent', 'dispatched', 'delivered', 'completed'];
+            let showArchiveBtn = !hideArchiveFor.includes(linkStatus.toLowerCase());
+
+            let archiveBtnHtml = showArchiveBtn ? `<button onclick="event.stopPropagation(); highlightCard(this); archiveOrder('${linkedOrder.orderid}')" class="btn btn-sm btn-outline-danger fw-bold shadow-sm py-0 px-2" style="font-size:9px;"><i class="fas fa-archive"></i></button>` : '';
+
             fraudAlertHtml = `
             <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
-                <div style="font-size:11px; font-weight:700; color:#b91c1c;">
-                    <i class="fas fa-${linkIcon}"></i> Linked with: ${linkedOrder.name}
+                <div class="d-flex justify-content-between align-items-start">
+                    <div style="font-size:11px; font-weight:700; color:#b91c1c;">
+                        <i class="fas fa-${linkIcon}"></i> Linked: ${linkedOrder.name} <span class="badge bg-secondary bg-opacity-25 text-dark ms-1" style="font-size:9px;">[${linkStatus}]</span>
+                    </div>
+                    <div style="font-size:9px; font-weight:700; color:#666; text-align:right;">
+                        ${linkDateStr}
+                    </div>
                 </div>
-                <div style="font-size:10px; color:#555; margin-top:2px;">ID: <b>${linkedOrder.orderid}</b></div>
-                <div class="text-end mt-1"><button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn btn-sm btn-outline-danger fw-bold shadow-sm" style="font-size:9px; padding: 2px 8px;"><i class="fas fa-archive"></i> ARCHIVE</button></div>
+                
+                <div class="d-flex justify-content-between align-items-center mt-1">
+                    <div style="font-size:10px; color:#555;">ID: <b>${linkedOrder.orderid}</b></div>
+                    ${archiveBtnHtml}
+                </div>
+                
+                <div class="mt-2 text-dark" style="font-size:10px;">
+                    ${linkContactLine}
+                </div>
             </div>`;
         }
     }

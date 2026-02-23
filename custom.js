@@ -1833,8 +1833,8 @@ window.adminAction = async function (oid, status) {
           dateFormat: "Y-m-d H:i",
           defaultDate: new Date(),
           theme: "material_blue",
-          time_24hr: false,
-          disableMobile: false
+          time_24hr: true,
+          disableMobile: true
         });
       },
       preConfirm: () => {
