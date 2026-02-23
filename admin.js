@@ -777,7 +777,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     // Fraud/Linked Order Alert
     let fraudAlertHtml = '';
-    if (currentStatus === 'Pending' || currentStatus === 'Sent') {
+    // 🔥 Paid ടാബിലും കാണിക്കാൻ currentStatus === 'Paid' കൂടി ചേർത്തിട്ടുണ്ട്
+    if (currentStatus === 'Pending' || currentStatus === 'Sent' || currentStatus === 'Paid') {
         let linkedOrder = checkCrossLinking(d);
         if (linkedOrder) {
             let linkStatus = String(linkedOrder.Status || 'Pending');
@@ -791,7 +792,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 linkDateStr = lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
             }
 
-            // ഫോൺ നമ്പറുകൾ ഒരുമിച്ചാക്കാൻ (Smart Contact Line)
+            // ഫോൺ നമ്പറുകൾ ഒരുമിച്ചാക്കാൻ (Smart Contact Line with Radio Buttons)
             let linkContacts = {};
             const cleanNumLinked = (n) => String(n || '').replace(/[^0-9]/g, '');
 
@@ -803,16 +804,29 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 }
             };
 
-            addLinkedContact('<i class="fas fa-phone-alt text-primary"></i>', linkedOrder.phone);
-            addLinkedContact('<i class="fab fa-whatsapp text-success"></i>', linkedOrder.whatsapp);
-            addLinkedContact('<i class="fas fa-phone-square text-secondary"></i>', linkedOrder.altphone);
-
-            let contactHtmlArray = [];
-            for (let num in linkContacts) {
-                let icons = linkContacts[num].join(' ');
-                contactHtmlArray.push(`<span>${icons} <span class="fw-bold">${num.slice(-10)}</span></span>`);
+            addLinkedContact('<i class="fas fa-phone-alt text-primary" title="Phone"></i>', linkedOrder.phone);
+            addLinkedContact('<i class="fab fa-whatsapp text-success" title="WhatsApp"></i>', linkedOrder.whatsapp);
+            addLinkedContact('<i class="fas fa-phone-square text-secondary" title="Alt Phone"></i>', linkedOrder.altphone);
+            if (linkedOrder.paidNum) {
+                addLinkedContact('<i class="fas fa-money-bill-wave text-success" title="Paid Num"></i>', linkedOrder.paidNum);
             }
-            let linkContactLine = contactHtmlArray.join(' <span class="mx-1 text-muted opacity-50">|</span> ');
+
+            // 🔥 Radio Buttons തയ്യാറാക്കുന്നു
+            let radioHtml = '';
+            let isFirstRadio = true; // ആദ്യത്തേത് Default ആയി Select ചെയ്യാൻ
+            for (let num in linkContacts) {
+                let icons = linkContacts[num].join('<span style="margin-left:3px;"></span>');
+                let checkedStr = isFirstRadio ? 'checked' : '';
+                radioHtml += `
+                <label class="d-flex align-items-center me-3 mb-1" style="cursor:pointer; font-size:11px;" onclick="event.stopPropagation();">
+                    <input type="radio" name="link_wa_${d.orderid}" value="${num}" ${checkedStr} class="me-1" style="margin:0; cursor:pointer; transform: scale(0.9);">
+                    ${icons} <span class="fw-bold ms-1 text-dark">${num.slice(-10)}</span>
+                </label>`;
+                isFirstRadio = false;
+            }
+
+            // 🔥 WhatsApp Open Button (Selected Radio Button-ലെ നമ്പർ എടുത്ത് WA തുറക്കും)
+            let linkWaBtn = `<button type="button" class="btn btn-sm btn-success py-0 px-2 shadow-sm ms-auto d-flex align-items-center" style="font-size:10px; height:24px; border-radius:6px;" onclick="event.stopPropagation(); let sel = document.querySelector('input[name=\\'link_wa_${d.orderid}\\']:checked'); if(sel){ let v = sel.value; if(v.length===10) v='91'+v; window.open('https://wa.me/'+v, '_blank'); }"><i class="fab fa-whatsapp me-1" style="font-size:12px;"></i> WA</button>`;
 
             // Archive ബട്ടൺ കാണിക്കണോ എന്ന് തീരുമാനിക്കുന്നു
             let hideArchiveFor = ['archive', 'sent', 'dispatched', 'delivered', 'completed'];
@@ -821,7 +835,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             let archiveBtnHtml = showArchiveBtn ? `<button onclick="event.stopPropagation(); highlightCard(this); archiveOrder('${linkedOrder.orderid}')" class="btn btn-sm btn-outline-danger fw-bold shadow-sm py-0 px-2" style="font-size:9px;"><i class="fas fa-archive"></i></button>` : '';
 
             fraudAlertHtml = `
-            <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;">
+            <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;" onclick="event.stopPropagation();">
                 <div class="d-flex justify-content-between align-items-start">
                     <div style="font-size:11px; font-weight:700; color:#b91c1c;">
                         <i class="fas fa-${linkIcon}"></i> Linked: ${linkedOrder.name} <span class="badge bg-secondary bg-opacity-25 text-dark ms-1" style="font-size:9px;">[${linkStatus}]</span>
@@ -831,13 +845,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                     </div>
                 </div>
                 
-                <div class="d-flex justify-content-between align-items-center mt-1">
+                <div class="d-flex justify-content-between align-items-center mt-1 mb-2">
                     <div style="font-size:10px; color:#555;">ID: <b>${linkedOrder.orderid}</b></div>
                     ${archiveBtnHtml}
                 </div>
                 
-                <div class="mt-2 text-dark" style="font-size:10px;">
-                    ${linkContactLine}
+                <div class="d-flex align-items-center flex-wrap" style="background:rgba(255,255,255,0.6); padding:6px; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                    <div class="d-flex flex-wrap align-items-center flex-grow-1">
+                        ${radioHtml}
+                    </div>
+                    ${linkWaBtn}
                 </div>
             </div>`;
         }
