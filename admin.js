@@ -58,9 +58,6 @@ function getMetaStatus(metaStr) {
 
 
 // Update Meta String Locally & Queue for Sync
-// 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
-// Update Meta String Locally & Queue for Sync
-// 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo & Handles Unprint)
 function updateAdminMeta(oid, type, value) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
@@ -74,7 +71,7 @@ function updateAdminMeta(oid, type, value) {
     } else if (type === 'printed') {
         if (!newMeta.includes('P')) newMeta += 'P';
     } else if (type === 'unprint') {
-        newMeta = newMeta.replace(/P/g, ''); // 🔥 Revert ചെയ്യുമ്പോൾ P ഒഴിവാക്കാൻ
+        newMeta = newMeta.replace(/P/g, ''); // Revert ചെയ്യുമ്പോൾ P ഒഴിവാക്കാൻ
     } else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
     }
@@ -116,8 +113,9 @@ function updateAdminMeta(oid, type, value) {
     updateSyncButtonUI();
     renderTabs(allOrders);
 
-    // Unprint ആണെങ്കിൽ Toast കാണിക്കേണ്ടതില്ല, അല്ലെങ്കിൽ കാണിക്കാം
-    if (type !== 'unprint') Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: 'Saved!' });
+    // 🔥 മാറ്റം: Unprint ആകുമ്പോഴും മെസ്സേജ് കാണിക്കും
+    let msg = type === 'unprint' ? 'Moved to Unprinted Tab!' : 'Saved!';
+    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: msg });
 }
 
 // 🔴 1. SAFE STORAGE CHECK
@@ -2094,11 +2092,30 @@ async function runPrintLogic(checkboxes, directData = null) {
             let newMeta = currentMeta + 'P';
             d.adminMeta = newMeta;
 
-            let existingUpd = updates.find(u => u.oid === d.orderid && u.action === 'meta');
-            if (existingUpd) {
-                existingUpd.meta = newMeta;
+            // 🔥 മാറ്റം: Undo/Revert Logic ഇവിടെയും ഉൾപ്പെടുത്തി
+            let existingIndex = updates.findIndex(u => u.oid === d.orderid && u.action === 'meta' && u.meta !== undefined);
+            let trueOldMeta = (existingIndex > -1 && updates[existingIndex].oldMeta !== undefined) ? updates[existingIndex].oldMeta : currentMeta;
+
+            if (newMeta === trueOldMeta) {
+                if (existingIndex > -1) {
+                    delete updates[existingIndex].meta;
+                    delete updates[existingIndex].oldMeta;
+                    if (updates[existingIndex].provider === undefined) {
+                        updates.splice(existingIndex, 1);
+                    }
+                }
             } else {
-                updates.push({ oid: d.orderid, action: 'meta', meta: newMeta, status: d.Status });
+                if (existingIndex > -1) {
+                    updates[existingIndex].meta = newMeta;
+                } else {
+                    let provOnlyIndex = updates.findIndex(u => u.oid === d.orderid && u.action === 'meta');
+                    if (provOnlyIndex > -1) {
+                        updates[provOnlyIndex].meta = newMeta;
+                        updates[provOnlyIndex].oldMeta = trueOldMeta;
+                    } else {
+                        updates.push({ oid: d.orderid, action: 'meta', meta: newMeta, oldMeta: trueOldMeta, status: d.Status, time: new Date().getTime() });
+                    }
+                }
             }
             isModified = true;
         }
