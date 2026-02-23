@@ -1717,9 +1717,25 @@ function setupAdminView(oid) {
   const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html?search=${oid}'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
   $('body').append(adminUI); $('body').css('padding-bottom', '100px');
 
-  // 🔥 FIX: Always fetch fresh data for Admin Edit View
-  showLoader(true);
-  fetchOrder(oid);
+  // 🔥 ADMIN FAST LOAD LOGIC: നിങ്ങൾ പറഞ്ഞ സൂപ്പർ ഫാസ്റ്റ് ലോജിക്!
+  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let localAdminOrder = allOrders.find(o => String(o.orderid) === String(oid));
+
+  if (localAdminOrder) {
+    // 1. Local കാഷെയിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ ഉടൻ തന്നെ ലോഡർ ഒഴിവാക്കി സ്ക്രീൻ കാണിക്കുന്നു (Zero Delay)
+    showLoader(false);
+    $('#step-0').hide();
+
+    updateAdminUI(localAdminOrder.Status || 'Pending', oid);
+    loadOrderData(localAdminOrder, false); // കാഷെ ഡാറ്റ വെച്ച് UI വരയ്ക്കുന്നു
+
+    // 2. ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു (UI ബ്ലോക്ക് ആവില്ല)
+    fetchOrder(oid, true); // true = silent background fetch
+  } else {
+    // ലോക്കലിൽ ഇല്ലെങ്കിൽ (ആദ്യമായി തുറക്കുമ്പോൾ) മാത്രം ലോഡർ കാണിച്ച് സർവറിൽ നിന്നും എടുക്കുന്നു
+    showLoader(true);
+    fetchOrder(oid, false);
+  }
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
@@ -1960,48 +1976,48 @@ window.clearAdminCache = function () {
   if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
 
-function fetchOrder(orderId) {
-  // 1. ഡാറ്റ വരാൻ വൈകിയാലും ഫോം കാണിക്കാതിരിക്കാൻ തുടക്കത്തിൽ തന്നെ ഹൈഡ് ചെയ്യുന്നു
-  $('#step-0').hide();
-  $('#wizard-view').hide();
-  showLoader(true); // ലോഡർ കാണിക്കുന്നു
+function fetchOrder(orderId, isSilent = false) {
+  // Silent അല്ലെങ്കിൽ (അതായത് Local-ൽ ഡാറ്റ ഇല്ലെങ്കിൽ) മാത്രം ലോഡർ കാണിക്കുന്നു
+  if (!isSilent) {
+    $('#step-0').hide();
+    $('#wizard-view').hide();
+    showLoader(true);
+  }
 
-  // 🔥 CRITICAL FIX: URL-ൽ Timestamp ചേർത്തു (Cache ഒഴിവാക്കി എപ്പോഴും പുതിയ ഡാറ്റ കിട്ടാൻ)
-  // ഒപ്പം Order ID-യിൽ അനാവശ്യ സ്പേസുകൾ ഉണ്ടെങ്കിൽ അത് പരിഹരിക്കാൻ encodeURIComponent നൽകി
   let safeOid = encodeURIComponent(orderId);
   let fetchUrl = `${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`;
 
   fetch(fetchUrl)
     .then(res => res.json())
     .then(res => {
-      showLoader(false);
+      if (!isSilent) showLoader(false);
 
       if (res.result === 'success' && res.data) {
-        $('#step-0').hide(); // വീണ്ടും ഉറപ്പുവരുത്തുന്നു
+        $('#step-0').hide();
         let d = res.data;
 
-        // Admin ആണെങ്കിൽ സ്റ്റാറ്റസ് മാറ്റാനുള്ള UI കാണിക്കാൻ
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
           updateAdminUI(d.Status || 'Pending', orderId);
         }
 
+        // സർവറിൽ നിന്നുള്ള ലേറ്റസ്റ്റ് ഡാറ്റ വെച്ച് അപ്ഡേറ്റ് ചെയ്യുന്നു
         loadOrderData(d, true);
 
       } else {
-        // ഓർഡർ ഐഡി തെറ്റാണെങ്കിൽ മാത്രം ഫോം കാണിക്കുക
-        $('#step-0').fadeIn();
-        updateFooterButtons('step-0');
-
-        Swal.fire({
-          toast: true, position: 'top', icon: 'error',
-          title: 'Order not found!', showConfirmButton: false, timer: 3000
-        });
+        if (!isSilent) {
+          $('#step-0').fadeIn();
+          updateFooterButtons('step-0');
+          Swal.fire({
+            toast: true, position: 'top', icon: 'error',
+            title: 'Order not found!', showConfirmButton: false, timer: 3000
+          });
+        }
       }
     })
     .catch((err) => {
       console.error("Fetch/Load Error: ", err);
-      showLoader(false);
-      if (err.message && err.message.includes('fetch')) {
+      if (!isSilent) showLoader(false);
+      if (!isSilent && err.message && err.message.includes('fetch')) {
         Swal.fire({
           title: 'Network Error',
           text: 'ഓർഡർ വിവരങ്ങൾ എടുക്കാൻ സാധിച്ചില്ല. ഒന്നുകൂടി ശ്രമിച്ച് നോക്കൂ.',
