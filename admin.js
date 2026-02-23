@@ -44,9 +44,9 @@ function getMetaStatus(metaStr) {
     metaStr = String(metaStr || '');
 
     // Check Contact Type
-    let contact = 'phone'; // Default (M)
+    let contact = 'whatsapp'; // 🔥 Default aayi WhatsApp aakki
     if (metaStr.includes('G')) contact = 'paid';      // 'G' for Google Pay/Paid Number
-    else if (metaStr.includes('W')) contact = 'whatsapp';
+    else if (metaStr.includes('M')) contact = 'phone';
     else if (metaStr.includes('A')) contact = 'alt';
 
     return {
@@ -58,6 +58,8 @@ function getMetaStatus(metaStr) {
 
 
 // Update Meta String Locally & Queue for Sync
+// Update Meta String Locally & Queue for Sync
+// 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
 function updateAdminMeta(oid, type, value) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
@@ -71,7 +73,7 @@ function updateAdminMeta(oid, type, value) {
     } else if (type === 'printed') {
         if (!newMeta.includes('P')) newMeta += 'P';
     } else if (type === 'unprint') {
-        newMeta = newMeta.replace(/P/g, ''); // Revert ചെയ്യുമ്പോൾ P ഒഴിവാക്കാൻ
+        newMeta = newMeta.replace(/P/g, ''); // 🔥 Revert P (Unprint)
     } else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
     }
@@ -85,7 +87,23 @@ function updateAdminMeta(oid, type, value) {
     order.adminMeta = newMeta;
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-    if (newMeta === trueOldMeta) {
+    // 🔥 FIX: String comparison issue (eg: "" vs "W" both means WhatsApp)
+    let getContactCode = (m) => {
+        if (m.includes('G')) return 'G';
+        if (m.includes('A')) return 'A';
+        if (m.includes('M')) return 'M';
+        return 'W'; // Default is WhatsApp
+    };
+
+    let oldContact = getContactCode(trueOldMeta);
+    let newContact = getContactCode(newMeta);
+    let oldFlags = trueOldMeta.replace(/[MWAG]/g, '');
+    let newFlags = newMeta.replace(/[MWAG]/g, '');
+
+    // രണ്ടും ഫലത്തിൽ ഒരേ കോൺടാക്റ്റ് ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+    let isEffectivelySame = (oldContact === newContact) && (oldFlags === newFlags);
+
+    if (isEffectivelySame) {
         if (existingIndex > -1) {
             delete pendingUpdates[existingIndex].meta;
             delete pendingUpdates[existingIndex].oldMeta;
@@ -113,7 +131,6 @@ function updateAdminMeta(oid, type, value) {
     updateSyncButtonUI();
     renderTabs(allOrders);
 
-    // 🔥 മാറ്റം: Unprint ആകുമ്പോഴും മെസ്സേജ് കാണിക്കും
     let msg = type === 'unprint' ? 'Moved to Unprinted Tab!' : 'Saved!';
     Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: msg });
 }
