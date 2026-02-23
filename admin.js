@@ -57,8 +57,6 @@ function getMetaStatus(metaStr) {
 }
 
 
-// Update Meta String Locally & Queue for Sync
-// Update Meta String Locally & Queue for Sync
 // 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
 function updateAdminMeta(oid, type, value) {
     let order = allOrders.find(o => o.orderid === oid);
@@ -134,6 +132,13 @@ function updateAdminMeta(oid, type, value) {
     let msg = type === 'unprint' ? 'Moved to Unprinted Tab!' : 'Saved!';
     Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: msg });
 }
+
+// 🔥 Unprint Confirmation Helper
+window.confirmUnprint = function (oid) {
+    if (confirm("Move back to Unprinted Tab?")) {
+        updateAdminMeta(oid, 'unprint', '');
+    }
+};
 
 // 🔴 1. SAFE STORAGE CHECK
 function isStorageAvailable() {
@@ -892,7 +897,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (logicType === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (logicType === 'paid') {
-        let revertFn = meta.isPrinted ? `updateAdminMeta('${d.orderid}', 'unprint', '')` : `updateOrder('${d.orderid}', 'Sent')`;
+        // 🔥 FIX: Added Confirmation for Unprint
+        let revertFn = meta.isPrinted ? `confirmUnprint('${d.orderid}')` : `updateOrder('${d.orderid}', 'Sent')`;
 
         topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); ${revertFn}" class="btn-top-action">Revert</button>${topActions}</div>`;
     }
@@ -2113,7 +2119,23 @@ async function runPrintLogic(checkboxes, directData = null) {
             let existingIndex = updates.findIndex(u => u.oid === d.orderid && u.action === 'meta' && u.meta !== undefined);
             let trueOldMeta = (existingIndex > -1 && updates[existingIndex].oldMeta !== undefined) ? updates[existingIndex].oldMeta : currentMeta;
 
-            if (newMeta === trueOldMeta) {
+            // 🔥 FIX: String comparison issue (W vs Empty string)
+            let getContactCode = (m) => {
+                if (m.includes('G')) return 'G';
+                if (m.includes('A')) return 'A';
+                if (m.includes('M')) return 'M';
+                return 'W'; // Default is WhatsApp
+            };
+
+            let oldContact = getContactCode(trueOldMeta);
+            let newContact = getContactCode(newMeta);
+            let oldFlags = trueOldMeta.replace(/[MWAG]/g, '');
+            let newFlags = newMeta.replace(/[MWAG]/g, '');
+
+            // രണ്ടും ഫലത്തിൽ ഒരേ കോൺടാക്റ്റ് ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+            let isEffectivelySame = (oldContact === newContact) && (oldFlags === newFlags);
+
+            if (isEffectivelySame) {
                 if (existingIndex > -1) {
                     delete updates[existingIndex].meta;
                     delete updates[existingIndex].oldMeta;
