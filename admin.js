@@ -59,6 +59,8 @@ function getMetaStatus(metaStr) {
 
 // Update Meta String Locally & Queue for Sync
 // 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo)
+// Update Meta String Locally & Queue for Sync
+// 🔥 UPDATED: ADMIN META UPDATE (Saves Old State for Undo & Handles Unprint)
 function updateAdminMeta(oid, type, value) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
@@ -71,6 +73,8 @@ function updateAdminMeta(oid, type, value) {
         newMeta += value;
     } else if (type === 'printed') {
         if (!newMeta.includes('P')) newMeta += 'P';
+    } else if (type === 'unprint') {
+        newMeta = newMeta.replace(/P/g, ''); // 🔥 Revert ചെയ്യുമ്പോൾ P ഒഴിവാക്കാൻ
     } else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
     }
@@ -78,14 +82,12 @@ function updateAdminMeta(oid, type, value) {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let existingIndex = pendingUpdates.findIndex(u => u.oid === oid && u.action === 'meta' && u.meta !== undefined);
 
-    // 🔥 യഥാർത്ഥ വാല്യൂ എടുക്കുന്നു
     let trueOldMeta = (existingIndex > -1 && pendingUpdates[existingIndex].oldMeta !== undefined) ? pendingUpdates[existingIndex].oldMeta : currentMeta;
 
     // Save Locally
     order.adminMeta = newMeta;
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-    // 🔥 പഴയ അവസ്ഥയിലേക്ക് തന്നെയാണ് മാറിയതെങ്കിൽ ഒഴിവാക്കുന്നു
     if (newMeta === trueOldMeta) {
         if (existingIndex > -1) {
             delete pendingUpdates[existingIndex].meta;
@@ -113,7 +115,9 @@ function updateAdminMeta(oid, type, value) {
     localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
     updateSyncButtonUI();
     renderTabs(allOrders);
-    Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: 'Saved!' });
+
+    // Unprint ആണെങ്കിൽ Toast കാണിക്കേണ്ടതില്ല, അല്ലെങ്കിൽ കാണിക്കാം
+    if (type !== 'unprint') Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: 'Saved!' });
 }
 
 // 🔴 1. SAFE STORAGE CHECK
@@ -873,7 +877,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (logicType === 'dispatched') {
         topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
     } else if (logicType === 'paid') {
-        topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Sent')" class="btn-top-action">Revert</button>${topActions}</div>`;
+        let revertFn = meta.isPrinted ? `updateAdminMeta('${d.orderid}', 'unprint', '')` : `updateOrder('${d.orderid}', 'Sent')`;
+
+        topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); ${revertFn}" class="btn-top-action">Revert</button>${topActions}</div>`;
     }
 
     // Paid Date Display
@@ -1629,22 +1635,50 @@ function renderSyncList() {
         });
     }
 
-    // --- D. META (TARGET WA) UPDATES ---
+    // --- D. META & PRINT UPDATES ---
     if (metaUpdates.length > 0) {
-        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">⚙️ Contact Preference Updates</div>`;
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">⚙️ Meta Updates</div>`;
         metaUpdates.forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
             let custName = order.name || 'Unknown User';
 
-            let meta = getMetaStatus(u.meta);
-            let contactIcon = meta.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (meta.contact === 'alt' ? 'fas fa-phone-square text-secondary' : 'fas fa-phone-alt text-primary');
-            let contactLabel = meta.contact === 'whatsapp' ? 'WhatsApp' : (meta.contact === 'alt' ? 'Alt Phone' : 'Main Phone');
+            let oldMetaStr = u.oldMeta || '';
+            let newMetaStr = u.meta || '';
+
+            let oldStatus = getMetaStatus(oldMetaStr);
+            let newStatus = getMetaStatus(newMetaStr);
+
+            let changedLines = [];
+
+            // 1. കോൺടാക്ട് മാറ്റിയതാണെങ്കിൽ
+            if (oldStatus.contact !== newStatus.contact) {
+                let contactIcon = newStatus.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (newStatus.contact === 'alt' ? 'fas fa-phone-square text-secondary' : (newStatus.contact === 'paid' ? 'fas fa-money-bill-wave text-success' : 'fas fa-phone-alt text-primary'));
+                let contactLabel = newStatus.contact === 'whatsapp' ? 'WhatsApp' : (newStatus.contact === 'alt' ? 'Alt Phone' : (newStatus.contact === 'paid' ? 'Paid Phone' : 'Main Phone'));
+                changedLines.push(`Contact: <span class="fw-bold text-dark"><i class="${contactIcon}"></i> ${contactLabel}</span>`);
+            }
+
+            // 2. പ്രിന്റ് മാറ്റിയതാണെങ്കിൽ
+            if (!oldMetaStr.includes('P') && newMetaStr.includes('P')) {
+                changedLines.push(`Status: <span class="fw-bold text-dark"><i class="fas fa-print text-warning"></i> Marked as Printed</span>`);
+            } else if (oldMetaStr.includes('P') && !newMetaStr.includes('P')) {
+                changedLines.push(`Status: <span class="fw-bold text-dark"><i class="fas fa-undo text-secondary"></i> Moved back to Unprinted</span>`);
+            }
+
+            // 3. ട്രാക്കിങ് മാറ്റിയതാണെങ്കിൽ
+            if (!oldMetaStr.includes('T') && newMetaStr.includes('T')) {
+                changedLines.push(`Tab: <span class="fw-bold text-dark"><i class="fas fa-truck text-info"></i> Moved to Tracked Tab</span>`);
+            }
+
+            // എന്തെങ്കിലും കാരണം കൊണ്ട് മാച്ച് ആയില്ലെങ്കിൽ
+            if (changedLines.length === 0) changedLines.push("Internal Meta Updated");
+
+            let detailsHtml = changedLines.map(line => `<div class="mt-1 text-muted" style="font-size:12px;">${line}</div>`).join('');
 
             itemsHtml += `
             <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #6c757d !important;">
                 <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', true)" title="Discard"><i class="fas fa-times"></i></button>
                 <div class="fw-bold text-dark mb-1" style="font-size:13px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
-                <div class="mt-2 text-muted" style="font-size:12px;">Messages will now be sent to <span class="fw-bold text-dark"><i class="${contactIcon}"></i> ${contactLabel}</span></div>
+                ${detailsHtml}
             </div>`;
         });
     }
