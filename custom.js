@@ -387,46 +387,35 @@ function saveToLocal(phone, data) {
 window.loadOrderData = function (d, isServerData = false) {
   if (!d) return;
 
-  // 1. കസ്റ്റമർ ലോഗിൻ ചെയ്ത ഫോൺ നമ്പർ ലോക്കലിൽ നിന്ന് എടുക്കുന്നു
-  let savedPhone = SafeStorage.getItem('lastUsedPhone');
-
-  // 2. അഡ്മിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+  // 1. Admin aano ennu check cheyyunnu
   let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
 
-  // 3. കസ്റ്റമർ വ്യൂ ആണെങ്കിൽ മാത്രം നമ്പർ മാറിയോ എന്ന് നോക്കുന്നു
-  if (!isAdmin && savedPhone && d.phone && isServerData) {
-    if (String(d.phone).trim() !== String(savedPhone).trim() && String(d.phone).trim() !== String(currentLoginPhone).trim()) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Account Updated',
-        text: 'Your phone number has been updated by admin. Please login with your new number.',
-        confirmButtonText: 'Login Again',
-        allowOutsideClick: false
-      }).then(() => {
-        clearUserLogin();
-      });
-      return;
-    }
+  // 2. 🔥 CRITICAL FIX: Veroru order link thurakkumpol logout aavathirikkan pazhaya code ozhivakki!
+  // Pakaram, puthiya order-le phone number thanne nilavile active number-aayi (Session Context) system sweekarikkunnu.
+  if (!isAdmin && d.phone) {
+    currentLoginPhone = d.phone;
+    SafeStorage.setItem('lastUsedPhone', d.phone);
   }
 
-  // 4. മറ്റ് പുതിയ വിവരങ്ങൾ (Name, Address, Status) ലോക്കലിൽ സേവ് ചെയ്യുന്നു
-  if (isServerData && savedPhone && !isAdmin) {
-    localUsersMap[savedPhone] = d;
+  // 3. Data local-il save cheyyunnu
+  if (isServerData && currentLoginPhone && !isAdmin) {
+    localUsersMap[currentLoginPhone] = d;
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  // --- ബാക്കി കോഡുകൾ ---
+  // 4. Screen-le pazhaya form hide cheyyunnu
   $('#step-0').hide();
 
-  // 🔥 FIX: പുതിയ ഡാറ്റ (d) എപ്പോഴും userData-യിലേക്ക് കൊടുക്കുന്നു
+  // 5. Puthiya data eppozhum userData-lekku kodukkunnu
   userData = d;
-  savedOrderData = JSON.parse(JSON.stringify(d)); // സ്ക്രീനിൽ കമ്പയർ ചെയ്യാൻ ഇതും അപ്ഡേറ്റ് ചെയ്യണം
+  savedOrderData = JSON.parse(JSON.stringify(d));
 
   editingOrderId = d.orderid;
-  currentLoginPhone = d.phone;
 
+  // 6. Duplicates ozhivakki krithyamayi local-il save cheyyunnu
   if (d.phone) saveToLocal(d.phone, d);
 
+  // 7. Order vivarangal screen-il kanikkunnu
   showReturningUserView(d, true, isServerData);
 };
 
