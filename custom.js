@@ -239,7 +239,10 @@ $(document).ready(function () {
           $('#step-0').hide();
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
+
+          // 🔥 FIX 2: പഴയ syncUserDataBackground(ph) പൂർണ്ണമായും ഒഴിവാക്കി പകരം ഇത് നൽകുന്നു!
           fetchOrder(oid, true);
+
           break;
         }
       }
@@ -421,11 +424,28 @@ window.loadOrderData = function (d, isServerData = false) {
 
 window.manualRefresh = function () {
   setRefreshLoading(true);
-  const phone = currentLoginPhone;
-  if (phone) {
-    syncUserDataBackground(phone).finally(() => {
+
+  if (editingOrderId) {
+    // 🔥 FIX 1: സ്ക്രീനിൽ ഓർഡർ ഉണ്ടെങ്കിൽ OID വെച്ച് മാത്രം ഫ്രഷ് ഡാറ്റ എടുക്കുന്നു. 
+    // (ഇത് വഴി ഫോൺ നമ്പർ മാറിയാലും ഒരിക്കലും ലോഗ് ഔട്ട് ആവില്ല, സ്മൂത്ത് ആയി മാറും!)
+    let safeOid = encodeURIComponent(editingOrderId);
+    fetch(`${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`)
+      .then(res => res.json())
+      .then(res => {
+        if (res.result === 'success' && res.data) {
+          loadOrderData(res.data, true);
+        }
+      })
+      .catch(err => console.error(err))
+      .finally(() => {
+        setTimeout(() => { setRefreshLoading(false); }, 500);
+      });
+  } else if (currentLoginPhone) {
+    syncUserDataBackground(currentLoginPhone).finally(() => {
       setTimeout(() => { setRefreshLoading(false); }, 500);
     });
+  } else {
+    setRefreshLoading(false);
   }
 }
 
