@@ -1376,7 +1376,7 @@ window.updateOrder = function (oid, status, trackingNum = null, skipConfirm = fa
     }
 
     // 🔥 Undo/Revert Logic: ട്രാക്കിങ്ങോ ഡേറ്റോ ഇല്ലാതെ പഴയ സ്റ്റാറ്റസിലേക്ക് മാറ്റുകയാണെങ്കിൽ സിങ്കിൽ നിന്ന് ഒഴിവാക്കുന്നു
-    if (!trackingNum && !customDate && status === trueOldStatus) {
+    if (trackingNum === null && !customDate && status === trueOldStatus) {
         if (existingIndex > -1) updates.splice(existingIndex, 1);
     } else {
         // പുതിയ മാറ്റമാണെങ്കിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു
@@ -1405,7 +1405,7 @@ window.updateOrder = function (oid, status, trackingNum = null, skipConfirm = fa
     const orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex !== -1) {
         allOrders[orderIndex].Status = status;
-        if (trackingNum) allOrders[orderIndex].tracking = trackingNum;
+        if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum; // 🔥 FIX: Empty string വന്നാലും ലോക്കലിൽ സേവ് ആവാൻ
         if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
 
         // Paid Date ലോക്കലായി അപ്‌ഡേറ്റ് ചെയ്യുന്നു (പഴയതുണ്ടെങ്കിൽ അത് തന്നെ നിൽക്കും)
@@ -1612,8 +1612,12 @@ function renderSyncList() {
 
             if (u.deleteRefund) {
                 actionHtml = `<div class="fw-bold text-danger"><i class="fas fa-trash-alt me-1"></i> Refund Deleted</div>`;
-            } else if (u.tracking) {
-                actionHtml = `<div class="fw-bold text-dark"><i class="fas fa-barcode me-1 text-muted"></i> Track: <span class="text-primary">${u.tracking}</span></div>`;
+            } else if (u.tracking !== undefined) {
+                if (u.tracking === '') {
+                    actionHtml = `<div class="fw-bold text-danger"><i class="fas fa-eraser me-1"></i> Tracking Removed</div>`;
+                } else {
+                    actionHtml = `<div class="fw-bold text-dark"><i class="fas fa-barcode me-1 text-muted"></i> Track: <span class="text-primary">${u.tracking}</span></div>`;
+                }
             } else {
                 let oldCol = oldS === 'Paid' ? 'success' : (oldS === 'Sent' ? 'info text-dark' : 'secondary');
                 let newCol = newS === 'Paid' ? 'success' : (newS === 'Dispatched' ? 'primary' : 'dark');
@@ -1851,14 +1855,11 @@ function finalConfirmSync() {
 
     let promises = [];
 
-    // 1. Orders Status Sync
-    let statusUpdates = pendingUpdates.filter(u => !u.tracking);
-    if (statusUpdates.length > 0) promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: statusUpdates }) }));
-
-    // 2. Orders Tracking Sync
-    let trackingUpdates = pendingUpdates.filter(u => u.tracking);
-    trackingUpdates.forEach(u => promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updateTracking', oid: u.oid, tracking: u.tracking }) })));
-
+    // 🔥 1 & 2. COMBINED SYNC (Status & Tracking ഒരുമിച്ച് ഒറ്റയടിക്ക് സെർവറിലേക്ക് അയക്കുന്നു)
+    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && u.action !== 'paidNum' && !u.deleteRefund);
+    if (orderUpdates.length > 0) {
+        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: orderUpdates }) }));
+    }
     // 🔥 3. Refund Deletions (ഇതാണ് പുതിയത്)
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
     refundDeletions.forEach(u => {
