@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbypwRQQhU62p4PxV-x2RDIeDnO5_ATU4IKdEBygv8gbkdR5tF6IcXB_JHYAsQoJxS-OUA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwQPRVis-PztqRcsVEbXxuY0npMPAAqupI1XeNDhODjR59U2CasImGzDLoOFRLAnO6TrQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -74,6 +74,8 @@ function updateAdminMeta(oid, type, value) {
         newMeta = newMeta.replace(/P/g, ''); // 🔥 Revert P (Unprint)
     } else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
+    } else if (type === 'tracked_revert') {
+        newMeta = newMeta.replace(/T/g, ''); // 🔥 Revert T (Remove from Tracked)
     }
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -895,7 +897,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
 
     if (logicType === 'dispatched') {
-        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); updateOrder('${d.orderid}', 'Paid')" class="btn-top-action">Revert</button>` + topActions;
+        // 🔥 FIX: Tracked ആണോ അതോ വെറും Dispatched ആണോ എന്ന് നോക്കി Revert എങ്ങോട്ട് വേണമെന്ന് തീരുമാനിക്കുന്നു
+        let isTrackedCard = (d.tracking || meta.isTracked);
+        let revertFn = isTrackedCard ? `revertToDispatched('${d.orderid}')` : `revertToPrinted('${d.orderid}')`;
+
+        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); ${revertFn}" class="btn-top-action">Revert</button>${topActions}`;
     } else if (logicType === 'paid') {
         // 🔥 FIX: Added Confirmation for Unprint
         let revertFn = meta.isPrinted ? `confirmUnprint('${d.orderid}')` : `updateOrder('${d.orderid}', 'Sent')`;
@@ -1382,7 +1388,7 @@ window.updateOrder = function (oid, status, trackingNum = null, skipConfirm = fa
             deleteRefund: needsRefundDelete
         };
 
-        if (trackingNum) updateObj.tracking = trackingNum;
+        if (trackingNum !== null) updateObj.tracking = trackingNum;
         if (finalActionDate) updateObj.actionDate = finalActionDate;
 
         // നിലവിൽ ഒരു പെൻഡിങ് മാറ്റം ഉണ്ടെങ്കിൽ അത് റീപ്ലേസ് ചെയ്യുന്നു, അല്ലെങ്കിൽ പുതിയത് ചേർക്കുന്നു
@@ -1688,6 +1694,8 @@ function renderSyncList() {
             // 3. ട്രാക്കിങ് മാറ്റിയതാണെങ്കിൽ
             if (!oldMetaStr.includes('T') && newMetaStr.includes('T')) {
                 changedLines.push(`Tab: <span class="fw-bold text-dark"><i class="fas fa-truck text-info"></i> Moved to Tracked Tab</span>`);
+            } else if (oldMetaStr.includes('T') && !newMetaStr.includes('T')) {
+                changedLines.push(`Tab: <span class="fw-bold text-danger"><i class="fas fa-undo text-secondary"></i> Removed from Tracked Tab</span>`);
             }
 
             // എന്തെങ്കിലും കാരണം കൊണ്ട് മാച്ച് ആയില്ലെങ്കിൽ
@@ -2292,6 +2300,45 @@ function editTracking(oid, currentVal) {
     }).then((result) => {
         if (result.isConfirmed) {
             updateOrder(oid, 'Dispatched', result.value.trim().toUpperCase());
+        }
+    });
+}
+
+// 🔥 REVERT FROM TRACKED TO DISPATCHED
+window.revertToDispatched = function (oid) {
+    Swal.fire({
+        title: 'Remove Tracking?',
+        text: "ട്രാക്കിങ് നമ്പർ കളഞ്ഞ് പഴയ Dispatched ടാബിലേക്ക് മാറ്റണോ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff9800',
+        confirmButtonText: 'Yes, Remove It'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // ട്രാക്കിങ് നമ്പർ ശൂന്യമാക്കി സേവ് ചെയ്യുന്നു (Dispatched സ്റ്റാറ്റസ് നിലനിർത്തുന്നു)
+            updateOrder(oid, 'Dispatched', '', true);
+            // Meta-യിൽ നിന്ന് 'T' (Tracked) കളയുന്നു
+            updateAdminMeta(oid, 'tracked_revert', '');
+
+            showToast('info', 'Moved back to Dispatched Tab!');
+        }
+    });
+}
+
+// 🔥 REVERT FROM DISPATCHED TO PRINTED (PAID)
+window.revertToPrinted = function (oid) {
+    Swal.fire({
+        title: 'Revert to Printed?',
+        text: "ഇത് വീണ്ടും Paid (Printed) ടാബിലേക്ക് മാറ്റണോ? കൊടുത്ത ഡേറ്റും ട്രാക്കിങ്ങും മാഞ്ഞുപോകും.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Yes, Revert'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // സ്റ്റാറ്റസ് തിരികെ Paid ആക്കുന്നു
+            updateOrder(oid, 'Paid', null, true);
+            showToast('info', 'Moved back to Printed Tab!');
         }
     });
 }
