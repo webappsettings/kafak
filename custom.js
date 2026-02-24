@@ -913,8 +913,8 @@ window.submitQuickOrder = function () {
   else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
 
-  // Customer Language
-  let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
+  // Customer Language (🔥 FIX: സ്ക്രീനിൽ കാണുന്ന ഭാഷ തന്നെ സെർവറിലേക്ക് അയക്കുന്നു)
+  let custLang = $('#language-select').val() || 'en';
 
   const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   const orderSource = isApp ? "App 📱" : "Web 🌐";
@@ -1041,12 +1041,10 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   isEditMode = isActiveOrder;
   savedOrderData = JSON.parse(JSON.stringify(d));
 
-  // Language Setup
-  const lang = $('#language-select').val() || 'en';
-  if (d.language) {
-    $('#language-select').val(d.language);
-    changeLanguage(d.language);
-  }
+  // 🔥 FIX: Local Language Preference-ന് മുൻഗണന നൽകുന്നു
+  let preferredLang = localStorage.getItem('activeLang') || d.language || 'en';
+  $('#language-select').val(preferredLang);
+  changeLanguage(preferredLang);
 
   // Populate Data
   if (localStorage.getItem('kafakAdmin') !== 'true') {
@@ -1625,6 +1623,7 @@ function checkForChanges() {
   var currPlace = $('#edit-place').val() || '';
   var currPin = $('#edit-pincode').val() || '';
   var currAlt = $('#edit-altphone').val() || '';
+  var currLang = $('#language-select').val() || 'en'; // 🔥 പുതിയത്
 
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
@@ -1635,6 +1634,7 @@ function checkForChanges() {
   var savedPlace = (savedOrderData.place || '') + '';
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
+  var savedLang = (savedOrderData.language || 'en') + ''; // 🔥 പുതിയത്
 
   // 3. Compare
   var isChanged = false;
@@ -2690,7 +2690,8 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
   else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
 
-  let custLang = (savedOrderData && savedOrderData.language) ? savedOrderData.language : ($('#language-select').val() || 'en');
+  // Customer Language (🔥 FIX)
+  let custLang = $('#language-select').val() || 'en';
 
   const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   const orderSource = isApp ? "App 📱" : "Web 🌐";
