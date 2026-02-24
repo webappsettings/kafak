@@ -239,7 +239,7 @@ $(document).ready(function () {
           $('#step-0').hide();
           loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
-          syncUserDataBackground(ph);
+          fetchOrder(oid, true);
           break;
         }
       }
@@ -470,8 +470,10 @@ function syncUserDataBackground(phone) {
         let serverData = userRes.data;
 
         // 🔥 ഡീപ്പ് ചെക്ക് 2: അഡ്മിൻ ഷീറ്റിൽ നമ്പർ മാറ്റിയോ എന്ന് കണ്ടുപിടിക്കുന്നു!
-        // കസ്റ്റമർക്ക് ഒരു ഓർഡർ ഉണ്ടായിരുന്നു, പക്ഷേ സെർവറിൽ നിന്ന് വരുന്ന ഡാറ്റയിൽ ഓർഡർ ഐഡിയോ ഓതറൈസേഷനോ ഇല്ലെങ്കിൽ!
-        if (!isAdmin && localData.orderid && (!serverData.orderid || serverData.authorized === false)) {
+        // അഡ്മിൻ നമ്പർ മാറ്റിയാൽ, ഈ നമ്പറിൽ ഓർഡറുകൾ ഒന്നും കാണില്ല (അതായത് Status ഉം orderid ഉം ഉണ്ടാവില്ല)
+        let noOrdersFound = !serverData.Status && !serverData.orderid;
+
+        if (!isAdmin && localData.orderid && (serverData.authorized === false || noOrdersFound)) {
           Swal.fire({
             icon: 'warning',
             title: 'Account Updated',
@@ -479,9 +481,9 @@ function syncUserDataBackground(phone) {
             confirmButtonText: 'Login Again',
             allowOutsideClick: false
           }).then(() => {
-            clearUserLogin(); // ലോഗ് ഔട്ട് ചെയ്യുന്നു!
+            clearUserLogin();
           });
-          return; // ബാക്കി കോഡ് റൺ ചെയ്യേണ്ടതില്ല
+          return;
         }
 
         let finalData = { ...localData, ...serverData };
