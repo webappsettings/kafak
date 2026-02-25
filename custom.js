@@ -923,7 +923,8 @@ window.submitQuickOrder = function () {
     orderid: editingOrderId,
     name: newName,
     phone: newPhone,
-    oldPhone: currentLoginPhone,
+    // 🔥 FIX: അഡ്മിൻ എഡിറ്റ് ചെയ്യുമ്പോൾ കൃത്യമായ പഴയ നമ്പർ തന്നെ എടുക്കാൻ
+    oldPhone: (typeof savedOrderData !== 'undefined' && savedOrderData.phone) ? savedOrderData.phone : currentLoginPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
     house: $('#edit-house').val(),
@@ -936,7 +937,8 @@ window.submitQuickOrder = function () {
     paidNum: $('#edit-paid-by').val() || '',
     adminMeta: finalMeta,
     message: '',
-    custId: myCustId,
+    // 🔥 FIX: കസ്റ്റമർ ഐഡി നഷ്ടപ്പെടാതെ സെർവറിലേക്ക് അയക്കാൻ
+    custId: (typeof savedOrderData !== 'undefined' && savedOrderData.custId) ? savedOrderData.custId : myCustId,
     language: custLang,
     source: orderSource
   };
