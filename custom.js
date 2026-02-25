@@ -1020,19 +1020,16 @@ window.processCleanReorder = function () {
     return;
   }
 
-  // 1. ഫോണിൽ കിടക്കുന്ന പഴയ ആക്ടീവ് ഓർഡർ ഡാറ്റ ഡിലീറ്റ് ചെയ്യുന്നു (അപ്പോൾ Active Order Found എന്ന് വരില്ല)
+  // 1. പഴയ ആക്ടീവ് ഓർഡർ ഐഡി മാത്രം കളയുന്നു, എന്നാൽ Status 'Delivered' ആയി നിലനിർത്തുന്നു (അലർട്ട് വരാതിരിക്കാൻ ഇത് നിർബന്ധമാണ്!)
   if (currentLoginPhone && localUsersMap[currentLoginPhone]) {
-    // അഡ്രസ്സും ഫോൺ നമ്പറും നിലനിർത്തിക്കൊണ്ട് ഓർഡർ ഐഡിയും സ്റ്റാറ്റസും മാത്രം ഡിലീറ്റ് ചെയ്യുന്നു
     delete localUsersMap[currentLoginPhone].orderid;
-    delete localUsersMap[currentLoginPhone].Status;
-    delete localUsersMap[currentLoginPhone].status;
+    localUsersMap[currentLoginPhone].Status = 'delivered'; // 🔥 ഇതാണ് മാറ്റം! ഇത് കൊടുത്താൽ Active Order Found എന്ന് വരില്ല.
     SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
-  editingOrderId = null; // നിലവിലെ എഡിറ്റിംഗ് ഐഡി കളയുന്നു
+  editingOrderId = null; // പുതിയ ഓർഡർ ആണെന്ന് സിസ്റ്റത്തെ അറിയിക്കുന്നു
 
-  // 2. വീണ്ടും നോർമൽ സബ്മിറ്റ് ഫംഗ്ഷൻ വിളിക്കുന്നു (ഇപ്പോൾ അത് പുതിയ ഓർഡർ ആയി എടുക്കും)
-  // ബട്ടണിന്റെ onclick പഴയപടിയാക്കുന്നു
+  // 2. യാതൊരു എററുകളും ഇല്ലാതെ ഓർഡർ സബ്മിറ്റ് ചെയ്യുന്നു
   $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
   submitQuickOrder();
 };
@@ -2300,13 +2297,22 @@ function renderQtyDropdowns() {
 
   // 🔥 FIX: Pre-fill only for Edit Mode (Pending/Sent/Paid/Archive)
   if (editingOrderId && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
-    $('#quick-qty').val(savedOrderData.quantity);
 
-    if (!$('#quick-qty').val()) {
-      let oldQty = savedOrderData.quantity;
-      $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
+    let currentStatus = String(savedOrderData.Status || '').toLowerCase();
+    let isOrderDone = ['delivered', 'completed'].includes(currentStatus);
+
+    // 🔥 ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ പഴയ കുപ്പിയുടെ എണ്ണം തനിയെ വരുന്നത് തടയുന്നു!
+    if (!isOrderDone) {
+      $('#quick-qty').val(savedOrderData.quantity);
+      if (!$('#quick-qty').val()) {
+        let oldQty = savedOrderData.quantity;
+        $('#quick-qty').append(`<option value="${oldQty}" selected>${oldQty} Bottles (Old Order)</option>`);
+      }
+      updatePrice($('#quick-qty').val(), true);
+    } else {
+      // ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ ഒന്നും ഫിൽ ആവില്ല, വെറും സെലക്ട് ബോക്സ് മാത്രം വരും
+      $('#quick-qty').val('');
     }
-    updatePrice($('#quick-qty').val(), true);
   }
 
   if (typeof savedOrderData !== 'undefined' && savedOrderData.Status) {
