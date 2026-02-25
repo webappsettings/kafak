@@ -860,55 +860,60 @@ window.prevStep = function () {
 }
 
 
-window.submitQuickOrder = function () {
+// 🔥 ഫംഗ്ഷനിൽ 'async' ചേർത്തിട്ടുണ്ട് (സെർവറിൽ നിന്ന് ഡാറ്റ വരുന്നത് വരെ കാത്തിരിക്കാൻ)
+window.submitQuickOrder = async function () {
   if ($('.btn-update-sage').prop('disabled')) return;
 
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
 
-  // 🔥 NEW LOGIC: പഴയ ഓർഡറിൽ നിന്നും 'Order Again' അമർത്തുമ്പോൾ ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
-  const phoneCheck = $('#edit-phone').val() || (userData ? userData.phone : null);
+  const phoneCheck = $('#edit-phone').val() || (typeof userData !== 'undefined' && userData ? userData.phone : null);
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
+  // 🔥 STRICT SERVER CHECK: പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നതിന് മുൻപ് സെർവറിൽ നേരിട്ട് ചെക്ക് ചെയ്യുന്നു!
   if (!editingOrderId && phoneCheck) {
-    // ലോക്കൽ കാഷെയിൽ ഈ നമ്പറിൽ ആക്ടീവ് ഓർഡർ ഉണ്ടോ എന്ന് നോക്കുന്നു
-    let existingOrder = localUsersMap[phoneCheck];
+    showLoader(true); // ലോഡിംഗ് കാണിക്കുന്നു
 
-    // അഡ്മിൻ ആണെങ്കിൽ എല്ലാ ഓർഡറുകളിൽ നിന്നും നോക്കുന്നു
-    if (localStorage.getItem('kafakAdmin') === 'true') {
-      let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-      let latestActive = cachedOrders.find(o => String(o.phone) === String(phoneCheck) && !['delivered', 'completed', 'refunded'].includes(String(o.Status).toLowerCase()));
-      if (latestActive) existingOrder = latestActive;
-    }
+    try {
+      if (!isAdmin) {
+        // കസ്റ്റമർ ആണെങ്കിൽ ഗൂഗിൾ ഷീറ്റിൽ പോയി ലൈവ് ആയി ചെക്ക് ചെയ്യുന്നു
+        let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
+        let data = await res.json();
 
-    if (existingOrder) {
-      let s = String(existingOrder.Status || 'pending').toLowerCase();
+        if (data.result === 'success' && data.data && data.data.orderid) {
+          let s = String(data.data.Status || 'pending').toLowerCase();
 
-      // ആ ഓർഡർ ഡെലിവറി ആവാത്തത് ആണെങ്കിൽ (അതായത് Pending, Sent, Paid, Archive, Dispatched)
-      if (!['delivered', 'completed', 'refunded'].includes(s)) {
+          // ആക്ടീവ് ഓർഡർ ഉണ്ടെങ്കിൽ പുതിയത് ഉണ്ടാക്കാൻ സമ്മതിക്കില്ല!
+          if (!['delivered', 'completed', 'refunded'].includes(s)) {
+            showLoader(false);
+            const lang = $('#language-select').val() || 'en';
+            const msg = lang === 'ml'
+              ? `നിങ്ങൾക്ക് നിലവിൽ പ്രോസസ്സിങ്ങിൽ ഉള്ള ഒരു ഓർഡർ ഉണ്ട് (Order ID: ${data.data.orderid}). പുതിയത് ഉണ്ടാക്കുന്നതിന് പകരം അത് കാണിക്കുന്നു.`
+              : `You already have an active order (Order ID: ${data.data.orderid}). Switching to that order instead of creating a new one.`;
 
-        const lang = $('#language-select').val() || 'en';
-        const msg = lang === 'ml'
-          ? `നിങ്ങൾക്ക് നിലവിൽ പ്രോസസ്സിങ്ങിൽ ഉള്ള ഒരു ഓർഡർ ഉണ്ട് (Order ID: ${existingOrder.orderid}). പുതിയത് ഉണ്ടാക്കുന്നതിന് പകരം അത് കാണിക്കുന്നു.`
-          : `You already have an active order (Order ID: ${existingOrder.orderid}). Switching to that order instead of creating a new one.`;
-
-        Swal.fire({
-          icon: 'info',
-          title: 'Active Order Found!',
-          text: msg,
-          confirmButtonColor: '#2563eb',
-          customClass: { popup: 'ios-popup' }
-        }).then(() => {
-          // ആക്ടീവ് ഓർഡറിലേക്ക് സ്ക്രീൻ മാറ്റുന്നു (Switching)
-          showLoader(true);
-          if (localStorage.getItem('kafakAdmin') === 'true') {
-            window.location.href = `order.html?oid=${existingOrder.orderid}`;
-          } else {
-            window.location.href = `order.html?phone=${phoneCheck}`;
+            Swal.fire({
+              icon: 'info', title: 'Active Order Found!', text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' }
+            }).then(() => {
+              window.location.href = `order.html?phone=${phoneCheck}`; // ആക്ടീവ് ഓർഡറിലേക്ക് മാറ്റുന്നു
+            });
+            return; // 🔥 പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നത് ഇവിടെ വെച്ച് ബ്ലോക്ക് ചെയ്യുന്നു!
           }
-        });
-
-        return; // പുതിയ ഓർഡർ സേവ് ചെയ്യുന്നത് ഇവിടെ വെച്ച് നിർത്തുന്നു!
+        }
+      } else {
+        // അഡ്മിൻ ആണെങ്കിൽ കാഷെയിൽ നിന്ന് പെട്ടെന്ന് ചെക്ക് ചെയ്യുന്നു
+        let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+        let latestActive = cachedOrders.find(o => String(o.phone) === String(phoneCheck) && !['delivered', 'completed', 'refunded'].includes(String(o.Status).toLowerCase()));
+        if (latestActive) {
+          showLoader(false);
+          Swal.fire({ icon: 'info', title: 'Active Order Found!', text: `Switching to active order: ${latestActive.orderid}` }).then(() => {
+            window.location.href = `order.html?oid=${latestActive.orderid}`;
+          });
+          return;
+        }
       }
+    } catch (e) {
+      console.log("Server check failed, proceeding...");
     }
+    showLoader(false);
   }
 
   // PO Check
