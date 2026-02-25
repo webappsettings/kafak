@@ -1921,6 +1921,19 @@ window.adminAction = async function (oid, status) {
 
   localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
+  // 🔥 FIX: കാഷെയിൽ സ്റ്റാറ്റസ് ഉടൻ അപ്ഡേറ്റ് ആവാൻ ഈ ഭാഗം ചേർക്കുക
+  if (typeof savedOrderData !== 'undefined' && savedOrderData) {
+    updateLocalCache(savedOrderData, status);
+  } else {
+    let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    let orderIdx = allOrders.findIndex(o => o.orderid === oid);
+    if (orderIdx > -1) {
+      allOrders[orderIdx].Status = status;
+      localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+    }
+  }
+  // 🔥 പുതിയ കോഡ് തീർന്നു
+
   if (typeof userData !== 'undefined') userData.Status = status;
   if (typeof savedOrderData !== 'undefined') savedOrderData.Status = status;
 
@@ -2333,6 +2346,14 @@ window.performSingleSync = function () {
         // Remove from Local
         let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
         localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
+
+        // 🔥 FIX: Hardcode ചെയ്ത 'Paid' ഉം തെറ്റായ 'oid' ഉം മാറ്റി കൃത്യമാക്കി!
+        let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+        let orderIdx = allOrders.findIndex(o => o.orderid === activeSyncOid);
+        if (orderIdx > -1) {
+          allOrders[orderIdx].Status = myUpdate.status; // ഏത് സ്റ്റാറ്റസ് ആണോ അത് തനിയെ എടുക്കും
+          localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+        }
 
         // Close Modal & Show Success
         $('#singleSyncModal').modal('hide');
