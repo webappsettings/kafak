@@ -410,10 +410,24 @@ window.loadOrderData = function (d, isServerData = false) {
   $('#step-0').hide();
 
   // 5. Puthiya data eppozhum userData-lekku kodukkunnu
+  let s = String(d.Status || d.status || '').toLowerCase();
+  let isDone = ['delivered', 'completed', 'refunded'].includes(s);
+
+  // 🔥 ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ പഴയ എണ്ണം മെമ്മറിയിൽ നിന്നും പൂർണ്ണമായും മായ്ക്കുന്നു
+  if (isDone) {
+    d.quantity = null;
+    delete d.quantity;
+  }
+
   userData = d;
   savedOrderData = JSON.parse(JSON.stringify(d));
 
-  editingOrderId = d.orderid;
+  // 🔥 ഡെലിവറി കഴിഞ്ഞ ഓർഡർ ആണെങ്കിൽ എഡിറ്റിംഗ് ഐഡി കൊടുക്കില്ല (ഇതാണ് റേറ്റ് ടേബിൾ വീണ്ടും വരുന്നത് തടയുന്നത്)
+  if (isDone) {
+    editingOrderId = null;
+  } else {
+    editingOrderId = d.orderid;
+  }
 
   // 6. Duplicates ozhivakki krithyamayi local-il save cheyyunnu
   if (d.phone) saveToLocal(d.phone, d);
@@ -570,9 +584,15 @@ function handleEditControlsVisibility(d) {
   // 🔥 CLEAN RE-ORDER UI (For Delivered / Completed)
   if (['delivered', 'completed'].includes(status)) {
     // 1. ആവശ്യമില്ലാത്ത പഴയ സാധനങ്ങൾ എല്ലാം ഹൈഡ് ചെയ്യുന്നു
-    $('#status-area').hide(); // ടൈംലൈൻ ഹൈഡ് ചെയ്യുന്നു
-    $('#quick-price-box').hide(); // പ്രൈസ് ലിസ്റ്റ് ഹൈഡ് ചെയ്യുന്നു
-    $('#btn-edit-addr').hide(); // അഡ്രസ്സ് എഡിറ്റ് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
+    $('#status-area').hide().empty();
+    $('#quick-price-box').hide().empty();
+
+    // 🔥 അഡ്രസ്സ് എഡിറ്റ് ചെയ്യാനുള്ള ബട്ടൺ കാണിക്കുന്നു
+    $('#btn-edit-addr').css('display', 'inline-block');
+
+    // 🔥 Order ID യും തീയതിയും പൂർണ്ണമായും ഹൈഡ് ചെയ്യുന്നു
+    $('#display-oid').hide();
+    $('#display-date').hide();
 
     // 2. പുതിയ ഓർഡറിനുള്ള UI ഒരുക്കുന്നു
     $('label[data-i18n="lbl_qty"]').show().text(t.lbl_qty || "എത്ര ബോട്ടിൽ വേണം?");
@@ -1098,11 +1118,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#edit-district').val(d.district);
   $('#edit-state').val(d.state);
 
-  // Display Order ID & Date
-  if (d.orderid) {
+  // Display Order ID & Date (ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ പൂർണ്ണമായും ഹൈഡ് ചെയ്യും)
+  let sCheck = String(d.Status || d.status || '').toLowerCase();
+  if (d.orderid && !['delivered', 'completed', 'refunded'].includes(sCheck)) {
     $('#display-oid').html(`<b>${d.orderid}</b>`).show();
     let dateStr = d.timestamp || d.date;
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
+  } else {
+    $('#display-oid').hide();
+    $('#display-date').hide();
   }
 
   // Admin Inputs
@@ -1482,7 +1506,8 @@ function updateSummaryDisplay() {
   // Hide Edit Button Logic
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    if (['dispatched', 'completed', 'delivered', 'refunded'].includes(s)) {
+    // 🔥 Delivered, Completed എന്നിവ ഇതിൽ നിന്നും ഒഴിവാക്കി
+    if (['dispatched', 'refunded'].includes(s)) {
       $('#btn-edit-addr').hide();
     } else {
       $('#btn-edit-addr').css('display', 'inline-block');
@@ -1704,8 +1729,14 @@ function checkForChanges() {
   const status = String(savedOrderData.Status || '').toLowerCase();
   if (['delivered', 'completed'].includes(status)) {
     btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
-    // Text is handled by handleEditControlsVisibility, so we don't overwrite it here
-    return; // ഇവിടെ വെച്ച് നിർത്തുന്നു, ബാക്കി ചെക്ക് ചെയ്യേണ്ട ആവശ്യമില്ല
+
+    // 🔥 അഡ്രസ്സിൽ മാറ്റം വരുത്തിയാൽ Save Changes ബട്ടൺ ഓൺ ആക്കുന്നു
+    if (isChanged) {
+      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
+    } else {
+      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
+    }
+    return;
   }
   // 🔥 FIX END
 
