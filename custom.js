@@ -1226,7 +1226,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('label[data-i18n="lbl_qty"]').hide();
     $('#quick-qty').hide().prev('label').hide();
     $('.btn-update-sage').hide();
-    $('#quick-price-box').hide(); // Price Box Hidden
+    $('#quick-price-box').stop(true, true).hide().empty(); // 🔥 Force clear and hide
     $('#btn-edit-addr').hide();
   }
 
@@ -1572,15 +1572,20 @@ window.updatePrice = function (qty, isQuick) {
   `;
   container.html(htmlContent);
 
-  // 🔥 FIX: Loading സമയത്ത് റേറ്റ് ടേബിൾ തനിയെ തെളിഞ്ഞു വരുന്നത് തടയുന്നു!
+  // 🔥 STRICT FIX: ലോഡിംഗ് സമയത്തോ, പാക്ക് ചെയ്ത ഓർഡറുകളിലോ ടേബിൾ ഒളിച്ചു വെക്കുന്നു!
   if (isQuick) {
-    if ($('#quick-qty').is(':visible')) {
-      container.fadeIn();
+    let isLoaderVisible = $('#status-area').html().includes('fa-hourglass-half') || $('#status-area').html().includes('spinner');
+    let currentStatus = (typeof savedOrderData !== 'undefined' && savedOrderData.Status) ? String(savedOrderData.Status).toLowerCase() : '';
+    let isLocked = ['paid', 'dispatched'].includes(currentStatus);
+
+    // ലോഡർ കാണിക്കുന്നുണ്ടെങ്കിലോ, Locked ആണെങ്കിലോ, ഡ്രോപ്പ്-ഡൗൺ ബോക്സ് ഇല്ലെങ്കിലോ ടേബിൾ കാണിക്കില്ല!
+    if (isLoaderVisible || isLocked || !$('#quick-qty').is(':visible')) {
+      container.stop(true, true).hide(); // ആനിമേഷൻ തടഞ്ഞ് നിർബന്ധമായും ഹൈഡ് ചെയ്യുന്നു
     } else {
-      container.hide();
+      container.stop(true, true).fadeIn(200);
     }
   } else {
-    container.fadeIn();
+    container.stop(true, true).fadeIn(200);
   }
 
   // 4. Update "Deliver To" Section (For Wizard View)
@@ -2339,7 +2344,7 @@ function renderQtyDropdowns() {
   if (editingOrderId && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
 
     let currentStatus = String(savedOrderData.Status || '').toLowerCase();
-    let isOrderDone = ['delivered', 'completed'].includes(currentStatus);
+    let isOrderDone = ['delivered', 'completed', 'refunded'].includes(currentStatus); // 🔥 refunded ചേർത്തു!
 
     // 🔥 ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ പഴയ കുപ്പിയുടെ എണ്ണം തനിയെ വരുന്നത് തടയുന്നു!
     if (!isOrderDone) {
