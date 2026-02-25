@@ -1571,7 +1571,18 @@ window.updatePrice = function (qty, isQuick) {
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
   container.html(htmlContent);
-  container.fadeIn();
+
+  // 🔥 FIX: Loading സമയത്ത് റേറ്റ് ടേബിൾ തനിയെ തെളിഞ്ഞു വരുന്നത് തടയുന്നു!
+  // ഡ്രോപ്പ്-ഡൗൺ സ്ക്രീനിൽ കാണിക്കുന്നുണ്ടെങ്കിൽ മാത്രം ടേബിൾ കാണിക്കുക.
+  if (isQuick) {
+    if ($('#quick-qty').is(':visible')) {
+      container.fadeIn();
+    } else {
+      container.hide();
+    }
+  } else {
+    container.fadeIn();
+  }
 
   // 4. Update "Deliver To" Section (For Wizard View)
   if (!isQuick) {
