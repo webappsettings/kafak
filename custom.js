@@ -1756,7 +1756,17 @@ window.updateAdminUI = function (serverStatus, oid) {
   status = status.charAt(0).toUpperCase() + status.slice(1);
 
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let hasPending = updates.some(u => u.oid === oid);
+
+  // 🔥 FIX: Local-ൽ സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള ഡാറ്റ ഉണ്ടോ എന്ന് നോക്കുന്നു
+  let myPending = updates.find(u => u.oid === oid);
+
+  // 🔥 FIX: സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള പുതിയ സ്റ്റാറ്റസ് ഉണ്ടെങ്കിൽ, സെർവറിലെ പഴയതിന് പകരം അത് സ്ക്രീനിൽ കാണിക്കാൻ എടുക്കുന്നു!
+  if (myPending && myPending.status) {
+    status = String(myPending.status).trim();
+    status = status.charAt(0).toUpperCase() + status.slice(1);
+  }
+
+  let hasPending = !!myPending;
 
   // Sync Button HTML (Blue Cloud Icon)
   let syncColor = hasPending ? "btn-info text-white" : "btn-light text-muted border";
