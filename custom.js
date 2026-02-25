@@ -581,8 +581,8 @@ function handleEditControlsVisibility(d) {
     // Based on previous code, Refunded was in Locked state. I will keep Refunded in Locked state below for safety.
   }
 
-  // 🔥 CLEAN RE-ORDER UI (For Delivered / Completed)
-  if (['delivered', 'completed'].includes(status)) {
+  // 🔥 CLEAN RE-ORDER UI (For Delivered / Completed / Refunded)
+  if (['delivered', 'completed', 'refunded'].includes(status)) {
     // 1. ആവശ്യമില്ലാത്ത പഴയ സാധനങ്ങൾ എല്ലാം ഹൈഡ് ചെയ്യുന്നു
     $('#status-area').hide().empty();
     $('#quick-price-box').hide().empty();
@@ -1506,8 +1506,8 @@ function updateSummaryDisplay() {
   // Hide Edit Button Logic
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    // 🔥 Delivered, Completed എന്നിവ ഇതിൽ നിന്നും ഒഴിവാക്കി
-    if (['dispatched', 'refunded'].includes(s)) {
+    // 🔥 Dispatched ഒഴികെ ബാക്കി എല്ലാ ഡെലിവറി കഴിഞ്ഞ/റിഫണ്ട് ആയ സ്റ്റാറ്റസുകളിലും അഡ്രസ്സ് എഡിറ്റ് ചെയ്യാൻ അനുവദിക്കുന്നു
+    if (['dispatched'].includes(s)) {
       $('#btn-edit-addr').hide();
     } else {
       $('#btn-edit-addr').css('display', 'inline-block');
@@ -1725,9 +1725,9 @@ function checkForChanges() {
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // 🔥 FIX START: Delivered ആണെങ്കിൽ ബട്ടൺ എപ്പോഴും Enable ആക്കുക (Force Enable)
+  // 🔥 FIX START: Delivered/Refunded ആണെങ്കിൽ ബട്ടൺ എപ്പോഴും Enable ആക്കുക (Force Enable)
   const status = String(savedOrderData.Status || '').toLowerCase();
-  if (['delivered', 'completed'].includes(status)) {
+  if (['delivered', 'completed', 'refunded'].includes(status)) {
     btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
 
     // 🔥 അഡ്രസ്സിൽ മാറ്റം വരുത്തിയാൽ Save Changes ബട്ടൺ ഓൺ ആക്കുന്നു
@@ -2632,14 +2632,8 @@ function sendToWhatsapp() {
 function renderEditView(data) {
   const status = String(data.Status || 'pending').toLowerCase();
 
-  // 🔥 CASE 1: (Completed, Delivered)
-  if (['completed', 'delivered'].includes(status)) {
-    showReturningUserView(data, false, true);
-    // 🔴 FIX: enableNewOrderMode() ഇവിടെ ഒഴിവാക്കി! അത് വിളിച്ചാലാണ് പഴയ UI തിരിച്ചു വരുന്നത്.
-    return;
-  }
-
-  if (status === 'refunded') {
+  // 🔥 CASE 1: (Completed, Delivered, Refunded)
+  if (['completed', 'delivered', 'refunded'].includes(status)) {
     showReturningUserView(data, false, true);
     return;
   }
