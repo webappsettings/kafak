@@ -567,21 +567,26 @@ function handleEditControlsVisibility(d) {
     // Based on previous code, Refunded was in Locked state. I will keep Refunded in Locked state below for safety.
   }
 
-  // Corrected RE-ORDER Condition
+  // 🔥 CLEAN RE-ORDER UI (For Delivered / Completed)
   if (['delivered', 'completed'].includes(status)) {
+    // 1. ആവശ്യമില്ലാത്ത പഴയ സാധനങ്ങൾ എല്ലാം ഹൈഡ് ചെയ്യുന്നു
+    $('#status-area').hide(); // ടൈംലൈൻ ഹൈഡ് ചെയ്യുന്നു
+    $('#quick-price-box').hide(); // പ്രൈസ് ലിസ്റ്റ് ഹൈഡ് ചെയ്യുന്നു
+    $('#btn-edit-addr').hide(); // അഡ്രസ്സ് എഡിറ്റ് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
 
-    $('#quick-qty').prop('disabled', false).val('').trigger('change');
-    $('label[data-i18n="lbl_qty"]').show();
-    $('#quick-price-box').hide(); // Hide price initially
+    // 2. പുതിയ ഓർഡറിനുള്ള UI ഒരുക്കുന്നു
+    $('label[data-i18n="lbl_qty"]').show().text(t.lbl_qty || "എത്ര ബോട്ടിൽ വേണം?");
+    $('#quick-qty').show().prop('disabled', false).val('').trigger('change');
 
-    $('#btn-edit-addr').css('display', 'inline-block');
-
-    // 🔥 Green "ORDER AGAIN" Button with Translation
+    // 🔥 Green "ORDER AGAIN" Button
     $('.btn-update-sage')
       .show()
       .prop('disabled', false)
       .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
-      .html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again}`);
+      .html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again || 'വീണ്ടും ഓർഡർ ചെയ്യാം'}`);
+
+    // 3. ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ പഴയ ഓർഡർ എറർ വരാതിരിക്കാൻ പഴയ ഫംഗ്ഷന് പകരം പുതിയത് കൊടുക്കുന്നു
+    $('.btn-update-sage').attr('onclick', 'processCleanReorder()');
 
     $('#btn-req-modify').remove();
     editingOrderId = null; // Important for New Order
@@ -1006,6 +1011,31 @@ window.submitQuickOrder = function () {
   }
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
+
+window.processCleanReorder = function () {
+  let selectedQty = $('#quick-qty').val();
+
+  if (!selectedQty) {
+    showAlert(getAlert('err_qty') || "Please select quantity");
+    return;
+  }
+
+  // 1. ഫോണിൽ കിടക്കുന്ന പഴയ ആക്ടീവ് ഓർഡർ ഡാറ്റ ഡിലീറ്റ് ചെയ്യുന്നു (അപ്പോൾ Active Order Found എന്ന് വരില്ല)
+  if (currentLoginPhone && localUsersMap[currentLoginPhone]) {
+    // അഡ്രസ്സും ഫോൺ നമ്പറും നിലനിർത്തിക്കൊണ്ട് ഓർഡർ ഐഡിയും സ്റ്റാറ്റസും മാത്രം ഡിലീറ്റ് ചെയ്യുന്നു
+    delete localUsersMap[currentLoginPhone].orderid;
+    delete localUsersMap[currentLoginPhone].Status;
+    delete localUsersMap[currentLoginPhone].status;
+    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+  }
+
+  editingOrderId = null; // നിലവിലെ എഡിറ്റിംഗ് ഐഡി കളയുന്നു
+
+  // 2. വീണ്ടും നോർമൽ സബ്മിറ്റ് ഫംഗ്ഷൻ വിളിക്കുന്നു (ഇപ്പോൾ അത് പുതിയ ഓർഡർ ആയി എടുക്കും)
+  // ബട്ടണിന്റെ onclick പഴയപടിയാക്കുന്നു
+  $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
+  submitQuickOrder();
+};
 
 // 🔥 Helper to Update All Caches (Fixes Phone Change Issue)
 function updateLocalCache(data, status) {
