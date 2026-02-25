@@ -973,8 +973,6 @@ window.submitQuickOrder = async function () {
     source: orderSource
   };
 
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-
   if (isAdmin) {
     let targetPhone = getSelectedWAPhone(finalData);
     const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
