@@ -1171,18 +1171,30 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   if (isServerData) {
     // --- DATA LOADED (Server Synced) ---
-    updateStatusUI(d);
-    if ($('#refresh-btn').length === 0) {
-      $('#returning-user-view').append(`<div class="d-flex justify-content-center mt-4 mb-3 fade-in"><button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2"><i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span></button></div>`);
+    let currentStatus = String(d.Status || d.status || '').toLowerCase();
+    let isOrderDone = ['delivered', 'completed'].includes(currentStatus);
+
+    // 🔥 ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ ടൈംലൈനും റീഫ്രഷ് ബട്ടണും പൂർണ്ണമായും ഒഴിവാക്കുന്നു
+    if (!isOrderDone) {
+      updateStatusUI(d);
+      if ($('#refresh-btn').length === 0) {
+        $('#returning-user-view').append(`<div class="d-flex justify-content-center mt-4 mb-3 fade-in"><button id="refresh-btn" onclick="manualRefresh()" class="btn btn-sm bg-white shadow-sm rounded-pill text-muted border px-3 py-2"><i class="fas fa-sync-alt me-1"></i> <span>REFRESH STATUS</span></button></div>`);
+      }
+    } else {
+      $('#status-area').hide().empty();
+      $('#refresh-btn').parent().hide();
     }
 
     // Control Visibility based on Status
     handleEditControlsVisibility(d);
 
-    // 🔥 UPDATE PRICE ONLY AFTER DATA LOAD
-    if (d.quantity) {
+    // 🔥 പഴയ ക്വാണ്ടിറ്റിയും റേറ്റ് ടേബിളും ലോഡ് ചെയ്യുന്നത് തടയുന്നു!
+    if (!isOrderDone && d.quantity) {
       $('#quick-qty').val(d.quantity);
       updatePrice(d.quantity, true);
+    } else if (isOrderDone) {
+      $('#quick-qty').val(''); // ക്വാണ്ടിറ്റി ബ്ലാങ്ക് ആക്കുന്നു (Select ആക്കാൻ വേണ്ടി)
+      $('#quick-price-box').hide().empty();
     }
 
   } else {
@@ -2583,16 +2595,19 @@ function sendToWhatsapp() {
 function renderEditView(data) {
   const status = String(data.Status || 'pending').toLowerCase();
 
-  // 🔥 CASE 1:
-  // (Completed, Delivered, Refunded)
-  if (['completed', 'delivered', 'refunded'].includes(status)) {
+  // 🔥 CASE 1: (Completed, Delivered)
+  if (['completed', 'delivered'].includes(status)) {
     showReturningUserView(data, false, true);
-    enableNewOrderMode();
+    // 🔴 FIX: enableNewOrderMode() ഇവിടെ ഒഴിവാക്കി! അത് വിളിച്ചാലാണ് പഴയ UI തിരിച്ചു വരുന്നത്.
+    return;
+  }
+
+  if (status === 'refunded') {
+    showReturningUserView(data, false, true);
     return;
   }
 
   // 🔥 CASE 2: (Pending, Paid, Dispatched, Sent)
-  // Dispatched
   const isActive = !(['dispatched'].includes(status));
 
   showReturningUserView(data, isActive, true);
