@@ -613,15 +613,16 @@ function handleEditControlsVisibility(d) {
     return;
   }
 
-  // 4. LOCKED STATES (Paid, Dispatched, Refunded)
-  if (['paid', 'dispatched', 'refunded'].includes(status)) {
+  // 4. LOCKED STATES (Paid, Dispatched)
+  // 🔥 'refunded' ഒഴിവാക്കി, കാരണം അവർക്ക് പുതിയ ഓർഡറിനായി അഡ്രസ്സ് എഡിറ്റ് ചെയ്യാൻ പറ്റണം
+  if (['paid', 'dispatched'].includes(status)) {
 
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').show().prop('disabled', true); // Show but Disabled
     $('#quick-qty').prev('label').show();
 
     $('.btn-update-sage, #quick-price-box').hide(); // Hide Buttons & Price
-    $('#btn-edit-addr').hide();
+    $('#btn-edit-addr').hide(); // 🔥 അഡ്രസ്സ് എഡിറ്റ് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
 
     $('#btn-req-modify').remove();
 
@@ -630,14 +631,13 @@ function handleEditControlsVisibility(d) {
       let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
       let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
-      // Text Translation for label above button
       let reqText = (lang === 'ml') ? "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?" : "Want to change details?";
 
       $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
               <div class="text-muted small mb-1 fw-bold">${reqText}</div>
               <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
                  class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
-                 <i class="fab fa-whatsapp"></i> ${t.btn_msg_admin}
+                 <i class="fab fa-whatsapp"></i> ${t.btn_msg_admin || 'Message Admin'}
               </a>
               </div>`).insertAfter('#status-area');
     }
@@ -1506,8 +1506,8 @@ function updateSummaryDisplay() {
   // Hide Edit Button Logic
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    // 🔥 Dispatched ഒഴികെ ബാക്കി എല്ലാ ഡെലിവറി കഴിഞ്ഞ/റിഫണ്ട് ആയ സ്റ്റാറ്റസുകളിലും അഡ്രസ്സ് എഡിറ്റ് ചെയ്യാൻ അനുവദിക്കുന്നു
-    if (['dispatched'].includes(s)) {
+    // 🔥 Paid, Dispatched എന്നിവയിൽ അഡ്രസ്സ് എഡിറ്റ് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
+    if (['paid', 'dispatched'].includes(s)) {
       $('#btn-edit-addr').hide();
     } else {
       $('#btn-edit-addr').css('display', 'inline-block');
@@ -1532,9 +1532,8 @@ function checkAndHideEditButton() {
 
 function applyHideLogic(status) {
   let s = String(status).toLowerCase().trim();
-  if (['paid', 'dispatched', 'refunded'].includes(s)) {
+  if (['paid', 'dispatched'].includes(s)) { // 🔥 'paid' തിരികെ ചേർത്തു
     $('#btn-edit-addr').hide();
-    console.log("Edit Button Hidden for Status:", s);
   } else {
     $('#btn-edit-addr').css('display', 'inline-flex');
   }
