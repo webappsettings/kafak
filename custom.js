@@ -957,8 +957,10 @@ window.submitQuickOrder = function () {
       if (newQty > oldQty) {
         let stateKey = getZoneKey(finalData.state);
         let rates = courierRates[stateKey] || {};
-        let balance = ((newQty * 650) + (rates[newQty] || 0)) - ((oldQty * 650) + (rates[oldQty] || 0));
-        let newTotal = (newQty * 650) + (rates[newQty] || 0);
+        let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
+        let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
+        let balance = (newBase + (rates[newQty] || 0)) - (oldBase + (rates[oldQty] || 0));
+        let newTotal = newBase + (rates[newQty] || 0);
 
         showLoader(true);
 
@@ -1676,8 +1678,10 @@ function checkForChanges() {
       let stateKey = getZoneKey($('#edit-state').val());
       let rates = courierRates[stateKey] || {};
 
-      let oldTotal = (oldQty * 650) + (rates[oldQty] || 0);
-      let newTotal = (newQty * 650) + (rates[newQty] || 0);
+      let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
+      let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
+      let oldTotal = oldBase + (rates[oldQty] || 0);
+      let newTotal = newBase + (rates[newQty] || 0);
       let balance = newTotal - oldTotal;
 
       $('#admin-diff-viewer').html(`
@@ -2485,7 +2489,7 @@ function sendToWhatsapp() {
 
   // 4. Calculate Total
   const n = parseInt(d.quantity);
-  const base = n * 650;
+  const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
   const zone = getZoneKey(d.state);
   const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
   const total = base + courier;

@@ -734,7 +734,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-    let priceInfo = calculatePriceInfo(d.quantity, d.state, d.provider || d.Courier_Provider);
+    let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
 
     // 2. Customer Stats (History)
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
@@ -1917,7 +1917,7 @@ window.sendWA = function (index, type = 'pending') {
     const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
     // 2. CALCULATE PRICE (Preserved)
-    const base = n * 650;
+    const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
     const zone = getZoneKey(d.state);
     const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
     const total = base + courier;
@@ -2482,11 +2482,25 @@ function getCourierRate(state, provider, qty) {
     return 0;
 }
 
-function calculatePriceInfo(qty, state, provider) {
+// 🔥 FIX: ഫംഗ്ഷനിലേക്ക് ഓർഡർ ഡാറ്റ (u) കൂടി ഉൾപ്പെടുത്തിയിരിക്കുന്നു 
+function calculatePriceInfo(u, qty, state, provider) {
     const n = parseInt(qty) || 0;
-    const basePrice = n * 650;
-    let courierCharge = getCourierRate(state, provider, n);
-    return { total: `₹${basePrice + courierCharge}/-` };
+    const basePrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n])
+        ? Number(courierRates.prices[n])
+        : (n * 650);
+
+    // ഷീറ്റിൽ ഇതിനകം സേവ് ചെയ്ത ചാർജ് ഉണ്ടെങ്കിൽ അത് എടുക്കുന്നു, ഇല്ലെങ്കിൽ പുതിയത് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+    let displayCharge = (u.Courier_Charge !== undefined && u.Courier_Charge !== "") ? Number(u.Courier_Charge) : getCourierRate(state, provider, n);
+
+    // സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള അപ്ഡേറ്റ് (Meta) വല്ലതും ഉണ്ടോ എന്ന് നോക്കുന്നു
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let myMeta = pendingUpdates.find(p => p.oid === u.orderid && p.action === 'meta');
+
+    if (myMeta && myMeta.charge !== undefined) {
+        displayCharge = Number(myMeta.charge);
+    }
+
+    return { total: `₹${basePrice + displayCharge}/-` };
 }
 
 
@@ -2743,7 +2757,7 @@ function renderDashboard() {
                 monthBottles += qty;
 
                 // വരുമാനവും ചിലവും (Monthly)
-                let pInfo = calculatePriceInfo(qty, o.state);
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
                 trueIncome += amt;
 
@@ -3139,7 +3153,7 @@ window.handleRefundToggle = function (oid, index) {
         btn.addClass('active-refund');
 
         // എമൗണ്ട് കണക്കാക്കുന്നു
-        let priceInfo = calculatePriceInfo(order.quantity, order.state);
+        let priceInfo = calculatePriceInfo(order, order.quantity, order.state, order.provider || order.Courier_Provider);
         let amount = parseInt(priceInfo.total.replace(/[^0-9]/g, '')) || 0;
 
         // Add Expense ടാബിലേക്ക് മാറുന്നു
@@ -3893,7 +3907,7 @@ window.changeCourier = function (oid, newProvider) {
 
         let n = parseInt(o.quantity) || 1;
         let newCourierCharge = getCourierRate(o.state, newProvider, n);
-        let newTotal = (n * 650) + newCourierCharge;
+        let newTotal = ((typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650)) + newCourierCharge;
 
         // Local Update
         o.provider = newProvider;
