@@ -4416,6 +4416,7 @@ window.loadNextMonthDayBook = function () {
 
 
 // 🔥 RENDER DETAILED MONTHLY OVERVIEW (Clears all confusion about Profit & Expense)
+// 🔥 RENDER DETAILED MONTHLY OVERVIEW (Fixed Logic Bug)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4426,20 +4427,23 @@ window.renderDetailedMonthlyOverview = function () {
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
 
-    // ടോട്ടൽ കാൽക്കുലേഷൻ
     let tSales = 0, tBottles = 0, tBottleCost = 0, tCourierCost = 0, tOtherExpense = 0;
 
-    // ഓർഡറുകളിൽ നിന്നും
     allOrders.forEach(o => {
         let pDate = new Date(o.paidDate || o.timestamp);
-        if (pDate.getFullYear() === mY && pDate.getMonth() === mM && o.Status === 'Paid' || o.Status === 'Dispatched' || o.Status === 'Delivered') {
+
+        // 🔥 BUG FIX: Status check grouped properly with brackets (അല്ലെങ്കിൽ includes ഉപയോഗിക്കാം)
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered'].includes(o.Status);
+
+        // കൃത്യമായി ഈ മാസത്തെയും, ശരിയായ സ്റ്റാറ്റസ് ഉള്ളതുമായ ഓർഡറുകൾ മാത്രം എടുക്കുന്നു
+        if (pDate.getFullYear() === mY && pDate.getMonth() === mM && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
             let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
             let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
 
             tSales += amt;
             tBottles += qty;
-            tBottleCost += (qty * 330); // 330 രൂപയാണ് ഒരു കുപ്പിയുടെ ചിലവ് എന്ന് കണക്കാക്കുന്നു
+            tBottleCost += (qty * 330);
 
             let actualCost = parseInt(o.Actual_Courier_Cost);
             if (!actualCost || isNaN(actualCost) || actualCost === 0) {
@@ -4450,7 +4454,6 @@ window.renderDetailedMonthlyOverview = function () {
         }
     });
 
-    // മറ്റ് ചിലവുകളിൽ നിന്നും
     if (dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             if (!e.isCourier) tOtherExpense += e.amount;
@@ -4480,7 +4483,7 @@ window.renderDetailedMonthlyOverview = function () {
             </div>
             
             <div class="d-flex justify-content-between align-items-center mt-2">
-                <span class="text-light" style="font-size:12px;">🚚 Courier Charges</span>
+                <span class="text-light" style="font-size:12px;">🚚 Actual Courier Cost</span>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
             
