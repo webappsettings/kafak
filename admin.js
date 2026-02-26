@@ -4154,6 +4154,7 @@ function submitEditedExpense(updateData) {
 
 
 // 🔥 RENDER DAY BOOK (Beautiful Ledger UI with Icons & Next/Prev)
+// 🔥 RENDER DAY BOOK (Fixed Courier Cost & Logic)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4161,7 +4162,6 @@ window.renderDayBookTable = function () {
     let mM = selectedDate.getMonth();
     let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-    // ഇപ്പോഴത്തെ മാസം ആണോ എന്ന് ചെക്ക് ചെയ്യാൻ (Next ബട്ടൺ കാണിക്കണോ എന്ന് തീരുമാനിക്കാൻ)
     let currentDate = new Date();
     let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
 
@@ -4177,13 +4177,13 @@ window.renderDayBookTable = function () {
         }
     };
 
-    // 1. ഓർഡറുകൾ (Income & Courier)
     allOrders.forEach(o => {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
 
         let qty = parseInt(o.quantity) || 0;
 
+        // --- INCOME LOGIC ---
         let pDate = new Date(o.paidDate || o.timestamp);
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
@@ -4197,22 +4197,30 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.totalBottles += qty;
         }
 
+        // --- COURIER LOGIC (FIXED) ---
         if (status !== 'Paid') {
             let dDate = new Date(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
 
-                let cCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                if (cCharge > 0) {
-                    dailyData[dStr].courier.items.push({ charge: cCharge });
-                    dailyData[dStr].courier.totalAmount += cCharge;
+                // 🔥 കസ്റ്റമർ തന്ന തുകയ്ക്ക് പകരം DTDC ക്ക് കൊടുക്കുന്ന യഥാർത്ഥ ചിലവ് (Actual_Courier_Cost) എടുക്കുന്നു
+                let actualCost = parseInt(o.Actual_Courier_Cost);
+
+                // ഡാറ്റാബേസിൽ ശരിയായ തുക ഇല്ലെങ്കിൽ മാത്രം, ഒരു പഴയ കാൽക്കുലേഷൻ ഉപയോഗിക്കുന്നു
+                if (!actualCost || isNaN(actualCost) || actualCost === 0) {
+                    let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                    actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge; // ഏകദേശ ചിലവ്
+                }
+
+                if (actualCost > 0) {
+                    dailyData[dStr].courier.items.push({ charge: actualCost });
+                    dailyData[dStr].courier.totalAmount += actualCost;
                 }
             }
         }
     });
 
-    // 2. മറ്റ് ചിലവുകൾ
     if (dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             if (e.isCourier) return;
@@ -4226,7 +4234,6 @@ window.renderDayBookTable = function () {
         });
     }
 
-    // 3. UI നിർമ്മാണം
     let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
 
     let grandIncome = 0;
@@ -4237,7 +4244,6 @@ window.renderDayBookTable = function () {
         $('<div id="daybook-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
     }
 
-    // Next Month Button (മാസം പഴയതാണെങ്കിൽ മാത്രം കാണിക്കും)
     let nextMonthBtnHtml = '';
     if (!isCurrentMonth) {
         nextMonthBtnHtml = `
@@ -4272,7 +4278,6 @@ window.renderDayBookTable = function () {
         let dateObj = new Date(dateStr);
         let displayDate = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
-        // Beautiful Ledger Card for each day
         let dayHtml = `
         <div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm">
             <div class="fw-bold text-dark border-bottom px-2 py-1 d-flex align-items-center" style="font-size:11px; background:#e2e8f0;">
@@ -4296,7 +4301,6 @@ window.renderDayBookTable = function () {
                 qtyGroups[q].totalBottles += q;
             });
 
-            // 🔥 'b' മാറ്റി മനോഹരമായ Bottle Icon കൊടുത്തു
             let breakdownText = Object.keys(qtyGroups).map(q =>
                 `₹${qtyGroups[q].totalAmt}(<span class="text-dark fw-bold">${qtyGroups[q].totalBottles}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px; color:#d97706 !important;"></i>)`
             ).join(' <span class="text-muted mx-1">+</span> ');
@@ -4324,7 +4328,7 @@ window.renderDayBookTable = function () {
                 chargeGroups[c.charge]++;
             });
 
-            // 🔥 കൊറിയർ ബ്രേക്ക്‌ഡൗൺ കൂടുതൽ വ്യക്തമാക്കി
+            // ഇപ്പോൾ യഥാർത്ഥ DTDC ചാർജ് (60, 120 മുതലായവ) വരും
             let breakdownText = Object.keys(chargeGroups).map(c =>
                 `<span class="text-dark fw-bold">${chargeGroups[c]}</span><span class="text-muted mx-1">x</span>₹${c}`
             ).join(', ');
@@ -4374,9 +4378,7 @@ window.renderDayBookTable = function () {
             });
         }
 
-        dayHtml += `</div></div>`; // End of day card
-
-        // CSS hack to remove last border inside loop
+        dayHtml += `</div></div>`;
         dayHtml = dayHtml.replace(/border-bottom border-dashed border-secondary border-opacity-10 last-border-none/g, '');
 
         if (hasData) html += dayHtml;
@@ -4384,7 +4386,6 @@ window.renderDayBookTable = function () {
 
     html += `</div>`;
 
-    // --- BEAUTIFUL FOOTER (Totals) ---
     let netTotal = grandIncome - grandCourier - grandExpense;
     let netColor = netTotal >= 0 ? 'text-success' : 'text-danger';
     let netIcon = netTotal >= 0 ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>';
