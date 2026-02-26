@@ -4414,8 +4414,6 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-
-// 🔥 RENDER DETAILED MONTHLY OVERVIEW (Clears all confusion about Profit & Expense)
 // 🔥 RENDER DETAILED MONTHLY OVERVIEW (Fixed Logic Bug)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
