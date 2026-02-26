@@ -2921,12 +2921,14 @@ function renderDashboard() {
 
     // 🔥 Redraw Calendar & Render Transactions
     if (txCalendarPicker) txCalendarPicker.redraw();
+    // (renderDashboard ഫംഗ്ഷനിലെ അവസാന ഭാഗം)
     let dateKey = flatpickr.formatDate(selectedDate, "Y-m-d");
     renderTransactionsForDate(dateKey);
 
     if (typeof renderPartnerList === 'function') renderPartnerList();
 
-    renderMonthlyExpenseTable();
+    // 🔥 പുതുതായി ചേർത്ത Day Book വിളിക്കാൻ
+    renderDayBookTable();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -4150,79 +4152,245 @@ function submitEditedExpense(updateData) {
         });
 }
 
-// 🔥 RENDER MONTHLY EXPENSE TABLE (Compact Google Sheet Style)
-function renderMonthlyExpenseTable() {
-    // ഡാഷ്‌ബോർഡ് ഡാറ്റ ഇല്ലെങ്കിൽ റിട്ടേൺ ചെയ്യുക
-    if (!dashboardData || !dashboardData.monthTimeline || !dashboardData.monthTimeline.expense) return;
 
-    let exps = dashboardData.monthTimeline.expense;
+// 🔥 RENDER DAY BOOK (Income, Courier & Expenses Grouped by Date)
+window.renderDayBookTable = function () {
+    if (!dashboardData || !dashboardData.monthTimeline) return;
 
-    // ടേബിൾ കാണിക്കാൻ ഒരു കണ്ടെയ്നർ ഇല്ലെങ്കിൽ അത് ഉണ്ടാക്കുന്നു (tx-details-area ക്ക് താഴെ)
-    if ($('#monthly-expense-table-container').length === 0) {
-        $('<div id="monthly-expense-table-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
-    }
+    let mY = selectedDate.getFullYear();
+    let mM = selectedDate.getMonth();
+    let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-    if (exps.length === 0) {
-        $('#monthly-expense-table-container').html('');
-        return;
-    }
+    let dailyData = {};
 
-    // ഏറ്റവും പുതിയ ചിലവുകൾ ആദ്യം വരാൻ വേണ്ടി Sort ചെയ്യുന്നു
-    let sortedExps = [...exps].sort((a, b) => new Date(b.date) - new Date(a.date));
+    // ഡാറ്റ ഗ്രൂപ്പ് ചെയ്യാൻ തീയതി ഉണ്ടാക്കുന്ന Helper ഫംഗ്ഷൻ
+    const initDate = (dStr) => {
+        if (!dailyData[dStr]) {
+            dailyData[dStr] = {
+                income: { orders: [], totalAmount: 0, totalBottles: 0 },
+                courier: { items: [], totalAmount: 0 },
+                expenses: []
+            };
+        }
+    };
 
-    // ടേബിൾ ഡിസൈൻ ആരംഭിക്കുന്നു (Compact Design)
-    let tableHtml = `
-    <div class="bg-white p-2 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-3">
-        <h6 class="fw-bold text-dark mb-2 px-2 pt-2" style="font-size:12px; letter-spacing:0.5px;">
-            <i class="fas fa-list text-primary me-2"></i>THIS MONTH'S EXPENSES
-        </h6>
-        <div class="table-responsive">
-            <table class="table table-sm table-hover align-middle mb-0" style="font-size:11px; border-color: #f1f5f9;">
-                <thead style="background-color: #f8fafc; color: #64748b;">
-                    <tr>
-                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0;">DATE</th>
-                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0;">CATEGORY & DESC</th>
-                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0; text-align:center;">RECEIPT</th>
-                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0; text-align:right;">AMOUNT</th>
-                    </tr>
-                </thead>
-                <tbody>
-    `;
+    // 1. ഓർഡറുകളിൽ നിന്നും വരുമാനവും കൊറിയർ ചിലവും കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+    allOrders.forEach(o => {
+        let status = o.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
 
-    sortedExps.forEach(e => {
-        // Date ഫോർമാറ്റ് ചെയ്യുന്നു (Ex: 24 Feb)
-        let dateObj = new Date(e.date);
-        let dateStr = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        let qty = parseInt(o.quantity) || 0;
 
-        // Receipt Button
-        let proofBtn = '<span class="text-muted" style="font-size:10px;">-</span>';
-        if (e.proof && String(e.proof).trim() !== "") {
-            proofBtn = `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px; background:#fff;"><i class="fas fa-image text-primary"></i></button>`;
+        // --- INCOME LOGIC (Paid Date വെച്ച്) ---
+        let pDate = new Date(o.paidDate || o.timestamp);
+        if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
+            let dStr = flatpickr.formatDate(pDate, "Y-m-d");
+            initDate(dStr);
+
+            let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+            let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+
+            dailyData[dStr].income.orders.push({ qty: qty, amt: amt });
+            dailyData[dStr].income.totalAmount += amt;
+            dailyData[dStr].income.totalBottles += qty;
         }
 
-        // വിവരണം (Courier ആണെങ്കിൽ പേര് മാറ്റുന്നു)
-        let descText = e.desc || e.cat || '';
-        if (e.isCourier) descText = "Monthly Courier Charges";
-        let subText = e.isCourier ? "Auto-calculated" : (e.cat || '');
+        // --- COURIER LOGIC (Dispatched Date വെച്ച്) ---
+        if (status !== 'Paid') {
+            let dDate = new Date(o['Dispatched Date'] || o.timestamp);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                let dStr = flatpickr.formatDate(dDate, "Y-m-d");
+                initDate(dStr);
 
-        tableHtml += `
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-                <td class="text-nowrap text-secondary fw-bold" style="padding: 6px 10px;">${dateStr}</td>
-                <td style="padding: 6px 10px; max-width: 140px;">
-                    <div class="fw-bold text-dark text-truncate" title="${descText}">${descText}</div>
-                    <div style="font-size:9px; color:#94a3b8; font-weight:700; text-transform:uppercase;">${subText}</div>
-                </td>
-                <td class="text-center" style="padding: 6px 10px;">${proofBtn}</td>
-                <td class="text-end fw-bold text-danger" style="padding: 6px 10px;">₹${e.amount.toLocaleString()}</td>
-            </tr>
-        `;
+                let cCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (cCharge > 0) {
+                    dailyData[dStr].courier.items.push({ charge: cCharge });
+                    dailyData[dStr].courier.totalAmount += cCharge;
+                }
+            }
+        }
     });
 
-    tableHtml += `
-                </tbody>
-            </table>
+    // 2. മറ്റ് ചിലവുകൾ (Expenses) എടുക്കുന്നു
+    if (dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => {
+            // കൊറിയർ നമ്മൾ മുകളിൽ പ്രത്യേകം കാൽക്കുലേറ്റ് ചെയ്തതുകൊണ്ട് ഇവിടുത്തെ ഒഴിവാക്കുന്നു
+            if (e.isCourier) return;
+
+            let dDate = new Date(e.date);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                let dStr = flatpickr.formatDate(dDate, "Y-m-d");
+                initDate(dStr);
+                dailyData[dStr].expenses.push(e);
+            }
+        });
+    }
+
+    // 3. UI നിർമ്മിക്കുന്നു (HTML)
+    // ഏറ്റവും പുതിയ തീയതി ആദ്യം വരാൻ വേണ്ടി Sort ചെയ്യുന്നു
+    let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
+
+    let grandIncome = 0;
+    let grandCourier = 0;
+    let grandExpense = 0;
+
+    // കണ്ടെയ്നർ ഉണ്ടാക്കുന്നു
+    if ($('#daybook-container').length === 0) {
+        $('<div id="daybook-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
+    }
+
+    let html = `
+    <div class="bg-white p-3 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            <h6 class="fw-bold text-dark m-0" style="font-size:13px; letter-spacing:0.5px;">
+                <i class="fas fa-book-open text-primary me-2"></i> DAY BOOK - <span class="text-primary">${monthName.toUpperCase()}</span>
+            </h6>
+            <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 4px 10px;" onclick="loadPreviousMonthDayBook()">
+                <i class="fas fa-chevron-left me-1"></i> PREV MTH
+            </button>
+        </div>
+        <div>
+    `;
+
+    if (sortedDates.length === 0) {
+        html += `<div class="text-center text-muted small py-3">No transactions found for this month.</div>`;
+    }
+
+    sortedDates.forEach(dateStr => {
+        let data = dailyData[dateStr];
+        let dateObj = new Date(dateStr);
+        let displayDate = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+
+        let dayHtml = `<div class="mb-3"><div class="fw-bold text-dark border-bottom border-dark border-opacity-10 mb-1" style="font-size:12px; background:#f8fafc; padding:4px 8px; border-radius:4px;">${displayDate}</div>`;
+
+        let hasData = false;
+
+        // --- INCOME PRINTING ---
+        if (data.income.orders.length > 0) {
+            hasData = true;
+            grandIncome += data.income.totalAmount;
+
+            // Bottle Quantity വെച്ച് ഗ്രൂപ്പ് ചെയ്യുന്നു (Breakdown)
+            let qtyGroups = {};
+            data.income.orders.forEach(o => {
+                if (!qtyGroups[o.qty]) qtyGroups[o.qty] = { totalAmt: 0 };
+                qtyGroups[o.qty].totalAmt += o.amt;
+            });
+
+            let breakdownText = Object.keys(qtyGroups).map(q => `${qtyGroups[q].totalAmt}(${q}b)`).join(' + ');
+
+            dayHtml += `
+            <div class="d-flex justify-content-between align-items-start px-2 py-1">
+                <div>
+                    <div class="fw-bold text-success" style="font-size:11px;">
+                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Order(s), ${data.income.totalBottles} Bottle(s)
+                    </div>
+                    <div class="text-muted" style="font-size:9px; font-weight:700;">-- (${breakdownText})</div>
+                </div>
+                <div class="fw-bold text-success" style="font-size:12px;">₹${data.income.totalAmount.toLocaleString()}</div>
+            </div>`;
+        }
+
+        // --- COURIER PRINTING ---
+        if (data.courier.items.length > 0) {
+            hasData = true;
+            grandCourier += data.courier.totalAmount;
+
+            // ചാർജ് വെച്ച് ഗ്രൂപ്പ് ചെയ്യുന്നു (Breakdown)
+            let chargeGroups = {};
+            data.courier.items.forEach(c => {
+                if (!chargeGroups[c.charge]) chargeGroups[c.charge] = 0;
+                chargeGroups[c.charge]++;
+            });
+
+            let breakdownText = Object.keys(chargeGroups).map(c => `${chargeGroups[c]}x${c}=${chargeGroups[c] * c}`).join(', ');
+
+            dayHtml += `
+            <div class="d-flex justify-content-between align-items-start px-2 py-1">
+                <div>
+                    <div class="fw-bold text-danger" style="font-size:11px;">
+                        <i class="fas fa-truck me-1"></i> Courier Charge
+                    </div>
+                    <div class="text-muted" style="font-size:9px; font-weight:700;">-- (${breakdownText})</div>
+                </div>
+                <div class="fw-bold text-danger" style="font-size:12px;">₹${data.courier.totalAmount.toLocaleString()}</div>
+            </div>`;
+        }
+
+        // --- EXPENSES PRINTING ---
+        if (data.expenses.length > 0) {
+            hasData = true;
+            data.expenses.forEach(e => {
+                grandExpense += e.amount;
+
+                let proofHtml = '';
+                if (e.proof && String(e.proof).trim() !== "") {
+                    proofHtml = `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></button>`;
+                }
+
+                let editHtml = '';
+                if (e.id) {
+                    editHtml = `<span onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="text-primary ms-2" style="cursor:pointer; text-decoration:underline;">[Edit]</span>`;
+                }
+
+                let title = e.cat || 'Expense';
+                let subText = e.vendor ? `${e.vendor}` : e.desc;
+                if (e.vendor && e.desc) subText = `${e.vendor}, ${e.desc}`;
+
+                dayHtml += `
+                <div class="d-flex justify-content-between align-items-start px-2 py-1">
+                    <div>
+                        <div class="fw-bold text-danger" style="font-size:11px;">
+                            <i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}
+                        </div>
+                        <div class="text-muted" style="font-size:9px; font-weight:700;">-- ${subText} ${editHtml}</div>
+                    </div>
+                    <div class="fw-bold text-danger" style="font-size:12px;">₹${e.amount.toLocaleString()}</div>
+                </div>`;
+            });
+        }
+
+        dayHtml += `</div>`;
+        if (hasData) html += dayHtml;
+    });
+
+    html += `</div>`; // End of List
+
+    // --- FOOTER (Totals) ---
+    let netTotal = grandIncome - grandCourier - grandExpense;
+    let netColor = netTotal >= 0 ? 'text-success' : 'text-danger';
+
+    html += `
+        <div class="mt-3 pt-2" style="border-top: 2px dashed #cbd5e1;">
+            <div class="d-flex justify-content-between px-2 mb-1" style="font-size:11px; font-weight:700;">
+                <span class="text-muted">Total Income:</span>
+                <span class="text-success">₹${grandIncome.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between px-2 mb-1" style="font-size:11px; font-weight:700;">
+                <span class="text-muted">Total Courier Charge:</span>
+                <span class="text-danger">₹${grandCourier.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:11px; font-weight:700;">
+                <span class="text-muted">Other Expenses:</span>
+                <span class="text-danger">₹${grandExpense.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between px-2 py-2 rounded" style="background:#f1f5f9; font-size:13px; font-weight:900;">
+                <span class="text-dark">NET TOTAL:</span>
+                <span class="${netColor}">₹${netTotal.toLocaleString()}</span>
+            </div>
         </div>
     </div>`;
 
-    $('#monthly-expense-table-container').html(tableHtml);
+    $('#daybook-container').html(html);
+}
+
+// 🔥 PREVIOUS MONTH BUTTON LOGIC
+window.loadPreviousMonthDayBook = function () {
+    // കലണ്ടർ ലോജിക് ഉപയോഗിച്ച് തീയതി ഒരു മാസം പുറകോട്ട് ആക്കുന്നു
+    let prevDate = new Date(selectedDate);
+    prevDate.setMonth(prevDate.getMonth() - 1);
+    selectedDate = prevDate;
+
+    // ഡാഷ്‌ബോർഡ് പുതുക്കുന്നു (ഇത് തനിയെ സർവറിൽ നിന്നും പുതിയ മാസത്തെ ഡാറ്റ എടുക്കും)
+    changeDashDate();
 }
