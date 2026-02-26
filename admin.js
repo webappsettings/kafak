@@ -2998,7 +2998,7 @@ function renderTransactionsForDate(dateStr) {
             // 🔥 എഡിറ്റ് ബട്ടൺ ഉണ്ടാക്കുന്നു (ഓട്ടോമാറ്റിക് കൊറിയർ ചാർജ് അല്ലാത്തവയ്ക്കും, ID ഉള്ളവയ്ക്കും മാത്രം)
             let editBtn = '';
             if (!item.isCourier && item.id) {
-                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="openEditExpense('${item.id}', '${dateStr}', '${item.amount}', '${item.desc}', '${item.cat}')" title="Edit Expense"></i>`;
+                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="openEditExpense('${item.id}', '${dateStr}', '${item.amount}', '${item.desc}', '${item.cat}', '${item.vendor || ''}')" title="Edit Expense"></i>`;
             }
 
             html += `
@@ -3981,16 +3981,44 @@ window.loadOldTrackingOrders = function () {
     renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
 };
 
-// 🔥 SHOW EDIT EXPENSE MODAL
-// 🔥 SHOW EDIT EXPENSE MODAL (Fixed Z-Index, Flatpickr & Image Compression)
-window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
 
-    // 1. Z-INDEX FIX: Drawer-ന് മുകളിൽ വരാൻ വേണ്ടി
+// 🔥 1. കാറ്റഗറി മാറ്റുമ്പോൾ Field മാറ്റാനുള്ള Helper Function
+window.toggleEditPartnerSelect = function () {
+    let cat = document.getElementById('edit-exp-cat').value;
+    if (cat === 'Salary') {
+        document.getElementById('edit-partner-section').style.display = 'block';
+        document.getElementById('edit-vendor-section').style.display = 'none';
+    } else {
+        document.getElementById('edit-partner-section').style.display = 'none';
+        document.getElementById('edit-vendor-section').style.display = 'block';
+    }
+};
+
+// 🔥 2. SHOW EDIT EXPENSE MODAL (Dynamic Vendor/Partner Field)
+window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, oldVendor = '') {
+
+    // Z-INDEX FIX
     if (!$('#swal-zindex-fix').length) {
         $('<style id="swal-zindex-fix">').html(`
             .swal2-container { z-index: 99999 !important; }
             .flatpickr-calendar { z-index: 100000 !important; }
         `).appendTo('head');
+    }
+
+    // ഡാഷ്‌ബോർഡിൽ നിന്നും പാർട്ണർമാരുടെ പേര് ഓട്ടോമാറ്റിക് ആയി എടുക്കാൻ
+    let partnerOptions = '';
+    if (typeof dashboardData !== 'undefined' && dashboardData && dashboardData.partners) {
+        for (let name in dashboardData.partners) {
+            let isSelected = (oldCat === 'Salary' && oldVendor === name) ? 'selected' : '';
+            partnerOptions += `<option value="${name}" ${isSelected}>${name}</option>`;
+        }
+    } else {
+        // Fallback options
+        partnerOptions = `
+            <option value="Salam" ${oldVendor === 'Salam' ? 'selected' : ''}>Salam</option>
+            <option value="Samad" ${oldVendor === 'Samad' ? 'selected' : ''}>Samad</option>
+            <option value="Jazeela" ${oldVendor === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
+        `;
     }
 
     let htmlForm = `
@@ -3999,7 +4027,7 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
             <input type="text" id="edit-exp-date" class="form-control mb-3 fw-bold" placeholder="Select Date & Time...">
             
             <label class="fw-bold mb-1 small">Category</label>
-            <select id="edit-exp-cat" class="form-select mb-3">
+            <select id="edit-exp-cat" class="form-select mb-3" onchange="toggleEditPartnerSelect()">
                 <option value="Material Purchase" ${oldCat === 'Material Purchase' ? 'selected' : ''}>Material Purchase</option>
                 <option value="Packaging Material" ${oldCat === 'Packaging Material' ? 'selected' : ''}>Packaging Material</option>
                 <option value="Marketing/Ads" ${oldCat === 'Marketing/Ads' ? 'selected' : ''}>Marketing / Ads</option>
@@ -4010,7 +4038,18 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
                 <option value="Refund" ${oldCat === 'Refund' ? 'selected' : ''}>Refund</option>
                 <option value="Other" ${oldCat === 'Other' ? 'selected' : ''}>Other</option>
             </select>
-            
+
+            <div id="edit-vendor-section" style="display: ${oldCat === 'Salary' ? 'none' : 'block'};">
+                <label class="fw-bold mb-1 small">Vendor / Shop Name</label>
+                <input type="text" id="edit-exp-vendor" class="form-control mb-3" value="${oldCat !== 'Salary' ? oldVendor : ''}" placeholder="Ex: Lulu Hypermarket">
+            </div>
+
+            <div id="edit-partner-section" style="display: ${oldCat === 'Salary' ? 'block' : 'none'};">
+                <label class="fw-bold mb-1 small text-primary">Select Partner</label>
+                <select id="edit-exp-partner" class="form-select mb-3 border-primary bg-primary bg-opacity-10 text-primary fw-bold">
+                    ${partnerOptions}
+                </select>
+            </div>
             <label class="fw-bold mb-1 small">Amount (₹)</label>
             <input type="number" id="edit-exp-amount" class="form-control mb-3" value="${oldAmount}">
             
@@ -4029,7 +4068,6 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
         confirmButtonText: 'Update Expense',
         confirmButtonColor: '#2563eb',
         didOpen: () => {
-            // 2. FLATPICKR DATE & TIME PICKER
             flatpickr("#edit-exp-date", {
                 enableTime: true,
                 dateFormat: "Y-m-d\\TH:i",
@@ -4041,10 +4079,15 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
             });
         },
         preConfirm: async () => {
+            // കാറ്റഗറി അനുസരിച്ച് Vendor ആണോ Partner ആണോ എന്ന് തീരുമാനിക്കുന്നു
+            let selectedCat = document.getElementById('edit-exp-cat').value;
+            let finalVendor = (selectedCat === 'Salary') ? document.getElementById('edit-exp-partner').value : document.getElementById('edit-exp-vendor').value;
+
             let updateData = {
                 expId: expId,
                 date: document.getElementById('edit-exp-date').value,
-                category: document.getElementById('edit-exp-cat').value,
+                category: selectedCat,
+                vendor: finalVendor,  // 👈 ഇവിടെ ഡാറ്റ ശരിയായി Backend-ലേക്ക് പോകും
                 amount: document.getElementById('edit-exp-amount').value,
                 description: document.getElementById('edit-exp-desc').value,
                 fileData: null,
@@ -4056,10 +4099,9 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
                 return false;
             }
 
-            // 3. IMAGE COMPRESSION FIX (Same as Add Expense)
             let fileInput = document.getElementById('edit-exp-file');
             if (fileInput && fileInput.files.length > 0) {
-                Swal.showLoading(); // Compress ചെയ്യുമ്പോൾ ലോഡിങ് കാണിക്കാൻ
+                Swal.showLoading();
                 try {
                     let compressed = await compressImage(fileInput.files[0]);
                     updateData.fileData = compressed.data;
