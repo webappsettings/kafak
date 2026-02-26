@@ -2925,6 +2925,8 @@ function renderDashboard() {
     renderTransactionsForDate(dateKey);
 
     if (typeof renderPartnerList === 'function') renderPartnerList();
+
+    renderMonthlyExpenseTable();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -4146,4 +4148,81 @@ function submitEditedExpense(updateData) {
         }).catch(err => {
             Swal.fire('Error', 'Network Error. Try again.', 'error');
         });
+}
+
+// 🔥 RENDER MONTHLY EXPENSE TABLE (Compact Google Sheet Style)
+function renderMonthlyExpenseTable() {
+    // ഡാഷ്‌ബോർഡ് ഡാറ്റ ഇല്ലെങ്കിൽ റിട്ടേൺ ചെയ്യുക
+    if (!dashboardData || !dashboardData.monthTimeline || !dashboardData.monthTimeline.expense) return;
+
+    let exps = dashboardData.monthTimeline.expense;
+
+    // ടേബിൾ കാണിക്കാൻ ഒരു കണ്ടെയ്നർ ഇല്ലെങ്കിൽ അത് ഉണ്ടാക്കുന്നു (tx-details-area ക്ക് താഴെ)
+    if ($('#monthly-expense-table-container').length === 0) {
+        $('<div id="monthly-expense-table-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
+    }
+
+    if (exps.length === 0) {
+        $('#monthly-expense-table-container').html('');
+        return;
+    }
+
+    // ഏറ്റവും പുതിയ ചിലവുകൾ ആദ്യം വരാൻ വേണ്ടി Sort ചെയ്യുന്നു
+    let sortedExps = [...exps].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // ടേബിൾ ഡിസൈൻ ആരംഭിക്കുന്നു (Compact Design)
+    let tableHtml = `
+    <div class="bg-white p-2 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-3">
+        <h6 class="fw-bold text-dark mb-2 px-2 pt-2" style="font-size:12px; letter-spacing:0.5px;">
+            <i class="fas fa-list text-primary me-2"></i>THIS MONTH'S EXPENSES
+        </h6>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle mb-0" style="font-size:11px; border-color: #f1f5f9;">
+                <thead style="background-color: #f8fafc; color: #64748b;">
+                    <tr>
+                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0;">DATE</th>
+                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0;">CATEGORY & DESC</th>
+                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0; text-align:center;">RECEIPT</th>
+                        <th style="font-weight:800; padding: 8px 10px; border-bottom: 2px solid #e2e8f0; text-align:right;">AMOUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    sortedExps.forEach(e => {
+        // Date ഫോർമാറ്റ് ചെയ്യുന്നു (Ex: 24 Feb)
+        let dateObj = new Date(e.date);
+        let dateStr = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+
+        // Receipt Button
+        let proofBtn = '<span class="text-muted" style="font-size:10px;">-</span>';
+        if (e.proof && String(e.proof).trim() !== "") {
+            proofBtn = `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px; background:#fff;"><i class="fas fa-image text-primary"></i></button>`;
+        }
+
+        // വിവരണം (Courier ആണെങ്കിൽ പേര് മാറ്റുന്നു)
+        let descText = e.desc || e.cat || '';
+        if (e.isCourier) descText = "Monthly Courier Charges";
+        let subText = e.isCourier ? "Auto-calculated" : (e.cat || '');
+
+        tableHtml += `
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+                <td class="text-nowrap text-secondary fw-bold" style="padding: 6px 10px;">${dateStr}</td>
+                <td style="padding: 6px 10px; max-width: 140px;">
+                    <div class="fw-bold text-dark text-truncate" title="${descText}">${descText}</div>
+                    <div style="font-size:9px; color:#94a3b8; font-weight:700; text-transform:uppercase;">${subText}</div>
+                </td>
+                <td class="text-center" style="padding: 6px 10px;">${proofBtn}</td>
+                <td class="text-end fw-bold text-danger" style="padding: 6px 10px;">₹${e.amount.toLocaleString()}</td>
+            </tr>
+        `;
+    });
+
+    tableHtml += `
+                </tbody>
+            </table>
+        </div>
+    </div>`;
+
+    $('#monthly-expense-table-container').html(tableHtml);
 }
