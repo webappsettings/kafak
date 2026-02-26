@@ -4153,7 +4153,7 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (Income, Courier & Expenses Grouped by Date)
+// 🔥 RENDER DAY BOOK (Beautiful Ledger UI with Icons & Next/Prev)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4161,9 +4161,12 @@ window.renderDayBookTable = function () {
     let mM = selectedDate.getMonth();
     let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
+    // ഇപ്പോഴത്തെ മാസം ആണോ എന്ന് ചെക്ക് ചെയ്യാൻ (Next ബട്ടൺ കാണിക്കണോ എന്ന് തീരുമാനിക്കാൻ)
+    let currentDate = new Date();
+    let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
+
     let dailyData = {};
 
-    // ഡാറ്റ ഗ്രൂപ്പ് ചെയ്യാൻ തീയതി ഉണ്ടാക്കുന്ന Helper ഫംഗ്ഷൻ
     const initDate = (dStr) => {
         if (!dailyData[dStr]) {
             dailyData[dStr] = {
@@ -4174,14 +4177,13 @@ window.renderDayBookTable = function () {
         }
     };
 
-    // 1. ഓർഡറുകളിൽ നിന്നും വരുമാനവും കൊറിയർ ചിലവും കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+    // 1. ഓർഡറുകൾ (Income & Courier)
     allOrders.forEach(o => {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
 
         let qty = parseInt(o.quantity) || 0;
 
-        // --- INCOME LOGIC (Paid Date വെച്ച്) ---
         let pDate = new Date(o.paidDate || o.timestamp);
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
@@ -4195,7 +4197,6 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.totalBottles += qty;
         }
 
-        // --- COURIER LOGIC (Dispatched Date വെച്ച്) ---
         if (status !== 'Paid') {
             let dDate = new Date(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
@@ -4211,10 +4212,9 @@ window.renderDayBookTable = function () {
         }
     });
 
-    // 2. മറ്റ് ചിലവുകൾ (Expenses) എടുക്കുന്നു
+    // 2. മറ്റ് ചിലവുകൾ
     if (dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            // കൊറിയർ നമ്മൾ മുകളിൽ പ്രത്യേകം കാൽക്കുലേറ്റ് ചെയ്തതുകൊണ്ട് ഇവിടുത്തെ ഒഴിവാക്കുന്നു
             if (e.isCourier) return;
 
             let dDate = new Date(e.date);
@@ -4226,34 +4226,45 @@ window.renderDayBookTable = function () {
         });
     }
 
-    // 3. UI നിർമ്മിക്കുന്നു (HTML)
-    // ഏറ്റവും പുതിയ തീയതി ആദ്യം വരാൻ വേണ്ടി Sort ചെയ്യുന്നു
+    // 3. UI നിർമ്മാണം
     let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
 
     let grandIncome = 0;
     let grandCourier = 0;
     let grandExpense = 0;
 
-    // കണ്ടെയ്നർ ഉണ്ടാക്കുന്നു
     if ($('#daybook-container').length === 0) {
         $('<div id="daybook-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
+    }
+
+    // Next Month Button (മാസം പഴയതാണെങ്കിൽ മാത്രം കാണിക്കും)
+    let nextMonthBtnHtml = '';
+    if (!isCurrentMonth) {
+        nextMonthBtnHtml = `
+        <button class="btn btn-sm btn-dark rounded-pill fw-bold ms-2 shadow-sm" style="font-size:9px; padding: 5px 12px;" onclick="loadNextMonthDayBook()">
+            NEXT MTH <i class="fas fa-chevron-right ms-1"></i>
+        </button>`;
     }
 
     let html = `
     <div class="bg-white p-3 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-4 mb-5">
         <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
             <h6 class="fw-bold text-dark m-0" style="font-size:13px; letter-spacing:0.5px;">
-                <i class="fas fa-book-open text-primary me-2"></i> DAY BOOK - <span class="text-primary">${monthName.toUpperCase()}</span>
+                <i class="fas fa-book-open text-primary me-2"></i> DAY BOOK
             </h6>
-            <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 4px 10px;" onclick="loadPreviousMonthDayBook()">
-                <i class="fas fa-chevron-left me-1"></i> PREV MTH
-            </button>
+            <div class="d-flex align-items-center">
+                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 me-2" style="font-size:11px;">${monthName.toUpperCase()}</span>
+                <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 5px 12px;" onclick="loadPreviousMonthDayBook()">
+                    <i class="fas fa-chevron-left me-1"></i> PREV MTH
+                </button>
+                ${nextMonthBtnHtml}
+            </div>
         </div>
         <div>
     `;
 
     if (sortedDates.length === 0) {
-        html += `<div class="text-center text-muted small py-3">No transactions found for this month.</div>`;
+        html += `<div class="text-center text-muted small py-4" style="border:1px dashed #ccc; border-radius:10px;">No transactions found for ${monthName}.</div>`;
     }
 
     sortedDates.forEach(dateStr => {
@@ -4261,7 +4272,14 @@ window.renderDayBookTable = function () {
         let dateObj = new Date(dateStr);
         let displayDate = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
-        let dayHtml = `<div class="mb-3"><div class="fw-bold text-dark border-bottom border-dark border-opacity-10 mb-1" style="font-size:12px; background:#f8fafc; padding:4px 8px; border-radius:4px;">${displayDate}</div>`;
+        // Beautiful Ledger Card for each day
+        let dayHtml = `
+        <div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm">
+            <div class="fw-bold text-dark border-bottom px-2 py-1 d-flex align-items-center" style="font-size:11px; background:#e2e8f0;">
+                <i class="far fa-calendar-alt me-1 text-muted"></i> ${displayDate}
+            </div>
+            <div class="p-2 bg-white">
+        `;
 
         let hasData = false;
 
@@ -4270,24 +4288,28 @@ window.renderDayBookTable = function () {
             hasData = true;
             grandIncome += data.income.totalAmount;
 
-            // Bottle Quantity വെച്ച് ഗ്രൂപ്പ് ചെയ്യുന്നു (Breakdown)
             let qtyGroups = {};
             data.income.orders.forEach(o => {
-                if (!qtyGroups[o.qty]) qtyGroups[o.qty] = { totalAmt: 0 };
-                qtyGroups[o.qty].totalAmt += o.amt;
+                let q = parseInt(o.qty) || 1;
+                if (!qtyGroups[q]) qtyGroups[q] = { totalAmt: 0, totalBottles: 0 };
+                qtyGroups[q].totalAmt += o.amt;
+                qtyGroups[q].totalBottles += q;
             });
 
-            let breakdownText = Object.keys(qtyGroups).map(q => `${qtyGroups[q].totalAmt}(${q}b)`).join(' + ');
+            // 🔥 'b' മാറ്റി മനോഹരമായ Bottle Icon കൊടുത്തു
+            let breakdownText = Object.keys(qtyGroups).map(q =>
+                `₹${qtyGroups[q].totalAmt}(<span class="text-dark fw-bold">${qtyGroups[q].totalBottles}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px; color:#d97706 !important;"></i>)`
+            ).join(' <span class="text-muted mx-1">+</span> ');
 
             dayHtml += `
-            <div class="d-flex justify-content-between align-items-start px-2 py-1">
+            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
                 <div>
-                    <div class="fw-bold text-success" style="font-size:11px;">
-                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Order(s), ${data.income.totalBottles} Bottle(s)
+                    <div class="fw-bold text-success" style="font-size:12px;">
+                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Order(s), <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 ms-1">${data.income.totalBottles} <i class="fas fa-wine-bottle"></i></span>
                     </div>
-                    <div class="text-muted" style="font-size:9px; font-weight:700;">-- (${breakdownText})</div>
+                    <div class="text-secondary mt-1" style="font-size:10px;">-- (${breakdownText})</div>
                 </div>
-                <div class="fw-bold text-success" style="font-size:12px;">₹${data.income.totalAmount.toLocaleString()}</div>
+                <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
             </div>`;
         }
 
@@ -4296,24 +4318,26 @@ window.renderDayBookTable = function () {
             hasData = true;
             grandCourier += data.courier.totalAmount;
 
-            // ചാർജ് വെച്ച് ഗ്രൂപ്പ് ചെയ്യുന്നു (Breakdown)
             let chargeGroups = {};
             data.courier.items.forEach(c => {
                 if (!chargeGroups[c.charge]) chargeGroups[c.charge] = 0;
                 chargeGroups[c.charge]++;
             });
 
-            let breakdownText = Object.keys(chargeGroups).map(c => `${chargeGroups[c]}x${c}=${chargeGroups[c] * c}`).join(', ');
+            // 🔥 കൊറിയർ ബ്രേക്ക്‌ഡൗൺ കൂടുതൽ വ്യക്തമാക്കി
+            let breakdownText = Object.keys(chargeGroups).map(c =>
+                `<span class="text-dark fw-bold">${chargeGroups[c]}</span><span class="text-muted mx-1">x</span>₹${c}`
+            ).join(', ');
 
             dayHtml += `
-            <div class="d-flex justify-content-between align-items-start px-2 py-1">
+            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
                 <div>
-                    <div class="fw-bold text-danger" style="font-size:11px;">
+                    <div class="fw-bold text-danger" style="font-size:12px;">
                         <i class="fas fa-truck me-1"></i> Courier Charge
                     </div>
-                    <div class="text-muted" style="font-size:9px; font-weight:700;">-- (${breakdownText})</div>
+                    <div class="text-secondary mt-1" style="font-size:10px;">-- (${breakdownText})</div>
                 </div>
-                <div class="fw-bold text-danger" style="font-size:12px;">₹${data.courier.totalAmount.toLocaleString()}</div>
+                <div class="fw-bold text-danger fs-6">₹${data.courier.totalAmount.toLocaleString()}</div>
             </div>`;
         }
 
@@ -4330,53 +4354,58 @@ window.renderDayBookTable = function () {
 
                 let editHtml = '';
                 if (e.id) {
-                    editHtml = `<span onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="text-primary ms-2" style="cursor:pointer; text-decoration:underline;">[Edit]</span>`;
+                    editHtml = `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>`;
                 }
 
                 let title = e.cat || 'Expense';
-                let subText = e.vendor ? `${e.vendor}` : e.desc;
-                if (e.vendor && e.desc) subText = `${e.vendor}, ${e.desc}`;
+                let subText = e.vendor ? `<span class="fw-bold text-dark">${e.vendor}</span>` : e.desc;
+                if (e.vendor && e.desc) subText = `<span class="fw-bold text-dark">${e.vendor}</span>, ${e.desc}`;
 
                 dayHtml += `
-                <div class="d-flex justify-content-between align-items-start px-2 py-1">
+                <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10 last-border-none">
                     <div>
-                        <div class="fw-bold text-danger" style="font-size:11px;">
+                        <div class="fw-bold text-danger" style="font-size:12px;">
                             <i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}
                         </div>
-                        <div class="text-muted" style="font-size:9px; font-weight:700;">-- ${subText} ${editHtml}</div>
+                        <div class="text-secondary mt-1" style="font-size:10px;">-- ${subText} ${editHtml}</div>
                     </div>
-                    <div class="fw-bold text-danger" style="font-size:12px;">₹${e.amount.toLocaleString()}</div>
+                    <div class="fw-bold text-danger fs-6">₹${e.amount.toLocaleString()}</div>
                 </div>`;
             });
         }
 
-        dayHtml += `</div>`;
+        dayHtml += `</div></div>`; // End of day card
+
+        // CSS hack to remove last border inside loop
+        dayHtml = dayHtml.replace(/border-bottom border-dashed border-secondary border-opacity-10 last-border-none/g, '');
+
         if (hasData) html += dayHtml;
     });
 
-    html += `</div>`; // End of List
+    html += `</div>`;
 
-    // --- FOOTER (Totals) ---
+    // --- BEAUTIFUL FOOTER (Totals) ---
     let netTotal = grandIncome - grandCourier - grandExpense;
     let netColor = netTotal >= 0 ? 'text-success' : 'text-danger';
+    let netIcon = netTotal >= 0 ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>';
 
     html += `
-        <div class="mt-3 pt-2" style="border-top: 2px dashed #cbd5e1;">
-            <div class="d-flex justify-content-between px-2 mb-1" style="font-size:11px; font-weight:700;">
-                <span class="text-muted">Total Income:</span>
-                <span class="text-success">₹${grandIncome.toLocaleString()}</span>
+        <div class="mt-2 pt-3" style="border-top: 2px dashed #cbd5e1;">
+            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:12px; font-weight:700;">
+                <span class="text-muted"><i class="fas fa-plus-circle text-success me-1"></i> Total Income:</span>
+                <span class="text-success fw-bold fs-6">₹${grandIncome.toLocaleString()}</span>
             </div>
-            <div class="d-flex justify-content-between px-2 mb-1" style="font-size:11px; font-weight:700;">
-                <span class="text-muted">Total Courier Charge:</span>
-                <span class="text-danger">₹${grandCourier.toLocaleString()}</span>
+            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:12px; font-weight:700;">
+                <span class="text-muted"><i class="fas fa-minus-circle text-danger me-1"></i> Total Courier:</span>
+                <span class="text-danger fw-bold">₹${grandCourier.toLocaleString()}</span>
             </div>
-            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:11px; font-weight:700;">
-                <span class="text-muted">Other Expenses:</span>
-                <span class="text-danger">₹${grandExpense.toLocaleString()}</span>
+            <div class="d-flex justify-content-between px-2 mb-3" style="font-size:12px; font-weight:700;">
+                <span class="text-muted"><i class="fas fa-minus-circle text-danger me-1"></i> Other Expenses:</span>
+                <span class="text-danger fw-bold">₹${grandExpense.toLocaleString()}</span>
             </div>
-            <div class="d-flex justify-content-between px-2 py-2 rounded" style="background:#f1f5f9; font-size:13px; font-weight:900;">
-                <span class="text-dark">NET TOTAL:</span>
-                <span class="${netColor}">₹${netTotal.toLocaleString()}</span>
+            <div class="d-flex justify-content-between align-items-center px-3 py-3 rounded-4 shadow-sm" style="background:#f8fafc; border: 1px solid #e2e8f0;">
+                <span class="text-dark" style="font-size:12px; font-weight:800; letter-spacing:1px;">NET CASH FLOW:</span>
+                <span class="${netColor} fw-bold" style="font-size:18px;">${netIcon} ₹${Math.abs(netTotal).toLocaleString()}</span>
             </div>
         </div>
     </div>`;
@@ -4384,13 +4413,24 @@ window.renderDayBookTable = function () {
     $('#daybook-container').html(html);
 }
 
-// 🔥 PREVIOUS MONTH BUTTON LOGIC
+// 🔥 NEXT / PREV MONTH LOGIC
 window.loadPreviousMonthDayBook = function () {
-    // കലണ്ടർ ലോജിക് ഉപയോഗിച്ച് തീയതി ഒരു മാസം പുറകോട്ട് ആക്കുന്നു
     let prevDate = new Date(selectedDate);
     prevDate.setMonth(prevDate.getMonth() - 1);
     selectedDate = prevDate;
+    changeDashDate();
+}
 
-    // ഡാഷ്‌ബോർഡ് പുതുക്കുന്നു (ഇത് തനിയെ സർവറിൽ നിന്നും പുതിയ മാസത്തെ ഡാറ്റ എടുക്കും)
+window.loadNextMonthDayBook = function () {
+    let nextDate = new Date(selectedDate);
+    nextDate.setMonth(nextDate.getMonth() + 1);
+
+    // ഭാവിയിലോട്ട് പോകുന്നത് തടയാൻ
+    let today = new Date();
+    if (nextDate.getFullYear() > today.getFullYear() || (nextDate.getFullYear() === today.getFullYear() && nextDate.getMonth() > today.getMonth())) {
+        return;
+    }
+
+    selectedDate = nextDate;
     changeDashDate();
 }
