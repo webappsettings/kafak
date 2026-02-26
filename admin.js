@@ -2995,10 +2995,10 @@ function renderTransactionsForDate(dateStr) {
             // 🔥 FIX: 'undefined' മാറ്റി 'Auto-calculated' ആക്കുന്നു
             let subText = item.isCourier ? "Auto-calculated" : item.cat;
 
-            // 🔥 എഡിറ്റ് ബട്ടൺ ഉണ്ടാക്കുന്നു (ഓട്ടോമാറ്റിക് കൊറിയർ ചാർജ് അല്ലാത്തവയ്ക്ക് മാത്രം)
+            // 🔥 എഡിറ്റ് ബട്ടൺ ഉണ്ടാക്കുന്നു (ഓട്ടോമാറ്റിക് കൊറിയർ ചാർജ് അല്ലാത്തവയ്ക്കും, ID ഉള്ളവയ്ക്കും മാത്രം)
             let editBtn = '';
-            if (!item.isCourier) {
-                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="openEditExpense('${dateStr}', '${item.amount}', '${item.desc}', '${item.cat}')" title="Edit Expense"></i>`;
+            if (!item.isCourier && item.id) {
+                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="openEditExpense('${item.id}', '${dateStr}', '${item.amount}', '${item.desc}', '${item.cat}')" title="Edit Expense"></i>`;
             }
 
             html += `
@@ -3981,8 +3981,8 @@ window.loadOldTrackingOrders = function () {
     renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
 };
 
-// 🔥 SHOW EDIT EXPENSE MODAL (SweetAlert ഉപയോഗിച്ച്)
-window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
+// 🔥 SHOW EDIT EXPENSE MODAL
+window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
     let htmlForm = `
         <div class="text-start" style="font-size:14px;">
             <label class="fw-bold mb-1 small">Date</label>
@@ -3990,7 +3990,7 @@ window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
             
             <label class="fw-bold mb-1 small">Category</label>
             <select id="edit-exp-cat" class="form-select mb-3">
-                <option value="Material Purchase" ${oldCat === 'Material Purchase' ? 'selected' : ''}>Material Purchase (Bottles, Box, etc)</option>
+                <option value="Material Purchase" ${oldCat === 'Material Purchase' ? 'selected' : ''}>Material Purchase</option>
                 <option value="Courier Charges" ${oldCat === 'Courier Charges' ? 'selected' : ''}>Courier Charges</option>
                 <option value="Office Expense" ${oldCat === 'Office Expense' ? 'selected' : ''}>Office Expense</option>
                 <option value="Other" ${oldCat === 'Other' ? 'selected' : ''}>Other</option>
@@ -4004,7 +4004,6 @@ window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
             
             <label class="fw-bold mb-1 small text-primary"><i class="fas fa-receipt"></i> Upload New Receipt (Optional)</label>
             <input type="file" id="edit-exp-file" class="form-control" accept="image/*">
-            <small class="text-muted" style="font-size:11px;">Leave blank to keep the old receipt.</small>
         </div>
     `;
 
@@ -4016,12 +4015,10 @@ window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
         confirmButtonColor: '#2563eb',
         preConfirm: () => {
             let fileInput = document.getElementById('edit-exp-file');
-            let file = fileInput.files[0];
+            let file = fileInput ? fileInput.files[0] : null;
 
             let updateData = {
-                oldDate: oldDate,
-                oldAmount: oldAmount,
-                oldDesc: oldDesc,
+                expId: expId,
                 date: document.getElementById('edit-exp-date').value,
                 category: document.getElementById('edit-exp-cat').value,
                 amount: document.getElementById('edit-exp-amount').value,
@@ -4035,7 +4032,6 @@ window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
                 return false;
             }
 
-            // പുതിയ ഫോട്ടോ ഉണ്ടെങ്കിൽ അത് കൂടെ എടുക്കുന്നു
             if (file) {
                 return new Promise((resolve) => {
                     let reader = new FileReader();
@@ -4051,7 +4047,16 @@ window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            submitEditedExpense(result.value);
+            Swal.fire({ title: 'Updating...', text: 'Saving your changes...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
+
+            fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'editExpense', data: result.value }) })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.result === 'success') {
+                        Swal.fire({ icon: 'success', title: 'Updated!', timer: 2000, showConfirmButton: false });
+                        setTimeout(() => { location.reload(); }, 2000);
+                    } else { Swal.fire('Error', 'Update failed.', 'error'); }
+                }).catch(err => Swal.fire('Error', 'Network Error.', 'error'));
         }
     });
 }
