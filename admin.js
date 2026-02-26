@@ -4047,16 +4047,8 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({ title: 'Updating...', text: 'Saving your changes...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
-
-            fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'editExpense', data: result.value }) })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.result === 'success') {
-                        Swal.fire({ icon: 'success', title: 'Updated!', timer: 2000, showConfirmButton: false });
-                        setTimeout(() => { location.reload(); }, 2000);
-                    } else { Swal.fire('Error', 'Update failed.', 'error'); }
-                }).catch(err => Swal.fire('Error', 'Network Error.', 'error'));
+            // 🔥 IVIDE AANU FUNCTION CALL CHEYYENDATHU!
+            submitEditedExpense(result.value);
         }
     });
 }
