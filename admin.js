@@ -2995,6 +2995,12 @@ function renderTransactionsForDate(dateStr) {
             // 🔥 FIX: 'undefined' മാറ്റി 'Auto-calculated' ആക്കുന്നു
             let subText = item.isCourier ? "Auto-calculated" : item.cat;
 
+            // 🔥 എഡിറ്റ് ബട്ടൺ ഉണ്ടാക്കുന്നു (ഓട്ടോമാറ്റിക് കൊറിയർ ചാർജ് അല്ലാത്തവയ്ക്ക് മാത്രം)
+            let editBtn = '';
+            if (!item.isCourier) {
+                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="openEditExpense('${dateStr}', '${item.amount}', '${item.desc}', '${item.cat}')" title="Edit Expense"></i>`;
+            }
+
             html += `
             <div class="d-flex justify-content-between align-items-center p-3 mb-2 bg-white border border-danger border-opacity-25 rounded-4 shadow-sm">
                 <div class="d-flex align-items-center gap-3">
@@ -3004,7 +3010,10 @@ function renderTransactionsForDate(dateStr) {
                         <div class="text-muted" style="font-size:10px;">${subText}</div>
                     </div>
                 </div>
-                <div class="fw-bold text-danger fs-6">-₹${item.amount.toLocaleString()}</div>
+                <div class="d-flex align-items-center">
+                    <div class="fw-bold text-danger fs-6">-₹${item.amount.toLocaleString()}</div>
+                    ${editBtn}
+                </div>
             </div>`;
         });
     }
@@ -3971,3 +3980,105 @@ window.loadOldTrackingOrders = function () {
     showAllTracking = true;
     renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
 };
+
+// 🔥 SHOW EDIT EXPENSE MODAL (SweetAlert ഉപയോഗിച്ച്)
+window.openEditExpense = function (oldDate, oldAmount, oldDesc, oldCat) {
+    let htmlForm = `
+        <div class="text-start" style="font-size:14px;">
+            <label class="fw-bold mb-1 small">Date</label>
+            <input type="date" id="edit-exp-date" class="form-control mb-3" value="${oldDate.split('T')[0]}">
+            
+            <label class="fw-bold mb-1 small">Category</label>
+            <select id="edit-exp-cat" class="form-select mb-3">
+                <option value="Material Purchase" ${oldCat === 'Material Purchase' ? 'selected' : ''}>Material Purchase (Bottles, Box, etc)</option>
+                <option value="Courier Charges" ${oldCat === 'Courier Charges' ? 'selected' : ''}>Courier Charges</option>
+                <option value="Office Expense" ${oldCat === 'Office Expense' ? 'selected' : ''}>Office Expense</option>
+                <option value="Other" ${oldCat === 'Other' ? 'selected' : ''}>Other</option>
+            </select>
+            
+            <label class="fw-bold mb-1 small">Amount (₹)</label>
+            <input type="number" id="edit-exp-amount" class="form-control mb-3" value="${oldAmount}">
+            
+            <label class="fw-bold mb-1 small">Description</label>
+            <input type="text" id="edit-exp-desc" class="form-control mb-3" value="${oldDesc}">
+            
+            <label class="fw-bold mb-1 small text-primary"><i class="fas fa-receipt"></i> Upload New Receipt (Optional)</label>
+            <input type="file" id="edit-exp-file" class="form-control" accept="image/*">
+            <small class="text-muted" style="font-size:11px;">Leave blank to keep the old receipt.</small>
+        </div>
+    `;
+
+    Swal.fire({
+        title: 'Edit Expense 📝',
+        html: htmlForm,
+        showCancelButton: true,
+        confirmButtonText: 'Update Expense',
+        confirmButtonColor: '#2563eb',
+        preConfirm: () => {
+            let fileInput = document.getElementById('edit-exp-file');
+            let file = fileInput.files[0];
+
+            let updateData = {
+                oldDate: oldDate,
+                oldAmount: oldAmount,
+                oldDesc: oldDesc,
+                date: document.getElementById('edit-exp-date').value,
+                category: document.getElementById('edit-exp-cat').value,
+                amount: document.getElementById('edit-exp-amount').value,
+                description: document.getElementById('edit-exp-desc').value,
+                fileData: null,
+                fileName: null
+            };
+
+            if (!updateData.amount || !updateData.description) {
+                Swal.showValidationMessage('Amount and Description are required!');
+                return false;
+            }
+
+            // പുതിയ ഫോട്ടോ ഉണ്ടെങ്കിൽ അത് കൂടെ എടുക്കുന്നു
+            if (file) {
+                return new Promise((resolve) => {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        updateData.fileData = e.target.result.split(',')[1];
+                        updateData.fileName = "EDITED_" + file.name;
+                        resolve(updateData);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+            return updateData;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            submitEditedExpense(result.value);
+        }
+    });
+}
+
+// 🔥 SUBMIT EDITED EXPENSE TO SERVER
+function submitEditedExpense(updateData) {
+    Swal.fire({
+        title: 'Updating...',
+        text: 'Saving your changes to the server.',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'editExpense', data: updateData })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.result === 'success') {
+                Swal.fire({ icon: 'success', title: 'Updated!', text: 'Expense has been modified.', timer: 2000, showConfirmButton: false });
+                // അപ്ഡേറ്റ് ചെയ്ത ശേഷം ഡാഷ്‌ബോർഡ് റീലോഡ് ചെയ്യുന്നു
+                setTimeout(() => { location.reload(); }, 2000);
+            } else {
+                Swal.fire('Error', 'Could not find or update the expense.', 'error');
+            }
+        }).catch(err => {
+            Swal.fire('Error', 'Network Error. Try again.', 'error');
+        });
+}
