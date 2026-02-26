@@ -3982,17 +3982,32 @@ window.loadOldTrackingOrders = function () {
 };
 
 // 🔥 SHOW EDIT EXPENSE MODAL
+// 🔥 SHOW EDIT EXPENSE MODAL (Fixed Z-Index, Flatpickr & Image Compression)
 window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
+
+    // 1. Z-INDEX FIX: Drawer-ന് മുകളിൽ വരാൻ വേണ്ടി
+    if (!$('#swal-zindex-fix').length) {
+        $('<style id="swal-zindex-fix">').html(`
+            .swal2-container { z-index: 99999 !important; }
+            .flatpickr-calendar { z-index: 100000 !important; }
+        `).appendTo('head');
+    }
+
     let htmlForm = `
         <div class="text-start" style="font-size:14px;">
-            <label class="fw-bold mb-1 small">Date</label>
-            <input type="date" id="edit-exp-date" class="form-control mb-3" value="${oldDate.split('T')[0]}">
+            <label class="fw-bold mb-1 small">Date & Time</label>
+            <input type="text" id="edit-exp-date" class="form-control mb-3 fw-bold" placeholder="Select Date & Time...">
             
             <label class="fw-bold mb-1 small">Category</label>
             <select id="edit-exp-cat" class="form-select mb-3">
                 <option value="Material Purchase" ${oldCat === 'Material Purchase' ? 'selected' : ''}>Material Purchase</option>
+                <option value="Packaging Material" ${oldCat === 'Packaging Material' ? 'selected' : ''}>Packaging Material</option>
+                <option value="Marketing/Ads" ${oldCat === 'Marketing/Ads' ? 'selected' : ''}>Marketing / Ads</option>
+                <option value="Transport/Fuel" ${oldCat === 'Transport/Fuel' ? 'selected' : ''}>Transport / Fuel</option>
+                <option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>Salary / Wages</option>
                 <option value="Courier Charges" ${oldCat === 'Courier Charges' ? 'selected' : ''}>Courier Charges</option>
                 <option value="Office Expense" ${oldCat === 'Office Expense' ? 'selected' : ''}>Office Expense</option>
+                <option value="Refund" ${oldCat === 'Refund' ? 'selected' : ''}>Refund</option>
                 <option value="Other" ${oldCat === 'Other' ? 'selected' : ''}>Other</option>
             </select>
             
@@ -4013,10 +4028,19 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
         showCancelButton: true,
         confirmButtonText: 'Update Expense',
         confirmButtonColor: '#2563eb',
-        preConfirm: () => {
-            let fileInput = document.getElementById('edit-exp-file');
-            let file = fileInput ? fileInput.files[0] : null;
-
+        didOpen: () => {
+            // 2. FLATPICKR DATE & TIME PICKER
+            flatpickr("#edit-exp-date", {
+                enableTime: true,
+                dateFormat: "Y-m-d\\TH:i",
+                altInput: true,
+                altFormat: "F j, Y at h:i K",
+                defaultDate: oldDate || new Date(),
+                time_24hr: false,
+                disableMobile: true
+            });
+        },
+        preConfirm: async () => {
             let updateData = {
                 expId: expId,
                 date: document.getElementById('edit-exp-date').value,
@@ -4032,22 +4056,24 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat) {
                 return false;
             }
 
-            if (file) {
-                return new Promise((resolve) => {
-                    let reader = new FileReader();
-                    reader.onload = function (e) {
-                        updateData.fileData = e.target.result.split(',')[1];
-                        updateData.fileName = "EDITED_" + file.name;
-                        resolve(updateData);
-                    };
-                    reader.readAsDataURL(file);
-                });
+            // 3. IMAGE COMPRESSION FIX (Same as Add Expense)
+            let fileInput = document.getElementById('edit-exp-file');
+            if (fileInput && fileInput.files.length > 0) {
+                Swal.showLoading(); // Compress ചെയ്യുമ്പോൾ ലോഡിങ് കാണിക്കാൻ
+                try {
+                    let compressed = await compressImage(fileInput.files[0]);
+                    updateData.fileData = compressed.data;
+                    updateData.fileName = "EDITED_" + compressed.name;
+                } catch (err) {
+                    Swal.showValidationMessage('Image compression failed!');
+                    return false;
+                }
             }
+
             return updateData;
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            // 🔥 IVIDE AANU FUNCTION CALL CHEYYENDATHU!
             submitEditedExpense(result.value);
         }
     });
