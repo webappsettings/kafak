@@ -2929,6 +2929,7 @@ function renderDashboard() {
 
     // 🔥 പുതുതായി ചേർത്ത Day Book വിളിക്കാൻ
     renderDayBookTable();
+    renderDetailedMonthlyOverview();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -4153,8 +4154,7 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (Beautiful Ledger UI with Icons & Next/Prev)
-// 🔥 RENDER DAY BOOK (Fixed Courier Cost & Logic)
+// 🔥 RENDER DAY BOOK (With View Toggle: Accounting vs Profit View)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4165,15 +4165,13 @@ window.renderDayBookTable = function () {
     let currentDate = new Date();
     let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
 
-    let dailyData = {};
+    // യൂസർ സെലക്ട് ചെയ്ത View Mode എടുക്കുന്നു (ഇല്ലെങ്കിൽ Default 'profit' ആക്കും)
+    let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'profit';
 
+    let dailyData = {};
     const initDate = (dStr) => {
         if (!dailyData[dStr]) {
-            dailyData[dStr] = {
-                income: { orders: [], totalAmount: 0, totalBottles: 0 },
-                courier: { items: [], totalAmount: 0 },
-                expenses: []
-            };
+            dailyData[dStr] = { income: { orders: [], totalAmount: 0, totalBottles: 0 }, courier: { items: [], totalAmount: 0 }, expenses: [] };
         }
     };
 
@@ -4182,9 +4180,15 @@ window.renderDayBookTable = function () {
         if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
 
         let qty = parseInt(o.quantity) || 0;
+        let pDate = new Date(o.paidDate || o.timestamp);
+        let actualCost = parseInt(o.Actual_Courier_Cost);
+
+        if (!actualCost || isNaN(actualCost) || actualCost === 0) {
+            let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
+        }
 
         // --- INCOME LOGIC ---
-        let pDate = new Date(o.paidDate || o.timestamp);
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
             initDate(dStr);
@@ -4195,23 +4199,20 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.orders.push({ qty: qty, amt: amt });
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
+
+            // 🔥 PROFIT VIEW: ഓർഡർ വന്ന അന്ന് തന്നെ കൊറിയർ ചിലവ് കാണിക്കുന്നു
+            if (viewMode === 'profit' && actualCost > 0) {
+                dailyData[dStr].courier.items.push({ charge: actualCost });
+                dailyData[dStr].courier.totalAmount += actualCost;
+            }
         }
 
-        // --- COURIER LOGIC (FIXED) ---
-        if (status !== 'Paid') {
+        // --- ACCOUNTING VIEW: അയച്ച അന്ന് കൊറിയർ ചിലവ് കാണിക്കുന്നു ---
+        if (viewMode === 'accounting' && status !== 'Paid') {
             let dDate = new Date(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
-
-                // 🔥 കസ്റ്റമർ തന്ന തുകയ്ക്ക് പകരം DTDC ക്ക് കൊടുക്കുന്ന യഥാർത്ഥ ചിലവ് (Actual_Courier_Cost) എടുക്കുന്നു
-                let actualCost = parseInt(o.Actual_Courier_Cost);
-
-                // ഡാറ്റാബേസിൽ ശരിയായ തുക ഇല്ലെങ്കിൽ മാത്രം, ഒരു പഴയ കാൽക്കുലേഷൻ ഉപയോഗിക്കുന്നു
-                if (!actualCost || isNaN(actualCost) || actualCost === 0) {
-                    let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                    actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge; // ഏകദേശ ചിലവ്
-                }
 
                 if (actualCost > 0) {
                     dailyData[dStr].courier.items.push({ charge: actualCost });
@@ -4224,7 +4225,6 @@ window.renderDayBookTable = function () {
     if (dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             if (e.isCourier) return;
-
             let dDate = new Date(e.date);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
@@ -4235,22 +4235,13 @@ window.renderDayBookTable = function () {
     }
 
     let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
-
-    let grandIncome = 0;
-    let grandCourier = 0;
-    let grandExpense = 0;
+    let grandIncome = 0, grandCourier = 0, grandExpense = 0;
 
     if ($('#daybook-container').length === 0) {
         $('<div id="daybook-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
     }
 
-    let nextMonthBtnHtml = '';
-    if (!isCurrentMonth) {
-        nextMonthBtnHtml = `
-        <button class="btn btn-sm btn-dark rounded-pill fw-bold ms-2 shadow-sm" style="font-size:9px; padding: 5px 12px;" onclick="loadNextMonthDayBook()">
-            NEXT MTH <i class="fas fa-chevron-right ms-1"></i>
-        </button>`;
-    }
+    let nextMonthBtnHtml = !isCurrentMonth ? `<button class="btn btn-sm btn-dark rounded-pill fw-bold ms-2 shadow-sm" style="font-size:9px; padding: 5px 12px;" onclick="loadNextMonthDayBook()">NEXT MTH <i class="fas fa-chevron-right ms-1"></i></button>` : '';
 
     let html = `
     <div class="bg-white p-3 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-4 mb-5">
@@ -4260,23 +4251,27 @@ window.renderDayBookTable = function () {
             </h6>
             <div class="d-flex align-items-center">
                 <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 me-2" style="font-size:11px;">${monthName.toUpperCase()}</span>
-                <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 5px 12px;" onclick="loadPreviousMonthDayBook()">
-                    <i class="fas fa-chevron-left me-1"></i> PREV MTH
-                </button>
+                <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 5px 12px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> PREV</button>
                 ${nextMonthBtnHtml}
             </div>
+        </div>
+        
+        <div class="d-flex justify-content-center mb-3">
+            <select id="daybook-view-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
+                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View (Income Day = Courier Day)</option>
+                <option value="accounting" ${viewMode === 'accounting' ? 'selected' : ''}>📊 Accounting View (Dispatch Day = Courier Day)</option>
+            </select>
         </div>
         <div>
     `;
 
     if (sortedDates.length === 0) {
-        html += `<div class="text-center text-muted small py-4" style="border:1px dashed #ccc; border-radius:10px;">No transactions found for ${monthName}.</div>`;
+        html += `<div class="text-center text-muted small py-4" style="border:1px dashed #ccc; border-radius:10px;">No transactions found.</div>`;
     }
 
     sortedDates.forEach(dateStr => {
         let data = dailyData[dateStr];
-        let dateObj = new Date(dateStr);
-        let displayDate = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
         let dayHtml = `
         <div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm">
@@ -4301,9 +4296,7 @@ window.renderDayBookTable = function () {
                 qtyGroups[q].totalBottles += q;
             });
 
-            let breakdownText = Object.keys(qtyGroups).map(q =>
-                `₹${qtyGroups[q].totalAmt}(<span class="text-dark fw-bold">${qtyGroups[q].totalBottles}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px; color:#d97706 !important;"></i>)`
-            ).join(' <span class="text-muted mx-1">+</span> ');
+            let breakdownText = Object.keys(qtyGroups).map(q => `₹${qtyGroups[q].totalAmt}(<span class="text-dark fw-bold">${qtyGroups[q].totalBottles}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px; color:#d97706 !important;"></i>)`).join(' <span class="text-muted mx-1">+</span> ');
 
             dayHtml += `
             <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
@@ -4328,10 +4321,7 @@ window.renderDayBookTable = function () {
                 chargeGroups[c.charge]++;
             });
 
-            // ഇപ്പോൾ യഥാർത്ഥ DTDC ചാർജ് (60, 120 മുതലായവ) വരും
-            let breakdownText = Object.keys(chargeGroups).map(c =>
-                `<span class="text-dark fw-bold">${chargeGroups[c]}</span><span class="text-muted mx-1">x</span>₹${c}`
-            ).join(', ');
+            let breakdownText = Object.keys(chargeGroups).map(c => `<span class="text-dark fw-bold">${chargeGroups[c]}</span><span class="text-muted mx-1">x</span>₹${c}`).join(', ');
 
             dayHtml += `
             <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
@@ -4350,17 +4340,8 @@ window.renderDayBookTable = function () {
             hasData = true;
             data.expenses.forEach(e => {
                 grandExpense += e.amount;
-
-                let proofHtml = '';
-                if (e.proof && String(e.proof).trim() !== "") {
-                    proofHtml = `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></button>`;
-                }
-
-                let editHtml = '';
-                if (e.id) {
-                    editHtml = `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>`;
-                }
-
+                let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></button>` : '';
+                let editHtml = e.id ? `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
                 let title = e.cat || 'Expense';
                 let subText = e.vendor ? `<span class="fw-bold text-dark">${e.vendor}</span>` : e.desc;
                 if (e.vendor && e.desc) subText = `<span class="fw-bold text-dark">${e.vendor}</span>, ${e.desc}`;
@@ -4368,9 +4349,7 @@ window.renderDayBookTable = function () {
                 dayHtml += `
                 <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10 last-border-none">
                     <div>
-                        <div class="fw-bold text-danger" style="font-size:12px;">
-                            <i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}
-                        </div>
+                        <div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}</div>
                         <div class="text-secondary mt-1" style="font-size:10px;">-- ${subText} ${editHtml}</div>
                     </div>
                     <div class="fw-bold text-danger fs-6">₹${e.amount.toLocaleString()}</div>
@@ -4380,7 +4359,6 @@ window.renderDayBookTable = function () {
 
         dayHtml += `</div></div>`;
         dayHtml = dayHtml.replace(/border-bottom border-dashed border-secondary border-opacity-10 last-border-none/g, '');
-
         if (hasData) html += dayHtml;
     });
 
@@ -4405,7 +4383,7 @@ window.renderDayBookTable = function () {
                 <span class="text-danger fw-bold">₹${grandExpense.toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between align-items-center px-3 py-3 rounded-4 shadow-sm" style="background:#f8fafc; border: 1px solid #e2e8f0;">
-                <span class="text-dark" style="font-size:12px; font-weight:800; letter-spacing:1px;">NET CASH FLOW:</span>
+                <span class="text-dark" style="font-size:12px; font-weight:800; letter-spacing:1px;">NET FLOW (AS PER VIEW):</span>
                 <span class="${netColor} fw-bold" style="font-size:18px;">${netIcon} ₹${Math.abs(netTotal).toLocaleString()}</span>
             </div>
         </div>
@@ -4434,4 +4412,92 @@ window.loadNextMonthDayBook = function () {
 
     selectedDate = nextDate;
     changeDashDate();
+}
+
+
+// 🔥 RENDER DETAILED MONTHLY OVERVIEW (Clears all confusion about Profit & Expense)
+window.renderDetailedMonthlyOverview = function () {
+    if (!dashboardData || !dashboardData.monthTimeline) return;
+
+    if ($('#detailed-overview-container').length === 0) {
+        $('<div id="detailed-overview-container" class="mt-3 mb-4"></div>').insertAfter('#daybook-container');
+    }
+
+    let mY = selectedDate.getFullYear();
+    let mM = selectedDate.getMonth();
+
+    // ടോട്ടൽ കാൽക്കുലേഷൻ
+    let tSales = 0, tBottles = 0, tBottleCost = 0, tCourierCost = 0, tOtherExpense = 0;
+
+    // ഓർഡറുകളിൽ നിന്നും
+    allOrders.forEach(o => {
+        let pDate = new Date(o.paidDate || o.timestamp);
+        if (pDate.getFullYear() === mY && pDate.getMonth() === mM && o.Status === 'Paid' || o.Status === 'Dispatched' || o.Status === 'Delivered') {
+            let qty = parseInt(o.quantity) || 0;
+            let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+            let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+
+            tSales += amt;
+            tBottles += qty;
+            tBottleCost += (qty * 330); // 330 രൂപയാണ് ഒരു കുപ്പിയുടെ ചിലവ് എന്ന് കണക്കാക്കുന്നു
+
+            let actualCost = parseInt(o.Actual_Courier_Cost);
+            if (!actualCost || isNaN(actualCost) || actualCost === 0) {
+                let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
+            }
+            tCourierCost += actualCost;
+        }
+    });
+
+    // മറ്റ് ചിലവുകളിൽ നിന്നും
+    if (dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => {
+            if (!e.isCourier) tOtherExpense += e.amount;
+        });
+    }
+
+    let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
+    let netProfit = tSales - totalExpense;
+
+    let html = `
+    <div class="bg-dark text-white p-4 rounded-4 shadow mb-5" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+        <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
+            <i class="fas fa-chart-pie me-2"></i> True Profit Breakdown
+        </h6>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
+            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales)</span>
+            <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
+        </div>
+
+        <div class="mb-2 ps-3 border-start border-3 border-danger">
+            <div class="text-danger fw-bold" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES:</div>
+            
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="text-light" style="font-size:12px;">🍾 Bottle Making Cost (${tBottles} bottles × ₹330)</span>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="text-light" style="font-size:12px;">🚚 Courier Charges</span>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="text-light" style="font-size:12px;">🧾 Other Expenses (Salary, etc.)</span>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top border-secondary border-opacity-50">
+            <span class="fw-bold text-uppercase text-light" style="font-size:14px; letter-spacing:1px;">Actual Net Profit</span>
+            <span class="${netProfit >= 0 ? 'text-success' : 'text-danger'} fw-bolder" style="font-size:24px;">
+                ₹${netProfit.toLocaleString()}
+            </span>
+        </div>
+        ${netProfit > 0 ? `<div class="text-end mt-1" style="font-size:10px; color:#34d399;">You are in Profit! Great job. 🎉</div>` : `<div class="text-end mt-1" style="font-size:10px; color:#f87171;">Currently in loss. Keep pushing! 💪</div>`}
+    </div>`;
+
+    $('#detailed-overview-container').html(html);
 }
