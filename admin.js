@@ -4446,11 +4446,12 @@ window.renderDetailedMonthlyOverview = function () {
             tBottleCost += (qty * bCost);
 
             // 🔥 DYNAMIC COURIER COST: Server-il ninnulla 'Actual_Courier_Cost' edukkunnu.
-            let actualCost = parseInt(o.Actual_Courier_Cost);
-            if (!actualCost || isNaN(actualCost) || actualCost === 0) {
-                let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
-            }
+            // if (!actualCost || isNaN(actualCost) || actualCost === 0) {
+            //     let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            //     actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
+            // }
+            // കസ്റ്റമറിൽ നിന്ന് വാങ്ങിയ മുഴുവൻ തുകയും (കൊറിയർ + ട്രാൻസ്പോർട്ട്) ചിലവായി എടുക്കുന്നു
+            let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
             tCourierCost += actualCost;
         }
     });
@@ -4551,12 +4552,13 @@ window.renderYearlyOverview = function () {
             ySales += amt;
             yBottles += qty;
 
-            let actualCost = parseInt(o.Actual_Courier_Cost);
-            if (!actualCost || isNaN(actualCost) || actualCost === 0) {
-                let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
-            }
-            yCourierCost += actualCost;
+            // let actualCost = parseInt(o.Actual_Courier_Cost);
+            // if (!actualCost || isNaN(actualCost) || actualCost === 0) {
+            //     let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            //     actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
+            // }
+            let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            tCourierCost += actualCost;
         }
     });
 
