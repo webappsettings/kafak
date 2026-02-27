@@ -4654,43 +4654,73 @@ window.loadCourierSettings = function () {
         });
 }
 
-// 🔥 RENDER SETTINGS UI (With Provider Name & Add New Option)
+// 🔥 RENDER SETTINGS UI (With State Grouping & Default Radio Buttons)
 function renderSettingsUI(settingsData) {
     let html = '';
 
+    // Base Cost
     if (settingsData.length > 0 && settingsData[0]['Base Cost Per Bottle']) {
         $('#setting-base-cost').val(settingsData[0]['Base Cost Per Bottle']);
     }
 
+    // ഡാറ്റയെ State അനുസരിച്ച് ഗ്രൂപ്പ് ചെയ്യുന്നു
+    let statesMap = {};
     settingsData.forEach((row, index) => {
-        if (row.Parameter && row.Parameter.trim() !== "") {
-            // പ്രൊവൈഡർ പേര് ഉണ്ടെങ്കിൽ അത് കാണിക്കാൻ
-            let providerName = row.Provider ? `<span class="text-primary fw-bolder ms-1">(${row.Provider})</span>` : '';
-
-            html += `
-            <div class="mb-3 p-2 bg-light border border-secondary border-opacity-10 rounded shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-bold text-dark" style="font-size: 12px;">
-                        <i class="fas fa-map-marker-alt text-danger me-1"></i> ${row.Parameter} ${providerName}
-                    </span>
-                    <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25" style="font-size: 8px;">Row: ${index + 2}</span>
-                </div>
-                <div class="input-group input-group-sm mb-1">
-                    <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Rates</span>
-                    <input type="text" id="courier-rate-${index}" class="form-control fw-bold text-dark" style="font-size: 11px;" value="${row['Base Rate String'] || ''}">
-                </div>
-                <div class="input-group input-group-sm">
-                    <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Margin ₹</span>
-                    <input type="number" id="courier-margin-${index}" class="form-control fw-bold text-danger" style="font-size: 11px; max-width: 70px;" value="${row['Service Charge'] || 0}">
-                    <button class="btn btn-outline-danger py-0 px-3 fw-bold" style="font-size: 10px;" onclick="updateCourierRate(${index + 2}, '${row.Parameter}')">SAVE</button>
-                </div>
-            </div>`;
+        let state = row.Parameter ? row.Parameter.trim().toUpperCase() : "";
+        if (state) {
+            if (!statesMap[state]) statesMap[state] = [];
+            row.actualRow = index + 2; // ഗൂഗിൾ ഷീറ്റിലെ യഥാർത്ഥ വരി നമ്പർ
+            statesMap[state].push(row);
         }
     });
 
+    // ഗ്രൂപ്പ് ചെയ്ത ഡാറ്റ വെച്ച് UI ഉണ്ടാക്കുന്നു
+    for (let state in statesMap) {
+        html += `
+        <div class="mb-3 p-2 bg-light border border-secondary border-opacity-25 rounded shadow-sm">
+            <h6 class="fw-bold text-dark mb-2 pb-1 border-bottom border-secondary border-opacity-25" style="font-size: 13px;">
+                <i class="fas fa-map-marker-alt text-danger me-1"></i> ${state}
+            </h6>`;
+
+        statesMap[state].forEach(row => {
+            let provider = row.Provider || "Standard";
+
+            // കോളം G (Default) ൽ എന്താണ് ഉള്ളതെന്ന് നോക്കുന്നു (ഹെഡിങ് ഇല്ലെങ്കിൽ '' എന്ന് വരും)
+            let defVal = String(row['Default'] || row[''] || '').toLowerCase().trim();
+            let isDefault = (defVal === 'default' || defVal === 'yes' || defVal === 'true');
+
+            let radioId = `radio-${row.actualRow}`;
+            let radioName = `def-${state.replace(/\s+/g, '')}`; // ഒരേ സംസ്ഥാനത്തിന് ഒരേ റേഡിയോ ഗ്രൂപ്പ് പേര്
+
+            html += `
+            <div class="mb-2 p-2 border ${isDefault ? 'border-primary' : 'border-secondary border-opacity-25'} rounded bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <div class="form-check m-0">
+                        <input class="form-check-input border-primary" type="radio" name="${radioName}" id="${radioId}" ${isDefault ? 'checked' : ''} onchange="setDefaultCourier('${state}', ${row.actualRow})">
+                        <label class="form-check-label fw-bold ${isDefault ? 'text-primary' : 'text-dark'}" for="${radioId}" style="font-size: 12px; cursor:pointer;">
+                            ${provider} ${isDefault ? '<span class="badge bg-primary ms-1" style="font-size:8px;">DEFAULT</span>' : ''}
+                        </label>
+                    </div>
+                    <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25" style="font-size: 8px;">Row: ${row.actualRow}</span>
+                </div>
+                
+                <div class="input-group input-group-sm mb-1 mt-2">
+                    <span class="input-group-text bg-light text-muted" style="font-size: 10px; padding: 0 5px;">Rates</span>
+                    <input type="text" id="courier-rate-${row.actualRow}" class="form-control fw-bold text-dark" style="font-size: 11px;" value="${row['Base Rate String'] || ''}">
+                </div>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-light text-muted" style="font-size: 10px; padding: 0 5px;">Margin ₹</span>
+                    <input type="number" id="courier-margin-${row.actualRow}" class="form-control fw-bold text-danger" style="font-size: 11px; max-width: 70px;" value="${row['Service Charge'] || 0}">
+                    <button class="btn btn-outline-danger py-0 px-3 fw-bold" style="font-size: 10px;" onclick="updateCourierRate(${row.actualRow}, '${state}')">SAVE</button>
+                </div>
+            </div>`;
+        });
+        html += `</div>`;
+    }
+
     if (html === '') html = '<div class="text-muted p-2 small text-center">No courier regions found.</div>';
 
-    // 🔥 ADD NEW COURIER FORM (പുതിയത് ആഡ് ചെയ്യാൻ)
+    // 🔥 ADD NEW COURIER FORM
     html += `
     <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
         <h6 class="fw-bold text-dark mb-2" style="font-size: 12px;">
@@ -4699,10 +4729,10 @@ function renderSettingsUI(settingsData) {
         <div class="p-2 bg-white border border-success border-opacity-50 rounded-3 shadow-sm">
             <div class="row g-2 mb-2">
                 <div class="col-6">
-                    <input type="text" id="new-state" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="State (e.g. GOA)">
+                    <input type="text" id="new-state" class="form-control form-control-sm border-secondary border-opacity-25 fw-bold" style="font-size:11px;" placeholder="State (e.g. GOA)">
                 </div>
                 <div class="col-6">
-                    <input type="text" id="new-provider" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Provider (e.g. DTDC)">
+                    <input type="text" id="new-provider" class="form-control form-control-sm border-secondary border-opacity-25 fw-bold" style="font-size:11px;" placeholder="Provider (e.g. DTDC)">
                 </div>
             </div>
             <div class="row g-2 mb-2">
@@ -4720,6 +4750,90 @@ function renderSettingsUI(settingsData) {
 
     $('#courier-settings-container').html(html);
 }
+
+// 🔥 SET DEFAULT COURIER (Radio Button Change)
+window.setDefaultCourier = function (state, rowNum) {
+    showToast("Updating...", `Setting default for ${state}...`, "info");
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({
+            action: 'setDefaultCourier',
+            state: state,
+            row: rowNum
+        })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.status === 'success') {
+                showToast("Success", "Default courier updated!", "success");
+                loadCourierSettings(); // UI റിഫ്രഷ് ചെയ്യാൻ
+            } else {
+                showToast("Error", "Failed to update default", "error");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            showToast("Error", "Network issue", "error");
+        });
+}
+
+window.updateBaseCost = function () {
+    let newCost = $('#setting-base-cost').val();
+    if (!newCost || isNaN(newCost) || newCost <= 0) return showToast("Invalid!", "Enter valid amount.", "error");
+    if (!confirm(`Change Base Bottle Cost to ₹${newCost}? (Affects NEW orders only)`)) return;
+    saveSettingToServer('Base Cost', 2, 'K', newCost);
+}
+
+window.updateCourierRate = function (rowNumber, stateName) {
+    let newRates = $(`#courier-rate-${rowNumber}`).val(); // 🔥 Index മാറി Row Number ആയി
+    let newMargin = $(`#courier-margin-${rowNumber}`).val();
+    if (!confirm(`Update rates for ${stateName}?\n\nRates: ${newRates}\nMargin: ₹${newMargin}`)) return;
+
+    saveSettingToServer(`Rates for ${stateName}`, rowNumber, 'D', newRates);
+    setTimeout(() => { saveSettingToServer(`Margin for ${stateName}`, rowNumber, 'F', newMargin); }, 1500);
+}
+
+window.addNewCourierRow = function () {
+    let state = $('#new-state').val().trim().toUpperCase();
+    let provider = $('#new-provider').val().trim();
+    let rates = $('#new-rates').val().trim();
+    let margin = $('#new-margin').val().trim();
+
+    if (!state || !provider || !rates) return showToast("Missing Info", "State, Provider and Rates are required!", "error");
+    if (!confirm(`Add new courier rate for ${state} (${provider})?`)) return;
+
+    showToast("Saving...", "Adding new courier region...", "info");
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'addCourierRow', state: state, provider: provider, rates: rates, margin: margin || 0 })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.status === 'success') {
+                showToast("Success", "New courier added!", "success");
+                loadCourierSettings();
+            }
+        });
+}
+
+function saveSettingToServer(settingName, row, col, val) {
+    showToast("Saving...", `Updating ${settingName}...`, "info");
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'updateSettingCell', row: row, col: col, value: val })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.status === 'success') showToast("Success", `${settingName} updated!`, "success");
+        });
+}
+
+// Z-INDEX FIX 
+$(document).ready(function () {
+    $('#settingsModal').on('show.bs.modal', function () { $(this).css('z-index', '10600'); });
+    $('#settingsModal').on('shown.bs.modal', function () { $('.modal-backdrop').last().css('z-index', '10500'); });
+});
 
 // 🔥 FUNCTION TO ADD NEW ROW TO SHEET
 window.addNewCourierRow = function () {
