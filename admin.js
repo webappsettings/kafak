@@ -4133,6 +4133,7 @@ function submitEditedExpense(updateData) {
 
 // 🔥 RENDER DAY BOOK (With View Toggle: Accounting vs Profit View)
 // 🔥 RENDER DAY BOOK (Accounting Default View)
+// 🔥 RENDER DAY BOOK (With Courier Charge Toggle)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4143,8 +4144,9 @@ window.renderDayBookTable = function () {
     let currentDate = new Date();
     let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
 
-    // 🔥 FIX: Default View is now 'accounting'
+    // വ്യൂ മോഡും കൊറിയർ ചാർജ് മോഡും എടുക്കുന്നു
     let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'accounting';
+    let courierMode = $('#courier-charge-mode').length > 0 ? $('#courier-charge-mode').val() : 'actual';
 
     let dailyData = {};
     const initDate = (dStr) => {
@@ -4160,8 +4162,15 @@ window.renderDayBookTable = function () {
         let qty = parseInt(o.quantity) || 0;
         let pDate = new Date(o.paidDate || o.timestamp);
 
-        // കസ്റ്റമർ നൽകിയ മൊത്തം കൊറിയർ തുക ചിലവായി എടുക്കുന്നു
-        let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        // --- COURIER CALCULATION LOGIC ---
+        let totalCourier = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        let actualCourier = parseInt(o.Actual_Courier_Cost);
+        if (isNaN(actualCourier) || actualCourier <= 0) {
+            actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier; // Fallback
+        }
+
+        // ഡ്രോപ്പ്ഡൗണിൽ തിരഞ്ഞെടുത്തത് അനുസരിച്ച് ഏത് തുക എടുക്കണം എന്ന് തീരുമാനിക്കുന്നു
+        let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
 
         // --- INCOME LOGIC ---
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
@@ -4175,22 +4184,22 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
 
-            if (viewMode === 'profit' && actualCost > 0) {
-                dailyData[dStr].courier.items.push({ charge: actualCost });
-                dailyData[dStr].courier.totalAmount += actualCost;
+            if (viewMode === 'profit' && applyCourierCost > 0) {
+                dailyData[dStr].courier.items.push({ charge: applyCourierCost });
+                dailyData[dStr].courier.totalAmount += applyCourierCost;
             }
         }
 
-        // --- ACCOUNTING VIEW: അയച്ച അന്ന് കൊറിയർ ചിലവ് കാണിക്കുന്നു ---
+        // --- ACCOUNTING VIEW LOGIC ---
         if (viewMode === 'accounting' && status !== 'Paid') {
             let dDate = new Date(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
 
-                if (actualCost > 0) {
-                    dailyData[dStr].courier.items.push({ charge: actualCost });
-                    dailyData[dStr].courier.totalAmount += actualCost;
+                if (applyCourierCost > 0) {
+                    dailyData[dStr].courier.items.push({ charge: applyCourierCost });
+                    dailyData[dStr].courier.totalAmount += applyCourierCost;
                 }
             }
         }
@@ -4230,10 +4239,15 @@ window.renderDayBookTable = function () {
             </div>
         </div>
         
-        <div class="d-flex justify-content-center mb-3">
+        <div class="d-flex flex-wrap justify-content-center mb-3 gap-2">
             <select id="daybook-view-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
-                <option value="accounting" ${viewMode === 'accounting' ? 'selected' : ''}>📊 Accounting View (Dispatch Day = Courier Day)</option>
-                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View (Income Day = Courier Day)</option>
+                <option value="accounting" ${viewMode === 'accounting' ? 'selected' : ''}>📊 Accounting View</option>
+                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View</option>
+            </select>
+            
+            <select id="courier-charge-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
+                <option value="actual" ${courierMode === 'actual' ? 'selected' : ''}>🚚 Courier Charge Only (Default)</option>
+                <option value="total" ${courierMode === 'total' ? 'selected' : ''}>🚚 Courier Charge + Margin</option>
             </select>
         </div>
         <div>
@@ -4257,7 +4271,7 @@ window.renderDayBookTable = function () {
 
         let hasData = false;
 
-        // --- INCOME PRINTING ---
+        // INCOME
         if (data.income.orders.length > 0) {
             hasData = true;
             grandIncome += data.income.totalAmount;
@@ -4284,7 +4298,7 @@ window.renderDayBookTable = function () {
             </div>`;
         }
 
-        // --- COURIER PRINTING ---
+        // COURIER
         if (data.courier.items.length > 0) {
             hasData = true;
             grandCourier += data.courier.totalAmount;
@@ -4309,7 +4323,7 @@ window.renderDayBookTable = function () {
             </div>`;
         }
 
-        // --- EXPENSES PRINTING ---
+        // EXPENSES
         if (data.expenses.length > 0) {
             hasData = true;
             data.expenses.forEach(e => {
