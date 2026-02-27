@@ -2695,7 +2695,7 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 Render Top Summary & Refresh Calendar Dots
+// 🔥 UPDATE DASHBOARD MAIN CARDS (Full Courier Cost Deduction & Bug Fixes)
 function renderDashboard() {
     if (!dashboardData) return;
 
@@ -2712,7 +2712,6 @@ function renderDashboard() {
     $('#d-profit').text('₹' + d.profit.toLocaleString());
     $('#d-orders').text(d.count || 0);
 
-    // 🔥 ഡെയ്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ (റിപ്പീറ്റ് ആവാതിരിക്കാൻ പഴയത് ഡിലീറ്റ് ചെയ്യുന്നു)
     $('.helper-text-dash').remove();
     $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
 
@@ -2724,18 +2723,12 @@ function renderDashboard() {
         $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
     }
 
-    // 🔥 TRUE MONTHLY NET PROFIT & ADVANCED STATS CALCULATION 
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
 
     let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0;
-
-    // പുതിയ വേരിയബിളുകൾ (കുപ്പികളുടെയും ഓർഡറുകളുടെയും കണക്കെടുക്കാൻ)
     let monthBottles = 0, yearBottles = 0;
     let monthOrders = 0, yearOrders = 0;
-
-    let paidNewQty = 0;
-    let paidPrintedQty = 0;
 
     allOrders.forEach(o => {
         let status = o.Status || 'Pending';
@@ -2746,88 +2739,73 @@ function renderDashboard() {
         let oMonth = pDate.getMonth();
         let qty = parseInt(o.quantity) || 0;
 
-        // ഓർഡറുകളും കുപ്പികളും കൂട്ടുന്നു (ഈ വർഷത്തെ)
         if (oYear === mY) {
             yearOrders++;
             yearBottles += qty;
 
-            // ഈ മാസത്തെ മാത്രം കണക്കുകൾ
             if (oMonth === mM) {
                 monthOrders++;
                 monthBottles += qty;
 
-                // വരുമാനവും ചിലവും (Monthly)
-                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-                let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+                let amt = parseInt(o.Grand_Total);
+                if (isNaN(amt) || amt <= 0) {
+                    let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                    amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+                }
                 trueIncome += amt;
 
-                // 🔥 FIX: 350 ന് പകരം ഷീറ്റിൽ നിന്നുള്ള ഡൈനാമിക് Base Cost ഉപയോഗിക്കുന്നു
-                // 🔥 ഡൈനാമിക് Base Cost എടുക്കുന്നതിനുള്ള കൃത്യമായ കോഡ്
                 let pCost = parseFloat(o['Product_Base_Cost']);
                 trueProductCost += isNaN(pCost) ? (qty * 330) : pCost;
             }
         }
 
-        // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച് - Monthly)
+        // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച്)
         if (status !== 'Paid') {
             let dDate = new Date(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                trueCourierExp += parseInt(o.actualCourierCost) || 0;
+                // 🔥 FIX: കസ്റ്റമർ തന്ന ഫുൾ കൊറിയർ തുകയെടുക്കുന്നു (Margin ലാഭത്തിൽ വരില്ല)
+                let cCharge = parseInt(o.Courier_Charge);
+                if (isNaN(cCharge) || cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                trueCourierExp += cCharge;
             }
         }
     });
 
-    // മറ്റ് ചിലവുകൾ (Expenses) & മെറ്റീരിയൽ ചിലവുകൾ (Materials)
     let trueOtherExp = 0;
     let monthMaterialExp = 0;
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             let catName = String(e.cat || '').toLowerCase();
-
-            // മെറ്റീരിയൽ ആണെങ്കിൽ പ്രത്യേകം കൂട്ടുന്നു
             if (catName.includes('material')) {
                 monthMaterialExp += e.amount;
-            }
-            // 🔥 FIX: സാലറി ആണെങ്കിൽ ലാഭത്തിൽ നിന്നും കുറയ്ക്കില്ല
-            else if (catName === 'salary') {
+            } else if (catName === 'salary' || catName === 'refund') {
                 // Do nothing
-            }
-            // അല്ലെങ്കിൽ മറ്റ് കമ്പനി ചിലവുകളിൽ കൂട്ടുന്നു (വാടക, പരസ്യം, etc.)
-            else if (!e.isCourier) {
+            } else if (!e.isCourier) {
                 trueOtherExp += e.amount;
             }
         });
     }
 
-    // യഥാർത്ഥ ലാഭം കണ്ടുപിടിക്കുന്നു (ലൂപ്പിന് പുറത്ത്!)
     let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
     let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
 
-    // ഡാഷ്‌ബോർഡിലെ Monthly Overview കാർഡുകളിലേക്ക് നൽകുന്നു
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
 
-    // 🔥 മന്ത്‌ലി കാർഡുകൾക്ക് താഴെ എളുപ്പത്തിൽ മനസ്സിലാക്കാൻ
-    $('.helper-text-dash').remove(); // പഴയത് കളയുന്നു
-    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
     $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
-    $('#m-expense').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Bottle Cost + Courier + Other)</div>');
+    $('#m-expense').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Bottle Cost + Full Courier + Other)</div>');
     $('#m-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
 
-    // 🔥 പഴയ കണ്ടെയ്‌നറുകൾ കളയുന്നു
-    $('#extra-stats-container').remove();
-    $('#partner-shares-container').remove();
-    $('#material-stats-container').remove(); // 🔥 പഴയ മെറ്റീരിയൽ ബോക്സ് കളയുന്നു
+    $('#extra-stats-container, #partner-shares-container, #material-stats-container').remove();
 
-    // 🔥 NEW: YEARLY MATERIAL EXPENSE
     let yearMaterialExp = 0;
     if (dashboardData && dashboardData.yearly && dashboardData.yearly.materialExp) {
         yearMaterialExp = dashboardData.yearly.materialExp;
     }
 
-    // 🔥 UPDATED: BEAUTIFUL MATERIAL PURCHASES BOX (Month & Year)
+    // 🔥 MATERIAL PURCHASES BOX
     let materialHtml = `
     <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm">
         <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom border-secondary border-opacity-25">
@@ -2848,10 +2826,10 @@ function renderDashboard() {
     </div>
     `;
 
-    // 🔥 NEW: BEAUTIFUL BOTTLES & ORDERS STATS UI 
+    // 🔥 BOTTLES & ORDERS STATS UI 
     let statsHtml = `
     <div id="extra-stats-container" class="row mb-3 px-1 mt-2">
-    <div class="col-6 pe-2">
+        <div class="col-6 pe-2">
             <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
                 <div class="d-flex align-items-center gap-2 mb-2">
                     <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-wine-bottle"></i></div>
@@ -2892,21 +2870,17 @@ function renderDashboard() {
     </div>
     `;
 
-    // 🔥 3 ബോക്സുകളും ആക്ടിവിറ്റി ലിസ്റ്റിന് മുകളിലായി ആഡ് ചെയ്യുന്നു (ആദ്യം മെറ്റീരിയൽ, പിന്നെ സ്റ്റാറ്റസ്, പിന്നെ പ്രോഫിറ്റ്)
     $('#tx-details-area').before(materialHtml + statsHtml);
 
-    // 🔥 Redraw Calendar & Render Transactions
-    if (txCalendarPicker) txCalendarPicker.redraw();
-    // (renderDashboard ഫംഗ്ഷനിലെ അവസാന ഭാഗം)
+    // 🔥 FIX: ലോഡിങ് മാറാനും ആക്റ്റിവിറ്റികൾ കാണിക്കാനുമുള്ള ഫംഗ്ഷനുകൾ
+    if (typeof txCalendarPicker !== 'undefined' && txCalendarPicker) txCalendarPicker.redraw();
+
     let dateKey = flatpickr.formatDate(selectedDate, "Y-m-d");
-    renderTransactionsForDate(dateKey);
+    if (typeof renderTransactionsForDate === 'function') renderTransactionsForDate(dateKey);
 
-    if (typeof renderPartnerList === 'function') renderPartnerList();
-
-    // 🔥 പുതുതായി ചേർത്ത Day Book വിളിക്കാൻ
-    renderDayBookTable();
-    renderDetailedMonthlyOverview();
-    renderYearlyOverview();
+    if (typeof renderDayBookTable === 'function') renderDayBookTable();
+    if (typeof renderDetailedMonthlyOverview === 'function') renderDetailedMonthlyOverview();
+    if (typeof renderYearlyOverview === 'function') renderYearlyOverview();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -4769,29 +4743,24 @@ window.renderYearlyOverview = function () {
     $('#yearly-overview-container').html(html);
 }
 
-// 🔥 LOAD SETTINGS FROM SERVER
+// 🔥 LOAD SETTINGS FROM SERVER (Network Error Fixed using Fetch)
 window.loadCourierSettings = function () {
     $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
 
-    // ഷീറ്റിൽ നിന്നും Settings ഡാറ്റ എടുക്കാൻ Apps Script-ലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
-    let scriptUrl = 'https://script.google.com/macros/s/AKfycby8dX3yuELlKAvO7uxdJ_1SJAe_JqvmRNkQdp0Mxs1ch7KAYhBfkoUxMw8ZFVl3PCzlDA/exec'; // ⚠️ പഴയ സ്ക്രിപ്റ്റ് URL തന്നെ നൽകുക
-
-    $.ajax({
-        url: scriptUrl + '?action=getSettings', // ഇത് പുതിയ ഒരു ആക്ഷൻ ആണ് (Apps Script-ൽ ആഡ് ചെയ്യണം)
-        method: 'GET',
-        dataType: 'json',
-        success: function (response) {
+    fetch(`${scriptURL}?action=getSettings`)
+        .then(res => res.json())
+        .then(response => {
             if (response.status === 'success' && response.data) {
                 renderSettingsUI(response.data);
             } else {
                 $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Failed to load settings.</div>');
             }
-        },
-        error: function () {
-            $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Network error.</div>');
-        }
-    });
-}// 🔥 LOAD SETTINGS FROM SERVER (Network Error Fixed using Fetch)
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Network error. Please check Apps Script.</div>');
+        });
+}
 window.loadCourierSettings = function () {
     $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
 
@@ -4811,7 +4780,7 @@ window.loadCourierSettings = function () {
         });
 }
 
-// 🔥 RENDER SETTINGS UI (With Smart Radio Buttons)
+// 🔥 RENDER SETTINGS UI (With Smart Radio Buttons & Text Margin inputs)
 function renderSettingsUI(settingsData) {
     let html = '';
 
@@ -4838,7 +4807,6 @@ function renderSettingsUI(settingsData) {
             </h6>`;
 
         let providersList = statesMap[state];
-        // 🔥 FIX: 1 ൽ കൂടുതൽ കൊറിയറുകൾ ഉണ്ടെങ്കിൽ മാത്രം റേഡിയോ ബട്ടൺ കാണിക്കുക
         let showRadio = providersList.length > 1;
 
         providersList.forEach(row => {
@@ -4852,7 +4820,6 @@ function renderSettingsUI(settingsData) {
             let providerUIPart = '';
 
             if (showRadio) {
-                // ഒന്നിലധികം കൊറിയർ ഉണ്ടെങ്കിൽ റേഡിയോ ബട്ടൺ കാണിക്കുന്നു
                 providerUIPart = `
                     <div class="form-check m-0">
                         <input class="form-check-input border-primary" type="radio" name="${radioName}" id="${radioId}" ${isDefault ? 'checked' : ''} onchange="setDefaultCourier('${state}', ${row.actualRow})">
@@ -4861,7 +4828,6 @@ function renderSettingsUI(settingsData) {
                         </label>
                     </div>`;
             } else {
-                // ഒരൊറ്റ കൊറിയർ മാത്രമേ ഉള്ളുവെങ്കിൽ പേര് മാത്രം കാണിക്കുന്നു
                 providerUIPart = `
                     <div class="m-0 fw-bold text-primary" style="font-size: 12px;">
                         <i class="fas fa-truck text-secondary me-1"></i> ${provider} 
@@ -4882,7 +4848,7 @@ function renderSettingsUI(settingsData) {
                 </div>
                 <div class="input-group input-group-sm">
                     <span class="input-group-text bg-light text-muted" style="font-size: 10px; padding: 0 5px;">Margin ₹</span>
-                    <input type="number" id="courier-margin-${row.actualRow}" class="form-control fw-bold text-danger" style="font-size: 11px; max-width: 70px;" value="${row['Service Charge'] || 0}">
+                    <input type="text" id="courier-margin-${row.actualRow}" class="form-control fw-bold text-danger" style="font-size: 11px;" value="${row['Service Charge'] || 0}">
                     <button class="btn btn-outline-danger py-0 px-3 fw-bold" style="font-size: 10px;" onclick="updateCourierRate(${row.actualRow}, '${state}')">SAVE</button>
                 </div>
             </div>`;
@@ -4907,11 +4873,11 @@ function renderSettingsUI(settingsData) {
                 </div>
             </div>
             <div class="row g-2 mb-2">
-                <div class="col-8">
+                <div class="col-6">
                     <input type="text" id="new-rates" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Rates (e.g. 1:80, 2:160)">
                 </div>
-                <div class="col-4">
-                    <input type="number" id="new-margin" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Margin ₹">
+                <div class="col-6">
+                    <input type="text" id="new-margin" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Margin (e.g. 20 or 1:20, 2:30)">
                 </div>
             </div>
             <button class="btn btn-sm btn-success w-100 fw-bold" style="font-size:11px; letter-spacing:0.5px;" onclick="addNewCourierRow()">+ SAVE NEW REGION</button>
@@ -4921,7 +4887,6 @@ function renderSettingsUI(settingsData) {
 
     $('#courier-settings-container').html(html);
 }
-
 // 🔥 SET DEFAULT COURIER 
 window.setDefaultCourier = function (state, rowNum) {
     showToast('info', 'Setting default...');
