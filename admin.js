@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycby8dX3yuELlKAvO7uxdJ_1SJAe_JqvmRNkQdp0Mxs1ch7KAYhBfkoUxMw8ZFVl3PCzlDA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyJycBd0C0Uzb5mVUNw7TuV1-R7WGLyDfajM3VUam7Z-N3IZrpS_gZdTeMI0c8MPmdXHg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4634,19 +4634,35 @@ window.loadCourierSettings = function () {
             $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Network error.</div>');
         }
     });
+}// 🔥 LOAD SETTINGS FROM SERVER (Network Error Fixed using Fetch)
+window.loadCourierSettings = function () {
+    $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
+
+    // നിങ്ങളുടെ കോഡിൽ ഓൾറെഡി ഉള്ള ഗ്ലോബൽ 'scriptURL' ഉപയോഗിക്കുന്നു
+    fetch(`${scriptURL}?action=getSettings`)
+        .then(res => res.json())
+        .then(response => {
+            if (response.status === 'success' && response.data) {
+                renderSettingsUI(response.data);
+            } else {
+                $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Failed to load settings.</div>');
+            }
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Network error. Please check Apps Script.</div>');
+        });
 }
 
 // 🔥 RENDER SETTINGS UI (ഫോണിൽ കാണിക്കാൻ)
 function renderSettingsUI(settingsData) {
     let html = '';
 
-    // Base Cost അപ്ഡേറ്റ് ചെയ്യുന്നു (ആദ്യത്തെ റോയിൽ നിന്നാണ് എടുക്കുന്നത്)
     if (settingsData.length > 0 && settingsData[0]['Base Cost Per Bottle']) {
         $('#setting-base-cost').val(settingsData[0]['Base Cost Per Bottle']);
     }
 
     settingsData.forEach((row, index) => {
-        // State പേര് ഉണ്ടെങ്കിൽ മാത്രം കൊറിയർ ബോക്സ് കാണിക്കുക
         if (row.Parameter && row.Parameter.trim() !== "") {
             html += `
             <div class="mb-3 p-2 bg-light border border-secondary border-opacity-10 rounded">
@@ -4683,8 +4699,7 @@ window.updateBaseCost = function () {
 
     if (!confirm(`Are you sure you want to change the Base Bottle Cost to ₹${newCost}?\n\nNote: This will only affect NEW orders. Past orders will retain their old cost.`)) return;
 
-    // ഇതിനായി Apps Script-ൽ ഒരു സേവ് ഫംഗ്ഷൻ എഴുതേണ്ടതുണ്ട്
-    saveSettingToServer('Base Cost', 2, 'K', newCost); // Column K is 'Base Cost Per Bottle'
+    saveSettingToServer('Base Cost', 2, 'K', newCost);
 }
 
 // 🔥 SAVE COURIER RATE TO SERVER
@@ -4695,37 +4710,46 @@ window.updateCourierRate = function (rowNumber, stateName) {
 
     if (!confirm(`Update rates for ${stateName}?\n\nRates: ${newRates}\nMargin: ₹${newMargin}`)) return;
 
-    // ഇത് രണ്ടുതവണ കാൾ ചെയ്യേണ്ടി വരും (ഒന്ന് റേറ്റിനും, ഒന്ന് മാർജിനും)
-    saveSettingToServer(`Rates for ${stateName}`, rowNumber, 'D', newRates); // Column D is 'Base Rate String'
+    saveSettingToServer(`Rates for ${stateName}`, rowNumber, 'D', newRates);
 
     setTimeout(() => {
-        saveSettingToServer(`Margin for ${stateName}`, rowNumber, 'F', newMargin); // Column F is 'Service Charge'
-    }, 1500); // ഗൂഗിൾ ഷീറ്റിന്റെ ലിമിറ്റ് മറികടക്കാൻ ചെറിയ ഡിലേ
+        saveSettingToServer(`Margin for ${stateName}`, rowNumber, 'F', newMargin);
+    }, 1500);
 }
 
-// 🔥 AJAX HELPER TO SEND DATA
+// 🔥 FETCH API HELPER TO SEND DATA (AJAX മാറി Fetch ആക്കി)
 function saveSettingToServer(settingName, row, col, val) {
-    let scriptUrl = 'https://script.google.com/macros/s/AKfycby8dX3yuELlKAvO7uxdJ_1SJAe_JqvmRNkQdp0Mxs1ch7KAYhBfkoUxMw8ZFVl3PCzlDA/exec';
     showToast("Saving...", `Updating ${settingName}...`, "info");
 
-    $.ajax({
-        url: scriptUrl,
+    fetch(scriptURL, {
         method: 'POST',
-        data: {
+        body: JSON.stringify({
             action: 'updateSettingCell',
             row: row,
             col: col,
             value: val
-        },
-        success: function (res) {
+        })
+    })
+        .then(res => res.json())
+        .then(res => {
             if (res.status === 'success') {
                 showToast("Success", `${settingName} updated successfully!`, "success");
             } else {
                 showToast("Error", `Failed to update ${settingName}`, "error");
             }
-        },
-        error: function () {
+        })
+        .catch(error => {
+            console.error("Save error:", error);
             showToast("Network Error", "Could not connect to server.", "error");
-        }
-    });
+        });
 }
+
+// 🔥 Z-INDEX FIX FOR SETTINGS MODAL (ഇത് Modal-നെ മുന്നിലേക്ക് കൊണ്ടുവരും)
+$(document).ready(function () {
+    $('#settingsModal').on('show.bs.modal', function () {
+        $(this).css('z-index', '10600');
+    });
+    $('#settingsModal').on('shown.bs.modal', function () {
+        $('.modal-backdrop').last().css('z-index', '10500');
+    });
+});
