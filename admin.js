@@ -4131,9 +4131,7 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (With View Toggle: Accounting vs Profit View)
-// 🔥 RENDER DAY BOOK (Accounting Default View)
-// 🔥 RENDER DAY BOOK (With Courier Charge Toggle)
+// 🔥 RENDER DAY BOOK (100% Accurate Data from Sheet & Courier Toggle)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4144,7 +4142,6 @@ window.renderDayBookTable = function () {
     let currentDate = new Date();
     let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
 
-    // വ്യൂ മോഡും കൊറിയർ ചാർജ് മോഡും എടുക്കുന്നു
     let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'accounting';
     let courierMode = $('#courier-charge-mode').length > 0 ? $('#courier-charge-mode').val() : 'actual';
 
@@ -4162,23 +4159,30 @@ window.renderDayBookTable = function () {
         let qty = parseInt(o.quantity) || 0;
         let pDate = new Date(o.paidDate || o.timestamp);
 
-        // --- COURIER CALCULATION LOGIC ---
-        let totalCourier = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        // --- COURIER CALCULATION LOGIC (Sheet Data First) ---
+        let totalCourier = parseInt(o.Courier_Charge);
+        if (isNaN(totalCourier) || totalCourier <= 0) {
+            totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        }
+
         let actualCourier = parseInt(o.Actual_Courier_Cost);
         if (isNaN(actualCourier) || actualCourier <= 0) {
             actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier; // Fallback
         }
 
-        // ഡ്രോപ്പ്ഡൗണിൽ തിരഞ്ഞെടുത്തത് അനുസരിച്ച് ഏത് തുക എടുക്കണം എന്ന് തീരുമാനിക്കുന്നു
         let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
 
-        // --- INCOME LOGIC ---
+        // --- INCOME LOGIC (🔥 FIXED: Reads directly from Grand_Total to preserve history) ---
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
             initDate(dStr);
 
-            let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-            let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            // ഷീറ്റിൽ സേവ് ആയിട്ടുള്ള Grand Total തന്നെ ഡേ ബുക്കിലും ഉപയോഗിക്കുന്നു
+            let amt = parseInt(o.Grand_Total);
+            if (isNaN(amt) || amt <= 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
 
             dailyData[dStr].income.orders.push({ qty: qty, amt: amt });
             dailyData[dStr].income.totalAmount += amt;
