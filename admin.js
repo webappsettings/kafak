@@ -5038,55 +5038,64 @@ $(document).ready(function () {
     $('#settingsModal').on('shown.bs.modal', function () { $('.modal-backdrop').last().css('z-index', '10500'); });
 });
 
-// 🔥 EXPENSE FORM SMART CATEGORY FIX (Salary -> Partner List)
+// 🔥 SMART CATEGORY FIX & PARTNER UI RESTORE (Old Beautiful UI)
 $(document).ready(function () {
-    // കാറ്റഗറി മാറുമ്പോൾ Vendor ഇൻപുട്ട് മാറ്റാനുള്ള കോഡ്
     $(document).on('change', '#exp-category', function () {
         let cat = $(this).val();
         let vendorEl = $('#exp-vendor');
-        let currentVal = vendorEl.val();
+
+        // നമ്മൾ ഡ്രോപ്പ്ഡൗൺ ആക്കിയതൊക്കെ മാറ്റി വീണ്ടും ഇൻപുട്ട് ബോക്സ് ആക്കുന്നു
+        if (vendorEl.is('select')) {
+            let inputHtml = `<input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Vendor / Shop Name" style="border: 2px solid #ced4da !important; border-radius: 8px; padding: 10px; background-color: #f8f9fa;">`;
+            vendorEl.replaceWith(inputHtml);
+            vendorEl = $('#exp-vendor');
+        }
 
         if (cat === 'Salary') {
-            // Salary ആണെങ്കിൽ പാർട്ണർമാരുടെ ലിസ്റ്റ് കാണിക്കുന്നു
-            let selectHtml = `
-            <select id="exp-vendor" class="form-select border-secondary fw-bold" required style="border: 2px solid #ced4da !important; border-radius: 8px; padding: 10px; background-color: #f8f9fa;">
-                <option value="">Select Partner...</option>
-                <option value="Salam">Salam</option>
-                <option value="Samad">Samad</option>
-                <option value="Jazeela">Jazeela</option>
-            </select>`;
-            vendorEl.replaceWith(selectHtml);
+            // Salary ആണെങ്കിൽ മലയാളത്തിലുള്ള ആ പഴയ UI (Partner Cards) താഴേക്ക് വരുന്നു
+            $('#partner-section').slideDown();
+            vendorEl.prop('readonly', true).val('').attr('placeholder', 'Select Partner above 👆');
 
-            // എഡിറ്റ് ചെയ്യുമ്പോൾ പഴയ വാല്യൂ സെറ്റ് ചെയ്യാൻ
-            setTimeout(() => { if (currentVal) $('#exp-vendor').val(currentVal); }, 50);
-        } else {
-            // മറ്റ് ചിലവുകൾ ആണെങ്കിൽ സാധാരണ ഇൻപുട്ട് ബോക്സ് കാണിക്കുന്നു
-            if (vendorEl.is('select')) {
-                let inputHtml = `<input type="text" id="exp-vendor" class="form-control border-secondary fw-bold" placeholder="Vendor / Shop Name" required style="border: 2px solid #ced4da !important; border-radius: 8px; padding: 10px; background-color: #f8f9fa;">`;
-                vendorEl.replaceWith(inputHtml);
-
-                setTimeout(() => { if (currentVal && !['Salam', 'Samad', 'Jazeela'].includes(currentVal)) $('#exp-vendor').val(currentVal); }, 50);
+            // കാർഡുകൾ റെൻഡർ ചെയ്യാൻ ഫംഗ്ഷൻ വിളിക്കുന്നു
+            if (typeof renderPartnerList === 'function') {
+                renderPartnerList();
             }
+        } else {
+            // മറ്റ് ചിലവുകൾ ആണെങ്കിൽ അത് ഹൈഡ് ചെയ്യുന്നു
+            $('#partner-section').slideUp();
+            vendorEl.prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+            $('.partner-card').removeClass('selected');
+            $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
         }
     });
 
     // പുതിയ Expense ആഡ് ചെയ്യാൻ പ്ലസ് (+) ബട്ടൺ അമർത്തുമ്പോൾ പഴയത് റീസെറ്റ് ചെയ്യാൻ
     $('[data-bs-target="#expenseModal"]').on('click', function () {
-        setTimeout(() => { $('#exp-category').val('Materials').trigger('change'); }, 100);
+        setTimeout(() => {
+            $('#exp-category').val('Materials').trigger('change');
+            $('#partner-section').hide();
+            $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+        }, 100);
     });
 });
 
-// 🔥 നിലവിലുള്ള openEditExpense ഫംഗ്ഷൻ്റെ കൂടെ ഡ്രോപ്പ്ഡൗൺ ട്രിഗർ കൂടി ചേർക്കുന്നു
+// എഡിറ്റ് ചെയ്യുമ്പോൾ ശരിയായി ലോഡ് ആവാൻ
 if (typeof window.openEditExpense === "function") {
     let originalOpenEditExpense = window.openEditExpense;
     window.openEditExpense = function (id, dateStr, amount, desc, cat, vendor) {
-        // പഴയ ഫംഗ്ഷൻ ആദ്യം റൺ ചെയ്യുന്നു
         originalOpenEditExpense(id, dateStr, amount, desc, cat, vendor);
-
-        // കാറ്റഗറി അനുസരിച്ച് ഡ്രോപ്പ്ഡൗൺ വരാൻ വേണ്ടി ട്രിഗർ ചെയ്യുന്നു
         setTimeout(() => {
             $('#exp-category').val(cat).trigger('change');
-            setTimeout(() => { $('#exp-vendor').val(vendor); }, 100);
+            if (cat === 'Salary') {
+                setTimeout(() => {
+                    $('#exp-vendor').val(vendor);
+                    // എഡിറ്റ് ചെയ്യുമ്പോൾ കാർഡ് സെലക്ട് ചെയ്തതായി കാണിക്കാൻ
+                    $(`.partner-card:contains('${vendor}')`).addClass('selected');
+                    $(`.partner-card:contains('${vendor}') .check-icon`).attr('class', 'fas fa-check-circle text-success check-icon');
+                }, 300);
+            } else {
+                setTimeout(() => { $('#exp-vendor').val(vendor); }, 100);
+            }
         }, 100);
     };
 }
