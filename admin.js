@@ -4416,7 +4416,7 @@ window.loadNextMonthDayBook = function () {
 }
 
 
-// 🔥 RENDER DETAILED MONTHLY OVERVIEW (Dynamic Rates, Hints & Profit Split)
+// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Fixed Math Bug, Hint Texts & Profit Share)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4441,16 +4441,15 @@ window.renderDetailedMonthlyOverview = function () {
             tSales += amt;
             tBottles += qty;
 
-            // 🔥 DYNAMIC BOTTLE COST: Server-il ninnulla 'Product_Base_Cost' edukkunnu. Illenkil mathram 330 edukkaam.
-            let bCost = parseInt(o.Product_Base_Cost) || 330;
-            tBottleCost += (qty * bCost);
+            // 🔥 BUG FIX: ഡാറ്റാബേസിൽ ഉള്ളത് മൊത്തം ചിലവാണ്. അത് വീണ്ടും ഗുണിക്കേണ്ടതില്ല!
+            let dbCost = parseInt(o.Product_Base_Cost);
+            if (!isNaN(dbCost) && dbCost > 0) {
+                tBottleCost += dbCost; // ഡാറ്റാബേസിൽ ഉണ്ടെങ്കിൽ അത് നേരിട്ട് എടുക്കുന്നു
+            } else {
+                tBottleCost += (qty * 330); // ഇല്ലെങ്കിൽ മാത്രം 330 വെച്ച് ഗുണിക്കുന്നു
+            }
 
-            // 🔥 DYNAMIC COURIER COST: Server-il ninnulla 'Actual_Courier_Cost' edukkunnu.
-            // if (!actualCost || isNaN(actualCost) || actualCost === 0) {
-            //     let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            //     actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
-            // }
-            // കസ്റ്റമറിൽ നിന്ന് വാങ്ങിയ മുഴുവൻ തുകയും (കൊറിയർ + ട്രാൻസ്പോർട്ട്) ചിലവായി എടുക്കുന്നു
+            // നിങ്ങളുടെ അപ്ഡേറ്റ്: കസ്റ്റമറിൽ നിന്ന് വാങ്ങിയ മുഴുവൻ തുകയും ചിലവായി എടുക്കുന്നു
             let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
             tCourierCost += actualCost;
         }
@@ -4465,14 +4464,17 @@ window.renderDetailedMonthlyOverview = function () {
     let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
-    // മുകളിലെ കാർഡുകളിലേക്ക് അപ്ഡേറ്റ് ചെയ്യാൻ
+    // മുകളിലെ മെയിൻ കാർഡുകളിലേക്ക് സിങ്ക് ചെയ്യാൻ
     $('#m-sales').text('₹' + tSales.toLocaleString());
     $('#m-expense').text('₹' + totalExpense.toLocaleString());
     $('#m-profit').text('₹' + netProfit.toLocaleString());
 
-    // 🔥 PROFIT SHARE CALCULATION (3 Partners)
+    // Profit Share കാൽക്കുലേഷൻ
     let sharePerPerson = netProfit > 0 ? Math.floor(netProfit / 3) : 0;
-    let balance = netProfit > 0 ? netProfit - (sharePerPerson * 3) : 0; // ചില്ലറ ബാലൻസ് അഡ്ജസ്റ്റ് ചെയ്യാൻ
+    let balance = netProfit > 0 ? netProfit - (sharePerPerson * 3) : 0;
+
+    // Hint Text-ന് വേണ്ടി Average Rate കാൽക്കുലേറ്റ് ചെയ്യുന്നു (വെറുതെ കാണിക്കാൻ വേണ്ടി മാത്രം)
+    let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
 
     let html = `
     <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
@@ -4480,26 +4482,35 @@ window.renderDetailedMonthlyOverview = function () {
             <i class="fas fa-chart-pie me-2"></i> Monthly Profit Breakdown
         </h6>
         
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50" title="Total amount paid by customers">
-            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales) <i class="fas fa-info-circle text-muted ms-1" style="font-size:10px;"></i></span>
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
+            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales)</span>
             <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
         </div>
 
         <div class="mb-2 ps-3 border-start border-3 border-danger">
             <div class="text-danger fw-bold" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES:</div>
             
-            <div class="d-flex justify-content-between align-items-center mt-2" title="Fetched directly from DB 'Product_Base_Cost'">
-                <span class="text-light" style="font-size:12px;">🍾 Bottle Cost <span class="text-muted" style="font-size:10px;">(${tBottles} bottles, Base rate from DB)</span></span>
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-light" style="font-size:12px;">🍾 Bottle Making Cost</div>
+                    <div class="text-muted" style="font-size:10px; font-style:italic;">(${tBottles} bottles × ₹${avgBottleRate} from DB)</div>
+                </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between align-items-center mt-2" title="Fetched directly from DB 'Actual_Courier_Cost'">
-                <span class="text-light" style="font-size:12px;">🚚 Actual Courier Cost <span class="text-muted" style="font-size:10px;">(DTDC Rates from DB)</span></span>
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
+                    <div class="text-muted" style="font-size:10px; font-style:italic;">(Courier charge + fuel margin)</div>
+                </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between align-items-center mt-2" title="From Expense Entries (Salary, Material, etc.)">
-                <span class="text-light" style="font-size:12px;">🧾 Other Expenses <span class="text-muted" style="font-size:10px;">(Manual Entries)</span></span>
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-light" style="font-size:12px;">🧾 Other Expenses</div>
+                    <div class="text-muted" style="font-size:10px; font-style:italic;">(Materials, Salary, etc.)</div>
+                </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
             </div>
         </div>
@@ -4517,28 +4528,29 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between text-center">
                 <div class="w-100 px-1 border-end border-secondary border-opacity-25">
                     <div class="text-info fw-bold mb-1" style="font-size:12px;">Salam</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()}</div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-muted" style="font-size:9px;">(33.3%)</span></div>
                 </div>
                 <div class="w-100 px-1 border-end border-secondary border-opacity-25">
                     <div class="text-info fw-bold mb-1" style="font-size:12px;">Samad</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()}</div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-muted" style="font-size:9px;">(33.3%)</span></div>
                 </div>
                 <div class="w-100 px-1">
                     <div class="text-info fw-bold mb-1" style="font-size:12px;">Jazeela</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${(sharePerPerson + balance).toLocaleString()}</div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${(sharePerPerson + balance).toLocaleString()} <span class="text-muted" style="font-size:9px;">(33.3%)</span></div>
                 </div>
             </div>
         </div>
         ` : `<div class="text-center mt-3 text-danger" style="font-size:11px;">No profits to share this month.</div>`}
-
     </div>`;
 
     $('#detailed-overview-container').html(html);
 }
-// 🔥 2. RENDER YEARLY OVERVIEW (New Feature)
+
+
+// 🔥 2. RENDER YEARLY OVERVIEW (Yearly കാൽക്കുലേഷനിലും ആ തെറ്റ് തിരുത്തിയിട്ടുണ്ട്)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
-    let ySales = 0, yBottles = 0, yCourierCost = 0, yOtherExpense = 0;
+    let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yOtherExpense = 0;
 
     allOrders.forEach(o => {
         let pDate = new Date(o.paidDate || o.timestamp);
@@ -4552,19 +4564,19 @@ window.renderYearlyOverview = function () {
             ySales += amt;
             yBottles += qty;
 
-            // let actualCost = parseInt(o.Actual_Courier_Cost);
-            // if (!actualCost || isNaN(actualCost) || actualCost === 0) {
-            //     let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            //     actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
-            // }
+            // Yearly Bug Fix
+            let dbCost = parseInt(o.Product_Base_Cost);
+            if (!isNaN(dbCost) && dbCost > 0) {
+                yBottleCost += dbCost;
+            } else {
+                yBottleCost += (qty * 330);
+            }
+
             let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            tCourierCost += actualCost;
+            yCourierCost += actualCost;
         }
     });
 
-    let yBottleCost = yBottles * 330;
-
-    // ഡാറ്റാബേസിൽ മറ്റ് ചിലവുകൾ ഉണ്ടെങ്കിൽ അതും കാൽക്കുലേറ്റ് ചെയ്യുന്നു
     if (typeof allExpenses !== 'undefined' && Array.isArray(allExpenses)) {
         allExpenses.forEach(e => {
             let dDate = new Date(e.date || e.timestamp);
