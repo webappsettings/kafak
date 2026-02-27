@@ -4407,7 +4407,7 @@ window.loadNextMonthDayBook = function () {
 }
 
 
-// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed to match exact Monthly Overview Top Cards)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4419,8 +4419,6 @@ window.renderDetailedMonthlyOverview = function () {
     let mM = selectedDate.getMonth();
 
     let tSales = 0, tBottles = 0, tBottleCost = 0, tCourierCost = 0, tOtherExpense = 0;
-
-    // Hint text-ന് വേണ്ടി കൊറിയർ ചാർജ് കാൽക്കുലേറ്റ് ചെയ്യാൻ
     let tActualCourier = 0, courierOrderCount = 0;
 
     allOrders.forEach(o => {
@@ -4438,7 +4436,6 @@ window.renderDetailedMonthlyOverview = function () {
             tSales += amt;
             tBottles += qty;
 
-            // Bottle Cost
             let dbCost = parseInt(o.Product_Base_Cost);
             if (!isNaN(dbCost) && dbCost > 0) {
                 tBottleCost += dbCost;
@@ -4446,14 +4443,12 @@ window.renderDetailedMonthlyOverview = function () {
                 tBottleCost += (qty * 330);
             }
 
-            // Customer നൽകിയ മൊത്തം കൊറിയർ ചാർജ് (Charge + Margin)
             let cCost = parseInt(o.Courier_Charge);
             if (isNaN(cCost) || cCost <= 0) {
                 cCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
             }
             tCourierCost += cCost;
 
-            // DTDC ക്ക് നൽകിയ യഥാർത്ഥ കൊറിയർ ചാർജ്
             let aCost = parseInt(o.Actual_Courier_Cost);
             if (isNaN(aCost) || aCost <= 0) {
                 aCost = cCost > 20 ? cCost - 20 : cCost;
@@ -4465,24 +4460,29 @@ window.renderDetailedMonthlyOverview = function () {
 
     if (dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            if (!e.isCourier) tOtherExpense += e.amount;
+            if (!e.isCourier) {
+                let catName = String(e.cat || '').toLowerCase();
+                let isMaterial = catName.includes('material');
+                let isSalary = (catName === 'salary');
+                let isRefund = (catName === 'refund');
+
+                // 🔥 FIX: മുകളിലെ മെയിൻ കാർഡുകൾക്ക് സമാനമായി മെറ്റീരിയൽ, സാലറി എന്നിവ ഇവിടെയും ഒഴിവാക്കുന്നു
+                if (!isMaterial && !isSalary && !isRefund) {
+                    tOtherExpense += e.amount;
+                }
+            }
         });
     }
 
-    let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
+    // 🔥 യഥാർത്ഥ ലാഭം കാൽക്കുലേഷൻ (ഇപ്പോൾ ഇത് മുകളിലെ 51,880 യുമായി 100% ടാലി ആകും)
+    let totalExpense = tBottleCost + tActualCourier + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
-    // 🔥 ശ്രദ്ധിക്കുക: മുകളിലത്തെ മെയിൻ കാർഡുകൾ അപ്ഡേറ്റ് ചെയ്യുന്ന കോഡ് ഞാൻ ഒഴിവാക്കി. 
-    // അതുകൊണ്ട് ഇനി മുകളിലെ 4 ബോക്സുകൾ പഴയതുപോലെ കലണ്ടറിലെ ഡേറ്റ് അനുസരിച്ച് (Daily) വർക്ക് ചെയ്യും!
-
-    // Profit Share Calculation (Salam 20%, Samad 70%, Jazeela 10%)
     let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
     let samadShare = netProfit > 0 ? Math.floor(netProfit * 0.70) : 0;
-    let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0; // ബാക്കി വരുന്നത്
+    let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0;
 
-    // Hint Text കാൽക്കുലേഷൻ (മൊത്തം തുകകൾ കാണിക്കാൻ)
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
-    // ശരാശരി ഒഴിവാക്കി മൊത്തം തുകകൾ (Total) ആക്കുന്നു
     let totalMargin = tCourierCost - tActualCourier;
 
     let html = `
@@ -4501,7 +4501,7 @@ window.renderDetailedMonthlyOverview = function () {
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🍾 Bottle Making Cost</div>
+                    <div class="text-light" style="font-size:12px;">🍾 Bottle Cost</div>
                     <div class="text-warning" style="font-size:11px; font-weight:600;">(${tBottles} bottles × ₹${avgBottleRate})</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
@@ -4509,16 +4509,16 @@ window.renderDetailedMonthlyOverview = function () {
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Total Paid: ₹${tCourierCost.toLocaleString()} | Margin: ₹${totalMargin.toLocaleString()})</div>
+                    <div class="text-light" style="font-size:12px;">🚚 Courier (Actual Cost)</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Customer Paid: ₹${tCourierCost.toLocaleString()} | Margin: ₹${totalMargin.toLocaleString()})</div>
                 </div>
-                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tActualCourier.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between align-items-start mt-2">
+            <div class="d-flex justify-content-between align-items-start mt-2 pb-2 border-bottom border-secondary border-opacity-50">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🧾 Other Expenses</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Materials, Salary, etc.)</div>
+                    <div class="text-light" style="font-size:12px;">🧾 Other Deductible Expenses</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Excludes Materials & Salary)</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
             </div>
@@ -4556,8 +4556,7 @@ window.renderDetailedMonthlyOverview = function () {
 }
 
 
-// 🔥 2. RENDER YEARLY OVERVIEW (Yearly കാൽക്കുലേഷനിലും ആ തെറ്റ് തിരുത്തിയിട്ടുണ്ട്)
-// 🔥 2. RENDER YEARLY OVERVIEW (With Total Bottles Sold)
+// 🔥 2. RENDER YEARLY OVERVIEW (With Bottles, Courier & Profit Margin)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
     let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yOtherExpense = 0;
@@ -4569,7 +4568,6 @@ window.renderYearlyOverview = function () {
         if (pDate.getFullYear() === currentYear && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
 
-            // 🔥 Use Grand Total exactly like DayBook to prevent mismatch
             let amt = parseInt(o.Grand_Total);
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
@@ -4607,6 +4605,9 @@ window.renderYearlyOverview = function () {
     let yTotalExpense = yBottleCost + yCourierCost + yOtherExpense;
     let yNetProfit = ySales - yTotalExpense;
 
+    // 🔥 Profit Margin Percentage Calculation (ലാഭ ശതമാനം)
+    let profitMargin = ySales > 0 ? ((yNetProfit / ySales) * 100).toFixed(1) : 0;
+
     let html = `
     <div class="bg-white p-3 rounded-4 shadow-sm border border-primary border-opacity-25 mb-5">
         <h6 class="fw-bold text-dark mb-3 text-center" style="font-size:12px; letter-spacing:0.5px;">
@@ -4625,11 +4626,17 @@ window.renderYearlyOverview = function () {
             <div class="w-100 border-end border-secondary border-opacity-25 px-1">
                 <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">TOTAL EXPENSE</div>
                 <div class="fw-bold text-danger" style="font-size:14px;">₹${yTotalExpense.toLocaleString()}</div>
+                <div class="text-secondary mt-1" style="font-size:9px; font-weight:700;">
+                    <i class="fas fa-truck opacity-75" style="color:#dc3545;"></i> ₹${yCourierCost.toLocaleString()} Courier
+                </div>
             </div>
             
             <div class="w-100 px-1">
                 <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">NET PROFIT</div>
                 <div class="fw-bold ${yNetProfit >= 0 ? 'text-primary' : 'text-danger'}" style="font-size:15px;">₹${yNetProfit.toLocaleString()}</div>
+                <div class="text-secondary mt-1" style="font-size:9px; font-weight:700;" title="Profit Margin Percentage">
+                    <i class="fas fa-chart-line opacity-75" style="color:${yNetProfit >= 0 ? '#198754' : '#dc3545'};"></i> Margin: ${profitMargin}%
+                </div>
             </div>
 
         </div>
