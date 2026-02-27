@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzkHd2XZLXMmlDf88xMOLW3Y_UJpfxU8KtUPg8C5ywwdfV2Hi86uAwP_OsyGM-CYFdW0g/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbw-mqEWg9upUNZUmUIM35S128qg8AghIYZKxzn1fUssfoqERhpaP7NFhK-mgGtipjOVfg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4654,7 +4654,7 @@ window.loadCourierSettings = function () {
         });
 }
 
-// 🔥 RENDER SETTINGS UI (With State Grouping & Default Radio Buttons)
+// 🔥 RENDER SETTINGS UI (With Smart Radio Buttons)
 function renderSettingsUI(settingsData) {
     let html = '';
 
@@ -4663,18 +4663,16 @@ function renderSettingsUI(settingsData) {
         $('#setting-base-cost').val(settingsData[0]['Base Cost Per Bottle']);
     }
 
-    // ഡാറ്റയെ State അനുസരിച്ച് ഗ്രൂപ്പ് ചെയ്യുന്നു
     let statesMap = {};
     settingsData.forEach((row, index) => {
         let state = row.Parameter ? row.Parameter.trim().toUpperCase() : "";
         if (state) {
             if (!statesMap[state]) statesMap[state] = [];
-            row.actualRow = index + 2; // ഗൂഗിൾ ഷീറ്റിലെ യഥാർത്ഥ വരി നമ്പർ
+            row.actualRow = index + 2;
             statesMap[state].push(row);
         }
     });
 
-    // ഗ്രൂപ്പ് ചെയ്ത ഡാറ്റ വെച്ച് UI ഉണ്ടാക്കുന്നു
     for (let state in statesMap) {
         html += `
         <div class="mb-3 p-2 bg-light border border-secondary border-opacity-25 rounded shadow-sm">
@@ -4682,25 +4680,42 @@ function renderSettingsUI(settingsData) {
                 <i class="fas fa-map-marker-alt text-danger me-1"></i> ${state}
             </h6>`;
 
-        statesMap[state].forEach(row => {
-            let provider = row.Provider || "Standard";
+        let providersList = statesMap[state];
+        // 🔥 FIX: 1 ൽ കൂടുതൽ കൊറിയറുകൾ ഉണ്ടെങ്കിൽ മാത്രം റേഡിയോ ബട്ടൺ കാണിക്കുക
+        let showRadio = providersList.length > 1;
 
-            // കോളം G (Default) ൽ എന്താണ് ഉള്ളതെന്ന് നോക്കുന്നു (ഹെഡിങ് ഇല്ലെങ്കിൽ '' എന്ന് വരും)
-            let defVal = String(row['Default'] || row[''] || '').toLowerCase().trim();
+        providersList.forEach(row => {
+            let provider = row.Provider || "Standard";
+            let defVal = String(row['Default'] || row['Col_6'] || row[''] || '').toLowerCase().trim();
             let isDefault = (defVal === 'default' || defVal === 'yes' || defVal === 'true');
 
             let radioId = `radio-${row.actualRow}`;
-            let radioName = `def-${state.replace(/\s+/g, '')}`; // ഒരേ സംസ്ഥാനത്തിന് ഒരേ റേഡിയോ ഗ്രൂപ്പ് പേര്
+            let radioName = `def-${state.replace(/\s+/g, '')}`;
 
-            html += `
-            <div class="mb-2 p-2 border ${isDefault ? 'border-primary' : 'border-secondary border-opacity-25'} rounded bg-white">
-                <div class="d-flex justify-content-between align-items-center mb-1">
+            let providerUIPart = '';
+
+            if (showRadio) {
+                // ഒന്നിലധികം കൊറിയർ ഉണ്ടെങ്കിൽ റേഡിയോ ബട്ടൺ കാണിക്കുന്നു
+                providerUIPart = `
                     <div class="form-check m-0">
                         <input class="form-check-input border-primary" type="radio" name="${radioName}" id="${radioId}" ${isDefault ? 'checked' : ''} onchange="setDefaultCourier('${state}', ${row.actualRow})">
                         <label class="form-check-label fw-bold ${isDefault ? 'text-primary' : 'text-dark'}" for="${radioId}" style="font-size: 12px; cursor:pointer;">
                             ${provider} ${isDefault ? '<span class="badge bg-primary ms-1" style="font-size:8px;">DEFAULT</span>' : ''}
                         </label>
-                    </div>
+                    </div>`;
+            } else {
+                // ഒരൊറ്റ കൊറിയർ മാത്രമേ ഉള്ളുവെങ്കിൽ പേര് മാത്രം കാണിക്കുന്നു
+                providerUIPart = `
+                    <div class="m-0 fw-bold text-primary" style="font-size: 12px;">
+                        <i class="fas fa-truck text-secondary me-1"></i> ${provider} 
+                        <span class="badge bg-secondary bg-opacity-25 text-secondary ms-1" style="font-size:8px;">DEFAULT</span>
+                    </div>`;
+            }
+
+            html += `
+            <div class="mb-2 p-2 border ${(isDefault || !showRadio) ? 'border-primary shadow-sm' : 'border-secondary border-opacity-25'} rounded bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    ${providerUIPart}
                     <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25" style="font-size: 8px;">Row: ${row.actualRow}</span>
                 </div>
                 
@@ -4720,7 +4735,6 @@ function renderSettingsUI(settingsData) {
 
     if (html === '') html = '<div class="text-muted p-2 small text-center">No courier regions found.</div>';
 
-    // 🔥 ADD NEW COURIER FORM
     html += `
     <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
         <h6 class="fw-bold text-dark mb-2" style="font-size: 12px;">
@@ -4751,42 +4765,39 @@ function renderSettingsUI(settingsData) {
     $('#courier-settings-container').html(html);
 }
 
-// 🔥 SET DEFAULT COURIER (Radio Button Change)
+// 🔥 SET DEFAULT COURIER 
 window.setDefaultCourier = function (state, rowNum) {
-    showToast("Updating...", `Setting default for ${state}...`, "info");
+    showToast('info', 'Setting default...');
 
     fetch(scriptURL, {
         method: 'POST',
-        body: JSON.stringify({
-            action: 'setDefaultCourier',
-            state: state,
-            row: rowNum
-        })
+        body: JSON.stringify({ action: 'setDefaultCourier', state: state, row: rowNum })
     })
         .then(res => res.json())
         .then(res => {
             if (res.status === 'success') {
-                showToast("Success", "Default courier updated!", "success");
-                loadCourierSettings(); // UI റിഫ്രഷ് ചെയ്യാൻ
+                showToast('success', 'Default courier updated!');
+                loadCourierSettings();
             } else {
-                showToast("Error", "Failed to update default", "error");
+                showToast('error', 'Failed to update default');
             }
         })
         .catch(err => {
-            console.error(err);
-            showToast("Error", "Network issue", "error");
+            showToast('error', 'Network issue');
         });
 }
 
+// 🔥 UPDATE BASE COST
 window.updateBaseCost = function () {
     let newCost = $('#setting-base-cost').val();
-    if (!newCost || isNaN(newCost) || newCost <= 0) return showToast("Invalid!", "Enter valid amount.", "error");
+    if (!newCost || isNaN(newCost) || newCost <= 0) return showToast('error', 'Enter valid amount.');
     if (!confirm(`Change Base Bottle Cost to ₹${newCost}? (Affects NEW orders only)`)) return;
     saveSettingToServer('Base Cost', 2, 'K', newCost);
 }
 
+// 🔥 UPDATE COURIER RATE
 window.updateCourierRate = function (rowNumber, stateName) {
-    let newRates = $(`#courier-rate-${rowNumber}`).val(); // 🔥 Index മാറി Row Number ആയി
+    let newRates = $(`#courier-rate-${rowNumber}`).val();
     let newMargin = $(`#courier-margin-${rowNumber}`).val();
     if (!confirm(`Update rates for ${stateName}?\n\nRates: ${newRates}\nMargin: ₹${newMargin}`)) return;
 
@@ -4794,16 +4805,17 @@ window.updateCourierRate = function (rowNumber, stateName) {
     setTimeout(() => { saveSettingToServer(`Margin for ${stateName}`, rowNumber, 'F', newMargin); }, 1500);
 }
 
+// 🔥 ADD NEW COURIER
 window.addNewCourierRow = function () {
     let state = $('#new-state').val().trim().toUpperCase();
     let provider = $('#new-provider').val().trim();
     let rates = $('#new-rates').val().trim();
     let margin = $('#new-margin').val().trim();
 
-    if (!state || !provider || !rates) return showToast("Missing Info", "State, Provider and Rates are required!", "error");
+    if (!state || !provider || !rates) return showToast('error', 'Missing Information!');
     if (!confirm(`Add new courier rate for ${state} (${provider})?`)) return;
 
-    showToast("Saving...", "Adding new courier region...", "info");
+    showToast('info', 'Adding new region...');
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'addCourierRow', state: state, provider: provider, rates: rates, margin: margin || 0 })
@@ -4811,21 +4823,22 @@ window.addNewCourierRow = function () {
         .then(res => res.json())
         .then(res => {
             if (res.status === 'success') {
-                showToast("Success", "New courier added!", "success");
+                showToast('success', 'New courier added!');
                 loadCourierSettings();
             }
         });
 }
 
+// 🔥 SAVE AJAX HELPER
 function saveSettingToServer(settingName, row, col, val) {
-    showToast("Saving...", `Updating ${settingName}...`, "info");
+    showToast('info', 'Updating...');
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'updateSettingCell', row: row, col: col, value: val })
     })
         .then(res => res.json())
         .then(res => {
-            if (res.status === 'success') showToast("Success", `${settingName} updated!`, "success");
+            if (res.status === 'success') showToast('success', `${settingName} updated!`);
         });
 }
 
