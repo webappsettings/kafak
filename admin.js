@@ -4416,7 +4416,7 @@ window.loadNextMonthDayBook = function () {
 }
 
 
-// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Syncs with Top Cards)
+// 🔥 RENDER DETAILED MONTHLY OVERVIEW (Dynamic Rates, Hints & Profit Split)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4440,8 +4440,12 @@ window.renderDetailedMonthlyOverview = function () {
 
             tSales += amt;
             tBottles += qty;
-            tBottleCost += (qty * 330);
 
+            // 🔥 DYNAMIC BOTTLE COST: Server-il ninnulla 'Product_Base_Cost' edukkunnu. Illenkil mathram 330 edukkaam.
+            let bCost = parseInt(o.Product_Base_Cost) || 330;
+            tBottleCost += (qty * bCost);
+
+            // 🔥 DYNAMIC COURIER COST: Server-il ninnulla 'Actual_Courier_Cost' edukkunnu.
             let actualCost = parseInt(o.Actual_Courier_Cost);
             if (!actualCost || isNaN(actualCost) || actualCost === 0) {
                 let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
@@ -4460,37 +4464,41 @@ window.renderDetailedMonthlyOverview = function () {
     let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
-    // 🔥 FIX: മുകളിലത്തെ മെയിൻ കാർഡുകളിലേക്ക് ഈ ശരിയായ കണക്കുകൾ അപ്ഡേറ്റ് ചെയ്യുന്നു!
+    // മുകളിലെ കാർഡുകളിലേക്ക് അപ്ഡേറ്റ് ചെയ്യാൻ
     $('#m-sales').text('₹' + tSales.toLocaleString());
     $('#m-expense').text('₹' + totalExpense.toLocaleString());
     $('#m-profit').text('₹' + netProfit.toLocaleString());
 
+    // 🔥 PROFIT SHARE CALCULATION (3 Partners)
+    let sharePerPerson = netProfit > 0 ? Math.floor(netProfit / 3) : 0;
+    let balance = netProfit > 0 ? netProfit - (sharePerPerson * 3) : 0; // ചില്ലറ ബാലൻസ് അഡ്ജസ്റ്റ് ചെയ്യാൻ
+
     let html = `
     <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
-            <i class="fas fa-chart-pie me-2"></i> True Profit Breakdown
+            <i class="fas fa-chart-pie me-2"></i> Monthly Profit Breakdown
         </h6>
         
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
-            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales)</span>
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50" title="Total amount paid by customers">
+            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales) <i class="fas fa-info-circle text-muted ms-1" style="font-size:10px;"></i></span>
             <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
         </div>
 
         <div class="mb-2 ps-3 border-start border-3 border-danger">
             <div class="text-danger fw-bold" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES:</div>
             
-            <div class="d-flex justify-content-between align-items-center mt-2">
-                <span class="text-light" style="font-size:12px;">🍾 Bottle Making Cost (${tBottles} bottles × ₹330)</span>
+            <div class="d-flex justify-content-between align-items-center mt-2" title="Fetched directly from DB 'Product_Base_Cost'">
+                <span class="text-light" style="font-size:12px;">🍾 Bottle Cost <span class="text-muted" style="font-size:10px;">(${tBottles} bottles, Base rate from DB)</span></span>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between align-items-center mt-2">
-                <span class="text-light" style="font-size:12px;">🚚 Actual Courier Cost</span>
+            <div class="d-flex justify-content-between align-items-center mt-2" title="Fetched directly from DB 'Actual_Courier_Cost'">
+                <span class="text-light" style="font-size:12px;">🚚 Actual Courier Cost <span class="text-muted" style="font-size:10px;">(DTDC Rates from DB)</span></span>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between align-items-center mt-2">
-                <span class="text-light" style="font-size:12px;">🧾 Other Expenses (Salary, etc.)</span>
+            <div class="d-flex justify-content-between align-items-center mt-2" title="From Expense Entries (Salary, Material, etc.)">
+                <span class="text-light" style="font-size:12px;">🧾 Other Expenses <span class="text-muted" style="font-size:10px;">(Manual Entries)</span></span>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
             </div>
         </div>
@@ -4501,11 +4509,31 @@ window.renderDetailedMonthlyOverview = function () {
                 ₹${netProfit.toLocaleString()}
             </span>
         </div>
+
+        ${netProfit > 0 ? `
+        <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+            <h6 class="text-center text-muted fw-bold mb-3" style="font-size:11px; letter-spacing:1px;">PROFIT SHARE (3 PARTNERS)</h6>
+            <div class="d-flex justify-content-between text-center">
+                <div class="w-100 px-1 border-end border-secondary border-opacity-25">
+                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Salam</div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()}</div>
+                </div>
+                <div class="w-100 px-1 border-end border-secondary border-opacity-25">
+                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Samad</div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()}</div>
+                </div>
+                <div class="w-100 px-1">
+                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Jazeela</div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${(sharePerPerson + balance).toLocaleString()}</div>
+                </div>
+            </div>
+        </div>
+        ` : `<div class="text-center mt-3 text-danger" style="font-size:11px;">No profits to share this month.</div>`}
+
     </div>`;
 
     $('#detailed-overview-container').html(html);
 }
-
 // 🔥 2. RENDER YEARLY OVERVIEW (New Feature)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
