@@ -4462,11 +4462,10 @@ window.renderDetailedMonthlyOverview = function () {
     let samadShare = netProfit > 0 ? Math.floor(netProfit * 0.70) : 0;
     let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0; // ബാക്കി വരുന്നത്
 
-    // Hint Text കാൽക്കുലേഷൻ (ശരാശരി തുകകൾ കാണിക്കാൻ)
+    // Hint Text കാൽക്കുലേഷൻ (മൊത്തം തുകകൾ കാണിക്കാൻ)
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
-    let avgActual = courierOrderCount > 0 ? Math.round(tActualCourier / courierOrderCount) : 60;
-    let avgCustomer = courierOrderCount > 0 ? Math.round(tCourierCost / courierOrderCount) : 80;
-    let avgMargin = avgCustomer - avgActual;
+    // ശരാശരി ഒഴിവാക്കി മൊത്തം തുകകൾ (Total) ആക്കുന്നു
+    let totalMargin = tCourierCost - tActualCourier;
 
     let html = `
     <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
@@ -4493,7 +4492,7 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
                     <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Charge ${avgActual} + Fuel margin ${avgMargin} = ${avgCustomer})</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Total Paid: ₹${tCourierCost.toLocaleString()} | Margin: ₹${totalMargin.toLocaleString()})</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
