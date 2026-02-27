@@ -4557,6 +4557,7 @@ window.renderDetailedMonthlyOverview = function () {
 
 
 // 🔥 2. RENDER YEARLY OVERVIEW (Yearly കാൽക്കുലേഷനിലും ആ തെറ്റ് തിരുത്തിയിട്ടുണ്ട്)
+// 🔥 2. RENDER YEARLY OVERVIEW (With Total Bottles Sold)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
     let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yOtherExpense = 0;
@@ -4567,13 +4568,17 @@ window.renderYearlyOverview = function () {
 
         if (pDate.getFullYear() === currentYear && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
-            let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-            let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+
+            // 🔥 Use Grand Total exactly like DayBook to prevent mismatch
+            let amt = parseInt(o.Grand_Total);
+            if (isNaN(amt) || amt <= 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
 
             ySales += amt;
             yBottles += qty;
 
-            // Yearly Bug Fix
             let dbCost = parseInt(o.Product_Base_Cost);
             if (!isNaN(dbCost) && dbCost > 0) {
                 yBottleCost += dbCost;
@@ -4608,18 +4613,25 @@ window.renderYearlyOverview = function () {
             <i class="fas fa-calendar-check text-primary me-2"></i> YEARLY SNAPSHOT (${currentYear})
         </h6>
         <div class="d-flex justify-content-between text-center align-items-center">
+            
             <div class="w-100 border-end border-secondary border-opacity-25 px-1">
                 <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">TOTAL SALES</div>
                 <div class="fw-bold text-success" style="font-size:14px;">₹${ySales.toLocaleString()}</div>
+                <div class="text-secondary mt-1" style="font-size:9px; font-weight:700;">
+                    <i class="fas fa-wine-bottle" style="color:#d97706;"></i> ${yBottles} Bottles
+                </div>
             </div>
+            
             <div class="w-100 border-end border-secondary border-opacity-25 px-1">
                 <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">TOTAL EXPENSE</div>
                 <div class="fw-bold text-danger" style="font-size:14px;">₹${yTotalExpense.toLocaleString()}</div>
             </div>
+            
             <div class="w-100 px-1">
                 <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">NET PROFIT</div>
                 <div class="fw-bold ${yNetProfit >= 0 ? 'text-primary' : 'text-danger'}" style="font-size:15px;">₹${yNetProfit.toLocaleString()}</div>
             </div>
+
         </div>
     </div>`;
 
