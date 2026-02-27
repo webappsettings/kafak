@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbwvxvo7IAjkdh5pyT7B8oExY--IDHVScNj3WQMFSBcOS1Qq44WDAoQ7I1Qqk0UY5ImNMw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxPvoSmTF1UcD2Mnu1PHIxOXWrWC8YMFNnTppO6C3mrXWtMfTL4DpGmSymfcYdNmirFsQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4654,7 +4654,7 @@ window.loadCourierSettings = function () {
         });
 }
 
-// 🔥 RENDER SETTINGS UI (ഫോണിൽ കാണിക്കാൻ)
+// 🔥 RENDER SETTINGS UI (With Provider Name & Add New Option)
 function renderSettingsUI(settingsData) {
     let html = '';
 
@@ -4664,29 +4664,102 @@ function renderSettingsUI(settingsData) {
 
     settingsData.forEach((row, index) => {
         if (row.Parameter && row.Parameter.trim() !== "") {
+            // പ്രൊവൈഡർ പേര് ഉണ്ടെങ്കിൽ അത് കാണിക്കാൻ
+            let providerName = row.Provider ? `<span class="text-primary fw-bolder ms-1">(${row.Provider})</span>` : '';
+
             html += `
-            <div class="mb-3 p-2 bg-light border border-secondary border-opacity-10 rounded">
+            <div class="mb-3 p-2 bg-light border border-secondary border-opacity-10 rounded shadow-sm">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-bold text-dark" style="font-size: 11px;">
-                        <i class="fas fa-map-marker-alt text-danger me-1"></i> ${row.Parameter}
+                    <span class="fw-bold text-dark" style="font-size: 12px;">
+                        <i class="fas fa-map-marker-alt text-danger me-1"></i> ${row.Parameter} ${providerName}
                     </span>
                     <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25" style="font-size: 8px;">Row: ${index + 2}</span>
                 </div>
                 <div class="input-group input-group-sm mb-1">
                     <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Rates</span>
-                    <input type="text" id="courier-rate-${index}" class="form-control" style="font-size: 10px;" value="${row['Base Rate String'] || ''}">
+                    <input type="text" id="courier-rate-${index}" class="form-control fw-bold text-dark" style="font-size: 11px;" value="${row['Base Rate String'] || ''}">
                 </div>
                 <div class="input-group input-group-sm">
-                    <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Margin</span>
-                    <input type="number" id="courier-margin-${index}" class="form-control" style="font-size: 10px; max-width: 60px;" value="${row['Service Charge'] || 20}">
-                    <button class="btn btn-outline-danger py-0 px-2 fw-bold" style="font-size: 9px;" onclick="updateCourierRate(${index + 2}, '${row.Parameter}')">SAVE</button>
+                    <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Margin ₹</span>
+                    <input type="number" id="courier-margin-${index}" class="form-control fw-bold text-danger" style="font-size: 11px; max-width: 70px;" value="${row['Service Charge'] || 0}">
+                    <button class="btn btn-outline-danger py-0 px-3 fw-bold" style="font-size: 10px;" onclick="updateCourierRate(${index + 2}, '${row.Parameter}')">SAVE</button>
                 </div>
             </div>`;
         }
     });
 
     if (html === '') html = '<div class="text-muted p-2 small text-center">No courier regions found.</div>';
+
+    // 🔥 ADD NEW COURIER FORM (പുതിയത് ആഡ് ചെയ്യാൻ)
+    html += `
+    <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+        <h6 class="fw-bold text-dark mb-2" style="font-size: 12px;">
+            <i class="fas fa-plus-circle text-success me-1"></i> Add New Courier Region
+        </h6>
+        <div class="p-2 bg-white border border-success border-opacity-50 rounded-3 shadow-sm">
+            <div class="row g-2 mb-2">
+                <div class="col-6">
+                    <input type="text" id="new-state" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="State (e.g. GOA)">
+                </div>
+                <div class="col-6">
+                    <input type="text" id="new-provider" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Provider (e.g. DTDC)">
+                </div>
+            </div>
+            <div class="row g-2 mb-2">
+                <div class="col-8">
+                    <input type="text" id="new-rates" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Rates (e.g. 1:80, 2:160)">
+                </div>
+                <div class="col-4">
+                    <input type="number" id="new-margin" class="form-control form-control-sm border-secondary border-opacity-25" style="font-size:11px;" placeholder="Margin ₹">
+                </div>
+            </div>
+            <button class="btn btn-sm btn-success w-100 fw-bold" style="font-size:11px; letter-spacing:0.5px;" onclick="addNewCourierRow()">+ SAVE NEW REGION</button>
+        </div>
+    </div>
+    `;
+
     $('#courier-settings-container').html(html);
+}
+
+// 🔥 FUNCTION TO ADD NEW ROW TO SHEET
+window.addNewCourierRow = function () {
+    let state = $('#new-state').val().trim().toUpperCase();
+    let provider = $('#new-provider').val().trim();
+    let rates = $('#new-rates').val().trim();
+    let margin = $('#new-margin').val().trim();
+
+    if (!state || !provider || !rates) {
+        showToast("Missing Info", "State, Provider and Rates are required!", "error");
+        return;
+    }
+
+    if (!confirm(`Add new courier rate for ${state} (${provider})?`)) return;
+
+    showToast("Saving...", "Adding new courier region...", "info");
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({
+            action: 'addCourierRow',
+            state: state,
+            provider: provider,
+            rates: rates,
+            margin: margin || 0
+        })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.status === 'success') {
+                showToast("Success", "New courier added successfully!", "success");
+                loadCourierSettings(); // Refresh list automatically
+            } else {
+                showToast("Error", "Failed to add courier", "error");
+            }
+        })
+        .catch(err => {
+            console.error("Add error:", err);
+            showToast("Error", "Network issue. Try again.", "error");
+        });
 }
 
 // 🔥 SAVE NEW BASE COST TO SERVER
