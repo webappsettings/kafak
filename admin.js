@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxG-4qW1TWHoozNhJdgB9l6A7zzBdKij-XJNYDhXP3QgdYLantPeuMxljK0Hw4dK7fgBg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby8dX3yuELlKAvO7uxdJ_1SJAe_JqvmRNkQdp0Mxs1ch7KAYhBfkoUxMw8ZFVl3PCzlDA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4610,4 +4610,122 @@ window.renderYearlyOverview = function () {
         $('<div id="yearly-overview-container"></div>').insertAfter('#detailed-overview-container');
     }
     $('#yearly-overview-container').html(html);
+}
+
+// 🔥 LOAD SETTINGS FROM SERVER
+window.loadCourierSettings = function () {
+    $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
+
+    // ഷീറ്റിൽ നിന്നും Settings ഡാറ്റ എടുക്കാൻ Apps Script-ലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
+    let scriptUrl = 'https://script.google.com/macros/s/AKfycby8dX3yuELlKAvO7uxdJ_1SJAe_JqvmRNkQdp0Mxs1ch7KAYhBfkoUxMw8ZFVl3PCzlDA/exec'; // ⚠️ പഴയ സ്ക്രിപ്റ്റ് URL തന്നെ നൽകുക
+
+    $.ajax({
+        url: scriptUrl + '?action=getSettings', // ഇത് പുതിയ ഒരു ആക്ഷൻ ആണ് (Apps Script-ൽ ആഡ് ചെയ്യണം)
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            if (response.status === 'success' && response.data) {
+                renderSettingsUI(response.data);
+            } else {
+                $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Failed to load settings.</div>');
+            }
+        },
+        error: function () {
+            $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Network error.</div>');
+        }
+    });
+}
+
+// 🔥 RENDER SETTINGS UI (ഫോണിൽ കാണിക്കാൻ)
+function renderSettingsUI(settingsData) {
+    let html = '';
+
+    // Base Cost അപ്ഡേറ്റ് ചെയ്യുന്നു (ആദ്യത്തെ റോയിൽ നിന്നാണ് എടുക്കുന്നത്)
+    if (settingsData.length > 0 && settingsData[0]['Base Cost Per Bottle']) {
+        $('#setting-base-cost').val(settingsData[0]['Base Cost Per Bottle']);
+    }
+
+    settingsData.forEach((row, index) => {
+        // State പേര് ഉണ്ടെങ്കിൽ മാത്രം കൊറിയർ ബോക്സ് കാണിക്കുക
+        if (row.Parameter && row.Parameter.trim() !== "") {
+            html += `
+            <div class="mb-3 p-2 bg-light border border-secondary border-opacity-10 rounded">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-dark" style="font-size: 11px;">
+                        <i class="fas fa-map-marker-alt text-danger me-1"></i> ${row.Parameter}
+                    </span>
+                    <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25" style="font-size: 8px;">Row: ${index + 2}</span>
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Rates</span>
+                    <input type="text" id="courier-rate-${index}" class="form-control" style="font-size: 10px;" value="${row['Base Rate String'] || ''}">
+                </div>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-white text-muted" style="font-size: 10px; padding: 0 5px;">Margin</span>
+                    <input type="number" id="courier-margin-${index}" class="form-control" style="font-size: 10px; max-width: 60px;" value="${row['Service Charge'] || 20}">
+                    <button class="btn btn-outline-danger py-0 px-2 fw-bold" style="font-size: 9px;" onclick="updateCourierRate(${index + 2}, '${row.Parameter}')">SAVE</button>
+                </div>
+            </div>`;
+        }
+    });
+
+    if (html === '') html = '<div class="text-muted p-2 small text-center">No courier regions found.</div>';
+    $('#courier-settings-container').html(html);
+}
+
+// 🔥 SAVE NEW BASE COST TO SERVER
+window.updateBaseCost = function () {
+    let newCost = $('#setting-base-cost').val();
+    if (!newCost || isNaN(newCost) || newCost <= 0) {
+        showToast("Invalid Cost!", "Please enter a valid amount.", "error");
+        return;
+    }
+
+    if (!confirm(`Are you sure you want to change the Base Bottle Cost to ₹${newCost}?\n\nNote: This will only affect NEW orders. Past orders will retain their old cost.`)) return;
+
+    // ഇതിനായി Apps Script-ൽ ഒരു സേവ് ഫംഗ്ഷൻ എഴുതേണ്ടതുണ്ട്
+    saveSettingToServer('Base Cost', 2, 'K', newCost); // Column K is 'Base Cost Per Bottle'
+}
+
+// 🔥 SAVE COURIER RATE TO SERVER
+window.updateCourierRate = function (rowNumber, stateName) {
+    let rowIndex = rowNumber - 2;
+    let newRates = $(`#courier-rate-${rowIndex}`).val();
+    let newMargin = $(`#courier-margin-${rowIndex}`).val();
+
+    if (!confirm(`Update rates for ${stateName}?\n\nRates: ${newRates}\nMargin: ₹${newMargin}`)) return;
+
+    // ഇത് രണ്ടുതവണ കാൾ ചെയ്യേണ്ടി വരും (ഒന്ന് റേറ്റിനും, ഒന്ന് മാർജിനും)
+    saveSettingToServer(`Rates for ${stateName}`, rowNumber, 'D', newRates); // Column D is 'Base Rate String'
+
+    setTimeout(() => {
+        saveSettingToServer(`Margin for ${stateName}`, rowNumber, 'F', newMargin); // Column F is 'Service Charge'
+    }, 1500); // ഗൂഗിൾ ഷീറ്റിന്റെ ലിമിറ്റ് മറികടക്കാൻ ചെറിയ ഡിലേ
+}
+
+// 🔥 AJAX HELPER TO SEND DATA
+function saveSettingToServer(settingName, row, col, val) {
+    let scriptUrl = 'https://script.google.com/macros/s/AKfycby8dX3yuELlKAvO7uxdJ_1SJAe_JqvmRNkQdp0Mxs1ch7KAYhBfkoUxMw8ZFVl3PCzlDA/exec';
+    showToast("Saving...", `Updating ${settingName}...`, "info");
+
+    $.ajax({
+        url: scriptUrl,
+        method: 'POST',
+        data: {
+            action: 'updateSettingCell',
+            row: row,
+            col: col,
+            value: val
+        },
+        success: function (res) {
+            if (res.status === 'success') {
+                showToast("Success", `${settingName} updated successfully!`, "success");
+            } else {
+                showToast("Error", `Failed to update ${settingName}`, "error");
+            }
+        },
+        error: function () {
+            showToast("Network Error", "Could not connect to server.", "error");
+        }
+    });
 }

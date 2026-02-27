@@ -1264,6 +1264,10 @@
                             <i class="fas fa-chevron-right" style="font-size:12px;"></i>
                         </button>
                     </div>
+                    <button class="btn btn-sm btn-outline-dark ms-2 shadow-sm rounded-pill"
+                        onclick="$('#settingsModal').modal('show'); loadCourierSettings();" title="System Settings">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
                 </div>
 
                 <div class="row g-3 mb-4">
@@ -1390,6 +1394,74 @@
                         <i class="fas fa-times-circle"></i> CLEAR FORM
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+
+                <div class="modal-header text-white"
+                    style="background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 15px 15px 0 0; padding: 15px 20px;">
+                    <h6 class="modal-title fw-bold" id="settingsModalLabel" style="letter-spacing: 0.5px;">
+                        <i class="fas fa-cog me-2 text-warning"></i> SYSTEM SETTINGS
+                    </h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"
+                        style="font-size: 10px;"></button>
+                </div>
+
+                <div class="modal-body p-4" style="background-color: #f8fafc;">
+
+                    <div class="bg-white p-3 rounded-3 shadow-sm border border-secondary border-opacity-25 mb-4">
+                        <label class="fw-bold text-dark mb-2" style="font-size: 13px;">
+                            <i class="fas fa-wine-bottle text-primary me-2"></i> Base Bottle Cost
+                        </label>
+                        <p class="text-muted mb-2" style="font-size: 10px; line-height: 1.4;">
+                            Update the manufacturing cost per bottle. This will only affect <span
+                                class="fw-bold text-dark">NEW</span> orders going forward. Past orders remain unchanged.
+                        </p>
+                        <div class="input-group input-group-sm mb-1">
+                            <span
+                                class="input-group-text bg-light text-secondary fw-bold border-secondary border-opacity-25">₹</span>
+                            <input type="number" id="setting-base-cost"
+                                class="form-control border-secondary border-opacity-25 fw-bold text-dark" value="330">
+                            <button class="btn btn-primary fw-bold px-3" onclick="updateBaseCost()"
+                                style="font-size: 11px;">UPDATE</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-3 shadow-sm border border-secondary border-opacity-25">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="fw-bold text-dark m-0" style="font-size: 13px;">
+                                <i class="fas fa-truck-fast text-danger me-2"></i> Courier Rate Manager
+                            </label>
+                            <button class="btn btn-sm btn-outline-danger py-0 px-2 fw-bold"
+                                style="font-size: 10px; border-radius: 4px;" onclick="loadCourierSettings()">
+                                <i class="fas fa-sync-alt me-1"></i> Refresh
+                            </button>
+                        </div>
+                        <p class="text-muted mb-3" style="font-size: 10px; line-height: 1.4;">
+                            Manage base courier charges for different states. Rates are typically stored as
+                            comma-separated values (e.g., 1:60, 2:120).
+                        </p>
+
+                        <div id="courier-settings-container" style="max-height: 250px; overflow-y: auto;" class="pe-1">
+                            <div class="text-center text-muted p-3" style="font-size: 11px;">
+                                <i class="fas fa-spinner fa-spin me-2"></i> Loading courier rates...
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    class="modal-footer bg-light p-2 border-top border-secondary border-opacity-25 d-flex justify-content-between">
+                    <span class="text-muted" style="font-size: 9px;"><i class="fas fa-info-circle me-1"></i> Sync
+                        required after updating.</span>
+                    <button type="button" class="btn btn-sm btn-dark px-4 fw-bold rounded-pill" data-bs-dismiss="modal"
+                        style="font-size: 11px;">CLOSE</button>
+                </div>
             </div>
         </div>
     </div>
