@@ -4407,7 +4407,8 @@ window.loadNextMonthDayBook = function () {
 }
 
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed to match exact Monthly Overview Top Cards)
+
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed Courier Margin & Labels)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4443,6 +4444,7 @@ window.renderDetailedMonthlyOverview = function () {
                 tBottleCost += (qty * 330);
             }
 
+            // ഫുൾ കൊറിയർ ചാർജ്
             let cCost = parseInt(o.Courier_Charge);
             if (isNaN(cCost) || cCost <= 0) {
                 cCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
@@ -4466,7 +4468,6 @@ window.renderDetailedMonthlyOverview = function () {
                 let isSalary = (catName === 'salary');
                 let isRefund = (catName === 'refund');
 
-                // 🔥 FIX: മുകളിലെ മെയിൻ കാർഡുകൾക്ക് സമാനമായി മെറ്റീരിയൽ, സാലറി എന്നിവ ഇവിടെയും ഒഴിവാക്കുന്നു
                 if (!isMaterial && !isSalary && !isRefund) {
                     tOtherExpense += e.amount;
                 }
@@ -4474,8 +4475,8 @@ window.renderDetailedMonthlyOverview = function () {
         });
     }
 
-    // 🔥 യഥാർത്ഥ ലാഭം കാൽക്കുലേഷൻ (ഇപ്പോൾ ഇത് മുകളിലെ 51,880 യുമായി 100% ടാലി ആകും)
-    let totalExpense = tBottleCost + tActualCourier + tOtherExpense;
+    // 🔥 യഥാർത്ഥ ലാഭം (ഇപ്പോൾ ഫുൾ കൊറിയർ തുക ചിലവാക്കി കുറയ്ക്കുന്നു! Margin ലാഭത്തിൽ വരില്ല)
+    let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
     let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
@@ -4501,7 +4502,7 @@ window.renderDetailedMonthlyOverview = function () {
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🍾 Bottle Cost</div>
+                    <div class="text-light" style="font-size:12px;">🍾 Bottle Making Cost</div>
                     <div class="text-warning" style="font-size:11px; font-weight:600;">(${tBottles} bottles × ₹${avgBottleRate})</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
@@ -4509,10 +4510,10 @@ window.renderDetailedMonthlyOverview = function () {
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🚚 Courier (Actual Cost)</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Customer Paid: ₹${tCourierCost.toLocaleString()} | Margin: ₹${totalMargin.toLocaleString()})</div>
+                    <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Includes Fuel/Packing Margin: ₹${totalMargin.toLocaleString()})</div>
                 </div>
-                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tActualCourier.toLocaleString()}</span>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
             
             <div class="d-flex justify-content-between align-items-start mt-2 pb-2 border-bottom border-secondary border-opacity-50">
@@ -4553,6 +4554,134 @@ window.renderDetailedMonthlyOverview = function () {
     </div>`;
 
     $('#detailed-overview-container').html(html);
+}
+
+// 🔥 UPDATE DASHBOARD MAIN CARDS (Full Courier Cost Deduction)
+function renderDashboard() {
+    if (!dashboardData) return;
+
+    let d = dashboardData.daily;
+    let mName = selectedDate.toLocaleString('en-US', { month: 'short' });
+    let yName = selectedDate.getFullYear();
+
+    $('#m-overview-title').text(`(${mName} ${yName})`);
+
+    $('#d-sales').text('₹' + d.sales.toLocaleString());
+    $('#d-expense').text('₹' + d.expense.toLocaleString());
+    $('#d-courier').text('₹' + d.courier.toLocaleString());
+    $('#d-profit').text('₹' + d.profit.toLocaleString());
+    $('#d-orders').text(d.count || 0);
+
+    $('.helper-text-dash').remove();
+    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
+
+    if (d.profit >= 0) {
+        $('#d-profit').removeClass('text-danger').addClass('text-success');
+        $('#d-status-text').text("Cash in Hand 🚀").css('color', '#2e7d32');
+    } else {
+        $('#d-profit').removeClass('text-success').addClass('text-danger');
+        $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
+    }
+
+    let mY = selectedDate.getFullYear();
+    let mM = selectedDate.getMonth();
+
+    let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0;
+    let monthBottles = 0, yearBottles = 0;
+    let monthOrders = 0, yearOrders = 0;
+    let paidNewQty = 0, paidPrintedQty = 0;
+
+    allOrders.forEach(o => {
+        let status = o.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
+
+        let pDate = new Date(o.paidDate || o.timestamp);
+        let oYear = pDate.getFullYear();
+        let oMonth = pDate.getMonth();
+        let qty = parseInt(o.quantity) || 0;
+
+        if (oYear === mY) {
+            yearOrders++;
+            yearBottles += qty;
+
+            if (oMonth === mM) {
+                monthOrders++;
+                monthBottles += qty;
+
+                let amt = parseInt(o.Grand_Total);
+                if (isNaN(amt) || amt <= 0) {
+                    let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                    amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+                }
+                trueIncome += amt;
+
+                let pCost = parseFloat(o['Product_Base_Cost']);
+                trueProductCost += isNaN(pCost) ? (qty * 330) : pCost;
+            }
+        }
+
+        // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച്)
+        if (status !== 'Paid') {
+            let dDate = new Date(o['Dispatched Date'] || o.timestamp);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                // 🔥 FIX: Actual ന് പകരം കസ്റ്റമർ തന്ന ഫുൾ തുകയെടുക്കുന്നു
+                let cCharge = parseInt(o.Courier_Charge);
+                if (isNaN(cCharge) || cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                trueCourierExp += cCharge;
+            }
+        }
+    });
+
+    let trueOtherExp = 0;
+    let monthMaterialExp = 0;
+
+    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => {
+            let catName = String(e.cat || '').toLowerCase();
+            if (catName.includes('material')) {
+                monthMaterialExp += e.amount;
+            } else if (catName === 'salary' || catName === 'refund') {
+                // Do nothing
+            } else if (!e.isCourier) {
+                trueOtherExp += e.amount;
+            }
+        });
+    }
+
+    let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
+    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
+
+    $('#m-sales').text('₹' + trueIncome.toLocaleString());
+    $('#m-expense').text('₹' + totalExpenses.toLocaleString());
+    $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
+
+    $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
+    $('#m-expense').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Bottle Cost + Full Courier + Other)</div>');
+    $('#m-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
+
+    $('#extra-stats-container, #partner-shares-container, #material-stats-container').remove();
+
+    let yearMaterialExp = dashboardData?.yearly?.materialExp || 0;
+
+    let materialHtml = `
+    <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="fw-bold text-dark m-0" style="font-size:12px; letter-spacing:0.5px;">
+                <i class="fas fa-boxes text-secondary me-2"></i> MATERIAL PURCHASES
+            </h6>
+        </div>
+        <div class="d-flex justify-content-between bg-white p-2 rounded border border-secondary border-opacity-25 text-center">
+            <div class="w-100 border-end border-secondary border-opacity-25">
+                <div class="text-muted fw-bold" style="font-size:9px;">THIS MONTH</div>
+                <div class="text-danger fw-bolder" style="font-size:14px;">₹${monthMaterialExp.toLocaleString()}</div>
+            </div>
+            <div class="w-100">
+                <div class="text-muted fw-bold" style="font-size:9px;">THIS YEAR</div>
+                <div class="text-danger fw-bolder" style="font-size:14px;">₹${yearMaterialExp.toLocaleString()}</div>
+            </div>
+        </div>
+    </div>`;
+    $('#detailed-overview-container').before(materialHtml);
 }
 
 
