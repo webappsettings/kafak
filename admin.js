@@ -2930,6 +2930,7 @@ function renderDashboard() {
     // 🔥 പുതുതായി ചേർത്ത Day Book വിളിക്കാൻ
     renderDayBookTable();
     renderDetailedMonthlyOverview();
+    renderYearlyOverview();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -4414,12 +4415,13 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 RENDER DETAILED MONTHLY OVERVIEW (Fixed Logic Bug)
+
+// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Syncs with Top Cards)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
     if ($('#detailed-overview-container').length === 0) {
-        $('<div id="detailed-overview-container" class="mt-3 mb-4"></div>').insertAfter('#daybook-container');
+        $('<div id="detailed-overview-container" class="mt-3 mb-3"></div>').insertAfter('#daybook-container');
     }
 
     let mY = selectedDate.getFullYear();
@@ -4429,11 +4431,8 @@ window.renderDetailedMonthlyOverview = function () {
 
     allOrders.forEach(o => {
         let pDate = new Date(o.paidDate || o.timestamp);
-
-        // 🔥 BUG FIX: Status check grouped properly with brackets (അല്ലെങ്കിൽ includes ഉപയോഗിക്കാം)
         let isValidStatus = ['Paid', 'Dispatched', 'Delivered'].includes(o.Status);
 
-        // കൃത്യമായി ഈ മാസത്തെയും, ശരിയായ സ്റ്റാറ്റസ് ഉള്ളതുമായ ഓർഡറുകൾ മാത്രം എടുക്കുന്നു
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
             let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
@@ -4461,8 +4460,13 @@ window.renderDetailedMonthlyOverview = function () {
     let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
+    // 🔥 FIX: മുകളിലത്തെ മെയിൻ കാർഡുകളിലേക്ക് ഈ ശരിയായ കണക്കുകൾ അപ്ഡേറ്റ് ചെയ്യുന്നു!
+    $('#m-sales').text('₹' + tSales.toLocaleString());
+    $('#m-expense').text('₹' + totalExpense.toLocaleString());
+    $('#m-profit').text('₹' + netProfit.toLocaleString());
+
     let html = `
-    <div class="bg-dark text-white p-4 rounded-4 shadow mb-5" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+    <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
             <i class="fas fa-chart-pie me-2"></i> True Profit Breakdown
         </h6>
@@ -4497,8 +4501,79 @@ window.renderDetailedMonthlyOverview = function () {
                 ₹${netProfit.toLocaleString()}
             </span>
         </div>
-        ${netProfit > 0 ? `<div class="text-end mt-1" style="font-size:10px; color:#34d399;">You are in Profit! Great job. 🎉</div>` : `<div class="text-end mt-1" style="font-size:10px; color:#f87171;">Currently in loss. Keep pushing! 💪</div>`}
     </div>`;
 
     $('#detailed-overview-container').html(html);
+}
+
+// 🔥 2. RENDER YEARLY OVERVIEW (New Feature)
+window.renderYearlyOverview = function () {
+    let currentYear = selectedDate.getFullYear();
+    let ySales = 0, yBottles = 0, yCourierCost = 0, yOtherExpense = 0;
+
+    allOrders.forEach(o => {
+        let pDate = new Date(o.paidDate || o.timestamp);
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered'].includes(o.Status);
+
+        if (pDate.getFullYear() === currentYear && isValidStatus) {
+            let qty = parseInt(o.quantity) || 0;
+            let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+            let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+
+            ySales += amt;
+            yBottles += qty;
+
+            let actualCost = parseInt(o.Actual_Courier_Cost);
+            if (!actualCost || isNaN(actualCost) || actualCost === 0) {
+                let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
+            }
+            yCourierCost += actualCost;
+        }
+    });
+
+    let yBottleCost = yBottles * 330;
+
+    // ഡാറ്റാബേസിൽ മറ്റ് ചിലവുകൾ ഉണ്ടെങ്കിൽ അതും കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+    if (typeof allExpenses !== 'undefined' && Array.isArray(allExpenses)) {
+        allExpenses.forEach(e => {
+            let dDate = new Date(e.date || e.timestamp);
+            if (dDate.getFullYear() === currentYear && !e.isCourier) {
+                yOtherExpense += (Number(e.amount) || 0);
+            }
+        });
+    } else if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
+        dashboardData.yearTimeline.expense.forEach(e => {
+            if (!e.isCourier) yOtherExpense += (Number(e.amount) || 0);
+        });
+    }
+
+    let yTotalExpense = yBottleCost + yCourierCost + yOtherExpense;
+    let yNetProfit = ySales - yTotalExpense;
+
+    let html = `
+    <div class="bg-white p-3 rounded-4 shadow-sm border border-primary border-opacity-25 mb-5">
+        <h6 class="fw-bold text-dark mb-3 text-center" style="font-size:12px; letter-spacing:0.5px;">
+            <i class="fas fa-calendar-check text-primary me-2"></i> YEARLY SNAPSHOT (${currentYear})
+        </h6>
+        <div class="d-flex justify-content-between text-center align-items-center">
+            <div class="w-100 border-end border-secondary border-opacity-25 px-1">
+                <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">TOTAL SALES</div>
+                <div class="fw-bold text-success" style="font-size:14px;">₹${ySales.toLocaleString()}</div>
+            </div>
+            <div class="w-100 border-end border-secondary border-opacity-25 px-1">
+                <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">TOTAL EXPENSE</div>
+                <div class="fw-bold text-danger" style="font-size:14px;">₹${yTotalExpense.toLocaleString()}</div>
+            </div>
+            <div class="w-100 px-1">
+                <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">NET PROFIT</div>
+                <div class="fw-bold ${yNetProfit >= 0 ? 'text-primary' : 'text-danger'}" style="font-size:15px;">₹${yNetProfit.toLocaleString()}</div>
+            </div>
+        </div>
+    </div>`;
+
+    if ($('#yearly-overview-container').length === 0) {
+        $('<div id="yearly-overview-container"></div>').insertAfter('#detailed-overview-container');
+    }
+    $('#yearly-overview-container').html(html);
 }
