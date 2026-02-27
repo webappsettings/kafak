@@ -2892,32 +2892,8 @@ function renderDashboard() {
     </div>
     `;
 
-    // 🔥 PROFIT SHARES UI 
-    let sharesHtml = `
-    <div id="partner-shares-container" class="mb-4 p-3 bg-white border border-success border-opacity-25 rounded-4 shadow-sm">
-        <div class="d-flex align-items-center mb-2 pb-2 border-bottom border-success border-opacity-10">
-            <i class="fas fa-chart-pie text-success me-2"></i>
-            <h6 class="fw-bold text-dark m-0" style="font-size:12px;">PROFIT SHARE SPLIT (This Month)</h6>
-        </div>
-        <div class="row text-center pt-1">
-            <div class="col-4 border-end">
-                <div class="small text-muted mb-1" style="font-size:10px; font-weight:700;">Salam (20%)</div>
-                <div class="fw-bold text-success" style="font-size:14px;">₹${(trueNetProfit * 0.20).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-            </div>
-            <div class="col-4 border-end">
-                <div class="small text-muted mb-1" style="font-size:10px; font-weight:700;">Samad (70%)</div>
-                <div class="fw-bold text-success" style="font-size:14px;">₹${(trueNetProfit * 0.70).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-            </div>
-            <div class="col-4">
-                <div class="small text-muted mb-1" style="font-size:10px; font-weight:700;">Jazeela (10%)</div>
-                <div class="fw-bold text-success" style="font-size:14px;">₹${(trueNetProfit * 0.10).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-            </div>
-        </div>
-    </div>
-    `;
-
     // 🔥 3 ബോക്സുകളും ആക്ടിവിറ്റി ലിസ്റ്റിന് മുകളിലായി ആഡ് ചെയ്യുന്നു (ആദ്യം മെറ്റീരിയൽ, പിന്നെ സ്റ്റാറ്റസ്, പിന്നെ പ്രോഫിറ്റ്)
-    $('#tx-details-area').before(materialHtml + statsHtml + sharesHtml);
+    $('#tx-details-area').before(materialHtml + statsHtml);
 
     // 🔥 Redraw Calendar & Render Transactions
     if (txCalendarPicker) txCalendarPicker.redraw();
@@ -4417,11 +4393,12 @@ window.loadNextMonthDayBook = function () {
 
 
 // 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Fixed Math Bug, Hint Texts & Profit Share)
+// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Fixed Top Cards Sync & Visible Hints)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
     if ($('#detailed-overview-container').length === 0) {
-        $('<div id="detailed-overview-container" class="mt-3 mb-3"></div>').insertAfter('#daybook-container');
+        $('<div id="detailed-overview-container" class="mt-3 mb-4"></div>').insertAfter('#daybook-container');
     }
 
     let mY = selectedDate.getFullYear();
@@ -4435,23 +4412,28 @@ window.renderDetailedMonthlyOverview = function () {
 
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
-            let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-            let amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
 
+            let amt = parseInt(o.Grand_Total);
+            if (isNaN(amt) || amt === 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
             tSales += amt;
             tBottles += qty;
 
-            // 🔥 BUG FIX: ഡാറ്റാബേസിൽ ഉള്ളത് മൊത്തം ചിലവാണ്. അത് വീണ്ടും ഗുണിക്കേണ്ടതില്ല!
             let dbCost = parseInt(o.Product_Base_Cost);
             if (!isNaN(dbCost) && dbCost > 0) {
-                tBottleCost += dbCost; // ഡാറ്റാബേസിൽ ഉണ്ടെങ്കിൽ അത് നേരിട്ട് എടുക്കുന്നു
+                tBottleCost += dbCost;
             } else {
-                tBottleCost += (qty * 330); // ഇല്ലെങ്കിൽ മാത്രം 330 വെച്ച് ഗുണിക്കുന്നു
+                tBottleCost += (qty * 330);
             }
 
-            // നിങ്ങളുടെ അപ്ഡേറ്റ്: കസ്റ്റമറിൽ നിന്ന് വാങ്ങിയ മുഴുവൻ തുകയും ചിലവായി എടുക്കുന്നു
-            let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            tCourierCost += actualCost;
+            let cCost = parseInt(o.Courier_Charge);
+            if (!isNaN(cCost) && cCost > 0) {
+                tCourierCost += cCost;
+            } else {
+                tCourierCost += getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            }
         }
     });
 
@@ -4464,16 +4446,14 @@ window.renderDetailedMonthlyOverview = function () {
     let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
-    // മുകളിലെ മെയിൻ കാർഡുകളിലേക്ക് സിങ്ക് ചെയ്യാൻ
-    $('#m-sales').text('₹' + tSales.toLocaleString());
-    $('#m-expense').text('₹' + totalExpense.toLocaleString());
-    $('#m-profit').text('₹' + netProfit.toLocaleString());
+    // 🔥 BUG FIX: മുകളിലെ കാർഡുകളുടെ യഥാർത്ഥ ID കൊടുത്തു!
+    $('#d-sales').text('₹' + tSales.toLocaleString());
+    $('#d-expense').text('₹' + totalExpense.toLocaleString());
+    $('#d-profit').text('₹' + netProfit.toLocaleString());
+    $('#d-courier').text('₹' + tCourierCost.toLocaleString());
 
-    // Profit Share കാൽക്കുലേഷൻ
     let sharePerPerson = netProfit > 0 ? Math.floor(netProfit / 3) : 0;
     let balance = netProfit > 0 ? netProfit - (sharePerPerson * 3) : 0;
-
-    // Hint Text-ന് വേണ്ടി Average Rate കാൽക്കുലേറ്റ് ചെയ്യുന്നു (വെറുതെ കാണിക്കാൻ വേണ്ടി മാത്രം)
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
 
     let html = `
@@ -4493,7 +4473,7 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
                     <div class="text-light" style="font-size:12px;">🍾 Bottle Making Cost</div>
-                    <div class="text-muted" style="font-size:10px; font-style:italic;">(${tBottles} bottles × ₹${avgBottleRate} from DB)</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(${tBottles} bottles × ₹${avgBottleRate})</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
             </div>
@@ -4501,7 +4481,7 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
                     <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
-                    <div class="text-muted" style="font-size:10px; font-style:italic;">(Courier charge + fuel margin)</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Charge + Fuel margin)</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
@@ -4509,7 +4489,7 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
                     <div class="text-light" style="font-size:12px;">🧾 Other Expenses</div>
-                    <div class="text-muted" style="font-size:10px; font-style:italic;">(Materials, Salary, etc.)</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Materials, Salary, etc.)</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
             </div>
@@ -4528,15 +4508,15 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between text-center">
                 <div class="w-100 px-1 border-end border-secondary border-opacity-25">
                     <div class="text-info fw-bold mb-1" style="font-size:12px;">Salam</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-muted" style="font-size:9px;">(33.3%)</span></div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-warning" style="font-size:9px;">(33.3%)</span></div>
                 </div>
                 <div class="w-100 px-1 border-end border-secondary border-opacity-25">
                     <div class="text-info fw-bold mb-1" style="font-size:12px;">Samad</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-muted" style="font-size:9px;">(33.3%)</span></div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-warning" style="font-size:9px;">(33.3%)</span></div>
                 </div>
                 <div class="w-100 px-1">
                     <div class="text-info fw-bold mb-1" style="font-size:12px;">Jazeela</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${(sharePerPerson + balance).toLocaleString()} <span class="text-muted" style="font-size:9px;">(33.3%)</span></div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${(sharePerPerson + balance).toLocaleString()} <span class="text-warning" style="font-size:9px;">(33.3%)</span></div>
                 </div>
             </div>
         </div>
