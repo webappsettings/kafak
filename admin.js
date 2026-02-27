@@ -4132,6 +4132,7 @@ function submitEditedExpense(updateData) {
 
 
 // 🔥 RENDER DAY BOOK (With View Toggle: Accounting vs Profit View)
+// 🔥 RENDER DAY BOOK (Accounting Default View)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4142,8 +4143,8 @@ window.renderDayBookTable = function () {
     let currentDate = new Date();
     let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
 
-    // യൂസർ സെലക്ട് ചെയ്ത View Mode എടുക്കുന്നു (ഇല്ലെങ്കിൽ Default 'profit' ആക്കും)
-    let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'profit';
+    // 🔥 FIX: Default View is now 'accounting'
+    let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'accounting';
 
     let dailyData = {};
     const initDate = (dStr) => {
@@ -4158,12 +4159,9 @@ window.renderDayBookTable = function () {
 
         let qty = parseInt(o.quantity) || 0;
         let pDate = new Date(o.paidDate || o.timestamp);
-        let actualCost = parseInt(o.Actual_Courier_Cost);
 
-        if (!actualCost || isNaN(actualCost) || actualCost === 0) {
-            let customerCharge = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            actualCost = customerCharge > 20 ? customerCharge - 20 : customerCharge;
-        }
+        // കസ്റ്റമർ നൽകിയ മൊത്തം കൊറിയർ തുക ചിലവായി എടുക്കുന്നു
+        let actualCost = parseInt(o.Courier_Charge) || getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
 
         // --- INCOME LOGIC ---
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
@@ -4177,7 +4175,6 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
 
-            // 🔥 PROFIT VIEW: ഓർഡർ വന്ന അന്ന് തന്നെ കൊറിയർ ചിലവ് കാണിക്കുന്നു
             if (viewMode === 'profit' && actualCost > 0) {
                 dailyData[dStr].courier.items.push({ charge: actualCost });
                 dailyData[dStr].courier.totalAmount += actualCost;
@@ -4235,8 +4232,8 @@ window.renderDayBookTable = function () {
         
         <div class="d-flex justify-content-center mb-3">
             <select id="daybook-view-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
-                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View (Income Day = Courier Day)</option>
                 <option value="accounting" ${viewMode === 'accounting' ? 'selected' : ''}>📊 Accounting View (Dispatch Day = Courier Day)</option>
+                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View (Income Day = Courier Day)</option>
             </select>
         </div>
         <div>
@@ -4392,8 +4389,7 @@ window.loadNextMonthDayBook = function () {
 }
 
 
-// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Fixed Math Bug, Hint Texts & Profit Share)
-// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW (Fixed Top Cards Sync & Visible Hints)
+// 🔥 1. RENDER DETAILED MONTHLY OVERVIEW
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4405,6 +4401,9 @@ window.renderDetailedMonthlyOverview = function () {
     let mM = selectedDate.getMonth();
 
     let tSales = 0, tBottles = 0, tBottleCost = 0, tCourierCost = 0, tOtherExpense = 0;
+
+    // Hint text-ന് വേണ്ടി കൊറിയർ ചാർജ് കാൽക്കുലേറ്റ് ചെയ്യാൻ
+    let tActualCourier = 0, courierOrderCount = 0;
 
     allOrders.forEach(o => {
         let pDate = new Date(o.paidDate || o.timestamp);
@@ -4421,6 +4420,7 @@ window.renderDetailedMonthlyOverview = function () {
             tSales += amt;
             tBottles += qty;
 
+            // Bottle Cost
             let dbCost = parseInt(o.Product_Base_Cost);
             if (!isNaN(dbCost) && dbCost > 0) {
                 tBottleCost += dbCost;
@@ -4428,12 +4428,20 @@ window.renderDetailedMonthlyOverview = function () {
                 tBottleCost += (qty * 330);
             }
 
+            // Customer നൽകിയ മൊത്തം കൊറിയർ ചാർജ് (Charge + Margin)
             let cCost = parseInt(o.Courier_Charge);
-            if (!isNaN(cCost) && cCost > 0) {
-                tCourierCost += cCost;
-            } else {
-                tCourierCost += getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            if (isNaN(cCost) || cCost <= 0) {
+                cCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
             }
+            tCourierCost += cCost;
+
+            // DTDC ക്ക് നൽകിയ യഥാർത്ഥ കൊറിയർ ചാർജ്
+            let aCost = parseInt(o.Actual_Courier_Cost);
+            if (isNaN(aCost) || aCost <= 0) {
+                aCost = cCost > 20 ? cCost - 20 : cCost;
+            }
+            tActualCourier += aCost;
+            courierOrderCount++;
         }
     });
 
@@ -4446,15 +4454,19 @@ window.renderDetailedMonthlyOverview = function () {
     let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
-    // 🔥 BUG FIX: മുകളിലെ കാർഡുകളുടെ യഥാർത്ഥ ID കൊടുത്തു!
-    $('#d-sales').text('₹' + tSales.toLocaleString());
-    $('#d-expense').text('₹' + totalExpense.toLocaleString());
-    $('#d-profit').text('₹' + netProfit.toLocaleString());
-    $('#d-courier').text('₹' + tCourierCost.toLocaleString());
+    // 🔥 ശ്രദ്ധിക്കുക: മുകളിലത്തെ മെയിൻ കാർഡുകൾ അപ്ഡേറ്റ് ചെയ്യുന്ന കോഡ് ഞാൻ ഒഴിവാക്കി. 
+    // അതുകൊണ്ട് ഇനി മുകളിലെ 4 ബോക്സുകൾ പഴയതുപോലെ കലണ്ടറിലെ ഡേറ്റ് അനുസരിച്ച് (Daily) വർക്ക് ചെയ്യും!
 
-    let sharePerPerson = netProfit > 0 ? Math.floor(netProfit / 3) : 0;
-    let balance = netProfit > 0 ? netProfit - (sharePerPerson * 3) : 0;
+    // Profit Share Calculation (Salam 20%, Samad 70%, Jazeela 10%)
+    let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
+    let samadShare = netProfit > 0 ? Math.floor(netProfit * 0.70) : 0;
+    let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0; // ബാക്കി വരുന്നത്
+
+    // Hint Text കാൽക്കുലേഷൻ (ശരാശരി തുകകൾ കാണിക്കാൻ)
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
+    let avgActual = courierOrderCount > 0 ? Math.round(tActualCourier / courierOrderCount) : 60;
+    let avgCustomer = courierOrderCount > 0 ? Math.round(tCourierCost / courierOrderCount) : 80;
+    let avgMargin = avgCustomer - avgActual;
 
     let html = `
     <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
@@ -4481,7 +4493,7 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
                     <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Charge + Fuel margin)</div>
+                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Charge ${avgActual} + Fuel margin ${avgMargin} = ${avgCustomer})</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tCourierCost.toLocaleString()}</span>
             </div>
@@ -4504,19 +4516,19 @@ window.renderDetailedMonthlyOverview = function () {
 
         ${netProfit > 0 ? `
         <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
-            <h6 class="text-center text-muted fw-bold mb-3" style="font-size:11px; letter-spacing:1px;">PROFIT SHARE (3 PARTNERS)</h6>
+            <h6 class="text-center text-muted fw-bold mb-3" style="font-size:11px; letter-spacing:1px;">PROFIT SHARE SPLIT</h6>
             <div class="d-flex justify-content-between text-center">
                 <div class="w-100 px-1 border-end border-secondary border-opacity-25">
-                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Salam</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-warning" style="font-size:9px;">(33.3%)</span></div>
+                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Salam <span class="text-warning" style="font-size:9px;">(20%)</span></div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${salamShare.toLocaleString()}</div>
                 </div>
                 <div class="w-100 px-1 border-end border-secondary border-opacity-25">
-                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Samad</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${sharePerPerson.toLocaleString()} <span class="text-warning" style="font-size:9px;">(33.3%)</span></div>
+                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Samad <span class="text-warning" style="font-size:9px;">(70%)</span></div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${samadShare.toLocaleString()}</div>
                 </div>
                 <div class="w-100 px-1">
-                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Jazeela</div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${(sharePerPerson + balance).toLocaleString()} <span class="text-warning" style="font-size:9px;">(33.3%)</span></div>
+                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Jazeela <span class="text-warning" style="font-size:9px;">(10%)</span></div>
+                    <div class="fw-bold text-white" style="font-size:13px;">₹${jazeelaShare.toLocaleString()}</div>
                 </div>
             </div>
         </div>
