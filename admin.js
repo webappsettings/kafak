@@ -5037,3 +5037,56 @@ $(document).ready(function () {
     $('#settingsModal').on('show.bs.modal', function () { $(this).css('z-index', '10600'); });
     $('#settingsModal').on('shown.bs.modal', function () { $('.modal-backdrop').last().css('z-index', '10500'); });
 });
+
+// 🔥 EXPENSE FORM SMART CATEGORY FIX (Salary -> Partner List)
+$(document).ready(function () {
+    // കാറ്റഗറി മാറുമ്പോൾ Vendor ഇൻപുട്ട് മാറ്റാനുള്ള കോഡ്
+    $(document).on('change', '#exp-category', function () {
+        let cat = $(this).val();
+        let vendorEl = $('#exp-vendor');
+        let currentVal = vendorEl.val();
+
+        if (cat === 'Salary') {
+            // Salary ആണെങ്കിൽ പാർട്ണർമാരുടെ ലിസ്റ്റ് കാണിക്കുന്നു
+            let selectHtml = `
+            <select id="exp-vendor" class="form-select border-secondary fw-bold" required style="border: 2px solid #ced4da !important; border-radius: 8px; padding: 10px; background-color: #f8f9fa;">
+                <option value="">Select Partner...</option>
+                <option value="Salam">Salam</option>
+                <option value="Samad">Samad</option>
+                <option value="Jazeela">Jazeela</option>
+            </select>`;
+            vendorEl.replaceWith(selectHtml);
+
+            // എഡിറ്റ് ചെയ്യുമ്പോൾ പഴയ വാല്യൂ സെറ്റ് ചെയ്യാൻ
+            setTimeout(() => { if (currentVal) $('#exp-vendor').val(currentVal); }, 50);
+        } else {
+            // മറ്റ് ചിലവുകൾ ആണെങ്കിൽ സാധാരണ ഇൻപുട്ട് ബോക്സ് കാണിക്കുന്നു
+            if (vendorEl.is('select')) {
+                let inputHtml = `<input type="text" id="exp-vendor" class="form-control border-secondary fw-bold" placeholder="Vendor / Shop Name" required style="border: 2px solid #ced4da !important; border-radius: 8px; padding: 10px; background-color: #f8f9fa;">`;
+                vendorEl.replaceWith(inputHtml);
+
+                setTimeout(() => { if (currentVal && !['Salam', 'Samad', 'Jazeela'].includes(currentVal)) $('#exp-vendor').val(currentVal); }, 50);
+            }
+        }
+    });
+
+    // പുതിയ Expense ആഡ് ചെയ്യാൻ പ്ലസ് (+) ബട്ടൺ അമർത്തുമ്പോൾ പഴയത് റീസെറ്റ് ചെയ്യാൻ
+    $('[data-bs-target="#expenseModal"]').on('click', function () {
+        setTimeout(() => { $('#exp-category').val('Materials').trigger('change'); }, 100);
+    });
+});
+
+// 🔥 നിലവിലുള്ള openEditExpense ഫംഗ്ഷൻ്റെ കൂടെ ഡ്രോപ്പ്ഡൗൺ ട്രിഗർ കൂടി ചേർക്കുന്നു
+if (typeof window.openEditExpense === "function") {
+    let originalOpenEditExpense = window.openEditExpense;
+    window.openEditExpense = function (id, dateStr, amount, desc, cat, vendor) {
+        // പഴയ ഫംഗ്ഷൻ ആദ്യം റൺ ചെയ്യുന്നു
+        originalOpenEditExpense(id, dateStr, amount, desc, cat, vendor);
+
+        // കാറ്റഗറി അനുസരിച്ച് ഡ്രോപ്പ്ഡൗൺ വരാൻ വേണ്ടി ട്രിഗർ ചെയ്യുന്നു
+        setTimeout(() => {
+            $('#exp-category').val(cat).trigger('change');
+            setTimeout(() => { $('#exp-vendor').val(vendor); }, 100);
+        }, 100);
+    };
+}
