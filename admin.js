@@ -4512,7 +4512,7 @@ window.renderDetailedMonthlyOverview = function () {
     allOrders.forEach(o => {
         // 🔥 FIX: പഴയ new Date() മാറ്റി, നമ്മൾ ഉണ്ടാക്കിയ parseOrderDate കൊടുത്തു!
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered'].includes(o.Status);
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(o.Status);
 
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
@@ -4653,7 +4653,7 @@ window.renderYearlyOverview = function () {
     allOrders.forEach(o => {
         // 🔥 FIX: parseOrderDate ഉപയോഗിച്ചു
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered'].includes(o.Status);
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(o.Status);
 
         if (pDate.getFullYear() === currentYear && isValidStatus) {
             let qty = parseInt(o.quantity) || 0;
