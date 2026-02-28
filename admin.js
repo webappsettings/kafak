@@ -2802,7 +2802,8 @@ function renderDashboard() {
 
     // 👇 ഇതിനു താഴെയാണ് മാറ്റം വരുത്തേണ്ടത് 👇
     $('#sync-month-btn').remove();
-    $('#m-profit').parent().append(`<button id="sync-month-btn" class="btn btn-sm btn-primary mt-3 px-3 py-2 shadow-sm w-100" onclick="syncMonthToSheet()" style="border-radius:8px; font-weight:bold;"><i class="fas fa-cloud-upload-alt me-1"></i> Save ${mName} ${yName} Data to Sheet</button>`);
+    // Drawer header-nte ullil valathuvashathayi cheriya button vekkan
+    $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
     // 👆 പുതിയ കോഡ് 👆
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
