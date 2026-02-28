@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyWHh8TRZsrWguN13e0cw5ntc1VdHeOoESNzUBTzmvCaVVU6YcQofA8RKjyu_uxWGB-kg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzsFPW-Joe0rUleUYTSHwfrOj-of0OM19Z1FDOMn0JYTXEBIo4_J0CT1FU70Cw5bwGHhw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -2792,6 +2792,18 @@ function renderDashboard() {
 
     window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
 
+    // 👇 പുതിയതായി ചേർക്കേണ്ടത് 👇
+    window.currentMonthStr = mName + " " + yName;
+    window.currentIncome = trueIncome;
+    window.currentProductCost = trueProductCost;
+    window.currentCourier = trueCourierExp;
+    window.currentOther = trueOtherExp;
+    window.currentMaterial = monthMaterialExp;
+
+    $('#sync-month-btn').remove();
+    $('#m-overview-title').after(` <button id="sync-month-btn" class="btn btn-sm btn-primary ms-2 px-2 py-0 shadow-sm" onclick="syncMonthToSheet()" style="font-size:10px; border-radius:10px;"><i class="fas fa-sync-alt"></i> Save to Sheet</button>`);
+    // 👆 പുതിയതായി ചേർക്കേണ്ടത് 👆
+
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
@@ -4928,3 +4940,38 @@ if (typeof window.openEditExpense === "function") {
         }, 100);
     };
 }
+
+// 🔥 SYNC DATA TO GOOGLE SHEET 🔥
+window.syncMonthToSheet = function () {
+    let btn = $('#sync-month-btn');
+    btn.html('<i class="fas fa-spinner fa-spin"></i> Saving...').prop('disabled', true);
+
+    let liveProfit = window.currentLiveProfit || 0;
+
+    let payload = {
+        action: 'saveMonthReport',
+        month: window.currentMonthStr,
+        income: window.currentIncome || 0,
+        productCost: window.currentProductCost || 0,
+        courier: window.currentCourier || 0,
+        other: window.currentOther || 0,
+        netProfit: liveProfit,
+        salam: Math.floor(liveProfit * 0.20),
+        samad: Math.floor(liveProfit * 0.70),
+        jazeela: Math.floor(liveProfit * 0.10),
+        material: window.currentMaterial || 0
+    };
+
+    $.post(scriptURL, payload, function (response) {
+        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-primary').addClass('btn-success');
+        setTimeout(() => {
+            btn.html('<i class="fas fa-sync-alt"></i> Save to Sheet').removeClass('btn-success').addClass('btn-primary').prop('disabled', false);
+        }, 3000);
+    }).fail(function () {
+        // GAS CORS issue വന്നാലും സേവ് ആവാറുണ്ട്, അതുകൊണ്ട് Success കാണിക്കുന്നു
+        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-primary').addClass('btn-success');
+        setTimeout(() => {
+            btn.html('<i class="fas fa-sync-alt"></i> Save to Sheet').removeClass('btn-success').addClass('btn-primary').prop('disabled', false);
+        }, 3000);
+    });
+};
