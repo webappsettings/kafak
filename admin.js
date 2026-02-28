@@ -4643,8 +4643,6 @@ window.renderDetailedMonthlyOverview = function () {
     $('#detailed-overview-container').html(html);
 }
 
-
-
 // 🔥 2. RENDER YEARLY OVERVIEW (Fixed Date Parsing & Expense Match)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
