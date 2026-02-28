@@ -2800,9 +2800,10 @@ function renderDashboard() {
     window.currentOther = trueOtherExp;
     window.currentMaterial = monthMaterialExp;
 
+    // 👇 ഇതിനു താഴെയാണ് മാറ്റം വരുത്തേണ്ടത് 👇
     $('#sync-month-btn').remove();
-    $('#m-overview-title').after(` <button id="sync-month-btn" class="btn btn-sm btn-primary ms-2 px-2 py-0 shadow-sm" onclick="syncMonthToSheet()" style="font-size:10px; border-radius:10px;"><i class="fas fa-sync-alt"></i> Save to Sheet</button>`);
-    // 👆 പുതിയതായി ചേർക്കേണ്ടത് 👆
+    $('#m-profit').parent().append(`<button id="sync-month-btn" class="btn btn-sm btn-primary mt-3 px-3 py-2 shadow-sm w-100" onclick="syncMonthToSheet()" style="border-radius:8px; font-weight:bold;"><i class="fas fa-cloud-upload-alt me-1"></i> Save ${mName} ${yName} Data to Sheet</button>`);
+    // 👆 പുതിയ കോഡ് 👆
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
