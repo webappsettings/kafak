@@ -3199,17 +3199,13 @@ function togglePartnerSelect() {
 }
 
 
-// 🔥 PARTNER LIST RENDER (WITH DIRECT DASHBOARD PROFIT SYNC)
+// 🔥 PARTNER LIST RENDER (WITH LIVE PROFIT ADDITION)
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
-    // 👇 പുതിയ സൂത്രപ്പണി: ഡാഷ്‌ബോർഡിലെ ആ ലാഭം (m-profit) നേരിട്ട് ഇവിടെ എടുക്കുന്നു 👇
-    let profitText = $('#m-profit').text().replace(/[^0-9-]/g, '');
-    let liveProfit = parseInt(profitText) || 0;
-
-    // ലാഭം പൂജ്യത്തിൽ താഴെ ആണെങ്കിൽ സാലറി കൊടുക്കാൻ കഴിയില്ലല്ലോ
-    if (liveProfit < 0) liveProfit = 0;
+    // ഡാഷ്‌ബോർഡിലെ ഈ മാസത്തെ ലൈവ് ലാഭം ഇവിടെ എടുക്കുന്നു
+    let liveProfit = window.currentLiveProfit || 0;
 
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
@@ -3223,6 +3219,7 @@ function renderPartnerList() {
     </div>`;
 
     for (let [name, data] of Object.entries(partners)) {
+        // പഴയ മാസങ്ങളിലെ കണക്ക് (ഷീറ്റിൽ നിന്നുള്ള 200, 700 ഒക്കെ)
         let totalBal = typeof data === 'object' ? data.curr : data;
 
         // ഈ മാസത്തെ യഥാർത്ഥ ലാഭം കൂടി സാലറിയിലേക്ക് കൂട്ടുന്നു
