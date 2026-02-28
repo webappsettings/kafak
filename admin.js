@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbz-PF1UMtb_adGnrXwxGazPciyyF7hmfqlvvTSgr7ehfEP_1PPHCbg-nAx5Z8uRX9mi6g/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxUO56UwrcfVNb-KTc8WjV4Hg8tOz64qLB0NeFcwRskqsT0sV-7b9p9JU_QScHFMLYntg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -2790,6 +2790,8 @@ function renderDashboard() {
     let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
     let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
 
+    window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
+
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
@@ -3196,10 +3198,18 @@ function togglePartnerSelect() {
     }
 }
 
-// 🔥 4. PARTNER BALANCE DECIMAL FIX (ആ വലിയ ഡെസിമൽ നമ്പറുകൾ കളയാൻ)
+// 🔥 PARTNER LIST RENDER (WITH LIVE PROFIT ADDITION)
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
+
+    // 👇 പുതിയ മാറ്റം: ഡാഷ്‌ബോർഡിലെ ലൈവ് ലാഭം ഇവിടെ എടുക്കുന്നു 👇
+    let liveProfit = window.currentLiveProfit || 0;
+    let shares = {
+        "Salam": Math.floor(liveProfit * 0.20),
+        "Samad": Math.floor(liveProfit * 0.70),
+        "Jazeela": Math.floor(liveProfit * 0.10)
+    };
 
     let html = `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
         <i class="fas fa-info-circle text-warning mt-1"></i> 
@@ -3209,7 +3219,11 @@ function renderPartnerList() {
     for (let [name, data] of Object.entries(partners)) {
         let totalBal = typeof data === 'object' ? data.curr : data;
 
-        // 🔥 ഡെസിമൽ ഒഴിവാക്കി പക്കാ തുക ആക്കാൻ
+        // 👇 പുതിയ മാറ്റം: ഈ മാസത്തെ യഥാർത്ഥ ലാഭം കൂടി സാലറിയിലേക്ക് കൂട്ടുന്നു 👇
+        if (shares[name]) {
+            totalBal += shares[name];
+        }
+
         let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
         html += `
