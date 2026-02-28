@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyDZ6eQRZ1Ppw_qj5hT6G2R6vx1Xo7yY5tMbpggKxaxz_mBK4pqQMPUEg49NAj9Yvd_FQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbykR-TXwMbHJjykiFhdOkwtnDPsKJpzYEMtPBfVvKcPEm8rUlS1mCj5s4xN2MDXnYJK/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -2695,9 +2695,10 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 സൂപ്പർ ഡേറ്റ് പാർസർ (DD/MM ഉം MM/DD ഉം ഒരുപോലെ വായിക്കും)
+// 🔥 സൂപ്പർ ഡേറ്റ് പാർസർ (എല്ലാ തരം തീയതികളും ശരിയായി വായിക്കാൻ)
 function parseOrderDate(str) {
     if (!str) return new Date(NaN);
+    if (typeof str !== 'string') return new Date(str);
     if (str.includes('-') && !str.includes('/')) return new Date(str);
     let p = str.split(/[\/\-\s:]/);
     if (p.length >= 3) {
@@ -4176,7 +4177,7 @@ window.renderDayBookTable = function () {
         if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
 
         let qty = parseInt(o.quantity) || 0;
-        let pDate = new Date(o.paidDate || o.timestamp);
+        let pDate = parseOrderDate(o.paidDate || o.timestamp);
 
         // --- COURIER CALCULATION LOGIC (Sheet Data First) ---
         let totalCourier = parseInt(o.Courier_Charge);
@@ -4215,7 +4216,7 @@ window.renderDayBookTable = function () {
 
         // --- ACCOUNTING VIEW LOGIC ---
         if (viewMode === 'accounting' && status !== 'Paid') {
-            let dDate = new Date(o['Dispatched Date'] || o.timestamp);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
