@@ -3198,13 +3198,19 @@ function togglePartnerSelect() {
     }
 }
 
-// 🔥 PARTNER LIST RENDER (WITH LIVE PROFIT ADDITION)
+
+// 🔥 PARTNER LIST RENDER (WITH DIRECT DASHBOARD PROFIT SYNC)
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
-    // 👇 പുതിയ മാറ്റം: ഡാഷ്‌ബോർഡിലെ ലൈവ് ലാഭം ഇവിടെ എടുക്കുന്നു 👇
-    let liveProfit = window.currentLiveProfit || 0;
+    // 👇 പുതിയ സൂത്രപ്പണി: ഡാഷ്‌ബോർഡിലെ ആ ലാഭം (m-profit) നേരിട്ട് ഇവിടെ എടുക്കുന്നു 👇
+    let profitText = $('#m-profit').text().replace(/[^0-9-]/g, '');
+    let liveProfit = parseInt(profitText) || 0;
+
+    // ലാഭം പൂജ്യത്തിൽ താഴെ ആണെങ്കിൽ സാലറി കൊടുക്കാൻ കഴിയില്ലല്ലോ
+    if (liveProfit < 0) liveProfit = 0;
+
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
         "Samad": Math.floor(liveProfit * 0.70),
@@ -3219,7 +3225,7 @@ function renderPartnerList() {
     for (let [name, data] of Object.entries(partners)) {
         let totalBal = typeof data === 'object' ? data.curr : data;
 
-        // 👇 പുതിയ മാറ്റം: ഈ മാസത്തെ യഥാർത്ഥ ലാഭം കൂടി സാലറിയിലേക്ക് കൂട്ടുന്നു 👇
+        // ഈ മാസത്തെ യഥാർത്ഥ ലാഭം കൂടി സാലറിയിലേക്ക് കൂട്ടുന്നു
         if (shares[name]) {
             totalBal += shares[name];
         }
@@ -4544,194 +4550,6 @@ window.renderDetailedMonthlyOverview = function () {
 }
 
 
-
-// 🔥 UPDATE DASHBOARD MAIN CARDS (Loading Bug Fixed & Margin Fixed)
-function renderDashboard() {
-    if (!dashboardData) return;
-
-    let d = dashboardData.daily;
-    let mName = selectedDate.toLocaleString('en-US', { month: 'short' });
-    let yName = selectedDate.getFullYear();
-
-    $('#m-overview-title').text(`(${mName} ${yName})`);
-
-    // --- DAILY CARDS ---
-    $('#d-sales').text('₹' + d.sales.toLocaleString());
-    $('#d-expense').text('₹' + d.expense.toLocaleString());
-    $('#d-courier').text('₹' + d.courier.toLocaleString());
-    $('#d-profit').text('₹' + d.profit.toLocaleString());
-    $('#d-orders').text(d.count || 0);
-
-    $('.helper-text-dash').remove();
-    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
-
-    if (d.profit >= 0) {
-        $('#d-profit').removeClass('text-danger').addClass('text-success');
-        $('#d-status-text').text("Cash in Hand 🚀").css('color', '#2e7d32');
-    } else {
-        $('#d-profit').removeClass('text-success').addClass('text-danger');
-        $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
-    }
-
-    let mY = selectedDate.getFullYear();
-    let mM = selectedDate.getMonth();
-
-    let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0;
-    let monthBottles = 0, yearBottles = 0;
-    let monthOrders = 0, yearOrders = 0;
-
-    allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
-
-        let pDate = new Date(o.paidDate || o.timestamp);
-        let oYear = pDate.getFullYear();
-        let oMonth = pDate.getMonth();
-        let qty = parseInt(o.quantity) || 0;
-
-        if (oYear === mY) {
-            yearOrders++;
-            yearBottles += qty;
-
-            if (oMonth === mM) {
-                monthOrders++;
-                monthBottles += qty;
-
-                let amt = parseInt(o.Grand_Total);
-                if (isNaN(amt) || amt <= 0) {
-                    let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-                    amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
-                }
-                trueIncome += amt;
-
-                let pCost = parseFloat(o['Product_Base_Cost']);
-                trueProductCost += isNaN(pCost) ? (qty * 330) : pCost;
-            }
-        }
-
-        if (status !== 'Paid') {
-            let dDate = new Date(o['Dispatched Date'] || o.timestamp);
-            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                let cCharge = parseInt(o.Courier_Charge);
-                if (isNaN(cCharge) || cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                trueCourierExp += cCharge;
-            }
-        }
-    });
-
-    let trueOtherExp = 0;
-    let monthMaterialExp = 0;
-
-    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
-        dashboardData.monthTimeline.expense.forEach(e => {
-            let catName = String(e.cat || '').toLowerCase();
-            if (catName.includes('material')) {
-                monthMaterialExp += e.amount;
-            } else if (catName === 'salary' || catName === 'refund') {
-                // Do nothing
-            } else if (!e.isCourier) {
-                trueOtherExp += e.amount;
-            }
-        });
-    }
-
-    let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
-    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
-
-    $('#m-sales').text('₹' + trueIncome.toLocaleString());
-    $('#m-expense').text('₹' + totalExpenses.toLocaleString());
-    $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
-
-    $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
-    $('#m-expense').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Bottle Cost + Full Courier + Other)</div>');
-    $('#m-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(True Business Net Profit)</div>');
-
-    $('#extra-stats-container, #partner-shares-container, #material-stats-container').remove();
-
-    let yearMaterialExp = 0;
-    if (dashboardData && dashboardData.yearly && dashboardData.yearly.materialExp) {
-        yearMaterialExp = dashboardData.yearly.materialExp;
-    }
-
-    let materialHtml = `
-    <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="fw-bold text-dark m-0" style="font-size:12px; letter-spacing:0.5px;">
-                <i class="fas fa-boxes text-secondary me-2"></i> MATERIAL PURCHASES
-            </h6>
-        </div>
-        <div class="d-flex justify-content-between bg-white p-2 rounded border border-secondary border-opacity-25 text-center">
-            <div class="w-100 border-end border-secondary border-opacity-25">
-                <div class="text-muted fw-bold" style="font-size:9px;">THIS MONTH</div>
-                <div class="text-danger fw-bolder" style="font-size:14px;">₹${monthMaterialExp.toLocaleString()}</div>
-            </div>
-            <div class="w-100">
-                <div class="text-muted fw-bold" style="font-size:9px;">THIS YEAR</div>
-                <div class="text-danger fw-bolder" style="font-size:14px;">₹${yearMaterialExp.toLocaleString()}</div>
-            </div>
-        </div>
-    </div>
-    `;
-
-    let statsHtml = `
-    <div id="extra-stats-container" class="row mb-3 px-1 mt-2">
-        <div class="col-6 pe-2">
-            <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                    <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-wine-bottle"></i></div>
-                    <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;">BOTTLES SOLD</h6>
-                </div>
-                <div class="d-flex justify-content-between align-items-end mt-1 pt-2 border-top border-primary border-opacity-25">
-                    <div class="text-center w-50">
-                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Month</div>
-                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${monthBottles}</div>
-                    </div>
-                    <div style="height:30px; width:1px; background:#bbd0ff;"></div>
-                    <div class="text-center w-50">
-                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Year</div>
-                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${yearBottles}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 ps-2">
-            <div class="bg-warning bg-opacity-10 border border-warning border-opacity-50 rounded-4 p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                    <div class="rounded-circle bg-warning text-dark d-flex justify-content-center align-items-center shadow-sm" style="width:28px;height:28px;font-size:12px;"><i class="fas fa-box-open"></i></div>
-                    <h6 class="fw-bold text-dark m-0" style="font-size:11px; letter-spacing:0.5px;">TOTAL ORDERS</h6>
-                </div>
-                <div class="d-flex justify-content-between align-items-end mt-1 pt-2 border-top border-warning border-opacity-50">
-                    <div class="text-center w-50">
-                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Month</div>
-                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${monthOrders}</div>
-                    </div>
-                    <div style="height:30px; width:1px; background:#ffe08a;"></div>
-                    <div class="text-center w-50">
-                        <div style="font-size:9px;" class="text-muted fw-bold text-uppercase">Year</div>
-                        <div class="fw-bold text-dark fs-5" style="line-height:1;">${yearOrders}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-
-    $('#tx-details-area').before(materialHtml + statsHtml);
-
-    // 🔥 FIX: Loading Activity മാറ്റി ആക്റ്റിവിറ്റികൾ കാണിക്കാനുള്ള കോഡുകൾ (പൂർണ്ണം)
-    if (typeof txCalendarPicker !== 'undefined' && txCalendarPicker) {
-        txCalendarPicker.redraw();
-    }
-
-    let dateKey = flatpickr.formatDate(selectedDate, "Y-m-d");
-    if (typeof renderTransactionsForDate === 'function') {
-        renderTransactionsForDate(dateKey);
-    }
-
-    if (typeof renderDayBookTable === 'function') renderDayBookTable();
-    if (typeof renderDetailedMonthlyOverview === 'function') renderDetailedMonthlyOverview();
-    if (typeof renderYearlyOverview === 'function') renderYearlyOverview();
-}
 
 // 🔥 2. RENDER YEARLY OVERVIEW (With Bottles, Courier & Profit Margin)
 window.renderYearlyOverview = function () {
