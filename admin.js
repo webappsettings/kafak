@@ -404,7 +404,7 @@ function fetchOrders(forceLoad = false) {
         .then(response => {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
-                allOrders = response.data.filter(o => o.Status !== 'Completed');
+                allOrders = response.data;
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 renderTabs(allOrders);
                 updateSyncButtonUI();
@@ -2715,7 +2715,7 @@ function parseOrderDate(str) {
     return new Date(NaN);
 }
 
-// 🔥 UPDATE DASHBOARD MAIN CARDS (Full Courier Cost Deduction & Bug Fixes)
+// 🔥 UPDATE DASHBOARD MAIN CARDS (With Breakdown & JSON Fixes)
 function renderDashboard() {
     if (!dashboardData) return;
 
@@ -2750,9 +2750,11 @@ function renderDashboard() {
     let monthBottles = 0, yearBottles = 0;
     let monthOrders = 0, yearOrders = 0;
 
+    let orderBreakdown = {}; // 🔥 NEW: ഓർഡറുകൾ എണ്ണി വെക്കാൻ
+
     allOrders.forEach(o => {
         let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
 
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
         let oYear = pDate.getFullYear();
@@ -2767,14 +2769,20 @@ function renderDashboard() {
                 monthOrders++;
                 monthBottles += qty;
 
-                let amt = parseInt(o.Grand_Total);
+                // 🔥 FIX: Backend JSON name matching
+                let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total);
                 if (isNaN(amt) || amt <= 0) {
                     let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                     amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
                 }
                 trueIncome += amt;
 
-                let pCost = parseFloat(o['Product_Base_Cost']);
+                // Breakdown string creation
+                let key = `₹${amt}`;
+                if (!orderBreakdown[key]) orderBreakdown[key] = 0;
+                orderBreakdown[key]++;
+
+                let pCost = parseFloat(o.Product_Base_Cost);
                 trueProductCost += isNaN(pCost) ? (qty * 330) : pCost;
             }
         }
@@ -2783,8 +2791,8 @@ function renderDashboard() {
         if (status !== 'Paid') {
             let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                // 🔥 FIX: യഥാർത്ഥ കൊറിയർ ചിലവ് മാത്രം കുറയ്ക്കുന്നു (Sheet ലെ അതേപോലെ)
-                let cCharge = parseInt(o.Actual_Courier_Cost) || parseInt(o.Courier_Charge) || 0;
+                // 🔥 FIX: Backend JSON name matching
+                let cCharge = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 if (cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 trueCourierExp += cCharge;
             }
@@ -2807,14 +2815,11 @@ function renderDashboard() {
         });
     }
 
-    // 🔥 FIX: മെറ്റീരിയൽ ചിലവ് കൂടി കമ്പനിയുടെ മൊത്തം ചിലവിലേക്ക് മാറ്റുന്നു
-    // trueOtherExp എന്നതിൽ ഇപ്പോൾ മെറ്റീരിയൽ പർച്ചേസും ഉൾപ്പെട്ടിട്ടുണ്ട്
     let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
     let trueNetProfit = trueIncome - totalExpenses;
 
     window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
 
-    // 👇 പുതിയതായി ചേർക്കേണ്ടത് 👇
     window.currentMonthStr = mName + " " + yName;
     window.currentIncome = trueIncome;
     window.currentProductCost = trueProductCost;
@@ -2822,11 +2827,17 @@ function renderDashboard() {
     window.currentOther = trueOtherExp;
     window.currentMaterial = monthMaterialExp;
 
-    // 👇 ഇതിനു താഴെയാണ് മാറ്റം വരുത്തേണ്ടത് 👇
+    // 👇 പുതിയതായി ചേർക്കേണ്ടത് 👇
+    window.currentMonthOrders = monthOrders;
+    window.currentMonthBottles = monthBottles;
+    let breakdownArr = [];
+    for (let a in orderBreakdown) {
+        breakdownArr.push(`${a} x ${orderBreakdown[a]}`);
+    }
+    window.currentBreakdownStr = breakdownArr.join(', ');
+
     $('#sync-month-btn').remove();
-    // Drawer header-nte ullil valathuvashathayi cheriya button vekkan
     $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
-    // 👆 പുതിയ കോഡ് 👆
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + (trueProductCost + trueOtherExp).toLocaleString());
@@ -2910,7 +2921,6 @@ function renderDashboard() {
 
     $('#tx-details-area').before(materialHtml + statsHtml);
 
-    // 🔥 FIX: ലോഡിങ് മാറാനും ആക്റ്റിവിറ്റികൾ കാണിക്കാനുമുള്ള ഫംഗ്ഷനുകൾ
     if (typeof txCalendarPicker !== 'undefined' && txCalendarPicker) txCalendarPicker.redraw();
 
     let dateKey = flatpickr.formatDate(selectedDate, "Y-m-d");
@@ -3235,13 +3245,13 @@ function togglePartnerSelect() {
 }
 
 
-// 🔥 PARTNER LIST RENDER (WITH LIVE PROFIT ADDITION)
+// 🔥 PARTNER LIST RENDER (WITH FULL BREAKDOWN UI)
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
-    // ഡാഷ്‌ബോർഡിലെ ഈ മാസത്തെ ലൈവ് ലാഭം ഇവിടെ എടുക്കുന്നു
     let liveProfit = window.currentLiveProfit || 0;
+    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
@@ -3249,16 +3259,61 @@ function renderPartnerList() {
         "Jazeela": Math.floor(liveProfit * 0.10)
     };
 
-    let html = `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
+    // 🔥 NEW: Beautiful Breakdown UI
+    let breakdownHtml = `
+    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
+        <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
+            <h6 class="fw-bold text-primary m-0"><i class="fas fa-calendar-check me-1"></i> ${window.currentMonthStr} Overview</h6>
+        </div>
+        
+        <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
+            <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
+        </div>
+        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px;">${window.currentBreakdownStr}</div>
+        
+        <div class="d-flex justify-content-between mb-1 mt-2">
+            <span class="text-muted">Total Income:</span>
+            <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted">Total Expense:</span>
+            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-25">
+            <span class="text-muted" style="font-size:9px;">(Includes Materials: ₹${window.currentMaterial || 0})</span>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
+            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
+        </div>
+
+        <div class="bg-light p-2 rounded-3 border">
+            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Salam (20%):</span>
+                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Samad (70%):</span>
+                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Jazeela (10%):</span>
+                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
+            </div>
+        </div>
+    </div>`;
+
+    let html = breakdownHtml + `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
         <i class="fas fa-info-circle text-warning mt-1"></i> 
         <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ബാലൻസ് ആണ്.</div>
     </div>`;
 
     for (let [name, data] of Object.entries(partners)) {
-        // പഴയ മാസങ്ങളിലെ കണക്ക് (ഷീറ്റിൽ നിന്നുള്ള 200, 700 ഒക്കെ)
-        let totalBal = typeof data === 'object' ? data.curr : data;
+        let sheetPrevBal = typeof data === 'object' ? data.curr : data;
+        let totalBal = sheetPrevBal;
 
-        // ഈ മാസത്തെ യഥാർത്ഥ ലാഭം കൂടി സാലറിയിലേക്ക് കൂട്ടുന്നു
         if (shares[name]) {
             totalBal += shares[name];
         }
@@ -3271,7 +3326,12 @@ function renderPartnerList() {
                 <i class="fas fa-user-circle text-muted fs-4"></i>
                 <div>
                     <div class="fw-bold small">${name}</div>
-                    <div class="text-success fw-bold" style="font-size:11px;">Total Bal: ₹${formattedBal}</div>
+                    <div class="text-success fw-bold" style="font-size:11px;">
+                        Total Bal: ₹${formattedBal} 
+                    </div>
+                    <div class="text-muted" style="font-size:9px; font-weight:600;">
+                        (Prev Bal: ₹${sheetPrevBal.toLocaleString()} + This Month: ₹${(shares[name] || 0).toLocaleString()})
+                    </div>
                 </div>
             </div>
             <i class="far fa-circle text-muted check-icon"></i>
