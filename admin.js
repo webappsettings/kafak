@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyFFWb_Xn02tVUDMH78cbUUnnX3N3HfjO8B4KnU36XKqTaE7uB8aWM3IUSGJa_jCgF8bw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwkcmkxCOCACP82n_cAMfg-tGd9nb9jDFVI1--IEILGU15SMuihD27xMQGV0vRUT62qzA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -2695,6 +2695,20 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
+// 🔥 സൂപ്പർ ഡേറ്റ് പാർസർ (DD/MM ഉം MM/DD ഉം ഒരുപോലെ വായിക്കും)
+function parseOrderDate(str) {
+    if (!str) return new Date(NaN);
+    if (str.includes('-') && !str.includes('/')) return new Date(str);
+    let p = str.split(/[\/\-\s:]/);
+    if (p.length >= 3) {
+        let v1 = parseInt(p[0]), v2 = parseInt(p[1]), v3 = parseInt(p[2]);
+        if (v1 > 12) return new Date(v3, v2 - 1, v1); // DD/MM/YYYY
+        if (v2 > 12) return new Date(v3, v1 - 1, v2); // MM/DD/YYYY
+        if (v3 > 2000) return new Date(v3, v2 - 1, v1);
+    }
+    return new Date(str);
+}
+
 // 🔥 UPDATE DASHBOARD MAIN CARDS (Full Courier Cost Deduction & Bug Fixes)
 function renderDashboard() {
     if (!dashboardData) return;
@@ -2734,7 +2748,7 @@ function renderDashboard() {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive') return;
 
-        let pDate = new Date(o.paidDate || o.timestamp);
+        let pDate = parseOrderDate(o.paidDate || o.timestamp);
         let oYear = pDate.getFullYear();
         let oMonth = pDate.getMonth();
         let qty = parseInt(o.quantity) || 0;
@@ -2761,7 +2775,7 @@ function renderDashboard() {
 
         // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച്)
         if (status !== 'Paid') {
-            let dDate = new Date(o['Dispatched Date'] || o.timestamp);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 // 🔥 FIX: യഥാർത്ഥ കൊറിയർ ചിലവ് മാത്രം കുറയ്ക്കുന്നു (Sheet ലെ അതേപോലെ)
                 let cCharge = parseInt(o.Actual_Courier_Cost) || parseInt(o.Courier_Charge) || 0;
