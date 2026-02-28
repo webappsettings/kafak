@@ -2763,9 +2763,9 @@ function renderDashboard() {
         if (status !== 'Paid') {
             let dDate = new Date(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                // 🔥 FIX: കസ്റ്റമർ തന്ന ഫുൾ കൊറിയർ തുകയെടുക്കുന്നു (Margin ലാഭത്തിൽ വരില്ല)
-                let cCharge = parseInt(o.Courier_Charge);
-                if (isNaN(cCharge) || cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                // 🔥 FIX: യഥാർത്ഥ കൊറിയർ ചിലവ് മാത്രം കുറയ്ക്കുന്നു (Sheet ലെ അതേപോലെ)
+                let cCharge = parseInt(o.Actual_Courier_Cost) || parseInt(o.Courier_Charge) || 0;
+                if (cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 trueCourierExp += cCharge;
             }
         }
@@ -4463,7 +4463,7 @@ window.renderDetailedMonthlyOverview = function () {
         });
     }
 
-    let totalExpense = tBottleCost + tCourierCost + tOtherExpense;
+    let totalExpense = tBottleCost + tActualCourier + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
     let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
