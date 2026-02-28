@@ -2695,19 +2695,24 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 സൂപ്പർ ഡേറ്റ് പാർസർ (എല്ലാ തരം തീയതികളും ശരിയായി വായിക്കാൻ)
+// 🔥 സൂപ്പർ ഡേറ്റ് പാർസർ (100% ശരിയായി വായിക്കാൻ)
 function parseOrderDate(str) {
     if (!str) return new Date(NaN);
-    if (typeof str !== 'string') return new Date(str);
-    if (str.includes('-') && !str.includes('/')) return new Date(str);
-    let p = str.split(/[\/\-\s:]/);
-    if (p.length >= 3) {
-        let v1 = parseInt(p[0]), v2 = parseInt(p[1]), v3 = parseInt(p[2]);
-        if (v1 > 12) return new Date(v3, v2 - 1, v1); // DD/MM/YYYY
-        if (v2 > 12) return new Date(v3, v1 - 1, v2); // MM/DD/YYYY
-        if (v3 > 2000) return new Date(v3, v2 - 1, v1);
+    let s = String(str).trim();
+    let d = new Date(s);
+    if (!isNaN(d.getTime())) return d;
+
+    // തീയതി സാധാരണ ഫോർമാറ്റിൽ അല്ലെങ്കിൽ, അത് സ്വയം ശരിയാക്കുന്നു
+    let parts = s.split(/[\/\-\sT:]+/);
+    if (parts.length >= 3) {
+        let p1 = parseInt(parts[0]), p2 = parseInt(parts[1]), p3 = parseInt(parts[2]);
+        if (p1 > 1000) return new Date(p1, p2 - 1, p3); // YYYY-MM-DD
+        if (p3 > 1000) {
+            if (p2 > 12) return new Date(p3, p1 - 1, p2); // MM/DD/YYYY
+            return new Date(p3, p2 - 1, p1); // DD/MM/YYYY
+        }
     }
-    return new Date(str);
+    return new Date(NaN);
 }
 
 // 🔥 UPDATE DASHBOARD MAIN CARDS (Full Courier Cost Deduction & Bug Fixes)
