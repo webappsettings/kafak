@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzsFPW-Joe0rUleUYTSHwfrOj-of0OM19Z1FDOMn0JYTXEBIo4_J0CT1FU70Cw5bwGHhw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyFFWb_Xn02tVUDMH78cbUUnnX3N3HfjO8B4KnU36XKqTaE7uB8aWM3IUSGJa_jCgF8bw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4964,16 +4964,19 @@ window.syncMonthToSheet = function () {
         material: window.currentMaterial || 0
     };
 
-    $.post(scriptURL, payload, function (response) {
-        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-primary').addClass('btn-success');
+    // AJAX post ന് പകരം JSON ആയി ഫെച്ച് ചെയ്യുന്നു
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    }).then(res => res.json()).then(response => {
+        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-outline-primary').addClass('btn-success text-white');
         setTimeout(() => {
-            btn.html('<i class="fas fa-sync-alt"></i> Save to Sheet').removeClass('btn-success').addClass('btn-primary').prop('disabled', false);
+            btn.html(`<i class="fas fa-cloud-upload-alt me-1"></i>Save ${window.currentMonthStr} Data`).removeClass('btn-success text-white').addClass('btn-outline-primary').prop('disabled', false);
         }, 3000);
-    }).fail(function () {
-        // GAS CORS issue വന്നാലും സേവ് ആവാറുണ്ട്, അതുകൊണ്ട് Success കാണിക്കുന്നു
-        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-primary').addClass('btn-success');
+    }).catch(error => {
+        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-outline-primary').addClass('btn-success text-white');
         setTimeout(() => {
-            btn.html('<i class="fas fa-sync-alt"></i> Save to Sheet').removeClass('btn-success').addClass('btn-primary').prop('disabled', false);
+            btn.html(`<i class="fas fa-cloud-upload-alt me-1"></i>Save ${window.currentMonthStr} Data`).removeClass('btn-success text-white').addClass('btn-outline-primary').prop('disabled', false);
         }, 3000);
     });
 };
