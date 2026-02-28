@@ -2802,8 +2802,10 @@ function renderDashboard() {
         });
     }
 
-    let trueNetProfit = trueIncome - (trueProductCost + trueCourierExp + trueOtherExp);
+    // 🔥 FIX: മെറ്റീരിയൽ ചിലവ് കൂടി കമ്പനിയുടെ മൊത്തം ചിലവിലേക്ക് മാറ്റുന്നു
+    // trueOtherExp എന്നതിൽ ഇപ്പോൾ മെറ്റീരിയൽ പർച്ചേസും ഉൾപ്പെട്ടിട്ടുണ്ട്
     let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
+    let trueNetProfit = trueIncome - totalExpenses;
 
     window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
 
@@ -2822,7 +2824,7 @@ function renderDashboard() {
     // 👆 പുതിയ കോഡ് 👆
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
-    $('#m-expense').text('₹' + totalExpenses.toLocaleString());
+    $('#m-expense').text('₹' + (trueProductCost + trueOtherExp).toLocaleString());
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
 
     $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
