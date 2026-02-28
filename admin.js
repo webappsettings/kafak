@@ -4504,6 +4504,7 @@ window.loadNextMonthDayBook = function () {
 
 
 // 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed Date Parsing & Added Material Row)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (100% Sync with Salary Section)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4518,13 +4519,15 @@ window.renderDetailedMonthlyOverview = function () {
     let tCourierCost = 0, tActualCourier = 0, tOtherExpense = 0, tMaterialExpense = 0;
 
     allOrders.forEach(o => {
-        // 🔥 FIX: പഴയ new Date() മാറ്റി, നമ്മൾ ഉണ്ടാക്കിയ parseOrderDate കൊടുത്തു!
+        let status = o.Status || 'Pending';
+        // ഒഴിവാക്കേണ്ടവ 
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+
+        let qty = parseInt(o.quantity) || 0;
+
+        // 1. വരുമാനവും ബോട്ടിൽ ചിലവും (Paid Date വെച്ച്)
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(o.Status);
-
-        if (pDate.getFullYear() === mY && pDate.getMonth() === mM && isValidStatus) {
-            let qty = parseInt(o.quantity) || 0;
-
+        if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total);
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
@@ -4535,18 +4538,20 @@ window.renderDetailedMonthlyOverview = function () {
 
             let dbCost = parseInt(o.Product_Base_Cost);
             tBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
+        }
 
-            let cCost = parseInt(o.Courier_Charge);
-            if (isNaN(cCost) || cCost <= 0) {
-                cCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            }
-            tCourierCost += cCost;
+        // 2. കൊറിയർ ചിലവ് (Dispatched Date വെച്ച് - Dispatched ആയാൽ മാത്രം!)
+        if (status !== 'Paid') {
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-            let aCost = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost);
-            if (isNaN(aCost) || aCost <= 0) {
-                aCost = cCost > 20 ? cCost - 20 : cCost;
+                tCourierCost += totalC;
+                tActualCourier += actualC;
             }
-            tActualCourier += aCost;
         }
     });
 
@@ -4563,7 +4568,6 @@ window.renderDetailedMonthlyOverview = function () {
         });
     }
 
-    // 🔥 മെറ്റീരിയൽ ചിലവുകൾ കൂടി ഇപ്പോൾ കൃത്യമായി കുറയ്ക്കുന്നു
     let totalExpense = tBottleCost + tActualCourier + tOtherExpense + tMaterialExpense;
     let netProfit = tSales - totalExpense;
 
@@ -4651,55 +4655,59 @@ window.renderDetailedMonthlyOverview = function () {
     $('#detailed-overview-container').html(html);
 }
 
-// 🔥 2. RENDER YEARLY OVERVIEW (Fixed Date Parsing & Expense Match)
+// 🔥 2. RENDER YEARLY OVERVIEW (100% Sync with Dashboard)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
-    let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yOtherExpense = 0;
+    let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yActualCourier = 0, yOtherExpense = 0;
 
     allOrders.forEach(o => {
-        // 🔥 FIX: parseOrderDate ഉപയോഗിച്ചു
+        let status = o.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+
+        let qty = parseInt(o.quantity) || 0;
+
+        // 1. വരുമാനം
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(o.Status);
-
-        if (pDate.getFullYear() === currentYear && isValidStatus) {
-            let qty = parseInt(o.quantity) || 0;
-
+        if (pDate.getFullYear() === currentYear) {
             let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total);
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
-
             ySales += amt;
             yBottles += qty;
 
             let dbCost = parseInt(o.Product_Base_Cost);
             yBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
+        }
 
-            let cCost = parseInt(o.Courier_Charge);
-            if (isNaN(cCost) || cCost <= 0) {
-                cCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            }
+        // 2. കൊറിയർ
+        if (status !== 'Paid') {
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            if (dDate.getFullYear() === currentYear) {
+                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-            let aCost = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost);
-            if (isNaN(aCost) || aCost <= 0) {
-                aCost = cCost > 20 ? cCost - 20 : cCost;
+                yCourierCost += totalC;
+                yActualCourier += actualC;
             }
-            yCourierCost += aCost;
         }
     });
 
     if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
         dashboardData.yearTimeline.expense.forEach(e => {
             let catName = String(e.cat || '').toLowerCase();
-            // Salary & Refund ഒഴിവാക്കി ബാക്കി എല്ലാ എക്സ്പെൻസുകളും കൂട്ടുന്നു
+            // Salary ഉം Refund ഉം അല്ലാത്ത എല്ലാ ചിലവുകളും കൂട്ടുന്നു
             if (!e.isCourier && catName !== 'salary' && catName !== 'refund') {
                 yOtherExpense += (Number(e.amount) || 0);
             }
         });
     }
 
-    let yTotalExpense = yBottleCost + yCourierCost + yOtherExpense;
+    // 🔥 യഥാർത്ഥ കൊറിയർ ചിലവാണ് കുറയ്ക്കേണ്ടത് (yActualCourier)
+    let yTotalExpense = yBottleCost + yActualCourier + yOtherExpense;
     let yNetProfit = ySales - yTotalExpense;
 
     let profitMargin = ySales > 0 ? ((yNetProfit / ySales) * 100).toFixed(1) : 0;
@@ -4723,7 +4731,7 @@ window.renderYearlyOverview = function () {
                 <div class="text-muted mb-1" style="font-size:9px; font-weight:800; letter-spacing:0.5px;">TOTAL EXPENSE</div>
                 <div class="fw-bold text-danger" style="font-size:14px;">₹${yTotalExpense.toLocaleString()}</div>
                 <div class="text-secondary mt-1" style="font-size:9px; font-weight:700;">
-                    <i class="fas fa-truck opacity-75" style="color:#dc3545;"></i> ₹${yCourierCost.toLocaleString()} Courier
+                    <i class="fas fa-truck opacity-75" style="color:#dc3545;"></i> ₹${yActualCourier.toLocaleString()} Courier
                 </div>
             </div>
             
@@ -4743,7 +4751,6 @@ window.renderYearlyOverview = function () {
     }
     $('#yearly-overview-container').html(html);
 }
-
 // 🔥 LOAD SETTINGS FROM SERVER (Network Error Fixed using Fetch)
 window.loadCourierSettings = function () {
     $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
