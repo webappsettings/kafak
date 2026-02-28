@@ -2746,7 +2746,7 @@ function renderDashboard() {
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
 
-    let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0;
+    let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0, trueTotalCourier = 0;
     let monthBottles = 0, yearBottles = 0;
     let monthOrders = 0, yearOrders = 0;
 
@@ -2791,10 +2791,13 @@ function renderDashboard() {
         if (status !== 'Paid') {
             let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                // 🔥 FIX: Backend JSON name matching
-                let cCharge = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-                if (cCharge <= 0) cCharge = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                trueCourierExp += cCharge;
+                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+
+                trueCourierExp += actualC;
+                trueTotalCourier += totalC; // 🔥 Total Courier കൂടി കൂട്ടുന്നു
             }
         }
     });
@@ -2815,7 +2818,8 @@ function renderDashboard() {
         });
     }
 
-    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
+    // 🔥 FIX: മെറ്റീരിയൽ ചിലവ് കൂടി കമ്പനിയുടെ മൊത്തം ചിലവിലേക്ക് കൂട്ടുന്നു
+    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp + monthMaterialExp;
     let trueNetProfit = trueIncome - totalExpenses;
 
     window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
@@ -2826,6 +2830,7 @@ function renderDashboard() {
     window.currentCourier = trueCourierExp;
     window.currentOther = trueOtherExp;
     window.currentMaterial = monthMaterialExp;
+    window.currentTotalCourier = trueTotalCourier;
 
     // 👇 പുതിയതായി ചേർക്കേണ്ടത് 👇
     window.currentMonthOrders = monthOrders;
@@ -2840,7 +2845,7 @@ function renderDashboard() {
     $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
-    $('#m-expense').text('₹' + (trueProductCost + trueOtherExp).toLocaleString());
+    $('#m-expense').text('₹' + totalExpenses.toLocaleString());
     $('#m-profit').text('₹' + trueNetProfit.toLocaleString());
 
     $('#m-sales').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Delivered & Paid Orders Only)</div>');
@@ -3280,8 +3285,11 @@ function renderPartnerList() {
             <span class="text-muted">Total Expense:</span>
             <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()}</span>
         </div>
+        <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted fw-bold" style="font-size:9px;">(Includes Materials: ₹${(window.currentMaterial || 0).toLocaleString()})</span>
+        </div>
         <div class="d-flex justify-content-between mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-25">
-            <span class="text-muted" style="font-size:9px;">(Includes Materials: ₹${window.currentMaterial || 0})</span>
+            <span class="text-warning fw-bold" style="font-size:9px;">(Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} | Margin: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
         </div>
         
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -4590,7 +4598,7 @@ window.renderDetailedMonthlyOverview = function () {
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
                     <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Actual Courier Cost)</div>
+                    <div class="text-warning" style="font-size:10px; font-weight:600;">(Total: ₹${tCourierCost.toLocaleString()} | Margin: ₹${(tCourierCost - tActualCourier).toLocaleString()})</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tActualCourier.toLocaleString()}</span>
             </div>
