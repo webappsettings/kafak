@@ -244,39 +244,49 @@ $(document).ready(function () {
   }
 
   // INSTANT EDIT LOAD
-  // 🔥 UPDATED: SECURE EDIT LOAD
+  // INSTANT EDIT LOAD
   if (oid) {
+    showLoader(true);
     if (isAdmin) {
-      showLoader(true);
       setupAdminView(oid);
     } else {
-      // 1. ഫോണിൽ സേവ് ചെയ്ത ലോഗിൻ ഉണ്ടോ എന്ന് നോക്കുന്നു
-      let lastPhone = SafeStorage.getItem('lastUsedPhone');
       let foundLocally = false;
-
-      // 2. ലോഗിൻ ഉണ്ടെങ്കിൽ അത് ഈ ഓർഡറുമായി മാച്ച് ആകുന്നുണ്ടോ എന്ന് നോക്കുന്നു
-      if (lastPhone && localUsersMap[lastPhone]) {
-        if (String(localUsersMap[lastPhone].orderid) === String(oid)) {
+      const phones = Object.keys(localUsersMap);
+      for (let ph of phones) {
+        if (String(localUsersMap[ph].orderid) === String(oid)) {
+          showLoader(false);
+          $('#step-0').hide();
+          loadOrderData(localUsersMap[ph], false);
           foundLocally = true;
+
+          // ബാക്ക്ഗ്രൗണ്ടിൽ സിങ്ക് ചെയ്യാൻ
+          fetchOrder(oid, true);
+
+          break;
         }
       }
 
-      if (foundLocally) {
-        // ✅ സ്വന്തം ഫോൺ ആണെങ്കിൽ നേരിട്ട് കാണിക്കുന്നു
-        showLoader(false);
-        $('#step-0').hide();
-        loadOrderData(localUsersMap[lastPhone], false);
-        fetchOrder(oid, true); // ബാക്ക്ഗ്രൗണ്ടിൽ സിങ്ക് ചെയ്യുന്നു
-      } else {
-        // 🔒 പുതിയ ഫോണോ മാച്ച് ആകാത്ത ഫോണോ ആണെങ്കിൽ വിവരങ്ങൾ ഹൈഡ് ചെയ്ത് ഫോൺ നമ്പർ ചോദിക്കുന്നു
-        console.log("Not found locally or phone mismatch, asking for verification...");
-        showLoader(false);
-        $('#step-0').show(); // ഫോൺ നമ്പർ അടിക്കാനുള്ള സ്ക്രീൻ കാണിക്കുന്നു
+      // 🔥 SECURITY FIX: ഫോണിൽ ഡാറ്റ ഇല്ലെങ്കിൽ (മറ്റൊരാളുടെ ഫോൺ ആണെങ്കിൽ)
+      if (!foundLocally) {
+        console.log("Not found locally, asking for phone number...");
+        showLoader(false); // ലോഡിങ് നിർത്തുന്നു
+        $('#step-0').show(); // ഫോൺ നമ്പർ ചോദിക്കുന്ന സ്ക്രീൻ കാണിക്കുന്നു
         updateFooterButtons('step-0');
-
-        // ഓർഡർ ഐഡി യുആർഎല്ലിൽ ഉള്ളതിനാൽ, നമ്പർ അടിച്ചാൽ സിസ്റ്റം തനിയെ സർവറിൽ ചെക്ക് ചെയ്തോളും
         setTimeout(() => $('#phone').focus(), 500);
       }
+    }
+  } else {
+    // 🔥 AUTO LOGIN FOR PWA & RETURNING CUSTOMERS
+    let lastPhone = SafeStorage.getItem('lastUsedPhone');
+    if (lastPhone && localUsersMap[lastPhone] && !isAdmin) {
+      $('#phone').val(lastPhone);
+      showLoader(true);
+      setTimeout(() => { handlePhoneNext(); }, 300);
+    } else {
+      showLoader(false);
+      $('#step-0').show();
+      updateFooterButtons('step-0');
+      setTimeout(() => $('#phone').focus(), 500);
     }
   }
 
