@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwus-wBp35sq89zCS8LZvLMScr6xJtm-2NJHJJw_Pa3g3u2bVjuS5PCoUwGvDabcrJJog/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzOXYiqugUdgJytRbbxOptcUFa6Kt8DndBpjP9Nd9aAeKSHvzSDvx2t4Ibngk5Y0GQ4BQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -3050,16 +3050,21 @@ window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
   console.log('PWA was installed');
 
-  // 🔥 ഡ്യൂപ്ലിക്കേറ്റ് ഇൻസ്റ്റാൾ ഒഴിവാക്കാനുള്ള കോഡ്
   let isAlreadyCounted = localStorage.getItem('kafak_app_counted');
 
   if (!isAlreadyCounted) {
-    // ആദ്യമായി ഇൻസ്റ്റാൾ ചെയ്യുന്ന ആളാണെങ്കിൽ സർവറിലേക്ക് മെസ്സേജ് അയക്കുന്നു
-    fetch(`${sc}?action=logInstall`)
+    // 1. കസ്റ്റമറുടെ ഫോൺ നമ്പർ എടുക്കുന്നു (ലഭ്യമാണെങ്കിൽ)
+    let userPhone = $('#phone').val() || currentLoginPhone || "Unknown";
+
+    // 2. ഏത് ഫോൺ ആണെന്ന് കണ്ടുപിടിക്കുന്നു (Android / iOS)
+    let deviceType = /iPad|iPhone|iPod/.test(navigator.userAgent) ? "Apple iOS" :
+      (/Android/.test(navigator.userAgent) ? "Android" : "Other");
+
+    // 3. സർവറിലേക്ക് വിവരങ്ങൾ അയക്കുന്നു
+    fetch(`${sc}?action=logInstall&phone=${userPhone}&device=${encodeURIComponent(deviceType)}`)
       .then(res => res.json())
       .then(data => {
         console.log("New Install Counted!");
-        // കൗണ്ട് ചെയ്തു എന്ന് ഫോണിൽ സേവ് ചെയ്തു വെക്കുന്നു
         localStorage.setItem('kafak_app_counted', 'true');
       })
       .catch(err => console.log("Install tracking failed"));
