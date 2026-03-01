@@ -2841,24 +2841,41 @@ function renderDashboard() {
 
     let trueOtherExp = 0;
     let monthMaterialExp = 0;
-    let materialBreakdownArray = []; // 🔥 NEW: മെറ്റീരിയൽ ചിലവുകൾ എണ്ണി വെക്കാൻ
+    let materialBreakdownArray = [];
+
+    // 🔥 NEW: കാറ്റഗറി തിരിച്ചുള്ള ബ്രേക്ക്ഡൗൺ സേവ് ചെയ്യാൻ
+    let expenseCategories = { "Food": 0, "Travel": 0, "Ads": 0, "Refund": 0, "Other": [] };
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             let catName = String(e.cat || '').toLowerCase();
+            let rawCatName = String(e.cat || '');
+
             if (catName.includes('material')) {
                 monthMaterialExp += e.amount;
-                materialBreakdownArray.push(e.amount); // 🔥 NEW: തുകകൾ ആഡ് ചെയ്യുന്നു
-            } else if (catName === 'salary' || catName === 'refund') {
-                // Do nothing
+                materialBreakdownArray.push(e.amount);
+            } else if (catName === 'salary') {
+                // Do nothing for Salary
             } else if (!e.isCourier) {
-                trueOtherExp += e.amount;
+                // 🔥 ബാക്കി എല്ലാം Other Expense-ൽ കൂട്ടുന്നു
+                if (catName !== 'refund') trueOtherExp += e.amount;
+
+                // 🔥 ബ്രേക്ക്ഡൗൺ ലിസ്റ്റിലേക്ക് മാറ്റുന്നു
+                if (catName.includes('food')) expenseCategories["Food"] += e.amount;
+                else if (catName.includes('travel') || catName.includes('transport')) expenseCategories["Travel"] += e.amount;
+                else if (catName.includes('ads') || catName.includes('marketing')) expenseCategories["Ads"] += e.amount;
+                else if (catName.includes('refund')) expenseCategories["Refund"] += e.amount;
+                else {
+                    // Other / Office Expense ആണെങ്കിൽ Vendor അല്ലെങ്കിൽ Description കൂടി സേവ് ചെയ്യുന്നു
+                    let note = e.vendor || e.desc || 'Office Exp';
+                    expenseCategories["Other"].push(`₹${e.amount} (${note})`);
+                }
             }
         });
     }
 
-    // ഗ്ലോബൽ ആയി സേവ് ചെയ്യുന്നു
     window.currentMaterialBreakdownStr = materialBreakdownArray.length > 0 ? materialBreakdownArray.join(' + ') : '';
+    window.currentExpenseCategories = expenseCategories; // 🔥 ഗ്ലോബൽ ആയി സേവ് ചെയ്യുന്നു
 
     // 🔥 FIX: മെറ്റീരിയൽ ചിലവുകൾ ഇനി ലാഭത്തിൽ നിന്നും കുറയ്ക്കില്ല (Exclude from Net Profit)
     // അതായത്, നമ്മൾ നേരത്തെ കൂട്ടിയിരുന്ന `monthMaterialExp` ഇവിടെ നിന്നും ഒഴിവാക്കി!
@@ -3357,9 +3374,17 @@ function renderPartnerList() {
             <span class="text-muted">Deductible Expense:</span>
             <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
         </div>
-        <div class="text-secondary small mb-2 fst-italic text-end" style="font-size:9px;">
-            (Bottle Cost: ${window.currentCostBreakdownStr || '0'})
-        </div>
+        ${window.currentExpenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Food"].toLocaleString()}</span></div>` : ''}
+        ${window.currentExpenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
+        ${window.currentExpenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
+        
+        ${window.currentExpenseCategories["Other"].length > 0 ? `
+            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
+                <span class="text-muted ps-2">📝 Other:</span>
+                <span class="text-danger fw-bold text-end">${window.currentExpenseCategories["Other"].join('<br>')}</span>
+            </div>` : ''}
+            
+        ${window.currentExpenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${window.currentExpenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
         <div class="d-flex justify-content-between mb-1 mt-1">
             <span class="fw-bold text-info" style="font-size:10px;">
                 <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
