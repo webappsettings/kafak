@@ -2847,7 +2847,6 @@ function renderDashboard() {
     window.currentMaterial = monthMaterialExp;
     window.currentTotalCourier = trueTotalCourier;
 
-    // 👇 പുതിയതായി ചേർക്കേണ്ടത് 👇
     window.currentMonthOrders = monthOrders;
     window.currentMonthBottles = monthBottles;
     let breakdownArr = [];
@@ -2855,6 +2854,13 @@ function renderDashboard() {
         breakdownArr.push(`${a} x ${orderBreakdown[a]}`);
     }
     window.currentBreakdownStr = breakdownArr.join(', ');
+
+    // 👇 പുതുതായി ചേർത്തത് 👇
+    let costBreakdownArr = [];
+    for (let c in costBreakdown) {
+        costBreakdownArr.push(`${c} x ${costBreakdown[c]}`);
+    }
+    window.currentCostBreakdownStr = costBreakdownArr.join(', ');
 
     $('#sync-month-btn').remove();
     $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
@@ -3319,9 +3325,12 @@ function renderPartnerList() {
             <span class="text-muted">Total Income:</span>
             <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
         </div>
-        <div class="d-flex justify-content-between mb-1">
+        <div class="d-flex justify-content-between mb-0">
             <span class="text-muted">Deductible Expense:</span>
             <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
+        </div>
+        <div class="text-secondary small mb-2 fst-italic text-end" style="font-size:9px;">
+            (Bottle Cost: ${window.currentCostBreakdownStr || '0'})
         </div>
         <div class="d-flex justify-content-between mb-1 mt-1">
             <span class="fw-bold text-info" style="font-size:10px;"><i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}</span>
