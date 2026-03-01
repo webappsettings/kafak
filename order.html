@@ -753,9 +753,10 @@
           <div id="wizard-view" class="step-section">
             <div class="wiz-step" data-step="1"><label class="form-label" data-i18n="lbl_name">നിങ്ങളുടെ
                 പേര്</label><input type="text" id="name" class="huge-input" placeholder="Name" autofocus></div>
-            <div class="wiz-step" data-step="2" style="display:none;"><label class="form-label"
-                data-i18n="lbl_whatsapp">വാട്സാപ്പ് നമ്പർ</label><input type="tel" id="whatsapp" class="huge-input"
-                placeholder="WhatsApp" maxlength="10"></div>
+            <div class="wiz-step" data-step="2" style="display:none;">
+              <label class="form-label" data-i18n="lbl_whatsapp">വാട്സാപ്പ് നമ്പർ</label>
+              <input type="tel" id="whatsapp" class="huge-input" placeholder="WhatsApp" maxlength="15">
+            </div>
             <div class="wiz-step" data-step="3" style="display:none;"><label class="form-label"
                 data-i18n="lbl_pincode">പിൻകോഡ്</label><input type="tel" id="pincode" class="huge-input" maxlength="6"
                 placeholder="000000" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></div>
