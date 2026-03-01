@@ -2469,17 +2469,30 @@ function getZoneKey(stateName) {
     return 'REST OF INDIA';
 }
 
+// 🔥 FIX: Admin Dashboard Margin Calculation (100% Dynamic from Sheet)
 function getCourierRate(state, provider, qty) {
     let s = String(state || '').toUpperCase().trim();
     let p = String(provider || '').toUpperCase().trim();
-    let n = parseInt(qty) || 1;
+    let q = parseInt(qty) || 1;
 
-    if (courierRates[`${s} ${p}`] && courierRates[`${s} ${p}`][n] !== undefined) return courierRates[`${s} ${p}`][n];
-    if (courierRates[p] && courierRates[p][n] !== undefined) return courierRates[p][n];
+    let courierBase = 0;
+    let serviceMargin = 0;
 
-    const zone = getZoneKey(state);
-    if (courierRates[zone] && courierRates[zone][n] !== undefined) return courierRates[zone][n];
-    return 0;
+    if (typeof courierRates !== 'undefined') {
+        // Sheet-il ninnulla data mathram edukkunnu (State/Provider vachu nokkunnu)
+        let zoneData = courierRates[`${s}_${p}`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+
+        if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+            courierBase = window.parseDynamicRate(zoneData.baseRate, q);
+            serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, q);
+        } else if (zoneData && zoneData[q] !== undefined) {
+            // Pazhaya structure anenkil base rate mathram edukkunnu
+            courierBase = Number(zoneData[q]);
+        }
+    }
+
+    // Margin ulppedeyulla total courier charge return cheyyunnu
+    return courierBase + serviceMargin;
 }
 
 // 🔥 FIX: ഫംഗ്ഷനിലേക്ക് ഓർഡർ ഡാറ്റ (u) കൂടി ഉൾപ്പെടുത്തിയിരിക്കുന്നു 
@@ -5144,3 +5157,22 @@ window.syncMonthToSheet = function () {
         }, 3000);
     });
 };
+
+// 🔥 FIX 1: Dynamic Rate Parser
+function parseDynamicRate(rateString, qty) {
+    if (!rateString) return 0;
+    if (!isNaN(rateString)) return parseFloat(rateString); // വെറും നമ്പർ ആണെങ്കിൽ
+
+    let rates = String(rateString).split(',');
+    let matchedRate = 0;
+    for (let i = 0; i < rates.length; i++) {
+        let parts = rates[i].split(':');
+        if (parts.length === 2) {
+            let q = parseInt(parts[0].trim());
+            let r = parseFloat(parts[1].trim());
+            if (q === qty) return r;
+            if (q < qty) matchedRate = r;
+        }
+    }
+    return matchedRate;
+}

@@ -160,6 +160,24 @@ function getZoneKey(stateName, specificProvider = null) {
   return 'REST OF INDIA';
 }
 
+window.parseDynamicRate = function (rateString, qty) {
+  if (!rateString) return 0;
+  if (!isNaN(rateString)) return parseFloat(rateString); // Normal number anenkil
+
+  let rates = String(rateString).split(',');
+  let matchedRate = 0;
+  for (let i = 0; i < rates.length; i++) {
+    let parts = rates[i].split(':');
+    if (parts.length === 2) {
+      let q = parseInt(parts[0].trim());
+      let r = parseFloat(parts[1].trim());
+      if (q === qty) return r;
+      if (q < qty) matchedRate = r;
+    }
+  }
+  return matchedRate;
+};
+
 $(document).ready(function () {
 
   const savedLang = localStorage.getItem('activeLang') || 'ml';
@@ -1563,14 +1581,32 @@ window.updatePrice = function (qty, isQuick) {
     savedProvider = savedOrderData.courier;
   }
 
-  // 🔥 കൊറിയർ പേര് സഹിതം Zone Key കണ്ടുപിടിക്കുന്നു (ഉദാ: "KERALA INDIA POST")
   const zone = getZoneKey(currentState, savedProvider);
-  const courier = (typeof courierRates !== 'undefined' && courierRates && courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
-  const total = base + courier;
+
+  // 🔥🔥🔥 MARGIN FIX STARTS HERE (100% Dynamic) 🔥🔥🔥
+  let courierBase = 0;
+  let serviceMargin = 0;
+
+  if (typeof courierRates !== 'undefined') {
+    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
+    // Sheet-il ninnulla data mathram edukkunnu
+    let zoneData = courierRates[`${zone}_${p}`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
+
+    if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+      courierBase = window.parseDynamicRate(zoneData.baseRate, n);
+      serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
+    } else if (zoneData && zoneData[n] !== undefined) {
+      courierBase = Number(zoneData[n]);
+    }
+  }
+
+  const totalCourier = courierBase + serviceMargin;
+  const total = base + totalCourier;
+  // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
 
   let htmlContent = `
       <div class="price-row"><span>${t.lbl_honey_price} (<span class="qty-count">${n}</span>)</span><span>₹<span class="val-base">${base}</span></span></div>
-      <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${courier}</span></span></div>
+      <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${totalCourier}</span></span></div>
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
   container.html(htmlContent);
@@ -2597,7 +2633,7 @@ function sendToWhatsapp() {
   // 🔥 LOGIC UPDATE: Custom Header for Admin
   if (isAdmin) {
     // Admin sending Invoice to Customer
-    header = `*🧾 ORDER INVOICE* - KAFAK HONEY 🍯\n⌚ _${formattedTime}_\n\nHere is your order details 👇\n🔗 _${editLink}_\n`;
+    header = `*🧾 ORDER INVOICE* - KAFAK HONEY 🍯\n⌚ _${formattedTime}_\n\nHere is your order details 👇\nനിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇\n🔗 _${editLink}_\n`;
   } else {
     // Customer placing order (Standard)
     if (isUpdate) {
