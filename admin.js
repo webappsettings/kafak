@@ -2818,8 +2818,9 @@ function renderDashboard() {
         });
     }
 
-    // 🔥 FIX: മെറ്റീരിയൽ ചിലവ് കൂടി കമ്പനിയുടെ മൊത്തം ചിലവിലേക്ക് കൂട്ടുന്നു
-    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp + monthMaterialExp;
+    // 🔥 FIX: മെറ്റീരിയൽ ചിലവുകൾ ഇനി ലാഭത്തിൽ നിന്നും കുറയ്ക്കില്ല (Exclude from Net Profit)
+    // അതായത്, നമ്മൾ നേരത്തെ കൂട്ടിയിരുന്ന `monthMaterialExp` ഇവിടെ നിന്നും ഒഴിവാക്കി!
+    let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
     let trueNetProfit = trueIncome - totalExpenses;
 
     window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
@@ -3282,14 +3283,15 @@ function renderPartnerList() {
             <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
         </div>
         <div class="d-flex justify-content-between mb-1">
-            <span class="text-muted">Total Expense:</span>
-            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()}</span>
+            <span class="text-muted">Deductible Expense:</span>
+            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
         </div>
-        <div class="d-flex justify-content-between mb-1">
-            <span class="text-muted fw-bold" style="font-size:9px;">(Includes Materials: ₹${(window.currentMaterial || 0).toLocaleString()})</span>
+        <div class="d-flex justify-content-between mb-1 mt-1">
+            <span class="fw-bold text-info" style="font-size:10px;"><i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}</span>
+            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px;">EXCLUDED</span>
         </div>
-        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-25">
-            <span class="text-warning fw-bold" style="font-size:9px;">(Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} | Margin: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
+        <div class="d-flex justify-content-between mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
+            <span class="text-warning fw-bold" style="font-size:10px;"><i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} | Margin: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()}</span>
         </div>
         
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -4071,10 +4073,20 @@ window.toggleEditPartnerSelect = function () {
     }
 };
 
-// 🔥 2. SHOW EDIT EXPENSE MODAL (Dynamic Vendor/Partner Field)
+// 🔥 2. എഡിറ്റ് വിൻഡോയിലെ കാർഡ് സെലക്ട് ചെയ്യാൻ
+window.selectEditPartner = function (name, el) {
+    $('#edit-partner-section .partner-card').removeClass('selected').css({ 'border-color': '#e2e8f0', 'background-color': '#fff' });
+    $('#edit-partner-section .check-icon').attr('class', 'far fa-circle text-muted check-icon');
+
+    $(el).addClass('selected').css({ 'border-color': '#198754', 'background-color': '#f6fdf9' });
+    $(el).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
+
+    $('#edit-exp-partner-val').val(name);
+};
+
+// 🔥 3. SHOW EDIT EXPENSE MODAL (Beautiful UI & Dynamic Fields)
 window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, oldVendor = '') {
 
-    // Z-INDEX FIX
     if (!$('#swal-zindex-fix').length) {
         $('<style id="swal-zindex-fix">').html(`
             .swal2-container { z-index: 99999 !important; }
@@ -4082,59 +4094,70 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, o
         `).appendTo('head');
     }
 
-    // ഡാഷ്‌ബോർഡിൽ നിന്നും പാർട്ണർമാരുടെ പേര് ഓട്ടോമാറ്റിക് ആയി എടുക്കാൻ
-    let partnerOptions = '';
+    // 🔥 മനോഹരമായ പാർട്ണർ കാർഡുകൾ ഉണ്ടാക്കുന്നു (പഴയ Dropdown ഒഴിവാക്കി)
+    let partnerCardsHtml = '';
+    let partnerNames = ["Salam", "Samad", "Jazeela"]; // Default partners
     if (typeof dashboardData !== 'undefined' && dashboardData && dashboardData.partners) {
-        for (let name in dashboardData.partners) {
-            let isSelected = (oldCat === 'Salary' && oldVendor === name) ? 'selected' : '';
-            partnerOptions += `<option value="${name}" ${isSelected}>${name}</option>`;
-        }
-    } else {
-        // Fallback options
-        partnerOptions = `
-            <option value="Salam" ${oldVendor === 'Salam' ? 'selected' : ''}>Salam</option>
-            <option value="Samad" ${oldVendor === 'Samad' ? 'selected' : ''}>Samad</option>
-            <option value="Jazeela" ${oldVendor === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
-        `;
+        partnerNames = Object.keys(dashboardData.partners);
     }
+
+    let initialPartner = (oldCat === 'Salary') ? oldVendor : '';
+
+    partnerNames.forEach(name => {
+        let isSelected = (name === initialPartner);
+        let bgStyle = isSelected ? 'border-color: #198754; background-color: #f6fdf9;' : 'border-color: #e2e8f0; background-color: #fff;';
+        let iconClass = isSelected ? 'fas fa-check-circle text-success' : 'far fa-circle text-muted';
+
+        partnerCardsHtml += `
+        <div class="partner-card d-flex justify-content-between align-items-center mb-2 p-2 border rounded-3" 
+             onclick="selectEditPartner('${name}', this)" 
+             style="cursor:pointer; border-width: 2px !important; transition: 0.2s; ${bgStyle}">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-user-circle text-muted fs-4"></i>
+                <div class="fw-bold text-dark" style="font-size:13px;">${name}</div>
+            </div>
+            <i class="${iconClass} check-icon fs-5"></i>
+        </div>`;
+    });
 
     let htmlForm = `
         <div class="text-start" style="font-size:14px;">
             <label class="fw-bold mb-1 small">Date & Time</label>
-            <input type="text" id="edit-exp-date" class="form-control mb-3 fw-bold" placeholder="Select Date & Time...">
+            <input type="text" id="edit-exp-date" class="form-control mb-3 fw-bold border-secondary" placeholder="Select Date & Time...">
             
             <label class="fw-bold mb-1 small">Category</label>
-            <select id="edit-exp-cat" class="form-select mb-3" onchange="toggleEditPartnerSelect()">
-                <option value="Material Purchase" ${oldCat === 'Material Purchase' ? 'selected' : ''}>Material Purchase</option>
-                <option value="Packaging Material" ${oldCat === 'Packaging Material' ? 'selected' : ''}>Packaging Material</option>
-                <option value="Marketing/Ads" ${oldCat === 'Marketing/Ads' ? 'selected' : ''}>Marketing / Ads</option>
-                <option value="Transport/Fuel" ${oldCat === 'Transport/Fuel' ? 'selected' : ''}>Transport / Fuel</option>
-                <option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>Salary / Wages</option>
-                <option value="Courier Charges" ${oldCat === 'Courier Charges' ? 'selected' : ''}>Courier Charges</option>
-                <option value="Office Expense" ${oldCat === 'Office Expense' ? 'selected' : ''}>Office Expense</option>
-                <option value="Refund" ${oldCat === 'Refund' ? 'selected' : ''}>Refund</option>
-                <option value="Other" ${oldCat === 'Other' ? 'selected' : ''}>Other</option>
+            <select id="edit-exp-cat" class="form-select mb-3 fw-bold border-secondary" onchange="toggleEditPartnerSelect()">
+                <option value="Materials" ${oldCat.includes('Material') || oldCat === 'Materials' ? 'selected' : ''}>📦 Materials / Purchase</option>
+                <option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>
+                <option value="Food" ${oldCat === 'Food' ? 'selected' : ''}>🍔 Food & Refreshment</option>
+                <option value="Travel" ${oldCat.includes('Travel') || oldCat.includes('Transport') ? 'selected' : ''}>⛽ Travel & Fuel</option>
+                <option value="Courier" ${oldCat.includes('Courier') ? 'selected' : ''}>🚚 Courier Charges</option>
+                <option value="Ads" ${oldCat.includes('Ads') || oldCat.includes('Marketing') ? 'selected' : ''}>📢 Ads & Marketing</option>
+                <option value="Other" ${oldCat === 'Other' || oldCat === 'Office Expense' ? 'selected' : ''}>📝 Other</option>
+                <option value="Refund" ${oldCat === 'Refund' ? 'selected' : ''}>💸 Refund / Return</option>
             </select>
 
             <div id="edit-vendor-section" style="display: ${oldCat === 'Salary' ? 'none' : 'block'};">
                 <label class="fw-bold mb-1 small">Vendor / Shop Name</label>
-                <input type="text" id="edit-exp-vendor" class="form-control mb-3" value="${oldCat !== 'Salary' ? oldVendor : ''}" placeholder="Ex: Lulu Hypermarket">
+                <input type="text" id="edit-exp-vendor" class="form-control mb-3 border-secondary" value="${oldCat !== 'Salary' ? oldVendor : ''}" placeholder="Ex: Lulu Hypermarket">
             </div>
 
             <div id="edit-partner-section" style="display: ${oldCat === 'Salary' ? 'block' : 'none'};">
                 <label class="fw-bold mb-1 small text-primary">Select Partner</label>
-                <select id="edit-exp-partner" class="form-select mb-3 border-primary bg-primary bg-opacity-10 text-primary fw-bold">
-                    ${partnerOptions}
-                </select>
+                <input type="hidden" id="edit-exp-partner-val" value="${initialPartner}">
+                <div class="mt-1 mb-3">
+                    ${partnerCardsHtml}
+                </div>
             </div>
+
             <label class="fw-bold mb-1 small">Amount (₹)</label>
-            <input type="number" id="edit-exp-amount" class="form-control mb-3" value="${oldAmount}">
+            <input type="number" id="edit-exp-amount" class="form-control mb-3 border-secondary" value="${oldAmount}">
             
             <label class="fw-bold mb-1 small">Description</label>
-            <input type="text" id="edit-exp-desc" class="form-control mb-3" value="${oldDesc}">
+            <input type="text" id="edit-exp-desc" class="form-control mb-3 border-secondary" value="${oldDesc}">
             
             <label class="fw-bold mb-1 small text-primary"><i class="fas fa-receipt"></i> Upload New Receipt (Optional)</label>
-            <input type="file" id="edit-exp-file" class="form-control" accept="image/*">
+            <input type="file" id="edit-exp-file" class="form-control border-secondary" accept="image/*">
         </div>
     `;
 
@@ -4156,15 +4179,20 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, o
             });
         },
         preConfirm: async () => {
-            // കാറ്റഗറി അനുസരിച്ച് Vendor ആണോ Partner ആണോ എന്ന് തീരുമാനിക്കുന്നു
             let selectedCat = document.getElementById('edit-exp-cat').value;
-            let finalVendor = (selectedCat === 'Salary') ? document.getElementById('edit-exp-partner').value : document.getElementById('edit-exp-vendor').value;
+            // 🔥 കാറ്റഗറി അനുസരിച്ച് പൈസ കൊടുത്ത ആളുടെ പേര് എടുക്കുന്നു
+            let finalVendor = (selectedCat === 'Salary') ? document.getElementById('edit-exp-partner-val').value : document.getElementById('edit-exp-vendor').value;
+
+            if (selectedCat === 'Salary' && !finalVendor) {
+                Swal.showValidationMessage('Please select a partner for Salary!');
+                return false;
+            }
 
             let updateData = {
                 expId: expId,
                 date: document.getElementById('edit-exp-date').value,
                 category: selectedCat,
-                vendor: finalVendor,  // 👈 ഇവിടെ ഡാറ്റ ശരിയായി Backend-ലേക്ക് പോകും
+                vendor: finalVendor,
                 amount: document.getElementById('edit-exp-amount').value,
                 description: document.getElementById('edit-exp-desc').value,
                 fileData: null,
@@ -4568,7 +4596,8 @@ window.renderDetailedMonthlyOverview = function () {
         });
     }
 
-    let totalExpense = tBottleCost + tActualCourier + tOtherExpense + tMaterialExpense;
+    // 🔥 FIX: മെറ്റീരിയൽ ചിലവ് ഇവിടെ നിന്നും ഒഴിവാക്കി (Not adding tMaterialExpense to totalExpense)
+    let totalExpense = tBottleCost + tActualCourier + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
     let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
@@ -4589,7 +4618,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
 
         <div class="mb-2 ps-3 border-start border-3 border-danger">
-            <div class="text-danger fw-bold" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES:</div>
+            <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES (INCLUDED):</div>
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
@@ -4606,21 +4635,23 @@ window.renderDetailedMonthlyOverview = function () {
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tActualCourier.toLocaleString()}</span>
             </div>
-
-            <div class="d-flex justify-content-between align-items-start mt-2">
-                <div>
-                    <div class="text-light" style="font-size:12px;">📦 Material Purchases</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Monthly Stock)</div>
-                </div>
-                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tMaterialExpense.toLocaleString()}</span>
-            </div>
             
             <div class="d-flex justify-content-between align-items-start mt-2 pb-2 border-bottom border-secondary border-opacity-50">
                 <div>
                     <div class="text-light" style="font-size:12px;">🧾 Other Expenses</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(Ads, Office, Misc)</div>
+                    <div class="text-danger opacity-75" style="font-size:10px; font-weight:600;">(Food, Travel, Ads, Misc)</div>
                 </div>
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
+            </div>
+        </div>
+
+        <div class="mt-3 p-2 rounded" style="background: rgba(13, 202, 240, 0.1); border-left: 3px solid #0dcaf0;">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="text-info fw-bold" style="font-size:12px;"><i class="fas fa-ban me-1"></i> 📦 Material Purchases</div>
+                    <div class="text-info opacity-75" style="font-size:10px; font-weight:600;">(EXCLUDED from deduction)</div>
+                </div>
+                <span class="text-info fw-bold" style="font-size:13px;">₹${tMaterialExpense.toLocaleString()}</span>
             </div>
         </div>
 
@@ -5019,26 +5050,6 @@ $(document).ready(function () {
     });
 });
 
-// എഡിറ്റ് ചെയ്യുമ്പോൾ ശരിയായി ലോഡ് ആവാൻ
-if (typeof window.openEditExpense === "function") {
-    let originalOpenEditExpense = window.openEditExpense;
-    window.openEditExpense = function (id, dateStr, amount, desc, cat, vendor) {
-        originalOpenEditExpense(id, dateStr, amount, desc, cat, vendor);
-        setTimeout(() => {
-            $('#exp-category').val(cat).trigger('change');
-            if (cat === 'Salary') {
-                setTimeout(() => {
-                    $('#exp-vendor').val(vendor);
-                    // എഡിറ്റ് ചെയ്യുമ്പോൾ കാർഡ് സെലക്ട് ചെയ്തതായി കാണിക്കാൻ
-                    $(`.partner-card:contains('${vendor}')`).addClass('selected');
-                    $(`.partner-card:contains('${vendor}') .check-icon`).attr('class', 'fas fa-check-circle text-success check-icon');
-                }, 300);
-            } else {
-                setTimeout(() => { $('#exp-vendor').val(vendor); }, 100);
-            }
-        }, 100);
-    };
-}
 
 // 🔥 SYNC DATA TO GOOGLE SHEET 🔥
 window.syncMonthToSheet = function () {
