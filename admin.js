@@ -2841,12 +2841,14 @@ function renderDashboard() {
 
     let trueOtherExp = 0;
     let monthMaterialExp = 0;
+    let materialBreakdownArray = []; // 🔥 NEW: മെറ്റീരിയൽ ചിലവുകൾ എണ്ണി വെക്കാൻ
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             let catName = String(e.cat || '').toLowerCase();
             if (catName.includes('material')) {
                 monthMaterialExp += e.amount;
+                materialBreakdownArray.push(e.amount); // 🔥 NEW: തുകകൾ ആഡ് ചെയ്യുന്നു
             } else if (catName === 'salary' || catName === 'refund') {
                 // Do nothing
             } else if (!e.isCourier) {
@@ -2854,6 +2856,9 @@ function renderDashboard() {
             }
         });
     }
+
+    // ഗ്ലോബൽ ആയി സേവ് ചെയ്യുന്നു
+    window.currentMaterialBreakdownStr = materialBreakdownArray.length > 0 ? materialBreakdownArray.join(' + ') : '';
 
     // 🔥 FIX: മെറ്റീരിയൽ ചിലവുകൾ ഇനി ലാഭത്തിൽ നിന്നും കുറയ്ക്കില്ല (Exclude from Net Profit)
     // അതായത്, നമ്മൾ നേരത്തെ കൂട്ടിയിരുന്ന `monthMaterialExp` ഇവിടെ നിന്നും ഒഴിവാക്കി!
@@ -3356,8 +3361,11 @@ function renderPartnerList() {
             (Bottle Cost: ${window.currentCostBreakdownStr || '0'})
         </div>
         <div class="d-flex justify-content-between mb-1 mt-1">
-            <span class="fw-bold text-info" style="font-size:10px;"><i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}</span>
-            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px;">EXCLUDED</span>
+            <span class="fw-bold text-info" style="font-size:10px;">
+                <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
+                ${window.currentMaterialBreakdownStr ? `<br><span class="ms-3 text-secondary opacity-75" style="font-size:9px; font-weight:600;">${window.currentMaterialBreakdownStr}</span>` : ''}
+            </span>
+            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
         </div>
         <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
             <div class="text-warning fw-bold" style="font-size:10px;">
