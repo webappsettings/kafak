@@ -77,11 +77,23 @@ window.changeLanguage = function (lang) {
   $('#edit-whatsapp').attr('placeholder', t.ph_edit_wa);
   $('#edit-altphone').attr('placeholder', t.ph_edit_alt);
 
-  // 3. Update Dropdowns
+  // 🔥 FIX 1: ഡ്രോപ്പ്-ഡൗൺ മാറ്റുന്നതിന് മുൻപ് നിലവിലെ വാല്യൂ സേവ് ചെയ്യുന്നു!
+  let currentWizQty = $('#quantity').val();
+  let currentQuickQty = $('#quick-qty').val();
+
+  // 3. Update Dropdowns (ഇത് പഴയ വാല്യൂ കളയും)
   renderQtyDropdowns();
-  let qtyVal = $('#quantity').is(':visible') ? $('#quantity').val() : $('#quick-qty').val();
-  if (qtyVal) {
-    updatePrice(qtyVal, $('#quick-qty').is(':visible'));
+
+  // 🔥 FIX 2: സേവ് ചെയ്ത വാല്യൂ തിരികെ നൽകുന്നു
+  if (currentWizQty) $('#quantity').val(currentWizQty);
+  if (currentQuickQty) $('#quick-qty').val(currentQuickQty);
+
+  // വിലയും അഡ്രസ്സും അപ്ഡേറ്റ് ചെയ്യുന്നു (Live Change)
+  let isQuickMode = $('#quick-qty').is(':visible');
+  let activeQty = isQuickMode ? currentQuickQty : currentWizQty;
+
+  if (activeQty) {
+    updatePrice(activeQty, isQuickMode);
   }
 
   // 4. Update Wizard Button Text
@@ -98,7 +110,6 @@ window.changeLanguage = function (lang) {
     if ($('#status-area').html().trim() !== "") {
       updateStatusUI(userData);
     }
-    // 🔥 FIX: ഭാഷ മാറുമ്പോൾ ബട്ടണുകൾ റീ-റെൻഡർ ചെയ്യാൻ ഇത് വിളിക്കുന്നു
     handleEditControlsVisibility(userData);
   }
 
@@ -1645,10 +1656,11 @@ window.updatePrice = function (qty, isQuick) {
     let phone = $('#phone').val();
     let wa = $('#whatsapp').val();
 
+    // 🔥 t.lbl_deliver_to വെച്ച് തന്നെ ഉപയോഗിക്കുന്നു 
     let prettyHtml = `
         <div style="padding: 8px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                 <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">${t.lbl_deliver_to}</div>
+                 <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">${t.lbl_deliver_to || 'DELIVER TO'}</div>
                  <div style="font-size: 11px; font-weight: 700; color: #25D366;"><i class="fab fa-whatsapp"></i> ${wa}</div>
             </div>
             <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase;">${name}</div>
