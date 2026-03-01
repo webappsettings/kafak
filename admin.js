@@ -3278,10 +3278,10 @@ function renderPartnerList() {
     let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
 
     // Prev & Next Buttons
-    let prevBtn = `<button class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
+    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
 
     // നിലവിലെ മാസം ആണെങ്കിൽ Next ബട്ടൺ കാണിക്കില്ല
-    let nextBtn = !isCurrentMonth ? `<button class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
+    let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
     // 🔥 NEW: Beautiful Breakdown UI with Navigation
     let breakdownHtml = `
@@ -5063,12 +5063,17 @@ $(document).ready(function () {
         }
     });
 
-    // പുതിയ Expense ആഡ് ചെയ്യാൻ പ്ലസ് (+) ബട്ടൺ അമർത്തുമ്പോൾ പഴയത് റീസെറ്റ് ചെയ്യാൻ
-    $('[data-bs-target="#expenseModal"]').on('click', function () {
+    // പുതിയ Expense ആഡ് ചെയ്യാൻ പ്ലസ് (+) ബട്ടൺ അല്ലെങ്കിൽ Expense ടാബ് അമർത്തുമ്പോൾ
+    $('[data-bs-target="#expenseModal"], #tab-expense, [data-bs-target="#pills-expense"]').on('click', function () {
         setTimeout(() => {
             $('#exp-category').val('Materials').trigger('change');
             $('#partner-section').hide();
             $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+
+            // 🔥 FIX: ഫോം എപ്പോൾ തുറന്നാലും ആ സെക്കൻഡിലെ തീയതിയും സമയവും തനിയെ അപ്ഡേറ്റ് ആവാൻ!
+            if (typeof expDatePicker !== 'undefined' && expDatePicker) {
+                expDatePicker.setDate(new Date(), false);
+            }
         }, 100);
     });
 });
