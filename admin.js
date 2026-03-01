@@ -2935,6 +2935,11 @@ function renderDashboard() {
     if (typeof renderDayBookTable === 'function') renderDayBookTable();
     if (typeof renderDetailedMonthlyOverview === 'function') renderDetailedMonthlyOverview();
     if (typeof renderYearlyOverview === 'function') renderYearlyOverview();
+
+    // 🔥 FIX: മാസം മാറ്റുമ്പോൾ തന്നെ സാലറി കാർഡുകളിലെ തുകയും അപ്ഡേറ്റ് ആകാൻ
+    if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) {
+        renderPartnerList();
+    }
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -3251,7 +3256,7 @@ function togglePartnerSelect() {
 }
 
 
-// 🔥 PARTNER LIST RENDER (WITH FULL BREAKDOWN UI)
+// 🔥 PARTNER LIST RENDER (WITH FULL BREAKDOWN UI & MONTH NAVIGATION)
 function renderPartnerList() {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -3265,11 +3270,29 @@ function renderPartnerList() {
         "Jazeela": Math.floor(liveProfit * 0.10)
     };
 
-    // 🔥 NEW: Beautiful Breakdown UI
+    // 🔥 NEW: Month Navigation UI Logic
+    let today = new Date();
+    let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
+
+    // ഈ മാസം ആണെങ്കിൽ 'This Month' എന്ന് കാണിക്കും, അല്ലെങ്കിൽ വെറും മാസത്തിന്റെ പേര്
+    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
+
+    // Prev & Next Buttons
+    let prevBtn = `<button class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
+
+    // നിലവിലെ മാസം ആണെങ്കിൽ Next ബട്ടൺ കാണിക്കില്ല
+    let nextBtn = !isCurrentMonth ? `<button class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
+
+    // 🔥 NEW: Beautiful Breakdown UI with Navigation
     let breakdownHtml = `
     <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-        <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
-            <h6 class="fw-bold text-primary m-0"><i class="fas fa-calendar-check me-1"></i> ${window.currentMonthStr} Overview</h6>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            ${prevBtn}
+            <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
+                <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
+            </h6>
+            ${nextBtn}
         </div>
         
         <div class="d-flex justify-content-between mb-1">
