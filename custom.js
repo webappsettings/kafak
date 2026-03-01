@@ -749,7 +749,7 @@ window.handleEditPincode = async function (val, savedPO = null) {
     let data = await res.json();
     data = data.map(item => ({
       ...item,
-      officename: item.officename.replace(/\s+(BO|SO|HO|PO)\s*$/i, ' PO')
+      officename: item.officename.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, ' PO').trim()
     }));
 
     if (data && data.length > 0) {
@@ -859,7 +859,7 @@ window.nextStep = async function () {
       const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
       data = data.map(item => ({
         ...item,
-        officename: item.officename.replace(/\s+(BO|SO|HO|PO)\s*$/i, ' PO')
+        officename: item.officename.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, ' PO').trim()
       }));
       $('#btn-wiz-next').prop('disabled', false).text(t.btn_next);
 
@@ -1510,7 +1510,7 @@ function updateSummaryDisplay() {
   const safe = (val) => String(val || '').trim().toUpperCase();
 
   // 2. Clean PO Logic
-  let poClean = safe(po).replace(/P\.?O\.?$/i, '').trim();
+  let poClean = safe(po).replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, '').trim();
   if (poClean) poClean += ' PO';
 
   // 3. Generate Address HTML
@@ -1704,7 +1704,7 @@ function updateLiveAddressPreview() {
   // 2. Data Cleaning
   let place = $('#place').val() || '';
 
-  let po = poRaw.replace(/\s+PO\s*$/i, '').trim();
+  let po = poRaw.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, '').trim();
   if (po) po += ' PO';
 
   let dist = userData.district || '';
