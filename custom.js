@@ -850,7 +850,7 @@ window.nextStep = async function () {
   const t = translations[lang];
 
   if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name'));
-  if (currentStep === 2 && !/^[0-9]{10}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
+  if (currentStep === 2 && !/^[0-9]{8,15}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
 
   if (currentStep === 3) {
     const pin = $('#pincode').val(); if (!/^[0-9]{6}$/.test(pin)) return showAlert(getAlert('err_pincode'));
@@ -1671,6 +1671,26 @@ window.updatePrice = function (qty, isQuick) {
         </div>
     `;
     $('#wiz-final-addr').html(prettyHtml);
+    // 🔥 NEW: അഡ്മിൻ ആണെങ്കിൽ മാത്രം നമ്പറുകൾ സെലക്ട് ചെയ്യാനുള്ള ഡ്രോപ്പ്ഡൗൺ കാണിക്കുന്നു
+    const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+    if (isAdmin) {
+      $('#wiz-admin-wa-selector').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയാൻ
+
+      let phoneOpts = `<option value="W">WhatsApp (${wa})</option>`;
+      phoneOpts += `<option value="M">Main Phone (${phone})</option>`;
+      let alt = $('#altphone').val();
+      if (alt) phoneOpts += `<option value="A">Alt Phone (${alt})</option>`;
+
+      let selectorHtml = `
+        <div id="wiz-admin-wa-selector" class="mt-2 p-2 bg-light border border-warning border-opacity-50 rounded" style="font-size:12px;">
+            <div class="fw-bold text-dark mb-1"><i class="fas fa-bullseye text-danger"></i> Send WhatsApp To:</div>
+            <select id="wiz-target-wa" class="form-select form-select-sm border-secondary fw-bold text-primary">
+                ${phoneOpts}
+            </select>
+        </div>`;
+      $('#wiz-final-addr').append(selectorHtml);
+    }
+
     $('#wiz-deliver-box').fadeIn();
   }
 

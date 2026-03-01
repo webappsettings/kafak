@@ -2326,11 +2326,11 @@ window.revertToDispatched = function (oid) {
     });
 }
 
-// 🔥 REVERT FROM DISPATCHED TO PRINTED (PAID)
+// 🔥 REVERT FROM DISPATCHED TO PAID (Smart Message)
 window.revertToPrinted = function (oid) {
     Swal.fire({
-        title: 'Revert to Printed?',
-        text: "ഇത് വീണ്ടും Paid (Printed) ടാബിലേക്ക് മാറ്റണോ? കൊടുത്ത ഡേറ്റും ട്രാക്കിങ്ങും മാഞ്ഞുപോകും.",
+        title: 'Revert to Paid?',
+        text: "ഇത് വീണ്ടും Paid ടാബിലേക്ക് മാറ്റണോ? കൊടുത്ത ഡേറ്റും ട്രാക്കിങ്ങും മാഞ്ഞുപോകും.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#dc3545',
@@ -2339,7 +2339,17 @@ window.revertToPrinted = function (oid) {
         if (result.isConfirmed) {
             // സ്റ്റാറ്റസ് തിരികെ Paid ആക്കുന്നു
             updateOrder(oid, 'Paid', null, true);
-            showToast('info', 'Moved back to Printed Tab!');
+
+            // ഏത് ടാബിലേക്കാണ് പോയതെന്ന് നോക്കി കൃത്യമായ മെസ്സേജ് കാണിക്കുന്നു
+            let order = allOrders.find(o => o.orderid === oid);
+            let metaStr = String(order ? order.adminMeta : '');
+            let isPrinted = metaStr.includes('P');
+
+            if (isPrinted) {
+                showToast('info', 'Moved back to Printed Tab!');
+            } else {
+                showToast('info', 'Moved back to Paid (New) Tab!');
+            }
         }
     });
 }
