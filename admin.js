@@ -2753,8 +2753,10 @@ function renderDashboard() {
     let orderBreakdown = {}; // 🔥 NEW: ഓർഡറുകൾ എണ്ണി വെക്കാൻ
 
     allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+        // 🔥 FIX: കൃത്യമായ ഫിൽറ്റർ തിരികെ കൊണ്ടുവന്നു
+        let status = String(o.Status || 'Pending').trim();
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        if (!isValidStatus) return;
 
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
         let oYear = pDate.getFullYear();
@@ -2769,21 +2771,19 @@ function renderDashboard() {
                 monthOrders++;
                 monthBottles += qty;
 
-                // 🔥 FIX: Backend JSON name matching
-                let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total);
+                let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
                 if (isNaN(amt) || amt <= 0) {
                     let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                     amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
                 }
                 trueIncome += amt;
 
-                // Breakdown string creation
                 let key = `₹${amt}`;
                 if (!orderBreakdown[key]) orderBreakdown[key] = 0;
                 orderBreakdown[key]++;
 
                 let pCost = parseFloat(o.Product_Base_Cost);
-                trueProductCost += isNaN(pCost) ? (qty * 330) : pCost;
+                trueProductCost += (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
             }
         }
 
@@ -2793,11 +2793,12 @@ function renderDashboard() {
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
+
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
                 trueCourierExp += actualC;
-                trueTotalCourier += totalC; // 🔥 Total Courier കൂടി കൂട്ടുന്നു
+                trueTotalCourier += totalC;
             }
         }
     });
@@ -4570,16 +4571,17 @@ window.renderDetailedMonthlyOverview = function () {
     let tCourierCost = 0, tActualCourier = 0, tOtherExpense = 0, tMaterialExpense = 0;
 
     allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        // ഒഴിവാക്കേണ്ടവ 
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+        // 🔥 FIX: ഇവിടെയും പഴയ ഫിൽറ്റർ കൊടുത്തു
+        let status = String(o.Status || 'Pending').trim();
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        if (!isValidStatus) return;
 
         let qty = parseInt(o.quantity) || 0;
 
-        // 1. വരുമാനവും ബോട്ടിൽ ചിലവും (Paid Date വെച്ച്)
+        // 1. വരുമാനവും ബോട്ടിൽ ചിലവും
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total);
+            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
@@ -4591,7 +4593,7 @@ window.renderDetailedMonthlyOverview = function () {
             tBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
         }
 
-        // 2. കൊറിയർ ചിലവ് (Dispatched Date വെച്ച് - Dispatched ആയാൽ മാത്രം!)
+        // 2. കൊറിയർ ചിലവ് 
         if (status !== 'Paid') {
             let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
@@ -4715,15 +4717,16 @@ window.renderYearlyOverview = function () {
     let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yActualCourier = 0, yOtherExpense = 0;
 
     allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+        // 🔥 FIX: ഫിൽറ്റർ അപ്ഡേറ്റ് ചെയ്തു
+        let status = String(o.Status || 'Pending').trim();
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        if (!isValidStatus) return;
 
         let qty = parseInt(o.quantity) || 0;
 
-        // 1. വരുമാനം
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
         if (pDate.getFullYear() === currentYear) {
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total);
+            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
@@ -4735,7 +4738,6 @@ window.renderYearlyOverview = function () {
             yBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
         }
 
-        // 2. കൊറിയർ
         if (status !== 'Paid') {
             let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === currentYear) {
