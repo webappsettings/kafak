@@ -2751,6 +2751,7 @@ function renderDashboard() {
     let monthOrders = 0, yearOrders = 0;
 
     let orderBreakdown = {}; // 🔥 NEW: ഓർഡറുകൾ എണ്ണി വെക്കാൻ
+    let costBreakdown = {};  // 🔥 NEW: ബോട്ടിൽ ചിലവുകൾ എണ്ണി വെക്കാൻ
 
     allOrders.forEach(o => {
         // 🔥 FIX: കൃത്യമായ ഫിൽറ്റർ തിരികെ കൊണ്ടുവന്നു
@@ -2762,6 +2763,7 @@ function renderDashboard() {
         let oYear = pDate.getFullYear();
         let oMonth = pDate.getMonth();
         let qty = parseInt(o.quantity) || 0;
+
 
         if (oYear === mY) {
             yearOrders++;
@@ -2782,8 +2784,19 @@ function renderDashboard() {
                 if (!orderBreakdown[key]) orderBreakdown[key] = 0;
                 orderBreakdown[key]++;
 
+                // 👇 ഇവിടെയാണ് മാറ്റം വരുത്തേണ്ടത് 👇
                 let pCost = parseFloat(o.Product_Base_Cost);
-                trueProductCost += (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
+                let finalRowCost = (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
+                trueProductCost += finalRowCost;
+
+                // 🔥 ബോട്ടിൽ ചിലവ് ഓരോന്നായി എണ്ണി വെക്കുന്നു
+                if (qty > 0) {
+                    let perBottleCost = finalRowCost / qty;
+                    let cKey = `₹${Math.round(perBottleCost)}`;
+                    if (!costBreakdown[cKey]) costBreakdown[cKey] = 0;
+                    costBreakdown[cKey] += qty;
+                }
+                // 👆 പുതിയ കോഡ് കഴിഞ്ഞു 👆
             }
         }
 
@@ -3314,8 +3327,12 @@ function renderPartnerList() {
             <span class="fw-bold text-info" style="font-size:10px;"><i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}</span>
             <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px;">EXCLUDED</span>
         </div>
-        <div class="d-flex justify-content-between mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
-            <span class="text-warning fw-bold" style="font-size:10px;"><i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} | Margin: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()}</span>
+        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
+            <div class="text-warning fw-bold" style="font-size:10px;">
+                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} <br>
+                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
+            </div>
+            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
         </div>
         
         <div class="d-flex justify-content-between align-items-center mb-3">
