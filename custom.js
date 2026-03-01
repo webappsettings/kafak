@@ -2285,12 +2285,12 @@ function postOrder(data) {
         SafeStorage.setItem('lastUsedPhone', data.phone);
 
         if (res.custId) {
-          data.custId = res.custId;
+          successData.custId = res.custId;
           myCustId = res.custId;
         }
 
-        // പുതിയ ഡാറ്റ ലോക്കൽ കാഷെയിൽ സേവ് ചെയ്യുന്നു
-        localUsersMap[data.phone] = data;
+        // 🔥 FIX: Order ID ഉൾപ്പെടെയുള്ള പുതിയ ഡാറ്റ ലോക്കൽ കാഷെയിൽ സേവ് ചെയ്യുന്നു!
+        localUsersMap[successData.phone] = successData;
         SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 
         window.orderSuccess = true;
