@@ -3295,6 +3295,7 @@ function resetExpenseForm(selectedD) {
     $('#exp-category').val('Materials');
     $('#partner-section').hide();
     $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+    $('#exp-amount').val(''); // 🔥 NEW: Amount Blank ആക്കുന്നു!
     $('.partner-card').removeClass('selected');
     $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
 
@@ -5147,6 +5148,7 @@ $(document).ready(function () {
             vendorEl.prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
             $('.partner-card').removeClass('selected');
             $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
+            $('#exp-amount').val(''); // 🔥 NEW: Amount Blank ആക്കുന്നു!
         }
     });
 
@@ -5156,6 +5158,7 @@ $(document).ready(function () {
             $('#exp-category').val('Materials').trigger('change');
             $('#partner-section').hide();
             $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
+            $('#exp-amount').val(''); // 🔥 NEW: Amount Blank ആക്കുന്നു!
 
             // 🔥 FIX: ഫോം എപ്പോൾ തുറന്നാലും ആ സെക്കൻഡിലെ തീയതിയും സമയവും തനിയെ അപ്ഡേറ്റ് ആവാൻ!
             if (typeof expDatePicker !== 'undefined' && expDatePicker) {
