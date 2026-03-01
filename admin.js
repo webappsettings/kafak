@@ -3437,7 +3437,7 @@ function renderPartnerList() {
         let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
         html += `
-        <div class="partner-card" onclick="selectPartner('${name}')">
+        <div class="partner-card" onclick="selectPartner('${name}', ${totalBal})">
             <div class="d-flex align-items-center gap-2">
                 <i class="fas fa-user-circle text-muted fs-4"></i>
                 <div>
@@ -3456,12 +3456,15 @@ function renderPartnerList() {
     $('#partner-list').html(html);
 }
 
-function selectPartner(name) {
+function selectPartner(name, amount) {
     $('.partner-card').removeClass('selected');
     $('.partner-card .check-icon').attr('class', 'far fa-circle text-muted check-icon');
     $(event.currentTarget).addClass('selected');
     $(event.currentTarget).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
     $('#exp-vendor').val(name);
+    if (amount !== undefined) {
+        $('#exp-amount').val(amount);
+    }
 }
 
 
