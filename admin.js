@@ -5238,12 +5238,6 @@ function saveSettingToServer(settingName, row, col, val) {
         });
 }
 
-// Z-INDEX FIX 
-$(document).ready(function () {
-    $('#settingsModal').on('show.bs.modal', function () { $(this).css('z-index', '10600'); });
-    $('#settingsModal').on('shown.bs.modal', function () { $('.modal-backdrop').last().css('z-index', '10500'); });
-});
-
 // 🔥 SMART CATEGORY FIX & PARTNER UI RESTORE (Old Beautiful UI)
 $(document).ready(function () {
     $(document).on('change', '#exp-category', function () {
@@ -5350,11 +5344,6 @@ function parseDynamicRate(rateString, qty) {
     return matchedRate;
 }
 
-
-// ==========================================
-// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
-// ==========================================
-
 // ==========================================
 // 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
 // ==========================================
@@ -5372,9 +5361,9 @@ function injectLeftDrawer() {
     let defaultDate = `${dd} / ${mm} / ${yy}`;
 
     let drawerHtml = `
-    <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1040;" onclick="toggleLeftDrawer()"></div>
+    <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2050;" onclick="toggleLeftDrawer()"></div>
     
-    <div id="left-drawer" style="position:fixed; top:0; left:-320px; width:300px; height:100%; background:#f8fafc; z-index:1050; transition:left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column;">
+    <div id="left-drawer" style="position:fixed; top:0; left:-320px; width:300px; height:100%; background:#f8fafc; z-index:2060; transition:left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column;">
         
         <div class="p-3 text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
             <h6 class="m-0 fw-bold" style="letter-spacing:1px; font-size:14px;"><i class="fas fa-tools me-2 text-warning"></i> ADMIN TOOLS</h6>
@@ -5383,10 +5372,13 @@ function injectLeftDrawer() {
         
         <ul class="nav nav-pills p-2 shadow-sm mx-2 mt-2" id="drawer-tabs" role="tablist" style="background:#e2e8f0; gap:5px;">
             <li class="nav-item flex-grow-1 text-center" role="presentation">
-                <button class="nav-link active w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-design" type="button" role="tab"><i class="fas fa-print text-primary me-1"></i> Design Labels</button>
+                <button class="nav-link active w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-design" type="button" role="tab"><i class="fas fa-print text-primary me-1"></i> Label</button>
             </li>
             <li class="nav-item flex-grow-1 text-center" role="presentation">
-                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-docs" type="button" role="tab"><i class="fas fa-folder-open text-warning me-1"></i> My Docs</button>
+                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-docs" type="button" role="tab"><i class="fas fa-folder-open text-warning me-1"></i> Docs</button>
+            </li>
+            <li class="nav-item flex-grow-1 text-center" role="presentation" id="tab-btn-settings">
+                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-settings" type="button" role="tab"><i class="fas fa-cog text-secondary me-1"></i> Setup</button>
             </li>
         </ul>
 
@@ -5430,20 +5422,45 @@ function injectLeftDrawer() {
                 </div>
             </div>
             
+            <div class="tab-pane fade" id="drawer-settings" role="tabpanel">
+                <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm text-center">
+                    <div class="mb-3">
+                        <div class="rounded-circle bg-secondary bg-opacity-10 d-inline-flex align-items-center justify-content-center" style="width:50px; height:50px;">
+                            <i class="fas fa-truck text-secondary fs-4"></i>
+                        </div>
+                    </div>
+                    <h6 class="fw-bold text-dark mb-1" style="font-size:13px;">Courier Settings</h6>
+                    <p class="text-muted mb-3" style="font-size:10px;">Manage delivery partners, state zones, base cost and margin rates.</p>
+                    
+                    <button class="btn btn-dark btn-sm w-100 fw-bold rounded-pill shadow-sm py-2" data-bs-toggle="modal" data-bs-target="#settingsModal" onclick="loadCourierSettings(); toggleLeftDrawer();">
+                        <i class="fas fa-sliders-h me-1 text-warning"></i> Open Settings
+                    </button>
+                </div>
+            </div>
+            
         </div>
     </div>
     
     <style>
-        .flatpickr-calendar { z-index: 1060 !important; }
+        .flatpickr-calendar { z-index: 3000 !important; }
         #drawer-tabs .nav-link.active { background: #fff !important; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        
+        /* 🔥 PURE CSS FIX FOR SETTINGS MODAL Z-INDEX (No JS Needed) */
+        #settingsModal { z-index: 10000 !important; }
+        .modal-backdrop { z-index: 9999 !important; }
     </style>
     `;
 
     $('body').append(drawerHtml);
 
+    // മാസ്റ്റർ അല്ലെങ്കിൽ Settings ടാബ് ഹൈഡ് ചെയ്യാൻ
+    if (localStorage.getItem('kafakAdminUser') !== 'master') {
+        $('#tab-btn-settings').hide();
+    }
+
     if (typeof flatpickr !== 'undefined') {
         flatpickr("#label-date", {
-            dateFormat: "d / m / y", // DD / MM / YY format
+            dateFormat: "d / m / y",
             defaultDate: today,
             disableMobile: true
         });
