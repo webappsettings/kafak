@@ -5363,7 +5363,7 @@ function injectLeftDrawer() {
     let drawerHtml = `
     <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2050;" onclick="toggleLeftDrawer()"></div>
     
-    <div id="left-drawer" style="position:fixed; top:0; left:-320px; width:300px; height:100%; background:#f8fafc; z-index:2060; transition:left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column;">
+    <div id="left-drawer" style="position:fixed; top:0; left:-470px; width:450px; height:100%; background:#f8fafc; z-index:2060; transition:left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column;">
         
         <div class="p-3 text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
             <h6 class="m-0 fw-bold" style="letter-spacing:1px; font-size:14px;"><i class="fas fa-tools me-2 text-warning"></i> ADMIN TOOLS</h6>
