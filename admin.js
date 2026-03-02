@@ -1966,10 +1966,10 @@ function finalConfirmSync() {
 
     let promises = [];
 
-    // 🔥 1 & 2. COMBINED SYNC (Status & Tracking ഒരുമിച്ച് ഒറ്റയടിക്ക് സെർവറിലേക്ക് അയക്കുന്നു)
-    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && u.action !== 'paidNum' && !u.deleteRefund);
-    if (orderUpdates.length > 0) {
-        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: orderUpdates }) }));
+    // 🔥 1 & 2. COMBINED SYNC (Status, Tracking & META എല്ലാം ഒരുമിച്ച് അയക്കുന്നു)
+    let bulkUpdates = pendingUpdates.filter(u => u.action !== 'paidNum' && !u.deleteRefund);
+    if (bulkUpdates.length > 0) {
+        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: bulkUpdates }) }));
     }
     // 🔥 3. Refund Deletions (ഇതാണ് പുതിയത്)
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
