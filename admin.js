@@ -5350,203 +5350,6 @@ function parseDynamicRate(rateString, qty) {
     return matchedRate;
 }
 
-// ==========================================
-// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
-// ==========================================
-
-// 1. ലെഫ്റ്റ് ഡ്രോയർ ഡിസൈൻ ഉണ്ടാക്കുന്നു
-function injectLeftDrawer() {
-    if ($('#left-drawer').length) return;
-
-    let drawerHtml = `
-    <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1040;" onclick="toggleLeftDrawer()"></div>
-    
-    <div id="left-drawer" style="position:fixed; top:0; left:-300px; width:280px; height:100%; background:#fff; z-index:1050; transition:left 0.3s ease; box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow-y:auto; display:flex; flex-direction:column;">
-        
-        <div class="p-3 text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
-            <h6 class="m-0 fw-bold" style="letter-spacing:1px;"><i class="fas fa-tools me-2 text-warning"></i> ADMIN TOOLS</h6>
-            <i class="fas fa-times fs-5" style="cursor:pointer; opacity:0.8;" onclick="toggleLeftDrawer()"></i>
-        </div>
-        
-        <div class="p-3 flex-grow-1">
-            <div class="mb-4">
-                <h6 class="fw-bold text-dark mb-3" style="font-size:13px; border-bottom:2px solid #f1f5f9; padding-bottom:8px;">
-                    <i class="fas fa-print text-primary me-2"></i> PRODUCT LABEL
-                </h6>
-                <div class="bg-light p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm">
-                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">MRP (₹)</label>
-                    <input type="text" id="label-mrp" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25" value="390">
-                    
-                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">BATCH NO.</label>
-                    <input type="text" id="label-batch" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25" placeholder="Ex: KFK001">
-                    
-                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">DATE OF PKG</label>
-                    <input type="text" id="label-date" class="form-control form-control-sm mb-3 fw-bold border-secondary border-opacity-25" placeholder="Ex: FEB 2026">
-                    
-                    <button class="btn btn-dark btn-sm w-100 fw-bold shadow-sm rounded-pill py-2" onclick="printProductLabels()">
-                        <i class="fas fa-file-pdf me-1 text-danger"></i> GENERATE (A4)
-                    </button>
-                </div>
-            </div>
-            
-            <div class="mb-4">
-                <h6 class="fw-bold text-dark mb-3" style="font-size:13px; border-bottom:2px solid #f1f5f9; padding-bottom:8px;">
-                    <i class="fas fa-folder-open text-warning me-2"></i> COMPANY DOCS
-                </h6>
-                <div class="text-center p-4 border border-dashed border-secondary border-opacity-25 rounded-4 bg-light text-muted small shadow-sm">
-                    <i class="fas fa-cloud-upload-alt mb-2 fs-3 opacity-50"></i><br>
-                    <span style="font-weight:600;">Coming Soon...</span><br>
-                    <span style="font-size:9px;">Upload & Store Documents</span>
-                </div>
-            </div>
-            
-            <div class="mb-2 mt-auto pt-3" id="drawer-settings-area">
-                <h6 class="fw-bold text-dark mb-3" style="font-size:13px; border-bottom:2px solid #f1f5f9; padding-bottom:8px;">
-                    <i class="fas fa-cog text-secondary me-2"></i> PREFERENCES
-                </h6>
-                <button id="btn-left-settings" class="btn btn-outline-dark btn-sm w-100 fw-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#settingsModal" onclick="toggleLeftDrawer()">
-                    <i class="fas fa-sliders-h me-2"></i> Courier Settings
-                </button>
-            </div>
-            
-        </div>
-    </div>
-    `;
-    $('body').append(drawerHtml);
-
-    // മാസ്റ്റർ അല്ലെങ്കിൽ Settings ബട്ടൺ ഡ്രോയറിലും ഹൈഡ് ചെയ്യാൻ
-    if (localStorage.getItem('kafakAdminUser') !== 'master') {
-        $('#btn-left-settings').hide();
-    }
-}
-
-// 2. ഡ്രോയർ തുറക്കാനും അടയ്ക്കാനും ഉള്ള ഫംഗ്ഷൻ
-window.toggleLeftDrawer = function () {
-    let drawer = $('#left-drawer');
-    let overlay = $('#left-drawer-overlay');
-    if (drawer.css('left') === '0px') {
-        drawer.css('left', '-300px');
-        overlay.fadeOut(200);
-    } else {
-        drawer.css('left', '0px');
-        overlay.fadeIn(200);
-    }
-}
-
-// ==========================================
-// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
-// ==========================================
-
-function injectLeftDrawer() {
-    if ($('#left-drawer').length) return;
-
-    // 1. ഓട്ടോ ഫിൽ ചെയ്യാനുള്ള ഡാറ്റ എടുക്കുന്നു (സേവ് ചെയ്തതില്ലെങ്കിൽ ഡിഫോൾട്ട് എടുക്കും)
-    let savedMrp = localStorage.getItem('label_mrp') || '750';
-    let savedBatch = localStorage.getItem('label_batch') || 'HN25PTT02';
-
-    // ഇന്നത്തെ തീയതി DD / MM / YY ഫോർമാറ്റിൽ എടുക്കുന്നു
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let yy = String(today.getFullYear()).slice(-2);
-    let defaultDate = `${dd} / ${mm} / ${yy}`;
-
-    let drawerHtml = `
-    <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1040;" onclick="toggleLeftDrawer()"></div>
-    
-    <div id="left-drawer" style="position:fixed; top:0; left:-300px; width:280px; height:100%; background:#f8fafc; z-index:1050; transition:left 0.3s ease; box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow-y:auto; display:flex; flex-direction:column;">
-        
-        <div class="p-3 text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
-            <h6 class="m-0 fw-bold" style="letter-spacing:1px;"><i class="fas fa-tools me-2 text-warning"></i> ADMIN TOOLS</h6>
-            <i class="fas fa-times fs-5" style="cursor:pointer; opacity:0.8;" onclick="toggleLeftDrawer()"></i>
-        </div>
-        
-        <div class="p-3 flex-grow-1">
-            <div class="mb-3">
-                <h6 class="fw-bold text-dark mb-2" style="font-size:12px; letter-spacing:0.5px;">LIVE PREVIEW</h6>
-                <div id="label-preview-box" class="shadow-sm" style="width: 100%; aspect-ratio: 210/59.4; position: relative; background: url('label_design.jpg') center/cover; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
-                    <div style="position: absolute; top: 17%; left: 82%; font-size: 8px; font-weight: 800; color: #000; line-height: 1.8;">
-                        <div id="prev-mrp">${savedMrp} . 00</div>
-                        <div id="prev-batch">${savedBatch}</div>
-                        <div id="prev-date">${defaultDate}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm mb-4">
-                <label class="small fw-bold text-muted mb-1" style="font-size:10px;">MRP (₹)</label>
-                <input type="text" id="label-mrp" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25" value="${savedMrp}" oninput="updateLabelPreview()">
-                
-                <label class="small fw-bold text-muted mb-1" style="font-size:10px;">BATCH NO.</label>
-                <input type="text" id="label-batch" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="${savedBatch}" oninput="updateLabelPreview()">
-                
-                <label class="small fw-bold text-muted mb-1" style="font-size:10px;">DATE OF PKG</label>
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text bg-light text-primary border-secondary border-opacity-25"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="text" id="label-date" class="form-control fw-bold border-secondary border-opacity-25 bg-white" value="${defaultDate}" readonly onchange="updateLabelPreview()">
-                </div>
-                
-                <button class="btn w-100 fw-bold shadow-sm rounded-pill py-2 text-white" style="background:#0f172a; font-size:12px;" onclick="printProductLabels()">
-                    <i class="fas fa-print me-1 text-warning"></i> PRINT LABELS (A4)
-                </button>
-            </div>
-            
-            <div class="mb-2 mt-auto pt-3 border-top border-secondary border-opacity-25" id="drawer-settings-area">
-                <h6 class="fw-bold text-dark mb-3" style="font-size:12px;"><i class="fas fa-cog text-secondary me-2"></i> SYSTEM PREFERENCES</h6>
-                <button id="btn-left-settings" class="btn btn-light border border-secondary border-opacity-25 btn-sm w-100 fw-bold rounded-pill text-dark shadow-sm py-2" data-bs-toggle="modal" data-bs-target="#settingsModal" onclick="toggleLeftDrawer()">
-                    <i class="fas fa-sliders-h me-2 text-primary"></i> Courier Settings
-                </button>
-            </div>
-            
-        </div>
-    </div>
-    <style>.flatpickr-calendar { z-index: 1060 !important; }</style>
-    `;
-    $('body').append(drawerHtml);
-
-    // മാസ്റ്റർ അല്ലെങ്കിൽ Settings ഹൈഡ് ചെയ്യാൻ
-    if (localStorage.getItem('kafakAdminUser') !== 'master') {
-        $('#drawer-settings-area').hide();
-    }
-
-    // 🔥 Initialize Date Picker (Flatpickr)
-    if (typeof flatpickr !== 'undefined') {
-        flatpickr("#label-date", {
-            dateFormat: "d / m / y", // DD / MM / YY format
-            defaultDate: today,
-            disableMobile: true
-        });
-    }
-}
-
-// 🔥 ലൈവ് ആയി പ്രിവ്യൂ കാണിക്കാനും സേവ് ചെയ്യാനും
-window.updateLabelPreview = function () {
-    let mrp = $('#label-mrp').val();
-    let batch = $('#label-batch').val().toUpperCase();
-    let date = $('#label-date').val();
-
-    // സ്ക്രീനിൽ ലൈവ് ആയി മാറ്റുക
-    $('#prev-mrp').text(`${mrp} . 00`);
-    $('#prev-batch').text(batch);
-    $('#prev-date').text(date);
-
-    // അടുത്ത തവണത്തേക്ക് ഫോണിൽ സേവ് ചെയ്തു വെക്കുക
-    localStorage.setItem('label_mrp', mrp);
-    localStorage.setItem('label_batch', batch);
-}
-
-// ഡ്രോയർ തുറക്കാനും അടയ്ക്കാനും ഉള്ള ഫംഗ്ഷൻ
-window.toggleLeftDrawer = function () {
-    let drawer = $('#left-drawer');
-    let overlay = $('#left-drawer-overlay');
-    if (drawer.css('left') === '0px') {
-        drawer.css('left', '-300px');
-        overlay.fadeOut(200);
-    } else {
-        drawer.css('left', '0px');
-        overlay.fadeIn(200);
-    }
-}
 
 // ==========================================
 // 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
@@ -5653,22 +5456,29 @@ function injectLeftDrawer() {
 
     $('body').append(drawerHtml);
 
-    // മാസ്റ്റർ അല്ലെങ്കിൽ Settings ടാബ് ഹൈഡ് ചെയ്യാൻ
+    // 🔥 Floating Menu Button Injecting here (ഫോണിലും കമ്പ്യൂട്ടറിലും ഒരുപോലെ കാണാൻ)
+    if ($('#btn-open-drawer').length === 0) {
+        let menuBtn = `
+        <button id="btn-open-drawer" onclick="toggleLeftDrawer()" 
+            style="position: fixed; top: 12px; left: 15px; z-index: 1030; background: #fff; border: 2px solid #e2e8f0; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; color: #0f172a;">
+            <i class="fas fa-bars" style="font-size: 18px;"></i>
+        </button>`;
+        $('body').append(menuBtn);
+    }
+
     if (localStorage.getItem('kafakAdminUser') !== 'master') {
         $('#tab-btn-settings').hide();
     }
 
-    // Initialize Date Picker (Flatpickr)
     if (typeof flatpickr !== 'undefined') {
         flatpickr("#label-date", {
-            dateFormat: "d / m / y", // DD / MM / YY format
+            dateFormat: "d / m / y",
             defaultDate: today,
             disableMobile: true
         });
     }
 }
 
-// ലൈവ് ആയി പ്രിവ്യൂ കാണിക്കാനും സേവ് ചെയ്യാനും
 window.updateLabelPreview = function () {
     let mrp = $('#label-mrp').val();
     let batch = $('#label-batch').val().toUpperCase();
@@ -5682,7 +5492,6 @@ window.updateLabelPreview = function () {
     localStorage.setItem('label_batch', batch);
 }
 
-// ഡ്രോയർ തുറക്കാനും അടയ്ക്കാനും
 window.toggleLeftDrawer = function () {
     let drawer = $('#left-drawer');
     let overlay = $('#left-drawer-overlay');
@@ -5695,7 +5504,6 @@ window.toggleLeftDrawer = function () {
     }
 }
 
-// ലേബൽ പ്രിന്റ് ചെയ്യാനുള്ള ഫംഗ്ഷൻ
 window.printProductLabels = function () {
     let mrp = $('#label-mrp').val();
     let batch = $('#label-batch').val().toUpperCase();
@@ -5708,16 +5516,11 @@ window.printProductLabels = function () {
 
     let printWin = window.open('', '', 'width=800,height=900');
 
-    // 🔥 പ്രീമിയം ലുക്കിനായി Montserrat ഫോണ്ട് ഗൂഗിളിൽ നിന്നും നേരിട്ട് ഇമ്പോർട്ട് ചെയ്യുന്നു
     let html = `<html><head><title>KAFAK Product Labels</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         @page { size: A4 portrait; margin: 0; }
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background: #fff; 
-        }
+        body { margin: 0; padding: 0; background: #fff; }
         .label-container {
             width: 210mm;
             height: 59.4mm;
@@ -5742,8 +5545,8 @@ window.printProductLabels = function () {
             color: #000;
             line-height: 1.2; 
             letter-spacing: 0.5px;
-            font-family: 'Montserrat', sans-serif !important; /* 🔥 ഫോണ്ട് ഇവിടെ ഫോഴ്സ് ചെയ്യുന്നു */
-            font-weight: 700; /* 🔥 ബോൾഡ്നെസ്സ് (വളരെ ബോൾഡ് വേണമെങ്കിൽ 800 ആക്കാം) */
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: 700;
         }
     </style>
     </head><body>`;
@@ -5770,3 +5573,4 @@ window.printProductLabels = function () {
         printWin.print();
     }, 1000);
 }
+
