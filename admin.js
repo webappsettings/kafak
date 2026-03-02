@@ -5441,22 +5441,6 @@ function injectLeftDrawer() {
 
     $('body').append(drawerHtml);
 
-    // 🔥 Floating Menu & Refresh Buttons (Top Left Corner)
-    if ($('#btn-open-drawer').length === 0) {
-        let menuBtn = `
-        <div style="position: fixed; top: 12px; left: 15px; z-index: 1030; display:flex; gap:8px;">
-            <button id="btn-open-drawer" onclick="toggleLeftDrawer()" 
-                style="background: #fff; border: 2px solid #e2e8f0; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; color: #0f172a;">
-                <i class="fas fa-bars" style="font-size: 18px;"></i>
-            </button>
-            <button id="btn-refresh-data" onclick="fetchOrders(true)" 
-                style="background: #fff; border: 2px solid #e2e8f0; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; color: #2563eb;" title="Reload Data">
-                <i class="fas fa-sync-alt" style="font-size: 16px;"></i>
-            </button>
-        </div>`;
-        $('body').append(menuBtn);
-    }
-
     if (typeof flatpickr !== 'undefined') {
         flatpickr("#label-date", {
             dateFormat: "d / m / y", // DD / MM / YY format

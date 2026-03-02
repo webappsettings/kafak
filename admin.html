@@ -983,41 +983,48 @@
     <div id="dashboard-section" style="display: none;">
         <div class="sticky-app-header">
             <div class="header-top">
-                <!-- <button onclick="fetchOrders(true)" class="btn-refresh btn-danger"><i
-                        class="fas fa-sync-alt"></i></button> -->
-
-                <button onclick="toggleSort()" class="btn btn-refresh" id="btn-sort" title="Sort Order">
-                    <i class="fas fa-sort-amount-down"></i>
+                <button class="btn btn-refresh shadow-sm" onclick="toggleLeftDrawer()" title="Admin Tools"
+                    style="border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-bars" style="font-size: 16px; color: #0f172a;"></i>
                 </button>
-                <!-- <button class="btn btn-link text-dark p-0 me-3 shadow-none" onclick="toggleLeftDrawer()"
-                    style="font-size: 22px;">
-                    <i class="fas fa-bars"></i>
-                </button> -->
+
+                <button onclick="fetchOrders(true)" class="btn btn-refresh shadow-sm" title="Reload Data"
+                    style="border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-sync-alt" style="font-size: 14px; color: #2563eb;"></i>
+                </button>
+
+                <button onclick="toggleSort()" class="btn btn-refresh shadow-sm" id="btn-sort" title="Sort Order"
+                    style="border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-sort-amount-down" style="font-size: 14px; color: #333;"></i>
+                </button>
 
                 <div class="search-wrapper">
                     <div class="position-relative shadow-sm rounded-pill bg-white">
-
-                        <input type="text" id="searchInput" class="form-control border-0 rounded-pill ps-4 pe-5 py-2"
-                            placeholder="Search..." oninput="handleSmartSearch(this.value)">
-
+                        <input type="text" id="searchInput" class="form-control border-0 rounded-pill ps-3 pe-4"
+                            placeholder="Search..." oninput="handleSmartSearch(this.value)"
+                            style="height: 42px; font-size: 12px;">
                         <button id="btn-clear-search" onclick="clearSearch()"
-                            class="btn btn-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-2"
-                            style="display:none; z-index: 5; border-radius: 50%; width: 30px; height: 30px;">
+                            class="btn btn-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-1"
+                            style="display:none; z-index: 5; border-radius: 50%; width: 28px; height: 28px;">
                             <i class="fas fa-times"></i>
                         </button>
-
                     </div>
                 </div>
 
-                <button onclick="openDashboard()" class="btn btn-sm px-0 px-1 text-bg-warning">
-                    <i class="fa-chart-pie fas"></i></button>
+                <button onclick="openDashboard()"
+                    class="btn btn-warning shadow-sm d-flex align-items-center justify-content-center"
+                    style="width: 42px; height: 42px; border-radius: 12px; padding: 0;">
+                    <i class="fa-chart-pie fas text-dark" style="font-size: 16px;"></i>
+                </button>
 
-                <button id="sync-btn" onclick="syncWithServer()" class="btn-sync"><i
-                        class="fas fa-cloud-upload-alt"></i><span class="sync-badge"
-                        id="sync-badge-count">0</span></button>
-                <div id="logo-placeholder" style="width:42px; display:flex; justify-content:center;"><img src="logo.png"
-                        class="logo-img" id="header-logo"></div>
+                <button id="sync-btn" onclick="syncWithServer()" class="btn-sync">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span class="sync-badge" id="sync-badge-count">0</span>
+                    <div id="logo-placeholder" style="width:42px; display:flex; justify-content:center;"><img
+                            src="logo.png" class="logo-img" id="header-logo"></div>
+                </button>
             </div>
+
             <div class="nav nav-pills" id="pills-tab">
                 <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill"
                     data-bs-target="#tab-pending">
