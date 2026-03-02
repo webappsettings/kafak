@@ -553,6 +553,8 @@ function renderTabs(orders) {
 
     let oldTrackingCount = 0;
     let oldSentCount = 0;
+    let oldPendingCount = 0; // 🔥 ഇത് വിട്ടുപോയിരുന്നു
+    let oldDispNewCount = 0; // 🔥 ഇതും വിട്ടുപോയിരുന്നു
 
     // ടാബുകൾ ലോഡ് ചെയ്യാൻ വേണ്ടിയുള്ള ഗ്ലോബൽ വേരിയബിളുകൾ
     window.showAllSent = window.showAllSent || false;
