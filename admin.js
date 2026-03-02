@@ -551,7 +551,14 @@ function renderTabs(orders) {
     cutoffDate.setDate(todayLimit.getDate() - 2);
     cutoffDate.setHours(0, 0, 0, 0);
 
-    let oldTrackingCount = 0; // പഴയ ഓർഡറുകൾ എണ്ണാൻ
+    let oldTrackingCount = 0;
+    let oldSentCount = 0;
+    let oldPendingCount = 0;
+    let oldDispNewCount = 0;
+
+    window.showAllSent = window.showAllSent || false;
+    window.showAllPending = window.showAllPending || false;
+    window.showAllDispNew = window.showAllDispNew || false;
     // ----------------------------------------------------------------------
 
     orders.forEach((d, i) => {
@@ -607,18 +614,25 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
-            // 🔥 ട്രാക്കിംഗ് ലിസ്റ്റ് ആണെങ്കിൽ മാത്രം ഡേറ്റ് ചെക്ക് ചെയ്യുന്നു
-            if (dateKey === 'disp_track') {
-                let orderDate = new Date(dDateStr || d.timestamp);
-                // 3 ദിവസത്തേക്കാൾ പഴയതാണെങ്കിൽ സ്കിപ്പ് ചെയ്യുന്നു (Show All അമർത്തിയിട്ടില്ലെങ്കിൽ)
-                if (!showAllTracking && orderDate < cutoffDate) {
-                    oldTrackingCount++;
-                    btlCounts[type] += qty; // കൗണ്ടിൽ മാത്രം ചേർക്കുന്നു
-                    return;
-                }
-            }
+            let orderDate = new Date(d.timestamp);
+            if (type === 'dispatched') orderDate = new Date(dDateStr || d.timestamp);
 
+            // ബാഡ്ജിലെ എണ്ണം തെറ്റാതിരിക്കാൻ ആദ്യം തന്നെ എണ്ണത്തിൽ കൂട്ടുന്നു
             btlCounts[type] += qty;
+
+            // 🔥 സ്ക്രീനിൽ വരയ്ക്കാതെ സ്കിപ്പ് ചെയ്യാനുള്ള ലോജിക്
+            if (dateKey === 'disp_track' && !showAllTracking && orderDate < cutoffDate) {
+                oldTrackingCount++; return;
+            }
+            if (dateKey === 'sent' && !window.showAllSent && orderDate < cutoffDate) {
+                oldSentCount++; return;
+            }
+            if (dateKey === 'new' && !window.showAllPending && orderDate < cutoffDate) {
+                oldPendingCount++; return;
+            }
+            if (dateKey === 'disp_new' && !window.showAllDispNew && orderDate < cutoffDate) {
+                oldDispNewCount++; return;
+            }
 
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
@@ -647,15 +661,22 @@ function renderTabs(orders) {
         }
     });
 
-    // 🔥 ലൂപ്പിന് ശേഷം ബട്ടൺ ചേർക്കുന്നു
-    if (oldTrackingCount > 0 && !showAllTracking && listDispTracked) {
-        listDispTracked.innerHTML += `
+    // 🔥 ലൂപ്പിന് ശേഷം ഹൈഡ് ചെയ്ത കാർഡുകൾക്കുള്ള ബട്ടൺ ചേർക്കുന്നു
+    const addLoadMoreBtn = (listElement, count, funcName) => {
+        if (count > 0 && listElement) {
+            listElement.innerHTML += `
             <div class="text-center my-4">
-                <button onclick="loadOldTrackingOrders()" class="btn btn-outline-dark btn-sm rounded-pill px-4 shadow-sm">
-                    <i class="fas fa-history me-1"></i> Load Old Orders (${oldTrackingCount})
+                <button onclick="${funcName}()" class="btn btn-light border border-secondary border-opacity-50 text-secondary btn-sm rounded-pill px-4 shadow-sm fw-bold" style="font-size:11px;">
+                    <i class="fas fa-history me-1"></i> Load Old Orders (${count})
                 </button>
             </div>`;
-    }
+        }
+    };
+
+    if (!showAllTracking) addLoadMoreBtn(listDispTracked, oldTrackingCount, 'loadOldTrackingOrders');
+    if (!window.showAllSent) addLoadMoreBtn(listSent, oldSentCount, 'loadOldSentOrders');
+    if (!window.showAllPending) addLoadMoreBtn(listNew, oldPendingCount, 'loadOldPendingOrders');
+    if (!window.showAllDispNew) addLoadMoreBtn(listDispNew, oldDispNewCount, 'loadOldDispNewOrders');
 
     // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
@@ -4179,6 +4200,19 @@ window.changeCourier = function (oid, newProvider) {
 window.loadOldTrackingOrders = function () {
     showAllTracking = true;
     renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
+};
+
+window.loadOldSentOrders = function () {
+    window.showAllSent = true;
+    renderTabs(allOrders);
+};
+window.loadOldPendingOrders = function () {
+    window.showAllPending = true;
+    renderTabs(allOrders);
+};
+window.loadOldDispNewOrders = function () {
+    window.showAllDispNew = true;
+    renderTabs(allOrders);
 };
 
 
