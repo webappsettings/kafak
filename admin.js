@@ -233,6 +233,22 @@ function showDashboard() {
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('dashboard-section').style.display = 'block';
 
+    // 🔥 മാസ്റ്റർ ലോഗിൻ ചെക്കിങ് (Salary & Settings Hide ചെയ്യാൻ)
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+
+    if (!isMasterUser) {
+        // സാധാരണ Admin ആണെങ്കിൽ Settings ബട്ടണും Salary ഓപ്ഷനും മായ്ച്ചു കളയുന്നു
+        $('[data-bs-target="#settingsModal"]').hide();
+        $('#exp-category option[value="Salary"]').remove(); // HTML-ൽ ഉള്ള Salary ഡിലീറ്റ് ചെയ്യുന്നു
+        $('#edit-exp-cat option[value="Salary"]').remove();
+    } else {
+        // Master ആണെങ്കിൽ എല്ലാം കാണിക്കുന്നു
+        $('[data-bs-target="#settingsModal"]').show();
+        if ($('#exp-category option[value="Salary"]').length === 0) {
+            $('#exp-category').append('<option value="Salary">Salary / Wages</option>');
+        }
+    }
+
     // 🔥 BEAUTIFUL EXPENSE UI CSS INJECTION (ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ വർക്ക് ആകും)
     if (!$('#custom-expense-css').length) {
         $('<style id="custom-expense-css">').html(`
@@ -5262,14 +5278,4 @@ function parseDynamicRate(rateString, qty) {
         }
     }
     return matchedRate;
-}
-
-// ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ മാസ്റ്റർ ആണോ എന്ന് നോക്കി ബട്ടണുകൾ ഹൈഡ് ചെയ്യുന്നു
-let isMaster = localStorage.getItem('kafakAdminUser') === 'master';
-
-// System Settings ബട്ടണിന്റെ id 'btn-system-settings' ആണെങ്കിലോ, അല്ലെങ്കിൽ ആ ഡാറ്റാ ടാർഗറ്റ് വെച്ചോ ഹൈഡ് ചെയ്യാം
-if (!isMaster) {
-    $('[data-bs-target="#settingsModal"]').hide(); // Settings ബട്ടൺ ഹൈഡ് ആക്കുന്നു
-} else {
-    $('[data-bs-target="#settingsModal"]').show(); // Master ആണെങ്കിൽ കാണിക്കുന്നു
 }
