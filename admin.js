@@ -3751,7 +3751,6 @@ function toggleSort() {
     renderTabs(allOrders); // Re-render
 }
 
-// 🔥 OPEN WHATSAPP (JUST OPEN)
 // 🔥 OPEN WHATSAPP (Fix for W/M/A Codes)
 // 🔥 1. OPEN WHATSAPP (Fixed Unique ID)
 window.openSimpleWA = function (index, btnElement, type = 'pending') {
@@ -4954,24 +4953,6 @@ window.renderYearlyOverview = function () {
 window.loadCourierSettings = function () {
     $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
 
-    fetch(`${scriptURL}?action=getSettings`)
-        .then(res => res.json())
-        .then(response => {
-            if (response.status === 'success' && response.data) {
-                renderSettingsUI(response.data);
-            } else {
-                $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Failed to load settings.</div>');
-            }
-        })
-        .catch(error => {
-            console.error("Fetch error:", error);
-            $('#courier-settings-container').html('<div class="text-danger p-2 small text-center">Network error. Please check Apps Script.</div>');
-        });
-}
-window.loadCourierSettings = function () {
-    $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
-
-    // നിങ്ങളുടെ കോഡിൽ ഓൾറെഡി ഉള്ള ഗ്ലോബൽ 'scriptURL' ഉപയോഗിക്കുന്നു
     fetch(`${scriptURL}?action=getSettings`)
         .then(res => res.json())
         .then(response => {
