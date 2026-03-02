@@ -5035,6 +5035,26 @@ window.renderYearlyOverview = function () {
     }
     $('#yearly-overview-container').html(html);
 }
+
+// 🔥 സെറ്റിങ്സ് തുറക്കാനും, ലെഫ്റ്റ് ഡ്രോയർ അടയ്ക്കാനും ഉള്ള ഫംഗ്ഷൻ
+window.openSettingsModal = function () {
+    let drawer = $('#left-drawer');
+    let overlay = $('#left-drawer-overlay');
+
+    // മെനു തുറന്നിരിപ്പുണ്ടെങ്കിൽ അത് അടയ്ക്കുന്നു
+    if (drawer.hasClass('open') || drawer.css('left') === '0px') {
+        drawer.removeClass('open').css('left', '-100%');
+        overlay.fadeOut(200);
+    }
+
+    // Bootstrap Modal നേരിട്ട് തുറക്കുന്നു (എറർ ഇല്ലാതെ)
+    const myModal = new bootstrap.Modal(document.getElementById('settingsModal'));
+    myModal.show();
+
+    // കൊറിയർ ഡാറ്റ ലോഡ് ചെയ്യുന്നു
+    loadCourierSettings();
+};
+
 // 🔥 LOAD SETTINGS FROM SERVER (Network Error Fixed using Fetch)
 window.loadCourierSettings = function () {
     $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
