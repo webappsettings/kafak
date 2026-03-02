@@ -626,35 +626,22 @@ function renderTabs(orders) {
             if (type === 'dispatched') displayDateRaw = dDateStr;
             let dateLabel = getTimelineLabel(displayDateRaw);
 
-            // 🔥 1. TRACKED TAB LOGIC (Last 3 Active Dates)
+            // 🔥 1. TRACKED TAB LOGIC (Last 3 Active Dates മാത്രം)
             if (dateKey === 'disp_track' && !showAllTracking) {
-                // ഈ തീയതി നമ്മൾ ഇതിനകം കാണിച്ചിട്ടില്ല, മാത്രമല്ല ഇതിനകം 3 തീയതികൾ കാണിച്ചു കഴിഞ്ഞിട്ടുമുണ്ട് എങ്കിൽ ഇത് ഹൈഡ് ചെയ്യുക
                 if (!visibleDates.disp_track.has(dateLabel) && visibleDates.disp_track.size >= 3) {
                     oldTrackingCount++; return;
                 }
-                visibleDates.disp_track.add(dateLabel); // തീയതി ലിസ്റ്റിലേക്ക് ചേർക്കുന്നു
+                visibleDates.disp_track.add(dateLabel);
             }
-            // 🔥 2. SENT TAB LOGIC (Last 3 Active Dates)
+            // 🔥 2. SENT TAB LOGIC (Last 3 Active Dates മാത്രം)
             if (dateKey === 'sent' && !window.showAllSent) {
                 if (!visibleDates.sent.has(dateLabel) && visibleDates.sent.size >= 3) {
                     oldSentCount++; return;
                 }
                 visibleDates.sent.add(dateLabel);
             }
-            // 🔥 3. PENDING (NEW) TAB LOGIC (Last 3 Active Dates)
-            if (dateKey === 'new' && !window.showAllPending) {
-                if (!visibleDates.new.has(dateLabel) && visibleDates.new.size >= 3) {
-                    oldPendingCount++; return;
-                }
-                visibleDates.new.add(dateLabel);
-            }
-            // 🔥 4. DISP NEW TAB LOGIC (Last 3 Active Dates)
-            if (dateKey === 'disp_new' && !window.showAllDispNew) {
-                if (!visibleDates.disp_new.has(dateLabel) && visibleDates.disp_new.size >= 3) {
-                    oldDispNewCount++; return;
-                }
-                visibleDates.disp_new.add(dateLabel);
-            }
+
+            // 🔥 Pending (new) ഉം, Dispatched (disp_new) ഉം ഇവിടെ കൊടുക്കുന്നില്ല, അതുകൊണ്ട് അവയിലെ മുഴുവൻ കാർഡുകളും എപ്പോഴും കാണിക്കും!
 
             // --- STICKY DATE HEADER ---
             if (dateLabel !== lastDateMap[dateKey]) {
