@@ -698,6 +698,31 @@ function renderTabs(orders) {
     if (!window.showAllPending) addLoadMoreBtn(listNew, oldPendingCount, 'loadOldPendingOrders');
     if (!window.showAllDispNew) addLoadMoreBtn(listDispNew, oldDispNewCount, 'loadOldDispNewOrders');
 
+    // ------------------------------------------------------------------
+    // 🔥 EMPTY STATE UI (If no cards in a tab)
+    // ------------------------------------------------------------------
+    const getEmptyUI = (msg, subMsg, icon) => `
+        <div class="text-center w-100 py-5 mt-3 fade-in d-flex flex-column align-items-center justify-content-center">
+            <div style="width: 80px; height: 80px; background: #f8f9fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border: 1px dashed #ced4da;">
+                <i class="fas ${icon} text-secondary opacity-50" style="font-size: 35px;"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1" style="font-size: 14px; letter-spacing: 0.5px;">${msg}</h6>
+            <div class="text-muted small" style="font-size: 11px;">${subMsg}</div>
+        </div>`;
+
+    // 1. Pending Tabs
+    if (listNew && subCounts.new === 0) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
+    if (listSent && subCounts.sent === 0) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
+
+    // 2. Paid Tabs
+    if (listPaidNew && subCounts.paid_new === 0) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
+    if (listPaidPrinted && subCounts.paid_print === 0) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+
+    // 3. Dispatched Tabs
+    if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
+    if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
+    // ------------------------------------------------------------------
+
     // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
@@ -833,10 +858,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa;">${d.language.toUpperCase()}</span>` : '';
 
-    // Action Buttons (Refund/Archive)
-    let archiveBtn = (currentStatus === 'Sent' || currentStatus === 'Pending') ? `<button onclick="highlightCard(this); archiveOrder('${d.orderid}')" class="btn-archive-mini ms-1" title="Archive"><i class="fas fa-archive"></i></button>` : '';
-    let refundBtn = (currentStatus !== 'Refunded' && currentStatus !== 'Completed') ? `<button id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); highlightCard(this); handleRefundToggle('${d.orderid}', ${index})" class="btn-refund-icon ms-1" title="Refund"><i class="fas fa-undo-alt"></i></button>` : '';
-
     let meta = getMetaStatus(d.adminMeta);
     let metaBadges = '';
     if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed"></span>`;
@@ -933,16 +954,21 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         }
     }
 
-    // Header Construction
-    // Header Construction (Left Side - Refund ബട്ടൺ ഇവിടെ നിന്നും മാറ്റി)
+    // Header Construction (Left Side - Archive/Refund ബട്ടണുകൾ ഒഴിവാക്കി)
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-2">
             ${rankBadge} 
-            <span class="badge rounded-pill bg-dark" style="font-size:11px;">${d.orderid}</span>
-            <i class="far fa-copy text-muted" style="cursor:pointer; font-size:12px;" onclick="event.stopPropagation(); copyToClipboard('${d.orderid}')" title="Copy ID"></i>
+            
+            <span class="badge rounded-pill bg-dark d-flex align-items-center shadow-sm" 
+                  style="font-size:11px; cursor:pointer; padding: 4px 10px;" 
+                  onclick="event.stopPropagation(); copyToClipboard('${d.orderid}')" 
+                  title="Click to Copy ID">
+                ${d.orderid} <i class="far fa-copy ms-2" style="opacity:0.7; font-size:12px;"></i>
+            </span>
+            
             ${metaBadges} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
-            ${langBadge} ${archiveBtn}
+            ${langBadge}
         </div>`;
 
     // 🔥 BEAUTIFUL 3-DOT MENU (Top Right Actions)
@@ -969,9 +995,17 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); ${revertFn};"><i class="fas fa-history text-warning me-2" style="width:16px; text-align:center;"></i> Revert Status</a></li>`;
     }
 
-    // 5. Refund (Completed അല്ലാത്ത എല്ലാത്തിനും)
-    if (currentStatus !== 'Refunded' && currentStatus !== 'Completed') {
+    // 5. Archive (Pending, Sent സ്റ്റാറ്റസുകൾക്ക് മാത്രം)
+    if (currentStatus === 'Sent' || currentStatus === 'Pending') {
         menuItems += `<li><hr class="dropdown-divider m-1"></li>`;
+        menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); archiveOrder('${d.orderid}');"><i class="fas fa-archive text-secondary me-2" style="width:16px; text-align:center;"></i> Archive Order</a></li>`;
+    }
+
+    // 6. Refund (Completed, Refunded അല്ലാത്ത എല്ലാത്തിനും)
+    if (currentStatus !== 'Refunded' && currentStatus !== 'Completed') {
+        if (currentStatus !== 'Sent' && currentStatus !== 'Pending') {
+            menuItems += `<li><hr class="dropdown-divider m-1"></li>`; // ഡബിൾ ലൈൻ വരാതിരിക്കാൻ
+        }
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-danger d-flex align-items-center" href="#" id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index});"><i class="fas fa-undo-alt me-2" style="width:16px; text-align:center;"></i> Issue Refund</a></li>`;
     }
 
