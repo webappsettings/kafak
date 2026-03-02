@@ -5484,7 +5484,7 @@ window.toggleLeftDrawer = function () {
     let drawer = $('#left-drawer');
     let overlay = $('#left-drawer-overlay');
     if (drawer.css('left') === '0px') {
-        drawer.css('left', '-320px');
+        drawer.css('left', '-470px');
         overlay.fadeOut(200);
     } else {
         drawer.css('left', '0px');
