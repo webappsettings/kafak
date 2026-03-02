@@ -5363,7 +5363,7 @@ function injectLeftDrawer() {
     let drawerHtml = `
     <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2050;" onclick="toggleLeftDrawer()"></div>
     
-    <div id="left-drawer" style="position:fixed; top:0; left:-470px; width:450px; height:100%; background:#f8fafc; z-index:2060; transition:left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column;">
+    <div id="left-drawer" style="position:fixed; top:0; left:-100%; width:100%; max-width:450px; height:100%; background:#f8fafc; z-index:2060; transition:left 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 2px 0 30px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column;">
         
         <div class="p-3 text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
             <h6 class="m-0 fw-bold" style="letter-spacing:1px; font-size:14px;"><i class="fas fa-tools me-2 text-warning"></i> ADMIN TOOLS</h6>
@@ -5372,13 +5372,13 @@ function injectLeftDrawer() {
         
         <ul class="nav nav-pills p-2 shadow-sm mx-2 mt-2" id="drawer-tabs" role="tablist" style="background:#e2e8f0; gap:5px;">
             <li class="nav-item flex-grow-1 text-center" role="presentation">
-                <button class="nav-link active w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-design" type="button" role="tab"><i class="fas fa-print text-primary me-1"></i> Label</button>
+                <button class="nav-link active w-100 fw-bold rounded p-2 text-dark" style="font-size:12px;" data-bs-toggle="pill" data-bs-target="#drawer-design" type="button" role="tab"><i class="fas fa-print text-primary me-1"></i> Label</button>
             </li>
             <li class="nav-item flex-grow-1 text-center" role="presentation">
-                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-docs" type="button" role="tab"><i class="fas fa-folder-open text-warning me-1"></i> Docs</button>
+                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:12px;" data-bs-toggle="pill" data-bs-target="#drawer-docs" type="button" role="tab"><i class="fas fa-folder-open text-warning me-1"></i> Docs</button>
             </li>
             <li class="nav-item flex-grow-1 text-center" role="presentation" id="tab-btn-settings">
-                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-settings" type="button" role="tab"><i class="fas fa-cog text-secondary me-1"></i> Setup</button>
+                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:12px;" data-bs-toggle="pill" data-bs-target="#drawer-settings" type="button" role="tab"><i class="fas fa-cog text-secondary me-1"></i> Setup</button>
             </li>
         </ul>
 
@@ -5386,7 +5386,7 @@ function injectLeftDrawer() {
             
             <div class="tab-pane fade show active h-100" id="drawer-design" role="tabpanel">
                 <h6 class="fw-bold text-dark mb-2" style="font-size:12px; letter-spacing:0.5px;">LIVE PREVIEW</h6>
-                <div id="label-preview-box" class="shadow-sm mb-4" style="width: 100%; aspect-ratio: 210/59.4; position: relative; background: url('label_design.jpg') center/cover; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
+                <div id="label-preview-box" class="shadow-sm mb-4 mx-auto" style="width: 100%; max-width: 350px; aspect-ratio: 210/59.4; position: relative; background: url('label_design.jpg') center/cover; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
                     <div style="position: absolute; top: 17%; left: 82%; font-size: 8px; font-weight: 800; color: #000; line-height: 1.8;">
                         <div id="prev-mrp">${savedMrp} . 00</div>
                         <div id="prev-batch">${savedBatch}</div>
@@ -5394,45 +5394,45 @@ function injectLeftDrawer() {
                     </div>
                 </div>
 
-                <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm">
-                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">MRP (₹)</label>
-                    <input type="text" id="label-mrp" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25" value="${savedMrp}" oninput="updateLabelPreview()">
+                <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm mx-auto" style="max-width: 350px;">
+                    <label class="small fw-bold text-muted mb-1" style="font-size:11px;">MRP (₹)</label>
+                    <input type="text" id="label-mrp" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="${savedMrp}" oninput="updateLabelPreview()">
                     
-                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">BATCH NO.</label>
-                    <input type="text" id="label-batch" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="${savedBatch}" oninput="updateLabelPreview()">
+                    <label class="small fw-bold text-muted mb-1" style="font-size:11px;">BATCH NO.</label>
+                    <input type="text" id="label-batch" class="form-control mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="${savedBatch}" oninput="updateLabelPreview()">
                     
-                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">DATE OF PKG</label>
-                    <div class="input-group input-group-sm mb-4">
+                    <label class="small fw-bold text-muted mb-1" style="font-size:11px;">DATE OF PKG</label>
+                    <div class="input-group mb-4">
                         <span class="input-group-text bg-light text-primary border-secondary border-opacity-25"><i class="fas fa-calendar-alt"></i></span>
                         <input type="text" id="label-date" class="form-control fw-bold border-secondary border-opacity-25 bg-white" value="${defaultDate}" readonly onchange="updateLabelPreview()">
                     </div>
                     
-                    <button class="btn w-100 fw-bold shadow text-white" style="background:#1e293b; font-size:12px; padding: 12px 0; border-radius: 12px;" onclick="printProductLabels()">
-                        <i class="fas fa-file-pdf me-1 text-danger"></i> PRINT LABELS (A4)
+                    <button class="btn w-100 fw-bold shadow text-white" style="background:#1e293b; font-size:13px; padding: 12px 0; border-radius: 12px;" onclick="printProductLabels()">
+                        <i class="fas fa-file-pdf me-1 text-warning"></i> PRINT LABELS (A4)
                     </button>
                 </div>
             </div>
             
             <div class="tab-pane fade h-100 flex-column justify-content-center" id="drawer-docs" role="tabpanel">
-                <div class="text-center p-4 border border-dashed border-secondary border-opacity-25 rounded-4 bg-light text-muted small shadow-sm">
+                <div class="text-center p-4 border border-dashed border-secondary border-opacity-25 rounded-4 bg-light text-muted small shadow-sm mx-auto" style="max-width: 350px;">
                     <i class="fas fa-cloud-upload-alt mb-3 text-primary opacity-50" style="font-size:40px;"></i><br>
                     <span style="font-weight:800; font-size:13px; color:#333;">Document Vault</span><br>
-                    <span style="font-size:10px; line-height:1.5; display:inline-block; margin-top:5px;">Upload and store your company GST, FSSAI & other records directly to Google Drive.</span>
+                    <span style="font-size:11px; line-height:1.5; display:inline-block; margin-top:5px;">Upload and store your company GST, FSSAI & other records directly to Google Drive.</span>
                     <button class="btn btn-outline-primary btn-sm rounded-pill mt-3 px-4 fw-bold" disabled>Coming Soon</button>
                 </div>
             </div>
             
-            <div class="tab-pane fade" id="drawer-settings" role="tabpanel">
-                <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm text-center">
+            <div class="tab-pane fade h-100" id="drawer-settings" role="tabpanel">
+                <div class="bg-white p-4 rounded-4 border border-secondary border-opacity-10 shadow-sm text-center mx-auto mt-3" style="max-width: 350px;">
                     <div class="mb-3">
-                        <div class="rounded-circle bg-secondary bg-opacity-10 d-inline-flex align-items-center justify-content-center" style="width:50px; height:50px;">
-                            <i class="fas fa-truck text-secondary fs-4"></i>
+                        <div class="rounded-circle bg-secondary bg-opacity-10 d-inline-flex align-items-center justify-content-center" style="width:60px; height:60px;">
+                            <i class="fas fa-truck text-secondary fs-3"></i>
                         </div>
                     </div>
-                    <h6 class="fw-bold text-dark mb-1" style="font-size:13px;">Courier Settings</h6>
-                    <p class="text-muted mb-3" style="font-size:10px;">Manage delivery partners, state zones, base cost and margin rates.</p>
+                    <h6 class="fw-bold text-dark mb-2" style="font-size:14px;">Courier Settings</h6>
+                    <p class="text-muted mb-4" style="font-size:11px;">Manage delivery partners, state zones, base cost and margin rates.</p>
                     
-                    <button class="btn btn-dark btn-sm w-100 fw-bold rounded-pill shadow-sm py-2" data-bs-toggle="modal" data-bs-target="#settingsModal" onclick="loadCourierSettings(); toggleLeftDrawer();">
+                    <button class="btn btn-dark w-100 fw-bold rounded-pill shadow-sm py-2" onclick="openSettingsModal();">
                         <i class="fas fa-sliders-h me-1 text-warning"></i> Open Settings
                     </button>
                 </div>
@@ -5444,10 +5444,8 @@ function injectLeftDrawer() {
     <style>
         .flatpickr-calendar { z-index: 3000 !important; }
         #drawer-tabs .nav-link.active { background: #fff !important; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        
-        /* 🔥 PURE CSS FIX FOR SETTINGS MODAL Z-INDEX (No JS Needed) */
         #settingsModal { z-index: 10000 !important; }
-        .modal-backdrop { z-index: 1000 !important; }
+        .modal-backdrop { z-index: 9999 !important; }
     </style>
     `;
 
@@ -5464,6 +5462,20 @@ function injectLeftDrawer() {
             defaultDate: today,
             disableMobile: true
         });
+    }
+}
+
+// ഡ്രോയർ തുറക്കാനും അടയ്ക്കാനും (Width അപ്ഡേറ്റ് ചെയ്തതുകൊണ്ട് മാറ്റങ്ങൾ വരുത്തിയിട്ടുണ്ട്)
+window.toggleLeftDrawer = function () {
+    let drawer = $('#left-drawer');
+    let overlay = $('#left-drawer-overlay');
+
+    if (drawer.hasClass('open')) {
+        drawer.removeClass('open').css('left', '-100%');
+        overlay.fadeOut(200);
+    } else {
+        drawer.addClass('open').css('left', '0px');
+        overlay.fadeIn(200);
     }
 }
 
@@ -5484,7 +5496,7 @@ window.toggleLeftDrawer = function () {
     let drawer = $('#left-drawer');
     let overlay = $('#left-drawer-overlay');
     if (drawer.css('left') === '0px') {
-        drawer.css('left', '-470px');
+        drawer.css('left', '-420px');
         overlay.fadeOut(200);
     } else {
         drawer.css('left', '0px');
