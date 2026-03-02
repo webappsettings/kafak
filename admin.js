@@ -545,16 +545,18 @@ function renderTabs(orders) {
     let firstDateFlags = { new: true, sent: true, paid_new: true, paid_print: true, disp_new: true, disp_track: true };
 
     // --- 🔥 FIX: 3 ദിവസത്തെ ലിമിറ്റ് സെറ്റ് ചെയ്യാനുള്ള വേരിയബിളുകൾ ഇവിടെയാണ് ചേർക്കേണ്ടത്! ---
-    let todayLimit = new Date();
-    todayLimit.setHours(0, 0, 0, 0);
-    let cutoffDate = new Date();
-    cutoffDate.setDate(todayLimit.getDate() - 3); // 🔥 3 ദിവസം ആക്കി മാറ്റി
-    cutoffDate.setHours(0, 0, 0, 0);
-
     let oldTrackingCount = 0;
     let oldSentCount = 0;
-    let oldPendingCount = 0; // 🔥 ഇത് വിട്ടുപോയിരുന്നു
-    let oldDispNewCount = 0; // 🔥 ഇതും വിട്ടുപോയിരുന്നു
+    let oldPendingCount = 0;
+    let oldDispNewCount = 0;
+
+    // ഓരോ ടാബിലും എത്ര തീയതികൾ കാണിച്ചു എന്ന് ഓർമ്മിക്കാൻ
+    let visibleDates = {
+        sent: new Set(),
+        disp_track: new Set(),
+        new: new Set(),
+        disp_new: new Set()
+    };
 
     // ടാബുകൾ ലോഡ് ചെയ്യാൻ വേണ്ടിയുള്ള ഗ്ലോബൽ വേരിയബിളുകൾ
     window.showAllSent = window.showAllSent || false;
@@ -615,40 +617,44 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
-            let orderDate = new Date(d.timestamp);
-            if (type === 'dispatched') orderDate = new Date(dDateStr || d.timestamp);
-
-            // 🔥 1. TRACKED TAB LOGIC (3 Days)
-            if (dateKey === 'disp_track' && !showAllTracking && orderDate < cutoffDate) {
-                oldTrackingCount++;
-                btlCounts[type] += qty;
-                return;
-            }
-            // 🔥 2. SENT TAB LOGIC (3 Days)
-            if (dateKey === 'sent' && !window.showAllSent && orderDate < cutoffDate) {
-                oldSentCount++;
-                btlCounts[type] += qty;
-                return;
-            }
-            // 🔥 3. PENDING (NEW) TAB LOGIC (3 Days)
-            if (dateKey === 'new' && !window.showAllPending && orderDate < cutoffDate) {
-                oldPendingCount++;
-                btlCounts[type] += qty;
-                return;
-            }
-            // 🔥 4. DISP NEW TAB LOGIC (3 Days)
-            if (dateKey === 'disp_new' && !window.showAllDispNew && orderDate < cutoffDate) {
-                oldDispNewCount++;
-                btlCounts[type] += qty;
-                return;
-            }
-
+            // ആദ്യം തന്നെ എണ്ണം കൂട്ടുന്നു (ബാഡ്ജിൽ തെറ്റാതിരിക്കാൻ)
             btlCounts[type] += qty;
 
+            // ഓർഡറിന്റെ തീയതി ലേബൽ (Today, Yesterday, 12/01/2026) ഉണ്ടാക്കുന്നു
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
             if (type === 'dispatched') displayDateRaw = dDateStr;
             let dateLabel = getTimelineLabel(displayDateRaw);
+
+            // 🔥 1. TRACKED TAB LOGIC (Last 3 Active Dates)
+            if (dateKey === 'disp_track' && !showAllTracking) {
+                // ഈ തീയതി നമ്മൾ ഇതിനകം കാണിച്ചിട്ടില്ല, മാത്രമല്ല ഇതിനകം 3 തീയതികൾ കാണിച്ചു കഴിഞ്ഞിട്ടുമുണ്ട് എങ്കിൽ ഇത് ഹൈഡ് ചെയ്യുക
+                if (!visibleDates.disp_track.has(dateLabel) && visibleDates.disp_track.size >= 3) {
+                    oldTrackingCount++; return;
+                }
+                visibleDates.disp_track.add(dateLabel); // തീയതി ലിസ്റ്റിലേക്ക് ചേർക്കുന്നു
+            }
+            // 🔥 2. SENT TAB LOGIC (Last 3 Active Dates)
+            if (dateKey === 'sent' && !window.showAllSent) {
+                if (!visibleDates.sent.has(dateLabel) && visibleDates.sent.size >= 3) {
+                    oldSentCount++; return;
+                }
+                visibleDates.sent.add(dateLabel);
+            }
+            // 🔥 3. PENDING (NEW) TAB LOGIC (Last 3 Active Dates)
+            if (dateKey === 'new' && !window.showAllPending) {
+                if (!visibleDates.new.has(dateLabel) && visibleDates.new.size >= 3) {
+                    oldPendingCount++; return;
+                }
+                visibleDates.new.add(dateLabel);
+            }
+            // 🔥 4. DISP NEW TAB LOGIC (Last 3 Active Dates)
+            if (dateKey === 'disp_new' && !window.showAllDispNew) {
+                if (!visibleDates.disp_new.has(dateLabel) && visibleDates.disp_new.size >= 3) {
+                    oldDispNewCount++; return;
+                }
+                visibleDates.disp_new.add(dateLabel);
+            }
 
             // --- STICKY DATE HEADER ---
             if (dateLabel !== lastDateMap[dateKey]) {
@@ -4056,6 +4062,11 @@ function loadFlatpickr(callback) {
 
 // 🔥 SHOW ADD EXPENSE MODAL (Mobile Friendly & Beautiful)
 window.showAddExpenseModal = function () {
+
+    // 🔥 NEW: മാസ്റ്റർ ലോഗിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let salaryOptionHtml = isMasterUser ? `<option value="Salary">Salary / Wages</option>` : '';
+
     // 1. Force High Z-Index for DatePicker on Mobile
     if (!$('#flatpickr-mobile-fix').length) {
         $('<style id="flatpickr-mobile-fix">').html(`
@@ -4082,7 +4093,7 @@ window.showAddExpenseModal = function () {
                         <option value="Packaging Material">Packaging Material</option>
                         <option value="Marketing/Ads">Marketing / Ads</option>
                         <option value="Transport/Fuel">Transport / Fuel</option>
-                        <option value="Salary">Salary / Wages</option>
+                        ${salaryOptionHtml}
                         <option value="Office Expense">Office Expense</option>
                         <option value="Refund">Refund</option>
                         <option value="Other">Other</option>
@@ -4253,6 +4264,9 @@ window.selectEditPartner = function (name, el) {
 // 🔥 3. SHOW EDIT EXPENSE MODAL (Beautiful UI & Dynamic Fields)
 window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, oldVendor = '') {
 
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let editSalaryOption = isMasterUser ? `<option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>` : '';
+
     if (!$('#swal-zindex-fix').length) {
         $('<style id="swal-zindex-fix">').html(`
             .swal2-container { z-index: 99999 !important; }
@@ -4294,7 +4308,7 @@ window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, o
             <label class="fw-bold mb-1 small">Category</label>
             <select id="edit-exp-cat" class="form-select mb-3 fw-bold border-secondary" onchange="toggleEditPartnerSelect()">
                 <option value="Materials" ${oldCat.includes('Material') || oldCat === 'Materials' ? 'selected' : ''}>📦 Materials / Purchase</option>
-                <option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>
+                ${editSalaryOption}
                 <option value="Food" ${oldCat === 'Food' ? 'selected' : ''}>🍔 Food & Refreshment</option>
                 <option value="Travel" ${oldCat.includes('Travel') || oldCat.includes('Transport') ? 'selected' : ''}>⛽ Travel & Fuel</option>
                 <option value="Courier" ${oldCat.includes('Courier') ? 'selected' : ''}>🚚 Courier Charges</option>
@@ -5280,4 +5294,14 @@ function parseDynamicRate(rateString, qty) {
         }
     }
     return matchedRate;
+}
+
+// ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ മാസ്റ്റർ ആണോ എന്ന് നോക്കി ബട്ടണുകൾ ഹൈഡ് ചെയ്യുന്നു
+let isMaster = localStorage.getItem('kafakAdminUser') === 'master';
+
+// System Settings ബട്ടണിന്റെ id 'btn-system-settings' ആണെങ്കിലോ, അല്ലെങ്കിൽ ആ ഡാറ്റാ ടാർഗറ്റ് വെച്ചോ ഹൈഡ് ചെയ്യാം
+if (!isMaster) {
+    $('[data-bs-target="#settingsModal"]').hide(); // Settings ബട്ടൺ ഹൈഡ് ആക്കുന്നു
+} else {
+    $('[data-bs-target="#settingsModal"]').show(); // Master ആണെങ്കിൽ കാണിക്കുന്നു
 }
