@@ -5445,7 +5445,7 @@ function injectLeftDrawer() {
         .flatpickr-calendar { z-index: 3000 !important; }
         #drawer-tabs .nav-link.active { background: #fff !important; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         #settingsModal { z-index: 10000 !important; }
-        .modal-backdrop { z-index: 9999 !important; }
+        .modal-backdrop { z-index: 1000 !important; }
     </style>
     `;
 
