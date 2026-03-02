@@ -2727,10 +2727,18 @@ function fetchDashboardDataBg() {
         }).catch(err => console.error(err));
 }
 
-// 🔥 FIX: ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ തീയതി കാണിക്കാൻ (Force UI Update)
+// 🔥 FIX: ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ തീയതിയും പേരും കാണിക്കാൻ (Force UI Update)
 function openDashboard() {
     $('#drawer-overlay').fadeIn(200);
     $('#dashboard-drawer').addClass('open');
+
+    // 🔥 NEW: ലോഗിൻ ചെയ്ത ആളുടെ പേര് എടുത്തു ഹെഡറിൽ ഭംഗിയായി കാണിക്കുന്നു
+    let loggedUser = localStorage.getItem('kafakAdminUser') || 'Admin';
+    // ആദ്യത്തെ അക്ഷരം ക്യാപിറ്റൽ ആക്കാൻ (ഉദാ: master -> Master)
+    let displayName = loggedUser.charAt(0).toUpperCase() + loggedUser.slice(1);
+
+    // ഹെഡറിലെ HTML അപ്ഡേറ്റ് ചെയ്യുന്നു (നിങ്ങളുടെ ഡിസൈൻ അതുപോലെ കൊടുത്തു)
+    $('.drawer-header h5').html(`<i class="fas fa-chart-line me-2 text-primary"></i>Accounts <span class="badge bg-dark bg-opacity-10 text-dark border border-secondary border-opacity-25 ms-1" style="font-size:10px; position:relative; top:-2px;">${displayName}</span>`);
 
     initFlatpickrs();
     updateArrowUI();
