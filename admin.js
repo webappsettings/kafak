@@ -5529,12 +5529,12 @@ window.printProductLabels = function () {
             top: 10.5mm; 
             left: 174mm; 
             z-index: 10;
-            font-size: 10px; 
+            font-size: 9px;
             color: #000;
-            line-height: 1.2; 
+            line-height: 1.3;
             letter-spacing: 0.5px;
             font-family: 'Montserrat', sans-serif !important;
-            font-weight: 700;
+            font-weight: 600;
         }
     </style>
     </head><body>`;
