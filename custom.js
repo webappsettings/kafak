@@ -1697,7 +1697,7 @@ window.updatePrice = function (qty, isQuick) {
   if (isQuick) checkForChanges();
 }
 // 🔥 Live Address Preview (Fix: Correctly splits Place & District)
-$('#place').on('input keyup focus', function () {
+$('#place').on('input', function () {
 
   // 1. Create hidden divs if missing
   if ($('#display-po').length === 0) {
