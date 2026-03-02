@@ -802,7 +802,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (isCompact) {
         let phoneDisplay = d.phone ? d.phone.replace(/[^0-9]/g, '').slice(-10) : '';
         return `
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-6">
             <div class="order-card p-0 shadow-sm border-0 mb-2" style="border-radius:10px; overflow:hidden;">
                 <div class="d-flex align-items-center justify-content-between p-3 bg-white" 
                      onclick="toggleCardUI(this.parentElement)" 
@@ -934,6 +934,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
 
     // Header Construction
+    // Header Construction (Left Side - Refund ബട്ടൺ ഇവിടെ നിന്നും മാറ്റി)
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-2">
             ${rankBadge} 
@@ -941,26 +942,49 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             <i class="far fa-copy text-muted" style="cursor:pointer; font-size:12px;" onclick="event.stopPropagation(); copyToClipboard('${d.orderid}')" title="Copy ID"></i>
             ${metaBadges} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
-            ${refundBtn} ${langBadge} ${archiveBtn}
+            ${langBadge} ${archiveBtn}
         </div>`;
 
-    // Top Right Actions
-    let topActions = `<a href="order.html?oid=${d.orderid}" target="_blank" class="btn-top-action" onclick="highlightCard(this)">✏️ EDIT</a>` +
-        `<button onclick="highlightCard(this); printSingle(${index})" class="btn-top-action">🖨️</button>`;
+    // 🔥 BEAUTIFUL 3-DOT MENU (Top Right Actions)
+    let menuItems = '';
 
-    if (logicType === 'dispatched') {
-        // 🔥 FIX: Tracked ആണോ അതോ വെറും Dispatched ആണോ എന്ന് നോക്കി Revert എങ്ങോട്ട് വേണമെന്ന് തീരുമാനിക്കുന്നു
-        let isTrackedCard = (d.tracking || meta.isTracked);
-        let revertFn = isTrackedCard ? `revertToDispatched('${d.orderid}')` : `revertToPrinted('${d.orderid}')`;
+    // 1. Edit (എല്ലായ്പ്പോഴും കാണിക്കും)
+    menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="order.html?oid=${d.orderid}" target="_blank" onclick="event.stopPropagation();"><i class="fas fa-pen text-primary me-2" style="width:16px; text-align:center;"></i> Edit Order</a></li>`;
 
-        topActions = `<button onclick="event.stopPropagation(); highlightCard(this); ${revertFn}" class="btn-top-action">Revert</button>${topActions}`;
-    } else if (logicType === 'paid') {
-        // 🔥 FIX: Added Confirmation for Unprint
-        let revertFn = meta.isPrinted ? `confirmUnprint('${d.orderid}')` : `updateOrder('${d.orderid}', 'Sent')`;
+    // 2. Print (എല്ലായ്പ്പോഴും കാണിക്കും)
+    menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); printSingle(${index});"><i class="fas fa-print text-secondary me-2" style="width:16px; text-align:center;"></i> Print Label</a></li>`;
 
-        topActions = `<div class="d-flex gap-1"><button onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}')" class="btn-top-action" style="background:#25D366; color:white; border:none;" title="Send Receipt"><i class="fab fa-whatsapp"></i></button><button onclick="event.stopPropagation(); highlightCard(this); ${revertFn}" class="btn-top-action">Revert</button>${topActions}</div>`;
+    // 3. Send Receipt (Paid സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം)
+    if (logicType === 'paid') {
+        menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}');"><i class="fab fa-whatsapp text-success me-2" style="width:16px; text-align:center;"></i> Send Receipt</a></li>`;
     }
 
+    // 4. Revert Status (Dispatched, Paid സ്റ്റാറ്റസുകൾക്ക് മാത്രം)
+    if (logicType === 'dispatched') {
+        let isTrackedCard = (d.tracking || meta.isTracked);
+        let revertFn = isTrackedCard ? `revertToDispatched('${d.orderid}')` : `revertToPrinted('${d.orderid}')`;
+        menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); ${revertFn};"><i class="fas fa-history text-warning me-2" style="width:16px; text-align:center;"></i> Revert Status</a></li>`;
+    } else if (logicType === 'paid') {
+        let revertFn = meta.isPrinted ? `confirmUnprint('${d.orderid}')` : `updateOrder('${d.orderid}', 'Sent')`;
+        menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); ${revertFn};"><i class="fas fa-history text-warning me-2" style="width:16px; text-align:center;"></i> Revert Status</a></li>`;
+    }
+
+    // 5. Refund (Completed അല്ലാത്ത എല്ലാത്തിനും)
+    if (currentStatus !== 'Refunded' && currentStatus !== 'Completed') {
+        menuItems += `<li><hr class="dropdown-divider m-1"></li>`;
+        menuItems += `<li><a class="dropdown-item py-2 fw-bold text-danger d-flex align-items-center" href="#" id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index});"><i class="fas fa-undo-alt me-2" style="width:16px; text-align:center;"></i> Issue Refund</a></li>`;
+    }
+
+    // 3-Dot ബട്ടണും മെനുവും ഒരുമിച്ച്
+    let topActions = `
+    <div class="dropdown" onclick="event.stopPropagation();">
+        <button class="btn btn-sm btn-light border border-secondary border-opacity-25 rounded-circle shadow-sm d-flex align-items-center justify-content-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px; height:32px; background:#f8f9fa;">
+            <i class="fas fa-ellipsis-v text-secondary"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" style="font-size:12px; border-radius:12px; min-width: 170px; z-index: 1050; margin-top:5px;">
+            ${menuItems}
+        </ul>
+    </div>`;
     // Paid Date Display
     let paidTimeHTML = '';
     if ((logicType === 'paid' || currentStatus === 'Paid') && d.paidDate) {
@@ -1082,7 +1106,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
     });
     return `
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-6">
         <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>${headerLeft}</div>
