@@ -5413,7 +5413,7 @@ function injectLeftDrawer() {
                 </div>
             </div>
             
-            <div class="tab-pane fade h-100 d-flex flex-column justify-content-center" id="drawer-docs" role="tabpanel">
+            <div class="tab-pane fade h-100 flex-column justify-content-center" id="drawer-docs" role="tabpanel">
                 <div class="text-center p-4 border border-dashed border-secondary border-opacity-25 rounded-4 bg-light text-muted small shadow-sm">
                     <i class="fas fa-cloud-upload-alt mb-3 text-primary opacity-50" style="font-size:40px;"></i><br>
                     <span style="font-weight:800; font-size:13px; color:#333;">Document Vault</span><br>
@@ -5447,7 +5447,7 @@ function injectLeftDrawer() {
         
         /* 🔥 PURE CSS FIX FOR SETTINGS MODAL Z-INDEX (No JS Needed) */
         #settingsModal { z-index: 10000 !important; }
-        .modal-backdrop { z-index: 9999 !important; }
+        .modal-backdrop { z-index: 1000 !important; }
     </style>
     `;
 
