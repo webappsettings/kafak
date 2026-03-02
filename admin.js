@@ -5355,6 +5355,10 @@ function parseDynamicRate(rateString, qty) {
 // 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
 // ==========================================
 
+// ==========================================
+// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
+// ==========================================
+
 function injectLeftDrawer() {
     if ($('#left-drawer').length) return;
 
@@ -5377,15 +5381,12 @@ function injectLeftDrawer() {
             <i class="fas fa-times fs-5" style="cursor:pointer; opacity:0.8;" onclick="toggleLeftDrawer()"></i>
         </div>
         
-        <ul class="nav nav-pills p-2 shadow-sm" id="drawer-tabs" role="tablist" style="background:#e2e8f0; gap:5px;">
+        <ul class="nav nav-pills p-2 shadow-sm mx-2 mt-2" id="drawer-tabs" role="tablist" style="background:#e2e8f0; gap:5px;">
             <li class="nav-item flex-grow-1 text-center" role="presentation">
-                <button class="nav-link active w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-design" type="button" role="tab"><i class="fas fa-print text-primary me-1"></i> Design</button>
+                <button class="nav-link active w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-design" type="button" role="tab"><i class="fas fa-print text-primary me-1"></i> Design Labels</button>
             </li>
             <li class="nav-item flex-grow-1 text-center" role="presentation">
-                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-docs" type="button" role="tab"><i class="fas fa-folder-open text-warning me-1"></i> Docs</button>
-            </li>
-            <li class="nav-item flex-grow-1 text-center" role="presentation" id="tab-btn-settings">
-                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-settings" type="button" role="tab"><i class="fas fa-cog text-secondary me-1"></i> Settings</button>
+                <button class="nav-link w-100 fw-bold rounded p-2 text-dark" style="font-size:11px;" data-bs-toggle="pill" data-bs-target="#drawer-docs" type="button" role="tab"><i class="fas fa-folder-open text-warning me-1"></i> My Docs</button>
             </li>
         </ul>
 
@@ -5429,22 +5430,6 @@ function injectLeftDrawer() {
                 </div>
             </div>
             
-            <div class="tab-pane fade" id="drawer-settings" role="tabpanel">
-                <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm text-center">
-                    <div class="mb-3">
-                        <div class="rounded-circle bg-secondary bg-opacity-10 d-inline-flex align-items-center justify-content-center" style="width:50px; height:50px;">
-                            <i class="fas fa-truck text-secondary fs-4"></i>
-                        </div>
-                    </div>
-                    <h6 class="fw-bold text-dark mb-1" style="font-size:13px;">Courier Settings</h6>
-                    <p class="text-muted mb-3" style="font-size:10px;">Manage delivery partners, state zones, base cost and margin rates.</p>
-                    
-                    <button class="btn btn-dark btn-sm w-100 fw-bold rounded-pill shadow-sm py-2" data-bs-toggle="modal" data-bs-target="#settingsModal" onclick="toggleLeftDrawer()">
-                        <i class="fas fa-sliders-h me-1 text-warning"></i> Open Settings
-                    </button>
-                </div>
-            </div>
-            
         </div>
     </div>
     
@@ -5456,8 +5441,7 @@ function injectLeftDrawer() {
 
     $('body').append(drawerHtml);
 
-    // 🔥 Floating Menu Button Injecting here (ഫോണിലും കമ്പ്യൂട്ടറിലും ഒരുപോലെ കാണാൻ)
-    // 🔥 Floating Menu & Refresh Buttons Injecting here
+    // 🔥 Floating Menu & Refresh Buttons (Top Left Corner)
     if ($('#btn-open-drawer').length === 0) {
         let menuBtn = `
         <div style="position: fixed; top: 12px; left: 15px; z-index: 1030; display:flex; gap:8px;">
@@ -5465,7 +5449,6 @@ function injectLeftDrawer() {
                 style="background: #fff; border: 2px solid #e2e8f0; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; color: #0f172a;">
                 <i class="fas fa-bars" style="font-size: 18px;"></i>
             </button>
-            
             <button id="btn-refresh-data" onclick="fetchOrders(true)" 
                 style="background: #fff; border: 2px solid #e2e8f0; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; color: #2563eb;" title="Reload Data">
                 <i class="fas fa-sync-alt" style="font-size: 16px;"></i>
@@ -5474,13 +5457,9 @@ function injectLeftDrawer() {
         $('body').append(menuBtn);
     }
 
-    if (localStorage.getItem('kafakAdminUser') !== 'master') {
-        $('#tab-btn-settings').hide();
-    }
-
     if (typeof flatpickr !== 'undefined') {
         flatpickr("#label-date", {
-            dateFormat: "d / m / y",
+            dateFormat: "d / m / y", // DD / MM / YY format
             defaultDate: today,
             disableMobile: true
         });
