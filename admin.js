@@ -548,14 +548,13 @@ function renderTabs(orders) {
     let todayLimit = new Date();
     todayLimit.setHours(0, 0, 0, 0);
     let cutoffDate = new Date();
-    cutoffDate.setDate(todayLimit.getDate() - 2);
+    cutoffDate.setDate(todayLimit.getDate() - 3); // 🔥 3 ദിവസം ആക്കി മാറ്റി
     cutoffDate.setHours(0, 0, 0, 0);
 
     let oldTrackingCount = 0;
     let oldSentCount = 0;
-    let oldPendingCount = 0;
-    let oldDispNewCount = 0;
 
+    // ടാബുകൾ ലോഡ് ചെയ്യാൻ വേണ്ടിയുള്ള ഗ്ലോബൽ വേരിയബിളുകൾ
     window.showAllSent = window.showAllSent || false;
     window.showAllPending = window.showAllPending || false;
     window.showAllDispNew = window.showAllDispNew || false;
@@ -614,10 +613,17 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
-            let orderDate = new Date(d.timestamp);
-            if (type === 'dispatched') orderDate = new Date(dDateStr || d.timestamp);
+            // 🔥 ട്രാക്കിംഗ് ലിസ്റ്റ് ആണെങ്കിൽ മാത്രം ഡേറ്റ് ചെക്ക് ചെയ്യുന്നു
+            if (dateKey === 'disp_track') {
+                let orderDate = new Date(dDateStr || d.timestamp);
+                // 3 ദിവസത്തേക്കാൾ പഴയതാണെങ്കിൽ സ്കിപ്പ് ചെയ്യുന്നു (Show All അമർത്തിയിട്ടില്ലെങ്കിൽ)
+                if (!showAllTracking && orderDate < cutoffDate) {
+                    oldTrackingCount++;
+                    btlCounts[type] += qty; // കൗണ്ടിൽ മാത്രം ചേർക്കുന്നു
+                    return;
+                }
+            }
 
-            // ബാഡ്ജിലെ എണ്ണം തെറ്റാതിരിക്കാൻ ആദ്യം തന്നെ എണ്ണത്തിൽ കൂട്ടുന്നു
             btlCounts[type] += qty;
 
             // 🔥 സ്ക്രീനിൽ വരയ്ക്കാതെ സ്കിപ്പ് ചെയ്യാനുള്ള ലോജിക്
