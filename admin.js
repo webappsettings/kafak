@@ -2960,7 +2960,10 @@ function renderDashboard() {
     window.currentCostBreakdownStr = costBreakdownArr.join(', ');
 
     $('#sync-month-btn').remove();
-    $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
+    // 🔥 മാസ്റ്റർ ലോഗിൻ ആണെങ്കിൽ മാത്രം Sync ബട്ടൺ കാണിക്കുക
+    if (localStorage.getItem('kafakAdminUser') === 'master') {
+        $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
+    }
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
