@@ -736,15 +736,26 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
 
-    // 2. Customer Stats (History)
-    let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
-    let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => {
-        let matchPhone = String(o.phone || '').replace(/[^0-9]/g, '') === currentPhone;
-        let s = o.Status || 'Pending';
-        return matchPhone && (s !== 'Pending' && s !== 'Sent' && s !== 'Archive');
-    }) : [];
-    let totalOrders = custHistory.length;
-    let totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
+    // 2. Customer Stats (History) - 🔥 1 LAKH SCALING LOGIC 🔥
+    let totalOrders = 0;
+    let totalBottles = 0;
+
+    // A. ഗൂഗിൾ ഷീറ്റിലെ 'Customers' ഡാറ്റാബേസിൽ നിന്നും കണക്ക് വന്നിട്ടുണ്ടെങ്കിൽ അത് നേരിട്ട് എടുക്കുന്നു (O(1) Time - Super Fast)
+    if (d.Total_Orders !== undefined || d.total_orders !== undefined) {
+        totalOrders = parseInt(d.Total_Orders || d.total_orders) || 1;
+        totalBottles = parseInt(d.Total_Bottles || d.total_bottles) || (parseInt(d.quantity) || 1);
+    }
+    // B. ഇനി ഷീറ്റിൽ നിന്നും വന്നിട്ടില്ലെങ്കിൽ മാത്രം (Fall-back) ഫോണിൽ ഉള്ളതിൽ നിന്നും എണ്ണിയെടുക്കുന്നു
+    else {
+        let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
+        let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => {
+            let matchPhone = String(o.phone || '').replace(/[^0-9]/g, '') === currentPhone;
+            let s = o.Status || 'Pending';
+            return matchPhone && (s !== 'Pending' && s !== 'Sent' && s !== 'Archive');
+        }) : [];
+        totalOrders = custHistory.length;
+        totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
+    }
 
     // 3. Compact View (Collapsed Logic) - EARLY EXIT
     if (isCompact) {
