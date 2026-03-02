@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
         if (localStorage.getItem('kafakAdmin') === 'true') {
             showDashboard();
-            fetchRatesBackground();
+
             const savedTab = localStorage.getItem('activeAdminTab');
             if (savedTab) {
                 const tabTrigger = document.querySelector(`button[data-bs-target="${savedTab}"]`);
