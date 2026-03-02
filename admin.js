@@ -613,32 +613,35 @@ function renderTabs(orders) {
         }
 
         if (targetList) {
-            // 🔥 ട്രാക്കിംഗ് ലിസ്റ്റ് ആണെങ്കിൽ മാത്രം ഡേറ്റ് ചെക്ക് ചെയ്യുന്നു
-            if (dateKey === 'disp_track') {
-                let orderDate = new Date(dDateStr || d.timestamp);
-                // 3 ദിവസത്തേക്കാൾ പഴയതാണെങ്കിൽ സ്കിപ്പ് ചെയ്യുന്നു (Show All അമർത്തിയിട്ടില്ലെങ്കിൽ)
-                if (!showAllTracking && orderDate < cutoffDate) {
-                    oldTrackingCount++;
-                    btlCounts[type] += qty; // കൗണ്ടിൽ മാത്രം ചേർക്കുന്നു
-                    return;
-                }
+            let orderDate = new Date(d.timestamp);
+            if (type === 'dispatched') orderDate = new Date(dDateStr || d.timestamp);
+
+            // 🔥 1. TRACKED TAB LOGIC (3 Days)
+            if (dateKey === 'disp_track' && !showAllTracking && orderDate < cutoffDate) {
+                oldTrackingCount++;
+                btlCounts[type] += qty;
+                return;
+            }
+            // 🔥 2. SENT TAB LOGIC (3 Days)
+            if (dateKey === 'sent' && !window.showAllSent && orderDate < cutoffDate) {
+                oldSentCount++;
+                btlCounts[type] += qty;
+                return;
+            }
+            // 🔥 3. PENDING (NEW) TAB LOGIC (3 Days)
+            if (dateKey === 'new' && !window.showAllPending && orderDate < cutoffDate) {
+                oldPendingCount++;
+                btlCounts[type] += qty;
+                return;
+            }
+            // 🔥 4. DISP NEW TAB LOGIC (3 Days)
+            if (dateKey === 'disp_new' && !window.showAllDispNew && orderDate < cutoffDate) {
+                oldDispNewCount++;
+                btlCounts[type] += qty;
+                return;
             }
 
             btlCounts[type] += qty;
-
-            // 🔥 സ്ക്രീനിൽ വരയ്ക്കാതെ സ്കിപ്പ് ചെയ്യാനുള്ള ലോജിക്
-            if (dateKey === 'disp_track' && !showAllTracking && orderDate < cutoffDate) {
-                oldTrackingCount++; return;
-            }
-            if (dateKey === 'sent' && !window.showAllSent && orderDate < cutoffDate) {
-                oldSentCount++; return;
-            }
-            if (dateKey === 'new' && !window.showAllPending && orderDate < cutoffDate) {
-                oldPendingCount++; return;
-            }
-            if (dateKey === 'disp_new' && !window.showAllDispNew && orderDate < cutoffDate) {
-                oldDispNewCount++; return;
-            }
 
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
