@@ -306,6 +306,7 @@ function showDashboard() {
 
     fetchRatesBackground();
     fetchOrders();
+    injectLeftDrawer();
 }
 
 // --- CONFIG & VARIABLES ---
@@ -5347,4 +5348,159 @@ function parseDynamicRate(rateString, qty) {
         }
     }
     return matchedRate;
+}
+
+// ==========================================
+// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
+// ==========================================
+
+// 1. ലെഫ്റ്റ് ഡ്രോയർ ഡിസൈൻ ഉണ്ടാക്കുന്നു
+function injectLeftDrawer() {
+    if ($('#left-drawer').length) return;
+
+    let drawerHtml = `
+    <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1040;" onclick="toggleLeftDrawer()"></div>
+    
+    <div id="left-drawer" style="position:fixed; top:0; left:-300px; width:280px; height:100%; background:#fff; z-index:1050; transition:left 0.3s ease; box-shadow: 2px 0 15px rgba(0,0,0,0.2); overflow-y:auto; display:flex; flex-direction:column;">
+        
+        <div class="p-3 text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+            <h6 class="m-0 fw-bold" style="letter-spacing:1px;"><i class="fas fa-tools me-2 text-warning"></i> ADMIN TOOLS</h6>
+            <i class="fas fa-times fs-5" style="cursor:pointer; opacity:0.8;" onclick="toggleLeftDrawer()"></i>
+        </div>
+        
+        <div class="p-3 flex-grow-1">
+            <div class="mb-4">
+                <h6 class="fw-bold text-dark mb-3" style="font-size:13px; border-bottom:2px solid #f1f5f9; padding-bottom:8px;">
+                    <i class="fas fa-print text-primary me-2"></i> PRODUCT LABEL
+                </h6>
+                <div class="bg-light p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm">
+                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">MRP (₹)</label>
+                    <input type="text" id="label-mrp" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25" value="390">
+                    
+                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">BATCH NO.</label>
+                    <input type="text" id="label-batch" class="form-control form-control-sm mb-2 fw-bold border-secondary border-opacity-25" placeholder="Ex: KFK001">
+                    
+                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">DATE OF PKG</label>
+                    <input type="text" id="label-date" class="form-control form-control-sm mb-3 fw-bold border-secondary border-opacity-25" placeholder="Ex: FEB 2026">
+                    
+                    <button class="btn btn-dark btn-sm w-100 fw-bold shadow-sm rounded-pill py-2" onclick="printProductLabels()">
+                        <i class="fas fa-file-pdf me-1 text-danger"></i> GENERATE (A4)
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h6 class="fw-bold text-dark mb-3" style="font-size:13px; border-bottom:2px solid #f1f5f9; padding-bottom:8px;">
+                    <i class="fas fa-folder-open text-warning me-2"></i> COMPANY DOCS
+                </h6>
+                <div class="text-center p-4 border border-dashed border-secondary border-opacity-25 rounded-4 bg-light text-muted small shadow-sm">
+                    <i class="fas fa-cloud-upload-alt mb-2 fs-3 opacity-50"></i><br>
+                    <span style="font-weight:600;">Coming Soon...</span><br>
+                    <span style="font-size:9px;">Upload & Store Documents</span>
+                </div>
+            </div>
+            
+            <div class="mb-2 mt-auto pt-3" id="drawer-settings-area">
+                <h6 class="fw-bold text-dark mb-3" style="font-size:13px; border-bottom:2px solid #f1f5f9; padding-bottom:8px;">
+                    <i class="fas fa-cog text-secondary me-2"></i> PREFERENCES
+                </h6>
+                <button id="btn-left-settings" class="btn btn-outline-dark btn-sm w-100 fw-bold rounded-pill" data-bs-toggle="modal" data-bs-target="#settingsModal" onclick="toggleLeftDrawer()">
+                    <i class="fas fa-sliders-h me-2"></i> Courier Settings
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    `;
+    $('body').append(drawerHtml);
+
+    // മാസ്റ്റർ അല്ലെങ്കിൽ Settings ബട്ടൺ ഡ്രോയറിലും ഹൈഡ് ചെയ്യാൻ
+    if (localStorage.getItem('kafakAdminUser') !== 'master') {
+        $('#btn-left-settings').hide();
+    }
+}
+
+// 2. ഡ്രോയർ തുറക്കാനും അടയ്ക്കാനും ഉള്ള ഫംഗ്ഷൻ
+window.toggleLeftDrawer = function () {
+    let drawer = $('#left-drawer');
+    let overlay = $('#left-drawer-overlay');
+    if (drawer.css('left') === '0px') {
+        drawer.css('left', '-300px');
+        overlay.fadeOut(200);
+    } else {
+        drawer.css('left', '0px');
+        overlay.fadeIn(200);
+    }
+}
+
+// 3. ലേബൽ പ്രിന്റ് ചെയ്യാനുള്ള ഫംഗ്ഷൻ (A4 സൈസിൽ 5 എണ്ണം)
+window.printProductLabels = function () {
+    let mrp = $('#label-mrp').val();
+    let batch = $('#label-batch').val();
+    let date = $('#label-date').val();
+
+    if (!mrp || !batch || !date) {
+        showToast('error', 'Please fill all fields');
+        return;
+    }
+
+    let printWin = window.open('', '', 'width=800,height=900');
+
+    // 210mm വീതിയും 59.4mm ഉയരവുമുള്ള 5 ലേബലുകൾ (മൊത്തം 297mm - Perfect A4 Height)
+    let html = `<html><head><title>Product Labels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4 portrait; margin: 0; }
+        body { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background: #fff; }
+        .label-container {
+            width: 210mm;
+            height: 59.4mm;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px dashed #ddd; /* കട്ട് ചെയ്യാൻ എളുപ്പത്തിന് ഒരു ചെറിയ ലൈൻ */
+            box-sizing: border-box;
+        }
+        .label-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0; z-index: 1;
+        }
+        .text-overlay {
+            position: absolute;
+            top: 10.5mm; /* നിങ്ങൾ പറഞ്ഞ അളവ് */
+            left: 174mm; /* നിങ്ങൾ പറഞ്ഞ അളവ് */
+            z-index: 10;
+            font-size: 11px; /* അക്ഷരങ്ങളുടെ വലിപ്പം (മാറ്റണമെങ്കിൽ മാറ്റാം) */
+            font-weight: 800;
+            color: #000;
+            line-height: 1.8; /* 🔥 വരികൾ തമ്മിലുള്ള ഗ്യാപ്പ് കൂട്ടാൻ ഇത് കൂട്ടിയാൽ മതി (ഉദാ: 2.0) */
+            letter-spacing: 0.5px;
+        }
+    </style>
+    </head><body>`;
+
+    for (let i = 0; i < 5; i++) {
+        html += `
+        <div class="label-container">
+            <img src="label_design.jpg" class="label-bg" />
+            <div class="text-overlay">
+                <div>${mrp} . 00</div>
+                <div>${batch}</div>
+                <div>${date}</div>
+            </div>
+        </div>`;
+    }
+
+    html += `</body></html>`;
+
+    printWin.document.write(html);
+    printWin.document.close();
+
+    // ഇമേജ് ലോഡ് ആവാൻ ഒരു സെക്കൻഡ് കാത്തിരുന്ന ശേഷം പ്രിന്റ് ചെയ്യുക
+    setTimeout(() => {
+        printWin.focus();
+        printWin.print();
+    }, 1000);
 }
