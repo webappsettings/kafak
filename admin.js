@@ -5539,7 +5539,7 @@ window.printProductLabels = function () {
     let html = `<html><head><title>KAFAK Product Labels</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
-        @page { size: A4 portrait; margin: 0; }
+        @page { size: 210mm 297mm; margin: 0; } /* 🔥 A4-ന്റെ കൃത്യമായ അളവ്! ബ്രൗസർ തനിയെ A4 എടുക്കും */
         body { margin: 0; padding: 0; background: #fff; }
         .label-container {
             width: 210mm;
