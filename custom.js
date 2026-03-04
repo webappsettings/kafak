@@ -649,14 +649,16 @@ function handleEditControlsVisibility(d) {
   }
 
   // 4. LOCKED STATES (Paid, Dispatched)
-  // 🔥 'refunded' ഒഴിവാക്കി, കാരണം അവർക്ക് പുതിയ ഓർഡറിനായി അഡ്രസ്സ് എഡിറ്റ് ചെയ്യാൻ പറ്റണം
   if (['paid', 'dispatched'].includes(status)) {
 
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').show().prop('disabled', true); // Show but Disabled
     $('#quick-qty').prev('label').show();
 
-    $('.btn-update-sage, #quick-price-box').hide(); // Hide Buttons & Price
+    // 🔥 FIX: #quick-price-box ഹൈഡ് ചെയ്യുന്നത് ഒഴിവാക്കി
+    $('.btn-update-sage').hide(); // അപ്ഡേറ്റ് ബട്ടൺ മാത്രം ഹൈഡ് ചെയ്യുന്നു
+    $('#quick-price-box').show(); // റേറ്റ് ടേബിൾ എപ്പോഴും കാണിക്കാൻ 
+
     $('#btn-edit-addr').hide(); // 🔥 അഡ്രസ്സ് എഡിറ്റ് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
 
     $('#btn-req-modify').remove();
@@ -1631,12 +1633,11 @@ window.updatePrice = function (qty, isQuick) {
   // 🔥 STRICT FIX: ലോഡിംഗ് സമയത്തോ, പാക്ക് ചെയ്ത ഓർഡറുകളിലോ ടേബിൾ ഒളിച്ചു വെക്കുന്നു!
   if (isQuick) {
     let isLoaderVisible = $('#status-area').html().includes('fa-hourglass-half') || $('#status-area').html().includes('spinner');
-    let currentStatus = (typeof savedOrderData !== 'undefined' && savedOrderData.Status) ? String(savedOrderData.Status).toLowerCase() : '';
-    let isLocked = ['paid', 'dispatched'].includes(currentStatus);
 
-    // ലോഡർ കാണിക്കുന്നുണ്ടെങ്കിലോ, Locked ആണെങ്കിലോ, ഡ്രോപ്പ്-ഡൗൺ ബോക്സ് ഇല്ലെങ്കിലോ ടേബിൾ കാണിക്കില്ല!
-    if (isLoaderVisible || isLocked || !$('#quick-qty').is(':visible')) {
-      container.stop(true, true).hide(); // ആനിമേഷൻ തടഞ്ഞ് നിർബന്ധമായും ഹൈഡ് ചെയ്യുന്നു
+    // 🔥 FIX: Locked സ്റ്റാറ്റസ് (Paid/Dispatched) ആണെങ്കിലും ടേബിൾ കാണിക്കണം.
+    // അതുകൊണ്ട് isLocked എന്ന പഴയ കണ്ടീഷൻ ഒഴിവാക്കി.
+    if (isLoaderVisible || !$('#quick-qty').is(':visible')) {
+      container.stop(true, true).hide();
     } else {
       container.stop(true, true).fadeIn(200);
     }
