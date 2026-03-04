@@ -2307,10 +2307,17 @@ async function runPrintLogic(checkboxes, directData = null) {
     }
 
     // 4. OPEN PRINT WINDOW
-    const printWin = window.open('', '', 'width=600,height=800');
+    // 🔥 മാറ്റം 1: വിൻഡോയ്ക്ക് വ്യത്യസ്തമായ പേര് കൊടുത്തു (Cache ഒഴിവാക്കാൻ)
+    const printWin = window.open('', 'AddressPrintWindow', 'width=600,height=800');
 
     // CSS for accurate background printing
-    let extraCss = `* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }`;
+    // 🔥 മാറ്റം 2: Media Print ഉം കൃത്യമായ A6 സൈസും ഫോഴ്സ് ചെയ്യുന്നു
+    let extraCss = `
+        @media print {
+            @page { size: A6 portrait; margin: 0; }
+        }
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    `;
     let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles} ${extraCss}</style></head><body>`;
 
     const fmtDate = (str) => {
@@ -5534,39 +5541,71 @@ window.printProductLabels = function () {
         return;
     }
 
-    let printWin = window.open('', '', 'width=800,height=900');
+    // 🔥 മാറ്റം 1: വിൻഡോയ്ക്ക് ഒരു പുതിയ പേര് കൊടുത്തു (Cache ഒഴിവാക്കാൻ)
+    let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
 
     let html = `<html><head><title>KAFAK Product Labels</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
-        @page { size: 210mm 297mm; margin: 0; } /* 🔥 A4-ന്റെ കൃത്യമായ അളവ്! ബ്രൗസർ തനിയെ A4 എടുക്കും */
-        body { margin: 0; padding: 0; background: #fff; }
+        /* 🔥 പ്രിന്റ് ചെയ്യുമ്പോൾ പേപ്പറിന് ഒട്ടും മാർജിൻ ഉണ്ടാകാതിരിക്കാൻ */
+        @media print {
+            @page { 
+                size: 210mm 297mm; 
+                margin: 0 !important; 
+                padding: 0 !important; 
+            }
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+        
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            box-sizing: border-box !important;
+        }
+
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #fff; 
+            overflow: hidden; /* 🔥 എക്സ്ട്രാ സ്ക്രോൾ ബാർ വന്ന് സൈസ് കുറയാതിരിക്കാൻ */
+        }
+        
         .label-container {
             width: 210mm;
-            height: 59.4mm;
+            height: 59.4mm; /* 🔥 297mm / 5 = കൃത്യം 59.4mm (ഒരു മില്ലിമീറ്റർ പോലും ഗ്യാപ്പ് വരില്ല) */
             position: relative;
             overflow: hidden;
-            border-bottom: 1px dashed #ddd; 
-            box-sizing: border-box;
+            display: block;
+            border: none; /* 🔥 പഴയ dashed ലൈൻ ഒഴിവാക്കി (അത് ചിലപ്പോൾ എക്സ്ട്രാ സ്പേസ് എടുക്കും) */
         }
+        
         .label-bg {
             width: 100%;
             height: 100%;
             object-fit: cover;
             position: absolute;
             top: 0; left: 0; z-index: 1;
+            image-rendering: -webkit-optimize-contrast; 
+            image-rendering: high-quality;
         }
+        
         .text-overlay {
             position: absolute;
             top: 10.5mm; 
             left: 174mm; 
             z-index: 10;
-            font-size: 9px;
+            font-size: 10px; 
             color: #000;
-            line-height: 1.3;
+            line-height: 1.2; 
             letter-spacing: 0.5px;
             font-family: 'Montserrat', sans-serif !important;
-            font-weight: 600;
+            font-weight: 700;
         }
     </style>
     </head><body>`;
