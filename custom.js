@@ -1543,11 +1543,12 @@ function updateSummaryDisplay() {
   $('#saved-phone-text').html(phoneHtml);
   $('#saved-wa-text, #saved-alt-text').hide();
 
-  // Hide Edit Button Logic
+  // Hide Edit Button Logic (Admin ക്ക് എപ്പോഴും കാണാം)
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    // 🔥 Paid, Dispatched എന്നിവയിൽ അഡ്രസ്സ് എഡിറ്റ് ബട്ടൺ ഹൈഡ് ചെയ്യുന്നു
-    if (['paid', 'dispatched'].includes(s)) {
+    let isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // 🔥 അഡ്മിൻ ചെക്ക് ചെയ്യുന്നു
+
+    if (['paid', 'dispatched'].includes(s) && !isAdmin) { // 🔥 അഡ്മിൻ അല്ലെങ്കിൽ മാത്രം ഹൈഡ് ചെയ്യും
       $('#btn-edit-addr').hide();
     } else {
       $('#btn-edit-addr').css('display', 'inline-block');
@@ -1572,7 +1573,9 @@ function checkAndHideEditButton() {
 
 function applyHideLogic(status) {
   let s = String(status).toLowerCase().trim();
-  if (['paid', 'dispatched'].includes(s)) { // 🔥 'paid' തിരികെ ചേർത്തു
+  let isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // 🔥 അഡ്മിൻ ചെക്ക് ചെയ്യുന്നു
+
+  if (['paid', 'dispatched'].includes(s) && !isAdmin) { // 🔥 അഡ്മിൻ അല്ലെങ്കിൽ മാത്രം ഹൈഡ് ചെയ്യും
     $('#btn-edit-addr').hide();
   } else {
     $('#btn-edit-addr').css('display', 'inline-flex');
