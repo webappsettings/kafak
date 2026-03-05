@@ -2201,8 +2201,16 @@ function fetchOrder(orderId, isSilent = false) {
         $('#step-0').hide();
         let d = res.data;
 
+        // 🔥 അഡ്മിൻ ആണെങ്കിൽ സെർവറിൽ നിന്നുള്ള പുതിയ ഡാറ്റ കാഷെയിലേക്ക് (allOrdersCache) നേരിട്ട് സേവ് ചെയ്യുന്നു
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
           updateAdminUI(d.Status || 'Pending', orderId);
+
+          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let orderIdx = allOrders.findIndex(o => String(o.orderid) === String(orderId));
+          if (orderIdx > -1) {
+            allOrders[orderIdx] = { ...allOrders[orderIdx], ...d }; // പഴയതിനെ പുതിയത് വെച്ച് റീപ്ലേസ് ചെയ്യുന്നു
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+          }
         }
 
         // സർവറിൽ നിന്നുള്ള ലേറ്റസ്റ്റ് ഡാറ്റ വെച്ച് അപ്ഡേറ്റ് ചെയ്യുന്നു
