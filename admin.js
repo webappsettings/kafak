@@ -1163,7 +1163,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                     <select class="form-select form-select-sm me-2 border-secondary shadow-sm" style="width:120px; font-size:11px; font-weight:bold; padding:2px 5px;" onchange="event.stopPropagation(); changeCourier('${d.orderid}', this.value)">
                         ${providerOptions}
                     </select>
-                    <span class="fw-bold text-success" id="price-box-${d.orderid}">${priceInfo.total}</span>
+                    <span class="fw-bold text-success d-flex align-items-center" id="price-box-${d.orderid}">${priceInfo.breakdownText}</span>
                 </div>
             </div>
             ${waSelectorHTML}
@@ -2623,7 +2623,6 @@ function getCourierRate(state, provider, qty) {
     return courierBase + serviceMargin;
 }
 
-// 🔥 FIX: ഫംഗ്ഷനിലേക്ക് ഓർഡർ ഡാറ്റ (u) കൂടി ഉൾപ്പെടുത്തിയിരിക്കുന്നു 
 function calculatePriceInfo(u, qty, state, provider) {
     const n = parseInt(qty) || 0;
     const basePrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n])
@@ -2641,7 +2640,11 @@ function calculatePriceInfo(u, qty, state, provider) {
         displayCharge = Number(myMeta.charge);
     }
 
-    return { total: `₹${basePrice + displayCharge}/-` };
+    // 🔥 പുതിയ മാറ്റം: വിലയുടെ ബ്രേക്ക്ഡൗൺ കൂടി നൽകുന്നു
+    return {
+        total: `₹${basePrice + displayCharge}/-`,
+        breakdownText: `<span class="text-muted" style="font-size:9px; margin-right:4px;">(${basePrice} + ${displayCharge})</span> ₹${basePrice + displayCharge}/-`
+    };
 }
 
 
@@ -4231,14 +4234,19 @@ window.changeCourier = function (oid, newProvider) {
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
 
-        // 🔥 യഥാർത്ഥ പ്രൊവൈഡർ ഏതാണെന്ന് കണ്ടുപിടിക്കുന്നു
         let trueOldProvider = (existingIndex > -1 && updates[existingIndex].oldProvider !== undefined) ? updates[existingIndex].oldProvider : (o.provider || o.Courier_Provider);
         let trueOldCharge = (existingIndex > -1 && updates[existingIndex].oldCharge !== undefined) ? updates[existingIndex].oldCharge : o.Courier_Charge;
         let trueOldTotal = (existingIndex > -1 && updates[existingIndex].oldTotal !== undefined) ? updates[existingIndex].oldTotal : o.Grand_Total;
 
         let n = parseInt(o.quantity) || 1;
         let newCourierCharge = getCourierRate(o.state, newProvider, n);
-        let newTotal = ((typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650)) + newCourierCharge;
+
+        // 🔥 Bottle Cost ഉം Total ഉം വെവ്വേറെ എടുക്കുന്നു
+        let basePrice = ((typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650));
+        let newTotal = basePrice + newCourierCharge;
+
+        // പുതിയ ബ്രേക്ക്ഡൗൺ ടെക്സ്റ്റ് ഉണ്ടാക്കുന്നു
+        let newBreakdownText = `<span class="text-muted" style="font-size:9px; margin-right:4px;">(${basePrice} + ${newCourierCharge})</span> ₹${newTotal}/-`;
 
         // Local Update
         o.provider = newProvider;
@@ -4247,11 +4255,11 @@ window.changeCourier = function (oid, newProvider) {
         o.Grand_Total = newTotal;
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
-        $(`#price-box-${oid}`).html(`₹${newTotal}/-`).css('color', '#ff9800').fadeOut(150).fadeIn(150, function () {
+        // 🔥 പുതിയ ടെക്സ്റ്റ് സ്ക്രീനിൽ ആനിമേഷനോടെ കാണിക്കുന്നു
+        $(`#price-box-${oid}`).html(newBreakdownText).css('color', '#ff9800').fadeOut(150).fadeIn(150, function () {
             $(this).css('color', '#198754');
         });
 
-        // 🔥 പഴയതിലേക്ക് തന്നെയാണ് മാറ്റിയതെങ്കിൽ Sync-ൽ നിന്ന് ഒഴിവാക്കുന്നു
         if (newProvider === trueOldProvider) {
             if (existingIndex > -1) {
                 delete updates[existingIndex].provider;
@@ -4261,11 +4269,9 @@ window.changeCourier = function (oid, newProvider) {
                 delete updates[existingIndex].oldCharge;
                 delete updates[existingIndex].oldTotal;
 
-                // വേറെ മാറ്റങ്ങൾ ഒന്നുമില്ലെങ്കിൽ പൂർണ്ണമായും ഡിലീറ്റ് ചെയ്യുന്നു
                 if (updates[existingIndex].meta === undefined) updates.splice(existingIndex, 1);
             }
         } else {
-            // പുതിയ മാറ്റമാണെങ്കിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു
             if (existingIndex > -1) {
                 updates[existingIndex].provider = newProvider;
                 updates[existingIndex].charge = newCourierCharge;
