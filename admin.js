@@ -75,11 +75,14 @@ function updateAdminMeta(oid, type, value) {
         newMeta = newMeta.replace(/P/g, ''); // 🔥 Revert P (Unprint)
     } else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
+    } else if (type === 'tracked_revert') {
+        newMeta = newMeta.replace(/T/g, ''); // 🔥 Revert T (Remove from Tracked)
     } else if (type === 'resend') {
         if (!newMeta.includes('R')) newMeta += 'R';
         newMeta = newMeta.replace(/P/g, '');
-    } else if (type === 'tracked_revert') {
-        newMeta = newMeta.replace(/T/g, ''); // 🔥 Revert T (Remove from Tracked)
+    } else if (type === 'resend_history') {
+        newMeta = newMeta.split('|')[0] + 'R' + value; // നിലവിലെ ഡാറ്റയ്ക്കൊപ്പം ഹിസ്റ്ററി ചേർക്കുന്നു
+        newMeta = newMeta.replace(/P/g, ''); // Unprint ആക്കുന്നു
     }
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -867,8 +870,25 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let metaBadges = '';
     if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed"></span>`;
     if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked"></span>`;
-    let resendBadge = meta.isResend ? `<span class="badge bg-danger ms-1 shadow-sm" style="font-size:9px; border-radius:6px;"><i class="fas fa-reply-all me-1"></i>RESEND</span>` : '';
 
+    let resendBadge = '';
+    let oldTrackingInfo = '';
+
+    // പഴയ ഹിസ്റ്ററി ഉണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+    let currentMetaStr = String(d.adminMeta || '');
+    if (currentMetaStr.includes('|OldTrk:')) {
+        let historyMatch = currentMetaStr.split('|OldTrk:')[1];
+        if (historyMatch) {
+            oldTrackingInfo = `
+            <div class="mt-2 p-2 bg-danger bg-opacity-10 border border-danger border-opacity-25 rounded-3 d-flex align-items-center justify-content-between" style="font-size:10px;">
+                <div><i class="fas fa-info-circle text-danger me-1"></i> <b>Old Courier:</b> <span class="text-secondary">${historyMatch}</span></div>
+            </div>`;
+        }
+    }
+
+    if (meta.isResend) {
+        resendBadge = `<span class="badge bg-danger ms-1 shadow-sm" style="font-size:9px; border-radius:6px;" title="This order was returned and is being resent"><i class="fas fa-reply-all me-1"></i>RESEND</span>`;
+    }
     let rankBadge = '';
     if (currentStatus === 'Paid' && window.paidRankMap && window.paidRankMap[d.orderid]) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
@@ -1178,7 +1198,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 </div>
             </div>
             ${waSelectorHTML}
-            <div class="action-area mt-2" style="display:block;">${buttons}</div>
+            ${oldTrackingInfo} <div class="action-area mt-2" style="display:block;">${buttons}</div>
         </div>
     </div>`;
 }
@@ -5655,33 +5675,43 @@ window.handleResendOrder = function (oid, index) {
     let order = allOrders[index];
     if (!order) return;
 
-    confirmAction(`ഈ ഓർഡർ Return വന്നതാണോ? വീണ്ടും അയക്കാൻ (Resend) മാറ്റണോ?`, () => {
-        // 1. പഴയ കൊറിയർ ചാർജ് കണ്ടുപിടിക്കുന്നു (നഷ്ടം)
+    confirmAction(`Ee order Return vachindha? Malli pampadaniki (Resend) marchala?`, () => {
+        // 1. Patha courier charge kanukkuntundi (Loss)
         let oldTracking = order.tracking || 'No Tracking';
         let oldCourierCharge = parseInt(order.Actual_Courier_Cost) || parseInt(order.Courier_Charge);
+        let oldProvider = order.provider || order.Courier_Provider || 'Courier';
+        let oldDate = order['Dispatched Date'] ? new Date(order['Dispatched Date']).toLocaleDateString('en-GB') : 'Unknown Date';
 
         if (isNaN(oldCourierCharge) || oldCourierCharge <= 0) {
-            oldCourierCharge = getCourierRate(order.state, order.provider || order.Courier_Provider, order.quantity);
+            oldCourierCharge = getCourierRate(order.state, oldProvider, order.quantity);
         }
 
-        // 2. Expense ടാബ് തുറക്കുന്നു
+        // 🔥 2. Right Drawer (Dashboard) ni open chesthundi
+        if (typeof openDashboard === 'function') {
+            openDashboard();
+        }
+
+        // 3. Expense tab loki maruthundi
         let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
         tabTrigger.show();
 
-        // 3. ഫോം ഓട്ടോമാറ്റിക് ആയി ഫിൽ ചെയ്യുന്നു
+        // 4. Form auto-fill avuthundi
         setTimeout(() => {
-            $('#exp-category').val('Courier'); // Courier Category
-            $('#exp-vendor').val(order.provider || order.Courier_Provider || 'Courier Partner');
+            $('#exp-category').val('Courier');
+            $('#exp-vendor').val(oldProvider);
             $('#exp-amount').val(oldCourierCharge);
             $('#exp-desc').val(`Return Loss | Ord: ${order.orderid.slice(-5)} | Old Trk: ${oldTracking}`);
 
             $('#expense-form').css('border', '2px solid #f59e0b').css('padding', '10px').css('border-radius', '15px');
 
-            // 4. ഓർഡർ തിരികെ Paid (Unprinted) ടാബിലേക്ക് മാറ്റുന്നു!
-            updateOrder(oid, 'Paid', '', true); // പഴയ ട്രാക്കിങ് മായ്ക്കുന്നു
-            updateAdminMeta(oid, 'resend', 'R'); // Resend Badge വരാൻ 'R' കൊടുക്കുന്നു, കൂടെ 'P' മായ്ക്കുകയും ചെയ്യും!
+            // 5. Old tracking history admin data lo (Meta) save avuthundi
+            let historyString = `|OldTrk:${oldProvider} - ${oldTracking} (${oldDate})`;
+            updateAdminMeta(oid, 'resend_history', historyString);
+
+            // 6. Order ni thirigi Paid (Unprinted) tab loki marusthundi
+            updateOrder(oid, 'Paid', '', true);
 
             showToast('info', 'Return Loss added! Order moved to Unprinted 📦');
-        }, 300);
+        }, 500); // Drawer open avvadaniki chinna delay
     });
 }
