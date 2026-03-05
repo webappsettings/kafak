@@ -51,8 +51,9 @@ function getMetaStatus(metaStr) {
 
     return {
         contact: contact,
-        isPrinted: metaStr.includes('P'), // 'P' for Printed Label
-        isTracked: metaStr.includes('T')
+        isPrinted: metaStr.includes('P'),
+        isTracked: metaStr.includes('T'),
+        isResend: metaStr.includes('R') // 🔥 Resend ആണെന്ന് തിരിച്ചറിയാൻ
     };
 }
 
@@ -74,6 +75,8 @@ function updateAdminMeta(oid, type, value) {
         newMeta = newMeta.replace(/P/g, ''); // 🔥 Revert P (Unprint)
     } else if (type === 'tracked') {
         if (!newMeta.includes('T')) newMeta += 'T';
+    } else if (type === 'resend') {
+        if (!newMeta.includes('R')) newMeta += 'R';
     } else if (type === 'tracked_revert') {
         newMeta = newMeta.replace(/T/g, ''); // 🔥 Revert T (Remove from Tracked)
     }
@@ -863,6 +866,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let metaBadges = '';
     if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed"></span>`;
     if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked"></span>`;
+    let resendBadge = meta.isResend ? `<span class="badge bg-danger ms-1 shadow-sm" style="font-size:9px; border-radius:6px;"><i class="fas fa-reply-all me-1"></i>RESEND</span>` : '';
 
     let rankBadge = '';
     if (currentStatus === 'Paid' && window.paidRankMap && window.paidRankMap[d.orderid]) {
@@ -986,6 +990,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}');"><i class="fab fa-whatsapp text-success me-2" style="width:16px; text-align:center;"></i> Send Receipt</a></li>`;
     }
 
+
     // 4. Revert Status (Dispatched, Paid സ്റ്റാറ്റസുകൾക്ക് മാത്രം)
     if (logicType === 'dispatched') {
         let isTrackedCard = (d.tracking || meta.isTracked);
@@ -1000,6 +1005,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     if (currentStatus === 'Sent' || currentStatus === 'Pending') {
         menuItems += `<li><hr class="dropdown-divider m-1"></li>`;
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); archiveOrder('${d.orderid}');"><i class="fas fa-archive text-secondary me-2" style="width:16px; text-align:center;"></i> Archive Order</a></li>`;
+    }
+
+    // 5.5 Resend (Dispatched/Delivered ആയവയ്ക്ക് മാത്രം)
+    if (currentStatus === 'Dispatched' || currentStatus === 'Delivered' || currentStatus === 'Completed') {
+        menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); handleResendOrder('${d.orderid}', ${index});"><i class="fas fa-reply-all me-2 text-warning" style="width:16px; text-align:center;"></i> Resend / Return</a></li>`;
     }
 
     // 6. Refund (Completed, Refunded അല്ലാത്ത എല്ലാത്തിനും)
@@ -5639,3 +5649,38 @@ window.printProductLabels = function () {
     }, 1000);
 }
 
+// 🔥 RESEND ORDER LOGIC (Auto fills Expense & Reverts to Printed Tab)
+window.handleResendOrder = function (oid, index) {
+    let order = allOrders[index];
+    if (!order) return;
+
+    confirmAction(`ഈ ഓർഡർ Return വന്നതാണോ? വീണ്ടും അയക്കാൻ (Resend) മാറ്റണോ?`, () => {
+        // 1. പഴയ കൊറിയർ ചാർജ് കണ്ടുപിടിക്കുന്നു (നഷ്ടം)
+        let oldTracking = order.tracking || 'No Tracking';
+        let oldCourierCharge = parseInt(order.Actual_Courier_Cost) || parseInt(order.Courier_Charge);
+
+        if (isNaN(oldCourierCharge) || oldCourierCharge <= 0) {
+            oldCourierCharge = getCourierRate(order.state, order.provider || order.Courier_Provider, order.quantity);
+        }
+
+        // 2. Expense ടാബ് തുറക്കുന്നു
+        let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
+        tabTrigger.show();
+
+        // 3. ഫോം ഓട്ടോമാറ്റിക് ആയി ഫിൽ ചെയ്യുന്നു
+        setTimeout(() => {
+            $('#exp-category').val('Courier'); // Courier Category
+            $('#exp-vendor').val(order.provider || order.Courier_Provider || 'Courier Partner');
+            $('#exp-amount').val(oldCourierCharge);
+            $('#exp-desc').val(`Return Loss | Ord: ${order.orderid.slice(-5)} | Old Trk: ${oldTracking}`);
+
+            $('#expense-form').css('border', '2px solid #f59e0b').css('padding', '10px').css('border-radius', '15px');
+
+            // 4. ഓർഡർ തിരികെ Paid (Printed) ടാബിലേക്ക് മാറ്റുന്നു!
+            updateOrder(oid, 'Paid', '', true); // പഴയ ട്രാക്കിങ് മായ്ക്കുന്നു
+            updateAdminMeta(oid, 'resend', 'R'); // Resend Badge വരാൻ 'R' കൊടുക്കുന്നു
+
+            showToast('info', 'Return Loss added to Expense! 📦');
+        }, 300);
+    });
+}
