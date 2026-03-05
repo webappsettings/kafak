@@ -559,8 +559,19 @@ function renderTabs(orders) {
             if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0 };
 
             timelineStats[fullKey].count++;
-            timelineStats[fullKey].bottles += (parseInt(o.quantity) || 0);
-            if (status === 'Dispatched') timelineStats[fullKey].cost += (parseInt(o.actualCourierCost) || 0);
+            let qty = parseInt(o.quantity) || 0;
+            timelineStats[fullKey].bottles += qty;
+
+            // 🔥 Dispatched-ന് മാത്രമല്ല, Paid-നും കൊറിയർ തുക കൂട്ടുന്നു!
+            if (status === 'Dispatched' || status === 'Paid') {
+                let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
+
+                // ഷീറ്റിൽ ഇല്ലെങ്കിൽ നമ്മൾ പുതുതായി ഉണ്ടാക്കിയ ഫംഗ്ഷൻ വഴി കണ്ടുപിടിക്കുന്നു
+                if (actualC <= 0) {
+                    actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                }
+                timelineStats[fullKey].cost += actualC;
+            }
         }
     });
 
@@ -673,7 +684,8 @@ function renderTabs(orders) {
                 let extraHtml = '';
                 let s = timelineStats[`${dateKey}_${dateLabel}`];
                 if (s) {
-                    if (type === 'dispatched' && s.cost > 0) {
+                    // 🔥 'type === dispatched' എന്ന കണ്ടീഷൻ ഒഴിവാക്കി, അതുകൊണ്ട് Paid ലും കാണിക്കും!
+                    if (s.cost > 0) {
                         extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${s.cost}</span>`;
                     }
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${s.count}</span>`;
@@ -899,8 +911,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let fraudAlertHtml = '';
     // 🔥 Paid ടാബിലും കാണിക്കാൻ currentStatus === 'Paid' കൂടി ചേർത്തിട്ടുണ്ട്
     if (currentStatus === 'Pending' || currentStatus === 'Sent' || currentStatus === 'Paid') {
-        let linkedOrder = checkCrossLinking(d);
-        if (linkedOrder) {
+        let linkData = checkCrossLinking(d); // മാച്ച് ആയ നമ്പറും എടുക്കുന്നു
+        if (linkData) {
+            let linkedOrder = linkData.order;
+            let matchedNum = linkData.matchedNum; // ഏത് നമ്പർ വഴിയാണ് ലിങ്ക് ആയത് എന്ന്
+
             let linkStatus = String(linkedOrder.Status || 'Pending');
             let linkColor = linkStatus === 'Paid' ? 'danger' : 'warning';
             let linkIcon = linkStatus === 'Paid' ? 'exclamation-triangle' : 'link';
@@ -966,7 +981,13 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 </div>
                 
                 <div class="d-flex justify-content-between align-items-center mt-1 mb-2">
-                    <div style="font-size:10px; color:#555;">ID: <b>${linkedOrder.orderid}</b></div>
+                    <div style="font-size:10px; color:#555; display:flex; align-items:center; gap:8px;">
+                        ID: <b>${linkedOrder.orderid}</b> 
+                        <div onclick="event.stopPropagation(); document.getElementById('searchInput').value='${matchedNum}'; filterOrders();" 
+                             style="cursor:pointer; background:#e0f2fe; color:#0284c7; padding:2px 6px; border-radius:4px; border:1px solid #bae6fd;" title="Compare Both Orders">
+                             <i class="fas fa-search" style="font-size:10px;"></i>
+                        </div>
+                    </div>
                     ${archiveBtnHtml}
                 </div>
                 
@@ -4081,8 +4102,8 @@ function checkCrossLinking(currentOrder) {
         // 3. ക്രോസ് ചെക്കിംഗ് (എന്റെ ഏതെങ്കിലും നമ്പർ അവരുടെ ലിസ്റ്റിൽ ഉണ്ടോ?)
         for (let myN of myNums) {
             if (theirNums.includes(myN)) {
-                // മാച്ച് കണ്ടുപിടിച്ചു!
-                return other;
+                // മാച്ച് കണ്ടുപിടിച്ചു! (മാച്ച് ആയ നമ്പറും കൂടി തിരികെ അയക്കുന്നു)
+                return { order: other, matchedNum: myN };
             }
         }
     }
@@ -5675,43 +5696,69 @@ window.handleResendOrder = function (oid, index) {
     let order = allOrders[index];
     if (!order) return;
 
-    confirmAction(`Ee order Return vachindha? Malli pampadaniki (Resend) marchala?`, () => {
-        // 1. Patha courier charge kanukkuntundi (Loss)
+    confirmAction(`ഈ ഓർഡർ Return വന്നതാണോ? വീണ്ടും അയക്കാൻ (Resend) മാറ്റണോ?`, () => {
+
         let oldTracking = order.tracking || 'No Tracking';
-        let oldCourierCharge = parseInt(order.Actual_Courier_Cost) || parseInt(order.Courier_Charge);
         let oldProvider = order.provider || order.Courier_Provider || 'Courier';
         let oldDate = order['Dispatched Date'] ? new Date(order['Dispatched Date']).toLocaleDateString('en-GB') : 'Unknown Date';
 
-        if (isNaN(oldCourierCharge) || oldCourierCharge <= 0) {
-            oldCourierCharge = getCourierRate(order.state, oldProvider, order.quantity);
+        // 🔥 യഥാർത്ഥ കൊറിയർ ചിലവ് മാത്രം (മാർജിൻ ഇല്ലാതെ) എടുക്കുന്നു!
+        let actualCourierCharge = parseInt(order.Actual_Courier_Cost) || parseInt(order.actualCourierCost);
+
+        // ഷീറ്റിൽ Actual Cost ഇല്ലെങ്കിൽ, പുതിയ ഫംഗ്ഷൻ വഴി കണ്ടുപിടിക്കുന്നു
+        if (!actualCourierCharge || isNaN(actualCourierCharge) || actualCourierCharge <= 0) {
+            actualCourierCharge = getBaseCourierRate(order.state, oldProvider, order.quantity);
         }
 
-        // 🔥 2. Right Drawer (Dashboard) ni open chesthundi
-        if (typeof openDashboard === 'function') {
-            openDashboard();
-        }
+        if (typeof openDashboard === 'function') openDashboard();
 
-        // 3. Expense tab loki maruthundi
         let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
         tabTrigger.show();
 
-        // 4. Form auto-fill avuthundi
         setTimeout(() => {
             $('#exp-category').val('Courier');
             $('#exp-vendor').val(oldProvider);
-            $('#exp-amount').val(oldCourierCharge);
+
+            // 🔥 ഇവിടെ മാർജിൻ ഇല്ലാത്ത തുക (ex: 60) ഓട്ടോമാറ്റിക് ആയി വരും
+            $('#exp-amount').val(actualCourierCharge);
+
             $('#exp-desc').val(`Return Loss | Ord: ${order.orderid.slice(-5)} | Old Trk: ${oldTracking}`);
 
             $('#expense-form').css('border', '2px solid #f59e0b').css('padding', '10px').css('border-radius', '15px');
 
-            // 5. Old tracking history admin data lo (Meta) save avuthundi
             let historyString = `|OldTrk:${oldProvider} - ${oldTracking} (${oldDate})`;
             updateAdminMeta(oid, 'resend_history', historyString);
 
-            // 6. Order ni thirigi Paid (Unprinted) tab loki marusthundi
             updateOrder(oid, 'Paid', '', true);
 
             showToast('info', 'Return Loss added! Order moved to Unprinted 📦');
-        }, 500); // Drawer open avvadaniki chinna delay
+        }, 500);
     });
+}
+
+// 🔥 മാർജിൻ ഇല്ലാതെ യഥാർത്ഥ കൊറിയർ ചിലവ് (Base Rate) മാത്രം കണ്ടുപിടിക്കാൻ
+function getBaseCourierRate(state, provider, qty) {
+    let s = String(state || '').toUpperCase().trim();
+    let p = String(provider || '').toUpperCase().trim();
+    let q = parseInt(qty) || 1;
+
+    let courierBase = 0;
+
+    if (typeof courierRates !== 'undefined') {
+        let zoneData = courierRates[`${s}_${p}`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+
+        if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+            courierBase = window.parseDynamicRate(zoneData.baseRate, q);
+        } else if (zoneData && zoneData[q] !== undefined) {
+            courierBase = Number(zoneData[q]);
+        }
+    }
+
+    // ഷീറ്റിൽ നിന്നും കിട്ടിയില്ലെങ്കിൽ, ടോട്ടൽ തുകയിൽ നിന്നും ഒരു ഡീഫോൾട്ട് മാർജിൻ കുറയ്ക്കുന്നു
+    if (courierBase === 0) {
+        let total = getCourierRate(state, provider, qty);
+        courierBase = total > 20 ? total - 20 : total;
+    }
+
+    return courierBase;
 }
