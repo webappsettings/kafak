@@ -77,6 +77,7 @@ function updateAdminMeta(oid, type, value) {
         if (!newMeta.includes('T')) newMeta += 'T';
     } else if (type === 'resend') {
         if (!newMeta.includes('R')) newMeta += 'R';
+        newMeta = newMeta.replace(/P/g, '');
     } else if (type === 'tracked_revert') {
         newMeta = newMeta.replace(/T/g, ''); // 🔥 Revert T (Remove from Tracked)
     }
@@ -5649,7 +5650,7 @@ window.printProductLabels = function () {
     }, 1000);
 }
 
-// 🔥 RESEND ORDER LOGIC (Auto fills Expense & Reverts to Printed Tab)
+// 🔥 RESEND ORDER LOGIC (Auto fills Expense & Reverts to Unprinted Tab)
 window.handleResendOrder = function (oid, index) {
     let order = allOrders[index];
     if (!order) return;
@@ -5676,11 +5677,11 @@ window.handleResendOrder = function (oid, index) {
 
             $('#expense-form').css('border', '2px solid #f59e0b').css('padding', '10px').css('border-radius', '15px');
 
-            // 4. ഓർഡർ തിരികെ Paid (Printed) ടാബിലേക്ക് മാറ്റുന്നു!
+            // 4. ഓർഡർ തിരികെ Paid (Unprinted) ടാബിലേക്ക് മാറ്റുന്നു!
             updateOrder(oid, 'Paid', '', true); // പഴയ ട്രാക്കിങ് മായ്ക്കുന്നു
-            updateAdminMeta(oid, 'resend', 'R'); // Resend Badge വരാൻ 'R' കൊടുക്കുന്നു
+            updateAdminMeta(oid, 'resend', 'R'); // Resend Badge വരാൻ 'R' കൊടുക്കുന്നു, കൂടെ 'P' മായ്ക്കുകയും ചെയ്യും!
 
-            showToast('info', 'Return Loss added to Expense! 📦');
+            showToast('info', 'Return Loss added! Order moved to Unprinted 📦');
         }, 300);
     });
 }
