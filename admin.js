@@ -1490,23 +1490,24 @@ window.confirmHardDelete = function (oid) {
     });
 }
 
-// 🔥 UPDATED: Auto generates Date & Time (Preserves Old Date)
-window.updateOrder = function (oid, status, tracking = null, skipConfirm = false, reason = '', appendMessage = '') {
+// 🔥 FULL FIXED updateOrder FUNCTION (customDate Error Fixed)
+window.updateOrder = function (oid, status, tracking = null, skipConfirm = false, customDate = null, appendMessage = '') {
     let orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex === -1) return;
 
+    let trackingNum = tracking;
+
     let executeUpdate = () => {
         let updateObj = { oid: oid, status: status, actionDate: new Date() };
-        if (tracking !== null) updateObj.tracking = tracking;
-        if (reason) updateObj.reason = reason;
-        if (appendMessage) updateObj.appendMessage = appendMessage; // 🔥 പുതിയ കോഡ്
+        if (trackingNum !== null) updateObj.tracking = trackingNum;
+        if (appendMessage) updateObj.appendMessage = appendMessage;
 
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'status');
 
         let existingOrder = allOrders.find(o => o.orderid === oid);
 
-        // 🔥 യഥാർത്ഥ പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു (Undo ചെയ്യാൻ വേണ്ടി)
+        // യഥാർത്ഥ പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു (Undo ചെയ്യാൻ വേണ്ടി)
         let trueOldStatus = 'Pending';
         if (existingIndex > -1 && updates[existingIndex].oldStatus !== undefined) {
             trueOldStatus = updates[existingIndex].oldStatus;
@@ -1523,16 +1524,14 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             needsRefundDelete = true;
         }
 
-        // 🔥 DATE & TIME LOGIC FIX (നിങ്ങളുടെ പഴയ കോഡിലെ ലോജിക് അതുപോലെ നിലനിർത്തിയിരിക്കുന്നു)
+        // DATE & TIME LOGIC
         let finalActionDate = null;
         if (customDate) {
             finalActionDate = customDate;
         } else if ((status === 'Dispatched' && !trackingNum) || status === 'Paid') {
-            // 🔥 FIX: പഴയ ഓർഡറിൽ Paid Date ഉണ്ടെങ്കിൽ അത് തന്നെ ഉപയോഗിക്കുക (മാറ്റരുത്)
             if (status === 'Paid' && existingOrder && existingOrder.paidDate) {
                 finalActionDate = existingOrder.paidDate;
             } else {
-                // ഇല്ലെങ്കിൽ മാത്രം പുതിയ സമയം എടുക്കുക
                 let now = new Date();
                 let y = now.getFullYear();
                 let m = String(now.getMonth() + 1).padStart(2, '0');
@@ -1543,12 +1542,11 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
-        // 🔥 Undo/Revert Logic: ട്രാക്കിങ്ങോ ഡേറ്റോ ഇല്ലാതെ പഴയ സ്റ്റാറ്റസിലേക്ക് മാറ്റുകയാണെങ്കിൽ സിങ്കിൽ നിന്ന് ഒഴിവാക്കുന്നു
+        // Undo/Revert Logic
         if (trackingNum === null && !customDate && status === trueOldStatus) {
             if (existingIndex > -1) updates.splice(existingIndex, 1);
         } else {
-            // പുതിയ മാറ്റമാണെങ്കിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു
-            let updateObj = {
+            let updateObjParams = {
                 oid: oid,
                 status: status,
                 oldStatus: trueOldStatus,
@@ -1556,27 +1554,25 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
                 deleteRefund: needsRefundDelete
             };
 
-            if (trackingNum !== null) updateObj.tracking = trackingNum;
-            if (finalActionDate) updateObj.actionDate = finalActionDate;
+            if (trackingNum !== null) updateObjParams.tracking = trackingNum;
+            if (finalActionDate) updateObjParams.actionDate = finalActionDate;
+            if (appendMessage) updateObjParams.appendMessage = appendMessage;
 
-            // നിലവിൽ ഒരു പെൻഡിങ് മാറ്റം ഉണ്ടെങ്കിൽ അത് റീപ്ലേസ് ചെയ്യുന്നു, അല്ലെങ്കിൽ പുതിയത് ചേർക്കുന്നു
             if (existingIndex > -1) {
-                updates[existingIndex] = updateObj;
+                updates[existingIndex] = updateObjParams;
             } else {
-                updates.push(updateObj);
+                updates.push(updateObjParams);
             }
         }
 
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-        // 🔥 LOCAL CACHE UPDATE (നിങ്ങളുടെ കോഡിലുള്ള കാര്യങ്ങൾ)
-        const orderIndex = allOrders.findIndex(o => o.orderid === oid);
+        // LOCAL CACHE UPDATE
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = status;
-            if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum; // 🔥 FIX: Empty string വന്നാലും ലോക്കലിൽ സേവ് ആവാൻ
+            if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum;
             if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
 
-            // Paid Date ലോക്കലായി അപ്‌ഡേറ്റ് ചെയ്യുന്നു (പഴയതുണ്ടെങ്കിൽ അത് തന്നെ നിൽക്കും)
             if (status === 'Paid' && finalActionDate) {
                 allOrders[orderIndex].paidDate = finalActionDate;
             }
@@ -1584,11 +1580,9 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
                 allOrders[orderIndex]['Dispatched Date'] = finalActionDate;
             }
             if ((status === 'Completed' || status === 'Delivered')) {
-                // പഴയ ഡേറ്റ് ഇല്ലെങ്കിൽ മാത്രം പുതിയത് ചേർക്കുക
                 if (!allOrders[orderIndex]['Delivered Date'] && finalActionDate) {
                     allOrders[orderIndex]['Delivered Date'] = finalActionDate;
                 }
-                // കസ്റ്റം ഡേറ്റ് നൽകിയിട്ടുണ്ടെങ്കിൽ അത് അപ്‌ഡേറ്റ് ചെയ്യുക
                 if (customDate) {
                     allOrders[orderIndex]['Delivered Date'] = customDate;
                 }
@@ -1607,7 +1601,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
 
         if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
         if (customDate) showToast('success', 'Date Updated! Sync to Save.');
-    }
+    };
 
     if (skipConfirm) {
         executeUpdate();
