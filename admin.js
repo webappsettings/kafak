@@ -5697,15 +5697,24 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
     }
 
     // 🔥 RESEND ORDER LOGIC (Message കോളത്തിൽ സേവ് ആകുന്നു)
+    // 🔥 RESEND ORDER LOGIC (Message column & Expense Description updated with Dates)
     window.handleResendOrder = function (oid, index) {
         let order = allOrders[index];
         if (!order) return;
 
-        confirmAction(`ഈ ഓർഡർ Return വന്നതാണോ? വീണ്ടും അയക്കാൻ (Resend) മാറ്റണോ?`, () => {
+        confirmAction(`Ee order Return vannathano? Veendum ayakkan (Resend) mattano?`, () => {
 
             let oldTracking = order.tracking || 'No Tracking';
             let oldProvider = order.provider || order.Courier_Provider || 'Courier';
-            let oldDate = order['Dispatched Date'] ? new Date(order['Dispatched Date']).toLocaleDateString('en-GB') : 'Unknown Date';
+
+            // 🔥 Dispatched Date-um Delivered Date-um edukkunnu
+            let dispDateStr = order['Dispatched Date'] ? new Date(order['Dispatched Date']).toLocaleDateString('en-GB') : '';
+            let delDateStr = order['Delivered Date'] ? new Date(order['Delivered Date']).toLocaleDateString('en-GB') : '';
+
+            // Randu date-um undenkil cherthu oru string aakkunnu
+            let dateInfo = dispDateStr ? `Disp: ${dispDateStr}` : '';
+            if (delDateStr) dateInfo += ` | Del: ${delDateStr}`;
+            if (!dateInfo) dateInfo = 'Unknown Date';
 
             let actualCourierCharge = parseInt(order.Actual_Courier_Cost) || parseInt(order.actualCourierCost);
             if (!actualCourierCharge || isNaN(actualCourierCharge) || actualCourierCharge <= 0) {
@@ -5721,28 +5730,28 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
                 $('#exp-category').val('Courier');
                 $('#exp-vendor').val(oldProvider);
                 $('#exp-amount').val(actualCourierCharge);
-                $('#exp-desc').val(`Return Loss | Ord: ${order.orderid.slice(-5)} | Old Trk: ${oldTracking}`);
+
+                // 🔥 Expense Description-il dates koodi auto-fill cheyyunnu
+                $('#exp-desc').val(`Return Loss | Ord: ${order.orderid.slice(-5)} | Trk: ${oldTracking} | ${dateInfo}`);
 
                 $('#expense-form').css('border', '2px solid #f59e0b').css('padding', '10px').css('border-radius', '15px');
 
-                // 🔥 Message കോളത്തിലേക്ക് പോവാനുള്ള ടെക്സ്റ്റ്
-                let historyString = `[Old Courier: ${oldProvider} - ${oldTracking} (${oldDate})]`;
+                // 🔥 Message column-lekk povulla text (Dates ulppede)
+                let historyString = `[Old Courier: ${oldProvider} - ${oldTracking} (${dateInfo})]`;
 
-                // ലോക്കൽ ഡാറ്റയിലും തൽക്ഷണം കാണിക്കാൻ
-                // local datayilum thalkshanam kanikkan
+                // Local datayilum thalkshanam kanikkan
                 order.message = order.message ? order.message + " \n" + historyString : historyString;
 
-                // 🔥 Pazhaya datukal local memory-il ninnum maaykkunnu (Fresh aakan)
+                // Pazhaya datukal local memory-il ninnum maaykkunnu
                 order['Dispatched Date'] = '';
                 order['Delivered Date'] = '';
 
-                // admin metayil 'R' enna badge kanikkan mathram resend kodukkunnu
                 updateAdminMeta(oid, 'resend', '');
 
-                // 🔥 updateOrder ഫംഗ്ഷനിൽ 6-ാമത്തെ പാരാമീറ്റർ ആയി മെസ്സേജ് അയക്കുന്നു
+                // updateOrder vazhi message sheet-lekk ayakkunnu
                 updateOrder(oid, 'Paid', '', true, '', historyString);
 
-                showToast('info', 'Return Loss added! Tracking saved to Message 📦');
+                showToast('info', 'Return Loss added! Tracking & Dates saved 📦');
             }, 500);
         });
     }
