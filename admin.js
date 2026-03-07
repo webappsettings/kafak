@@ -480,44 +480,46 @@ function renderTabs(orders) {
     if (listNew) listNew.innerHTML = '';
     if (listSent) listSent.innerHTML = '';
 
+    // 🔥 പുതിയ റൗണ്ട് ഡിസൈൻ (വലതുവശത്ത് കാണിക്കാൻ)
+    const getCourierBadgeHtml = (id) => `
+        <div class="d-flex justify-content-end px-1 w-100 mb-2" id="box-courier-${id}" style="display:none;">
+             <div class="bg-white border border-danger border-opacity-25 shadow-sm rounded-pill px-3 py-1 d-flex align-items-center gap-2" style="font-size:11px; font-weight:800; color:#dc3545;">
+                 <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:20px; height:20px;"><i class="fas fa-truck" style="font-size:9px;"></i></div>
+                 <span>Total Courier: ₹<span id="txt-courier-${id}">0</span></span>
+             </div>
+        </div>`;
+
     if (listPaidNew) listPaidNew.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-2 px-1 w-100">
+        ${getCourierBadgeHtml('paid_new')}
+        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
                 <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                 <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
             </div>
-        </div>
-        <div class="mb-3 px-1 text-end" id="box-courier-paid_new" style="display:none;">
-            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-paid_new">0</span></span>
         </div>`;
 
     if (listPaidPrinted) listPaidPrinted.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-2 px-1 w-100">
+        ${getCourierBadgeHtml('paid_print')}
+        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
                 <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                 <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
             </div>
-        </div>
-        <div class="mb-3 px-1 text-end" id="box-courier-paid_print" style="display:none;">
-            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-paid_print">0</span></span>
         </div>`;
 
     if (listDispNew) listDispNew.innerHTML = `
-        <div class="text-center mb-2 w-100">
+        ${getCourierBadgeHtml('disp_new')}
+        <div class="text-center mb-3 w-100">
             <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
                 <i class="fas fa-barcode"></i> Courier Scan
             </button>
-        </div>
-        <div class="mb-3 px-1 text-center" id="box-courier-disp_new" style="display:none;">
-            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-disp_new">0</span></span>
         </div>`;
 
     if (listDispTracked) listDispTracked.innerHTML = `
-        <div class="mb-3 px-1 text-center mt-2" id="box-courier-disp_track" style="display:none;">
-            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-disp_track">0</span></span>
-        </div>`;
+        ${getCourierBadgeHtml('disp_track')}
+    `;
 
     // 3. INITIALIZE VARIABLES
     let counts = { pending: 0, paid: 0, dispatched: 0 };
@@ -810,7 +812,7 @@ function renderTabs(orders) {
     const setTabCourierTotal = (tabKey) => {
         let amt = tabCourierTotal[tabKey];
         if (amt > 0) {
-            $(`#box-courier-${tabKey}`).css('display', 'block');
+            $(`#box-courier-${tabKey}`).css('display', 'flex'); // 🔥 block മാറ്റി flex ആക്കി
             $(`#txt-courier-${tabKey}`).text(amt.toLocaleString('en-IN'));
         } else {
             $(`#box-courier-${tabKey}`).css('display', 'none');
@@ -1228,7 +1230,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
     });
     return `
-    <div class="col-12 col-md-6 col-lg-6">
+    <div class="col-12 col-md-12 col-lg-12">
         <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>${headerLeft}</div>
