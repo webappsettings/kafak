@@ -3696,7 +3696,13 @@ window.renderPartnerList = function () {
         html += `
             <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
                 <i class="fas fa-lock fs-5 mb-2"></i><br>
-                സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ. ദയവായി തിരികെ പോയി 'This Month' സെലക്ട് ചെയ്യുക.
+                സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
+                
+                <div class="mt-3">
+                    <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
+                        <i class="fas fa-calendar-day me-1"></i> Go to This Month
+                    </button>
+                </div>
             </div>`;
     }
 
@@ -5839,3 +5845,8 @@ function getBaseCourierRate(state, provider, qty) {
 
     return courierBase;
 }
+
+window.jumpToCurrentMonth = function () {
+    selectedDate = new Date();
+    changeDashDate();
+};
