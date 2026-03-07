@@ -589,20 +589,6 @@ function renderTabs(orders) {
                 }
             }
         }
-
-        // 🔥 ടാബുകളിലെ മൊത്തം കൊറിയർ തുക സ്ക്രീനിൽ കാണിക്കുന്നു
-        const setTabCourierTotal = (tabKey) => {
-            let amt = tabCourierTotal[tabKey];
-            if (amt > 0) {
-                $(`#box-courier-${tabKey}`).css('display', 'block');
-                $(`#txt-courier-${tabKey}`).text(amt.toLocaleString('en-IN'));
-            }
-        };
-
-        setTabCourierTotal('paid_new');
-        setTabCourierTotal('paid_print');
-        setTabCourierTotal('disp_new');
-        setTabCourierTotal('disp_track');
     });
 
     // 🔥 STEP 5: MAIN RENDER LOOP (Merged everything here)
@@ -818,7 +804,24 @@ function renderTabs(orders) {
     if (savedScroll && parseInt(savedScroll) > 0) {
         setTimeout(() => { window.scrollTo(0, parseInt(savedScroll)); }, 100);
     }
+
+    const setTabCourierTotal = (tabKey) => {
+        let amt = tabCourierTotal[tabKey];
+        if (amt > 0) {
+            $(`#box-courier-${tabKey}`).css('display', 'block');
+            $(`#txt-courier-${tabKey}`).text(amt.toLocaleString('en-IN'));
+        } else {
+            $(`#box-courier-${tabKey}`).css('display', 'none');
+        }
+    };
+
+    setTabCourierTotal('paid_new');
+    setTabCourierTotal('paid_print');
+    setTabCourierTotal('disp_new');
+    setTabCourierTotal('disp_track');
+
 }
+
 
 function updateBadgeUI(elementId, orderCount, bottleCount) {
     const el = document.getElementById(elementId);
