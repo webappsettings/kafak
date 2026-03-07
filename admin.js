@@ -479,31 +479,43 @@ function renderTabs(orders) {
     if (listSent) listSent.innerHTML = '';
 
     if (listPaidNew) listPaidNew.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
+        <div class="d-flex justify-content-between align-items-center mb-2 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
                 <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                 <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
             </div>
+        </div>
+        <div class="mb-3 px-1 text-end" id="box-courier-paid_new" style="display:none;">
+            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-paid_new">0</span></span>
         </div>`;
 
     if (listPaidPrinted) listPaidPrinted.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
+        <div class="d-flex justify-content-between align-items-center mb-2 px-1 w-100">
             <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
             <div class="d-flex gap-2">
                 <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                 <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
             </div>
+        </div>
+        <div class="mb-3 px-1 text-end" id="box-courier-paid_print" style="display:none;">
+            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-paid_print">0</span></span>
         </div>`;
 
     if (listDispNew) listDispNew.innerHTML = `
-        <div class="text-center mb-3 w-100">
+        <div class="text-center mb-2 w-100">
             <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
                 <i class="fas fa-barcode"></i> Courier Scan
             </button>
+        </div>
+        <div class="mb-3 px-1 text-center" id="box-courier-disp_new" style="display:none;">
+            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-disp_new">0</span></span>
         </div>`;
 
-    if (listDispTracked) listDispTracked.innerHTML = '';
+    if (listDispTracked) listDispTracked.innerHTML = `
+        <div class="mb-3 px-1 text-center mt-2" id="box-courier-disp_track" style="display:none;">
+            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Total Courier: ₹<span id="txt-courier-disp_track">0</span></span>
+        </div>`;
 
     // 3. INITIALIZE VARIABLES
     let counts = { pending: 0, paid: 0, dispatched: 0 };
@@ -534,6 +546,7 @@ function renderTabs(orders) {
 
     // 🔥 STEP 4: PRE-CALCULATE TIMELINE STATS (For Header Display)
     let timelineStats = {};
+    let tabCourierTotal = { paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 }; // 🔥 ടാബുകളിലെ മൊത്തം തുകയ്ക്ക്
 
     orders.forEach(o => {
         let { status, dDateStr, pDateStr } = getOrderInfo(o);
@@ -562,17 +575,34 @@ function renderTabs(orders) {
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
 
-            // 🔥 Dispatched-ന് മാത്രമല്ല, Paid-നും കൊറിയർ തുക കൂട്ടുന്നു!
             if (status === 'Dispatched' || status === 'Paid') {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
 
-                // ഷീറ്റിൽ ഇല്ലെങ്കിൽ നമ്മൾ പുതുതായി ഉണ്ടാക്കിയ ഫംഗ്ഷൻ വഴി കണ്ടുപിടിക്കുന്നു
                 if (actualC <= 0) {
                     actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 }
                 timelineStats[fullKey].cost += actualC;
+
+                // 🔥 ടാബിലെ മൊത്തം തുകയിലേക്ക് കൂട്ടുന്നു
+                if (tabCourierTotal[dateKeyType] !== undefined) {
+                    tabCourierTotal[dateKeyType] += actualC;
+                }
             }
         }
+
+        // 🔥 ടാബുകളിലെ മൊത്തം കൊറിയർ തുക സ്ക്രീനിൽ കാണിക്കുന്നു
+        const setTabCourierTotal = (tabKey) => {
+            let amt = tabCourierTotal[tabKey];
+            if (amt > 0) {
+                $(`#box-courier-${tabKey}`).css('display', 'block');
+                $(`#txt-courier-${tabKey}`).text(amt.toLocaleString('en-IN'));
+            }
+        };
+
+        setTabCourierTotal('paid_new');
+        setTabCourierTotal('paid_print');
+        setTabCourierTotal('disp_new');
+        setTabCourierTotal('disp_track');
     });
 
     // 🔥 STEP 5: MAIN RENDER LOOP (Merged everything here)
