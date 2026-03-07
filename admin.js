@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzqhjyngHfPcqRkejwJ1wdgY-3eQya2uqkfg4QlxgpPuDYbcufbbkMgXlE-OaaMHTZyeA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzza8u_IQ7cLHx-kc3qcGiyef5CyzcYY7U1PvCWcsC2zEKCAbd4vcp8cHtH9yLBI4nW3w/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -3630,11 +3630,23 @@ function renderPartnerList() {
 
         let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
+        // 🔥 Puthiya code: Withdrawn details kanikkan
+        let withdrawnInfo = '';
+        if (data.withdrawn > 0) {
+            withdrawnInfo = `
+                <div class="mt-1 pt-1 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:9.5px; color:#ef4444;">
+                    <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
+                    <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
+                </div>`;
+        } else {
+            withdrawnInfo = `<div class="mt-1 pt-1 border-top border-secondary border-opacity-10 text-muted" style="font-size:9px;">No salary taken yet.</div>`;
+        }
+
         html += `
         <div class="partner-card" onclick="selectPartner('${name}', ${totalBal})">
-            <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-user-circle text-muted fs-4"></i>
-                <div>
+            <div class="d-flex align-items-center gap-2 w-100">
+                <i class="fas fa-user-circle text-muted fs-3"></i>
+                <div class="w-100">
                     <div class="fw-bold small">${name}</div>
                     <div class="text-success fw-bold" style="font-size:11px;">
                         Total Bal: ₹${formattedBal} 
@@ -3642,9 +3654,10 @@ function renderPartnerList() {
                     <div class="text-muted" style="font-size:9px; font-weight:600;">
                         (Prev Bal: ₹${sheetPrevBal.toLocaleString()} + This Month: ₹${(shares[name] || 0).toLocaleString()})
                     </div>
+                    ${withdrawnInfo}
                 </div>
             </div>
-            <i class="far fa-circle text-muted check-icon"></i>
+            <i class="far fa-circle text-muted check-icon ms-2"></i>
         </div>`;
     }
     $('#partner-list').html(html);
