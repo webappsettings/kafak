@@ -457,8 +457,10 @@ function renderTabs(orders) {
 
     // Helper to get effective status and dates
     const getOrderInfo = (o) => {
-        let local = pendingUpdates.find(u => u.oid === o.orderid);
-        let status = local ? local.status : (o.Status || 'Pending');
+        // 🔥 FIX: Courier മാറ്റങ്ങൾ (meta update) ഇവിടെ എടുക്കരുത്. Status update മാത്രം എടുക്കുക!
+        let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+
+        let status = (local && local.status) ? local.status : (o.Status || 'Pending');
         let tDate = new Date(o.timestamp);
         let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
         let pDate = new Date(pDateStr);
@@ -1575,12 +1577,13 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
-        // Undo/Revert Logic
+        // Undo/Revert Logic// Undo/Revert Logic
         if (trackingNum === null && !customDate && status === trueOldStatus) {
             if (existingIndex > -1) updates.splice(existingIndex, 1);
         } else {
             let updateObjParams = {
                 oid: oid,
+                action: 'status',
                 status: status,
                 oldStatus: trueOldStatus,
                 time: new Date().getTime(),
