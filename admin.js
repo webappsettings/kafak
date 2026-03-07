@@ -2691,30 +2691,26 @@ function getZoneKey(stateName) {
     return 'REST OF INDIA';
 }
 
-// 🔥 FIX: Admin Dashboard Margin Calculation (100% Dynamic from Sheet)
+// 🔥 മാർജിൻ ഉൾപ്പെടെയുള്ള കൊറിയർ ചിലവ് കണ്ടുപിടിക്കാൻ
 function getCourierRate(state, provider, qty) {
     let s = String(state || '').toUpperCase().trim();
     let p = String(provider || '').toUpperCase().trim();
     let q = parseInt(qty) || 1;
 
     let courierBase = 0;
-    let serviceMargin = 0;
 
     if (typeof courierRates !== 'undefined') {
-        // Sheet-il ninnulla data mathram edukkunnu (State/Provider vachu nokkunnu)
-        let zoneData = courierRates[`${s}_${p}`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+        // 🔥 FIX: Underscore മാറ്റി Space ആക്കി (eg: TAMIL NADU DTDC)
+        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s} DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
 
         if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
             courierBase = window.parseDynamicRate(zoneData.baseRate, q);
-            serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, q);
         } else if (zoneData && zoneData[q] !== undefined) {
-            // Pazhaya structure anenkil base rate mathram edukkunnu
             courierBase = Number(zoneData[q]);
         }
     }
 
-    // Margin ulppedeyulla total courier charge return cheyyunnu
-    return courierBase + serviceMargin;
+    return courierBase;
 }
 
 function calculatePriceInfo(u, qty, state, provider) {
@@ -5828,7 +5824,8 @@ function getBaseCourierRate(state, provider, qty) {
     let courierBase = 0;
 
     if (typeof courierRates !== 'undefined') {
-        let zoneData = courierRates[`${s}_${p}`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+        // 🔥 FIX: Underscore മാറ്റി Space ആക്കി
+        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s} DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
 
         if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
             courierBase = window.parseDynamicRate(zoneData.baseRate, q);
