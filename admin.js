@@ -482,10 +482,10 @@ function renderTabs(orders) {
 
     // 🔥 പുതിയ റൗണ്ട് ഡിസൈൻ (വലതുവശത്ത് കാണിക്കാൻ)
     const getCourierBadgeHtml = (id) => `
-        <div class="d-flex justify-content-end px-1 w-100 mb-2" id="box-courier-${id}" style="display:none;">
-             <div class="bg-white border border-danger border-opacity-25 shadow-sm rounded-pill px-3 py-1 d-flex align-items-center gap-2" style="font-size:11px; font-weight:800; color:#dc3545;">
+        <div class="d-flex justify-content-end px-1 w-100 mb-2" id="box-courier-${id}" style="display:none; position: sticky; top: 65px; z-index: 1020; pointer-events: none;">
+             <div class="bg-white border border-danger border-opacity-25 shadow rounded-pill px-3 py-1 d-flex align-items-center gap-2" style="font-size:11px; font-weight:800; color:#dc3545; pointer-events: auto;">
                  <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:20px; height:20px;"><i class="fas fa-truck" style="font-size:9px;"></i></div>
-                 <span>Total Courier: ₹<span id="txt-courier-${id}">0</span></span>
+                 <span>₹<span id="txt-courier-${id}">0</span></span>
              </div>
         </div>`;
 
