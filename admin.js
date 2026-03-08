@@ -4650,7 +4650,7 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (100% Accurate Data & Offline/Partner Breakdown)
+// 🔥 RENDER DAY BOOK (100% Accurate Data & Offline/Partner Breakdown with ALL Details)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4699,14 +4699,14 @@ window.renderDayBookTable = function () {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
             initDate(dStr);
 
-            // 🔥 FIX 1: grandTotal property case fixed (Stops re-calculating old rates!)
             let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
 
-            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name });
+            // 🔥 OID ഉം Receipt ലിങ്കും കൂടി Day Book-ലേക്ക് പാസ്സ് ചെയ്യുന്നു
+            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt });
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
 
@@ -4806,7 +4806,7 @@ window.renderDayBookTable = function () {
             let offlineGroups = [];
             let partnerGroups = [];
 
-            // 🔥 FIX 2: Categorizing Sales for precise breakdown
+            // Categorizing Sales for precise breakdown
             data.income.orders.forEach(o => {
                 if (o.type === 'Local Sale') {
                     offlineGroups.push(o);
@@ -4829,33 +4829,40 @@ window.renderDayBookTable = function () {
                 bdParts.push(`₹${grp.totalAmt.toLocaleString()}(<span class="text-dark fw-bold">${grp.count}x${q}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
             });
 
-            // Offline Local Sales
-            if (offlineGroups.length > 0) {
-                let tAmt = offlineGroups.reduce((sum, o) => sum + o.amt, 0);
-                let tQty = offlineGroups.reduce((sum, o) => sum + o.qty, 0);
-                bdParts.push(`<span class="text-primary fw-bold"><i class="fas fa-store"></i> Local:</span> ₹${tAmt.toLocaleString()}(<span class="text-dark fw-bold">${tQty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
-            }
-
-            // Partner Sales
-            if (partnerGroups.length > 0) {
-                partnerGroups.forEach(p => {
-                    let pName = p.name.replace('Partner: ', '').trim();
-                    bdParts.push(`<span class="text-warning text-dark fw-bold"><i class="fas fa-handshake"></i> ${pName}:</span> ₹${p.amt.toLocaleString()}`);
-                });
-            }
-
             let breakdownText = bdParts.join(' <span class="text-muted mx-1">+</span> ');
 
             dayHtml += `
-            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
+            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 ${offlineGroups.length === 0 && partnerGroups.length === 0 ? 'border-bottom border-dashed border-secondary border-opacity-10' : ''}">
                 <div>
                     <div class="fw-bold text-success" style="font-size:12px;">
                         <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Sale(s), <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 ms-1">${data.income.totalBottles} <i class="fas fa-wine-bottle"></i></span>
                     </div>
-                    <div class="text-secondary mt-1" style="font-size:10px; line-height:1.5;">-- (${breakdownText})</div>
+                    <div class="text-secondary mt-1" style="font-size:10px; line-height:1.5;">-- Online: (${breakdownText || '0'})</div>
                 </div>
                 <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
             </div>`;
+
+            // 🔥 Clickable list for Offline & Partner Sales
+            if (offlineGroups.length > 0) {
+                offlineGroups.forEach(o => {
+                    dayHtml += `
+                    <div class="d-flex justify-content-between align-items-center mb-1 ms-3 p-1 ps-2 pe-2 bg-light rounded border border-primary border-opacity-25">
+                        <span class="text-primary fw-bold" style="font-size:11px;"><i class="fas fa-store"></i> Local: ₹${o.amt} (<span class="text-dark">${o.qty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px;"></i>)</span>
+                        <button class="btn btn-sm btn-primary py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" onclick="viewOfflineSale('${o.oid}')"><i class="fas fa-eye"></i> View</button>
+                    </div>`;
+                });
+            }
+            if (partnerGroups.length > 0) {
+                partnerGroups.forEach(p => {
+                    let pName = p.name.replace('Partner: ', '').trim();
+                    dayHtml += `
+                    <div class="d-flex justify-content-between align-items-center mb-1 ms-3 p-1 ps-2 pe-2 bg-light rounded border border-warning border-opacity-50">
+                        <span class="text-warning text-dark fw-bold" style="font-size:11px;"><i class="fas fa-handshake"></i> ${pName}: ₹${p.amt}</span>
+                        <button class="btn btn-sm btn-dark py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" onclick="viewOfflineSale('${p.oid}')"><i class="fas fa-eye text-warning"></i> View</button>
+                    </div>`;
+                });
+            }
+            if (offlineGroups.length > 0 || partnerGroups.length > 0) dayHtml += `<div class="border-bottom border-dashed border-secondary border-opacity-10 mb-2 mt-2"></div>`;
         }
 
         // COURIER
@@ -4883,7 +4890,7 @@ window.renderDayBookTable = function () {
             </div>`;
         }
 
-        // EXPENSES
+        // 🔥 EXPENSES (Old Details Fully Restored!)
         if (data.expenses.length > 0) {
             hasData = true;
             data.expenses.forEach(e => {
@@ -6148,4 +6155,60 @@ function submitDirectSale(data) {
                 Swal.fire('Error', 'Failed to save', 'error');
             }
         });
+}
+
+// 🔥 VIEW OFFLINE / PARTNER SALE DETAILS
+window.viewOfflineSale = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let isPartner = order.house === 'Partner Bulk';
+
+    // Receipt ഉണ്ടെങ്കിൽ ബട്ടൺ കാണിക്കുക, ഇല്ലെങ്കിൽ Text കാണിക്കുക
+    let receiptHtml = order.receipt && String(order.receipt).trim() !== "" ?
+        `<a href="${order.receipt}" target="_blank" class="btn btn-outline-primary w-100 mb-3 fw-bold border-2" style="border-radius:8px;"><i class="fas fa-external-link-alt me-1"></i> View Attached Receipt</a>` :
+        `<div class="text-muted small mb-3 text-center bg-light p-2 rounded border"><i class="fas fa-info-circle"></i> No receipt uploaded</div>`;
+
+    let details = isPartner ?
+        `<div class="text-muted small">Partner Name</div><div class="fs-5 fw-bolder text-dark mb-2">${order.name.replace('Partner: ', '')}</div>
+         <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${order.grandTotal}</div>` :
+        `<div class="text-muted small">Description</div><div class="fw-bolder text-dark mb-2">${order.message || 'Local Sale'}</div>
+         <div class="text-muted small">Quantity</div><div class="fw-bolder text-dark mb-2">${order.quantity} Bottles</div>
+         <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${order.grandTotal}</div>`;
+
+    Swal.fire({
+        title: isPartner ? '🤝 Partner Sale Details' : '🛍️ Local Sale Details',
+        html: `
+            <div class="text-start" style="font-size:14px;">
+                <div class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
+                    ${details}
+                </div>
+                ${receiptHtml}
+                <hr class="border-secondary border-opacity-25">
+                <button class="btn btn-danger w-100 fw-bold shadow-sm py-2" style="border-radius:8px; font-size:12px; letter-spacing:0.5px;" onclick="deleteOfflineSale('${oid}')">
+                    <i class="fas fa-trash-alt me-1"></i> DELETE THIS ENTRY
+                </button>
+            </div>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true
+    });
+}
+
+// 🔥 DELETE OFFLINE SALE
+window.deleteOfflineSale = function (oid) {
+    confirmAction("Are you sure you want to delete this sale completely?", () => {
+        Swal.fire({ title: 'Deleting...', didOpen: () => Swal.showLoading() });
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'deleteOrder', oid: oid })
+        }).then(res => res.json()).then(res => {
+            if (res.result === 'success') {
+                Swal.fire('Deleted!', 'The entry has been removed.', 'success');
+                fetchOrders(true); // ഫുൾ ഡാറ്റ റീഫ്രഷ് ചെയ്യുന്നു
+            } else {
+                Swal.fire('Error', 'Failed to delete', 'error');
+            }
+        });
+    });
 }
