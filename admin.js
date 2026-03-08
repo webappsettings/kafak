@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxrQLu-4htKRczeqnrDuzI4Mw0UY-WIbz4RZohvpoHjzKt2bdbTeo6iBhsv_hGSPn6Dqw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwJQZQaRmg-GWtWUkYGuaGn3rgCdRDWmJRPoMZCshVy2SNu7h9E5HrI7cmhH0LEWwaOuQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4650,11 +4650,11 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (100% Accurate Data & Offline/Partner Breakdown with ALL Details)
+// 🔥 RENDER DAY BOOK (100% Accurate Data & Offline/Partner Breakdown with Names)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master'; // 🔥 Master Check
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
 
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
@@ -4687,7 +4687,7 @@ window.renderDayBookTable = function () {
 
         let actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
         if (isNaN(actualCourier) || actualCourier <= 0) {
-            actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier; // Fallback
+            actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
         }
 
         let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
@@ -4703,7 +4703,7 @@ window.renderDayBookTable = function () {
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
 
-            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt });
+            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt, msg: o.message });
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
 
@@ -4835,22 +4835,33 @@ window.renderDayBookTable = function () {
                 <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
             </div>`;
 
+            // 🔥 Offline Sales Listing with Name & Description
             if (offlineGroups.length > 0) {
                 offlineGroups.forEach(o => {
+                    let custName = o.name || 'Walk-in Customer';
                     dayHtml += `
-                    <div class="d-flex justify-content-between align-items-center mb-1 ms-3 p-1 ps-2 pe-2 bg-light rounded border border-primary border-opacity-25">
-                        <span class="text-primary fw-bold" style="font-size:11px;"><i class="fas fa-store"></i> Local: ₹${o.amt} (<span class="text-dark">${o.qty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px;"></i>)</span>
-                        <button class="btn btn-sm btn-primary py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" onclick="viewOfflineSale('${o.oid}')"><i class="fas fa-eye"></i> View</button>
+                    <div class="d-flex justify-content-between align-items-center mb-2 ms-3 p-2 bg-light rounded border border-primary border-opacity-25">
+                        <div class="d-flex flex-column">
+                            <span class="text-primary fw-bold" style="font-size:11.5px;"><i class="fas fa-store me-1"></i> ₹${o.amt} (<span class="text-dark">${o.qty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px;"></i>)</span>
+                            <span class="text-muted mt-1" style="font-size:9.5px; font-weight:600;"><i class="fas fa-user-circle me-1"></i>${custName}</span>
+                        </div>
+                        <button class="btn btn-sm btn-primary py-1 px-3 shadow-sm" style="font-size:10px; border-radius:6px; font-weight:800;" onclick="viewOfflineSale('${o.oid}')"><i class="fas fa-eye me-1"></i> View</button>
                     </div>`;
                 });
             }
+
+            // 🔥 Partner Sales Listing with Details
             if (partnerGroups.length > 0) {
                 partnerGroups.forEach(p => {
-                    let pName = p.name.replace('Partner: ', '').trim();
+                    let pName = String(p.name).replace('Partner:', '').trim();
+                    let descText = String(p.msg || '').split('(')[0].trim() || 'Bulk Sale';
                     dayHtml += `
-                    <div class="d-flex justify-content-between align-items-center mb-1 ms-3 p-1 ps-2 pe-2 bg-light rounded border border-warning border-opacity-50">
-                        <span class="text-warning text-dark fw-bold" style="font-size:11px;"><i class="fas fa-handshake"></i> ${pName}: ₹${p.amt}</span>
-                        <button class="btn btn-sm btn-dark py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" onclick="viewOfflineSale('${p.oid}')"><i class="fas fa-eye text-warning"></i> View</button>
+                    <div class="d-flex justify-content-between align-items-center mb-2 ms-3 p-2 bg-light rounded border border-warning border-opacity-50">
+                        <div class="d-flex flex-column">
+                            <span class="text-dark fw-bold" style="font-size:11.5px;"><i class="fas fa-handshake text-warning me-1"></i> ${pName} <span class="ms-1 text-success">₹${p.amt}</span></span>
+                            <span class="text-muted mt-1" style="font-size:9px; font-weight:600;"><i class="fas fa-info-circle me-1"></i>${descText}</span>
+                        </div>
+                        <button class="btn btn-sm btn-dark py-1 px-3 shadow-sm" style="font-size:10px; border-radius:6px; font-weight:800;" onclick="viewOfflineSale('${p.oid}')"><i class="fas fa-eye text-warning me-1"></i> View</button>
                     </div>`;
                 });
             }
@@ -4889,7 +4900,6 @@ window.renderDayBookTable = function () {
                 grandExpense += e.amount;
                 let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></button>` : '';
 
-                // 🔥 EDIT ബട്ടൺ മാസ്റ്റർ യൂസർക്ക് മാത്രം!
                 let editHtml = (e.id && isMasterUser) ? `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
 
                 let title = e.cat || 'Expense';
@@ -4940,6 +4950,59 @@ window.renderDayBookTable = function () {
     </div>`;
 
     $('#daybook-container').html(html);
+}
+
+// 🔥 VIEW OFFLINE / PARTNER SALE DETAILS (100% Data Included)
+window.viewOfflineSale = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+
+    let isPartner = order.house === 'Partner Bulk';
+
+    let receiptHtml = order.receipt && String(order.receipt).trim() !== "" ?
+        `<a href="${order.receipt}" target="_blank" class="btn btn-outline-primary w-100 mb-3 fw-bold border-2" style="border-radius:8px;"><i class="fas fa-external-link-alt me-1"></i> View Attached Receipt</a>` :
+        `<div class="text-muted small mb-3 text-center bg-light p-2 rounded border"><i class="fas fa-info-circle"></i> No receipt uploaded</div>`;
+
+    // 🔥 Added actual data fetching from order object
+    let grandTot = parseInt(order.grandTotal) || parseInt(order.Grand_Total) || 0;
+    let customerName = order.name || 'Walk-in Customer';
+    let itemDesc = order.message || 'Direct Sale';
+
+    let details = isPartner ?
+        `<div class="text-muted small">Partner Name</div><div class="fs-5 fw-bolder text-dark mb-2">${customerName.replace('Partner:', '').trim()}</div>
+         <div class="text-muted small">Order Details</div><div class="fw-bolder text-dark mb-2">${itemDesc}</div>
+         <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${grandTot.toLocaleString()}</div>` :
+        `<div class="text-muted small">Customer Name</div><div class="fs-6 fw-bolder text-dark mb-2">${customerName}</div>
+         <div class="text-muted small">Purchased Items</div><div class="fw-bolder text-dark mb-2">${itemDesc}</div>
+         <div class="text-muted small">Total Quantity</div><div class="fw-bolder text-dark mb-2">${order.quantity} Bottles</div>
+         <div class="text-muted small">Total Amount Paid</div><div class="fs-4 fw-bolder text-success">₹${grandTot.toLocaleString()}</div>`;
+
+    let deleteBtnHtml = isMasterUser ? `
+        <hr class="border-secondary border-opacity-25">
+        <button class="btn btn-danger w-100 fw-bold shadow-sm py-2" style="border-radius:8px; font-size:12px; letter-spacing:0.5px;" onclick="deleteOfflineSale('${oid}')">
+            <i class="fas fa-trash-alt me-1"></i> DELETE THIS ENTRY
+        </button>` : '';
+
+    if (!$('#swal-zindex-fix').length) {
+        $('<style id="swal-zindex-fix">').html('.swal2-container { z-index: 99999 !important; }').appendTo('head');
+    }
+
+    Swal.fire({
+        title: isPartner ? '🤝 Partner Sale Details' : '🛍️ Local Sale Details',
+        html: `
+            <div class="text-start" style="font-size:14px;">
+                <div class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
+                    ${details}
+                </div>
+                ${receiptHtml}
+                ${deleteBtnHtml}
+            </div>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true
+    });
 }
 
 // 🔥 NEXT / PREV MONTH LOGIC
