@@ -3550,7 +3550,7 @@ function togglePartnerSelect() {
 
 
 
-// 🔥 PARTNER LIST RENDER (WITH FULL BREAKDOWN UI & MONTH NAVIGATION)
+// 🔥 PARTNER LIST RENDER (FOR EXPENSE MODAL ONLY)
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -3568,28 +3568,58 @@ window.renderPartnerList = function () {
     let html = '';
 
     if (isCurrentMonth) {
+        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
+            <i class="fas fa-info-circle text-warning mt-1"></i> 
+            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത ആകെ തുക കുറച്ചതിന് ശേഷമുള്ള</b> ഫൈനൽ ബാലൻസ് ആണ്.</div>
+        </div>`;
+
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
             let totalBal = sheetPrevBal + (shares[name] || 0);
 
             let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
-            let withdrawnInfo = data.withdrawn > 0 ? `<div class="text-danger mt-1" style="font-size:9px;">Taken: <b>₹${data.withdrawn.toLocaleString()}</b> (Last: ${data.lastDate})</div>` : `<div class="text-muted mt-1" style="font-size:9px;">No salary taken yet.</div>`;
+
+            let withdrawnInfo = '';
+            if (data.withdrawn > 0) {
+                withdrawnInfo = `
+                    <div class="mt-1 pt-1 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:9.5px; color:#ef4444;">
+                        <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
+                        <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
+                    </div>`;
+            } else {
+                withdrawnInfo = `<div class="mt-1 pt-1 border-top border-secondary border-opacity-10 text-muted" style="font-size:9px;">No salary taken yet.</div>`;
+            }
 
             html += `
-            <div class="partner-card d-flex align-items-center justify-content-between p-2 mb-2 border rounded-3" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:0.3s; background:#fff;">
-                <div class="d-flex align-items-center gap-2 w-100">
-                    <i class="fas fa-user-circle text-muted fs-4"></i>
-                    <div class="w-100">
-                        <div class="fw-bold" style="font-size:12px;">${name}</div>
-                        <div class="text-success fw-bold" style="font-size:11px;">Total Bal: ₹${formattedBal}</div>
-                        ${withdrawnInfo}
+            <div class="partner-card p-2 mb-2 border rounded-3" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:0.3s; background:#fff;">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2 w-100">
+                        <i class="fas fa-user-circle text-muted fs-3"></i>
+                        <div class="w-100">
+                            <div class="fw-bold small">${name}</div>
+                            <div class="text-success fw-bold" style="font-size:11px;">
+                                Total Bal: ₹${formattedBal} 
+                            </div>
+                            <div class="text-muted" style="font-size:9px; font-weight:600;">
+                                (Prev Bal: ₹${sheetPrevBal.toLocaleString()} + This Month: ₹${(shares[name] || 0).toLocaleString()})
+                            </div>
+                            ${withdrawnInfo}
+                        </div>
                     </div>
+                    <i class="far fa-circle text-muted check-icon ms-2"></i>
                 </div>
-                <i class="far fa-circle text-muted check-icon"></i>
             </div>`;
         }
     } else {
-        html += `<div class="text-danger text-center fw-bold" style="font-size:11px;"><i class="fas fa-lock mb-1"></i><br>സാലറി നൽകാൻ Current Month സെലക്ട് ചെയ്യുക.</div>`;
+        html += `<div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
+            <i class="fas fa-lock fs-5 mb-2"></i><br>
+            സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
+            <div class="mt-3">
+                <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
+                    <i class="fas fa-calendar-day me-1"></i> Go to This Month
+                </button>
+            </div>
+        </div>`;
     }
 
     $('#partner-list').html(html);
