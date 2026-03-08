@@ -5816,8 +5816,7 @@ window.printProductLabels = function () {
     }, 1000);
 }
 
-// 🔥 RESEND ORDER LOGIC (Message കോളത്തിൽ സേവ് ആകുന്നു)
-// 🔥 RESEND ORDER LOGIC (Message column & Expense Description updated with Dates)
+// 🔥 RESEND ORDER LOGIC (Message column & Expense Description updated with Dates - Return Free)
 window.handleResendOrder = function (oid, index) {
     let order = allOrders[index];
     if (!order) return;
@@ -5836,11 +5835,6 @@ window.handleResendOrder = function (oid, index) {
         if (delDateStr) dateInfo += ` | Del: ${delDateStr}`;
         if (!dateInfo) dateInfo = 'Unknown Date';
 
-        let actualCourierCharge = parseInt(order.Actual_Courier_Cost) || parseInt(order.actualCourierCost);
-        if (!actualCourierCharge || isNaN(actualCourierCharge) || actualCourierCharge <= 0) {
-            actualCourierCharge = getBaseCourierRate(order.state, oldProvider, order.quantity);
-        }
-
         if (typeof openDashboard === 'function') openDashboard();
 
         let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
@@ -5849,7 +5843,9 @@ window.handleResendOrder = function (oid, index) {
         setTimeout(() => {
             $('#exp-category').val('Courier');
             $('#exp-vendor').val(oldProvider);
-            $('#exp-amount').val(actualCourierCharge);
+
+            // 🔥 മാറ്റം വരുത്തിയ ഭാഗം: Return Charge ഫ്രീ ആയതുകൊണ്ട് ഡിഫോൾട്ട് ആയി 0 കൊടുത്തു!
+            $('#exp-amount').val(0);
 
             // 🔥 Expense Description-il dates koodi auto-fill cheyyunnu
             $('#exp-desc').val(`Return Loss | Ord: ${order.orderid.slice(-5)} | Trk: ${oldTracking} | ${dateInfo}`);
@@ -5871,7 +5867,7 @@ window.handleResendOrder = function (oid, index) {
             // updateOrder vazhi message sheet-lekk ayakkunnu
             updateOrder(oid, 'Paid', '', true, '', historyString);
 
-            showToast('info', 'Return Loss added! Tracking & Dates saved 📦');
+            showToast('info', 'Return Marked! Tracking & Dates saved 📦');
         }, 500);
     });
 }
