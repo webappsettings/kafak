@@ -3647,9 +3647,9 @@ window.renderPartnerList = function () {
     let html = breakdownHtml;
 
     if (isCurrentMonth) {
-        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
+        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning shadow-sm" style="font-size:10.5px; font-weight:700; background:#fff8e1; border-radius:8px;">
             <i class="fas fa-info-circle text-warning mt-1"></i> 
-            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ബാലൻസ് ആണ്.</div>
+            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ഫൈനൽ ബാലൻസ് ആണ്.</div>
         </div>`;
 
         for (let [name, data] of Object.entries(partners)) {
@@ -3665,31 +3665,34 @@ window.renderPartnerList = function () {
             let withdrawnInfo = '';
             if (data.withdrawn > 0) {
                 withdrawnInfo = `
-                    <div class="mt-1 pt-1 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:9.5px; color:#ef4444;">
+                    <div class="mt-2 pt-2 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:10px; color:#ef4444;">
                         <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
                         <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
                     </div>`;
             } else {
-                withdrawnInfo = `<div class="mt-1 pt-1 border-top border-secondary border-opacity-10 text-muted" style="font-size:9px;">No salary taken yet.</div>`;
+                withdrawnInfo = `<div class="mt-2 pt-2 border-top border-secondary border-opacity-10 text-muted" style="font-size:10px;">No salary taken yet.</div>`;
             }
 
+            // 🔥 NEW ALIGNMENT FIX (Flex-grow added properly, width 100% bugs removed)
             html += `
-            <div class="partner-card p-2 mb-2 border rounded-3" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:0.3s; background:#fff;">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center gap-2 w-100">
-                        <i class="fas fa-user-circle text-muted fs-3"></i>
-                        <div class="w-100">
-                            <div class="fw-bold small">${name}</div>
-                            <div class="text-success fw-bold" style="font-size:11px;">
-                                Total Bal: ₹${formattedBal} 
-                            </div>
-                            <div class="text-muted" style="font-size:9px; font-weight:600;">
-                                (Prev Bal: ₹${sheetPrevBal.toLocaleString()} + This Month: ₹${(shares[name] || 0).toLocaleString()})
-                            </div>
-                            ${withdrawnInfo}
-                        </div>
+            <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
+                <div class="d-flex align-items-center w-100">
+                    <div class="me-3">
+                        <i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i>
                     </div>
-                    <i class="far fa-circle text-muted check-icon ms-2"></i>
+                    <div class="flex-grow-1">
+                        <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
+                        <div class="text-success fw-bold mt-1" style="font-size:13px;">
+                            Total Bal: ₹${formattedBal} 
+                        </div>
+                        <div class="text-muted mt-1" style="font-size:10px; font-weight:600;">
+                            Prev: ₹${sheetPrevBal.toLocaleString()} <span class="mx-1">|</span> This Mth: ₹${(shares[name] || 0).toLocaleString()}
+                        </div>
+                        ${withdrawnInfo}
+                    </div>
+                    <div class="ms-2 d-flex align-items-center justify-content-center">
+                        <i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i>
+                    </div>
                 </div>
             </div>`;
         }
