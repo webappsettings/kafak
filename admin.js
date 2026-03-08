@@ -3550,32 +3550,115 @@ function togglePartnerSelect() {
 
 
 
-// 🔥 PARTNER LIST RENDER (FOR EXPENSE MODAL ONLY)
+// 🔥 PARTNER LIST RENDER (WITH FULL BREAKDOWN UI & MONTH NAVIGATION)
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
+    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
+
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
         "Samad": Math.floor(liveProfit * 0.70),
         "Jazeela": Math.floor(liveProfit * 0.10)
     };
 
+    // 🔥 Month Navigation UI Logic
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
 
-    let html = '';
+    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
+    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
+    let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
+
+    // 🔥 Beautiful Breakdown UI 
+    let breakdownHtml = `
+    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            ${prevBtn}
+            <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
+                <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
+            </h6>
+            ${nextBtn}
+        </div>
+        
+        <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
+            <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
+        </div>
+        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px;">${window.currentBreakdownStr}</div>
+        
+        <div class="d-flex justify-content-between mb-1 mt-2">
+            <span class="text-muted">Total Income:</span>
+            <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-0">
+            <span class="text-muted">Deductible Expense:</span>
+            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
+        </div>
+        ${window.currentExpenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Food"].toLocaleString()}</span></div>` : ''}
+        ${window.currentExpenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
+        ${window.currentExpenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
+        
+        ${window.currentExpenseCategories["Other"].length > 0 ? `
+            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
+                <span class="text-muted ps-2">📝 Other:</span>
+                <span class="text-danger fw-bold text-end">${window.currentExpenseCategories["Other"].join('<br>')}</span>
+            </div>` : ''}
+            
+        ${window.currentExpenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${window.currentExpenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
+        <div class="d-flex justify-content-between mb-1 mt-1">
+            <span class="fw-bold text-info" style="font-size:10px;">
+                <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
+                ${window.currentMaterialBreakdownStr ? `<br><span class="ms-3 text-secondary opacity-75" style="font-size:9px; font-weight:600;">${window.currentMaterialBreakdownStr}</span>` : ''}
+            </span>
+            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
+            <div class="text-warning fw-bold" style="font-size:10px;">
+                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} <br>
+                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
+            </div>
+            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
+            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
+        </div>
+
+        <div class="bg-light p-2 rounded-3 border">
+            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Salam (20%):</span>
+                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Samad (70%):</span>
+                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Jazeela (10%):</span>
+                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
+            </div>
+        </div>
+    </div>`;
+
+    let html = breakdownHtml;
 
     if (isCurrentMonth) {
         html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
             <i class="fas fa-info-circle text-warning mt-1"></i> 
-            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത ആകെ തുക കുറച്ചതിന് ശേഷമുള്ള</b> ഫൈനൽ ബാലൻസ് ആണ്.</div>
+            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ബാലൻസ് ആണ്.</div>
         </div>`;
 
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
-            let totalBal = sheetPrevBal + (shares[name] || 0);
+            let totalBal = sheetPrevBal;
+
+            if (shares[name]) {
+                totalBal += shares[name];
+            }
 
             let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
@@ -3611,7 +3694,8 @@ window.renderPartnerList = function () {
             </div>`;
         }
     } else {
-        html += `<div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
+        html += `
+        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
             <i class="fas fa-lock fs-5 mb-2"></i><br>
             സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
             <div class="mt-3">
@@ -4557,7 +4641,7 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (100% Accurate Data from Sheet & Courier Toggle)
+// 🔥 RENDER DAY BOOK (100% Accurate Data & Offline/Partner Breakdown)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4585,36 +4669,39 @@ window.renderDayBookTable = function () {
         let qty = parseInt(o.quantity) || 0;
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
 
-        // --- COURIER CALCULATION LOGIC (Sheet Data First) ---
-        let totalCourier = parseInt(o.Courier_Charge);
+        // --- COURIER CALCULATION LOGIC ---
+        let totalCourier = parseInt(o.Courier_Charge) || 0;
         if (isNaN(totalCourier) || totalCourier <= 0) {
             totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
         }
 
-        let actualCourier = parseInt(o.Actual_Courier_Cost);
+        let actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
         if (isNaN(actualCourier) || actualCourier <= 0) {
             actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier; // Fallback
         }
 
         let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
 
-        // --- INCOME LOGIC (🔥 FIXED: Reads directly from Grand_Total to preserve history) ---
+        // 🔥 Identify Sale Type (From 'house' column)
+        let saleType = (o.house === 'Local Sale' || o.house === 'Partner Bulk') ? o.house : 'Online';
+
+        // --- INCOME LOGIC ---
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
             initDate(dStr);
 
-            // ഷീറ്റിൽ സേവ് ആയിട്ടുള്ള Grand Total തന്നെ ഡേ ബുക്കിലും ഉപയോഗിക്കുന്നു
-            let amt = parseInt(o.Grand_Total);
+            // 🔥 FIX 1: grandTotal property case fixed (Stops re-calculating old rates!)
+            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
 
-            dailyData[dStr].income.orders.push({ qty: qty, amt: amt });
+            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name });
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
 
-            if (viewMode === 'profit' && applyCourierCost > 0) {
+            if (viewMode === 'profit' && applyCourierCost > 0 && saleType === 'Online') {
                 dailyData[dStr].courier.items.push({ charge: applyCourierCost });
                 dailyData[dStr].courier.totalAmount += applyCourierCost;
             }
@@ -4623,7 +4710,7 @@ window.renderDayBookTable = function () {
         // --- ACCOUNTING VIEW LOGIC ---
         if (viewMode === 'accounting' && status !== 'Paid') {
             let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
-            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM && saleType === 'Online') {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
 
@@ -4706,23 +4793,57 @@ window.renderDayBookTable = function () {
             hasData = true;
             grandIncome += data.income.totalAmount;
 
-            let qtyGroups = {};
+            let normalGroups = {};
+            let offlineGroups = [];
+            let partnerGroups = [];
+
+            // 🔥 FIX 2: Categorizing Sales for precise breakdown
             data.income.orders.forEach(o => {
-                let q = parseInt(o.qty) || 1;
-                if (!qtyGroups[q]) qtyGroups[q] = { totalAmt: 0, totalBottles: 0 };
-                qtyGroups[q].totalAmt += o.amt;
-                qtyGroups[q].totalBottles += q;
+                if (o.type === 'Local Sale') {
+                    offlineGroups.push(o);
+                } else if (o.type === 'Partner Bulk') {
+                    partnerGroups.push(o);
+                } else {
+                    let q = parseInt(o.qty) || 1;
+                    if (!normalGroups[q]) normalGroups[q] = { totalAmt: 0, count: 0 };
+                    normalGroups[q].totalAmt += o.amt;
+                    normalGroups[q].count++;
+                }
             });
 
-            let breakdownText = Object.keys(qtyGroups).map(q => `₹${qtyGroups[q].totalAmt}(<span class="text-dark fw-bold">${qtyGroups[q].totalBottles}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px; color:#d97706 !important;"></i>)`).join(' <span class="text-muted mx-1">+</span> ');
+            let bdParts = [];
+
+            // Normal online orders
+            let nKeys = Object.keys(normalGroups).sort((a, b) => a - b);
+            nKeys.forEach(q => {
+                let grp = normalGroups[q];
+                bdParts.push(`₹${grp.totalAmt.toLocaleString()}(<span class="text-dark fw-bold">${grp.count}x${q}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
+            });
+
+            // Offline Local Sales
+            if (offlineGroups.length > 0) {
+                let tAmt = offlineGroups.reduce((sum, o) => sum + o.amt, 0);
+                let tQty = offlineGroups.reduce((sum, o) => sum + o.qty, 0);
+                bdParts.push(`<span class="text-primary fw-bold"><i class="fas fa-store"></i> Local:</span> ₹${tAmt.toLocaleString()}(<span class="text-dark fw-bold">${tQty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
+            }
+
+            // Partner Sales
+            if (partnerGroups.length > 0) {
+                partnerGroups.forEach(p => {
+                    let pName = p.name.replace('Partner: ', '').trim();
+                    bdParts.push(`<span class="text-warning text-dark fw-bold"><i class="fas fa-handshake"></i> ${pName}:</span> ₹${p.amt.toLocaleString()}`);
+                });
+            }
+
+            let breakdownText = bdParts.join(' <span class="text-muted mx-1">+</span> ');
 
             dayHtml += `
             <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
                 <div>
                     <div class="fw-bold text-success" style="font-size:12px;">
-                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Order(s), <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 ms-1">${data.income.totalBottles} <i class="fas fa-wine-bottle"></i></span>
+                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Sale(s), <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 ms-1">${data.income.totalBottles} <i class="fas fa-wine-bottle"></i></span>
                     </div>
-                    <div class="text-secondary mt-1" style="font-size:10px;">-- (${breakdownText})</div>
+                    <div class="text-secondary mt-1" style="font-size:10px; line-height:1.5;">-- (${breakdownText})</div>
                 </div>
                 <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
             </div>`;
