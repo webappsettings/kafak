@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbwjBP8CRKiLiMX7gHcRxO_oH_kiAlTYdPpUx5GFNy7Ftb1cxa12OXLIbQbJrPxDbKeW-w/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxH4j2sJz20HmtezIIg_an655ecasPfH0fBcipd0AlDVVUNorzMPHPlY124-FmbvhpeYg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -480,9 +480,9 @@ function renderTabs(orders) {
     if (listNew) listNew.innerHTML = '';
     if (listSent) listSent.innerHTML = '';
 
-    // 🔥 പുതിയ റൗണ്ട് ഡിസൈൻ (വലതുവശത്ത് കാണിക്കാൻ)
+    // 🔥 പുതിയ റൗണ്ട് ഡിസൈൻ (Text ഇല്ലാതെ, Tab-നുള്ളിൽ Sticky ആയി നിൽക്കാൻ)
     const getCourierBadgeHtml = (id) => `
-        <div class="d-flex justify-content-end px-1 w-100 mb-2" id="box-courier-${id}" style="display:none; position: sticky; top: 65px; z-index: 1020; pointer-events: none;">
+        <div class="d-flex justify-content-end w-100" id="box-courier-${id}" style="display:none; position: sticky; top: 147px; z-index: 1020; pointer-events: none; float: right; margin-top: 5px;">
              <div class="bg-white border border-danger border-opacity-25 shadow rounded-pill px-3 py-1 d-flex align-items-center gap-2" style="font-size:11px; font-weight:800; color:#dc3545; pointer-events: auto;">
                  <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:20px; height:20px;"><i class="fas fa-truck" style="font-size:9px;"></i></div>
                  <span>₹<span id="txt-courier-${id}">0</span></span>
@@ -3646,6 +3646,13 @@ window.renderPartnerList = function () {
 
     let html = breakdownHtml;
 
+    // 🔥 പുതിയ DIRECT SALE ബട്ടൺ ഡാഷ്‌ബോർഡിൽ കൊടുക്കുന്നു
+    html += `
+        <button onclick="showOfflineSaleModal()" class="btn btn-warning w-100 fw-bold mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="border-radius:12px; padding:12px; font-size:14px; border:2px solid #000; background-color:#ffc107; color:#000;">
+            <i class="fas fa-shopping-cart fs-5"></i> <span>DIRECT / PARTNER SALE</span>
+        </button>
+        `;
+
     // 🔥 CURRENT MONTH ആണെങ്കിൽ മാത്രം Salary കൊടുക്കാനുള്ള കാർഡുകൾ കാണിക്കുക
     if (isCurrentMonth) {
         html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
@@ -4219,15 +4226,17 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     if (!cleanNum) { alert("No valid number found for selection!"); return; }
 
     // 3. Generate Message (Logic Preserved)
-    let lang = order.language || 'en';
-    let msg = "";
+    //let lang = order.language || 'en';
+    //let msg = "";
     let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
-    if (lang === 'ml') {
-        msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\nഓർഡർ നമ്പർ: ${oid}\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\n👇 *Order Status:*\n${trackLink}`;
-    } else {
-        msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\n👇 *Order Status:*\n${trackLink}`;
-    }
+    // if (lang === 'ml') {
+    //     msg = `✅ *പേയ്‌മെന്റ് ലഭിച്ചു!* നന്ദി❤️\n\n🚛 *4-5 ദിവസത്തിനുള്ളിൽ* ഓർഡർ നിങ്ങളുടെ കയ്യിൽ ലഭിക്കുന്നതാണ്.\n\n👇 *Order Status:*\n${trackLink}`;
+    // } else {
+    //     msg = `✅ *Payment Received!* Thank you❤️\nOrder ID: ${oid}\n\n🚛 Your order will be delivered within *4-5 days*.\n\n👇 *Order Status:*\n${trackLink}`;
+    // }
+
+    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
 
     // 4. Open WhatsApp with SELECTED Number
     window.open(`https://wa.me/${cleanNum}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -5852,3 +5861,221 @@ window.jumpToCurrentMonth = function () {
     selectedDate = new Date();
     changeDashDate();
 };
+
+// 🔥 ഫോം കാണിക്കാൻ (Smart Offline Form)
+window.showOfflineSaleModal = function () {
+    let savedRate = (typeof courierRates !== 'undefined' && courierRates.partnerRate) ? courierRates.partnerRate : 170;
+    let savedMargin = (typeof courierRates !== 'undefined' && courierRates.partnerMargin) ? courierRates.partnerMargin : 50;
+
+    let html = `
+    <div style="text-align:left; font-size:13px;">
+        <div class="d-flex justify-content-center mb-3 gap-2">
+            <input type="radio" class="btn-check" name="saleType" id="sale-offline" value="offline" autocomplete="off" checked onchange="toggleOfflineForm()">
+            <label class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold" for="sale-offline">🛍️ Local Sale</label>
+
+            <input type="radio" class="btn-check" name="saleType" id="sale-partner" value="partner" autocomplete="off" onchange="toggleOfflineForm()">
+            <label class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold" for="sale-partner">🤝 Partner Bulk</label>
+        </div>
+
+        <div id="form-offline" style="display:block;">
+            <label class="fw-bold mb-1 small text-muted">Customer Name (Optional)</label>
+            <input type="text" id="off-name" class="form-control mb-2 fw-bold border-secondary border-opacity-25" placeholder="Walk-in Customer">
+            
+            <label class="fw-bold mb-1 small text-muted">Select Item</label>
+            <select id="off-item" class="form-select mb-2 fw-bold border-secondary border-opacity-25" onchange="updateOfflineFields()">
+                <option value="650g Bottle" data-price="650" data-cost="330">🍯 650g Bottle</option>
+                <option value="500g Bottle" data-price="500" data-cost="250">🍯 500g Bottle</option>
+                <option value="300g Bottle" data-price="300" data-cost="150">🍯 300g Bottle</option>
+                <option value="1Kg Bottle" data-price="1000" data-cost="500">🍯 1Kg Bottle</option>
+                <option value="Custom Item" data-price="0" data-cost="0">✏️ Custom Item...</option>
+            </select>
+            
+            <div class="row g-2 mb-2">
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Selling Price (₹)</label>
+                    <input type="number" id="off-price" class="form-control fw-bold border-secondary border-opacity-25 text-primary" value="650" oninput="calcOfflineTotal()">
+                </div>
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Base Cost (₹)</label>
+                    <input type="number" id="off-cost" class="form-control fw-bold border-secondary border-opacity-25 text-danger" value="330" oninput="calcOfflineTotal()">
+                </div>
+            </div>
+            
+            <label class="fw-bold mb-1 small text-muted">Quantity (No of Bottles)</label>
+            <input type="number" id="off-qty" class="form-control mb-3 fw-bold border-secondary border-opacity-25" value="1" min="1" oninput="calcOfflineTotal()">
+        </div>
+
+        <div id="form-partner" style="display:none;">
+            <label class="fw-bold mb-1 small text-muted">Select Partner</label>
+            <select id="part-name" class="form-select mb-2 fw-bold border-secondary border-opacity-25">
+                <option value="Salam">Salam</option>
+                <option value="Samad">Samad</option>
+                <option value="Jazeela">Jazeela</option>
+            </select>
+
+            <label class="fw-bold mb-1 small text-muted">Weight in Grams (eg: 1200, 8500)</label>
+            <div class="input-group mb-2">
+                <input type="number" id="part-grams" class="form-control fw-bold border-secondary border-opacity-25 fs-5" placeholder="0" oninput="calcPartnerTotal()">
+                <span class="input-group-text fw-bold text-muted border-secondary border-opacity-25 bg-light">gm</span>
+            </div>
+
+            <div class="row g-2 mb-2">
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Cost/Kg (₹)</label>
+                    <input type="number" id="part-rate" class="form-control fw-bold border-secondary border-opacity-25" value="${savedRate}" oninput="calcPartnerTotal()">
+                </div>
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Margin/Kg (₹)</label>
+                    <input type="number" id="part-margin" class="form-control fw-bold text-success border-secondary border-opacity-25" value="${savedMargin}" oninput="calcPartnerTotal()">
+                </div>
+            </div>
+            <div class="text-muted text-end fw-bold" style="font-size:10px;">Selling Price per Kg = ₹<span id="part-sp">${Number(savedRate) + Number(savedMargin)}</span></div>
+        </div>
+
+        <div class="mt-3 p-3 bg-light rounded-4 border text-center shadow-sm">
+            <div class="small text-muted fw-bold text-uppercase mb-1" style="letter-spacing:1px;">Total Amount to Pay</div>
+            <div class="fs-1 fw-bolder text-dark">₹<span id="final-total">650</span></div>
+            <div class="text-success small fw-bold mt-1" id="profit-display">Profit: ₹320</div>
+        </div>
+    </div>
+    `;
+
+    Swal.fire({
+        title: 'Direct Sales 🍯',
+        html: html,
+        showCancelButton: true,
+        confirmButtonText: '<i class="fas fa-check-circle"></i> ADD TO ACCOUNTS',
+        confirmButtonColor: '#198754',
+        didOpen: () => {
+            calcOfflineTotal();
+        },
+        preConfirm: () => {
+            let type = document.querySelector('input[name="saleType"]:checked').value;
+            let data = {};
+
+            if (type === 'offline') {
+                let itemName = document.getElementById('off-item').value;
+                let price = parseInt(document.getElementById('off-price').value) || 0;
+                let cost = parseInt(document.getElementById('off-cost').value) || 0;
+                let qty = parseInt(document.getElementById('off-qty').value) || 1;
+
+                if (itemName === 'Custom Item') itemName = 'Direct Item';
+
+                data = {
+                    type: 'Local Sale',
+                    name: document.getElementById('off-name').value || 'Walk-in Customer',
+                    desc: `${qty}x ${itemName} (₹${price}/ea)`,
+                    quantity: qty,
+                    total: price * qty,
+                    baseCost: cost * qty
+                };
+            } else {
+                let grams = parseFloat(document.getElementById('part-grams').value);
+                if (!grams || grams <= 0) { Swal.showValidationMessage('Enter valid grams!'); return false; }
+
+                let rate = parseFloat(document.getElementById('part-rate').value) || 0;
+                let margin = parseFloat(document.getElementById('part-margin').value) || 0;
+
+                if (rate !== savedRate) {
+                    if (typeof saveSettingToServer === 'function') saveSettingToServer('Partner Rate', 2, 'L', rate);
+                    if (typeof courierRates !== 'undefined') courierRates.partnerRate = rate;
+                }
+                if (margin !== savedMargin) {
+                    if (typeof saveSettingToServer === 'function') saveSettingToServer('Partner Margin', 2, 'M', margin);
+                    if (typeof courierRates !== 'undefined') courierRates.partnerMargin = margin;
+                }
+
+                localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
+
+                let kg = grams / 1000;
+                let base = Math.round(kg * rate);
+                let tot = Math.round(kg * (rate + margin));
+
+                data = {
+                    type: 'Partner Bulk',
+                    name: "Partner: " + document.getElementById('part-name').value,
+                    desc: `${grams}gm Bulk Honey (₹${rate}+${margin}/kg)`,
+                    quantity: 0,
+                    total: tot,
+                    baseCost: base
+                };
+            }
+            return data;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            submitDirectSale(result.value);
+        }
+    });
+}
+
+// ടാബ് മാറ്റാൻ
+window.toggleOfflineForm = function () {
+    let type = document.querySelector('input[name="saleType"]:checked').value;
+    if (type === 'offline') {
+        document.getElementById('form-offline').style.display = 'block';
+        document.getElementById('form-partner').style.display = 'none';
+        calcOfflineTotal();
+    } else {
+        document.getElementById('form-offline').style.display = 'none';
+        document.getElementById('form-partner').style.display = 'block';
+        calcPartnerTotal();
+    }
+}
+
+// ഡ്രോപ്പ്ഡൗൺ മാറ്റുമ്പോൾ വില ഓട്ടോമാറ്റിക് ആയി വരാൻ
+window.updateOfflineFields = function () {
+    let opt = document.getElementById('off-item').options[document.getElementById('off-item').selectedIndex];
+    document.getElementById('off-price').value = opt.getAttribute('data-price');
+    document.getElementById('off-cost').value = opt.getAttribute('data-cost');
+    calcOfflineTotal();
+}
+
+// ലോക്കൽ സെയിൽ കാൽക്കുലേഷൻ
+window.calcOfflineTotal = function () {
+    let price = parseInt(document.getElementById('off-price').value) || 0;
+    let cost = parseInt(document.getElementById('off-cost').value) || 0;
+    let qty = parseInt(document.getElementById('off-qty').value) || 1;
+
+    let tot = price * qty;
+    let prof = tot - (cost * qty);
+
+    document.getElementById('final-total').innerText = tot.toLocaleString();
+    document.getElementById('profit-display').innerText = `Profit Margin: ₹${prof.toLocaleString()}`;
+}
+
+// പാർട്ണർ സെയിൽ കാൽക്കുലേഷൻ
+window.calcPartnerTotal = function () {
+    let grams = parseFloat(document.getElementById('part-grams').value) || 0;
+    let rate = parseFloat(document.getElementById('part-rate').value) || 0;
+    let margin = parseFloat(document.getElementById('part-margin').value) || 0;
+
+    let sp = rate + margin;
+    document.getElementById('part-sp').innerText = sp;
+
+    let kg = grams / 1000;
+    let tot = Math.round(kg * sp);
+    let prof = Math.round(kg * margin);
+
+    document.getElementById('final-total').innerText = tot.toLocaleString();
+    document.getElementById('profit-display').innerText = `Company Profit: ₹${prof.toLocaleString()}`;
+}
+
+// ഡാറ്റാബേസിലേക്ക് സേവ് ചെയ്യാൻ
+function submitDirectSale(data) {
+    Swal.fire({ title: 'Adding to Accounts...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'submitOffline', data: data })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.result === 'success') {
+                Swal.fire('Saved!', 'Amount added to company accounts.', 'success');
+                fetchOrders(true); // സ്ക്രീൻ റിഫ്രഷ് ചെയ്യുന്നു
+            } else {
+                Swal.fire('Error', 'Failed to save', 'error');
+            }
+        });
+}
