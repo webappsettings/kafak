@@ -3556,8 +3556,6 @@ window.renderPartnerList = function () {
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
-    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
-
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
         "Samad": Math.floor(liveProfit * 0.70),
@@ -3567,155 +3565,35 @@ window.renderPartnerList = function () {
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
 
-    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
+    let html = '';
 
-    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
-    let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
-
-    let breakdownHtml = `
-    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-        
-        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-            ${prevBtn}
-            <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
-                <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
-            </h6>
-            ${nextBtn}
-        </div>
-        
-        <div class="d-flex justify-content-between mb-1">
-            <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
-            <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
-        </div>
-        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px;">${window.currentBreakdownStr}</div>
-        
-        <div class="d-flex justify-content-between mb-1 mt-2">
-            <span class="text-muted">Total Income:</span>
-            <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
-        </div>
-        <div class="d-flex justify-content-between mb-0">
-            <span class="text-muted">Deductible Expense:</span>
-            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
-        </div>
-        ${window.currentExpenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Food"].toLocaleString()}</span></div>` : ''}
-        ${window.currentExpenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
-        ${window.currentExpenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
-        
-        ${window.currentExpenseCategories["Other"].length > 0 ? `
-            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
-                <span class="text-muted ps-2">📝 Other:</span>
-                <span class="text-danger fw-bold text-end">${window.currentExpenseCategories["Other"].join('<br>')}</span>
-            </div>` : ''}
-            
-        ${window.currentExpenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${window.currentExpenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
-        <div class="d-flex justify-content-between mb-1 mt-1">
-            <span class="fw-bold text-info" style="font-size:10px;">
-                <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
-                ${window.currentMaterialBreakdownStr ? `<br><span class="ms-3 text-secondary opacity-75" style="font-size:9px; font-weight:600;">${window.currentMaterialBreakdownStr}</span>` : ''}
-            </span>
-            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
-            <div class="text-warning fw-bold" style="font-size:10px;">
-                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} <br>
-                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
-            </div>
-            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
-        </div>
-        
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
-            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
-        </div>
-
-        <div class="bg-light p-2 rounded-3 border">
-            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Salam (20%):</span>
-                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Samad (70%):</span>
-                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Jazeela (10%):</span>
-                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
-            </div>
-        </div>
-    </div>`;
-
-    let html = breakdownHtml;
-
-    // 🔥 പുതിയ DIRECT SALE ബട്ടൺ ഡാഷ്‌ബോർഡിൽ കൊടുക്കുന്നു
-    html += `
-        <button onclick="showOfflineSaleModal()" class="btn btn-warning w-100 fw-bold mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="border-radius:12px; padding:12px; font-size:14px; border:2px solid #000; background-color:#ffc107; color:#000;">
-            <i class="fas fa-shopping-cart fs-5"></i> <span>DIRECT / PARTNER SALE</span>
-        </button>
-        `;
-
-    // 🔥 CURRENT MONTH ആണെങ്കിൽ മാത്രം Salary കൊടുക്കാനുള്ള കാർഡുകൾ കാണിക്കുക
     if (isCurrentMonth) {
-        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning" style="font-size:10px; font-weight:700; background:#fff8e1; border-radius:8px;">
-            <i class="fas fa-info-circle text-warning mt-1"></i> 
-            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത ആകെ തുക കുറച്ചതിന് ശേഷമുള്ള</b> ഫൈനൽ ബാലൻസ് ആണ്.</div>
-        </div>`;
-
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
-            let totalBal = sheetPrevBal;
-
-            if (shares[name]) {
-                totalBal += shares[name];
-            }
+            let totalBal = sheetPrevBal + (shares[name] || 0);
 
             let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
-
-            let withdrawnInfo = '';
-            if (data.withdrawn > 0) {
-                withdrawnInfo = `
-                    <div class="mt-1 pt-1 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:9.5px; color:#ef4444;">
-                        <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
-                        <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
-                    </div>`;
-            } else {
-                withdrawnInfo = `<div class="mt-1 pt-1 border-top border-secondary border-opacity-10 text-muted" style="font-size:9px;">No salary taken yet.</div>`;
-            }
+            let withdrawnInfo = data.withdrawn > 0 ? `<div class="text-danger mt-1" style="font-size:9px;">Taken: <b>₹${data.withdrawn.toLocaleString()}</b> (Last: ${data.lastDate})</div>` : `<div class="text-muted mt-1" style="font-size:9px;">No salary taken yet.</div>`;
 
             html += `
-            <div class="partner-card" onclick="selectPartner('${name}', ${totalBal})">
+            <div class="partner-card d-flex align-items-center justify-content-between p-2 mb-2 border rounded-3" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:0.3s; background:#fff;">
                 <div class="d-flex align-items-center gap-2 w-100">
-                    <i class="fas fa-user-circle text-muted fs-3"></i>
+                    <i class="fas fa-user-circle text-muted fs-4"></i>
                     <div class="w-100">
-                        <div class="fw-bold small">${name}</div>
-                        <div class="text-success fw-bold" style="font-size:11px;">
-                            Total Bal: ₹${formattedBal} 
-                        </div>
-                        <div class="text-muted" style="font-size:9px; font-weight:600;">
-                            (Prev Bal: ₹${sheetPrevBal.toLocaleString()} + This Month: ₹${(shares[name] || 0).toLocaleString()})
-                        </div>
+                        <div class="fw-bold" style="font-size:12px;">${name}</div>
+                        <div class="text-success fw-bold" style="font-size:11px;">Total Bal: ₹${formattedBal}</div>
                         ${withdrawnInfo}
                     </div>
                 </div>
-                <i class="far fa-circle text-muted check-icon ms-2"></i>
+                <i class="far fa-circle text-muted check-icon"></i>
             </div>`;
         }
     } else {
-        // 🔥 പഴയ മാസം ആണെങ്കിൽ കാർഡുകൾ ഒളിച്ചുവെച്ച് ഈ മെസ്സേജ് കാണിക്കും
-        html += `
-            <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-                <i class="fas fa-lock fs-5 mb-2"></i><br>
-                സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
-                
-                <div class="mt-3">
-                    <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
-                        <i class="fas fa-calendar-day me-1"></i> Go to This Month
-                    </button>
-                </div>
-            </div>`;
+        html += `<div class="text-danger text-center fw-bold" style="font-size:11px;"><i class="fas fa-lock mb-1"></i><br>സാലറി നൽകാൻ Current Month സെലക്ട് ചെയ്യുക.</div>`;
     }
 
     $('#partner-list').html(html);
-}
+};
 
 function selectPartner(name, amount) {
     $('.partner-card').removeClass('selected');
@@ -4933,6 +4811,15 @@ window.renderDetailedMonthlyOverview = function () {
 
     if ($('#detailed-overview-container').length === 0) {
         $('<div id="detailed-overview-container" class="mt-3 mb-4"></div>').insertAfter('#tx-details-area');
+    }
+
+    // 🔥 പുതിയ DIRECT SALE ബട്ടൺ ഡാഷ്‌ബോർഡിൽ ഏറ്റവും മുകളിലായി കൊടുക്കുന്നു!
+    if ($('#btn-direct-sale').length === 0) {
+        $(`
+        <button id="btn-direct-sale" onclick="showOfflineSaleModal()" class="btn btn-warning w-100 fw-bold mt-2 mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="border-radius:12px; padding:12px; font-size:14px; border:2px solid #000; background-color:#ffc107; color:#000;">
+            <i class="fas fa-shopping-cart fs-5"></i> <span>DIRECT / PARTNER SALE</span>
+        </button>
+        `).insertBefore('#tx-details-area');
     }
 
     let mY = selectedDate.getFullYear();
