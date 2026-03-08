@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxtfgBKI_IPYYVmUMy7JBESyv7dhyqwL_kZVhHEgSByhJ64y3ol78zT4HXooEQLIN2K9w/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxWs_WIli1xThVMgORjhHMdm1sVcLO8ZDPImoVqOi5GG3Ue46GCCzOAxDNIvIrbZeVBwQ/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -5905,7 +5905,8 @@ window.jumpToCurrentMonth = function () {
     changeDashDate();
 };
 
-// 🔥 ഫോം കാണിക്കാൻ (Smart Offline Form)
+
+// 🔥 ഫോം കാണിക്കാൻ (Smart Offline Form with Upload)
 window.showOfflineSaleModal = function () {
     let savedRate = (typeof courierRates !== 'undefined' && courierRates.partnerRate) ? courierRates.partnerRate : 170;
     let savedMargin = (typeof courierRates !== 'undefined' && courierRates.partnerMargin) ? courierRates.partnerMargin : 50;
@@ -5978,7 +5979,12 @@ window.showOfflineSaleModal = function () {
         <div class="mt-3 p-3 bg-light rounded-4 border text-center shadow-sm">
             <div class="small text-muted fw-bold text-uppercase mb-1" style="letter-spacing:1px;">Total Amount to Pay</div>
             <div class="fs-1 fw-bolder text-dark">₹<span id="final-total">650</span></div>
-            <div class="text-success small fw-bold mt-1" id="profit-display">Profit: ₹320</div>
+            <div class="text-success small fw-bold mt-1 mb-3" id="profit-display">Profit: ₹320</div>
+            
+            <div class="text-start border-top pt-2">
+                <label class="fw-bold mb-1 small text-primary"><i class="fas fa-receipt"></i> Upload Payment Receipt (Optional)</label>
+                <input type="file" id="offline-proof" class="form-control form-control-sm border-secondary border-opacity-25" accept="image/*">
+            </div>
         </div>
     </div>
     `;
@@ -5992,7 +5998,7 @@ window.showOfflineSaleModal = function () {
         didOpen: () => {
             calcOfflineTotal();
         },
-        preConfirm: () => {
+        preConfirm: async () => {
             let type = document.querySelector('input[name="saleType"]:checked').value;
             let data = {};
 
@@ -6043,6 +6049,27 @@ window.showOfflineSaleModal = function () {
                     baseCost: base
                 };
             }
+
+            // 🔥 IMAGE UPLOAD LOGIC
+            let fileInput = document.getElementById('offline-proof');
+            let fileData = null;
+            let fileName = null;
+
+            if (fileInput && fileInput.files.length > 0) {
+                Swal.showLoading(); // ലോഡിങ് കാണിക്കാൻ
+                try {
+                    let compressed = await compressImage(fileInput.files[0]);
+                    fileData = compressed.data;
+                    fileName = compressed.name;
+                } catch (err) {
+                    Swal.showValidationMessage('Image compression failed!');
+                    return false;
+                }
+            }
+
+            data.fileData = fileData;
+            data.fileName = fileName;
+
             return data;
         }
     }).then((result) => {
