@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxWs_WIli1xThVMgORjhHMdm1sVcLO8ZDPImoVqOi5GG3Ue46GCCzOAxDNIvIrbZeVBwQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxrQLu-4htKRczeqnrDuzI4Mw0UY-WIbz4RZohvpoHjzKt2bdbTeo6iBhsv_hGSPn6Dqw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -4654,6 +4654,8 @@ function submitEditedExpense(updateData) {
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master'; // 🔥 Master Check
+
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
     let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
@@ -4678,7 +4680,6 @@ window.renderDayBookTable = function () {
         let qty = parseInt(o.quantity) || 0;
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
 
-        // --- COURIER CALCULATION LOGIC ---
         let totalCourier = parseInt(o.Courier_Charge) || 0;
         if (isNaN(totalCourier) || totalCourier <= 0) {
             totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
@@ -4690,11 +4691,8 @@ window.renderDayBookTable = function () {
         }
 
         let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
-
-        // 🔥 Identify Sale Type (From 'house' column)
         let saleType = (o.house === 'Local Sale' || o.house === 'Partner Bulk') ? o.house : 'Online';
 
-        // --- INCOME LOGIC ---
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
             initDate(dStr);
@@ -4705,7 +4703,6 @@ window.renderDayBookTable = function () {
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
 
-            // 🔥 OID ഉം Receipt ലിങ്കും കൂടി Day Book-ലേക്ക് പാസ്സ് ചെയ്യുന്നു
             dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt });
             dailyData[dStr].income.totalAmount += amt;
             dailyData[dStr].income.totalBottles += qty;
@@ -4716,7 +4713,6 @@ window.renderDayBookTable = function () {
             }
         }
 
-        // --- ACCOUNTING VIEW LOGIC ---
         if (viewMode === 'accounting' && status !== 'Paid') {
             let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM && saleType === 'Online') {
@@ -4806,7 +4802,6 @@ window.renderDayBookTable = function () {
             let offlineGroups = [];
             let partnerGroups = [];
 
-            // Categorizing Sales for precise breakdown
             data.income.orders.forEach(o => {
                 if (o.type === 'Local Sale') {
                     offlineGroups.push(o);
@@ -4822,9 +4817,7 @@ window.renderDayBookTable = function () {
 
             let bdParts = [];
 
-            // Normal online orders
-            let nKeys = Object.keys(normalGroups).sort((a, b) => a - b);
-            nKeys.forEach(q => {
+            Object.keys(normalGroups).sort((a, b) => a - b).forEach(q => {
                 let grp = normalGroups[q];
                 bdParts.push(`₹${grp.totalAmt.toLocaleString()}(<span class="text-dark fw-bold">${grp.count}x${q}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
             });
@@ -4842,7 +4835,6 @@ window.renderDayBookTable = function () {
                 <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
             </div>`;
 
-            // 🔥 Clickable list for Offline & Partner Sales
             if (offlineGroups.length > 0) {
                 offlineGroups.forEach(o => {
                     dayHtml += `
@@ -4890,13 +4882,16 @@ window.renderDayBookTable = function () {
             </div>`;
         }
 
-        // 🔥 EXPENSES (Old Details Fully Restored!)
+        // EXPENSES
         if (data.expenses.length > 0) {
             hasData = true;
             data.expenses.forEach(e => {
                 grandExpense += e.amount;
                 let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></button>` : '';
-                let editHtml = e.id ? `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
+
+                // 🔥 EDIT ബട്ടൺ മാസ്റ്റർ യൂസർക്ക് മാത്രം!
+                let editHtml = (e.id && isMasterUser) ? `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
+
                 let title = e.cat || 'Expense';
                 let subText = e.vendor ? `<span class="fw-bold text-dark">${e.vendor}</span>` : e.desc;
                 if (e.vendor && e.desc) subText = `<span class="fw-bold text-dark">${e.vendor}</span>, ${e.desc}`;
@@ -6162,9 +6157,10 @@ window.viewOfflineSale = function (oid) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
 
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master'; // 🔥 Master Check
+
     let isPartner = order.house === 'Partner Bulk';
 
-    // Receipt ഉണ്ടെങ്കിൽ ബട്ടൺ കാണിക്കുക, ഇല്ലെങ്കിൽ Text കാണിക്കുക
     let receiptHtml = order.receipt && String(order.receipt).trim() !== "" ?
         `<a href="${order.receipt}" target="_blank" class="btn btn-outline-primary w-100 mb-3 fw-bold border-2" style="border-radius:8px;"><i class="fas fa-external-link-alt me-1"></i> View Attached Receipt</a>` :
         `<div class="text-muted small mb-3 text-center bg-light p-2 rounded border"><i class="fas fa-info-circle"></i> No receipt uploaded</div>`;
@@ -6176,6 +6172,18 @@ window.viewOfflineSale = function (oid) {
          <div class="text-muted small">Quantity</div><div class="fw-bolder text-dark mb-2">${order.quantity} Bottles</div>
          <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${order.grandTotal}</div>`;
 
+    // 🔥 ഡിലീറ്റ് ബട്ടൺ മാസ്റ്റർ യൂസർക്ക് മാത്രം!
+    let deleteBtnHtml = isMasterUser ? `
+        <hr class="border-secondary border-opacity-25">
+        <button class="btn btn-danger w-100 fw-bold shadow-sm py-2" style="border-radius:8px; font-size:12px; letter-spacing:0.5px;" onclick="deleteOfflineSale('${oid}')">
+            <i class="fas fa-trash-alt me-1"></i> DELETE THIS ENTRY
+        </button>` : '';
+
+    // 🔥 Z-Index Fix: പോപ്പ്-അപ്പ് താഴെപ്പോകാതിരിക്കാൻ
+    if (!$('#swal-zindex-fix').length) {
+        $('<style id="swal-zindex-fix">').html('.swal2-container { z-index: 99999 !important; }').appendTo('head');
+    }
+
     Swal.fire({
         title: isPartner ? '🤝 Partner Sale Details' : '🛍️ Local Sale Details',
         html: `
@@ -6184,10 +6192,7 @@ window.viewOfflineSale = function (oid) {
                     ${details}
                 </div>
                 ${receiptHtml}
-                <hr class="border-secondary border-opacity-25">
-                <button class="btn btn-danger w-100 fw-bold shadow-sm py-2" style="border-radius:8px; font-size:12px; letter-spacing:0.5px;" onclick="deleteOfflineSale('${oid}')">
-                    <i class="fas fa-trash-alt me-1"></i> DELETE THIS ENTRY
-                </button>
+                ${deleteBtnHtml}
             </div>
         `,
         showConfirmButton: false,
