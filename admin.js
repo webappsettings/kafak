@@ -2817,11 +2817,16 @@ function initFlatpickrs() {
     }
 }
 
+// 🔥 1. ഡാഷ്‌ബോർഡ് ഡാറ്റ എടുക്കാൻ (Loader സഹിതം)
 function fetchDashboardDataBg() {
     let y = selectedDate.getFullYear();
     let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
     let d = String(selectedDate.getDate()).padStart(2, '0');
     let dateStr = `${y}-${m}-${d}`;
+
+    // 🔥 ഡാറ്റ എടുക്കും മുൻപ് മെയിൻ ലോഡർ കാണിക്കുന്നു
+    let loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'flex';
 
     fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
         .then(res => res.json())
@@ -2830,7 +2835,11 @@ function fetchDashboardDataBg() {
                 dashboardData = res.data;
                 renderDashboard();
             }
-        }).catch(err => console.error(err));
+        }).catch(err => console.error(err))
+        .finally(() => {
+            // 🔥 ഡാറ്റ ലോഡ് ആയതിന് ശേഷം ലോഡർ മറയ്ക്കുന്നു
+            if (loader) loader.style.display = 'none';
+        });
 }
 
 // 🔥 FIX: ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ തീയതിയും പേരും കാണിക്കാൻ (Force UI Update)
@@ -2894,7 +2903,7 @@ function changeDate(days) {
     changeDashDate();
 }
 
-// 🔥 FIX: തീയതി കാണിക്കാനും, ഡിസൈൻ സെറ്റ് ചെയ്യാനുമുള്ള ഫംഗ്‌ഷൻ
+// 🔥 2. തീയതി മാറ്റുമ്പോൾ പഴയ ഡാറ്റ മായ്ക്കാൻ 
 function changeDashDate() {
     if (dashDatePicker) dashDatePicker.setDate(selectedDate, false);
     if (expDatePicker) expDatePicker.setDate(selectedDate, false);
@@ -2902,23 +2911,20 @@ function changeDashDate() {
 
     updateArrowUI();
 
-    // 🔥 FIX 1: Top Date Text (Arrows ഇടയിലുള്ള തീയതി കാണിക്കാൻ)
     let formattedDate = flatpickr.formatDate(selectedDate, "d M Y");
     if (selectedDate.toDateString() === new Date().toDateString()) {
         formattedDate = "Today, " + formattedDate;
     }
-    // ഇൻപുട്ട് ആണെങ്കിലും ഡിവിഷൻ ആണെങ്കിലും വർക്ക് ചെയ്യാൻ
     $('#dash-date').val(formattedDate).text(formattedDate);
 
     $('#d-sales, #d-expense, #d-profit, #d-courier, #m-sales, #m-profit').text('...');
-    $('#tx-details-area').html('<div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading...</div>');
 
-    // 🔥 FIX 2: ആക്റ്റിവിറ്റി ലിസ്റ്റ് കലണ്ടറിന് താഴേക്ക് മാറ്റാൻ
-    if ($('#tx-calendar').length && $('#tx-details-area').length) {
-        $('#tx-details-area').insertAfter($('#tx-calendar').parent());
-    }
+    // ലോഡിങ് ആനിമേഷൻ കൊടുക്കുന്നു
+    $('#tx-details-area').html('<div class="text-center py-5 text-primary"><i class="fas fa-spinner fa-spin fs-2 mb-2"></i><br><span class="fw-bold small">Loading Data...</span></div>');
 
-    // 🔥 FIX 3: Add Expense ഇൻപുട്ട് ബോക്സുകൾക്ക് നല്ല ബോർഡർ കൊടുക്കാൻ (CSS Injection)
+    // 🔥 പ്രധാനപ്പെട്ട മാറ്റം: തീയതി മാറ്റുമ്പോൾ താഴെയുള്ള പഴയ റിപ്പോർട്ടുകൾ ക്ലിയർ ചെയ്യുന്നു!
+    $('#daybook-container, #detailed-overview-container, #yearly-overview-container, #material-stats-container, #extra-stats-container').remove();
+
     if (!$('#custom-expense-css').length) {
         $('<style id="custom-expense-css">')
             .html(`
