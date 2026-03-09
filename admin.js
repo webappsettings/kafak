@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbwJQZQaRmg-GWtWUkYGuaGn3rgCdRDWmJRPoMZCshVy2SNu7h9E5HrI7cmhH0LEWwaOuQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbywBdyjeEG-aePYIBfkeCwjF2JkKra3GlGSYjYtroRTWneL8qumpWGDNvjLVxraWd026Q/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -3369,89 +3369,6 @@ window.viewReceipt = function (url) {
 
 
 
-// 🔥 UPDATED: ADD EXPENSE (WITH OFFLINE SUPPORT)
-// 🔥 UPDATED: SUBMIT EXPENSE (With Refund Logic)
-async function submitExpense(e) {
-    e.preventDefault();
-    let btn = $('#btn-save-exp');
-    let originalText = btn.text();
-    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SAVING...');
-
-    let fileInput = document.getElementById('exp-proof');
-    let fileData = null; let fileName = null;
-
-    if (fileInput && fileInput.files.length > 0) {
-        try {
-            btn.html('<i class="fas fa-compress"></i> COMPRESSING...');
-            let compressed = await compressImage(fileInput.files[0]);
-            fileData = compressed.data; fileName = compressed.name;
-        } catch (err) {
-            alert("Image processing failed");
-            btn.prop('disabled', false).text(originalText);
-            return;
-        }
-    }
-
-    let selectedD = $('#exp-date').val() || flatpickr.formatDate(new Date(), "Y-m-d");
-
-    // 🔥 Extract Order ID if it is a Refund
-    let refundOrderId = null;
-    if ($('#exp-category').val() === 'Refund') {
-        let desc = $('#exp-desc').val();
-        let match = desc.match(/(ORD-|K-)\d+/); // Description-ൽ നിന്നും ORD-xxxx കണ്ടുപിടിക്കുന്നു
-        if (match) refundOrderId = match[0];
-    }
-
-    let formData = {
-        id: 'EXP-' + Date.now(),
-        date: selectedD,
-        category: $('#exp-category').val(),
-        vendor: $('#exp-vendor').val(),
-        description: $('#exp-desc').val(),
-        amount: $('#exp-amount').val(),
-        fileData: fileData,
-        fileName: fileName,
-        orderId: refundOrderId // 🔥 Backend-ലേക്ക് അയക്കുന്നു
-    };
-
-    // Helper to Update Local Order Status
-    const updateLocalStatus = () => {
-        if (refundOrderId) {
-            let order = allOrders.find(o => o.orderid === refundOrderId);
-            if (order) {
-                order.Status = 'Refunded';
-                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-                renderTabs(allOrders); // UI Refresh
-            }
-        }
-    };
-
-    // 🔥 OFFLINE CHECK
-    if (!navigator.onLine) {
-        saveExpenseOffline(formData, selectedD);
-        updateLocalStatus(); // ഓഫ്ലൈൻ ആണെങ്കിലും സ്റ്റാറ്റസ് മാറ്റുന്നു
-        btn.prop('disabled', false).text(originalText);
-        return;
-    }
-
-    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: formData }) })
-        .then(res => res.json())
-        .then(data => {
-            if (data.result === 'success') {
-                Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
-                updateLocalStatus(); // Success ആണെങ്കിൽ സ്റ്റാറ്റസ് മാറ്റുന്നു
-                resetExpenseForm(selectedD);
-            } else {
-                saveExpenseOffline(formData, selectedD);
-                updateLocalStatus();
-            }
-        })
-        .catch(err => {
-            saveExpenseOffline(formData, selectedD);
-            updateLocalStatus();
-        })
-        .finally(() => btn.prop('disabled', false).text(originalText));
-}
 
 
 // 🔥 REFUND TOGGLE & AUTO-FILL LOGIC
@@ -4273,89 +4190,6 @@ function loadFlatpickr(callback) {
     document.head.appendChild(script);
 }
 
-// 🔥 SHOW ADD EXPENSE MODAL (Mobile Friendly & Beautiful)
-window.showAddExpenseModal = function () {
-
-    // 🔥 NEW: മാസ്റ്റർ ലോഗിൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
-    let salaryOptionHtml = isMasterUser ? `<option value="Salary">Salary / Wages</option>` : '';
-
-    // 1. Force High Z-Index for DatePicker on Mobile
-    if (!$('#flatpickr-mobile-fix').length) {
-        $('<style id="flatpickr-mobile-fix">').html(`
-            .flatpickr-calendar { z-index: 9999 !important; } 
-            .swal2-container { z-index: 2000 !important; }
-        `).appendTo('head');
-    }
-
-    loadFlatpickr(() => {
-        Swal.fire({
-            title: 'Add New Expense 🧾',
-            html: `
-                <div style="text-align:left; font-size:14px;">
-                    <label class="fw-bold" style="color:#2563eb;">📅 Date & Time</label>
-                    
-                    <div class="input-group mb-2">
-                        <span class="input-group-text bg-white text-primary border-end-0"><i class="fas fa-calendar-alt"></i></span>
-                        <input type="text" id="exp-date" class="form-control bg-white border-start-0 fw-bold" placeholder="Select Date & Time..." readonly>
-                    </div>
-
-                    <label class="fw-bold mt-2">📂 Category</label>
-                    <select id="exp-category" class="form-select mb-2" onchange="togglePartnerSelect()">
-                        <option value="Material Purchase">Material Purchase</option>
-                        <option value="Packaging Material">Packaging Material</option>
-                        <option value="Marketing/Ads">Marketing / Ads</option>
-                        <option value="Transport/Fuel">Transport / Fuel</option>
-                        ${salaryOptionHtml}
-                        <option value="Office Expense">Office Expense</option>
-                        <option value="Refund">Refund</option>
-                        <option value="Other">Other</option>
-                    </select>
-
-                    <div id="partner-section" style="display:none; background:#f0f9ff; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #bae6fd;">
-                        <label class="fw-bold text-primary" style="font-size:11px;">SELECT PARTNER:</label>
-                        <div id="partner-list" class="d-flex flex-column gap-2 mt-1">
-                            </div>
-                    </div>
-
-                    <label class="fw-bold">🏪 Vendor / Shop Name</label>
-                    <input type="text" id="exp-vendor" class="form-control mb-2" placeholder="Ex: Lulu Hypermarket">
-
-                    <label class="fw-bold">📝 Description</label>
-                    <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Ex: 50kg Honey..."></textarea>
-
-                    <label class="fw-bold">💰 Amount (₹)</label>
-                    <input type="number" id="exp-amount" class="form-control mb-2" placeholder="0.00">
-                    
-                    <label class="fw-bold">📸 Upload Proof (Optional)</label>
-                    <input type="file" id="exp-proof" class="form-control mb-2" accept="image/*">
-
-                    <button id="btn-save-exp" class="btn btn-primary w-100 mt-3 py-2 fw-bold shadow-sm" onclick="submitExpense(event)" style="border-radius: 50px;">
-                        <i class="fas fa-check-circle"></i> SAVE EXPENSE
-                    </button>
-                </div>
-            `,
-            showConfirmButton: false,
-            showCloseButton: true,
-            didOpen: () => {
-                // Render Partner List logic
-                if (typeof renderPartnerList === 'function') renderPartnerList();
-
-                // 🔥 Activate Flatpickr (Mobile Fix applied)
-                flatpickr("#exp-date", {
-                    enableTime: true,
-                    dateFormat: "Y-m-d\\TH:i",
-                    altInput: true,
-                    altFormat: "F j, Y at h:i K",
-                    defaultDate: new Date(),
-                    time_24hr: false,
-                    disableMobile: true // 🔥 Quotes നീക്കി, ഇത് Boolean ആക്കി
-                });
-            }
-        });
-    });
-}
-
 
 window.changeCourier = function (oid, newProvider) {
     let oIdx = allOrders.findIndex(o => o.orderid === oid);
@@ -4477,151 +4311,6 @@ window.selectEditPartner = function (name, el) {
     $('#edit-exp-partner-val').val(name);
 };
 
-// 🔥 3. SHOW EDIT EXPENSE MODAL (Beautiful UI & Dynamic Fields)
-window.openEditExpense = function (expId, oldDate, oldAmount, oldDesc, oldCat, oldVendor = '') {
-
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
-    let editSalaryOption = isMasterUser ? `<option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>` : '';
-
-    if (!$('#swal-zindex-fix').length) {
-        $('<style id="swal-zindex-fix">').html(`
-            .swal2-container { z-index: 99999 !important; }
-            .flatpickr-calendar { z-index: 100000 !important; }
-        `).appendTo('head');
-    }
-
-    // 🔥 മനോഹരമായ പാർട്ണർ കാർഡുകൾ ഉണ്ടാക്കുന്നു (പഴയ Dropdown ഒഴിവാക്കി)
-    let partnerCardsHtml = '';
-    let partnerNames = ["Salam", "Samad", "Jazeela"]; // Default partners
-    if (typeof dashboardData !== 'undefined' && dashboardData && dashboardData.partners) {
-        partnerNames = Object.keys(dashboardData.partners);
-    }
-
-    let initialPartner = (oldCat === 'Salary') ? oldVendor : '';
-
-    partnerNames.forEach(name => {
-        let isSelected = (name === initialPartner);
-        let bgStyle = isSelected ? 'border-color: #198754; background-color: #f6fdf9;' : 'border-color: #e2e8f0; background-color: #fff;';
-        let iconClass = isSelected ? 'fas fa-check-circle text-success' : 'far fa-circle text-muted';
-
-        partnerCardsHtml += `
-        <div class="partner-card d-flex justify-content-between align-items-center mb-2 p-2 border rounded-3" 
-             onclick="selectEditPartner('${name}', this)" 
-             style="cursor:pointer; border-width: 2px !important; transition: 0.2s; ${bgStyle}">
-            <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-user-circle text-muted fs-4"></i>
-                <div class="fw-bold text-dark" style="font-size:13px;">${name}</div>
-            </div>
-            <i class="${iconClass} check-icon fs-5"></i>
-        </div>`;
-    });
-
-    let htmlForm = `
-        <div class="text-start" style="font-size:14px;">
-            <label class="fw-bold mb-1 small">Date & Time</label>
-            <input type="text" id="edit-exp-date" class="form-control mb-3 fw-bold border-secondary" placeholder="Select Date & Time...">
-            
-            <label class="fw-bold mb-1 small">Category</label>
-            <select id="edit-exp-cat" class="form-select mb-3 fw-bold border-secondary" onchange="toggleEditPartnerSelect()">
-                <option value="Materials" ${oldCat.includes('Material') || oldCat === 'Materials' ? 'selected' : ''}>📦 Materials / Purchase</option>
-                ${editSalaryOption}
-                <option value="Food" ${oldCat === 'Food' ? 'selected' : ''}>🍔 Food & Refreshment</option>
-                <option value="Travel" ${oldCat.includes('Travel') || oldCat.includes('Transport') ? 'selected' : ''}>⛽ Travel & Fuel</option>
-                <option value="Courier" ${oldCat.includes('Courier') ? 'selected' : ''}>🚚 Courier Charges</option>
-                <option value="Ads" ${oldCat.includes('Ads') || oldCat.includes('Marketing') ? 'selected' : ''}>📢 Ads & Marketing</option>
-                <option value="Other" ${oldCat === 'Other' || oldCat === 'Office Expense' ? 'selected' : ''}>📝 Other</option>
-                <option value="Refund" ${oldCat === 'Refund' ? 'selected' : ''}>💸 Refund / Return</option>
-            </select>
-
-            <div id="edit-vendor-section" style="display: ${oldCat === 'Salary' ? 'none' : 'block'};">
-                <label class="fw-bold mb-1 small">Vendor / Shop Name</label>
-                <input type="text" id="edit-exp-vendor" class="form-control mb-3 border-secondary" value="${oldCat !== 'Salary' ? oldVendor : ''}" placeholder="Ex: Lulu Hypermarket">
-            </div>
-
-            <div id="edit-partner-section" style="display: ${oldCat === 'Salary' ? 'block' : 'none'};">
-                <label class="fw-bold mb-1 small text-primary">Select Partner</label>
-                <input type="hidden" id="edit-exp-partner-val" value="${initialPartner}">
-                <div class="mt-1 mb-3">
-                    ${partnerCardsHtml}
-                </div>
-            </div>
-
-            <label class="fw-bold mb-1 small">Amount (₹)</label>
-            <input type="number" id="edit-exp-amount" class="form-control mb-3 border-secondary" value="${oldAmount}">
-            
-            <label class="fw-bold mb-1 small">Description</label>
-            <input type="text" id="edit-exp-desc" class="form-control mb-3 border-secondary" value="${oldDesc}">
-            
-            <label class="fw-bold mb-1 small text-primary"><i class="fas fa-receipt"></i> Upload New Receipt (Optional)</label>
-            <input type="file" id="edit-exp-file" class="form-control border-secondary" accept="image/*">
-        </div>
-    `;
-
-    Swal.fire({
-        title: 'Edit Expense 📝',
-        html: htmlForm,
-        showCancelButton: true,
-        confirmButtonText: 'Update Expense',
-        confirmButtonColor: '#2563eb',
-        didOpen: () => {
-            flatpickr("#edit-exp-date", {
-                enableTime: true,
-                dateFormat: "Y-m-d\\TH:i",
-                altInput: true,
-                altFormat: "F j, Y at h:i K",
-                defaultDate: oldDate || new Date(),
-                time_24hr: false,
-                disableMobile: true
-            });
-        },
-        preConfirm: async () => {
-            let selectedCat = document.getElementById('edit-exp-cat').value;
-            // 🔥 കാറ്റഗറി അനുസരിച്ച് പൈസ കൊടുത്ത ആളുടെ പേര് എടുക്കുന്നു
-            let finalVendor = (selectedCat === 'Salary') ? document.getElementById('edit-exp-partner-val').value : document.getElementById('edit-exp-vendor').value;
-
-            if (selectedCat === 'Salary' && !finalVendor) {
-                Swal.showValidationMessage('Please select a partner for Salary!');
-                return false;
-            }
-
-            let updateData = {
-                expId: expId,
-                date: document.getElementById('edit-exp-date').value,
-                category: selectedCat,
-                vendor: finalVendor,
-                amount: document.getElementById('edit-exp-amount').value,
-                description: document.getElementById('edit-exp-desc').value,
-                fileData: null,
-                fileName: null
-            };
-
-            if (!updateData.amount || !updateData.description) {
-                Swal.showValidationMessage('Amount and Description are required!');
-                return false;
-            }
-
-            let fileInput = document.getElementById('edit-exp-file');
-            if (fileInput && fileInput.files.length > 0) {
-                Swal.showLoading();
-                try {
-                    let compressed = await compressImage(fileInput.files[0]);
-                    updateData.fileData = compressed.data;
-                    updateData.fileName = "EDITED_" + compressed.name;
-                } catch (err) {
-                    Swal.showValidationMessage('Image compression failed!');
-                    return false;
-                }
-            }
-
-            return updateData;
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            submitEditedExpense(result.value);
-        }
-    });
-}
-
 // 🔥 SUBMIT EDITED EXPENSE TO SERVER
 function submitEditedExpense(updateData) {
     Swal.fire({
@@ -4650,360 +4339,9 @@ function submitEditedExpense(updateData) {
 }
 
 
-// 🔥 RENDER DAY BOOK (100% Accurate Data & Offline/Partner Breakdown with Names)
-window.renderDayBookTable = function () {
-    if (!dashboardData || !dashboardData.monthTimeline) return;
 
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
 
-    let mY = selectedDate.getFullYear();
-    let mM = selectedDate.getMonth();
-    let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-    let currentDate = new Date();
-    let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
-
-    let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'accounting';
-    let courierMode = $('#courier-charge-mode').length > 0 ? $('#courier-charge-mode').val() : 'actual';
-
-    let dailyData = {};
-    const initDate = (dStr) => {
-        if (!dailyData[dStr]) {
-            dailyData[dStr] = { income: { orders: [], totalAmount: 0, totalBottles: 0 }, courier: { items: [], totalAmount: 0 }, expenses: [] };
-        }
-    };
-
-    allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
-
-        let qty = parseInt(o.quantity) || 0;
-        let pDate = parseOrderDate(o.paidDate || o.timestamp);
-
-        let totalCourier = parseInt(o.Courier_Charge) || 0;
-        if (isNaN(totalCourier) || totalCourier <= 0) {
-            totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-        }
-
-        let actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-        if (isNaN(actualCourier) || actualCourier <= 0) {
-            actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
-        }
-
-        let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
-        let saleType = (o.house === 'Local Sale' || o.house === 'Partner Bulk') ? o.house : 'Online';
-
-        if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
-            let dStr = flatpickr.formatDate(pDate, "Y-m-d");
-            initDate(dStr);
-
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
-            if (isNaN(amt) || amt <= 0) {
-                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
-            }
-
-            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt, msg: o.message });
-            dailyData[dStr].income.totalAmount += amt;
-            dailyData[dStr].income.totalBottles += qty;
-
-            if (viewMode === 'profit' && applyCourierCost > 0 && saleType === 'Online') {
-                dailyData[dStr].courier.items.push({ charge: applyCourierCost });
-                dailyData[dStr].courier.totalAmount += applyCourierCost;
-            }
-        }
-
-        if (viewMode === 'accounting' && status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
-            if (dDate.getFullYear() === mY && dDate.getMonth() === mM && saleType === 'Online') {
-                let dStr = flatpickr.formatDate(dDate, "Y-m-d");
-                initDate(dStr);
-
-                if (applyCourierCost > 0) {
-                    dailyData[dStr].courier.items.push({ charge: applyCourierCost });
-                    dailyData[dStr].courier.totalAmount += applyCourierCost;
-                }
-            }
-        }
-    });
-
-    if (dashboardData.monthTimeline.expense) {
-        dashboardData.monthTimeline.expense.forEach(e => {
-            if (e.isCourier) return;
-            let dDate = new Date(e.date);
-            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                let dStr = flatpickr.formatDate(dDate, "Y-m-d");
-                initDate(dStr);
-                dailyData[dStr].expenses.push(e);
-            }
-        });
-    }
-
-    let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
-    let grandIncome = 0, grandCourier = 0, grandExpense = 0;
-
-    if ($('#daybook-container').length === 0) {
-        $('<div id="daybook-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
-    }
-
-    let nextMonthBtnHtml = !isCurrentMonth ? `<button class="btn btn-sm btn-dark rounded-pill fw-bold ms-2 shadow-sm" style="font-size:9px; padding: 5px 12px;" onclick="loadNextMonthDayBook()">NEXT MTH <i class="fas fa-chevron-right ms-1"></i></button>` : '';
-
-    let html = `
-    <div class="bg-white p-3 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-4 mb-5">
-        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-            <h6 class="fw-bold text-dark m-0" style="font-size:13px; letter-spacing:0.5px;">
-                <i class="fas fa-book-open text-primary me-2"></i> DAY BOOK
-            </h6>
-            <div class="d-flex align-items-center">
-                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 me-2" style="font-size:11px;">${monthName.toUpperCase()}</span>
-                <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 5px 12px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> PREV</button>
-                ${nextMonthBtnHtml}
-            </div>
-        </div>
-        
-        <div class="d-flex flex-wrap justify-content-center mb-3 gap-2">
-            <select id="daybook-view-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
-                <option value="accounting" ${viewMode === 'accounting' ? 'selected' : ''}>📊 Accounting View</option>
-                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View</option>
-            </select>
-            
-            <select id="courier-charge-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
-                <option value="actual" ${courierMode === 'actual' ? 'selected' : ''}>🚚 Courier Charge Only (Default)</option>
-                <option value="total" ${courierMode === 'total' ? 'selected' : ''}>🚚 Courier Charge + Margin</option>
-            </select>
-        </div>
-        <div>
-    `;
-
-    if (sortedDates.length === 0) {
-        html += `<div class="text-center text-muted small py-4" style="border:1px dashed #ccc; border-radius:10px;">No transactions found.</div>`;
-    }
-
-    sortedDates.forEach(dateStr => {
-        let data = dailyData[dateStr];
-        let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-
-        let dayHtml = `
-        <div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm">
-            <div class="fw-bold text-dark border-bottom px-2 py-1 d-flex align-items-center" style="font-size:11px; background:#e2e8f0;">
-                <i class="far fa-calendar-alt me-1 text-muted"></i> ${displayDate}
-            </div>
-            <div class="p-2 bg-white">
-        `;
-
-        let hasData = false;
-
-        // INCOME
-        if (data.income.orders.length > 0) {
-            hasData = true;
-            grandIncome += data.income.totalAmount;
-
-            let normalGroups = {};
-            let offlineGroups = [];
-            let partnerGroups = [];
-
-            data.income.orders.forEach(o => {
-                if (o.type === 'Local Sale') {
-                    offlineGroups.push(o);
-                } else if (o.type === 'Partner Bulk') {
-                    partnerGroups.push(o);
-                } else {
-                    let q = parseInt(o.qty) || 1;
-                    if (!normalGroups[q]) normalGroups[q] = { totalAmt: 0, count: 0 };
-                    normalGroups[q].totalAmt += o.amt;
-                    normalGroups[q].count++;
-                }
-            });
-
-            let bdParts = [];
-
-            Object.keys(normalGroups).sort((a, b) => a - b).forEach(q => {
-                let grp = normalGroups[q];
-                bdParts.push(`₹${grp.totalAmt.toLocaleString()}(<span class="text-dark fw-bold">${grp.count}x${q}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
-            });
-
-            let breakdownText = bdParts.join(' <span class="text-muted mx-1">+</span> ');
-
-            dayHtml += `
-            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 ${offlineGroups.length === 0 && partnerGroups.length === 0 ? 'border-bottom border-dashed border-secondary border-opacity-10' : ''}">
-                <div>
-                    <div class="fw-bold text-success" style="font-size:12px;">
-                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Sale(s), <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 ms-1">${data.income.totalBottles} <i class="fas fa-wine-bottle"></i></span>
-                    </div>
-                    <div class="text-secondary mt-1" style="font-size:10px; line-height:1.5;">-- Online: (${breakdownText || '0'})</div>
-                </div>
-                <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
-            </div>`;
-
-            // 🔥 Offline Sales Listing with Name & Description
-            if (offlineGroups.length > 0) {
-                offlineGroups.forEach(o => {
-                    let custName = o.name || 'Walk-in Customer';
-                    dayHtml += `
-                    <div class="d-flex justify-content-between align-items-center mb-2 ms-3 p-2 bg-light rounded border border-primary border-opacity-25">
-                        <div class="d-flex flex-column">
-                            <span class="text-primary fw-bold" style="font-size:11.5px;"><i class="fas fa-store me-1"></i> ₹${o.amt} (<span class="text-dark">${o.qty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px;"></i>)</span>
-                            <span class="text-muted mt-1" style="font-size:9.5px; font-weight:600;"><i class="fas fa-user-circle me-1"></i>${custName}</span>
-                        </div>
-                        <button class="btn btn-sm btn-primary py-1 px-3 shadow-sm" style="font-size:10px; border-radius:6px; font-weight:800;" onclick="viewOfflineSale('${o.oid}')"><i class="fas fa-eye me-1"></i> View</button>
-                    </div>`;
-                });
-            }
-
-            // 🔥 Partner Sales Listing with Details
-            if (partnerGroups.length > 0) {
-                partnerGroups.forEach(p => {
-                    let pName = String(p.name).replace('Partner:', '').trim();
-                    let descText = String(p.msg || '').split('(')[0].trim() || 'Bulk Sale';
-                    dayHtml += `
-                    <div class="d-flex justify-content-between align-items-center mb-2 ms-3 p-2 bg-light rounded border border-warning border-opacity-50">
-                        <div class="d-flex flex-column">
-                            <span class="text-dark fw-bold" style="font-size:11.5px;"><i class="fas fa-handshake text-warning me-1"></i> ${pName} <span class="ms-1 text-success">₹${p.amt}</span></span>
-                            <span class="text-muted mt-1" style="font-size:9px; font-weight:600;"><i class="fas fa-info-circle me-1"></i>${descText}</span>
-                        </div>
-                        <button class="btn btn-sm btn-dark py-1 px-3 shadow-sm" style="font-size:10px; border-radius:6px; font-weight:800;" onclick="viewOfflineSale('${p.oid}')"><i class="fas fa-eye text-warning me-1"></i> View</button>
-                    </div>`;
-                });
-            }
-            if (offlineGroups.length > 0 || partnerGroups.length > 0) dayHtml += `<div class="border-bottom border-dashed border-secondary border-opacity-10 mb-2 mt-2"></div>`;
-        }
-
-        // COURIER
-        if (data.courier.items.length > 0) {
-            hasData = true;
-            grandCourier += data.courier.totalAmount;
-
-            let chargeGroups = {};
-            data.courier.items.forEach(c => {
-                if (!chargeGroups[c.charge]) chargeGroups[c.charge] = 0;
-                chargeGroups[c.charge]++;
-            });
-
-            let breakdownText = Object.keys(chargeGroups).map(c => `<span class="text-dark fw-bold">${chargeGroups[c]}</span><span class="text-muted mx-1">x</span>₹${c}`).join(', ');
-
-            dayHtml += `
-            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
-                <div>
-                    <div class="fw-bold text-danger" style="font-size:12px;">
-                        <i class="fas fa-truck me-1"></i> Courier Charge
-                    </div>
-                    <div class="text-secondary mt-1" style="font-size:10px;">-- (${breakdownText})</div>
-                </div>
-                <div class="fw-bold text-danger fs-6">₹${data.courier.totalAmount.toLocaleString()}</div>
-            </div>`;
-        }
-
-        // EXPENSES
-        if (data.expenses.length > 0) {
-            hasData = true;
-            data.expenses.forEach(e => {
-                grandExpense += e.amount;
-                let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<button onclick="viewReceipt('${e.proof}')" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></button>` : '';
-
-                let editHtml = (e.id && isMasterUser) ? `<button onclick="openEditExpense('${e.id}', '${e.date}', '${e.amount}', '${e.desc}', '${e.cat}', '${e.vendor || ''}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
-
-                let title = e.cat || 'Expense';
-                let subText = e.vendor ? `<span class="fw-bold text-dark">${e.vendor}</span>` : e.desc;
-                if (e.vendor && e.desc) subText = `<span class="fw-bold text-dark">${e.vendor}</span>, ${e.desc}`;
-
-                dayHtml += `
-                <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10 last-border-none">
-                    <div>
-                        <div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}</div>
-                        <div class="text-secondary mt-1" style="font-size:10px;">-- ${subText} ${editHtml}</div>
-                    </div>
-                    <div class="fw-bold text-danger fs-6">₹${e.amount.toLocaleString()}</div>
-                </div>`;
-            });
-        }
-
-        dayHtml += `</div></div>`;
-        dayHtml = dayHtml.replace(/border-bottom border-dashed border-secondary border-opacity-10 last-border-none/g, '');
-        if (hasData) html += dayHtml;
-    });
-
-    html += `</div>`;
-
-    let netTotal = grandIncome - grandCourier - grandExpense;
-    let netColor = netTotal >= 0 ? 'text-success' : 'text-danger';
-    let netIcon = netTotal >= 0 ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>';
-
-    html += `
-        <div class="mt-2 pt-3" style="border-top: 2px dashed #cbd5e1;">
-            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:12px; font-weight:700;">
-                <span class="text-muted"><i class="fas fa-plus-circle text-success me-1"></i> Total Income:</span>
-                <span class="text-success fw-bold fs-6">₹${grandIncome.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:12px; font-weight:700;">
-                <span class="text-muted"><i class="fas fa-minus-circle text-danger me-1"></i> Total Courier:</span>
-                <span class="text-danger fw-bold">₹${grandCourier.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between px-2 mb-3" style="font-size:12px; font-weight:700;">
-                <span class="text-muted"><i class="fas fa-minus-circle text-danger me-1"></i> Other Expenses:</span>
-                <span class="text-danger fw-bold">₹${grandExpense.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between align-items-center px-3 py-3 rounded-4 shadow-sm" style="background:#f8fafc; border: 1px solid #e2e8f0;">
-                <span class="text-dark" style="font-size:12px; font-weight:800; letter-spacing:1px;">NET FLOW (AS PER VIEW):</span>
-                <span class="${netColor} fw-bold" style="font-size:18px;">${netIcon} ₹${Math.abs(netTotal).toLocaleString()}</span>
-            </div>
-        </div>
-    </div>`;
-
-    $('#daybook-container').html(html);
-}
-
-// 🔥 VIEW OFFLINE / PARTNER SALE DETAILS (100% Data Included)
-window.viewOfflineSale = function (oid) {
-    let order = allOrders.find(o => o.orderid === oid);
-    if (!order) return;
-
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
-
-    let isPartner = order.house === 'Partner Bulk';
-
-    let receiptHtml = order.receipt && String(order.receipt).trim() !== "" ?
-        `<a href="${order.receipt}" target="_blank" class="btn btn-outline-primary w-100 mb-3 fw-bold border-2" style="border-radius:8px;"><i class="fas fa-external-link-alt me-1"></i> View Attached Receipt</a>` :
-        `<div class="text-muted small mb-3 text-center bg-light p-2 rounded border"><i class="fas fa-info-circle"></i> No receipt uploaded</div>`;
-
-    // 🔥 Added actual data fetching from order object
-    let grandTot = parseInt(order.grandTotal) || parseInt(order.Grand_Total) || 0;
-    let customerName = order.name || 'Walk-in Customer';
-    let itemDesc = order.message || 'Direct Sale';
-
-    let details = isPartner ?
-        `<div class="text-muted small">Partner Name</div><div class="fs-5 fw-bolder text-dark mb-2">${customerName.replace('Partner:', '').trim()}</div>
-         <div class="text-muted small">Order Details</div><div class="fw-bolder text-dark mb-2">${itemDesc}</div>
-         <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${grandTot.toLocaleString()}</div>` :
-        `<div class="text-muted small">Customer Name</div><div class="fs-6 fw-bolder text-dark mb-2">${customerName}</div>
-         <div class="text-muted small">Purchased Items</div><div class="fw-bolder text-dark mb-2">${itemDesc}</div>
-         <div class="text-muted small">Total Quantity</div><div class="fw-bolder text-dark mb-2">${order.quantity} Bottles</div>
-         <div class="text-muted small">Total Amount Paid</div><div class="fs-4 fw-bolder text-success">₹${grandTot.toLocaleString()}</div>`;
-
-    let deleteBtnHtml = isMasterUser ? `
-        <hr class="border-secondary border-opacity-25">
-        <button class="btn btn-danger w-100 fw-bold shadow-sm py-2" style="border-radius:8px; font-size:12px; letter-spacing:0.5px;" onclick="deleteOfflineSale('${oid}')">
-            <i class="fas fa-trash-alt me-1"></i> DELETE THIS ENTRY
-        </button>` : '';
-
-    if (!$('#swal-zindex-fix').length) {
-        $('<style id="swal-zindex-fix">').html('.swal2-container { z-index: 99999 !important; }').appendTo('head');
-    }
-
-    Swal.fire({
-        title: isPartner ? '🤝 Partner Sale Details' : '🛍️ Local Sale Details',
-        html: `
-            <div class="text-start" style="font-size:14px;">
-                <div class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
-                    ${details}
-                </div>
-                ${receiptHtml}
-                ${deleteBtnHtml}
-            </div>
-        `,
-        showConfirmButton: false,
-        showCloseButton: true
-    });
-}
 
 // 🔥 NEXT / PREV MONTH LOGIC
 window.loadPreviousMonthDayBook = function () {
@@ -5971,178 +5309,6 @@ window.jumpToCurrentMonth = function () {
 };
 
 
-// 🔥 ഫോം കാണിക്കാൻ (Smart Offline Form with Upload)
-window.showOfflineSaleModal = function () {
-    let savedRate = (typeof courierRates !== 'undefined' && courierRates.partnerRate) ? courierRates.partnerRate : 170;
-    let savedMargin = (typeof courierRates !== 'undefined' && courierRates.partnerMargin) ? courierRates.partnerMargin : 50;
-
-    let html = `
-    <div style="text-align:left; font-size:13px;">
-        <div class="d-flex justify-content-center mb-3 gap-2">
-            <input type="radio" class="btn-check" name="saleType" id="sale-offline" value="offline" autocomplete="off" checked onchange="toggleOfflineForm()">
-            <label class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold" for="sale-offline">🛍️ Local Sale</label>
-
-            <input type="radio" class="btn-check" name="saleType" id="sale-partner" value="partner" autocomplete="off" onchange="toggleOfflineForm()">
-            <label class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold" for="sale-partner">🤝 Partner Bulk</label>
-        </div>
-
-        <div id="form-offline" style="display:block;">
-            <label class="fw-bold mb-1 small text-muted">Customer Name (Optional)</label>
-            <input type="text" id="off-name" class="form-control mb-2 fw-bold border-secondary border-opacity-25" placeholder="Walk-in Customer">
-            
-            <label class="fw-bold mb-1 small text-muted">Select Item</label>
-            <select id="off-item" class="form-select mb-2 fw-bold border-secondary border-opacity-25" onchange="updateOfflineFields()">
-                <option value="650g Bottle" data-price="650" data-cost="330">🍯 650g Bottle</option>
-                <option value="500g Bottle" data-price="500" data-cost="250">🍯 500g Bottle</option>
-                <option value="300g Bottle" data-price="300" data-cost="150">🍯 300g Bottle</option>
-                <option value="1Kg Bottle" data-price="1000" data-cost="500">🍯 1Kg Bottle</option>
-                <option value="Custom Item" data-price="0" data-cost="0">✏️ Custom Item...</option>
-            </select>
-            
-            <div class="row g-2 mb-2">
-                <div class="col-6">
-                    <label class="fw-bold mb-1 small text-muted">Selling Price (₹)</label>
-                    <input type="number" id="off-price" class="form-control fw-bold border-secondary border-opacity-25 text-primary" value="650" oninput="calcOfflineTotal()">
-                </div>
-                <div class="col-6">
-                    <label class="fw-bold mb-1 small text-muted">Base Cost (₹)</label>
-                    <input type="number" id="off-cost" class="form-control fw-bold border-secondary border-opacity-25 text-danger" value="330" oninput="calcOfflineTotal()">
-                </div>
-            </div>
-            
-            <label class="fw-bold mb-1 small text-muted">Quantity (No of Bottles)</label>
-            <input type="number" id="off-qty" class="form-control mb-3 fw-bold border-secondary border-opacity-25" value="1" min="1" oninput="calcOfflineTotal()">
-        </div>
-
-        <div id="form-partner" style="display:none;">
-            <label class="fw-bold mb-1 small text-muted">Select Partner</label>
-            <select id="part-name" class="form-select mb-2 fw-bold border-secondary border-opacity-25">
-                <option value="Salam">Salam</option>
-                <option value="Samad">Samad</option>
-                <option value="Jazeela">Jazeela</option>
-            </select>
-
-            <label class="fw-bold mb-1 small text-muted">Weight in Grams (eg: 1200, 8500)</label>
-            <div class="input-group mb-2">
-                <input type="number" id="part-grams" class="form-control fw-bold border-secondary border-opacity-25 fs-5" placeholder="0" oninput="calcPartnerTotal()">
-                <span class="input-group-text fw-bold text-muted border-secondary border-opacity-25 bg-light">gm</span>
-            </div>
-
-            <div class="row g-2 mb-2">
-                <div class="col-6">
-                    <label class="fw-bold mb-1 small text-muted">Cost/Kg (₹)</label>
-                    <input type="number" id="part-rate" class="form-control fw-bold border-secondary border-opacity-25" value="${savedRate}" oninput="calcPartnerTotal()">
-                </div>
-                <div class="col-6">
-                    <label class="fw-bold mb-1 small text-muted">Margin/Kg (₹)</label>
-                    <input type="number" id="part-margin" class="form-control fw-bold text-success border-secondary border-opacity-25" value="${savedMargin}" oninput="calcPartnerTotal()">
-                </div>
-            </div>
-            <div class="text-muted text-end fw-bold" style="font-size:10px;">Selling Price per Kg = ₹<span id="part-sp">${Number(savedRate) + Number(savedMargin)}</span></div>
-        </div>
-
-        <div class="mt-3 p-3 bg-light rounded-4 border text-center shadow-sm">
-            <div class="small text-muted fw-bold text-uppercase mb-1" style="letter-spacing:1px;">Total Amount to Pay</div>
-            <div class="fs-1 fw-bolder text-dark">₹<span id="final-total">650</span></div>
-            <div class="text-success small fw-bold mt-1 mb-3" id="profit-display">Profit: ₹320</div>
-            
-            <div class="text-start border-top pt-2">
-                <label class="fw-bold mb-1 small text-primary"><i class="fas fa-receipt"></i> Upload Payment Receipt (Optional)</label>
-                <input type="file" id="offline-proof" class="form-control form-control-sm border-secondary border-opacity-25" accept="image/*">
-            </div>
-        </div>
-    </div>
-    `;
-
-    Swal.fire({
-        title: 'Direct Sales 🍯',
-        html: html,
-        showCancelButton: true,
-        confirmButtonText: '<i class="fas fa-check-circle"></i> ADD TO ACCOUNTS',
-        confirmButtonColor: '#198754',
-        didOpen: () => {
-            calcOfflineTotal();
-        },
-        preConfirm: async () => {
-            let type = document.querySelector('input[name="saleType"]:checked').value;
-            let data = {};
-
-            if (type === 'offline') {
-                let itemName = document.getElementById('off-item').value;
-                let price = parseInt(document.getElementById('off-price').value) || 0;
-                let cost = parseInt(document.getElementById('off-cost').value) || 0;
-                let qty = parseInt(document.getElementById('off-qty').value) || 1;
-
-                if (itemName === 'Custom Item') itemName = 'Direct Item';
-
-                data = {
-                    type: 'Local Sale',
-                    name: document.getElementById('off-name').value || 'Walk-in Customer',
-                    desc: `${qty}x ${itemName} (₹${price}/ea)`,
-                    quantity: qty,
-                    total: price * qty,
-                    baseCost: cost * qty
-                };
-            } else {
-                let grams = parseFloat(document.getElementById('part-grams').value);
-                if (!grams || grams <= 0) { Swal.showValidationMessage('Enter valid grams!'); return false; }
-
-                let rate = parseFloat(document.getElementById('part-rate').value) || 0;
-                let margin = parseFloat(document.getElementById('part-margin').value) || 0;
-
-                if (rate !== savedRate) {
-                    if (typeof saveSettingToServer === 'function') saveSettingToServer('Partner Rate', 2, 'L', rate);
-                    if (typeof courierRates !== 'undefined') courierRates.partnerRate = rate;
-                }
-                if (margin !== savedMargin) {
-                    if (typeof saveSettingToServer === 'function') saveSettingToServer('Partner Margin', 2, 'M', margin);
-                    if (typeof courierRates !== 'undefined') courierRates.partnerMargin = margin;
-                }
-
-                localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
-
-                let kg = grams / 1000;
-                let base = Math.round(kg * rate);
-                let tot = Math.round(kg * (rate + margin));
-
-                data = {
-                    type: 'Partner Bulk',
-                    name: "Partner: " + document.getElementById('part-name').value,
-                    desc: `${grams}gm Bulk Honey (₹${rate}+${margin}/kg)`,
-                    quantity: 0,
-                    total: tot,
-                    baseCost: base
-                };
-            }
-
-            // 🔥 IMAGE UPLOAD LOGIC
-            let fileInput = document.getElementById('offline-proof');
-            let fileData = null;
-            let fileName = null;
-
-            if (fileInput && fileInput.files.length > 0) {
-                Swal.showLoading(); // ലോഡിങ് കാണിക്കാൻ
-                try {
-                    let compressed = await compressImage(fileInput.files[0]);
-                    fileData = compressed.data;
-                    fileName = compressed.name;
-                } catch (err) {
-                    Swal.showValidationMessage('Image compression failed!');
-                    return false;
-                }
-            }
-
-            data.fileData = fileData;
-            data.fileName = fileName;
-
-            return data;
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            submitDirectSale(result.value);
-        }
-    });
-}
 
 // ടാബ് മാറ്റാൻ
 window.toggleOfflineForm = function () {
@@ -6215,53 +5381,7 @@ function submitDirectSale(data) {
         });
 }
 
-// 🔥 VIEW OFFLINE / PARTNER SALE DETAILS
-window.viewOfflineSale = function (oid) {
-    let order = allOrders.find(o => o.orderid === oid);
-    if (!order) return;
 
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master'; // 🔥 Master Check
-
-    let isPartner = order.house === 'Partner Bulk';
-
-    let receiptHtml = order.receipt && String(order.receipt).trim() !== "" ?
-        `<a href="${order.receipt}" target="_blank" class="btn btn-outline-primary w-100 mb-3 fw-bold border-2" style="border-radius:8px;"><i class="fas fa-external-link-alt me-1"></i> View Attached Receipt</a>` :
-        `<div class="text-muted small mb-3 text-center bg-light p-2 rounded border"><i class="fas fa-info-circle"></i> No receipt uploaded</div>`;
-
-    let details = isPartner ?
-        `<div class="text-muted small">Partner Name</div><div class="fs-5 fw-bolder text-dark mb-2">${order.name.replace('Partner: ', '')}</div>
-         <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${order.grandTotal}</div>` :
-        `<div class="text-muted small">Description</div><div class="fw-bolder text-dark mb-2">${order.message || 'Local Sale'}</div>
-         <div class="text-muted small">Quantity</div><div class="fw-bolder text-dark mb-2">${order.quantity} Bottles</div>
-         <div class="text-muted small">Total Amount</div><div class="fs-4 fw-bolder text-success">₹${order.grandTotal}</div>`;
-
-    // 🔥 ഡിലീറ്റ് ബട്ടൺ മാസ്റ്റർ യൂസർക്ക് മാത്രം!
-    let deleteBtnHtml = isMasterUser ? `
-        <hr class="border-secondary border-opacity-25">
-        <button class="btn btn-danger w-100 fw-bold shadow-sm py-2" style="border-radius:8px; font-size:12px; letter-spacing:0.5px;" onclick="deleteOfflineSale('${oid}')">
-            <i class="fas fa-trash-alt me-1"></i> DELETE THIS ENTRY
-        </button>` : '';
-
-    // 🔥 Z-Index Fix: പോപ്പ്-അപ്പ് താഴെപ്പോകാതിരിക്കാൻ
-    if (!$('#swal-zindex-fix').length) {
-        $('<style id="swal-zindex-fix">').html('.swal2-container { z-index: 99999 !important; }').appendTo('head');
-    }
-
-    Swal.fire({
-        title: isPartner ? '🤝 Partner Sale Details' : '🛍️ Local Sale Details',
-        html: `
-            <div class="text-start" style="font-size:14px;">
-                <div class="mb-3 p-3 bg-white rounded-4 border shadow-sm">
-                    ${details}
-                </div>
-                ${receiptHtml}
-                ${deleteBtnHtml}
-            </div>
-        `,
-        showConfirmButton: false,
-        showCloseButton: true
-    });
-}
 
 // 🔥 DELETE OFFLINE SALE
 window.deleteOfflineSale = function (oid) {
@@ -6279,4 +5399,609 @@ window.deleteOfflineSale = function (oid) {
             }
         });
     });
+}
+
+
+//---------------new
+
+// 🔥 1. UNIFIED CREATE & EDIT WINDOW FOR DIRECT SALES
+window.showOfflineSaleModal = function (editOid = null) {
+    let o = null;
+    if (editOid) o = allOrders.find(x => x.orderid === editOid);
+
+    let isPartner = o ? (o.house === 'Partner Bulk') : false;
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+
+    let savedRate = (typeof courierRates !== 'undefined' && courierRates.partnerRate) ? courierRates.partnerRate : 170;
+    let savedMargin = (typeof courierRates !== 'undefined' && courierRates.partnerMargin) ? courierRates.partnerMargin : 50;
+
+    let offName = o ? (o.name === 'Walk-in Customer' ? '' : o.name) : '';
+    let offQty = o ? o.quantity : 1;
+    let offPrice = 650, offCost = 330;
+    if (o && !isPartner) {
+        offPrice = Math.round((o.grandTotal || o.Grand_Total) / offQty);
+        offCost = Math.round(o.Product_Base_Cost / offQty);
+    }
+
+    let partName = o && isPartner ? o.name.replace('Partner:', '').trim() : 'Salam';
+    let partGrams = '';
+    let partRate = savedRate;
+    let partMargin = savedMargin;
+    if (o && isPartner && o.message) {
+        let match = o.message.match(/(\d+)gm/);
+        if (match) partGrams = match[1];
+        let rMatch = o.message.match(/₹(\d+)\+(\d+)/);
+        if (rMatch) { partRate = parseInt(rMatch[1]); partMargin = parseInt(rMatch[2]); }
+    }
+
+    let receiptUI = '';
+    if (o && o.receipt && String(o.receipt).trim() !== '') {
+        receiptUI = `
+            <div id="existing-receipt-box" class="mb-2 p-2 bg-success bg-opacity-10 border border-success border-opacity-25 rounded d-flex justify-content-between align-items-center">
+                <a href="${o.receipt}" target="_blank" class="fw-bold text-success text-decoration-none" style="font-size:11px;"><i class="fas fa-image"></i> View Current Receipt</a>
+                <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="$('#existing-receipt-box').hide(); $('#remove-receipt-flag').val('true');"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+            <input type="hidden" id="remove-receipt-flag" value="false">
+        `;
+    } else {
+        receiptUI = `<input type="hidden" id="remove-receipt-flag" value="false">`;
+    }
+
+    let deleteBtn = (editOid && isMasterUser) ? `<hr class="border-secondary border-opacity-25"><button type="button" class="btn btn-outline-danger w-100 mt-2 fw-bold shadow-sm py-2" style="border-radius:12px; font-size:13px;" onclick="deleteOfflineSale('${editOid}')"><i class="fas fa-trash-alt"></i> DELETE ENTRY</button>` : '';
+
+    let html = `
+    <div style="text-align:left; font-size:13px;">
+        <div class="d-flex justify-content-center mb-3 gap-2">
+            <input type="radio" class="btn-check" name="saleType" id="sale-offline" value="offline" autocomplete="off" ${!isPartner ? 'checked' : ''} onchange="toggleOfflineForm()">
+            <label class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold" for="sale-offline">🛍️ Local Sale</label>
+
+            <input type="radio" class="btn-check" name="saleType" id="sale-partner" value="partner" autocomplete="off" ${isPartner ? 'checked' : ''} onchange="toggleOfflineForm()">
+            <label class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold" for="sale-partner">🤝 Partner Bulk</label>
+        </div>
+
+        <div id="form-offline" style="display:${!isPartner ? 'block' : 'none'};">
+            <label class="fw-bold mb-1 small text-muted">Customer Name (Optional)</label>
+            <input type="text" id="off-name" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="${offName}" placeholder="Walk-in Customer">
+            
+            <label class="fw-bold mb-1 small text-muted">Select Item</label>
+            <select id="off-item" class="form-select mb-2 fw-bold border-secondary border-opacity-25" onchange="updateOfflineFields()">
+                <option value="650g Bottle" data-price="650" data-cost="330">🍯 650g Bottle</option>
+                <option value="500g Bottle" data-price="500" data-cost="250">🍯 500g Bottle</option>
+                <option value="300g Bottle" data-price="300" data-cost="150">🍯 300g Bottle</option>
+                <option value="1Kg Bottle" data-price="1000" data-cost="500">🍯 1Kg Bottle</option>
+                <option value="Custom Item" data-price="0" data-cost="0">✏️ Custom Item...</option>
+            </select>
+            
+            <div class="row g-2 mb-2">
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Selling Price (₹)</label>
+                    <input type="number" id="off-price" class="form-control fw-bold border-secondary border-opacity-25 text-primary" value="${offPrice}" oninput="calcOfflineTotal()">
+                </div>
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Base Cost (₹)</label>
+                    <input type="number" id="off-cost" class="form-control fw-bold border-secondary border-opacity-25 text-danger" value="${offCost}" oninput="calcOfflineTotal()">
+                </div>
+            </div>
+            
+            <label class="fw-bold mb-1 small text-muted">Quantity (No of Bottles)</label>
+            <input type="number" id="off-qty" class="form-control mb-3 fw-bold border-secondary border-opacity-25" value="${offQty}" min="1" oninput="calcOfflineTotal()">
+        </div>
+
+        <div id="form-partner" style="display:${isPartner ? 'block' : 'none'};">
+            <label class="fw-bold mb-1 small text-muted">Select Partner</label>
+            <select id="part-name" class="form-select mb-2 fw-bold border-secondary border-opacity-25">
+                <option value="Salam" ${partName === 'Salam' ? 'selected' : ''}>Salam</option>
+                <option value="Samad" ${partName === 'Samad' ? 'selected' : ''}>Samad</option>
+                <option value="Jazeela" ${partName === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
+            </select>
+
+            <label class="fw-bold mb-1 small text-muted">Weight in Grams (eg: 1200, 8500)</label>
+            <div class="input-group mb-2">
+                <input type="number" id="part-grams" class="form-control fw-bold border-secondary border-opacity-25 fs-5" value="${partGrams}" placeholder="0" oninput="calcPartnerTotal()">
+                <span class="input-group-text fw-bold text-muted border-secondary border-opacity-25 bg-light">gm</span>
+            </div>
+
+            <div class="row g-2 mb-2">
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Cost/Kg (₹)</label>
+                    <input type="number" id="part-rate" class="form-control fw-bold border-secondary border-opacity-25" value="${partRate}" oninput="calcPartnerTotal()">
+                </div>
+                <div class="col-6">
+                    <label class="fw-bold mb-1 small text-muted">Margin/Kg (₹)</label>
+                    <input type="number" id="part-margin" class="form-control fw-bold text-success border-secondary border-opacity-25" value="${partMargin}" oninput="calcPartnerTotal()">
+                </div>
+            </div>
+            <div class="text-muted text-end fw-bold" style="font-size:10px;">Selling Price per Kg = ₹<span id="part-sp">${Number(partRate) + Number(partMargin)}</span></div>
+        </div>
+
+        <div class="mt-3 p-3 bg-light rounded-4 border text-center shadow-sm">
+            <div class="small text-muted fw-bold text-uppercase mb-1" style="letter-spacing:1px;">Total Amount to Pay</div>
+            <div class="fs-1 fw-bolder text-dark">₹<span id="final-total">0</span></div>
+            <div class="text-success small fw-bold mt-1 mb-3" id="profit-display">Profit: ₹0</div>
+            
+            <div class="text-start border-top pt-2">
+                ${receiptUI}
+                <label class="fw-bold mb-1 small text-primary"><i class="fas fa-upload"></i> ${o && o.receipt ? 'Replace Receipt' : 'Upload Receipt'} (Optional)</label>
+                <input type="file" id="offline-proof" class="form-control form-control-sm border-secondary border-opacity-25" accept="image/*">
+            </div>
+        </div>
+        ${deleteBtn}
+    </div>
+    `;
+
+    if (!$('#swal-zindex-fix').length) {
+        $('<style id="swal-zindex-fix">').html('.swal2-container { z-index: 99999 !important; }').appendTo('head');
+    }
+
+    Swal.fire({
+        title: editOid ? '✏️ Update Sale' : '🍯 Direct Sales',
+        html: html,
+        showCancelButton: true,
+        confirmButtonText: editOid ? '<i class="fas fa-save"></i> UPDATE SALE' : '<i class="fas fa-check-circle"></i> ADD TO ACCOUNTS',
+        confirmButtonColor: editOid ? '#2563eb' : '#198754',
+        didOpen: () => {
+            if (isPartner) calcPartnerTotal(); else calcOfflineTotal();
+        },
+        preConfirm: async () => {
+            let type = document.querySelector('input[name="saleType"]:checked').value;
+            let data = {};
+
+            if (type === 'offline') {
+                let itemName = document.getElementById('off-item').value;
+                let price = parseInt(document.getElementById('off-price').value) || 0;
+                let cost = parseInt(document.getElementById('off-cost').value) || 0;
+                let qty = parseInt(document.getElementById('off-qty').value) || 1;
+                if (itemName === 'Custom Item') itemName = 'Direct Item';
+
+                data = {
+                    type: 'Local Sale',
+                    name: document.getElementById('off-name').value || 'Walk-in Customer',
+                    desc: `${qty}x ${itemName} (₹${price}/ea)`,
+                    quantity: qty,
+                    total: price * qty,
+                    baseCost: cost * qty
+                };
+            } else {
+                let grams = parseFloat(document.getElementById('part-grams').value);
+                if (!grams || grams <= 0) { Swal.showValidationMessage('Enter valid grams!'); return false; }
+                let rate = parseFloat(document.getElementById('part-rate').value) || 0;
+                let margin = parseFloat(document.getElementById('part-margin').value) || 0;
+
+                let kg = grams / 1000;
+                let base = Math.round(kg * rate);
+                let tot = Math.round(kg * (rate + margin));
+
+                data = {
+                    type: 'Partner Bulk',
+                    name: "Partner: " + document.getElementById('part-name').value,
+                    desc: `${grams}gm Bulk Honey (₹${rate}+${margin}/kg)`,
+                    quantity: 0,
+                    total: tot,
+                    baseCost: base
+                };
+            }
+
+            let fileInput = document.getElementById('offline-proof');
+            let fileData = null;
+            let fileName = null;
+
+            if (fileInput && fileInput.files.length > 0) {
+                Swal.showLoading();
+                try {
+                    let compressed = await compressImage(fileInput.files[0]);
+                    fileData = compressed.data;
+                    fileName = compressed.name;
+                } catch (err) {
+                    Swal.showValidationMessage('Image compression failed!');
+                    return false;
+                }
+            }
+
+            data.fileData = fileData;
+            data.fileName = fileName;
+            data.editOid = editOid; // 🔥 അപ്ഡേറ്റ് ആണെന്ന് തിരിച്ചറിയാൻ
+            data.removeReceipt = document.getElementById('remove-receipt-flag') ? document.getElementById('remove-receipt-flag').value === 'true' : false;
+
+            return data;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            submitDirectSale(result.value);
+        }
+    });
+}
+
+// 🔥 2. UNIFIED CREATE & EDIT WINDOW FOR EXPENSES
+window.showAddExpenseModal = function (editId = null) {
+    let eObj = null;
+    if (editId && dashboardData && dashboardData.monthTimeline) {
+        eObj = dashboardData.monthTimeline.expense.find(x => x.id === editId);
+    }
+
+    let oldDate = eObj ? new Date(eObj.date) : new Date();
+    let oldCat = eObj ? eObj.cat : 'Materials';
+    let oldVendor = eObj ? eObj.vendor : '';
+    let oldDesc = eObj ? eObj.desc : '';
+    let oldAmount = eObj ? eObj.amount : '';
+    let oldProof = eObj ? eObj.proof : '';
+
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let editSalaryOption = isMasterUser ? `<option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>` : '';
+
+    let receiptUI = '';
+    if (oldProof && String(oldProof).trim() !== '') {
+        receiptUI = `
+            <div id="existing-exp-receipt-box" class="mb-2 p-2 bg-success bg-opacity-10 border border-success border-opacity-25 rounded d-flex justify-content-between align-items-center">
+                <a href="${oldProof}" target="_blank" class="fw-bold text-success text-decoration-none" style="font-size:11px;"><i class="fas fa-image"></i> View Current Receipt</a>
+                <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="$('#existing-exp-receipt-box').hide(); $('#remove-exp-receipt-flag').val('true');"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+            <input type="hidden" id="remove-exp-receipt-flag" value="false">
+        `;
+    } else {
+        receiptUI = `<input type="hidden" id="remove-exp-receipt-flag" value="false">`;
+    }
+
+    let deleteBtnHtml = (editId && isMasterUser) ? `<hr class="border-secondary border-opacity-25 mt-4"><button type="button" class="btn btn-outline-danger w-100 fw-bold shadow-sm py-2" style="border-radius:12px; font-size:13px;" onclick="deleteExpenseItem('${editId}')"><i class="fas fa-trash-alt"></i> DELETE EXPENSE</button>` : '';
+
+    if (!$('#swal-zindex-fix').length) {
+        $('<style id="swal-zindex-fix">').html('.swal2-container { z-index: 99999 !important; } .flatpickr-calendar { z-index: 100000 !important; }').appendTo('head');
+    }
+
+    Swal.fire({
+        title: editId ? '✏️ Edit Expense' : 'Add New Expense 🧾',
+        html: `
+            <div style="text-align:left; font-size:14px;">
+                <label class="fw-bold" style="color:#2563eb;">📅 Date & Time</label>
+                <div class="input-group mb-2">
+                    <span class="input-group-text bg-white text-primary border-end-0"><i class="fas fa-calendar-alt"></i></span>
+                    <input type="text" id="exp-date" class="form-control bg-white border-start-0 fw-bold" placeholder="Select Date & Time..." readonly>
+                </div>
+
+                <label class="fw-bold mt-2">📂 Category</label>
+                <select id="exp-category" class="form-select mb-2" onchange="togglePartnerSelect()">
+                    <option value="Material Purchase" ${oldCat.includes('Material') ? 'selected' : ''}>Material Purchase</option>
+                    <option value="Packaging Material" ${oldCat.includes('Packaging') ? 'selected' : ''}>Packaging Material</option>
+                    <option value="Marketing/Ads" ${oldCat.includes('Ads') || oldCat.includes('Marketing') ? 'selected' : ''}>Marketing / Ads</option>
+                    <option value="Transport/Fuel" ${oldCat.includes('Travel') || oldCat.includes('Transport') ? 'selected' : ''}>Transport / Fuel</option>
+                    ${editSalaryOption}
+                    <option value="Office Expense" ${oldCat === 'Office Expense' ? 'selected' : ''}>Office Expense</option>
+                    <option value="Refund" ${oldCat === 'Refund' ? 'selected' : ''}>Refund</option>
+                    <option value="Other" ${oldCat === 'Other' ? 'selected' : ''}>Other</option>
+                </select>
+
+                <div id="partner-section" style="display:${oldCat === 'Salary' ? 'block' : 'none'}; background:#f0f9ff; padding:10px; border-radius:8px; margin-bottom:10px; border:1px solid #bae6fd;">
+                    <label class="fw-bold text-primary" style="font-size:11px;">SELECT PARTNER:</label>
+                    <div id="partner-list" class="d-flex flex-column gap-2 mt-1"></div>
+                </div>
+
+                <label class="fw-bold">🏪 Vendor / Shop Name</label>
+                <input type="text" id="exp-vendor" class="form-control mb-2" value="${oldVendor}" placeholder="Ex: Lulu Hypermarket">
+
+                <label class="fw-bold">📝 Description</label>
+                <textarea id="exp-desc" class="form-control mb-2" rows="2" placeholder="Details...">${oldDesc}</textarea>
+
+                <label class="fw-bold">💰 Amount (₹)</label>
+                <input type="number" id="exp-amount" class="form-control mb-2" value="${oldAmount}" placeholder="0.00">
+                
+                <div class="mt-3 p-3 bg-light rounded-4 border">
+                    ${receiptUI}
+                    <label class="fw-bold mb-1 small text-primary"><i class="fas fa-upload"></i> ${oldProof ? 'Replace Receipt' : 'Upload Proof'} (Optional)</label>
+                    <input type="file" id="exp-proof" class="form-control form-control-sm border-secondary border-opacity-25" accept="image/*">
+                </div>
+
+                <button id="btn-save-exp" class="btn btn-primary w-100 mt-3 py-2 fw-bold shadow-sm" onclick="submitExpense(event, '${editId || ''}')" style="border-radius: 50px;">
+                    <i class="fas fa-save"></i> ${editId ? 'UPDATE EXPENSE' : 'SAVE EXPENSE'}
+                </button>
+                ${deleteBtnHtml}
+            </div>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true,
+        didOpen: () => {
+            if (typeof renderPartnerList === 'function') renderPartnerList();
+            if (oldCat === 'Salary') setTimeout(() => { selectPartner(oldVendor); }, 500);
+
+            flatpickr("#exp-date", {
+                enableTime: true,
+                dateFormat: "Y-m-d\\TH:i",
+                altInput: true,
+                altFormat: "F j, Y at h:i K",
+                defaultDate: oldDate,
+                time_24hr: false,
+                disableMobile: true
+            });
+        }
+    });
+}
+
+// 🔥 3. UNIFIED SUBMIT EXPENSE (Handles Create & Update)
+async function submitExpense(e, editId = null) {
+    e.preventDefault();
+    let btn = $('#btn-save-exp');
+    let originalText = btn.html();
+    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SAVING...');
+
+    let fileInput = document.getElementById('exp-proof');
+    let fileData = null; let fileName = null;
+
+    if (fileInput && fileInput.files.length > 0) {
+        try {
+            btn.html('<i class="fas fa-compress"></i> COMPRESSING...');
+            let compressed = await compressImage(fileInput.files[0]);
+            fileData = compressed.data; fileName = compressed.name;
+        } catch (err) {
+            alert("Image processing failed");
+            btn.prop('disabled', false).html(originalText);
+            return;
+        }
+    }
+
+    let selectedD = $('#exp-date').val() || flatpickr.formatDate(new Date(), "Y-m-d");
+
+    let formData = {
+        id: editId || ('EXP-' + Date.now()),
+        date: selectedD,
+        category: $('#exp-category').val(),
+        vendor: $('#exp-vendor').val(),
+        description: $('#exp-desc').val(),
+        amount: $('#exp-amount').val(),
+        fileData: fileData,
+        fileName: fileName,
+        editId: editId, // 🔥 അപ്ഡേറ്റ് ആണെന്ന് ബാക്കെൻഡ് തിരിച്ചറിയാൻ
+        removeReceipt: document.getElementById('remove-exp-receipt-flag') ? document.getElementById('remove-exp-receipt-flag').value === 'true' : false
+    };
+
+    if (!navigator.onLine && !editId) {
+        saveExpenseOffline(formData, selectedD);
+        btn.prop('disabled', false).html(originalText);
+        return;
+    }
+
+    let actionName = editId ? 'editExpense' : 'addExpense';
+
+    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: actionName, data: formData }) })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success') {
+                Swal.fire({ icon: 'success', title: 'Saved!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
+                if (editId) {
+                    setTimeout(() => { location.reload(); }, 1500);
+                } else {
+                    resetExpenseForm(selectedD);
+                }
+            } else {
+                if (!editId) saveExpenseOffline(formData, selectedD);
+            }
+        })
+        .catch(err => {
+            if (!editId) saveExpenseOffline(formData, selectedD);
+        })
+        .finally(() => btn.prop('disabled', false).html(originalText));
+}
+
+// 🔥 4. UPDATE DAY BOOK TO CALL UNIFIED MODALS
+window.renderDayBookTable = function () {
+    if (!dashboardData || !dashboardData.monthTimeline) return;
+
+    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+
+    let mY = selectedDate.getFullYear();
+    let mM = selectedDate.getMonth();
+    let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    let currentDate = new Date();
+    let isCurrentMonth = (mY === currentDate.getFullYear() && mM === currentDate.getMonth());
+
+    let viewMode = $('#daybook-view-mode').length > 0 ? $('#daybook-view-mode').val() : 'accounting';
+    let courierMode = $('#courier-charge-mode').length > 0 ? $('#courier-charge-mode').val() : 'actual';
+
+    let dailyData = {};
+    const initDate = (dStr) => { if (!dailyData[dStr]) dailyData[dStr] = { income: { orders: [], totalAmount: 0, totalBottles: 0 }, courier: { items: [], totalAmount: 0 }, expenses: [] }; };
+
+    allOrders.forEach(o => {
+        let status = o.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+
+        let qty = parseInt(o.quantity) || 0;
+        let pDate = parseOrderDate(o.paidDate || o.timestamp);
+
+        let totalCourier = parseInt(o.Courier_Charge) || 0;
+        if (isNaN(totalCourier) || totalCourier <= 0) totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        let actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+        if (isNaN(actualCourier) || actualCourier <= 0) actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
+
+        let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
+        let saleType = (o.house === 'Local Sale' || o.house === 'Partner Bulk') ? o.house : 'Online';
+
+        if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
+            let dStr = flatpickr.formatDate(pDate, "Y-m-d");
+            initDate(dStr);
+
+            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+            if (isNaN(amt) || amt <= 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
+
+            dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt, msg: o.message });
+            dailyData[dStr].income.totalAmount += amt;
+            dailyData[dStr].income.totalBottles += qty;
+
+            if (viewMode === 'profit' && applyCourierCost > 0 && saleType === 'Online') {
+                dailyData[dStr].courier.items.push({ charge: applyCourierCost });
+                dailyData[dStr].courier.totalAmount += applyCourierCost;
+            }
+        }
+
+        if (viewMode === 'accounting' && status !== 'Paid') {
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM && saleType === 'Online') {
+                let dStr = flatpickr.formatDate(dDate, "Y-m-d");
+                initDate(dStr);
+                if (applyCourierCost > 0) {
+                    dailyData[dStr].courier.items.push({ charge: applyCourierCost });
+                    dailyData[dStr].courier.totalAmount += applyCourierCost;
+                }
+            }
+        }
+    });
+
+    if (dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => {
+            if (e.isCourier) return;
+            let dDate = new Date(e.date);
+            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                let dStr = flatpickr.formatDate(dDate, "Y-m-d");
+                initDate(dStr);
+                dailyData[dStr].expenses.push(e);
+            }
+        });
+    }
+
+    let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
+    let grandIncome = 0, grandCourier = 0, grandExpense = 0;
+
+    if ($('#daybook-container').length === 0) $('<div id="daybook-container" class="mt-4 mb-4 pb-4"></div>').insertAfter('#tx-details-area');
+    let nextMonthBtnHtml = !isCurrentMonth ? `<button class="btn btn-sm btn-dark rounded-pill fw-bold ms-2 shadow-sm" style="font-size:9px; padding: 5px 12px;" onclick="loadNextMonthDayBook()">NEXT MTH <i class="fas fa-chevron-right ms-1"></i></button>` : '';
+
+    let html = `
+    <div class="bg-white p-3 rounded-4 shadow-sm border border-secondary border-opacity-25 mt-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            <h6 class="fw-bold text-dark m-0" style="font-size:13px; letter-spacing:0.5px;"><i class="fas fa-book-open text-primary me-2"></i> DAY BOOK</h6>
+            <div class="d-flex align-items-center">
+                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 me-2" style="font-size:11px;">${monthName.toUpperCase()}</span>
+                <button class="btn btn-sm btn-outline-dark rounded-pill fw-bold" style="font-size:9px; padding: 5px 12px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> PREV</button>
+                ${nextMonthBtnHtml}
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center mb-3 gap-2">
+            <select id="daybook-view-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
+                <option value="accounting" ${viewMode === 'accounting' ? 'selected' : ''}>📊 Accounting View</option>
+                <option value="profit" ${viewMode === 'profit' ? 'selected' : ''}>💸 Daily Profit View</option>
+            </select>
+            <select id="courier-charge-mode" class="form-select form-select-sm w-auto fw-bold text-secondary border-secondary shadow-sm" style="font-size:11px; border-radius:8px;" onchange="renderDayBookTable()">
+                <option value="actual" ${courierMode === 'actual' ? 'selected' : ''}>🚚 Courier Charge Only (Default)</option>
+                <option value="total" ${courierMode === 'total' ? 'selected' : ''}>🚚 Courier Charge + Margin</option>
+            </select>
+        </div>
+        <div>`;
+
+    sortedDates.forEach(dateStr => {
+        let data = dailyData[dateStr];
+        let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+
+        let dayHtml = `<div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm"><div class="fw-bold text-dark border-bottom px-2 py-1 d-flex align-items-center" style="font-size:11px; background:#e2e8f0;"><i class="far fa-calendar-alt me-1 text-muted"></i> ${displayDate}</div><div class="p-2 bg-white">`;
+        let hasData = false;
+
+        if (data.income.orders.length > 0) {
+            hasData = true;
+            grandIncome += data.income.totalAmount;
+            let normalGroups = {}, offlineGroups = [], partnerGroups = [];
+
+            data.income.orders.forEach(o => {
+                if (o.type === 'Local Sale') offlineGroups.push(o);
+                else if (o.type === 'Partner Bulk') partnerGroups.push(o);
+                else {
+                    let q = parseInt(o.qty) || 1;
+                    if (!normalGroups[q]) normalGroups[q] = { totalAmt: 0, count: 0 };
+                    normalGroups[q].totalAmt += o.amt;
+                    normalGroups[q].count++;
+                }
+            });
+
+            let bdParts = [];
+            Object.keys(normalGroups).sort((a, b) => a - b).forEach(q => {
+                bdParts.push(`₹${normalGroups[q].totalAmt.toLocaleString()}(<span class="text-dark fw-bold">${normalGroups[q].count}x${q}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:9px;"></i>)`);
+            });
+
+            let breakdownText = bdParts.join(' <span class="text-muted mx-1">+</span> ');
+
+            dayHtml += `
+            <div class="d-flex justify-content-between align-items-start mb-2 pb-2 ${offlineGroups.length === 0 && partnerGroups.length === 0 ? 'border-bottom border-dashed border-secondary border-opacity-10' : ''}">
+                <div>
+                    <div class="fw-bold text-success" style="font-size:12px;">
+                        <i class="fas fa-arrow-down me-1"></i> ${data.income.orders.length} Sale(s), <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 ms-1">${data.income.totalBottles} <i class="fas fa-wine-bottle"></i></span>
+                    </div>
+                    <div class="text-secondary mt-1" style="font-size:10px; line-height:1.5;">-- Online: (${breakdownText || '0'})</div>
+                </div>
+                <div class="fw-bold text-success fs-6">₹${data.income.totalAmount.toLocaleString()}</div>
+            </div>`;
+
+            if (offlineGroups.length > 0) {
+                offlineGroups.forEach(o => {
+                    let custName = o.name || 'Walk-in Customer';
+                    dayHtml += `
+                    <div class="d-flex justify-content-between align-items-center mb-2 ms-3 p-2 bg-light rounded border border-primary border-opacity-25">
+                        <div class="d-flex flex-column">
+                            <span class="text-primary fw-bold" style="font-size:11.5px;"><i class="fas fa-store me-1"></i> ₹${o.amt} (<span class="text-dark">${o.qty}</span><i class="fas fa-wine-bottle ms-1 text-muted" style="font-size:10px;"></i>)</span>
+                            <span class="text-muted mt-1" style="font-size:9.5px; font-weight:600;"><i class="fas fa-user-circle me-1"></i>${custName}</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:10px; border-radius:6px; font-weight:800;" onclick="showOfflineSaleModal('${o.oid}')"><i class="fas fa-edit me-1"></i> Edit</button>
+                    </div>`;
+                });
+            }
+            if (partnerGroups.length > 0) {
+                partnerGroups.forEach(p => {
+                    let pName = String(p.name).replace('Partner:', '').trim();
+                    let descText = String(p.msg || '').split('(')[0].trim() || 'Bulk Sale';
+                    dayHtml += `
+                    <div class="d-flex justify-content-between align-items-center mb-2 ms-3 p-2 bg-light rounded border border-warning border-opacity-50">
+                        <div class="d-flex flex-column">
+                            <span class="text-dark fw-bold" style="font-size:11.5px;"><i class="fas fa-handshake text-warning me-1"></i> ${pName} <span class="ms-1 text-success">₹${p.amt}</span></span>
+                            <span class="text-muted mt-1" style="font-size:9px; font-weight:600;"><i class="fas fa-info-circle me-1"></i>${descText}</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-dark py-1 px-3 shadow-sm" style="font-size:10px; border-radius:6px; font-weight:800;" onclick="showOfflineSaleModal('${p.oid}')"><i class="fas fa-edit text-warning me-1"></i> Edit</button>
+                    </div>`;
+                });
+            }
+            if (offlineGroups.length > 0 || partnerGroups.length > 0) dayHtml += `<div class="border-bottom border-dashed border-secondary border-opacity-10 mb-2 mt-2"></div>`;
+        }
+
+        if (data.courier.items.length > 0) {
+            hasData = true;
+            grandCourier += data.courier.totalAmount;
+            dayHtml += `<div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
+                <div><div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-truck me-1"></i> Courier Charge</div></div>
+                <div class="fw-bold text-danger fs-6">₹${data.courier.totalAmount.toLocaleString()}</div>
+            </div>`;
+        }
+
+        if (data.expenses.length > 0) {
+            hasData = true;
+            data.expenses.forEach(e => {
+                grandExpense += e.amount;
+                let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<a href="${e.proof}" target="_blank" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></a>` : '';
+                let editHtml = (e.id && isMasterUser) ? `<button onclick="showAddExpenseModal('${e.id}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
+                let title = e.cat || 'Expense';
+                let subText = e.vendor ? `<span class="fw-bold text-dark">${e.vendor}</span>` : e.desc;
+                if (e.vendor && e.desc) subText = `<span class="fw-bold text-dark">${e.vendor}</span>, ${e.desc}`;
+
+                dayHtml += `
+                <div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10 last-border-none">
+                    <div>
+                        <div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}</div>
+                        <div class="text-secondary mt-1" style="font-size:10px;">-- ${subText} ${editHtml}</div>
+                    </div>
+                    <div class="fw-bold text-danger fs-6">₹${e.amount.toLocaleString()}</div>
+                </div>`;
+            });
+        }
+
+        dayHtml += `</div></div>`;
+        dayHtml = dayHtml.replace(/border-bottom border-dashed border-secondary border-opacity-10 last-border-none/g, '');
+        if (hasData) html += dayHtml;
+    });
+
+    html += `</div>
+        <div class="mt-2 pt-3" style="border-top: 2px dashed #cbd5e1;">
+            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:12px; font-weight:700;"><span class="text-muted"><i class="fas fa-plus-circle text-success me-1"></i> Total Income:</span><span class="text-success fw-bold fs-6">₹${grandIncome.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between px-2 mb-2" style="font-size:12px; font-weight:700;"><span class="text-muted"><i class="fas fa-minus-circle text-danger me-1"></i> Total Courier:</span><span class="text-danger fw-bold">₹${grandCourier.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between px-2 mb-3" style="font-size:12px; font-weight:700;"><span class="text-muted"><i class="fas fa-minus-circle text-danger me-1"></i> Other Expenses:</span><span class="text-danger fw-bold">₹${grandExpense.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between align-items-center px-3 py-3 rounded-4 shadow-sm" style="background:#f8fafc; border: 1px solid #e2e8f0;">
+                <span class="text-dark" style="font-size:12px; font-weight:800; letter-spacing:1px;">NET FLOW (AS PER VIEW):</span>
+                <span class="${grandIncome - grandCourier - grandExpense >= 0 ? 'text-success' : 'text-danger'} fw-bold" style="font-size:18px;">₹${Math.abs(grandIncome - grandCourier - grandExpense).toLocaleString()}</span>
+            </div>
+        </div>
+    </div>`;
+
+    $('#daybook-container').html(html);
 }
