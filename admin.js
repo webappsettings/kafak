@@ -2817,16 +2817,14 @@ function initFlatpickrs() {
     }
 }
 
-// 🔥 1. ഡാഷ്‌ബോർഡ് ഡാറ്റ എടുക്കാൻ (Loader സഹിതം)
+// 🔥 1. ഡാഷ്‌ബോർഡ് ഡാറ്റ എടുക്കാൻ (Background Load - No Screen Block)
 function fetchDashboardDataBg() {
     let y = selectedDate.getFullYear();
     let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
     let d = String(selectedDate.getDate()).padStart(2, '0');
     let dateStr = `${y}-${m}-${d}`;
 
-    // 🔥 ഡാറ്റ എടുക്കും മുൻപ് മെയിൻ ലോഡർ കാണിക്കുന്നു
-    let loader = document.getElementById('loader');
-    if (loader) loader.style.display = 'flex';
+    // (ശ്രദ്ധിക്കുക: മെയിൻ ലോഡർ നമ്മൾ ഒഴിവാക്കി, പകരം changeDashDate-ലെ ഇൻലൈൻ ലോഡർ മാത്രം വർക്ക് ചെയ്യും)
 
     fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
         .then(res => res.json())
@@ -2835,10 +2833,9 @@ function fetchDashboardDataBg() {
                 dashboardData = res.data;
                 renderDashboard();
             }
-        }).catch(err => console.error(err))
-        .finally(() => {
-            // 🔥 ഡാറ്റ ലോഡ് ആയതിന് ശേഷം ലോഡർ മറയ്ക്കുന്നു
-            if (loader) loader.style.display = 'none';
+        }).catch(err => {
+            console.error(err);
+            $('#tx-details-area').html('<div class="text-center py-4 text-danger small"><i class="fas fa-exclamation-triangle"></i> Failed to load data. Please refresh.</div>');
         });
 }
 
