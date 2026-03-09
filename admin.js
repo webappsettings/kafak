@@ -5404,7 +5404,7 @@ window.deleteOfflineSale = function (oid) {
 
 //---------------new
 
-// 🔥 1. UNIFIED CREATE & EDIT WINDOW FOR DIRECT SALES
+// 🔥 1. UNIFIED CREATE & EDIT WINDOW FOR DIRECT SALES (With Clear Delete Indication)
 window.showOfflineSaleModal = function (editOid = null) {
     let o = null;
     if (editOid) o = allOrders.find(x => x.orderid === editOid);
@@ -5434,12 +5434,16 @@ window.showOfflineSaleModal = function (editOid = null) {
         if (rMatch) { partRate = parseInt(rMatch[1]); partMargin = parseInt(rMatch[2]); }
     }
 
+    // 🔥 NEW: Clear Visual Indication for Receipt Removal
     let receiptUI = '';
     if (o && o.receipt && String(o.receipt).trim() !== '') {
         receiptUI = `
             <div id="existing-receipt-box" class="mb-2 p-2 bg-success bg-opacity-10 border border-success border-opacity-25 rounded d-flex justify-content-between align-items-center">
                 <a href="${o.receipt}" target="_blank" class="fw-bold text-success text-decoration-none" style="font-size:11px;"><i class="fas fa-image"></i> View Current Receipt</a>
-                <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="$('#existing-receipt-box').hide(); $('#remove-receipt-flag').val('true');"><i class="fas fa-trash"></i> Remove</button>
+                <button type="button" class="btn btn-sm btn-danger py-0 px-2 shadow-sm" onclick="$('#existing-receipt-box').fadeOut(200, function(){$('#receipt-removed-msg').fadeIn(200);}); $('#remove-receipt-flag').val('true');"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+            <div id="receipt-removed-msg" class="mb-2 p-2 bg-danger bg-opacity-10 border border-danger border-opacity-25 rounded text-danger fw-bold shadow-sm" style="display:none; font-size:11px;">
+                <i class="fas fa-exclamation-circle me-1"></i> Receipt marked for deletion! (Update to save)
             </div>
             <input type="hidden" id="remove-receipt-flag" value="false">
         `;
@@ -5599,7 +5603,7 @@ window.showOfflineSaleModal = function (editOid = null) {
 
             data.fileData = fileData;
             data.fileName = fileName;
-            data.editOid = editOid; // 🔥 അപ്ഡേറ്റ് ആണെന്ന് തിരിച്ചറിയാൻ
+            data.editOid = editOid;
             data.removeReceipt = document.getElementById('remove-receipt-flag') ? document.getElementById('remove-receipt-flag').value === 'true' : false;
 
             return data;
@@ -5611,7 +5615,7 @@ window.showOfflineSaleModal = function (editOid = null) {
     });
 }
 
-// 🔥 2. UNIFIED CREATE & EDIT WINDOW FOR EXPENSES
+// 🔥 2. UNIFIED CREATE & EDIT WINDOW FOR EXPENSES (With Clear Delete Indication)
 window.showAddExpenseModal = function (editId = null) {
     let eObj = null;
     if (editId && dashboardData && dashboardData.monthTimeline) {
@@ -5628,12 +5632,16 @@ window.showAddExpenseModal = function (editId = null) {
     let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
     let editSalaryOption = isMasterUser ? `<option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>` : '';
 
+    // 🔥 NEW: Clear Visual Indication for Expense Receipt Removal
     let receiptUI = '';
     if (oldProof && String(oldProof).trim() !== '') {
         receiptUI = `
             <div id="existing-exp-receipt-box" class="mb-2 p-2 bg-success bg-opacity-10 border border-success border-opacity-25 rounded d-flex justify-content-between align-items-center">
                 <a href="${oldProof}" target="_blank" class="fw-bold text-success text-decoration-none" style="font-size:11px;"><i class="fas fa-image"></i> View Current Receipt</a>
-                <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="$('#existing-exp-receipt-box').hide(); $('#remove-exp-receipt-flag').val('true');"><i class="fas fa-trash"></i> Remove</button>
+                <button type="button" class="btn btn-sm btn-danger py-0 px-2 shadow-sm" onclick="$('#existing-exp-receipt-box').fadeOut(200, function(){$('#exp-receipt-removed-msg').fadeIn(200);}); $('#remove-exp-receipt-flag').val('true');"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+            <div id="exp-receipt-removed-msg" class="mb-2 p-2 bg-danger bg-opacity-10 border border-danger border-opacity-25 rounded text-danger fw-bold shadow-sm" style="display:none; font-size:11px;">
+                <i class="fas fa-exclamation-circle me-1"></i> Receipt marked for deletion! (Update to save)
             </div>
             <input type="hidden" id="remove-exp-receipt-flag" value="false">
         `;
@@ -5713,6 +5721,7 @@ window.showAddExpenseModal = function (editId = null) {
         }
     });
 }
+
 
 // 🔥 3. UNIFIED SUBMIT EXPENSE (Handles Create & Update)
 async function submitExpense(e, editId = null) {
