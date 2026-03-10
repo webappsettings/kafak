@@ -457,7 +457,6 @@ function renderTabs(orders) {
 
     // Helper to get effective status and dates
     const getOrderInfo = (o) => {
-        // 🔥 FIX: Courier മാറ്റങ്ങൾ (meta update) ഇവിടെ എടുക്കരുത്. Status update മാത്രം എടുക്കുക!
         let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
 
         let status = (local && local.status) ? local.status : (o.Status || 'Pending');
@@ -550,7 +549,7 @@ function renderTabs(orders) {
 
     // 🔥 STEP 4: PRE-CALCULATE TIMELINE STATS (For Header Display)
     let timelineStats = {};
-    let tabCourierTotal = { paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 }; // 🔥 ടാബുകളിലെ മൊത്തം തുകയ്ക്ക്
+    let tabCourierTotal = { paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
 
     orders.forEach(o => {
         let { status, dDateStr, pDateStr } = getOrderInfo(o);
@@ -587,7 +586,6 @@ function renderTabs(orders) {
                 }
                 timelineStats[fullKey].cost += actualC;
 
-                // 🔥 ടാബിലെ മൊത്തം തുകയിലേക്ക് കൂട്ടുന്നു
                 if (tabCourierTotal[dateKeyType] !== undefined) {
                     tabCourierTotal[dateKeyType] += actualC;
                 }
@@ -595,17 +593,15 @@ function renderTabs(orders) {
         }
     });
 
-    // 🔥 STEP 5: MAIN RENDER LOOP (Merged everything here)
+    // 🔥 STEP 5: MAIN RENDER LOOP 
     let lastDateMap = { new: '', sent: '', paid_new: '', paid_print: '', disp_new: '', disp_track: '' };
     let firstDateFlags = { new: true, sent: true, paid_new: true, paid_print: true, disp_new: true, disp_track: true };
 
-    // --- 🔥 FIX: 3 ദിവസത്തെ ലിമിറ്റ് സെറ്റ് ചെയ്യാനുള്ള വേരിയബിളുകൾ ഇവിടെയാണ് ചേർക്കേണ്ടത്! ---
     let oldTrackingCount = 0;
     let oldSentCount = 0;
     let oldPendingCount = 0;
     let oldDispNewCount = 0;
 
-    // ഓരോ ടാബിലും എത്ര തീയതികൾ കാണിച്ചു എന്ന് ഓർമ്മിക്കാൻ
     let visibleDates = {
         sent: new Set(),
         disp_track: new Set(),
@@ -613,11 +609,16 @@ function renderTabs(orders) {
         disp_new: new Set()
     };
 
-    // ടാബുകൾ ലോഡ് ചെയ്യാൻ വേണ്ടിയുള്ള ഗ്ലോബൽ വേരിയബിളുകൾ
     window.showAllSent = window.showAllSent || false;
     window.showAllPending = window.showAllPending || false;
     window.showAllDispNew = window.showAllDispNew || false;
-    // ----------------------------------------------------------------------
+
+    // HTML സ്ട്രിംഗുകൾ ശേഖരിക്കാൻ (ടാബുകൾക്കായി)
+    let generatedHTML = {
+        'pending': { new: '', sent: '' },
+        'paid': { new: '', printed: '' },
+        'dispatched': { new: '', tracked: '' }
+    };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
@@ -627,15 +628,15 @@ function renderTabs(orders) {
         if (status === 'Completed' || status === 'Archive') return;
 
         let meta = getMetaStatus(d.adminMeta);
-        let targetList = null;
         let type = '';
         let dateKey = '';
+        let groupKey = '';
+        let subGroupKey = '';
 
         let qty = parseInt(d.quantity) || 0;
         let s = String(d.state || '').toUpperCase().trim();
         let stateKey = null;
 
-        // --- State Identification (For Dots) ---
         if (s && s !== 'KERALA') {
             if (s.includes('LAK')) stateKey = 'lak';
             else if (s.includes('KARN')) stateKey = 'kar';
@@ -643,52 +644,47 @@ function renderTabs(orders) {
             else stateKey = 'other';
         }
 
-        // --- Classification Logic ---
         if (status === 'Pending') {
-            targetList = listNew; type = 'pending'; dateKey = 'new'; counts.pending++; subCounts.new++;
+            type = 'pending'; groupKey = 'pending'; subGroupKey = 'new'; dateKey = 'new'; counts.pending++; subCounts.new++;
         }
         else if (status === 'Sent') {
-            targetList = listSent; type = 'pending'; dateKey = 'sent'; counts.pending++; subCounts.sent++;
+            type = 'pending'; groupKey = 'pending'; subGroupKey = 'sent'; dateKey = 'sent'; counts.pending++; subCounts.sent++;
         }
         else if (status === 'Paid') {
-            type = 'paid'; counts.paid++;
+            type = 'paid'; groupKey = 'paid'; counts.paid++;
             if (meta.isPrinted) {
-                targetList = listPaidPrinted; dateKey = 'paid_print'; subCounts.paid_print++; pPrintQty += qty;
+                subGroupKey = 'printed'; dateKey = 'paid_print'; subCounts.paid_print++; pPrintQty += qty;
                 if (stateKey) stateStats.paid_print[stateKey]++;
             } else {
-                targetList = listPaidNew; dateKey = 'paid_new'; subCounts.paid_new++; pNewQty += qty;
+                subGroupKey = 'new'; dateKey = 'paid_new'; subCounts.paid_new++; pNewQty += qty;
                 if (stateKey) stateStats.paid_new[stateKey]++;
             }
         }
         else if (status === 'Dispatched') {
-            type = 'dispatched'; counts.dispatched++;
+            type = 'dispatched'; groupKey = 'dispatched'; counts.dispatched++;
             if (d.tracking || meta.isTracked) {
-                targetList = listDispTracked; dateKey = 'disp_track'; subCounts.disp_track++; dTrackQty += qty;
+                subGroupKey = 'tracked'; dateKey = 'disp_track'; subCounts.disp_track++; dTrackQty += qty;
                 if (stateKey) stateStats.disp_track[stateKey]++;
             } else {
-                targetList = listDispNew; dateKey = 'disp_new'; subCounts.disp_new++; dNewQty += qty;
+                subGroupKey = 'new'; dateKey = 'disp_new'; subCounts.disp_new++; dNewQty += qty;
                 if (stateKey) stateStats.disp_new[stateKey]++;
             }
         }
 
-        if (targetList) {
-            // ആദ്യം തന്നെ എണ്ണം കൂട്ടുന്നു (ബാഡ്ജിൽ തെറ്റാതിരിക്കാൻ)
+        if (type) {
             btlCounts[type] += qty;
 
-            // ഓർഡറിന്റെ തീയതി ലേബൽ (Today, Yesterday, 12/01/2026) ഉണ്ടാക്കുന്നു
             let displayDateRaw = d.timestamp;
             if (type === 'paid') displayDateRaw = pDateStr;
             if (type === 'dispatched') displayDateRaw = dDateStr;
             let dateLabel = getTimelineLabel(displayDateRaw);
 
-            // 🔥 1. TRACKED TAB LOGIC (Last 3 Active Dates മാത്രം)
             if (dateKey === 'disp_track' && !showAllTracking) {
                 if (!visibleDates.disp_track.has(dateLabel) && visibleDates.disp_track.size >= 3) {
                     oldTrackingCount++; return;
                 }
                 visibleDates.disp_track.add(dateLabel);
             }
-            // 🔥 2. SENT TAB LOGIC (Last 3 Active Dates മാത്രം)
             if (dateKey === 'sent' && !window.showAllSent) {
                 if (!visibleDates.sent.has(dateLabel) && visibleDates.sent.size >= 3) {
                     oldSentCount++; return;
@@ -696,51 +692,26 @@ function renderTabs(orders) {
                 visibleDates.sent.add(dateLabel);
             }
 
-            // 🔥 Pending (new) ഉം, Dispatched (disp_new) ഉം ഇവിടെ കൊടുക്കുന്നില്ല, അതുകൊണ്ട് അവയിലെ മുഴുവൻ കാർഡുകളും എപ്പോഴും കാണിക്കും!
-
-            // --- STICKY DATE HEADER ---
             if (dateLabel !== lastDateMap[dateKey]) {
                 if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
                 let extraHtml = '';
-                let s = timelineStats[`${dateKey}_${dateLabel}`];
-                if (s) {
-                    // 🔥 'type === dispatched' എന്ന കണ്ടീഷൻ ഒഴിവാക്കി, അതുകൊണ്ട് Paid ലും കാണിക്കും!
-                    if (s.cost > 0) {
-                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${s.cost}</span>`;
+                let stats = timelineStats[`${dateKey}_${dateLabel}`];
+                if (stats) {
+                    if (stats.cost > 0) {
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${stats.cost}</span>`;
                     }
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${s.count}</span>`;
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${s.bottles}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${stats.count}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${stats.bottles}</span>`;
                 }
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
+                generatedHTML[groupKey][subGroupKey] += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
-            // --- COMPACT VIEW LOGIC ---
             let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
+            generatedHTML[groupKey][subGroupKey] += createCardHTML(d, i, type, status, isCompact);
         }
     });
 
-    // 🔥 ലൂപ്പിന് ശേഷം ഹൈഡ് ചെയ്ത കാർഡുകൾക്കുള്ള ബട്ടൺ ചേർക്കുന്നു
-    const addLoadMoreBtn = (listElement, count, funcName) => {
-        if (count > 0 && listElement) {
-            listElement.innerHTML += `
-            <div class="text-center my-4">
-                <button onclick="${funcName}()" class="btn btn-light border border-secondary border-opacity-50 text-secondary btn-sm rounded-pill px-4 shadow-sm fw-bold" style="font-size:11px;">
-                    <i class="fas fa-history me-1"></i> Load Old Orders (${count})
-                </button>
-            </div>`;
-        }
-    };
-
-    if (!showAllTracking) addLoadMoreBtn(listDispTracked, oldTrackingCount, 'loadOldTrackingOrders');
-    if (!window.showAllSent) addLoadMoreBtn(listSent, oldSentCount, 'loadOldSentOrders');
-    if (!window.showAllPending) addLoadMoreBtn(listNew, oldPendingCount, 'loadOldPendingOrders');
-    if (!window.showAllDispNew) addLoadMoreBtn(listDispNew, oldDispNewCount, 'loadOldDispNewOrders');
-
-    // ------------------------------------------------------------------
-    // 🔥 EMPTY STATE UI (If no cards in a tab)
-    // ------------------------------------------------------------------
     const getEmptyUI = (msg, subMsg, icon) => `
         <div class="text-center w-100 py-5 mt-3 fade-in d-flex flex-column align-items-center justify-content-center">
             <div style="width: 80px; height: 80px; background: #f8f9fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border: 1px dashed #ced4da;">
@@ -750,18 +721,153 @@ function renderTabs(orders) {
             <div class="text-muted small" style="font-size: 11px;">${subMsg}</div>
         </div>`;
 
-    // 1. Pending Tabs
-    if (listNew && subCounts.new === 0) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
-    if (listSent && subCounts.sent === 0) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
+    if (subCounts.new === 0) generatedHTML.pending.new += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
+    if (subCounts.sent === 0) generatedHTML.pending.sent += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
+    if (subCounts.paid_new === 0) generatedHTML.paid.new += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
+    if (subCounts.paid_print === 0) generatedHTML.paid.printed += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+    if (subCounts.disp_new === 0) generatedHTML.dispatched.new += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
+    if (subCounts.disp_track === 0) generatedHTML.dispatched.tracked += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
-    // 2. Paid Tabs
-    if (listPaidNew && subCounts.paid_new === 0) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
-    if (listPaidPrinted && subCounts.paid_print === 0) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+    const addLoadMoreBtnToHtml = (htmlStr, count, funcName) => {
+        if (count > 0) {
+            return htmlStr + `
+            <div class="text-center my-4">
+                <button onclick="${funcName}()" class="btn btn-light border border-secondary border-opacity-50 text-secondary btn-sm rounded-pill px-4 shadow-sm fw-bold" style="font-size:11px;">
+                    <i class="fas fa-history me-1"></i> Load Old Orders (${count})
+                </button>
+            </div>`;
+        }
+        return htmlStr;
+    };
 
-    // 3. Dispatched Tabs
-    if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
-    if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
-    // ------------------------------------------------------------------
+    if (!showAllTracking) generatedHTML.dispatched.tracked = addLoadMoreBtnToHtml(generatedHTML.dispatched.tracked, oldTrackingCount, 'loadOldTrackingOrders');
+    if (!window.showAllSent) generatedHTML.pending.sent = addLoadMoreBtnToHtml(generatedHTML.pending.sent, oldSentCount, 'loadOldSentOrders');
+    if (!window.showAllPending) generatedHTML.pending.new = addLoadMoreBtnToHtml(generatedHTML.pending.new, oldPendingCount, 'loadOldPendingOrders');
+    if (!window.showAllDispNew) generatedHTML.dispatched.new = addLoadMoreBtnToHtml(generatedHTML.dispatched.new, oldDispNewCount, 'loadOldDispNewOrders');
+
+
+    // 🔥 ഈ ഭാഗത്താണ് നമ്മൾ പുതിയ Sticky Header ഉണ്ടാക്കുന്നത് (ഓരോ മെയിൻ ടാബിനും)
+    ['pending', 'paid', 'dispatched'].forEach(type => {
+
+        // ടാബിന് ആവശ്യമായ വിവരങ്ങൾ എടുക്കുന്നു
+        let totalOrders = counts[type];
+        let totalBottles = btlCounts[type];
+        let totalCourierCharge = (type === 'paid' ? (tabCourierTotal.paid_new + tabCourierTotal.paid_print) : (type === 'dispatched' ? (tabCourierTotal.disp_new + tabCourierTotal.disp_track) : 0));
+
+        let sStats = { lak: 0, kar: 0, tn: 0, other: 0 };
+        if (type === 'paid') {
+            sStats.lak = stateStats.paid_new.lak + stateStats.paid_print.lak;
+            sStats.kar = stateStats.paid_new.kar + stateStats.paid_print.kar;
+            sStats.tn = stateStats.paid_new.tn + stateStats.paid_print.tn;
+        } else if (type === 'dispatched') {
+            sStats.lak = stateStats.disp_new.lak + stateStats.disp_track.lak;
+            sStats.kar = stateStats.disp_new.kar + stateStats.disp_track.kar;
+            sStats.tn = stateStats.disp_new.tn + stateStats.disp_track.tn;
+        }
+
+        let totalCourierHtml = '';
+        if (totalCourierCharge > 0) {
+            totalCourierHtml = `<div class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Courier: ₹${totalCourierCharge.toLocaleString()}</div>`;
+        }
+
+        let stickyHeaderHtml = `
+        <div class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 55px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px);">
+            
+            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                <div class="fw-bold text-dark d-flex align-items-center gap-3" style="font-size:13px;">
+                    <span class="d-flex align-items-center"><i class="fas fa-shopping-bag text-primary me-1 fs-6"></i> <span id="tot-ord-${type}" class="fs-5 me-1">${totalOrders}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Ords</span></span>
+                    <span class="d-flex align-items-center"><i class="fas fa-wine-bottle text-success me-1 fs-6"></i> <span id="tot-btl-${type}" class="fs-5 me-1">${totalBottles}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Btls</span></span>
+                </div>
+                ${totalCourierHtml}
+            </div>
+            
+            <div class="d-flex align-items-center overflow-auto pb-1" style="scrollbar-width: none; white-space: nowrap;">
+                <div class="d-flex align-items-center me-2 pe-2 border-end border-secondary border-opacity-25">
+                    <input type="text" id="date-filter-${type}" class="form-control form-control-sm border-primary text-primary fw-bold text-center shadow-sm date-filter-input" style="width:105px; border-radius:20px; font-size:11px; cursor:pointer; background:#f0f9ff;" placeholder="📅 Filter Date">
+                    <button class="btn btn-sm btn-outline-danger ms-1 rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:26px; height:26px; padding:0; display:none;" id="clear-date-${type}" onclick="clearDateFilter('${type}')" title="Clear Filter"><i class="fas fa-times"></i></button>
+                </div>
+                
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'KL', this)">Kerala <span class="text-primary ms-1"></span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'TN', this)">Tamilnadu <span class="text-primary ms-1">${sStats.tn}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'KA', this)">Karnataka <span class="text-primary ms-1">${sStats.kar}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'LD', this)">Lakshadweep <span class="text-primary ms-1">${sStats.lak}</span></span>
+                </div>
+            </div>
+        </div>
+        `;
+
+        // ആ ടാബിലെ പ്രധാന ഡിവിലേക്ക് ഹെഡറും ഉള്ളടക്കവും ചേർക്കുന്നു
+        let targetMainDiv = document.getElementById(type);
+        if (targetMainDiv) {
+            // പഴയ sub-tab HTML കളഞ്ഞു, പകരം നമ്മുടെ stickyHeaderHtml കൊടുത്തു
+            // താഴെ കാർഡുകൾ കാണിക്കാൻ രണ്ട് പ്രത്യേക div-കൾ ഉണ്ടാക്കുന്നു (സബ് ടാബുകൾ മാറാൻ)
+            let contentHtml = `
+             <div class="row g-2" id="list-sub-${type}-1" style="display:flex;">${generatedHTML[type][type === 'pending' ? 'new' : 'new']}</div>
+             <div class="row g-2" id="list-sub-${type}-2" style="display:none;">${generatedHTML[type][type === 'pending' ? 'sent' : (type === 'paid' ? 'printed' : 'tracked')]}</div>
+             `;
+
+            // പഴയ ടാബിലെ UI ബാക്കി വെക്കണോ എന്ന് നോക്കുന്നു.
+            // ഇവിടെ നമ്മൾ നേരെ document.getElementById('list-sub-new') ലേക്ക് അപ്പൻഡ് ചെയ്തത് കാരണം, stickyHeaderHtml അതിന് മുകളിൽ വരില്ല.
+        }
+    });
+
+    // DOM ലേക്ക് എഴുതുന്നു
+    if (listNew) listNew.innerHTML += generatedHTML.pending.new;
+    if (listSent) listSent.innerHTML += generatedHTML.pending.sent;
+    if (listPaidNew) listPaidNew.innerHTML += generatedHTML.paid.new;
+    if (listPaidPrinted) listPaidPrinted.innerHTML += generatedHTML.paid.printed;
+    if (listDispNew) listDispNew.innerHTML += generatedHTML.dispatched.new;
+    if (listDispTracked) listDispTracked.innerHTML += generatedHTML.dispatched.tracked;
+
+    // 🔥 NEW: ഓരോ മെയിൻ ടാബിനും മുകളിൽ പുതിയ Sticky Header ഇൻസേർട്ട് ചെയ്യുന്നു
+    const insertStickyHeader = (typeStr, totalOrders, totalBottles, totalCourierCharge, sStats) => {
+        let targetDiv = document.getElementById(typeStr);
+        if (!targetDiv) return;
+
+        // Remove old sticky headers if any to prevent duplicates
+        $(targetDiv).find('.sticky-top').remove();
+
+        let totalCourierHtml = '';
+        if (totalCourierCharge > 0) {
+            totalCourierHtml = `<div class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Courier: ₹${totalCourierCharge.toLocaleString()}</div>`;
+        }
+
+        let stickyHeaderHtml = `
+        <div class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 55px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px);">
+            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                <div class="fw-bold text-dark d-flex align-items-center gap-3" style="font-size:13px;">
+                    <span class="d-flex align-items-center"><i class="fas fa-shopping-bag text-primary me-1 fs-6"></i> <span class="fs-5 me-1">${totalOrders}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Ords</span></span>
+                    <span class="d-flex align-items-center"><i class="fas fa-wine-bottle text-success me-1 fs-6"></i> <span class="fs-5 me-1">${totalBottles}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Btls</span></span>
+                </div>
+                ${totalCourierHtml}
+            </div>
+            <div class="d-flex align-items-center overflow-auto pb-1" style="scrollbar-width: none; white-space: nowrap;">
+                <div class="d-flex align-items-center me-2 pe-2 border-end border-secondary border-opacity-25">
+                    <input type="text" id="date-filter-${typeStr}" class="form-control form-control-sm border-primary text-primary fw-bold text-center shadow-sm date-filter-input" style="width:105px; border-radius:20px; font-size:11px; cursor:pointer; background:#f0f9ff;" placeholder="📅 Filter Date">
+                    <button class="btn btn-sm btn-outline-danger ms-1 rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:26px; height:26px; padding:0; display:none;" id="clear-date-${typeStr}" onclick="clearDateFilter('${typeStr}')" title="Clear Filter"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'KL', this)">Kerala <span class="text-primary ms-1"></span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'TN', this)">Tamilnadu <span class="text-primary ms-1">${sStats.tn}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'KA', this)">Karnataka <span class="text-primary ms-1">${sStats.kar}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'LD', this)">Lakshadweep <span class="text-primary ms-1">${sStats.lak}</span></span>
+                </div>
+            </div>
+        </div>`;
+
+        // prepend it so it appears above the sub-tabs navigation
+        $(targetDiv).prepend(stickyHeaderHtml);
+    };
+
+    let pStats = { lak: 0, kar: 0, tn: 0 };
+    let paidStats = { lak: stateStats.paid_new.lak + stateStats.paid_print.lak, kar: stateStats.paid_new.kar + stateStats.paid_print.kar, tn: stateStats.paid_new.tn + stateStats.paid_print.tn };
+    let dStats = { lak: stateStats.disp_new.lak + stateStats.disp_track.lak, kar: stateStats.disp_new.kar + stateStats.disp_track.kar, tn: stateStats.disp_new.tn + stateStats.disp_track.tn };
+
+    insertStickyHeader('pending', counts.pending, btlCounts.pending, 0, pStats);
+    insertStickyHeader('paid', counts.paid, btlCounts.paid, tabCourierTotal.paid_new + tabCourierTotal.paid_print, paidStats);
+    insertStickyHeader('dispatched', counts.dispatched, btlCounts.dispatched, tabCourierTotal.disp_new + tabCourierTotal.disp_track, dStats);
+
 
     // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
@@ -812,7 +918,7 @@ function renderTabs(orders) {
     const setTabCourierTotal = (tabKey) => {
         let amt = tabCourierTotal[tabKey];
         if (amt > 0) {
-            $(`#box-courier-${tabKey}`).css('display', 'flex'); // 🔥 block മാറ്റി flex ആക്കി
+            $(`#box-courier-${tabKey}`).css('display', 'flex');
             $(`#txt-courier-${tabKey}`).text(amt.toLocaleString('en-IN'));
         } else {
             $(`#box-courier-${tabKey}`).css('display', 'none');
@@ -823,6 +929,11 @@ function renderTabs(orders) {
     setTabCourierTotal('paid_print');
     setTabCourierTotal('disp_new');
     setTabCourierTotal('disp_track');
+
+    // Date Picker Initialize 
+    setTimeout(() => {
+        initFlatpickrs();
+    }, 300);
 
 }
 
