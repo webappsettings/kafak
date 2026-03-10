@@ -719,7 +719,7 @@ function renderTabs(orders) {
     if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
     if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
-    // 🔥 POPULATE STICKY HEADERS (ഇവിടെയാണ് ഓരോ ടാബിലും ഹെഡർ ജനറേറ്റ് ആകുന്നത്)
+    // 🔥 POPULATE STICKY HEADERS (SINGLE LINE, NO FILTER, MOBILE FRIENDLY)
     const populateStickyHeader = (id, oCount, cTotal, sStats) => {
         let el = document.getElementById(`sticky-header-${id}`);
         if (!el) return;
@@ -738,35 +738,47 @@ function renderTabs(orders) {
             bCount = orders.filter(o => getOrderInfo(o).status === (id === 'new' ? 'Pending' : 'Sent')).reduce((sum, o) => sum + (parseInt(o.quantity) || 1), 0);
         }
 
-        let cHtml = cTotal > 0 ? `<div class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Courier: ₹${cTotal.toLocaleString()}</div>` : '';
+        let cHtml = cTotal > 0 ? `<span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-1 shadow-sm" style="font-size:9px;"><i class="fas fa-truck text-danger" style="font-size:8px;"></i> ₹${cTotal.toLocaleString()}</span>` : '';
 
         let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
         if (klCount < 0) klCount = 0;
 
-        let typeStr = (id === 'new' || id === 'sent') ? 'pending' : (id.includes('paid') ? 'paid' : 'dispatched');
+        // 🔥 State Colors
+        let colorLak = '#0dcaf0'; // Blue
+        let colorKar = '#d97706'; // Coffee
+        let colorTn = '#5d4037';  // Dark Coffee
+        let colorKl = '#198754';  // Green for KL
 
-        el.style.display = 'block';
+        // 🔥 State Dots HTML
+        let statesHtml = '';
+        if (klCount > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKl}; font-size:9px; height:18px; padding:0 6px;" title="Kerala">${klCount}</span>`;
+        if (sStats.lak > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorLak}; font-size:9px; height:18px; padding:0 6px;" title="Lakshadweep">${sStats.lak}</span>`;
+        if (sStats.kar > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKar}; font-size:9px; height:18px; padding:0 6px;" title="Karnataka">${sStats.kar}</span>`;
+        if (sStats.tn > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; height:18px; padding:0 6px;" title="Tamilnadu">${sStats.tn}</span>`;
+
+        el.style.display = 'flex';
+        // Overriding old classes to force single line compact layout
+        el.className = "sticky-top shadow-sm border-bottom border-2 d-flex justify-content-between align-items-center py-1 px-2";
+        el.style.top = "55px";
+        el.style.zIndex = "1010";
+        el.style.background = "rgba(255, 255, 255, 0.96)";
+        el.style.backdropFilter = "blur(8px)";
+        el.style.marginLeft = "-12px";
+        el.style.marginRight = "-12px";
+
         el.innerHTML = `
-            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
-                <div class="fw-bold text-dark d-flex align-items-center gap-3" style="font-size:13px;">
-                    <span class="d-flex align-items-center"><i class="fas fa-shopping-bag text-primary me-1 fs-6"></i> <span class="fs-5 me-1">${oCount}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Ords</span></span>
-                    <span class="d-flex align-items-center"><i class="fas fa-wine-bottle text-success me-1 fs-6"></i> <span class="fs-5 me-1">${bCount}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Btls</span></span>
-                </div>
+            <div class="d-flex align-items-center gap-2">
+                <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
+                    <i class="fas fa-shopping-bag text-primary me-1" style="font-size:10px;"></i> ${oCount}
+                </span>
+                <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
+                    <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i> ${bCount}
+                </span>
                 ${cHtml}
             </div>
             
-            <div class="d-flex align-items-center overflow-auto pb-1" style="scrollbar-width: none; white-space: nowrap;">
-                <div class="d-flex align-items-center me-2 pe-2 border-end border-secondary border-opacity-25">
-                    <input type="text" id="date-filter-${id}" class="form-control form-control-sm border-primary text-primary fw-bold text-center shadow-sm date-filter-input" style="width:105px; border-radius:20px; font-size:11px; cursor:pointer; background:#f0f9ff;" placeholder="📅 Filter Date">
-                    <button class="btn btn-sm btn-outline-danger ms-1 rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:26px; height:26px; padding:0; display:none;" id="clear-date-${id}" onclick="clearDateFilter('${typeStr}')" title="Clear Filter"><i class="fas fa-times"></i></button>
-                </div>
-                
-                <div class="d-flex align-items-center gap-2">
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Kerala <span class="text-primary ms-1">${klCount}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Tamilnadu <span class="text-primary ms-1">${sStats.tn}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Karnataka <span class="text-primary ms-1">${sStats.kar}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Lakshadweep <span class="text-primary ms-1">${sStats.lak}</span></span>
-                </div>
+            <div class="d-flex align-items-center gap-1">
+                ${statesHtml}
             </div>
         `;
     };
@@ -783,7 +795,6 @@ function renderTabs(orders) {
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // 🔥 FIX: പഴയ സബ്-ടാബ് ബാഡ്ജുകളിൽ നിന്ന് ടെക്സ്റ്റ് ഒഴിവാക്കി സിമ്പിൾ ആയി നമ്പർ മാത്രം കൊടുക്കുന്നു
     const setBadge = (id, val) => {
         if (document.getElementById(id)) {
             document.getElementById(id).innerText = val;
