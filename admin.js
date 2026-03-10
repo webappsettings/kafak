@@ -853,23 +853,18 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         else if (currentStatus === 'Dispatched') logicType = 'dispatched';
     }
 
-    // 1. Basic Data & Safety
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = new Date(d.timestamp);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
 
-    // 2. Customer Stats (History) - 🔥 1 LAKH SCALING LOGIC 🔥
     let totalOrders = 0;
     let totalBottles = 0;
 
-    // A. ഗൂഗിൾ ഷീറ്റിലെ 'Customers' ഡാറ്റാബേസിൽ നിന്നും കണക്ക് വന്നിട്ടുണ്ടെങ്കിൽ അത് നേരിട്ട് എടുക്കുന്നു (O(1) Time - Super Fast)
     if (d.Total_Orders !== undefined || d.total_orders !== undefined) {
         totalOrders = parseInt(d.Total_Orders || d.total_orders) || 1;
         totalBottles = parseInt(d.Total_Bottles || d.total_bottles) || (parseInt(d.quantity) || 1);
-    }
-    // B. ഇനി ഷീറ്റിൽ നിന്നും വന്നിട്ടില്ലെങ്കിൽ മാത്രം (Fall-back) ഫോണിൽ ഉള്ളതിൽ നിന്നും എണ്ണിയെടുക്കുന്നു
-    else {
+    } else {
         let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
         let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => {
             let matchPhone = String(o.phone || '').replace(/[^0-9]/g, '') === currentPhone;
@@ -880,7 +875,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
     }
 
-    // 3. Compact View (Collapsed Logic) - EARLY EXIT
     if (isCompact) {
         let phoneDisplay = d.phone ? d.phone.replace(/[^0-9]/g, '').slice(-10) : '';
         return `
@@ -903,9 +897,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         </div>`;
     }
 
-    // --- FULL CARD CONTENT (Standard View) ---
-
-    // Badges & Status Color
     let statusColor = 'secondary';
     if (currentStatus === 'Pending') statusColor = 'warning text-dark';
     if (currentStatus === 'Sent') statusColor = 'primary';
@@ -923,18 +914,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     let resendBadge = '';
     let oldTrackingInfo = '';
 
-    // പഴയ ഹിസ്റ്ററി ഉണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു
-    // let currentMetaStr = String(d.adminMeta || '');
-    // if (currentMetaStr.includes('|OldTrk:')) {
-    //     let historyMatch = currentMetaStr.split('|OldTrk:')[1];
-    //     if (historyMatch) {
-    //         oldTrackingInfo = `
-    //         <div class="mt-2 p-2 bg-danger bg-opacity-10 border border-danger border-opacity-25 rounded-3 d-flex align-items-center justify-content-between" style="font-size:10px;">
-    //             <div><i class="fas fa-info-circle text-danger me-1"></i> <b>Old Courier:</b> <span class="text-secondary">${historyMatch}</span></div>
-    //         </div>`;
-    //     }
-    // }
-
     if (meta.isResend) {
         resendBadge = `<span class="badge bg-danger ms-1 shadow-sm" style="font-size:9px; border-radius:6px;" title="This order was returned and is being resent"><i class="fas fa-reply-all me-1"></i>RESEND</span>`;
     }
@@ -943,28 +922,23 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
     }
 
-
-    // Fraud/Linked Order Alert
     let fraudAlertHtml = '';
-    // 🔥 Paid ടാബിലും കാണിക്കാൻ currentStatus === 'Paid' കൂടി ചേർത്തിട്ടുണ്ട്
     if (currentStatus === 'Pending' || currentStatus === 'Sent' || currentStatus === 'Paid') {
-        let linkData = checkCrossLinking(d); // മാച്ച് ആയ നമ്പറും എടുക്കുന്നു
+        let linkData = checkCrossLinking(d);
         if (linkData) {
             let linkedOrder = linkData.order;
-            let matchedNum = linkData.matchedNum; // ഏത് നമ്പർ വഴിയാണ് ലിങ്ക് ആയത് എന്ന്
+            let matchedNum = linkData.matchedNum;
 
             let linkStatus = String(linkedOrder.Status || 'Pending');
             let linkColor = linkStatus === 'Paid' ? 'danger' : 'warning';
             let linkIcon = linkStatus === 'Paid' ? 'exclamation-triangle' : 'link';
 
-            // ഓർഡർ ചെയ്ത തീയതിയും സമയവും (Top Right)
             let linkDateStr = '';
             if (linkedOrder.timestamp) {
                 let lDate = new Date(linkedOrder.timestamp);
                 linkDateStr = lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
             }
 
-            // ഫോൺ നമ്പറുകൾ ഒരുമിച്ചാക്കാൻ (Smart Contact Line with Radio Buttons)
             let linkContacts = {};
             const cleanNumLinked = (n) => String(n || '').replace(/[^0-9]/g, '');
 
@@ -983,9 +957,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 addLinkedContact('<i class="fas fa-money-bill-wave text-success" title="Paid Num"></i>', linkedOrder.paidNum);
             }
 
-            // 🔥 Radio Buttons തയ്യാറാക്കുന്നു
             let radioHtml = '';
-            let isFirstRadio = true; // ആദ്യത്തേത് Default ആയി Select ചെയ്യാൻ
+            let isFirstRadio = true;
             for (let num in linkContacts) {
                 let icons = linkContacts[num].join('<span style="margin-left:3px;"></span>');
                 let checkedStr = isFirstRadio ? 'checked' : '';
@@ -997,10 +970,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
                 isFirstRadio = false;
             }
 
-            // 🔥 WhatsApp Open Button (Selected Radio Button-ലെ നമ്പർ എടുത്ത് WA തുറക്കും)
             let linkWaBtn = `<button type="button" class="btn btn-sm btn-success py-0 px-2 shadow-sm ms-auto d-flex align-items-center" style="font-size:10px; height:24px; border-radius:6px;" onclick="event.stopPropagation(); let sel = document.querySelector('input[name=\\'link_wa_${d.orderid}\\']:checked'); if(sel){ let v = sel.value; if(v.length===10) v='91'+v; window.open('https://wa.me/'+v, '_blank'); }"><i class="fab fa-whatsapp me-1" style="font-size:12px;"></i> WA</button>`;
 
-            // Archive ബട്ടൺ കാണിക്കണോ എന്ന് തീരുമാനിക്കുന്നു
             let hideArchiveFor = ['archive', 'sent', 'dispatched', 'delivered', 'completed'];
             let showArchiveBtn = !hideArchiveFor.includes(linkStatus.toLowerCase());
 
@@ -1038,39 +1009,28 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         }
     }
 
-    // Header Construction (Left Side - Archive/Refund ബട്ടണുകൾ ഒഴിവാക്കി)
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-2">
             ${rankBadge} 
-            
             <span class="badge rounded-pill bg-dark d-flex align-items-center shadow-sm" 
                   style="font-size:11px; cursor:pointer; padding: 4px 10px;" 
                   onclick="event.stopPropagation(); copyToClipboard('${d.orderid}')" 
                   title="Click to Copy ID">
                 ${d.orderid} <i class="far fa-copy ms-2" style="opacity:0.7; font-size:12px;"></i>
             </span>
-            
             ${metaBadges} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${langBadge}
         </div>`;
 
-    // 🔥 BEAUTIFUL 3-DOT MENU (Top Right Actions)
     let menuItems = '';
-
-    // 1. Edit (എല്ലായ്പ്പോഴും കാണിക്കും)
     menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="order.html?oid=${d.orderid}" target="_blank" onclick="event.stopPropagation();"><i class="fas fa-pen text-primary me-2" style="width:16px; text-align:center;"></i> Edit Order</a></li>`;
-
-    // 2. Print (എല്ലായ്പ്പോഴും കാണിക്കും)
     menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); printSingle(${index});"><i class="fas fa-print text-secondary me-2" style="width:16px; text-align:center;"></i> Print Label</a></li>`;
 
-    // 3. Send Receipt (Paid സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം)
     if (logicType === 'paid') {
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}');"><i class="fab fa-whatsapp text-success me-2" style="width:16px; text-align:center;"></i> Send Receipt</a></li>`;
     }
 
-
-    // 4. Revert Status (Dispatched, Paid സ്റ്റാറ്റസുകൾക്ക് മാത്രം)
     if (logicType === 'dispatched') {
         let isTrackedCard = (d.tracking || meta.isTracked);
         let revertFn = isTrackedCard ? `revertToDispatched('${d.orderid}')` : `revertToPrinted('${d.orderid}')`;
@@ -1080,26 +1040,22 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); ${revertFn};"><i class="fas fa-history text-warning me-2" style="width:16px; text-align:center;"></i> Revert Status</a></li>`;
     }
 
-    // 5. Archive (Pending, Sent സ്റ്റാറ്റസുകൾക്ക് മാത്രം)
     if (currentStatus === 'Sent' || currentStatus === 'Pending') {
         menuItems += `<li><hr class="dropdown-divider m-1"></li>`;
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); archiveOrder('${d.orderid}');"><i class="fas fa-archive text-secondary me-2" style="width:16px; text-align:center;"></i> Archive Order</a></li>`;
     }
 
-    // 5.5 Resend (Dispatched/Delivered ആയവയ്ക്ക് മാത്രം)
     if (currentStatus === 'Dispatched' || currentStatus === 'Delivered' || currentStatus === 'Completed') {
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); handleResendOrder('${d.orderid}', ${index});"><i class="fas fa-reply-all me-2 text-warning" style="width:16px; text-align:center;"></i> Resend / Return</a></li>`;
     }
 
-    // 6. Refund (Completed, Refunded അല്ലാത്ത എല്ലാത്തിനും)
     if (currentStatus !== 'Refunded' && currentStatus !== 'Completed') {
         if (currentStatus !== 'Sent' && currentStatus !== 'Pending') {
-            menuItems += `<li><hr class="dropdown-divider m-1"></li>`; // ഡബിൾ ലൈൻ വരാതിരിക്കാൻ
+            menuItems += `<li><hr class="dropdown-divider m-1"></li>`;
         }
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-danger d-flex align-items-center" href="#" id="ref-btn-${d.orderid}" onclick="event.stopPropagation(); handleRefundToggle('${d.orderid}', ${index});"><i class="fas fa-undo-alt me-2" style="width:16px; text-align:center;"></i> Issue Refund</a></li>`;
     }
 
-    // 3-Dot ബട്ടണും മെനുവും ഒരുമിച്ച്
     let topActions = `
     <div class="dropdown" onclick="event.stopPropagation();">
         <button class="btn btn-sm btn-light border border-secondary border-opacity-25 rounded-circle shadow-sm d-flex align-items-center justify-content-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px; height:32px; background:#f8f9fa;">
@@ -1109,14 +1065,13 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
             ${menuItems}
         </ul>
     </div>`;
-    // Paid Date Display
+
     let paidTimeHTML = '';
     if ((logicType === 'paid' || currentStatus === 'Paid') && d.paidDate) {
         let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
-    // Contact Selector Logic
     let uniqueContacts = new Map();
     const cleanNum = (n) => String(n || '').replace(/[^0-9]/g, '');
     if (d.whatsapp) uniqueContacts.set(cleanNum(d.whatsapp), { val: d.whatsapp, label: `📲 WA: ${d.whatsapp}`, type: 'whatsapp' });
@@ -1143,7 +1098,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this, '${type}')" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
     </div>`;
 
-    // Contact Visuals (Icons)
     let contactMap = {};
     const addVisualContact = (iconType, number) => {
         if (!number) return;
@@ -1168,7 +1122,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
     }
     let contactLine = contactHTMLParts.join('<span class="mx-2 text-muted" style="font-size:10px;">|</span>');
 
-    // === MAIN BUTTONS LOGIC ===
     if (currentStatus === 'Completed' || currentStatus === 'Delivered') {
         let delDateStr = d['Delivered Date'] || d.actionDate;
         let dateDisplay = '';
@@ -1182,15 +1135,12 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
         let actionBtn = '';
 
-        // 🔥 CHANGE: Status Sent ആണെങ്കിൽ 'PAID' ബട്ടൺ, അല്ലെങ്കിൽ 'SENT' ബട്ടൺ
         if (currentStatus === 'Sent') {
-            // Green PAID Button
             actionBtn = `<button class="btn btn-success shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
                          style="width:100px; border-radius:10px; background:#198754;" 
                          onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" 
                          title="Mark as Paid">💰 PAID</button>`;
         } else {
-            // Blue SENT Button
             actionBtn = `<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
                          style="width:100px; border-radius:10px; background:#0d6efd;" 
                          onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" 
@@ -1214,21 +1164,35 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
 
         let trkBtnHtml = '';
         let isInTrackedList = (trackNum || meta.isTracked);
+
+        // 🔥 NEW: Individual Scan Icon Button
+        let scanIconBtn = `<button onclick="event.stopPropagation(); highlightCard(this); startScanner('tracking_single', '${d.orderid}')" class="btn btn-outline-dark shadow-sm d-flex align-items-center justify-content-center" title="Scan Barcode" style="width:40px; border-radius:10px;"><i class="fas fa-barcode"></i></button>`;
+
         if (trackNum) {
-            trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 TRK: ${trackNum}</button><a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 45px; flex:none;"><i class="fas fa-search"></i></a></div>`;
+            trkBtnHtml = `
+            <div class="d-flex gap-1 mb-2 w-100">
+                <button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 TRK: ${trackNum}</button>
+                ${scanIconBtn}
+                <a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 40px; flex:none;"><i class="fas fa-search"></i></a>
+            </div>`;
         } else {
-            let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary ms-1 shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
-            trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${moveBtn}</div>`;
+            let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
+            trkBtnHtml = `
+            <div class="d-flex gap-1 mb-2 w-100">
+                <button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>
+                ${scanIconBtn}
+                ${moveBtn}
+            </div>`;
         }
         buttons = `${dateHtml}${trkBtnHtml}<button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
-    // FINAL ASSEMBLY
     let providerOptions = '';
     availableProviders.forEach(prov => {
         let isSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === String(prov).toUpperCase()) ? 'selected' : '';
         providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
     });
+
     return `
     <div class="col-12 col-md-12 col-lg-12">
         <div class="order-card p-3">
@@ -3675,18 +3639,26 @@ function compressImage(file) {
 // 📷 SCANNER LOGIC (BIG UI & SMART FEEDBACK)
 // ==========================================
 
-function startScanner(mode) {
+function startScanner(mode, oid = null) {
     scanMode = mode;
-    scanStep = (mode === 'tracking') ? 1 : 0;
-    tempOid = null;
+
+    // 🔥 NEW: Individual Scan Logic
+    if (mode === 'tracking_single' && oid) {
+        scanStep = 2;
+        tempOid = oid;
+        $('#scan-mode-title').text("SCAN COURIER BARCODE");
+    } else {
+        scanStep = (mode === 'tracking') ? 1 : 0;
+        tempOid = null;
+        $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
+    }
 
     $('#scanner-modal').css('display', 'flex');
-    $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
     $('#scan-result-box').hide();
     $('#scan-info-text').html('');
     $('#scan-status-text').text('');
 
-    let boxConfig = (mode === 'tracking') ? { width: 300, height: 150 } : { width: 250, height: 250 };
+    let boxConfig = (mode.includes('tracking')) ? { width: 300, height: 150 } : { width: 250, height: 250 };
 
     history.pushState(null, null, location.href);
     window.onpopstate = function () { stopScanner(); };
@@ -3745,10 +3717,10 @@ function onScanSuccess(decodedText) {
         setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000);
     }
 
-    // 🚚 MODE 2: TRACKING (Dual Scan)
-    else if (scanMode === 'tracking') {
+    // 🚚 MODE 2: TRACKING (Dual Scan & Individual Scan)
+    else if (scanMode === 'tracking' || scanMode === 'tracking_single') {
 
-        // 👉 STEP 1: SCAN ORDER QR
+        // 👉 STEP 1: SCAN ORDER QR (Only for bulk mode)
         if (scanStep === 1) {
             if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
                 tempOid = decodedText;
@@ -3758,7 +3730,6 @@ function onScanSuccess(decodedText) {
                     showScanFeedback("ORDER NOT FOUND ❌", null, decodedText, true);
                     setTimeout(() => { isScanProcessing = false; }, 1500);
                 }
-                // 🔥 LOGIC CHANGE HERE: If Dispatched, allow updating Tracking (Don't stop)
                 else {
                     scanStep = 2;
                     let msg = (order.Status === 'Dispatched') ? "UPDATE TRACKING BARCODE" : "NOW SCAN COURIER BARCODE";
@@ -3775,11 +3746,10 @@ function onScanSuccess(decodedText) {
             }
         }
 
-        // 👉 STEP 2: SCAN BARCODE
+        // 👉 STEP 2: SCAN BARCODE (For both modes)
         else if (scanStep === 2) {
             if (!decodedText.startsWith("ORD-") && !decodedText.startsWith("K-")) {
 
-                // 🔥 CHECK: Is this barcode already used?
                 let duplicateOrder = allOrders.find(o => o.tracking === decodedText && o.orderid !== tempOid);
                 let currentOrder = allOrders.find(o => o.orderid === tempOid);
 
@@ -3789,15 +3759,24 @@ function onScanSuccess(decodedText) {
                     setTimeout(() => { isScanProcessing = false; }, 3000);
                 }
                 else {
+                    // 🔥 Save Tracking
                     updateOrder(tempOid, 'Dispatched', decodedText, true);
 
-                    showScanFeedback("TRACKING SAVED ✅", currentOrder, decodedText, false, "Tracking ID Linked Successfully");
+                    // 🔥 Auto Move to Tracked Tab (Set Meta to 'T')
+                    updateAdminMeta(tempOid, 'tracked', 'T');
 
-                    scanStep = 1;
-                    setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 2000);
+                    showScanFeedback("TRACKING SAVED ✅", currentOrder, decodedText, false, "Moved to Tracked Tab Successfully");
 
-                    html5QrCode.pause();
-                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000);
+                    if (scanMode === 'tracking_single') {
+                        // 🔥 Single സ്കാൻ ആണെങ്കിൽ സ്കാനർ തനിയെ അടയും
+                        setTimeout(() => { stopScanner(); isScanProcessing = false; }, 1500);
+                    } else {
+                        // Bulk സ്കാൻ ആണെങ്കിൽ അടുത്ത QR ചോദിക്കും
+                        scanStep = 1;
+                        setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 2000);
+                        html5QrCode.pause();
+                        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000);
+                    }
                 }
             } else {
                 showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", null, decodedText, true);
