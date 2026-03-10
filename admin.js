@@ -678,7 +678,7 @@ function renderTabs(orders) {
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
                 }
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 105px !important;"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
@@ -738,19 +738,16 @@ function renderTabs(orders) {
             bCount = orders.filter(o => getOrderInfo(o).status === (id === 'new' ? 'Pending' : 'Sent')).reduce((sum, o) => sum + (parseInt(o.quantity) || 1), 0);
         }
 
-        // ചെറിയ അക്ഷരത്തിൽ കൊറിയർ തുക
         let cHtml = cTotal > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ${cTotal}</span>` : '';
 
         let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
         if (klCount < 0) klCount = 0;
 
-        // 🔥 State Colors (നിങ്ങൾ പറഞ്ഞതുപോലെ)
         let colorLak = '#0dcaf0'; // Blue
         let colorKar = '#d97706'; // Coffee
         let colorTn = '#5d4037';  // Dark Coffee
         let colorKl = '#198754';  // Green
 
-        // 🔥 State Dots HTML (ചെറിയ റൗണ്ട് ബാഡ്ജുകൾ മാത്രം)
         let statesHtml = '';
         if (klCount > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKl}; font-size:9px; width:18px; height:18px; padding:0;" title="Kerala">${klCount}</span>`;
         if (sStats.lak > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorLak}; font-size:9px; width:18px; height:18px; padding:0;" title="Lakshadweep">${sStats.lak}</span>`;
@@ -758,16 +755,15 @@ function renderTabs(orders) {
         if (sStats.tn > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; width:18px; height:18px; padding:0;" title="Tamilnadu">${sStats.tn}</span>`;
 
         el.style.display = 'flex';
-        // നിങ്ങളുടെ CSS സ്റ്റൈലുകൾ ചേർത്ത് Floating Pill ആക്കി മാറ്റുന്നു
-        el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto";
-        el.style.top = "176px";
+        // 🔥 FIX: Top set to 60px 
+        // ഇത് കൊടുക്കുമ്പോൾ നമ്മൾ സ്ക്രോൾ ചെയ്ത് തുടങ്ങുമ്പോൾ മെയിൻ ടാബിന് കൃത്യം താഴെ വന്ന് ഇത് നിൽക്കും!
+        el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto mt-2 mb-3";
+        el.style.top = "60px";
         el.style.width = "225px";
         el.style.borderRadius = "20px";
         el.style.zIndex = "1010";
         el.style.background = "rgba(255, 255, 255, 0.95)";
         el.style.backdropFilter = "blur(8px)";
-        el.style.marginLeft = "auto";
-        el.style.marginRight = "auto";
 
         el.innerHTML = `
             <div class="d-flex align-items-center gap-2">
