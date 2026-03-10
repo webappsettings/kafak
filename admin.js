@@ -678,7 +678,7 @@ function renderTabs(orders) {
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
                 }
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
