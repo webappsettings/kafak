@@ -719,7 +719,7 @@ function renderTabs(orders) {
     if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
     if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
-    // 🔥 POPULATE STICKY HEADERS (SINGLE LINE, NO FILTER, MOBILE FRIENDLY)
+    // 🔥 POPULATE STICKY HEADERS (SINGLE LINE, CENTERED, MOBILE FRIENDLY)
     const populateStickyHeader = (id, oCount, cTotal, sStats) => {
         let el = document.getElementById(`sticky-header-${id}`);
         if (!el) return;
@@ -738,41 +738,44 @@ function renderTabs(orders) {
             bCount = orders.filter(o => getOrderInfo(o).status === (id === 'new' ? 'Pending' : 'Sent')).reduce((sum, o) => sum + (parseInt(o.quantity) || 1), 0);
         }
 
-        let cHtml = cTotal > 0 ? `<span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-1 shadow-sm" style="font-size:9px;"><i class="fas fa-truck text-danger" style="font-size:8px;"></i> ₹${cTotal.toLocaleString()}</span>` : '';
+        // ചെറിയ അക്ഷരത്തിൽ കൊറിയർ തുക
+        let cHtml = cTotal > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ${cTotal}</span>` : '';
 
         let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
         if (klCount < 0) klCount = 0;
 
-        // 🔥 State Colors
+        // 🔥 State Colors (നിങ്ങൾ പറഞ്ഞതുപോലെ)
         let colorLak = '#0dcaf0'; // Blue
         let colorKar = '#d97706'; // Coffee
         let colorTn = '#5d4037';  // Dark Coffee
-        let colorKl = '#198754';  // Green for KL
+        let colorKl = '#198754';  // Green
 
-        // 🔥 State Dots HTML
+        // 🔥 State Dots HTML (ചെറിയ റൗണ്ട് ബാഡ്ജുകൾ മാത്രം)
         let statesHtml = '';
-        if (klCount > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKl}; font-size:9px; height:18px; padding:0 6px;" title="Kerala">${klCount}</span>`;
-        if (sStats.lak > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorLak}; font-size:9px; height:18px; padding:0 6px;" title="Lakshadweep">${sStats.lak}</span>`;
-        if (sStats.kar > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKar}; font-size:9px; height:18px; padding:0 6px;" title="Karnataka">${sStats.kar}</span>`;
-        if (sStats.tn > 0) statesHtml += `<span class="badge rounded-pill text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; height:18px; padding:0 6px;" title="Tamilnadu">${sStats.tn}</span>`;
+        if (klCount > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKl}; font-size:9px; width:18px; height:18px; padding:0;" title="Kerala">${klCount}</span>`;
+        if (sStats.lak > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorLak}; font-size:9px; width:18px; height:18px; padding:0;" title="Lakshadweep">${sStats.lak}</span>`;
+        if (sStats.kar > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKar}; font-size:9px; width:18px; height:18px; padding:0;" title="Karnataka">${sStats.kar}</span>`;
+        if (sStats.tn > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; width:18px; height:18px; padding:0;" title="Tamilnadu">${sStats.tn}</span>`;
 
         el.style.display = 'flex';
-        // Overriding old classes to force single line compact layout
-        el.className = "sticky-top shadow-sm border-bottom border-2 d-flex justify-content-between align-items-center py-1 px-2";
-        el.style.top = "55px";
+        // നിങ്ങളുടെ CSS സ്റ്റൈലുകൾ ചേർത്ത് Floating Pill ആക്കി മാറ്റുന്നു
+        el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto";
+        el.style.top = "176px";
+        el.style.width = "225px";
+        el.style.borderRadius = "20px";
         el.style.zIndex = "1010";
-        el.style.background = "rgba(255, 255, 255, 0.96)";
+        el.style.background = "rgba(255, 255, 255, 0.95)";
         el.style.backdropFilter = "blur(8px)";
-        el.style.marginLeft = "-12px";
-        el.style.marginRight = "-12px";
+        el.style.marginLeft = "auto";
+        el.style.marginRight = "auto";
 
         el.innerHTML = `
             <div class="d-flex align-items-center gap-2">
                 <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
-                    <i class="fas fa-shopping-bag text-primary me-1" style="font-size:10px;"></i> ${oCount}
+                    <i class="fas fa-shopping-bag text-primary me-1" style="font-size:10px;"></i>${oCount}
                 </span>
                 <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
-                    <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i> ${bCount}
+                    <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i>${bCount}
                 </span>
                 ${cHtml}
             </div>
