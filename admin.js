@@ -678,7 +678,7 @@ function renderTabs(orders) {
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
                 }
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 105px !important;"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0; z-index: 9999;"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
@@ -755,15 +755,16 @@ function renderTabs(orders) {
         if (sStats.tn > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; width:18px; height:18px; padding:0;" title="Tamilnadu">${sStats.tn}</span>`;
 
         el.style.display = 'flex';
-        // 🔥 FIX: Top set to 60px 
-        // ഇത് കൊടുക്കുമ്പോൾ നമ്മൾ സ്ക്രോൾ ചെയ്ത് തുടങ്ങുമ്പോൾ മെയിൻ ടാബിന് കൃത്യം താഴെ വന്ന് ഇത് നിൽക്കും!
         el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto mt-2 mb-3";
-        el.style.top = "60px";
+        // 🔥 നിങ്ങൾ പറഞ്ഞ അളവുകൾ:
+        el.style.top = "176px";
         el.style.width = "225px";
         el.style.borderRadius = "20px";
         el.style.zIndex = "1010";
         el.style.background = "rgba(255, 255, 255, 0.95)";
         el.style.backdropFilter = "blur(8px)";
+        el.style.marginLeft = "auto";
+        el.style.marginRight = "auto";
 
         el.innerHTML = `
             <div class="d-flex align-items-center gap-2">
